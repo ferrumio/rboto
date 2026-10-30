@@ -31781,16 +31781,16 @@ impl PyVpcConfig {
 }
 
 #[pyclass(
-    name = "AcceptAdministratorInvitationResponse",
+    name = "AcceptAdministratorInvitationOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyAcceptAdministratorInvitationResponse {
+struct PyOperationAcceptAdministratorInvitationOutput {
     inner: aws_sdk_guardduty::operation::accept_administrator_invitation::AcceptAdministratorInvitationOutput,
 }
 
 #[pymethods]
-impl PyAcceptAdministratorInvitationResponse {
+impl PyOperationAcceptAdministratorInvitationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -31798,16 +31798,16 @@ impl PyAcceptAdministratorInvitationResponse {
 }
 
 #[pyclass(
-    name = "AcceptInvitationResponse",
+    name = "AcceptInvitationOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyAcceptInvitationResponse {
+struct PyOperationAcceptInvitationOutput {
     inner: aws_sdk_guardduty::operation::accept_invitation::AcceptInvitationOutput,
 }
 
 #[pymethods]
-impl PyAcceptInvitationResponse {
+impl PyOperationAcceptInvitationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -31815,16 +31815,16 @@ impl PyAcceptInvitationResponse {
 }
 
 #[pyclass(
-    name = "ArchiveFindingsResponse",
+    name = "ArchiveFindingsOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyArchiveFindingsResponse {
+struct PyOperationArchiveFindingsOutput {
     inner: aws_sdk_guardduty::operation::archive_findings::ArchiveFindingsOutput,
 }
 
 #[pymethods]
-impl PyArchiveFindingsResponse {
+impl PyOperationArchiveFindingsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -31832,16 +31832,16 @@ impl PyArchiveFindingsResponse {
 }
 
 #[pyclass(
-    name = "CreateCustomDetectionRuleAssociationResponse",
+    name = "CreateCustomDetectionRuleAssociationOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyCreateCustomDetectionRuleAssociationResponse {
+struct PyOperationCreateCustomDetectionRuleAssociationOutput {
     inner: aws_sdk_guardduty::operation::create_custom_detection_rule_association::CreateCustomDetectionRuleAssociationOutput,
 }
 
 #[pymethods]
-impl PyCreateCustomDetectionRuleAssociationResponse {
+impl PyOperationCreateCustomDetectionRuleAssociationOutput {
     #[getter]
     fn rule_association(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.rule_association {
@@ -31871,16 +31871,16 @@ impl PyCreateCustomDetectionRuleAssociationResponse {
 }
 
 #[pyclass(
-    name = "CreateCustomDetectionRuleOrgConfigurationResponse",
+    name = "CreateCustomDetectionRuleOrgConfigurationOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyCreateCustomDetectionRuleOrgConfigurationResponse {
+struct PyOperationCreateCustomDetectionRuleOrgConfigurationOutput {
     inner: aws_sdk_guardduty::operation::create_custom_detection_rule_org_configuration::CreateCustomDetectionRuleOrgConfigurationOutput,
 }
 
 #[pymethods]
-impl PyCreateCustomDetectionRuleOrgConfigurationResponse {
+impl PyOperationCreateCustomDetectionRuleOrgConfigurationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -31888,16 +31888,16 @@ impl PyCreateCustomDetectionRuleOrgConfigurationResponse {
 }
 
 #[pyclass(
-    name = "CreateDetectorResponse",
+    name = "CreateDetectorOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyCreateDetectorResponse {
+struct PyOperationCreateDetectorOutput {
     inner: aws_sdk_guardduty::operation::create_detector::CreateDetectorOutput,
 }
 
 #[pymethods]
-impl PyCreateDetectorResponse {
+impl PyOperationCreateDetectorOutput {
     #[getter]
     fn detector_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.detector_id {
@@ -31943,16 +31943,16 @@ impl PyCreateDetectorResponse {
 }
 
 #[pyclass(
-    name = "CreateFilterResponse",
+    name = "CreateFilterOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyCreateFilterResponse {
+struct PyOperationCreateFilterOutput {
     inner: aws_sdk_guardduty::operation::create_filter::CreateFilterOutput,
 }
 
 #[pymethods]
-impl PyCreateFilterResponse {
+impl PyOperationCreateFilterOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
@@ -31975,17 +31975,13 @@ impl PyCreateFilterResponse {
     }
 }
 
-#[pyclass(
-    name = "CreateIPSetResponse",
-    module = "rboto_guardduty._native",
-    frozen
-)]
-struct PyCreateIPSetResponse {
+#[pyclass(name = "CreateIPSetOutput", module = "rboto_guardduty._native", frozen)]
+struct PyOperationCreateIPSetOutput {
     inner: aws_sdk_guardduty::operation::create_ip_set::CreateIpSetOutput,
 }
 
 #[pymethods]
-impl PyCreateIPSetResponse {
+impl PyOperationCreateIPSetOutput {
     #[getter]
     fn ip_set_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ip_set_id {
@@ -32009,16 +32005,16 @@ impl PyCreateIPSetResponse {
 }
 
 #[pyclass(
-    name = "CreateInvestigationResponse",
+    name = "CreateInvestigationOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyCreateInvestigationResponse {
+struct PyOperationCreateInvestigationOutput {
     inner: aws_sdk_guardduty::operation::create_investigation::CreateInvestigationOutput,
 }
 
 #[pymethods]
-impl PyCreateInvestigationResponse {
+impl PyOperationCreateInvestigationOutput {
     #[getter]
     fn investigation_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.investigation_id {
@@ -32042,16 +32038,16 @@ impl PyCreateInvestigationResponse {
 }
 
 #[pyclass(
-    name = "CreateMalwareProtectionPlanResponse",
+    name = "CreateMalwareProtectionPlanOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyCreateMalwareProtectionPlanResponse {
+struct PyOperationCreateMalwareProtectionPlanOutput {
     inner: aws_sdk_guardduty::operation::create_malware_protection_plan::CreateMalwareProtectionPlanOutput,
 }
 
 #[pymethods]
-impl PyCreateMalwareProtectionPlanResponse {
+impl PyOperationCreateMalwareProtectionPlanOutput {
     #[getter]
     fn malware_protection_plan_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.malware_protection_plan_id {
@@ -32075,16 +32071,16 @@ impl PyCreateMalwareProtectionPlanResponse {
 }
 
 #[pyclass(
-    name = "CreateMembersResponse",
+    name = "CreateMembersOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyCreateMembersResponse {
+struct PyOperationCreateMembersOutput {
     inner: aws_sdk_guardduty::operation::create_members::CreateMembersOutput,
 }
 
 #[pymethods]
-impl PyCreateMembersResponse {
+impl PyOperationCreateMembersOutput {
     #[getter]
     fn unprocessed_accounts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.unprocessed_accounts {
@@ -32124,16 +32120,16 @@ impl PyCreateMembersResponse {
 }
 
 #[pyclass(
-    name = "CreatePublishingDestinationResponse",
+    name = "CreatePublishingDestinationOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyCreatePublishingDestinationResponse {
+struct PyOperationCreatePublishingDestinationOutput {
     inner: aws_sdk_guardduty::operation::create_publishing_destination::CreatePublishingDestinationOutput,
 }
 
 #[pymethods]
-impl PyCreatePublishingDestinationResponse {
+impl PyOperationCreatePublishingDestinationOutput {
     #[getter]
     fn destination_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.destination_id {
@@ -32157,16 +32153,16 @@ impl PyCreatePublishingDestinationResponse {
 }
 
 #[pyclass(
-    name = "CreateSampleFindingsResponse",
+    name = "CreateSampleFindingsOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyCreateSampleFindingsResponse {
+struct PyOperationCreateSampleFindingsOutput {
     inner: aws_sdk_guardduty::operation::create_sample_findings::CreateSampleFindingsOutput,
 }
 
 #[pymethods]
-impl PyCreateSampleFindingsResponse {
+impl PyOperationCreateSampleFindingsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -32174,16 +32170,16 @@ impl PyCreateSampleFindingsResponse {
 }
 
 #[pyclass(
-    name = "CreateThreatEntitySetResponse",
+    name = "CreateThreatEntitySetOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyCreateThreatEntitySetResponse {
+struct PyOperationCreateThreatEntitySetOutput {
     inner: aws_sdk_guardduty::operation::create_threat_entity_set::CreateThreatEntitySetOutput,
 }
 
 #[pymethods]
-impl PyCreateThreatEntitySetResponse {
+impl PyOperationCreateThreatEntitySetOutput {
     #[getter]
     fn threat_entity_set_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.threat_entity_set_id {
@@ -32207,16 +32203,16 @@ impl PyCreateThreatEntitySetResponse {
 }
 
 #[pyclass(
-    name = "CreateThreatIntelSetResponse",
+    name = "CreateThreatIntelSetOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyCreateThreatIntelSetResponse {
+struct PyOperationCreateThreatIntelSetOutput {
     inner: aws_sdk_guardduty::operation::create_threat_intel_set::CreateThreatIntelSetOutput,
 }
 
 #[pymethods]
-impl PyCreateThreatIntelSetResponse {
+impl PyOperationCreateThreatIntelSetOutput {
     #[getter]
     fn threat_intel_set_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.threat_intel_set_id {
@@ -32240,16 +32236,16 @@ impl PyCreateThreatIntelSetResponse {
 }
 
 #[pyclass(
-    name = "CreateTrustedEntitySetResponse",
+    name = "CreateTrustedEntitySetOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyCreateTrustedEntitySetResponse {
+struct PyOperationCreateTrustedEntitySetOutput {
     inner: aws_sdk_guardduty::operation::create_trusted_entity_set::CreateTrustedEntitySetOutput,
 }
 
 #[pymethods]
-impl PyCreateTrustedEntitySetResponse {
+impl PyOperationCreateTrustedEntitySetOutput {
     #[getter]
     fn trusted_entity_set_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trusted_entity_set_id {
@@ -32273,16 +32269,16 @@ impl PyCreateTrustedEntitySetResponse {
 }
 
 #[pyclass(
-    name = "DeclineInvitationsResponse",
+    name = "DeclineInvitationsOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyDeclineInvitationsResponse {
+struct PyOperationDeclineInvitationsOutput {
     inner: aws_sdk_guardduty::operation::decline_invitations::DeclineInvitationsOutput,
 }
 
 #[pymethods]
-impl PyDeclineInvitationsResponse {
+impl PyOperationDeclineInvitationsOutput {
     #[getter]
     fn unprocessed_accounts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.unprocessed_accounts {
@@ -32322,16 +32318,16 @@ impl PyDeclineInvitationsResponse {
 }
 
 #[pyclass(
-    name = "DeleteCustomDetectionRuleAssociationResponse",
+    name = "DeleteCustomDetectionRuleAssociationOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyDeleteCustomDetectionRuleAssociationResponse {
+struct PyOperationDeleteCustomDetectionRuleAssociationOutput {
     inner: aws_sdk_guardduty::operation::delete_custom_detection_rule_association::DeleteCustomDetectionRuleAssociationOutput,
 }
 
 #[pymethods]
-impl PyDeleteCustomDetectionRuleAssociationResponse {
+impl PyOperationDeleteCustomDetectionRuleAssociationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -32339,16 +32335,16 @@ impl PyDeleteCustomDetectionRuleAssociationResponse {
 }
 
 #[pyclass(
-    name = "DeleteCustomDetectionRuleOrgConfigurationResponse",
+    name = "DeleteCustomDetectionRuleOrgConfigurationOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyDeleteCustomDetectionRuleOrgConfigurationResponse {
+struct PyOperationDeleteCustomDetectionRuleOrgConfigurationOutput {
     inner: aws_sdk_guardduty::operation::delete_custom_detection_rule_org_configuration::DeleteCustomDetectionRuleOrgConfigurationOutput,
 }
 
 #[pymethods]
-impl PyDeleteCustomDetectionRuleOrgConfigurationResponse {
+impl PyOperationDeleteCustomDetectionRuleOrgConfigurationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -32356,16 +32352,16 @@ impl PyDeleteCustomDetectionRuleOrgConfigurationResponse {
 }
 
 #[pyclass(
-    name = "DeleteDetectorResponse",
+    name = "DeleteDetectorOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyDeleteDetectorResponse {
+struct PyOperationDeleteDetectorOutput {
     inner: aws_sdk_guardduty::operation::delete_detector::DeleteDetectorOutput,
 }
 
 #[pymethods]
-impl PyDeleteDetectorResponse {
+impl PyOperationDeleteDetectorOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -32373,33 +32369,29 @@ impl PyDeleteDetectorResponse {
 }
 
 #[pyclass(
-    name = "DeleteFilterResponse",
+    name = "DeleteFilterOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyDeleteFilterResponse {
+struct PyOperationDeleteFilterOutput {
     inner: aws_sdk_guardduty::operation::delete_filter::DeleteFilterOutput,
 }
 
 #[pymethods]
-impl PyDeleteFilterResponse {
+impl PyOperationDeleteFilterOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(
-    name = "DeleteIPSetResponse",
-    module = "rboto_guardduty._native",
-    frozen
-)]
-struct PyDeleteIPSetResponse {
+#[pyclass(name = "DeleteIPSetOutput", module = "rboto_guardduty._native", frozen)]
+struct PyOperationDeleteIPSetOutput {
     inner: aws_sdk_guardduty::operation::delete_ip_set::DeleteIpSetOutput,
 }
 
 #[pymethods]
-impl PyDeleteIPSetResponse {
+impl PyOperationDeleteIPSetOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -32407,16 +32399,16 @@ impl PyDeleteIPSetResponse {
 }
 
 #[pyclass(
-    name = "DeleteInvitationsResponse",
+    name = "DeleteInvitationsOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyDeleteInvitationsResponse {
+struct PyOperationDeleteInvitationsOutput {
     inner: aws_sdk_guardduty::operation::delete_invitations::DeleteInvitationsOutput,
 }
 
 #[pymethods]
-impl PyDeleteInvitationsResponse {
+impl PyOperationDeleteInvitationsOutput {
     #[getter]
     fn unprocessed_accounts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.unprocessed_accounts {
@@ -32456,16 +32448,16 @@ impl PyDeleteInvitationsResponse {
 }
 
 #[pyclass(
-    name = "DeleteMembersResponse",
+    name = "DeleteMembersOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyDeleteMembersResponse {
+struct PyOperationDeleteMembersOutput {
     inner: aws_sdk_guardduty::operation::delete_members::DeleteMembersOutput,
 }
 
 #[pymethods]
-impl PyDeleteMembersResponse {
+impl PyOperationDeleteMembersOutput {
     #[getter]
     fn unprocessed_accounts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.unprocessed_accounts {
@@ -32505,16 +32497,16 @@ impl PyDeleteMembersResponse {
 }
 
 #[pyclass(
-    name = "DeletePublishingDestinationResponse",
+    name = "DeletePublishingDestinationOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyDeletePublishingDestinationResponse {
+struct PyOperationDeletePublishingDestinationOutput {
     inner: aws_sdk_guardduty::operation::delete_publishing_destination::DeletePublishingDestinationOutput,
 }
 
 #[pymethods]
-impl PyDeletePublishingDestinationResponse {
+impl PyOperationDeletePublishingDestinationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -32522,16 +32514,16 @@ impl PyDeletePublishingDestinationResponse {
 }
 
 #[pyclass(
-    name = "DeleteThreatEntitySetResponse",
+    name = "DeleteThreatEntitySetOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyDeleteThreatEntitySetResponse {
+struct PyOperationDeleteThreatEntitySetOutput {
     inner: aws_sdk_guardduty::operation::delete_threat_entity_set::DeleteThreatEntitySetOutput,
 }
 
 #[pymethods]
-impl PyDeleteThreatEntitySetResponse {
+impl PyOperationDeleteThreatEntitySetOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -32539,16 +32531,16 @@ impl PyDeleteThreatEntitySetResponse {
 }
 
 #[pyclass(
-    name = "DeleteThreatIntelSetResponse",
+    name = "DeleteThreatIntelSetOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyDeleteThreatIntelSetResponse {
+struct PyOperationDeleteThreatIntelSetOutput {
     inner: aws_sdk_guardduty::operation::delete_threat_intel_set::DeleteThreatIntelSetOutput,
 }
 
 #[pymethods]
-impl PyDeleteThreatIntelSetResponse {
+impl PyOperationDeleteThreatIntelSetOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -32556,16 +32548,16 @@ impl PyDeleteThreatIntelSetResponse {
 }
 
 #[pyclass(
-    name = "DeleteTrustedEntitySetResponse",
+    name = "DeleteTrustedEntitySetOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyDeleteTrustedEntitySetResponse {
+struct PyOperationDeleteTrustedEntitySetOutput {
     inner: aws_sdk_guardduty::operation::delete_trusted_entity_set::DeleteTrustedEntitySetOutput,
 }
 
 #[pymethods]
-impl PyDeleteTrustedEntitySetResponse {
+impl PyOperationDeleteTrustedEntitySetOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -32573,16 +32565,16 @@ impl PyDeleteTrustedEntitySetResponse {
 }
 
 #[pyclass(
-    name = "DescribeMalwareScansResponse",
+    name = "DescribeMalwareScansOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyDescribeMalwareScansResponse {
+struct PyOperationDescribeMalwareScansOutput {
     inner: aws_sdk_guardduty::operation::describe_malware_scans::DescribeMalwareScansOutput,
 }
 
 #[pymethods]
-impl PyDescribeMalwareScansResponse {
+impl PyOperationDescribeMalwareScansOutput {
     #[getter]
     fn scans(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.scans {
@@ -32638,16 +32630,16 @@ impl PyDescribeMalwareScansResponse {
 }
 
 #[pyclass(
-    name = "DescribeOrganizationConfigurationResponse",
+    name = "DescribeOrganizationConfigurationOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyDescribeOrganizationConfigurationResponse {
+struct PyOperationDescribeOrganizationConfigurationOutput {
     inner: aws_sdk_guardduty::operation::describe_organization_configuration::DescribeOrganizationConfigurationOutput,
 }
 
 #[pymethods]
-impl PyDescribeOrganizationConfigurationResponse {
+impl PyOperationDescribeOrganizationConfigurationOutput {
     #[getter]
     fn auto_enable(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.auto_enable {
@@ -32774,16 +32766,16 @@ impl PyDescribeOrganizationConfigurationResponse {
 }
 
 #[pyclass(
-    name = "DescribePublishingDestinationResponse",
+    name = "DescribePublishingDestinationOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyDescribePublishingDestinationResponse {
+struct PyOperationDescribePublishingDestinationOutput {
     inner: aws_sdk_guardduty::operation::describe_publishing_destination::DescribePublishingDestinationOutput,
 }
 
 #[pymethods]
-impl PyDescribePublishingDestinationResponse {
+impl PyOperationDescribePublishingDestinationOutput {
     #[getter]
     fn destination_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.destination_id {
@@ -32905,16 +32897,16 @@ impl PyDescribePublishingDestinationResponse {
 }
 
 #[pyclass(
-    name = "DisableOrganizationAdminAccountResponse",
+    name = "DisableOrganizationAdminAccountOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyDisableOrganizationAdminAccountResponse {
+struct PyOperationDisableOrganizationAdminAccountOutput {
     inner: aws_sdk_guardduty::operation::disable_organization_admin_account::DisableOrganizationAdminAccountOutput,
 }
 
 #[pymethods]
-impl PyDisableOrganizationAdminAccountResponse {
+impl PyOperationDisableOrganizationAdminAccountOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -32922,16 +32914,16 @@ impl PyDisableOrganizationAdminAccountResponse {
 }
 
 #[pyclass(
-    name = "DisassociateFromAdministratorAccountResponse",
+    name = "DisassociateFromAdministratorAccountOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyDisassociateFromAdministratorAccountResponse {
+struct PyOperationDisassociateFromAdministratorAccountOutput {
     inner: aws_sdk_guardduty::operation::disassociate_from_administrator_account::DisassociateFromAdministratorAccountOutput,
 }
 
 #[pymethods]
-impl PyDisassociateFromAdministratorAccountResponse {
+impl PyOperationDisassociateFromAdministratorAccountOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -32939,16 +32931,16 @@ impl PyDisassociateFromAdministratorAccountResponse {
 }
 
 #[pyclass(
-    name = "DisassociateFromMasterAccountResponse",
+    name = "DisassociateFromMasterAccountOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyDisassociateFromMasterAccountResponse {
+struct PyOperationDisassociateFromMasterAccountOutput {
     inner: aws_sdk_guardduty::operation::disassociate_from_master_account::DisassociateFromMasterAccountOutput,
 }
 
 #[pymethods]
-impl PyDisassociateFromMasterAccountResponse {
+impl PyOperationDisassociateFromMasterAccountOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -32956,16 +32948,16 @@ impl PyDisassociateFromMasterAccountResponse {
 }
 
 #[pyclass(
-    name = "DisassociateMembersResponse",
+    name = "DisassociateMembersOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyDisassociateMembersResponse {
+struct PyOperationDisassociateMembersOutput {
     inner: aws_sdk_guardduty::operation::disassociate_members::DisassociateMembersOutput,
 }
 
 #[pymethods]
-impl PyDisassociateMembersResponse {
+impl PyOperationDisassociateMembersOutput {
     #[getter]
     fn unprocessed_accounts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.unprocessed_accounts {
@@ -33005,16 +32997,16 @@ impl PyDisassociateMembersResponse {
 }
 
 #[pyclass(
-    name = "EnableOrganizationAdminAccountResponse",
+    name = "EnableOrganizationAdminAccountOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyEnableOrganizationAdminAccountResponse {
+struct PyOperationEnableOrganizationAdminAccountOutput {
     inner: aws_sdk_guardduty::operation::enable_organization_admin_account::EnableOrganizationAdminAccountOutput,
 }
 
 #[pymethods]
-impl PyEnableOrganizationAdminAccountResponse {
+impl PyOperationEnableOrganizationAdminAccountOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -33022,16 +33014,16 @@ impl PyEnableOrganizationAdminAccountResponse {
 }
 
 #[pyclass(
-    name = "GetAdministratorAccountResponse",
+    name = "GetAdministratorAccountOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyGetAdministratorAccountResponse {
+struct PyOperationGetAdministratorAccountOutput {
     inner: aws_sdk_guardduty::operation::get_administrator_account::GetAdministratorAccountOutput,
 }
 
 #[pymethods]
-impl PyGetAdministratorAccountResponse {
+impl PyOperationGetAdministratorAccountOutput {
     #[getter]
     fn administrator(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.administrator {
@@ -33061,16 +33053,16 @@ impl PyGetAdministratorAccountResponse {
 }
 
 #[pyclass(
-    name = "GetCoverageStatisticsResponse",
+    name = "GetCoverageStatisticsOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyGetCoverageStatisticsResponse {
+struct PyOperationGetCoverageStatisticsOutput {
     inner: aws_sdk_guardduty::operation::get_coverage_statistics::GetCoverageStatisticsOutput,
 }
 
 #[pymethods]
-impl PyGetCoverageStatisticsResponse {
+impl PyOperationGetCoverageStatisticsOutput {
     #[getter]
     fn coverage_statistics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.coverage_statistics {
@@ -33100,16 +33092,16 @@ impl PyGetCoverageStatisticsResponse {
 }
 
 #[pyclass(
-    name = "GetCustomDetectionRuleResponse",
+    name = "GetCustomDetectionRuleOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyGetCustomDetectionRuleResponse {
+struct PyOperationGetCustomDetectionRuleOutput {
     inner: aws_sdk_guardduty::operation::get_custom_detection_rule::GetCustomDetectionRuleOutput,
 }
 
 #[pymethods]
-impl PyGetCustomDetectionRuleResponse {
+impl PyOperationGetCustomDetectionRuleOutput {
     #[getter]
     fn rule(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.rule {
@@ -33139,16 +33131,16 @@ impl PyGetCustomDetectionRuleResponse {
 }
 
 #[pyclass(
-    name = "GetCustomDetectionRuleAssociationResponse",
+    name = "GetCustomDetectionRuleAssociationOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyGetCustomDetectionRuleAssociationResponse {
+struct PyOperationGetCustomDetectionRuleAssociationOutput {
     inner: aws_sdk_guardduty::operation::get_custom_detection_rule_association::GetCustomDetectionRuleAssociationOutput,
 }
 
 #[pymethods]
-impl PyGetCustomDetectionRuleAssociationResponse {
+impl PyOperationGetCustomDetectionRuleAssociationOutput {
     #[getter]
     fn rule_association(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.rule_association {
@@ -33206,16 +33198,16 @@ impl PyGetCustomDetectionRuleAssociationResponse {
 }
 
 #[pyclass(
-    name = "GetCustomDetectionRuleOrgConfigurationResponse",
+    name = "GetCustomDetectionRuleOrgConfigurationOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyGetCustomDetectionRuleOrgConfigurationResponse {
+struct PyOperationGetCustomDetectionRuleOrgConfigurationOutput {
     inner: aws_sdk_guardduty::operation::get_custom_detection_rule_org_configuration::GetCustomDetectionRuleOrgConfigurationOutput,
 }
 
 #[pymethods]
-impl PyGetCustomDetectionRuleOrgConfigurationResponse {
+impl PyOperationGetCustomDetectionRuleOrgConfigurationOutput {
     #[getter]
     fn configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.configuration {
@@ -33244,17 +33236,13 @@ impl PyGetCustomDetectionRuleOrgConfigurationResponse {
     }
 }
 
-#[pyclass(
-    name = "GetDetectorResponse",
-    module = "rboto_guardduty._native",
-    frozen
-)]
-struct PyGetDetectorResponse {
+#[pyclass(name = "GetDetectorOutput", module = "rboto_guardduty._native", frozen)]
+struct PyOperationGetDetectorOutput {
     inner: aws_sdk_guardduty::operation::get_detector::GetDetectorOutput,
 }
 
 #[pymethods]
-impl PyGetDetectorResponse {
+impl PyOperationGetDetectorOutput {
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.created_at {
@@ -33424,13 +33412,13 @@ impl PyGetDetectorResponse {
     }
 }
 
-#[pyclass(name = "GetFilterResponse", module = "rboto_guardduty._native", frozen)]
-struct PyGetFilterResponse {
+#[pyclass(name = "GetFilterOutput", module = "rboto_guardduty._native", frozen)]
+struct PyOperationGetFilterOutput {
     inner: aws_sdk_guardduty::operation::get_filter::GetFilterOutput,
 }
 
 #[pymethods]
-impl PyGetFilterResponse {
+impl PyOperationGetFilterOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
@@ -33599,17 +33587,13 @@ impl PyGetFilterResponse {
     }
 }
 
-#[pyclass(
-    name = "GetFindingsResponse",
-    module = "rboto_guardduty._native",
-    frozen
-)]
-struct PyGetFindingsResponse {
+#[pyclass(name = "GetFindingsOutput", module = "rboto_guardduty._native", frozen)]
+struct PyOperationGetFindingsOutput {
     inner: aws_sdk_guardduty::operation::get_findings::GetFindingsOutput,
 }
 
 #[pymethods]
-impl PyGetFindingsResponse {
+impl PyOperationGetFindingsOutput {
     #[getter]
     fn findings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.findings {
@@ -33649,16 +33633,16 @@ impl PyGetFindingsResponse {
 }
 
 #[pyclass(
-    name = "GetFindingsStatisticsResponse",
+    name = "GetFindingsStatisticsOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyGetFindingsStatisticsResponse {
+struct PyOperationGetFindingsStatisticsOutput {
     inner: aws_sdk_guardduty::operation::get_findings_statistics::GetFindingsStatisticsOutput,
 }
 
 #[pymethods]
-impl PyGetFindingsStatisticsResponse {
+impl PyOperationGetFindingsStatisticsOutput {
     #[getter]
     fn finding_statistics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.finding_statistics {
@@ -33703,13 +33687,13 @@ impl PyGetFindingsStatisticsResponse {
     }
 }
 
-#[pyclass(name = "GetIPSetResponse", module = "rboto_guardduty._native", frozen)]
-struct PyGetIPSetResponse {
+#[pyclass(name = "GetIPSetOutput", module = "rboto_guardduty._native", frozen)]
+struct PyOperationGetIPSetOutput {
     inner: aws_sdk_guardduty::operation::get_ip_set::GetIpSetOutput,
 }
 
 #[pymethods]
-impl PyGetIPSetResponse {
+impl PyOperationGetIPSetOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
@@ -33825,16 +33809,16 @@ impl PyGetIPSetResponse {
 }
 
 #[pyclass(
-    name = "GetInvestigationResponse",
+    name = "GetInvestigationOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyGetInvestigationResponse {
+struct PyOperationGetInvestigationOutput {
     inner: aws_sdk_guardduty::operation::get_investigation::GetInvestigationOutput,
 }
 
 #[pymethods]
-impl PyGetInvestigationResponse {
+impl PyOperationGetInvestigationOutput {
     #[getter]
     fn investigation(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.investigation {
@@ -33864,16 +33848,16 @@ impl PyGetInvestigationResponse {
 }
 
 #[pyclass(
-    name = "GetInvitationsCountResponse",
+    name = "GetInvitationsCountOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyGetInvitationsCountResponse {
+struct PyOperationGetInvitationsCountOutput {
     inner: aws_sdk_guardduty::operation::get_invitations_count::GetInvitationsCountOutput,
 }
 
 #[pymethods]
-impl PyGetInvitationsCountResponse {
+impl PyOperationGetInvitationsCountOutput {
     #[getter]
     fn invitations_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.invitations_count {
@@ -33897,17 +33881,17 @@ impl PyGetInvitationsCountResponse {
 }
 
 #[pyclass(
-    name = "GetMalwareProtectionPlanResponse",
+    name = "GetMalwareProtectionPlanOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyGetMalwareProtectionPlanResponse {
+struct PyOperationGetMalwareProtectionPlanOutput {
     inner:
         aws_sdk_guardduty::operation::get_malware_protection_plan::GetMalwareProtectionPlanOutput,
 }
 
 #[pymethods]
-impl PyGetMalwareProtectionPlanResponse {
+impl PyOperationGetMalwareProtectionPlanOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -34084,16 +34068,16 @@ impl PyGetMalwareProtectionPlanResponse {
 }
 
 #[pyclass(
-    name = "GetMalwareScanResponse",
+    name = "GetMalwareScanOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyGetMalwareScanResponse {
+struct PyOperationGetMalwareScanOutput {
     inner: aws_sdk_guardduty::operation::get_malware_scan::GetMalwareScanOutput,
 }
 
 #[pymethods]
-impl PyGetMalwareScanResponse {
+impl PyOperationGetMalwareScanOutput {
     #[getter]
     fn scan_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.scan_id {
@@ -34401,16 +34385,16 @@ impl PyGetMalwareScanResponse {
 }
 
 #[pyclass(
-    name = "GetMalwareScanSettingsResponse",
+    name = "GetMalwareScanSettingsOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyGetMalwareScanSettingsResponse {
+struct PyOperationGetMalwareScanSettingsOutput {
     inner: aws_sdk_guardduty::operation::get_malware_scan_settings::GetMalwareScanSettingsOutput,
 }
 
 #[pymethods]
-impl PyGetMalwareScanSettingsResponse {
+impl PyOperationGetMalwareScanSettingsOutput {
     #[getter]
     fn scan_resource_criteria(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.scan_resource_criteria {
@@ -34456,16 +34440,16 @@ impl PyGetMalwareScanSettingsResponse {
 }
 
 #[pyclass(
-    name = "GetMasterAccountResponse",
+    name = "GetMasterAccountOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyGetMasterAccountResponse {
+struct PyOperationGetMasterAccountOutput {
     inner: aws_sdk_guardduty::operation::get_master_account::GetMasterAccountOutput,
 }
 
 #[pymethods]
-impl PyGetMasterAccountResponse {
+impl PyOperationGetMasterAccountOutput {
     #[getter]
     fn master(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.master {
@@ -34495,16 +34479,16 @@ impl PyGetMasterAccountResponse {
 }
 
 #[pyclass(
-    name = "GetMemberDetectorsResponse",
+    name = "GetMemberDetectorsOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyGetMemberDetectorsResponse {
+struct PyOperationGetMemberDetectorsOutput {
     inner: aws_sdk_guardduty::operation::get_member_detectors::GetMemberDetectorsOutput,
 }
 
 #[pymethods]
-impl PyGetMemberDetectorsResponse {
+impl PyOperationGetMemberDetectorsOutput {
     #[getter]
     fn member_data_source_configurations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.member_data_source_configurations {
@@ -34575,17 +34559,13 @@ impl PyGetMemberDetectorsResponse {
     }
 }
 
-#[pyclass(
-    name = "GetMembersResponse",
-    module = "rboto_guardduty._native",
-    frozen
-)]
-struct PyGetMembersResponse {
+#[pyclass(name = "GetMembersOutput", module = "rboto_guardduty._native", frozen)]
+struct PyOperationGetMembersOutput {
     inner: aws_sdk_guardduty::operation::get_members::GetMembersOutput,
 }
 
 #[pymethods]
-impl PyGetMembersResponse {
+impl PyOperationGetMembersOutput {
     #[getter]
     fn members(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.members {
@@ -34657,17 +34637,17 @@ impl PyGetMembersResponse {
 }
 
 #[pyclass(
-    name = "GetOrganizationStatisticsResponse",
+    name = "GetOrganizationStatisticsOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyGetOrganizationStatisticsResponse {
+struct PyOperationGetOrganizationStatisticsOutput {
     inner:
         aws_sdk_guardduty::operation::get_organization_statistics::GetOrganizationStatisticsOutput,
 }
 
 #[pymethods]
-impl PyGetOrganizationStatisticsResponse {
+impl PyOperationGetOrganizationStatisticsOutput {
     #[getter]
     fn organization_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.organization_details {
@@ -34697,16 +34677,16 @@ impl PyGetOrganizationStatisticsResponse {
 }
 
 #[pyclass(
-    name = "GetRemainingFreeTrialDaysResponse",
+    name = "GetRemainingFreeTrialDaysOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyGetRemainingFreeTrialDaysResponse {
+struct PyOperationGetRemainingFreeTrialDaysOutput {
     inner: aws_sdk_guardduty::operation::get_remaining_free_trial_days::GetRemainingFreeTrialDaysOutput,
 }
 
 #[pymethods]
-impl PyGetRemainingFreeTrialDaysResponse {
+impl PyOperationGetRemainingFreeTrialDaysOutput {
     #[getter]
     fn accounts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.accounts {
@@ -34778,16 +34758,16 @@ impl PyGetRemainingFreeTrialDaysResponse {
 }
 
 #[pyclass(
-    name = "GetThreatEntitySetResponse",
+    name = "GetThreatEntitySetOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyGetThreatEntitySetResponse {
+struct PyOperationGetThreatEntitySetOutput {
     inner: aws_sdk_guardduty::operation::get_threat_entity_set::GetThreatEntitySetOutput,
 }
 
 #[pymethods]
-impl PyGetThreatEntitySetResponse {
+impl PyOperationGetThreatEntitySetOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
@@ -34951,16 +34931,16 @@ impl PyGetThreatEntitySetResponse {
 }
 
 #[pyclass(
-    name = "GetThreatIntelSetResponse",
+    name = "GetThreatIntelSetOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyGetThreatIntelSetResponse {
+struct PyOperationGetThreatIntelSetOutput {
     inner: aws_sdk_guardduty::operation::get_threat_intel_set::GetThreatIntelSetOutput,
 }
 
 #[pymethods]
-impl PyGetThreatIntelSetResponse {
+impl PyOperationGetThreatIntelSetOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
@@ -35076,16 +35056,16 @@ impl PyGetThreatIntelSetResponse {
 }
 
 #[pyclass(
-    name = "GetTrustedEntitySetResponse",
+    name = "GetTrustedEntitySetOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyGetTrustedEntitySetResponse {
+struct PyOperationGetTrustedEntitySetOutput {
     inner: aws_sdk_guardduty::operation::get_trusted_entity_set::GetTrustedEntitySetOutput,
 }
 
 #[pymethods]
-impl PyGetTrustedEntitySetResponse {
+impl PyOperationGetTrustedEntitySetOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
@@ -35249,16 +35229,16 @@ impl PyGetTrustedEntitySetResponse {
 }
 
 #[pyclass(
-    name = "GetUsageStatisticsResponse",
+    name = "GetUsageStatisticsOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyGetUsageStatisticsResponse {
+struct PyOperationGetUsageStatisticsOutput {
     inner: aws_sdk_guardduty::operation::get_usage_statistics::GetUsageStatisticsOutput,
 }
 
 #[pymethods]
-impl PyGetUsageStatisticsResponse {
+impl PyOperationGetUsageStatisticsOutput {
     #[getter]
     fn usage_statistics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.usage_statistics {
@@ -35304,16 +35284,16 @@ impl PyGetUsageStatisticsResponse {
 }
 
 #[pyclass(
-    name = "InviteMembersResponse",
+    name = "InviteMembersOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyInviteMembersResponse {
+struct PyOperationInviteMembersOutput {
     inner: aws_sdk_guardduty::operation::invite_members::InviteMembersOutput,
 }
 
 #[pymethods]
-impl PyInviteMembersResponse {
+impl PyOperationInviteMembersOutput {
     #[getter]
     fn unprocessed_accounts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.unprocessed_accounts {
@@ -35353,16 +35333,16 @@ impl PyInviteMembersResponse {
 }
 
 #[pyclass(
-    name = "ListCoverageResponse",
+    name = "ListCoverageOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyListCoverageResponse {
+struct PyOperationListCoverageOutput {
     inner: aws_sdk_guardduty::operation::list_coverage::ListCoverageOutput,
 }
 
 #[pymethods]
-impl PyListCoverageResponse {
+impl PyOperationListCoverageOutput {
     #[getter]
     fn resources(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resources {
@@ -35418,16 +35398,16 @@ impl PyListCoverageResponse {
 }
 
 #[pyclass(
-    name = "ListCustomDetectionRuleAssociationsResponse",
+    name = "ListCustomDetectionRuleAssociationsOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyListCustomDetectionRuleAssociationsResponse {
+struct PyOperationListCustomDetectionRuleAssociationsOutput {
     inner: aws_sdk_guardduty::operation::list_custom_detection_rule_associations::ListCustomDetectionRuleAssociationsOutput,
 }
 
 #[pymethods]
-impl PyListCustomDetectionRuleAssociationsResponse {
+impl PyOperationListCustomDetectionRuleAssociationsOutput {
     #[getter]
     fn rule_associations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.rule_associations {
@@ -35483,16 +35463,16 @@ impl PyListCustomDetectionRuleAssociationsResponse {
 }
 
 #[pyclass(
-    name = "ListCustomDetectionRuleOrgConfigurationsResponse",
+    name = "ListCustomDetectionRuleOrgConfigurationsOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyListCustomDetectionRuleOrgConfigurationsResponse {
+struct PyOperationListCustomDetectionRuleOrgConfigurationsOutput {
     inner: aws_sdk_guardduty::operation::list_custom_detection_rule_org_configurations::ListCustomDetectionRuleOrgConfigurationsOutput,
 }
 
 #[pymethods]
-impl PyListCustomDetectionRuleOrgConfigurationsResponse {
+impl PyOperationListCustomDetectionRuleOrgConfigurationsOutput {
     #[getter]
     fn configurations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.configurations {
@@ -35549,17 +35529,17 @@ impl PyListCustomDetectionRuleOrgConfigurationsResponse {
 }
 
 #[pyclass(
-    name = "ListCustomDetectionRulesResponse",
+    name = "ListCustomDetectionRulesOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyListCustomDetectionRulesResponse {
+struct PyOperationListCustomDetectionRulesOutput {
     inner:
         aws_sdk_guardduty::operation::list_custom_detection_rules::ListCustomDetectionRulesOutput,
 }
 
 #[pymethods]
-impl PyListCustomDetectionRulesResponse {
+impl PyOperationListCustomDetectionRulesOutput {
     #[getter]
     fn rules(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.rules {
@@ -35615,16 +35595,16 @@ impl PyListCustomDetectionRulesResponse {
 }
 
 #[pyclass(
-    name = "ListDetectorsResponse",
+    name = "ListDetectorsOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyListDetectorsResponse {
+struct PyOperationListDetectorsOutput {
     inner: aws_sdk_guardduty::operation::list_detectors::ListDetectorsOutput,
 }
 
 #[pymethods]
-impl PyListDetectorsResponse {
+impl PyOperationListDetectorsOutput {
     #[getter]
     fn detector_ids(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.detector_ids {
@@ -35673,17 +35653,13 @@ impl PyListDetectorsResponse {
     }
 }
 
-#[pyclass(
-    name = "ListFiltersResponse",
-    module = "rboto_guardduty._native",
-    frozen
-)]
-struct PyListFiltersResponse {
+#[pyclass(name = "ListFiltersOutput", module = "rboto_guardduty._native", frozen)]
+struct PyOperationListFiltersOutput {
     inner: aws_sdk_guardduty::operation::list_filters::ListFiltersOutput,
 }
 
 #[pymethods]
-impl PyListFiltersResponse {
+impl PyOperationListFiltersOutput {
     #[getter]
     fn filter_names(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.filter_names {
@@ -35733,16 +35709,16 @@ impl PyListFiltersResponse {
 }
 
 #[pyclass(
-    name = "ListFindingsResponse",
+    name = "ListFindingsOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyListFindingsResponse {
+struct PyOperationListFindingsOutput {
     inner: aws_sdk_guardduty::operation::list_findings::ListFindingsOutput,
 }
 
 #[pymethods]
-impl PyListFindingsResponse {
+impl PyOperationListFindingsOutput {
     #[getter]
     fn finding_ids(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.finding_ids {
@@ -35791,17 +35767,13 @@ impl PyListFindingsResponse {
     }
 }
 
-#[pyclass(
-    name = "ListIPSetsResponse",
-    module = "rboto_guardduty._native",
-    frozen
-)]
-struct PyListIPSetsResponse {
+#[pyclass(name = "ListIPSetsOutput", module = "rboto_guardduty._native", frozen)]
+struct PyOperationListIPSetsOutput {
     inner: aws_sdk_guardduty::operation::list_ip_sets::ListIpSetsOutput,
 }
 
 #[pymethods]
-impl PyListIPSetsResponse {
+impl PyOperationListIPSetsOutput {
     #[getter]
     fn ip_set_ids(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ip_set_ids {
@@ -35851,16 +35823,16 @@ impl PyListIPSetsResponse {
 }
 
 #[pyclass(
-    name = "ListInvestigationsResponse",
+    name = "ListInvestigationsOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyListInvestigationsResponse {
+struct PyOperationListInvestigationsOutput {
     inner: aws_sdk_guardduty::operation::list_investigations::ListInvestigationsOutput,
 }
 
 #[pymethods]
-impl PyListInvestigationsResponse {
+impl PyOperationListInvestigationsOutput {
     #[getter]
     fn investigations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.investigations {
@@ -35916,16 +35888,16 @@ impl PyListInvestigationsResponse {
 }
 
 #[pyclass(
-    name = "ListInvitationsResponse",
+    name = "ListInvitationsOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyListInvitationsResponse {
+struct PyOperationListInvitationsOutput {
     inner: aws_sdk_guardduty::operation::list_invitations::ListInvitationsOutput,
 }
 
 #[pymethods]
-impl PyListInvitationsResponse {
+impl PyOperationListInvitationsOutput {
     #[getter]
     fn invitations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.invitations {
@@ -35981,16 +35953,16 @@ impl PyListInvitationsResponse {
 }
 
 #[pyclass(
-    name = "ListMalwareProtectionPlansResponse",
+    name = "ListMalwareProtectionPlansOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyListMalwareProtectionPlansResponse {
+struct PyOperationListMalwareProtectionPlansOutput {
     inner: aws_sdk_guardduty::operation::list_malware_protection_plans::ListMalwareProtectionPlansOutput,
 }
 
 #[pymethods]
-impl PyListMalwareProtectionPlansResponse {
+impl PyOperationListMalwareProtectionPlansOutput {
     #[getter]
     fn malware_protection_plans(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.malware_protection_plans {
@@ -36046,16 +36018,16 @@ impl PyListMalwareProtectionPlansResponse {
 }
 
 #[pyclass(
-    name = "ListMalwareScansResponse",
+    name = "ListMalwareScansOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyListMalwareScansResponse {
+struct PyOperationListMalwareScansOutput {
     inner: aws_sdk_guardduty::operation::list_malware_scans::ListMalwareScansOutput,
 }
 
 #[pymethods]
-impl PyListMalwareScansResponse {
+impl PyOperationListMalwareScansOutput {
     #[getter]
     fn scans(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.scans {
@@ -36110,17 +36082,13 @@ impl PyListMalwareScansResponse {
     }
 }
 
-#[pyclass(
-    name = "ListMembersResponse",
-    module = "rboto_guardduty._native",
-    frozen
-)]
-struct PyListMembersResponse {
+#[pyclass(name = "ListMembersOutput", module = "rboto_guardduty._native", frozen)]
+struct PyOperationListMembersOutput {
     inner: aws_sdk_guardduty::operation::list_members::ListMembersOutput,
 }
 
 #[pymethods]
-impl PyListMembersResponse {
+impl PyOperationListMembersOutput {
     #[getter]
     fn members(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.members {
@@ -36176,16 +36144,16 @@ impl PyListMembersResponse {
 }
 
 #[pyclass(
-    name = "ListOrganizationAdminAccountsResponse",
+    name = "ListOrganizationAdminAccountsOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyListOrganizationAdminAccountsResponse {
+struct PyOperationListOrganizationAdminAccountsOutput {
     inner: aws_sdk_guardduty::operation::list_organization_admin_accounts::ListOrganizationAdminAccountsOutput,
 }
 
 #[pymethods]
-impl PyListOrganizationAdminAccountsResponse {
+impl PyOperationListOrganizationAdminAccountsOutput {
     #[getter]
     fn admin_accounts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.admin_accounts {
@@ -36241,16 +36209,16 @@ impl PyListOrganizationAdminAccountsResponse {
 }
 
 #[pyclass(
-    name = "ListPublishingDestinationsResponse",
+    name = "ListPublishingDestinationsOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyListPublishingDestinationsResponse {
+struct PyOperationListPublishingDestinationsOutput {
     inner: aws_sdk_guardduty::operation::list_publishing_destinations::ListPublishingDestinationsOutput,
 }
 
 #[pymethods]
-impl PyListPublishingDestinationsResponse {
+impl PyOperationListPublishingDestinationsOutput {
     #[getter]
     fn destinations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.destinations {
@@ -36306,16 +36274,16 @@ impl PyListPublishingDestinationsResponse {
 }
 
 #[pyclass(
-    name = "ListTagsForResourceResponse",
+    name = "ListTagsForResourceOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyListTagsForResourceResponse {
+struct PyOperationListTagsForResourceOutput {
     inner: aws_sdk_guardduty::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
 
 #[pymethods]
-impl PyListTagsForResourceResponse {
+impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
@@ -36351,16 +36319,16 @@ impl PyListTagsForResourceResponse {
 }
 
 #[pyclass(
-    name = "ListThreatEntitySetsResponse",
+    name = "ListThreatEntitySetsOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyListThreatEntitySetsResponse {
+struct PyOperationListThreatEntitySetsOutput {
     inner: aws_sdk_guardduty::operation::list_threat_entity_sets::ListThreatEntitySetsOutput,
 }
 
 #[pymethods]
-impl PyListThreatEntitySetsResponse {
+impl PyOperationListThreatEntitySetsOutput {
     #[getter]
     fn threat_entity_set_ids(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.threat_entity_set_ids {
@@ -36410,16 +36378,16 @@ impl PyListThreatEntitySetsResponse {
 }
 
 #[pyclass(
-    name = "ListThreatIntelSetsResponse",
+    name = "ListThreatIntelSetsOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyListThreatIntelSetsResponse {
+struct PyOperationListThreatIntelSetsOutput {
     inner: aws_sdk_guardduty::operation::list_threat_intel_sets::ListThreatIntelSetsOutput,
 }
 
 #[pymethods]
-impl PyListThreatIntelSetsResponse {
+impl PyOperationListThreatIntelSetsOutput {
     #[getter]
     fn threat_intel_set_ids(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.threat_intel_set_ids {
@@ -36469,16 +36437,16 @@ impl PyListThreatIntelSetsResponse {
 }
 
 #[pyclass(
-    name = "ListTrustedEntitySetsResponse",
+    name = "ListTrustedEntitySetsOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyListTrustedEntitySetsResponse {
+struct PyOperationListTrustedEntitySetsOutput {
     inner: aws_sdk_guardduty::operation::list_trusted_entity_sets::ListTrustedEntitySetsOutput,
 }
 
 #[pymethods]
-impl PyListTrustedEntitySetsResponse {
+impl PyOperationListTrustedEntitySetsOutput {
     #[getter]
     fn trusted_entity_set_ids(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trusted_entity_set_ids {
@@ -36528,16 +36496,16 @@ impl PyListTrustedEntitySetsResponse {
 }
 
 #[pyclass(
-    name = "SendObjectMalwareScanResponse",
+    name = "SendObjectMalwareScanOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PySendObjectMalwareScanResponse {
+struct PyOperationSendObjectMalwareScanOutput {
     inner: aws_sdk_guardduty::operation::send_object_malware_scan::SendObjectMalwareScanOutput,
 }
 
 #[pymethods]
-impl PySendObjectMalwareScanResponse {
+impl PyOperationSendObjectMalwareScanOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -36545,16 +36513,16 @@ impl PySendObjectMalwareScanResponse {
 }
 
 #[pyclass(
-    name = "StartMalwareScanResponse",
+    name = "StartMalwareScanOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyStartMalwareScanResponse {
+struct PyOperationStartMalwareScanOutput {
     inner: aws_sdk_guardduty::operation::start_malware_scan::StartMalwareScanOutput,
 }
 
 #[pymethods]
-impl PyStartMalwareScanResponse {
+impl PyOperationStartMalwareScanOutput {
     #[getter]
     fn scan_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.scan_id {
@@ -36578,16 +36546,16 @@ impl PyStartMalwareScanResponse {
 }
 
 #[pyclass(
-    name = "StartMonitoringMembersResponse",
+    name = "StartMonitoringMembersOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyStartMonitoringMembersResponse {
+struct PyOperationStartMonitoringMembersOutput {
     inner: aws_sdk_guardduty::operation::start_monitoring_members::StartMonitoringMembersOutput,
 }
 
 #[pymethods]
-impl PyStartMonitoringMembersResponse {
+impl PyOperationStartMonitoringMembersOutput {
     #[getter]
     fn unprocessed_accounts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.unprocessed_accounts {
@@ -36627,16 +36595,16 @@ impl PyStartMonitoringMembersResponse {
 }
 
 #[pyclass(
-    name = "StopMonitoringMembersResponse",
+    name = "StopMonitoringMembersOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyStopMonitoringMembersResponse {
+struct PyOperationStopMonitoringMembersOutput {
     inner: aws_sdk_guardduty::operation::stop_monitoring_members::StopMonitoringMembersOutput,
 }
 
 #[pymethods]
-impl PyStopMonitoringMembersResponse {
+impl PyOperationStopMonitoringMembersOutput {
     #[getter]
     fn unprocessed_accounts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.unprocessed_accounts {
@@ -36675,17 +36643,13 @@ impl PyStopMonitoringMembersResponse {
     }
 }
 
-#[pyclass(
-    name = "TagResourceResponse",
-    module = "rboto_guardduty._native",
-    frozen
-)]
-struct PyTagResourceResponse {
+#[pyclass(name = "TagResourceOutput", module = "rboto_guardduty._native", frozen)]
+struct PyOperationTagResourceOutput {
     inner: aws_sdk_guardduty::operation::tag_resource::TagResourceOutput,
 }
 
 #[pymethods]
-impl PyTagResourceResponse {
+impl PyOperationTagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -36693,16 +36657,16 @@ impl PyTagResourceResponse {
 }
 
 #[pyclass(
-    name = "UnarchiveFindingsResponse",
+    name = "UnarchiveFindingsOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyUnarchiveFindingsResponse {
+struct PyOperationUnarchiveFindingsOutput {
     inner: aws_sdk_guardduty::operation::unarchive_findings::UnarchiveFindingsOutput,
 }
 
 #[pymethods]
-impl PyUnarchiveFindingsResponse {
+impl PyOperationUnarchiveFindingsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -36710,16 +36674,16 @@ impl PyUnarchiveFindingsResponse {
 }
 
 #[pyclass(
-    name = "UntagResourceResponse",
+    name = "UntagResourceOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyUntagResourceResponse {
+struct PyOperationUntagResourceOutput {
     inner: aws_sdk_guardduty::operation::untag_resource::UntagResourceOutput,
 }
 
 #[pymethods]
-impl PyUntagResourceResponse {
+impl PyOperationUntagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -36727,16 +36691,16 @@ impl PyUntagResourceResponse {
 }
 
 #[pyclass(
-    name = "UpdateCustomDetectionRuleAssociationResponse",
+    name = "UpdateCustomDetectionRuleAssociationOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyUpdateCustomDetectionRuleAssociationResponse {
+struct PyOperationUpdateCustomDetectionRuleAssociationOutput {
     inner: aws_sdk_guardduty::operation::update_custom_detection_rule_association::UpdateCustomDetectionRuleAssociationOutput,
 }
 
 #[pymethods]
-impl PyUpdateCustomDetectionRuleAssociationResponse {
+impl PyOperationUpdateCustomDetectionRuleAssociationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -36744,16 +36708,16 @@ impl PyUpdateCustomDetectionRuleAssociationResponse {
 }
 
 #[pyclass(
-    name = "UpdateCustomDetectionRuleOrgConfigurationResponse",
+    name = "UpdateCustomDetectionRuleOrgConfigurationOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyUpdateCustomDetectionRuleOrgConfigurationResponse {
+struct PyOperationUpdateCustomDetectionRuleOrgConfigurationOutput {
     inner: aws_sdk_guardduty::operation::update_custom_detection_rule_org_configuration::UpdateCustomDetectionRuleOrgConfigurationOutput,
 }
 
 #[pymethods]
-impl PyUpdateCustomDetectionRuleOrgConfigurationResponse {
+impl PyOperationUpdateCustomDetectionRuleOrgConfigurationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -36761,16 +36725,16 @@ impl PyUpdateCustomDetectionRuleOrgConfigurationResponse {
 }
 
 #[pyclass(
-    name = "UpdateDetectorResponse",
+    name = "UpdateDetectorOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyUpdateDetectorResponse {
+struct PyOperationUpdateDetectorOutput {
     inner: aws_sdk_guardduty::operation::update_detector::UpdateDetectorOutput,
 }
 
 #[pymethods]
-impl PyUpdateDetectorResponse {
+impl PyOperationUpdateDetectorOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -36778,16 +36742,16 @@ impl PyUpdateDetectorResponse {
 }
 
 #[pyclass(
-    name = "UpdateFilterResponse",
+    name = "UpdateFilterOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyUpdateFilterResponse {
+struct PyOperationUpdateFilterOutput {
     inner: aws_sdk_guardduty::operation::update_filter::UpdateFilterOutput,
 }
 
 #[pymethods]
-impl PyUpdateFilterResponse {
+impl PyOperationUpdateFilterOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
@@ -36811,33 +36775,29 @@ impl PyUpdateFilterResponse {
 }
 
 #[pyclass(
-    name = "UpdateFindingsFeedbackResponse",
+    name = "UpdateFindingsFeedbackOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyUpdateFindingsFeedbackResponse {
+struct PyOperationUpdateFindingsFeedbackOutput {
     inner: aws_sdk_guardduty::operation::update_findings_feedback::UpdateFindingsFeedbackOutput,
 }
 
 #[pymethods]
-impl PyUpdateFindingsFeedbackResponse {
+impl PyOperationUpdateFindingsFeedbackOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(
-    name = "UpdateIPSetResponse",
-    module = "rboto_guardduty._native",
-    frozen
-)]
-struct PyUpdateIPSetResponse {
+#[pyclass(name = "UpdateIPSetOutput", module = "rboto_guardduty._native", frozen)]
+struct PyOperationUpdateIPSetOutput {
     inner: aws_sdk_guardduty::operation::update_ip_set::UpdateIpSetOutput,
 }
 
 #[pymethods]
-impl PyUpdateIPSetResponse {
+impl PyOperationUpdateIPSetOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -36845,17 +36805,17 @@ impl PyUpdateIPSetResponse {
 }
 
 #[pyclass(
-    name = "UpdateMalwareScanSettingsResponse",
+    name = "UpdateMalwareScanSettingsOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyUpdateMalwareScanSettingsResponse {
+struct PyOperationUpdateMalwareScanSettingsOutput {
     inner:
         aws_sdk_guardduty::operation::update_malware_scan_settings::UpdateMalwareScanSettingsOutput,
 }
 
 #[pymethods]
-impl PyUpdateMalwareScanSettingsResponse {
+impl PyOperationUpdateMalwareScanSettingsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -36863,16 +36823,16 @@ impl PyUpdateMalwareScanSettingsResponse {
 }
 
 #[pyclass(
-    name = "UpdateMemberDetectorsResponse",
+    name = "UpdateMemberDetectorsOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyUpdateMemberDetectorsResponse {
+struct PyOperationUpdateMemberDetectorsOutput {
     inner: aws_sdk_guardduty::operation::update_member_detectors::UpdateMemberDetectorsOutput,
 }
 
 #[pymethods]
-impl PyUpdateMemberDetectorsResponse {
+impl PyOperationUpdateMemberDetectorsOutput {
     #[getter]
     fn unprocessed_accounts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.unprocessed_accounts {
@@ -36912,16 +36872,16 @@ impl PyUpdateMemberDetectorsResponse {
 }
 
 #[pyclass(
-    name = "UpdateOrganizationConfigurationResponse",
+    name = "UpdateOrganizationConfigurationOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyUpdateOrganizationConfigurationResponse {
+struct PyOperationUpdateOrganizationConfigurationOutput {
     inner: aws_sdk_guardduty::operation::update_organization_configuration::UpdateOrganizationConfigurationOutput,
 }
 
 #[pymethods]
-impl PyUpdateOrganizationConfigurationResponse {
+impl PyOperationUpdateOrganizationConfigurationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -36929,16 +36889,16 @@ impl PyUpdateOrganizationConfigurationResponse {
 }
 
 #[pyclass(
-    name = "UpdatePublishingDestinationResponse",
+    name = "UpdatePublishingDestinationOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyUpdatePublishingDestinationResponse {
+struct PyOperationUpdatePublishingDestinationOutput {
     inner: aws_sdk_guardduty::operation::update_publishing_destination::UpdatePublishingDestinationOutput,
 }
 
 #[pymethods]
-impl PyUpdatePublishingDestinationResponse {
+impl PyOperationUpdatePublishingDestinationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -36946,16 +36906,16 @@ impl PyUpdatePublishingDestinationResponse {
 }
 
 #[pyclass(
-    name = "UpdateThreatEntitySetResponse",
+    name = "UpdateThreatEntitySetOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyUpdateThreatEntitySetResponse {
+struct PyOperationUpdateThreatEntitySetOutput {
     inner: aws_sdk_guardduty::operation::update_threat_entity_set::UpdateThreatEntitySetOutput,
 }
 
 #[pymethods]
-impl PyUpdateThreatEntitySetResponse {
+impl PyOperationUpdateThreatEntitySetOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -36963,16 +36923,16 @@ impl PyUpdateThreatEntitySetResponse {
 }
 
 #[pyclass(
-    name = "UpdateThreatIntelSetResponse",
+    name = "UpdateThreatIntelSetOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyUpdateThreatIntelSetResponse {
+struct PyOperationUpdateThreatIntelSetOutput {
     inner: aws_sdk_guardduty::operation::update_threat_intel_set::UpdateThreatIntelSetOutput,
 }
 
 #[pymethods]
-impl PyUpdateThreatIntelSetResponse {
+impl PyOperationUpdateThreatIntelSetOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -36980,16 +36940,16 @@ impl PyUpdateThreatIntelSetResponse {
 }
 
 #[pyclass(
-    name = "UpdateTrustedEntitySetResponse",
+    name = "UpdateTrustedEntitySetOutput",
     module = "rboto_guardduty._native",
     frozen
 )]
-struct PyUpdateTrustedEntitySetResponse {
+struct PyOperationUpdateTrustedEntitySetOutput {
     inner: aws_sdk_guardduty::operation::update_trusted_entity_set::UpdateTrustedEntitySetOutput,
 }
 
 #[pymethods]
-impl PyUpdateTrustedEntitySetResponse {
+impl PyOperationUpdateTrustedEntitySetOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -37236,106 +37196,106 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyVolumeDetail>()?;
     module.add_class::<PyVolumeMount>()?;
     module.add_class::<PyVpcConfig>()?;
-    module.add_class::<PyAcceptAdministratorInvitationResponse>()?;
-    module.add_class::<PyAcceptInvitationResponse>()?;
-    module.add_class::<PyArchiveFindingsResponse>()?;
-    module.add_class::<PyCreateCustomDetectionRuleAssociationResponse>()?;
-    module.add_class::<PyCreateCustomDetectionRuleOrgConfigurationResponse>()?;
-    module.add_class::<PyCreateDetectorResponse>()?;
-    module.add_class::<PyCreateFilterResponse>()?;
-    module.add_class::<PyCreateIPSetResponse>()?;
-    module.add_class::<PyCreateInvestigationResponse>()?;
-    module.add_class::<PyCreateMalwareProtectionPlanResponse>()?;
-    module.add_class::<PyCreateMembersResponse>()?;
-    module.add_class::<PyCreatePublishingDestinationResponse>()?;
-    module.add_class::<PyCreateSampleFindingsResponse>()?;
-    module.add_class::<PyCreateThreatEntitySetResponse>()?;
-    module.add_class::<PyCreateThreatIntelSetResponse>()?;
-    module.add_class::<PyCreateTrustedEntitySetResponse>()?;
-    module.add_class::<PyDeclineInvitationsResponse>()?;
-    module.add_class::<PyDeleteCustomDetectionRuleAssociationResponse>()?;
-    module.add_class::<PyDeleteCustomDetectionRuleOrgConfigurationResponse>()?;
-    module.add_class::<PyDeleteDetectorResponse>()?;
-    module.add_class::<PyDeleteFilterResponse>()?;
-    module.add_class::<PyDeleteIPSetResponse>()?;
-    module.add_class::<PyDeleteInvitationsResponse>()?;
-    module.add_class::<PyDeleteMembersResponse>()?;
-    module.add_class::<PyDeletePublishingDestinationResponse>()?;
-    module.add_class::<PyDeleteThreatEntitySetResponse>()?;
-    module.add_class::<PyDeleteThreatIntelSetResponse>()?;
-    module.add_class::<PyDeleteTrustedEntitySetResponse>()?;
-    module.add_class::<PyDescribeMalwareScansResponse>()?;
-    module.add_class::<PyDescribeOrganizationConfigurationResponse>()?;
-    module.add_class::<PyDescribePublishingDestinationResponse>()?;
-    module.add_class::<PyDisableOrganizationAdminAccountResponse>()?;
-    module.add_class::<PyDisassociateFromAdministratorAccountResponse>()?;
-    module.add_class::<PyDisassociateFromMasterAccountResponse>()?;
-    module.add_class::<PyDisassociateMembersResponse>()?;
-    module.add_class::<PyEnableOrganizationAdminAccountResponse>()?;
-    module.add_class::<PyGetAdministratorAccountResponse>()?;
-    module.add_class::<PyGetCoverageStatisticsResponse>()?;
-    module.add_class::<PyGetCustomDetectionRuleResponse>()?;
-    module.add_class::<PyGetCustomDetectionRuleAssociationResponse>()?;
-    module.add_class::<PyGetCustomDetectionRuleOrgConfigurationResponse>()?;
-    module.add_class::<PyGetDetectorResponse>()?;
-    module.add_class::<PyGetFilterResponse>()?;
-    module.add_class::<PyGetFindingsResponse>()?;
-    module.add_class::<PyGetFindingsStatisticsResponse>()?;
-    module.add_class::<PyGetIPSetResponse>()?;
-    module.add_class::<PyGetInvestigationResponse>()?;
-    module.add_class::<PyGetInvitationsCountResponse>()?;
-    module.add_class::<PyGetMalwareProtectionPlanResponse>()?;
-    module.add_class::<PyGetMalwareScanResponse>()?;
-    module.add_class::<PyGetMalwareScanSettingsResponse>()?;
-    module.add_class::<PyGetMasterAccountResponse>()?;
-    module.add_class::<PyGetMemberDetectorsResponse>()?;
-    module.add_class::<PyGetMembersResponse>()?;
-    module.add_class::<PyGetOrganizationStatisticsResponse>()?;
-    module.add_class::<PyGetRemainingFreeTrialDaysResponse>()?;
-    module.add_class::<PyGetThreatEntitySetResponse>()?;
-    module.add_class::<PyGetThreatIntelSetResponse>()?;
-    module.add_class::<PyGetTrustedEntitySetResponse>()?;
-    module.add_class::<PyGetUsageStatisticsResponse>()?;
-    module.add_class::<PyInviteMembersResponse>()?;
-    module.add_class::<PyListCoverageResponse>()?;
-    module.add_class::<PyListCustomDetectionRuleAssociationsResponse>()?;
-    module.add_class::<PyListCustomDetectionRuleOrgConfigurationsResponse>()?;
-    module.add_class::<PyListCustomDetectionRulesResponse>()?;
-    module.add_class::<PyListDetectorsResponse>()?;
-    module.add_class::<PyListFiltersResponse>()?;
-    module.add_class::<PyListFindingsResponse>()?;
-    module.add_class::<PyListIPSetsResponse>()?;
-    module.add_class::<PyListInvestigationsResponse>()?;
-    module.add_class::<PyListInvitationsResponse>()?;
-    module.add_class::<PyListMalwareProtectionPlansResponse>()?;
-    module.add_class::<PyListMalwareScansResponse>()?;
-    module.add_class::<PyListMembersResponse>()?;
-    module.add_class::<PyListOrganizationAdminAccountsResponse>()?;
-    module.add_class::<PyListPublishingDestinationsResponse>()?;
-    module.add_class::<PyListTagsForResourceResponse>()?;
-    module.add_class::<PyListThreatEntitySetsResponse>()?;
-    module.add_class::<PyListThreatIntelSetsResponse>()?;
-    module.add_class::<PyListTrustedEntitySetsResponse>()?;
-    module.add_class::<PySendObjectMalwareScanResponse>()?;
-    module.add_class::<PyStartMalwareScanResponse>()?;
-    module.add_class::<PyStartMonitoringMembersResponse>()?;
-    module.add_class::<PyStopMonitoringMembersResponse>()?;
-    module.add_class::<PyTagResourceResponse>()?;
-    module.add_class::<PyUnarchiveFindingsResponse>()?;
-    module.add_class::<PyUntagResourceResponse>()?;
-    module.add_class::<PyUpdateCustomDetectionRuleAssociationResponse>()?;
-    module.add_class::<PyUpdateCustomDetectionRuleOrgConfigurationResponse>()?;
-    module.add_class::<PyUpdateDetectorResponse>()?;
-    module.add_class::<PyUpdateFilterResponse>()?;
-    module.add_class::<PyUpdateFindingsFeedbackResponse>()?;
-    module.add_class::<PyUpdateIPSetResponse>()?;
-    module.add_class::<PyUpdateMalwareScanSettingsResponse>()?;
-    module.add_class::<PyUpdateMemberDetectorsResponse>()?;
-    module.add_class::<PyUpdateOrganizationConfigurationResponse>()?;
-    module.add_class::<PyUpdatePublishingDestinationResponse>()?;
-    module.add_class::<PyUpdateThreatEntitySetResponse>()?;
-    module.add_class::<PyUpdateThreatIntelSetResponse>()?;
-    module.add_class::<PyUpdateTrustedEntitySetResponse>()?;
+    module.add_class::<PyOperationAcceptAdministratorInvitationOutput>()?;
+    module.add_class::<PyOperationAcceptInvitationOutput>()?;
+    module.add_class::<PyOperationArchiveFindingsOutput>()?;
+    module.add_class::<PyOperationCreateCustomDetectionRuleAssociationOutput>()?;
+    module.add_class::<PyOperationCreateCustomDetectionRuleOrgConfigurationOutput>()?;
+    module.add_class::<PyOperationCreateDetectorOutput>()?;
+    module.add_class::<PyOperationCreateFilterOutput>()?;
+    module.add_class::<PyOperationCreateIPSetOutput>()?;
+    module.add_class::<PyOperationCreateInvestigationOutput>()?;
+    module.add_class::<PyOperationCreateMalwareProtectionPlanOutput>()?;
+    module.add_class::<PyOperationCreateMembersOutput>()?;
+    module.add_class::<PyOperationCreatePublishingDestinationOutput>()?;
+    module.add_class::<PyOperationCreateSampleFindingsOutput>()?;
+    module.add_class::<PyOperationCreateThreatEntitySetOutput>()?;
+    module.add_class::<PyOperationCreateThreatIntelSetOutput>()?;
+    module.add_class::<PyOperationCreateTrustedEntitySetOutput>()?;
+    module.add_class::<PyOperationDeclineInvitationsOutput>()?;
+    module.add_class::<PyOperationDeleteCustomDetectionRuleAssociationOutput>()?;
+    module.add_class::<PyOperationDeleteCustomDetectionRuleOrgConfigurationOutput>()?;
+    module.add_class::<PyOperationDeleteDetectorOutput>()?;
+    module.add_class::<PyOperationDeleteFilterOutput>()?;
+    module.add_class::<PyOperationDeleteIPSetOutput>()?;
+    module.add_class::<PyOperationDeleteInvitationsOutput>()?;
+    module.add_class::<PyOperationDeleteMembersOutput>()?;
+    module.add_class::<PyOperationDeletePublishingDestinationOutput>()?;
+    module.add_class::<PyOperationDeleteThreatEntitySetOutput>()?;
+    module.add_class::<PyOperationDeleteThreatIntelSetOutput>()?;
+    module.add_class::<PyOperationDeleteTrustedEntitySetOutput>()?;
+    module.add_class::<PyOperationDescribeMalwareScansOutput>()?;
+    module.add_class::<PyOperationDescribeOrganizationConfigurationOutput>()?;
+    module.add_class::<PyOperationDescribePublishingDestinationOutput>()?;
+    module.add_class::<PyOperationDisableOrganizationAdminAccountOutput>()?;
+    module.add_class::<PyOperationDisassociateFromAdministratorAccountOutput>()?;
+    module.add_class::<PyOperationDisassociateFromMasterAccountOutput>()?;
+    module.add_class::<PyOperationDisassociateMembersOutput>()?;
+    module.add_class::<PyOperationEnableOrganizationAdminAccountOutput>()?;
+    module.add_class::<PyOperationGetAdministratorAccountOutput>()?;
+    module.add_class::<PyOperationGetCoverageStatisticsOutput>()?;
+    module.add_class::<PyOperationGetCustomDetectionRuleOutput>()?;
+    module.add_class::<PyOperationGetCustomDetectionRuleAssociationOutput>()?;
+    module.add_class::<PyOperationGetCustomDetectionRuleOrgConfigurationOutput>()?;
+    module.add_class::<PyOperationGetDetectorOutput>()?;
+    module.add_class::<PyOperationGetFilterOutput>()?;
+    module.add_class::<PyOperationGetFindingsOutput>()?;
+    module.add_class::<PyOperationGetFindingsStatisticsOutput>()?;
+    module.add_class::<PyOperationGetIPSetOutput>()?;
+    module.add_class::<PyOperationGetInvestigationOutput>()?;
+    module.add_class::<PyOperationGetInvitationsCountOutput>()?;
+    module.add_class::<PyOperationGetMalwareProtectionPlanOutput>()?;
+    module.add_class::<PyOperationGetMalwareScanOutput>()?;
+    module.add_class::<PyOperationGetMalwareScanSettingsOutput>()?;
+    module.add_class::<PyOperationGetMasterAccountOutput>()?;
+    module.add_class::<PyOperationGetMemberDetectorsOutput>()?;
+    module.add_class::<PyOperationGetMembersOutput>()?;
+    module.add_class::<PyOperationGetOrganizationStatisticsOutput>()?;
+    module.add_class::<PyOperationGetRemainingFreeTrialDaysOutput>()?;
+    module.add_class::<PyOperationGetThreatEntitySetOutput>()?;
+    module.add_class::<PyOperationGetThreatIntelSetOutput>()?;
+    module.add_class::<PyOperationGetTrustedEntitySetOutput>()?;
+    module.add_class::<PyOperationGetUsageStatisticsOutput>()?;
+    module.add_class::<PyOperationInviteMembersOutput>()?;
+    module.add_class::<PyOperationListCoverageOutput>()?;
+    module.add_class::<PyOperationListCustomDetectionRuleAssociationsOutput>()?;
+    module.add_class::<PyOperationListCustomDetectionRuleOrgConfigurationsOutput>()?;
+    module.add_class::<PyOperationListCustomDetectionRulesOutput>()?;
+    module.add_class::<PyOperationListDetectorsOutput>()?;
+    module.add_class::<PyOperationListFiltersOutput>()?;
+    module.add_class::<PyOperationListFindingsOutput>()?;
+    module.add_class::<PyOperationListIPSetsOutput>()?;
+    module.add_class::<PyOperationListInvestigationsOutput>()?;
+    module.add_class::<PyOperationListInvitationsOutput>()?;
+    module.add_class::<PyOperationListMalwareProtectionPlansOutput>()?;
+    module.add_class::<PyOperationListMalwareScansOutput>()?;
+    module.add_class::<PyOperationListMembersOutput>()?;
+    module.add_class::<PyOperationListOrganizationAdminAccountsOutput>()?;
+    module.add_class::<PyOperationListPublishingDestinationsOutput>()?;
+    module.add_class::<PyOperationListTagsForResourceOutput>()?;
+    module.add_class::<PyOperationListThreatEntitySetsOutput>()?;
+    module.add_class::<PyOperationListThreatIntelSetsOutput>()?;
+    module.add_class::<PyOperationListTrustedEntitySetsOutput>()?;
+    module.add_class::<PyOperationSendObjectMalwareScanOutput>()?;
+    module.add_class::<PyOperationStartMalwareScanOutput>()?;
+    module.add_class::<PyOperationStartMonitoringMembersOutput>()?;
+    module.add_class::<PyOperationStopMonitoringMembersOutput>()?;
+    module.add_class::<PyOperationTagResourceOutput>()?;
+    module.add_class::<PyOperationUnarchiveFindingsOutput>()?;
+    module.add_class::<PyOperationUntagResourceOutput>()?;
+    module.add_class::<PyOperationUpdateCustomDetectionRuleAssociationOutput>()?;
+    module.add_class::<PyOperationUpdateCustomDetectionRuleOrgConfigurationOutput>()?;
+    module.add_class::<PyOperationUpdateDetectorOutput>()?;
+    module.add_class::<PyOperationUpdateFilterOutput>()?;
+    module.add_class::<PyOperationUpdateFindingsFeedbackOutput>()?;
+    module.add_class::<PyOperationUpdateIPSetOutput>()?;
+    module.add_class::<PyOperationUpdateMalwareScanSettingsOutput>()?;
+    module.add_class::<PyOperationUpdateMemberDetectorsOutput>()?;
+    module.add_class::<PyOperationUpdateOrganizationConfigurationOutput>()?;
+    module.add_class::<PyOperationUpdatePublishingDestinationOutput>()?;
+    module.add_class::<PyOperationUpdateThreatEntitySetOutput>()?;
+    module.add_class::<PyOperationUpdateThreatIntelSetOutput>()?;
+    module.add_class::<PyOperationUpdateTrustedEntitySetOutput>()?;
 
     Ok(())
 }
@@ -37416,7 +37376,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AcceptAdministratorInvitation"))
             })?;
-            Ok(PyAcceptAdministratorInvitationResponse { inner: output })
+            Ok(PyOperationAcceptAdministratorInvitationOutput { inner: output })
         })
     }
 
@@ -37468,7 +37428,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AcceptInvitation"))
             })?;
-            Ok(PyAcceptInvitationResponse { inner: output })
+            Ok(PyOperationAcceptInvitationOutput { inner: output })
         })
     }
 
@@ -37519,7 +37479,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ArchiveFindings"))
             })?;
-            Ok(PyArchiveFindingsResponse { inner: output })
+            Ok(PyOperationArchiveFindingsOutput { inner: output })
         })
     }
 
@@ -37588,7 +37548,7 @@ impl GuardDutyClient {
                     sdk_error_to_py(py, &error, "CreateCustomDetectionRuleAssociation")
                 })
             })?;
-            Ok(PyCreateCustomDetectionRuleAssociationResponse { inner: output })
+            Ok(PyOperationCreateCustomDetectionRuleAssociationOutput { inner: output })
         })
     }
 
@@ -37672,7 +37632,7 @@ impl GuardDutyClient {
                     sdk_error_to_py(py, &error, "CreateCustomDetectionRuleOrgConfiguration")
                 })
             })?;
-            Ok(PyCreateCustomDetectionRuleOrgConfigurationResponse { inner: output })
+            Ok(PyOperationCreateCustomDetectionRuleOrgConfigurationOutput { inner: output })
         })
     }
 
@@ -37761,7 +37721,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDetector"))
             })?;
-            Ok(PyCreateDetectorResponse { inner: output })
+            Ok(PyOperationCreateDetectorOutput { inner: output })
         })
     }
 
@@ -37856,7 +37816,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateFilter"))
             })?;
-            Ok(PyCreateFilterResponse { inner: output })
+            Ok(PyOperationCreateFilterOutput { inner: output })
         })
     }
 
@@ -37951,7 +37911,7 @@ impl GuardDutyClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateIPSet")))?;
-            Ok(PyCreateIPSetResponse { inner: output })
+            Ok(PyOperationCreateIPSetOutput { inner: output })
         })
     }
 
@@ -38003,7 +37963,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateInvestigation"))
             })?;
-            Ok(PyCreateInvestigationResponse { inner: output })
+            Ok(PyOperationCreateInvestigationOutput { inner: output })
         })
     }
 
@@ -38076,7 +38036,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateMalwareProtectionPlan"))
             })?;
-            Ok(PyCreateMalwareProtectionPlanResponse { inner: output })
+            Ok(PyOperationCreateMalwareProtectionPlanOutput { inner: output })
         })
     }
 
@@ -38127,7 +38087,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateMembers"))
             })?;
-            Ok(PyCreateMembersResponse { inner: output })
+            Ok(PyOperationCreateMembersOutput { inner: output })
         })
     }
 
@@ -38202,7 +38162,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreatePublishingDestination"))
             })?;
-            Ok(PyCreatePublishingDestinationResponse { inner: output })
+            Ok(PyOperationCreatePublishingDestinationOutput { inner: output })
         })
     }
 
@@ -38253,7 +38213,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateSampleFindings"))
             })?;
-            Ok(PyCreateSampleFindingsResponse { inner: output })
+            Ok(PyOperationCreateSampleFindingsOutput { inner: output })
         })
     }
 
@@ -38349,7 +38309,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateThreatEntitySet"))
             })?;
-            Ok(PyCreateThreatEntitySetResponse { inner: output })
+            Ok(PyOperationCreateThreatEntitySetOutput { inner: output })
         })
     }
 
@@ -38445,7 +38405,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateThreatIntelSet"))
             })?;
-            Ok(PyCreateThreatIntelSetResponse { inner: output })
+            Ok(PyOperationCreateThreatIntelSetOutput { inner: output })
         })
     }
 
@@ -38541,7 +38501,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateTrustedEntitySet"))
             })?;
-            Ok(PyCreateTrustedEntitySetResponse { inner: output })
+            Ok(PyOperationCreateTrustedEntitySetOutput { inner: output })
         })
     }
 
@@ -38585,7 +38545,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeclineInvitations"))
             })?;
-            Ok(PyDeclineInvitationsResponse { inner: output })
+            Ok(PyOperationDeclineInvitationsOutput { inner: output })
         })
     }
 
@@ -38632,7 +38592,7 @@ impl GuardDutyClient {
                     sdk_error_to_py(py, &error, "DeleteCustomDetectionRuleAssociation")
                 })
             })?;
-            Ok(PyDeleteCustomDetectionRuleAssociationResponse { inner: output })
+            Ok(PyOperationDeleteCustomDetectionRuleAssociationOutput { inner: output })
         })
     }
 
@@ -38681,7 +38641,7 @@ impl GuardDutyClient {
                     sdk_error_to_py(py, &error, "DeleteCustomDetectionRuleOrgConfiguration")
                 })
             })?;
-            Ok(PyDeleteCustomDetectionRuleOrgConfigurationResponse { inner: output })
+            Ok(PyOperationDeleteCustomDetectionRuleOrgConfigurationOutput { inner: output })
         })
     }
 
@@ -38717,7 +38677,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDetector"))
             })?;
-            Ok(PyDeleteDetectorResponse { inner: output })
+            Ok(PyOperationDeleteDetectorOutput { inner: output })
         })
     }
 
@@ -38762,7 +38722,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteFilter"))
             })?;
-            Ok(PyDeleteFilterResponse { inner: output })
+            Ok(PyOperationDeleteFilterOutput { inner: output })
         })
     }
 
@@ -38806,7 +38766,7 @@ impl GuardDutyClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteIPSet")))?;
-            Ok(PyDeleteIPSetResponse { inner: output })
+            Ok(PyOperationDeleteIPSetOutput { inner: output })
         })
     }
 
@@ -38850,7 +38810,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteInvitations"))
             })?;
-            Ok(PyDeleteInvitationsResponse { inner: output })
+            Ok(PyOperationDeleteInvitationsOutput { inner: output })
         })
     }
 
@@ -38940,7 +38900,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteMembers"))
             })?;
-            Ok(PyDeleteMembersResponse { inner: output })
+            Ok(PyOperationDeleteMembersOutput { inner: output })
         })
     }
 
@@ -38985,7 +38945,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeletePublishingDestination"))
             })?;
-            Ok(PyDeletePublishingDestinationResponse { inner: output })
+            Ok(PyOperationDeletePublishingDestinationOutput { inner: output })
         })
     }
 
@@ -39031,7 +38991,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteThreatEntitySet"))
             })?;
-            Ok(PyDeleteThreatEntitySetResponse { inner: output })
+            Ok(PyOperationDeleteThreatEntitySetOutput { inner: output })
         })
     }
 
@@ -39077,7 +39037,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteThreatIntelSet"))
             })?;
-            Ok(PyDeleteThreatIntelSetResponse { inner: output })
+            Ok(PyOperationDeleteThreatIntelSetOutput { inner: output })
         })
     }
 
@@ -39123,7 +39083,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteTrustedEntitySet"))
             })?;
-            Ok(PyDeleteTrustedEntitySetResponse { inner: output })
+            Ok(PyOperationDeleteTrustedEntitySetOutput { inner: output })
         })
     }
 
@@ -39189,7 +39149,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeMalwareScans"))
             })?;
-            Ok(PyDescribeMalwareScansResponse { inner: output })
+            Ok(PyOperationDescribeMalwareScansOutput { inner: output })
         })
     }
 
@@ -39243,7 +39203,7 @@ impl GuardDutyClient {
                     sdk_error_to_py(py, &error, "DescribeOrganizationConfiguration")
                 })
             })?;
-            Ok(PyDescribeOrganizationConfigurationResponse { inner: output })
+            Ok(PyOperationDescribeOrganizationConfigurationOutput { inner: output })
         })
     }
 
@@ -39288,7 +39248,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribePublishingDestination"))
             })?;
-            Ok(PyDescribePublishingDestinationResponse { inner: output })
+            Ok(PyOperationDescribePublishingDestinationOutput { inner: output })
         })
     }
 
@@ -39326,7 +39286,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DisableOrganizationAdminAccount"))
             })?;
-            Ok(PyDisableOrganizationAdminAccountResponse { inner: output })
+            Ok(PyOperationDisableOrganizationAdminAccountOutput { inner: output })
         })
     }
 
@@ -39366,7 +39326,7 @@ impl GuardDutyClient {
                     sdk_error_to_py(py, &error, "DisassociateFromAdministratorAccount")
                 })
             })?;
-            Ok(PyDisassociateFromAdministratorAccountResponse { inner: output })
+            Ok(PyOperationDisassociateFromAdministratorAccountOutput { inner: output })
         })
     }
 
@@ -39404,7 +39364,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DisassociateFromMasterAccount"))
             })?;
-            Ok(PyDisassociateFromMasterAccountResponse { inner: output })
+            Ok(PyOperationDisassociateFromMasterAccountOutput { inner: output })
         })
     }
 
@@ -39455,7 +39415,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DisassociateMembers"))
             })?;
-            Ok(PyDisassociateMembersResponse { inner: output })
+            Ok(PyOperationDisassociateMembersOutput { inner: output })
         })
     }
 
@@ -39493,7 +39453,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "EnableOrganizationAdminAccount"))
             })?;
-            Ok(PyEnableOrganizationAdminAccountResponse { inner: output })
+            Ok(PyOperationEnableOrganizationAdminAccountOutput { inner: output })
         })
     }
 
@@ -39531,7 +39491,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAdministratorAccount"))
             })?;
-            Ok(PyGetAdministratorAccountResponse { inner: output })
+            Ok(PyOperationGetAdministratorAccountOutput { inner: output })
         })
     }
 
@@ -39592,7 +39552,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCoverageStatistics"))
             })?;
-            Ok(PyGetCoverageStatisticsResponse { inner: output })
+            Ok(PyOperationGetCoverageStatisticsOutput { inner: output })
         })
     }
 
@@ -39630,7 +39590,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCustomDetectionRule"))
             })?;
-            Ok(PyGetCustomDetectionRuleResponse { inner: output })
+            Ok(PyOperationGetCustomDetectionRuleOutput { inner: output })
         })
     }
 
@@ -39677,7 +39637,7 @@ impl GuardDutyClient {
                     sdk_error_to_py(py, &error, "GetCustomDetectionRuleAssociation")
                 })
             })?;
-            Ok(PyGetCustomDetectionRuleAssociationResponse { inner: output })
+            Ok(PyOperationGetCustomDetectionRuleAssociationOutput { inner: output })
         })
     }
 
@@ -39726,7 +39686,7 @@ impl GuardDutyClient {
                     sdk_error_to_py(py, &error, "GetCustomDetectionRuleOrgConfiguration")
                 })
             })?;
-            Ok(PyGetCustomDetectionRuleOrgConfigurationResponse { inner: output })
+            Ok(PyOperationGetCustomDetectionRuleOrgConfigurationOutput { inner: output })
         })
     }
 
@@ -39761,7 +39721,7 @@ impl GuardDutyClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetDetector")))?;
-            Ok(PyGetDetectorResponse { inner: output })
+            Ok(PyOperationGetDetectorOutput { inner: output })
         })
     }
 
@@ -39805,7 +39765,7 @@ impl GuardDutyClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetFilter")))?;
-            Ok(PyGetFilterResponse { inner: output })
+            Ok(PyOperationGetFilterOutput { inner: output })
         })
     }
 
@@ -39862,7 +39822,7 @@ impl GuardDutyClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetFindings")))?;
-            Ok(PyGetFindingsResponse { inner: output })
+            Ok(PyOperationGetFindingsOutput { inner: output })
         })
     }
 
@@ -39948,7 +39908,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFindingsStatistics"))
             })?;
-            Ok(PyGetFindingsStatisticsResponse { inner: output })
+            Ok(PyOperationGetFindingsStatisticsOutput { inner: output })
         })
     }
 
@@ -39992,7 +39952,7 @@ impl GuardDutyClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetIPSet")))?;
-            Ok(PyGetIPSetResponse { inner: output })
+            Ok(PyOperationGetIPSetOutput { inner: output })
         })
     }
 
@@ -40037,7 +39997,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetInvestigation"))
             })?;
-            Ok(PyGetInvestigationResponse { inner: output })
+            Ok(PyOperationGetInvestigationOutput { inner: output })
         })
     }
 
@@ -40067,7 +40027,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetInvitationsCount"))
             })?;
-            Ok(PyGetInvitationsCountResponse { inner: output })
+            Ok(PyOperationGetInvitationsCountOutput { inner: output })
         })
     }
 
@@ -40106,7 +40066,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMalwareProtectionPlan"))
             })?;
-            Ok(PyGetMalwareProtectionPlanResponse { inner: output })
+            Ok(PyOperationGetMalwareProtectionPlanOutput { inner: output })
         })
     }
 
@@ -40142,7 +40102,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMalwareScan"))
             })?;
-            Ok(PyGetMalwareScanResponse { inner: output })
+            Ok(PyOperationGetMalwareScanOutput { inner: output })
         })
     }
 
@@ -40180,7 +40140,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMalwareScanSettings"))
             })?;
-            Ok(PyGetMalwareScanSettingsResponse { inner: output })
+            Ok(PyOperationGetMalwareScanSettingsOutput { inner: output })
         })
     }
 
@@ -40218,7 +40178,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMasterAccount"))
             })?;
-            Ok(PyGetMasterAccountResponse { inner: output })
+            Ok(PyOperationGetMasterAccountOutput { inner: output })
         })
     }
 
@@ -40269,7 +40229,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMemberDetectors"))
             })?;
-            Ok(PyGetMemberDetectorsResponse { inner: output })
+            Ok(PyOperationGetMemberDetectorsOutput { inner: output })
         })
     }
 
@@ -40319,7 +40279,7 @@ impl GuardDutyClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetMembers")))?;
-            Ok(PyGetMembersResponse { inner: output })
+            Ok(PyOperationGetMembersOutput { inner: output })
         })
     }
 
@@ -40349,7 +40309,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetOrganizationStatistics"))
             })?;
-            Ok(PyGetOrganizationStatisticsResponse { inner: output })
+            Ok(PyOperationGetOrganizationStatisticsOutput { inner: output })
         })
     }
 
@@ -40400,7 +40360,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetRemainingFreeTrialDays"))
             })?;
-            Ok(PyGetRemainingFreeTrialDaysResponse { inner: output })
+            Ok(PyOperationGetRemainingFreeTrialDaysOutput { inner: output })
         })
     }
 
@@ -40446,7 +40406,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetThreatEntitySet"))
             })?;
-            Ok(PyGetThreatEntitySetResponse { inner: output })
+            Ok(PyOperationGetThreatEntitySetOutput { inner: output })
         })
     }
 
@@ -40492,7 +40452,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetThreatIntelSet"))
             })?;
-            Ok(PyGetThreatIntelSetResponse { inner: output })
+            Ok(PyOperationGetThreatIntelSetOutput { inner: output })
         })
     }
 
@@ -40538,7 +40498,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetTrustedEntitySet"))
             })?;
-            Ok(PyGetTrustedEntitySetResponse { inner: output })
+            Ok(PyOperationGetTrustedEntitySetOutput { inner: output })
         })
     }
 
@@ -40614,7 +40574,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetUsageStatistics"))
             })?;
-            Ok(PyGetUsageStatisticsResponse { inner: output })
+            Ok(PyOperationGetUsageStatisticsOutput { inner: output })
         })
     }
 
@@ -40680,7 +40640,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "InviteMembers"))
             })?;
-            Ok(PyInviteMembersResponse { inner: output })
+            Ok(PyOperationInviteMembersOutput { inner: output })
         })
     }
 
@@ -40746,7 +40706,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListCoverage"))
             })?;
-            Ok(PyListCoverageResponse { inner: output })
+            Ok(PyOperationListCoverageOutput { inner: output })
         })
     }
 
@@ -40809,7 +40769,7 @@ impl GuardDutyClient {
                     sdk_error_to_py(py, &error, "ListCustomDetectionRuleAssociations")
                 })
             })?;
-            Ok(PyListCustomDetectionRuleAssociationsResponse { inner: output })
+            Ok(PyOperationListCustomDetectionRuleAssociationsOutput { inner: output })
         })
     }
 
@@ -40866,7 +40826,7 @@ impl GuardDutyClient {
                     sdk_error_to_py(py, &error, "ListCustomDetectionRuleOrgConfigurations")
                 })
             })?;
-            Ok(PyListCustomDetectionRuleOrgConfigurationsResponse { inner: output })
+            Ok(PyOperationListCustomDetectionRuleOrgConfigurationsOutput { inner: output })
         })
     }
 
@@ -40924,7 +40884,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListCustomDetectionRules"))
             })?;
-            Ok(PyListCustomDetectionRulesResponse { inner: output })
+            Ok(PyOperationListCustomDetectionRulesOutput { inner: output })
         })
     }
 
@@ -40969,7 +40929,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDetectors"))
             })?;
-            Ok(PyListDetectorsResponse { inner: output })
+            Ok(PyOperationListDetectorsOutput { inner: output })
         })
     }
 
@@ -41020,7 +40980,7 @@ impl GuardDutyClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListFilters")))?;
-            Ok(PyListFiltersResponse { inner: output })
+            Ok(PyOperationListFiltersOutput { inner: output })
         })
     }
 
@@ -41086,7 +41046,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListFindings"))
             })?;
-            Ok(PyListFindingsResponse { inner: output })
+            Ok(PyOperationListFindingsOutput { inner: output })
         })
     }
 
@@ -41137,7 +41097,7 @@ impl GuardDutyClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListIPSets")))?;
-            Ok(PyListIPSetsResponse { inner: output })
+            Ok(PyOperationListIPSetsOutput { inner: output })
         })
     }
 
@@ -41196,7 +41156,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListInvestigations"))
             })?;
-            Ok(PyListInvestigationsResponse { inner: output })
+            Ok(PyOperationListInvestigationsOutput { inner: output })
         })
     }
 
@@ -41241,7 +41201,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListInvitations"))
             })?;
-            Ok(PyListInvitationsResponse { inner: output })
+            Ok(PyOperationListInvitationsOutput { inner: output })
         })
     }
 
@@ -41279,7 +41239,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListMalwareProtectionPlans"))
             })?;
-            Ok(PyListMalwareProtectionPlansResponse { inner: output })
+            Ok(PyOperationListMalwareProtectionPlansOutput { inner: output })
         })
     }
 
@@ -41338,7 +41298,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListMalwareScans"))
             })?;
-            Ok(PyListMalwareScansResponse { inner: output })
+            Ok(PyOperationListMalwareScansOutput { inner: output })
         })
     }
 
@@ -41396,7 +41356,7 @@ impl GuardDutyClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListMembers")))?;
-            Ok(PyListMembersResponse { inner: output })
+            Ok(PyOperationListMembersOutput { inner: output })
         })
     }
 
@@ -41441,7 +41401,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListOrganizationAdminAccounts"))
             })?;
-            Ok(PyListOrganizationAdminAccountsResponse { inner: output })
+            Ok(PyOperationListOrganizationAdminAccountsOutput { inner: output })
         })
     }
 
@@ -41493,7 +41453,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPublishingDestinations"))
             })?;
-            Ok(PyListPublishingDestinationsResponse { inner: output })
+            Ok(PyOperationListPublishingDestinationsOutput { inner: output })
         })
     }
 
@@ -41531,7 +41491,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Ok(PyListTagsForResourceResponse { inner: output })
+            Ok(PyOperationListTagsForResourceOutput { inner: output })
         })
     }
 
@@ -41583,7 +41543,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListThreatEntitySets"))
             })?;
-            Ok(PyListThreatEntitySetsResponse { inner: output })
+            Ok(PyOperationListThreatEntitySetsOutput { inner: output })
         })
     }
 
@@ -41635,7 +41595,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListThreatIntelSets"))
             })?;
-            Ok(PyListThreatIntelSetsResponse { inner: output })
+            Ok(PyOperationListThreatIntelSetsOutput { inner: output })
         })
     }
 
@@ -41687,7 +41647,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTrustedEntitySets"))
             })?;
-            Ok(PyListTrustedEntitySetsResponse { inner: output })
+            Ok(PyOperationListTrustedEntitySetsOutput { inner: output })
         })
     }
 
@@ -41725,7 +41685,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SendObjectMalwareScan"))
             })?;
-            Ok(PySendObjectMalwareScanResponse { inner: output })
+            Ok(PyOperationSendObjectMalwareScanOutput { inner: output })
         })
     }
 
@@ -41778,7 +41738,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartMalwareScan"))
             })?;
-            Ok(PyStartMalwareScanResponse { inner: output })
+            Ok(PyOperationStartMalwareScanOutput { inner: output })
         })
     }
 
@@ -41829,7 +41789,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartMonitoringMembers"))
             })?;
-            Ok(PyStartMonitoringMembersResponse { inner: output })
+            Ok(PyOperationStartMonitoringMembersOutput { inner: output })
         })
     }
 
@@ -41880,7 +41840,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopMonitoringMembers"))
             })?;
-            Ok(PyStopMonitoringMembersResponse { inner: output })
+            Ok(PyOperationStopMonitoringMembersOutput { inner: output })
         })
     }
 
@@ -41930,7 +41890,7 @@ impl GuardDutyClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
-            Ok(PyTagResourceResponse { inner: output })
+            Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
 
@@ -41981,7 +41941,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UnarchiveFindings"))
             })?;
-            Ok(PyUnarchiveFindingsResponse { inner: output })
+            Ok(PyOperationUnarchiveFindingsOutput { inner: output })
         })
     }
 
@@ -42032,7 +41992,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
-            Ok(PyUntagResourceResponse { inner: output })
+            Ok(PyOperationUntagResourceOutput { inner: output })
         })
     }
 
@@ -42088,7 +42048,7 @@ impl GuardDutyClient {
                     sdk_error_to_py(py, &error, "UpdateCustomDetectionRuleAssociation")
                 })
             })?;
-            Ok(PyUpdateCustomDetectionRuleAssociationResponse { inner: output })
+            Ok(PyOperationUpdateCustomDetectionRuleAssociationOutput { inner: output })
         })
     }
 
@@ -42165,7 +42125,7 @@ impl GuardDutyClient {
                     sdk_error_to_py(py, &error, "UpdateCustomDetectionRuleOrgConfiguration")
                 })
             })?;
-            Ok(PyUpdateCustomDetectionRuleOrgConfigurationResponse { inner: output })
+            Ok(PyOperationUpdateCustomDetectionRuleOrgConfigurationOutput { inner: output })
         })
     }
 
@@ -42241,7 +42201,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDetector"))
             })?;
-            Ok(PyUpdateDetectorResponse { inner: output })
+            Ok(PyOperationUpdateDetectorOutput { inner: output })
         })
     }
 
@@ -42316,7 +42276,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateFilter"))
             })?;
-            Ok(PyUpdateFilterResponse { inner: output })
+            Ok(PyOperationUpdateFilterOutput { inner: output })
         })
     }
 
@@ -42382,7 +42342,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateFindingsFeedback"))
             })?;
-            Ok(PyUpdateFindingsFeedbackResponse { inner: output })
+            Ok(PyOperationUpdateFindingsFeedbackOutput { inner: output })
         })
     }
 
@@ -42455,7 +42415,7 @@ impl GuardDutyClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateIPSet")))?;
-            Ok(PyUpdateIPSetResponse { inner: output })
+            Ok(PyOperationUpdateIPSetOutput { inner: output })
         })
     }
 
@@ -42573,7 +42533,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMalwareScanSettings"))
             })?;
-            Ok(PyUpdateMalwareScanSettingsResponse { inner: output })
+            Ok(PyOperationUpdateMalwareScanSettingsOutput { inner: output })
         })
     }
 
@@ -42644,7 +42604,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMemberDetectors"))
             })?;
-            Ok(PyUpdateMemberDetectorsResponse { inner: output })
+            Ok(PyOperationUpdateMemberDetectorsOutput { inner: output })
         })
     }
 
@@ -42719,7 +42679,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateOrganizationConfiguration"))
             })?;
-            Ok(PyUpdateOrganizationConfigurationResponse { inner: output })
+            Ok(PyOperationUpdateOrganizationConfigurationOutput { inner: output })
         })
     }
 
@@ -42772,7 +42732,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdatePublishingDestination"))
             })?;
-            Ok(PyUpdatePublishingDestinationResponse { inner: output })
+            Ok(PyOperationUpdatePublishingDestinationOutput { inner: output })
         })
     }
 
@@ -42847,7 +42807,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateThreatEntitySet"))
             })?;
-            Ok(PyUpdateThreatEntitySetResponse { inner: output })
+            Ok(PyOperationUpdateThreatEntitySetOutput { inner: output })
         })
     }
 
@@ -42922,7 +42882,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateThreatIntelSet"))
             })?;
-            Ok(PyUpdateThreatIntelSetResponse { inner: output })
+            Ok(PyOperationUpdateThreatIntelSetOutput { inner: output })
         })
     }
 
@@ -42997,7 +42957,7 @@ impl GuardDutyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateTrustedEntitySet"))
             })?;
-            Ok(PyUpdateTrustedEntitySetResponse { inner: output })
+            Ok(PyOperationUpdateTrustedEntitySetOutput { inner: output })
         })
     }
 }

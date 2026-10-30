@@ -1,12 +1,12 @@
 import json
 
 from rboto import EventBridgeClient, EventBridgePipesClient, EventBridgeSchedulerClient
-from rboto_eventbridge.types import PutEventsRequestEntry, PutEventsResponse
-from rboto_pipes.types import CreatePipeResponse, PipeSourceParameters
+from rboto_eventbridge.types import PutEventsOutput, PutEventsRequestEntry
+from rboto_pipes.types import CreatePipeOutput, PipeSourceParameters
 from rboto_scheduler.types import CreateScheduleOutput, FlexibleTimeWindow, Target
 
 
-async def publish(bus_name: str) -> PutEventsResponse:
+async def publish(bus_name: str) -> PutEventsOutput:
     entry: PutEventsRequestEntry = {
         "event_bus_name": bus_name,
         "source": "rboto.example",
@@ -40,7 +40,7 @@ async def schedule(queue_arn: str, role_arn: str) -> CreateScheduleOutput:
     )
 
 
-async def connect(source_arn: str, target_arn: str, role_arn: str) -> CreatePipeResponse:
+async def connect(source_arn: str, target_arn: str, role_arn: str) -> CreatePipeOutput:
     source: PipeSourceParameters = {
         "sqs_queue_parameters": {"batch_size": 1, "maximum_batching_window_in_seconds": 0},
         "filter_criteria": {"filters": [{"pattern": '{"body":{"kind":["example"]}}'}]},

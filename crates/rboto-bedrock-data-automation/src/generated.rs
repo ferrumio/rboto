@@ -6233,16 +6233,16 @@ impl PyVideoStandardOutputConfiguration {
 }
 
 #[pyclass(
-    name = "CopyBlueprintStageResponse",
+    name = "CopyBlueprintStageOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyCopyBlueprintStageResponse {
+struct PyOperationCopyBlueprintStageOutput {
     inner: aws_sdk_bedrockdataautomation::operation::copy_blueprint_stage::CopyBlueprintStageOutput,
 }
 
 #[pymethods]
-impl PyCopyBlueprintStageResponse {
+impl PyOperationCopyBlueprintStageOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -6250,16 +6250,16 @@ impl PyCopyBlueprintStageResponse {
 }
 
 #[pyclass(
-    name = "CreateBlueprintResponse",
+    name = "CreateBlueprintOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyCreateBlueprintResponse {
+struct PyOperationCreateBlueprintOutput {
     inner: aws_sdk_bedrockdataautomation::operation::create_blueprint::CreateBlueprintOutput,
 }
 
 #[pymethods]
-impl PyCreateBlueprintResponse {
+impl PyOperationCreateBlueprintOutput {
     #[getter]
     fn blueprint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.blueprint {
@@ -6289,16 +6289,16 @@ impl PyCreateBlueprintResponse {
 }
 
 #[pyclass(
-    name = "CreateBlueprintVersionResponse",
+    name = "CreateBlueprintVersionOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyCreateBlueprintVersionResponse {
+struct PyOperationCreateBlueprintVersionOutput {
     inner: aws_sdk_bedrockdataautomation::operation::create_blueprint_version::CreateBlueprintVersionOutput,
 }
 
 #[pymethods]
-impl PyCreateBlueprintVersionResponse {
+impl PyOperationCreateBlueprintVersionOutput {
     #[getter]
     fn blueprint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.blueprint {
@@ -6328,16 +6328,16 @@ impl PyCreateBlueprintVersionResponse {
 }
 
 #[pyclass(
-    name = "CreateDataAutomationLibraryResponse",
+    name = "CreateDataAutomationLibraryOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyCreateDataAutomationLibraryResponse {
+struct PyOperationCreateDataAutomationLibraryOutput {
     inner: aws_sdk_bedrockdataautomation::operation::create_data_automation_library::CreateDataAutomationLibraryOutput,
 }
 
 #[pymethods]
-impl PyCreateDataAutomationLibraryResponse {
+impl PyOperationCreateDataAutomationLibraryOutput {
     #[getter]
     fn library_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.library_arn {
@@ -6377,16 +6377,16 @@ impl PyCreateDataAutomationLibraryResponse {
 }
 
 #[pyclass(
-    name = "CreateDataAutomationProjectResponse",
+    name = "CreateDataAutomationProjectOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyCreateDataAutomationProjectResponse {
+struct PyOperationCreateDataAutomationProjectOutput {
     inner: aws_sdk_bedrockdataautomation::operation::create_data_automation_project::CreateDataAutomationProjectOutput,
 }
 
 #[pymethods]
-impl PyCreateDataAutomationProjectResponse {
+impl PyOperationCreateDataAutomationProjectOutput {
     #[getter]
     fn project_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_951 = (&self.inner.project_arn).as_str().into_py_any(py)?;
@@ -6434,16 +6434,16 @@ impl PyCreateDataAutomationProjectResponse {
 }
 
 #[pyclass(
-    name = "DeleteBlueprintResponse",
+    name = "DeleteBlueprintOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyDeleteBlueprintResponse {
+struct PyOperationDeleteBlueprintOutput {
     inner: aws_sdk_bedrockdataautomation::operation::delete_blueprint::DeleteBlueprintOutput,
 }
 
 #[pymethods]
-impl PyDeleteBlueprintResponse {
+impl PyOperationDeleteBlueprintOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -6451,16 +6451,16 @@ impl PyDeleteBlueprintResponse {
 }
 
 #[pyclass(
-    name = "DeleteDataAutomationLibraryResponse",
+    name = "DeleteDataAutomationLibraryOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyDeleteDataAutomationLibraryResponse {
+struct PyOperationDeleteDataAutomationLibraryOutput {
     inner: aws_sdk_bedrockdataautomation::operation::delete_data_automation_library::DeleteDataAutomationLibraryOutput,
 }
 
 #[pymethods]
-impl PyDeleteDataAutomationLibraryResponse {
+impl PyOperationDeleteDataAutomationLibraryOutput {
     #[getter]
     fn library_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.library_arn {
@@ -6500,16 +6500,16 @@ impl PyDeleteDataAutomationLibraryResponse {
 }
 
 #[pyclass(
-    name = "DeleteDataAutomationProjectResponse",
+    name = "DeleteDataAutomationProjectOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyDeleteDataAutomationProjectResponse {
+struct PyOperationDeleteDataAutomationProjectOutput {
     inner: aws_sdk_bedrockdataautomation::operation::delete_data_automation_project::DeleteDataAutomationProjectOutput,
 }
 
 #[pymethods]
-impl PyDeleteDataAutomationProjectResponse {
+impl PyOperationDeleteDataAutomationProjectOutput {
     #[getter]
     fn project_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_961 = (&self.inner.project_arn).as_str().into_py_any(py)?;
@@ -6541,16 +6541,16 @@ impl PyDeleteDataAutomationProjectResponse {
 }
 
 #[pyclass(
-    name = "GetBlueprintResponse",
+    name = "GetBlueprintOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyGetBlueprintResponse {
+struct PyOperationGetBlueprintOutput {
     inner: aws_sdk_bedrockdataautomation::operation::get_blueprint::GetBlueprintOutput,
 }
 
 #[pymethods]
-impl PyGetBlueprintResponse {
+impl PyOperationGetBlueprintOutput {
     #[getter]
     fn blueprint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.blueprint {
@@ -6580,16 +6580,16 @@ impl PyGetBlueprintResponse {
 }
 
 #[pyclass(
-    name = "GetBlueprintOptimizationStatusResponse",
+    name = "GetBlueprintOptimizationStatusOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyGetBlueprintOptimizationStatusResponse {
+struct PyOperationGetBlueprintOptimizationStatusOutput {
     inner: aws_sdk_bedrockdataautomation::operation::get_blueprint_optimization_status::GetBlueprintOptimizationStatusOutput,
 }
 
 #[pymethods]
-impl PyGetBlueprintOptimizationStatusResponse {
+impl PyOperationGetBlueprintOptimizationStatusOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
@@ -6667,16 +6667,16 @@ impl PyGetBlueprintOptimizationStatusResponse {
 }
 
 #[pyclass(
-    name = "GetDataAutomationLibraryResponse",
+    name = "GetDataAutomationLibraryOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyGetDataAutomationLibraryResponse {
+struct PyOperationGetDataAutomationLibraryOutput {
     inner: aws_sdk_bedrockdataautomation::operation::get_data_automation_library::GetDataAutomationLibraryOutput,
 }
 
 #[pymethods]
-impl PyGetDataAutomationLibraryResponse {
+impl PyOperationGetDataAutomationLibraryOutput {
     #[getter]
     fn library(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.library {
@@ -6706,16 +6706,16 @@ impl PyGetDataAutomationLibraryResponse {
 }
 
 #[pyclass(
-    name = "GetDataAutomationLibraryEntityResponse",
+    name = "GetDataAutomationLibraryEntityOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyGetDataAutomationLibraryEntityResponse {
+struct PyOperationGetDataAutomationLibraryEntityOutput {
     inner: aws_sdk_bedrockdataautomation::operation::get_data_automation_library_entity::GetDataAutomationLibraryEntityOutput,
 }
 
 #[pymethods]
-impl PyGetDataAutomationLibraryEntityResponse {
+impl PyOperationGetDataAutomationLibraryEntityOutput {
     #[getter]
     fn entity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.entity {
@@ -6739,16 +6739,16 @@ impl PyGetDataAutomationLibraryEntityResponse {
 }
 
 #[pyclass(
-    name = "GetDataAutomationLibraryIngestionJobResponse",
+    name = "GetDataAutomationLibraryIngestionJobOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyGetDataAutomationLibraryIngestionJobResponse {
+struct PyOperationGetDataAutomationLibraryIngestionJobOutput {
     inner: aws_sdk_bedrockdataautomation::operation::get_data_automation_library_ingestion_job::GetDataAutomationLibraryIngestionJobOutput,
 }
 
 #[pymethods]
-impl PyGetDataAutomationLibraryIngestionJobResponse {
+impl PyOperationGetDataAutomationLibraryIngestionJobOutput {
     #[getter]
     fn job(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job {
@@ -6778,16 +6778,16 @@ impl PyGetDataAutomationLibraryIngestionJobResponse {
 }
 
 #[pyclass(
-    name = "GetDataAutomationProjectResponse",
+    name = "GetDataAutomationProjectOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyGetDataAutomationProjectResponse {
+struct PyOperationGetDataAutomationProjectOutput {
     inner: aws_sdk_bedrockdataautomation::operation::get_data_automation_project::GetDataAutomationProjectOutput,
 }
 
 #[pymethods]
-impl PyGetDataAutomationProjectResponse {
+impl PyOperationGetDataAutomationProjectOutput {
     #[getter]
     fn project(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.project {
@@ -6817,16 +6817,16 @@ impl PyGetDataAutomationProjectResponse {
 }
 
 #[pyclass(
-    name = "InvokeBlueprintOptimizationAsyncResponse",
+    name = "InvokeBlueprintOptimizationAsyncOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyInvokeBlueprintOptimizationAsyncResponse {
+struct PyOperationInvokeBlueprintOptimizationAsyncOutput {
     inner: aws_sdk_bedrockdataautomation::operation::invoke_blueprint_optimization_async::InvokeBlueprintOptimizationAsyncOutput,
 }
 
 #[pymethods]
-impl PyInvokeBlueprintOptimizationAsyncResponse {
+impl PyOperationInvokeBlueprintOptimizationAsyncOutput {
     #[getter]
     fn invocation_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_983 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
@@ -6842,16 +6842,16 @@ impl PyInvokeBlueprintOptimizationAsyncResponse {
 }
 
 #[pyclass(
-    name = "InvokeDataAutomationLibraryIngestionJobResponse",
+    name = "InvokeDataAutomationLibraryIngestionJobOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyInvokeDataAutomationLibraryIngestionJobResponse {
+struct PyOperationInvokeDataAutomationLibraryIngestionJobOutput {
     inner: aws_sdk_bedrockdataautomation::operation::invoke_data_automation_library_ingestion_job::InvokeDataAutomationLibraryIngestionJobOutput,
 }
 
 #[pymethods]
-impl PyInvokeDataAutomationLibraryIngestionJobResponse {
+impl PyOperationInvokeDataAutomationLibraryIngestionJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_arn {
@@ -6875,16 +6875,16 @@ impl PyInvokeDataAutomationLibraryIngestionJobResponse {
 }
 
 #[pyclass(
-    name = "ListBlueprintsResponse",
+    name = "ListBlueprintsOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyListBlueprintsResponse {
+struct PyOperationListBlueprintsOutput {
     inner: aws_sdk_bedrockdataautomation::operation::list_blueprints::ListBlueprintsOutput,
 }
 
 #[pymethods]
-impl PyListBlueprintsResponse {
+impl PyOperationListBlueprintsOutput {
     #[getter]
     fn blueprints(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_987_list = PyList::empty(py);
@@ -6932,16 +6932,16 @@ impl PyListBlueprintsResponse {
 }
 
 #[pyclass(
-    name = "ListDataAutomationLibrariesResponse",
+    name = "ListDataAutomationLibrariesOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyListDataAutomationLibrariesResponse {
+struct PyOperationListDataAutomationLibrariesOutput {
     inner: aws_sdk_bedrockdataautomation::operation::list_data_automation_libraries::ListDataAutomationLibrariesOutput,
 }
 
 #[pymethods]
-impl PyListDataAutomationLibrariesResponse {
+impl PyOperationListDataAutomationLibrariesOutput {
     #[getter]
     fn libraries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.libraries {
@@ -6997,16 +6997,16 @@ impl PyListDataAutomationLibrariesResponse {
 }
 
 #[pyclass(
-    name = "ListDataAutomationLibraryEntitiesResponse",
+    name = "ListDataAutomationLibraryEntitiesOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyListDataAutomationLibraryEntitiesResponse {
+struct PyOperationListDataAutomationLibraryEntitiesOutput {
     inner: aws_sdk_bedrockdataautomation::operation::list_data_automation_library_entities::ListDataAutomationLibraryEntitiesOutput,
 }
 
 #[pymethods]
-impl PyListDataAutomationLibraryEntitiesResponse {
+impl PyOperationListDataAutomationLibraryEntitiesOutput {
     #[getter]
     fn entities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.entities {
@@ -7058,16 +7058,16 @@ impl PyListDataAutomationLibraryEntitiesResponse {
 }
 
 #[pyclass(
-    name = "ListDataAutomationLibraryIngestionJobsResponse",
+    name = "ListDataAutomationLibraryIngestionJobsOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyListDataAutomationLibraryIngestionJobsResponse {
+struct PyOperationListDataAutomationLibraryIngestionJobsOutput {
     inner: aws_sdk_bedrockdataautomation::operation::list_data_automation_library_ingestion_jobs::ListDataAutomationLibraryIngestionJobsOutput,
 }
 
 #[pymethods]
-impl PyListDataAutomationLibraryIngestionJobsResponse {
+impl PyOperationListDataAutomationLibraryIngestionJobsOutput {
     #[getter]
     fn jobs(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.jobs {
@@ -7124,16 +7124,16 @@ impl PyListDataAutomationLibraryIngestionJobsResponse {
 }
 
 #[pyclass(
-    name = "ListDataAutomationProjectsResponse",
+    name = "ListDataAutomationProjectsOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyListDataAutomationProjectsResponse {
+struct PyOperationListDataAutomationProjectsOutput {
     inner: aws_sdk_bedrockdataautomation::operation::list_data_automation_projects::ListDataAutomationProjectsOutput,
 }
 
 #[pymethods]
-impl PyListDataAutomationProjectsResponse {
+impl PyOperationListDataAutomationProjectsOutput {
     #[getter]
     fn projects(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1019_list = PyList::empty(py);
@@ -7181,17 +7181,17 @@ impl PyListDataAutomationProjectsResponse {
 }
 
 #[pyclass(
-    name = "ListTagsForResourceResponse",
+    name = "ListTagsForResourceOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyListTagsForResourceResponse {
+struct PyOperationListTagsForResourceOutput {
     inner:
         aws_sdk_bedrockdataautomation::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
 
 #[pymethods]
-impl PyListTagsForResourceResponse {
+impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
@@ -7231,16 +7231,16 @@ impl PyListTagsForResourceResponse {
 }
 
 #[pyclass(
-    name = "TagResourceResponse",
+    name = "TagResourceOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyTagResourceResponse {
+struct PyOperationTagResourceOutput {
     inner: aws_sdk_bedrockdataautomation::operation::tag_resource::TagResourceOutput,
 }
 
 #[pymethods]
-impl PyTagResourceResponse {
+impl PyOperationTagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -7248,16 +7248,16 @@ impl PyTagResourceResponse {
 }
 
 #[pyclass(
-    name = "UntagResourceResponse",
+    name = "UntagResourceOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyUntagResourceResponse {
+struct PyOperationUntagResourceOutput {
     inner: aws_sdk_bedrockdataautomation::operation::untag_resource::UntagResourceOutput,
 }
 
 #[pymethods]
-impl PyUntagResourceResponse {
+impl PyOperationUntagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -7265,16 +7265,16 @@ impl PyUntagResourceResponse {
 }
 
 #[pyclass(
-    name = "UpdateBlueprintResponse",
+    name = "UpdateBlueprintOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyUpdateBlueprintResponse {
+struct PyOperationUpdateBlueprintOutput {
     inner: aws_sdk_bedrockdataautomation::operation::update_blueprint::UpdateBlueprintOutput,
 }
 
 #[pymethods]
-impl PyUpdateBlueprintResponse {
+impl PyOperationUpdateBlueprintOutput {
     #[getter]
     fn blueprint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.blueprint {
@@ -7304,16 +7304,16 @@ impl PyUpdateBlueprintResponse {
 }
 
 #[pyclass(
-    name = "UpdateDataAutomationLibraryResponse",
+    name = "UpdateDataAutomationLibraryOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyUpdateDataAutomationLibraryResponse {
+struct PyOperationUpdateDataAutomationLibraryOutput {
     inner: aws_sdk_bedrockdataautomation::operation::update_data_automation_library::UpdateDataAutomationLibraryOutput,
 }
 
 #[pymethods]
-impl PyUpdateDataAutomationLibraryResponse {
+impl PyOperationUpdateDataAutomationLibraryOutput {
     #[getter]
     fn library_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.library_arn {
@@ -7353,16 +7353,16 @@ impl PyUpdateDataAutomationLibraryResponse {
 }
 
 #[pyclass(
-    name = "UpdateDataAutomationProjectResponse",
+    name = "UpdateDataAutomationProjectOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
-struct PyUpdateDataAutomationProjectResponse {
+struct PyOperationUpdateDataAutomationProjectOutput {
     inner: aws_sdk_bedrockdataautomation::operation::update_data_automation_project::UpdateDataAutomationProjectOutput,
 }
 
 #[pymethods]
-impl PyUpdateDataAutomationProjectResponse {
+impl PyOperationUpdateDataAutomationProjectOutput {
     #[getter]
     fn project_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1039 = (&self.inner.project_arn).as_str().into_py_any(py)?;
@@ -7467,33 +7467,33 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyVideoStandardExtraction>()?;
     module.add_class::<PyVideoStandardGenerativeField>()?;
     module.add_class::<PyVideoStandardOutputConfiguration>()?;
-    module.add_class::<PyCopyBlueprintStageResponse>()?;
-    module.add_class::<PyCreateBlueprintResponse>()?;
-    module.add_class::<PyCreateBlueprintVersionResponse>()?;
-    module.add_class::<PyCreateDataAutomationLibraryResponse>()?;
-    module.add_class::<PyCreateDataAutomationProjectResponse>()?;
-    module.add_class::<PyDeleteBlueprintResponse>()?;
-    module.add_class::<PyDeleteDataAutomationLibraryResponse>()?;
-    module.add_class::<PyDeleteDataAutomationProjectResponse>()?;
-    module.add_class::<PyGetBlueprintResponse>()?;
-    module.add_class::<PyGetBlueprintOptimizationStatusResponse>()?;
-    module.add_class::<PyGetDataAutomationLibraryResponse>()?;
-    module.add_class::<PyGetDataAutomationLibraryEntityResponse>()?;
-    module.add_class::<PyGetDataAutomationLibraryIngestionJobResponse>()?;
-    module.add_class::<PyGetDataAutomationProjectResponse>()?;
-    module.add_class::<PyInvokeBlueprintOptimizationAsyncResponse>()?;
-    module.add_class::<PyInvokeDataAutomationLibraryIngestionJobResponse>()?;
-    module.add_class::<PyListBlueprintsResponse>()?;
-    module.add_class::<PyListDataAutomationLibrariesResponse>()?;
-    module.add_class::<PyListDataAutomationLibraryEntitiesResponse>()?;
-    module.add_class::<PyListDataAutomationLibraryIngestionJobsResponse>()?;
-    module.add_class::<PyListDataAutomationProjectsResponse>()?;
-    module.add_class::<PyListTagsForResourceResponse>()?;
-    module.add_class::<PyTagResourceResponse>()?;
-    module.add_class::<PyUntagResourceResponse>()?;
-    module.add_class::<PyUpdateBlueprintResponse>()?;
-    module.add_class::<PyUpdateDataAutomationLibraryResponse>()?;
-    module.add_class::<PyUpdateDataAutomationProjectResponse>()?;
+    module.add_class::<PyOperationCopyBlueprintStageOutput>()?;
+    module.add_class::<PyOperationCreateBlueprintOutput>()?;
+    module.add_class::<PyOperationCreateBlueprintVersionOutput>()?;
+    module.add_class::<PyOperationCreateDataAutomationLibraryOutput>()?;
+    module.add_class::<PyOperationCreateDataAutomationProjectOutput>()?;
+    module.add_class::<PyOperationDeleteBlueprintOutput>()?;
+    module.add_class::<PyOperationDeleteDataAutomationLibraryOutput>()?;
+    module.add_class::<PyOperationDeleteDataAutomationProjectOutput>()?;
+    module.add_class::<PyOperationGetBlueprintOutput>()?;
+    module.add_class::<PyOperationGetBlueprintOptimizationStatusOutput>()?;
+    module.add_class::<PyOperationGetDataAutomationLibraryOutput>()?;
+    module.add_class::<PyOperationGetDataAutomationLibraryEntityOutput>()?;
+    module.add_class::<PyOperationGetDataAutomationLibraryIngestionJobOutput>()?;
+    module.add_class::<PyOperationGetDataAutomationProjectOutput>()?;
+    module.add_class::<PyOperationInvokeBlueprintOptimizationAsyncOutput>()?;
+    module.add_class::<PyOperationInvokeDataAutomationLibraryIngestionJobOutput>()?;
+    module.add_class::<PyOperationListBlueprintsOutput>()?;
+    module.add_class::<PyOperationListDataAutomationLibrariesOutput>()?;
+    module.add_class::<PyOperationListDataAutomationLibraryEntitiesOutput>()?;
+    module.add_class::<PyOperationListDataAutomationLibraryIngestionJobsOutput>()?;
+    module.add_class::<PyOperationListDataAutomationProjectsOutput>()?;
+    module.add_class::<PyOperationListTagsForResourceOutput>()?;
+    module.add_class::<PyOperationTagResourceOutput>()?;
+    module.add_class::<PyOperationUntagResourceOutput>()?;
+    module.add_class::<PyOperationUpdateBlueprintOutput>()?;
+    module.add_class::<PyOperationUpdateDataAutomationLibraryOutput>()?;
+    module.add_class::<PyOperationUpdateDataAutomationProjectOutput>()?;
 
     Ok(())
 }
@@ -7585,7 +7585,7 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CopyBlueprintStage"))
             })?;
-            Ok(PyCopyBlueprintStageResponse { inner: output })
+            Ok(PyOperationCopyBlueprintStageOutput { inner: output })
         })
     }
 
@@ -7676,7 +7676,7 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateBlueprint"))
             })?;
-            Ok(PyCreateBlueprintResponse { inner: output })
+            Ok(PyOperationCreateBlueprintOutput { inner: output })
         })
     }
 
@@ -7721,7 +7721,7 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateBlueprintVersion"))
             })?;
-            Ok(PyCreateBlueprintVersionResponse { inner: output })
+            Ok(PyOperationCreateBlueprintVersionOutput { inner: output })
         })
     }
 
@@ -7795,7 +7795,7 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDataAutomationLibrary"))
             })?;
-            Ok(PyCreateDataAutomationLibraryResponse { inner: output })
+            Ok(PyOperationCreateDataAutomationLibraryOutput { inner: output })
         })
     }
 
@@ -7925,7 +7925,7 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDataAutomationProject"))
             })?;
-            Ok(PyCreateDataAutomationProjectResponse { inner: output })
+            Ok(PyOperationCreateDataAutomationProjectOutput { inner: output })
         })
     }
 
@@ -7971,7 +7971,7 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBlueprint"))
             })?;
-            Ok(PyDeleteBlueprintResponse { inner: output })
+            Ok(PyOperationDeleteBlueprintOutput { inner: output })
         })
     }
 
@@ -8009,7 +8009,7 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDataAutomationLibrary"))
             })?;
-            Ok(PyDeleteDataAutomationLibraryResponse { inner: output })
+            Ok(PyOperationDeleteDataAutomationLibraryOutput { inner: output })
         })
     }
 
@@ -8047,7 +8047,7 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDataAutomationProject"))
             })?;
-            Ok(PyDeleteDataAutomationProjectResponse { inner: output })
+            Ok(PyOperationDeleteDataAutomationProjectOutput { inner: output })
         })
     }
 
@@ -8102,7 +8102,7 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBlueprint"))
             })?;
-            Ok(PyGetBlueprintResponse { inner: output })
+            Ok(PyOperationGetBlueprintOutput { inner: output })
         })
     }
 
@@ -8140,7 +8140,7 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBlueprintOptimizationStatus"))
             })?;
-            Ok(PyGetBlueprintOptimizationStatusResponse { inner: output })
+            Ok(PyOperationGetBlueprintOptimizationStatusOutput { inner: output })
         })
     }
 
@@ -8178,7 +8178,7 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDataAutomationLibrary"))
             })?;
-            Ok(PyGetDataAutomationLibraryResponse { inner: output })
+            Ok(PyOperationGetDataAutomationLibraryOutput { inner: output })
         })
     }
 
@@ -8232,7 +8232,7 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDataAutomationLibraryEntity"))
             })?;
-            Ok(PyGetDataAutomationLibraryEntityResponse { inner: output })
+            Ok(PyOperationGetDataAutomationLibraryEntityOutput { inner: output })
         })
     }
 
@@ -8279,7 +8279,7 @@ impl BedrockDataAutomationClient {
                     sdk_error_to_py(py, &error, "GetDataAutomationLibraryIngestionJob")
                 })
             })?;
-            Ok(PyGetDataAutomationLibraryIngestionJobResponse { inner: output })
+            Ok(PyOperationGetDataAutomationLibraryIngestionJobOutput { inner: output })
         })
     }
 
@@ -8328,7 +8328,7 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDataAutomationProject"))
             })?;
-            Ok(PyGetDataAutomationProjectResponse { inner: output })
+            Ok(PyOperationGetDataAutomationProjectOutput { inner: output })
         })
     }
 
@@ -8416,7 +8416,7 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "InvokeBlueprintOptimizationAsync"))
             })?;
-            Ok(PyInvokeBlueprintOptimizationAsyncResponse { inner: output })
+            Ok(PyOperationInvokeBlueprintOptimizationAsyncOutput { inner: output })
         })
     }
 
@@ -8520,7 +8520,7 @@ impl BedrockDataAutomationClient {
                     sdk_error_to_py(py, &error, "InvokeDataAutomationLibraryIngestionJob")
                 })
             })?;
-            Ok(PyInvokeDataAutomationLibraryIngestionJobResponse { inner: output })
+            Ok(PyOperationInvokeDataAutomationLibraryIngestionJobOutput { inner: output })
         })
     }
 
@@ -8600,7 +8600,7 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListBlueprints"))
             })?;
-            Ok(PyListBlueprintsResponse { inner: output })
+            Ok(PyOperationListBlueprintsOutput { inner: output })
         })
     }
 
@@ -8652,7 +8652,7 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDataAutomationLibraries"))
             })?;
-            Ok(PyListDataAutomationLibrariesResponse { inner: output })
+            Ok(PyOperationListDataAutomationLibrariesOutput { inner: output })
         })
     }
 
@@ -8715,7 +8715,7 @@ impl BedrockDataAutomationClient {
                     sdk_error_to_py(py, &error, "ListDataAutomationLibraryEntities")
                 })
             })?;
-            Ok(PyListDataAutomationLibraryEntitiesResponse { inner: output })
+            Ok(PyOperationListDataAutomationLibraryEntitiesOutput { inner: output })
         })
     }
 
@@ -8769,7 +8769,7 @@ impl BedrockDataAutomationClient {
                     sdk_error_to_py(py, &error, "ListDataAutomationLibraryIngestionJobs")
                 })
             })?;
-            Ok(PyListDataAutomationLibraryIngestionJobsResponse { inner: output })
+            Ok(PyOperationListDataAutomationLibraryIngestionJobsOutput { inner: output })
         })
     }
 
@@ -8849,7 +8849,7 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDataAutomationProjects"))
             })?;
-            Ok(PyListDataAutomationProjectsResponse { inner: output })
+            Ok(PyOperationListDataAutomationProjectsOutput { inner: output })
         })
     }
 
@@ -8887,7 +8887,7 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Ok(PyListTagsForResourceResponse { inner: output })
+            Ok(PyOperationListTagsForResourceOutput { inner: output })
         })
     }
 
@@ -8937,7 +8937,7 @@ impl BedrockDataAutomationClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
-            Ok(PyTagResourceResponse { inner: output })
+            Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
 
@@ -8988,7 +8988,7 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
-            Ok(PyUntagResourceResponse { inner: output })
+            Ok(PyOperationUntagResourceOutput { inner: output })
         })
     }
 
@@ -9050,7 +9050,7 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateBlueprint"))
             })?;
-            Ok(PyUpdateBlueprintResponse { inner: output })
+            Ok(PyOperationUpdateBlueprintOutput { inner: output })
         })
     }
 
@@ -9103,7 +9103,7 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDataAutomationLibrary"))
             })?;
-            Ok(PyUpdateDataAutomationLibraryResponse { inner: output })
+            Ok(PyOperationUpdateDataAutomationLibraryOutput { inner: output })
         })
     }
 
@@ -9202,7 +9202,7 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDataAutomationProject"))
             })?;
-            Ok(PyUpdateDataAutomationProjectResponse { inner: output })
+            Ok(PyOperationUpdateDataAutomationProjectOutput { inner: output })
         })
     }
 }

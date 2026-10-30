@@ -9,7 +9,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto.logging import operation_interceptors
 
-from ._native import QBusinessClient as NativeClient, AssociatePermissionResponse, BatchDeleteDocumentResponse, BatchPutDocumentResponse, CancelSubscriptionResponse, ChatSyncOutput, CheckDocumentAccessResponse, CreateAnonymousWebExperienceUrlResponse, CreateApplicationResponse, CreateChatResponseConfigurationResponse, CreateDataAccessorResponse, CreateDataSourceResponse, CreateIndexResponse, CreatePluginResponse, CreateRetrieverResponse, CreateSubscriptionResponse, CreateUserResponse, CreateWebExperienceResponse, DeleteApplicationResponse, DeleteAttachmentResponse, DeleteChatControlsConfigurationResponse, DeleteChatResponseConfigurationResponse, DeleteConversationResponse, DeleteDataAccessorResponse, DeleteDataSourceResponse, DeleteGroupResponse, DeleteIndexResponse, DeletePluginResponse, DeleteRetrieverResponse, DeleteUserResponse, DeleteWebExperienceResponse, DisassociatePermissionResponse, GetApplicationResponse, GetChatControlsConfigurationResponse, GetChatResponseConfigurationResponse, GetDataAccessorResponse, GetDataSourceResponse, GetDocumentContentResponse, GetGroupResponse, GetIndexResponse, GetMediaResponse, GetPluginResponse, GetPolicyResponse, GetRetrieverResponse, GetUserResponse, GetWebExperienceResponse, ListApplicationsResponse, ListAttachmentsResponse, ListChatResponseConfigurationsResponse, ListConversationsResponse, ListDataAccessorsResponse, ListDataSourceSyncJobsResponse, ListDataSourcesResponse, ListDocumentsResponse, ListGroupsResponse, ListIndicesResponse, ListMessagesResponse, ListPluginActionsResponse, ListPluginTypeActionsResponse, ListPluginTypeMetadataResponse, ListPluginsResponse, ListRetrieversResponse, ListSubscriptionsResponse, ListTagsForResourceResponse, ListWebExperiencesResponse, PutGroupResponse, SearchRelevantContentResponse, StartDataSourceSyncJobResponse, StopDataSourceSyncJobResponse, TagResourceResponse, UntagResourceResponse, UpdateApplicationResponse, UpdateChatControlsConfigurationResponse, UpdateChatResponseConfigurationResponse, UpdateDataAccessorResponse, UpdateDataSourceResponse, UpdateIndexResponse, UpdatePluginResponse, UpdateRetrieverResponse, UpdateSubscriptionResponse, UpdateUserResponse, UpdateWebExperienceResponse
+from ._native import QBusinessClient as NativeClient, AssociatePermissionOutput, BatchDeleteDocumentOutput, BatchPutDocumentOutput, CancelSubscriptionOutput, ChatSyncOutput, CheckDocumentAccessOutput, CreateAnonymousWebExperienceUrlOutput, CreateApplicationOutput, CreateChatResponseConfigurationOutput, CreateDataAccessorOutput, CreateDataSourceOutput, CreateIndexOutput, CreatePluginOutput, CreateRetrieverOutput, CreateSubscriptionOutput, CreateUserOutput, CreateWebExperienceOutput, DeleteApplicationOutput, DeleteAttachmentOutput, DeleteChatControlsConfigurationOutput, DeleteChatResponseConfigurationOutput, DeleteConversationOutput, DeleteDataAccessorOutput, DeleteDataSourceOutput, DeleteGroupOutput, DeleteIndexOutput, DeletePluginOutput, DeleteRetrieverOutput, DeleteUserOutput, DeleteWebExperienceOutput, DisassociatePermissionOutput, GetApplicationOutput, GetChatControlsConfigurationOutput, GetChatResponseConfigurationOutput, GetDataAccessorOutput, GetDataSourceOutput, GetDocumentContentOutput, GetGroupOutput, GetIndexOutput, GetMediaOutput, GetPluginOutput, GetPolicyOutput, GetRetrieverOutput, GetUserOutput, GetWebExperienceOutput, ListApplicationsOutput, ListAttachmentsOutput, ListChatResponseConfigurationsOutput, ListConversationsOutput, ListDataAccessorsOutput, ListDataSourceSyncJobsOutput, ListDataSourcesOutput, ListDocumentsOutput, ListGroupsOutput, ListIndicesOutput, ListMessagesOutput, ListPluginActionsOutput, ListPluginTypeActionsOutput, ListPluginTypeMetadataOutput, ListPluginsOutput, ListRetrieversOutput, ListSubscriptionsOutput, ListTagsForResourceOutput, ListWebExperiencesOutput, PutGroupOutput, SearchRelevantContentOutput, StartDataSourceSyncJobOutput, StopDataSourceSyncJobOutput, TagResourceOutput, UntagResourceOutput, UpdateApplicationOutput, UpdateChatControlsConfigurationOutput, UpdateChatResponseConfigurationOutput, UpdateDataAccessorOutput, UpdateDataSourceOutput, UpdateIndexOutput, UpdatePluginOutput, UpdateRetrieverOutput, UpdateSubscriptionOutput, UpdateUserOutput, UpdateWebExperienceOutput
 from .types import (
     ActionConfiguration,
     ActionExecution,
@@ -116,7 +116,7 @@ class QBusinessClient:
         actions: Sequence[str],
         principal: str,
         conditions: Sequence[PermissionCondition] | None = None,
-    ) -> AssociatePermissionResponse:
+    ) -> AssociatePermissionOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "statement_id": statement_id,
@@ -130,7 +130,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.associate_permission, params, _interceptors,
                 "qbusiness", "AssociatePermission", self._region,
-                AssociatePermissionResponse,
+                AssociatePermissionOutput,
                 ("application_id", "statement_id", "actions", "principal", "conditions", ),
                 ("application_id", "statement_id", "actions", "principal", ),
             )
@@ -146,7 +146,7 @@ class QBusinessClient:
         index_id: str,
         documents: Sequence[DeleteDocument],
         data_source_sync_id: str | None = None,
-    ) -> BatchDeleteDocumentResponse:
+    ) -> BatchDeleteDocumentOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -159,7 +159,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.batch_delete_document, params, _interceptors,
                 "qbusiness", "BatchDeleteDocument", self._region,
-                BatchDeleteDocumentResponse,
+                BatchDeleteDocumentOutput,
                 ("application_id", "index_id", "documents", "data_source_sync_id", ),
                 ("application_id", "index_id", "documents", ),
             )
@@ -176,7 +176,7 @@ class QBusinessClient:
         documents: Sequence[Document],
         role_arn: str | None = None,
         data_source_sync_id: str | None = None,
-    ) -> BatchPutDocumentResponse:
+    ) -> BatchPutDocumentOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -191,7 +191,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.batch_put_document, params, _interceptors,
                 "qbusiness", "BatchPutDocument", self._region,
-                BatchPutDocumentResponse,
+                BatchPutDocumentOutput,
                 ("application_id", "index_id", "documents", "role_arn", "data_source_sync_id", ),
                 ("application_id", "index_id", "documents", ),
             )
@@ -205,7 +205,7 @@ class QBusinessClient:
         *,
         application_id: str,
         subscription_id: str,
-    ) -> CancelSubscriptionResponse:
+    ) -> CancelSubscriptionOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "subscription_id": subscription_id,
@@ -215,7 +215,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.cancel_subscription, params, _interceptors,
                 "qbusiness", "CancelSubscription", self._region,
-                CancelSubscriptionResponse,
+                CancelSubscriptionOutput,
                 ("application_id", "subscription_id", ),
                 ("application_id", "subscription_id", ),
             )
@@ -330,7 +330,7 @@ class QBusinessClient:
         user_id: str,
         document_id: str,
         data_source_id: str | None = None,
-    ) -> CheckDocumentAccessResponse:
+    ) -> CheckDocumentAccessOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -344,7 +344,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.check_document_access, params, _interceptors,
                 "qbusiness", "CheckDocumentAccess", self._region,
-                CheckDocumentAccessResponse,
+                CheckDocumentAccessOutput,
                 ("application_id", "index_id", "user_id", "document_id", "data_source_id", ),
                 ("application_id", "index_id", "user_id", "document_id", ),
             )
@@ -359,7 +359,7 @@ class QBusinessClient:
         application_id: str,
         web_experience_id: str,
         session_duration_in_minutes: int | None = None,
-    ) -> CreateAnonymousWebExperienceUrlResponse:
+    ) -> CreateAnonymousWebExperienceUrlOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "web_experience_id": web_experience_id,
@@ -371,7 +371,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.create_anonymous_web_experience_url, params, _interceptors,
                 "qbusiness", "CreateAnonymousWebExperienceUrl", self._region,
-                CreateAnonymousWebExperienceUrlResponse,
+                CreateAnonymousWebExperienceUrlOutput,
                 ("application_id", "web_experience_id", "session_duration_in_minutes", ),
                 ("application_id", "web_experience_id", ),
             )
@@ -397,7 +397,7 @@ class QBusinessClient:
         q_apps_configuration: QAppsConfiguration | None = None,
         personalization_configuration: PersonalizationConfiguration | None = None,
         quick_sight_configuration: QuickSightConfiguration | None = None,
-    ) -> CreateApplicationResponse:
+    ) -> CreateApplicationOutput:
         params: dict[str, object] = {
             "display_name": display_name,
         }
@@ -432,7 +432,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.create_application, params, _interceptors,
                 "qbusiness", "CreateApplication", self._region,
-                CreateApplicationResponse,
+                CreateApplicationOutput,
                 ("display_name", "role_arn", "identity_type", "iam_identity_provider_arn", "identity_center_instance_arn", "client_ids_for_oidc", "description", "encryption_configuration", "tags", "client_token", "attachments_configuration", "q_apps_configuration", "personalization_configuration", "quick_sight_configuration", ),
                 ("display_name", ),
             )
@@ -449,7 +449,7 @@ class QBusinessClient:
         response_configurations: dict[ResponseConfigurationType, ResponseConfiguration],
         client_token: str | None = None,
         tags: Sequence[Tag] | None = None,
-    ) -> CreateChatResponseConfigurationResponse:
+    ) -> CreateChatResponseConfigurationOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "display_name": display_name,
@@ -464,7 +464,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.create_chat_response_configuration, params, _interceptors,
                 "qbusiness", "CreateChatResponseConfiguration", self._region,
-                CreateChatResponseConfigurationResponse,
+                CreateChatResponseConfigurationOutput,
                 ("application_id", "display_name", "response_configurations", "client_token", "tags", ),
                 ("application_id", "display_name", "response_configurations", ),
             )
@@ -483,7 +483,7 @@ class QBusinessClient:
         client_token: str | None = None,
         authentication_detail: DataAccessorAuthenticationDetail | None = None,
         tags: Sequence[Tag] | None = None,
-    ) -> CreateDataAccessorResponse:
+    ) -> CreateDataAccessorOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "principal": principal,
@@ -501,7 +501,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.create_data_accessor, params, _interceptors,
                 "qbusiness", "CreateDataAccessor", self._region,
-                CreateDataAccessorResponse,
+                CreateDataAccessorOutput,
                 ("application_id", "principal", "action_configurations", "display_name", "client_token", "authentication_detail", "tags", ),
                 ("application_id", "principal", "action_configurations", "display_name", ),
             )
@@ -525,7 +525,7 @@ class QBusinessClient:
         client_token: str | None = None,
         document_enrichment_configuration: DocumentEnrichmentConfiguration | None = None,
         media_extraction_configuration: MediaExtractionConfiguration | None = None,
-    ) -> CreateDataSourceResponse:
+    ) -> CreateDataSourceOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -553,7 +553,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.create_data_source, params, _interceptors,
                 "qbusiness", "CreateDataSource", self._region,
-                CreateDataSourceResponse,
+                CreateDataSourceOutput,
                 ("application_id", "index_id", "display_name", "configuration", "vpc_configuration", "description", "tags", "sync_schedule", "role_arn", "client_token", "document_enrichment_configuration", "media_extraction_configuration", ),
                 ("application_id", "index_id", "display_name", "configuration", ),
             )
@@ -572,7 +572,7 @@ class QBusinessClient:
         tags: Sequence[Tag] | None = None,
         capacity_configuration: IndexCapacityConfiguration | None = None,
         client_token: str | None = None,
-    ) -> CreateIndexResponse:
+    ) -> CreateIndexOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "display_name": display_name,
@@ -592,7 +592,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.create_index, params, _interceptors,
                 "qbusiness", "CreateIndex", self._region,
-                CreateIndexResponse,
+                CreateIndexOutput,
                 ("application_id", "display_name", "description", "type", "tags", "capacity_configuration", "client_token", ),
                 ("application_id", "display_name", ),
             )
@@ -612,7 +612,7 @@ class QBusinessClient:
         custom_plugin_configuration: CustomPluginConfiguration | None = None,
         tags: Sequence[Tag] | None = None,
         client_token: str | None = None,
-    ) -> CreatePluginResponse:
+    ) -> CreatePluginOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "display_name": display_name,
@@ -632,7 +632,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.create_plugin, params, _interceptors,
                 "qbusiness", "CreatePlugin", self._region,
-                CreatePluginResponse,
+                CreatePluginOutput,
                 ("application_id", "display_name", "type", "auth_configuration", "server_url", "custom_plugin_configuration", "tags", "client_token", ),
                 ("application_id", "display_name", "type", "auth_configuration", ),
             )
@@ -651,7 +651,7 @@ class QBusinessClient:
         role_arn: str | None = None,
         client_token: str | None = None,
         tags: Sequence[Tag] | None = None,
-    ) -> CreateRetrieverResponse:
+    ) -> CreateRetrieverOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "type": type,
@@ -669,7 +669,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.create_retriever, params, _interceptors,
                 "qbusiness", "CreateRetriever", self._region,
-                CreateRetrieverResponse,
+                CreateRetrieverOutput,
                 ("application_id", "type", "display_name", "configuration", "role_arn", "client_token", "tags", ),
                 ("application_id", "type", "display_name", "configuration", ),
             )
@@ -685,7 +685,7 @@ class QBusinessClient:
         principal: SubscriptionPrincipal,
         type: SubscriptionType,
         client_token: str | None = None,
-    ) -> CreateSubscriptionResponse:
+    ) -> CreateSubscriptionOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "principal": principal,
@@ -698,7 +698,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.create_subscription, params, _interceptors,
                 "qbusiness", "CreateSubscription", self._region,
-                CreateSubscriptionResponse,
+                CreateSubscriptionOutput,
                 ("application_id", "principal", "type", "client_token", ),
                 ("application_id", "principal", "type", ),
             )
@@ -714,7 +714,7 @@ class QBusinessClient:
         user_id: str,
         user_aliases: Sequence[UserAlias] | None = None,
         client_token: str | None = None,
-    ) -> CreateUserResponse:
+    ) -> CreateUserOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "user_id": user_id,
@@ -728,7 +728,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.create_user, params, _interceptors,
                 "qbusiness", "CreateUser", self._region,
-                CreateUserResponse,
+                CreateUserOutput,
                 ("application_id", "user_id", "user_aliases", "client_token", ),
                 ("application_id", "user_id", ),
             )
@@ -752,7 +752,7 @@ class QBusinessClient:
         identity_provider_configuration: IdentityProviderConfiguration | None = None,
         browser_extension_configuration: BrowserExtensionConfiguration | None = None,
         customization_configuration: CustomizationConfiguration | None = None,
-    ) -> CreateWebExperienceResponse:
+    ) -> CreateWebExperienceOutput:
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -783,7 +783,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.create_web_experience, params, _interceptors,
                 "qbusiness", "CreateWebExperience", self._region,
-                CreateWebExperienceResponse,
+                CreateWebExperienceOutput,
                 ("application_id", "title", "subtitle", "welcome_message", "sample_prompts_control_mode", "origins", "role_arn", "tags", "client_token", "identity_provider_configuration", "browser_extension_configuration", "customization_configuration", ),
                 ("application_id", ),
             )
@@ -796,7 +796,7 @@ class QBusinessClient:
         self,
         *,
         application_id: str,
-    ) -> DeleteApplicationResponse:
+    ) -> DeleteApplicationOutput:
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -805,7 +805,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_application, params, _interceptors,
                 "qbusiness", "DeleteApplication", self._region,
-                DeleteApplicationResponse,
+                DeleteApplicationOutput,
                 ("application_id", ),
                 ("application_id", ),
             )
@@ -821,7 +821,7 @@ class QBusinessClient:
         conversation_id: str,
         attachment_id: str,
         user_id: str | None = None,
-    ) -> DeleteAttachmentResponse:
+    ) -> DeleteAttachmentOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "conversation_id": conversation_id,
@@ -834,7 +834,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_attachment, params, _interceptors,
                 "qbusiness", "DeleteAttachment", self._region,
-                DeleteAttachmentResponse,
+                DeleteAttachmentOutput,
                 ("application_id", "conversation_id", "attachment_id", "user_id", ),
                 ("application_id", "conversation_id", "attachment_id", ),
             )
@@ -847,7 +847,7 @@ class QBusinessClient:
         self,
         *,
         application_id: str,
-    ) -> DeleteChatControlsConfigurationResponse:
+    ) -> DeleteChatControlsConfigurationOutput:
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -856,7 +856,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_chat_controls_configuration, params, _interceptors,
                 "qbusiness", "DeleteChatControlsConfiguration", self._region,
-                DeleteChatControlsConfigurationResponse,
+                DeleteChatControlsConfigurationOutput,
                 ("application_id", ),
                 ("application_id", ),
             )
@@ -870,7 +870,7 @@ class QBusinessClient:
         *,
         application_id: str,
         chat_response_configuration_id: str,
-    ) -> DeleteChatResponseConfigurationResponse:
+    ) -> DeleteChatResponseConfigurationOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "chat_response_configuration_id": chat_response_configuration_id,
@@ -880,7 +880,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_chat_response_configuration, params, _interceptors,
                 "qbusiness", "DeleteChatResponseConfiguration", self._region,
-                DeleteChatResponseConfigurationResponse,
+                DeleteChatResponseConfigurationOutput,
                 ("application_id", "chat_response_configuration_id", ),
                 ("application_id", "chat_response_configuration_id", ),
             )
@@ -895,7 +895,7 @@ class QBusinessClient:
         conversation_id: str,
         application_id: str,
         user_id: str | None = None,
-    ) -> DeleteConversationResponse:
+    ) -> DeleteConversationOutput:
         params: dict[str, object] = {
             "conversation_id": conversation_id,
             "application_id": application_id,
@@ -907,7 +907,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_conversation, params, _interceptors,
                 "qbusiness", "DeleteConversation", self._region,
-                DeleteConversationResponse,
+                DeleteConversationOutput,
                 ("conversation_id", "application_id", "user_id", ),
                 ("conversation_id", "application_id", ),
             )
@@ -921,7 +921,7 @@ class QBusinessClient:
         *,
         application_id: str,
         data_accessor_id: str,
-    ) -> DeleteDataAccessorResponse:
+    ) -> DeleteDataAccessorOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "data_accessor_id": data_accessor_id,
@@ -931,7 +931,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_data_accessor, params, _interceptors,
                 "qbusiness", "DeleteDataAccessor", self._region,
-                DeleteDataAccessorResponse,
+                DeleteDataAccessorOutput,
                 ("application_id", "data_accessor_id", ),
                 ("application_id", "data_accessor_id", ),
             )
@@ -946,7 +946,7 @@ class QBusinessClient:
         application_id: str,
         index_id: str,
         data_source_id: str,
-    ) -> DeleteDataSourceResponse:
+    ) -> DeleteDataSourceOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -957,7 +957,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_data_source, params, _interceptors,
                 "qbusiness", "DeleteDataSource", self._region,
-                DeleteDataSourceResponse,
+                DeleteDataSourceOutput,
                 ("application_id", "index_id", "data_source_id", ),
                 ("application_id", "index_id", "data_source_id", ),
             )
@@ -973,7 +973,7 @@ class QBusinessClient:
         index_id: str,
         group_name: str,
         data_source_id: str | None = None,
-    ) -> DeleteGroupResponse:
+    ) -> DeleteGroupOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -986,7 +986,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_group, params, _interceptors,
                 "qbusiness", "DeleteGroup", self._region,
-                DeleteGroupResponse,
+                DeleteGroupOutput,
                 ("application_id", "index_id", "group_name", "data_source_id", ),
                 ("application_id", "index_id", "group_name", ),
             )
@@ -1000,7 +1000,7 @@ class QBusinessClient:
         *,
         application_id: str,
         index_id: str,
-    ) -> DeleteIndexResponse:
+    ) -> DeleteIndexOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -1010,7 +1010,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_index, params, _interceptors,
                 "qbusiness", "DeleteIndex", self._region,
-                DeleteIndexResponse,
+                DeleteIndexOutput,
                 ("application_id", "index_id", ),
                 ("application_id", "index_id", ),
             )
@@ -1024,7 +1024,7 @@ class QBusinessClient:
         *,
         application_id: str,
         plugin_id: str,
-    ) -> DeletePluginResponse:
+    ) -> DeletePluginOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "plugin_id": plugin_id,
@@ -1034,7 +1034,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_plugin, params, _interceptors,
                 "qbusiness", "DeletePlugin", self._region,
-                DeletePluginResponse,
+                DeletePluginOutput,
                 ("application_id", "plugin_id", ),
                 ("application_id", "plugin_id", ),
             )
@@ -1048,7 +1048,7 @@ class QBusinessClient:
         *,
         application_id: str,
         retriever_id: str,
-    ) -> DeleteRetrieverResponse:
+    ) -> DeleteRetrieverOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "retriever_id": retriever_id,
@@ -1058,7 +1058,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_retriever, params, _interceptors,
                 "qbusiness", "DeleteRetriever", self._region,
-                DeleteRetrieverResponse,
+                DeleteRetrieverOutput,
                 ("application_id", "retriever_id", ),
                 ("application_id", "retriever_id", ),
             )
@@ -1072,7 +1072,7 @@ class QBusinessClient:
         *,
         application_id: str,
         user_id: str,
-    ) -> DeleteUserResponse:
+    ) -> DeleteUserOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "user_id": user_id,
@@ -1082,7 +1082,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_user, params, _interceptors,
                 "qbusiness", "DeleteUser", self._region,
-                DeleteUserResponse,
+                DeleteUserOutput,
                 ("application_id", "user_id", ),
                 ("application_id", "user_id", ),
             )
@@ -1096,7 +1096,7 @@ class QBusinessClient:
         *,
         application_id: str,
         web_experience_id: str,
-    ) -> DeleteWebExperienceResponse:
+    ) -> DeleteWebExperienceOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "web_experience_id": web_experience_id,
@@ -1106,7 +1106,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_web_experience, params, _interceptors,
                 "qbusiness", "DeleteWebExperience", self._region,
-                DeleteWebExperienceResponse,
+                DeleteWebExperienceOutput,
                 ("application_id", "web_experience_id", ),
                 ("application_id", "web_experience_id", ),
             )
@@ -1120,7 +1120,7 @@ class QBusinessClient:
         *,
         application_id: str,
         statement_id: str,
-    ) -> DisassociatePermissionResponse:
+    ) -> DisassociatePermissionOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "statement_id": statement_id,
@@ -1130,7 +1130,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.disassociate_permission, params, _interceptors,
                 "qbusiness", "DisassociatePermission", self._region,
-                DisassociatePermissionResponse,
+                DisassociatePermissionOutput,
                 ("application_id", "statement_id", ),
                 ("application_id", "statement_id", ),
             )
@@ -1143,7 +1143,7 @@ class QBusinessClient:
         self,
         *,
         application_id: str,
-    ) -> GetApplicationResponse:
+    ) -> GetApplicationOutput:
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -1152,7 +1152,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_application, params, _interceptors,
                 "qbusiness", "GetApplication", self._region,
-                GetApplicationResponse,
+                GetApplicationOutput,
                 ("application_id", ),
                 ("application_id", ),
             )
@@ -1167,7 +1167,7 @@ class QBusinessClient:
         application_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> GetChatControlsConfigurationResponse:
+    ) -> GetChatControlsConfigurationOutput:
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -1180,7 +1180,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_chat_controls_configuration, params, _interceptors,
                 "qbusiness", "GetChatControlsConfiguration", self._region,
-                GetChatControlsConfigurationResponse,
+                GetChatControlsConfigurationOutput,
                 ("application_id", "max_results", "next_token", ),
                 ("application_id", ),
             )
@@ -1194,7 +1194,7 @@ class QBusinessClient:
         *,
         application_id: str,
         chat_response_configuration_id: str,
-    ) -> GetChatResponseConfigurationResponse:
+    ) -> GetChatResponseConfigurationOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "chat_response_configuration_id": chat_response_configuration_id,
@@ -1204,7 +1204,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_chat_response_configuration, params, _interceptors,
                 "qbusiness", "GetChatResponseConfiguration", self._region,
-                GetChatResponseConfigurationResponse,
+                GetChatResponseConfigurationOutput,
                 ("application_id", "chat_response_configuration_id", ),
                 ("application_id", "chat_response_configuration_id", ),
             )
@@ -1218,7 +1218,7 @@ class QBusinessClient:
         *,
         application_id: str,
         data_accessor_id: str,
-    ) -> GetDataAccessorResponse:
+    ) -> GetDataAccessorOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "data_accessor_id": data_accessor_id,
@@ -1228,7 +1228,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_data_accessor, params, _interceptors,
                 "qbusiness", "GetDataAccessor", self._region,
-                GetDataAccessorResponse,
+                GetDataAccessorOutput,
                 ("application_id", "data_accessor_id", ),
                 ("application_id", "data_accessor_id", ),
             )
@@ -1243,7 +1243,7 @@ class QBusinessClient:
         application_id: str,
         index_id: str,
         data_source_id: str,
-    ) -> GetDataSourceResponse:
+    ) -> GetDataSourceOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -1254,7 +1254,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_data_source, params, _interceptors,
                 "qbusiness", "GetDataSource", self._region,
-                GetDataSourceResponse,
+                GetDataSourceOutput,
                 ("application_id", "index_id", "data_source_id", ),
                 ("application_id", "index_id", "data_source_id", ),
             )
@@ -1271,7 +1271,7 @@ class QBusinessClient:
         document_id: str,
         data_source_id: str | None = None,
         output_format: OutputFormat | None = None,
-    ) -> GetDocumentContentResponse:
+    ) -> GetDocumentContentOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -1286,7 +1286,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_document_content, params, _interceptors,
                 "qbusiness", "GetDocumentContent", self._region,
-                GetDocumentContentResponse,
+                GetDocumentContentOutput,
                 ("application_id", "index_id", "document_id", "data_source_id", "output_format", ),
                 ("application_id", "index_id", "document_id", ),
             )
@@ -1302,7 +1302,7 @@ class QBusinessClient:
         index_id: str,
         group_name: str,
         data_source_id: str | None = None,
-    ) -> GetGroupResponse:
+    ) -> GetGroupOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -1315,7 +1315,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_group, params, _interceptors,
                 "qbusiness", "GetGroup", self._region,
-                GetGroupResponse,
+                GetGroupOutput,
                 ("application_id", "index_id", "group_name", "data_source_id", ),
                 ("application_id", "index_id", "group_name", ),
             )
@@ -1329,7 +1329,7 @@ class QBusinessClient:
         *,
         application_id: str,
         index_id: str,
-    ) -> GetIndexResponse:
+    ) -> GetIndexOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -1339,7 +1339,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_index, params, _interceptors,
                 "qbusiness", "GetIndex", self._region,
-                GetIndexResponse,
+                GetIndexOutput,
                 ("application_id", "index_id", ),
                 ("application_id", "index_id", ),
             )
@@ -1355,7 +1355,7 @@ class QBusinessClient:
         conversation_id: str,
         message_id: str,
         media_id: str,
-    ) -> GetMediaResponse:
+    ) -> GetMediaOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "conversation_id": conversation_id,
@@ -1367,7 +1367,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_media, params, _interceptors,
                 "qbusiness", "GetMedia", self._region,
-                GetMediaResponse,
+                GetMediaOutput,
                 ("application_id", "conversation_id", "message_id", "media_id", ),
                 ("application_id", "conversation_id", "message_id", "media_id", ),
             )
@@ -1381,7 +1381,7 @@ class QBusinessClient:
         *,
         application_id: str,
         plugin_id: str,
-    ) -> GetPluginResponse:
+    ) -> GetPluginOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "plugin_id": plugin_id,
@@ -1391,7 +1391,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_plugin, params, _interceptors,
                 "qbusiness", "GetPlugin", self._region,
-                GetPluginResponse,
+                GetPluginOutput,
                 ("application_id", "plugin_id", ),
                 ("application_id", "plugin_id", ),
             )
@@ -1404,7 +1404,7 @@ class QBusinessClient:
         self,
         *,
         application_id: str,
-    ) -> GetPolicyResponse:
+    ) -> GetPolicyOutput:
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -1413,7 +1413,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_policy, params, _interceptors,
                 "qbusiness", "GetPolicy", self._region,
-                GetPolicyResponse,
+                GetPolicyOutput,
                 ("application_id", ),
                 ("application_id", ),
             )
@@ -1427,7 +1427,7 @@ class QBusinessClient:
         *,
         application_id: str,
         retriever_id: str,
-    ) -> GetRetrieverResponse:
+    ) -> GetRetrieverOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "retriever_id": retriever_id,
@@ -1437,7 +1437,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_retriever, params, _interceptors,
                 "qbusiness", "GetRetriever", self._region,
-                GetRetrieverResponse,
+                GetRetrieverOutput,
                 ("application_id", "retriever_id", ),
                 ("application_id", "retriever_id", ),
             )
@@ -1451,7 +1451,7 @@ class QBusinessClient:
         *,
         application_id: str,
         user_id: str,
-    ) -> GetUserResponse:
+    ) -> GetUserOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "user_id": user_id,
@@ -1461,7 +1461,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_user, params, _interceptors,
                 "qbusiness", "GetUser", self._region,
-                GetUserResponse,
+                GetUserOutput,
                 ("application_id", "user_id", ),
                 ("application_id", "user_id", ),
             )
@@ -1475,7 +1475,7 @@ class QBusinessClient:
         *,
         application_id: str,
         web_experience_id: str,
-    ) -> GetWebExperienceResponse:
+    ) -> GetWebExperienceOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "web_experience_id": web_experience_id,
@@ -1485,7 +1485,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_web_experience, params, _interceptors,
                 "qbusiness", "GetWebExperience", self._region,
-                GetWebExperienceResponse,
+                GetWebExperienceOutput,
                 ("application_id", "web_experience_id", ),
                 ("application_id", "web_experience_id", ),
             )
@@ -1499,7 +1499,7 @@ class QBusinessClient:
         *,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListApplicationsResponse:
+    ) -> ListApplicationsOutput:
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -1511,7 +1511,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_applications, params, _interceptors,
                 "qbusiness", "ListApplications", self._region,
-                ListApplicationsResponse,
+                ListApplicationsOutput,
                 ("next_token", "max_results", ),
                 (),
             )
@@ -1528,7 +1528,7 @@ class QBusinessClient:
         user_id: str | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListAttachmentsResponse:
+    ) -> ListAttachmentsOutput:
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -1545,7 +1545,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_attachments, params, _interceptors,
                 "qbusiness", "ListAttachments", self._region,
-                ListAttachmentsResponse,
+                ListAttachmentsOutput,
                 ("application_id", "conversation_id", "user_id", "next_token", "max_results", ),
                 ("application_id", ),
             )
@@ -1560,7 +1560,7 @@ class QBusinessClient:
         application_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> ListChatResponseConfigurationsResponse:
+    ) -> ListChatResponseConfigurationsOutput:
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -1573,7 +1573,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_chat_response_configurations, params, _interceptors,
                 "qbusiness", "ListChatResponseConfigurations", self._region,
-                ListChatResponseConfigurationsResponse,
+                ListChatResponseConfigurationsOutput,
                 ("application_id", "max_results", "next_token", ),
                 ("application_id", ),
             )
@@ -1589,7 +1589,7 @@ class QBusinessClient:
         user_id: str | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListConversationsResponse:
+    ) -> ListConversationsOutput:
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -1604,7 +1604,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_conversations, params, _interceptors,
                 "qbusiness", "ListConversations", self._region,
-                ListConversationsResponse,
+                ListConversationsOutput,
                 ("application_id", "user_id", "next_token", "max_results", ),
                 ("application_id", ),
             )
@@ -1619,7 +1619,7 @@ class QBusinessClient:
         application_id: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListDataAccessorsResponse:
+    ) -> ListDataAccessorsOutput:
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -1632,7 +1632,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_data_accessors, params, _interceptors,
                 "qbusiness", "ListDataAccessors", self._region,
-                ListDataAccessorsResponse,
+                ListDataAccessorsOutput,
                 ("application_id", "next_token", "max_results", ),
                 ("application_id", ),
             )
@@ -1652,7 +1652,7 @@ class QBusinessClient:
         start_time: str | None = None,
         end_time: str | None = None,
         status_filter: DataSourceSyncJobStatus | None = None,
-    ) -> ListDataSourceSyncJobsResponse:
+    ) -> ListDataSourceSyncJobsOutput:
         params: dict[str, object] = {
             "data_source_id": data_source_id,
             "application_id": application_id,
@@ -1673,7 +1673,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_data_source_sync_jobs, params, _interceptors,
                 "qbusiness", "ListDataSourceSyncJobs", self._region,
-                ListDataSourceSyncJobsResponse,
+                ListDataSourceSyncJobsOutput,
                 ("data_source_id", "application_id", "index_id", "next_token", "max_results", "start_time", "end_time", "status_filter", ),
                 ("data_source_id", "application_id", "index_id", ),
             )
@@ -1689,7 +1689,7 @@ class QBusinessClient:
         index_id: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListDataSourcesResponse:
+    ) -> ListDataSourcesOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -1703,7 +1703,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_data_sources, params, _interceptors,
                 "qbusiness", "ListDataSources", self._region,
-                ListDataSourcesResponse,
+                ListDataSourcesOutput,
                 ("application_id", "index_id", "next_token", "max_results", ),
                 ("application_id", "index_id", ),
             )
@@ -1720,7 +1720,7 @@ class QBusinessClient:
         data_source_ids: Sequence[str] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListDocumentsResponse:
+    ) -> ListDocumentsOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -1736,7 +1736,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_documents, params, _interceptors,
                 "qbusiness", "ListDocuments", self._region,
-                ListDocumentsResponse,
+                ListDocumentsOutput,
                 ("application_id", "index_id", "data_source_ids", "next_token", "max_results", ),
                 ("application_id", "index_id", ),
             )
@@ -1754,7 +1754,7 @@ class QBusinessClient:
         data_source_id: str | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListGroupsResponse:
+    ) -> ListGroupsOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -1771,7 +1771,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_groups, params, _interceptors,
                 "qbusiness", "ListGroups", self._region,
-                ListGroupsResponse,
+                ListGroupsOutput,
                 ("application_id", "index_id", "updated_earlier_than", "data_source_id", "next_token", "max_results", ),
                 ("application_id", "index_id", "updated_earlier_than", ),
             )
@@ -1786,7 +1786,7 @@ class QBusinessClient:
         application_id: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListIndicesResponse:
+    ) -> ListIndicesOutput:
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -1799,7 +1799,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_indices, params, _interceptors,
                 "qbusiness", "ListIndices", self._region,
-                ListIndicesResponse,
+                ListIndicesOutput,
                 ("application_id", "next_token", "max_results", ),
                 ("application_id", ),
             )
@@ -1816,7 +1816,7 @@ class QBusinessClient:
         user_id: str | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListMessagesResponse:
+    ) -> ListMessagesOutput:
         params: dict[str, object] = {
             "conversation_id": conversation_id,
             "application_id": application_id,
@@ -1832,7 +1832,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_messages, params, _interceptors,
                 "qbusiness", "ListMessages", self._region,
-                ListMessagesResponse,
+                ListMessagesOutput,
                 ("conversation_id", "application_id", "user_id", "next_token", "max_results", ),
                 ("conversation_id", "application_id", ),
             )
@@ -1848,7 +1848,7 @@ class QBusinessClient:
         plugin_id: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListPluginActionsResponse:
+    ) -> ListPluginActionsOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "plugin_id": plugin_id,
@@ -1862,7 +1862,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_plugin_actions, params, _interceptors,
                 "qbusiness", "ListPluginActions", self._region,
-                ListPluginActionsResponse,
+                ListPluginActionsOutput,
                 ("application_id", "plugin_id", "next_token", "max_results", ),
                 ("application_id", "plugin_id", ),
             )
@@ -1877,7 +1877,7 @@ class QBusinessClient:
         plugin_type: PluginType,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListPluginTypeActionsResponse:
+    ) -> ListPluginTypeActionsOutput:
         params: dict[str, object] = {
             "plugin_type": plugin_type,
         }
@@ -1890,7 +1890,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_plugin_type_actions, params, _interceptors,
                 "qbusiness", "ListPluginTypeActions", self._region,
-                ListPluginTypeActionsResponse,
+                ListPluginTypeActionsOutput,
                 ("plugin_type", "next_token", "max_results", ),
                 ("plugin_type", ),
             )
@@ -1904,7 +1904,7 @@ class QBusinessClient:
         *,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListPluginTypeMetadataResponse:
+    ) -> ListPluginTypeMetadataOutput:
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -1916,7 +1916,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_plugin_type_metadata, params, _interceptors,
                 "qbusiness", "ListPluginTypeMetadata", self._region,
-                ListPluginTypeMetadataResponse,
+                ListPluginTypeMetadataOutput,
                 ("next_token", "max_results", ),
                 (),
             )
@@ -1931,7 +1931,7 @@ class QBusinessClient:
         application_id: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListPluginsResponse:
+    ) -> ListPluginsOutput:
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -1944,7 +1944,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_plugins, params, _interceptors,
                 "qbusiness", "ListPlugins", self._region,
-                ListPluginsResponse,
+                ListPluginsOutput,
                 ("application_id", "next_token", "max_results", ),
                 ("application_id", ),
             )
@@ -1959,7 +1959,7 @@ class QBusinessClient:
         application_id: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListRetrieversResponse:
+    ) -> ListRetrieversOutput:
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -1972,7 +1972,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_retrievers, params, _interceptors,
                 "qbusiness", "ListRetrievers", self._region,
-                ListRetrieversResponse,
+                ListRetrieversOutput,
                 ("application_id", "next_token", "max_results", ),
                 ("application_id", ),
             )
@@ -1987,7 +1987,7 @@ class QBusinessClient:
         application_id: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListSubscriptionsResponse:
+    ) -> ListSubscriptionsOutput:
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -2000,7 +2000,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_subscriptions, params, _interceptors,
                 "qbusiness", "ListSubscriptions", self._region,
-                ListSubscriptionsResponse,
+                ListSubscriptionsOutput,
                 ("application_id", "next_token", "max_results", ),
                 ("application_id", ),
             )
@@ -2013,7 +2013,7 @@ class QBusinessClient:
         self,
         *,
         resource_arn: str,
-    ) -> ListTagsForResourceResponse:
+    ) -> ListTagsForResourceOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -2022,7 +2022,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_tags_for_resource, params, _interceptors,
                 "qbusiness", "ListTagsForResource", self._region,
-                ListTagsForResourceResponse,
+                ListTagsForResourceOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
             )
@@ -2037,7 +2037,7 @@ class QBusinessClient:
         application_id: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListWebExperiencesResponse:
+    ) -> ListWebExperiencesOutput:
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -2050,7 +2050,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_web_experiences, params, _interceptors,
                 "qbusiness", "ListWebExperiences", self._region,
-                ListWebExperiencesResponse,
+                ListWebExperiencesOutput,
                 ("application_id", "next_token", "max_results", ),
                 ("application_id", ),
             )
@@ -2104,7 +2104,7 @@ class QBusinessClient:
         group_members: GroupMembers,
         data_source_id: str | None = None,
         role_arn: str | None = None,
-    ) -> PutGroupResponse:
+    ) -> PutGroupOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -2121,7 +2121,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.put_group, params, _interceptors,
                 "qbusiness", "PutGroup", self._region,
-                PutGroupResponse,
+                PutGroupOutput,
                 ("application_id", "index_id", "group_name", "type", "group_members", "data_source_id", "role_arn", ),
                 ("application_id", "index_id", "group_name", "type", "group_members", ),
             )
@@ -2139,7 +2139,7 @@ class QBusinessClient:
         attribute_filter: AttributeFilter | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> SearchRelevantContentResponse:
+    ) -> SearchRelevantContentOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "query_text": query_text,
@@ -2156,7 +2156,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.search_relevant_content, params, _interceptors,
                 "qbusiness", "SearchRelevantContent", self._region,
-                SearchRelevantContentResponse,
+                SearchRelevantContentOutput,
                 ("application_id", "query_text", "content_source", "attribute_filter", "max_results", "next_token", ),
                 ("application_id", "query_text", "content_source", ),
             )
@@ -2171,7 +2171,7 @@ class QBusinessClient:
         data_source_id: str,
         application_id: str,
         index_id: str,
-    ) -> StartDataSourceSyncJobResponse:
+    ) -> StartDataSourceSyncJobOutput:
         params: dict[str, object] = {
             "data_source_id": data_source_id,
             "application_id": application_id,
@@ -2182,7 +2182,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.start_data_source_sync_job, params, _interceptors,
                 "qbusiness", "StartDataSourceSyncJob", self._region,
-                StartDataSourceSyncJobResponse,
+                StartDataSourceSyncJobOutput,
                 ("data_source_id", "application_id", "index_id", ),
                 ("data_source_id", "application_id", "index_id", ),
             )
@@ -2197,7 +2197,7 @@ class QBusinessClient:
         data_source_id: str,
         application_id: str,
         index_id: str,
-    ) -> StopDataSourceSyncJobResponse:
+    ) -> StopDataSourceSyncJobOutput:
         params: dict[str, object] = {
             "data_source_id": data_source_id,
             "application_id": application_id,
@@ -2208,7 +2208,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.stop_data_source_sync_job, params, _interceptors,
                 "qbusiness", "StopDataSourceSyncJob", self._region,
-                StopDataSourceSyncJobResponse,
+                StopDataSourceSyncJobOutput,
                 ("data_source_id", "application_id", "index_id", ),
                 ("data_source_id", "application_id", "index_id", ),
             )
@@ -2222,7 +2222,7 @@ class QBusinessClient:
         *,
         resource_arn: str,
         tags: Sequence[Tag],
-    ) -> TagResourceResponse:
+    ) -> TagResourceOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -2232,7 +2232,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.tag_resource, params, _interceptors,
                 "qbusiness", "TagResource", self._region,
-                TagResourceResponse,
+                TagResourceOutput,
                 ("resource_arn", "tags", ),
                 ("resource_arn", "tags", ),
             )
@@ -2246,7 +2246,7 @@ class QBusinessClient:
         *,
         resource_arn: str,
         tag_keys: Sequence[str],
-    ) -> UntagResourceResponse:
+    ) -> UntagResourceOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
@@ -2256,7 +2256,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.untag_resource, params, _interceptors,
                 "qbusiness", "UntagResource", self._region,
-                UntagResourceResponse,
+                UntagResourceOutput,
                 ("resource_arn", "tag_keys", ),
                 ("resource_arn", "tag_keys", ),
             )
@@ -2277,7 +2277,7 @@ class QBusinessClient:
         q_apps_configuration: QAppsConfiguration | None = None,
         personalization_configuration: PersonalizationConfiguration | None = None,
         auto_subscription_configuration: AutoSubscriptionConfiguration | None = None,
-    ) -> UpdateApplicationResponse:
+    ) -> UpdateApplicationOutput:
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -2302,7 +2302,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.update_application, params, _interceptors,
                 "qbusiness", "UpdateApplication", self._region,
-                UpdateApplicationResponse,
+                UpdateApplicationOutput,
                 ("application_id", "identity_center_instance_arn", "display_name", "description", "role_arn", "attachments_configuration", "q_apps_configuration", "personalization_configuration", "auto_subscription_configuration", ),
                 ("application_id", ),
             )
@@ -2323,7 +2323,7 @@ class QBusinessClient:
         topic_configurations_to_delete: Sequence[TopicConfiguration] | None = None,
         creator_mode_configuration: CreatorModeConfiguration | None = None,
         hallucination_reduction_configuration: HallucinationReductionConfiguration | None = None,
-    ) -> UpdateChatControlsConfigurationResponse:
+    ) -> UpdateChatControlsConfigurationOutput:
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -2348,7 +2348,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.update_chat_controls_configuration, params, _interceptors,
                 "qbusiness", "UpdateChatControlsConfiguration", self._region,
-                UpdateChatControlsConfigurationResponse,
+                UpdateChatControlsConfigurationOutput,
                 ("application_id", "client_token", "response_scope", "orchestration_configuration", "blocked_phrases_configuration_update", "topic_configurations_to_create_or_update", "topic_configurations_to_delete", "creator_mode_configuration", "hallucination_reduction_configuration", ),
                 ("application_id", ),
             )
@@ -2365,7 +2365,7 @@ class QBusinessClient:
         response_configurations: dict[ResponseConfigurationType, ResponseConfiguration],
         display_name: str | None = None,
         client_token: str | None = None,
-    ) -> UpdateChatResponseConfigurationResponse:
+    ) -> UpdateChatResponseConfigurationOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "chat_response_configuration_id": chat_response_configuration_id,
@@ -2380,7 +2380,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.update_chat_response_configuration, params, _interceptors,
                 "qbusiness", "UpdateChatResponseConfiguration", self._region,
-                UpdateChatResponseConfigurationResponse,
+                UpdateChatResponseConfigurationOutput,
                 ("application_id", "chat_response_configuration_id", "response_configurations", "display_name", "client_token", ),
                 ("application_id", "chat_response_configuration_id", "response_configurations", ),
             )
@@ -2397,7 +2397,7 @@ class QBusinessClient:
         action_configurations: Sequence[ActionConfiguration],
         authentication_detail: DataAccessorAuthenticationDetail | None = None,
         display_name: str | None = None,
-    ) -> UpdateDataAccessorResponse:
+    ) -> UpdateDataAccessorOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "data_accessor_id": data_accessor_id,
@@ -2412,7 +2412,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.update_data_accessor, params, _interceptors,
                 "qbusiness", "UpdateDataAccessor", self._region,
-                UpdateDataAccessorResponse,
+                UpdateDataAccessorOutput,
                 ("application_id", "data_accessor_id", "action_configurations", "authentication_detail", "display_name", ),
                 ("application_id", "data_accessor_id", "action_configurations", ),
             )
@@ -2435,7 +2435,7 @@ class QBusinessClient:
         role_arn: str | None = None,
         document_enrichment_configuration: DocumentEnrichmentConfiguration | None = None,
         media_extraction_configuration: MediaExtractionConfiguration | None = None,
-    ) -> UpdateDataSourceResponse:
+    ) -> UpdateDataSourceOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -2462,7 +2462,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.update_data_source, params, _interceptors,
                 "qbusiness", "UpdateDataSource", self._region,
-                UpdateDataSourceResponse,
+                UpdateDataSourceOutput,
                 ("application_id", "index_id", "data_source_id", "display_name", "configuration", "vpc_configuration", "description", "sync_schedule", "role_arn", "document_enrichment_configuration", "media_extraction_configuration", ),
                 ("application_id", "index_id", "data_source_id", ),
             )
@@ -2480,7 +2480,7 @@ class QBusinessClient:
         description: str | None = None,
         capacity_configuration: IndexCapacityConfiguration | None = None,
         document_attribute_configurations: Sequence[DocumentAttributeConfiguration] | None = None,
-    ) -> UpdateIndexResponse:
+    ) -> UpdateIndexOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -2498,7 +2498,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.update_index, params, _interceptors,
                 "qbusiness", "UpdateIndex", self._region,
-                UpdateIndexResponse,
+                UpdateIndexOutput,
                 ("application_id", "index_id", "display_name", "description", "capacity_configuration", "document_attribute_configurations", ),
                 ("application_id", "index_id", ),
             )
@@ -2517,7 +2517,7 @@ class QBusinessClient:
         server_url: str | None = None,
         custom_plugin_configuration: CustomPluginConfiguration | None = None,
         auth_configuration: PluginAuthConfiguration | None = None,
-    ) -> UpdatePluginResponse:
+    ) -> UpdatePluginOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "plugin_id": plugin_id,
@@ -2537,7 +2537,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.update_plugin, params, _interceptors,
                 "qbusiness", "UpdatePlugin", self._region,
-                UpdatePluginResponse,
+                UpdatePluginOutput,
                 ("application_id", "plugin_id", "display_name", "state", "server_url", "custom_plugin_configuration", "auth_configuration", ),
                 ("application_id", "plugin_id", ),
             )
@@ -2554,7 +2554,7 @@ class QBusinessClient:
         configuration: RetrieverConfiguration | None = None,
         display_name: str | None = None,
         role_arn: str | None = None,
-    ) -> UpdateRetrieverResponse:
+    ) -> UpdateRetrieverOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "retriever_id": retriever_id,
@@ -2570,7 +2570,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.update_retriever, params, _interceptors,
                 "qbusiness", "UpdateRetriever", self._region,
-                UpdateRetrieverResponse,
+                UpdateRetrieverOutput,
                 ("application_id", "retriever_id", "configuration", "display_name", "role_arn", ),
                 ("application_id", "retriever_id", ),
             )
@@ -2585,7 +2585,7 @@ class QBusinessClient:
         application_id: str,
         subscription_id: str,
         type: SubscriptionType,
-    ) -> UpdateSubscriptionResponse:
+    ) -> UpdateSubscriptionOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "subscription_id": subscription_id,
@@ -2596,7 +2596,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.update_subscription, params, _interceptors,
                 "qbusiness", "UpdateSubscription", self._region,
-                UpdateSubscriptionResponse,
+                UpdateSubscriptionOutput,
                 ("application_id", "subscription_id", "type", ),
                 ("application_id", "subscription_id", "type", ),
             )
@@ -2612,7 +2612,7 @@ class QBusinessClient:
         user_id: str,
         user_aliases_to_update: Sequence[UserAlias] | None = None,
         user_aliases_to_delete: Sequence[UserAlias] | None = None,
-    ) -> UpdateUserResponse:
+    ) -> UpdateUserOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "user_id": user_id,
@@ -2626,7 +2626,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.update_user, params, _interceptors,
                 "qbusiness", "UpdateUser", self._region,
-                UpdateUserResponse,
+                UpdateUserOutput,
                 ("application_id", "user_id", "user_aliases_to_update", "user_aliases_to_delete", ),
                 ("application_id", "user_id", ),
             )
@@ -2650,7 +2650,7 @@ class QBusinessClient:
         origins: Sequence[str] | None = None,
         browser_extension_configuration: BrowserExtensionConfiguration | None = None,
         customization_configuration: CustomizationConfiguration | None = None,
-    ) -> UpdateWebExperienceResponse:
+    ) -> UpdateWebExperienceOutput:
         params: dict[str, object] = {
             "application_id": application_id,
             "web_experience_id": web_experience_id,
@@ -2680,7 +2680,7 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.update_web_experience, params, _interceptors,
                 "qbusiness", "UpdateWebExperience", self._region,
-                UpdateWebExperienceResponse,
+                UpdateWebExperienceOutput,
                 ("application_id", "web_experience_id", "role_arn", "authentication_configuration", "title", "subtitle", "welcome_message", "sample_prompts_control_mode", "identity_provider_configuration", "origins", "browser_extension_configuration", "customization_configuration", ),
                 ("application_id", "web_experience_id", ),
             )

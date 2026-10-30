@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING
 from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _paginate
 
 from ._native import (
-    ListPipesResponse,
+    ListPipesOutput,
 )
 
 from .types import (
@@ -35,7 +35,7 @@ class EventBridgePipesClientPaginators:
         target_prefix: str | None = None,
         next_token: str | None = None,
         limit: int | None = None,
-    ) -> AsyncIterator[ListPipesResponse]:
+    ) -> AsyncIterator[ListPipesOutput]:
         """Yield each page from list_pipes; requests start on iteration."""
         params: dict[str, object] = {
         }

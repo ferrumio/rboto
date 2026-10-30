@@ -84,12 +84,12 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`get_data_automation_status`](#get_data_automation_status) | <code>invocation_arn: str</code> | <code>GetDataAutomationStatusResponse</code> |
-| [`invoke_data_automation`](#invoke_data_automation) | <code>input_configuration: SyncInputConfiguration</code>, <code>data_automation_profile_arn: str</code> | <code>InvokeDataAutomationResponse</code> |
-| [`invoke_data_automation_async`](#invoke_data_automation_async) | <code>input_configuration: InputConfiguration</code>, <code>output_configuration: OutputConfiguration</code>, <code>data_automation_profile_arn: str</code> | <code>InvokeDataAutomationAsyncResponse</code> |
-| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceResponse</code> |
-| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>TagResourceResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
+| [`get_data_automation_status`](#get_data_automation_status) | <code>invocation_arn: str</code> | <code>GetDataAutomationStatusOutput</code> |
+| [`invoke_data_automation`](#invoke_data_automation) | <code>input_configuration: SyncInputConfiguration</code>, <code>data_automation_profile_arn: str</code> | <code>InvokeDataAutomationOutput</code> |
+| [`invoke_data_automation_async`](#invoke_data_automation_async) | <code>input_configuration: InputConfiguration</code>, <code>output_configuration: OutputConfiguration</code>, <code>data_automation_profile_arn: str</code> | <code>InvokeDataAutomationAsyncOutput</code> |
+| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceOutput</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>TagResourceOutput</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceOutput</code> |
 
 ## Complete signatures
 
@@ -99,7 +99,7 @@ native response definitions are in the package's `_native.pyi`.
 async def get_data_automation_status(
     *,
     invocation_arn: str,
-) -> GetDataAutomationStatusResponse: ...
+) -> GetDataAutomationStatusOutput: ...
 ```
 
 
@@ -114,7 +114,7 @@ async def invoke_data_automation(
     blueprints: Sequence[Blueprint] | None = None,
     encryption_configuration: EncryptionConfiguration | None = None,
     output_configuration: OutputConfiguration | None = None,
-) -> InvokeDataAutomationResponse: ...
+) -> InvokeDataAutomationOutput: ...
 ```
 
 
@@ -132,7 +132,7 @@ async def invoke_data_automation_async(
     notification_configuration: NotificationConfiguration | None = None,
     blueprints: Sequence[Blueprint] | None = None,
     tags: Sequence[Tag] | None = None,
-) -> InvokeDataAutomationAsyncResponse: ...
+) -> InvokeDataAutomationAsyncOutput: ...
 ```
 
 
@@ -142,7 +142,7 @@ async def invoke_data_automation_async(
 async def list_tags_for_resource(
     *,
     resource_arn: str,
-) -> ListTagsForResourceResponse: ...
+) -> ListTagsForResourceOutput: ...
 ```
 
 
@@ -153,7 +153,7 @@ async def tag_resource(
     *,
     resource_arn: str,
     tags: Sequence[Tag],
-) -> TagResourceResponse: ...
+) -> TagResourceOutput: ...
 ```
 
 
@@ -164,7 +164,7 @@ async def untag_resource(
     *,
     resource_arn: str,
     tag_keys: Sequence[str],
-) -> UntagResourceResponse: ...
+) -> UntagResourceOutput: ...
 ```
 
 

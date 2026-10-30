@@ -10,26 +10,26 @@ from . import _native
 
 BatchResultErrorEntryOutput: TypeAlias = _native.BatchResultErrorEntry
 ByteStream: TypeAlias = _native.ByteStream
-CancelMessageMoveTaskResult: TypeAlias = _native.CancelMessageMoveTaskResult
-ChangeMessageVisibilityBatchResult: TypeAlias = _native.ChangeMessageVisibilityBatchResult
+CancelMessageMoveTaskOutput: TypeAlias = _native.CancelMessageMoveTaskOutput
+ChangeMessageVisibilityBatchOutput: TypeAlias = _native.ChangeMessageVisibilityBatchOutput
 ChangeMessageVisibilityBatchResultEntryOutput: TypeAlias = _native.ChangeMessageVisibilityBatchResultEntry
-CreateQueueResult: TypeAlias = _native.CreateQueueResult
-DeleteMessageBatchResult: TypeAlias = _native.DeleteMessageBatchResult
+CreateQueueOutput: TypeAlias = _native.CreateQueueOutput
+DeleteMessageBatchOutput: TypeAlias = _native.DeleteMessageBatchOutput
 DeleteMessageBatchResultEntryOutput: TypeAlias = _native.DeleteMessageBatchResultEntry
-GetQueueAttributesResult: TypeAlias = _native.GetQueueAttributesResult
-GetQueueUrlResult: TypeAlias = _native.GetQueueUrlResult
-ListDeadLetterSourceQueuesResult: TypeAlias = _native.ListDeadLetterSourceQueuesResult
-ListMessageMoveTasksResult: TypeAlias = _native.ListMessageMoveTasksResult
+GetQueueAttributesOutput: TypeAlias = _native.GetQueueAttributesOutput
+GetQueueUrlOutput: TypeAlias = _native.GetQueueUrlOutput
+ListDeadLetterSourceQueuesOutput: TypeAlias = _native.ListDeadLetterSourceQueuesOutput
+ListMessageMoveTasksOutput: TypeAlias = _native.ListMessageMoveTasksOutput
 ListMessageMoveTasksResultEntryOutput: TypeAlias = _native.ListMessageMoveTasksResultEntry
-ListQueueTagsResult: TypeAlias = _native.ListQueueTagsResult
-ListQueuesResult: TypeAlias = _native.ListQueuesResult
+ListQueueTagsOutput: TypeAlias = _native.ListQueueTagsOutput
+ListQueuesOutput: TypeAlias = _native.ListQueuesOutput
 MessageOutput: TypeAlias = _native.Message
 MessageAttributeValueOutput: TypeAlias = _native.MessageAttributeValue
-ReceiveMessageResult: TypeAlias = _native.ReceiveMessageResult
-SendMessageBatchResult: TypeAlias = _native.SendMessageBatchResult
+ReceiveMessageOutput: TypeAlias = _native.ReceiveMessageOutput
+SendMessageBatchOutput: TypeAlias = _native.SendMessageBatchOutput
 SendMessageBatchResultEntryOutput: TypeAlias = _native.SendMessageBatchResultEntry
-SendMessageResult: TypeAlias = _native.SendMessageResult
-StartMessageMoveTaskResult: TypeAlias = _native.StartMessageMoveTaskResult
+SendMessageOutput: TypeAlias = _native.SendMessageOutput
+StartMessageMoveTaskOutput: TypeAlias = _native.StartMessageMoveTaskOutput
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 

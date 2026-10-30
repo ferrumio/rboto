@@ -86,17 +86,17 @@ native response definitions are in the package's `_native.pyi`.
 | Method | Required arguments | Return type |
 |---|---|---|
 | [`associate_kms_key`](#associate_kms_key) | <code>kms_key_id: str</code> | <code>None</code> |
-| [`associate_source_to_s3_table_integration`](#associate_source_to_s3_table_integration) | <code>integration_arn: str</code>, <code>data_source: DataSource</code> | <code>AssociateSourceToS3TableIntegrationResponse</code> |
+| [`associate_source_to_s3_table_integration`](#associate_source_to_s3_table_integration) | <code>integration_arn: str</code>, <code>data_source: DataSource</code> | <code>AssociateSourceToS3TableIntegrationOutput</code> |
 | [`cancel_export_task`](#cancel_export_task) | <code>task_id: str</code> | <code>None</code> |
-| [`cancel_import_task`](#cancel_import_task) | <code>import_id: str</code> | <code>CancelImportTaskResponse</code> |
-| [`create_delivery`](#create_delivery) | <code>delivery_source_name: str</code>, <code>delivery_destination_arn: str</code> | <code>CreateDeliveryResponse</code> |
-| [`create_export_task`](#create_export_task) | <code>log_group_name: str</code>, <code>from_: int</code>, <code>to: int</code>, <code>destination: str</code> | <code>CreateExportTaskResponse</code> |
-| [`create_import_task`](#create_import_task) | <code>import_source_arn: str</code>, <code>import_role_arn: str</code> | <code>CreateImportTaskResponse</code> |
-| [`create_log_anomaly_detector`](#create_log_anomaly_detector) | <code>log_group_arn_list: Sequence[str]</code> | <code>CreateLogAnomalyDetectorResponse</code> |
+| [`cancel_import_task`](#cancel_import_task) | <code>import_id: str</code> | <code>CancelImportTaskOutput</code> |
+| [`create_delivery`](#create_delivery) | <code>delivery_source_name: str</code>, <code>delivery_destination_arn: str</code> | <code>CreateDeliveryOutput</code> |
+| [`create_export_task`](#create_export_task) | <code>log_group_name: str</code>, <code>from_: int</code>, <code>to: int</code>, <code>destination: str</code> | <code>CreateExportTaskOutput</code> |
+| [`create_import_task`](#create_import_task) | <code>import_source_arn: str</code>, <code>import_role_arn: str</code> | <code>CreateImportTaskOutput</code> |
+| [`create_log_anomaly_detector`](#create_log_anomaly_detector) | <code>log_group_arn_list: Sequence[str]</code> | <code>CreateLogAnomalyDetectorOutput</code> |
 | [`create_log_group`](#create_log_group) | <code>log_group_name: str</code> | <code>None</code> |
 | [`create_log_stream`](#create_log_stream) | <code>log_group_name: str</code>, <code>log_stream_name: str</code> | <code>None</code> |
-| [`create_lookup_table`](#create_lookup_table) | <code>lookup_table_name: str</code> | <code>CreateLookupTableResponse</code> |
-| [`create_scheduled_query`](#create_scheduled_query) | <code>name: str</code>, <code>query_language: QueryLanguage</code>, <code>query_string: str</code>, <code>schedule_expression: str</code>, <code>execution_role_arn: str</code> | <code>CreateScheduledQueryResponse</code> |
+| [`create_lookup_table`](#create_lookup_table) | <code>lookup_table_name: str</code> | <code>CreateLookupTableOutput</code> |
+| [`create_scheduled_query`](#create_scheduled_query) | <code>name: str</code>, <code>query_language: QueryLanguage</code>, <code>query_string: str</code>, <code>schedule_expression: str</code>, <code>execution_role_arn: str</code> | <code>CreateScheduledQueryOutput</code> |
 | [`delete_account_policy`](#delete_account_policy) | <code>policy_name: str</code>, <code>policy_type: PolicyType</code> | <code>None</code> |
 | [`delete_data_protection_policy`](#delete_data_protection_policy) | <code>log_group_identifier: str</code> | <code>None</code> |
 | [`delete_delivery`](#delete_delivery) | <code>id: str</code> | <code>None</code> |
@@ -104,105 +104,105 @@ native response definitions are in the package's `_native.pyi`.
 | [`delete_delivery_destination_policy`](#delete_delivery_destination_policy) | <code>delivery_destination_name: str</code> | <code>None</code> |
 | [`delete_delivery_source`](#delete_delivery_source) | <code>name: str</code> | <code>None</code> |
 | [`delete_destination`](#delete_destination) | <code>destination_name: str</code> | <code>None</code> |
-| [`delete_index_policy`](#delete_index_policy) | <code>log_group_identifier: str</code> | <code>DeleteIndexPolicyResponse</code> |
-| [`delete_integration`](#delete_integration) | <code>integration_name: str</code> | <code>DeleteIntegrationResponse</code> |
+| [`delete_index_policy`](#delete_index_policy) | <code>log_group_identifier: str</code> | <code>DeleteIndexPolicyOutput</code> |
+| [`delete_integration`](#delete_integration) | <code>integration_name: str</code> | <code>DeleteIntegrationOutput</code> |
 | [`delete_log_anomaly_detector`](#delete_log_anomaly_detector) | <code>anomaly_detector_arn: str</code> | <code>None</code> |
 | [`delete_log_group`](#delete_log_group) | <code>log_group_name: str</code> | <code>None</code> |
 | [`delete_log_stream`](#delete_log_stream) | <code>log_group_name: str</code>, <code>log_stream_name: str</code> | <code>None</code> |
 | [`delete_lookup_table`](#delete_lookup_table) | <code>lookup_table_arn: str</code> | <code>None</code> |
 | [`delete_metric_filter`](#delete_metric_filter) | <code>log_group_name: str</code>, <code>filter_name: str</code> | <code>None</code> |
-| [`delete_query_definition`](#delete_query_definition) | <code>query_definition_id: str</code> | <code>DeleteQueryDefinitionResponse</code> |
+| [`delete_query_definition`](#delete_query_definition) | <code>query_definition_id: str</code> | <code>DeleteQueryDefinitionOutput</code> |
 | [`delete_resource_policy`](#delete_resource_policy) | None | <code>None</code> |
 | [`delete_retention_policy`](#delete_retention_policy) | <code>log_group_name: str</code> | <code>None</code> |
-| [`delete_scheduled_query`](#delete_scheduled_query) | <code>identifier: str</code> | <code>DeleteScheduledQueryResponse</code> |
+| [`delete_scheduled_query`](#delete_scheduled_query) | <code>identifier: str</code> | <code>DeleteScheduledQueryOutput</code> |
 | [`delete_subscription_filter`](#delete_subscription_filter) | <code>log_group_name: str</code>, <code>filter_name: str</code> | <code>None</code> |
 | [`delete_syslog_configuration`](#delete_syslog_configuration) | <code>log_group_identifier: str</code> | <code>None</code> |
 | [`delete_transformer`](#delete_transformer) | <code>log_group_identifier: str</code> | <code>None</code> |
-| [`describe_account_policies`](#describe_account_policies) | <code>policy_type: PolicyType</code> | <code>DescribeAccountPoliciesResponse</code> |
-| [`describe_configuration_templates`](#describe_configuration_templates) | None | <code>DescribeConfigurationTemplatesResponse</code> |
-| [`describe_deliveries`](#describe_deliveries) | None | <code>DescribeDeliveriesResponse</code> |
-| [`describe_delivery_destinations`](#describe_delivery_destinations) | None | <code>DescribeDeliveryDestinationsResponse</code> |
-| [`describe_delivery_sources`](#describe_delivery_sources) | None | <code>DescribeDeliverySourcesResponse</code> |
-| [`describe_destinations`](#describe_destinations) | None | <code>DescribeDestinationsResponse</code> |
-| [`describe_export_tasks`](#describe_export_tasks) | None | <code>DescribeExportTasksResponse</code> |
-| [`describe_field_indexes`](#describe_field_indexes) | <code>log_group_identifiers: Sequence[str]</code> | <code>DescribeFieldIndexesResponse</code> |
-| [`describe_import_task_batches`](#describe_import_task_batches) | <code>import_id: str</code> | <code>DescribeImportTaskBatchesResponse</code> |
-| [`describe_import_tasks`](#describe_import_tasks) | None | <code>DescribeImportTasksResponse</code> |
-| [`describe_index_policies`](#describe_index_policies) | <code>log_group_identifiers: Sequence[str]</code> | <code>DescribeIndexPoliciesResponse</code> |
-| [`describe_log_groups`](#describe_log_groups) | None | <code>DescribeLogGroupsResponse</code> |
-| [`describe_log_streams`](#describe_log_streams) | None | <code>DescribeLogStreamsResponse</code> |
-| [`describe_lookup_tables`](#describe_lookup_tables) | None | <code>DescribeLookupTablesResponse</code> |
-| [`describe_metric_filters`](#describe_metric_filters) | None | <code>DescribeMetricFiltersResponse</code> |
-| [`describe_queries`](#describe_queries) | None | <code>DescribeQueriesResponse</code> |
-| [`describe_query_definitions`](#describe_query_definitions) | None | <code>DescribeQueryDefinitionsResponse</code> |
-| [`describe_resource_policies`](#describe_resource_policies) | None | <code>DescribeResourcePoliciesResponse</code> |
-| [`describe_subscription_filters`](#describe_subscription_filters) | <code>log_group_name: str</code> | <code>DescribeSubscriptionFiltersResponse</code> |
+| [`describe_account_policies`](#describe_account_policies) | <code>policy_type: PolicyType</code> | <code>DescribeAccountPoliciesOutput</code> |
+| [`describe_configuration_templates`](#describe_configuration_templates) | None | <code>DescribeConfigurationTemplatesOutput</code> |
+| [`describe_deliveries`](#describe_deliveries) | None | <code>DescribeDeliveriesOutput</code> |
+| [`describe_delivery_destinations`](#describe_delivery_destinations) | None | <code>DescribeDeliveryDestinationsOutput</code> |
+| [`describe_delivery_sources`](#describe_delivery_sources) | None | <code>DescribeDeliverySourcesOutput</code> |
+| [`describe_destinations`](#describe_destinations) | None | <code>DescribeDestinationsOutput</code> |
+| [`describe_export_tasks`](#describe_export_tasks) | None | <code>DescribeExportTasksOutput</code> |
+| [`describe_field_indexes`](#describe_field_indexes) | <code>log_group_identifiers: Sequence[str]</code> | <code>DescribeFieldIndexesOutput</code> |
+| [`describe_import_task_batches`](#describe_import_task_batches) | <code>import_id: str</code> | <code>DescribeImportTaskBatchesOutput</code> |
+| [`describe_import_tasks`](#describe_import_tasks) | None | <code>DescribeImportTasksOutput</code> |
+| [`describe_index_policies`](#describe_index_policies) | <code>log_group_identifiers: Sequence[str]</code> | <code>DescribeIndexPoliciesOutput</code> |
+| [`describe_log_groups`](#describe_log_groups) | None | <code>DescribeLogGroupsOutput</code> |
+| [`describe_log_streams`](#describe_log_streams) | None | <code>DescribeLogStreamsOutput</code> |
+| [`describe_lookup_tables`](#describe_lookup_tables) | None | <code>DescribeLookupTablesOutput</code> |
+| [`describe_metric_filters`](#describe_metric_filters) | None | <code>DescribeMetricFiltersOutput</code> |
+| [`describe_queries`](#describe_queries) | None | <code>DescribeQueriesOutput</code> |
+| [`describe_query_definitions`](#describe_query_definitions) | None | <code>DescribeQueryDefinitionsOutput</code> |
+| [`describe_resource_policies`](#describe_resource_policies) | None | <code>DescribeResourcePoliciesOutput</code> |
+| [`describe_subscription_filters`](#describe_subscription_filters) | <code>log_group_name: str</code> | <code>DescribeSubscriptionFiltersOutput</code> |
 | [`disassociate_kms_key`](#disassociate_kms_key) | None | <code>None</code> |
-| [`disassociate_source_from_s3_table_integration`](#disassociate_source_from_s3_table_integration) | <code>identifier: str</code> | <code>DisassociateSourceFromS3TableIntegrationResponse</code> |
-| [`filter_log_events`](#filter_log_events) | None | <code>FilterLogEventsResponse</code> |
-| [`get_data_protection_policy`](#get_data_protection_policy) | <code>log_group_identifier: str</code> | <code>GetDataProtectionPolicyResponse</code> |
-| [`get_delivery`](#get_delivery) | <code>id: str</code> | <code>GetDeliveryResponse</code> |
-| [`get_delivery_destination`](#get_delivery_destination) | <code>name: str</code> | <code>GetDeliveryDestinationResponse</code> |
-| [`get_delivery_destination_policy`](#get_delivery_destination_policy) | <code>delivery_destination_name: str</code> | <code>GetDeliveryDestinationPolicyResponse</code> |
-| [`get_delivery_source`](#get_delivery_source) | <code>name: str</code> | <code>GetDeliverySourceResponse</code> |
-| [`get_integration`](#get_integration) | <code>integration_name: str</code> | <code>GetIntegrationResponse</code> |
-| [`get_log_anomaly_detector`](#get_log_anomaly_detector) | <code>anomaly_detector_arn: str</code> | <code>GetLogAnomalyDetectorResponse</code> |
-| [`get_log_events`](#get_log_events) | <code>log_stream_name: str</code> | <code>GetLogEventsResponse</code> |
-| [`get_log_fields`](#get_log_fields) | <code>data_source_name: str</code>, <code>data_source_type: str</code> | <code>GetLogFieldsResponse</code> |
-| [`get_log_group_fields`](#get_log_group_fields) | None | <code>GetLogGroupFieldsResponse</code> |
-| [`get_log_object`](#get_log_object) | <code>log_object_pointer: str</code> | <code>GetLogObjectResponse</code> |
-| [`get_log_record`](#get_log_record) | <code>log_record_pointer: str</code> | <code>GetLogRecordResponse</code> |
-| [`get_lookup_table`](#get_lookup_table) | <code>lookup_table_arn: str</code> | <code>GetLookupTableResponse</code> |
-| [`get_query_results`](#get_query_results) | <code>query_id: str</code> | <code>GetQueryResultsResponse</code> |
-| [`get_scheduled_query`](#get_scheduled_query) | <code>identifier: str</code> | <code>GetScheduledQueryResponse</code> |
-| [`get_scheduled_query_history`](#get_scheduled_query_history) | <code>identifier: str</code>, <code>start_time: int</code>, <code>end_time: int</code> | <code>GetScheduledQueryHistoryResponse</code> |
-| [`get_storage_tier_policy`](#get_storage_tier_policy) | None | <code>GetStorageTierPolicyResponse</code> |
-| [`get_transformer`](#get_transformer) | <code>log_group_identifier: str</code> | <code>GetTransformerResponse</code> |
-| [`list_aggregate_log_group_summaries`](#list_aggregate_log_group_summaries) | <code>group_by: ListAggregateLogGroupSummariesGroupBy</code> | <code>ListAggregateLogGroupSummariesResponse</code> |
-| [`list_anomalies`](#list_anomalies) | None | <code>ListAnomaliesResponse</code> |
-| [`list_integrations`](#list_integrations) | None | <code>ListIntegrationsResponse</code> |
-| [`list_log_anomaly_detectors`](#list_log_anomaly_detectors) | None | <code>ListLogAnomalyDetectorsResponse</code> |
-| [`list_log_groups`](#list_log_groups) | None | <code>ListLogGroupsResponse</code> |
-| [`list_log_groups_for_query`](#list_log_groups_for_query) | <code>query_id: str</code> | <code>ListLogGroupsForQueryResponse</code> |
-| [`list_scheduled_queries`](#list_scheduled_queries) | None | <code>ListScheduledQueriesResponse</code> |
-| [`list_sources_for_s3_table_integration`](#list_sources_for_s3_table_integration) | <code>integration_arn: str</code> | <code>ListSourcesForS3TableIntegrationResponse</code> |
-| [`list_syslog_configurations`](#list_syslog_configurations) | None | <code>ListSyslogConfigurationsResponse</code> |
-| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceResponse</code> |
-| [`list_tags_log_group`](#list_tags_log_group) | <code>log_group_name: str</code> | <code>ListTagsLogGroupResponse</code> |
-| [`put_account_policy`](#put_account_policy) | <code>policy_name: str</code>, <code>policy_document: str</code>, <code>policy_type: PolicyType</code> | <code>PutAccountPolicyResponse</code> |
+| [`disassociate_source_from_s3_table_integration`](#disassociate_source_from_s3_table_integration) | <code>identifier: str</code> | <code>DisassociateSourceFromS3TableIntegrationOutput</code> |
+| [`filter_log_events`](#filter_log_events) | None | <code>FilterLogEventsOutput</code> |
+| [`get_data_protection_policy`](#get_data_protection_policy) | <code>log_group_identifier: str</code> | <code>GetDataProtectionPolicyOutput</code> |
+| [`get_delivery`](#get_delivery) | <code>id: str</code> | <code>GetDeliveryOutput</code> |
+| [`get_delivery_destination`](#get_delivery_destination) | <code>name: str</code> | <code>GetDeliveryDestinationOutput</code> |
+| [`get_delivery_destination_policy`](#get_delivery_destination_policy) | <code>delivery_destination_name: str</code> | <code>GetDeliveryDestinationPolicyOutput</code> |
+| [`get_delivery_source`](#get_delivery_source) | <code>name: str</code> | <code>GetDeliverySourceOutput</code> |
+| [`get_integration`](#get_integration) | <code>integration_name: str</code> | <code>GetIntegrationOutput</code> |
+| [`get_log_anomaly_detector`](#get_log_anomaly_detector) | <code>anomaly_detector_arn: str</code> | <code>GetLogAnomalyDetectorOutput</code> |
+| [`get_log_events`](#get_log_events) | <code>log_stream_name: str</code> | <code>GetLogEventsOutput</code> |
+| [`get_log_fields`](#get_log_fields) | <code>data_source_name: str</code>, <code>data_source_type: str</code> | <code>GetLogFieldsOutput</code> |
+| [`get_log_group_fields`](#get_log_group_fields) | None | <code>GetLogGroupFieldsOutput</code> |
+| [`get_log_object`](#get_log_object) | <code>log_object_pointer: str</code> | <code>GetLogObjectOutput</code> |
+| [`get_log_record`](#get_log_record) | <code>log_record_pointer: str</code> | <code>GetLogRecordOutput</code> |
+| [`get_lookup_table`](#get_lookup_table) | <code>lookup_table_arn: str</code> | <code>GetLookupTableOutput</code> |
+| [`get_query_results`](#get_query_results) | <code>query_id: str</code> | <code>GetQueryResultsOutput</code> |
+| [`get_scheduled_query`](#get_scheduled_query) | <code>identifier: str</code> | <code>GetScheduledQueryOutput</code> |
+| [`get_scheduled_query_history`](#get_scheduled_query_history) | <code>identifier: str</code>, <code>start_time: int</code>, <code>end_time: int</code> | <code>GetScheduledQueryHistoryOutput</code> |
+| [`get_storage_tier_policy`](#get_storage_tier_policy) | None | <code>GetStorageTierPolicyOutput</code> |
+| [`get_transformer`](#get_transformer) | <code>log_group_identifier: str</code> | <code>GetTransformerOutput</code> |
+| [`list_aggregate_log_group_summaries`](#list_aggregate_log_group_summaries) | <code>group_by: ListAggregateLogGroupSummariesGroupBy</code> | <code>ListAggregateLogGroupSummariesOutput</code> |
+| [`list_anomalies`](#list_anomalies) | None | <code>ListAnomaliesOutput</code> |
+| [`list_integrations`](#list_integrations) | None | <code>ListIntegrationsOutput</code> |
+| [`list_log_anomaly_detectors`](#list_log_anomaly_detectors) | None | <code>ListLogAnomalyDetectorsOutput</code> |
+| [`list_log_groups`](#list_log_groups) | None | <code>ListLogGroupsOutput</code> |
+| [`list_log_groups_for_query`](#list_log_groups_for_query) | <code>query_id: str</code> | <code>ListLogGroupsForQueryOutput</code> |
+| [`list_scheduled_queries`](#list_scheduled_queries) | None | <code>ListScheduledQueriesOutput</code> |
+| [`list_sources_for_s3_table_integration`](#list_sources_for_s3_table_integration) | <code>integration_arn: str</code> | <code>ListSourcesForS3TableIntegrationOutput</code> |
+| [`list_syslog_configurations`](#list_syslog_configurations) | None | <code>ListSyslogConfigurationsOutput</code> |
+| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceOutput</code> |
+| [`list_tags_log_group`](#list_tags_log_group) | <code>log_group_name: str</code> | <code>ListTagsLogGroupOutput</code> |
+| [`put_account_policy`](#put_account_policy) | <code>policy_name: str</code>, <code>policy_document: str</code>, <code>policy_type: PolicyType</code> | <code>PutAccountPolicyOutput</code> |
 | [`put_bearer_token_authentication`](#put_bearer_token_authentication) | <code>log_group_identifier: str</code>, <code>bearer_token_authentication_enabled: bool</code> | <code>None</code> |
-| [`put_data_protection_policy`](#put_data_protection_policy) | <code>log_group_identifier: str</code>, <code>policy_document: str</code> | <code>PutDataProtectionPolicyResponse</code> |
-| [`put_delivery_destination`](#put_delivery_destination) | <code>name: str</code> | <code>PutDeliveryDestinationResponse</code> |
-| [`put_delivery_destination_policy`](#put_delivery_destination_policy) | <code>delivery_destination_name: str</code>, <code>delivery_destination_policy: str</code> | <code>PutDeliveryDestinationPolicyResponse</code> |
-| [`put_delivery_source`](#put_delivery_source) | <code>name: str</code>, <code>resource_arn: str</code>, <code>log_type: str</code> | <code>PutDeliverySourceResponse</code> |
-| [`put_destination`](#put_destination) | <code>destination_name: str</code>, <code>target_arn: str</code>, <code>role_arn: str</code> | <code>PutDestinationResponse</code> |
+| [`put_data_protection_policy`](#put_data_protection_policy) | <code>log_group_identifier: str</code>, <code>policy_document: str</code> | <code>PutDataProtectionPolicyOutput</code> |
+| [`put_delivery_destination`](#put_delivery_destination) | <code>name: str</code> | <code>PutDeliveryDestinationOutput</code> |
+| [`put_delivery_destination_policy`](#put_delivery_destination_policy) | <code>delivery_destination_name: str</code>, <code>delivery_destination_policy: str</code> | <code>PutDeliveryDestinationPolicyOutput</code> |
+| [`put_delivery_source`](#put_delivery_source) | <code>name: str</code>, <code>resource_arn: str</code>, <code>log_type: str</code> | <code>PutDeliverySourceOutput</code> |
+| [`put_destination`](#put_destination) | <code>destination_name: str</code>, <code>target_arn: str</code>, <code>role_arn: str</code> | <code>PutDestinationOutput</code> |
 | [`put_destination_policy`](#put_destination_policy) | <code>destination_name: str</code>, <code>access_policy: str</code> | <code>None</code> |
-| [`put_index_policy`](#put_index_policy) | <code>log_group_identifier: str</code>, <code>policy_document: str</code> | <code>PutIndexPolicyResponse</code> |
-| [`put_integration`](#put_integration) | <code>integration_name: str</code>, <code>resource_config: ResourceConfig</code>, <code>integration_type: IntegrationType</code> | <code>PutIntegrationResponse</code> |
-| [`put_log_events`](#put_log_events) | <code>log_group_name: str</code>, <code>log_stream_name: str</code>, <code>log_events: Sequence[InputLogEvent]</code> | <code>PutLogEventsResponse</code> |
+| [`put_index_policy`](#put_index_policy) | <code>log_group_identifier: str</code>, <code>policy_document: str</code> | <code>PutIndexPolicyOutput</code> |
+| [`put_integration`](#put_integration) | <code>integration_name: str</code>, <code>resource_config: ResourceConfig</code>, <code>integration_type: IntegrationType</code> | <code>PutIntegrationOutput</code> |
+| [`put_log_events`](#put_log_events) | <code>log_group_name: str</code>, <code>log_stream_name: str</code>, <code>log_events: Sequence[InputLogEvent]</code> | <code>PutLogEventsOutput</code> |
 | [`put_log_group_deletion_protection`](#put_log_group_deletion_protection) | <code>log_group_identifier: str</code>, <code>deletion_protection_enabled: bool</code> | <code>None</code> |
 | [`put_metric_filter`](#put_metric_filter) | <code>log_group_name: str</code>, <code>filter_name: str</code>, <code>filter_pattern: str</code>, <code>metric_transformations: Sequence[MetricTransformation]</code> | <code>None</code> |
-| [`put_query_definition`](#put_query_definition) | <code>name: str</code>, <code>query_string: str</code> | <code>PutQueryDefinitionResponse</code> |
-| [`put_resource_policy`](#put_resource_policy) | None | <code>PutResourcePolicyResponse</code> |
+| [`put_query_definition`](#put_query_definition) | <code>name: str</code>, <code>query_string: str</code> | <code>PutQueryDefinitionOutput</code> |
+| [`put_resource_policy`](#put_resource_policy) | None | <code>PutResourcePolicyOutput</code> |
 | [`put_retention_policy`](#put_retention_policy) | <code>log_group_name: str</code>, <code>retention_in_days: int</code> | <code>None</code> |
-| [`put_storage_tier_policy`](#put_storage_tier_policy) | <code>storage_tier: StorageTier</code> | <code>PutStorageTierPolicyResponse</code> |
+| [`put_storage_tier_policy`](#put_storage_tier_policy) | <code>storage_tier: StorageTier</code> | <code>PutStorageTierPolicyOutput</code> |
 | [`put_subscription_filter`](#put_subscription_filter) | <code>log_group_name: str</code>, <code>filter_name: str</code>, <code>filter_pattern: str</code>, <code>destination_arn: str</code> | <code>None</code> |
 | [`put_syslog_configuration`](#put_syslog_configuration) | <code>log_group_identifier: str</code> | <code>None</code> |
 | [`put_transformer`](#put_transformer) | <code>log_group_identifier: str</code>, <code>transformer_config: Sequence[Processor]</code> | <code>None</code> |
-| [`start_live_tail`](#start_live_tail) | <code>log_group_identifiers: Sequence[str]</code> | <code>StartLiveTailResponse</code> |
-| [`start_query`](#start_query) | <code>start_time: int</code>, <code>end_time: int</code>, <code>query_string: str</code> | <code>StartQueryResponse</code> |
-| [`stop_query`](#stop_query) | <code>query_id: str</code> | <code>StopQueryResponse</code> |
+| [`start_live_tail`](#start_live_tail) | <code>log_group_identifiers: Sequence[str]</code> | <code>StartLiveTailOutput</code> |
+| [`start_query`](#start_query) | <code>start_time: int</code>, <code>end_time: int</code>, <code>query_string: str</code> | <code>StartQueryOutput</code> |
+| [`stop_query`](#stop_query) | <code>query_id: str</code> | <code>StopQueryOutput</code> |
 | [`tag_log_group`](#tag_log_group) | <code>log_group_name: str</code>, <code>tags: dict[str, str]</code> | <code>None</code> |
 | [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>None</code> |
-| [`test_metric_filter`](#test_metric_filter) | <code>filter_pattern: str</code>, <code>log_event_messages: Sequence[str]</code> | <code>TestMetricFilterResponse</code> |
-| [`test_transformer`](#test_transformer) | <code>transformer_config: Sequence[Processor]</code>, <code>log_event_messages: Sequence[str]</code> | <code>TestTransformerResponse</code> |
+| [`test_metric_filter`](#test_metric_filter) | <code>filter_pattern: str</code>, <code>log_event_messages: Sequence[str]</code> | <code>TestMetricFilterOutput</code> |
+| [`test_transformer`](#test_transformer) | <code>transformer_config: Sequence[Processor]</code>, <code>log_event_messages: Sequence[str]</code> | <code>TestTransformerOutput</code> |
 | [`untag_log_group`](#untag_log_group) | <code>log_group_name: str</code>, <code>tags: Sequence[str]</code> | <code>None</code> |
 | [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>None</code> |
 | [`update_anomaly`](#update_anomaly) | <code>anomaly_detector_arn: str</code> | <code>None</code> |
-| [`update_delivery_configuration`](#update_delivery_configuration) | <code>id: str</code> | <code>UpdateDeliveryConfigurationResponse</code> |
+| [`update_delivery_configuration`](#update_delivery_configuration) | <code>id: str</code> | <code>UpdateDeliveryConfigurationOutput</code> |
 | [`update_log_anomaly_detector`](#update_log_anomaly_detector) | <code>anomaly_detector_arn: str</code>, <code>enabled: bool</code> | <code>None</code> |
-| [`update_lookup_table`](#update_lookup_table) | <code>lookup_table_arn: str</code> | <code>UpdateLookupTableResponse</code> |
-| [`update_scheduled_query`](#update_scheduled_query) | <code>identifier: str</code>, <code>query_language: QueryLanguage</code>, <code>query_string: str</code>, <code>schedule_expression: str</code>, <code>execution_role_arn: str</code> | <code>UpdateScheduledQueryResponse</code> |
+| [`update_lookup_table`](#update_lookup_table) | <code>lookup_table_arn: str</code> | <code>UpdateLookupTableOutput</code> |
+| [`update_scheduled_query`](#update_scheduled_query) | <code>identifier: str</code>, <code>query_language: QueryLanguage</code>, <code>query_string: str</code>, <code>schedule_expression: str</code>, <code>execution_role_arn: str</code> | <code>UpdateScheduledQueryOutput</code> |
 
 ## Complete signatures
 
@@ -225,7 +225,7 @@ async def associate_source_to_s3_table_integration(
     *,
     integration_arn: str,
     data_source: DataSource,
-) -> AssociateSourceToS3TableIntegrationResponse: ...
+) -> AssociateSourceToS3TableIntegrationOutput: ...
 ```
 
 
@@ -245,7 +245,7 @@ async def cancel_export_task(
 async def cancel_import_task(
     *,
     import_id: str,
-) -> CancelImportTaskResponse: ...
+) -> CancelImportTaskOutput: ...
 ```
 
 
@@ -260,7 +260,7 @@ async def create_delivery(
     field_delimiter: str | None = None,
     s3_delivery_configuration: S3DeliveryConfiguration | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateDeliveryResponse: ...
+) -> CreateDeliveryOutput: ...
 ```
 
 
@@ -276,7 +276,7 @@ async def create_export_task(
     task_name: str | None = None,
     log_stream_name_prefix: str | None = None,
     destination_prefix: str | None = None,
-) -> CreateExportTaskResponse: ...
+) -> CreateExportTaskOutput: ...
 ```
 
 
@@ -288,7 +288,7 @@ async def create_import_task(
     import_source_arn: str,
     import_role_arn: str,
     import_filter: ImportFilter | None = None,
-) -> CreateImportTaskResponse: ...
+) -> CreateImportTaskOutput: ...
 ```
 
 
@@ -304,7 +304,7 @@ async def create_log_anomaly_detector(
     kms_key_id: str | None = None,
     anomaly_visibility_time: int | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateLogAnomalyDetectorResponse: ...
+) -> CreateLogAnomalyDetectorOutput: ...
 ```
 
 
@@ -344,7 +344,7 @@ async def create_lookup_table(
     query_id: str | None = None,
     kms_key_id: str | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateLookupTableResponse: ...
+) -> CreateLookupTableOutput: ...
 ```
 
 
@@ -368,7 +368,7 @@ async def create_scheduled_query(
     schedule_end_time: int | None = None,
     state: ScheduledQueryState | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateScheduledQueryResponse: ...
+) -> CreateScheduledQueryOutput: ...
 ```
 
 
@@ -449,7 +449,7 @@ async def delete_destination(
 async def delete_index_policy(
     *,
     log_group_identifier: str,
-) -> DeleteIndexPolicyResponse: ...
+) -> DeleteIndexPolicyOutput: ...
 ```
 
 
@@ -460,7 +460,7 @@ async def delete_integration(
     *,
     integration_name: str,
     force: bool | None = None,
-) -> DeleteIntegrationResponse: ...
+) -> DeleteIntegrationOutput: ...
 ```
 
 
@@ -522,7 +522,7 @@ async def delete_metric_filter(
 async def delete_query_definition(
     *,
     query_definition_id: str,
-) -> DeleteQueryDefinitionResponse: ...
+) -> DeleteQueryDefinitionOutput: ...
 ```
 
 
@@ -554,7 +554,7 @@ async def delete_retention_policy(
 async def delete_scheduled_query(
     *,
     identifier: str,
-) -> DeleteScheduledQueryResponse: ...
+) -> DeleteScheduledQueryOutput: ...
 ```
 
 
@@ -599,7 +599,7 @@ async def describe_account_policies(
     policy_name: str | None = None,
     account_identifiers: Sequence[str] | None = None,
     next_token: str | None = None,
-) -> DescribeAccountPoliciesResponse: ...
+) -> DescribeAccountPoliciesOutput: ...
 ```
 
 
@@ -614,7 +614,7 @@ async def describe_configuration_templates(
     delivery_destination_types: Sequence[DeliveryDestinationType] | None = None,
     next_token: str | None = None,
     limit: int | None = None,
-) -> DescribeConfigurationTemplatesResponse: ...
+) -> DescribeConfigurationTemplatesOutput: ...
 ```
 
 Also available as `client.paginators.describe_configuration_templates(...)`, returning an
@@ -629,7 +629,7 @@ async def describe_deliveries(
     next_token: str | None = None,
     limit: int | None = None,
     delivery_source_names: Sequence[str] | None = None,
-) -> DescribeDeliveriesResponse: ...
+) -> DescribeDeliveriesOutput: ...
 ```
 
 Also available as `client.paginators.describe_deliveries(...)`, returning an
@@ -644,7 +644,7 @@ async def describe_delivery_destinations(
     next_token: str | None = None,
     limit: int | None = None,
     names: Sequence[str] | None = None,
-) -> DescribeDeliveryDestinationsResponse: ...
+) -> DescribeDeliveryDestinationsOutput: ...
 ```
 
 Also available as `client.paginators.describe_delivery_destinations(...)`, returning an
@@ -659,7 +659,7 @@ async def describe_delivery_sources(
     next_token: str | None = None,
     limit: int | None = None,
     resource_arns: Sequence[str] | None = None,
-) -> DescribeDeliverySourcesResponse: ...
+) -> DescribeDeliverySourcesOutput: ...
 ```
 
 Also available as `client.paginators.describe_delivery_sources(...)`, returning an
@@ -674,7 +674,7 @@ async def describe_destinations(
     destination_name_prefix: str | None = None,
     next_token: str | None = None,
     limit: int | None = None,
-) -> DescribeDestinationsResponse: ...
+) -> DescribeDestinationsOutput: ...
 ```
 
 Also available as `client.paginators.describe_destinations(...)`, returning an
@@ -690,7 +690,7 @@ async def describe_export_tasks(
     status_code: ExportTaskStatusCode | None = None,
     next_token: str | None = None,
     limit: int | None = None,
-) -> DescribeExportTasksResponse: ...
+) -> DescribeExportTasksOutput: ...
 ```
 
 Also available as `client.paginators.describe_export_tasks(...)`, returning an
@@ -705,7 +705,7 @@ async def describe_field_indexes(
     log_group_identifiers: Sequence[str],
     index_categories: Sequence[IndexCategory] | None = None,
     next_token: str | None = None,
-) -> DescribeFieldIndexesResponse: ...
+) -> DescribeFieldIndexesOutput: ...
 ```
 
 
@@ -718,7 +718,7 @@ async def describe_import_task_batches(
     batch_import_status: Sequence[ImportStatus] | None = None,
     limit: int | None = None,
     next_token: str | None = None,
-) -> DescribeImportTaskBatchesResponse: ...
+) -> DescribeImportTaskBatchesOutput: ...
 ```
 
 
@@ -732,7 +732,7 @@ async def describe_import_tasks(
     import_source_arn: str | None = None,
     limit: int | None = None,
     next_token: str | None = None,
-) -> DescribeImportTasksResponse: ...
+) -> DescribeImportTasksOutput: ...
 ```
 
 
@@ -743,7 +743,7 @@ async def describe_index_policies(
     *,
     log_group_identifiers: Sequence[str],
     next_token: str | None = None,
-) -> DescribeIndexPoliciesResponse: ...
+) -> DescribeIndexPoliciesOutput: ...
 ```
 
 
@@ -760,7 +760,7 @@ async def describe_log_groups(
     include_linked_accounts: bool | None = None,
     log_group_class: LogGroupClass | None = None,
     log_group_identifiers: Sequence[str] | None = None,
-) -> DescribeLogGroupsResponse: ...
+) -> DescribeLogGroupsOutput: ...
 ```
 
 Also available as `client.paginators.describe_log_groups(...)`, returning an
@@ -779,7 +779,7 @@ async def describe_log_streams(
     descending: bool | None = None,
     next_token: str | None = None,
     limit: int | None = None,
-) -> DescribeLogStreamsResponse: ...
+) -> DescribeLogStreamsOutput: ...
 ```
 
 Also available as `client.paginators.describe_log_streams(...)`, returning an
@@ -794,7 +794,7 @@ async def describe_lookup_tables(
     lookup_table_name_prefix: str | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribeLookupTablesResponse: ...
+) -> DescribeLookupTablesOutput: ...
 ```
 
 
@@ -809,7 +809,7 @@ async def describe_metric_filters(
     limit: int | None = None,
     metric_name: str | None = None,
     metric_namespace: str | None = None,
-) -> DescribeMetricFiltersResponse: ...
+) -> DescribeMetricFiltersOutput: ...
 ```
 
 Also available as `client.paginators.describe_metric_filters(...)`, returning an
@@ -826,7 +826,7 @@ async def describe_queries(
     max_results: int | None = None,
     next_token: str | None = None,
     query_language: QueryLanguage | None = None,
-) -> DescribeQueriesResponse: ...
+) -> DescribeQueriesOutput: ...
 ```
 
 Also available as `client.paginators.describe_queries(...)`, returning an
@@ -842,7 +842,7 @@ async def describe_query_definitions(
     query_definition_name_prefix: str | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribeQueryDefinitionsResponse: ...
+) -> DescribeQueryDefinitionsOutput: ...
 ```
 
 
@@ -855,7 +855,7 @@ async def describe_resource_policies(
     limit: int | None = None,
     resource_arn: str | None = None,
     policy_scope: PolicyScope | None = None,
-) -> DescribeResourcePoliciesResponse: ...
+) -> DescribeResourcePoliciesOutput: ...
 ```
 
 Also available as `client.paginators.describe_resource_policies(...)`, returning an
@@ -871,7 +871,7 @@ async def describe_subscription_filters(
     filter_name_prefix: str | None = None,
     next_token: str | None = None,
     limit: int | None = None,
-) -> DescribeSubscriptionFiltersResponse: ...
+) -> DescribeSubscriptionFiltersOutput: ...
 ```
 
 Also available as `client.paginators.describe_subscription_filters(...)`, returning an
@@ -895,7 +895,7 @@ async def disassociate_kms_key(
 async def disassociate_source_from_s3_table_integration(
     *,
     identifier: str,
-) -> DisassociateSourceFromS3TableIntegrationResponse: ...
+) -> DisassociateSourceFromS3TableIntegrationOutput: ...
 ```
 
 
@@ -916,7 +916,7 @@ async def filter_log_events(
     start_from_head: bool | None = None,
     interleaved: bool | None = None,
     unmask: bool | None = None,
-) -> FilterLogEventsResponse: ...
+) -> FilterLogEventsOutput: ...
 ```
 
 Also available as `client.paginators.filter_log_events(...)`, returning an
@@ -929,7 +929,7 @@ async iterator of the response type above.
 async def get_data_protection_policy(
     *,
     log_group_identifier: str,
-) -> GetDataProtectionPolicyResponse: ...
+) -> GetDataProtectionPolicyOutput: ...
 ```
 
 
@@ -939,7 +939,7 @@ async def get_data_protection_policy(
 async def get_delivery(
     *,
     id: str,
-) -> GetDeliveryResponse: ...
+) -> GetDeliveryOutput: ...
 ```
 
 
@@ -949,7 +949,7 @@ async def get_delivery(
 async def get_delivery_destination(
     *,
     name: str,
-) -> GetDeliveryDestinationResponse: ...
+) -> GetDeliveryDestinationOutput: ...
 ```
 
 
@@ -959,7 +959,7 @@ async def get_delivery_destination(
 async def get_delivery_destination_policy(
     *,
     delivery_destination_name: str,
-) -> GetDeliveryDestinationPolicyResponse: ...
+) -> GetDeliveryDestinationPolicyOutput: ...
 ```
 
 
@@ -969,7 +969,7 @@ async def get_delivery_destination_policy(
 async def get_delivery_source(
     *,
     name: str,
-) -> GetDeliverySourceResponse: ...
+) -> GetDeliverySourceOutput: ...
 ```
 
 
@@ -979,7 +979,7 @@ async def get_delivery_source(
 async def get_integration(
     *,
     integration_name: str,
-) -> GetIntegrationResponse: ...
+) -> GetIntegrationOutput: ...
 ```
 
 
@@ -989,7 +989,7 @@ async def get_integration(
 async def get_log_anomaly_detector(
     *,
     anomaly_detector_arn: str,
-) -> GetLogAnomalyDetectorResponse: ...
+) -> GetLogAnomalyDetectorOutput: ...
 ```
 
 
@@ -1007,7 +1007,7 @@ async def get_log_events(
     limit: int | None = None,
     start_from_head: bool | None = None,
     unmask: bool | None = None,
-) -> GetLogEventsResponse: ...
+) -> GetLogEventsOutput: ...
 ```
 
 Also available as `client.paginators.get_log_events(...)`, returning an
@@ -1021,7 +1021,7 @@ async def get_log_fields(
     *,
     data_source_name: str,
     data_source_type: str,
-) -> GetLogFieldsResponse: ...
+) -> GetLogFieldsOutput: ...
 ```
 
 
@@ -1033,7 +1033,7 @@ async def get_log_group_fields(
     log_group_name: str | None = None,
     time: int | None = None,
     log_group_identifier: str | None = None,
-) -> GetLogGroupFieldsResponse: ...
+) -> GetLogGroupFieldsOutput: ...
 ```
 
 
@@ -1044,7 +1044,7 @@ async def get_log_object(
     *,
     log_object_pointer: str,
     unmask: bool | None = None,
-) -> GetLogObjectResponse: ...
+) -> GetLogObjectOutput: ...
 ```
 
 
@@ -1055,7 +1055,7 @@ async def get_log_record(
     *,
     log_record_pointer: str,
     unmask: bool | None = None,
-) -> GetLogRecordResponse: ...
+) -> GetLogRecordOutput: ...
 ```
 
 
@@ -1065,7 +1065,7 @@ async def get_log_record(
 async def get_lookup_table(
     *,
     lookup_table_arn: str,
-) -> GetLookupTableResponse: ...
+) -> GetLookupTableOutput: ...
 ```
 
 
@@ -1077,7 +1077,7 @@ async def get_query_results(
     query_id: str,
     next_token: str | None = None,
     max_items: int | None = None,
-) -> GetQueryResultsResponse: ...
+) -> GetQueryResultsOutput: ...
 ```
 
 
@@ -1087,7 +1087,7 @@ async def get_query_results(
 async def get_scheduled_query(
     *,
     identifier: str,
-) -> GetScheduledQueryResponse: ...
+) -> GetScheduledQueryOutput: ...
 ```
 
 
@@ -1102,7 +1102,7 @@ async def get_scheduled_query_history(
     execution_statuses: Sequence[ExecutionStatus] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> GetScheduledQueryHistoryResponse: ...
+) -> GetScheduledQueryHistoryOutput: ...
 ```
 
 Also available as `client.paginators.get_scheduled_query_history(...)`, returning an
@@ -1112,7 +1112,7 @@ async iterator of the response type above.
 ### get_storage_tier_policy
 
 ```python
-async def get_storage_tier_policy() -> GetStorageTierPolicyResponse: ...
+async def get_storage_tier_policy() -> GetStorageTierPolicyOutput: ...
 ```
 
 
@@ -1122,7 +1122,7 @@ async def get_storage_tier_policy() -> GetStorageTierPolicyResponse: ...
 async def get_transformer(
     *,
     log_group_identifier: str,
-) -> GetTransformerResponse: ...
+) -> GetTransformerOutput: ...
 ```
 
 
@@ -1139,7 +1139,7 @@ async def list_aggregate_log_group_summaries(
     data_sources: Sequence[DataSourceFilter] | None = None,
     next_token: str | None = None,
     limit: int | None = None,
-) -> ListAggregateLogGroupSummariesResponse: ...
+) -> ListAggregateLogGroupSummariesOutput: ...
 ```
 
 Also available as `client.paginators.list_aggregate_log_group_summaries(...)`, returning an
@@ -1155,7 +1155,7 @@ async def list_anomalies(
     suppression_state: SuppressionState | None = None,
     limit: int | None = None,
     next_token: str | None = None,
-) -> ListAnomaliesResponse: ...
+) -> ListAnomaliesOutput: ...
 ```
 
 Also available as `client.paginators.list_anomalies(...)`, returning an
@@ -1170,7 +1170,7 @@ async def list_integrations(
     integration_name_prefix: str | None = None,
     integration_type: IntegrationType | None = None,
     integration_status: IntegrationStatus | None = None,
-) -> ListIntegrationsResponse: ...
+) -> ListIntegrationsOutput: ...
 ```
 
 
@@ -1182,7 +1182,7 @@ async def list_log_anomaly_detectors(
     filter_log_group_arn: str | None = None,
     limit: int | None = None,
     next_token: str | None = None,
-) -> ListLogAnomalyDetectorsResponse: ...
+) -> ListLogAnomalyDetectorsOutput: ...
 ```
 
 Also available as `client.paginators.list_log_anomaly_detectors(...)`, returning an
@@ -1203,7 +1203,7 @@ async def list_log_groups(
     data_sources: Sequence[DataSourceFilter] | None = None,
     field_index_names: Sequence[str] | None = None,
     log_group_tags: Sequence[TagFilter] | None = None,
-) -> ListLogGroupsResponse: ...
+) -> ListLogGroupsOutput: ...
 ```
 
 
@@ -1215,7 +1215,7 @@ async def list_log_groups_for_query(
     query_id: str,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListLogGroupsForQueryResponse: ...
+) -> ListLogGroupsForQueryOutput: ...
 ```
 
 Also available as `client.paginators.list_log_groups_for_query(...)`, returning an
@@ -1231,7 +1231,7 @@ async def list_scheduled_queries(
     next_token: str | None = None,
     state: ScheduledQueryState | None = None,
     schedule_type: ScheduleType | None = None,
-) -> ListScheduledQueriesResponse: ...
+) -> ListScheduledQueriesOutput: ...
 ```
 
 Also available as `client.paginators.list_scheduled_queries(...)`, returning an
@@ -1246,7 +1246,7 @@ async def list_sources_for_s3_table_integration(
     integration_arn: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListSourcesForS3TableIntegrationResponse: ...
+) -> ListSourcesForS3TableIntegrationOutput: ...
 ```
 
 Also available as `client.paginators.list_sources_for_s3_table_integration(...)`, returning an
@@ -1262,7 +1262,7 @@ async def list_syslog_configurations(
     vpc_endpoint_id: str | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListSyslogConfigurationsResponse: ...
+) -> ListSyslogConfigurationsOutput: ...
 ```
 
 
@@ -1272,7 +1272,7 @@ async def list_syslog_configurations(
 async def list_tags_for_resource(
     *,
     resource_arn: str,
-) -> ListTagsForResourceResponse: ...
+) -> ListTagsForResourceOutput: ...
 ```
 
 
@@ -1282,7 +1282,7 @@ async def list_tags_for_resource(
 async def list_tags_log_group(
     *,
     log_group_name: str,
-) -> ListTagsLogGroupResponse: ...
+) -> ListTagsLogGroupOutput: ...
 ```
 
 
@@ -1296,7 +1296,7 @@ async def put_account_policy(
     policy_type: PolicyType,
     scope: Scope | None = None,
     selection_criteria: str | None = None,
-) -> PutAccountPolicyResponse: ...
+) -> PutAccountPolicyOutput: ...
 ```
 
 
@@ -1318,7 +1318,7 @@ async def put_data_protection_policy(
     *,
     log_group_identifier: str,
     policy_document: str,
-) -> PutDataProtectionPolicyResponse: ...
+) -> PutDataProtectionPolicyOutput: ...
 ```
 
 
@@ -1333,7 +1333,7 @@ async def put_delivery_destination(
     delivery_destination_type: DeliveryDestinationType | None = None,
     role_arn: str | None = None,
     tags: dict[str, str] | None = None,
-) -> PutDeliveryDestinationResponse: ...
+) -> PutDeliveryDestinationOutput: ...
 ```
 
 
@@ -1344,7 +1344,7 @@ async def put_delivery_destination_policy(
     *,
     delivery_destination_name: str,
     delivery_destination_policy: str,
-) -> PutDeliveryDestinationPolicyResponse: ...
+) -> PutDeliveryDestinationPolicyOutput: ...
 ```
 
 
@@ -1358,7 +1358,7 @@ async def put_delivery_source(
     log_type: str,
     tags: dict[str, str] | None = None,
     delivery_source_configuration: dict[str, str] | None = None,
-) -> PutDeliverySourceResponse: ...
+) -> PutDeliverySourceOutput: ...
 ```
 
 
@@ -1371,7 +1371,7 @@ async def put_destination(
     target_arn: str,
     role_arn: str,
     tags: dict[str, str] | None = None,
-) -> PutDestinationResponse: ...
+) -> PutDestinationOutput: ...
 ```
 
 
@@ -1394,7 +1394,7 @@ async def put_index_policy(
     *,
     log_group_identifier: str,
     policy_document: str,
-) -> PutIndexPolicyResponse: ...
+) -> PutIndexPolicyOutput: ...
 ```
 
 
@@ -1406,7 +1406,7 @@ async def put_integration(
     integration_name: str,
     resource_config: ResourceConfig,
     integration_type: IntegrationType,
-) -> PutIntegrationResponse: ...
+) -> PutIntegrationOutput: ...
 ```
 
 
@@ -1420,7 +1420,7 @@ async def put_log_events(
     log_events: Sequence[InputLogEvent],
     sequence_token: str | None = None,
     entity: Entity | None = None,
-) -> PutLogEventsResponse: ...
+) -> PutLogEventsOutput: ...
 ```
 
 
@@ -1463,7 +1463,7 @@ async def put_query_definition(
     log_group_names: Sequence[str] | None = None,
     client_token: str | None = None,
     parameters: Sequence[QueryParameter] | None = None,
-) -> PutQueryDefinitionResponse: ...
+) -> PutQueryDefinitionOutput: ...
 ```
 
 
@@ -1476,7 +1476,7 @@ async def put_resource_policy(
     policy_document: str | None = None,
     resource_arn: str | None = None,
     expected_revision_id: str | None = None,
-) -> PutResourcePolicyResponse: ...
+) -> PutResourcePolicyOutput: ...
 ```
 
 
@@ -1497,7 +1497,7 @@ async def put_retention_policy(
 async def put_storage_tier_policy(
     *,
     storage_tier: StorageTier,
-) -> PutStorageTierPolicyResponse: ...
+) -> PutStorageTierPolicyOutput: ...
 ```
 
 
@@ -1550,7 +1550,7 @@ async def start_live_tail(
     log_stream_names: Sequence[str] | None = None,
     log_stream_name_prefixes: Sequence[str] | None = None,
     log_event_filter_pattern: str | None = None,
-) -> StartLiveTailResponse: ...
+) -> StartLiveTailOutput: ...
 ```
 
 
@@ -1567,7 +1567,7 @@ async def start_query(
     log_group_names: Sequence[str] | None = None,
     log_group_identifiers: Sequence[str] | None = None,
     limit: int | None = None,
-) -> StartQueryResponse: ...
+) -> StartQueryOutput: ...
 ```
 
 
@@ -1577,7 +1577,7 @@ async def start_query(
 async def stop_query(
     *,
     query_id: str,
-) -> StopQueryResponse: ...
+) -> StopQueryOutput: ...
 ```
 
 
@@ -1610,7 +1610,7 @@ async def test_metric_filter(
     *,
     filter_pattern: str,
     log_event_messages: Sequence[str],
-) -> TestMetricFilterResponse: ...
+) -> TestMetricFilterOutput: ...
 ```
 
 
@@ -1621,7 +1621,7 @@ async def test_transformer(
     *,
     transformer_config: Sequence[Processor],
     log_event_messages: Sequence[str],
-) -> TestTransformerResponse: ...
+) -> TestTransformerOutput: ...
 ```
 
 
@@ -1671,7 +1671,7 @@ async def update_delivery_configuration(
     record_fields: Sequence[str] | None = None,
     field_delimiter: str | None = None,
     s3_delivery_configuration: S3DeliveryConfiguration | None = None,
-) -> UpdateDeliveryConfigurationResponse: ...
+) -> UpdateDeliveryConfigurationOutput: ...
 ```
 
 
@@ -1699,7 +1699,7 @@ async def update_lookup_table(
     table_body: str | None = None,
     query_id: str | None = None,
     kms_key_id: str | None = None,
-) -> UpdateLookupTableResponse: ...
+) -> UpdateLookupTableOutput: ...
 ```
 
 
@@ -1722,7 +1722,7 @@ async def update_scheduled_query(
     schedule_start_time: int | None = None,
     schedule_end_time: int | None = None,
     state: ScheduledQueryState | None = None,
-) -> UpdateScheduledQueryResponse: ...
+) -> UpdateScheduledQueryOutput: ...
 ```
 
 

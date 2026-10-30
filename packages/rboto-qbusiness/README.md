@@ -88,89 +88,89 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`associate_permission`](#associate_permission) | <code>application_id: str</code>, <code>statement_id: str</code>, <code>actions: Sequence[str]</code>, <code>principal: str</code> | <code>AssociatePermissionResponse</code> |
-| [`batch_delete_document`](#batch_delete_document) | <code>application_id: str</code>, <code>index_id: str</code>, <code>documents: Sequence[DeleteDocument]</code> | <code>BatchDeleteDocumentResponse</code> |
-| [`batch_put_document`](#batch_put_document) | <code>application_id: str</code>, <code>index_id: str</code>, <code>documents: Sequence[Document]</code> | <code>BatchPutDocumentResponse</code> |
-| [`cancel_subscription`](#cancel_subscription) | <code>application_id: str</code>, <code>subscription_id: str</code> | <code>CancelSubscriptionResponse</code> |
+| [`associate_permission`](#associate_permission) | <code>application_id: str</code>, <code>statement_id: str</code>, <code>actions: Sequence[str]</code>, <code>principal: str</code> | <code>AssociatePermissionOutput</code> |
+| [`batch_delete_document`](#batch_delete_document) | <code>application_id: str</code>, <code>index_id: str</code>, <code>documents: Sequence[DeleteDocument]</code> | <code>BatchDeleteDocumentOutput</code> |
+| [`batch_put_document`](#batch_put_document) | <code>application_id: str</code>, <code>index_id: str</code>, <code>documents: Sequence[Document]</code> | <code>BatchPutDocumentOutput</code> |
+| [`cancel_subscription`](#cancel_subscription) | <code>application_id: str</code>, <code>subscription_id: str</code> | <code>CancelSubscriptionOutput</code> |
 | [`chat`](#chat) | <code>application_id: str</code> | <code>ChatOutput</code> |
 | [`chat_sync`](#chat_sync) | <code>application_id: str</code> | <code>ChatSyncOutput</code> |
-| [`check_document_access`](#check_document_access) | <code>application_id: str</code>, <code>index_id: str</code>, <code>user_id: str</code>, <code>document_id: str</code> | <code>CheckDocumentAccessResponse</code> |
-| [`create_anonymous_web_experience_url`](#create_anonymous_web_experience_url) | <code>application_id: str</code>, <code>web_experience_id: str</code> | <code>CreateAnonymousWebExperienceUrlResponse</code> |
-| [`create_application`](#create_application) | <code>display_name: str</code> | <code>CreateApplicationResponse</code> |
-| [`create_chat_response_configuration`](#create_chat_response_configuration) | <code>application_id: str</code>, <code>display_name: str</code>, <code>response_configurations: dict[ResponseConfigurationType, ResponseConfiguration]</code> | <code>CreateChatResponseConfigurationResponse</code> |
-| [`create_data_accessor`](#create_data_accessor) | <code>application_id: str</code>, <code>principal: str</code>, <code>action_configurations: Sequence[ActionConfiguration]</code>, <code>display_name: str</code> | <code>CreateDataAccessorResponse</code> |
-| [`create_data_source`](#create_data_source) | <code>application_id: str</code>, <code>index_id: str</code>, <code>display_name: str</code>, <code>configuration: JSONValue</code> | <code>CreateDataSourceResponse</code> |
-| [`create_index`](#create_index) | <code>application_id: str</code>, <code>display_name: str</code> | <code>CreateIndexResponse</code> |
-| [`create_plugin`](#create_plugin) | <code>application_id: str</code>, <code>display_name: str</code>, <code>type: PluginType</code>, <code>auth_configuration: PluginAuthConfiguration</code> | <code>CreatePluginResponse</code> |
-| [`create_retriever`](#create_retriever) | <code>application_id: str</code>, <code>type: RetrieverType</code>, <code>display_name: str</code>, <code>configuration: RetrieverConfiguration</code> | <code>CreateRetrieverResponse</code> |
-| [`create_subscription`](#create_subscription) | <code>application_id: str</code>, <code>principal: SubscriptionPrincipal</code>, <code>type: SubscriptionType</code> | <code>CreateSubscriptionResponse</code> |
-| [`create_user`](#create_user) | <code>application_id: str</code>, <code>user_id: str</code> | <code>CreateUserResponse</code> |
-| [`create_web_experience`](#create_web_experience) | <code>application_id: str</code> | <code>CreateWebExperienceResponse</code> |
-| [`delete_application`](#delete_application) | <code>application_id: str</code> | <code>DeleteApplicationResponse</code> |
-| [`delete_attachment`](#delete_attachment) | <code>application_id: str</code>, <code>conversation_id: str</code>, <code>attachment_id: str</code> | <code>DeleteAttachmentResponse</code> |
-| [`delete_chat_controls_configuration`](#delete_chat_controls_configuration) | <code>application_id: str</code> | <code>DeleteChatControlsConfigurationResponse</code> |
-| [`delete_chat_response_configuration`](#delete_chat_response_configuration) | <code>application_id: str</code>, <code>chat_response_configuration_id: str</code> | <code>DeleteChatResponseConfigurationResponse</code> |
-| [`delete_conversation`](#delete_conversation) | <code>conversation_id: str</code>, <code>application_id: str</code> | <code>DeleteConversationResponse</code> |
-| [`delete_data_accessor`](#delete_data_accessor) | <code>application_id: str</code>, <code>data_accessor_id: str</code> | <code>DeleteDataAccessorResponse</code> |
-| [`delete_data_source`](#delete_data_source) | <code>application_id: str</code>, <code>index_id: str</code>, <code>data_source_id: str</code> | <code>DeleteDataSourceResponse</code> |
-| [`delete_group`](#delete_group) | <code>application_id: str</code>, <code>index_id: str</code>, <code>group_name: str</code> | <code>DeleteGroupResponse</code> |
-| [`delete_index`](#delete_index) | <code>application_id: str</code>, <code>index_id: str</code> | <code>DeleteIndexResponse</code> |
-| [`delete_plugin`](#delete_plugin) | <code>application_id: str</code>, <code>plugin_id: str</code> | <code>DeletePluginResponse</code> |
-| [`delete_retriever`](#delete_retriever) | <code>application_id: str</code>, <code>retriever_id: str</code> | <code>DeleteRetrieverResponse</code> |
-| [`delete_user`](#delete_user) | <code>application_id: str</code>, <code>user_id: str</code> | <code>DeleteUserResponse</code> |
-| [`delete_web_experience`](#delete_web_experience) | <code>application_id: str</code>, <code>web_experience_id: str</code> | <code>DeleteWebExperienceResponse</code> |
-| [`disassociate_permission`](#disassociate_permission) | <code>application_id: str</code>, <code>statement_id: str</code> | <code>DisassociatePermissionResponse</code> |
-| [`get_application`](#get_application) | <code>application_id: str</code> | <code>GetApplicationResponse</code> |
-| [`get_chat_controls_configuration`](#get_chat_controls_configuration) | <code>application_id: str</code> | <code>GetChatControlsConfigurationResponse</code> |
-| [`get_chat_response_configuration`](#get_chat_response_configuration) | <code>application_id: str</code>, <code>chat_response_configuration_id: str</code> | <code>GetChatResponseConfigurationResponse</code> |
-| [`get_data_accessor`](#get_data_accessor) | <code>application_id: str</code>, <code>data_accessor_id: str</code> | <code>GetDataAccessorResponse</code> |
-| [`get_data_source`](#get_data_source) | <code>application_id: str</code>, <code>index_id: str</code>, <code>data_source_id: str</code> | <code>GetDataSourceResponse</code> |
-| [`get_document_content`](#get_document_content) | <code>application_id: str</code>, <code>index_id: str</code>, <code>document_id: str</code> | <code>GetDocumentContentResponse</code> |
-| [`get_group`](#get_group) | <code>application_id: str</code>, <code>index_id: str</code>, <code>group_name: str</code> | <code>GetGroupResponse</code> |
-| [`get_index`](#get_index) | <code>application_id: str</code>, <code>index_id: str</code> | <code>GetIndexResponse</code> |
-| [`get_media`](#get_media) | <code>application_id: str</code>, <code>conversation_id: str</code>, <code>message_id: str</code>, <code>media_id: str</code> | <code>GetMediaResponse</code> |
-| [`get_plugin`](#get_plugin) | <code>application_id: str</code>, <code>plugin_id: str</code> | <code>GetPluginResponse</code> |
-| [`get_policy`](#get_policy) | <code>application_id: str</code> | <code>GetPolicyResponse</code> |
-| [`get_retriever`](#get_retriever) | <code>application_id: str</code>, <code>retriever_id: str</code> | <code>GetRetrieverResponse</code> |
-| [`get_user`](#get_user) | <code>application_id: str</code>, <code>user_id: str</code> | <code>GetUserResponse</code> |
-| [`get_web_experience`](#get_web_experience) | <code>application_id: str</code>, <code>web_experience_id: str</code> | <code>GetWebExperienceResponse</code> |
-| [`list_applications`](#list_applications) | None | <code>ListApplicationsResponse</code> |
-| [`list_attachments`](#list_attachments) | <code>application_id: str</code> | <code>ListAttachmentsResponse</code> |
-| [`list_chat_response_configurations`](#list_chat_response_configurations) | <code>application_id: str</code> | <code>ListChatResponseConfigurationsResponse</code> |
-| [`list_conversations`](#list_conversations) | <code>application_id: str</code> | <code>ListConversationsResponse</code> |
-| [`list_data_accessors`](#list_data_accessors) | <code>application_id: str</code> | <code>ListDataAccessorsResponse</code> |
-| [`list_data_source_sync_jobs`](#list_data_source_sync_jobs) | <code>data_source_id: str</code>, <code>application_id: str</code>, <code>index_id: str</code> | <code>ListDataSourceSyncJobsResponse</code> |
-| [`list_data_sources`](#list_data_sources) | <code>application_id: str</code>, <code>index_id: str</code> | <code>ListDataSourcesResponse</code> |
-| [`list_documents`](#list_documents) | <code>application_id: str</code>, <code>index_id: str</code> | <code>ListDocumentsResponse</code> |
-| [`list_groups`](#list_groups) | <code>application_id: str</code>, <code>index_id: str</code>, <code>updated_earlier_than: str</code> | <code>ListGroupsResponse</code> |
-| [`list_indices`](#list_indices) | <code>application_id: str</code> | <code>ListIndicesResponse</code> |
-| [`list_messages`](#list_messages) | <code>conversation_id: str</code>, <code>application_id: str</code> | <code>ListMessagesResponse</code> |
-| [`list_plugin_actions`](#list_plugin_actions) | <code>application_id: str</code>, <code>plugin_id: str</code> | <code>ListPluginActionsResponse</code> |
-| [`list_plugin_type_actions`](#list_plugin_type_actions) | <code>plugin_type: PluginType</code> | <code>ListPluginTypeActionsResponse</code> |
-| [`list_plugin_type_metadata`](#list_plugin_type_metadata) | None | <code>ListPluginTypeMetadataResponse</code> |
-| [`list_plugins`](#list_plugins) | <code>application_id: str</code> | <code>ListPluginsResponse</code> |
-| [`list_retrievers`](#list_retrievers) | <code>application_id: str</code> | <code>ListRetrieversResponse</code> |
-| [`list_subscriptions`](#list_subscriptions) | <code>application_id: str</code> | <code>ListSubscriptionsResponse</code> |
-| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceResponse</code> |
-| [`list_web_experiences`](#list_web_experiences) | <code>application_id: str</code> | <code>ListWebExperiencesResponse</code> |
+| [`check_document_access`](#check_document_access) | <code>application_id: str</code>, <code>index_id: str</code>, <code>user_id: str</code>, <code>document_id: str</code> | <code>CheckDocumentAccessOutput</code> |
+| [`create_anonymous_web_experience_url`](#create_anonymous_web_experience_url) | <code>application_id: str</code>, <code>web_experience_id: str</code> | <code>CreateAnonymousWebExperienceUrlOutput</code> |
+| [`create_application`](#create_application) | <code>display_name: str</code> | <code>CreateApplicationOutput</code> |
+| [`create_chat_response_configuration`](#create_chat_response_configuration) | <code>application_id: str</code>, <code>display_name: str</code>, <code>response_configurations: dict[ResponseConfigurationType, ResponseConfiguration]</code> | <code>CreateChatResponseConfigurationOutput</code> |
+| [`create_data_accessor`](#create_data_accessor) | <code>application_id: str</code>, <code>principal: str</code>, <code>action_configurations: Sequence[ActionConfiguration]</code>, <code>display_name: str</code> | <code>CreateDataAccessorOutput</code> |
+| [`create_data_source`](#create_data_source) | <code>application_id: str</code>, <code>index_id: str</code>, <code>display_name: str</code>, <code>configuration: JSONValue</code> | <code>CreateDataSourceOutput</code> |
+| [`create_index`](#create_index) | <code>application_id: str</code>, <code>display_name: str</code> | <code>CreateIndexOutput</code> |
+| [`create_plugin`](#create_plugin) | <code>application_id: str</code>, <code>display_name: str</code>, <code>type: PluginType</code>, <code>auth_configuration: PluginAuthConfiguration</code> | <code>CreatePluginOutput</code> |
+| [`create_retriever`](#create_retriever) | <code>application_id: str</code>, <code>type: RetrieverType</code>, <code>display_name: str</code>, <code>configuration: RetrieverConfiguration</code> | <code>CreateRetrieverOutput</code> |
+| [`create_subscription`](#create_subscription) | <code>application_id: str</code>, <code>principal: SubscriptionPrincipal</code>, <code>type: SubscriptionType</code> | <code>CreateSubscriptionOutput</code> |
+| [`create_user`](#create_user) | <code>application_id: str</code>, <code>user_id: str</code> | <code>CreateUserOutput</code> |
+| [`create_web_experience`](#create_web_experience) | <code>application_id: str</code> | <code>CreateWebExperienceOutput</code> |
+| [`delete_application`](#delete_application) | <code>application_id: str</code> | <code>DeleteApplicationOutput</code> |
+| [`delete_attachment`](#delete_attachment) | <code>application_id: str</code>, <code>conversation_id: str</code>, <code>attachment_id: str</code> | <code>DeleteAttachmentOutput</code> |
+| [`delete_chat_controls_configuration`](#delete_chat_controls_configuration) | <code>application_id: str</code> | <code>DeleteChatControlsConfigurationOutput</code> |
+| [`delete_chat_response_configuration`](#delete_chat_response_configuration) | <code>application_id: str</code>, <code>chat_response_configuration_id: str</code> | <code>DeleteChatResponseConfigurationOutput</code> |
+| [`delete_conversation`](#delete_conversation) | <code>conversation_id: str</code>, <code>application_id: str</code> | <code>DeleteConversationOutput</code> |
+| [`delete_data_accessor`](#delete_data_accessor) | <code>application_id: str</code>, <code>data_accessor_id: str</code> | <code>DeleteDataAccessorOutput</code> |
+| [`delete_data_source`](#delete_data_source) | <code>application_id: str</code>, <code>index_id: str</code>, <code>data_source_id: str</code> | <code>DeleteDataSourceOutput</code> |
+| [`delete_group`](#delete_group) | <code>application_id: str</code>, <code>index_id: str</code>, <code>group_name: str</code> | <code>DeleteGroupOutput</code> |
+| [`delete_index`](#delete_index) | <code>application_id: str</code>, <code>index_id: str</code> | <code>DeleteIndexOutput</code> |
+| [`delete_plugin`](#delete_plugin) | <code>application_id: str</code>, <code>plugin_id: str</code> | <code>DeletePluginOutput</code> |
+| [`delete_retriever`](#delete_retriever) | <code>application_id: str</code>, <code>retriever_id: str</code> | <code>DeleteRetrieverOutput</code> |
+| [`delete_user`](#delete_user) | <code>application_id: str</code>, <code>user_id: str</code> | <code>DeleteUserOutput</code> |
+| [`delete_web_experience`](#delete_web_experience) | <code>application_id: str</code>, <code>web_experience_id: str</code> | <code>DeleteWebExperienceOutput</code> |
+| [`disassociate_permission`](#disassociate_permission) | <code>application_id: str</code>, <code>statement_id: str</code> | <code>DisassociatePermissionOutput</code> |
+| [`get_application`](#get_application) | <code>application_id: str</code> | <code>GetApplicationOutput</code> |
+| [`get_chat_controls_configuration`](#get_chat_controls_configuration) | <code>application_id: str</code> | <code>GetChatControlsConfigurationOutput</code> |
+| [`get_chat_response_configuration`](#get_chat_response_configuration) | <code>application_id: str</code>, <code>chat_response_configuration_id: str</code> | <code>GetChatResponseConfigurationOutput</code> |
+| [`get_data_accessor`](#get_data_accessor) | <code>application_id: str</code>, <code>data_accessor_id: str</code> | <code>GetDataAccessorOutput</code> |
+| [`get_data_source`](#get_data_source) | <code>application_id: str</code>, <code>index_id: str</code>, <code>data_source_id: str</code> | <code>GetDataSourceOutput</code> |
+| [`get_document_content`](#get_document_content) | <code>application_id: str</code>, <code>index_id: str</code>, <code>document_id: str</code> | <code>GetDocumentContentOutput</code> |
+| [`get_group`](#get_group) | <code>application_id: str</code>, <code>index_id: str</code>, <code>group_name: str</code> | <code>GetGroupOutput</code> |
+| [`get_index`](#get_index) | <code>application_id: str</code>, <code>index_id: str</code> | <code>GetIndexOutput</code> |
+| [`get_media`](#get_media) | <code>application_id: str</code>, <code>conversation_id: str</code>, <code>message_id: str</code>, <code>media_id: str</code> | <code>GetMediaOutput</code> |
+| [`get_plugin`](#get_plugin) | <code>application_id: str</code>, <code>plugin_id: str</code> | <code>GetPluginOutput</code> |
+| [`get_policy`](#get_policy) | <code>application_id: str</code> | <code>GetPolicyOutput</code> |
+| [`get_retriever`](#get_retriever) | <code>application_id: str</code>, <code>retriever_id: str</code> | <code>GetRetrieverOutput</code> |
+| [`get_user`](#get_user) | <code>application_id: str</code>, <code>user_id: str</code> | <code>GetUserOutput</code> |
+| [`get_web_experience`](#get_web_experience) | <code>application_id: str</code>, <code>web_experience_id: str</code> | <code>GetWebExperienceOutput</code> |
+| [`list_applications`](#list_applications) | None | <code>ListApplicationsOutput</code> |
+| [`list_attachments`](#list_attachments) | <code>application_id: str</code> | <code>ListAttachmentsOutput</code> |
+| [`list_chat_response_configurations`](#list_chat_response_configurations) | <code>application_id: str</code> | <code>ListChatResponseConfigurationsOutput</code> |
+| [`list_conversations`](#list_conversations) | <code>application_id: str</code> | <code>ListConversationsOutput</code> |
+| [`list_data_accessors`](#list_data_accessors) | <code>application_id: str</code> | <code>ListDataAccessorsOutput</code> |
+| [`list_data_source_sync_jobs`](#list_data_source_sync_jobs) | <code>data_source_id: str</code>, <code>application_id: str</code>, <code>index_id: str</code> | <code>ListDataSourceSyncJobsOutput</code> |
+| [`list_data_sources`](#list_data_sources) | <code>application_id: str</code>, <code>index_id: str</code> | <code>ListDataSourcesOutput</code> |
+| [`list_documents`](#list_documents) | <code>application_id: str</code>, <code>index_id: str</code> | <code>ListDocumentsOutput</code> |
+| [`list_groups`](#list_groups) | <code>application_id: str</code>, <code>index_id: str</code>, <code>updated_earlier_than: str</code> | <code>ListGroupsOutput</code> |
+| [`list_indices`](#list_indices) | <code>application_id: str</code> | <code>ListIndicesOutput</code> |
+| [`list_messages`](#list_messages) | <code>conversation_id: str</code>, <code>application_id: str</code> | <code>ListMessagesOutput</code> |
+| [`list_plugin_actions`](#list_plugin_actions) | <code>application_id: str</code>, <code>plugin_id: str</code> | <code>ListPluginActionsOutput</code> |
+| [`list_plugin_type_actions`](#list_plugin_type_actions) | <code>plugin_type: PluginType</code> | <code>ListPluginTypeActionsOutput</code> |
+| [`list_plugin_type_metadata`](#list_plugin_type_metadata) | None | <code>ListPluginTypeMetadataOutput</code> |
+| [`list_plugins`](#list_plugins) | <code>application_id: str</code> | <code>ListPluginsOutput</code> |
+| [`list_retrievers`](#list_retrievers) | <code>application_id: str</code> | <code>ListRetrieversOutput</code> |
+| [`list_subscriptions`](#list_subscriptions) | <code>application_id: str</code> | <code>ListSubscriptionsOutput</code> |
+| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceOutput</code> |
+| [`list_web_experiences`](#list_web_experiences) | <code>application_id: str</code> | <code>ListWebExperiencesOutput</code> |
 | [`put_feedback`](#put_feedback) | <code>application_id: str</code>, <code>conversation_id: str</code>, <code>message_id: str</code> | <code>None</code> |
-| [`put_group`](#put_group) | <code>application_id: str</code>, <code>index_id: str</code>, <code>group_name: str</code>, <code>type: MembershipType</code>, <code>group_members: GroupMembers</code> | <code>PutGroupResponse</code> |
-| [`search_relevant_content`](#search_relevant_content) | <code>application_id: str</code>, <code>query_text: str</code>, <code>content_source: ContentSource</code> | <code>SearchRelevantContentResponse</code> |
-| [`start_data_source_sync_job`](#start_data_source_sync_job) | <code>data_source_id: str</code>, <code>application_id: str</code>, <code>index_id: str</code> | <code>StartDataSourceSyncJobResponse</code> |
-| [`stop_data_source_sync_job`](#stop_data_source_sync_job) | <code>data_source_id: str</code>, <code>application_id: str</code>, <code>index_id: str</code> | <code>StopDataSourceSyncJobResponse</code> |
-| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>TagResourceResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
-| [`update_application`](#update_application) | <code>application_id: str</code> | <code>UpdateApplicationResponse</code> |
-| [`update_chat_controls_configuration`](#update_chat_controls_configuration) | <code>application_id: str</code> | <code>UpdateChatControlsConfigurationResponse</code> |
-| [`update_chat_response_configuration`](#update_chat_response_configuration) | <code>application_id: str</code>, <code>chat_response_configuration_id: str</code>, <code>response_configurations: dict[ResponseConfigurationType, ResponseConfiguration]</code> | <code>UpdateChatResponseConfigurationResponse</code> |
-| [`update_data_accessor`](#update_data_accessor) | <code>application_id: str</code>, <code>data_accessor_id: str</code>, <code>action_configurations: Sequence[ActionConfiguration]</code> | <code>UpdateDataAccessorResponse</code> |
-| [`update_data_source`](#update_data_source) | <code>application_id: str</code>, <code>index_id: str</code>, <code>data_source_id: str</code> | <code>UpdateDataSourceResponse</code> |
-| [`update_index`](#update_index) | <code>application_id: str</code>, <code>index_id: str</code> | <code>UpdateIndexResponse</code> |
-| [`update_plugin`](#update_plugin) | <code>application_id: str</code>, <code>plugin_id: str</code> | <code>UpdatePluginResponse</code> |
-| [`update_retriever`](#update_retriever) | <code>application_id: str</code>, <code>retriever_id: str</code> | <code>UpdateRetrieverResponse</code> |
-| [`update_subscription`](#update_subscription) | <code>application_id: str</code>, <code>subscription_id: str</code>, <code>type: SubscriptionType</code> | <code>UpdateSubscriptionResponse</code> |
-| [`update_user`](#update_user) | <code>application_id: str</code>, <code>user_id: str</code> | <code>UpdateUserResponse</code> |
-| [`update_web_experience`](#update_web_experience) | <code>application_id: str</code>, <code>web_experience_id: str</code> | <code>UpdateWebExperienceResponse</code> |
+| [`put_group`](#put_group) | <code>application_id: str</code>, <code>index_id: str</code>, <code>group_name: str</code>, <code>type: MembershipType</code>, <code>group_members: GroupMembers</code> | <code>PutGroupOutput</code> |
+| [`search_relevant_content`](#search_relevant_content) | <code>application_id: str</code>, <code>query_text: str</code>, <code>content_source: ContentSource</code> | <code>SearchRelevantContentOutput</code> |
+| [`start_data_source_sync_job`](#start_data_source_sync_job) | <code>data_source_id: str</code>, <code>application_id: str</code>, <code>index_id: str</code> | <code>StartDataSourceSyncJobOutput</code> |
+| [`stop_data_source_sync_job`](#stop_data_source_sync_job) | <code>data_source_id: str</code>, <code>application_id: str</code>, <code>index_id: str</code> | <code>StopDataSourceSyncJobOutput</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>TagResourceOutput</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceOutput</code> |
+| [`update_application`](#update_application) | <code>application_id: str</code> | <code>UpdateApplicationOutput</code> |
+| [`update_chat_controls_configuration`](#update_chat_controls_configuration) | <code>application_id: str</code> | <code>UpdateChatControlsConfigurationOutput</code> |
+| [`update_chat_response_configuration`](#update_chat_response_configuration) | <code>application_id: str</code>, <code>chat_response_configuration_id: str</code>, <code>response_configurations: dict[ResponseConfigurationType, ResponseConfiguration]</code> | <code>UpdateChatResponseConfigurationOutput</code> |
+| [`update_data_accessor`](#update_data_accessor) | <code>application_id: str</code>, <code>data_accessor_id: str</code>, <code>action_configurations: Sequence[ActionConfiguration]</code> | <code>UpdateDataAccessorOutput</code> |
+| [`update_data_source`](#update_data_source) | <code>application_id: str</code>, <code>index_id: str</code>, <code>data_source_id: str</code> | <code>UpdateDataSourceOutput</code> |
+| [`update_index`](#update_index) | <code>application_id: str</code>, <code>index_id: str</code> | <code>UpdateIndexOutput</code> |
+| [`update_plugin`](#update_plugin) | <code>application_id: str</code>, <code>plugin_id: str</code> | <code>UpdatePluginOutput</code> |
+| [`update_retriever`](#update_retriever) | <code>application_id: str</code>, <code>retriever_id: str</code> | <code>UpdateRetrieverOutput</code> |
+| [`update_subscription`](#update_subscription) | <code>application_id: str</code>, <code>subscription_id: str</code>, <code>type: SubscriptionType</code> | <code>UpdateSubscriptionOutput</code> |
+| [`update_user`](#update_user) | <code>application_id: str</code>, <code>user_id: str</code> | <code>UpdateUserOutput</code> |
+| [`update_web_experience`](#update_web_experience) | <code>application_id: str</code>, <code>web_experience_id: str</code> | <code>UpdateWebExperienceOutput</code> |
 
 ## Complete signatures
 
@@ -184,7 +184,7 @@ async def associate_permission(
     actions: Sequence[str],
     principal: str,
     conditions: Sequence[PermissionCondition] | None = None,
-) -> AssociatePermissionResponse: ...
+) -> AssociatePermissionOutput: ...
 ```
 
 
@@ -197,7 +197,7 @@ async def batch_delete_document(
     index_id: str,
     documents: Sequence[DeleteDocument],
     data_source_sync_id: str | None = None,
-) -> BatchDeleteDocumentResponse: ...
+) -> BatchDeleteDocumentOutput: ...
 ```
 
 
@@ -211,7 +211,7 @@ async def batch_put_document(
     documents: Sequence[Document],
     role_arn: str | None = None,
     data_source_sync_id: str | None = None,
-) -> BatchPutDocumentResponse: ...
+) -> BatchPutDocumentOutput: ...
 ```
 
 
@@ -222,7 +222,7 @@ async def cancel_subscription(
     *,
     application_id: str,
     subscription_id: str,
-) -> CancelSubscriptionResponse: ...
+) -> CancelSubscriptionOutput: ...
 ```
 
 
@@ -274,7 +274,7 @@ async def check_document_access(
     user_id: str,
     document_id: str,
     data_source_id: str | None = None,
-) -> CheckDocumentAccessResponse: ...
+) -> CheckDocumentAccessOutput: ...
 ```
 
 
@@ -286,7 +286,7 @@ async def create_anonymous_web_experience_url(
     application_id: str,
     web_experience_id: str,
     session_duration_in_minutes: int | None = None,
-) -> CreateAnonymousWebExperienceUrlResponse: ...
+) -> CreateAnonymousWebExperienceUrlOutput: ...
 ```
 
 
@@ -309,7 +309,7 @@ async def create_application(
     q_apps_configuration: QAppsConfiguration | None = None,
     personalization_configuration: PersonalizationConfiguration | None = None,
     quick_sight_configuration: QuickSightConfiguration | None = None,
-) -> CreateApplicationResponse: ...
+) -> CreateApplicationOutput: ...
 ```
 
 
@@ -323,7 +323,7 @@ async def create_chat_response_configuration(
     response_configurations: dict[ResponseConfigurationType, ResponseConfiguration],
     client_token: str | None = None,
     tags: Sequence[Tag] | None = None,
-) -> CreateChatResponseConfigurationResponse: ...
+) -> CreateChatResponseConfigurationOutput: ...
 ```
 
 
@@ -339,7 +339,7 @@ async def create_data_accessor(
     client_token: str | None = None,
     authentication_detail: DataAccessorAuthenticationDetail | None = None,
     tags: Sequence[Tag] | None = None,
-) -> CreateDataAccessorResponse: ...
+) -> CreateDataAccessorOutput: ...
 ```
 
 
@@ -360,7 +360,7 @@ async def create_data_source(
     client_token: str | None = None,
     document_enrichment_configuration: DocumentEnrichmentConfiguration | None = None,
     media_extraction_configuration: MediaExtractionConfiguration | None = None,
-) -> CreateDataSourceResponse: ...
+) -> CreateDataSourceOutput: ...
 ```
 
 
@@ -376,7 +376,7 @@ async def create_index(
     tags: Sequence[Tag] | None = None,
     capacity_configuration: IndexCapacityConfiguration | None = None,
     client_token: str | None = None,
-) -> CreateIndexResponse: ...
+) -> CreateIndexOutput: ...
 ```
 
 
@@ -393,7 +393,7 @@ async def create_plugin(
     custom_plugin_configuration: CustomPluginConfiguration | None = None,
     tags: Sequence[Tag] | None = None,
     client_token: str | None = None,
-) -> CreatePluginResponse: ...
+) -> CreatePluginOutput: ...
 ```
 
 
@@ -409,7 +409,7 @@ async def create_retriever(
     role_arn: str | None = None,
     client_token: str | None = None,
     tags: Sequence[Tag] | None = None,
-) -> CreateRetrieverResponse: ...
+) -> CreateRetrieverOutput: ...
 ```
 
 
@@ -422,7 +422,7 @@ async def create_subscription(
     principal: SubscriptionPrincipal,
     type: SubscriptionType,
     client_token: str | None = None,
-) -> CreateSubscriptionResponse: ...
+) -> CreateSubscriptionOutput: ...
 ```
 
 
@@ -435,7 +435,7 @@ async def create_user(
     user_id: str,
     user_aliases: Sequence[UserAlias] | None = None,
     client_token: str | None = None,
-) -> CreateUserResponse: ...
+) -> CreateUserOutput: ...
 ```
 
 
@@ -456,7 +456,7 @@ async def create_web_experience(
     identity_provider_configuration: IdentityProviderConfiguration | None = None,
     browser_extension_configuration: BrowserExtensionConfiguration | None = None,
     customization_configuration: CustomizationConfiguration | None = None,
-) -> CreateWebExperienceResponse: ...
+) -> CreateWebExperienceOutput: ...
 ```
 
 
@@ -466,7 +466,7 @@ async def create_web_experience(
 async def delete_application(
     *,
     application_id: str,
-) -> DeleteApplicationResponse: ...
+) -> DeleteApplicationOutput: ...
 ```
 
 
@@ -479,7 +479,7 @@ async def delete_attachment(
     conversation_id: str,
     attachment_id: str,
     user_id: str | None = None,
-) -> DeleteAttachmentResponse: ...
+) -> DeleteAttachmentOutput: ...
 ```
 
 
@@ -489,7 +489,7 @@ async def delete_attachment(
 async def delete_chat_controls_configuration(
     *,
     application_id: str,
-) -> DeleteChatControlsConfigurationResponse: ...
+) -> DeleteChatControlsConfigurationOutput: ...
 ```
 
 
@@ -500,7 +500,7 @@ async def delete_chat_response_configuration(
     *,
     application_id: str,
     chat_response_configuration_id: str,
-) -> DeleteChatResponseConfigurationResponse: ...
+) -> DeleteChatResponseConfigurationOutput: ...
 ```
 
 
@@ -512,7 +512,7 @@ async def delete_conversation(
     conversation_id: str,
     application_id: str,
     user_id: str | None = None,
-) -> DeleteConversationResponse: ...
+) -> DeleteConversationOutput: ...
 ```
 
 
@@ -523,7 +523,7 @@ async def delete_data_accessor(
     *,
     application_id: str,
     data_accessor_id: str,
-) -> DeleteDataAccessorResponse: ...
+) -> DeleteDataAccessorOutput: ...
 ```
 
 
@@ -535,7 +535,7 @@ async def delete_data_source(
     application_id: str,
     index_id: str,
     data_source_id: str,
-) -> DeleteDataSourceResponse: ...
+) -> DeleteDataSourceOutput: ...
 ```
 
 
@@ -548,7 +548,7 @@ async def delete_group(
     index_id: str,
     group_name: str,
     data_source_id: str | None = None,
-) -> DeleteGroupResponse: ...
+) -> DeleteGroupOutput: ...
 ```
 
 
@@ -559,7 +559,7 @@ async def delete_index(
     *,
     application_id: str,
     index_id: str,
-) -> DeleteIndexResponse: ...
+) -> DeleteIndexOutput: ...
 ```
 
 
@@ -570,7 +570,7 @@ async def delete_plugin(
     *,
     application_id: str,
     plugin_id: str,
-) -> DeletePluginResponse: ...
+) -> DeletePluginOutput: ...
 ```
 
 
@@ -581,7 +581,7 @@ async def delete_retriever(
     *,
     application_id: str,
     retriever_id: str,
-) -> DeleteRetrieverResponse: ...
+) -> DeleteRetrieverOutput: ...
 ```
 
 
@@ -592,7 +592,7 @@ async def delete_user(
     *,
     application_id: str,
     user_id: str,
-) -> DeleteUserResponse: ...
+) -> DeleteUserOutput: ...
 ```
 
 
@@ -603,7 +603,7 @@ async def delete_web_experience(
     *,
     application_id: str,
     web_experience_id: str,
-) -> DeleteWebExperienceResponse: ...
+) -> DeleteWebExperienceOutput: ...
 ```
 
 
@@ -614,7 +614,7 @@ async def disassociate_permission(
     *,
     application_id: str,
     statement_id: str,
-) -> DisassociatePermissionResponse: ...
+) -> DisassociatePermissionOutput: ...
 ```
 
 
@@ -624,7 +624,7 @@ async def disassociate_permission(
 async def get_application(
     *,
     application_id: str,
-) -> GetApplicationResponse: ...
+) -> GetApplicationOutput: ...
 ```
 
 
@@ -636,7 +636,7 @@ async def get_chat_controls_configuration(
     application_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> GetChatControlsConfigurationResponse: ...
+) -> GetChatControlsConfigurationOutput: ...
 ```
 
 Also available as `client.paginators.get_chat_controls_configuration(...)`, returning an
@@ -650,7 +650,7 @@ async def get_chat_response_configuration(
     *,
     application_id: str,
     chat_response_configuration_id: str,
-) -> GetChatResponseConfigurationResponse: ...
+) -> GetChatResponseConfigurationOutput: ...
 ```
 
 
@@ -661,7 +661,7 @@ async def get_data_accessor(
     *,
     application_id: str,
     data_accessor_id: str,
-) -> GetDataAccessorResponse: ...
+) -> GetDataAccessorOutput: ...
 ```
 
 
@@ -673,7 +673,7 @@ async def get_data_source(
     application_id: str,
     index_id: str,
     data_source_id: str,
-) -> GetDataSourceResponse: ...
+) -> GetDataSourceOutput: ...
 ```
 
 
@@ -687,7 +687,7 @@ async def get_document_content(
     document_id: str,
     data_source_id: str | None = None,
     output_format: OutputFormat | None = None,
-) -> GetDocumentContentResponse: ...
+) -> GetDocumentContentOutput: ...
 ```
 
 
@@ -700,7 +700,7 @@ async def get_group(
     index_id: str,
     group_name: str,
     data_source_id: str | None = None,
-) -> GetGroupResponse: ...
+) -> GetGroupOutput: ...
 ```
 
 
@@ -711,7 +711,7 @@ async def get_index(
     *,
     application_id: str,
     index_id: str,
-) -> GetIndexResponse: ...
+) -> GetIndexOutput: ...
 ```
 
 
@@ -724,7 +724,7 @@ async def get_media(
     conversation_id: str,
     message_id: str,
     media_id: str,
-) -> GetMediaResponse: ...
+) -> GetMediaOutput: ...
 ```
 
 
@@ -735,7 +735,7 @@ async def get_plugin(
     *,
     application_id: str,
     plugin_id: str,
-) -> GetPluginResponse: ...
+) -> GetPluginOutput: ...
 ```
 
 
@@ -745,7 +745,7 @@ async def get_plugin(
 async def get_policy(
     *,
     application_id: str,
-) -> GetPolicyResponse: ...
+) -> GetPolicyOutput: ...
 ```
 
 
@@ -756,7 +756,7 @@ async def get_retriever(
     *,
     application_id: str,
     retriever_id: str,
-) -> GetRetrieverResponse: ...
+) -> GetRetrieverOutput: ...
 ```
 
 
@@ -767,7 +767,7 @@ async def get_user(
     *,
     application_id: str,
     user_id: str,
-) -> GetUserResponse: ...
+) -> GetUserOutput: ...
 ```
 
 
@@ -778,7 +778,7 @@ async def get_web_experience(
     *,
     application_id: str,
     web_experience_id: str,
-) -> GetWebExperienceResponse: ...
+) -> GetWebExperienceOutput: ...
 ```
 
 
@@ -789,7 +789,7 @@ async def list_applications(
     *,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListApplicationsResponse: ...
+) -> ListApplicationsOutput: ...
 ```
 
 Also available as `client.paginators.list_applications(...)`, returning an
@@ -806,7 +806,7 @@ async def list_attachments(
     user_id: str | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListAttachmentsResponse: ...
+) -> ListAttachmentsOutput: ...
 ```
 
 Also available as `client.paginators.list_attachments(...)`, returning an
@@ -821,7 +821,7 @@ async def list_chat_response_configurations(
     application_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListChatResponseConfigurationsResponse: ...
+) -> ListChatResponseConfigurationsOutput: ...
 ```
 
 Also available as `client.paginators.list_chat_response_configurations(...)`, returning an
@@ -837,7 +837,7 @@ async def list_conversations(
     user_id: str | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListConversationsResponse: ...
+) -> ListConversationsOutput: ...
 ```
 
 Also available as `client.paginators.list_conversations(...)`, returning an
@@ -852,7 +852,7 @@ async def list_data_accessors(
     application_id: str,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListDataAccessorsResponse: ...
+) -> ListDataAccessorsOutput: ...
 ```
 
 Also available as `client.paginators.list_data_accessors(...)`, returning an
@@ -872,7 +872,7 @@ async def list_data_source_sync_jobs(
     start_time: str | None = None,
     end_time: str | None = None,
     status_filter: DataSourceSyncJobStatus | None = None,
-) -> ListDataSourceSyncJobsResponse: ...
+) -> ListDataSourceSyncJobsOutput: ...
 ```
 
 Also available as `client.paginators.list_data_source_sync_jobs(...)`, returning an
@@ -888,7 +888,7 @@ async def list_data_sources(
     index_id: str,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListDataSourcesResponse: ...
+) -> ListDataSourcesOutput: ...
 ```
 
 Also available as `client.paginators.list_data_sources(...)`, returning an
@@ -905,7 +905,7 @@ async def list_documents(
     data_source_ids: Sequence[str] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListDocumentsResponse: ...
+) -> ListDocumentsOutput: ...
 ```
 
 Also available as `client.paginators.list_documents(...)`, returning an
@@ -923,7 +923,7 @@ async def list_groups(
     data_source_id: str | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListGroupsResponse: ...
+) -> ListGroupsOutput: ...
 ```
 
 Also available as `client.paginators.list_groups(...)`, returning an
@@ -938,7 +938,7 @@ async def list_indices(
     application_id: str,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListIndicesResponse: ...
+) -> ListIndicesOutput: ...
 ```
 
 Also available as `client.paginators.list_indices(...)`, returning an
@@ -955,7 +955,7 @@ async def list_messages(
     user_id: str | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListMessagesResponse: ...
+) -> ListMessagesOutput: ...
 ```
 
 Also available as `client.paginators.list_messages(...)`, returning an
@@ -971,7 +971,7 @@ async def list_plugin_actions(
     plugin_id: str,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListPluginActionsResponse: ...
+) -> ListPluginActionsOutput: ...
 ```
 
 Also available as `client.paginators.list_plugin_actions(...)`, returning an
@@ -986,7 +986,7 @@ async def list_plugin_type_actions(
     plugin_type: PluginType,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListPluginTypeActionsResponse: ...
+) -> ListPluginTypeActionsOutput: ...
 ```
 
 Also available as `client.paginators.list_plugin_type_actions(...)`, returning an
@@ -1000,7 +1000,7 @@ async def list_plugin_type_metadata(
     *,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListPluginTypeMetadataResponse: ...
+) -> ListPluginTypeMetadataOutput: ...
 ```
 
 Also available as `client.paginators.list_plugin_type_metadata(...)`, returning an
@@ -1015,7 +1015,7 @@ async def list_plugins(
     application_id: str,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListPluginsResponse: ...
+) -> ListPluginsOutput: ...
 ```
 
 Also available as `client.paginators.list_plugins(...)`, returning an
@@ -1030,7 +1030,7 @@ async def list_retrievers(
     application_id: str,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListRetrieversResponse: ...
+) -> ListRetrieversOutput: ...
 ```
 
 Also available as `client.paginators.list_retrievers(...)`, returning an
@@ -1045,7 +1045,7 @@ async def list_subscriptions(
     application_id: str,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListSubscriptionsResponse: ...
+) -> ListSubscriptionsOutput: ...
 ```
 
 Also available as `client.paginators.list_subscriptions(...)`, returning an
@@ -1058,7 +1058,7 @@ async iterator of the response type above.
 async def list_tags_for_resource(
     *,
     resource_arn: str,
-) -> ListTagsForResourceResponse: ...
+) -> ListTagsForResourceOutput: ...
 ```
 
 
@@ -1070,7 +1070,7 @@ async def list_web_experiences(
     application_id: str,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListWebExperiencesResponse: ...
+) -> ListWebExperiencesOutput: ...
 ```
 
 Also available as `client.paginators.list_web_experiences(...)`, returning an
@@ -1104,7 +1104,7 @@ async def put_group(
     group_members: GroupMembers,
     data_source_id: str | None = None,
     role_arn: str | None = None,
-) -> PutGroupResponse: ...
+) -> PutGroupOutput: ...
 ```
 
 
@@ -1119,7 +1119,7 @@ async def search_relevant_content(
     attribute_filter: AttributeFilter | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> SearchRelevantContentResponse: ...
+) -> SearchRelevantContentOutput: ...
 ```
 
 Also available as `client.paginators.search_relevant_content(...)`, returning an
@@ -1134,7 +1134,7 @@ async def start_data_source_sync_job(
     data_source_id: str,
     application_id: str,
     index_id: str,
-) -> StartDataSourceSyncJobResponse: ...
+) -> StartDataSourceSyncJobOutput: ...
 ```
 
 
@@ -1146,7 +1146,7 @@ async def stop_data_source_sync_job(
     data_source_id: str,
     application_id: str,
     index_id: str,
-) -> StopDataSourceSyncJobResponse: ...
+) -> StopDataSourceSyncJobOutput: ...
 ```
 
 
@@ -1157,7 +1157,7 @@ async def tag_resource(
     *,
     resource_arn: str,
     tags: Sequence[Tag],
-) -> TagResourceResponse: ...
+) -> TagResourceOutput: ...
 ```
 
 
@@ -1168,7 +1168,7 @@ async def untag_resource(
     *,
     resource_arn: str,
     tag_keys: Sequence[str],
-) -> UntagResourceResponse: ...
+) -> UntagResourceOutput: ...
 ```
 
 
@@ -1186,7 +1186,7 @@ async def update_application(
     q_apps_configuration: QAppsConfiguration | None = None,
     personalization_configuration: PersonalizationConfiguration | None = None,
     auto_subscription_configuration: AutoSubscriptionConfiguration | None = None,
-) -> UpdateApplicationResponse: ...
+) -> UpdateApplicationOutput: ...
 ```
 
 
@@ -1204,7 +1204,7 @@ async def update_chat_controls_configuration(
     topic_configurations_to_delete: Sequence[TopicConfiguration] | None = None,
     creator_mode_configuration: CreatorModeConfiguration | None = None,
     hallucination_reduction_configuration: HallucinationReductionConfiguration | None = None,
-) -> UpdateChatControlsConfigurationResponse: ...
+) -> UpdateChatControlsConfigurationOutput: ...
 ```
 
 
@@ -1218,7 +1218,7 @@ async def update_chat_response_configuration(
     response_configurations: dict[ResponseConfigurationType, ResponseConfiguration],
     display_name: str | None = None,
     client_token: str | None = None,
-) -> UpdateChatResponseConfigurationResponse: ...
+) -> UpdateChatResponseConfigurationOutput: ...
 ```
 
 
@@ -1232,7 +1232,7 @@ async def update_data_accessor(
     action_configurations: Sequence[ActionConfiguration],
     authentication_detail: DataAccessorAuthenticationDetail | None = None,
     display_name: str | None = None,
-) -> UpdateDataAccessorResponse: ...
+) -> UpdateDataAccessorOutput: ...
 ```
 
 
@@ -1252,7 +1252,7 @@ async def update_data_source(
     role_arn: str | None = None,
     document_enrichment_configuration: DocumentEnrichmentConfiguration | None = None,
     media_extraction_configuration: MediaExtractionConfiguration | None = None,
-) -> UpdateDataSourceResponse: ...
+) -> UpdateDataSourceOutput: ...
 ```
 
 
@@ -1267,7 +1267,7 @@ async def update_index(
     description: str | None = None,
     capacity_configuration: IndexCapacityConfiguration | None = None,
     document_attribute_configurations: Sequence[DocumentAttributeConfiguration] | None = None,
-) -> UpdateIndexResponse: ...
+) -> UpdateIndexOutput: ...
 ```
 
 
@@ -1283,7 +1283,7 @@ async def update_plugin(
     server_url: str | None = None,
     custom_plugin_configuration: CustomPluginConfiguration | None = None,
     auth_configuration: PluginAuthConfiguration | None = None,
-) -> UpdatePluginResponse: ...
+) -> UpdatePluginOutput: ...
 ```
 
 
@@ -1297,7 +1297,7 @@ async def update_retriever(
     configuration: RetrieverConfiguration | None = None,
     display_name: str | None = None,
     role_arn: str | None = None,
-) -> UpdateRetrieverResponse: ...
+) -> UpdateRetrieverOutput: ...
 ```
 
 
@@ -1309,7 +1309,7 @@ async def update_subscription(
     application_id: str,
     subscription_id: str,
     type: SubscriptionType,
-) -> UpdateSubscriptionResponse: ...
+) -> UpdateSubscriptionOutput: ...
 ```
 
 
@@ -1322,7 +1322,7 @@ async def update_user(
     user_id: str,
     user_aliases_to_update: Sequence[UserAlias] | None = None,
     user_aliases_to_delete: Sequence[UserAlias] | None = None,
-) -> UpdateUserResponse: ...
+) -> UpdateUserOutput: ...
 ```
 
 
@@ -1343,7 +1343,7 @@ async def update_web_experience(
     origins: Sequence[str] | None = None,
     browser_extension_configuration: BrowserExtensionConfiguration | None = None,
     customization_configuration: CustomizationConfiguration | None = None,
-) -> UpdateWebExperienceResponse: ...
+) -> UpdateWebExperienceOutput: ...
 ```
 
 

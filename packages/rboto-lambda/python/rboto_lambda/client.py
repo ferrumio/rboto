@@ -9,7 +9,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto.logging import operation_interceptors
 
-from ._native import LambdaClient as NativeClient, AddLayerVersionPermissionResponse, AddPermissionResponse, CheckpointDurableExecutionResponse, CreateAliasOutput, CreateCapacityProviderResponse, CreateCodeSigningConfigResponse, CreateEventSourceMappingOutput, CreateFunctionOutput, CreateFunctionUrlConfigResponse, DeleteCapacityProviderResponse, DeleteCodeSigningConfigResponse, DeleteEventSourceMappingOutput, DeleteFunctionResponse, GetAccountSettingsResponse, GetAliasOutput, GetCapacityProviderResponse, GetCodeSigningConfigResponse, GetDurableExecutionHistoryResponse, GetDurableExecutionResponse, GetDurableExecutionStateResponse, GetEventSourceMappingOutput, GetFunctionCodeSigningConfigResponse, GetFunctionConcurrencyResponse, GetFunctionConfigurationOutput, GetFunctionEventInvokeConfigOutput, GetFunctionRecursionConfigResponse, GetFunctionResponse, GetFunctionScalingConfigResponse, GetFunctionUrlConfigResponse, GetLayerVersionByArnOutput, GetLayerVersionOutput, GetLayerVersionPolicyResponse, GetPolicyResponse, GetProvisionedConcurrencyConfigResponse, GetResourcePolicyResponse, GetRuntimeManagementConfigResponse, InvocationResponse, InvokeAsyncResponse, ListAliasesResponse, ListCapacityProvidersResponse, ListCodeSigningConfigsResponse, ListDurableExecutionsByFunctionResponse, ListEventSourceMappingsResponse, ListFunctionEventInvokeConfigsResponse, ListFunctionUrlConfigsResponse, ListFunctionVersionsByCapacityProviderResponse, ListFunctionsByCodeSigningConfigResponse, ListFunctionsResponse, ListLayerVersionsResponse, ListLayersResponse, ListProvisionedConcurrencyConfigsResponse, ListTagsResponse, ListVersionsByFunctionResponse, PublishLayerVersionResponse, PublishVersionOutput, PutFunctionCodeSigningConfigResponse, PutFunctionConcurrencyOutput, PutFunctionEventInvokeConfigOutput, PutFunctionRecursionConfigResponse, PutFunctionScalingConfigResponse, PutProvisionedConcurrencyConfigResponse, PutResourcePolicyResponse, PutRuntimeManagementConfigResponse, SendDurableExecutionCallbackFailureResponse, SendDurableExecutionCallbackHeartbeatResponse, SendDurableExecutionCallbackSuccessResponse, StopDurableExecutionResponse, UpdateAliasOutput, UpdateCapacityProviderResponse, UpdateCodeSigningConfigResponse, UpdateEventSourceMappingOutput, UpdateFunctionCodeOutput, UpdateFunctionConfigurationOutput, UpdateFunctionEventInvokeConfigOutput, UpdateFunctionUrlConfigResponse
+from ._native import LambdaClient as NativeClient, AddLayerVersionPermissionOutput, AddPermissionOutput, CheckpointDurableExecutionOutput, CreateAliasOutput, CreateCapacityProviderOutput, CreateCodeSigningConfigOutput, CreateEventSourceMappingOutput, CreateFunctionOutput, CreateFunctionUrlConfigOutput, DeleteCapacityProviderOutput, DeleteCodeSigningConfigOutput, DeleteEventSourceMappingOutput, DeleteFunctionOutput, GetAccountSettingsOutput, GetAliasOutput, GetCapacityProviderOutput, GetCodeSigningConfigOutput, GetDurableExecutionHistoryOutput, GetDurableExecutionOutput, GetDurableExecutionStateOutput, GetEventSourceMappingOutput, GetFunctionCodeSigningConfigOutput, GetFunctionConcurrencyOutput, GetFunctionConfigurationOutput, GetFunctionEventInvokeConfigOutput, GetFunctionOutput, GetFunctionRecursionConfigOutput, GetFunctionScalingConfigOutput, GetFunctionUrlConfigOutput, GetLayerVersionByArnOutput, GetLayerVersionOutput, GetLayerVersionPolicyOutput, GetPolicyOutput, GetProvisionedConcurrencyConfigOutput, GetResourcePolicyOutput, GetRuntimeManagementConfigOutput, InvokeAsyncOutput, InvokeOutput, ListAliasesOutput, ListCapacityProvidersOutput, ListCodeSigningConfigsOutput, ListDurableExecutionsByFunctionOutput, ListEventSourceMappingsOutput, ListFunctionEventInvokeConfigsOutput, ListFunctionUrlConfigsOutput, ListFunctionVersionsByCapacityProviderOutput, ListFunctionsByCodeSigningConfigOutput, ListFunctionsOutput, ListLayerVersionsOutput, ListLayersOutput, ListProvisionedConcurrencyConfigsOutput, ListTagsOutput, ListVersionsByFunctionOutput, PublishLayerVersionOutput, PublishVersionOutput, PutFunctionCodeSigningConfigOutput, PutFunctionConcurrencyOutput, PutFunctionEventInvokeConfigOutput, PutFunctionRecursionConfigOutput, PutFunctionScalingConfigOutput, PutProvisionedConcurrencyConfigOutput, PutResourcePolicyOutput, PutRuntimeManagementConfigOutput, SendDurableExecutionCallbackFailureOutput, SendDurableExecutionCallbackHeartbeatOutput, SendDurableExecutionCallbackSuccessOutput, StopDurableExecutionOutput, UpdateAliasOutput, UpdateCapacityProviderOutput, UpdateCodeSigningConfigOutput, UpdateEventSourceMappingOutput, UpdateFunctionCodeOutput, UpdateFunctionConfigurationOutput, UpdateFunctionEventInvokeConfigOutput, UpdateFunctionUrlConfigOutput
 from .types import (
     AliasRoutingConfiguration,
     AllowedPublishers,
@@ -46,7 +46,7 @@ from .types import (
     InstanceRequirements,
     InvocationType,
     InvokeMode,
-    InvokeWithResponseStreamResponse,
+    InvokeWithResponseStreamOutput,
     LayerVersionContentInput,
     LogType,
     LoggingConfig,
@@ -118,7 +118,7 @@ class LambdaClient:
         principal: str,
         organization_id: str | None = None,
         revision_id: str | None = None,
-    ) -> AddLayerVersionPermissionResponse:
+    ) -> AddLayerVersionPermissionOutput:
         params: dict[str, object] = {
             "layer_name": layer_name,
             "version_number": version_number,
@@ -135,7 +135,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.add_layer_version_permission, params, _interceptors,
                 "lambda", "AddLayerVersionPermission", self._region,
-                AddLayerVersionPermissionResponse,
+                AddLayerVersionPermissionOutput,
                 ("layer_name", "version_number", "statement_id", "action", "principal", "organization_id", "revision_id", ),
                 ("layer_name", "version_number", "statement_id", "action", "principal", ),
             )
@@ -159,7 +159,7 @@ class LambdaClient:
         qualifier: str | None = None,
         revision_id: str | None = None,
         principal_org_id: str | None = None,
-    ) -> AddPermissionResponse:
+    ) -> AddPermissionOutput:
         params: dict[str, object] = {
             "function_name": function_name,
             "statement_id": statement_id,
@@ -187,7 +187,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.add_permission, params, _interceptors,
                 "lambda", "AddPermission", self._region,
-                AddPermissionResponse,
+                AddPermissionOutput,
                 ("function_name", "statement_id", "action", "principal", "source_arn", "function_url_auth_type", "invoked_via_function_url", "source_account", "event_source_token", "qualifier", "revision_id", "principal_org_id", ),
                 ("function_name", "statement_id", "action", "principal", ),
             )
@@ -203,7 +203,7 @@ class LambdaClient:
         checkpoint_token: str,
         updates: Sequence[OperationUpdate] | None = None,
         client_token: str | None = None,
-    ) -> CheckpointDurableExecutionResponse:
+    ) -> CheckpointDurableExecutionOutput:
         params: dict[str, object] = {
             "durable_execution_arn": durable_execution_arn,
             "checkpoint_token": checkpoint_token,
@@ -217,7 +217,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.checkpoint_durable_execution, params, _interceptors,
                 "lambda", "CheckpointDurableExecution", self._region,
-                CheckpointDurableExecutionResponse,
+                CheckpointDurableExecutionOutput,
                 ("durable_execution_arn", "checkpoint_token", "updates", "client_token", ),
                 ("durable_execution_arn", "checkpoint_token", ),
             )
@@ -270,7 +270,7 @@ class LambdaClient:
         tags: dict[str, str] | None = None,
         propagate_tags: PropagateTags | None = None,
         telemetry_config: CapacityProviderTelemetryConfig | None = None,
-    ) -> CreateCapacityProviderResponse:
+    ) -> CreateCapacityProviderOutput:
         params: dict[str, object] = {
             "capacity_provider_name": capacity_provider_name,
             "vpc_config": vpc_config,
@@ -293,7 +293,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.create_capacity_provider, params, _interceptors,
                 "lambda", "CreateCapacityProvider", self._region,
-                CreateCapacityProviderResponse,
+                CreateCapacityProviderOutput,
                 ("capacity_provider_name", "vpc_config", "permissions_config", "instance_requirements", "capacity_provider_scaling_config", "kms_key_arn", "tags", "propagate_tags", "telemetry_config", ),
                 ("capacity_provider_name", "vpc_config", "permissions_config", ),
             )
@@ -309,7 +309,7 @@ class LambdaClient:
         description: str | None = None,
         code_signing_policies: CodeSigningPolicies | None = None,
         tags: dict[str, str] | None = None,
-    ) -> CreateCodeSigningConfigResponse:
+    ) -> CreateCodeSigningConfigOutput:
         params: dict[str, object] = {
             "allowed_publishers": allowed_publishers,
         }
@@ -324,7 +324,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.create_code_signing_config, params, _interceptors,
                 "lambda", "CreateCodeSigningConfig", self._region,
-                CreateCodeSigningConfigResponse,
+                CreateCodeSigningConfigOutput,
                 ("allowed_publishers", "description", "code_signing_policies", "tags", ),
                 ("allowed_publishers", ),
             )
@@ -545,7 +545,7 @@ class LambdaClient:
         qualifier: str | None = None,
         cors: Cors | None = None,
         invoke_mode: InvokeMode | None = None,
-    ) -> CreateFunctionUrlConfigResponse:
+    ) -> CreateFunctionUrlConfigOutput:
         params: dict[str, object] = {
             "function_name": function_name,
             "auth_type": auth_type,
@@ -561,7 +561,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.create_function_url_config, params, _interceptors,
                 "lambda", "CreateFunctionUrlConfig", self._region,
-                CreateFunctionUrlConfigResponse,
+                CreateFunctionUrlConfigOutput,
                 ("function_name", "auth_type", "qualifier", "cors", "invoke_mode", ),
                 ("function_name", "auth_type", ),
             )
@@ -598,7 +598,7 @@ class LambdaClient:
         self,
         *,
         capacity_provider_name: str,
-    ) -> DeleteCapacityProviderResponse:
+    ) -> DeleteCapacityProviderOutput:
         params: dict[str, object] = {
             "capacity_provider_name": capacity_provider_name,
         }
@@ -607,7 +607,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.delete_capacity_provider, params, _interceptors,
                 "lambda", "DeleteCapacityProvider", self._region,
-                DeleteCapacityProviderResponse,
+                DeleteCapacityProviderOutput,
                 ("capacity_provider_name", ),
                 ("capacity_provider_name", ),
             )
@@ -620,7 +620,7 @@ class LambdaClient:
         self,
         *,
         code_signing_config_arn: str,
-    ) -> DeleteCodeSigningConfigResponse:
+    ) -> DeleteCodeSigningConfigOutput:
         params: dict[str, object] = {
             "code_signing_config_arn": code_signing_config_arn,
         }
@@ -629,7 +629,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.delete_code_signing_config, params, _interceptors,
                 "lambda", "DeleteCodeSigningConfig", self._region,
-                DeleteCodeSigningConfigResponse,
+                DeleteCodeSigningConfigOutput,
                 ("code_signing_config_arn", ),
                 ("code_signing_config_arn", ),
             )
@@ -665,7 +665,7 @@ class LambdaClient:
         *,
         function_name: str,
         qualifier: str | None = None,
-    ) -> DeleteFunctionResponse:
+    ) -> DeleteFunctionOutput:
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -676,7 +676,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.delete_function, params, _interceptors,
                 "lambda", "DeleteFunction", self._region,
-                DeleteFunctionResponse,
+                DeleteFunctionOutput,
                 ("function_name", "qualifier", ),
                 ("function_name", ),
             )
@@ -854,7 +854,7 @@ class LambdaClient:
 
     async def get_account_settings(
         self,
-    ) -> GetAccountSettingsResponse:
+    ) -> GetAccountSettingsOutput:
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("lambda", self._interceptors)
@@ -862,7 +862,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.get_account_settings, params, _interceptors,
                 "lambda", "GetAccountSettings", self._region,
-                GetAccountSettingsResponse,
+                GetAccountSettingsOutput,
                 (),
                 (),
             )
@@ -899,7 +899,7 @@ class LambdaClient:
         self,
         *,
         capacity_provider_name: str,
-    ) -> GetCapacityProviderResponse:
+    ) -> GetCapacityProviderOutput:
         params: dict[str, object] = {
             "capacity_provider_name": capacity_provider_name,
         }
@@ -908,7 +908,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.get_capacity_provider, params, _interceptors,
                 "lambda", "GetCapacityProvider", self._region,
-                GetCapacityProviderResponse,
+                GetCapacityProviderOutput,
                 ("capacity_provider_name", ),
                 ("capacity_provider_name", ),
             )
@@ -921,7 +921,7 @@ class LambdaClient:
         self,
         *,
         code_signing_config_arn: str,
-    ) -> GetCodeSigningConfigResponse:
+    ) -> GetCodeSigningConfigOutput:
         params: dict[str, object] = {
             "code_signing_config_arn": code_signing_config_arn,
         }
@@ -930,7 +930,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.get_code_signing_config, params, _interceptors,
                 "lambda", "GetCodeSigningConfig", self._region,
-                GetCodeSigningConfigResponse,
+                GetCodeSigningConfigOutput,
                 ("code_signing_config_arn", ),
                 ("code_signing_config_arn", ),
             )
@@ -944,7 +944,7 @@ class LambdaClient:
         *,
         durable_execution_arn: str,
         include_execution_data: bool | None = None,
-    ) -> GetDurableExecutionResponse:
+    ) -> GetDurableExecutionOutput:
         params: dict[str, object] = {
             "durable_execution_arn": durable_execution_arn,
         }
@@ -955,7 +955,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.get_durable_execution, params, _interceptors,
                 "lambda", "GetDurableExecution", self._region,
-                GetDurableExecutionResponse,
+                GetDurableExecutionOutput,
                 ("durable_execution_arn", "include_execution_data", ),
                 ("durable_execution_arn", ),
             )
@@ -972,7 +972,7 @@ class LambdaClient:
         max_items: int | None = None,
         marker: str | None = None,
         reverse_order: bool | None = None,
-    ) -> GetDurableExecutionHistoryResponse:
+    ) -> GetDurableExecutionHistoryOutput:
         params: dict[str, object] = {
             "durable_execution_arn": durable_execution_arn,
         }
@@ -989,7 +989,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.get_durable_execution_history, params, _interceptors,
                 "lambda", "GetDurableExecutionHistory", self._region,
-                GetDurableExecutionHistoryResponse,
+                GetDurableExecutionHistoryOutput,
                 ("durable_execution_arn", "include_execution_data", "max_items", "marker", "reverse_order", ),
                 ("durable_execution_arn", ),
             )
@@ -1005,7 +1005,7 @@ class LambdaClient:
         checkpoint_token: str,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> GetDurableExecutionStateResponse:
+    ) -> GetDurableExecutionStateOutput:
         params: dict[str, object] = {
             "durable_execution_arn": durable_execution_arn,
             "checkpoint_token": checkpoint_token,
@@ -1019,7 +1019,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.get_durable_execution_state, params, _interceptors,
                 "lambda", "GetDurableExecutionState", self._region,
-                GetDurableExecutionStateResponse,
+                GetDurableExecutionStateOutput,
                 ("durable_execution_arn", "checkpoint_token", "marker", "max_items", ),
                 ("durable_execution_arn", "checkpoint_token", ),
             )
@@ -1055,7 +1055,7 @@ class LambdaClient:
         *,
         function_name: str,
         qualifier: str | None = None,
-    ) -> GetFunctionResponse:
+    ) -> GetFunctionOutput:
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1066,7 +1066,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.get_function, params, _interceptors,
                 "lambda", "GetFunction", self._region,
-                GetFunctionResponse,
+                GetFunctionOutput,
                 ("function_name", "qualifier", ),
                 ("function_name", ),
             )
@@ -1079,7 +1079,7 @@ class LambdaClient:
         self,
         *,
         function_name: str,
-    ) -> GetFunctionCodeSigningConfigResponse:
+    ) -> GetFunctionCodeSigningConfigOutput:
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1088,7 +1088,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.get_function_code_signing_config, params, _interceptors,
                 "lambda", "GetFunctionCodeSigningConfig", self._region,
-                GetFunctionCodeSigningConfigResponse,
+                GetFunctionCodeSigningConfigOutput,
                 ("function_name", ),
                 ("function_name", ),
             )
@@ -1101,7 +1101,7 @@ class LambdaClient:
         self,
         *,
         function_name: str,
-    ) -> GetFunctionConcurrencyResponse:
+    ) -> GetFunctionConcurrencyOutput:
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1110,7 +1110,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.get_function_concurrency, params, _interceptors,
                 "lambda", "GetFunctionConcurrency", self._region,
-                GetFunctionConcurrencyResponse,
+                GetFunctionConcurrencyOutput,
                 ("function_name", ),
                 ("function_name", ),
             )
@@ -1173,7 +1173,7 @@ class LambdaClient:
         self,
         *,
         function_name: str,
-    ) -> GetFunctionRecursionConfigResponse:
+    ) -> GetFunctionRecursionConfigOutput:
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1182,7 +1182,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.get_function_recursion_config, params, _interceptors,
                 "lambda", "GetFunctionRecursionConfig", self._region,
-                GetFunctionRecursionConfigResponse,
+                GetFunctionRecursionConfigOutput,
                 ("function_name", ),
                 ("function_name", ),
             )
@@ -1196,7 +1196,7 @@ class LambdaClient:
         *,
         function_name: str,
         qualifier: str,
-    ) -> GetFunctionScalingConfigResponse:
+    ) -> GetFunctionScalingConfigOutput:
         params: dict[str, object] = {
             "function_name": function_name,
             "qualifier": qualifier,
@@ -1206,7 +1206,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.get_function_scaling_config, params, _interceptors,
                 "lambda", "GetFunctionScalingConfig", self._region,
-                GetFunctionScalingConfigResponse,
+                GetFunctionScalingConfigOutput,
                 ("function_name", "qualifier", ),
                 ("function_name", "qualifier", ),
             )
@@ -1220,7 +1220,7 @@ class LambdaClient:
         *,
         function_name: str,
         qualifier: str | None = None,
-    ) -> GetFunctionUrlConfigResponse:
+    ) -> GetFunctionUrlConfigOutput:
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1231,7 +1231,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.get_function_url_config, params, _interceptors,
                 "lambda", "GetFunctionUrlConfig", self._region,
-                GetFunctionUrlConfigResponse,
+                GetFunctionUrlConfigOutput,
                 ("function_name", "qualifier", ),
                 ("function_name", ),
             )
@@ -1291,7 +1291,7 @@ class LambdaClient:
         *,
         layer_name: str,
         version_number: int,
-    ) -> GetLayerVersionPolicyResponse:
+    ) -> GetLayerVersionPolicyOutput:
         params: dict[str, object] = {
             "layer_name": layer_name,
             "version_number": version_number,
@@ -1301,7 +1301,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.get_layer_version_policy, params, _interceptors,
                 "lambda", "GetLayerVersionPolicy", self._region,
-                GetLayerVersionPolicyResponse,
+                GetLayerVersionPolicyOutput,
                 ("layer_name", "version_number", ),
                 ("layer_name", "version_number", ),
             )
@@ -1315,7 +1315,7 @@ class LambdaClient:
         *,
         function_name: str,
         qualifier: str | None = None,
-    ) -> GetPolicyResponse:
+    ) -> GetPolicyOutput:
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1326,7 +1326,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.get_policy, params, _interceptors,
                 "lambda", "GetPolicy", self._region,
-                GetPolicyResponse,
+                GetPolicyOutput,
                 ("function_name", "qualifier", ),
                 ("function_name", ),
             )
@@ -1340,7 +1340,7 @@ class LambdaClient:
         *,
         function_name: str,
         qualifier: str,
-    ) -> GetProvisionedConcurrencyConfigResponse:
+    ) -> GetProvisionedConcurrencyConfigOutput:
         params: dict[str, object] = {
             "function_name": function_name,
             "qualifier": qualifier,
@@ -1350,7 +1350,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.get_provisioned_concurrency_config, params, _interceptors,
                 "lambda", "GetProvisionedConcurrencyConfig", self._region,
-                GetProvisionedConcurrencyConfigResponse,
+                GetProvisionedConcurrencyConfigOutput,
                 ("function_name", "qualifier", ),
                 ("function_name", "qualifier", ),
             )
@@ -1363,7 +1363,7 @@ class LambdaClient:
         self,
         *,
         resource_arn: str,
-    ) -> GetResourcePolicyResponse:
+    ) -> GetResourcePolicyOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -1372,7 +1372,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.get_resource_policy, params, _interceptors,
                 "lambda", "GetResourcePolicy", self._region,
-                GetResourcePolicyResponse,
+                GetResourcePolicyOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
             )
@@ -1386,7 +1386,7 @@ class LambdaClient:
         *,
         function_name: str,
         qualifier: str | None = None,
-    ) -> GetRuntimeManagementConfigResponse:
+    ) -> GetRuntimeManagementConfigOutput:
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1397,7 +1397,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.get_runtime_management_config, params, _interceptors,
                 "lambda", "GetRuntimeManagementConfig", self._region,
-                GetRuntimeManagementConfigResponse,
+                GetRuntimeManagementConfigOutput,
                 ("function_name", "qualifier", ),
                 ("function_name", ),
             )
@@ -1417,7 +1417,7 @@ class LambdaClient:
         payload: bytes | None = None,
         qualifier: str | None = None,
         tenant_id: str | None = None,
-    ) -> InvocationResponse:
+    ) -> InvokeOutput:
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1440,7 +1440,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.invoke, params, _interceptors,
                 "lambda", "Invoke", self._region,
-                InvocationResponse,
+                InvokeOutput,
                 ("function_name", "invocation_type", "log_type", "client_context", "durable_execution_name", "payload", "qualifier", "tenant_id", ),
                 ("function_name", ),
             )
@@ -1454,7 +1454,7 @@ class LambdaClient:
         *,
         function_name: str,
         invoke_args: bytes,
-    ) -> InvokeAsyncResponse:
+    ) -> InvokeAsyncOutput:
         params: dict[str, object] = {
             "function_name": function_name,
             "invoke_args": invoke_args,
@@ -1464,7 +1464,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.invoke_async, params, _interceptors,
                 "lambda", "InvokeAsync", self._region,
-                InvokeAsyncResponse,
+                InvokeAsyncOutput,
                 ("function_name", "invoke_args", ),
                 ("function_name", "invoke_args", ),
             )
@@ -1483,7 +1483,7 @@ class LambdaClient:
         payload: bytes | None = None,
         tenant_id: str | None = None,
         invocation_type: ResponseStreamingInvocationType | None = None,
-    ) -> InvokeWithResponseStreamResponse:
+    ) -> InvokeWithResponseStreamOutput:
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1520,7 +1520,7 @@ class LambdaClient:
         function_version: str | None = None,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> ListAliasesResponse:
+    ) -> ListAliasesOutput:
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1535,7 +1535,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.list_aliases, params, _interceptors,
                 "lambda", "ListAliases", self._region,
-                ListAliasesResponse,
+                ListAliasesOutput,
                 ("function_name", "function_version", "marker", "max_items", ),
                 ("function_name", ),
             )
@@ -1550,7 +1550,7 @@ class LambdaClient:
         state: CapacityProviderState | None = None,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> ListCapacityProvidersResponse:
+    ) -> ListCapacityProvidersOutput:
         params: dict[str, object] = {
         }
         if state is not None:
@@ -1564,7 +1564,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.list_capacity_providers, params, _interceptors,
                 "lambda", "ListCapacityProviders", self._region,
-                ListCapacityProvidersResponse,
+                ListCapacityProvidersOutput,
                 ("state", "marker", "max_items", ),
                 (),
             )
@@ -1578,7 +1578,7 @@ class LambdaClient:
         *,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> ListCodeSigningConfigsResponse:
+    ) -> ListCodeSigningConfigsOutput:
         params: dict[str, object] = {
         }
         if marker is not None:
@@ -1590,7 +1590,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.list_code_signing_configs, params, _interceptors,
                 "lambda", "ListCodeSigningConfigs", self._region,
-                ListCodeSigningConfigsResponse,
+                ListCodeSigningConfigsOutput,
                 ("marker", "max_items", ),
                 (),
             )
@@ -1611,7 +1611,7 @@ class LambdaClient:
         reverse_order: bool | None = None,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> ListDurableExecutionsByFunctionResponse:
+    ) -> ListDurableExecutionsByFunctionOutput:
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1636,7 +1636,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.list_durable_executions_by_function, params, _interceptors,
                 "lambda", "ListDurableExecutionsByFunction", self._region,
-                ListDurableExecutionsByFunctionResponse,
+                ListDurableExecutionsByFunctionOutput,
                 ("function_name", "qualifier", "durable_execution_name", "statuses", "started_after", "started_before", "reverse_order", "marker", "max_items", ),
                 ("function_name", ),
             )
@@ -1652,7 +1652,7 @@ class LambdaClient:
         function_name: str | None = None,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> ListEventSourceMappingsResponse:
+    ) -> ListEventSourceMappingsOutput:
         params: dict[str, object] = {
         }
         if event_source_arn is not None:
@@ -1668,7 +1668,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.list_event_source_mappings, params, _interceptors,
                 "lambda", "ListEventSourceMappings", self._region,
-                ListEventSourceMappingsResponse,
+                ListEventSourceMappingsOutput,
                 ("event_source_arn", "function_name", "marker", "max_items", ),
                 (),
             )
@@ -1683,7 +1683,7 @@ class LambdaClient:
         function_name: str,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> ListFunctionEventInvokeConfigsResponse:
+    ) -> ListFunctionEventInvokeConfigsOutput:
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1696,7 +1696,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.list_function_event_invoke_configs, params, _interceptors,
                 "lambda", "ListFunctionEventInvokeConfigs", self._region,
-                ListFunctionEventInvokeConfigsResponse,
+                ListFunctionEventInvokeConfigsOutput,
                 ("function_name", "marker", "max_items", ),
                 ("function_name", ),
             )
@@ -1711,7 +1711,7 @@ class LambdaClient:
         function_name: str,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> ListFunctionUrlConfigsResponse:
+    ) -> ListFunctionUrlConfigsOutput:
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1724,7 +1724,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.list_function_url_configs, params, _interceptors,
                 "lambda", "ListFunctionUrlConfigs", self._region,
-                ListFunctionUrlConfigsResponse,
+                ListFunctionUrlConfigsOutput,
                 ("function_name", "marker", "max_items", ),
                 ("function_name", ),
             )
@@ -1739,7 +1739,7 @@ class LambdaClient:
         capacity_provider_name: str,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> ListFunctionVersionsByCapacityProviderResponse:
+    ) -> ListFunctionVersionsByCapacityProviderOutput:
         params: dict[str, object] = {
             "capacity_provider_name": capacity_provider_name,
         }
@@ -1752,7 +1752,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.list_function_versions_by_capacity_provider, params, _interceptors,
                 "lambda", "ListFunctionVersionsByCapacityProvider", self._region,
-                ListFunctionVersionsByCapacityProviderResponse,
+                ListFunctionVersionsByCapacityProviderOutput,
                 ("capacity_provider_name", "marker", "max_items", ),
                 ("capacity_provider_name", ),
             )
@@ -1768,7 +1768,7 @@ class LambdaClient:
         function_version: FunctionVersion | None = None,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> ListFunctionsResponse:
+    ) -> ListFunctionsOutput:
         params: dict[str, object] = {
         }
         if master_region is not None:
@@ -1784,7 +1784,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.list_functions, params, _interceptors,
                 "lambda", "ListFunctions", self._region,
-                ListFunctionsResponse,
+                ListFunctionsOutput,
                 ("master_region", "function_version", "marker", "max_items", ),
                 (),
             )
@@ -1799,7 +1799,7 @@ class LambdaClient:
         code_signing_config_arn: str,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> ListFunctionsByCodeSigningConfigResponse:
+    ) -> ListFunctionsByCodeSigningConfigOutput:
         params: dict[str, object] = {
             "code_signing_config_arn": code_signing_config_arn,
         }
@@ -1812,7 +1812,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.list_functions_by_code_signing_config, params, _interceptors,
                 "lambda", "ListFunctionsByCodeSigningConfig", self._region,
-                ListFunctionsByCodeSigningConfigResponse,
+                ListFunctionsByCodeSigningConfigOutput,
                 ("code_signing_config_arn", "marker", "max_items", ),
                 ("code_signing_config_arn", ),
             )
@@ -1829,7 +1829,7 @@ class LambdaClient:
         compatible_runtime: Runtime | None = None,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> ListLayerVersionsResponse:
+    ) -> ListLayerVersionsOutput:
         params: dict[str, object] = {
             "layer_name": layer_name,
         }
@@ -1846,7 +1846,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.list_layer_versions, params, _interceptors,
                 "lambda", "ListLayerVersions", self._region,
-                ListLayerVersionsResponse,
+                ListLayerVersionsOutput,
                 ("layer_name", "compatible_architecture", "compatible_runtime", "marker", "max_items", ),
                 ("layer_name", ),
             )
@@ -1862,7 +1862,7 @@ class LambdaClient:
         compatible_runtime: Runtime | None = None,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> ListLayersResponse:
+    ) -> ListLayersOutput:
         params: dict[str, object] = {
         }
         if compatible_architecture is not None:
@@ -1878,7 +1878,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.list_layers, params, _interceptors,
                 "lambda", "ListLayers", self._region,
-                ListLayersResponse,
+                ListLayersOutput,
                 ("compatible_architecture", "compatible_runtime", "marker", "max_items", ),
                 (),
             )
@@ -1893,7 +1893,7 @@ class LambdaClient:
         function_name: str,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> ListProvisionedConcurrencyConfigsResponse:
+    ) -> ListProvisionedConcurrencyConfigsOutput:
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1906,7 +1906,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.list_provisioned_concurrency_configs, params, _interceptors,
                 "lambda", "ListProvisionedConcurrencyConfigs", self._region,
-                ListProvisionedConcurrencyConfigsResponse,
+                ListProvisionedConcurrencyConfigsOutput,
                 ("function_name", "marker", "max_items", ),
                 ("function_name", ),
             )
@@ -1919,7 +1919,7 @@ class LambdaClient:
         self,
         *,
         resource: str,
-    ) -> ListTagsResponse:
+    ) -> ListTagsOutput:
         params: dict[str, object] = {
             "resource": resource,
         }
@@ -1928,7 +1928,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.list_tags, params, _interceptors,
                 "lambda", "ListTags", self._region,
-                ListTagsResponse,
+                ListTagsOutput,
                 ("resource", ),
                 ("resource", ),
             )
@@ -1943,7 +1943,7 @@ class LambdaClient:
         function_name: str,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> ListVersionsByFunctionResponse:
+    ) -> ListVersionsByFunctionOutput:
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1956,7 +1956,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.list_versions_by_function, params, _interceptors,
                 "lambda", "ListVersionsByFunction", self._region,
-                ListVersionsByFunctionResponse,
+                ListVersionsByFunctionOutput,
                 ("function_name", "marker", "max_items", ),
                 ("function_name", ),
             )
@@ -1974,7 +1974,7 @@ class LambdaClient:
         compatible_architectures: Sequence[Architecture] | None = None,
         compatible_runtimes: Sequence[Runtime] | None = None,
         license_info: str | None = None,
-    ) -> PublishLayerVersionResponse:
+    ) -> PublishLayerVersionOutput:
         params: dict[str, object] = {
             "layer_name": layer_name,
             "content": content,
@@ -1992,7 +1992,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.publish_layer_version, params, _interceptors,
                 "lambda", "PublishLayerVersion", self._region,
-                PublishLayerVersionResponse,
+                PublishLayerVersionOutput,
                 ("layer_name", "content", "description", "compatible_architectures", "compatible_runtimes", "license_info", ),
                 ("layer_name", "content", ),
             )
@@ -2040,7 +2040,7 @@ class LambdaClient:
         *,
         code_signing_config_arn: str,
         function_name: str,
-    ) -> PutFunctionCodeSigningConfigResponse:
+    ) -> PutFunctionCodeSigningConfigOutput:
         params: dict[str, object] = {
             "code_signing_config_arn": code_signing_config_arn,
             "function_name": function_name,
@@ -2050,7 +2050,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.put_function_code_signing_config, params, _interceptors,
                 "lambda", "PutFunctionCodeSigningConfig", self._region,
-                PutFunctionCodeSigningConfigResponse,
+                PutFunctionCodeSigningConfigOutput,
                 ("code_signing_config_arn", "function_name", ),
                 ("code_signing_config_arn", "function_name", ),
             )
@@ -2122,7 +2122,7 @@ class LambdaClient:
         *,
         function_name: str,
         recursive_loop: RecursiveLoop,
-    ) -> PutFunctionRecursionConfigResponse:
+    ) -> PutFunctionRecursionConfigOutput:
         params: dict[str, object] = {
             "function_name": function_name,
             "recursive_loop": recursive_loop,
@@ -2132,7 +2132,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.put_function_recursion_config, params, _interceptors,
                 "lambda", "PutFunctionRecursionConfig", self._region,
-                PutFunctionRecursionConfigResponse,
+                PutFunctionRecursionConfigOutput,
                 ("function_name", "recursive_loop", ),
                 ("function_name", "recursive_loop", ),
             )
@@ -2147,7 +2147,7 @@ class LambdaClient:
         function_name: str,
         qualifier: str,
         function_scaling_config: FunctionScalingConfig | None = None,
-    ) -> PutFunctionScalingConfigResponse:
+    ) -> PutFunctionScalingConfigOutput:
         params: dict[str, object] = {
             "function_name": function_name,
             "qualifier": qualifier,
@@ -2159,7 +2159,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.put_function_scaling_config, params, _interceptors,
                 "lambda", "PutFunctionScalingConfig", self._region,
-                PutFunctionScalingConfigResponse,
+                PutFunctionScalingConfigOutput,
                 ("function_name", "qualifier", "function_scaling_config", ),
                 ("function_name", "qualifier", ),
             )
@@ -2174,7 +2174,7 @@ class LambdaClient:
         function_name: str,
         qualifier: str,
         provisioned_concurrent_executions: int,
-    ) -> PutProvisionedConcurrencyConfigResponse:
+    ) -> PutProvisionedConcurrencyConfigOutput:
         params: dict[str, object] = {
             "function_name": function_name,
             "qualifier": qualifier,
@@ -2185,7 +2185,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.put_provisioned_concurrency_config, params, _interceptors,
                 "lambda", "PutProvisionedConcurrencyConfig", self._region,
-                PutProvisionedConcurrencyConfigResponse,
+                PutProvisionedConcurrencyConfigOutput,
                 ("function_name", "qualifier", "provisioned_concurrent_executions", ),
                 ("function_name", "qualifier", "provisioned_concurrent_executions", ),
             )
@@ -2200,7 +2200,7 @@ class LambdaClient:
         resource_arn: str,
         policy: str,
         revision_id: str | None = None,
-    ) -> PutResourcePolicyResponse:
+    ) -> PutResourcePolicyOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "policy": policy,
@@ -2212,7 +2212,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.put_resource_policy, params, _interceptors,
                 "lambda", "PutResourcePolicy", self._region,
-                PutResourcePolicyResponse,
+                PutResourcePolicyOutput,
                 ("resource_arn", "policy", "revision_id", ),
                 ("resource_arn", "policy", ),
             )
@@ -2228,7 +2228,7 @@ class LambdaClient:
         update_runtime_on: UpdateRuntimeOn,
         qualifier: str | None = None,
         runtime_version_arn: str | None = None,
-    ) -> PutRuntimeManagementConfigResponse:
+    ) -> PutRuntimeManagementConfigOutput:
         params: dict[str, object] = {
             "function_name": function_name,
             "update_runtime_on": update_runtime_on,
@@ -2242,7 +2242,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.put_runtime_management_config, params, _interceptors,
                 "lambda", "PutRuntimeManagementConfig", self._region,
-                PutRuntimeManagementConfigResponse,
+                PutRuntimeManagementConfigOutput,
                 ("function_name", "update_runtime_on", "qualifier", "runtime_version_arn", ),
                 ("function_name", "update_runtime_on", ),
             )
@@ -2315,7 +2315,7 @@ class LambdaClient:
         *,
         callback_id: str,
         error: ErrorObject | None = None,
-    ) -> SendDurableExecutionCallbackFailureResponse:
+    ) -> SendDurableExecutionCallbackFailureOutput:
         params: dict[str, object] = {
             "callback_id": callback_id,
         }
@@ -2326,7 +2326,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.send_durable_execution_callback_failure, params, _interceptors,
                 "lambda", "SendDurableExecutionCallbackFailure", self._region,
-                SendDurableExecutionCallbackFailureResponse,
+                SendDurableExecutionCallbackFailureOutput,
                 ("callback_id", "error", ),
                 ("callback_id", ),
             )
@@ -2339,7 +2339,7 @@ class LambdaClient:
         self,
         *,
         callback_id: str,
-    ) -> SendDurableExecutionCallbackHeartbeatResponse:
+    ) -> SendDurableExecutionCallbackHeartbeatOutput:
         params: dict[str, object] = {
             "callback_id": callback_id,
         }
@@ -2348,7 +2348,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.send_durable_execution_callback_heartbeat, params, _interceptors,
                 "lambda", "SendDurableExecutionCallbackHeartbeat", self._region,
-                SendDurableExecutionCallbackHeartbeatResponse,
+                SendDurableExecutionCallbackHeartbeatOutput,
                 ("callback_id", ),
                 ("callback_id", ),
             )
@@ -2362,7 +2362,7 @@ class LambdaClient:
         *,
         callback_id: str,
         result: bytes | None = None,
-    ) -> SendDurableExecutionCallbackSuccessResponse:
+    ) -> SendDurableExecutionCallbackSuccessOutput:
         params: dict[str, object] = {
             "callback_id": callback_id,
         }
@@ -2373,7 +2373,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.send_durable_execution_callback_success, params, _interceptors,
                 "lambda", "SendDurableExecutionCallbackSuccess", self._region,
-                SendDurableExecutionCallbackSuccessResponse,
+                SendDurableExecutionCallbackSuccessOutput,
                 ("callback_id", "result", ),
                 ("callback_id", ),
             )
@@ -2387,7 +2387,7 @@ class LambdaClient:
         *,
         durable_execution_arn: str,
         error: ErrorObject | None = None,
-    ) -> StopDurableExecutionResponse:
+    ) -> StopDurableExecutionOutput:
         params: dict[str, object] = {
             "durable_execution_arn": durable_execution_arn,
         }
@@ -2398,7 +2398,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.stop_durable_execution, params, _interceptors,
                 "lambda", "StopDurableExecution", self._region,
-                StopDurableExecutionResponse,
+                StopDurableExecutionOutput,
                 ("durable_execution_arn", "error", ),
                 ("durable_execution_arn", ),
             )
@@ -2498,7 +2498,7 @@ class LambdaClient:
         capacity_provider_scaling_config: CapacityProviderScalingConfig | None = None,
         propagate_tags: PropagateTags | None = None,
         telemetry_config: CapacityProviderTelemetryConfig | None = None,
-    ) -> UpdateCapacityProviderResponse:
+    ) -> UpdateCapacityProviderOutput:
         params: dict[str, object] = {
             "capacity_provider_name": capacity_provider_name,
         }
@@ -2513,7 +2513,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.update_capacity_provider, params, _interceptors,
                 "lambda", "UpdateCapacityProvider", self._region,
-                UpdateCapacityProviderResponse,
+                UpdateCapacityProviderOutput,
                 ("capacity_provider_name", "capacity_provider_scaling_config", "propagate_tags", "telemetry_config", ),
                 ("capacity_provider_name", ),
             )
@@ -2529,7 +2529,7 @@ class LambdaClient:
         description: str | None = None,
         allowed_publishers: AllowedPublishers | None = None,
         code_signing_policies: CodeSigningPolicies | None = None,
-    ) -> UpdateCodeSigningConfigResponse:
+    ) -> UpdateCodeSigningConfigOutput:
         params: dict[str, object] = {
             "code_signing_config_arn": code_signing_config_arn,
         }
@@ -2544,7 +2544,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.update_code_signing_config, params, _interceptors,
                 "lambda", "UpdateCodeSigningConfig", self._region,
-                UpdateCodeSigningConfigResponse,
+                UpdateCodeSigningConfigOutput,
                 ("code_signing_config_arn", "description", "allowed_publishers", "code_signing_policies", ),
                 ("code_signing_config_arn", ),
             )
@@ -2820,7 +2820,7 @@ class LambdaClient:
         auth_type: FunctionUrlAuthType | None = None,
         cors: Cors | None = None,
         invoke_mode: InvokeMode | None = None,
-    ) -> UpdateFunctionUrlConfigResponse:
+    ) -> UpdateFunctionUrlConfigOutput:
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -2837,7 +2837,7 @@ class LambdaClient:
             _response = await invoke(
                 self._native.update_function_url_config, params, _interceptors,
                 "lambda", "UpdateFunctionUrlConfig", self._region,
-                UpdateFunctionUrlConfigResponse,
+                UpdateFunctionUrlConfigOutput,
                 ("function_name", "qualifier", "auth_type", "cors", "invoke_mode", ),
                 ("function_name", ),
             )

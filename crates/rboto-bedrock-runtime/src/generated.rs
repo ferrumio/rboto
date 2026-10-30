@@ -9091,16 +9091,16 @@ impl PyTokenUsage {
 }
 
 #[pyclass(
-    name = "ApplyGuardrailResponse",
+    name = "ApplyGuardrailOutput",
     module = "rboto_bedrock_runtime._native",
     frozen
 )]
-struct PyApplyGuardrailResponse {
+struct PyOperationApplyGuardrailOutput {
     inner: aws_sdk_bedrockruntime::operation::apply_guardrail::ApplyGuardrailOutput,
 }
 
 #[pymethods]
-impl PyApplyGuardrailResponse {
+impl PyOperationApplyGuardrailOutput {
     #[getter]
     fn usage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.usage {
@@ -9224,16 +9224,16 @@ impl PyApplyGuardrailResponse {
 }
 
 #[pyclass(
-    name = "ConverseResponse",
+    name = "ConverseOutput",
     module = "rboto_bedrock_runtime._native",
     frozen
 )]
-struct PyConverseResponse {
+struct PyOperationConverseOutput {
     inner: aws_sdk_bedrockruntime::operation::converse::ConverseOutput,
 }
 
 #[pymethods]
-impl PyConverseResponse {
+impl PyOperationConverseOutput {
     #[getter]
     fn output(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output {
@@ -9391,16 +9391,16 @@ impl PyConverseResponse {
 }
 
 #[pyclass(
-    name = "CountTokensResponse",
+    name = "CountTokensOutput",
     module = "rboto_bedrock_runtime._native",
     frozen
 )]
-struct PyCountTokensResponse {
+struct PyOperationCountTokensOutput {
     inner: aws_sdk_bedrockruntime::operation::count_tokens::CountTokensOutput,
 }
 
 #[pymethods]
-impl PyCountTokensResponse {
+impl PyOperationCountTokensOutput {
     #[getter]
     fn input_tokens(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1436 = (&self.inner.input_tokens).to_owned().into_py_any(py)?;
@@ -9416,16 +9416,16 @@ impl PyCountTokensResponse {
 }
 
 #[pyclass(
-    name = "GetAsyncInvokeResponse",
+    name = "GetAsyncInvokeOutput",
     module = "rboto_bedrock_runtime._native",
     frozen
 )]
-struct PyGetAsyncInvokeResponse {
+struct PyOperationGetAsyncInvokeOutput {
     inner: aws_sdk_bedrockruntime::operation::get_async_invoke::GetAsyncInvokeOutput,
 }
 
 #[pymethods]
-impl PyGetAsyncInvokeResponse {
+impl PyOperationGetAsyncInvokeOutput {
     #[getter]
     fn invocation_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1438 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
@@ -9545,16 +9545,16 @@ impl PyGetAsyncInvokeResponse {
 }
 
 #[pyclass(
-    name = "InvokeGuardrailChecksResponse",
+    name = "InvokeGuardrailChecksOutput",
     module = "rboto_bedrock_runtime._native",
     frozen
 )]
-struct PyInvokeGuardrailChecksResponse {
+struct PyOperationInvokeGuardrailChecksOutput {
     inner: aws_sdk_bedrockruntime::operation::invoke_guardrail_checks::InvokeGuardrailChecksOutput,
 }
 
 #[pymethods]
-impl PyInvokeGuardrailChecksResponse {
+impl PyOperationInvokeGuardrailChecksOutput {
     #[getter]
     fn results(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.results {
@@ -9606,16 +9606,16 @@ impl PyInvokeGuardrailChecksResponse {
 }
 
 #[pyclass(
-    name = "InvokeModelResponse",
+    name = "InvokeModelOutput",
     module = "rboto_bedrock_runtime._native",
     frozen
 )]
-struct PyInvokeModelResponse {
+struct PyOperationInvokeModelOutput {
     inner: aws_sdk_bedrockruntime::operation::invoke_model::InvokeModelOutput,
 }
 
 #[pymethods]
-impl PyInvokeModelResponse {
+impl PyOperationInvokeModelOutput {
     #[getter]
     fn body(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1460 = PyBytes::new(py, (&self.inner.body).as_ref())
@@ -9675,16 +9675,16 @@ impl PyInvokeModelResponse {
 }
 
 #[pyclass(
-    name = "ListAsyncInvokesResponse",
+    name = "ListAsyncInvokesOutput",
     module = "rboto_bedrock_runtime._native",
     frozen
 )]
-struct PyListAsyncInvokesResponse {
+struct PyOperationListAsyncInvokesOutput {
     inner: aws_sdk_bedrockruntime::operation::list_async_invokes::ListAsyncInvokesOutput,
 }
 
 #[pymethods]
-impl PyListAsyncInvokesResponse {
+impl PyOperationListAsyncInvokesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -9740,16 +9740,16 @@ impl PyListAsyncInvokesResponse {
 }
 
 #[pyclass(
-    name = "StartAsyncInvokeResponse",
+    name = "StartAsyncInvokeOutput",
     module = "rboto_bedrock_runtime._native",
     frozen
 )]
-struct PyStartAsyncInvokeResponse {
+struct PyOperationStartAsyncInvokeOutput {
     inner: aws_sdk_bedrockruntime::operation::start_async_invoke::StartAsyncInvokeOutput,
 }
 
 #[pymethods]
-impl PyStartAsyncInvokeResponse {
+impl PyOperationStartAsyncInvokeOutput {
     #[getter]
     fn invocation_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1476 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
@@ -10020,14 +10020,14 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyPromptRouterTrace>()?;
     module.add_class::<PyServiceTier>()?;
     module.add_class::<PyTokenUsage>()?;
-    module.add_class::<PyApplyGuardrailResponse>()?;
-    module.add_class::<PyConverseResponse>()?;
-    module.add_class::<PyCountTokensResponse>()?;
-    module.add_class::<PyGetAsyncInvokeResponse>()?;
-    module.add_class::<PyInvokeGuardrailChecksResponse>()?;
-    module.add_class::<PyInvokeModelResponse>()?;
-    module.add_class::<PyListAsyncInvokesResponse>()?;
-    module.add_class::<PyStartAsyncInvokeResponse>()?;
+    module.add_class::<PyOperationApplyGuardrailOutput>()?;
+    module.add_class::<PyOperationConverseOutput>()?;
+    module.add_class::<PyOperationCountTokensOutput>()?;
+    module.add_class::<PyOperationGetAsyncInvokeOutput>()?;
+    module.add_class::<PyOperationInvokeGuardrailChecksOutput>()?;
+    module.add_class::<PyOperationInvokeModelOutput>()?;
+    module.add_class::<PyOperationListAsyncInvokesOutput>()?;
+    module.add_class::<PyOperationStartAsyncInvokeOutput>()?;
 
     module.add_class::<PyConverseStreamOutputReceiver>()?;
     module.add_class::<PyInvokeModelWithBidirectionalStreamOutputReceiver>()?;
@@ -10138,7 +10138,7 @@ impl BedrockRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ApplyGuardrail"))
             })?;
-            Ok(PyApplyGuardrailResponse { inner: output })
+            Ok(PyOperationApplyGuardrailOutput { inner: output })
         })
     }
 
@@ -10294,7 +10294,7 @@ impl BedrockRuntimeClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Converse")))?;
-            Ok(PyConverseResponse { inner: output })
+            Ok(PyOperationConverseOutput { inner: output })
         })
     }
 
@@ -10503,7 +10503,7 @@ impl BedrockRuntimeClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CountTokens")))?;
-            Ok(PyCountTokensResponse { inner: output })
+            Ok(PyOperationCountTokensOutput { inner: output })
         })
     }
 
@@ -10541,7 +10541,7 @@ impl BedrockRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAsyncInvoke"))
             })?;
-            Ok(PyGetAsyncInvokeResponse { inner: output })
+            Ok(PyOperationGetAsyncInvokeOutput { inner: output })
         })
     }
 
@@ -10592,7 +10592,7 @@ impl BedrockRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "InvokeGuardrailChecks"))
             })?;
-            Ok(PyInvokeGuardrailChecksResponse { inner: output })
+            Ok(PyOperationInvokeGuardrailChecksOutput { inner: output })
         })
     }
 
@@ -10703,7 +10703,7 @@ impl BedrockRuntimeClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "InvokeModel")))?;
-            Ok(PyInvokeModelResponse { inner: output })
+            Ok(PyOperationInvokeModelOutput { inner: output })
         })
     }
 
@@ -10997,7 +10997,7 @@ impl BedrockRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAsyncInvokes"))
             })?;
-            Ok(PyListAsyncInvokesResponse { inner: output })
+            Ok(PyOperationListAsyncInvokesOutput { inner: output })
         })
     }
 
@@ -11071,7 +11071,7 @@ impl BedrockRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartAsyncInvoke"))
             })?;
-            Ok(PyStartAsyncInvokeResponse { inner: output })
+            Ok(PyOperationStartAsyncInvokeOutput { inner: output })
         })
     }
 }

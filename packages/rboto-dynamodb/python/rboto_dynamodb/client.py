@@ -9,7 +9,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto.logging import operation_interceptors
 
-from ._native import DynamoDBClient as NativeClient, BatchExecuteStatementOutput, BatchGetItemOutput, BatchWriteItemOutput, CreateBackupOutput, CreateGlobalTableOutput, CreateTableOutput, DeleteBackupOutput, DeleteItemOutput, DeleteResourcePolicyOutput, DeleteTableOutput, DescribeBackupOutput, DescribeContinuousBackupsOutput, DescribeContributorInsightsOutput, DescribeEndpointsResponse, DescribeExportOutput, DescribeGlobalTableOutput, DescribeGlobalTableSettingsOutput, DescribeImportOutput, DescribeKinesisStreamingDestinationOutput, DescribeLimitsOutput, DescribeTableOutput, DescribeTableReplicaAutoScalingOutput, DescribeTimeToLiveOutput, DisableKinesisStreamingDestinationOutput, EnableKinesisStreamingDestinationOutput, ExecuteStatementOutput, ExecuteTransactionOutput, ExportTableToPointInTimeOutput, GetItemOutput, GetResourcePolicyOutput, ImportTableOutput, ListBackupsOutput, ListContributorInsightsOutput, ListExportsOutput, ListGlobalTablesOutput, ListImportsOutput, ListTablesOutput, ListTagsOfResourceOutput, PutItemOutput, PutResourcePolicyOutput, QueryOutput, RestoreTableFromBackupOutput, RestoreTableToPointInTimeOutput, ScanOutput, SearchVectorsOutput, TransactGetItemsOutput, TransactWriteItemsOutput, UpdateContinuousBackupsOutput, UpdateContributorInsightsOutput, UpdateGlobalTableOutput, UpdateGlobalTableSettingsOutput, UpdateItemOutput, UpdateKinesisStreamingDestinationOutput, UpdateTableOutput, UpdateTableReplicaAutoScalingOutput, UpdateTimeToLiveOutput
+from ._native import DynamoDBClient as NativeClient, BatchExecuteStatementOutput, BatchGetItemOutput, BatchWriteItemOutput, CreateBackupOutput, CreateGlobalTableOutput, CreateTableOutput, DeleteBackupOutput, DeleteItemOutput, DeleteResourcePolicyOutput, DeleteTableOutput, DescribeBackupOutput, DescribeContinuousBackupsOutput, DescribeContributorInsightsOutput, DescribeEndpointsOutput, DescribeExportOutput, DescribeGlobalTableOutput, DescribeGlobalTableSettingsOutput, DescribeImportOutput, DescribeKinesisStreamingDestinationOutput, DescribeLimitsOutput, DescribeTableOutput, DescribeTableReplicaAutoScalingOutput, DescribeTimeToLiveOutput, DisableKinesisStreamingDestinationOutput, EnableKinesisStreamingDestinationOutput, ExecuteStatementOutput, ExecuteTransactionOutput, ExportTableToPointInTimeOutput, GetItemOutput, GetResourcePolicyOutput, ImportTableOutput, ListBackupsOutput, ListContributorInsightsOutput, ListExportsOutput, ListGlobalTablesOutput, ListImportsOutput, ListTablesOutput, ListTagsOfResourceOutput, PutItemOutput, PutResourcePolicyOutput, QueryOutput, RestoreTableFromBackupOutput, RestoreTableToPointInTimeOutput, ScanOutput, SearchVectorsOutput, TransactGetItemsOutput, TransactWriteItemsOutput, UpdateContinuousBackupsOutput, UpdateContributorInsightsOutput, UpdateGlobalTableOutput, UpdateGlobalTableSettingsOutput, UpdateItemOutput, UpdateKinesisStreamingDestinationOutput, UpdateTableOutput, UpdateTableReplicaAutoScalingOutput, UpdateTimeToLiveOutput
 from .types import (
     AttributeDefinition,
     AttributeValue,
@@ -501,7 +501,7 @@ class DynamoDBClient:
 
     async def describe_endpoints(
         self,
-    ) -> DescribeEndpointsResponse:
+    ) -> DescribeEndpointsOutput:
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("dynamodb", self._interceptors)
@@ -509,7 +509,7 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.describe_endpoints, params, _interceptors,
                 "dynamodb", "DescribeEndpoints", self._region,
-                DescribeEndpointsResponse,
+                DescribeEndpointsOutput,
                 (),
                 (),
             )

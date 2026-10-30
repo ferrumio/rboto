@@ -9,7 +9,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto.logging import operation_interceptors
 
-from ._native import GuardDutyClient as NativeClient, AcceptAdministratorInvitationResponse, AcceptInvitationResponse, ArchiveFindingsResponse, CreateCustomDetectionRuleAssociationResponse, CreateCustomDetectionRuleOrgConfigurationResponse, CreateDetectorResponse, CreateFilterResponse, CreateIPSetResponse, CreateInvestigationResponse, CreateMalwareProtectionPlanResponse, CreateMembersResponse, CreatePublishingDestinationResponse, CreateSampleFindingsResponse, CreateThreatEntitySetResponse, CreateThreatIntelSetResponse, CreateTrustedEntitySetResponse, DeclineInvitationsResponse, DeleteCustomDetectionRuleAssociationResponse, DeleteCustomDetectionRuleOrgConfigurationResponse, DeleteDetectorResponse, DeleteFilterResponse, DeleteIPSetResponse, DeleteInvitationsResponse, DeleteMembersResponse, DeletePublishingDestinationResponse, DeleteThreatEntitySetResponse, DeleteThreatIntelSetResponse, DeleteTrustedEntitySetResponse, DescribeMalwareScansResponse, DescribeOrganizationConfigurationResponse, DescribePublishingDestinationResponse, DisableOrganizationAdminAccountResponse, DisassociateFromAdministratorAccountResponse, DisassociateFromMasterAccountResponse, DisassociateMembersResponse, EnableOrganizationAdminAccountResponse, GetAdministratorAccountResponse, GetCoverageStatisticsResponse, GetCustomDetectionRuleAssociationResponse, GetCustomDetectionRuleOrgConfigurationResponse, GetCustomDetectionRuleResponse, GetDetectorResponse, GetFilterResponse, GetFindingsResponse, GetFindingsStatisticsResponse, GetIPSetResponse, GetInvestigationResponse, GetInvitationsCountResponse, GetMalwareProtectionPlanResponse, GetMalwareScanResponse, GetMalwareScanSettingsResponse, GetMasterAccountResponse, GetMemberDetectorsResponse, GetMembersResponse, GetOrganizationStatisticsResponse, GetRemainingFreeTrialDaysResponse, GetThreatEntitySetResponse, GetThreatIntelSetResponse, GetTrustedEntitySetResponse, GetUsageStatisticsResponse, InviteMembersResponse, ListCoverageResponse, ListCustomDetectionRuleAssociationsResponse, ListCustomDetectionRuleOrgConfigurationsResponse, ListCustomDetectionRulesResponse, ListDetectorsResponse, ListFiltersResponse, ListFindingsResponse, ListIPSetsResponse, ListInvestigationsResponse, ListInvitationsResponse, ListMalwareProtectionPlansResponse, ListMalwareScansResponse, ListMembersResponse, ListOrganizationAdminAccountsResponse, ListPublishingDestinationsResponse, ListTagsForResourceResponse, ListThreatEntitySetsResponse, ListThreatIntelSetsResponse, ListTrustedEntitySetsResponse, SendObjectMalwareScanResponse, StartMalwareScanResponse, StartMonitoringMembersResponse, StopMonitoringMembersResponse, TagResourceResponse, UnarchiveFindingsResponse, UntagResourceResponse, UpdateCustomDetectionRuleAssociationResponse, UpdateCustomDetectionRuleOrgConfigurationResponse, UpdateDetectorResponse, UpdateFilterResponse, UpdateFindingsFeedbackResponse, UpdateIPSetResponse, UpdateMalwareScanSettingsResponse, UpdateMemberDetectorsResponse, UpdateOrganizationConfigurationResponse, UpdatePublishingDestinationResponse, UpdateThreatEntitySetResponse, UpdateThreatIntelSetResponse, UpdateTrustedEntitySetResponse
+from ._native import GuardDutyClient as NativeClient, AcceptAdministratorInvitationOutput, AcceptInvitationOutput, ArchiveFindingsOutput, CreateCustomDetectionRuleAssociationOutput, CreateCustomDetectionRuleOrgConfigurationOutput, CreateDetectorOutput, CreateFilterOutput, CreateIPSetOutput, CreateInvestigationOutput, CreateMalwareProtectionPlanOutput, CreateMembersOutput, CreatePublishingDestinationOutput, CreateSampleFindingsOutput, CreateThreatEntitySetOutput, CreateThreatIntelSetOutput, CreateTrustedEntitySetOutput, DeclineInvitationsOutput, DeleteCustomDetectionRuleAssociationOutput, DeleteCustomDetectionRuleOrgConfigurationOutput, DeleteDetectorOutput, DeleteFilterOutput, DeleteIPSetOutput, DeleteInvitationsOutput, DeleteMembersOutput, DeletePublishingDestinationOutput, DeleteThreatEntitySetOutput, DeleteThreatIntelSetOutput, DeleteTrustedEntitySetOutput, DescribeMalwareScansOutput, DescribeOrganizationConfigurationOutput, DescribePublishingDestinationOutput, DisableOrganizationAdminAccountOutput, DisassociateFromAdministratorAccountOutput, DisassociateFromMasterAccountOutput, DisassociateMembersOutput, EnableOrganizationAdminAccountOutput, GetAdministratorAccountOutput, GetCoverageStatisticsOutput, GetCustomDetectionRuleAssociationOutput, GetCustomDetectionRuleOrgConfigurationOutput, GetCustomDetectionRuleOutput, GetDetectorOutput, GetFilterOutput, GetFindingsOutput, GetFindingsStatisticsOutput, GetIPSetOutput, GetInvestigationOutput, GetInvitationsCountOutput, GetMalwareProtectionPlanOutput, GetMalwareScanOutput, GetMalwareScanSettingsOutput, GetMasterAccountOutput, GetMemberDetectorsOutput, GetMembersOutput, GetOrganizationStatisticsOutput, GetRemainingFreeTrialDaysOutput, GetThreatEntitySetOutput, GetThreatIntelSetOutput, GetTrustedEntitySetOutput, GetUsageStatisticsOutput, InviteMembersOutput, ListCoverageOutput, ListCustomDetectionRuleAssociationsOutput, ListCustomDetectionRuleOrgConfigurationsOutput, ListCustomDetectionRulesOutput, ListDetectorsOutput, ListFiltersOutput, ListFindingsOutput, ListIPSetsOutput, ListInvestigationsOutput, ListInvitationsOutput, ListMalwareProtectionPlansOutput, ListMalwareScansOutput, ListMembersOutput, ListOrganizationAdminAccountsOutput, ListPublishingDestinationsOutput, ListTagsForResourceOutput, ListThreatEntitySetsOutput, ListThreatIntelSetsOutput, ListTrustedEntitySetsOutput, SendObjectMalwareScanOutput, StartMalwareScanOutput, StartMonitoringMembersOutput, StopMonitoringMembersOutput, TagResourceOutput, UnarchiveFindingsOutput, UntagResourceOutput, UpdateCustomDetectionRuleAssociationOutput, UpdateCustomDetectionRuleOrgConfigurationOutput, UpdateDetectorOutput, UpdateFilterOutput, UpdateFindingsFeedbackOutput, UpdateIPSetOutput, UpdateMalwareScanSettingsOutput, UpdateMemberDetectorsOutput, UpdateOrganizationConfigurationOutput, UpdatePublishingDestinationOutput, UpdateThreatEntitySetOutput, UpdateThreatIntelSetOutput, UpdateTrustedEntitySetOutput
 from .types import (
     AccountDetail,
     AssociationMode,
@@ -97,7 +97,7 @@ class GuardDutyClient:
         detector_id: str,
         administrator_id: str,
         invitation_id: str,
-    ) -> AcceptAdministratorInvitationResponse:
+    ) -> AcceptAdministratorInvitationOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "administrator_id": administrator_id,
@@ -108,7 +108,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.accept_administrator_invitation, params, _interceptors,
                 "guardduty", "AcceptAdministratorInvitation", self._region,
-                AcceptAdministratorInvitationResponse,
+                AcceptAdministratorInvitationOutput,
                 ("detector_id", "administrator_id", "invitation_id", ),
                 ("detector_id", "administrator_id", "invitation_id", ),
             )
@@ -123,7 +123,7 @@ class GuardDutyClient:
         detector_id: str,
         master_id: str,
         invitation_id: str,
-    ) -> AcceptInvitationResponse:
+    ) -> AcceptInvitationOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "master_id": master_id,
@@ -134,7 +134,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.accept_invitation, params, _interceptors,
                 "guardduty", "AcceptInvitation", self._region,
-                AcceptInvitationResponse,
+                AcceptInvitationOutput,
                 ("detector_id", "master_id", "invitation_id", ),
                 ("detector_id", "master_id", "invitation_id", ),
             )
@@ -148,7 +148,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
         finding_ids: _Sequence[str],
-    ) -> ArchiveFindingsResponse:
+    ) -> ArchiveFindingsOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "finding_ids": finding_ids,
@@ -158,7 +158,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.archive_findings, params, _interceptors,
                 "guardduty", "ArchiveFindings", self._region,
-                ArchiveFindingsResponse,
+                ArchiveFindingsOutput,
                 ("detector_id", "finding_ids", ),
                 ("detector_id", "finding_ids", ),
             )
@@ -174,7 +174,7 @@ class GuardDutyClient:
         mode: AssociationMode,
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
-    ) -> CreateCustomDetectionRuleAssociationResponse:
+    ) -> CreateCustomDetectionRuleAssociationOutput:
         params: dict[str, object] = {
             "rule_id": rule_id,
             "mode": mode,
@@ -188,7 +188,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_custom_detection_rule_association, params, _interceptors,
                 "guardduty", "CreateCustomDetectionRuleAssociation", self._region,
-                CreateCustomDetectionRuleAssociationResponse,
+                CreateCustomDetectionRuleAssociationOutput,
                 ("rule_id", "mode", "client_token", "tags", ),
                 ("rule_id", "mode", ),
             )
@@ -205,7 +205,7 @@ class GuardDutyClient:
         include_account_ids: _Sequence[str] | None = None,
         exclude_account_ids: _Sequence[str] | None = None,
         client_token: str | None = None,
-    ) -> CreateCustomDetectionRuleOrgConfigurationResponse:
+    ) -> CreateCustomDetectionRuleOrgConfigurationOutput:
         params: dict[str, object] = {
             "rule_id": rule_id,
             "mode": mode,
@@ -221,7 +221,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_custom_detection_rule_org_configuration, params, _interceptors,
                 "guardduty", "CreateCustomDetectionRuleOrgConfiguration", self._region,
-                CreateCustomDetectionRuleOrgConfigurationResponse,
+                CreateCustomDetectionRuleOrgConfigurationOutput,
                 ("rule_id", "mode", "include_account_ids", "exclude_account_ids", "client_token", ),
                 ("rule_id", "mode", ),
             )
@@ -239,7 +239,7 @@ class GuardDutyClient:
         data_sources: DataSourceConfigurations | None = None,
         tags: dict[str, str] | None = None,
         features: _Sequence[DetectorFeatureConfiguration] | None = None,
-    ) -> CreateDetectorResponse:
+    ) -> CreateDetectorOutput:
         params: dict[str, object] = {
             "enable": enable,
         }
@@ -258,7 +258,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_detector, params, _interceptors,
                 "guardduty", "CreateDetector", self._region,
-                CreateDetectorResponse,
+                CreateDetectorOutput,
                 ("enable", "client_token", "finding_publishing_frequency", "data_sources", "tags", "features", ),
                 ("enable", ),
             )
@@ -278,7 +278,7 @@ class GuardDutyClient:
         rank: int | None = None,
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
-    ) -> CreateFilterResponse:
+    ) -> CreateFilterOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "name": name,
@@ -299,7 +299,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_filter, params, _interceptors,
                 "guardduty", "CreateFilter", self._region,
-                CreateFilterResponse,
+                CreateFilterOutput,
                 ("detector_id", "name", "finding_criteria", "description", "action", "rank", "client_token", "tags", ),
                 ("detector_id", "name", "finding_criteria", ),
             )
@@ -319,7 +319,7 @@ class GuardDutyClient:
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
         expected_bucket_owner: str | None = None,
-    ) -> CreateIPSetResponse:
+    ) -> CreateIPSetOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "name": name,
@@ -338,7 +338,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_ip_set, params, _interceptors,
                 "guardduty", "CreateIPSet", self._region,
-                CreateIPSetResponse,
+                CreateIPSetOutput,
                 ("detector_id", "name", "format", "location", "activate", "client_token", "tags", "expected_bucket_owner", ),
                 ("detector_id", "name", "format", "location", "activate", ),
             )
@@ -353,7 +353,7 @@ class GuardDutyClient:
         detector_id: str,
         trigger_prompt: str,
         client_token: str | None = None,
-    ) -> CreateInvestigationResponse:
+    ) -> CreateInvestigationOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "trigger_prompt": trigger_prompt,
@@ -365,7 +365,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_investigation, params, _interceptors,
                 "guardduty", "CreateInvestigation", self._region,
-                CreateInvestigationResponse,
+                CreateInvestigationOutput,
                 ("detector_id", "trigger_prompt", "client_token", ),
                 ("detector_id", "trigger_prompt", ),
             )
@@ -382,7 +382,7 @@ class GuardDutyClient:
         client_token: str | None = None,
         actions: MalwareProtectionPlanActions | None = None,
         tags: dict[str, str] | None = None,
-    ) -> CreateMalwareProtectionPlanResponse:
+    ) -> CreateMalwareProtectionPlanOutput:
         params: dict[str, object] = {
             "role": role,
             "protected_resource": protected_resource,
@@ -398,7 +398,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_malware_protection_plan, params, _interceptors,
                 "guardduty", "CreateMalwareProtectionPlan", self._region,
-                CreateMalwareProtectionPlanResponse,
+                CreateMalwareProtectionPlanOutput,
                 ("role", "protected_resource", "client_token", "actions", "tags", ),
                 ("role", "protected_resource", ),
             )
@@ -412,7 +412,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
         account_details: _Sequence[AccountDetail],
-    ) -> CreateMembersResponse:
+    ) -> CreateMembersOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "account_details": account_details,
@@ -422,7 +422,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_members, params, _interceptors,
                 "guardduty", "CreateMembers", self._region,
-                CreateMembersResponse,
+                CreateMembersOutput,
                 ("detector_id", "account_details", ),
                 ("detector_id", "account_details", ),
             )
@@ -439,7 +439,7 @@ class GuardDutyClient:
         destination_properties: DestinationProperties,
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
-    ) -> CreatePublishingDestinationResponse:
+    ) -> CreatePublishingDestinationOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "destination_type": destination_type,
@@ -454,7 +454,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_publishing_destination, params, _interceptors,
                 "guardduty", "CreatePublishingDestination", self._region,
-                CreatePublishingDestinationResponse,
+                CreatePublishingDestinationOutput,
                 ("detector_id", "destination_type", "destination_properties", "client_token", "tags", ),
                 ("detector_id", "destination_type", "destination_properties", ),
             )
@@ -468,7 +468,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
         finding_types: _Sequence[str] | None = None,
-    ) -> CreateSampleFindingsResponse:
+    ) -> CreateSampleFindingsOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -479,7 +479,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_sample_findings, params, _interceptors,
                 "guardduty", "CreateSampleFindings", self._region,
-                CreateSampleFindingsResponse,
+                CreateSampleFindingsOutput,
                 ("detector_id", "finding_types", ),
                 ("detector_id", ),
             )
@@ -499,7 +499,7 @@ class GuardDutyClient:
         expected_bucket_owner: str | None = None,
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
-    ) -> CreateThreatEntitySetResponse:
+    ) -> CreateThreatEntitySetOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "name": name,
@@ -518,7 +518,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_threat_entity_set, params, _interceptors,
                 "guardduty", "CreateThreatEntitySet", self._region,
-                CreateThreatEntitySetResponse,
+                CreateThreatEntitySetOutput,
                 ("detector_id", "name", "format", "location", "activate", "expected_bucket_owner", "client_token", "tags", ),
                 ("detector_id", "name", "format", "location", "activate", ),
             )
@@ -538,7 +538,7 @@ class GuardDutyClient:
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
         expected_bucket_owner: str | None = None,
-    ) -> CreateThreatIntelSetResponse:
+    ) -> CreateThreatIntelSetOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "name": name,
@@ -557,7 +557,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_threat_intel_set, params, _interceptors,
                 "guardduty", "CreateThreatIntelSet", self._region,
-                CreateThreatIntelSetResponse,
+                CreateThreatIntelSetOutput,
                 ("detector_id", "name", "format", "location", "activate", "client_token", "tags", "expected_bucket_owner", ),
                 ("detector_id", "name", "format", "location", "activate", ),
             )
@@ -577,7 +577,7 @@ class GuardDutyClient:
         expected_bucket_owner: str | None = None,
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
-    ) -> CreateTrustedEntitySetResponse:
+    ) -> CreateTrustedEntitySetOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "name": name,
@@ -596,7 +596,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_trusted_entity_set, params, _interceptors,
                 "guardduty", "CreateTrustedEntitySet", self._region,
-                CreateTrustedEntitySetResponse,
+                CreateTrustedEntitySetOutput,
                 ("detector_id", "name", "format", "location", "activate", "expected_bucket_owner", "client_token", "tags", ),
                 ("detector_id", "name", "format", "location", "activate", ),
             )
@@ -609,7 +609,7 @@ class GuardDutyClient:
         self,
         *,
         account_ids: _Sequence[str],
-    ) -> DeclineInvitationsResponse:
+    ) -> DeclineInvitationsOutput:
         params: dict[str, object] = {
             "account_ids": account_ids,
         }
@@ -618,7 +618,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.decline_invitations, params, _interceptors,
                 "guardduty", "DeclineInvitations", self._region,
-                DeclineInvitationsResponse,
+                DeclineInvitationsOutput,
                 ("account_ids", ),
                 ("account_ids", ),
             )
@@ -632,7 +632,7 @@ class GuardDutyClient:
         *,
         rule_id: str,
         association_id: str,
-    ) -> DeleteCustomDetectionRuleAssociationResponse:
+    ) -> DeleteCustomDetectionRuleAssociationOutput:
         params: dict[str, object] = {
             "rule_id": rule_id,
             "association_id": association_id,
@@ -642,7 +642,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.delete_custom_detection_rule_association, params, _interceptors,
                 "guardduty", "DeleteCustomDetectionRuleAssociation", self._region,
-                DeleteCustomDetectionRuleAssociationResponse,
+                DeleteCustomDetectionRuleAssociationOutput,
                 ("rule_id", "association_id", ),
                 ("rule_id", "association_id", ),
             )
@@ -656,7 +656,7 @@ class GuardDutyClient:
         *,
         rule_id: str,
         mode: AssociationMode,
-    ) -> DeleteCustomDetectionRuleOrgConfigurationResponse:
+    ) -> DeleteCustomDetectionRuleOrgConfigurationOutput:
         params: dict[str, object] = {
             "rule_id": rule_id,
             "mode": mode,
@@ -666,7 +666,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.delete_custom_detection_rule_org_configuration, params, _interceptors,
                 "guardduty", "DeleteCustomDetectionRuleOrgConfiguration", self._region,
-                DeleteCustomDetectionRuleOrgConfigurationResponse,
+                DeleteCustomDetectionRuleOrgConfigurationOutput,
                 ("rule_id", "mode", ),
                 ("rule_id", "mode", ),
             )
@@ -679,7 +679,7 @@ class GuardDutyClient:
         self,
         *,
         detector_id: str,
-    ) -> DeleteDetectorResponse:
+    ) -> DeleteDetectorOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -688,7 +688,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.delete_detector, params, _interceptors,
                 "guardduty", "DeleteDetector", self._region,
-                DeleteDetectorResponse,
+                DeleteDetectorOutput,
                 ("detector_id", ),
                 ("detector_id", ),
             )
@@ -702,7 +702,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
         filter_name: str,
-    ) -> DeleteFilterResponse:
+    ) -> DeleteFilterOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "filter_name": filter_name,
@@ -712,7 +712,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.delete_filter, params, _interceptors,
                 "guardduty", "DeleteFilter", self._region,
-                DeleteFilterResponse,
+                DeleteFilterOutput,
                 ("detector_id", "filter_name", ),
                 ("detector_id", "filter_name", ),
             )
@@ -726,7 +726,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
         ip_set_id: str,
-    ) -> DeleteIPSetResponse:
+    ) -> DeleteIPSetOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "ip_set_id": ip_set_id,
@@ -736,7 +736,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.delete_ip_set, params, _interceptors,
                 "guardduty", "DeleteIPSet", self._region,
-                DeleteIPSetResponse,
+                DeleteIPSetOutput,
                 ("detector_id", "ip_set_id", ),
                 ("detector_id", "ip_set_id", ),
             )
@@ -749,7 +749,7 @@ class GuardDutyClient:
         self,
         *,
         account_ids: _Sequence[str],
-    ) -> DeleteInvitationsResponse:
+    ) -> DeleteInvitationsOutput:
         params: dict[str, object] = {
             "account_ids": account_ids,
         }
@@ -758,7 +758,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.delete_invitations, params, _interceptors,
                 "guardduty", "DeleteInvitations", self._region,
-                DeleteInvitationsResponse,
+                DeleteInvitationsOutput,
                 ("account_ids", ),
                 ("account_ids", ),
             )
@@ -794,7 +794,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
         account_ids: _Sequence[str],
-    ) -> DeleteMembersResponse:
+    ) -> DeleteMembersOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "account_ids": account_ids,
@@ -804,7 +804,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.delete_members, params, _interceptors,
                 "guardduty", "DeleteMembers", self._region,
-                DeleteMembersResponse,
+                DeleteMembersOutput,
                 ("detector_id", "account_ids", ),
                 ("detector_id", "account_ids", ),
             )
@@ -818,7 +818,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
         destination_id: str,
-    ) -> DeletePublishingDestinationResponse:
+    ) -> DeletePublishingDestinationOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "destination_id": destination_id,
@@ -828,7 +828,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.delete_publishing_destination, params, _interceptors,
                 "guardduty", "DeletePublishingDestination", self._region,
-                DeletePublishingDestinationResponse,
+                DeletePublishingDestinationOutput,
                 ("detector_id", "destination_id", ),
                 ("detector_id", "destination_id", ),
             )
@@ -842,7 +842,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
         threat_entity_set_id: str,
-    ) -> DeleteThreatEntitySetResponse:
+    ) -> DeleteThreatEntitySetOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "threat_entity_set_id": threat_entity_set_id,
@@ -852,7 +852,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.delete_threat_entity_set, params, _interceptors,
                 "guardduty", "DeleteThreatEntitySet", self._region,
-                DeleteThreatEntitySetResponse,
+                DeleteThreatEntitySetOutput,
                 ("detector_id", "threat_entity_set_id", ),
                 ("detector_id", "threat_entity_set_id", ),
             )
@@ -866,7 +866,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
         threat_intel_set_id: str,
-    ) -> DeleteThreatIntelSetResponse:
+    ) -> DeleteThreatIntelSetOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "threat_intel_set_id": threat_intel_set_id,
@@ -876,7 +876,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.delete_threat_intel_set, params, _interceptors,
                 "guardduty", "DeleteThreatIntelSet", self._region,
-                DeleteThreatIntelSetResponse,
+                DeleteThreatIntelSetOutput,
                 ("detector_id", "threat_intel_set_id", ),
                 ("detector_id", "threat_intel_set_id", ),
             )
@@ -890,7 +890,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
         trusted_entity_set_id: str,
-    ) -> DeleteTrustedEntitySetResponse:
+    ) -> DeleteTrustedEntitySetOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "trusted_entity_set_id": trusted_entity_set_id,
@@ -900,7 +900,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.delete_trusted_entity_set, params, _interceptors,
                 "guardduty", "DeleteTrustedEntitySet", self._region,
-                DeleteTrustedEntitySetResponse,
+                DeleteTrustedEntitySetOutput,
                 ("detector_id", "trusted_entity_set_id", ),
                 ("detector_id", "trusted_entity_set_id", ),
             )
@@ -917,7 +917,7 @@ class GuardDutyClient:
         max_results: int | None = None,
         filter_criteria: FilterCriteria | None = None,
         sort_criteria: SortCriteria | None = None,
-    ) -> DescribeMalwareScansResponse:
+    ) -> DescribeMalwareScansOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -934,7 +934,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.describe_malware_scans, params, _interceptors,
                 "guardduty", "DescribeMalwareScans", self._region,
-                DescribeMalwareScansResponse,
+                DescribeMalwareScansOutput,
                 ("detector_id", "next_token", "max_results", "filter_criteria", "sort_criteria", ),
                 ("detector_id", ),
             )
@@ -949,7 +949,7 @@ class GuardDutyClient:
         detector_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> DescribeOrganizationConfigurationResponse:
+    ) -> DescribeOrganizationConfigurationOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -962,7 +962,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.describe_organization_configuration, params, _interceptors,
                 "guardduty", "DescribeOrganizationConfiguration", self._region,
-                DescribeOrganizationConfigurationResponse,
+                DescribeOrganizationConfigurationOutput,
                 ("detector_id", "max_results", "next_token", ),
                 ("detector_id", ),
             )
@@ -976,7 +976,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
         destination_id: str,
-    ) -> DescribePublishingDestinationResponse:
+    ) -> DescribePublishingDestinationOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "destination_id": destination_id,
@@ -986,7 +986,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.describe_publishing_destination, params, _interceptors,
                 "guardduty", "DescribePublishingDestination", self._region,
-                DescribePublishingDestinationResponse,
+                DescribePublishingDestinationOutput,
                 ("detector_id", "destination_id", ),
                 ("detector_id", "destination_id", ),
             )
@@ -999,7 +999,7 @@ class GuardDutyClient:
         self,
         *,
         admin_account_id: str,
-    ) -> DisableOrganizationAdminAccountResponse:
+    ) -> DisableOrganizationAdminAccountOutput:
         params: dict[str, object] = {
             "admin_account_id": admin_account_id,
         }
@@ -1008,7 +1008,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.disable_organization_admin_account, params, _interceptors,
                 "guardduty", "DisableOrganizationAdminAccount", self._region,
-                DisableOrganizationAdminAccountResponse,
+                DisableOrganizationAdminAccountOutput,
                 ("admin_account_id", ),
                 ("admin_account_id", ),
             )
@@ -1021,7 +1021,7 @@ class GuardDutyClient:
         self,
         *,
         detector_id: str,
-    ) -> DisassociateFromAdministratorAccountResponse:
+    ) -> DisassociateFromAdministratorAccountOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -1030,7 +1030,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.disassociate_from_administrator_account, params, _interceptors,
                 "guardduty", "DisassociateFromAdministratorAccount", self._region,
-                DisassociateFromAdministratorAccountResponse,
+                DisassociateFromAdministratorAccountOutput,
                 ("detector_id", ),
                 ("detector_id", ),
             )
@@ -1043,7 +1043,7 @@ class GuardDutyClient:
         self,
         *,
         detector_id: str,
-    ) -> DisassociateFromMasterAccountResponse:
+    ) -> DisassociateFromMasterAccountOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -1052,7 +1052,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.disassociate_from_master_account, params, _interceptors,
                 "guardduty", "DisassociateFromMasterAccount", self._region,
-                DisassociateFromMasterAccountResponse,
+                DisassociateFromMasterAccountOutput,
                 ("detector_id", ),
                 ("detector_id", ),
             )
@@ -1066,7 +1066,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
         account_ids: _Sequence[str],
-    ) -> DisassociateMembersResponse:
+    ) -> DisassociateMembersOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "account_ids": account_ids,
@@ -1076,7 +1076,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.disassociate_members, params, _interceptors,
                 "guardduty", "DisassociateMembers", self._region,
-                DisassociateMembersResponse,
+                DisassociateMembersOutput,
                 ("detector_id", "account_ids", ),
                 ("detector_id", "account_ids", ),
             )
@@ -1089,7 +1089,7 @@ class GuardDutyClient:
         self,
         *,
         admin_account_id: str,
-    ) -> EnableOrganizationAdminAccountResponse:
+    ) -> EnableOrganizationAdminAccountOutput:
         params: dict[str, object] = {
             "admin_account_id": admin_account_id,
         }
@@ -1098,7 +1098,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.enable_organization_admin_account, params, _interceptors,
                 "guardduty", "EnableOrganizationAdminAccount", self._region,
-                EnableOrganizationAdminAccountResponse,
+                EnableOrganizationAdminAccountOutput,
                 ("admin_account_id", ),
                 ("admin_account_id", ),
             )
@@ -1111,7 +1111,7 @@ class GuardDutyClient:
         self,
         *,
         detector_id: str,
-    ) -> GetAdministratorAccountResponse:
+    ) -> GetAdministratorAccountOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -1120,7 +1120,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_administrator_account, params, _interceptors,
                 "guardduty", "GetAdministratorAccount", self._region,
-                GetAdministratorAccountResponse,
+                GetAdministratorAccountOutput,
                 ("detector_id", ),
                 ("detector_id", ),
             )
@@ -1135,7 +1135,7 @@ class GuardDutyClient:
         detector_id: str,
         statistics_type: _Sequence[CoverageStatisticsType],
         filter_criteria: CoverageFilterCriteria | None = None,
-    ) -> GetCoverageStatisticsResponse:
+    ) -> GetCoverageStatisticsOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "statistics_type": statistics_type,
@@ -1147,7 +1147,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_coverage_statistics, params, _interceptors,
                 "guardduty", "GetCoverageStatistics", self._region,
-                GetCoverageStatisticsResponse,
+                GetCoverageStatisticsOutput,
                 ("detector_id", "statistics_type", "filter_criteria", ),
                 ("detector_id", "statistics_type", ),
             )
@@ -1160,7 +1160,7 @@ class GuardDutyClient:
         self,
         *,
         rule_id: str,
-    ) -> GetCustomDetectionRuleResponse:
+    ) -> GetCustomDetectionRuleOutput:
         params: dict[str, object] = {
             "rule_id": rule_id,
         }
@@ -1169,7 +1169,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_custom_detection_rule, params, _interceptors,
                 "guardduty", "GetCustomDetectionRule", self._region,
-                GetCustomDetectionRuleResponse,
+                GetCustomDetectionRuleOutput,
                 ("rule_id", ),
                 ("rule_id", ),
             )
@@ -1183,7 +1183,7 @@ class GuardDutyClient:
         *,
         rule_id: str,
         association_id: str,
-    ) -> GetCustomDetectionRuleAssociationResponse:
+    ) -> GetCustomDetectionRuleAssociationOutput:
         params: dict[str, object] = {
             "rule_id": rule_id,
             "association_id": association_id,
@@ -1193,7 +1193,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_custom_detection_rule_association, params, _interceptors,
                 "guardduty", "GetCustomDetectionRuleAssociation", self._region,
-                GetCustomDetectionRuleAssociationResponse,
+                GetCustomDetectionRuleAssociationOutput,
                 ("rule_id", "association_id", ),
                 ("rule_id", "association_id", ),
             )
@@ -1207,7 +1207,7 @@ class GuardDutyClient:
         *,
         rule_id: str,
         mode: AssociationMode,
-    ) -> GetCustomDetectionRuleOrgConfigurationResponse:
+    ) -> GetCustomDetectionRuleOrgConfigurationOutput:
         params: dict[str, object] = {
             "rule_id": rule_id,
             "mode": mode,
@@ -1217,7 +1217,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_custom_detection_rule_org_configuration, params, _interceptors,
                 "guardduty", "GetCustomDetectionRuleOrgConfiguration", self._region,
-                GetCustomDetectionRuleOrgConfigurationResponse,
+                GetCustomDetectionRuleOrgConfigurationOutput,
                 ("rule_id", "mode", ),
                 ("rule_id", "mode", ),
             )
@@ -1230,7 +1230,7 @@ class GuardDutyClient:
         self,
         *,
         detector_id: str,
-    ) -> GetDetectorResponse:
+    ) -> GetDetectorOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -1239,7 +1239,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_detector, params, _interceptors,
                 "guardduty", "GetDetector", self._region,
-                GetDetectorResponse,
+                GetDetectorOutput,
                 ("detector_id", ),
                 ("detector_id", ),
             )
@@ -1253,7 +1253,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
         filter_name: str,
-    ) -> GetFilterResponse:
+    ) -> GetFilterOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "filter_name": filter_name,
@@ -1263,7 +1263,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_filter, params, _interceptors,
                 "guardduty", "GetFilter", self._region,
-                GetFilterResponse,
+                GetFilterOutput,
                 ("detector_id", "filter_name", ),
                 ("detector_id", "filter_name", ),
             )
@@ -1278,7 +1278,7 @@ class GuardDutyClient:
         detector_id: str,
         finding_ids: _Sequence[str],
         sort_criteria: SortCriteria | None = None,
-    ) -> GetFindingsResponse:
+    ) -> GetFindingsOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "finding_ids": finding_ids,
@@ -1290,7 +1290,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_findings, params, _interceptors,
                 "guardduty", "GetFindings", self._region,
-                GetFindingsResponse,
+                GetFindingsOutput,
                 ("detector_id", "finding_ids", "sort_criteria", ),
                 ("detector_id", "finding_ids", ),
             )
@@ -1308,7 +1308,7 @@ class GuardDutyClient:
         group_by: GroupByType | None = None,
         order_by: OrderBy | None = None,
         max_results: int | None = None,
-    ) -> GetFindingsStatisticsResponse:
+    ) -> GetFindingsStatisticsOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -1327,7 +1327,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_findings_statistics, params, _interceptors,
                 "guardduty", "GetFindingsStatistics", self._region,
-                GetFindingsStatisticsResponse,
+                GetFindingsStatisticsOutput,
                 ("detector_id", "finding_statistic_types", "finding_criteria", "group_by", "order_by", "max_results", ),
                 ("detector_id", ),
             )
@@ -1341,7 +1341,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
         ip_set_id: str,
-    ) -> GetIPSetResponse:
+    ) -> GetIPSetOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "ip_set_id": ip_set_id,
@@ -1351,7 +1351,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_ip_set, params, _interceptors,
                 "guardduty", "GetIPSet", self._region,
-                GetIPSetResponse,
+                GetIPSetOutput,
                 ("detector_id", "ip_set_id", ),
                 ("detector_id", "ip_set_id", ),
             )
@@ -1365,7 +1365,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
         investigation_id: str,
-    ) -> GetInvestigationResponse:
+    ) -> GetInvestigationOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "investigation_id": investigation_id,
@@ -1375,7 +1375,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_investigation, params, _interceptors,
                 "guardduty", "GetInvestigation", self._region,
-                GetInvestigationResponse,
+                GetInvestigationOutput,
                 ("detector_id", "investigation_id", ),
                 ("detector_id", "investigation_id", ),
             )
@@ -1386,7 +1386,7 @@ class GuardDutyClient:
 
     async def get_invitations_count(
         self,
-    ) -> GetInvitationsCountResponse:
+    ) -> GetInvitationsCountOutput:
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("guardduty", self._interceptors)
@@ -1394,7 +1394,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_invitations_count, params, _interceptors,
                 "guardduty", "GetInvitationsCount", self._region,
-                GetInvitationsCountResponse,
+                GetInvitationsCountOutput,
                 (),
                 (),
             )
@@ -1407,7 +1407,7 @@ class GuardDutyClient:
         self,
         *,
         malware_protection_plan_id: str,
-    ) -> GetMalwareProtectionPlanResponse:
+    ) -> GetMalwareProtectionPlanOutput:
         params: dict[str, object] = {
             "malware_protection_plan_id": malware_protection_plan_id,
         }
@@ -1416,7 +1416,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_malware_protection_plan, params, _interceptors,
                 "guardduty", "GetMalwareProtectionPlan", self._region,
-                GetMalwareProtectionPlanResponse,
+                GetMalwareProtectionPlanOutput,
                 ("malware_protection_plan_id", ),
                 ("malware_protection_plan_id", ),
             )
@@ -1429,7 +1429,7 @@ class GuardDutyClient:
         self,
         *,
         scan_id: str,
-    ) -> GetMalwareScanResponse:
+    ) -> GetMalwareScanOutput:
         params: dict[str, object] = {
             "scan_id": scan_id,
         }
@@ -1438,7 +1438,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_malware_scan, params, _interceptors,
                 "guardduty", "GetMalwareScan", self._region,
-                GetMalwareScanResponse,
+                GetMalwareScanOutput,
                 ("scan_id", ),
                 ("scan_id", ),
             )
@@ -1451,7 +1451,7 @@ class GuardDutyClient:
         self,
         *,
         detector_id: str,
-    ) -> GetMalwareScanSettingsResponse:
+    ) -> GetMalwareScanSettingsOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -1460,7 +1460,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_malware_scan_settings, params, _interceptors,
                 "guardduty", "GetMalwareScanSettings", self._region,
-                GetMalwareScanSettingsResponse,
+                GetMalwareScanSettingsOutput,
                 ("detector_id", ),
                 ("detector_id", ),
             )
@@ -1473,7 +1473,7 @@ class GuardDutyClient:
         self,
         *,
         detector_id: str,
-    ) -> GetMasterAccountResponse:
+    ) -> GetMasterAccountOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -1482,7 +1482,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_master_account, params, _interceptors,
                 "guardduty", "GetMasterAccount", self._region,
-                GetMasterAccountResponse,
+                GetMasterAccountOutput,
                 ("detector_id", ),
                 ("detector_id", ),
             )
@@ -1496,7 +1496,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
         account_ids: _Sequence[str],
-    ) -> GetMemberDetectorsResponse:
+    ) -> GetMemberDetectorsOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "account_ids": account_ids,
@@ -1506,7 +1506,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_member_detectors, params, _interceptors,
                 "guardduty", "GetMemberDetectors", self._region,
-                GetMemberDetectorsResponse,
+                GetMemberDetectorsOutput,
                 ("detector_id", "account_ids", ),
                 ("detector_id", "account_ids", ),
             )
@@ -1520,7 +1520,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
         account_ids: _Sequence[str],
-    ) -> GetMembersResponse:
+    ) -> GetMembersOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "account_ids": account_ids,
@@ -1530,7 +1530,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_members, params, _interceptors,
                 "guardduty", "GetMembers", self._region,
-                GetMembersResponse,
+                GetMembersOutput,
                 ("detector_id", "account_ids", ),
                 ("detector_id", "account_ids", ),
             )
@@ -1541,7 +1541,7 @@ class GuardDutyClient:
 
     async def get_organization_statistics(
         self,
-    ) -> GetOrganizationStatisticsResponse:
+    ) -> GetOrganizationStatisticsOutput:
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("guardduty", self._interceptors)
@@ -1549,7 +1549,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_organization_statistics, params, _interceptors,
                 "guardduty", "GetOrganizationStatistics", self._region,
-                GetOrganizationStatisticsResponse,
+                GetOrganizationStatisticsOutput,
                 (),
                 (),
             )
@@ -1563,7 +1563,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
         account_ids: _Sequence[str],
-    ) -> GetRemainingFreeTrialDaysResponse:
+    ) -> GetRemainingFreeTrialDaysOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "account_ids": account_ids,
@@ -1573,7 +1573,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_remaining_free_trial_days, params, _interceptors,
                 "guardduty", "GetRemainingFreeTrialDays", self._region,
-                GetRemainingFreeTrialDaysResponse,
+                GetRemainingFreeTrialDaysOutput,
                 ("detector_id", "account_ids", ),
                 ("detector_id", "account_ids", ),
             )
@@ -1587,7 +1587,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
         threat_entity_set_id: str,
-    ) -> GetThreatEntitySetResponse:
+    ) -> GetThreatEntitySetOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "threat_entity_set_id": threat_entity_set_id,
@@ -1597,7 +1597,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_threat_entity_set, params, _interceptors,
                 "guardduty", "GetThreatEntitySet", self._region,
-                GetThreatEntitySetResponse,
+                GetThreatEntitySetOutput,
                 ("detector_id", "threat_entity_set_id", ),
                 ("detector_id", "threat_entity_set_id", ),
             )
@@ -1611,7 +1611,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
         threat_intel_set_id: str,
-    ) -> GetThreatIntelSetResponse:
+    ) -> GetThreatIntelSetOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "threat_intel_set_id": threat_intel_set_id,
@@ -1621,7 +1621,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_threat_intel_set, params, _interceptors,
                 "guardduty", "GetThreatIntelSet", self._region,
-                GetThreatIntelSetResponse,
+                GetThreatIntelSetOutput,
                 ("detector_id", "threat_intel_set_id", ),
                 ("detector_id", "threat_intel_set_id", ),
             )
@@ -1635,7 +1635,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
         trusted_entity_set_id: str,
-    ) -> GetTrustedEntitySetResponse:
+    ) -> GetTrustedEntitySetOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "trusted_entity_set_id": trusted_entity_set_id,
@@ -1645,7 +1645,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_trusted_entity_set, params, _interceptors,
                 "guardduty", "GetTrustedEntitySet", self._region,
-                GetTrustedEntitySetResponse,
+                GetTrustedEntitySetOutput,
                 ("detector_id", "trusted_entity_set_id", ),
                 ("detector_id", "trusted_entity_set_id", ),
             )
@@ -1663,7 +1663,7 @@ class GuardDutyClient:
         unit: str | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> GetUsageStatisticsResponse:
+    ) -> GetUsageStatisticsOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "usage_statistic_type": usage_statistic_type,
@@ -1680,7 +1680,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_usage_statistics, params, _interceptors,
                 "guardduty", "GetUsageStatistics", self._region,
-                GetUsageStatisticsResponse,
+                GetUsageStatisticsOutput,
                 ("detector_id", "usage_statistic_type", "usage_criteria", "unit", "max_results", "next_token", ),
                 ("detector_id", "usage_statistic_type", "usage_criteria", ),
             )
@@ -1696,7 +1696,7 @@ class GuardDutyClient:
         account_ids: _Sequence[str],
         disable_email_notification: bool | None = None,
         message: str | None = None,
-    ) -> InviteMembersResponse:
+    ) -> InviteMembersOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "account_ids": account_ids,
@@ -1710,7 +1710,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.invite_members, params, _interceptors,
                 "guardduty", "InviteMembers", self._region,
-                InviteMembersResponse,
+                InviteMembersOutput,
                 ("detector_id", "account_ids", "disable_email_notification", "message", ),
                 ("detector_id", "account_ids", ),
             )
@@ -1727,7 +1727,7 @@ class GuardDutyClient:
         max_results: int | None = None,
         filter_criteria: CoverageFilterCriteria | None = None,
         sort_criteria: CoverageSortCriteria | None = None,
-    ) -> ListCoverageResponse:
+    ) -> ListCoverageOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -1744,7 +1744,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_coverage, params, _interceptors,
                 "guardduty", "ListCoverage", self._region,
-                ListCoverageResponse,
+                ListCoverageOutput,
                 ("detector_id", "next_token", "max_results", "filter_criteria", "sort_criteria", ),
                 ("detector_id", ),
             )
@@ -1760,7 +1760,7 @@ class GuardDutyClient:
         next_token: str | None = None,
         rule_id: str | None = None,
         mode: AssociationMode | None = None,
-    ) -> ListCustomDetectionRuleAssociationsResponse:
+    ) -> ListCustomDetectionRuleAssociationsOutput:
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -1776,7 +1776,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_custom_detection_rule_associations, params, _interceptors,
                 "guardduty", "ListCustomDetectionRuleAssociations", self._region,
-                ListCustomDetectionRuleAssociationsResponse,
+                ListCustomDetectionRuleAssociationsOutput,
                 ("max_results", "next_token", "rule_id", "mode", ),
                 (),
             )
@@ -1791,7 +1791,7 @@ class GuardDutyClient:
         max_results: int | None = None,
         next_token: str | None = None,
         status: DetectionRuleConfigurationStatus | None = None,
-    ) -> ListCustomDetectionRuleOrgConfigurationsResponse:
+    ) -> ListCustomDetectionRuleOrgConfigurationsOutput:
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -1805,7 +1805,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_custom_detection_rule_org_configurations, params, _interceptors,
                 "guardduty", "ListCustomDetectionRuleOrgConfigurations", self._region,
-                ListCustomDetectionRuleOrgConfigurationsResponse,
+                ListCustomDetectionRuleOrgConfigurationsOutput,
                 ("max_results", "next_token", "status", ),
                 (),
             )
@@ -1820,7 +1820,7 @@ class GuardDutyClient:
         max_results: int | None = None,
         next_token: str | None = None,
         filters: _Sequence[DetectionRuleFilter] | None = None,
-    ) -> ListCustomDetectionRulesResponse:
+    ) -> ListCustomDetectionRulesOutput:
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -1834,7 +1834,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_custom_detection_rules, params, _interceptors,
                 "guardduty", "ListCustomDetectionRules", self._region,
-                ListCustomDetectionRulesResponse,
+                ListCustomDetectionRulesOutput,
                 ("max_results", "next_token", "filters", ),
                 (),
             )
@@ -1848,7 +1848,7 @@ class GuardDutyClient:
         *,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> ListDetectorsResponse:
+    ) -> ListDetectorsOutput:
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -1860,7 +1860,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_detectors, params, _interceptors,
                 "guardduty", "ListDetectors", self._region,
-                ListDetectorsResponse,
+                ListDetectorsOutput,
                 ("max_results", "next_token", ),
                 (),
             )
@@ -1875,7 +1875,7 @@ class GuardDutyClient:
         detector_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> ListFiltersResponse:
+    ) -> ListFiltersOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -1888,7 +1888,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_filters, params, _interceptors,
                 "guardduty", "ListFilters", self._region,
-                ListFiltersResponse,
+                ListFiltersOutput,
                 ("detector_id", "max_results", "next_token", ),
                 ("detector_id", ),
             )
@@ -1905,7 +1905,7 @@ class GuardDutyClient:
         sort_criteria: SortCriteria | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> ListFindingsResponse:
+    ) -> ListFindingsOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -1922,7 +1922,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_findings, params, _interceptors,
                 "guardduty", "ListFindings", self._region,
-                ListFindingsResponse,
+                ListFindingsOutput,
                 ("detector_id", "finding_criteria", "sort_criteria", "max_results", "next_token", ),
                 ("detector_id", ),
             )
@@ -1937,7 +1937,7 @@ class GuardDutyClient:
         detector_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> ListIPSetsResponse:
+    ) -> ListIPSetsOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -1950,7 +1950,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_ip_sets, params, _interceptors,
                 "guardduty", "ListIPSets", self._region,
-                ListIPSetsResponse,
+                ListIPSetsOutput,
                 ("detector_id", "max_results", "next_token", ),
                 ("detector_id", ),
             )
@@ -1966,7 +1966,7 @@ class GuardDutyClient:
         sort_criteria: InvestigationSortCriteria | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> ListInvestigationsResponse:
+    ) -> ListInvestigationsOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -1981,7 +1981,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_investigations, params, _interceptors,
                 "guardduty", "ListInvestigations", self._region,
-                ListInvestigationsResponse,
+                ListInvestigationsOutput,
                 ("detector_id", "sort_criteria", "max_results", "next_token", ),
                 ("detector_id", ),
             )
@@ -1995,7 +1995,7 @@ class GuardDutyClient:
         *,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> ListInvitationsResponse:
+    ) -> ListInvitationsOutput:
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -2007,7 +2007,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_invitations, params, _interceptors,
                 "guardduty", "ListInvitations", self._region,
-                ListInvitationsResponse,
+                ListInvitationsOutput,
                 ("max_results", "next_token", ),
                 (),
             )
@@ -2020,7 +2020,7 @@ class GuardDutyClient:
         self,
         *,
         next_token: str | None = None,
-    ) -> ListMalwareProtectionPlansResponse:
+    ) -> ListMalwareProtectionPlansOutput:
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -2030,7 +2030,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_malware_protection_plans, params, _interceptors,
                 "guardduty", "ListMalwareProtectionPlans", self._region,
-                ListMalwareProtectionPlansResponse,
+                ListMalwareProtectionPlansOutput,
                 ("next_token", ),
                 (),
             )
@@ -2046,7 +2046,7 @@ class GuardDutyClient:
         next_token: str | None = None,
         filter_criteria: ListMalwareScansFilterCriteria | None = None,
         sort_criteria: SortCriteria | None = None,
-    ) -> ListMalwareScansResponse:
+    ) -> ListMalwareScansOutput:
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -2062,7 +2062,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_malware_scans, params, _interceptors,
                 "guardduty", "ListMalwareScans", self._region,
-                ListMalwareScansResponse,
+                ListMalwareScansOutput,
                 ("max_results", "next_token", "filter_criteria", "sort_criteria", ),
                 (),
             )
@@ -2078,7 +2078,7 @@ class GuardDutyClient:
         max_results: int | None = None,
         next_token: str | None = None,
         only_associated: str | None = None,
-    ) -> ListMembersResponse:
+    ) -> ListMembersOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -2093,7 +2093,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_members, params, _interceptors,
                 "guardduty", "ListMembers", self._region,
-                ListMembersResponse,
+                ListMembersOutput,
                 ("detector_id", "max_results", "next_token", "only_associated", ),
                 ("detector_id", ),
             )
@@ -2107,7 +2107,7 @@ class GuardDutyClient:
         *,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> ListOrganizationAdminAccountsResponse:
+    ) -> ListOrganizationAdminAccountsOutput:
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -2119,7 +2119,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_organization_admin_accounts, params, _interceptors,
                 "guardduty", "ListOrganizationAdminAccounts", self._region,
-                ListOrganizationAdminAccountsResponse,
+                ListOrganizationAdminAccountsOutput,
                 ("max_results", "next_token", ),
                 (),
             )
@@ -2134,7 +2134,7 @@ class GuardDutyClient:
         detector_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> ListPublishingDestinationsResponse:
+    ) -> ListPublishingDestinationsOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -2147,7 +2147,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_publishing_destinations, params, _interceptors,
                 "guardduty", "ListPublishingDestinations", self._region,
-                ListPublishingDestinationsResponse,
+                ListPublishingDestinationsOutput,
                 ("detector_id", "max_results", "next_token", ),
                 ("detector_id", ),
             )
@@ -2160,7 +2160,7 @@ class GuardDutyClient:
         self,
         *,
         resource_arn: str,
-    ) -> ListTagsForResourceResponse:
+    ) -> ListTagsForResourceOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -2169,7 +2169,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_tags_for_resource, params, _interceptors,
                 "guardduty", "ListTagsForResource", self._region,
-                ListTagsForResourceResponse,
+                ListTagsForResourceOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
             )
@@ -2184,7 +2184,7 @@ class GuardDutyClient:
         detector_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> ListThreatEntitySetsResponse:
+    ) -> ListThreatEntitySetsOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -2197,7 +2197,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_threat_entity_sets, params, _interceptors,
                 "guardduty", "ListThreatEntitySets", self._region,
-                ListThreatEntitySetsResponse,
+                ListThreatEntitySetsOutput,
                 ("detector_id", "max_results", "next_token", ),
                 ("detector_id", ),
             )
@@ -2212,7 +2212,7 @@ class GuardDutyClient:
         detector_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> ListThreatIntelSetsResponse:
+    ) -> ListThreatIntelSetsOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -2225,7 +2225,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_threat_intel_sets, params, _interceptors,
                 "guardduty", "ListThreatIntelSets", self._region,
-                ListThreatIntelSetsResponse,
+                ListThreatIntelSetsOutput,
                 ("detector_id", "max_results", "next_token", ),
                 ("detector_id", ),
             )
@@ -2240,7 +2240,7 @@ class GuardDutyClient:
         detector_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> ListTrustedEntitySetsResponse:
+    ) -> ListTrustedEntitySetsOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -2253,7 +2253,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_trusted_entity_sets, params, _interceptors,
                 "guardduty", "ListTrustedEntitySets", self._region,
-                ListTrustedEntitySetsResponse,
+                ListTrustedEntitySetsOutput,
                 ("detector_id", "max_results", "next_token", ),
                 ("detector_id", ),
             )
@@ -2266,7 +2266,7 @@ class GuardDutyClient:
         self,
         *,
         s3_object: S3ObjectForSendObjectMalwareScan | None = None,
-    ) -> SendObjectMalwareScanResponse:
+    ) -> SendObjectMalwareScanOutput:
         params: dict[str, object] = {
         }
         if s3_object is not None:
@@ -2276,7 +2276,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.send_object_malware_scan, params, _interceptors,
                 "guardduty", "SendObjectMalwareScan", self._region,
-                SendObjectMalwareScanResponse,
+                SendObjectMalwareScanOutput,
                 ("s3_object", ),
                 (),
             )
@@ -2291,7 +2291,7 @@ class GuardDutyClient:
         resource_arn: str,
         client_token: str | None = None,
         scan_configuration: StartMalwareScanConfiguration | None = None,
-    ) -> StartMalwareScanResponse:
+    ) -> StartMalwareScanOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -2304,7 +2304,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.start_malware_scan, params, _interceptors,
                 "guardduty", "StartMalwareScan", self._region,
-                StartMalwareScanResponse,
+                StartMalwareScanOutput,
                 ("resource_arn", "client_token", "scan_configuration", ),
                 ("resource_arn", ),
             )
@@ -2318,7 +2318,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
         account_ids: _Sequence[str],
-    ) -> StartMonitoringMembersResponse:
+    ) -> StartMonitoringMembersOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "account_ids": account_ids,
@@ -2328,7 +2328,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.start_monitoring_members, params, _interceptors,
                 "guardduty", "StartMonitoringMembers", self._region,
-                StartMonitoringMembersResponse,
+                StartMonitoringMembersOutput,
                 ("detector_id", "account_ids", ),
                 ("detector_id", "account_ids", ),
             )
@@ -2342,7 +2342,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
         account_ids: _Sequence[str],
-    ) -> StopMonitoringMembersResponse:
+    ) -> StopMonitoringMembersOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "account_ids": account_ids,
@@ -2352,7 +2352,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.stop_monitoring_members, params, _interceptors,
                 "guardduty", "StopMonitoringMembers", self._region,
-                StopMonitoringMembersResponse,
+                StopMonitoringMembersOutput,
                 ("detector_id", "account_ids", ),
                 ("detector_id", "account_ids", ),
             )
@@ -2366,7 +2366,7 @@ class GuardDutyClient:
         *,
         resource_arn: str,
         tags: dict[str, str],
-    ) -> TagResourceResponse:
+    ) -> TagResourceOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -2376,7 +2376,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.tag_resource, params, _interceptors,
                 "guardduty", "TagResource", self._region,
-                TagResourceResponse,
+                TagResourceOutput,
                 ("resource_arn", "tags", ),
                 ("resource_arn", "tags", ),
             )
@@ -2390,7 +2390,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
         finding_ids: _Sequence[str],
-    ) -> UnarchiveFindingsResponse:
+    ) -> UnarchiveFindingsOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "finding_ids": finding_ids,
@@ -2400,7 +2400,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.unarchive_findings, params, _interceptors,
                 "guardduty", "UnarchiveFindings", self._region,
-                UnarchiveFindingsResponse,
+                UnarchiveFindingsOutput,
                 ("detector_id", "finding_ids", ),
                 ("detector_id", "finding_ids", ),
             )
@@ -2414,7 +2414,7 @@ class GuardDutyClient:
         *,
         resource_arn: str,
         tag_keys: _Sequence[str],
-    ) -> UntagResourceResponse:
+    ) -> UntagResourceOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
@@ -2424,7 +2424,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.untag_resource, params, _interceptors,
                 "guardduty", "UntagResource", self._region,
-                UntagResourceResponse,
+                UntagResourceOutput,
                 ("resource_arn", "tag_keys", ),
                 ("resource_arn", "tag_keys", ),
             )
@@ -2439,7 +2439,7 @@ class GuardDutyClient:
         rule_id: str,
         association_id: str,
         mode: AssociationMode,
-    ) -> UpdateCustomDetectionRuleAssociationResponse:
+    ) -> UpdateCustomDetectionRuleAssociationOutput:
         params: dict[str, object] = {
             "rule_id": rule_id,
             "association_id": association_id,
@@ -2450,7 +2450,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_custom_detection_rule_association, params, _interceptors,
                 "guardduty", "UpdateCustomDetectionRuleAssociation", self._region,
-                UpdateCustomDetectionRuleAssociationResponse,
+                UpdateCustomDetectionRuleAssociationOutput,
                 ("rule_id", "association_id", "mode", ),
                 ("rule_id", "association_id", "mode", ),
             )
@@ -2466,7 +2466,7 @@ class GuardDutyClient:
         mode: AssociationMode,
         include_account_ids: _Sequence[str] | None = None,
         exclude_account_ids: _Sequence[str] | None = None,
-    ) -> UpdateCustomDetectionRuleOrgConfigurationResponse:
+    ) -> UpdateCustomDetectionRuleOrgConfigurationOutput:
         params: dict[str, object] = {
             "rule_id": rule_id,
             "mode": mode,
@@ -2480,7 +2480,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_custom_detection_rule_org_configuration, params, _interceptors,
                 "guardduty", "UpdateCustomDetectionRuleOrgConfiguration", self._region,
-                UpdateCustomDetectionRuleOrgConfigurationResponse,
+                UpdateCustomDetectionRuleOrgConfigurationOutput,
                 ("rule_id", "mode", "include_account_ids", "exclude_account_ids", ),
                 ("rule_id", "mode", ),
             )
@@ -2497,7 +2497,7 @@ class GuardDutyClient:
         finding_publishing_frequency: FindingPublishingFrequency | None = None,
         data_sources: DataSourceConfigurations | None = None,
         features: _Sequence[DetectorFeatureConfiguration] | None = None,
-    ) -> UpdateDetectorResponse:
+    ) -> UpdateDetectorOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -2514,7 +2514,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_detector, params, _interceptors,
                 "guardduty", "UpdateDetector", self._region,
-                UpdateDetectorResponse,
+                UpdateDetectorOutput,
                 ("detector_id", "enable", "finding_publishing_frequency", "data_sources", "features", ),
                 ("detector_id", ),
             )
@@ -2532,7 +2532,7 @@ class GuardDutyClient:
         action: FilterAction | None = None,
         rank: int | None = None,
         finding_criteria: FindingCriteria | None = None,
-    ) -> UpdateFilterResponse:
+    ) -> UpdateFilterOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "filter_name": filter_name,
@@ -2550,7 +2550,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_filter, params, _interceptors,
                 "guardduty", "UpdateFilter", self._region,
-                UpdateFilterResponse,
+                UpdateFilterOutput,
                 ("detector_id", "filter_name", "description", "action", "rank", "finding_criteria", ),
                 ("detector_id", "filter_name", ),
             )
@@ -2566,7 +2566,7 @@ class GuardDutyClient:
         finding_ids: _Sequence[str],
         feedback: Feedback,
         comments: str | None = None,
-    ) -> UpdateFindingsFeedbackResponse:
+    ) -> UpdateFindingsFeedbackOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "finding_ids": finding_ids,
@@ -2579,7 +2579,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_findings_feedback, params, _interceptors,
                 "guardduty", "UpdateFindingsFeedback", self._region,
-                UpdateFindingsFeedbackResponse,
+                UpdateFindingsFeedbackOutput,
                 ("detector_id", "finding_ids", "feedback", "comments", ),
                 ("detector_id", "finding_ids", "feedback", ),
             )
@@ -2597,7 +2597,7 @@ class GuardDutyClient:
         location: str | None = None,
         activate: bool | None = None,
         expected_bucket_owner: str | None = None,
-    ) -> UpdateIPSetResponse:
+    ) -> UpdateIPSetOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "ip_set_id": ip_set_id,
@@ -2615,7 +2615,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_ip_set, params, _interceptors,
                 "guardduty", "UpdateIPSet", self._region,
-                UpdateIPSetResponse,
+                UpdateIPSetOutput,
                 ("detector_id", "ip_set_id", "name", "location", "activate", "expected_bucket_owner", ),
                 ("detector_id", "ip_set_id", ),
             )
@@ -2661,7 +2661,7 @@ class GuardDutyClient:
         detector_id: str,
         scan_resource_criteria: ScanResourceCriteria | None = None,
         ebs_snapshot_preservation: EbsSnapshotPreservation | None = None,
-    ) -> UpdateMalwareScanSettingsResponse:
+    ) -> UpdateMalwareScanSettingsOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -2674,7 +2674,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_malware_scan_settings, params, _interceptors,
                 "guardduty", "UpdateMalwareScanSettings", self._region,
-                UpdateMalwareScanSettingsResponse,
+                UpdateMalwareScanSettingsOutput,
                 ("detector_id", "scan_resource_criteria", "ebs_snapshot_preservation", ),
                 ("detector_id", ),
             )
@@ -2690,7 +2690,7 @@ class GuardDutyClient:
         account_ids: _Sequence[str],
         data_sources: DataSourceConfigurations | None = None,
         features: _Sequence[MemberFeaturesConfiguration] | None = None,
-    ) -> UpdateMemberDetectorsResponse:
+    ) -> UpdateMemberDetectorsOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "account_ids": account_ids,
@@ -2704,7 +2704,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_member_detectors, params, _interceptors,
                 "guardduty", "UpdateMemberDetectors", self._region,
-                UpdateMemberDetectorsResponse,
+                UpdateMemberDetectorsOutput,
                 ("detector_id", "account_ids", "data_sources", "features", ),
                 ("detector_id", "account_ids", ),
             )
@@ -2721,7 +2721,7 @@ class GuardDutyClient:
         data_sources: OrganizationDataSourceConfigurations | None = None,
         features: _Sequence[OrganizationFeatureConfiguration] | None = None,
         auto_enable_organization_members: AutoEnableMembers | None = None,
-    ) -> UpdateOrganizationConfigurationResponse:
+    ) -> UpdateOrganizationConfigurationOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -2738,7 +2738,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_organization_configuration, params, _interceptors,
                 "guardduty", "UpdateOrganizationConfiguration", self._region,
-                UpdateOrganizationConfigurationResponse,
+                UpdateOrganizationConfigurationOutput,
                 ("detector_id", "auto_enable", "data_sources", "features", "auto_enable_organization_members", ),
                 ("detector_id", ),
             )
@@ -2753,7 +2753,7 @@ class GuardDutyClient:
         detector_id: str,
         destination_id: str,
         destination_properties: DestinationProperties | None = None,
-    ) -> UpdatePublishingDestinationResponse:
+    ) -> UpdatePublishingDestinationOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "destination_id": destination_id,
@@ -2765,7 +2765,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_publishing_destination, params, _interceptors,
                 "guardduty", "UpdatePublishingDestination", self._region,
-                UpdatePublishingDestinationResponse,
+                UpdatePublishingDestinationOutput,
                 ("detector_id", "destination_id", "destination_properties", ),
                 ("detector_id", "destination_id", ),
             )
@@ -2783,7 +2783,7 @@ class GuardDutyClient:
         location: str | None = None,
         expected_bucket_owner: str | None = None,
         activate: bool | None = None,
-    ) -> UpdateThreatEntitySetResponse:
+    ) -> UpdateThreatEntitySetOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "threat_entity_set_id": threat_entity_set_id,
@@ -2801,7 +2801,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_threat_entity_set, params, _interceptors,
                 "guardduty", "UpdateThreatEntitySet", self._region,
-                UpdateThreatEntitySetResponse,
+                UpdateThreatEntitySetOutput,
                 ("detector_id", "threat_entity_set_id", "name", "location", "expected_bucket_owner", "activate", ),
                 ("detector_id", "threat_entity_set_id", ),
             )
@@ -2819,7 +2819,7 @@ class GuardDutyClient:
         location: str | None = None,
         activate: bool | None = None,
         expected_bucket_owner: str | None = None,
-    ) -> UpdateThreatIntelSetResponse:
+    ) -> UpdateThreatIntelSetOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "threat_intel_set_id": threat_intel_set_id,
@@ -2837,7 +2837,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_threat_intel_set, params, _interceptors,
                 "guardduty", "UpdateThreatIntelSet", self._region,
-                UpdateThreatIntelSetResponse,
+                UpdateThreatIntelSetOutput,
                 ("detector_id", "threat_intel_set_id", "name", "location", "activate", "expected_bucket_owner", ),
                 ("detector_id", "threat_intel_set_id", ),
             )
@@ -2855,7 +2855,7 @@ class GuardDutyClient:
         location: str | None = None,
         expected_bucket_owner: str | None = None,
         activate: bool | None = None,
-    ) -> UpdateTrustedEntitySetResponse:
+    ) -> UpdateTrustedEntitySetOutput:
         params: dict[str, object] = {
             "detector_id": detector_id,
             "trusted_entity_set_id": trusted_entity_set_id,
@@ -2873,7 +2873,7 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_trusted_entity_set, params, _interceptors,
                 "guardduty", "UpdateTrustedEntitySet", self._region,
-                UpdateTrustedEntitySetResponse,
+                UpdateTrustedEntitySetOutput,
                 ("detector_id", "trusted_entity_set_id", "name", "location", "expected_bucket_owner", "activate", ),
                 ("detector_id", "trusted_entity_set_id", ),
             )

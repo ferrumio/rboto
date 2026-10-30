@@ -12651,16 +12651,16 @@ impl PyUpperCaseString {
 }
 
 #[pyclass(
-    name = "AssociateSourceToS3TableIntegrationResponse",
+    name = "AssociateSourceToS3TableIntegrationOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyAssociateSourceToS3TableIntegrationResponse {
+struct PyOperationAssociateSourceToS3TableIntegrationOutput {
     inner: aws_sdk_cloudwatchlogs::operation::associate_source_to_s3_table_integration::AssociateSourceToS3TableIntegrationOutput,
 }
 
 #[pymethods]
-impl PyAssociateSourceToS3TableIntegrationResponse {
+impl PyOperationAssociateSourceToS3TableIntegrationOutput {
     #[getter]
     fn identifier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identifier {
@@ -12684,16 +12684,16 @@ impl PyAssociateSourceToS3TableIntegrationResponse {
 }
 
 #[pyclass(
-    name = "CancelImportTaskResponse",
+    name = "CancelImportTaskOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyCancelImportTaskResponse {
+struct PyOperationCancelImportTaskOutput {
     inner: aws_sdk_cloudwatchlogs::operation::cancel_import_task::CancelImportTaskOutput,
 }
 
 #[pymethods]
-impl PyCancelImportTaskResponse {
+impl PyOperationCancelImportTaskOutput {
     #[getter]
     fn import_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_id {
@@ -12787,16 +12787,16 @@ impl PyCancelImportTaskResponse {
 }
 
 #[pyclass(
-    name = "CreateDeliveryResponse",
+    name = "CreateDeliveryOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyCreateDeliveryResponse {
+struct PyOperationCreateDeliveryOutput {
     inner: aws_sdk_cloudwatchlogs::operation::create_delivery::CreateDeliveryOutput,
 }
 
 #[pymethods]
-impl PyCreateDeliveryResponse {
+impl PyOperationCreateDeliveryOutput {
     #[getter]
     fn delivery(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.delivery {
@@ -12826,16 +12826,16 @@ impl PyCreateDeliveryResponse {
 }
 
 #[pyclass(
-    name = "CreateExportTaskResponse",
+    name = "CreateExportTaskOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyCreateExportTaskResponse {
+struct PyOperationCreateExportTaskOutput {
     inner: aws_sdk_cloudwatchlogs::operation::create_export_task::CreateExportTaskOutput,
 }
 
 #[pymethods]
-impl PyCreateExportTaskResponse {
+impl PyOperationCreateExportTaskOutput {
     #[getter]
     fn task_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.task_id {
@@ -12859,16 +12859,16 @@ impl PyCreateExportTaskResponse {
 }
 
 #[pyclass(
-    name = "CreateImportTaskResponse",
+    name = "CreateImportTaskOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyCreateImportTaskResponse {
+struct PyOperationCreateImportTaskOutput {
     inner: aws_sdk_cloudwatchlogs::operation::create_import_task::CreateImportTaskOutput,
 }
 
 #[pymethods]
-impl PyCreateImportTaskResponse {
+impl PyOperationCreateImportTaskOutput {
     #[getter]
     fn import_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_id {
@@ -12924,16 +12924,16 @@ impl PyCreateImportTaskResponse {
 }
 
 #[pyclass(
-    name = "CreateLogAnomalyDetectorResponse",
+    name = "CreateLogAnomalyDetectorOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyCreateLogAnomalyDetectorResponse {
+struct PyOperationCreateLogAnomalyDetectorOutput {
     inner: aws_sdk_cloudwatchlogs::operation::create_log_anomaly_detector::CreateLogAnomalyDetectorOutput,
 }
 
 #[pymethods]
-impl PyCreateLogAnomalyDetectorResponse {
+impl PyOperationCreateLogAnomalyDetectorOutput {
     #[getter]
     fn anomaly_detector_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.anomaly_detector_arn {
@@ -12957,16 +12957,16 @@ impl PyCreateLogAnomalyDetectorResponse {
 }
 
 #[pyclass(
-    name = "CreateLookupTableResponse",
+    name = "CreateLookupTableOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyCreateLookupTableResponse {
+struct PyOperationCreateLookupTableOutput {
     inner: aws_sdk_cloudwatchlogs::operation::create_lookup_table::CreateLookupTableOutput,
 }
 
 #[pymethods]
-impl PyCreateLookupTableResponse {
+impl PyOperationCreateLookupTableOutput {
     #[getter]
     fn lookup_table_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.lookup_table_arn {
@@ -13006,16 +13006,16 @@ impl PyCreateLookupTableResponse {
 }
 
 #[pyclass(
-    name = "CreateScheduledQueryResponse",
+    name = "CreateScheduledQueryOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyCreateScheduledQueryResponse {
+struct PyOperationCreateScheduledQueryOutput {
     inner: aws_sdk_cloudwatchlogs::operation::create_scheduled_query::CreateScheduledQueryOutput,
 }
 
 #[pymethods]
-impl PyCreateScheduledQueryResponse {
+impl PyOperationCreateScheduledQueryOutput {
     #[getter]
     fn scheduled_query_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.scheduled_query_arn {
@@ -13055,16 +13055,16 @@ impl PyCreateScheduledQueryResponse {
 }
 
 #[pyclass(
-    name = "DeleteIndexPolicyResponse",
+    name = "DeleteIndexPolicyOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyDeleteIndexPolicyResponse {
+struct PyOperationDeleteIndexPolicyOutput {
     inner: aws_sdk_cloudwatchlogs::operation::delete_index_policy::DeleteIndexPolicyOutput,
 }
 
 #[pymethods]
-impl PyDeleteIndexPolicyResponse {
+impl PyOperationDeleteIndexPolicyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -13072,16 +13072,16 @@ impl PyDeleteIndexPolicyResponse {
 }
 
 #[pyclass(
-    name = "DeleteIntegrationResponse",
+    name = "DeleteIntegrationOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyDeleteIntegrationResponse {
+struct PyOperationDeleteIntegrationOutput {
     inner: aws_sdk_cloudwatchlogs::operation::delete_integration::DeleteIntegrationOutput,
 }
 
 #[pymethods]
-impl PyDeleteIntegrationResponse {
+impl PyOperationDeleteIntegrationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -13089,16 +13089,16 @@ impl PyDeleteIntegrationResponse {
 }
 
 #[pyclass(
-    name = "DeleteQueryDefinitionResponse",
+    name = "DeleteQueryDefinitionOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyDeleteQueryDefinitionResponse {
+struct PyOperationDeleteQueryDefinitionOutput {
     inner: aws_sdk_cloudwatchlogs::operation::delete_query_definition::DeleteQueryDefinitionOutput,
 }
 
 #[pymethods]
-impl PyDeleteQueryDefinitionResponse {
+impl PyOperationDeleteQueryDefinitionOutput {
     #[getter]
     fn success(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2460 = (&self.inner.success).to_owned().into_py_any(py)?;
@@ -13114,16 +13114,16 @@ impl PyDeleteQueryDefinitionResponse {
 }
 
 #[pyclass(
-    name = "DeleteScheduledQueryResponse",
+    name = "DeleteScheduledQueryOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyDeleteScheduledQueryResponse {
+struct PyOperationDeleteScheduledQueryOutput {
     inner: aws_sdk_cloudwatchlogs::operation::delete_scheduled_query::DeleteScheduledQueryOutput,
 }
 
 #[pymethods]
-impl PyDeleteScheduledQueryResponse {
+impl PyOperationDeleteScheduledQueryOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -13131,17 +13131,17 @@ impl PyDeleteScheduledQueryResponse {
 }
 
 #[pyclass(
-    name = "DescribeAccountPoliciesResponse",
+    name = "DescribeAccountPoliciesOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyDescribeAccountPoliciesResponse {
+struct PyOperationDescribeAccountPoliciesOutput {
     inner:
         aws_sdk_cloudwatchlogs::operation::describe_account_policies::DescribeAccountPoliciesOutput,
 }
 
 #[pymethods]
-impl PyDescribeAccountPoliciesResponse {
+impl PyOperationDescribeAccountPoliciesOutput {
     #[getter]
     fn account_policies(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.account_policies {
@@ -13197,16 +13197,16 @@ impl PyDescribeAccountPoliciesResponse {
 }
 
 #[pyclass(
-    name = "DescribeConfigurationTemplatesResponse",
+    name = "DescribeConfigurationTemplatesOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyDescribeConfigurationTemplatesResponse {
+struct PyOperationDescribeConfigurationTemplatesOutput {
     inner: aws_sdk_cloudwatchlogs::operation::describe_configuration_templates::DescribeConfigurationTemplatesOutput,
 }
 
 #[pymethods]
-impl PyDescribeConfigurationTemplatesResponse {
+impl PyOperationDescribeConfigurationTemplatesOutput {
     #[getter]
     fn configuration_templates(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.configuration_templates {
@@ -13262,16 +13262,16 @@ impl PyDescribeConfigurationTemplatesResponse {
 }
 
 #[pyclass(
-    name = "DescribeDeliveriesResponse",
+    name = "DescribeDeliveriesOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyDescribeDeliveriesResponse {
+struct PyOperationDescribeDeliveriesOutput {
     inner: aws_sdk_cloudwatchlogs::operation::describe_deliveries::DescribeDeliveriesOutput,
 }
 
 #[pymethods]
-impl PyDescribeDeliveriesResponse {
+impl PyOperationDescribeDeliveriesOutput {
     #[getter]
     fn deliveries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.deliveries {
@@ -13327,16 +13327,16 @@ impl PyDescribeDeliveriesResponse {
 }
 
 #[pyclass(
-    name = "DescribeDeliveryDestinationsResponse",
+    name = "DescribeDeliveryDestinationsOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyDescribeDeliveryDestinationsResponse {
+struct PyOperationDescribeDeliveryDestinationsOutput {
     inner: aws_sdk_cloudwatchlogs::operation::describe_delivery_destinations::DescribeDeliveryDestinationsOutput,
 }
 
 #[pymethods]
-impl PyDescribeDeliveryDestinationsResponse {
+impl PyOperationDescribeDeliveryDestinationsOutput {
     #[getter]
     fn delivery_destinations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.delivery_destinations {
@@ -13392,17 +13392,17 @@ impl PyDescribeDeliveryDestinationsResponse {
 }
 
 #[pyclass(
-    name = "DescribeDeliverySourcesResponse",
+    name = "DescribeDeliverySourcesOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyDescribeDeliverySourcesResponse {
+struct PyOperationDescribeDeliverySourcesOutput {
     inner:
         aws_sdk_cloudwatchlogs::operation::describe_delivery_sources::DescribeDeliverySourcesOutput,
 }
 
 #[pymethods]
-impl PyDescribeDeliverySourcesResponse {
+impl PyOperationDescribeDeliverySourcesOutput {
     #[getter]
     fn delivery_sources(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.delivery_sources {
@@ -13458,16 +13458,16 @@ impl PyDescribeDeliverySourcesResponse {
 }
 
 #[pyclass(
-    name = "DescribeDestinationsResponse",
+    name = "DescribeDestinationsOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyDescribeDestinationsResponse {
+struct PyOperationDescribeDestinationsOutput {
     inner: aws_sdk_cloudwatchlogs::operation::describe_destinations::DescribeDestinationsOutput,
 }
 
 #[pymethods]
-impl PyDescribeDestinationsResponse {
+impl PyOperationDescribeDestinationsOutput {
     #[getter]
     fn destinations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.destinations {
@@ -13523,16 +13523,16 @@ impl PyDescribeDestinationsResponse {
 }
 
 #[pyclass(
-    name = "DescribeExportTasksResponse",
+    name = "DescribeExportTasksOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyDescribeExportTasksResponse {
+struct PyOperationDescribeExportTasksOutput {
     inner: aws_sdk_cloudwatchlogs::operation::describe_export_tasks::DescribeExportTasksOutput,
 }
 
 #[pymethods]
-impl PyDescribeExportTasksResponse {
+impl PyOperationDescribeExportTasksOutput {
     #[getter]
     fn export_tasks(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.export_tasks {
@@ -13588,16 +13588,16 @@ impl PyDescribeExportTasksResponse {
 }
 
 #[pyclass(
-    name = "DescribeFieldIndexesResponse",
+    name = "DescribeFieldIndexesOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyDescribeFieldIndexesResponse {
+struct PyOperationDescribeFieldIndexesOutput {
     inner: aws_sdk_cloudwatchlogs::operation::describe_field_indexes::DescribeFieldIndexesOutput,
 }
 
 #[pymethods]
-impl PyDescribeFieldIndexesResponse {
+impl PyOperationDescribeFieldIndexesOutput {
     #[getter]
     fn field_indexes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.field_indexes {
@@ -13653,16 +13653,16 @@ impl PyDescribeFieldIndexesResponse {
 }
 
 #[pyclass(
-    name = "DescribeImportTaskBatchesResponse",
+    name = "DescribeImportTaskBatchesOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyDescribeImportTaskBatchesResponse {
+struct PyOperationDescribeImportTaskBatchesOutput {
     inner: aws_sdk_cloudwatchlogs::operation::describe_import_task_batches::DescribeImportTaskBatchesOutput,
 }
 
 #[pymethods]
-impl PyDescribeImportTaskBatchesResponse {
+impl PyOperationDescribeImportTaskBatchesOutput {
     #[getter]
     fn import_source_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_source_arn {
@@ -13750,16 +13750,16 @@ impl PyDescribeImportTaskBatchesResponse {
 }
 
 #[pyclass(
-    name = "DescribeImportTasksResponse",
+    name = "DescribeImportTasksOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyDescribeImportTasksResponse {
+struct PyOperationDescribeImportTasksOutput {
     inner: aws_sdk_cloudwatchlogs::operation::describe_import_tasks::DescribeImportTasksOutput,
 }
 
 #[pymethods]
-impl PyDescribeImportTasksResponse {
+impl PyOperationDescribeImportTasksOutput {
     #[getter]
     fn imports(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.imports {
@@ -13815,16 +13815,16 @@ impl PyDescribeImportTasksResponse {
 }
 
 #[pyclass(
-    name = "DescribeIndexPoliciesResponse",
+    name = "DescribeIndexPoliciesOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyDescribeIndexPoliciesResponse {
+struct PyOperationDescribeIndexPoliciesOutput {
     inner: aws_sdk_cloudwatchlogs::operation::describe_index_policies::DescribeIndexPoliciesOutput,
 }
 
 #[pymethods]
-impl PyDescribeIndexPoliciesResponse {
+impl PyOperationDescribeIndexPoliciesOutput {
     #[getter]
     fn index_policies(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.index_policies {
@@ -13880,16 +13880,16 @@ impl PyDescribeIndexPoliciesResponse {
 }
 
 #[pyclass(
-    name = "DescribeLogGroupsResponse",
+    name = "DescribeLogGroupsOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyDescribeLogGroupsResponse {
+struct PyOperationDescribeLogGroupsOutput {
     inner: aws_sdk_cloudwatchlogs::operation::describe_log_groups::DescribeLogGroupsOutput,
 }
 
 #[pymethods]
-impl PyDescribeLogGroupsResponse {
+impl PyOperationDescribeLogGroupsOutput {
     #[getter]
     fn log_groups(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_groups {
@@ -13945,16 +13945,16 @@ impl PyDescribeLogGroupsResponse {
 }
 
 #[pyclass(
-    name = "DescribeLogStreamsResponse",
+    name = "DescribeLogStreamsOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyDescribeLogStreamsResponse {
+struct PyOperationDescribeLogStreamsOutput {
     inner: aws_sdk_cloudwatchlogs::operation::describe_log_streams::DescribeLogStreamsOutput,
 }
 
 #[pymethods]
-impl PyDescribeLogStreamsResponse {
+impl PyOperationDescribeLogStreamsOutput {
     #[getter]
     fn log_streams(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_streams {
@@ -14010,16 +14010,16 @@ impl PyDescribeLogStreamsResponse {
 }
 
 #[pyclass(
-    name = "DescribeLookupTablesResponse",
+    name = "DescribeLookupTablesOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyDescribeLookupTablesResponse {
+struct PyOperationDescribeLookupTablesOutput {
     inner: aws_sdk_cloudwatchlogs::operation::describe_lookup_tables::DescribeLookupTablesOutput,
 }
 
 #[pymethods]
-impl PyDescribeLookupTablesResponse {
+impl PyOperationDescribeLookupTablesOutput {
     #[getter]
     fn lookup_tables(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.lookup_tables {
@@ -14075,16 +14075,16 @@ impl PyDescribeLookupTablesResponse {
 }
 
 #[pyclass(
-    name = "DescribeMetricFiltersResponse",
+    name = "DescribeMetricFiltersOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyDescribeMetricFiltersResponse {
+struct PyOperationDescribeMetricFiltersOutput {
     inner: aws_sdk_cloudwatchlogs::operation::describe_metric_filters::DescribeMetricFiltersOutput,
 }
 
 #[pymethods]
-impl PyDescribeMetricFiltersResponse {
+impl PyOperationDescribeMetricFiltersOutput {
     #[getter]
     fn metric_filters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.metric_filters {
@@ -14140,16 +14140,16 @@ impl PyDescribeMetricFiltersResponse {
 }
 
 #[pyclass(
-    name = "DescribeQueriesResponse",
+    name = "DescribeQueriesOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyDescribeQueriesResponse {
+struct PyOperationDescribeQueriesOutput {
     inner: aws_sdk_cloudwatchlogs::operation::describe_queries::DescribeQueriesOutput,
 }
 
 #[pymethods]
-impl PyDescribeQueriesResponse {
+impl PyOperationDescribeQueriesOutput {
     #[getter]
     fn queries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.queries {
@@ -14205,16 +14205,16 @@ impl PyDescribeQueriesResponse {
 }
 
 #[pyclass(
-    name = "DescribeQueryDefinitionsResponse",
+    name = "DescribeQueryDefinitionsOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyDescribeQueryDefinitionsResponse {
+struct PyOperationDescribeQueryDefinitionsOutput {
     inner: aws_sdk_cloudwatchlogs::operation::describe_query_definitions::DescribeQueryDefinitionsOutput,
 }
 
 #[pymethods]
-impl PyDescribeQueryDefinitionsResponse {
+impl PyOperationDescribeQueryDefinitionsOutput {
     #[getter]
     fn query_definitions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_definitions {
@@ -14270,16 +14270,16 @@ impl PyDescribeQueryDefinitionsResponse {
 }
 
 #[pyclass(
-    name = "DescribeResourcePoliciesResponse",
+    name = "DescribeResourcePoliciesOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyDescribeResourcePoliciesResponse {
+struct PyOperationDescribeResourcePoliciesOutput {
     inner: aws_sdk_cloudwatchlogs::operation::describe_resource_policies::DescribeResourcePoliciesOutput,
 }
 
 #[pymethods]
-impl PyDescribeResourcePoliciesResponse {
+impl PyOperationDescribeResourcePoliciesOutput {
     #[getter]
     fn resource_policies(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_policies {
@@ -14335,16 +14335,16 @@ impl PyDescribeResourcePoliciesResponse {
 }
 
 #[pyclass(
-    name = "DescribeSubscriptionFiltersResponse",
+    name = "DescribeSubscriptionFiltersOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyDescribeSubscriptionFiltersResponse {
+struct PyOperationDescribeSubscriptionFiltersOutput {
     inner: aws_sdk_cloudwatchlogs::operation::describe_subscription_filters::DescribeSubscriptionFiltersOutput,
 }
 
 #[pymethods]
-impl PyDescribeSubscriptionFiltersResponse {
+impl PyOperationDescribeSubscriptionFiltersOutput {
     #[getter]
     fn subscription_filters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscription_filters {
@@ -14400,16 +14400,16 @@ impl PyDescribeSubscriptionFiltersResponse {
 }
 
 #[pyclass(
-    name = "DisassociateSourceFromS3TableIntegrationResponse",
+    name = "DisassociateSourceFromS3TableIntegrationOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyDisassociateSourceFromS3TableIntegrationResponse {
+struct PyOperationDisassociateSourceFromS3TableIntegrationOutput {
     inner: aws_sdk_cloudwatchlogs::operation::disassociate_source_from_s3_table_integration::DisassociateSourceFromS3TableIntegrationOutput,
 }
 
 #[pymethods]
-impl PyDisassociateSourceFromS3TableIntegrationResponse {
+impl PyOperationDisassociateSourceFromS3TableIntegrationOutput {
     #[getter]
     fn identifier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identifier {
@@ -14433,16 +14433,16 @@ impl PyDisassociateSourceFromS3TableIntegrationResponse {
 }
 
 #[pyclass(
-    name = "FilterLogEventsResponse",
+    name = "FilterLogEventsOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyFilterLogEventsResponse {
+struct PyOperationFilterLogEventsOutput {
     inner: aws_sdk_cloudwatchlogs::operation::filter_log_events::FilterLogEventsOutput,
 }
 
 #[pymethods]
-impl PyFilterLogEventsResponse {
+impl PyOperationFilterLogEventsOutput {
     #[getter]
     fn events(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.events {
@@ -14530,16 +14530,16 @@ impl PyFilterLogEventsResponse {
 }
 
 #[pyclass(
-    name = "GetDataProtectionPolicyResponse",
+    name = "GetDataProtectionPolicyOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyGetDataProtectionPolicyResponse {
+struct PyOperationGetDataProtectionPolicyOutput {
     inner: aws_sdk_cloudwatchlogs::operation::get_data_protection_policy::GetDataProtectionPolicyOutput,
 }
 
 #[pymethods]
-impl PyGetDataProtectionPolicyResponse {
+impl PyOperationGetDataProtectionPolicyOutput {
     #[getter]
     fn log_group_identifier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_group_identifier {
@@ -14595,16 +14595,16 @@ impl PyGetDataProtectionPolicyResponse {
 }
 
 #[pyclass(
-    name = "GetDeliveryResponse",
+    name = "GetDeliveryOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyGetDeliveryResponse {
+struct PyOperationGetDeliveryOutput {
     inner: aws_sdk_cloudwatchlogs::operation::get_delivery::GetDeliveryOutput,
 }
 
 #[pymethods]
-impl PyGetDeliveryResponse {
+impl PyOperationGetDeliveryOutput {
     #[getter]
     fn delivery(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.delivery {
@@ -14634,17 +14634,17 @@ impl PyGetDeliveryResponse {
 }
 
 #[pyclass(
-    name = "GetDeliveryDestinationResponse",
+    name = "GetDeliveryDestinationOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyGetDeliveryDestinationResponse {
+struct PyOperationGetDeliveryDestinationOutput {
     inner:
         aws_sdk_cloudwatchlogs::operation::get_delivery_destination::GetDeliveryDestinationOutput,
 }
 
 #[pymethods]
-impl PyGetDeliveryDestinationResponse {
+impl PyOperationGetDeliveryDestinationOutput {
     #[getter]
     fn delivery_destination(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.delivery_destination {
@@ -14674,16 +14674,16 @@ impl PyGetDeliveryDestinationResponse {
 }
 
 #[pyclass(
-    name = "GetDeliveryDestinationPolicyResponse",
+    name = "GetDeliveryDestinationPolicyOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyGetDeliveryDestinationPolicyResponse {
+struct PyOperationGetDeliveryDestinationPolicyOutput {
     inner: aws_sdk_cloudwatchlogs::operation::get_delivery_destination_policy::GetDeliveryDestinationPolicyOutput,
 }
 
 #[pymethods]
-impl PyGetDeliveryDestinationPolicyResponse {
+impl PyOperationGetDeliveryDestinationPolicyOutput {
     #[getter]
     fn policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.policy {
@@ -14713,16 +14713,16 @@ impl PyGetDeliveryDestinationPolicyResponse {
 }
 
 #[pyclass(
-    name = "GetDeliverySourceResponse",
+    name = "GetDeliverySourceOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyGetDeliverySourceResponse {
+struct PyOperationGetDeliverySourceOutput {
     inner: aws_sdk_cloudwatchlogs::operation::get_delivery_source::GetDeliverySourceOutput,
 }
 
 #[pymethods]
-impl PyGetDeliverySourceResponse {
+impl PyOperationGetDeliverySourceOutput {
     #[getter]
     fn delivery_source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.delivery_source {
@@ -14752,16 +14752,16 @@ impl PyGetDeliverySourceResponse {
 }
 
 #[pyclass(
-    name = "GetIntegrationResponse",
+    name = "GetIntegrationOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyGetIntegrationResponse {
+struct PyOperationGetIntegrationOutput {
     inner: aws_sdk_cloudwatchlogs::operation::get_integration::GetIntegrationOutput,
 }
 
 #[pymethods]
-impl PyGetIntegrationResponse {
+impl PyOperationGetIntegrationOutput {
     #[getter]
     fn integration_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.integration_name {
@@ -14833,16 +14833,16 @@ impl PyGetIntegrationResponse {
 }
 
 #[pyclass(
-    name = "GetLogAnomalyDetectorResponse",
+    name = "GetLogAnomalyDetectorOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyGetLogAnomalyDetectorResponse {
+struct PyOperationGetLogAnomalyDetectorOutput {
     inner: aws_sdk_cloudwatchlogs::operation::get_log_anomaly_detector::GetLogAnomalyDetectorOutput,
 }
 
 #[pymethods]
-impl PyGetLogAnomalyDetectorResponse {
+impl PyOperationGetLogAnomalyDetectorOutput {
     #[getter]
     fn detector_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.detector_name {
@@ -14996,16 +14996,16 @@ impl PyGetLogAnomalyDetectorResponse {
 }
 
 #[pyclass(
-    name = "GetLogEventsResponse",
+    name = "GetLogEventsOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyGetLogEventsResponse {
+struct PyOperationGetLogEventsOutput {
     inner: aws_sdk_cloudwatchlogs::operation::get_log_events::GetLogEventsOutput,
 }
 
 #[pymethods]
-impl PyGetLogEventsResponse {
+impl PyOperationGetLogEventsOutput {
     #[getter]
     fn events(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.events {
@@ -15077,16 +15077,16 @@ impl PyGetLogEventsResponse {
 }
 
 #[pyclass(
-    name = "GetLogFieldsResponse",
+    name = "GetLogFieldsOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyGetLogFieldsResponse {
+struct PyOperationGetLogFieldsOutput {
     inner: aws_sdk_cloudwatchlogs::operation::get_log_fields::GetLogFieldsOutput,
 }
 
 #[pymethods]
-impl PyGetLogFieldsResponse {
+impl PyOperationGetLogFieldsOutput {
     #[getter]
     fn log_fields(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_fields {
@@ -15126,16 +15126,16 @@ impl PyGetLogFieldsResponse {
 }
 
 #[pyclass(
-    name = "GetLogGroupFieldsResponse",
+    name = "GetLogGroupFieldsOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyGetLogGroupFieldsResponse {
+struct PyOperationGetLogGroupFieldsOutput {
     inner: aws_sdk_cloudwatchlogs::operation::get_log_group_fields::GetLogGroupFieldsOutput,
 }
 
 #[pymethods]
-impl PyGetLogGroupFieldsResponse {
+impl PyOperationGetLogGroupFieldsOutput {
     #[getter]
     fn log_group_fields(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_group_fields {
@@ -15175,16 +15175,16 @@ impl PyGetLogGroupFieldsResponse {
 }
 
 #[pyclass(
-    name = "GetLogRecordResponse",
+    name = "GetLogRecordOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyGetLogRecordResponse {
+struct PyOperationGetLogRecordOutput {
     inner: aws_sdk_cloudwatchlogs::operation::get_log_record::GetLogRecordOutput,
 }
 
 #[pymethods]
-impl PyGetLogRecordResponse {
+impl PyOperationGetLogRecordOutput {
     #[getter]
     fn log_record(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_record {
@@ -15220,16 +15220,16 @@ impl PyGetLogRecordResponse {
 }
 
 #[pyclass(
-    name = "GetLookupTableResponse",
+    name = "GetLookupTableOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyGetLookupTableResponse {
+struct PyOperationGetLookupTableOutput {
     inner: aws_sdk_cloudwatchlogs::operation::get_lookup_table::GetLookupTableOutput,
 }
 
 #[pymethods]
-impl PyGetLookupTableResponse {
+impl PyOperationGetLookupTableOutput {
     #[getter]
     fn lookup_table_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.lookup_table_arn {
@@ -15349,16 +15349,16 @@ impl PyGetLookupTableResponse {
 }
 
 #[pyclass(
-    name = "GetQueryResultsResponse",
+    name = "GetQueryResultsOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyGetQueryResultsResponse {
+struct PyOperationGetQueryResultsOutput {
     inner: aws_sdk_cloudwatchlogs::operation::get_query_results::GetQueryResultsOutput,
 }
 
 #[pymethods]
-impl PyGetQueryResultsResponse {
+impl PyOperationGetQueryResultsOutput {
     #[getter]
     fn query_language(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_language {
@@ -15494,16 +15494,16 @@ impl PyGetQueryResultsResponse {
 }
 
 #[pyclass(
-    name = "GetScheduledQueryResponse",
+    name = "GetScheduledQueryOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyGetScheduledQueryResponse {
+struct PyOperationGetScheduledQueryOutput {
     inner: aws_sdk_cloudwatchlogs::operation::get_scheduled_query::GetScheduledQueryOutput,
 }
 
 #[pymethods]
-impl PyGetScheduledQueryResponse {
+impl PyOperationGetScheduledQueryOutput {
     #[getter]
     fn scheduled_query_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.scheduled_query_arn {
@@ -15847,16 +15847,16 @@ impl PyGetScheduledQueryResponse {
 }
 
 #[pyclass(
-    name = "GetScheduledQueryHistoryResponse",
+    name = "GetScheduledQueryHistoryOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyGetScheduledQueryHistoryResponse {
+struct PyOperationGetScheduledQueryHistoryOutput {
     inner: aws_sdk_cloudwatchlogs::operation::get_scheduled_query_history::GetScheduledQueryHistoryOutput,
 }
 
 #[pymethods]
-impl PyGetScheduledQueryHistoryResponse {
+impl PyOperationGetScheduledQueryHistoryOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
@@ -15944,16 +15944,16 @@ impl PyGetScheduledQueryHistoryResponse {
 }
 
 #[pyclass(
-    name = "GetStorageTierPolicyResponse",
+    name = "GetStorageTierPolicyOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyGetStorageTierPolicyResponse {
+struct PyOperationGetStorageTierPolicyOutput {
     inner: aws_sdk_cloudwatchlogs::operation::get_storage_tier_policy::GetStorageTierPolicyOutput,
 }
 
 #[pymethods]
-impl PyGetStorageTierPolicyResponse {
+impl PyOperationGetStorageTierPolicyOutput {
     #[getter]
     fn storage_tier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.storage_tier {
@@ -15993,16 +15993,16 @@ impl PyGetStorageTierPolicyResponse {
 }
 
 #[pyclass(
-    name = "GetTransformerResponse",
+    name = "GetTransformerOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyGetTransformerResponse {
+struct PyOperationGetTransformerOutput {
     inner: aws_sdk_cloudwatchlogs::operation::get_transformer::GetTransformerOutput,
 }
 
 #[pymethods]
-impl PyGetTransformerResponse {
+impl PyOperationGetTransformerOutput {
     #[getter]
     fn log_group_identifier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_group_identifier {
@@ -16090,16 +16090,16 @@ impl PyGetTransformerResponse {
 }
 
 #[pyclass(
-    name = "ListAggregateLogGroupSummariesResponse",
+    name = "ListAggregateLogGroupSummariesOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyListAggregateLogGroupSummariesResponse {
+struct PyOperationListAggregateLogGroupSummariesOutput {
     inner: aws_sdk_cloudwatchlogs::operation::list_aggregate_log_group_summaries::ListAggregateLogGroupSummariesOutput,
 }
 
 #[pymethods]
-impl PyListAggregateLogGroupSummariesResponse {
+impl PyOperationListAggregateLogGroupSummariesOutput {
     #[getter]
     fn aggregate_log_group_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.aggregate_log_group_summaries {
@@ -16155,16 +16155,16 @@ impl PyListAggregateLogGroupSummariesResponse {
 }
 
 #[pyclass(
-    name = "ListAnomaliesResponse",
+    name = "ListAnomaliesOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyListAnomaliesResponse {
+struct PyOperationListAnomaliesOutput {
     inner: aws_sdk_cloudwatchlogs::operation::list_anomalies::ListAnomaliesOutput,
 }
 
 #[pymethods]
-impl PyListAnomaliesResponse {
+impl PyOperationListAnomaliesOutput {
     #[getter]
     fn anomalies(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.anomalies {
@@ -16220,16 +16220,16 @@ impl PyListAnomaliesResponse {
 }
 
 #[pyclass(
-    name = "ListIntegrationsResponse",
+    name = "ListIntegrationsOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyListIntegrationsResponse {
+struct PyOperationListIntegrationsOutput {
     inner: aws_sdk_cloudwatchlogs::operation::list_integrations::ListIntegrationsOutput,
 }
 
 #[pymethods]
-impl PyListIntegrationsResponse {
+impl PyOperationListIntegrationsOutput {
     #[getter]
     fn integration_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.integration_summaries {
@@ -16269,16 +16269,16 @@ impl PyListIntegrationsResponse {
 }
 
 #[pyclass(
-    name = "ListLogAnomalyDetectorsResponse",
+    name = "ListLogAnomalyDetectorsOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyListLogAnomalyDetectorsResponse {
+struct PyOperationListLogAnomalyDetectorsOutput {
     inner: aws_sdk_cloudwatchlogs::operation::list_log_anomaly_detectors::ListLogAnomalyDetectorsOutput,
 }
 
 #[pymethods]
-impl PyListLogAnomalyDetectorsResponse {
+impl PyOperationListLogAnomalyDetectorsOutput {
     #[getter]
     fn anomaly_detectors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.anomaly_detectors {
@@ -16334,16 +16334,16 @@ impl PyListLogAnomalyDetectorsResponse {
 }
 
 #[pyclass(
-    name = "ListLogGroupsResponse",
+    name = "ListLogGroupsOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyListLogGroupsResponse {
+struct PyOperationListLogGroupsOutput {
     inner: aws_sdk_cloudwatchlogs::operation::list_log_groups::ListLogGroupsOutput,
 }
 
 #[pymethods]
-impl PyListLogGroupsResponse {
+impl PyOperationListLogGroupsOutput {
     #[getter]
     fn log_groups(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_groups {
@@ -16399,17 +16399,17 @@ impl PyListLogGroupsResponse {
 }
 
 #[pyclass(
-    name = "ListLogGroupsForQueryResponse",
+    name = "ListLogGroupsForQueryOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyListLogGroupsForQueryResponse {
+struct PyOperationListLogGroupsForQueryOutput {
     inner:
         aws_sdk_cloudwatchlogs::operation::list_log_groups_for_query::ListLogGroupsForQueryOutput,
 }
 
 #[pymethods]
-impl PyListLogGroupsForQueryResponse {
+impl PyOperationListLogGroupsForQueryOutput {
     #[getter]
     fn log_group_identifiers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_group_identifiers {
@@ -16459,16 +16459,16 @@ impl PyListLogGroupsForQueryResponse {
 }
 
 #[pyclass(
-    name = "ListScheduledQueriesResponse",
+    name = "ListScheduledQueriesOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyListScheduledQueriesResponse {
+struct PyOperationListScheduledQueriesOutput {
     inner: aws_sdk_cloudwatchlogs::operation::list_scheduled_queries::ListScheduledQueriesOutput,
 }
 
 #[pymethods]
-impl PyListScheduledQueriesResponse {
+impl PyOperationListScheduledQueriesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -16524,16 +16524,16 @@ impl PyListScheduledQueriesResponse {
 }
 
 #[pyclass(
-    name = "ListSourcesForS3TableIntegrationResponse",
+    name = "ListSourcesForS3TableIntegrationOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyListSourcesForS3TableIntegrationResponse {
+struct PyOperationListSourcesForS3TableIntegrationOutput {
     inner: aws_sdk_cloudwatchlogs::operation::list_sources_for_s3_table_integration::ListSourcesForS3TableIntegrationOutput,
 }
 
 #[pymethods]
-impl PyListSourcesForS3TableIntegrationResponse {
+impl PyOperationListSourcesForS3TableIntegrationOutput {
     #[getter]
     fn sources(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sources {
@@ -16589,16 +16589,16 @@ impl PyListSourcesForS3TableIntegrationResponse {
 }
 
 #[pyclass(
-    name = "ListSyslogConfigurationsResponse",
+    name = "ListSyslogConfigurationsOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyListSyslogConfigurationsResponse {
+struct PyOperationListSyslogConfigurationsOutput {
     inner: aws_sdk_cloudwatchlogs::operation::list_syslog_configurations::ListSyslogConfigurationsOutput,
 }
 
 #[pymethods]
-impl PyListSyslogConfigurationsResponse {
+impl PyOperationListSyslogConfigurationsOutput {
     #[getter]
     fn syslog_configurations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.syslog_configurations {
@@ -16654,16 +16654,16 @@ impl PyListSyslogConfigurationsResponse {
 }
 
 #[pyclass(
-    name = "ListTagsForResourceResponse",
+    name = "ListTagsForResourceOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyListTagsForResourceResponse {
+struct PyOperationListTagsForResourceOutput {
     inner: aws_sdk_cloudwatchlogs::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
 
 #[pymethods]
-impl PyListTagsForResourceResponse {
+impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
@@ -16699,16 +16699,16 @@ impl PyListTagsForResourceResponse {
 }
 
 #[pyclass(
-    name = "ListTagsLogGroupResponse",
+    name = "ListTagsLogGroupOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyListTagsLogGroupResponse {
+struct PyOperationListTagsLogGroupOutput {
     inner: aws_sdk_cloudwatchlogs::operation::list_tags_log_group::ListTagsLogGroupOutput,
 }
 
 #[pymethods]
-impl PyListTagsLogGroupResponse {
+impl PyOperationListTagsLogGroupOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
@@ -16744,16 +16744,16 @@ impl PyListTagsLogGroupResponse {
 }
 
 #[pyclass(
-    name = "PutAccountPolicyResponse",
+    name = "PutAccountPolicyOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyPutAccountPolicyResponse {
+struct PyOperationPutAccountPolicyOutput {
     inner: aws_sdk_cloudwatchlogs::operation::put_account_policy::PutAccountPolicyOutput,
 }
 
 #[pymethods]
-impl PyPutAccountPolicyResponse {
+impl PyOperationPutAccountPolicyOutput {
     #[getter]
     fn account_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.account_policy {
@@ -16783,16 +16783,16 @@ impl PyPutAccountPolicyResponse {
 }
 
 #[pyclass(
-    name = "PutDataProtectionPolicyResponse",
+    name = "PutDataProtectionPolicyOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyPutDataProtectionPolicyResponse {
+struct PyOperationPutDataProtectionPolicyOutput {
     inner: aws_sdk_cloudwatchlogs::operation::put_data_protection_policy::PutDataProtectionPolicyOutput,
 }
 
 #[pymethods]
-impl PyPutDataProtectionPolicyResponse {
+impl PyOperationPutDataProtectionPolicyOutput {
     #[getter]
     fn log_group_identifier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_group_identifier {
@@ -16848,17 +16848,17 @@ impl PyPutDataProtectionPolicyResponse {
 }
 
 #[pyclass(
-    name = "PutDeliveryDestinationResponse",
+    name = "PutDeliveryDestinationOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyPutDeliveryDestinationResponse {
+struct PyOperationPutDeliveryDestinationOutput {
     inner:
         aws_sdk_cloudwatchlogs::operation::put_delivery_destination::PutDeliveryDestinationOutput,
 }
 
 #[pymethods]
-impl PyPutDeliveryDestinationResponse {
+impl PyOperationPutDeliveryDestinationOutput {
     #[getter]
     fn delivery_destination(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.delivery_destination {
@@ -16888,16 +16888,16 @@ impl PyPutDeliveryDestinationResponse {
 }
 
 #[pyclass(
-    name = "PutDeliveryDestinationPolicyResponse",
+    name = "PutDeliveryDestinationPolicyOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyPutDeliveryDestinationPolicyResponse {
+struct PyOperationPutDeliveryDestinationPolicyOutput {
     inner: aws_sdk_cloudwatchlogs::operation::put_delivery_destination_policy::PutDeliveryDestinationPolicyOutput,
 }
 
 #[pymethods]
-impl PyPutDeliveryDestinationPolicyResponse {
+impl PyOperationPutDeliveryDestinationPolicyOutput {
     #[getter]
     fn policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.policy {
@@ -16927,16 +16927,16 @@ impl PyPutDeliveryDestinationPolicyResponse {
 }
 
 #[pyclass(
-    name = "PutDeliverySourceResponse",
+    name = "PutDeliverySourceOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyPutDeliverySourceResponse {
+struct PyOperationPutDeliverySourceOutput {
     inner: aws_sdk_cloudwatchlogs::operation::put_delivery_source::PutDeliverySourceOutput,
 }
 
 #[pymethods]
-impl PyPutDeliverySourceResponse {
+impl PyOperationPutDeliverySourceOutput {
     #[getter]
     fn delivery_source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.delivery_source {
@@ -16966,16 +16966,16 @@ impl PyPutDeliverySourceResponse {
 }
 
 #[pyclass(
-    name = "PutDestinationResponse",
+    name = "PutDestinationOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyPutDestinationResponse {
+struct PyOperationPutDestinationOutput {
     inner: aws_sdk_cloudwatchlogs::operation::put_destination::PutDestinationOutput,
 }
 
 #[pymethods]
-impl PyPutDestinationResponse {
+impl PyOperationPutDestinationOutput {
     #[getter]
     fn destination(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.destination {
@@ -17005,16 +17005,16 @@ impl PyPutDestinationResponse {
 }
 
 #[pyclass(
-    name = "PutIndexPolicyResponse",
+    name = "PutIndexPolicyOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyPutIndexPolicyResponse {
+struct PyOperationPutIndexPolicyOutput {
     inner: aws_sdk_cloudwatchlogs::operation::put_index_policy::PutIndexPolicyOutput,
 }
 
 #[pymethods]
-impl PyPutIndexPolicyResponse {
+impl PyOperationPutIndexPolicyOutput {
     #[getter]
     fn index_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.index_policy {
@@ -17044,16 +17044,16 @@ impl PyPutIndexPolicyResponse {
 }
 
 #[pyclass(
-    name = "PutIntegrationResponse",
+    name = "PutIntegrationOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyPutIntegrationResponse {
+struct PyOperationPutIntegrationOutput {
     inner: aws_sdk_cloudwatchlogs::operation::put_integration::PutIntegrationOutput,
 }
 
 #[pymethods]
-impl PyPutIntegrationResponse {
+impl PyOperationPutIntegrationOutput {
     #[getter]
     fn integration_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.integration_name {
@@ -17093,16 +17093,16 @@ impl PyPutIntegrationResponse {
 }
 
 #[pyclass(
-    name = "PutLogEventsResponse",
+    name = "PutLogEventsOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyPutLogEventsResponse {
+struct PyOperationPutLogEventsOutput {
     inner: aws_sdk_cloudwatchlogs::operation::put_log_events::PutLogEventsOutput,
 }
 
 #[pymethods]
-impl PyPutLogEventsResponse {
+impl PyOperationPutLogEventsOutput {
     #[getter]
     fn next_sequence_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_sequence_token {
@@ -17170,16 +17170,16 @@ impl PyPutLogEventsResponse {
 }
 
 #[pyclass(
-    name = "PutQueryDefinitionResponse",
+    name = "PutQueryDefinitionOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyPutQueryDefinitionResponse {
+struct PyOperationPutQueryDefinitionOutput {
     inner: aws_sdk_cloudwatchlogs::operation::put_query_definition::PutQueryDefinitionOutput,
 }
 
 #[pymethods]
-impl PyPutQueryDefinitionResponse {
+impl PyOperationPutQueryDefinitionOutput {
     #[getter]
     fn query_definition_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_definition_id {
@@ -17203,16 +17203,16 @@ impl PyPutQueryDefinitionResponse {
 }
 
 #[pyclass(
-    name = "PutResourcePolicyResponse",
+    name = "PutResourcePolicyOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyPutResourcePolicyResponse {
+struct PyOperationPutResourcePolicyOutput {
     inner: aws_sdk_cloudwatchlogs::operation::put_resource_policy::PutResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyPutResourcePolicyResponse {
+impl PyOperationPutResourcePolicyOutput {
     #[getter]
     fn resource_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_policy {
@@ -17258,16 +17258,16 @@ impl PyPutResourcePolicyResponse {
 }
 
 #[pyclass(
-    name = "PutStorageTierPolicyResponse",
+    name = "PutStorageTierPolicyOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyPutStorageTierPolicyResponse {
+struct PyOperationPutStorageTierPolicyOutput {
     inner: aws_sdk_cloudwatchlogs::operation::put_storage_tier_policy::PutStorageTierPolicyOutput,
 }
 
 #[pymethods]
-impl PyPutStorageTierPolicyResponse {
+impl PyOperationPutStorageTierPolicyOutput {
     #[getter]
     fn storage_tier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.storage_tier {
@@ -17307,16 +17307,16 @@ impl PyPutStorageTierPolicyResponse {
 }
 
 #[pyclass(
-    name = "StartQueryResponse",
+    name = "StartQueryOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyStartQueryResponse {
+struct PyOperationStartQueryOutput {
     inner: aws_sdk_cloudwatchlogs::operation::start_query::StartQueryOutput,
 }
 
 #[pymethods]
-impl PyStartQueryResponse {
+impl PyOperationStartQueryOutput {
     #[getter]
     fn query_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_id {
@@ -17340,16 +17340,16 @@ impl PyStartQueryResponse {
 }
 
 #[pyclass(
-    name = "StopQueryResponse",
+    name = "StopQueryOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyStopQueryResponse {
+struct PyOperationStopQueryOutput {
     inner: aws_sdk_cloudwatchlogs::operation::stop_query::StopQueryOutput,
 }
 
 #[pymethods]
-impl PyStopQueryResponse {
+impl PyOperationStopQueryOutput {
     #[getter]
     fn success(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2946 = (&self.inner.success).to_owned().into_py_any(py)?;
@@ -17365,16 +17365,16 @@ impl PyStopQueryResponse {
 }
 
 #[pyclass(
-    name = "TestMetricFilterResponse",
+    name = "TestMetricFilterOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyTestMetricFilterResponse {
+struct PyOperationTestMetricFilterOutput {
     inner: aws_sdk_cloudwatchlogs::operation::test_metric_filter::TestMetricFilterOutput,
 }
 
 #[pymethods]
-impl PyTestMetricFilterResponse {
+impl PyOperationTestMetricFilterOutput {
     #[getter]
     fn matches(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.matches {
@@ -17414,16 +17414,16 @@ impl PyTestMetricFilterResponse {
 }
 
 #[pyclass(
-    name = "TestTransformerResponse",
+    name = "TestTransformerOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyTestTransformerResponse {
+struct PyOperationTestTransformerOutput {
     inner: aws_sdk_cloudwatchlogs::operation::test_transformer::TestTransformerOutput,
 }
 
 #[pymethods]
-impl PyTestTransformerResponse {
+impl PyOperationTestTransformerOutput {
     #[getter]
     fn transformed_logs(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.transformed_logs {
@@ -17463,16 +17463,16 @@ impl PyTestTransformerResponse {
 }
 
 #[pyclass(
-    name = "UpdateDeliveryConfigurationResponse",
+    name = "UpdateDeliveryConfigurationOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyUpdateDeliveryConfigurationResponse {
+struct PyOperationUpdateDeliveryConfigurationOutput {
     inner: aws_sdk_cloudwatchlogs::operation::update_delivery_configuration::UpdateDeliveryConfigurationOutput,
 }
 
 #[pymethods]
-impl PyUpdateDeliveryConfigurationResponse {
+impl PyOperationUpdateDeliveryConfigurationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -17480,16 +17480,16 @@ impl PyUpdateDeliveryConfigurationResponse {
 }
 
 #[pyclass(
-    name = "UpdateLookupTableResponse",
+    name = "UpdateLookupTableOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyUpdateLookupTableResponse {
+struct PyOperationUpdateLookupTableOutput {
     inner: aws_sdk_cloudwatchlogs::operation::update_lookup_table::UpdateLookupTableOutput,
 }
 
 #[pymethods]
-impl PyUpdateLookupTableResponse {
+impl PyOperationUpdateLookupTableOutput {
     #[getter]
     fn lookup_table_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.lookup_table_arn {
@@ -17529,16 +17529,16 @@ impl PyUpdateLookupTableResponse {
 }
 
 #[pyclass(
-    name = "UpdateScheduledQueryResponse",
+    name = "UpdateScheduledQueryOutput",
     module = "rboto_cloudwatch_logs._native",
     frozen
 )]
-struct PyUpdateScheduledQueryResponse {
+struct PyOperationUpdateScheduledQueryOutput {
     inner: aws_sdk_cloudwatchlogs::operation::update_scheduled_query::UpdateScheduledQueryOutput,
 }
 
 #[pymethods]
-impl PyUpdateScheduledQueryResponse {
+impl PyOperationUpdateScheduledQueryOutput {
     #[getter]
     fn scheduled_query_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.scheduled_query_arn {
@@ -18117,86 +18117,86 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyTypeConverter>()?;
     module.add_class::<PyTypeConverterEntry>()?;
     module.add_class::<PyUpperCaseString>()?;
-    module.add_class::<PyAssociateSourceToS3TableIntegrationResponse>()?;
-    module.add_class::<PyCancelImportTaskResponse>()?;
-    module.add_class::<PyCreateDeliveryResponse>()?;
-    module.add_class::<PyCreateExportTaskResponse>()?;
-    module.add_class::<PyCreateImportTaskResponse>()?;
-    module.add_class::<PyCreateLogAnomalyDetectorResponse>()?;
-    module.add_class::<PyCreateLookupTableResponse>()?;
-    module.add_class::<PyCreateScheduledQueryResponse>()?;
-    module.add_class::<PyDeleteIndexPolicyResponse>()?;
-    module.add_class::<PyDeleteIntegrationResponse>()?;
-    module.add_class::<PyDeleteQueryDefinitionResponse>()?;
-    module.add_class::<PyDeleteScheduledQueryResponse>()?;
-    module.add_class::<PyDescribeAccountPoliciesResponse>()?;
-    module.add_class::<PyDescribeConfigurationTemplatesResponse>()?;
-    module.add_class::<PyDescribeDeliveriesResponse>()?;
-    module.add_class::<PyDescribeDeliveryDestinationsResponse>()?;
-    module.add_class::<PyDescribeDeliverySourcesResponse>()?;
-    module.add_class::<PyDescribeDestinationsResponse>()?;
-    module.add_class::<PyDescribeExportTasksResponse>()?;
-    module.add_class::<PyDescribeFieldIndexesResponse>()?;
-    module.add_class::<PyDescribeImportTaskBatchesResponse>()?;
-    module.add_class::<PyDescribeImportTasksResponse>()?;
-    module.add_class::<PyDescribeIndexPoliciesResponse>()?;
-    module.add_class::<PyDescribeLogGroupsResponse>()?;
-    module.add_class::<PyDescribeLogStreamsResponse>()?;
-    module.add_class::<PyDescribeLookupTablesResponse>()?;
-    module.add_class::<PyDescribeMetricFiltersResponse>()?;
-    module.add_class::<PyDescribeQueriesResponse>()?;
-    module.add_class::<PyDescribeQueryDefinitionsResponse>()?;
-    module.add_class::<PyDescribeResourcePoliciesResponse>()?;
-    module.add_class::<PyDescribeSubscriptionFiltersResponse>()?;
-    module.add_class::<PyDisassociateSourceFromS3TableIntegrationResponse>()?;
-    module.add_class::<PyFilterLogEventsResponse>()?;
-    module.add_class::<PyGetDataProtectionPolicyResponse>()?;
-    module.add_class::<PyGetDeliveryResponse>()?;
-    module.add_class::<PyGetDeliveryDestinationResponse>()?;
-    module.add_class::<PyGetDeliveryDestinationPolicyResponse>()?;
-    module.add_class::<PyGetDeliverySourceResponse>()?;
-    module.add_class::<PyGetIntegrationResponse>()?;
-    module.add_class::<PyGetLogAnomalyDetectorResponse>()?;
-    module.add_class::<PyGetLogEventsResponse>()?;
-    module.add_class::<PyGetLogFieldsResponse>()?;
-    module.add_class::<PyGetLogGroupFieldsResponse>()?;
-    module.add_class::<PyGetLogRecordResponse>()?;
-    module.add_class::<PyGetLookupTableResponse>()?;
-    module.add_class::<PyGetQueryResultsResponse>()?;
-    module.add_class::<PyGetScheduledQueryResponse>()?;
-    module.add_class::<PyGetScheduledQueryHistoryResponse>()?;
-    module.add_class::<PyGetStorageTierPolicyResponse>()?;
-    module.add_class::<PyGetTransformerResponse>()?;
-    module.add_class::<PyListAggregateLogGroupSummariesResponse>()?;
-    module.add_class::<PyListAnomaliesResponse>()?;
-    module.add_class::<PyListIntegrationsResponse>()?;
-    module.add_class::<PyListLogAnomalyDetectorsResponse>()?;
-    module.add_class::<PyListLogGroupsResponse>()?;
-    module.add_class::<PyListLogGroupsForQueryResponse>()?;
-    module.add_class::<PyListScheduledQueriesResponse>()?;
-    module.add_class::<PyListSourcesForS3TableIntegrationResponse>()?;
-    module.add_class::<PyListSyslogConfigurationsResponse>()?;
-    module.add_class::<PyListTagsForResourceResponse>()?;
-    module.add_class::<PyListTagsLogGroupResponse>()?;
-    module.add_class::<PyPutAccountPolicyResponse>()?;
-    module.add_class::<PyPutDataProtectionPolicyResponse>()?;
-    module.add_class::<PyPutDeliveryDestinationResponse>()?;
-    module.add_class::<PyPutDeliveryDestinationPolicyResponse>()?;
-    module.add_class::<PyPutDeliverySourceResponse>()?;
-    module.add_class::<PyPutDestinationResponse>()?;
-    module.add_class::<PyPutIndexPolicyResponse>()?;
-    module.add_class::<PyPutIntegrationResponse>()?;
-    module.add_class::<PyPutLogEventsResponse>()?;
-    module.add_class::<PyPutQueryDefinitionResponse>()?;
-    module.add_class::<PyPutResourcePolicyResponse>()?;
-    module.add_class::<PyPutStorageTierPolicyResponse>()?;
-    module.add_class::<PyStartQueryResponse>()?;
-    module.add_class::<PyStopQueryResponse>()?;
-    module.add_class::<PyTestMetricFilterResponse>()?;
-    module.add_class::<PyTestTransformerResponse>()?;
-    module.add_class::<PyUpdateDeliveryConfigurationResponse>()?;
-    module.add_class::<PyUpdateLookupTableResponse>()?;
-    module.add_class::<PyUpdateScheduledQueryResponse>()?;
+    module.add_class::<PyOperationAssociateSourceToS3TableIntegrationOutput>()?;
+    module.add_class::<PyOperationCancelImportTaskOutput>()?;
+    module.add_class::<PyOperationCreateDeliveryOutput>()?;
+    module.add_class::<PyOperationCreateExportTaskOutput>()?;
+    module.add_class::<PyOperationCreateImportTaskOutput>()?;
+    module.add_class::<PyOperationCreateLogAnomalyDetectorOutput>()?;
+    module.add_class::<PyOperationCreateLookupTableOutput>()?;
+    module.add_class::<PyOperationCreateScheduledQueryOutput>()?;
+    module.add_class::<PyOperationDeleteIndexPolicyOutput>()?;
+    module.add_class::<PyOperationDeleteIntegrationOutput>()?;
+    module.add_class::<PyOperationDeleteQueryDefinitionOutput>()?;
+    module.add_class::<PyOperationDeleteScheduledQueryOutput>()?;
+    module.add_class::<PyOperationDescribeAccountPoliciesOutput>()?;
+    module.add_class::<PyOperationDescribeConfigurationTemplatesOutput>()?;
+    module.add_class::<PyOperationDescribeDeliveriesOutput>()?;
+    module.add_class::<PyOperationDescribeDeliveryDestinationsOutput>()?;
+    module.add_class::<PyOperationDescribeDeliverySourcesOutput>()?;
+    module.add_class::<PyOperationDescribeDestinationsOutput>()?;
+    module.add_class::<PyOperationDescribeExportTasksOutput>()?;
+    module.add_class::<PyOperationDescribeFieldIndexesOutput>()?;
+    module.add_class::<PyOperationDescribeImportTaskBatchesOutput>()?;
+    module.add_class::<PyOperationDescribeImportTasksOutput>()?;
+    module.add_class::<PyOperationDescribeIndexPoliciesOutput>()?;
+    module.add_class::<PyOperationDescribeLogGroupsOutput>()?;
+    module.add_class::<PyOperationDescribeLogStreamsOutput>()?;
+    module.add_class::<PyOperationDescribeLookupTablesOutput>()?;
+    module.add_class::<PyOperationDescribeMetricFiltersOutput>()?;
+    module.add_class::<PyOperationDescribeQueriesOutput>()?;
+    module.add_class::<PyOperationDescribeQueryDefinitionsOutput>()?;
+    module.add_class::<PyOperationDescribeResourcePoliciesOutput>()?;
+    module.add_class::<PyOperationDescribeSubscriptionFiltersOutput>()?;
+    module.add_class::<PyOperationDisassociateSourceFromS3TableIntegrationOutput>()?;
+    module.add_class::<PyOperationFilterLogEventsOutput>()?;
+    module.add_class::<PyOperationGetDataProtectionPolicyOutput>()?;
+    module.add_class::<PyOperationGetDeliveryOutput>()?;
+    module.add_class::<PyOperationGetDeliveryDestinationOutput>()?;
+    module.add_class::<PyOperationGetDeliveryDestinationPolicyOutput>()?;
+    module.add_class::<PyOperationGetDeliverySourceOutput>()?;
+    module.add_class::<PyOperationGetIntegrationOutput>()?;
+    module.add_class::<PyOperationGetLogAnomalyDetectorOutput>()?;
+    module.add_class::<PyOperationGetLogEventsOutput>()?;
+    module.add_class::<PyOperationGetLogFieldsOutput>()?;
+    module.add_class::<PyOperationGetLogGroupFieldsOutput>()?;
+    module.add_class::<PyOperationGetLogRecordOutput>()?;
+    module.add_class::<PyOperationGetLookupTableOutput>()?;
+    module.add_class::<PyOperationGetQueryResultsOutput>()?;
+    module.add_class::<PyOperationGetScheduledQueryOutput>()?;
+    module.add_class::<PyOperationGetScheduledQueryHistoryOutput>()?;
+    module.add_class::<PyOperationGetStorageTierPolicyOutput>()?;
+    module.add_class::<PyOperationGetTransformerOutput>()?;
+    module.add_class::<PyOperationListAggregateLogGroupSummariesOutput>()?;
+    module.add_class::<PyOperationListAnomaliesOutput>()?;
+    module.add_class::<PyOperationListIntegrationsOutput>()?;
+    module.add_class::<PyOperationListLogAnomalyDetectorsOutput>()?;
+    module.add_class::<PyOperationListLogGroupsOutput>()?;
+    module.add_class::<PyOperationListLogGroupsForQueryOutput>()?;
+    module.add_class::<PyOperationListScheduledQueriesOutput>()?;
+    module.add_class::<PyOperationListSourcesForS3TableIntegrationOutput>()?;
+    module.add_class::<PyOperationListSyslogConfigurationsOutput>()?;
+    module.add_class::<PyOperationListTagsForResourceOutput>()?;
+    module.add_class::<PyOperationListTagsLogGroupOutput>()?;
+    module.add_class::<PyOperationPutAccountPolicyOutput>()?;
+    module.add_class::<PyOperationPutDataProtectionPolicyOutput>()?;
+    module.add_class::<PyOperationPutDeliveryDestinationOutput>()?;
+    module.add_class::<PyOperationPutDeliveryDestinationPolicyOutput>()?;
+    module.add_class::<PyOperationPutDeliverySourceOutput>()?;
+    module.add_class::<PyOperationPutDestinationOutput>()?;
+    module.add_class::<PyOperationPutIndexPolicyOutput>()?;
+    module.add_class::<PyOperationPutIntegrationOutput>()?;
+    module.add_class::<PyOperationPutLogEventsOutput>()?;
+    module.add_class::<PyOperationPutQueryDefinitionOutput>()?;
+    module.add_class::<PyOperationPutResourcePolicyOutput>()?;
+    module.add_class::<PyOperationPutStorageTierPolicyOutput>()?;
+    module.add_class::<PyOperationStartQueryOutput>()?;
+    module.add_class::<PyOperationStopQueryOutput>()?;
+    module.add_class::<PyOperationTestMetricFilterOutput>()?;
+    module.add_class::<PyOperationTestTransformerOutput>()?;
+    module.add_class::<PyOperationUpdateDeliveryConfigurationOutput>()?;
+    module.add_class::<PyOperationUpdateLookupTableOutput>()?;
+    module.add_class::<PyOperationUpdateScheduledQueryOutput>()?;
 
     module.add_class::<PyGetLogObjectResponseStreamReceiver>()?;
     module.add_class::<PyStartLiveTailResponseStreamReceiver>()?;
@@ -18327,7 +18327,7 @@ impl CloudWatchLogsClient {
                     sdk_error_to_py(py, &error, "AssociateSourceToS3TableIntegration")
                 })
             })?;
-            Ok(PyAssociateSourceToS3TableIntegrationResponse { inner: output })
+            Ok(PyOperationAssociateSourceToS3TableIntegrationOutput { inner: output })
         })
     }
 
@@ -18399,7 +18399,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CancelImportTask"))
             })?;
-            Ok(PyCancelImportTaskResponse { inner: output })
+            Ok(PyOperationCancelImportTaskOutput { inner: output })
         })
     }
 
@@ -18487,7 +18487,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDelivery"))
             })?;
-            Ok(PyCreateDeliveryResponse { inner: output })
+            Ok(PyOperationCreateDeliveryOutput { inner: output })
         })
     }
 
@@ -18569,7 +18569,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateExportTask"))
             })?;
-            Ok(PyCreateExportTaskResponse { inner: output })
+            Ok(PyOperationCreateExportTaskOutput { inner: output })
         })
     }
 
@@ -18622,7 +18622,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateImportTask"))
             })?;
-            Ok(PyCreateImportTaskResponse { inner: output })
+            Ok(PyOperationCreateImportTaskOutput { inner: output })
         })
     }
 
@@ -18720,7 +18720,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateLogAnomalyDetector"))
             })?;
-            Ok(PyCreateLogAnomalyDetectorResponse { inner: output })
+            Ok(PyOperationCreateLogAnomalyDetectorOutput { inner: output })
         })
     }
 
@@ -18920,7 +18920,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateLookupTable"))
             })?;
-            Ok(PyCreateLookupTableResponse { inner: output })
+            Ok(PyOperationCreateLookupTableOutput { inner: output })
         })
     }
 
@@ -19079,7 +19079,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateScheduledQuery"))
             })?;
-            Ok(PyCreateScheduledQueryResponse { inner: output })
+            Ok(PyOperationCreateScheduledQueryOutput { inner: output })
         })
     }
 
@@ -19389,7 +19389,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteIndexPolicy"))
             })?;
-            Ok(PyDeleteIndexPolicyResponse { inner: output })
+            Ok(PyOperationDeleteIndexPolicyOutput { inner: output })
         })
     }
 
@@ -19434,7 +19434,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteIntegration"))
             })?;
-            Ok(PyDeleteIntegrationResponse { inner: output })
+            Ok(PyOperationDeleteIntegrationOutput { inner: output })
         })
     }
 
@@ -19678,7 +19678,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteQueryDefinition"))
             })?;
-            Ok(PyDeleteQueryDefinitionResponse { inner: output })
+            Ok(PyOperationDeleteQueryDefinitionOutput { inner: output })
         })
     }
 
@@ -19807,7 +19807,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteScheduledQuery"))
             })?;
-            Ok(PyDeleteScheduledQueryResponse { inner: output })
+            Ok(PyOperationDeleteScheduledQueryOutput { inner: output })
         })
     }
 
@@ -20005,7 +20005,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeAccountPolicies"))
             })?;
-            Ok(PyDescribeAccountPoliciesResponse { inner: output })
+            Ok(PyOperationDescribeAccountPoliciesOutput { inner: output })
         })
     }
 
@@ -20101,7 +20101,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeConfigurationTemplates"))
             })?;
-            Ok(PyDescribeConfigurationTemplatesResponse { inner: output })
+            Ok(PyOperationDescribeConfigurationTemplatesOutput { inner: output })
         })
     }
 
@@ -20160,7 +20160,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeDeliveries"))
             })?;
-            Ok(PyDescribeDeliveriesResponse { inner: output })
+            Ok(PyOperationDescribeDeliveriesOutput { inner: output })
         })
     }
 
@@ -20218,7 +20218,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeDeliveryDestinations"))
             })?;
-            Ok(PyDescribeDeliveryDestinationsResponse { inner: output })
+            Ok(PyOperationDescribeDeliveryDestinationsOutput { inner: output })
         })
     }
 
@@ -20276,7 +20276,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeDeliverySources"))
             })?;
-            Ok(PyDescribeDeliverySourcesResponse { inner: output })
+            Ok(PyOperationDescribeDeliverySourcesOutput { inner: output })
         })
     }
 
@@ -20329,7 +20329,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeDestinations"))
             })?;
-            Ok(PyDescribeDestinationsResponse { inner: output })
+            Ok(PyOperationDescribeDestinationsOutput { inner: output })
         })
     }
 
@@ -20390,7 +20390,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeExportTasks"))
             })?;
-            Ok(PyDescribeExportTasksResponse { inner: output })
+            Ok(PyOperationDescribeExportTasksOutput { inner: output })
         })
     }
 
@@ -20457,7 +20457,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeFieldIndexes"))
             })?;
-            Ok(PyDescribeFieldIndexesResponse { inner: output })
+            Ok(PyOperationDescribeFieldIndexesOutput { inner: output })
         })
     }
 
@@ -20525,7 +20525,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeImportTaskBatches"))
             })?;
-            Ok(PyDescribeImportTaskBatchesResponse { inner: output })
+            Ok(PyOperationDescribeImportTaskBatchesOutput { inner: output })
         })
     }
 
@@ -20594,7 +20594,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeImportTasks"))
             })?;
-            Ok(PyDescribeImportTasksResponse { inner: output })
+            Ok(PyOperationDescribeImportTasksOutput { inner: output })
         })
     }
 
@@ -20646,7 +20646,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeIndexPolicies"))
             })?;
-            Ok(PyDescribeIndexPoliciesResponse { inner: output })
+            Ok(PyOperationDescribeIndexPoliciesOutput { inner: output })
         })
     }
 
@@ -20752,7 +20752,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeLogGroups"))
             })?;
-            Ok(PyDescribeLogGroupsResponse { inner: output })
+            Ok(PyOperationDescribeLogGroupsOutput { inner: output })
         })
     }
 
@@ -20836,7 +20836,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeLogStreams"))
             })?;
-            Ok(PyDescribeLogStreamsResponse { inner: output })
+            Ok(PyOperationDescribeLogStreamsOutput { inner: output })
         })
     }
 
@@ -20889,7 +20889,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeLookupTables"))
             })?;
-            Ok(PyDescribeLookupTablesResponse { inner: output })
+            Ok(PyOperationDescribeLookupTablesOutput { inner: output })
         })
     }
 
@@ -20963,7 +20963,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeMetricFilters"))
             })?;
-            Ok(PyDescribeMetricFiltersResponse { inner: output })
+            Ok(PyOperationDescribeMetricFiltersOutput { inner: output })
         })
     }
 
@@ -21033,7 +21033,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeQueries"))
             })?;
-            Ok(PyDescribeQueriesResponse { inner: output })
+            Ok(PyOperationDescribeQueriesOutput { inner: output })
         })
     }
 
@@ -21095,7 +21095,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeQueryDefinitions"))
             })?;
-            Ok(PyDescribeQueryDefinitionsResponse { inner: output })
+            Ok(PyOperationDescribeQueryDefinitionsOutput { inner: output })
         })
     }
 
@@ -21156,7 +21156,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeResourcePolicies"))
             })?;
-            Ok(PyDescribeResourcePoliciesResponse { inner: output })
+            Ok(PyOperationDescribeResourcePoliciesOutput { inner: output })
         })
     }
 
@@ -21216,7 +21216,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeSubscriptionFilters"))
             })?;
-            Ok(PyDescribeSubscriptionFiltersResponse { inner: output })
+            Ok(PyOperationDescribeSubscriptionFiltersOutput { inner: output })
         })
     }
 
@@ -21302,7 +21302,7 @@ impl CloudWatchLogsClient {
                     sdk_error_to_py(py, &error, "DisassociateSourceFromS3TableIntegration")
                 })
             })?;
-            Ok(PyDisassociateSourceFromS3TableIntegrationResponse { inner: output })
+            Ok(PyOperationDisassociateSourceFromS3TableIntegrationOutput { inner: output })
         })
     }
 
@@ -21425,7 +21425,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "FilterLogEvents"))
             })?;
-            Ok(PyFilterLogEventsResponse { inner: output })
+            Ok(PyOperationFilterLogEventsOutput { inner: output })
         })
     }
 
@@ -21464,7 +21464,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDataProtectionPolicy"))
             })?;
-            Ok(PyGetDataProtectionPolicyResponse { inner: output })
+            Ok(PyOperationGetDataProtectionPolicyOutput { inner: output })
         })
     }
 
@@ -21499,7 +21499,7 @@ impl CloudWatchLogsClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetDelivery")))?;
-            Ok(PyGetDeliveryResponse { inner: output })
+            Ok(PyOperationGetDeliveryOutput { inner: output })
         })
     }
 
@@ -21535,7 +21535,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDeliveryDestination"))
             })?;
-            Ok(PyGetDeliveryDestinationResponse { inner: output })
+            Ok(PyOperationGetDeliveryDestinationOutput { inner: output })
         })
     }
 
@@ -21574,7 +21574,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDeliveryDestinationPolicy"))
             })?;
-            Ok(PyGetDeliveryDestinationPolicyResponse { inner: output })
+            Ok(PyOperationGetDeliveryDestinationPolicyOutput { inner: output })
         })
     }
 
@@ -21610,7 +21610,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDeliverySource"))
             })?;
-            Ok(PyGetDeliverySourceResponse { inner: output })
+            Ok(PyOperationGetDeliverySourceOutput { inner: output })
         })
     }
 
@@ -21648,7 +21648,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetIntegration"))
             })?;
-            Ok(PyGetIntegrationResponse { inner: output })
+            Ok(PyOperationGetIntegrationOutput { inner: output })
         })
     }
 
@@ -21687,7 +21687,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetLogAnomalyDetector"))
             })?;
-            Ok(PyGetLogAnomalyDetectorResponse { inner: output })
+            Ok(PyOperationGetLogAnomalyDetectorOutput { inner: output })
         })
     }
 
@@ -21782,7 +21782,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetLogEvents"))
             })?;
-            Ok(PyGetLogEventsResponse { inner: output })
+            Ok(PyOperationGetLogEventsOutput { inner: output })
         })
     }
 
@@ -21827,7 +21827,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetLogFields"))
             })?;
-            Ok(PyGetLogFieldsResponse { inner: output })
+            Ok(PyOperationGetLogFieldsOutput { inner: output })
         })
     }
 
@@ -21880,7 +21880,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetLogGroupFields"))
             })?;
-            Ok(PyGetLogGroupFieldsResponse { inner: output })
+            Ok(PyOperationGetLogGroupFieldsOutput { inner: output })
         })
     }
 
@@ -21980,7 +21980,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetLogRecord"))
             })?;
-            Ok(PyGetLogRecordResponse { inner: output })
+            Ok(PyOperationGetLogRecordOutput { inner: output })
         })
     }
 
@@ -22018,7 +22018,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetLookupTable"))
             })?;
-            Ok(PyGetLookupTableResponse { inner: output })
+            Ok(PyOperationGetLookupTableOutput { inner: output })
         })
     }
 
@@ -22070,7 +22070,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetQueryResults"))
             })?;
-            Ok(PyGetQueryResultsResponse { inner: output })
+            Ok(PyOperationGetQueryResultsOutput { inner: output })
         })
     }
 
@@ -22108,7 +22108,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetScheduledQuery"))
             })?;
-            Ok(PyGetScheduledQueryResponse { inner: output })
+            Ok(PyOperationGetScheduledQueryOutput { inner: output })
         })
     }
 
@@ -22191,7 +22191,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetScheduledQueryHistory"))
             })?;
-            Ok(PyGetScheduledQueryHistoryResponse { inner: output })
+            Ok(PyOperationGetScheduledQueryHistoryOutput { inner: output })
         })
     }
 
@@ -22221,7 +22221,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetStorageTierPolicy"))
             })?;
-            Ok(PyGetStorageTierPolicyResponse { inner: output })
+            Ok(PyOperationGetStorageTierPolicyOutput { inner: output })
         })
     }
 
@@ -22260,7 +22260,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetTransformer"))
             })?;
-            Ok(PyGetTransformerResponse { inner: output })
+            Ok(PyOperationGetTransformerOutput { inner: output })
         })
     }
 
@@ -22368,7 +22368,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAggregateLogGroupSummaries"))
             })?;
-            Ok(PyListAggregateLogGroupSummariesResponse { inner: output })
+            Ok(PyOperationListAggregateLogGroupSummariesOutput { inner: output })
         })
     }
 
@@ -22431,7 +22431,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAnomalies"))
             })?;
-            Ok(PyListAnomaliesResponse { inner: output })
+            Ok(PyOperationListAnomaliesOutput { inner: output })
         })
     }
 
@@ -22490,7 +22490,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListIntegrations"))
             })?;
-            Ok(PyListIntegrationsResponse { inner: output })
+            Ok(PyOperationListIntegrationsOutput { inner: output })
         })
     }
 
@@ -22543,7 +22543,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListLogAnomalyDetectors"))
             })?;
-            Ok(PyListLogAnomalyDetectorsResponse { inner: output })
+            Ok(PyOperationListLogAnomalyDetectorsOutput { inner: output })
         })
     }
 
@@ -22667,7 +22667,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListLogGroups"))
             })?;
-            Ok(PyListLogGroupsResponse { inner: output })
+            Ok(PyOperationListLogGroupsOutput { inner: output })
         })
     }
 
@@ -22719,7 +22719,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListLogGroupsForQuery"))
             })?;
-            Ok(PyListLogGroupsForQueryResponse { inner: output })
+            Ok(PyOperationListLogGroupsForQueryOutput { inner: output })
         })
     }
 
@@ -22782,7 +22782,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListScheduledQueries"))
             })?;
-            Ok(PyListScheduledQueriesResponse { inner: output })
+            Ok(PyOperationListScheduledQueriesOutput { inner: output })
         })
     }
 
@@ -22834,7 +22834,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSourcesForS3TableIntegration"))
             })?;
-            Ok(PyListSourcesForS3TableIntegrationResponse { inner: output })
+            Ok(PyOperationListSourcesForS3TableIntegrationOutput { inner: output })
         })
     }
 
@@ -22894,7 +22894,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSyslogConfigurations"))
             })?;
-            Ok(PyListSyslogConfigurationsResponse { inner: output })
+            Ok(PyOperationListSyslogConfigurationsOutput { inner: output })
         })
     }
 
@@ -22932,7 +22932,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Ok(PyListTagsForResourceResponse { inner: output })
+            Ok(PyOperationListTagsForResourceOutput { inner: output })
         })
     }
 
@@ -22970,7 +22970,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsLogGroup"))
             })?;
-            Ok(PyListTagsLogGroupResponse { inner: output })
+            Ok(PyOperationListTagsLogGroupOutput { inner: output })
         })
     }
 
@@ -23041,7 +23041,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutAccountPolicy"))
             })?;
-            Ok(PyPutAccountPolicyResponse { inner: output })
+            Ok(PyOperationPutAccountPolicyOutput { inner: output })
         })
     }
 
@@ -23134,7 +23134,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutDataProtectionPolicy"))
             })?;
-            Ok(PyPutDataProtectionPolicyResponse { inner: output })
+            Ok(PyOperationPutDataProtectionPolicyOutput { inner: output })
         })
     }
 
@@ -23220,7 +23220,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutDeliveryDestination"))
             })?;
-            Ok(PyPutDeliveryDestinationResponse { inner: output })
+            Ok(PyOperationPutDeliveryDestinationOutput { inner: output })
         })
     }
 
@@ -23267,7 +23267,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutDeliveryDestinationPolicy"))
             })?;
-            Ok(PyPutDeliveryDestinationPolicyResponse { inner: output })
+            Ok(PyOperationPutDeliveryDestinationPolicyOutput { inner: output })
         })
     }
 
@@ -23346,7 +23346,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutDeliverySource"))
             })?;
-            Ok(PyPutDeliverySourceResponse { inner: output })
+            Ok(PyOperationPutDeliverySourceOutput { inner: output })
         })
     }
 
@@ -23411,7 +23411,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutDestination"))
             })?;
-            Ok(PyPutDestinationResponse { inner: output })
+            Ok(PyOperationPutDestinationOutput { inner: output })
         })
     }
 
@@ -23509,7 +23509,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutIndexPolicy"))
             })?;
-            Ok(PyPutIndexPolicyResponse { inner: output })
+            Ok(PyOperationPutIndexPolicyOutput { inner: output })
         })
     }
 
@@ -23563,7 +23563,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutIntegration"))
             })?;
-            Ok(PyPutIntegrationResponse { inner: output })
+            Ok(PyOperationPutIntegrationOutput { inner: output })
         })
     }
 
@@ -23635,7 +23635,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutLogEvents"))
             })?;
-            Ok(PyPutLogEventsResponse { inner: output })
+            Ok(PyOperationPutLogEventsOutput { inner: output })
         })
     }
 
@@ -23873,7 +23873,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutQueryDefinition"))
             })?;
-            Ok(PyPutQueryDefinitionResponse { inner: output })
+            Ok(PyOperationPutQueryDefinitionOutput { inner: output })
         })
     }
 
@@ -23933,7 +23933,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePolicy"))
             })?;
-            Ok(PyPutResourcePolicyResponse { inner: output })
+            Ok(PyOperationPutResourcePolicyOutput { inner: output })
         })
     }
 
@@ -24019,7 +24019,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutStorageTierPolicy"))
             })?;
-            Ok(PyPutStorageTierPolicyResponse { inner: output })
+            Ok(PyOperationPutStorageTierPolicyOutput { inner: output })
         })
     }
 
@@ -24415,7 +24415,7 @@ impl CloudWatchLogsClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "StartQuery")))?;
-            Ok(PyStartQueryResponse { inner: output })
+            Ok(PyOperationStartQueryOutput { inner: output })
         })
     }
 
@@ -24450,7 +24450,7 @@ impl CloudWatchLogsClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "StopQuery")))?;
-            Ok(PyStopQueryResponse { inner: output })
+            Ok(PyOperationStopQueryOutput { inner: output })
         })
     }
 
@@ -24602,7 +24602,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "TestMetricFilter"))
             })?;
-            Ok(PyTestMetricFilterResponse { inner: output })
+            Ok(PyOperationTestMetricFilterOutput { inner: output })
         })
     }
 
@@ -24661,7 +24661,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "TestTransformer"))
             })?;
-            Ok(PyTestTransformerResponse { inner: output })
+            Ok(PyOperationTestTransformerOutput { inner: output })
         })
     }
 
@@ -24906,7 +24906,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDeliveryConfiguration"))
             })?;
-            Ok(PyUpdateDeliveryConfigurationResponse { inner: output })
+            Ok(PyOperationUpdateDeliveryConfigurationOutput { inner: output })
         })
     }
 
@@ -25044,7 +25044,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateLookupTable"))
             })?;
-            Ok(PyUpdateLookupTableResponse { inner: output })
+            Ok(PyOperationUpdateLookupTableOutput { inner: output })
         })
     }
 
@@ -25190,7 +25190,7 @@ impl CloudWatchLogsClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateScheduledQuery"))
             })?;
-            Ok(PyUpdateScheduledQueryResponse { inner: output })
+            Ok(PyOperationUpdateScheduledQueryOutput { inner: output })
         })
     }
 }

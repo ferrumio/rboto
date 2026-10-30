@@ -3940,13 +3940,13 @@ impl PyWidget {
     }
 }
 
-#[pyclass(name = "AddTagsResponse", module = "rboto_cloudtrail._native", frozen)]
-struct PyAddTagsResponse {
+#[pyclass(name = "AddTagsOutput", module = "rboto_cloudtrail._native", frozen)]
+struct PyOperationAddTagsOutput {
     inner: aws_sdk_cloudtrail::operation::add_tags::AddTagsOutput,
 }
 
 #[pymethods]
-impl PyAddTagsResponse {
+impl PyOperationAddTagsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -3954,16 +3954,16 @@ impl PyAddTagsResponse {
 }
 
 #[pyclass(
-    name = "CancelQueryResponse",
+    name = "CancelQueryOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyCancelQueryResponse {
+struct PyOperationCancelQueryOutput {
     inner: aws_sdk_cloudtrail::operation::cancel_query::CancelQueryOutput,
 }
 
 #[pymethods]
-impl PyCancelQueryResponse {
+impl PyOperationCancelQueryOutput {
     #[getter]
     fn query_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_874 = (&self.inner.query_id).as_str().into_py_any(py)?;
@@ -4003,16 +4003,16 @@ impl PyCancelQueryResponse {
 }
 
 #[pyclass(
-    name = "CreateChannelResponse",
+    name = "CreateChannelOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyCreateChannelResponse {
+struct PyOperationCreateChannelOutput {
     inner: aws_sdk_cloudtrail::operation::create_channel::CreateChannelOutput,
 }
 
 #[pymethods]
-impl PyCreateChannelResponse {
+impl PyOperationCreateChannelOutput {
     #[getter]
     fn channel_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.channel_arn {
@@ -4132,16 +4132,16 @@ impl PyCreateChannelResponse {
 }
 
 #[pyclass(
-    name = "CreateDashboardResponse",
+    name = "CreateDashboardOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyCreateDashboardResponse {
+struct PyOperationCreateDashboardOutput {
     inner: aws_sdk_cloudtrail::operation::create_dashboard::CreateDashboardOutput,
 }
 
 #[pymethods]
-impl PyCreateDashboardResponse {
+impl PyOperationCreateDashboardOutput {
     #[getter]
     fn dashboard_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dashboard_arn {
@@ -4299,16 +4299,16 @@ impl PyCreateDashboardResponse {
 }
 
 #[pyclass(
-    name = "CreateEventDataStoreResponse",
+    name = "CreateEventDataStoreOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyCreateEventDataStoreResponse {
+struct PyOperationCreateEventDataStoreOutput {
     inner: aws_sdk_cloudtrail::operation::create_event_data_store::CreateEventDataStoreOutput,
 }
 
 #[pymethods]
-impl PyCreateEventDataStoreResponse {
+impl PyOperationCreateEventDataStoreOutput {
     #[getter]
     fn event_data_store_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_data_store_arn {
@@ -4556,16 +4556,16 @@ impl PyCreateEventDataStoreResponse {
 }
 
 #[pyclass(
-    name = "CreateTrailResponse",
+    name = "CreateTrailOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyCreateTrailResponse {
+struct PyOperationCreateTrailOutput {
     inner: aws_sdk_cloudtrail::operation::create_trail::CreateTrailOutput,
 }
 
 #[pymethods]
-impl PyCreateTrailResponse {
+impl PyOperationCreateTrailOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
@@ -4797,16 +4797,16 @@ impl PyCreateTrailResponse {
 }
 
 #[pyclass(
-    name = "DeleteChannelResponse",
+    name = "DeleteChannelOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyDeleteChannelResponse {
+struct PyOperationDeleteChannelOutput {
     inner: aws_sdk_cloudtrail::operation::delete_channel::DeleteChannelOutput,
 }
 
 #[pymethods]
-impl PyDeleteChannelResponse {
+impl PyOperationDeleteChannelOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -4814,16 +4814,16 @@ impl PyDeleteChannelResponse {
 }
 
 #[pyclass(
-    name = "DeleteDashboardResponse",
+    name = "DeleteDashboardOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyDeleteDashboardResponse {
+struct PyOperationDeleteDashboardOutput {
     inner: aws_sdk_cloudtrail::operation::delete_dashboard::DeleteDashboardOutput,
 }
 
 #[pymethods]
-impl PyDeleteDashboardResponse {
+impl PyOperationDeleteDashboardOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -4831,16 +4831,16 @@ impl PyDeleteDashboardResponse {
 }
 
 #[pyclass(
-    name = "DeleteEventDataStoreResponse",
+    name = "DeleteEventDataStoreOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyDeleteEventDataStoreResponse {
+struct PyOperationDeleteEventDataStoreOutput {
     inner: aws_sdk_cloudtrail::operation::delete_event_data_store::DeleteEventDataStoreOutput,
 }
 
 #[pymethods]
-impl PyDeleteEventDataStoreResponse {
+impl PyOperationDeleteEventDataStoreOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -4848,16 +4848,16 @@ impl PyDeleteEventDataStoreResponse {
 }
 
 #[pyclass(
-    name = "DeleteResourcePolicyResponse",
+    name = "DeleteResourcePolicyOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyDeleteResourcePolicyResponse {
+struct PyOperationDeleteResourcePolicyOutput {
     inner: aws_sdk_cloudtrail::operation::delete_resource_policy::DeleteResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyDeleteResourcePolicyResponse {
+impl PyOperationDeleteResourcePolicyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -4865,16 +4865,16 @@ impl PyDeleteResourcePolicyResponse {
 }
 
 #[pyclass(
-    name = "DeleteTrailResponse",
+    name = "DeleteTrailOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyDeleteTrailResponse {
+struct PyOperationDeleteTrailOutput {
     inner: aws_sdk_cloudtrail::operation::delete_trail::DeleteTrailOutput,
 }
 
 #[pymethods]
-impl PyDeleteTrailResponse {
+impl PyOperationDeleteTrailOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -4882,16 +4882,16 @@ impl PyDeleteTrailResponse {
 }
 
 #[pyclass(
-    name = "DeregisterOrganizationDelegatedAdminResponse",
+    name = "DeregisterOrganizationDelegatedAdminOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyDeregisterOrganizationDelegatedAdminResponse {
+struct PyOperationDeregisterOrganizationDelegatedAdminOutput {
     inner: aws_sdk_cloudtrail::operation::deregister_organization_delegated_admin::DeregisterOrganizationDelegatedAdminOutput,
 }
 
 #[pymethods]
-impl PyDeregisterOrganizationDelegatedAdminResponse {
+impl PyOperationDeregisterOrganizationDelegatedAdminOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -4899,16 +4899,16 @@ impl PyDeregisterOrganizationDelegatedAdminResponse {
 }
 
 #[pyclass(
-    name = "DescribeQueryResponse",
+    name = "DescribeQueryOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyDescribeQueryResponse {
+struct PyOperationDescribeQueryOutput {
     inner: aws_sdk_cloudtrail::operation::describe_query::DescribeQueryOutput,
 }
 
 #[pymethods]
-impl PyDescribeQueryResponse {
+impl PyOperationDescribeQueryOutput {
     #[getter]
     fn query_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_id {
@@ -5066,16 +5066,16 @@ impl PyDescribeQueryResponse {
 }
 
 #[pyclass(
-    name = "DescribeTrailsResponse",
+    name = "DescribeTrailsOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyDescribeTrailsResponse {
+struct PyOperationDescribeTrailsOutput {
     inner: aws_sdk_cloudtrail::operation::describe_trails::DescribeTrailsOutput,
 }
 
 #[pymethods]
-impl PyDescribeTrailsResponse {
+impl PyOperationDescribeTrailsOutput {
     #[getter]
     fn trail_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trail_list {
@@ -5115,16 +5115,16 @@ impl PyDescribeTrailsResponse {
 }
 
 #[pyclass(
-    name = "DisableFederationResponse",
+    name = "DisableFederationOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyDisableFederationResponse {
+struct PyOperationDisableFederationOutput {
     inner: aws_sdk_cloudtrail::operation::disable_federation::DisableFederationOutput,
 }
 
 #[pymethods]
-impl PyDisableFederationResponse {
+impl PyOperationDisableFederationOutput {
     #[getter]
     fn event_data_store_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_data_store_arn {
@@ -5164,16 +5164,16 @@ impl PyDisableFederationResponse {
 }
 
 #[pyclass(
-    name = "EnableFederationResponse",
+    name = "EnableFederationOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyEnableFederationResponse {
+struct PyOperationEnableFederationOutput {
     inner: aws_sdk_cloudtrail::operation::enable_federation::EnableFederationOutput,
 }
 
 #[pymethods]
-impl PyEnableFederationResponse {
+impl PyOperationEnableFederationOutput {
     #[getter]
     fn event_data_store_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_data_store_arn {
@@ -5229,16 +5229,16 @@ impl PyEnableFederationResponse {
 }
 
 #[pyclass(
-    name = "GenerateQueryResponse",
+    name = "GenerateQueryOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyGenerateQueryResponse {
+struct PyOperationGenerateQueryOutput {
     inner: aws_sdk_cloudtrail::operation::generate_query::GenerateQueryOutput,
 }
 
 #[pymethods]
-impl PyGenerateQueryResponse {
+impl PyOperationGenerateQueryOutput {
     #[getter]
     fn query_statement(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_statement {
@@ -5293,17 +5293,13 @@ impl PyGenerateQueryResponse {
     }
 }
 
-#[pyclass(
-    name = "GetChannelResponse",
-    module = "rboto_cloudtrail._native",
-    frozen
-)]
-struct PyGetChannelResponse {
+#[pyclass(name = "GetChannelOutput", module = "rboto_cloudtrail._native", frozen)]
+struct PyOperationGetChannelOutput {
     inner: aws_sdk_cloudtrail::operation::get_channel::GetChannelOutput,
 }
 
 #[pymethods]
-impl PyGetChannelResponse {
+impl PyOperationGetChannelOutput {
     #[getter]
     fn channel_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.channel_arn {
@@ -5435,16 +5431,16 @@ impl PyGetChannelResponse {
 }
 
 #[pyclass(
-    name = "GetDashboardResponse",
+    name = "GetDashboardOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyGetDashboardResponse {
+struct PyOperationGetDashboardOutput {
     inner: aws_sdk_cloudtrail::operation::get_dashboard::GetDashboardOutput,
 }
 
 #[pymethods]
-impl PyGetDashboardResponse {
+impl PyOperationGetDashboardOutput {
     #[getter]
     fn dashboard_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dashboard_arn {
@@ -5634,16 +5630,16 @@ impl PyGetDashboardResponse {
 }
 
 #[pyclass(
-    name = "GetEventConfigurationResponse",
+    name = "GetEventConfigurationOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyGetEventConfigurationResponse {
+struct PyOperationGetEventConfigurationOutput {
     inner: aws_sdk_cloudtrail::operation::get_event_configuration::GetEventConfigurationOutput,
 }
 
 #[pymethods]
-impl PyGetEventConfigurationResponse {
+impl PyOperationGetEventConfigurationOutput {
     #[getter]
     fn trail_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trail_arn {
@@ -5763,16 +5759,16 @@ impl PyGetEventConfigurationResponse {
 }
 
 #[pyclass(
-    name = "GetEventDataStoreResponse",
+    name = "GetEventDataStoreOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyGetEventDataStoreResponse {
+struct PyOperationGetEventDataStoreOutput {
     inner: aws_sdk_cloudtrail::operation::get_event_data_store::GetEventDataStoreOutput,
 }
 
 #[pymethods]
-impl PyGetEventDataStoreResponse {
+impl PyOperationGetEventDataStoreOutput {
     #[getter]
     fn event_data_store_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_data_store_arn {
@@ -6052,16 +6048,16 @@ impl PyGetEventDataStoreResponse {
 }
 
 #[pyclass(
-    name = "GetEventSelectorsResponse",
+    name = "GetEventSelectorsOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyGetEventSelectorsResponse {
+struct PyOperationGetEventSelectorsOutput {
     inner: aws_sdk_cloudtrail::operation::get_event_selectors::GetEventSelectorsOutput,
 }
 
 #[pymethods]
-impl PyGetEventSelectorsResponse {
+impl PyOperationGetEventSelectorsOutput {
     #[getter]
     fn trail_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trail_arn {
@@ -6148,17 +6144,13 @@ impl PyGetEventSelectorsResponse {
     }
 }
 
-#[pyclass(
-    name = "GetImportResponse",
-    module = "rboto_cloudtrail._native",
-    frozen
-)]
-struct PyGetImportResponse {
+#[pyclass(name = "GetImportOutput", module = "rboto_cloudtrail._native", frozen)]
+struct PyOperationGetImportOutput {
     inner: aws_sdk_cloudtrail::operation::get_import::GetImportOutput,
 }
 
 #[pymethods]
-impl PyGetImportResponse {
+impl PyOperationGetImportOutput {
     #[getter]
     fn import_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_id {
@@ -6332,16 +6324,16 @@ impl PyGetImportResponse {
 }
 
 #[pyclass(
-    name = "GetInsightSelectorsResponse",
+    name = "GetInsightSelectorsOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyGetInsightSelectorsResponse {
+struct PyOperationGetInsightSelectorsOutput {
     inner: aws_sdk_cloudtrail::operation::get_insight_selectors::GetInsightSelectorsOutput,
 }
 
 #[pymethods]
-impl PyGetInsightSelectorsResponse {
+impl PyOperationGetInsightSelectorsOutput {
     #[getter]
     fn trail_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trail_arn {
@@ -6429,16 +6421,16 @@ impl PyGetInsightSelectorsResponse {
 }
 
 #[pyclass(
-    name = "GetQueryResultsResponse",
+    name = "GetQueryResultsOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyGetQueryResultsResponse {
+struct PyOperationGetQueryResultsOutput {
     inner: aws_sdk_cloudtrail::operation::get_query_results::GetQueryResultsOutput,
 }
 
 #[pymethods]
-impl PyGetQueryResultsResponse {
+impl PyOperationGetQueryResultsOutput {
     #[getter]
     fn query_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_status {
@@ -6566,16 +6558,16 @@ impl PyGetQueryResultsResponse {
 }
 
 #[pyclass(
-    name = "GetResourcePolicyResponse",
+    name = "GetResourcePolicyOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyGetResourcePolicyResponse {
+struct PyOperationGetResourcePolicyOutput {
     inner: aws_sdk_cloudtrail::operation::get_resource_policy::GetResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyGetResourcePolicyResponse {
+impl PyOperationGetResourcePolicyOutput {
     #[getter]
     fn resource_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_arn {
@@ -6630,13 +6622,13 @@ impl PyGetResourcePolicyResponse {
     }
 }
 
-#[pyclass(name = "GetTrailResponse", module = "rboto_cloudtrail._native", frozen)]
-struct PyGetTrailResponse {
+#[pyclass(name = "GetTrailOutput", module = "rboto_cloudtrail._native", frozen)]
+struct PyOperationGetTrailOutput {
     inner: aws_sdk_cloudtrail::operation::get_trail::GetTrailOutput,
 }
 
 #[pymethods]
-impl PyGetTrailResponse {
+impl PyOperationGetTrailOutput {
     #[getter]
     fn trail(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trail {
@@ -6666,16 +6658,16 @@ impl PyGetTrailResponse {
 }
 
 #[pyclass(
-    name = "GetTrailStatusResponse",
+    name = "GetTrailStatusOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyGetTrailStatusResponse {
+struct PyOperationGetTrailStatusOutput {
     inner: aws_sdk_cloudtrail::operation::get_trail_status::GetTrailStatusOutput,
 }
 
 #[pymethods]
-impl PyGetTrailStatusResponse {
+impl PyOperationGetTrailStatusOutput {
     #[getter]
     fn is_logging(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.is_logging {
@@ -6955,16 +6947,16 @@ impl PyGetTrailStatusResponse {
 }
 
 #[pyclass(
-    name = "ListChannelsResponse",
+    name = "ListChannelsOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyListChannelsResponse {
+struct PyOperationListChannelsOutput {
     inner: aws_sdk_cloudtrail::operation::list_channels::ListChannelsOutput,
 }
 
 #[pymethods]
-impl PyListChannelsResponse {
+impl PyOperationListChannelsOutput {
     #[getter]
     fn channels(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.channels {
@@ -7020,16 +7012,16 @@ impl PyListChannelsResponse {
 }
 
 #[pyclass(
-    name = "ListDashboardsResponse",
+    name = "ListDashboardsOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyListDashboardsResponse {
+struct PyOperationListDashboardsOutput {
     inner: aws_sdk_cloudtrail::operation::list_dashboards::ListDashboardsOutput,
 }
 
 #[pymethods]
-impl PyListDashboardsResponse {
+impl PyOperationListDashboardsOutput {
     #[getter]
     fn dashboards(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dashboards {
@@ -7085,16 +7077,16 @@ impl PyListDashboardsResponse {
 }
 
 #[pyclass(
-    name = "ListEventDataStoresResponse",
+    name = "ListEventDataStoresOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyListEventDataStoresResponse {
+struct PyOperationListEventDataStoresOutput {
     inner: aws_sdk_cloudtrail::operation::list_event_data_stores::ListEventDataStoresOutput,
 }
 
 #[pymethods]
-impl PyListEventDataStoresResponse {
+impl PyOperationListEventDataStoresOutput {
     #[getter]
     fn event_data_stores(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_data_stores {
@@ -7150,16 +7142,16 @@ impl PyListEventDataStoresResponse {
 }
 
 #[pyclass(
-    name = "ListImportFailuresResponse",
+    name = "ListImportFailuresOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyListImportFailuresResponse {
+struct PyOperationListImportFailuresOutput {
     inner: aws_sdk_cloudtrail::operation::list_import_failures::ListImportFailuresOutput,
 }
 
 #[pymethods]
-impl PyListImportFailuresResponse {
+impl PyOperationListImportFailuresOutput {
     #[getter]
     fn failures(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failures {
@@ -7215,16 +7207,16 @@ impl PyListImportFailuresResponse {
 }
 
 #[pyclass(
-    name = "ListImportsResponse",
+    name = "ListImportsOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyListImportsResponse {
+struct PyOperationListImportsOutput {
     inner: aws_sdk_cloudtrail::operation::list_imports::ListImportsOutput,
 }
 
 #[pymethods]
-impl PyListImportsResponse {
+impl PyOperationListImportsOutput {
     #[getter]
     fn imports(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.imports {
@@ -7280,16 +7272,16 @@ impl PyListImportsResponse {
 }
 
 #[pyclass(
-    name = "ListInsightsDataResponse",
+    name = "ListInsightsDataOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyListInsightsDataResponse {
+struct PyOperationListInsightsDataOutput {
     inner: aws_sdk_cloudtrail::operation::list_insights_data::ListInsightsDataOutput,
 }
 
 #[pymethods]
-impl PyListInsightsDataResponse {
+impl PyOperationListInsightsDataOutput {
     #[getter]
     fn events(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.events {
@@ -7345,16 +7337,16 @@ impl PyListInsightsDataResponse {
 }
 
 #[pyclass(
-    name = "ListInsightsMetricDataResponse",
+    name = "ListInsightsMetricDataOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyListInsightsMetricDataResponse {
+struct PyOperationListInsightsMetricDataOutput {
     inner: aws_sdk_cloudtrail::operation::list_insights_metric_data::ListInsightsMetricDataOutput,
 }
 
 #[pymethods]
-impl PyListInsightsMetricDataResponse {
+impl PyOperationListInsightsMetricDataOutput {
     #[getter]
     fn trail_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trail_arn {
@@ -7510,16 +7502,16 @@ impl PyListInsightsMetricDataResponse {
 }
 
 #[pyclass(
-    name = "ListPublicKeysResponse",
+    name = "ListPublicKeysOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyListPublicKeysResponse {
+struct PyOperationListPublicKeysOutput {
     inner: aws_sdk_cloudtrail::operation::list_public_keys::ListPublicKeysOutput,
 }
 
 #[pymethods]
-impl PyListPublicKeysResponse {
+impl PyOperationListPublicKeysOutput {
     #[getter]
     fn public_key_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.public_key_list {
@@ -7575,16 +7567,16 @@ impl PyListPublicKeysResponse {
 }
 
 #[pyclass(
-    name = "ListQueriesResponse",
+    name = "ListQueriesOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyListQueriesResponse {
+struct PyOperationListQueriesOutput {
     inner: aws_sdk_cloudtrail::operation::list_queries::ListQueriesOutput,
 }
 
 #[pymethods]
-impl PyListQueriesResponse {
+impl PyOperationListQueriesOutput {
     #[getter]
     fn queries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.queries {
@@ -7639,13 +7631,13 @@ impl PyListQueriesResponse {
     }
 }
 
-#[pyclass(name = "ListTagsResponse", module = "rboto_cloudtrail._native", frozen)]
-struct PyListTagsResponse {
+#[pyclass(name = "ListTagsOutput", module = "rboto_cloudtrail._native", frozen)]
+struct PyOperationListTagsOutput {
     inner: aws_sdk_cloudtrail::operation::list_tags::ListTagsOutput,
 }
 
 #[pymethods]
-impl PyListTagsResponse {
+impl PyOperationListTagsOutput {
     #[getter]
     fn resource_tag_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_tag_list {
@@ -7700,17 +7692,13 @@ impl PyListTagsResponse {
     }
 }
 
-#[pyclass(
-    name = "ListTrailsResponse",
-    module = "rboto_cloudtrail._native",
-    frozen
-)]
-struct PyListTrailsResponse {
+#[pyclass(name = "ListTrailsOutput", module = "rboto_cloudtrail._native", frozen)]
+struct PyOperationListTrailsOutput {
     inner: aws_sdk_cloudtrail::operation::list_trails::ListTrailsOutput,
 }
 
 #[pymethods]
-impl PyListTrailsResponse {
+impl PyOperationListTrailsOutput {
     #[getter]
     fn trails(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trails {
@@ -7766,16 +7754,16 @@ impl PyListTrailsResponse {
 }
 
 #[pyclass(
-    name = "LookupEventsResponse",
+    name = "LookupEventsOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyLookupEventsResponse {
+struct PyOperationLookupEventsOutput {
     inner: aws_sdk_cloudtrail::operation::lookup_events::LookupEventsOutput,
 }
 
 #[pymethods]
-impl PyLookupEventsResponse {
+impl PyOperationLookupEventsOutput {
     #[getter]
     fn events(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.events {
@@ -7831,16 +7819,16 @@ impl PyLookupEventsResponse {
 }
 
 #[pyclass(
-    name = "PutEventConfigurationResponse",
+    name = "PutEventConfigurationOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyPutEventConfigurationResponse {
+struct PyOperationPutEventConfigurationOutput {
     inner: aws_sdk_cloudtrail::operation::put_event_configuration::PutEventConfigurationOutput,
 }
 
 #[pymethods]
-impl PyPutEventConfigurationResponse {
+impl PyOperationPutEventConfigurationOutput {
     #[getter]
     fn trail_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trail_arn {
@@ -7960,16 +7948,16 @@ impl PyPutEventConfigurationResponse {
 }
 
 #[pyclass(
-    name = "PutEventSelectorsResponse",
+    name = "PutEventSelectorsOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyPutEventSelectorsResponse {
+struct PyOperationPutEventSelectorsOutput {
     inner: aws_sdk_cloudtrail::operation::put_event_selectors::PutEventSelectorsOutput,
 }
 
 #[pymethods]
-impl PyPutEventSelectorsResponse {
+impl PyOperationPutEventSelectorsOutput {
     #[getter]
     fn trail_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trail_arn {
@@ -8057,16 +8045,16 @@ impl PyPutEventSelectorsResponse {
 }
 
 #[pyclass(
-    name = "PutInsightSelectorsResponse",
+    name = "PutInsightSelectorsOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyPutInsightSelectorsResponse {
+struct PyOperationPutInsightSelectorsOutput {
     inner: aws_sdk_cloudtrail::operation::put_insight_selectors::PutInsightSelectorsOutput,
 }
 
 #[pymethods]
-impl PyPutInsightSelectorsResponse {
+impl PyOperationPutInsightSelectorsOutput {
     #[getter]
     fn trail_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trail_arn {
@@ -8154,16 +8142,16 @@ impl PyPutInsightSelectorsResponse {
 }
 
 #[pyclass(
-    name = "PutResourcePolicyResponse",
+    name = "PutResourcePolicyOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyPutResourcePolicyResponse {
+struct PyOperationPutResourcePolicyOutput {
     inner: aws_sdk_cloudtrail::operation::put_resource_policy::PutResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyPutResourcePolicyResponse {
+impl PyOperationPutResourcePolicyOutput {
     #[getter]
     fn resource_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_arn {
@@ -8219,33 +8207,29 @@ impl PyPutResourcePolicyResponse {
 }
 
 #[pyclass(
-    name = "RegisterOrganizationDelegatedAdminResponse",
+    name = "RegisterOrganizationDelegatedAdminOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyRegisterOrganizationDelegatedAdminResponse {
+struct PyOperationRegisterOrganizationDelegatedAdminOutput {
     inner: aws_sdk_cloudtrail::operation::register_organization_delegated_admin::RegisterOrganizationDelegatedAdminOutput,
 }
 
 #[pymethods]
-impl PyRegisterOrganizationDelegatedAdminResponse {
+impl PyOperationRegisterOrganizationDelegatedAdminOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(
-    name = "RemoveTagsResponse",
-    module = "rboto_cloudtrail._native",
-    frozen
-)]
-struct PyRemoveTagsResponse {
+#[pyclass(name = "RemoveTagsOutput", module = "rboto_cloudtrail._native", frozen)]
+struct PyOperationRemoveTagsOutput {
     inner: aws_sdk_cloudtrail::operation::remove_tags::RemoveTagsOutput,
 }
 
 #[pymethods]
-impl PyRemoveTagsResponse {
+impl PyOperationRemoveTagsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -8253,16 +8237,16 @@ impl PyRemoveTagsResponse {
 }
 
 #[pyclass(
-    name = "RestoreEventDataStoreResponse",
+    name = "RestoreEventDataStoreOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyRestoreEventDataStoreResponse {
+struct PyOperationRestoreEventDataStoreOutput {
     inner: aws_sdk_cloudtrail::operation::restore_event_data_store::RestoreEventDataStoreOutput,
 }
 
 #[pymethods]
-impl PyRestoreEventDataStoreResponse {
+impl PyOperationRestoreEventDataStoreOutput {
     #[getter]
     fn event_data_store_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_data_store_arn {
@@ -8478,16 +8462,16 @@ impl PyRestoreEventDataStoreResponse {
 }
 
 #[pyclass(
-    name = "SearchSampleQueriesResponse",
+    name = "SearchSampleQueriesOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PySearchSampleQueriesResponse {
+struct PyOperationSearchSampleQueriesOutput {
     inner: aws_sdk_cloudtrail::operation::search_sample_queries::SearchSampleQueriesOutput,
 }
 
 #[pymethods]
-impl PySearchSampleQueriesResponse {
+impl PyOperationSearchSampleQueriesOutput {
     #[getter]
     fn search_results(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.search_results {
@@ -8543,16 +8527,16 @@ impl PySearchSampleQueriesResponse {
 }
 
 #[pyclass(
-    name = "StartDashboardRefreshResponse",
+    name = "StartDashboardRefreshOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyStartDashboardRefreshResponse {
+struct PyOperationStartDashboardRefreshOutput {
     inner: aws_sdk_cloudtrail::operation::start_dashboard_refresh::StartDashboardRefreshOutput,
 }
 
 #[pymethods]
-impl PyStartDashboardRefreshResponse {
+impl PyOperationStartDashboardRefreshOutput {
     #[getter]
     fn refresh_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.refresh_id {
@@ -8576,16 +8560,16 @@ impl PyStartDashboardRefreshResponse {
 }
 
 #[pyclass(
-    name = "StartEventDataStoreIngestionResponse",
+    name = "StartEventDataStoreIngestionOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyStartEventDataStoreIngestionResponse {
+struct PyOperationStartEventDataStoreIngestionOutput {
     inner: aws_sdk_cloudtrail::operation::start_event_data_store_ingestion::StartEventDataStoreIngestionOutput,
 }
 
 #[pymethods]
-impl PyStartEventDataStoreIngestionResponse {
+impl PyOperationStartEventDataStoreIngestionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -8593,16 +8577,16 @@ impl PyStartEventDataStoreIngestionResponse {
 }
 
 #[pyclass(
-    name = "StartImportResponse",
+    name = "StartImportOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyStartImportResponse {
+struct PyOperationStartImportOutput {
     inner: aws_sdk_cloudtrail::operation::start_import::StartImportOutput,
 }
 
 #[pymethods]
-impl PyStartImportResponse {
+impl PyOperationStartImportOutput {
     #[getter]
     fn import_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_id {
@@ -8754,33 +8738,29 @@ impl PyStartImportResponse {
 }
 
 #[pyclass(
-    name = "StartLoggingResponse",
+    name = "StartLoggingOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyStartLoggingResponse {
+struct PyOperationStartLoggingOutput {
     inner: aws_sdk_cloudtrail::operation::start_logging::StartLoggingOutput,
 }
 
 #[pymethods]
-impl PyStartLoggingResponse {
+impl PyOperationStartLoggingOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(
-    name = "StartQueryResponse",
-    module = "rboto_cloudtrail._native",
-    frozen
-)]
-struct PyStartQueryResponse {
+#[pyclass(name = "StartQueryOutput", module = "rboto_cloudtrail._native", frozen)]
+struct PyOperationStartQueryOutput {
     inner: aws_sdk_cloudtrail::operation::start_query::StartQueryOutput,
 }
 
 #[pymethods]
-impl PyStartQueryResponse {
+impl PyOperationStartQueryOutput {
     #[getter]
     fn query_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_id {
@@ -8820,33 +8800,29 @@ impl PyStartQueryResponse {
 }
 
 #[pyclass(
-    name = "StopEventDataStoreIngestionResponse",
+    name = "StopEventDataStoreIngestionOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyStopEventDataStoreIngestionResponse {
+struct PyOperationStopEventDataStoreIngestionOutput {
     inner: aws_sdk_cloudtrail::operation::stop_event_data_store_ingestion::StopEventDataStoreIngestionOutput,
 }
 
 #[pymethods]
-impl PyStopEventDataStoreIngestionResponse {
+impl PyOperationStopEventDataStoreIngestionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(
-    name = "StopImportResponse",
-    module = "rboto_cloudtrail._native",
-    frozen
-)]
-struct PyStopImportResponse {
+#[pyclass(name = "StopImportOutput", module = "rboto_cloudtrail._native", frozen)]
+struct PyOperationStopImportOutput {
     inner: aws_sdk_cloudtrail::operation::stop_import::StopImportOutput,
 }
 
 #[pymethods]
-impl PyStopImportResponse {
+impl PyOperationStopImportOutput {
     #[getter]
     fn import_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_id {
@@ -9020,16 +8996,16 @@ impl PyStopImportResponse {
 }
 
 #[pyclass(
-    name = "StopLoggingResponse",
+    name = "StopLoggingOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyStopLoggingResponse {
+struct PyOperationStopLoggingOutput {
     inner: aws_sdk_cloudtrail::operation::stop_logging::StopLoggingOutput,
 }
 
 #[pymethods]
-impl PyStopLoggingResponse {
+impl PyOperationStopLoggingOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -9037,16 +9013,16 @@ impl PyStopLoggingResponse {
 }
 
 #[pyclass(
-    name = "UpdateChannelResponse",
+    name = "UpdateChannelOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyUpdateChannelResponse {
+struct PyOperationUpdateChannelOutput {
     inner: aws_sdk_cloudtrail::operation::update_channel::UpdateChannelOutput,
 }
 
 #[pymethods]
-impl PyUpdateChannelResponse {
+impl PyOperationUpdateChannelOutput {
     #[getter]
     fn channel_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.channel_arn {
@@ -9134,16 +9110,16 @@ impl PyUpdateChannelResponse {
 }
 
 #[pyclass(
-    name = "UpdateDashboardResponse",
+    name = "UpdateDashboardOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyUpdateDashboardResponse {
+struct PyOperationUpdateDashboardOutput {
     inner: aws_sdk_cloudtrail::operation::update_dashboard::UpdateDashboardOutput,
 }
 
 #[pymethods]
-impl PyUpdateDashboardResponse {
+impl PyOperationUpdateDashboardOutput {
     #[getter]
     fn dashboard_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dashboard_arn {
@@ -9301,16 +9277,16 @@ impl PyUpdateDashboardResponse {
 }
 
 #[pyclass(
-    name = "UpdateEventDataStoreResponse",
+    name = "UpdateEventDataStoreOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyUpdateEventDataStoreResponse {
+struct PyOperationUpdateEventDataStoreOutput {
     inner: aws_sdk_cloudtrail::operation::update_event_data_store::UpdateEventDataStoreOutput,
 }
 
 #[pymethods]
-impl PyUpdateEventDataStoreResponse {
+impl PyOperationUpdateEventDataStoreOutput {
     #[getter]
     fn event_data_store_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_data_store_arn {
@@ -9558,16 +9534,16 @@ impl PyUpdateEventDataStoreResponse {
 }
 
 #[pyclass(
-    name = "UpdateTrailResponse",
+    name = "UpdateTrailOutput",
     module = "rboto_cloudtrail._native",
     frozen
 )]
-struct PyUpdateTrailResponse {
+struct PyOperationUpdateTrailOutput {
     inner: aws_sdk_cloudtrail::operation::update_trail::UpdateTrailOutput,
 }
 
 #[pymethods]
-impl PyUpdateTrailResponse {
+impl PyOperationUpdateTrailOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
@@ -9832,66 +9808,66 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyTrail>()?;
     module.add_class::<PyTrailInfo>()?;
     module.add_class::<PyWidget>()?;
-    module.add_class::<PyAddTagsResponse>()?;
-    module.add_class::<PyCancelQueryResponse>()?;
-    module.add_class::<PyCreateChannelResponse>()?;
-    module.add_class::<PyCreateDashboardResponse>()?;
-    module.add_class::<PyCreateEventDataStoreResponse>()?;
-    module.add_class::<PyCreateTrailResponse>()?;
-    module.add_class::<PyDeleteChannelResponse>()?;
-    module.add_class::<PyDeleteDashboardResponse>()?;
-    module.add_class::<PyDeleteEventDataStoreResponse>()?;
-    module.add_class::<PyDeleteResourcePolicyResponse>()?;
-    module.add_class::<PyDeleteTrailResponse>()?;
-    module.add_class::<PyDeregisterOrganizationDelegatedAdminResponse>()?;
-    module.add_class::<PyDescribeQueryResponse>()?;
-    module.add_class::<PyDescribeTrailsResponse>()?;
-    module.add_class::<PyDisableFederationResponse>()?;
-    module.add_class::<PyEnableFederationResponse>()?;
-    module.add_class::<PyGenerateQueryResponse>()?;
-    module.add_class::<PyGetChannelResponse>()?;
-    module.add_class::<PyGetDashboardResponse>()?;
-    module.add_class::<PyGetEventConfigurationResponse>()?;
-    module.add_class::<PyGetEventDataStoreResponse>()?;
-    module.add_class::<PyGetEventSelectorsResponse>()?;
-    module.add_class::<PyGetImportResponse>()?;
-    module.add_class::<PyGetInsightSelectorsResponse>()?;
-    module.add_class::<PyGetQueryResultsResponse>()?;
-    module.add_class::<PyGetResourcePolicyResponse>()?;
-    module.add_class::<PyGetTrailResponse>()?;
-    module.add_class::<PyGetTrailStatusResponse>()?;
-    module.add_class::<PyListChannelsResponse>()?;
-    module.add_class::<PyListDashboardsResponse>()?;
-    module.add_class::<PyListEventDataStoresResponse>()?;
-    module.add_class::<PyListImportFailuresResponse>()?;
-    module.add_class::<PyListImportsResponse>()?;
-    module.add_class::<PyListInsightsDataResponse>()?;
-    module.add_class::<PyListInsightsMetricDataResponse>()?;
-    module.add_class::<PyListPublicKeysResponse>()?;
-    module.add_class::<PyListQueriesResponse>()?;
-    module.add_class::<PyListTagsResponse>()?;
-    module.add_class::<PyListTrailsResponse>()?;
-    module.add_class::<PyLookupEventsResponse>()?;
-    module.add_class::<PyPutEventConfigurationResponse>()?;
-    module.add_class::<PyPutEventSelectorsResponse>()?;
-    module.add_class::<PyPutInsightSelectorsResponse>()?;
-    module.add_class::<PyPutResourcePolicyResponse>()?;
-    module.add_class::<PyRegisterOrganizationDelegatedAdminResponse>()?;
-    module.add_class::<PyRemoveTagsResponse>()?;
-    module.add_class::<PyRestoreEventDataStoreResponse>()?;
-    module.add_class::<PySearchSampleQueriesResponse>()?;
-    module.add_class::<PyStartDashboardRefreshResponse>()?;
-    module.add_class::<PyStartEventDataStoreIngestionResponse>()?;
-    module.add_class::<PyStartImportResponse>()?;
-    module.add_class::<PyStartLoggingResponse>()?;
-    module.add_class::<PyStartQueryResponse>()?;
-    module.add_class::<PyStopEventDataStoreIngestionResponse>()?;
-    module.add_class::<PyStopImportResponse>()?;
-    module.add_class::<PyStopLoggingResponse>()?;
-    module.add_class::<PyUpdateChannelResponse>()?;
-    module.add_class::<PyUpdateDashboardResponse>()?;
-    module.add_class::<PyUpdateEventDataStoreResponse>()?;
-    module.add_class::<PyUpdateTrailResponse>()?;
+    module.add_class::<PyOperationAddTagsOutput>()?;
+    module.add_class::<PyOperationCancelQueryOutput>()?;
+    module.add_class::<PyOperationCreateChannelOutput>()?;
+    module.add_class::<PyOperationCreateDashboardOutput>()?;
+    module.add_class::<PyOperationCreateEventDataStoreOutput>()?;
+    module.add_class::<PyOperationCreateTrailOutput>()?;
+    module.add_class::<PyOperationDeleteChannelOutput>()?;
+    module.add_class::<PyOperationDeleteDashboardOutput>()?;
+    module.add_class::<PyOperationDeleteEventDataStoreOutput>()?;
+    module.add_class::<PyOperationDeleteResourcePolicyOutput>()?;
+    module.add_class::<PyOperationDeleteTrailOutput>()?;
+    module.add_class::<PyOperationDeregisterOrganizationDelegatedAdminOutput>()?;
+    module.add_class::<PyOperationDescribeQueryOutput>()?;
+    module.add_class::<PyOperationDescribeTrailsOutput>()?;
+    module.add_class::<PyOperationDisableFederationOutput>()?;
+    module.add_class::<PyOperationEnableFederationOutput>()?;
+    module.add_class::<PyOperationGenerateQueryOutput>()?;
+    module.add_class::<PyOperationGetChannelOutput>()?;
+    module.add_class::<PyOperationGetDashboardOutput>()?;
+    module.add_class::<PyOperationGetEventConfigurationOutput>()?;
+    module.add_class::<PyOperationGetEventDataStoreOutput>()?;
+    module.add_class::<PyOperationGetEventSelectorsOutput>()?;
+    module.add_class::<PyOperationGetImportOutput>()?;
+    module.add_class::<PyOperationGetInsightSelectorsOutput>()?;
+    module.add_class::<PyOperationGetQueryResultsOutput>()?;
+    module.add_class::<PyOperationGetResourcePolicyOutput>()?;
+    module.add_class::<PyOperationGetTrailOutput>()?;
+    module.add_class::<PyOperationGetTrailStatusOutput>()?;
+    module.add_class::<PyOperationListChannelsOutput>()?;
+    module.add_class::<PyOperationListDashboardsOutput>()?;
+    module.add_class::<PyOperationListEventDataStoresOutput>()?;
+    module.add_class::<PyOperationListImportFailuresOutput>()?;
+    module.add_class::<PyOperationListImportsOutput>()?;
+    module.add_class::<PyOperationListInsightsDataOutput>()?;
+    module.add_class::<PyOperationListInsightsMetricDataOutput>()?;
+    module.add_class::<PyOperationListPublicKeysOutput>()?;
+    module.add_class::<PyOperationListQueriesOutput>()?;
+    module.add_class::<PyOperationListTagsOutput>()?;
+    module.add_class::<PyOperationListTrailsOutput>()?;
+    module.add_class::<PyOperationLookupEventsOutput>()?;
+    module.add_class::<PyOperationPutEventConfigurationOutput>()?;
+    module.add_class::<PyOperationPutEventSelectorsOutput>()?;
+    module.add_class::<PyOperationPutInsightSelectorsOutput>()?;
+    module.add_class::<PyOperationPutResourcePolicyOutput>()?;
+    module.add_class::<PyOperationRegisterOrganizationDelegatedAdminOutput>()?;
+    module.add_class::<PyOperationRemoveTagsOutput>()?;
+    module.add_class::<PyOperationRestoreEventDataStoreOutput>()?;
+    module.add_class::<PyOperationSearchSampleQueriesOutput>()?;
+    module.add_class::<PyOperationStartDashboardRefreshOutput>()?;
+    module.add_class::<PyOperationStartEventDataStoreIngestionOutput>()?;
+    module.add_class::<PyOperationStartImportOutput>()?;
+    module.add_class::<PyOperationStartLoggingOutput>()?;
+    module.add_class::<PyOperationStartQueryOutput>()?;
+    module.add_class::<PyOperationStopEventDataStoreIngestionOutput>()?;
+    module.add_class::<PyOperationStopImportOutput>()?;
+    module.add_class::<PyOperationStopLoggingOutput>()?;
+    module.add_class::<PyOperationUpdateChannelOutput>()?;
+    module.add_class::<PyOperationUpdateDashboardOutput>()?;
+    module.add_class::<PyOperationUpdateEventDataStoreOutput>()?;
+    module.add_class::<PyOperationUpdateTrailOutput>()?;
 
     Ok(())
 }
@@ -9970,7 +9946,7 @@ impl CloudTrailClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "AddTags")))?;
-            Ok(PyAddTagsResponse { inner: output })
+            Ok(PyOperationAddTagsOutput { inner: output })
         })
     }
 
@@ -10022,7 +9998,7 @@ impl CloudTrailClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CancelQuery")))?;
-            Ok(PyCancelQueryResponse { inner: output })
+            Ok(PyOperationCancelQueryOutput { inner: output })
         })
     }
 
@@ -10093,7 +10069,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateChannel"))
             })?;
-            Ok(PyCreateChannelResponse { inner: output })
+            Ok(PyOperationCreateChannelOutput { inner: output })
         })
     }
 
@@ -10172,7 +10148,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDashboard"))
             })?;
-            Ok(PyCreateDashboardResponse { inner: output })
+            Ok(PyOperationCreateDashboardOutput { inner: output })
         })
     }
 
@@ -10291,7 +10267,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateEventDataStore"))
             })?;
-            Ok(PyCreateEventDataStoreResponse { inner: output })
+            Ok(PyOperationCreateEventDataStoreOutput { inner: output })
         })
     }
 
@@ -10425,7 +10401,7 @@ impl CloudTrailClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateTrail")))?;
-            Ok(PyCreateTrailResponse { inner: output })
+            Ok(PyOperationCreateTrailOutput { inner: output })
         })
     }
 
@@ -10461,7 +10437,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteChannel"))
             })?;
-            Ok(PyDeleteChannelResponse { inner: output })
+            Ok(PyOperationDeleteChannelOutput { inner: output })
         })
     }
 
@@ -10499,7 +10475,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDashboard"))
             })?;
-            Ok(PyDeleteDashboardResponse { inner: output })
+            Ok(PyOperationDeleteDashboardOutput { inner: output })
         })
     }
 
@@ -10537,7 +10513,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteEventDataStore"))
             })?;
-            Ok(PyDeleteEventDataStoreResponse { inner: output })
+            Ok(PyOperationDeleteEventDataStoreOutput { inner: output })
         })
     }
 
@@ -10575,7 +10551,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteResourcePolicy"))
             })?;
-            Ok(PyDeleteResourcePolicyResponse { inner: output })
+            Ok(PyOperationDeleteResourcePolicyOutput { inner: output })
         })
     }
 
@@ -10610,7 +10586,7 @@ impl CloudTrailClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteTrail")))?;
-            Ok(PyDeleteTrailResponse { inner: output })
+            Ok(PyOperationDeleteTrailOutput { inner: output })
         })
     }
 
@@ -10651,7 +10627,7 @@ impl CloudTrailClient {
                     sdk_error_to_py(py, &error, "DeregisterOrganizationDelegatedAdmin")
                 })
             })?;
-            Ok(PyDeregisterOrganizationDelegatedAdminResponse { inner: output })
+            Ok(PyOperationDeregisterOrganizationDelegatedAdminOutput { inner: output })
         })
     }
 
@@ -10718,7 +10694,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeQuery"))
             })?;
-            Ok(PyDescribeQueryResponse { inner: output })
+            Ok(PyOperationDescribeQueryOutput { inner: output })
         })
     }
 
@@ -10770,7 +10746,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeTrails"))
             })?;
-            Ok(PyDescribeTrailsResponse { inner: output })
+            Ok(PyOperationDescribeTrailsOutput { inner: output })
         })
     }
 
@@ -10808,7 +10784,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DisableFederation"))
             })?;
-            Ok(PyDisableFederationResponse { inner: output })
+            Ok(PyOperationDisableFederationOutput { inner: output })
         })
     }
 
@@ -10854,7 +10830,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "EnableFederation"))
             })?;
-            Ok(PyEnableFederationResponse { inner: output })
+            Ok(PyOperationEnableFederationOutput { inner: output })
         })
     }
 
@@ -10906,7 +10882,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GenerateQuery"))
             })?;
-            Ok(PyGenerateQueryResponse { inner: output })
+            Ok(PyOperationGenerateQueryOutput { inner: output })
         })
     }
 
@@ -10941,7 +10917,7 @@ impl CloudTrailClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetChannel")))?;
-            Ok(PyGetChannelResponse { inner: output })
+            Ok(PyOperationGetChannelOutput { inner: output })
         })
     }
 
@@ -10977,7 +10953,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDashboard"))
             })?;
-            Ok(PyGetDashboardResponse { inner: output })
+            Ok(PyOperationGetDashboardOutput { inner: output })
         })
     }
 
@@ -11022,7 +10998,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetEventConfiguration"))
             })?;
-            Ok(PyGetEventConfigurationResponse { inner: output })
+            Ok(PyOperationGetEventConfigurationOutput { inner: output })
         })
     }
 
@@ -11060,7 +11036,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetEventDataStore"))
             })?;
-            Ok(PyGetEventDataStoreResponse { inner: output })
+            Ok(PyOperationGetEventDataStoreOutput { inner: output })
         })
     }
 
@@ -11098,7 +11074,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetEventSelectors"))
             })?;
-            Ok(PyGetEventSelectorsResponse { inner: output })
+            Ok(PyOperationGetEventSelectorsOutput { inner: output })
         })
     }
 
@@ -11133,7 +11109,7 @@ impl CloudTrailClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetImport")))?;
-            Ok(PyGetImportResponse { inner: output })
+            Ok(PyOperationGetImportOutput { inner: output })
         })
     }
 
@@ -11178,7 +11154,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetInsightSelectors"))
             })?;
-            Ok(PyGetInsightSelectorsResponse { inner: output })
+            Ok(PyOperationGetInsightSelectorsOutput { inner: output })
         })
     }
 
@@ -11246,7 +11222,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetQueryResults"))
             })?;
-            Ok(PyGetQueryResultsResponse { inner: output })
+            Ok(PyOperationGetQueryResultsOutput { inner: output })
         })
     }
 
@@ -11284,7 +11260,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicy"))
             })?;
-            Ok(PyGetResourcePolicyResponse { inner: output })
+            Ok(PyOperationGetResourcePolicyOutput { inner: output })
         })
     }
 
@@ -11319,7 +11295,7 @@ impl CloudTrailClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetTrail")))?;
-            Ok(PyGetTrailResponse { inner: output })
+            Ok(PyOperationGetTrailOutput { inner: output })
         })
     }
 
@@ -11355,7 +11331,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetTrailStatus"))
             })?;
-            Ok(PyGetTrailStatusResponse { inner: output })
+            Ok(PyOperationGetTrailStatusOutput { inner: output })
         })
     }
 
@@ -11400,7 +11376,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListChannels"))
             })?;
-            Ok(PyListChannelsResponse { inner: output })
+            Ok(PyOperationListChannelsOutput { inner: output })
         })
     }
 
@@ -11461,7 +11437,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDashboards"))
             })?;
-            Ok(PyListDashboardsResponse { inner: output })
+            Ok(PyOperationListDashboardsOutput { inner: output })
         })
     }
 
@@ -11506,7 +11482,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListEventDataStores"))
             })?;
-            Ok(PyListEventDataStoresResponse { inner: output })
+            Ok(PyOperationListEventDataStoresOutput { inner: output })
         })
     }
 
@@ -11558,7 +11534,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListImportFailures"))
             })?;
-            Ok(PyListImportFailuresResponse { inner: output })
+            Ok(PyOperationListImportFailuresOutput { inner: output })
         })
     }
 
@@ -11618,7 +11594,7 @@ impl CloudTrailClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListImports")))?;
-            Ok(PyListImportsResponse { inner: output })
+            Ok(PyOperationListImportsOutput { inner: output })
         })
     }
 
@@ -11720,7 +11696,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListInsightsData"))
             })?;
-            Ok(PyListInsightsDataResponse { inner: output })
+            Ok(PyOperationListInsightsDataOutput { inner: output })
         })
     }
 
@@ -11842,7 +11818,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListInsightsMetricData"))
             })?;
-            Ok(PyListInsightsMetricDataResponse { inner: output })
+            Ok(PyOperationListInsightsMetricDataOutput { inner: output })
         })
     }
 
@@ -11904,7 +11880,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPublicKeys"))
             })?;
-            Ok(PyListPublicKeysResponse { inner: output })
+            Ok(PyOperationListPublicKeysOutput { inner: output })
         })
     }
 
@@ -11988,7 +11964,7 @@ impl CloudTrailClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListQueries")))?;
-            Ok(PyListQueriesResponse { inner: output })
+            Ok(PyOperationListQueriesOutput { inner: output })
         })
     }
 
@@ -12038,7 +12014,7 @@ impl CloudTrailClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListTags")))?;
-            Ok(PyListTagsResponse { inner: output })
+            Ok(PyOperationListTagsOutput { inner: output })
         })
     }
 
@@ -12073,7 +12049,7 @@ impl CloudTrailClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListTrails")))?;
-            Ok(PyListTrailsResponse { inner: output })
+            Ok(PyOperationListTrailsOutput { inner: output })
         })
     }
 
@@ -12165,7 +12141,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "LookupEvents"))
             })?;
-            Ok(PyLookupEventsResponse { inner: output })
+            Ok(PyOperationLookupEventsOutput { inner: output })
         })
     }
 
@@ -12247,7 +12223,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutEventConfiguration"))
             })?;
-            Ok(PyPutEventConfigurationResponse { inner: output })
+            Ok(PyOperationPutEventConfigurationOutput { inner: output })
         })
     }
 
@@ -12312,7 +12288,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutEventSelectors"))
             })?;
-            Ok(PyPutEventSelectorsResponse { inner: output })
+            Ok(PyOperationPutEventSelectorsOutput { inner: output })
         })
     }
 
@@ -12379,7 +12355,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutInsightSelectors"))
             })?;
-            Ok(PyPutInsightSelectorsResponse { inner: output })
+            Ok(PyOperationPutInsightSelectorsOutput { inner: output })
         })
     }
 
@@ -12424,7 +12400,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePolicy"))
             })?;
-            Ok(PyPutResourcePolicyResponse { inner: output })
+            Ok(PyOperationPutResourcePolicyOutput { inner: output })
         })
     }
 
@@ -12465,7 +12441,7 @@ impl CloudTrailClient {
                     sdk_error_to_py(py, &error, "RegisterOrganizationDelegatedAdmin")
                 })
             })?;
-            Ok(PyRegisterOrganizationDelegatedAdminResponse { inner: output })
+            Ok(PyOperationRegisterOrganizationDelegatedAdminOutput { inner: output })
         })
     }
 
@@ -12515,7 +12491,7 @@ impl CloudTrailClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "RemoveTags")))?;
-            Ok(PyRemoveTagsResponse { inner: output })
+            Ok(PyOperationRemoveTagsOutput { inner: output })
         })
     }
 
@@ -12553,7 +12529,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RestoreEventDataStore"))
             })?;
-            Ok(PyRestoreEventDataStoreResponse { inner: output })
+            Ok(PyOperationRestoreEventDataStoreOutput { inner: output })
         })
     }
 
@@ -12605,7 +12581,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SearchSampleQueries"))
             })?;
-            Ok(PySearchSampleQueriesResponse { inner: output })
+            Ok(PyOperationSearchSampleQueriesOutput { inner: output })
         })
     }
 
@@ -12657,7 +12633,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartDashboardRefresh"))
             })?;
-            Ok(PyStartDashboardRefreshResponse { inner: output })
+            Ok(PyOperationStartDashboardRefreshOutput { inner: output })
         })
     }
 
@@ -12695,7 +12671,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartEventDataStoreIngestion"))
             })?;
-            Ok(PyStartEventDataStoreIngestionResponse { inner: output })
+            Ok(PyOperationStartEventDataStoreIngestionOutput { inner: output })
         })
     }
 
@@ -12776,7 +12752,7 @@ impl CloudTrailClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "StartImport")))?;
-            Ok(PyStartImportResponse { inner: output })
+            Ok(PyOperationStartImportOutput { inner: output })
         })
     }
 
@@ -12812,7 +12788,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartLogging"))
             })?;
-            Ok(PyStartLoggingResponse { inner: output })
+            Ok(PyOperationStartLoggingOutput { inner: output })
         })
     }
 
@@ -12884,7 +12860,7 @@ impl CloudTrailClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "StartQuery")))?;
-            Ok(PyStartQueryResponse { inner: output })
+            Ok(PyOperationStartQueryOutput { inner: output })
         })
     }
 
@@ -12922,7 +12898,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopEventDataStoreIngestion"))
             })?;
-            Ok(PyStopEventDataStoreIngestionResponse { inner: output })
+            Ok(PyOperationStopEventDataStoreIngestionOutput { inner: output })
         })
     }
 
@@ -12957,7 +12933,7 @@ impl CloudTrailClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "StopImport")))?;
-            Ok(PyStopImportResponse { inner: output })
+            Ok(PyOperationStopImportOutput { inner: output })
         })
     }
 
@@ -12992,7 +12968,7 @@ impl CloudTrailClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "StopLogging")))?;
-            Ok(PyStopLoggingResponse { inner: output })
+            Ok(PyOperationStopLoggingOutput { inner: output })
         })
     }
 
@@ -13050,7 +13026,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateChannel"))
             })?;
-            Ok(PyUpdateChannelResponse { inner: output })
+            Ok(PyOperationUpdateChannelOutput { inner: output })
         })
     }
 
@@ -13116,7 +13092,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDashboard"))
             })?;
-            Ok(PyUpdateDashboardResponse { inner: output })
+            Ok(PyOperationUpdateDashboardOutput { inner: output })
         })
     }
 
@@ -13222,7 +13198,7 @@ impl CloudTrailClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateEventDataStore"))
             })?;
-            Ok(PyUpdateEventDataStoreResponse { inner: output })
+            Ok(PyOperationUpdateEventDataStoreOutput { inner: output })
         })
     }
 
@@ -13343,7 +13319,7 @@ impl CloudTrailClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateTrail")))?;
-            Ok(PyUpdateTrailResponse { inner: output })
+            Ok(PyOperationUpdateTrailOutput { inner: output })
         })
     }
 }

@@ -756,12 +756,12 @@ impl PyUnprocessedIdentityId {
     module = "rboto_cognito_identity._native",
     frozen
 )]
-struct PyCreateIdentityPoolOutput {
+struct PyOperationCreateIdentityPoolOutput {
     inner: aws_sdk_cognitoidentity::operation::create_identity_pool::CreateIdentityPoolOutput,
 }
 
 #[pymethods]
-impl PyCreateIdentityPoolOutput {
+impl PyOperationCreateIdentityPoolOutput {
     #[getter]
     fn identity_pool_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_261 = (&self.inner.identity_pool_id).as_str().into_py_any(py)?;
@@ -969,16 +969,16 @@ impl PyCreateIdentityPoolOutput {
 }
 
 #[pyclass(
-    name = "DeleteIdentitiesResponse",
+    name = "DeleteIdentitiesOutput",
     module = "rboto_cognito_identity._native",
     frozen
 )]
-struct PyDeleteIdentitiesResponse {
+struct PyOperationDeleteIdentitiesOutput {
     inner: aws_sdk_cognitoidentity::operation::delete_identities::DeleteIdentitiesOutput,
 }
 
 #[pymethods]
-impl PyDeleteIdentitiesResponse {
+impl PyOperationDeleteIdentitiesOutput {
     #[getter]
     fn unprocessed_identity_ids(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.unprocessed_identity_ids {
@@ -1022,12 +1022,12 @@ impl PyDeleteIdentitiesResponse {
     module = "rboto_cognito_identity._native",
     frozen
 )]
-struct PyDescribeIdentityOutput {
+struct PyOperationDescribeIdentityOutput {
     inner: aws_sdk_cognitoidentity::operation::describe_identity::DescribeIdentityOutput,
 }
 
 #[pymethods]
-impl PyDescribeIdentityOutput {
+impl PyOperationDescribeIdentityOutput {
     #[getter]
     fn identity_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_id {
@@ -1113,12 +1113,12 @@ impl PyDescribeIdentityOutput {
     module = "rboto_cognito_identity._native",
     frozen
 )]
-struct PyDescribeIdentityPoolOutput {
+struct PyOperationDescribeIdentityPoolOutput {
     inner: aws_sdk_cognitoidentity::operation::describe_identity_pool::DescribeIdentityPoolOutput,
 }
 
 #[pymethods]
-impl PyDescribeIdentityPoolOutput {
+impl PyOperationDescribeIdentityPoolOutput {
     #[getter]
     fn identity_pool_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_327 = (&self.inner.identity_pool_id).as_str().into_py_any(py)?;
@@ -1326,16 +1326,16 @@ impl PyDescribeIdentityPoolOutput {
 }
 
 #[pyclass(
-    name = "GetCredentialsForIdentityResponse",
+    name = "GetCredentialsForIdentityOutput",
     module = "rboto_cognito_identity._native",
     frozen
 )]
-struct PyGetCredentialsForIdentityResponse {
+struct PyOperationGetCredentialsForIdentityOutput {
     inner: aws_sdk_cognitoidentity::operation::get_credentials_for_identity::GetCredentialsForIdentityOutput,
 }
 
 #[pymethods]
-impl PyGetCredentialsForIdentityResponse {
+impl PyOperationGetCredentialsForIdentityOutput {
     #[getter]
     fn identity_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_id {
@@ -1381,16 +1381,16 @@ impl PyGetCredentialsForIdentityResponse {
 }
 
 #[pyclass(
-    name = "GetIdResponse",
+    name = "GetIdOutput",
     module = "rboto_cognito_identity._native",
     frozen
 )]
-struct PyGetIdResponse {
+struct PyOperationGetIdOutput {
     inner: aws_sdk_cognitoidentity::operation::get_id::GetIdOutput,
 }
 
 #[pymethods]
-impl PyGetIdResponse {
+impl PyOperationGetIdOutput {
     #[getter]
     fn identity_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_id {
@@ -1414,16 +1414,16 @@ impl PyGetIdResponse {
 }
 
 #[pyclass(
-    name = "GetIdentityPoolRolesResponse",
+    name = "GetIdentityPoolRolesOutput",
     module = "rboto_cognito_identity._native",
     frozen
 )]
-struct PyGetIdentityPoolRolesResponse {
+struct PyOperationGetIdentityPoolRolesOutput {
     inner: aws_sdk_cognitoidentity::operation::get_identity_pool_roles::GetIdentityPoolRolesOutput,
 }
 
 #[pymethods]
-impl PyGetIdentityPoolRolesResponse {
+impl PyOperationGetIdentityPoolRolesOutput {
     #[getter]
     fn identity_pool_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_pool_id {
@@ -1509,16 +1509,16 @@ impl PyGetIdentityPoolRolesResponse {
 }
 
 #[pyclass(
-    name = "GetOpenIdTokenResponse",
+    name = "GetOpenIdTokenOutput",
     module = "rboto_cognito_identity._native",
     frozen
 )]
-struct PyGetOpenIdTokenResponse {
+struct PyOperationGetOpenIdTokenOutput {
     inner: aws_sdk_cognitoidentity::operation::get_open_id_token::GetOpenIdTokenOutput,
 }
 
 #[pymethods]
-impl PyGetOpenIdTokenResponse {
+impl PyOperationGetOpenIdTokenOutput {
     #[getter]
     fn identity_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_id {
@@ -1558,16 +1558,16 @@ impl PyGetOpenIdTokenResponse {
 }
 
 #[pyclass(
-    name = "GetOpenIdTokenForDeveloperIdentityResponse",
+    name = "GetOpenIdTokenForDeveloperIdentityOutput",
     module = "rboto_cognito_identity._native",
     frozen
 )]
-struct PyGetOpenIdTokenForDeveloperIdentityResponse {
+struct PyOperationGetOpenIdTokenForDeveloperIdentityOutput {
     inner: aws_sdk_cognitoidentity::operation::get_open_id_token_for_developer_identity::GetOpenIdTokenForDeveloperIdentityOutput,
 }
 
 #[pymethods]
-impl PyGetOpenIdTokenForDeveloperIdentityResponse {
+impl PyOperationGetOpenIdTokenForDeveloperIdentityOutput {
     #[getter]
     fn identity_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_id {
@@ -1607,16 +1607,16 @@ impl PyGetOpenIdTokenForDeveloperIdentityResponse {
 }
 
 #[pyclass(
-    name = "GetPrincipalTagAttributeMapResponse",
+    name = "GetPrincipalTagAttributeMapOutput",
     module = "rboto_cognito_identity._native",
     frozen
 )]
-struct PyGetPrincipalTagAttributeMapResponse {
+struct PyOperationGetPrincipalTagAttributeMapOutput {
     inner: aws_sdk_cognitoidentity::operation::get_principal_tag_attribute_map::GetPrincipalTagAttributeMapOutput,
 }
 
 #[pymethods]
-impl PyGetPrincipalTagAttributeMapResponse {
+impl PyOperationGetPrincipalTagAttributeMapOutput {
     #[getter]
     fn identity_pool_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_pool_id {
@@ -1700,16 +1700,16 @@ impl PyGetPrincipalTagAttributeMapResponse {
 }
 
 #[pyclass(
-    name = "ListIdentitiesResponse",
+    name = "ListIdentitiesOutput",
     module = "rboto_cognito_identity._native",
     frozen
 )]
-struct PyListIdentitiesResponse {
+struct PyOperationListIdentitiesOutput {
     inner: aws_sdk_cognitoidentity::operation::list_identities::ListIdentitiesOutput,
 }
 
 #[pymethods]
-impl PyListIdentitiesResponse {
+impl PyOperationListIdentitiesOutput {
     #[getter]
     fn identity_pool_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_pool_id {
@@ -1781,16 +1781,16 @@ impl PyListIdentitiesResponse {
 }
 
 #[pyclass(
-    name = "ListIdentityPoolsResponse",
+    name = "ListIdentityPoolsOutput",
     module = "rboto_cognito_identity._native",
     frozen
 )]
-struct PyListIdentityPoolsResponse {
+struct PyOperationListIdentityPoolsOutput {
     inner: aws_sdk_cognitoidentity::operation::list_identity_pools::ListIdentityPoolsOutput,
 }
 
 #[pymethods]
-impl PyListIdentityPoolsResponse {
+impl PyOperationListIdentityPoolsOutput {
     #[getter]
     fn identity_pools(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_pools {
@@ -1846,16 +1846,16 @@ impl PyListIdentityPoolsResponse {
 }
 
 #[pyclass(
-    name = "ListTagsForResourceResponse",
+    name = "ListTagsForResourceOutput",
     module = "rboto_cognito_identity._native",
     frozen
 )]
-struct PyListTagsForResourceResponse {
+struct PyOperationListTagsForResourceOutput {
     inner: aws_sdk_cognitoidentity::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
 
 #[pymethods]
-impl PyListTagsForResourceResponse {
+impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
@@ -1891,16 +1891,16 @@ impl PyListTagsForResourceResponse {
 }
 
 #[pyclass(
-    name = "LookupDeveloperIdentityResponse",
+    name = "LookupDeveloperIdentityOutput",
     module = "rboto_cognito_identity._native",
     frozen
 )]
-struct PyLookupDeveloperIdentityResponse {
+struct PyOperationLookupDeveloperIdentityOutput {
     inner: aws_sdk_cognitoidentity::operation::lookup_developer_identity::LookupDeveloperIdentityOutput,
 }
 
 #[pymethods]
-impl PyLookupDeveloperIdentityResponse {
+impl PyOperationLookupDeveloperIdentityOutput {
     #[getter]
     fn identity_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_id {
@@ -1966,16 +1966,16 @@ impl PyLookupDeveloperIdentityResponse {
 }
 
 #[pyclass(
-    name = "MergeDeveloperIdentitiesResponse",
+    name = "MergeDeveloperIdentitiesOutput",
     module = "rboto_cognito_identity._native",
     frozen
 )]
-struct PyMergeDeveloperIdentitiesResponse {
+struct PyOperationMergeDeveloperIdentitiesOutput {
     inner: aws_sdk_cognitoidentity::operation::merge_developer_identities::MergeDeveloperIdentitiesOutput,
 }
 
 #[pymethods]
-impl PyMergeDeveloperIdentitiesResponse {
+impl PyOperationMergeDeveloperIdentitiesOutput {
     #[getter]
     fn identity_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_id {
@@ -1999,16 +1999,16 @@ impl PyMergeDeveloperIdentitiesResponse {
 }
 
 #[pyclass(
-    name = "SetPrincipalTagAttributeMapResponse",
+    name = "SetPrincipalTagAttributeMapOutput",
     module = "rboto_cognito_identity._native",
     frozen
 )]
-struct PySetPrincipalTagAttributeMapResponse {
+struct PyOperationSetPrincipalTagAttributeMapOutput {
     inner: aws_sdk_cognitoidentity::operation::set_principal_tag_attribute_map::SetPrincipalTagAttributeMapOutput,
 }
 
 #[pymethods]
-impl PySetPrincipalTagAttributeMapResponse {
+impl PyOperationSetPrincipalTagAttributeMapOutput {
     #[getter]
     fn identity_pool_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_pool_id {
@@ -2092,16 +2092,16 @@ impl PySetPrincipalTagAttributeMapResponse {
 }
 
 #[pyclass(
-    name = "TagResourceResponse",
+    name = "TagResourceOutput",
     module = "rboto_cognito_identity._native",
     frozen
 )]
-struct PyTagResourceResponse {
+struct PyOperationTagResourceOutput {
     inner: aws_sdk_cognitoidentity::operation::tag_resource::TagResourceOutput,
 }
 
 #[pymethods]
-impl PyTagResourceResponse {
+impl PyOperationTagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -2109,16 +2109,16 @@ impl PyTagResourceResponse {
 }
 
 #[pyclass(
-    name = "UntagResourceResponse",
+    name = "UntagResourceOutput",
     module = "rboto_cognito_identity._native",
     frozen
 )]
-struct PyUntagResourceResponse {
+struct PyOperationUntagResourceOutput {
     inner: aws_sdk_cognitoidentity::operation::untag_resource::UntagResourceOutput,
 }
 
 #[pymethods]
-impl PyUntagResourceResponse {
+impl PyOperationUntagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -2130,12 +2130,12 @@ impl PyUntagResourceResponse {
     module = "rboto_cognito_identity._native",
     frozen
 )]
-struct PyUpdateIdentityPoolOutput {
+struct PyOperationUpdateIdentityPoolOutput {
     inner: aws_sdk_cognitoidentity::operation::update_identity_pool::UpdateIdentityPoolOutput,
 }
 
 #[pymethods]
-impl PyUpdateIdentityPoolOutput {
+impl PyOperationUpdateIdentityPoolOutput {
     #[getter]
     fn identity_pool_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_483 = (&self.inner.identity_pool_id).as_str().into_py_any(py)?;
@@ -2351,25 +2351,25 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyRoleMapping>()?;
     module.add_class::<PyRulesConfigurationType>()?;
     module.add_class::<PyUnprocessedIdentityId>()?;
-    module.add_class::<PyCreateIdentityPoolOutput>()?;
-    module.add_class::<PyDeleteIdentitiesResponse>()?;
-    module.add_class::<PyDescribeIdentityOutput>()?;
-    module.add_class::<PyDescribeIdentityPoolOutput>()?;
-    module.add_class::<PyGetCredentialsForIdentityResponse>()?;
-    module.add_class::<PyGetIdResponse>()?;
-    module.add_class::<PyGetIdentityPoolRolesResponse>()?;
-    module.add_class::<PyGetOpenIdTokenResponse>()?;
-    module.add_class::<PyGetOpenIdTokenForDeveloperIdentityResponse>()?;
-    module.add_class::<PyGetPrincipalTagAttributeMapResponse>()?;
-    module.add_class::<PyListIdentitiesResponse>()?;
-    module.add_class::<PyListIdentityPoolsResponse>()?;
-    module.add_class::<PyListTagsForResourceResponse>()?;
-    module.add_class::<PyLookupDeveloperIdentityResponse>()?;
-    module.add_class::<PyMergeDeveloperIdentitiesResponse>()?;
-    module.add_class::<PySetPrincipalTagAttributeMapResponse>()?;
-    module.add_class::<PyTagResourceResponse>()?;
-    module.add_class::<PyUntagResourceResponse>()?;
-    module.add_class::<PyUpdateIdentityPoolOutput>()?;
+    module.add_class::<PyOperationCreateIdentityPoolOutput>()?;
+    module.add_class::<PyOperationDeleteIdentitiesOutput>()?;
+    module.add_class::<PyOperationDescribeIdentityOutput>()?;
+    module.add_class::<PyOperationDescribeIdentityPoolOutput>()?;
+    module.add_class::<PyOperationGetCredentialsForIdentityOutput>()?;
+    module.add_class::<PyOperationGetIdOutput>()?;
+    module.add_class::<PyOperationGetIdentityPoolRolesOutput>()?;
+    module.add_class::<PyOperationGetOpenIdTokenOutput>()?;
+    module.add_class::<PyOperationGetOpenIdTokenForDeveloperIdentityOutput>()?;
+    module.add_class::<PyOperationGetPrincipalTagAttributeMapOutput>()?;
+    module.add_class::<PyOperationListIdentitiesOutput>()?;
+    module.add_class::<PyOperationListIdentityPoolsOutput>()?;
+    module.add_class::<PyOperationListTagsForResourceOutput>()?;
+    module.add_class::<PyOperationLookupDeveloperIdentityOutput>()?;
+    module.add_class::<PyOperationMergeDeveloperIdentitiesOutput>()?;
+    module.add_class::<PyOperationSetPrincipalTagAttributeMapOutput>()?;
+    module.add_class::<PyOperationTagResourceOutput>()?;
+    module.add_class::<PyOperationUntagResourceOutput>()?;
+    module.add_class::<PyOperationUpdateIdentityPoolOutput>()?;
 
     Ok(())
 }
@@ -2531,7 +2531,7 @@ impl CognitoIdentityClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateIdentityPool"))
             })?;
-            Ok(PyCreateIdentityPoolOutput { inner: output })
+            Ok(PyOperationCreateIdentityPoolOutput { inner: output })
         })
     }
 
@@ -2576,7 +2576,7 @@ impl CognitoIdentityClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteIdentities"))
             })?;
-            Ok(PyDeleteIdentitiesResponse { inner: output })
+            Ok(PyOperationDeleteIdentitiesOutput { inner: output })
         })
     }
 
@@ -2652,7 +2652,7 @@ impl CognitoIdentityClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeIdentity"))
             })?;
-            Ok(PyDescribeIdentityOutput { inner: output })
+            Ok(PyOperationDescribeIdentityOutput { inner: output })
         })
     }
 
@@ -2690,7 +2690,7 @@ impl CognitoIdentityClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeIdentityPool"))
             })?;
-            Ok(PyDescribeIdentityPoolOutput { inner: output })
+            Ok(PyOperationDescribeIdentityPoolOutput { inner: output })
         })
     }
 
@@ -2748,7 +2748,7 @@ impl CognitoIdentityClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCredentialsForIdentity"))
             })?;
-            Ok(PyGetCredentialsForIdentityResponse { inner: output })
+            Ok(PyOperationGetCredentialsForIdentityOutput { inner: output })
         })
     }
 
@@ -2805,7 +2805,7 @@ impl CognitoIdentityClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetId")))?;
-            Ok(PyGetIdResponse { inner: output })
+            Ok(PyOperationGetIdOutput { inner: output })
         })
     }
 
@@ -2843,7 +2843,7 @@ impl CognitoIdentityClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetIdentityPoolRoles"))
             })?;
-            Ok(PyGetIdentityPoolRolesResponse { inner: output })
+            Ok(PyOperationGetIdentityPoolRolesOutput { inner: output })
         })
     }
 
@@ -2894,7 +2894,7 @@ impl CognitoIdentityClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetOpenIdToken"))
             })?;
-            Ok(PyGetOpenIdTokenResponse { inner: output })
+            Ok(PyOperationGetOpenIdTokenOutput { inner: output })
         })
     }
 
@@ -2974,7 +2974,7 @@ impl CognitoIdentityClient {
                     sdk_error_to_py(py, &error, "GetOpenIdTokenForDeveloperIdentity")
                 })
             })?;
-            Ok(PyGetOpenIdTokenForDeveloperIdentityResponse { inner: output })
+            Ok(PyOperationGetOpenIdTokenForDeveloperIdentityOutput { inner: output })
         })
     }
 
@@ -3020,7 +3020,7 @@ impl CognitoIdentityClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPrincipalTagAttributeMap"))
             })?;
-            Ok(PyGetPrincipalTagAttributeMapResponse { inner: output })
+            Ok(PyOperationGetPrincipalTagAttributeMapOutput { inner: output })
         })
     }
 
@@ -3079,7 +3079,7 @@ impl CognitoIdentityClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListIdentities"))
             })?;
-            Ok(PyListIdentitiesResponse { inner: output })
+            Ok(PyOperationListIdentitiesOutput { inner: output })
         })
     }
 
@@ -3124,7 +3124,7 @@ impl CognitoIdentityClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListIdentityPools"))
             })?;
-            Ok(PyListIdentityPoolsResponse { inner: output })
+            Ok(PyOperationListIdentityPoolsOutput { inner: output })
         })
     }
 
@@ -3162,7 +3162,7 @@ impl CognitoIdentityClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Ok(PyListTagsForResourceResponse { inner: output })
+            Ok(PyOperationListTagsForResourceOutput { inner: output })
         })
     }
 
@@ -3229,7 +3229,7 @@ impl CognitoIdentityClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "LookupDeveloperIdentity"))
             })?;
-            Ok(PyLookupDeveloperIdentityResponse { inner: output })
+            Ok(PyOperationLookupDeveloperIdentityOutput { inner: output })
         })
     }
 
@@ -3291,7 +3291,7 @@ impl CognitoIdentityClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "MergeDeveloperIdentities"))
             })?;
-            Ok(PyMergeDeveloperIdentitiesResponse { inner: output })
+            Ok(PyOperationMergeDeveloperIdentitiesOutput { inner: output })
         })
     }
 
@@ -3421,7 +3421,7 @@ impl CognitoIdentityClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SetPrincipalTagAttributeMap"))
             })?;
-            Ok(PySetPrincipalTagAttributeMapResponse { inner: output })
+            Ok(PyOperationSetPrincipalTagAttributeMapOutput { inner: output })
         })
     }
 
@@ -3471,7 +3471,7 @@ impl CognitoIdentityClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
-            Ok(PyTagResourceResponse { inner: output })
+            Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
 
@@ -3647,7 +3647,7 @@ impl CognitoIdentityClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
-            Ok(PyUntagResourceResponse { inner: output })
+            Ok(PyOperationUntagResourceOutput { inner: output })
         })
     }
 
@@ -3787,7 +3787,7 @@ impl CognitoIdentityClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateIdentityPool"))
             })?;
-            Ok(PyUpdateIdentityPoolOutput { inner: output })
+            Ok(PyOperationUpdateIdentityPoolOutput { inner: output })
         })
     }
 }

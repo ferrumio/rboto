@@ -9,7 +9,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto.logging import operation_interceptors
 
-from ._native import TranscribeStreamingClient as NativeClient, GetMedicalScribeStreamResponse
+from ._native import TranscribeStreamingClient as NativeClient, GetMedicalScribeStreamOutput
 from .types import (
     AudioStream,
     CallAnalyticsLanguageCode,
@@ -23,10 +23,10 @@ from .types import (
     MedicalScribeMediaEncoding,
     PartialResultsStability,
     Specialty,
-    StartCallAnalyticsStreamTranscriptionResponse,
-    StartMedicalScribeStreamResponse,
-    StartMedicalStreamTranscriptionResponse,
-    StartStreamTranscriptionResponse,
+    StartCallAnalyticsStreamTranscriptionOutput,
+    StartMedicalScribeStreamOutput,
+    StartMedicalStreamTranscriptionOutput,
+    StartStreamTranscriptionOutput,
     TranscriptFormat,
     Type,
     VocabularyFilterMethod,
@@ -65,7 +65,7 @@ class TranscribeStreamingClient:
         self,
         *,
         session_id: str,
-    ) -> GetMedicalScribeStreamResponse:
+    ) -> GetMedicalScribeStreamOutput:
         params: dict[str, object] = {
             "session_id": session_id,
         }
@@ -74,7 +74,7 @@ class TranscribeStreamingClient:
             _response = await invoke(
                 self._native.get_medical_scribe_stream, params, _interceptors,
                 "transcribe-streaming", "GetMedicalScribeStream", self._region,
-                GetMedicalScribeStreamResponse,
+                GetMedicalScribeStreamOutput,
                 ("session_id", ),
                 ("session_id", ),
             )
@@ -105,7 +105,7 @@ class TranscribeStreamingClient:
         content_identification_type: ContentIdentificationType | None = None,
         content_redaction_type: ContentRedactionType | None = None,
         pii_entity_types: str | None = None,
-    ) -> StartCallAnalyticsStreamTranscriptionResponse:
+    ) -> StartCallAnalyticsStreamTranscriptionOutput:
         params: dict[str, object] = {
             "media_sample_rate_hertz": media_sample_rate_hertz,
             "media_encoding": media_encoding,
@@ -165,7 +165,7 @@ class TranscribeStreamingClient:
         media_encoding: MedicalScribeMediaEncoding,
         input_stream: AsyncIterator[MedicalScribeInputStream],
         session_id: str | None = None,
-    ) -> StartMedicalScribeStreamResponse:
+    ) -> StartMedicalScribeStreamOutput:
         params: dict[str, object] = {
             "language_code": language_code,
             "media_sample_rate_hertz": media_sample_rate_hertz,
@@ -203,7 +203,7 @@ class TranscribeStreamingClient:
         enable_channel_identification: bool | None = None,
         number_of_channels: int | None = None,
         content_identification_type: MedicalContentIdentificationType | None = None,
-    ) -> StartMedicalStreamTranscriptionResponse:
+    ) -> StartMedicalStreamTranscriptionOutput:
         params: dict[str, object] = {
             "language_code": language_code,
             "media_sample_rate_hertz": media_sample_rate_hertz,
@@ -266,7 +266,7 @@ class TranscribeStreamingClient:
         vocabulary_filter_names: str | None = None,
         session_resume_window: int | None = None,
         transcript_format: TranscriptFormat | None = None,
-    ) -> StartStreamTranscriptionResponse:
+    ) -> StartStreamTranscriptionOutput:
         params: dict[str, object] = {
             "media_sample_rate_hertz": media_sample_rate_hertz,
             "media_encoding": media_encoding,

@@ -85,92 +85,92 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`associate_agent_collaborator`](#associate_agent_collaborator) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>agent_descriptor: AgentDescriptor</code>, <code>collaborator_name: str</code>, <code>collaboration_instruction: str</code> | <code>AssociateAgentCollaboratorResponse</code> |
-| [`associate_agent_knowledge_base`](#associate_agent_knowledge_base) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>knowledge_base_id: str</code>, <code>description: str</code> | <code>AssociateAgentKnowledgeBaseResponse</code> |
-| [`create_agent`](#create_agent) | <code>agent_name: str</code> | <code>CreateAgentResponse</code> |
-| [`create_agent_action_group`](#create_agent_action_group) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>action_group_name: str</code> | <code>CreateAgentActionGroupResponse</code> |
-| [`create_agent_alias`](#create_agent_alias) | <code>agent_id: str</code>, <code>agent_alias_name: str</code> | <code>CreateAgentAliasResponse</code> |
-| [`create_data_source`](#create_data_source) | <code>knowledge_base_id: str</code>, <code>name: str</code>, <code>data_source_configuration: DataSourceConfiguration</code> | <code>CreateDataSourceResponse</code> |
-| [`create_flow`](#create_flow) | <code>name: str</code>, <code>execution_role_arn: str</code> | <code>CreateFlowResponse</code> |
-| [`create_flow_alias`](#create_flow_alias) | <code>name: str</code>, <code>routing_configuration: Sequence[FlowAliasRoutingConfigurationListItem]</code>, <code>flow_identifier: str</code> | <code>CreateFlowAliasResponse</code> |
-| [`create_flow_version`](#create_flow_version) | <code>flow_identifier: str</code> | <code>CreateFlowVersionResponse</code> |
-| [`create_knowledge_base`](#create_knowledge_base) | <code>name: str</code>, <code>role_arn: str</code>, <code>knowledge_base_configuration: KnowledgeBaseConfiguration</code> | <code>CreateKnowledgeBaseResponse</code> |
-| [`create_prompt`](#create_prompt) | <code>name: str</code> | <code>CreatePromptResponse</code> |
-| [`create_prompt_version`](#create_prompt_version) | <code>prompt_identifier: str</code> | <code>CreatePromptVersionResponse</code> |
-| [`create_retrieval_instruction`](#create_retrieval_instruction) | <code>name: str</code>, <code>instruction: RetrievalInstructionContent</code> | <code>CreateRetrievalInstructionResponse</code> |
-| [`create_retrieval_instruction_version`](#create_retrieval_instruction_version) | <code>retrieval_instruction_id: str</code> | <code>CreateRetrievalInstructionVersionResponse</code> |
-| [`create_vpc_configuration`](#create_vpc_configuration) | <code>knowledge_base_id: str</code>, <code>vpc_id: str</code>, <code>subnet_ids: Sequence[str]</code>, <code>resource_target: str</code>, <code>port: int</code>, <code>protocol: VpcProtocol</code>, <code>resolution_mode: VpcResolutionMode</code> | <code>CreateVpcConfigurationResponse</code> |
-| [`delete_agent`](#delete_agent) | <code>agent_id: str</code> | <code>DeleteAgentResponse</code> |
-| [`delete_agent_action_group`](#delete_agent_action_group) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>action_group_id: str</code> | <code>DeleteAgentActionGroupResponse</code> |
-| [`delete_agent_alias`](#delete_agent_alias) | <code>agent_id: str</code>, <code>agent_alias_id: str</code> | <code>DeleteAgentAliasResponse</code> |
-| [`delete_agent_version`](#delete_agent_version) | <code>agent_id: str</code>, <code>agent_version: str</code> | <code>DeleteAgentVersionResponse</code> |
-| [`delete_data_source`](#delete_data_source) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code> | <code>DeleteDataSourceResponse</code> |
-| [`delete_flow`](#delete_flow) | <code>flow_identifier: str</code> | <code>DeleteFlowResponse</code> |
-| [`delete_flow_alias`](#delete_flow_alias) | <code>flow_identifier: str</code>, <code>alias_identifier: str</code> | <code>DeleteFlowAliasResponse</code> |
-| [`delete_flow_version`](#delete_flow_version) | <code>flow_identifier: str</code>, <code>flow_version: str</code> | <code>DeleteFlowVersionResponse</code> |
-| [`delete_knowledge_base`](#delete_knowledge_base) | <code>knowledge_base_id: str</code> | <code>DeleteKnowledgeBaseResponse</code> |
-| [`delete_knowledge_base_documents`](#delete_knowledge_base_documents) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>document_identifiers: Sequence[DocumentIdentifier]</code> | <code>DeleteKnowledgeBaseDocumentsResponse</code> |
-| [`delete_prompt`](#delete_prompt) | <code>prompt_identifier: str</code> | <code>DeletePromptResponse</code> |
-| [`delete_resource_policy`](#delete_resource_policy) | <code>resource_arn: str</code> | <code>DeleteResourcePolicyResponse</code> |
-| [`delete_retrieval_instruction`](#delete_retrieval_instruction) | <code>retrieval_instruction_id: str</code> | <code>DeleteRetrievalInstructionResponse</code> |
-| [`delete_vpc_configuration`](#delete_vpc_configuration) | <code>knowledge_base_id: str</code>, <code>vpc_configuration_id: str</code> | <code>DeleteVpcConfigurationResponse</code> |
-| [`disassociate_agent_collaborator`](#disassociate_agent_collaborator) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>collaborator_id: str</code> | <code>DisassociateAgentCollaboratorResponse</code> |
-| [`disassociate_agent_knowledge_base`](#disassociate_agent_knowledge_base) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>knowledge_base_id: str</code> | <code>DisassociateAgentKnowledgeBaseResponse</code> |
-| [`get_agent`](#get_agent) | <code>agent_id: str</code> | <code>GetAgentResponse</code> |
-| [`get_agent_action_group`](#get_agent_action_group) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>action_group_id: str</code> | <code>GetAgentActionGroupResponse</code> |
-| [`get_agent_alias`](#get_agent_alias) | <code>agent_id: str</code>, <code>agent_alias_id: str</code> | <code>GetAgentAliasResponse</code> |
-| [`get_agent_collaborator`](#get_agent_collaborator) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>collaborator_id: str</code> | <code>GetAgentCollaboratorResponse</code> |
-| [`get_agent_knowledge_base`](#get_agent_knowledge_base) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>knowledge_base_id: str</code> | <code>GetAgentKnowledgeBaseResponse</code> |
-| [`get_agent_version`](#get_agent_version) | <code>agent_id: str</code>, <code>agent_version: str</code> | <code>GetAgentVersionResponse</code> |
-| [`get_data_source`](#get_data_source) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code> | <code>GetDataSourceResponse</code> |
-| [`get_flow`](#get_flow) | <code>flow_identifier: str</code> | <code>GetFlowResponse</code> |
-| [`get_flow_alias`](#get_flow_alias) | <code>flow_identifier: str</code>, <code>alias_identifier: str</code> | <code>GetFlowAliasResponse</code> |
-| [`get_flow_version`](#get_flow_version) | <code>flow_identifier: str</code>, <code>flow_version: str</code> | <code>GetFlowVersionResponse</code> |
-| [`get_ingestion_job`](#get_ingestion_job) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>ingestion_job_id: str</code> | <code>GetIngestionJobResponse</code> |
-| [`get_knowledge_base`](#get_knowledge_base) | <code>knowledge_base_id: str</code> | <code>GetKnowledgeBaseResponse</code> |
-| [`get_knowledge_base_documents`](#get_knowledge_base_documents) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>document_identifiers: Sequence[DocumentIdentifier]</code> | <code>GetKnowledgeBaseDocumentsResponse</code> |
-| [`get_prompt`](#get_prompt) | <code>prompt_identifier: str</code> | <code>GetPromptResponse</code> |
-| [`get_resource_policy`](#get_resource_policy) | <code>resource_arn: str</code> | <code>GetResourcePolicyResponse</code> |
-| [`get_retrieval_instruction`](#get_retrieval_instruction) | <code>retrieval_instruction_id: str</code> | <code>GetRetrievalInstructionResponse</code> |
-| [`get_vpc_configuration`](#get_vpc_configuration) | <code>knowledge_base_id: str</code>, <code>vpc_configuration_id: str</code> | <code>GetVpcConfigurationResponse</code> |
-| [`ingest_knowledge_base_documents`](#ingest_knowledge_base_documents) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>documents: Sequence[KnowledgeBaseDocument]</code> | <code>IngestKnowledgeBaseDocumentsResponse</code> |
-| [`list_agent_action_groups`](#list_agent_action_groups) | <code>agent_id: str</code>, <code>agent_version: str</code> | <code>ListAgentActionGroupsResponse</code> |
-| [`list_agent_aliases`](#list_agent_aliases) | <code>agent_id: str</code> | <code>ListAgentAliasesResponse</code> |
-| [`list_agent_collaborators`](#list_agent_collaborators) | <code>agent_id: str</code>, <code>agent_version: str</code> | <code>ListAgentCollaboratorsResponse</code> |
-| [`list_agent_knowledge_bases`](#list_agent_knowledge_bases) | <code>agent_id: str</code>, <code>agent_version: str</code> | <code>ListAgentKnowledgeBasesResponse</code> |
-| [`list_agent_versions`](#list_agent_versions) | <code>agent_id: str</code> | <code>ListAgentVersionsResponse</code> |
-| [`list_agents`](#list_agents) | None | <code>ListAgentsResponse</code> |
-| [`list_data_sources`](#list_data_sources) | <code>knowledge_base_id: str</code> | <code>ListDataSourcesResponse</code> |
-| [`list_flow_aliases`](#list_flow_aliases) | <code>flow_identifier: str</code> | <code>ListFlowAliasesResponse</code> |
-| [`list_flow_versions`](#list_flow_versions) | <code>flow_identifier: str</code> | <code>ListFlowVersionsResponse</code> |
-| [`list_flows`](#list_flows) | None | <code>ListFlowsResponse</code> |
-| [`list_ingestion_jobs`](#list_ingestion_jobs) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code> | <code>ListIngestionJobsResponse</code> |
-| [`list_knowledge_base_documents`](#list_knowledge_base_documents) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code> | <code>ListKnowledgeBaseDocumentsResponse</code> |
-| [`list_knowledge_bases`](#list_knowledge_bases) | None | <code>ListKnowledgeBasesResponse</code> |
-| [`list_prompts`](#list_prompts) | None | <code>ListPromptsResponse</code> |
-| [`list_retrieval_instruction_versions`](#list_retrieval_instruction_versions) | <code>retrieval_instruction_id: str</code> | <code>ListRetrievalInstructionVersionsResponse</code> |
-| [`list_retrieval_instructions`](#list_retrieval_instructions) | None | <code>ListRetrievalInstructionsResponse</code> |
-| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceResponse</code> |
-| [`list_vpc_configurations`](#list_vpc_configurations) | <code>knowledge_base_id: str</code> | <code>ListVpcConfigurationsResponse</code> |
-| [`prepare_agent`](#prepare_agent) | <code>agent_id: str</code> | <code>PrepareAgentResponse</code> |
-| [`prepare_flow`](#prepare_flow) | <code>flow_identifier: str</code> | <code>PrepareFlowResponse</code> |
-| [`put_resource_policy`](#put_resource_policy) | <code>resource_arn: str</code>, <code>policy: str</code> | <code>PutResourcePolicyResponse</code> |
-| [`start_ingestion_job`](#start_ingestion_job) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code> | <code>StartIngestionJobResponse</code> |
-| [`stop_ingestion_job`](#stop_ingestion_job) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>ingestion_job_id: str</code> | <code>StopIngestionJobResponse</code> |
-| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>TagResourceResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
-| [`update_agent`](#update_agent) | <code>agent_id: str</code>, <code>agent_name: str</code>, <code>foundation_model: str</code>, <code>agent_resource_role_arn: str</code> | <code>UpdateAgentResponse</code> |
-| [`update_agent_action_group`](#update_agent_action_group) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>action_group_id: str</code>, <code>action_group_name: str</code> | <code>UpdateAgentActionGroupResponse</code> |
-| [`update_agent_alias`](#update_agent_alias) | <code>agent_id: str</code>, <code>agent_alias_id: str</code>, <code>agent_alias_name: str</code> | <code>UpdateAgentAliasResponse</code> |
-| [`update_agent_collaborator`](#update_agent_collaborator) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>collaborator_id: str</code>, <code>agent_descriptor: AgentDescriptor</code>, <code>collaborator_name: str</code>, <code>collaboration_instruction: str</code> | <code>UpdateAgentCollaboratorResponse</code> |
-| [`update_agent_knowledge_base`](#update_agent_knowledge_base) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>knowledge_base_id: str</code> | <code>UpdateAgentKnowledgeBaseResponse</code> |
-| [`update_data_source`](#update_data_source) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>name: str</code>, <code>data_source_configuration: DataSourceConfiguration</code> | <code>UpdateDataSourceResponse</code> |
-| [`update_flow`](#update_flow) | <code>name: str</code>, <code>execution_role_arn: str</code>, <code>flow_identifier: str</code> | <code>UpdateFlowResponse</code> |
-| [`update_flow_alias`](#update_flow_alias) | <code>name: str</code>, <code>routing_configuration: Sequence[FlowAliasRoutingConfigurationListItem]</code>, <code>flow_identifier: str</code>, <code>alias_identifier: str</code> | <code>UpdateFlowAliasResponse</code> |
-| [`update_knowledge_base`](#update_knowledge_base) | <code>knowledge_base_id: str</code>, <code>name: str</code>, <code>role_arn: str</code>, <code>knowledge_base_configuration: KnowledgeBaseConfiguration</code> | <code>UpdateKnowledgeBaseResponse</code> |
-| [`update_prompt`](#update_prompt) | <code>name: str</code>, <code>prompt_identifier: str</code> | <code>UpdatePromptResponse</code> |
-| [`update_retrieval_instruction`](#update_retrieval_instruction) | <code>retrieval_instruction_id: str</code>, <code>instruction: RetrievalInstructionContent</code> | <code>UpdateRetrievalInstructionResponse</code> |
-| [`validate_flow_definition`](#validate_flow_definition) | <code>definition: FlowDefinition</code> | <code>ValidateFlowDefinitionResponse</code> |
+| [`associate_agent_collaborator`](#associate_agent_collaborator) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>agent_descriptor: AgentDescriptor</code>, <code>collaborator_name: str</code>, <code>collaboration_instruction: str</code> | <code>AssociateAgentCollaboratorOutput</code> |
+| [`associate_agent_knowledge_base`](#associate_agent_knowledge_base) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>knowledge_base_id: str</code>, <code>description: str</code> | <code>AssociateAgentKnowledgeBaseOutput</code> |
+| [`create_agent`](#create_agent) | <code>agent_name: str</code> | <code>CreateAgentOutput</code> |
+| [`create_agent_action_group`](#create_agent_action_group) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>action_group_name: str</code> | <code>CreateAgentActionGroupOutput</code> |
+| [`create_agent_alias`](#create_agent_alias) | <code>agent_id: str</code>, <code>agent_alias_name: str</code> | <code>CreateAgentAliasOutput</code> |
+| [`create_data_source`](#create_data_source) | <code>knowledge_base_id: str</code>, <code>name: str</code>, <code>data_source_configuration: DataSourceConfiguration</code> | <code>CreateDataSourceOutput</code> |
+| [`create_flow`](#create_flow) | <code>name: str</code>, <code>execution_role_arn: str</code> | <code>CreateFlowOutput</code> |
+| [`create_flow_alias`](#create_flow_alias) | <code>name: str</code>, <code>routing_configuration: Sequence[FlowAliasRoutingConfigurationListItem]</code>, <code>flow_identifier: str</code> | <code>CreateFlowAliasOutput</code> |
+| [`create_flow_version`](#create_flow_version) | <code>flow_identifier: str</code> | <code>CreateFlowVersionOutput</code> |
+| [`create_knowledge_base`](#create_knowledge_base) | <code>name: str</code>, <code>role_arn: str</code>, <code>knowledge_base_configuration: KnowledgeBaseConfiguration</code> | <code>CreateKnowledgeBaseOutput</code> |
+| [`create_prompt`](#create_prompt) | <code>name: str</code> | <code>CreatePromptOutput</code> |
+| [`create_prompt_version`](#create_prompt_version) | <code>prompt_identifier: str</code> | <code>CreatePromptVersionOutput</code> |
+| [`create_retrieval_instruction`](#create_retrieval_instruction) | <code>name: str</code>, <code>instruction: RetrievalInstructionContent</code> | <code>CreateRetrievalInstructionOutput</code> |
+| [`create_retrieval_instruction_version`](#create_retrieval_instruction_version) | <code>retrieval_instruction_id: str</code> | <code>CreateRetrievalInstructionVersionOutput</code> |
+| [`create_vpc_configuration`](#create_vpc_configuration) | <code>knowledge_base_id: str</code>, <code>vpc_id: str</code>, <code>subnet_ids: Sequence[str]</code>, <code>resource_target: str</code>, <code>port: int</code>, <code>protocol: VpcProtocol</code>, <code>resolution_mode: VpcResolutionMode</code> | <code>CreateVpcConfigurationOutput</code> |
+| [`delete_agent`](#delete_agent) | <code>agent_id: str</code> | <code>DeleteAgentOutput</code> |
+| [`delete_agent_action_group`](#delete_agent_action_group) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>action_group_id: str</code> | <code>DeleteAgentActionGroupOutput</code> |
+| [`delete_agent_alias`](#delete_agent_alias) | <code>agent_id: str</code>, <code>agent_alias_id: str</code> | <code>DeleteAgentAliasOutput</code> |
+| [`delete_agent_version`](#delete_agent_version) | <code>agent_id: str</code>, <code>agent_version: str</code> | <code>DeleteAgentVersionOutput</code> |
+| [`delete_data_source`](#delete_data_source) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code> | <code>DeleteDataSourceOutput</code> |
+| [`delete_flow`](#delete_flow) | <code>flow_identifier: str</code> | <code>DeleteFlowOutput</code> |
+| [`delete_flow_alias`](#delete_flow_alias) | <code>flow_identifier: str</code>, <code>alias_identifier: str</code> | <code>DeleteFlowAliasOutput</code> |
+| [`delete_flow_version`](#delete_flow_version) | <code>flow_identifier: str</code>, <code>flow_version: str</code> | <code>DeleteFlowVersionOutput</code> |
+| [`delete_knowledge_base`](#delete_knowledge_base) | <code>knowledge_base_id: str</code> | <code>DeleteKnowledgeBaseOutput</code> |
+| [`delete_knowledge_base_documents`](#delete_knowledge_base_documents) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>document_identifiers: Sequence[DocumentIdentifier]</code> | <code>DeleteKnowledgeBaseDocumentsOutput</code> |
+| [`delete_prompt`](#delete_prompt) | <code>prompt_identifier: str</code> | <code>DeletePromptOutput</code> |
+| [`delete_resource_policy`](#delete_resource_policy) | <code>resource_arn: str</code> | <code>DeleteResourcePolicyOutput</code> |
+| [`delete_retrieval_instruction`](#delete_retrieval_instruction) | <code>retrieval_instruction_id: str</code> | <code>DeleteRetrievalInstructionOutput</code> |
+| [`delete_vpc_configuration`](#delete_vpc_configuration) | <code>knowledge_base_id: str</code>, <code>vpc_configuration_id: str</code> | <code>DeleteVpcConfigurationOutput</code> |
+| [`disassociate_agent_collaborator`](#disassociate_agent_collaborator) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>collaborator_id: str</code> | <code>DisassociateAgentCollaboratorOutput</code> |
+| [`disassociate_agent_knowledge_base`](#disassociate_agent_knowledge_base) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>knowledge_base_id: str</code> | <code>DisassociateAgentKnowledgeBaseOutput</code> |
+| [`get_agent`](#get_agent) | <code>agent_id: str</code> | <code>GetAgentOutput</code> |
+| [`get_agent_action_group`](#get_agent_action_group) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>action_group_id: str</code> | <code>GetAgentActionGroupOutput</code> |
+| [`get_agent_alias`](#get_agent_alias) | <code>agent_id: str</code>, <code>agent_alias_id: str</code> | <code>GetAgentAliasOutput</code> |
+| [`get_agent_collaborator`](#get_agent_collaborator) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>collaborator_id: str</code> | <code>GetAgentCollaboratorOutput</code> |
+| [`get_agent_knowledge_base`](#get_agent_knowledge_base) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>knowledge_base_id: str</code> | <code>GetAgentKnowledgeBaseOutput</code> |
+| [`get_agent_version`](#get_agent_version) | <code>agent_id: str</code>, <code>agent_version: str</code> | <code>GetAgentVersionOutput</code> |
+| [`get_data_source`](#get_data_source) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code> | <code>GetDataSourceOutput</code> |
+| [`get_flow`](#get_flow) | <code>flow_identifier: str</code> | <code>GetFlowOutput</code> |
+| [`get_flow_alias`](#get_flow_alias) | <code>flow_identifier: str</code>, <code>alias_identifier: str</code> | <code>GetFlowAliasOutput</code> |
+| [`get_flow_version`](#get_flow_version) | <code>flow_identifier: str</code>, <code>flow_version: str</code> | <code>GetFlowVersionOutput</code> |
+| [`get_ingestion_job`](#get_ingestion_job) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>ingestion_job_id: str</code> | <code>GetIngestionJobOutput</code> |
+| [`get_knowledge_base`](#get_knowledge_base) | <code>knowledge_base_id: str</code> | <code>GetKnowledgeBaseOutput</code> |
+| [`get_knowledge_base_documents`](#get_knowledge_base_documents) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>document_identifiers: Sequence[DocumentIdentifier]</code> | <code>GetKnowledgeBaseDocumentsOutput</code> |
+| [`get_prompt`](#get_prompt) | <code>prompt_identifier: str</code> | <code>GetPromptOutput</code> |
+| [`get_resource_policy`](#get_resource_policy) | <code>resource_arn: str</code> | <code>GetResourcePolicyOutput</code> |
+| [`get_retrieval_instruction`](#get_retrieval_instruction) | <code>retrieval_instruction_id: str</code> | <code>GetRetrievalInstructionOutput</code> |
+| [`get_vpc_configuration`](#get_vpc_configuration) | <code>knowledge_base_id: str</code>, <code>vpc_configuration_id: str</code> | <code>GetVpcConfigurationOutput</code> |
+| [`ingest_knowledge_base_documents`](#ingest_knowledge_base_documents) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>documents: Sequence[KnowledgeBaseDocument]</code> | <code>IngestKnowledgeBaseDocumentsOutput</code> |
+| [`list_agent_action_groups`](#list_agent_action_groups) | <code>agent_id: str</code>, <code>agent_version: str</code> | <code>ListAgentActionGroupsOutput</code> |
+| [`list_agent_aliases`](#list_agent_aliases) | <code>agent_id: str</code> | <code>ListAgentAliasesOutput</code> |
+| [`list_agent_collaborators`](#list_agent_collaborators) | <code>agent_id: str</code>, <code>agent_version: str</code> | <code>ListAgentCollaboratorsOutput</code> |
+| [`list_agent_knowledge_bases`](#list_agent_knowledge_bases) | <code>agent_id: str</code>, <code>agent_version: str</code> | <code>ListAgentKnowledgeBasesOutput</code> |
+| [`list_agent_versions`](#list_agent_versions) | <code>agent_id: str</code> | <code>ListAgentVersionsOutput</code> |
+| [`list_agents`](#list_agents) | None | <code>ListAgentsOutput</code> |
+| [`list_data_sources`](#list_data_sources) | <code>knowledge_base_id: str</code> | <code>ListDataSourcesOutput</code> |
+| [`list_flow_aliases`](#list_flow_aliases) | <code>flow_identifier: str</code> | <code>ListFlowAliasesOutput</code> |
+| [`list_flow_versions`](#list_flow_versions) | <code>flow_identifier: str</code> | <code>ListFlowVersionsOutput</code> |
+| [`list_flows`](#list_flows) | None | <code>ListFlowsOutput</code> |
+| [`list_ingestion_jobs`](#list_ingestion_jobs) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code> | <code>ListIngestionJobsOutput</code> |
+| [`list_knowledge_base_documents`](#list_knowledge_base_documents) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code> | <code>ListKnowledgeBaseDocumentsOutput</code> |
+| [`list_knowledge_bases`](#list_knowledge_bases) | None | <code>ListKnowledgeBasesOutput</code> |
+| [`list_prompts`](#list_prompts) | None | <code>ListPromptsOutput</code> |
+| [`list_retrieval_instruction_versions`](#list_retrieval_instruction_versions) | <code>retrieval_instruction_id: str</code> | <code>ListRetrievalInstructionVersionsOutput</code> |
+| [`list_retrieval_instructions`](#list_retrieval_instructions) | None | <code>ListRetrievalInstructionsOutput</code> |
+| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceOutput</code> |
+| [`list_vpc_configurations`](#list_vpc_configurations) | <code>knowledge_base_id: str</code> | <code>ListVpcConfigurationsOutput</code> |
+| [`prepare_agent`](#prepare_agent) | <code>agent_id: str</code> | <code>PrepareAgentOutput</code> |
+| [`prepare_flow`](#prepare_flow) | <code>flow_identifier: str</code> | <code>PrepareFlowOutput</code> |
+| [`put_resource_policy`](#put_resource_policy) | <code>resource_arn: str</code>, <code>policy: str</code> | <code>PutResourcePolicyOutput</code> |
+| [`start_ingestion_job`](#start_ingestion_job) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code> | <code>StartIngestionJobOutput</code> |
+| [`stop_ingestion_job`](#stop_ingestion_job) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>ingestion_job_id: str</code> | <code>StopIngestionJobOutput</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>TagResourceOutput</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceOutput</code> |
+| [`update_agent`](#update_agent) | <code>agent_id: str</code>, <code>agent_name: str</code>, <code>foundation_model: str</code>, <code>agent_resource_role_arn: str</code> | <code>UpdateAgentOutput</code> |
+| [`update_agent_action_group`](#update_agent_action_group) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>action_group_id: str</code>, <code>action_group_name: str</code> | <code>UpdateAgentActionGroupOutput</code> |
+| [`update_agent_alias`](#update_agent_alias) | <code>agent_id: str</code>, <code>agent_alias_id: str</code>, <code>agent_alias_name: str</code> | <code>UpdateAgentAliasOutput</code> |
+| [`update_agent_collaborator`](#update_agent_collaborator) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>collaborator_id: str</code>, <code>agent_descriptor: AgentDescriptor</code>, <code>collaborator_name: str</code>, <code>collaboration_instruction: str</code> | <code>UpdateAgentCollaboratorOutput</code> |
+| [`update_agent_knowledge_base`](#update_agent_knowledge_base) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>knowledge_base_id: str</code> | <code>UpdateAgentKnowledgeBaseOutput</code> |
+| [`update_data_source`](#update_data_source) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>name: str</code>, <code>data_source_configuration: DataSourceConfiguration</code> | <code>UpdateDataSourceOutput</code> |
+| [`update_flow`](#update_flow) | <code>name: str</code>, <code>execution_role_arn: str</code>, <code>flow_identifier: str</code> | <code>UpdateFlowOutput</code> |
+| [`update_flow_alias`](#update_flow_alias) | <code>name: str</code>, <code>routing_configuration: Sequence[FlowAliasRoutingConfigurationListItem]</code>, <code>flow_identifier: str</code>, <code>alias_identifier: str</code> | <code>UpdateFlowAliasOutput</code> |
+| [`update_knowledge_base`](#update_knowledge_base) | <code>knowledge_base_id: str</code>, <code>name: str</code>, <code>role_arn: str</code>, <code>knowledge_base_configuration: KnowledgeBaseConfiguration</code> | <code>UpdateKnowledgeBaseOutput</code> |
+| [`update_prompt`](#update_prompt) | <code>name: str</code>, <code>prompt_identifier: str</code> | <code>UpdatePromptOutput</code> |
+| [`update_retrieval_instruction`](#update_retrieval_instruction) | <code>retrieval_instruction_id: str</code>, <code>instruction: RetrievalInstructionContent</code> | <code>UpdateRetrievalInstructionOutput</code> |
+| [`validate_flow_definition`](#validate_flow_definition) | <code>definition: FlowDefinition</code> | <code>ValidateFlowDefinitionOutput</code> |
 
 ## Complete signatures
 
@@ -186,7 +186,7 @@ async def associate_agent_collaborator(
     collaboration_instruction: str,
     relay_conversation_history: RelayConversationHistory | None = None,
     client_token: str | None = None,
-) -> AssociateAgentCollaboratorResponse: ...
+) -> AssociateAgentCollaboratorOutput: ...
 ```
 
 
@@ -200,7 +200,7 @@ async def associate_agent_knowledge_base(
     knowledge_base_id: str,
     description: str,
     knowledge_base_state: KnowledgeBaseState | None = None,
-) -> AssociateAgentKnowledgeBaseResponse: ...
+) -> AssociateAgentKnowledgeBaseOutput: ...
 ```
 
 
@@ -224,7 +224,7 @@ async def create_agent(
     guardrail_configuration: GuardrailConfiguration | None = None,
     memory_configuration: MemoryConfiguration | None = None,
     agent_collaboration: AgentCollaboration | None = None,
-) -> CreateAgentResponse: ...
+) -> CreateAgentOutput: ...
 ```
 
 
@@ -244,7 +244,7 @@ async def create_agent_action_group(
     api_schema: APISchema | None = None,
     action_group_state: ActionGroupState | None = None,
     function_schema: FunctionSchema | None = None,
-) -> CreateAgentActionGroupResponse: ...
+) -> CreateAgentActionGroupOutput: ...
 ```
 
 
@@ -259,7 +259,7 @@ async def create_agent_alias(
     description: str | None = None,
     routing_configuration: Sequence[AgentAliasRoutingConfigurationListItem] | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateAgentAliasResponse: ...
+) -> CreateAgentAliasOutput: ...
 ```
 
 
@@ -276,7 +276,7 @@ async def create_data_source(
     data_deletion_policy: DataDeletionPolicy | None = None,
     server_side_encryption_configuration: ServerSideEncryptionConfiguration | None = None,
     vector_ingestion_configuration: VectorIngestionConfiguration | None = None,
-) -> CreateDataSourceResponse: ...
+) -> CreateDataSourceOutput: ...
 ```
 
 
@@ -292,7 +292,7 @@ async def create_flow(
     definition: FlowDefinition | None = None,
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateFlowResponse: ...
+) -> CreateFlowOutput: ...
 ```
 
 
@@ -308,7 +308,7 @@ async def create_flow_alias(
     concurrency_configuration: FlowAliasConcurrencyConfiguration | None = None,
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateFlowAliasResponse: ...
+) -> CreateFlowAliasOutput: ...
 ```
 
 
@@ -320,7 +320,7 @@ async def create_flow_version(
     flow_identifier: str,
     description: str | None = None,
     client_token: str | None = None,
-) -> CreateFlowVersionResponse: ...
+) -> CreateFlowVersionOutput: ...
 ```
 
 
@@ -336,7 +336,7 @@ async def create_knowledge_base(
     description: str | None = None,
     storage_configuration: StorageConfiguration | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateKnowledgeBaseResponse: ...
+) -> CreateKnowledgeBaseOutput: ...
 ```
 
 
@@ -352,7 +352,7 @@ async def create_prompt(
     variants: Sequence[PromptVariant] | None = None,
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
-) -> CreatePromptResponse: ...
+) -> CreatePromptOutput: ...
 ```
 
 
@@ -365,7 +365,7 @@ async def create_prompt_version(
     description: str | None = None,
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
-) -> CreatePromptVersionResponse: ...
+) -> CreatePromptVersionOutput: ...
 ```
 
 
@@ -380,7 +380,7 @@ async def create_retrieval_instruction(
     description: str | None = None,
     customer_encryption_key_arn: str | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateRetrievalInstructionResponse: ...
+) -> CreateRetrievalInstructionOutput: ...
 ```
 
 
@@ -392,7 +392,7 @@ async def create_retrieval_instruction_version(
     retrieval_instruction_id: str,
     description: str | None = None,
     client_token: str | None = None,
-) -> CreateRetrievalInstructionVersionResponse: ...
+) -> CreateRetrievalInstructionVersionOutput: ...
 ```
 
 
@@ -413,7 +413,7 @@ async def create_vpc_configuration(
     tls_server_name: str | None = None,
     name: str | None = None,
     description: str | None = None,
-) -> CreateVpcConfigurationResponse: ...
+) -> CreateVpcConfigurationOutput: ...
 ```
 
 
@@ -424,7 +424,7 @@ async def delete_agent(
     *,
     agent_id: str,
     skip_resource_in_use_check: bool | None = None,
-) -> DeleteAgentResponse: ...
+) -> DeleteAgentOutput: ...
 ```
 
 
@@ -437,7 +437,7 @@ async def delete_agent_action_group(
     agent_version: str,
     action_group_id: str,
     skip_resource_in_use_check: bool | None = None,
-) -> DeleteAgentActionGroupResponse: ...
+) -> DeleteAgentActionGroupOutput: ...
 ```
 
 
@@ -448,7 +448,7 @@ async def delete_agent_alias(
     *,
     agent_id: str,
     agent_alias_id: str,
-) -> DeleteAgentAliasResponse: ...
+) -> DeleteAgentAliasOutput: ...
 ```
 
 
@@ -460,7 +460,7 @@ async def delete_agent_version(
     agent_id: str,
     agent_version: str,
     skip_resource_in_use_check: bool | None = None,
-) -> DeleteAgentVersionResponse: ...
+) -> DeleteAgentVersionOutput: ...
 ```
 
 
@@ -471,7 +471,7 @@ async def delete_data_source(
     *,
     knowledge_base_id: str,
     data_source_id: str,
-) -> DeleteDataSourceResponse: ...
+) -> DeleteDataSourceOutput: ...
 ```
 
 
@@ -482,7 +482,7 @@ async def delete_flow(
     *,
     flow_identifier: str,
     skip_resource_in_use_check: bool | None = None,
-) -> DeleteFlowResponse: ...
+) -> DeleteFlowOutput: ...
 ```
 
 
@@ -493,7 +493,7 @@ async def delete_flow_alias(
     *,
     flow_identifier: str,
     alias_identifier: str,
-) -> DeleteFlowAliasResponse: ...
+) -> DeleteFlowAliasOutput: ...
 ```
 
 
@@ -505,7 +505,7 @@ async def delete_flow_version(
     flow_identifier: str,
     flow_version: str,
     skip_resource_in_use_check: bool | None = None,
-) -> DeleteFlowVersionResponse: ...
+) -> DeleteFlowVersionOutput: ...
 ```
 
 
@@ -515,7 +515,7 @@ async def delete_flow_version(
 async def delete_knowledge_base(
     *,
     knowledge_base_id: str,
-) -> DeleteKnowledgeBaseResponse: ...
+) -> DeleteKnowledgeBaseOutput: ...
 ```
 
 
@@ -528,7 +528,7 @@ async def delete_knowledge_base_documents(
     data_source_id: str,
     document_identifiers: Sequence[DocumentIdentifier],
     client_token: str | None = None,
-) -> DeleteKnowledgeBaseDocumentsResponse: ...
+) -> DeleteKnowledgeBaseDocumentsOutput: ...
 ```
 
 
@@ -539,7 +539,7 @@ async def delete_prompt(
     *,
     prompt_identifier: str,
     prompt_version: str | None = None,
-) -> DeletePromptResponse: ...
+) -> DeletePromptOutput: ...
 ```
 
 
@@ -550,7 +550,7 @@ async def delete_resource_policy(
     *,
     resource_arn: str,
     expected_revision_id: str | None = None,
-) -> DeleteResourcePolicyResponse: ...
+) -> DeleteResourcePolicyOutput: ...
 ```
 
 
@@ -561,7 +561,7 @@ async def delete_retrieval_instruction(
     *,
     retrieval_instruction_id: str,
     retrieval_instruction_version: str | None = None,
-) -> DeleteRetrievalInstructionResponse: ...
+) -> DeleteRetrievalInstructionOutput: ...
 ```
 
 
@@ -572,7 +572,7 @@ async def delete_vpc_configuration(
     *,
     knowledge_base_id: str,
     vpc_configuration_id: str,
-) -> DeleteVpcConfigurationResponse: ...
+) -> DeleteVpcConfigurationOutput: ...
 ```
 
 
@@ -584,7 +584,7 @@ async def disassociate_agent_collaborator(
     agent_id: str,
     agent_version: str,
     collaborator_id: str,
-) -> DisassociateAgentCollaboratorResponse: ...
+) -> DisassociateAgentCollaboratorOutput: ...
 ```
 
 
@@ -596,7 +596,7 @@ async def disassociate_agent_knowledge_base(
     agent_id: str,
     agent_version: str,
     knowledge_base_id: str,
-) -> DisassociateAgentKnowledgeBaseResponse: ...
+) -> DisassociateAgentKnowledgeBaseOutput: ...
 ```
 
 
@@ -606,7 +606,7 @@ async def disassociate_agent_knowledge_base(
 async def get_agent(
     *,
     agent_id: str,
-) -> GetAgentResponse: ...
+) -> GetAgentOutput: ...
 ```
 
 
@@ -618,7 +618,7 @@ async def get_agent_action_group(
     agent_id: str,
     agent_version: str,
     action_group_id: str,
-) -> GetAgentActionGroupResponse: ...
+) -> GetAgentActionGroupOutput: ...
 ```
 
 
@@ -629,7 +629,7 @@ async def get_agent_alias(
     *,
     agent_id: str,
     agent_alias_id: str,
-) -> GetAgentAliasResponse: ...
+) -> GetAgentAliasOutput: ...
 ```
 
 
@@ -641,7 +641,7 @@ async def get_agent_collaborator(
     agent_id: str,
     agent_version: str,
     collaborator_id: str,
-) -> GetAgentCollaboratorResponse: ...
+) -> GetAgentCollaboratorOutput: ...
 ```
 
 
@@ -653,7 +653,7 @@ async def get_agent_knowledge_base(
     agent_id: str,
     agent_version: str,
     knowledge_base_id: str,
-) -> GetAgentKnowledgeBaseResponse: ...
+) -> GetAgentKnowledgeBaseOutput: ...
 ```
 
 
@@ -664,7 +664,7 @@ async def get_agent_version(
     *,
     agent_id: str,
     agent_version: str,
-) -> GetAgentVersionResponse: ...
+) -> GetAgentVersionOutput: ...
 ```
 
 
@@ -675,7 +675,7 @@ async def get_data_source(
     *,
     knowledge_base_id: str,
     data_source_id: str,
-) -> GetDataSourceResponse: ...
+) -> GetDataSourceOutput: ...
 ```
 
 
@@ -686,7 +686,7 @@ async def get_flow(
     *,
     flow_identifier: str,
     included_data: IncludedData | None = None,
-) -> GetFlowResponse: ...
+) -> GetFlowOutput: ...
 ```
 
 
@@ -697,7 +697,7 @@ async def get_flow_alias(
     *,
     flow_identifier: str,
     alias_identifier: str,
-) -> GetFlowAliasResponse: ...
+) -> GetFlowAliasOutput: ...
 ```
 
 
@@ -709,7 +709,7 @@ async def get_flow_version(
     flow_identifier: str,
     flow_version: str,
     included_data: IncludedData | None = None,
-) -> GetFlowVersionResponse: ...
+) -> GetFlowVersionOutput: ...
 ```
 
 
@@ -721,7 +721,7 @@ async def get_ingestion_job(
     knowledge_base_id: str,
     data_source_id: str,
     ingestion_job_id: str,
-) -> GetIngestionJobResponse: ...
+) -> GetIngestionJobOutput: ...
 ```
 
 
@@ -731,7 +731,7 @@ async def get_ingestion_job(
 async def get_knowledge_base(
     *,
     knowledge_base_id: str,
-) -> GetKnowledgeBaseResponse: ...
+) -> GetKnowledgeBaseOutput: ...
 ```
 
 
@@ -743,7 +743,7 @@ async def get_knowledge_base_documents(
     knowledge_base_id: str,
     data_source_id: str,
     document_identifiers: Sequence[DocumentIdentifier],
-) -> GetKnowledgeBaseDocumentsResponse: ...
+) -> GetKnowledgeBaseDocumentsOutput: ...
 ```
 
 
@@ -755,7 +755,7 @@ async def get_prompt(
     prompt_identifier: str,
     prompt_version: str | None = None,
     included_data: IncludedData | None = None,
-) -> GetPromptResponse: ...
+) -> GetPromptOutput: ...
 ```
 
 
@@ -765,7 +765,7 @@ async def get_prompt(
 async def get_resource_policy(
     *,
     resource_arn: str,
-) -> GetResourcePolicyResponse: ...
+) -> GetResourcePolicyOutput: ...
 ```
 
 
@@ -776,7 +776,7 @@ async def get_retrieval_instruction(
     *,
     retrieval_instruction_id: str,
     retrieval_instruction_version: str | None = None,
-) -> GetRetrievalInstructionResponse: ...
+) -> GetRetrievalInstructionOutput: ...
 ```
 
 
@@ -787,7 +787,7 @@ async def get_vpc_configuration(
     *,
     knowledge_base_id: str,
     vpc_configuration_id: str,
-) -> GetVpcConfigurationResponse: ...
+) -> GetVpcConfigurationOutput: ...
 ```
 
 
@@ -800,7 +800,7 @@ async def ingest_knowledge_base_documents(
     data_source_id: str,
     documents: Sequence[KnowledgeBaseDocument],
     client_token: str | None = None,
-) -> IngestKnowledgeBaseDocumentsResponse: ...
+) -> IngestKnowledgeBaseDocumentsOutput: ...
 ```
 
 
@@ -813,7 +813,7 @@ async def list_agent_action_groups(
     agent_version: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListAgentActionGroupsResponse: ...
+) -> ListAgentActionGroupsOutput: ...
 ```
 
 Also available as `client.paginators.list_agent_action_groups(...)`, returning an
@@ -828,7 +828,7 @@ async def list_agent_aliases(
     agent_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListAgentAliasesResponse: ...
+) -> ListAgentAliasesOutput: ...
 ```
 
 Also available as `client.paginators.list_agent_aliases(...)`, returning an
@@ -844,7 +844,7 @@ async def list_agent_collaborators(
     agent_version: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListAgentCollaboratorsResponse: ...
+) -> ListAgentCollaboratorsOutput: ...
 ```
 
 Also available as `client.paginators.list_agent_collaborators(...)`, returning an
@@ -860,7 +860,7 @@ async def list_agent_knowledge_bases(
     agent_version: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListAgentKnowledgeBasesResponse: ...
+) -> ListAgentKnowledgeBasesOutput: ...
 ```
 
 Also available as `client.paginators.list_agent_knowledge_bases(...)`, returning an
@@ -875,7 +875,7 @@ async def list_agent_versions(
     agent_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListAgentVersionsResponse: ...
+) -> ListAgentVersionsOutput: ...
 ```
 
 Also available as `client.paginators.list_agent_versions(...)`, returning an
@@ -889,7 +889,7 @@ async def list_agents(
     *,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListAgentsResponse: ...
+) -> ListAgentsOutput: ...
 ```
 
 Also available as `client.paginators.list_agents(...)`, returning an
@@ -904,7 +904,7 @@ async def list_data_sources(
     knowledge_base_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListDataSourcesResponse: ...
+) -> ListDataSourcesOutput: ...
 ```
 
 Also available as `client.paginators.list_data_sources(...)`, returning an
@@ -919,7 +919,7 @@ async def list_flow_aliases(
     flow_identifier: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListFlowAliasesResponse: ...
+) -> ListFlowAliasesOutput: ...
 ```
 
 Also available as `client.paginators.list_flow_aliases(...)`, returning an
@@ -934,7 +934,7 @@ async def list_flow_versions(
     flow_identifier: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListFlowVersionsResponse: ...
+) -> ListFlowVersionsOutput: ...
 ```
 
 Also available as `client.paginators.list_flow_versions(...)`, returning an
@@ -948,7 +948,7 @@ async def list_flows(
     *,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListFlowsResponse: ...
+) -> ListFlowsOutput: ...
 ```
 
 Also available as `client.paginators.list_flows(...)`, returning an
@@ -966,7 +966,7 @@ async def list_ingestion_jobs(
     sort_by: IngestionJobSortBy | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListIngestionJobsResponse: ...
+) -> ListIngestionJobsOutput: ...
 ```
 
 Also available as `client.paginators.list_ingestion_jobs(...)`, returning an
@@ -982,7 +982,7 @@ async def list_knowledge_base_documents(
     data_source_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListKnowledgeBaseDocumentsResponse: ...
+) -> ListKnowledgeBaseDocumentsOutput: ...
 ```
 
 Also available as `client.paginators.list_knowledge_base_documents(...)`, returning an
@@ -996,7 +996,7 @@ async def list_knowledge_bases(
     *,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListKnowledgeBasesResponse: ...
+) -> ListKnowledgeBasesOutput: ...
 ```
 
 Also available as `client.paginators.list_knowledge_bases(...)`, returning an
@@ -1011,7 +1011,7 @@ async def list_prompts(
     prompt_identifier: str | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListPromptsResponse: ...
+) -> ListPromptsOutput: ...
 ```
 
 Also available as `client.paginators.list_prompts(...)`, returning an
@@ -1026,7 +1026,7 @@ async def list_retrieval_instruction_versions(
     retrieval_instruction_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListRetrievalInstructionVersionsResponse: ...
+) -> ListRetrievalInstructionVersionsOutput: ...
 ```
 
 Also available as `client.paginators.list_retrieval_instruction_versions(...)`, returning an
@@ -1041,7 +1041,7 @@ async def list_retrieval_instructions(
     status: RetrievalInstructionStatus | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListRetrievalInstructionsResponse: ...
+) -> ListRetrievalInstructionsOutput: ...
 ```
 
 Also available as `client.paginators.list_retrieval_instructions(...)`, returning an
@@ -1054,7 +1054,7 @@ async iterator of the response type above.
 async def list_tags_for_resource(
     *,
     resource_arn: str,
-) -> ListTagsForResourceResponse: ...
+) -> ListTagsForResourceOutput: ...
 ```
 
 
@@ -1067,7 +1067,7 @@ async def list_vpc_configurations(
     status_filter: VpcConfigurationStatus | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListVpcConfigurationsResponse: ...
+) -> ListVpcConfigurationsOutput: ...
 ```
 
 Also available as `client.paginators.list_vpc_configurations(...)`, returning an
@@ -1080,7 +1080,7 @@ async iterator of the response type above.
 async def prepare_agent(
     *,
     agent_id: str,
-) -> PrepareAgentResponse: ...
+) -> PrepareAgentOutput: ...
 ```
 
 
@@ -1090,7 +1090,7 @@ async def prepare_agent(
 async def prepare_flow(
     *,
     flow_identifier: str,
-) -> PrepareFlowResponse: ...
+) -> PrepareFlowOutput: ...
 ```
 
 
@@ -1102,7 +1102,7 @@ async def put_resource_policy(
     resource_arn: str,
     policy: str,
     expected_revision_id: str | None = None,
-) -> PutResourcePolicyResponse: ...
+) -> PutResourcePolicyOutput: ...
 ```
 
 
@@ -1115,7 +1115,7 @@ async def start_ingestion_job(
     data_source_id: str,
     client_token: str | None = None,
     description: str | None = None,
-) -> StartIngestionJobResponse: ...
+) -> StartIngestionJobOutput: ...
 ```
 
 
@@ -1127,7 +1127,7 @@ async def stop_ingestion_job(
     knowledge_base_id: str,
     data_source_id: str,
     ingestion_job_id: str,
-) -> StopIngestionJobResponse: ...
+) -> StopIngestionJobOutput: ...
 ```
 
 
@@ -1138,7 +1138,7 @@ async def tag_resource(
     *,
     resource_arn: str,
     tags: dict[str, str],
-) -> TagResourceResponse: ...
+) -> TagResourceOutput: ...
 ```
 
 
@@ -1149,7 +1149,7 @@ async def untag_resource(
     *,
     resource_arn: str,
     tag_keys: Sequence[str],
-) -> UntagResourceResponse: ...
+) -> UntagResourceOutput: ...
 ```
 
 
@@ -1172,7 +1172,7 @@ async def update_agent(
     guardrail_configuration: GuardrailConfiguration | None = None,
     memory_configuration: MemoryConfiguration | None = None,
     agent_collaboration: AgentCollaboration | None = None,
-) -> UpdateAgentResponse: ...
+) -> UpdateAgentOutput: ...
 ```
 
 
@@ -1192,7 +1192,7 @@ async def update_agent_action_group(
     action_group_state: ActionGroupState | None = None,
     api_schema: APISchema | None = None,
     function_schema: FunctionSchema | None = None,
-) -> UpdateAgentActionGroupResponse: ...
+) -> UpdateAgentActionGroupOutput: ...
 ```
 
 
@@ -1207,7 +1207,7 @@ async def update_agent_alias(
     description: str | None = None,
     routing_configuration: Sequence[AgentAliasRoutingConfigurationListItem] | None = None,
     alias_invocation_state: AliasInvocationState | None = None,
-) -> UpdateAgentAliasResponse: ...
+) -> UpdateAgentAliasOutput: ...
 ```
 
 
@@ -1223,7 +1223,7 @@ async def update_agent_collaborator(
     collaborator_name: str,
     collaboration_instruction: str,
     relay_conversation_history: RelayConversationHistory | None = None,
-) -> UpdateAgentCollaboratorResponse: ...
+) -> UpdateAgentCollaboratorOutput: ...
 ```
 
 
@@ -1237,7 +1237,7 @@ async def update_agent_knowledge_base(
     knowledge_base_id: str,
     description: str | None = None,
     knowledge_base_state: KnowledgeBaseState | None = None,
-) -> UpdateAgentKnowledgeBaseResponse: ...
+) -> UpdateAgentKnowledgeBaseOutput: ...
 ```
 
 
@@ -1254,7 +1254,7 @@ async def update_data_source(
     data_deletion_policy: DataDeletionPolicy | None = None,
     server_side_encryption_configuration: ServerSideEncryptionConfiguration | None = None,
     vector_ingestion_configuration: VectorIngestionConfiguration | None = None,
-) -> UpdateDataSourceResponse: ...
+) -> UpdateDataSourceOutput: ...
 ```
 
 
@@ -1269,7 +1269,7 @@ async def update_flow(
     description: str | None = None,
     customer_encryption_key_arn: str | None = None,
     definition: FlowDefinition | None = None,
-) -> UpdateFlowResponse: ...
+) -> UpdateFlowOutput: ...
 ```
 
 
@@ -1284,7 +1284,7 @@ async def update_flow_alias(
     alias_identifier: str,
     description: str | None = None,
     concurrency_configuration: FlowAliasConcurrencyConfiguration | None = None,
-) -> UpdateFlowAliasResponse: ...
+) -> UpdateFlowAliasOutput: ...
 ```
 
 
@@ -1299,7 +1299,7 @@ async def update_knowledge_base(
     knowledge_base_configuration: KnowledgeBaseConfiguration,
     description: str | None = None,
     storage_configuration: StorageConfiguration | None = None,
-) -> UpdateKnowledgeBaseResponse: ...
+) -> UpdateKnowledgeBaseOutput: ...
 ```
 
 
@@ -1314,7 +1314,7 @@ async def update_prompt(
     customer_encryption_key_arn: str | None = None,
     default_variant: str | None = None,
     variants: Sequence[PromptVariant] | None = None,
-) -> UpdatePromptResponse: ...
+) -> UpdatePromptOutput: ...
 ```
 
 
@@ -1326,7 +1326,7 @@ async def update_retrieval_instruction(
     retrieval_instruction_id: str,
     instruction: RetrievalInstructionContent,
     description: str | None = None,
-) -> UpdateRetrievalInstructionResponse: ...
+) -> UpdateRetrievalInstructionOutput: ...
 ```
 
 
@@ -1336,7 +1336,7 @@ async def update_retrieval_instruction(
 async def validate_flow_definition(
     *,
     definition: FlowDefinition,
-) -> ValidateFlowDefinitionResponse: ...
+) -> ValidateFlowDefinitionOutput: ...
 ```
 
 

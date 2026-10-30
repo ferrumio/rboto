@@ -583,16 +583,16 @@ impl PyTag {
 }
 
 #[pyclass(
-    name = "GetDataAutomationStatusResponse",
+    name = "GetDataAutomationStatusOutput",
     module = "rboto_bedrock_data_automation_runtime._native",
     frozen
 )]
-struct PyGetDataAutomationStatusResponse {
+struct PyOperationGetDataAutomationStatusOutput {
     inner: aws_sdk_bedrockdataautomationruntime::operation::get_data_automation_status::GetDataAutomationStatusOutput,
 }
 
 #[pymethods]
-impl PyGetDataAutomationStatusResponse {
+impl PyOperationGetDataAutomationStatusOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
@@ -718,16 +718,16 @@ impl PyGetDataAutomationStatusResponse {
 }
 
 #[pyclass(
-    name = "InvokeDataAutomationResponse",
+    name = "InvokeDataAutomationOutput",
     module = "rboto_bedrock_data_automation_runtime._native",
     frozen
 )]
-struct PyInvokeDataAutomationResponse {
+struct PyOperationInvokeDataAutomationOutput {
     inner: aws_sdk_bedrockdataautomationruntime::operation::invoke_data_automation::InvokeDataAutomationOutput,
 }
 
 #[pymethods]
-impl PyInvokeDataAutomationResponse {
+impl PyOperationInvokeDataAutomationOutput {
     #[getter]
     fn output_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_configuration {
@@ -789,16 +789,16 @@ impl PyInvokeDataAutomationResponse {
 }
 
 #[pyclass(
-    name = "InvokeDataAutomationAsyncResponse",
+    name = "InvokeDataAutomationAsyncOutput",
     module = "rboto_bedrock_data_automation_runtime._native",
     frozen
 )]
-struct PyInvokeDataAutomationAsyncResponse {
+struct PyOperationInvokeDataAutomationAsyncOutput {
     inner: aws_sdk_bedrockdataautomationruntime::operation::invoke_data_automation_async::InvokeDataAutomationAsyncOutput,
 }
 
 #[pymethods]
-impl PyInvokeDataAutomationAsyncResponse {
+impl PyOperationInvokeDataAutomationAsyncOutput {
     #[getter]
     fn invocation_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_128 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
@@ -814,16 +814,16 @@ impl PyInvokeDataAutomationAsyncResponse {
 }
 
 #[pyclass(
-    name = "ListTagsForResourceResponse",
+    name = "ListTagsForResourceOutput",
     module = "rboto_bedrock_data_automation_runtime._native",
     frozen
 )]
-struct PyListTagsForResourceResponse {
+struct PyOperationListTagsForResourceOutput {
     inner: aws_sdk_bedrockdataautomationruntime::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
 
 #[pymethods]
-impl PyListTagsForResourceResponse {
+impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
@@ -863,16 +863,16 @@ impl PyListTagsForResourceResponse {
 }
 
 #[pyclass(
-    name = "TagResourceResponse",
+    name = "TagResourceOutput",
     module = "rboto_bedrock_data_automation_runtime._native",
     frozen
 )]
-struct PyTagResourceResponse {
+struct PyOperationTagResourceOutput {
     inner: aws_sdk_bedrockdataautomationruntime::operation::tag_resource::TagResourceOutput,
 }
 
 #[pymethods]
-impl PyTagResourceResponse {
+impl PyOperationTagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -880,16 +880,16 @@ impl PyTagResourceResponse {
 }
 
 #[pyclass(
-    name = "UntagResourceResponse",
+    name = "UntagResourceOutput",
     module = "rboto_bedrock_data_automation_runtime._native",
     frozen
 )]
-struct PyUntagResourceResponse {
+struct PyOperationUntagResourceOutput {
     inner: aws_sdk_bedrockdataautomationruntime::operation::untag_resource::UntagResourceOutput,
 }
 
 #[pymethods]
-impl PyUntagResourceResponse {
+impl PyOperationUntagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -900,12 +900,12 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyOutputConfiguration>()?;
     module.add_class::<PyOutputSegment>()?;
     module.add_class::<PyTag>()?;
-    module.add_class::<PyGetDataAutomationStatusResponse>()?;
-    module.add_class::<PyInvokeDataAutomationResponse>()?;
-    module.add_class::<PyInvokeDataAutomationAsyncResponse>()?;
-    module.add_class::<PyListTagsForResourceResponse>()?;
-    module.add_class::<PyTagResourceResponse>()?;
-    module.add_class::<PyUntagResourceResponse>()?;
+    module.add_class::<PyOperationGetDataAutomationStatusOutput>()?;
+    module.add_class::<PyOperationInvokeDataAutomationOutput>()?;
+    module.add_class::<PyOperationInvokeDataAutomationAsyncOutput>()?;
+    module.add_class::<PyOperationListTagsForResourceOutput>()?;
+    module.add_class::<PyOperationTagResourceOutput>()?;
+    module.add_class::<PyOperationUntagResourceOutput>()?;
 
     Ok(())
 }
@@ -972,7 +972,7 @@ impl BedrockDataAutomationRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDataAutomationStatus"))
             })?;
-            Ok(PyGetDataAutomationStatusResponse { inner: output })
+            Ok(PyOperationGetDataAutomationStatusOutput { inner: output })
         })
     }
 
@@ -1056,7 +1056,7 @@ impl BedrockDataAutomationRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "InvokeDataAutomation"))
             })?;
-            Ok(PyInvokeDataAutomationResponse { inner: output })
+            Ok(PyOperationInvokeDataAutomationOutput { inner: output })
         })
     }
 
@@ -1168,7 +1168,7 @@ impl BedrockDataAutomationRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "InvokeDataAutomationAsync"))
             })?;
-            Ok(PyInvokeDataAutomationAsyncResponse { inner: output })
+            Ok(PyOperationInvokeDataAutomationAsyncOutput { inner: output })
         })
     }
 
@@ -1206,7 +1206,7 @@ impl BedrockDataAutomationRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Ok(PyListTagsForResourceResponse { inner: output })
+            Ok(PyOperationListTagsForResourceOutput { inner: output })
         })
     }
 
@@ -1256,7 +1256,7 @@ impl BedrockDataAutomationRuntimeClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
-            Ok(PyTagResourceResponse { inner: output })
+            Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
 
@@ -1307,7 +1307,7 @@ impl BedrockDataAutomationRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
-            Ok(PyUntagResourceResponse { inner: output })
+            Ok(PyOperationUntagResourceOutput { inner: output })
         })
     }
 }

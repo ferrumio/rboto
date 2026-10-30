@@ -10,20 +10,20 @@ from . import _native
 
 AccessTokenOutput: TypeAlias = _native.AccessToken
 ByteStream: TypeAlias = _native.ByteStream
-CreateOAuth2TokenResponse: TypeAlias = _native.CreateOAuth2TokenResponse
+CreateOAuth2TokenOutput: TypeAlias = _native.CreateOAuth2TokenOutput
 CreateOAuth2TokenResponseBodyOutput: TypeAlias = _native.CreateOAuth2TokenResponseBody
-CreateOAuth2TokenWithIAMResponse: TypeAlias = _native.CreateOAuth2TokenWithIAMResponse
+CreateOAuth2TokenWithIAMOutput: TypeAlias = _native.CreateOAuth2TokenWithIAMOutput
 DeleteConsoleAuthorizationConfigurationOutput: TypeAlias = _native.DeleteConsoleAuthorizationConfigurationOutput
 DeleteResourcePermissionStatementOutput: TypeAlias = _native.DeleteResourcePermissionStatementOutput
 GetConsoleAuthorizationConfigurationOutput: TypeAlias = _native.GetConsoleAuthorizationConfigurationOutput
 GetResourcePolicyOutput: TypeAlias = _native.GetResourcePolicyOutput
-IntrospectOAuth2TokenWithIAMResponse: TypeAlias = _native.IntrospectOAuth2TokenWithIAMResponse
+IntrospectOAuth2TokenWithIAMOutput: TypeAlias = _native.IntrospectOAuth2TokenWithIAMOutput
 ListResourcePermissionStatementsOutput: TypeAlias = _native.ListResourcePermissionStatementsOutput
 PermissionStatementSummaryOutput: TypeAlias = _native.PermissionStatementSummary
 PolicyStatementOutput: TypeAlias = _native.PolicyStatement
 PutConsoleAuthorizationConfigurationOutput: TypeAlias = _native.PutConsoleAuthorizationConfigurationOutput
 PutResourcePermissionStatementOutput: TypeAlias = _native.PutResourcePermissionStatementOutput
-RevokeOAuth2TokenWithIAMResponse: TypeAlias = _native.RevokeOAuth2TokenWithIAMResponse
+RevokeOAuth2TokenWithIAMOutput: TypeAlias = _native.RevokeOAuth2TokenWithIAMOutput
 SigninResourceBasedPolicyOutput: TypeAlias = _native.SigninResourceBasedPolicy
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]

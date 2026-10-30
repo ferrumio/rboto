@@ -1147,16 +1147,16 @@ impl PySendMessageBatchResultEntry {
 }
 
 #[pyclass(
-    name = "CancelMessageMoveTaskResult",
+    name = "CancelMessageMoveTaskOutput",
     module = "rboto_sqs._native",
     frozen
 )]
-struct PyCancelMessageMoveTaskResult {
+struct PyOperationCancelMessageMoveTaskOutput {
     inner: aws_sdk_sqs::operation::cancel_message_move_task::CancelMessageMoveTaskOutput,
 }
 
 #[pymethods]
-impl PyCancelMessageMoveTaskResult {
+impl PyOperationCancelMessageMoveTaskOutput {
     #[getter]
     fn approximate_number_of_messages_moved(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_334 = (&self.inner.approximate_number_of_messages_moved)
@@ -1176,17 +1176,17 @@ impl PyCancelMessageMoveTaskResult {
 }
 
 #[pyclass(
-    name = "ChangeMessageVisibilityBatchResult",
+    name = "ChangeMessageVisibilityBatchOutput",
     module = "rboto_sqs._native",
     frozen
 )]
-struct PyChangeMessageVisibilityBatchResult {
+struct PyOperationChangeMessageVisibilityBatchOutput {
     inner:
         aws_sdk_sqs::operation::change_message_visibility_batch::ChangeMessageVisibilityBatchOutput,
 }
 
 #[pymethods]
-impl PyChangeMessageVisibilityBatchResult {
+impl PyOperationChangeMessageVisibilityBatchOutput {
     #[getter]
     fn successful(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_336_list = PyList::empty(py);
@@ -1242,13 +1242,13 @@ impl PyChangeMessageVisibilityBatchResult {
     }
 }
 
-#[pyclass(name = "CreateQueueResult", module = "rboto_sqs._native", frozen)]
-struct PyCreateQueueResult {
+#[pyclass(name = "CreateQueueOutput", module = "rboto_sqs._native", frozen)]
+struct PyOperationCreateQueueOutput {
     inner: aws_sdk_sqs::operation::create_queue::CreateQueueOutput,
 }
 
 #[pymethods]
-impl PyCreateQueueResult {
+impl PyOperationCreateQueueOutput {
     #[getter]
     fn queue_url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.queue_url {
@@ -1272,16 +1272,16 @@ impl PyCreateQueueResult {
 }
 
 #[pyclass(
-    name = "DeleteMessageBatchResult",
+    name = "DeleteMessageBatchOutput",
     module = "rboto_sqs._native",
     frozen
 )]
-struct PyDeleteMessageBatchResult {
+struct PyOperationDeleteMessageBatchOutput {
     inner: aws_sdk_sqs::operation::delete_message_batch::DeleteMessageBatchOutput,
 }
 
 #[pymethods]
-impl PyDeleteMessageBatchResult {
+impl PyOperationDeleteMessageBatchOutput {
     #[getter]
     fn successful(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_350_list = PyList::empty(py);
@@ -1337,16 +1337,16 @@ impl PyDeleteMessageBatchResult {
 }
 
 #[pyclass(
-    name = "GetQueueAttributesResult",
+    name = "GetQueueAttributesOutput",
     module = "rboto_sqs._native",
     frozen
 )]
-struct PyGetQueueAttributesResult {
+struct PyOperationGetQueueAttributesOutput {
     inner: aws_sdk_sqs::operation::get_queue_attributes::GetQueueAttributesOutput,
 }
 
 #[pymethods]
-impl PyGetQueueAttributesResult {
+impl PyOperationGetQueueAttributesOutput {
     #[getter]
     fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attributes {
@@ -1381,13 +1381,13 @@ impl PyGetQueueAttributesResult {
     }
 }
 
-#[pyclass(name = "GetQueueUrlResult", module = "rboto_sqs._native", frozen)]
-struct PyGetQueueUrlResult {
+#[pyclass(name = "GetQueueUrlOutput", module = "rboto_sqs._native", frozen)]
+struct PyOperationGetQueueUrlOutput {
     inner: aws_sdk_sqs::operation::get_queue_url::GetQueueUrlOutput,
 }
 
 #[pymethods]
-impl PyGetQueueUrlResult {
+impl PyOperationGetQueueUrlOutput {
     #[getter]
     fn queue_url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.queue_url {
@@ -1411,16 +1411,16 @@ impl PyGetQueueUrlResult {
 }
 
 #[pyclass(
-    name = "ListDeadLetterSourceQueuesResult",
+    name = "ListDeadLetterSourceQueuesOutput",
     module = "rboto_sqs._native",
     frozen
 )]
-struct PyListDeadLetterSourceQueuesResult {
+struct PyOperationListDeadLetterSourceQueuesOutput {
     inner: aws_sdk_sqs::operation::list_dead_letter_source_queues::ListDeadLetterSourceQueuesOutput,
 }
 
 #[pymethods]
-impl PyListDeadLetterSourceQueuesResult {
+impl PyOperationListDeadLetterSourceQueuesOutput {
     #[getter]
     fn queue_urls(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_374_list = PyList::empty(py);
@@ -1462,16 +1462,16 @@ impl PyListDeadLetterSourceQueuesResult {
 }
 
 #[pyclass(
-    name = "ListMessageMoveTasksResult",
+    name = "ListMessageMoveTasksOutput",
     module = "rboto_sqs._native",
     frozen
 )]
-struct PyListMessageMoveTasksResult {
+struct PyOperationListMessageMoveTasksOutput {
     inner: aws_sdk_sqs::operation::list_message_move_tasks::ListMessageMoveTasksOutput,
 }
 
 #[pymethods]
-impl PyListMessageMoveTasksResult {
+impl PyOperationListMessageMoveTasksOutput {
     #[getter]
     fn results(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.results {
@@ -1510,13 +1510,13 @@ impl PyListMessageMoveTasksResult {
     }
 }
 
-#[pyclass(name = "ListQueueTagsResult", module = "rboto_sqs._native", frozen)]
-struct PyListQueueTagsResult {
+#[pyclass(name = "ListQueueTagsOutput", module = "rboto_sqs._native", frozen)]
+struct PyOperationListQueueTagsOutput {
     inner: aws_sdk_sqs::operation::list_queue_tags::ListQueueTagsOutput,
 }
 
 #[pymethods]
-impl PyListQueueTagsResult {
+impl PyOperationListQueueTagsOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
@@ -1551,13 +1551,13 @@ impl PyListQueueTagsResult {
     }
 }
 
-#[pyclass(name = "ListQueuesResult", module = "rboto_sqs._native", frozen)]
-struct PyListQueuesResult {
+#[pyclass(name = "ListQueuesOutput", module = "rboto_sqs._native", frozen)]
+struct PyOperationListQueuesOutput {
     inner: aws_sdk_sqs::operation::list_queues::ListQueuesOutput,
 }
 
 #[pymethods]
-impl PyListQueuesResult {
+impl PyOperationListQueuesOutput {
     #[getter]
     fn queue_urls(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.queue_urls {
@@ -1606,13 +1606,13 @@ impl PyListQueuesResult {
     }
 }
 
-#[pyclass(name = "ReceiveMessageResult", module = "rboto_sqs._native", frozen)]
-struct PyReceiveMessageResult {
+#[pyclass(name = "ReceiveMessageOutput", module = "rboto_sqs._native", frozen)]
+struct PyOperationReceiveMessageOutput {
     inner: aws_sdk_sqs::operation::receive_message::ReceiveMessageOutput,
 }
 
 #[pymethods]
-impl PyReceiveMessageResult {
+impl PyOperationReceiveMessageOutput {
     #[getter]
     fn messages(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.messages {
@@ -1651,13 +1651,13 @@ impl PyReceiveMessageResult {
     }
 }
 
-#[pyclass(name = "SendMessageResult", module = "rboto_sqs._native", frozen)]
-struct PySendMessageResult {
+#[pyclass(name = "SendMessageOutput", module = "rboto_sqs._native", frozen)]
+struct PyOperationSendMessageOutput {
     inner: aws_sdk_sqs::operation::send_message::SendMessageOutput,
 }
 
 #[pymethods]
-impl PySendMessageResult {
+impl PyOperationSendMessageOutput {
     #[getter]
     fn md5_of_message_body(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.md5_of_message_body {
@@ -1744,13 +1744,13 @@ impl PySendMessageResult {
     }
 }
 
-#[pyclass(name = "SendMessageBatchResult", module = "rboto_sqs._native", frozen)]
-struct PySendMessageBatchResult {
+#[pyclass(name = "SendMessageBatchOutput", module = "rboto_sqs._native", frozen)]
+struct PyOperationSendMessageBatchOutput {
     inner: aws_sdk_sqs::operation::send_message_batch::SendMessageBatchOutput,
 }
 
 #[pymethods]
-impl PySendMessageBatchResult {
+impl PyOperationSendMessageBatchOutput {
     #[getter]
     fn successful(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_422_list = PyList::empty(py);
@@ -1806,16 +1806,16 @@ impl PySendMessageBatchResult {
 }
 
 #[pyclass(
-    name = "StartMessageMoveTaskResult",
+    name = "StartMessageMoveTaskOutput",
     module = "rboto_sqs._native",
     frozen
 )]
-struct PyStartMessageMoveTaskResult {
+struct PyOperationStartMessageMoveTaskOutput {
     inner: aws_sdk_sqs::operation::start_message_move_task::StartMessageMoveTaskOutput,
 }
 
 #[pymethods]
-impl PyStartMessageMoveTaskResult {
+impl PyOperationStartMessageMoveTaskOutput {
     #[getter]
     fn task_handle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.task_handle {
@@ -1846,20 +1846,20 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyMessage>()?;
     module.add_class::<PyMessageAttributeValue>()?;
     module.add_class::<PySendMessageBatchResultEntry>()?;
-    module.add_class::<PyCancelMessageMoveTaskResult>()?;
-    module.add_class::<PyChangeMessageVisibilityBatchResult>()?;
-    module.add_class::<PyCreateQueueResult>()?;
-    module.add_class::<PyDeleteMessageBatchResult>()?;
-    module.add_class::<PyGetQueueAttributesResult>()?;
-    module.add_class::<PyGetQueueUrlResult>()?;
-    module.add_class::<PyListDeadLetterSourceQueuesResult>()?;
-    module.add_class::<PyListMessageMoveTasksResult>()?;
-    module.add_class::<PyListQueueTagsResult>()?;
-    module.add_class::<PyListQueuesResult>()?;
-    module.add_class::<PyReceiveMessageResult>()?;
-    module.add_class::<PySendMessageResult>()?;
-    module.add_class::<PySendMessageBatchResult>()?;
-    module.add_class::<PyStartMessageMoveTaskResult>()?;
+    module.add_class::<PyOperationCancelMessageMoveTaskOutput>()?;
+    module.add_class::<PyOperationChangeMessageVisibilityBatchOutput>()?;
+    module.add_class::<PyOperationCreateQueueOutput>()?;
+    module.add_class::<PyOperationDeleteMessageBatchOutput>()?;
+    module.add_class::<PyOperationGetQueueAttributesOutput>()?;
+    module.add_class::<PyOperationGetQueueUrlOutput>()?;
+    module.add_class::<PyOperationListDeadLetterSourceQueuesOutput>()?;
+    module.add_class::<PyOperationListMessageMoveTasksOutput>()?;
+    module.add_class::<PyOperationListQueueTagsOutput>()?;
+    module.add_class::<PyOperationListQueuesOutput>()?;
+    module.add_class::<PyOperationReceiveMessageOutput>()?;
+    module.add_class::<PyOperationSendMessageOutput>()?;
+    module.add_class::<PyOperationSendMessageBatchOutput>()?;
+    module.add_class::<PyOperationStartMessageMoveTaskOutput>()?;
 
     Ok(())
 }
@@ -1997,7 +1997,7 @@ impl SQSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CancelMessageMoveTask"))
             })?;
-            Ok(PyCancelMessageMoveTaskResult { inner: output })
+            Ok(PyOperationCancelMessageMoveTaskOutput { inner: output })
         })
     }
 
@@ -2102,7 +2102,7 @@ impl SQSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ChangeMessageVisibilityBatch"))
             })?;
-            Ok(PyChangeMessageVisibilityBatchResult { inner: output })
+            Ok(PyOperationChangeMessageVisibilityBatchOutput { inner: output })
         })
     }
 
@@ -2167,7 +2167,7 @@ impl SQSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateQueue")))?;
-            Ok(PyCreateQueueResult { inner: output })
+            Ok(PyOperationCreateQueueOutput { inner: output })
         })
     }
 
@@ -2263,7 +2263,7 @@ impl SQSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteMessageBatch"))
             })?;
-            Ok(PyDeleteMessageBatchResult { inner: output })
+            Ok(PyOperationDeleteMessageBatchOutput { inner: output })
         })
     }
 
@@ -2351,7 +2351,7 @@ impl SQSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetQueueAttributes"))
             })?;
-            Ok(PyGetQueueAttributesResult { inner: output })
+            Ok(PyOperationGetQueueAttributesOutput { inner: output })
         })
     }
 
@@ -2396,7 +2396,7 @@ impl SQSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetQueueUrl")))?;
-            Ok(PyGetQueueUrlResult { inner: output })
+            Ok(PyOperationGetQueueUrlOutput { inner: output })
         })
     }
 
@@ -2448,7 +2448,7 @@ impl SQSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDeadLetterSourceQueues"))
             })?;
-            Ok(PyListDeadLetterSourceQueuesResult { inner: output })
+            Ok(PyOperationListDeadLetterSourceQueuesOutput { inner: output })
         })
     }
 
@@ -2493,7 +2493,7 @@ impl SQSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListMessageMoveTasks"))
             })?;
-            Ok(PyListMessageMoveTasksResult { inner: output })
+            Ok(PyOperationListMessageMoveTasksOutput { inner: output })
         })
     }
 
@@ -2529,7 +2529,7 @@ impl SQSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListQueueTags"))
             })?;
-            Ok(PyListQueueTagsResult { inner: output })
+            Ok(PyOperationListQueueTagsOutput { inner: output })
         })
     }
 
@@ -2581,7 +2581,7 @@ impl SQSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListQueues")))?;
-            Ok(PyListQueuesResult { inner: output })
+            Ok(PyOperationListQueuesOutput { inner: output })
         })
     }
 
@@ -2732,7 +2732,7 @@ impl SQSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ReceiveMessage"))
             })?;
-            Ok(PyReceiveMessageResult { inner: output })
+            Ok(PyOperationReceiveMessageOutput { inner: output })
         })
     }
 
@@ -2875,7 +2875,7 @@ impl SQSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "SendMessage")))?;
-            Ok(PySendMessageResult { inner: output })
+            Ok(PyOperationSendMessageOutput { inner: output })
         })
     }
 
@@ -2926,7 +2926,7 @@ impl SQSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SendMessageBatch"))
             })?;
-            Ok(PySendMessageBatchResult { inner: output })
+            Ok(PyOperationSendMessageBatchOutput { inner: output })
         })
     }
 
@@ -3032,7 +3032,7 @@ impl SQSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartMessageMoveTask"))
             })?;
-            Ok(PyStartMessageMoveTaskResult { inner: output })
+            Ok(PyOperationStartMessageMoveTaskOutput { inner: output })
         })
     }
 

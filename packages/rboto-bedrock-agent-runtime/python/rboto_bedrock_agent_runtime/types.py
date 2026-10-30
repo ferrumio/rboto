@@ -11,46 +11,46 @@ from . import _native
 AgenticRetrieveStreamResponseOutputReceiver: TypeAlias = _native.AgenticRetrieveStreamResponseOutputReceiver
 AudioSegmentOutput: TypeAlias = _native.AudioSegment
 ByteStream: TypeAlias = _native.ByteStream
-CheckIngestedDocumentAclResponse: TypeAlias = _native.CheckIngestedDocumentAclResponse
+CheckIngestedDocumentAclOutput: TypeAlias = _native.CheckIngestedDocumentAclOutput
 CitationOutput: TypeAlias = _native.Citation
-CreateInvocationResponse: TypeAlias = _native.CreateInvocationResponse
-CreateSessionResponse: TypeAlias = _native.CreateSessionResponse
-DeleteAgentMemoryResponse: TypeAlias = _native.DeleteAgentMemoryResponse
-DeleteSessionResponse: TypeAlias = _native.DeleteSessionResponse
+CreateInvocationOutput: TypeAlias = _native.CreateInvocationOutput
+CreateSessionOutput: TypeAlias = _native.CreateSessionOutput
+DeleteAgentMemoryOutput: TypeAlias = _native.DeleteAgentMemoryOutput
+DeleteSessionOutput: TypeAlias = _native.DeleteSessionOutput
 DocumentAclOutput: TypeAlias = _native.DocumentAcl
 DocumentAclConditionOutput: TypeAlias = _native.DocumentAclCondition
 DocumentAclGroupOutput: TypeAlias = _native.DocumentAclGroup
 DocumentAclMembershipOutput: TypeAlias = _native.DocumentAclMembership
 DocumentAclUserOutput: TypeAlias = _native.DocumentAclUser
-EndSessionResponse: TypeAlias = _native.EndSessionResponse
+EndSessionOutput: TypeAlias = _native.EndSessionOutput
 FlowExecutionErrorOutput: TypeAlias = _native.FlowExecutionError
 FlowExecutionSummaryOutput: TypeAlias = _native.FlowExecutionSummary
 FlowResponseStreamReceiver: TypeAlias = _native.FlowResponseStreamReceiver
-GenerateQueryResponse: TypeAlias = _native.GenerateQueryResponse
+GenerateQueryOutput: TypeAlias = _native.GenerateQueryOutput
 GeneratedQueryOutput: TypeAlias = _native.GeneratedQuery
 GeneratedResponsePartOutput: TypeAlias = _native.GeneratedResponsePart
-GetAgentMemoryResponse: TypeAlias = _native.GetAgentMemoryResponse
-GetDocumentContentResponse: TypeAlias = _native.GetDocumentContentResponse
-GetExecutionFlowSnapshotResponse: TypeAlias = _native.GetExecutionFlowSnapshotResponse
-GetFlowExecutionResponse: TypeAlias = _native.GetFlowExecutionResponse
-GetIngestedDocumentAclResponse: TypeAlias = _native.GetIngestedDocumentAclResponse
-GetInvocationStepResponse: TypeAlias = _native.GetInvocationStepResponse
-GetSessionResponse: TypeAlias = _native.GetSessionResponse
+GetAgentMemoryOutput: TypeAlias = _native.GetAgentMemoryOutput
+GetDocumentContentOutput: TypeAlias = _native.GetDocumentContentOutput
+GetExecutionFlowSnapshotOutput: TypeAlias = _native.GetExecutionFlowSnapshotOutput
+GetFlowExecutionOutput: TypeAlias = _native.GetFlowExecutionOutput
+GetIngestedDocumentAclOutput: TypeAlias = _native.GetIngestedDocumentAclOutput
+GetInvocationStepOutput: TypeAlias = _native.GetInvocationStepOutput
+GetSessionOutput: TypeAlias = _native.GetSessionOutput
 InlineAgentResponseStreamReceiver: TypeAlias = _native.InlineAgentResponseStreamReceiver
 InvocationStepOutput: TypeAlias = _native.InvocationStep
 InvocationStepSummaryOutput: TypeAlias = _native.InvocationStepSummary
 InvocationSummaryOutput: TypeAlias = _native.InvocationSummary
 KnowledgeBaseRetrievalResultOutput: TypeAlias = _native.KnowledgeBaseRetrievalResult
-ListFlowExecutionEventsResponse: TypeAlias = _native.ListFlowExecutionEventsResponse
-ListFlowExecutionsResponse: TypeAlias = _native.ListFlowExecutionsResponse
-ListInvocationStepsResponse: TypeAlias = _native.ListInvocationStepsResponse
-ListInvocationsResponse: TypeAlias = _native.ListInvocationsResponse
-ListSessionsResponse: TypeAlias = _native.ListSessionsResponse
-ListTagsForResourceResponse: TypeAlias = _native.ListTagsForResourceResponse
+ListFlowExecutionEventsOutput: TypeAlias = _native.ListFlowExecutionEventsOutput
+ListFlowExecutionsOutput: TypeAlias = _native.ListFlowExecutionsOutput
+ListInvocationStepsOutput: TypeAlias = _native.ListInvocationStepsOutput
+ListInvocationsOutput: TypeAlias = _native.ListInvocationsOutput
+ListSessionsOutput: TypeAlias = _native.ListSessionsOutput
+ListTagsForResourceOutput: TypeAlias = _native.ListTagsForResourceOutput
 OptimizedPromptStreamReceiver: TypeAlias = _native.OptimizedPromptStreamReceiver
-PutInvocationStepResponse: TypeAlias = _native.PutInvocationStepResponse
+PutInvocationStepOutput: TypeAlias = _native.PutInvocationStepOutput
 RerankDocumentOutput: TypeAlias = _native.RerankDocument
-RerankResponse: TypeAlias = _native.RerankResponse
+RerankOutput: TypeAlias = _native.RerankOutput
 RerankResultOutput: TypeAlias = _native.RerankResult
 RerankTextDocumentOutput: TypeAlias = _native.RerankTextDocument
 ResponseStreamReceiver: TypeAlias = _native.ResponseStreamReceiver
@@ -67,19 +67,19 @@ RetrievalResultSalesforceLocationOutput: TypeAlias = _native.RetrievalResultSale
 RetrievalResultSharePointLocationOutput: TypeAlias = _native.RetrievalResultSharePointLocation
 RetrievalResultSqlLocationOutput: TypeAlias = _native.RetrievalResultSqlLocation
 RetrievalResultWebLocationOutput: TypeAlias = _native.RetrievalResultWebLocation
-RetrieveAndGenerateOutputResponse: TypeAlias = _native.RetrieveAndGenerateOutput
-RetrieveAndGenerateResponse: TypeAlias = _native.RetrieveAndGenerateResponse
+RetrieveAndGenerateOutput: TypeAlias = _native.RetrieveAndGenerateOutput
 RetrieveAndGenerateStreamResponseOutputReceiver: TypeAlias = _native.RetrieveAndGenerateStreamResponseOutputReceiver
-RetrieveResponse: TypeAlias = _native.RetrieveResponse
+RetrieveAndGenerateValueOutput: TypeAlias = _native.RetrieveAndGenerateValueOutput
+RetrieveOutput: TypeAlias = _native.RetrieveOutput
 RetrievedReferenceOutput: TypeAlias = _native.RetrievedReference
 SessionSummaryOutput: TypeAlias = _native.SessionSummary
 SpanOutput: TypeAlias = _native.Span
-StartFlowExecutionResponse: TypeAlias = _native.StartFlowExecutionResponse
-StopFlowExecutionResponse: TypeAlias = _native.StopFlowExecutionResponse
-TagResourceResponse: TypeAlias = _native.TagResourceResponse
+StartFlowExecutionOutput: TypeAlias = _native.StartFlowExecutionOutput
+StopFlowExecutionOutput: TypeAlias = _native.StopFlowExecutionOutput
+TagResourceOutput: TypeAlias = _native.TagResourceOutput
 TextResponsePartOutput: TypeAlias = _native.TextResponsePart
-UntagResourceResponse: TypeAlias = _native.UntagResourceResponse
-UpdateSessionResponse: TypeAlias = _native.UpdateSessionResponse
+UntagResourceOutput: TypeAlias = _native.UntagResourceOutput
+UpdateSessionOutput: TypeAlias = _native.UpdateSessionOutput
 VideoSegmentOutput: TypeAlias = _native.VideoSegment
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
@@ -594,8 +594,8 @@ AgenticRetrieveStreamRequest = TypedDict(
     },
 )
 
-AgenticRetrieveStreamResponse = TypedDict(
-    "AgenticRetrieveStreamResponse",
+AgenticRetrieveStreamOutput = TypedDict(
+    "AgenticRetrieveStreamOutput",
     {
     "stream": Required["AsyncIterator[AgenticRetrieveStreamResponseOutput]"],
     },
@@ -1900,8 +1900,8 @@ InvokeAgentRequest = TypedDict(
     },
 )
 
-InvokeAgentResponse = TypedDict(
-    "InvokeAgentResponse",
+InvokeAgentOutput = TypedDict(
+    "InvokeAgentOutput",
     {
     "completion": Required["AsyncIterator[ResponseStream]"],
     "content_type": Required["str"],
@@ -1922,8 +1922,8 @@ InvokeFlowRequest = TypedDict(
     },
 )
 
-InvokeFlowResponse = TypedDict(
-    "InvokeFlowResponse",
+InvokeFlowOutput = TypedDict(
+    "InvokeFlowOutput",
     {
     "response_stream": Required["AsyncIterator[FlowResponseStream]"],
     "execution_id": Required["str | None"],
@@ -1958,8 +1958,8 @@ InvokeInlineAgentRequest = TypedDict(
     },
 )
 
-InvokeInlineAgentResponse = TypedDict(
-    "InvokeInlineAgentResponse",
+InvokeInlineAgentOutput = TypedDict(
+    "InvokeInlineAgentOutput",
     {
     "completion": Required["AsyncIterator[InlineAgentResponseStream]"],
     "content_type": Required["str"],
@@ -2365,8 +2365,8 @@ OptimizePromptRequest = TypedDict(
     },
 )
 
-OptimizePromptResponse = TypedDict(
-    "OptimizePromptResponse",
+OptimizePromptOutput = TypedDict(
+    "OptimizePromptOutput",
     {
     "optimized_prompt": Required["AsyncIterator[OptimizedPromptStream]"],
     },
@@ -2848,13 +2848,6 @@ RetrieveAndGenerateInput = TypedDict(
     },
 )
 
-RetrieveAndGenerateOutput = TypedDict(
-    "RetrieveAndGenerateOutput",
-    {
-    "text": Required["str"],
-    },
-)
-
 RetrieveAndGenerateOutputEvent = TypedDict(
     "RetrieveAndGenerateOutputEvent",
     {
@@ -2891,8 +2884,8 @@ RetrieveAndGenerateStreamRequest = TypedDict(
     },
 )
 
-RetrieveAndGenerateStreamResponse = TypedDict(
-    "RetrieveAndGenerateStreamResponse",
+RetrieveAndGenerateStreamOutput = TypedDict(
+    "RetrieveAndGenerateStreamOutput",
     {
     "stream": Required["AsyncIterator[RetrieveAndGenerateStreamResponseOutput]"],
     "session_id": Required["str"],

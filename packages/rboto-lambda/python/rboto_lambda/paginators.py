@@ -8,22 +8,22 @@ from typing import TYPE_CHECKING
 from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _paginate
 
 from ._native import (
-    GetDurableExecutionHistoryResponse,
-    GetDurableExecutionStateResponse,
-    ListAliasesResponse,
-    ListCapacityProvidersResponse,
-    ListCodeSigningConfigsResponse,
-    ListDurableExecutionsByFunctionResponse,
-    ListEventSourceMappingsResponse,
-    ListFunctionEventInvokeConfigsResponse,
-    ListFunctionUrlConfigsResponse,
-    ListFunctionVersionsByCapacityProviderResponse,
-    ListFunctionsByCodeSigningConfigResponse,
-    ListFunctionsResponse,
-    ListLayerVersionsResponse,
-    ListLayersResponse,
-    ListProvisionedConcurrencyConfigsResponse,
-    ListVersionsByFunctionResponse,
+    GetDurableExecutionHistoryOutput,
+    GetDurableExecutionStateOutput,
+    ListAliasesOutput,
+    ListCapacityProvidersOutput,
+    ListCodeSigningConfigsOutput,
+    ListDurableExecutionsByFunctionOutput,
+    ListEventSourceMappingsOutput,
+    ListFunctionEventInvokeConfigsOutput,
+    ListFunctionUrlConfigsOutput,
+    ListFunctionVersionsByCapacityProviderOutput,
+    ListFunctionsByCodeSigningConfigOutput,
+    ListFunctionsOutput,
+    ListLayerVersionsOutput,
+    ListLayersOutput,
+    ListProvisionedConcurrencyConfigsOutput,
+    ListVersionsByFunctionOutput,
 )
 
 from .types import (
@@ -51,7 +51,7 @@ class LambdaClientPaginators:
         max_items: int | None = None,
         marker: str | None = None,
         reverse_order: bool | None = None,
-    ) -> AsyncIterator[GetDurableExecutionHistoryResponse]:
+    ) -> AsyncIterator[GetDurableExecutionHistoryOutput]:
         """Yield each page from get_durable_execution_history; requests start on iteration."""
         params: dict[str, object] = {
             "durable_execution_arn": durable_execution_arn,
@@ -81,7 +81,7 @@ class LambdaClientPaginators:
         checkpoint_token: str,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> AsyncIterator[GetDurableExecutionStateResponse]:
+    ) -> AsyncIterator[GetDurableExecutionStateOutput]:
         """Yield each page from get_durable_execution_state; requests start on iteration."""
         params: dict[str, object] = {
             "durable_execution_arn": durable_execution_arn,
@@ -108,7 +108,7 @@ class LambdaClientPaginators:
         function_version: str | None = None,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> AsyncIterator[ListAliasesResponse]:
+    ) -> AsyncIterator[ListAliasesOutput]:
         """Yield each page from list_aliases; requests start on iteration."""
         params: dict[str, object] = {
             "function_name": function_name,
@@ -135,7 +135,7 @@ class LambdaClientPaginators:
         state: CapacityProviderState | None = None,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> AsyncIterator[ListCapacityProvidersResponse]:
+    ) -> AsyncIterator[ListCapacityProvidersOutput]:
         """Yield each page from list_capacity_providers; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -160,7 +160,7 @@ class LambdaClientPaginators:
         *,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> AsyncIterator[ListCodeSigningConfigsResponse]:
+    ) -> AsyncIterator[ListCodeSigningConfigsOutput]:
         """Yield each page from list_code_signing_configs; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -190,7 +190,7 @@ class LambdaClientPaginators:
         reverse_order: bool | None = None,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> AsyncIterator[ListDurableExecutionsByFunctionResponse]:
+    ) -> AsyncIterator[ListDurableExecutionsByFunctionOutput]:
         """Yield each page from list_durable_executions_by_function; requests start on iteration."""
         params: dict[str, object] = {
             "function_name": function_name,
@@ -228,7 +228,7 @@ class LambdaClientPaginators:
         function_name: str | None = None,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> AsyncIterator[ListEventSourceMappingsResponse]:
+    ) -> AsyncIterator[ListEventSourceMappingsOutput]:
         """Yield each page from list_event_source_mappings; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -256,7 +256,7 @@ class LambdaClientPaginators:
         function_name: str,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> AsyncIterator[ListFunctionEventInvokeConfigsResponse]:
+    ) -> AsyncIterator[ListFunctionEventInvokeConfigsOutput]:
         """Yield each page from list_function_event_invoke_configs; requests start on iteration."""
         params: dict[str, object] = {
             "function_name": function_name,
@@ -281,7 +281,7 @@ class LambdaClientPaginators:
         function_name: str,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> AsyncIterator[ListFunctionUrlConfigsResponse]:
+    ) -> AsyncIterator[ListFunctionUrlConfigsOutput]:
         """Yield each page from list_function_url_configs; requests start on iteration."""
         params: dict[str, object] = {
             "function_name": function_name,
@@ -306,7 +306,7 @@ class LambdaClientPaginators:
         capacity_provider_name: str,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> AsyncIterator[ListFunctionVersionsByCapacityProviderResponse]:
+    ) -> AsyncIterator[ListFunctionVersionsByCapacityProviderOutput]:
         """Yield each page from list_function_versions_by_capacity_provider; requests start on iteration."""
         params: dict[str, object] = {
             "capacity_provider_name": capacity_provider_name,
@@ -332,7 +332,7 @@ class LambdaClientPaginators:
         function_version: FunctionVersion | None = None,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> AsyncIterator[ListFunctionsResponse]:
+    ) -> AsyncIterator[ListFunctionsOutput]:
         """Yield each page from list_functions; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -360,7 +360,7 @@ class LambdaClientPaginators:
         code_signing_config_arn: str,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> AsyncIterator[ListFunctionsByCodeSigningConfigResponse]:
+    ) -> AsyncIterator[ListFunctionsByCodeSigningConfigOutput]:
         """Yield each page from list_functions_by_code_signing_config; requests start on iteration."""
         params: dict[str, object] = {
             "code_signing_config_arn": code_signing_config_arn,
@@ -387,7 +387,7 @@ class LambdaClientPaginators:
         compatible_runtime: Runtime | None = None,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> AsyncIterator[ListLayerVersionsResponse]:
+    ) -> AsyncIterator[ListLayerVersionsOutput]:
         """Yield each page from list_layer_versions; requests start on iteration."""
         params: dict[str, object] = {
             "layer_name": layer_name,
@@ -417,7 +417,7 @@ class LambdaClientPaginators:
         compatible_runtime: Runtime | None = None,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> AsyncIterator[ListLayersResponse]:
+    ) -> AsyncIterator[ListLayersOutput]:
         """Yield each page from list_layers; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -445,7 +445,7 @@ class LambdaClientPaginators:
         function_name: str,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> AsyncIterator[ListProvisionedConcurrencyConfigsResponse]:
+    ) -> AsyncIterator[ListProvisionedConcurrencyConfigsOutput]:
         """Yield each page from list_provisioned_concurrency_configs; requests start on iteration."""
         params: dict[str, object] = {
             "function_name": function_name,
@@ -470,7 +470,7 @@ class LambdaClientPaginators:
         function_name: str,
         marker: str | None = None,
         max_items: int | None = None,
-    ) -> AsyncIterator[ListVersionsByFunctionResponse]:
+    ) -> AsyncIterator[ListVersionsByFunctionOutput]:
         """Yield each page from list_versions_by_function; requests start on iteration."""
         params: dict[str, object] = {
             "function_name": function_name,

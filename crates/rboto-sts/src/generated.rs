@@ -284,13 +284,13 @@ impl PyFederatedUser {
     }
 }
 
-#[pyclass(name = "AssumeRoleResponse", module = "rboto_sts._native", frozen)]
-struct PyAssumeRoleResponse {
+#[pyclass(name = "AssumeRoleOutput", module = "rboto_sts._native", frozen)]
+struct PyOperationAssumeRoleOutput {
     inner: aws_sdk_sts::operation::assume_role::AssumeRoleOutput,
 }
 
 #[pymethods]
-impl PyAssumeRoleResponse {
+impl PyOperationAssumeRoleOutput {
     #[getter]
     fn credentials(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.credentials {
@@ -406,16 +406,16 @@ impl PyAssumeRoleResponse {
 }
 
 #[pyclass(
-    name = "AssumeRoleWithSAMLResponse",
+    name = "AssumeRoleWithSAMLOutput",
     module = "rboto_sts._native",
     frozen
 )]
-struct PyAssumeRoleWithSAMLResponse {
+struct PyOperationAssumeRoleWithSAMLOutput {
     inner: aws_sdk_sts::operation::assume_role_with_saml::AssumeRoleWithSamlOutput,
 }
 
 #[pymethods]
-impl PyAssumeRoleWithSAMLResponse {
+impl PyOperationAssumeRoleWithSAMLOutput {
     #[getter]
     fn credentials(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.credentials {
@@ -611,16 +611,16 @@ impl PyAssumeRoleWithSAMLResponse {
 }
 
 #[pyclass(
-    name = "AssumeRoleWithWebIdentityResponse",
+    name = "AssumeRoleWithWebIdentityOutput",
     module = "rboto_sts._native",
     frozen
 )]
-struct PyAssumeRoleWithWebIdentityResponse {
+struct PyOperationAssumeRoleWithWebIdentityOutput {
     inner: aws_sdk_sts::operation::assume_role_with_web_identity::AssumeRoleWithWebIdentityOutput,
 }
 
 #[pymethods]
-impl PyAssumeRoleWithWebIdentityResponse {
+impl PyOperationAssumeRoleWithWebIdentityOutput {
     #[getter]
     fn credentials(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.credentials {
@@ -783,13 +783,13 @@ impl PyAssumeRoleWithWebIdentityResponse {
     }
 }
 
-#[pyclass(name = "AssumeRootResponse", module = "rboto_sts._native", frozen)]
-struct PyAssumeRootResponse {
+#[pyclass(name = "AssumeRootOutput", module = "rboto_sts._native", frozen)]
+struct PyOperationAssumeRootOutput {
     inner: aws_sdk_sts::operation::assume_root::AssumeRootOutput,
 }
 
 #[pymethods]
-impl PyAssumeRootResponse {
+impl PyOperationAssumeRootOutput {
     #[getter]
     fn credentials(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.credentials {
@@ -867,16 +867,16 @@ impl PyAssumeRootResponse {
 }
 
 #[pyclass(
-    name = "DecodeAuthorizationMessageResponse",
+    name = "DecodeAuthorizationMessageOutput",
     module = "rboto_sts._native",
     frozen
 )]
-struct PyDecodeAuthorizationMessageResponse {
+struct PyOperationDecodeAuthorizationMessageOutput {
     inner: aws_sdk_sts::operation::decode_authorization_message::DecodeAuthorizationMessageOutput,
 }
 
 #[pymethods]
-impl PyDecodeAuthorizationMessageResponse {
+impl PyOperationDecodeAuthorizationMessageOutput {
     #[getter]
     fn decoded_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.decoded_message {
@@ -899,17 +899,13 @@ impl PyDecodeAuthorizationMessageResponse {
     }
 }
 
-#[pyclass(
-    name = "GetAccessKeyInfoResponse",
-    module = "rboto_sts._native",
-    frozen
-)]
-struct PyGetAccessKeyInfoResponse {
+#[pyclass(name = "GetAccessKeyInfoOutput", module = "rboto_sts._native", frozen)]
+struct PyOperationGetAccessKeyInfoOutput {
     inner: aws_sdk_sts::operation::get_access_key_info::GetAccessKeyInfoOutput,
 }
 
 #[pymethods]
-impl PyGetAccessKeyInfoResponse {
+impl PyOperationGetAccessKeyInfoOutput {
     #[getter]
     fn account(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.account {
@@ -932,17 +928,13 @@ impl PyGetAccessKeyInfoResponse {
     }
 }
 
-#[pyclass(
-    name = "GetCallerIdentityResponse",
-    module = "rboto_sts._native",
-    frozen
-)]
-struct PyGetCallerIdentityResponse {
+#[pyclass(name = "GetCallerIdentityOutput", module = "rboto_sts._native", frozen)]
+struct PyOperationGetCallerIdentityOutput {
     inner: aws_sdk_sts::operation::get_caller_identity::GetCallerIdentityOutput,
 }
 
 #[pymethods]
-impl PyGetCallerIdentityResponse {
+impl PyOperationGetCallerIdentityOutput {
     #[getter]
     fn user_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.user_id {
@@ -998,16 +990,16 @@ impl PyGetCallerIdentityResponse {
 }
 
 #[pyclass(
-    name = "GetDelegatedAccessTokenResponse",
+    name = "GetDelegatedAccessTokenOutput",
     module = "rboto_sts._native",
     frozen
 )]
-struct PyGetDelegatedAccessTokenResponse {
+struct PyOperationGetDelegatedAccessTokenOutput {
     inner: aws_sdk_sts::operation::get_delegated_access_token::GetDelegatedAccessTokenOutput,
 }
 
 #[pymethods]
-impl PyGetDelegatedAccessTokenResponse {
+impl PyOperationGetDelegatedAccessTokenOutput {
     #[getter]
     fn credentials(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.credentials {
@@ -1069,16 +1061,16 @@ impl PyGetDelegatedAccessTokenResponse {
 }
 
 #[pyclass(
-    name = "GetFederationTokenResponse",
+    name = "GetFederationTokenOutput",
     module = "rboto_sts._native",
     frozen
 )]
-struct PyGetFederationTokenResponse {
+struct PyOperationGetFederationTokenOutput {
     inner: aws_sdk_sts::operation::get_federation_token::GetFederationTokenOutput,
 }
 
 #[pymethods]
-impl PyGetFederationTokenResponse {
+impl PyOperationGetFederationTokenOutput {
     #[getter]
     fn credentials(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.credentials {
@@ -1177,13 +1169,13 @@ impl PyGetFederationTokenResponse {
     }
 }
 
-#[pyclass(name = "GetSessionTokenResponse", module = "rboto_sts._native", frozen)]
-struct PyGetSessionTokenResponse {
+#[pyclass(name = "GetSessionTokenOutput", module = "rboto_sts._native", frozen)]
+struct PyOperationGetSessionTokenOutput {
     inner: aws_sdk_sts::operation::get_session_token::GetSessionTokenOutput,
 }
 
 #[pymethods]
-impl PyGetSessionTokenResponse {
+impl PyOperationGetSessionTokenOutput {
     #[getter]
     fn credentials(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.credentials {
@@ -1245,16 +1237,16 @@ impl PyGetSessionTokenResponse {
 }
 
 #[pyclass(
-    name = "GetWebIdentityTokenResponse",
+    name = "GetWebIdentityTokenOutput",
     module = "rboto_sts._native",
     frozen
 )]
-struct PyGetWebIdentityTokenResponse {
+struct PyOperationGetWebIdentityTokenOutput {
     inner: aws_sdk_sts::operation::get_web_identity_token::GetWebIdentityTokenOutput,
 }
 
 #[pymethods]
-impl PyGetWebIdentityTokenResponse {
+impl PyOperationGetWebIdentityTokenOutput {
     #[getter]
     fn web_identity_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.web_identity_token {
@@ -1297,17 +1289,17 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyAssumedRoleUser>()?;
     module.add_class::<PyCredentials>()?;
     module.add_class::<PyFederatedUser>()?;
-    module.add_class::<PyAssumeRoleResponse>()?;
-    module.add_class::<PyAssumeRoleWithSAMLResponse>()?;
-    module.add_class::<PyAssumeRoleWithWebIdentityResponse>()?;
-    module.add_class::<PyAssumeRootResponse>()?;
-    module.add_class::<PyDecodeAuthorizationMessageResponse>()?;
-    module.add_class::<PyGetAccessKeyInfoResponse>()?;
-    module.add_class::<PyGetCallerIdentityResponse>()?;
-    module.add_class::<PyGetDelegatedAccessTokenResponse>()?;
-    module.add_class::<PyGetFederationTokenResponse>()?;
-    module.add_class::<PyGetSessionTokenResponse>()?;
-    module.add_class::<PyGetWebIdentityTokenResponse>()?;
+    module.add_class::<PyOperationAssumeRoleOutput>()?;
+    module.add_class::<PyOperationAssumeRoleWithSAMLOutput>()?;
+    module.add_class::<PyOperationAssumeRoleWithWebIdentityOutput>()?;
+    module.add_class::<PyOperationAssumeRootOutput>()?;
+    module.add_class::<PyOperationDecodeAuthorizationMessageOutput>()?;
+    module.add_class::<PyOperationGetAccessKeyInfoOutput>()?;
+    module.add_class::<PyOperationGetCallerIdentityOutput>()?;
+    module.add_class::<PyOperationGetDelegatedAccessTokenOutput>()?;
+    module.add_class::<PyOperationGetFederationTokenOutput>()?;
+    module.add_class::<PyOperationGetSessionTokenOutput>()?;
+    module.add_class::<PyOperationGetWebIdentityTokenOutput>()?;
 
     Ok(())
 }
@@ -1485,7 +1477,7 @@ impl STSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "AssumeRole")))?;
-            Ok(PyAssumeRoleResponse { inner: output })
+            Ok(PyOperationAssumeRoleOutput { inner: output })
         })
     }
 
@@ -1572,7 +1564,7 @@ impl STSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AssumeRoleWithSAML"))
             })?;
-            Ok(PyAssumeRoleWithSAMLResponse { inner: output })
+            Ok(PyOperationAssumeRoleWithSAMLOutput { inner: output })
         })
     }
 
@@ -1668,7 +1660,7 @@ impl STSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AssumeRoleWithWebIdentity"))
             })?;
-            Ok(PyAssumeRoleWithWebIdentityResponse { inner: output })
+            Ok(PyOperationAssumeRoleWithWebIdentityOutput { inner: output })
         })
     }
 
@@ -1727,7 +1719,7 @@ impl STSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "AssumeRoot")))?;
-            Ok(PyAssumeRootResponse { inner: output })
+            Ok(PyOperationAssumeRootOutput { inner: output })
         })
     }
 
@@ -1765,7 +1757,7 @@ impl STSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DecodeAuthorizationMessage"))
             })?;
-            Ok(PyDecodeAuthorizationMessageResponse { inner: output })
+            Ok(PyOperationDecodeAuthorizationMessageOutput { inner: output })
         })
     }
 
@@ -1803,7 +1795,7 @@ impl STSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAccessKeyInfo"))
             })?;
-            Ok(PyGetAccessKeyInfoResponse { inner: output })
+            Ok(PyOperationGetAccessKeyInfoOutput { inner: output })
         })
     }
 
@@ -1833,7 +1825,7 @@ impl STSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCallerIdentity"))
             })?;
-            Ok(PyGetCallerIdentityResponse { inner: output })
+            Ok(PyOperationGetCallerIdentityOutput { inner: output })
         })
     }
 
@@ -1871,7 +1863,7 @@ impl STSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDelegatedAccessToken"))
             })?;
-            Ok(PyGetDelegatedAccessTokenResponse { inner: output })
+            Ok(PyOperationGetDelegatedAccessTokenOutput { inner: output })
         })
     }
 
@@ -1957,7 +1949,7 @@ impl STSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFederationToken"))
             })?;
-            Ok(PyGetFederationTokenResponse { inner: output })
+            Ok(PyOperationGetFederationTokenOutput { inner: output })
         })
     }
 
@@ -2017,7 +2009,7 @@ impl STSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetSessionToken"))
             })?;
-            Ok(PyGetSessionTokenResponse { inner: output })
+            Ok(PyOperationGetSessionTokenOutput { inner: output })
         })
     }
 
@@ -2089,7 +2081,7 @@ impl STSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetWebIdentityToken"))
             })?;
-            Ok(PyGetWebIdentityTokenResponse { inner: output })
+            Ok(PyOperationGetWebIdentityTokenOutput { inner: output })
         })
     }
 }

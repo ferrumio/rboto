@@ -84,108 +84,108 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`accept_administrator_invitation`](#accept_administrator_invitation) | <code>detector_id: str</code>, <code>administrator_id: str</code>, <code>invitation_id: str</code> | <code>AcceptAdministratorInvitationResponse</code> |
-| [`accept_invitation`](#accept_invitation) | <code>detector_id: str</code>, <code>master_id: str</code>, <code>invitation_id: str</code> | <code>AcceptInvitationResponse</code> |
-| [`archive_findings`](#archive_findings) | <code>detector_id: str</code>, <code>finding_ids: _Sequence[str]</code> | <code>ArchiveFindingsResponse</code> |
-| [`create_custom_detection_rule_association`](#create_custom_detection_rule_association) | <code>rule_id: str</code>, <code>mode: AssociationMode</code> | <code>CreateCustomDetectionRuleAssociationResponse</code> |
-| [`create_custom_detection_rule_org_configuration`](#create_custom_detection_rule_org_configuration) | <code>rule_id: str</code>, <code>mode: AssociationMode</code> | <code>CreateCustomDetectionRuleOrgConfigurationResponse</code> |
-| [`create_detector`](#create_detector) | <code>enable: bool</code> | <code>CreateDetectorResponse</code> |
-| [`create_filter`](#create_filter) | <code>detector_id: str</code>, <code>name: str</code>, <code>finding_criteria: FindingCriteria</code> | <code>CreateFilterResponse</code> |
-| [`create_investigation`](#create_investigation) | <code>detector_id: str</code>, <code>trigger_prompt: str</code> | <code>CreateInvestigationResponse</code> |
-| [`create_ip_set`](#create_ip_set) | <code>detector_id: str</code>, <code>name: str</code>, <code>format: IpSetFormat</code>, <code>location: str</code>, <code>activate: bool</code> | <code>CreateIPSetResponse</code> |
-| [`create_malware_protection_plan`](#create_malware_protection_plan) | <code>role: str</code>, <code>protected_resource: CreateProtectedResource</code> | <code>CreateMalwareProtectionPlanResponse</code> |
-| [`create_members`](#create_members) | <code>detector_id: str</code>, <code>account_details: _Sequence[AccountDetail]</code> | <code>CreateMembersResponse</code> |
-| [`create_publishing_destination`](#create_publishing_destination) | <code>detector_id: str</code>, <code>destination_type: DestinationType</code>, <code>destination_properties: DestinationProperties</code> | <code>CreatePublishingDestinationResponse</code> |
-| [`create_sample_findings`](#create_sample_findings) | <code>detector_id: str</code> | <code>CreateSampleFindingsResponse</code> |
-| [`create_threat_entity_set`](#create_threat_entity_set) | <code>detector_id: str</code>, <code>name: str</code>, <code>format: ThreatEntitySetFormat</code>, <code>location: str</code>, <code>activate: bool</code> | <code>CreateThreatEntitySetResponse</code> |
-| [`create_threat_intel_set`](#create_threat_intel_set) | <code>detector_id: str</code>, <code>name: str</code>, <code>format: ThreatIntelSetFormat</code>, <code>location: str</code>, <code>activate: bool</code> | <code>CreateThreatIntelSetResponse</code> |
-| [`create_trusted_entity_set`](#create_trusted_entity_set) | <code>detector_id: str</code>, <code>name: str</code>, <code>format: TrustedEntitySetFormat</code>, <code>location: str</code>, <code>activate: bool</code> | <code>CreateTrustedEntitySetResponse</code> |
-| [`decline_invitations`](#decline_invitations) | <code>account_ids: _Sequence[str]</code> | <code>DeclineInvitationsResponse</code> |
-| [`delete_custom_detection_rule_association`](#delete_custom_detection_rule_association) | <code>rule_id: str</code>, <code>association_id: str</code> | <code>DeleteCustomDetectionRuleAssociationResponse</code> |
-| [`delete_custom_detection_rule_org_configuration`](#delete_custom_detection_rule_org_configuration) | <code>rule_id: str</code>, <code>mode: AssociationMode</code> | <code>DeleteCustomDetectionRuleOrgConfigurationResponse</code> |
-| [`delete_detector`](#delete_detector) | <code>detector_id: str</code> | <code>DeleteDetectorResponse</code> |
-| [`delete_filter`](#delete_filter) | <code>detector_id: str</code>, <code>filter_name: str</code> | <code>DeleteFilterResponse</code> |
-| [`delete_invitations`](#delete_invitations) | <code>account_ids: _Sequence[str]</code> | <code>DeleteInvitationsResponse</code> |
-| [`delete_ip_set`](#delete_ip_set) | <code>detector_id: str</code>, <code>ip_set_id: str</code> | <code>DeleteIPSetResponse</code> |
+| [`accept_administrator_invitation`](#accept_administrator_invitation) | <code>detector_id: str</code>, <code>administrator_id: str</code>, <code>invitation_id: str</code> | <code>AcceptAdministratorInvitationOutput</code> |
+| [`accept_invitation`](#accept_invitation) | <code>detector_id: str</code>, <code>master_id: str</code>, <code>invitation_id: str</code> | <code>AcceptInvitationOutput</code> |
+| [`archive_findings`](#archive_findings) | <code>detector_id: str</code>, <code>finding_ids: _Sequence[str]</code> | <code>ArchiveFindingsOutput</code> |
+| [`create_custom_detection_rule_association`](#create_custom_detection_rule_association) | <code>rule_id: str</code>, <code>mode: AssociationMode</code> | <code>CreateCustomDetectionRuleAssociationOutput</code> |
+| [`create_custom_detection_rule_org_configuration`](#create_custom_detection_rule_org_configuration) | <code>rule_id: str</code>, <code>mode: AssociationMode</code> | <code>CreateCustomDetectionRuleOrgConfigurationOutput</code> |
+| [`create_detector`](#create_detector) | <code>enable: bool</code> | <code>CreateDetectorOutput</code> |
+| [`create_filter`](#create_filter) | <code>detector_id: str</code>, <code>name: str</code>, <code>finding_criteria: FindingCriteria</code> | <code>CreateFilterOutput</code> |
+| [`create_investigation`](#create_investigation) | <code>detector_id: str</code>, <code>trigger_prompt: str</code> | <code>CreateInvestigationOutput</code> |
+| [`create_ip_set`](#create_ip_set) | <code>detector_id: str</code>, <code>name: str</code>, <code>format: IpSetFormat</code>, <code>location: str</code>, <code>activate: bool</code> | <code>CreateIPSetOutput</code> |
+| [`create_malware_protection_plan`](#create_malware_protection_plan) | <code>role: str</code>, <code>protected_resource: CreateProtectedResource</code> | <code>CreateMalwareProtectionPlanOutput</code> |
+| [`create_members`](#create_members) | <code>detector_id: str</code>, <code>account_details: _Sequence[AccountDetail]</code> | <code>CreateMembersOutput</code> |
+| [`create_publishing_destination`](#create_publishing_destination) | <code>detector_id: str</code>, <code>destination_type: DestinationType</code>, <code>destination_properties: DestinationProperties</code> | <code>CreatePublishingDestinationOutput</code> |
+| [`create_sample_findings`](#create_sample_findings) | <code>detector_id: str</code> | <code>CreateSampleFindingsOutput</code> |
+| [`create_threat_entity_set`](#create_threat_entity_set) | <code>detector_id: str</code>, <code>name: str</code>, <code>format: ThreatEntitySetFormat</code>, <code>location: str</code>, <code>activate: bool</code> | <code>CreateThreatEntitySetOutput</code> |
+| [`create_threat_intel_set`](#create_threat_intel_set) | <code>detector_id: str</code>, <code>name: str</code>, <code>format: ThreatIntelSetFormat</code>, <code>location: str</code>, <code>activate: bool</code> | <code>CreateThreatIntelSetOutput</code> |
+| [`create_trusted_entity_set`](#create_trusted_entity_set) | <code>detector_id: str</code>, <code>name: str</code>, <code>format: TrustedEntitySetFormat</code>, <code>location: str</code>, <code>activate: bool</code> | <code>CreateTrustedEntitySetOutput</code> |
+| [`decline_invitations`](#decline_invitations) | <code>account_ids: _Sequence[str]</code> | <code>DeclineInvitationsOutput</code> |
+| [`delete_custom_detection_rule_association`](#delete_custom_detection_rule_association) | <code>rule_id: str</code>, <code>association_id: str</code> | <code>DeleteCustomDetectionRuleAssociationOutput</code> |
+| [`delete_custom_detection_rule_org_configuration`](#delete_custom_detection_rule_org_configuration) | <code>rule_id: str</code>, <code>mode: AssociationMode</code> | <code>DeleteCustomDetectionRuleOrgConfigurationOutput</code> |
+| [`delete_detector`](#delete_detector) | <code>detector_id: str</code> | <code>DeleteDetectorOutput</code> |
+| [`delete_filter`](#delete_filter) | <code>detector_id: str</code>, <code>filter_name: str</code> | <code>DeleteFilterOutput</code> |
+| [`delete_invitations`](#delete_invitations) | <code>account_ids: _Sequence[str]</code> | <code>DeleteInvitationsOutput</code> |
+| [`delete_ip_set`](#delete_ip_set) | <code>detector_id: str</code>, <code>ip_set_id: str</code> | <code>DeleteIPSetOutput</code> |
 | [`delete_malware_protection_plan`](#delete_malware_protection_plan) | <code>malware_protection_plan_id: str</code> | <code>None</code> |
-| [`delete_members`](#delete_members) | <code>detector_id: str</code>, <code>account_ids: _Sequence[str]</code> | <code>DeleteMembersResponse</code> |
-| [`delete_publishing_destination`](#delete_publishing_destination) | <code>detector_id: str</code>, <code>destination_id: str</code> | <code>DeletePublishingDestinationResponse</code> |
-| [`delete_threat_entity_set`](#delete_threat_entity_set) | <code>detector_id: str</code>, <code>threat_entity_set_id: str</code> | <code>DeleteThreatEntitySetResponse</code> |
-| [`delete_threat_intel_set`](#delete_threat_intel_set) | <code>detector_id: str</code>, <code>threat_intel_set_id: str</code> | <code>DeleteThreatIntelSetResponse</code> |
-| [`delete_trusted_entity_set`](#delete_trusted_entity_set) | <code>detector_id: str</code>, <code>trusted_entity_set_id: str</code> | <code>DeleteTrustedEntitySetResponse</code> |
-| [`describe_malware_scans`](#describe_malware_scans) | <code>detector_id: str</code> | <code>DescribeMalwareScansResponse</code> |
-| [`describe_organization_configuration`](#describe_organization_configuration) | <code>detector_id: str</code> | <code>DescribeOrganizationConfigurationResponse</code> |
-| [`describe_publishing_destination`](#describe_publishing_destination) | <code>detector_id: str</code>, <code>destination_id: str</code> | <code>DescribePublishingDestinationResponse</code> |
-| [`disable_organization_admin_account`](#disable_organization_admin_account) | <code>admin_account_id: str</code> | <code>DisableOrganizationAdminAccountResponse</code> |
-| [`disassociate_from_administrator_account`](#disassociate_from_administrator_account) | <code>detector_id: str</code> | <code>DisassociateFromAdministratorAccountResponse</code> |
-| [`disassociate_from_master_account`](#disassociate_from_master_account) | <code>detector_id: str</code> | <code>DisassociateFromMasterAccountResponse</code> |
-| [`disassociate_members`](#disassociate_members) | <code>detector_id: str</code>, <code>account_ids: _Sequence[str]</code> | <code>DisassociateMembersResponse</code> |
-| [`enable_organization_admin_account`](#enable_organization_admin_account) | <code>admin_account_id: str</code> | <code>EnableOrganizationAdminAccountResponse</code> |
-| [`get_administrator_account`](#get_administrator_account) | <code>detector_id: str</code> | <code>GetAdministratorAccountResponse</code> |
-| [`get_coverage_statistics`](#get_coverage_statistics) | <code>detector_id: str</code>, <code>statistics_type: _Sequence[CoverageStatisticsType]</code> | <code>GetCoverageStatisticsResponse</code> |
-| [`get_custom_detection_rule`](#get_custom_detection_rule) | <code>rule_id: str</code> | <code>GetCustomDetectionRuleResponse</code> |
-| [`get_custom_detection_rule_association`](#get_custom_detection_rule_association) | <code>rule_id: str</code>, <code>association_id: str</code> | <code>GetCustomDetectionRuleAssociationResponse</code> |
-| [`get_custom_detection_rule_org_configuration`](#get_custom_detection_rule_org_configuration) | <code>rule_id: str</code>, <code>mode: AssociationMode</code> | <code>GetCustomDetectionRuleOrgConfigurationResponse</code> |
-| [`get_detector`](#get_detector) | <code>detector_id: str</code> | <code>GetDetectorResponse</code> |
-| [`get_filter`](#get_filter) | <code>detector_id: str</code>, <code>filter_name: str</code> | <code>GetFilterResponse</code> |
-| [`get_findings`](#get_findings) | <code>detector_id: str</code>, <code>finding_ids: _Sequence[str]</code> | <code>GetFindingsResponse</code> |
-| [`get_findings_statistics`](#get_findings_statistics) | <code>detector_id: str</code> | <code>GetFindingsStatisticsResponse</code> |
-| [`get_investigation`](#get_investigation) | <code>detector_id: str</code>, <code>investigation_id: str</code> | <code>GetInvestigationResponse</code> |
-| [`get_invitations_count`](#get_invitations_count) | None | <code>GetInvitationsCountResponse</code> |
-| [`get_ip_set`](#get_ip_set) | <code>detector_id: str</code>, <code>ip_set_id: str</code> | <code>GetIPSetResponse</code> |
-| [`get_malware_protection_plan`](#get_malware_protection_plan) | <code>malware_protection_plan_id: str</code> | <code>GetMalwareProtectionPlanResponse</code> |
-| [`get_malware_scan`](#get_malware_scan) | <code>scan_id: str</code> | <code>GetMalwareScanResponse</code> |
-| [`get_malware_scan_settings`](#get_malware_scan_settings) | <code>detector_id: str</code> | <code>GetMalwareScanSettingsResponse</code> |
-| [`get_master_account`](#get_master_account) | <code>detector_id: str</code> | <code>GetMasterAccountResponse</code> |
-| [`get_member_detectors`](#get_member_detectors) | <code>detector_id: str</code>, <code>account_ids: _Sequence[str]</code> | <code>GetMemberDetectorsResponse</code> |
-| [`get_members`](#get_members) | <code>detector_id: str</code>, <code>account_ids: _Sequence[str]</code> | <code>GetMembersResponse</code> |
-| [`get_organization_statistics`](#get_organization_statistics) | None | <code>GetOrganizationStatisticsResponse</code> |
-| [`get_remaining_free_trial_days`](#get_remaining_free_trial_days) | <code>detector_id: str</code>, <code>account_ids: _Sequence[str]</code> | <code>GetRemainingFreeTrialDaysResponse</code> |
-| [`get_threat_entity_set`](#get_threat_entity_set) | <code>detector_id: str</code>, <code>threat_entity_set_id: str</code> | <code>GetThreatEntitySetResponse</code> |
-| [`get_threat_intel_set`](#get_threat_intel_set) | <code>detector_id: str</code>, <code>threat_intel_set_id: str</code> | <code>GetThreatIntelSetResponse</code> |
-| [`get_trusted_entity_set`](#get_trusted_entity_set) | <code>detector_id: str</code>, <code>trusted_entity_set_id: str</code> | <code>GetTrustedEntitySetResponse</code> |
-| [`get_usage_statistics`](#get_usage_statistics) | <code>detector_id: str</code>, <code>usage_statistic_type: UsageStatisticType</code>, <code>usage_criteria: UsageCriteria</code> | <code>GetUsageStatisticsResponse</code> |
-| [`invite_members`](#invite_members) | <code>detector_id: str</code>, <code>account_ids: _Sequence[str]</code> | <code>InviteMembersResponse</code> |
-| [`list_coverage`](#list_coverage) | <code>detector_id: str</code> | <code>ListCoverageResponse</code> |
-| [`list_custom_detection_rule_associations`](#list_custom_detection_rule_associations) | None | <code>ListCustomDetectionRuleAssociationsResponse</code> |
-| [`list_custom_detection_rule_org_configurations`](#list_custom_detection_rule_org_configurations) | None | <code>ListCustomDetectionRuleOrgConfigurationsResponse</code> |
-| [`list_custom_detection_rules`](#list_custom_detection_rules) | None | <code>ListCustomDetectionRulesResponse</code> |
-| [`list_detectors`](#list_detectors) | None | <code>ListDetectorsResponse</code> |
-| [`list_filters`](#list_filters) | <code>detector_id: str</code> | <code>ListFiltersResponse</code> |
-| [`list_findings`](#list_findings) | <code>detector_id: str</code> | <code>ListFindingsResponse</code> |
-| [`list_investigations`](#list_investigations) | <code>detector_id: str</code> | <code>ListInvestigationsResponse</code> |
-| [`list_invitations`](#list_invitations) | None | <code>ListInvitationsResponse</code> |
-| [`list_ip_sets`](#list_ip_sets) | <code>detector_id: str</code> | <code>ListIPSetsResponse</code> |
-| [`list_malware_protection_plans`](#list_malware_protection_plans) | None | <code>ListMalwareProtectionPlansResponse</code> |
-| [`list_malware_scans`](#list_malware_scans) | None | <code>ListMalwareScansResponse</code> |
-| [`list_members`](#list_members) | <code>detector_id: str</code> | <code>ListMembersResponse</code> |
-| [`list_organization_admin_accounts`](#list_organization_admin_accounts) | None | <code>ListOrganizationAdminAccountsResponse</code> |
-| [`list_publishing_destinations`](#list_publishing_destinations) | <code>detector_id: str</code> | <code>ListPublishingDestinationsResponse</code> |
-| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceResponse</code> |
-| [`list_threat_entity_sets`](#list_threat_entity_sets) | <code>detector_id: str</code> | <code>ListThreatEntitySetsResponse</code> |
-| [`list_threat_intel_sets`](#list_threat_intel_sets) | <code>detector_id: str</code> | <code>ListThreatIntelSetsResponse</code> |
-| [`list_trusted_entity_sets`](#list_trusted_entity_sets) | <code>detector_id: str</code> | <code>ListTrustedEntitySetsResponse</code> |
-| [`send_object_malware_scan`](#send_object_malware_scan) | None | <code>SendObjectMalwareScanResponse</code> |
-| [`start_malware_scan`](#start_malware_scan) | <code>resource_arn: str</code> | <code>StartMalwareScanResponse</code> |
-| [`start_monitoring_members`](#start_monitoring_members) | <code>detector_id: str</code>, <code>account_ids: _Sequence[str]</code> | <code>StartMonitoringMembersResponse</code> |
-| [`stop_monitoring_members`](#stop_monitoring_members) | <code>detector_id: str</code>, <code>account_ids: _Sequence[str]</code> | <code>StopMonitoringMembersResponse</code> |
-| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>TagResourceResponse</code> |
-| [`unarchive_findings`](#unarchive_findings) | <code>detector_id: str</code>, <code>finding_ids: _Sequence[str]</code> | <code>UnarchiveFindingsResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: _Sequence[str]</code> | <code>UntagResourceResponse</code> |
-| [`update_custom_detection_rule_association`](#update_custom_detection_rule_association) | <code>rule_id: str</code>, <code>association_id: str</code>, <code>mode: AssociationMode</code> | <code>UpdateCustomDetectionRuleAssociationResponse</code> |
-| [`update_custom_detection_rule_org_configuration`](#update_custom_detection_rule_org_configuration) | <code>rule_id: str</code>, <code>mode: AssociationMode</code> | <code>UpdateCustomDetectionRuleOrgConfigurationResponse</code> |
-| [`update_detector`](#update_detector) | <code>detector_id: str</code> | <code>UpdateDetectorResponse</code> |
-| [`update_filter`](#update_filter) | <code>detector_id: str</code>, <code>filter_name: str</code> | <code>UpdateFilterResponse</code> |
-| [`update_findings_feedback`](#update_findings_feedback) | <code>detector_id: str</code>, <code>finding_ids: _Sequence[str]</code>, <code>feedback: Feedback</code> | <code>UpdateFindingsFeedbackResponse</code> |
-| [`update_ip_set`](#update_ip_set) | <code>detector_id: str</code>, <code>ip_set_id: str</code> | <code>UpdateIPSetResponse</code> |
+| [`delete_members`](#delete_members) | <code>detector_id: str</code>, <code>account_ids: _Sequence[str]</code> | <code>DeleteMembersOutput</code> |
+| [`delete_publishing_destination`](#delete_publishing_destination) | <code>detector_id: str</code>, <code>destination_id: str</code> | <code>DeletePublishingDestinationOutput</code> |
+| [`delete_threat_entity_set`](#delete_threat_entity_set) | <code>detector_id: str</code>, <code>threat_entity_set_id: str</code> | <code>DeleteThreatEntitySetOutput</code> |
+| [`delete_threat_intel_set`](#delete_threat_intel_set) | <code>detector_id: str</code>, <code>threat_intel_set_id: str</code> | <code>DeleteThreatIntelSetOutput</code> |
+| [`delete_trusted_entity_set`](#delete_trusted_entity_set) | <code>detector_id: str</code>, <code>trusted_entity_set_id: str</code> | <code>DeleteTrustedEntitySetOutput</code> |
+| [`describe_malware_scans`](#describe_malware_scans) | <code>detector_id: str</code> | <code>DescribeMalwareScansOutput</code> |
+| [`describe_organization_configuration`](#describe_organization_configuration) | <code>detector_id: str</code> | <code>DescribeOrganizationConfigurationOutput</code> |
+| [`describe_publishing_destination`](#describe_publishing_destination) | <code>detector_id: str</code>, <code>destination_id: str</code> | <code>DescribePublishingDestinationOutput</code> |
+| [`disable_organization_admin_account`](#disable_organization_admin_account) | <code>admin_account_id: str</code> | <code>DisableOrganizationAdminAccountOutput</code> |
+| [`disassociate_from_administrator_account`](#disassociate_from_administrator_account) | <code>detector_id: str</code> | <code>DisassociateFromAdministratorAccountOutput</code> |
+| [`disassociate_from_master_account`](#disassociate_from_master_account) | <code>detector_id: str</code> | <code>DisassociateFromMasterAccountOutput</code> |
+| [`disassociate_members`](#disassociate_members) | <code>detector_id: str</code>, <code>account_ids: _Sequence[str]</code> | <code>DisassociateMembersOutput</code> |
+| [`enable_organization_admin_account`](#enable_organization_admin_account) | <code>admin_account_id: str</code> | <code>EnableOrganizationAdminAccountOutput</code> |
+| [`get_administrator_account`](#get_administrator_account) | <code>detector_id: str</code> | <code>GetAdministratorAccountOutput</code> |
+| [`get_coverage_statistics`](#get_coverage_statistics) | <code>detector_id: str</code>, <code>statistics_type: _Sequence[CoverageStatisticsType]</code> | <code>GetCoverageStatisticsOutput</code> |
+| [`get_custom_detection_rule`](#get_custom_detection_rule) | <code>rule_id: str</code> | <code>GetCustomDetectionRuleOutput</code> |
+| [`get_custom_detection_rule_association`](#get_custom_detection_rule_association) | <code>rule_id: str</code>, <code>association_id: str</code> | <code>GetCustomDetectionRuleAssociationOutput</code> |
+| [`get_custom_detection_rule_org_configuration`](#get_custom_detection_rule_org_configuration) | <code>rule_id: str</code>, <code>mode: AssociationMode</code> | <code>GetCustomDetectionRuleOrgConfigurationOutput</code> |
+| [`get_detector`](#get_detector) | <code>detector_id: str</code> | <code>GetDetectorOutput</code> |
+| [`get_filter`](#get_filter) | <code>detector_id: str</code>, <code>filter_name: str</code> | <code>GetFilterOutput</code> |
+| [`get_findings`](#get_findings) | <code>detector_id: str</code>, <code>finding_ids: _Sequence[str]</code> | <code>GetFindingsOutput</code> |
+| [`get_findings_statistics`](#get_findings_statistics) | <code>detector_id: str</code> | <code>GetFindingsStatisticsOutput</code> |
+| [`get_investigation`](#get_investigation) | <code>detector_id: str</code>, <code>investigation_id: str</code> | <code>GetInvestigationOutput</code> |
+| [`get_invitations_count`](#get_invitations_count) | None | <code>GetInvitationsCountOutput</code> |
+| [`get_ip_set`](#get_ip_set) | <code>detector_id: str</code>, <code>ip_set_id: str</code> | <code>GetIPSetOutput</code> |
+| [`get_malware_protection_plan`](#get_malware_protection_plan) | <code>malware_protection_plan_id: str</code> | <code>GetMalwareProtectionPlanOutput</code> |
+| [`get_malware_scan`](#get_malware_scan) | <code>scan_id: str</code> | <code>GetMalwareScanOutput</code> |
+| [`get_malware_scan_settings`](#get_malware_scan_settings) | <code>detector_id: str</code> | <code>GetMalwareScanSettingsOutput</code> |
+| [`get_master_account`](#get_master_account) | <code>detector_id: str</code> | <code>GetMasterAccountOutput</code> |
+| [`get_member_detectors`](#get_member_detectors) | <code>detector_id: str</code>, <code>account_ids: _Sequence[str]</code> | <code>GetMemberDetectorsOutput</code> |
+| [`get_members`](#get_members) | <code>detector_id: str</code>, <code>account_ids: _Sequence[str]</code> | <code>GetMembersOutput</code> |
+| [`get_organization_statistics`](#get_organization_statistics) | None | <code>GetOrganizationStatisticsOutput</code> |
+| [`get_remaining_free_trial_days`](#get_remaining_free_trial_days) | <code>detector_id: str</code>, <code>account_ids: _Sequence[str]</code> | <code>GetRemainingFreeTrialDaysOutput</code> |
+| [`get_threat_entity_set`](#get_threat_entity_set) | <code>detector_id: str</code>, <code>threat_entity_set_id: str</code> | <code>GetThreatEntitySetOutput</code> |
+| [`get_threat_intel_set`](#get_threat_intel_set) | <code>detector_id: str</code>, <code>threat_intel_set_id: str</code> | <code>GetThreatIntelSetOutput</code> |
+| [`get_trusted_entity_set`](#get_trusted_entity_set) | <code>detector_id: str</code>, <code>trusted_entity_set_id: str</code> | <code>GetTrustedEntitySetOutput</code> |
+| [`get_usage_statistics`](#get_usage_statistics) | <code>detector_id: str</code>, <code>usage_statistic_type: UsageStatisticType</code>, <code>usage_criteria: UsageCriteria</code> | <code>GetUsageStatisticsOutput</code> |
+| [`invite_members`](#invite_members) | <code>detector_id: str</code>, <code>account_ids: _Sequence[str]</code> | <code>InviteMembersOutput</code> |
+| [`list_coverage`](#list_coverage) | <code>detector_id: str</code> | <code>ListCoverageOutput</code> |
+| [`list_custom_detection_rule_associations`](#list_custom_detection_rule_associations) | None | <code>ListCustomDetectionRuleAssociationsOutput</code> |
+| [`list_custom_detection_rule_org_configurations`](#list_custom_detection_rule_org_configurations) | None | <code>ListCustomDetectionRuleOrgConfigurationsOutput</code> |
+| [`list_custom_detection_rules`](#list_custom_detection_rules) | None | <code>ListCustomDetectionRulesOutput</code> |
+| [`list_detectors`](#list_detectors) | None | <code>ListDetectorsOutput</code> |
+| [`list_filters`](#list_filters) | <code>detector_id: str</code> | <code>ListFiltersOutput</code> |
+| [`list_findings`](#list_findings) | <code>detector_id: str</code> | <code>ListFindingsOutput</code> |
+| [`list_investigations`](#list_investigations) | <code>detector_id: str</code> | <code>ListInvestigationsOutput</code> |
+| [`list_invitations`](#list_invitations) | None | <code>ListInvitationsOutput</code> |
+| [`list_ip_sets`](#list_ip_sets) | <code>detector_id: str</code> | <code>ListIPSetsOutput</code> |
+| [`list_malware_protection_plans`](#list_malware_protection_plans) | None | <code>ListMalwareProtectionPlansOutput</code> |
+| [`list_malware_scans`](#list_malware_scans) | None | <code>ListMalwareScansOutput</code> |
+| [`list_members`](#list_members) | <code>detector_id: str</code> | <code>ListMembersOutput</code> |
+| [`list_organization_admin_accounts`](#list_organization_admin_accounts) | None | <code>ListOrganizationAdminAccountsOutput</code> |
+| [`list_publishing_destinations`](#list_publishing_destinations) | <code>detector_id: str</code> | <code>ListPublishingDestinationsOutput</code> |
+| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceOutput</code> |
+| [`list_threat_entity_sets`](#list_threat_entity_sets) | <code>detector_id: str</code> | <code>ListThreatEntitySetsOutput</code> |
+| [`list_threat_intel_sets`](#list_threat_intel_sets) | <code>detector_id: str</code> | <code>ListThreatIntelSetsOutput</code> |
+| [`list_trusted_entity_sets`](#list_trusted_entity_sets) | <code>detector_id: str</code> | <code>ListTrustedEntitySetsOutput</code> |
+| [`send_object_malware_scan`](#send_object_malware_scan) | None | <code>SendObjectMalwareScanOutput</code> |
+| [`start_malware_scan`](#start_malware_scan) | <code>resource_arn: str</code> | <code>StartMalwareScanOutput</code> |
+| [`start_monitoring_members`](#start_monitoring_members) | <code>detector_id: str</code>, <code>account_ids: _Sequence[str]</code> | <code>StartMonitoringMembersOutput</code> |
+| [`stop_monitoring_members`](#stop_monitoring_members) | <code>detector_id: str</code>, <code>account_ids: _Sequence[str]</code> | <code>StopMonitoringMembersOutput</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>TagResourceOutput</code> |
+| [`unarchive_findings`](#unarchive_findings) | <code>detector_id: str</code>, <code>finding_ids: _Sequence[str]</code> | <code>UnarchiveFindingsOutput</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: _Sequence[str]</code> | <code>UntagResourceOutput</code> |
+| [`update_custom_detection_rule_association`](#update_custom_detection_rule_association) | <code>rule_id: str</code>, <code>association_id: str</code>, <code>mode: AssociationMode</code> | <code>UpdateCustomDetectionRuleAssociationOutput</code> |
+| [`update_custom_detection_rule_org_configuration`](#update_custom_detection_rule_org_configuration) | <code>rule_id: str</code>, <code>mode: AssociationMode</code> | <code>UpdateCustomDetectionRuleOrgConfigurationOutput</code> |
+| [`update_detector`](#update_detector) | <code>detector_id: str</code> | <code>UpdateDetectorOutput</code> |
+| [`update_filter`](#update_filter) | <code>detector_id: str</code>, <code>filter_name: str</code> | <code>UpdateFilterOutput</code> |
+| [`update_findings_feedback`](#update_findings_feedback) | <code>detector_id: str</code>, <code>finding_ids: _Sequence[str]</code>, <code>feedback: Feedback</code> | <code>UpdateFindingsFeedbackOutput</code> |
+| [`update_ip_set`](#update_ip_set) | <code>detector_id: str</code>, <code>ip_set_id: str</code> | <code>UpdateIPSetOutput</code> |
 | [`update_malware_protection_plan`](#update_malware_protection_plan) | <code>malware_protection_plan_id: str</code> | <code>None</code> |
-| [`update_malware_scan_settings`](#update_malware_scan_settings) | <code>detector_id: str</code> | <code>UpdateMalwareScanSettingsResponse</code> |
-| [`update_member_detectors`](#update_member_detectors) | <code>detector_id: str</code>, <code>account_ids: _Sequence[str]</code> | <code>UpdateMemberDetectorsResponse</code> |
-| [`update_organization_configuration`](#update_organization_configuration) | <code>detector_id: str</code> | <code>UpdateOrganizationConfigurationResponse</code> |
-| [`update_publishing_destination`](#update_publishing_destination) | <code>detector_id: str</code>, <code>destination_id: str</code> | <code>UpdatePublishingDestinationResponse</code> |
-| [`update_threat_entity_set`](#update_threat_entity_set) | <code>detector_id: str</code>, <code>threat_entity_set_id: str</code> | <code>UpdateThreatEntitySetResponse</code> |
-| [`update_threat_intel_set`](#update_threat_intel_set) | <code>detector_id: str</code>, <code>threat_intel_set_id: str</code> | <code>UpdateThreatIntelSetResponse</code> |
-| [`update_trusted_entity_set`](#update_trusted_entity_set) | <code>detector_id: str</code>, <code>trusted_entity_set_id: str</code> | <code>UpdateTrustedEntitySetResponse</code> |
+| [`update_malware_scan_settings`](#update_malware_scan_settings) | <code>detector_id: str</code> | <code>UpdateMalwareScanSettingsOutput</code> |
+| [`update_member_detectors`](#update_member_detectors) | <code>detector_id: str</code>, <code>account_ids: _Sequence[str]</code> | <code>UpdateMemberDetectorsOutput</code> |
+| [`update_organization_configuration`](#update_organization_configuration) | <code>detector_id: str</code> | <code>UpdateOrganizationConfigurationOutput</code> |
+| [`update_publishing_destination`](#update_publishing_destination) | <code>detector_id: str</code>, <code>destination_id: str</code> | <code>UpdatePublishingDestinationOutput</code> |
+| [`update_threat_entity_set`](#update_threat_entity_set) | <code>detector_id: str</code>, <code>threat_entity_set_id: str</code> | <code>UpdateThreatEntitySetOutput</code> |
+| [`update_threat_intel_set`](#update_threat_intel_set) | <code>detector_id: str</code>, <code>threat_intel_set_id: str</code> | <code>UpdateThreatIntelSetOutput</code> |
+| [`update_trusted_entity_set`](#update_trusted_entity_set) | <code>detector_id: str</code>, <code>trusted_entity_set_id: str</code> | <code>UpdateTrustedEntitySetOutput</code> |
 
 ## Complete signatures
 
@@ -197,7 +197,7 @@ async def accept_administrator_invitation(
     detector_id: str,
     administrator_id: str,
     invitation_id: str,
-) -> AcceptAdministratorInvitationResponse: ...
+) -> AcceptAdministratorInvitationOutput: ...
 ```
 
 
@@ -209,7 +209,7 @@ async def accept_invitation(
     detector_id: str,
     master_id: str,
     invitation_id: str,
-) -> AcceptInvitationResponse: ...
+) -> AcceptInvitationOutput: ...
 ```
 
 
@@ -220,7 +220,7 @@ async def archive_findings(
     *,
     detector_id: str,
     finding_ids: _Sequence[str],
-) -> ArchiveFindingsResponse: ...
+) -> ArchiveFindingsOutput: ...
 ```
 
 
@@ -233,7 +233,7 @@ async def create_custom_detection_rule_association(
     mode: AssociationMode,
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateCustomDetectionRuleAssociationResponse: ...
+) -> CreateCustomDetectionRuleAssociationOutput: ...
 ```
 
 
@@ -247,7 +247,7 @@ async def create_custom_detection_rule_org_configuration(
     include_account_ids: _Sequence[str] | None = None,
     exclude_account_ids: _Sequence[str] | None = None,
     client_token: str | None = None,
-) -> CreateCustomDetectionRuleOrgConfigurationResponse: ...
+) -> CreateCustomDetectionRuleOrgConfigurationOutput: ...
 ```
 
 
@@ -262,7 +262,7 @@ async def create_detector(
     data_sources: DataSourceConfigurations | None = None,
     tags: dict[str, str] | None = None,
     features: _Sequence[DetectorFeatureConfiguration] | None = None,
-) -> CreateDetectorResponse: ...
+) -> CreateDetectorOutput: ...
 ```
 
 
@@ -279,7 +279,7 @@ async def create_filter(
     rank: int | None = None,
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateFilterResponse: ...
+) -> CreateFilterOutput: ...
 ```
 
 
@@ -291,7 +291,7 @@ async def create_investigation(
     detector_id: str,
     trigger_prompt: str,
     client_token: str | None = None,
-) -> CreateInvestigationResponse: ...
+) -> CreateInvestigationOutput: ...
 ```
 
 
@@ -308,7 +308,7 @@ async def create_ip_set(
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
     expected_bucket_owner: str | None = None,
-) -> CreateIPSetResponse: ...
+) -> CreateIPSetOutput: ...
 ```
 
 
@@ -322,7 +322,7 @@ async def create_malware_protection_plan(
     client_token: str | None = None,
     actions: MalwareProtectionPlanActions | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateMalwareProtectionPlanResponse: ...
+) -> CreateMalwareProtectionPlanOutput: ...
 ```
 
 
@@ -333,7 +333,7 @@ async def create_members(
     *,
     detector_id: str,
     account_details: _Sequence[AccountDetail],
-) -> CreateMembersResponse: ...
+) -> CreateMembersOutput: ...
 ```
 
 
@@ -347,7 +347,7 @@ async def create_publishing_destination(
     destination_properties: DestinationProperties,
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
-) -> CreatePublishingDestinationResponse: ...
+) -> CreatePublishingDestinationOutput: ...
 ```
 
 
@@ -358,7 +358,7 @@ async def create_sample_findings(
     *,
     detector_id: str,
     finding_types: _Sequence[str] | None = None,
-) -> CreateSampleFindingsResponse: ...
+) -> CreateSampleFindingsOutput: ...
 ```
 
 
@@ -375,7 +375,7 @@ async def create_threat_entity_set(
     expected_bucket_owner: str | None = None,
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateThreatEntitySetResponse: ...
+) -> CreateThreatEntitySetOutput: ...
 ```
 
 
@@ -392,7 +392,7 @@ async def create_threat_intel_set(
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
     expected_bucket_owner: str | None = None,
-) -> CreateThreatIntelSetResponse: ...
+) -> CreateThreatIntelSetOutput: ...
 ```
 
 
@@ -409,7 +409,7 @@ async def create_trusted_entity_set(
     expected_bucket_owner: str | None = None,
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateTrustedEntitySetResponse: ...
+) -> CreateTrustedEntitySetOutput: ...
 ```
 
 
@@ -419,7 +419,7 @@ async def create_trusted_entity_set(
 async def decline_invitations(
     *,
     account_ids: _Sequence[str],
-) -> DeclineInvitationsResponse: ...
+) -> DeclineInvitationsOutput: ...
 ```
 
 
@@ -430,7 +430,7 @@ async def delete_custom_detection_rule_association(
     *,
     rule_id: str,
     association_id: str,
-) -> DeleteCustomDetectionRuleAssociationResponse: ...
+) -> DeleteCustomDetectionRuleAssociationOutput: ...
 ```
 
 
@@ -441,7 +441,7 @@ async def delete_custom_detection_rule_org_configuration(
     *,
     rule_id: str,
     mode: AssociationMode,
-) -> DeleteCustomDetectionRuleOrgConfigurationResponse: ...
+) -> DeleteCustomDetectionRuleOrgConfigurationOutput: ...
 ```
 
 
@@ -451,7 +451,7 @@ async def delete_custom_detection_rule_org_configuration(
 async def delete_detector(
     *,
     detector_id: str,
-) -> DeleteDetectorResponse: ...
+) -> DeleteDetectorOutput: ...
 ```
 
 
@@ -462,7 +462,7 @@ async def delete_filter(
     *,
     detector_id: str,
     filter_name: str,
-) -> DeleteFilterResponse: ...
+) -> DeleteFilterOutput: ...
 ```
 
 
@@ -472,7 +472,7 @@ async def delete_filter(
 async def delete_invitations(
     *,
     account_ids: _Sequence[str],
-) -> DeleteInvitationsResponse: ...
+) -> DeleteInvitationsOutput: ...
 ```
 
 
@@ -483,7 +483,7 @@ async def delete_ip_set(
     *,
     detector_id: str,
     ip_set_id: str,
-) -> DeleteIPSetResponse: ...
+) -> DeleteIPSetOutput: ...
 ```
 
 
@@ -504,7 +504,7 @@ async def delete_members(
     *,
     detector_id: str,
     account_ids: _Sequence[str],
-) -> DeleteMembersResponse: ...
+) -> DeleteMembersOutput: ...
 ```
 
 
@@ -515,7 +515,7 @@ async def delete_publishing_destination(
     *,
     detector_id: str,
     destination_id: str,
-) -> DeletePublishingDestinationResponse: ...
+) -> DeletePublishingDestinationOutput: ...
 ```
 
 
@@ -526,7 +526,7 @@ async def delete_threat_entity_set(
     *,
     detector_id: str,
     threat_entity_set_id: str,
-) -> DeleteThreatEntitySetResponse: ...
+) -> DeleteThreatEntitySetOutput: ...
 ```
 
 
@@ -537,7 +537,7 @@ async def delete_threat_intel_set(
     *,
     detector_id: str,
     threat_intel_set_id: str,
-) -> DeleteThreatIntelSetResponse: ...
+) -> DeleteThreatIntelSetOutput: ...
 ```
 
 
@@ -548,7 +548,7 @@ async def delete_trusted_entity_set(
     *,
     detector_id: str,
     trusted_entity_set_id: str,
-) -> DeleteTrustedEntitySetResponse: ...
+) -> DeleteTrustedEntitySetOutput: ...
 ```
 
 
@@ -562,7 +562,7 @@ async def describe_malware_scans(
     max_results: int | None = None,
     filter_criteria: FilterCriteria | None = None,
     sort_criteria: SortCriteria | None = None,
-) -> DescribeMalwareScansResponse: ...
+) -> DescribeMalwareScansOutput: ...
 ```
 
 Also available as `client.paginators.describe_malware_scans(...)`, returning an
@@ -577,7 +577,7 @@ async def describe_organization_configuration(
     detector_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribeOrganizationConfigurationResponse: ...
+) -> DescribeOrganizationConfigurationOutput: ...
 ```
 
 Also available as `client.paginators.describe_organization_configuration(...)`, returning an
@@ -591,7 +591,7 @@ async def describe_publishing_destination(
     *,
     detector_id: str,
     destination_id: str,
-) -> DescribePublishingDestinationResponse: ...
+) -> DescribePublishingDestinationOutput: ...
 ```
 
 
@@ -601,7 +601,7 @@ async def describe_publishing_destination(
 async def disable_organization_admin_account(
     *,
     admin_account_id: str,
-) -> DisableOrganizationAdminAccountResponse: ...
+) -> DisableOrganizationAdminAccountOutput: ...
 ```
 
 
@@ -611,7 +611,7 @@ async def disable_organization_admin_account(
 async def disassociate_from_administrator_account(
     *,
     detector_id: str,
-) -> DisassociateFromAdministratorAccountResponse: ...
+) -> DisassociateFromAdministratorAccountOutput: ...
 ```
 
 
@@ -621,7 +621,7 @@ async def disassociate_from_administrator_account(
 async def disassociate_from_master_account(
     *,
     detector_id: str,
-) -> DisassociateFromMasterAccountResponse: ...
+) -> DisassociateFromMasterAccountOutput: ...
 ```
 
 
@@ -632,7 +632,7 @@ async def disassociate_members(
     *,
     detector_id: str,
     account_ids: _Sequence[str],
-) -> DisassociateMembersResponse: ...
+) -> DisassociateMembersOutput: ...
 ```
 
 
@@ -642,7 +642,7 @@ async def disassociate_members(
 async def enable_organization_admin_account(
     *,
     admin_account_id: str,
-) -> EnableOrganizationAdminAccountResponse: ...
+) -> EnableOrganizationAdminAccountOutput: ...
 ```
 
 
@@ -652,7 +652,7 @@ async def enable_organization_admin_account(
 async def get_administrator_account(
     *,
     detector_id: str,
-) -> GetAdministratorAccountResponse: ...
+) -> GetAdministratorAccountOutput: ...
 ```
 
 
@@ -664,7 +664,7 @@ async def get_coverage_statistics(
     detector_id: str,
     statistics_type: _Sequence[CoverageStatisticsType],
     filter_criteria: CoverageFilterCriteria | None = None,
-) -> GetCoverageStatisticsResponse: ...
+) -> GetCoverageStatisticsOutput: ...
 ```
 
 
@@ -674,7 +674,7 @@ async def get_coverage_statistics(
 async def get_custom_detection_rule(
     *,
     rule_id: str,
-) -> GetCustomDetectionRuleResponse: ...
+) -> GetCustomDetectionRuleOutput: ...
 ```
 
 
@@ -685,7 +685,7 @@ async def get_custom_detection_rule_association(
     *,
     rule_id: str,
     association_id: str,
-) -> GetCustomDetectionRuleAssociationResponse: ...
+) -> GetCustomDetectionRuleAssociationOutput: ...
 ```
 
 
@@ -696,7 +696,7 @@ async def get_custom_detection_rule_org_configuration(
     *,
     rule_id: str,
     mode: AssociationMode,
-) -> GetCustomDetectionRuleOrgConfigurationResponse: ...
+) -> GetCustomDetectionRuleOrgConfigurationOutput: ...
 ```
 
 
@@ -706,7 +706,7 @@ async def get_custom_detection_rule_org_configuration(
 async def get_detector(
     *,
     detector_id: str,
-) -> GetDetectorResponse: ...
+) -> GetDetectorOutput: ...
 ```
 
 
@@ -717,7 +717,7 @@ async def get_filter(
     *,
     detector_id: str,
     filter_name: str,
-) -> GetFilterResponse: ...
+) -> GetFilterOutput: ...
 ```
 
 
@@ -729,7 +729,7 @@ async def get_findings(
     detector_id: str,
     finding_ids: _Sequence[str],
     sort_criteria: SortCriteria | None = None,
-) -> GetFindingsResponse: ...
+) -> GetFindingsOutput: ...
 ```
 
 
@@ -744,7 +744,7 @@ async def get_findings_statistics(
     group_by: GroupByType | None = None,
     order_by: OrderBy | None = None,
     max_results: int | None = None,
-) -> GetFindingsStatisticsResponse: ...
+) -> GetFindingsStatisticsOutput: ...
 ```
 
 
@@ -755,14 +755,14 @@ async def get_investigation(
     *,
     detector_id: str,
     investigation_id: str,
-) -> GetInvestigationResponse: ...
+) -> GetInvestigationOutput: ...
 ```
 
 
 ### get_invitations_count
 
 ```python
-async def get_invitations_count() -> GetInvitationsCountResponse: ...
+async def get_invitations_count() -> GetInvitationsCountOutput: ...
 ```
 
 
@@ -773,7 +773,7 @@ async def get_ip_set(
     *,
     detector_id: str,
     ip_set_id: str,
-) -> GetIPSetResponse: ...
+) -> GetIPSetOutput: ...
 ```
 
 
@@ -783,7 +783,7 @@ async def get_ip_set(
 async def get_malware_protection_plan(
     *,
     malware_protection_plan_id: str,
-) -> GetMalwareProtectionPlanResponse: ...
+) -> GetMalwareProtectionPlanOutput: ...
 ```
 
 
@@ -793,7 +793,7 @@ async def get_malware_protection_plan(
 async def get_malware_scan(
     *,
     scan_id: str,
-) -> GetMalwareScanResponse: ...
+) -> GetMalwareScanOutput: ...
 ```
 
 
@@ -803,7 +803,7 @@ async def get_malware_scan(
 async def get_malware_scan_settings(
     *,
     detector_id: str,
-) -> GetMalwareScanSettingsResponse: ...
+) -> GetMalwareScanSettingsOutput: ...
 ```
 
 
@@ -813,7 +813,7 @@ async def get_malware_scan_settings(
 async def get_master_account(
     *,
     detector_id: str,
-) -> GetMasterAccountResponse: ...
+) -> GetMasterAccountOutput: ...
 ```
 
 
@@ -824,7 +824,7 @@ async def get_member_detectors(
     *,
     detector_id: str,
     account_ids: _Sequence[str],
-) -> GetMemberDetectorsResponse: ...
+) -> GetMemberDetectorsOutput: ...
 ```
 
 
@@ -835,14 +835,14 @@ async def get_members(
     *,
     detector_id: str,
     account_ids: _Sequence[str],
-) -> GetMembersResponse: ...
+) -> GetMembersOutput: ...
 ```
 
 
 ### get_organization_statistics
 
 ```python
-async def get_organization_statistics() -> GetOrganizationStatisticsResponse: ...
+async def get_organization_statistics() -> GetOrganizationStatisticsOutput: ...
 ```
 
 
@@ -853,7 +853,7 @@ async def get_remaining_free_trial_days(
     *,
     detector_id: str,
     account_ids: _Sequence[str],
-) -> GetRemainingFreeTrialDaysResponse: ...
+) -> GetRemainingFreeTrialDaysOutput: ...
 ```
 
 
@@ -864,7 +864,7 @@ async def get_threat_entity_set(
     *,
     detector_id: str,
     threat_entity_set_id: str,
-) -> GetThreatEntitySetResponse: ...
+) -> GetThreatEntitySetOutput: ...
 ```
 
 
@@ -875,7 +875,7 @@ async def get_threat_intel_set(
     *,
     detector_id: str,
     threat_intel_set_id: str,
-) -> GetThreatIntelSetResponse: ...
+) -> GetThreatIntelSetOutput: ...
 ```
 
 
@@ -886,7 +886,7 @@ async def get_trusted_entity_set(
     *,
     detector_id: str,
     trusted_entity_set_id: str,
-) -> GetTrustedEntitySetResponse: ...
+) -> GetTrustedEntitySetOutput: ...
 ```
 
 
@@ -901,7 +901,7 @@ async def get_usage_statistics(
     unit: str | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> GetUsageStatisticsResponse: ...
+) -> GetUsageStatisticsOutput: ...
 ```
 
 Also available as `client.paginators.get_usage_statistics(...)`, returning an
@@ -917,7 +917,7 @@ async def invite_members(
     account_ids: _Sequence[str],
     disable_email_notification: bool | None = None,
     message: str | None = None,
-) -> InviteMembersResponse: ...
+) -> InviteMembersOutput: ...
 ```
 
 
@@ -931,7 +931,7 @@ async def list_coverage(
     max_results: int | None = None,
     filter_criteria: CoverageFilterCriteria | None = None,
     sort_criteria: CoverageSortCriteria | None = None,
-) -> ListCoverageResponse: ...
+) -> ListCoverageOutput: ...
 ```
 
 Also available as `client.paginators.list_coverage(...)`, returning an
@@ -947,7 +947,7 @@ async def list_custom_detection_rule_associations(
     next_token: str | None = None,
     rule_id: str | None = None,
     mode: AssociationMode | None = None,
-) -> ListCustomDetectionRuleAssociationsResponse: ...
+) -> ListCustomDetectionRuleAssociationsOutput: ...
 ```
 
 Also available as `client.paginators.list_custom_detection_rule_associations(...)`, returning an
@@ -962,7 +962,7 @@ async def list_custom_detection_rule_org_configurations(
     max_results: int | None = None,
     next_token: str | None = None,
     status: DetectionRuleConfigurationStatus | None = None,
-) -> ListCustomDetectionRuleOrgConfigurationsResponse: ...
+) -> ListCustomDetectionRuleOrgConfigurationsOutput: ...
 ```
 
 Also available as `client.paginators.list_custom_detection_rule_org_configurations(...)`, returning an
@@ -977,7 +977,7 @@ async def list_custom_detection_rules(
     max_results: int | None = None,
     next_token: str | None = None,
     filters: _Sequence[DetectionRuleFilter] | None = None,
-) -> ListCustomDetectionRulesResponse: ...
+) -> ListCustomDetectionRulesOutput: ...
 ```
 
 Also available as `client.paginators.list_custom_detection_rules(...)`, returning an
@@ -991,7 +991,7 @@ async def list_detectors(
     *,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListDetectorsResponse: ...
+) -> ListDetectorsOutput: ...
 ```
 
 Also available as `client.paginators.list_detectors(...)`, returning an
@@ -1006,7 +1006,7 @@ async def list_filters(
     detector_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListFiltersResponse: ...
+) -> ListFiltersOutput: ...
 ```
 
 Also available as `client.paginators.list_filters(...)`, returning an
@@ -1023,7 +1023,7 @@ async def list_findings(
     sort_criteria: SortCriteria | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListFindingsResponse: ...
+) -> ListFindingsOutput: ...
 ```
 
 Also available as `client.paginators.list_findings(...)`, returning an
@@ -1039,7 +1039,7 @@ async def list_investigations(
     sort_criteria: InvestigationSortCriteria | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListInvestigationsResponse: ...
+) -> ListInvestigationsOutput: ...
 ```
 
 Also available as `client.paginators.list_investigations(...)`, returning an
@@ -1053,7 +1053,7 @@ async def list_invitations(
     *,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListInvitationsResponse: ...
+) -> ListInvitationsOutput: ...
 ```
 
 Also available as `client.paginators.list_invitations(...)`, returning an
@@ -1068,7 +1068,7 @@ async def list_ip_sets(
     detector_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListIPSetsResponse: ...
+) -> ListIPSetsOutput: ...
 ```
 
 Also available as `client.paginators.list_ip_sets(...)`, returning an
@@ -1081,7 +1081,7 @@ async iterator of the response type above.
 async def list_malware_protection_plans(
     *,
     next_token: str | None = None,
-) -> ListMalwareProtectionPlansResponse: ...
+) -> ListMalwareProtectionPlansOutput: ...
 ```
 
 
@@ -1094,7 +1094,7 @@ async def list_malware_scans(
     next_token: str | None = None,
     filter_criteria: ListMalwareScansFilterCriteria | None = None,
     sort_criteria: SortCriteria | None = None,
-) -> ListMalwareScansResponse: ...
+) -> ListMalwareScansOutput: ...
 ```
 
 Also available as `client.paginators.list_malware_scans(...)`, returning an
@@ -1110,7 +1110,7 @@ async def list_members(
     max_results: int | None = None,
     next_token: str | None = None,
     only_associated: str | None = None,
-) -> ListMembersResponse: ...
+) -> ListMembersOutput: ...
 ```
 
 Also available as `client.paginators.list_members(...)`, returning an
@@ -1124,7 +1124,7 @@ async def list_organization_admin_accounts(
     *,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListOrganizationAdminAccountsResponse: ...
+) -> ListOrganizationAdminAccountsOutput: ...
 ```
 
 Also available as `client.paginators.list_organization_admin_accounts(...)`, returning an
@@ -1139,7 +1139,7 @@ async def list_publishing_destinations(
     detector_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListPublishingDestinationsResponse: ...
+) -> ListPublishingDestinationsOutput: ...
 ```
 
 Also available as `client.paginators.list_publishing_destinations(...)`, returning an
@@ -1152,7 +1152,7 @@ async iterator of the response type above.
 async def list_tags_for_resource(
     *,
     resource_arn: str,
-) -> ListTagsForResourceResponse: ...
+) -> ListTagsForResourceOutput: ...
 ```
 
 
@@ -1164,7 +1164,7 @@ async def list_threat_entity_sets(
     detector_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListThreatEntitySetsResponse: ...
+) -> ListThreatEntitySetsOutput: ...
 ```
 
 Also available as `client.paginators.list_threat_entity_sets(...)`, returning an
@@ -1179,7 +1179,7 @@ async def list_threat_intel_sets(
     detector_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListThreatIntelSetsResponse: ...
+) -> ListThreatIntelSetsOutput: ...
 ```
 
 Also available as `client.paginators.list_threat_intel_sets(...)`, returning an
@@ -1194,7 +1194,7 @@ async def list_trusted_entity_sets(
     detector_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListTrustedEntitySetsResponse: ...
+) -> ListTrustedEntitySetsOutput: ...
 ```
 
 Also available as `client.paginators.list_trusted_entity_sets(...)`, returning an
@@ -1207,7 +1207,7 @@ async iterator of the response type above.
 async def send_object_malware_scan(
     *,
     s3_object: S3ObjectForSendObjectMalwareScan | None = None,
-) -> SendObjectMalwareScanResponse: ...
+) -> SendObjectMalwareScanOutput: ...
 ```
 
 
@@ -1219,7 +1219,7 @@ async def start_malware_scan(
     resource_arn: str,
     client_token: str | None = None,
     scan_configuration: StartMalwareScanConfiguration | None = None,
-) -> StartMalwareScanResponse: ...
+) -> StartMalwareScanOutput: ...
 ```
 
 
@@ -1230,7 +1230,7 @@ async def start_monitoring_members(
     *,
     detector_id: str,
     account_ids: _Sequence[str],
-) -> StartMonitoringMembersResponse: ...
+) -> StartMonitoringMembersOutput: ...
 ```
 
 
@@ -1241,7 +1241,7 @@ async def stop_monitoring_members(
     *,
     detector_id: str,
     account_ids: _Sequence[str],
-) -> StopMonitoringMembersResponse: ...
+) -> StopMonitoringMembersOutput: ...
 ```
 
 
@@ -1252,7 +1252,7 @@ async def tag_resource(
     *,
     resource_arn: str,
     tags: dict[str, str],
-) -> TagResourceResponse: ...
+) -> TagResourceOutput: ...
 ```
 
 
@@ -1263,7 +1263,7 @@ async def unarchive_findings(
     *,
     detector_id: str,
     finding_ids: _Sequence[str],
-) -> UnarchiveFindingsResponse: ...
+) -> UnarchiveFindingsOutput: ...
 ```
 
 
@@ -1274,7 +1274,7 @@ async def untag_resource(
     *,
     resource_arn: str,
     tag_keys: _Sequence[str],
-) -> UntagResourceResponse: ...
+) -> UntagResourceOutput: ...
 ```
 
 
@@ -1286,7 +1286,7 @@ async def update_custom_detection_rule_association(
     rule_id: str,
     association_id: str,
     mode: AssociationMode,
-) -> UpdateCustomDetectionRuleAssociationResponse: ...
+) -> UpdateCustomDetectionRuleAssociationOutput: ...
 ```
 
 
@@ -1299,7 +1299,7 @@ async def update_custom_detection_rule_org_configuration(
     mode: AssociationMode,
     include_account_ids: _Sequence[str] | None = None,
     exclude_account_ids: _Sequence[str] | None = None,
-) -> UpdateCustomDetectionRuleOrgConfigurationResponse: ...
+) -> UpdateCustomDetectionRuleOrgConfigurationOutput: ...
 ```
 
 
@@ -1313,7 +1313,7 @@ async def update_detector(
     finding_publishing_frequency: FindingPublishingFrequency | None = None,
     data_sources: DataSourceConfigurations | None = None,
     features: _Sequence[DetectorFeatureConfiguration] | None = None,
-) -> UpdateDetectorResponse: ...
+) -> UpdateDetectorOutput: ...
 ```
 
 
@@ -1328,7 +1328,7 @@ async def update_filter(
     action: FilterAction | None = None,
     rank: int | None = None,
     finding_criteria: FindingCriteria | None = None,
-) -> UpdateFilterResponse: ...
+) -> UpdateFilterOutput: ...
 ```
 
 
@@ -1341,7 +1341,7 @@ async def update_findings_feedback(
     finding_ids: _Sequence[str],
     feedback: Feedback,
     comments: str | None = None,
-) -> UpdateFindingsFeedbackResponse: ...
+) -> UpdateFindingsFeedbackOutput: ...
 ```
 
 
@@ -1356,7 +1356,7 @@ async def update_ip_set(
     location: str | None = None,
     activate: bool | None = None,
     expected_bucket_owner: str | None = None,
-) -> UpdateIPSetResponse: ...
+) -> UpdateIPSetOutput: ...
 ```
 
 
@@ -1381,7 +1381,7 @@ async def update_malware_scan_settings(
     detector_id: str,
     scan_resource_criteria: ScanResourceCriteria | None = None,
     ebs_snapshot_preservation: EbsSnapshotPreservation | None = None,
-) -> UpdateMalwareScanSettingsResponse: ...
+) -> UpdateMalwareScanSettingsOutput: ...
 ```
 
 
@@ -1394,7 +1394,7 @@ async def update_member_detectors(
     account_ids: _Sequence[str],
     data_sources: DataSourceConfigurations | None = None,
     features: _Sequence[MemberFeaturesConfiguration] | None = None,
-) -> UpdateMemberDetectorsResponse: ...
+) -> UpdateMemberDetectorsOutput: ...
 ```
 
 
@@ -1408,7 +1408,7 @@ async def update_organization_configuration(
     data_sources: OrganizationDataSourceConfigurations | None = None,
     features: _Sequence[OrganizationFeatureConfiguration] | None = None,
     auto_enable_organization_members: AutoEnableMembers | None = None,
-) -> UpdateOrganizationConfigurationResponse: ...
+) -> UpdateOrganizationConfigurationOutput: ...
 ```
 
 
@@ -1420,7 +1420,7 @@ async def update_publishing_destination(
     detector_id: str,
     destination_id: str,
     destination_properties: DestinationProperties | None = None,
-) -> UpdatePublishingDestinationResponse: ...
+) -> UpdatePublishingDestinationOutput: ...
 ```
 
 
@@ -1435,7 +1435,7 @@ async def update_threat_entity_set(
     location: str | None = None,
     expected_bucket_owner: str | None = None,
     activate: bool | None = None,
-) -> UpdateThreatEntitySetResponse: ...
+) -> UpdateThreatEntitySetOutput: ...
 ```
 
 
@@ -1450,7 +1450,7 @@ async def update_threat_intel_set(
     location: str | None = None,
     activate: bool | None = None,
     expected_bucket_owner: str | None = None,
-) -> UpdateThreatIntelSetResponse: ...
+) -> UpdateThreatIntelSetOutput: ...
 ```
 
 
@@ -1465,7 +1465,7 @@ async def update_trusted_entity_set(
     location: str | None = None,
     expected_bucket_owner: str | None = None,
     activate: bool | None = None,
-) -> UpdateTrustedEntitySetResponse: ...
+) -> UpdateTrustedEntitySetOutput: ...
 ```
 
 

@@ -8,26 +8,26 @@ from typing import TYPE_CHECKING
 from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _paginate
 
 from ._native import (
-    GetDedicatedIpsResponse,
-    ListConfigurationSetsResponse,
-    ListContactListsResponse,
-    ListContactsResponse,
-    ListCustomVerificationEmailTemplatesResponse,
-    ListDedicatedIpPoolsResponse,
-    ListDeliverabilityTestReportsResponse,
-    ListDomainDeliverabilityCampaignsResponse,
-    ListEmailIdentitiesResponse,
-    ListEmailIdentityCertificatesResponse,
-    ListEmailTemplatesResponse,
-    ListExportJobsResponse,
-    ListImportJobsResponse,
-    ListMultiRegionEndpointsResponse,
-    ListRecommendationsResponse,
-    ListReputationEntitiesResponse,
-    ListResourceTenantsResponse,
-    ListSuppressedDestinationsResponse,
-    ListTenantResourcesResponse,
-    ListTenantsResponse,
+    GetDedicatedIpsOutput,
+    ListConfigurationSetsOutput,
+    ListContactListsOutput,
+    ListContactsOutput,
+    ListCustomVerificationEmailTemplatesOutput,
+    ListDedicatedIpPoolsOutput,
+    ListDeliverabilityTestReportsOutput,
+    ListDomainDeliverabilityCampaignsOutput,
+    ListEmailIdentitiesOutput,
+    ListEmailIdentityCertificatesOutput,
+    ListEmailTemplatesOutput,
+    ListExportJobsOutput,
+    ListImportJobsOutput,
+    ListMultiRegionEndpointsOutput,
+    ListRecommendationsOutput,
+    ListReputationEntitiesOutput,
+    ListResourceTenantsOutput,
+    ListSuppressedDestinationsOutput,
+    ListTenantResourcesOutput,
+    ListTenantsOutput,
 )
 
 from .types import (
@@ -59,7 +59,7 @@ class SESV2ClientPaginators:
         pool_name: str | None = None,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> AsyncIterator[GetDedicatedIpsResponse]:
+    ) -> AsyncIterator[GetDedicatedIpsOutput]:
         """Yield each page from get_dedicated_ips; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -85,7 +85,7 @@ class SESV2ClientPaginators:
         filter: dict[ConfigurationSetFilterKey, str] | None = None,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> AsyncIterator[ListConfigurationSetsResponse]:
+    ) -> AsyncIterator[ListConfigurationSetsOutput]:
         """Yield each page from list_configuration_sets; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -110,7 +110,7 @@ class SESV2ClientPaginators:
         *,
         page_size: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListContactListsResponse]:
+    ) -> AsyncIterator[ListContactListsOutput]:
         """Yield each page from list_contact_lists; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -135,7 +135,7 @@ class SESV2ClientPaginators:
         filter: ListContactsFilter | None = None,
         page_size: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListContactsResponse]:
+    ) -> AsyncIterator[ListContactsOutput]:
         """Yield each page from list_contacts; requests start on iteration."""
         params: dict[str, object] = {
             "contact_list_name": contact_list_name,
@@ -161,7 +161,7 @@ class SESV2ClientPaginators:
         *,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> AsyncIterator[ListCustomVerificationEmailTemplatesResponse]:
+    ) -> AsyncIterator[ListCustomVerificationEmailTemplatesOutput]:
         """Yield each page from list_custom_verification_email_templates; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -184,7 +184,7 @@ class SESV2ClientPaginators:
         *,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> AsyncIterator[ListDedicatedIpPoolsResponse]:
+    ) -> AsyncIterator[ListDedicatedIpPoolsOutput]:
         """Yield each page from list_dedicated_ip_pools; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -207,7 +207,7 @@ class SESV2ClientPaginators:
         *,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> AsyncIterator[ListDeliverabilityTestReportsResponse]:
+    ) -> AsyncIterator[ListDeliverabilityTestReportsOutput]:
         """Yield each page from list_deliverability_test_reports; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -233,7 +233,7 @@ class SESV2ClientPaginators:
         subscribed_domain: str,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> AsyncIterator[ListDomainDeliverabilityCampaignsResponse]:
+    ) -> AsyncIterator[ListDomainDeliverabilityCampaignsOutput]:
         """Yield each page from list_domain_deliverability_campaigns; requests start on iteration."""
         params: dict[str, object] = {
             "start_date": start_date,
@@ -260,7 +260,7 @@ class SESV2ClientPaginators:
         filter: dict[IdentityFilterKey, str] | None = None,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> AsyncIterator[ListEmailIdentitiesResponse]:
+    ) -> AsyncIterator[ListEmailIdentitiesOutput]:
         """Yield each page from list_email_identities; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -286,7 +286,7 @@ class SESV2ClientPaginators:
         email_identity: str,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> AsyncIterator[ListEmailIdentityCertificatesResponse]:
+    ) -> AsyncIterator[ListEmailIdentityCertificatesOutput]:
         """Yield each page from list_email_identity_certificates; requests start on iteration."""
         params: dict[str, object] = {
             "email_identity": email_identity,
@@ -310,7 +310,7 @@ class SESV2ClientPaginators:
         *,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> AsyncIterator[ListEmailTemplatesResponse]:
+    ) -> AsyncIterator[ListEmailTemplatesOutput]:
         """Yield each page from list_email_templates; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -335,7 +335,7 @@ class SESV2ClientPaginators:
         page_size: int | None = None,
         export_source_type: ExportSourceType | None = None,
         job_status: JobStatus | None = None,
-    ) -> AsyncIterator[ListExportJobsResponse]:
+    ) -> AsyncIterator[ListExportJobsOutput]:
         """Yield each page from list_export_jobs; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -363,7 +363,7 @@ class SESV2ClientPaginators:
         import_destination_type: ImportDestinationType | None = None,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> AsyncIterator[ListImportJobsResponse]:
+    ) -> AsyncIterator[ListImportJobsOutput]:
         """Yield each page from list_import_jobs; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -388,7 +388,7 @@ class SESV2ClientPaginators:
         *,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> AsyncIterator[ListMultiRegionEndpointsResponse]:
+    ) -> AsyncIterator[ListMultiRegionEndpointsOutput]:
         """Yield each page from list_multi_region_endpoints; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -412,7 +412,7 @@ class SESV2ClientPaginators:
         filter: dict[ListRecommendationsFilterKey, str] | None = None,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> AsyncIterator[ListRecommendationsResponse]:
+    ) -> AsyncIterator[ListRecommendationsOutput]:
         """Yield each page from list_recommendations; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -438,7 +438,7 @@ class SESV2ClientPaginators:
         filter: dict[ReputationEntityFilterKey, str] | None = None,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> AsyncIterator[ListReputationEntitiesResponse]:
+    ) -> AsyncIterator[ListReputationEntitiesOutput]:
         """Yield each page from list_reputation_entities; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -464,7 +464,7 @@ class SESV2ClientPaginators:
         resource_arn: str,
         page_size: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListResourceTenantsResponse]:
+    ) -> AsyncIterator[ListResourceTenantsOutput]:
         """Yield each page from list_resource_tenants; requests start on iteration."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
@@ -492,7 +492,7 @@ class SESV2ClientPaginators:
         end_date: str | None = None,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> AsyncIterator[ListSuppressedDestinationsResponse]:
+    ) -> AsyncIterator[ListSuppressedDestinationsOutput]:
         """Yield each page from list_suppressed_destinations; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -525,7 +525,7 @@ class SESV2ClientPaginators:
         filter: dict[ListTenantResourcesFilterKey, str] | None = None,
         page_size: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListTenantResourcesResponse]:
+    ) -> AsyncIterator[ListTenantResourcesOutput]:
         """Yield each page from list_tenant_resources; requests start on iteration."""
         params: dict[str, object] = {
             "tenant_name": tenant_name,
@@ -552,7 +552,7 @@ class SESV2ClientPaginators:
         filter: dict[ListTenantsFilterKey, str] | None = None,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> AsyncIterator[ListTenantsResponse]:
+    ) -> AsyncIterator[ListTenantsOutput]:
         """Yield each page from list_tenants; requests start on iteration."""
         params: dict[str, object] = {
         }

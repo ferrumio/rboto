@@ -88,70 +88,70 @@ native response definitions are in the package's `_native.pyi`.
 | [`batch_create_memory_records`](#batch_create_memory_records) | <code>memory_id: str</code>, <code>records: Sequence[MemoryRecordCreateInput]</code> | <code>BatchCreateMemoryRecordsOutput</code> |
 | [`batch_delete_memory_records`](#batch_delete_memory_records) | <code>memory_id: str</code>, <code>records: Sequence[MemoryRecordDeleteInput]</code> | <code>BatchDeleteMemoryRecordsOutput</code> |
 | [`batch_update_memory_records`](#batch_update_memory_records) | <code>memory_id: str</code>, <code>records: Sequence[MemoryRecordUpdateInput]</code> | <code>BatchUpdateMemoryRecordsOutput</code> |
-| [`complete_resource_token_auth`](#complete_resource_token_auth) | <code>user_identifier: UserIdentifier</code>, <code>session_uri: str</code> | <code>CompleteResourceTokenAuthResponse</code> |
-| [`create_ab_test`](#create_ab_test) | <code>name: str</code>, <code>gateway_arn: str</code>, <code>variants: Sequence[Variant]</code>, <code>evaluation_config: ABTestEvaluationConfig</code>, <code>role_arn: str</code> | <code>CreateABTestResponse</code> |
+| [`complete_resource_token_auth`](#complete_resource_token_auth) | <code>user_identifier: UserIdentifier</code>, <code>session_uri: str</code> | <code>CompleteResourceTokenAuthOutput</code> |
+| [`create_ab_test`](#create_ab_test) | <code>name: str</code>, <code>gateway_arn: str</code>, <code>variants: Sequence[Variant]</code>, <code>evaluation_config: ABTestEvaluationConfig</code>, <code>role_arn: str</code> | <code>CreateABTestOutput</code> |
 | [`create_event`](#create_event) | <code>memory_id: str</code>, <code>actor_id: str</code>, <code>event_timestamp: str</code>, <code>payload: Sequence[PayloadType]</code> | <code>CreateEventOutput</code> |
-| [`create_payment_instrument`](#create_payment_instrument) | <code>payment_manager_arn: str</code>, <code>payment_connector_id: str</code>, <code>payment_instrument_type: PaymentInstrumentType</code>, <code>payment_instrument_details: PaymentInstrumentDetails</code> | <code>CreatePaymentInstrumentResponse</code> |
-| [`create_payment_session`](#create_payment_session) | <code>payment_manager_arn: str</code>, <code>expiry_time_in_minutes: int</code> | <code>CreatePaymentSessionResponse</code> |
-| [`delete_ab_test`](#delete_ab_test) | <code>ab_test_id: str</code> | <code>DeleteABTestResponse</code> |
-| [`delete_batch_evaluation`](#delete_batch_evaluation) | <code>batch_evaluation_id: str</code> | <code>DeleteBatchEvaluationResponse</code> |
-| [`delete_capacity_provider_session`](#delete_capacity_provider_session) | <code>capacity_provider_id: str</code>, <code>session_id: str</code> | <code>DeleteCapacityProviderSessionResponse</code> |
+| [`create_payment_instrument`](#create_payment_instrument) | <code>payment_manager_arn: str</code>, <code>payment_connector_id: str</code>, <code>payment_instrument_type: PaymentInstrumentType</code>, <code>payment_instrument_details: PaymentInstrumentDetails</code> | <code>CreatePaymentInstrumentOutput</code> |
+| [`create_payment_session`](#create_payment_session) | <code>payment_manager_arn: str</code>, <code>expiry_time_in_minutes: int</code> | <code>CreatePaymentSessionOutput</code> |
+| [`delete_ab_test`](#delete_ab_test) | <code>ab_test_id: str</code> | <code>DeleteABTestOutput</code> |
+| [`delete_batch_evaluation`](#delete_batch_evaluation) | <code>batch_evaluation_id: str</code> | <code>DeleteBatchEvaluationOutput</code> |
+| [`delete_capacity_provider_session`](#delete_capacity_provider_session) | <code>capacity_provider_id: str</code>, <code>session_id: str</code> | <code>DeleteCapacityProviderSessionOutput</code> |
 | [`delete_event`](#delete_event) | <code>memory_id: str</code>, <code>session_id: str</code>, <code>event_id: str</code>, <code>actor_id: str</code> | <code>DeleteEventOutput</code> |
 | [`delete_memory_record`](#delete_memory_record) | <code>memory_id: str</code>, <code>memory_record_id: str</code> | <code>DeleteMemoryRecordOutput</code> |
-| [`delete_payment_instrument`](#delete_payment_instrument) | <code>payment_manager_arn: str</code>, <code>payment_connector_id: str</code>, <code>payment_instrument_id: str</code> | <code>DeletePaymentInstrumentResponse</code> |
-| [`delete_payment_session`](#delete_payment_session) | <code>payment_manager_arn: str</code>, <code>payment_session_id: str</code> | <code>DeletePaymentSessionResponse</code> |
-| [`delete_recommendation`](#delete_recommendation) | <code>recommendation_id: str</code> | <code>DeleteRecommendationResponse</code> |
-| [`evaluate`](#evaluate) | <code>evaluator_id: str</code>, <code>evaluation_input: EvaluationInput</code> | <code>EvaluateResponse</code> |
-| [`get_ab_test`](#get_ab_test) | <code>ab_test_id: str</code> | <code>GetABTestResponse</code> |
-| [`get_agent_card`](#get_agent_card) | <code>agent_runtime_arn: str</code> | <code>GetAgentCardResponse</code> |
-| [`get_batch_evaluation`](#get_batch_evaluation) | <code>batch_evaluation_id: str</code> | <code>GetBatchEvaluationResponse</code> |
-| [`get_browser_session`](#get_browser_session) | <code>browser_identifier: str</code>, <code>session_id: str</code> | <code>GetBrowserSessionResponse</code> |
-| [`get_code_interpreter_session`](#get_code_interpreter_session) | <code>code_interpreter_identifier: str</code>, <code>session_id: str</code> | <code>GetCodeInterpreterSessionResponse</code> |
+| [`delete_payment_instrument`](#delete_payment_instrument) | <code>payment_manager_arn: str</code>, <code>payment_connector_id: str</code>, <code>payment_instrument_id: str</code> | <code>DeletePaymentInstrumentOutput</code> |
+| [`delete_payment_session`](#delete_payment_session) | <code>payment_manager_arn: str</code>, <code>payment_session_id: str</code> | <code>DeletePaymentSessionOutput</code> |
+| [`delete_recommendation`](#delete_recommendation) | <code>recommendation_id: str</code> | <code>DeleteRecommendationOutput</code> |
+| [`evaluate`](#evaluate) | <code>evaluator_id: str</code>, <code>evaluation_input: EvaluationInput</code> | <code>EvaluateOutput</code> |
+| [`get_ab_test`](#get_ab_test) | <code>ab_test_id: str</code> | <code>GetABTestOutput</code> |
+| [`get_agent_card`](#get_agent_card) | <code>agent_runtime_arn: str</code> | <code>GetAgentCardOutput</code> |
+| [`get_batch_evaluation`](#get_batch_evaluation) | <code>batch_evaluation_id: str</code> | <code>GetBatchEvaluationOutput</code> |
+| [`get_browser_session`](#get_browser_session) | <code>browser_identifier: str</code>, <code>session_id: str</code> | <code>GetBrowserSessionOutput</code> |
+| [`get_code_interpreter_session`](#get_code_interpreter_session) | <code>code_interpreter_identifier: str</code>, <code>session_id: str</code> | <code>GetCodeInterpreterSessionOutput</code> |
 | [`get_event`](#get_event) | <code>memory_id: str</code>, <code>session_id: str</code>, <code>actor_id: str</code>, <code>event_id: str</code> | <code>GetEventOutput</code> |
 | [`get_memory_record`](#get_memory_record) | <code>memory_id: str</code>, <code>memory_record_id: str</code> | <code>GetMemoryRecordOutput</code> |
-| [`get_payment_instrument`](#get_payment_instrument) | <code>payment_manager_arn: str</code>, <code>payment_instrument_id: str</code> | <code>GetPaymentInstrumentResponse</code> |
-| [`get_payment_instrument_balance`](#get_payment_instrument_balance) | <code>payment_manager_arn: str</code>, <code>payment_connector_id: str</code>, <code>payment_instrument_id: str</code>, <code>chain: BlockchainChainId</code>, <code>token: InstrumentBalanceToken</code> | <code>GetPaymentInstrumentBalanceResponse</code> |
-| [`get_payment_session`](#get_payment_session) | <code>payment_manager_arn: str</code>, <code>payment_session_id: str</code> | <code>GetPaymentSessionResponse</code> |
-| [`get_recommendation`](#get_recommendation) | <code>recommendation_id: str</code> | <code>GetRecommendationResponse</code> |
-| [`get_resource_api_key`](#get_resource_api_key) | <code>workload_identity_token: str</code>, <code>resource_credential_provider_name: str</code> | <code>GetResourceApiKeyResponse</code> |
-| [`get_resource_oauth2_token`](#get_resource_oauth2_token) | <code>workload_identity_token: str</code>, <code>resource_credential_provider_name: str</code>, <code>scopes: Sequence[str]</code>, <code>oauth2_flow: Oauth2FlowType</code> | <code>GetResourceOauth2TokenResponse</code> |
-| [`get_resource_payment_token`](#get_resource_payment_token) | <code>workload_identity_token: str</code>, <code>resource_credential_provider_name: str</code>, <code>payment_token_request: PaymentTokenRequestInput</code> | <code>GetResourcePaymentTokenResponse</code> |
-| [`get_workload_access_token`](#get_workload_access_token) | <code>workload_name: str</code> | <code>GetWorkloadAccessTokenResponse</code> |
-| [`get_workload_access_token_for_jwt`](#get_workload_access_token_for_jwt) | <code>workload_name: str</code>, <code>user_token: str</code> | <code>GetWorkloadAccessTokenForJWTResponse</code> |
-| [`get_workload_access_token_for_user_id`](#get_workload_access_token_for_user_id) | <code>workload_name: str</code>, <code>user_id: str</code> | <code>GetWorkloadAccessTokenForUserIdResponse</code> |
+| [`get_payment_instrument`](#get_payment_instrument) | <code>payment_manager_arn: str</code>, <code>payment_instrument_id: str</code> | <code>GetPaymentInstrumentOutput</code> |
+| [`get_payment_instrument_balance`](#get_payment_instrument_balance) | <code>payment_manager_arn: str</code>, <code>payment_connector_id: str</code>, <code>payment_instrument_id: str</code>, <code>chain: BlockchainChainId</code>, <code>token: InstrumentBalanceToken</code> | <code>GetPaymentInstrumentBalanceOutput</code> |
+| [`get_payment_session`](#get_payment_session) | <code>payment_manager_arn: str</code>, <code>payment_session_id: str</code> | <code>GetPaymentSessionOutput</code> |
+| [`get_recommendation`](#get_recommendation) | <code>recommendation_id: str</code> | <code>GetRecommendationOutput</code> |
+| [`get_resource_api_key`](#get_resource_api_key) | <code>workload_identity_token: str</code>, <code>resource_credential_provider_name: str</code> | <code>GetResourceApiKeyOutput</code> |
+| [`get_resource_oauth2_token`](#get_resource_oauth2_token) | <code>workload_identity_token: str</code>, <code>resource_credential_provider_name: str</code>, <code>scopes: Sequence[str]</code>, <code>oauth2_flow: Oauth2FlowType</code> | <code>GetResourceOauth2TokenOutput</code> |
+| [`get_resource_payment_token`](#get_resource_payment_token) | <code>workload_identity_token: str</code>, <code>resource_credential_provider_name: str</code>, <code>payment_token_request: PaymentTokenRequestInput</code> | <code>GetResourcePaymentTokenOutput</code> |
+| [`get_workload_access_token`](#get_workload_access_token) | <code>workload_name: str</code> | <code>GetWorkloadAccessTokenOutput</code> |
+| [`get_workload_access_token_for_jwt`](#get_workload_access_token_for_jwt) | <code>workload_name: str</code>, <code>user_token: str</code> | <code>GetWorkloadAccessTokenForJWTOutput</code> |
+| [`get_workload_access_token_for_user_id`](#get_workload_access_token_for_user_id) | <code>workload_name: str</code>, <code>user_id: str</code> | <code>GetWorkloadAccessTokenForUserIdOutput</code> |
 | [`ingest_data`](#ingest_data) | <code>memory_id: str</code>, <code>source: ContentSource</code>, <code>content_timestamp: str</code>, <code>actor_id: str</code> | <code>IngestDataOutput</code> |
-| [`invoke_agent_runtime`](#invoke_agent_runtime) | <code>agent_runtime_arn: str</code>, <code>payload: bytes</code> | <code>InvokeAgentRuntimeResponse</code> |
-| [`invoke_agent_runtime_command`](#invoke_agent_runtime_command) | <code>agent_runtime_arn: str</code>, <code>body: InvokeAgentRuntimeCommandRequestBody</code> | <code>InvokeAgentRuntimeCommandResponse</code> |
-| [`invoke_browser`](#invoke_browser) | <code>browser_identifier: str</code>, <code>session_id: str</code>, <code>action: BrowserAction</code> | <code>InvokeBrowserResponse</code> |
-| [`invoke_code_interpreter`](#invoke_code_interpreter) | <code>code_interpreter_identifier: str</code>, <code>name: ToolName</code> | <code>InvokeCodeInterpreterResponse</code> |
-| [`invoke_harness`](#invoke_harness) | <code>harness_arn: str</code>, <code>runtime_session_id: str</code>, <code>messages: Sequence[HarnessMessage]</code> | <code>InvokeHarnessResponse</code> |
-| [`list_ab_tests`](#list_ab_tests) | None | <code>ListABTestsResponse</code> |
+| [`invoke_agent_runtime`](#invoke_agent_runtime) | <code>agent_runtime_arn: str</code>, <code>payload: bytes</code> | <code>InvokeAgentRuntimeOutput</code> |
+| [`invoke_agent_runtime_command`](#invoke_agent_runtime_command) | <code>agent_runtime_arn: str</code>, <code>body: InvokeAgentRuntimeCommandRequestBody</code> | <code>InvokeAgentRuntimeCommandOutput</code> |
+| [`invoke_browser`](#invoke_browser) | <code>browser_identifier: str</code>, <code>session_id: str</code>, <code>action: BrowserAction</code> | <code>InvokeBrowserOutput</code> |
+| [`invoke_code_interpreter`](#invoke_code_interpreter) | <code>code_interpreter_identifier: str</code>, <code>name: ToolName</code> | <code>InvokeCodeInterpreterOutput</code> |
+| [`invoke_harness`](#invoke_harness) | <code>harness_arn: str</code>, <code>runtime_session_id: str</code>, <code>messages: Sequence[HarnessMessage]</code> | <code>InvokeHarnessOutput</code> |
+| [`list_ab_tests`](#list_ab_tests) | None | <code>ListABTestsOutput</code> |
 | [`list_actors`](#list_actors) | <code>memory_id: str</code> | <code>ListActorsOutput</code> |
-| [`list_batch_evaluations`](#list_batch_evaluations) | None | <code>ListBatchEvaluationsResponse</code> |
-| [`list_browser_sessions`](#list_browser_sessions) | <code>browser_identifier: str</code> | <code>ListBrowserSessionsResponse</code> |
-| [`list_code_interpreter_sessions`](#list_code_interpreter_sessions) | <code>code_interpreter_identifier: str</code> | <code>ListCodeInterpreterSessionsResponse</code> |
+| [`list_batch_evaluations`](#list_batch_evaluations) | None | <code>ListBatchEvaluationsOutput</code> |
+| [`list_browser_sessions`](#list_browser_sessions) | <code>browser_identifier: str</code> | <code>ListBrowserSessionsOutput</code> |
+| [`list_code_interpreter_sessions`](#list_code_interpreter_sessions) | <code>code_interpreter_identifier: str</code> | <code>ListCodeInterpreterSessionsOutput</code> |
 | [`list_events`](#list_events) | <code>memory_id: str</code>, <code>session_id: str</code>, <code>actor_id: str</code> | <code>ListEventsOutput</code> |
 | [`list_memory_extraction_jobs`](#list_memory_extraction_jobs) | <code>memory_id: str</code> | <code>ListMemoryExtractionJobsOutput</code> |
 | [`list_memory_records`](#list_memory_records) | <code>memory_id: str</code> | <code>ListMemoryRecordsOutput</code> |
-| [`list_payment_instruments`](#list_payment_instruments) | <code>payment_manager_arn: str</code> | <code>ListPaymentInstrumentsResponse</code> |
-| [`list_payment_sessions`](#list_payment_sessions) | <code>payment_manager_arn: str</code> | <code>ListPaymentSessionsResponse</code> |
-| [`list_recommendations`](#list_recommendations) | None | <code>ListRecommendationsResponse</code> |
+| [`list_payment_instruments`](#list_payment_instruments) | <code>payment_manager_arn: str</code> | <code>ListPaymentInstrumentsOutput</code> |
+| [`list_payment_sessions`](#list_payment_sessions) | <code>payment_manager_arn: str</code> | <code>ListPaymentSessionsOutput</code> |
+| [`list_recommendations`](#list_recommendations) | None | <code>ListRecommendationsOutput</code> |
 | [`list_sessions`](#list_sessions) | <code>memory_id: str</code>, <code>actor_id: str</code> | <code>ListSessionsOutput</code> |
-| [`process_payment`](#process_payment) | <code>payment_manager_arn: str</code>, <code>payment_session_id: str</code>, <code>payment_instrument_id: str</code>, <code>payment_type: PaymentType</code>, <code>payment_input: PaymentInput</code> | <code>ProcessPaymentResponse</code> |
+| [`process_payment`](#process_payment) | <code>payment_manager_arn: str</code>, <code>payment_session_id: str</code>, <code>payment_instrument_id: str</code>, <code>payment_type: PaymentType</code>, <code>payment_input: PaymentInput</code> | <code>ProcessPaymentOutput</code> |
 | [`retrieve_memory_records`](#retrieve_memory_records) | <code>memory_id: str</code>, <code>search_criteria: SearchCriteria</code> | <code>RetrieveMemoryRecordsOutput</code> |
-| [`save_browser_session_profile`](#save_browser_session_profile) | <code>profile_identifier: str</code>, <code>browser_identifier: str</code>, <code>session_id: str</code> | <code>SaveBrowserSessionProfileResponse</code> |
-| [`search_registry_records`](#search_registry_records) | <code>search_query: str</code>, <code>registry_ids: Sequence[str]</code> | <code>SearchRegistryRecordsResponse</code> |
-| [`start_batch_evaluation`](#start_batch_evaluation) | <code>batch_evaluation_name: str</code>, <code>data_source_config: DataSourceConfig</code> | <code>StartBatchEvaluationResponse</code> |
-| [`start_browser_session`](#start_browser_session) | <code>browser_identifier: str</code> | <code>StartBrowserSessionResponse</code> |
-| [`start_code_interpreter_session`](#start_code_interpreter_session) | <code>code_interpreter_identifier: str</code> | <code>StartCodeInterpreterSessionResponse</code> |
+| [`save_browser_session_profile`](#save_browser_session_profile) | <code>profile_identifier: str</code>, <code>browser_identifier: str</code>, <code>session_id: str</code> | <code>SaveBrowserSessionProfileOutput</code> |
+| [`search_registry_records`](#search_registry_records) | <code>search_query: str</code>, <code>registry_ids: Sequence[str]</code> | <code>SearchRegistryRecordsOutput</code> |
+| [`start_batch_evaluation`](#start_batch_evaluation) | <code>batch_evaluation_name: str</code>, <code>data_source_config: DataSourceConfig</code> | <code>StartBatchEvaluationOutput</code> |
+| [`start_browser_session`](#start_browser_session) | <code>browser_identifier: str</code> | <code>StartBrowserSessionOutput</code> |
+| [`start_code_interpreter_session`](#start_code_interpreter_session) | <code>code_interpreter_identifier: str</code> | <code>StartCodeInterpreterSessionOutput</code> |
 | [`start_memory_extraction_job`](#start_memory_extraction_job) | <code>memory_id: str</code>, <code>extraction_job: ExtractionJob</code> | <code>StartMemoryExtractionJobOutput</code> |
-| [`start_recommendation`](#start_recommendation) | <code>name: str</code>, <code>type: RecommendationType</code>, <code>recommendation_config: RecommendationConfig</code> | <code>StartRecommendationResponse</code> |
-| [`stop_batch_evaluation`](#stop_batch_evaluation) | <code>batch_evaluation_id: str</code> | <code>StopBatchEvaluationResponse</code> |
-| [`stop_browser_session`](#stop_browser_session) | <code>browser_identifier: str</code>, <code>session_id: str</code> | <code>StopBrowserSessionResponse</code> |
-| [`stop_code_interpreter_session`](#stop_code_interpreter_session) | <code>code_interpreter_identifier: str</code>, <code>session_id: str</code> | <code>StopCodeInterpreterSessionResponse</code> |
-| [`stop_runtime_session`](#stop_runtime_session) | <code>runtime_session_id: str</code>, <code>agent_runtime_arn: str</code> | <code>StopRuntimeSessionResponse</code> |
-| [`update_ab_test`](#update_ab_test) | <code>ab_test_id: str</code> | <code>UpdateABTestResponse</code> |
-| [`update_browser_stream`](#update_browser_stream) | <code>browser_identifier: str</code>, <code>session_id: str</code>, <code>stream_update: StreamUpdate</code> | <code>UpdateBrowserStreamResponse</code> |
+| [`start_recommendation`](#start_recommendation) | <code>name: str</code>, <code>type: RecommendationType</code>, <code>recommendation_config: RecommendationConfig</code> | <code>StartRecommendationOutput</code> |
+| [`stop_batch_evaluation`](#stop_batch_evaluation) | <code>batch_evaluation_id: str</code> | <code>StopBatchEvaluationOutput</code> |
+| [`stop_browser_session`](#stop_browser_session) | <code>browser_identifier: str</code>, <code>session_id: str</code> | <code>StopBrowserSessionOutput</code> |
+| [`stop_code_interpreter_session`](#stop_code_interpreter_session) | <code>code_interpreter_identifier: str</code>, <code>session_id: str</code> | <code>StopCodeInterpreterSessionOutput</code> |
+| [`stop_runtime_session`](#stop_runtime_session) | <code>runtime_session_id: str</code>, <code>agent_runtime_arn: str</code> | <code>StopRuntimeSessionOutput</code> |
+| [`update_ab_test`](#update_ab_test) | <code>ab_test_id: str</code> | <code>UpdateABTestOutput</code> |
+| [`update_browser_stream`](#update_browser_stream) | <code>browser_identifier: str</code>, <code>session_id: str</code>, <code>stream_update: StreamUpdate</code> | <code>UpdateBrowserStreamOutput</code> |
 
 ## Complete signatures
 
@@ -198,7 +198,7 @@ async def complete_resource_token_auth(
     *,
     user_identifier: UserIdentifier,
     session_uri: str,
-) -> CompleteResourceTokenAuthResponse: ...
+) -> CompleteResourceTokenAuthOutput: ...
 ```
 
 
@@ -217,7 +217,7 @@ async def create_ab_test(
     enable_on_create: bool | None = None,
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateABTestResponse: ...
+) -> CreateABTestOutput: ...
 ```
 
 
@@ -252,7 +252,7 @@ async def create_payment_instrument(
     user_id: str | None = None,
     agent_name: str | None = None,
     client_token: str | None = None,
-) -> CreatePaymentInstrumentResponse: ...
+) -> CreatePaymentInstrumentOutput: ...
 ```
 
 
@@ -267,7 +267,7 @@ async def create_payment_session(
     agent_name: str | None = None,
     limits: SessionLimits | None = None,
     client_token: str | None = None,
-) -> CreatePaymentSessionResponse: ...
+) -> CreatePaymentSessionOutput: ...
 ```
 
 
@@ -277,7 +277,7 @@ async def create_payment_session(
 async def delete_ab_test(
     *,
     ab_test_id: str,
-) -> DeleteABTestResponse: ...
+) -> DeleteABTestOutput: ...
 ```
 
 
@@ -287,7 +287,7 @@ async def delete_ab_test(
 async def delete_batch_evaluation(
     *,
     batch_evaluation_id: str,
-) -> DeleteBatchEvaluationResponse: ...
+) -> DeleteBatchEvaluationOutput: ...
 ```
 
 
@@ -298,7 +298,7 @@ async def delete_capacity_provider_session(
     *,
     capacity_provider_id: str,
     session_id: str,
-) -> DeleteCapacityProviderSessionResponse: ...
+) -> DeleteCapacityProviderSessionOutput: ...
 ```
 
 
@@ -336,7 +336,7 @@ async def delete_payment_instrument(
     payment_connector_id: str,
     payment_instrument_id: str,
     user_id: str | None = None,
-) -> DeletePaymentInstrumentResponse: ...
+) -> DeletePaymentInstrumentOutput: ...
 ```
 
 
@@ -348,7 +348,7 @@ async def delete_payment_session(
     payment_manager_arn: str,
     payment_session_id: str,
     user_id: str | None = None,
-) -> DeletePaymentSessionResponse: ...
+) -> DeletePaymentSessionOutput: ...
 ```
 
 
@@ -358,7 +358,7 @@ async def delete_payment_session(
 async def delete_recommendation(
     *,
     recommendation_id: str,
-) -> DeleteRecommendationResponse: ...
+) -> DeleteRecommendationOutput: ...
 ```
 
 
@@ -371,7 +371,7 @@ async def evaluate(
     evaluation_input: EvaluationInput,
     evaluation_target: EvaluationTarget | None = None,
     evaluation_reference_inputs: Sequence[EvaluationReferenceInput] | None = None,
-) -> EvaluateResponse: ...
+) -> EvaluateOutput: ...
 ```
 
 
@@ -381,7 +381,7 @@ async def evaluate(
 async def get_ab_test(
     *,
     ab_test_id: str,
-) -> GetABTestResponse: ...
+) -> GetABTestOutput: ...
 ```
 
 
@@ -393,7 +393,7 @@ async def get_agent_card(
     agent_runtime_arn: str,
     runtime_session_id: str | None = None,
     qualifier: str | None = None,
-) -> GetAgentCardResponse: ...
+) -> GetAgentCardOutput: ...
 ```
 
 
@@ -403,7 +403,7 @@ async def get_agent_card(
 async def get_batch_evaluation(
     *,
     batch_evaluation_id: str,
-) -> GetBatchEvaluationResponse: ...
+) -> GetBatchEvaluationOutput: ...
 ```
 
 
@@ -414,7 +414,7 @@ async def get_browser_session(
     *,
     browser_identifier: str,
     session_id: str,
-) -> GetBrowserSessionResponse: ...
+) -> GetBrowserSessionOutput: ...
 ```
 
 
@@ -425,7 +425,7 @@ async def get_code_interpreter_session(
     *,
     code_interpreter_identifier: str,
     session_id: str,
-) -> GetCodeInterpreterSessionResponse: ...
+) -> GetCodeInterpreterSessionOutput: ...
 ```
 
 
@@ -464,7 +464,7 @@ async def get_payment_instrument(
     user_id: str | None = None,
     agent_name: str | None = None,
     payment_connector_id: str | None = None,
-) -> GetPaymentInstrumentResponse: ...
+) -> GetPaymentInstrumentOutput: ...
 ```
 
 
@@ -480,7 +480,7 @@ async def get_payment_instrument_balance(
     token: InstrumentBalanceToken,
     user_id: str | None = None,
     agent_name: str | None = None,
-) -> GetPaymentInstrumentBalanceResponse: ...
+) -> GetPaymentInstrumentBalanceOutput: ...
 ```
 
 
@@ -493,7 +493,7 @@ async def get_payment_session(
     payment_session_id: str,
     user_id: str | None = None,
     agent_name: str | None = None,
-) -> GetPaymentSessionResponse: ...
+) -> GetPaymentSessionOutput: ...
 ```
 
 
@@ -503,7 +503,7 @@ async def get_payment_session(
 async def get_recommendation(
     *,
     recommendation_id: str,
-) -> GetRecommendationResponse: ...
+) -> GetRecommendationOutput: ...
 ```
 
 
@@ -514,7 +514,7 @@ async def get_resource_api_key(
     *,
     workload_identity_token: str,
     resource_credential_provider_name: str,
-) -> GetResourceApiKeyResponse: ...
+) -> GetResourceApiKeyOutput: ...
 ```
 
 
@@ -534,7 +534,7 @@ async def get_resource_oauth2_token(
     custom_state: str | None = None,
     resources: Sequence[str] | None = None,
     audiences: Sequence[str] | None = None,
-) -> GetResourceOauth2TokenResponse: ...
+) -> GetResourceOauth2TokenOutput: ...
 ```
 
 
@@ -546,7 +546,7 @@ async def get_resource_payment_token(
     workload_identity_token: str,
     resource_credential_provider_name: str,
     payment_token_request: PaymentTokenRequestInput,
-) -> GetResourcePaymentTokenResponse: ...
+) -> GetResourcePaymentTokenOutput: ...
 ```
 
 
@@ -556,7 +556,7 @@ async def get_resource_payment_token(
 async def get_workload_access_token(
     *,
     workload_name: str,
-) -> GetWorkloadAccessTokenResponse: ...
+) -> GetWorkloadAccessTokenOutput: ...
 ```
 
 
@@ -567,7 +567,7 @@ async def get_workload_access_token_for_jwt(
     *,
     workload_name: str,
     user_token: str,
-) -> GetWorkloadAccessTokenForJWTResponse: ...
+) -> GetWorkloadAccessTokenForJWTOutput: ...
 ```
 
 
@@ -578,7 +578,7 @@ async def get_workload_access_token_for_user_id(
     *,
     workload_name: str,
     user_id: str,
-) -> GetWorkloadAccessTokenForUserIdResponse: ...
+) -> GetWorkloadAccessTokenForUserIdOutput: ...
 ```
 
 
@@ -620,7 +620,7 @@ async def invoke_agent_runtime(
     baggage: str | None = None,
     qualifier: str | None = None,
     account_id: str | None = None,
-) -> InvokeAgentRuntimeResponse: ...
+) -> InvokeAgentRuntimeOutput: ...
 ```
 
 
@@ -640,7 +640,7 @@ async def invoke_agent_runtime_command(
     baggage: str | None = None,
     qualifier: str | None = None,
     account_id: str | None = None,
-) -> InvokeAgentRuntimeCommandResponse: ...
+) -> InvokeAgentRuntimeCommandOutput: ...
 ```
 
 
@@ -652,7 +652,7 @@ async def invoke_browser(
     browser_identifier: str,
     session_id: str,
     action: BrowserAction,
-) -> InvokeBrowserResponse: ...
+) -> InvokeBrowserOutput: ...
 ```
 
 
@@ -667,7 +667,7 @@ async def invoke_code_interpreter(
     trace_id: str | None = None,
     trace_parent: str | None = None,
     arguments: ToolArguments | None = None,
-) -> InvokeCodeInterpreterResponse: ...
+) -> InvokeCodeInterpreterOutput: ...
 ```
 
 
@@ -694,7 +694,7 @@ async def invoke_harness(
     max_tokens: int | None = None,
     timeout_seconds: int | None = None,
     actor_id: str | None = None,
-) -> InvokeHarnessResponse: ...
+) -> InvokeHarnessOutput: ...
 ```
 
 
@@ -705,7 +705,7 @@ async def list_ab_tests(
     *,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListABTestsResponse: ...
+) -> ListABTestsOutput: ...
 ```
 
 Also available as `client.paginators.list_ab_tests(...)`, returning an
@@ -734,7 +734,7 @@ async def list_batch_evaluations(
     *,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListBatchEvaluationsResponse: ...
+) -> ListBatchEvaluationsOutput: ...
 ```
 
 Also available as `client.paginators.list_batch_evaluations(...)`, returning an
@@ -750,7 +750,7 @@ async def list_browser_sessions(
     max_results: int | None = None,
     next_token: str | None = None,
     status: BrowserSessionStatus | None = None,
-) -> ListBrowserSessionsResponse: ...
+) -> ListBrowserSessionsOutput: ...
 ```
 
 
@@ -763,7 +763,7 @@ async def list_code_interpreter_sessions(
     max_results: int | None = None,
     next_token: str | None = None,
     status: CodeInterpreterSessionStatus | None = None,
-) -> ListCodeInterpreterSessionsResponse: ...
+) -> ListCodeInterpreterSessionsOutput: ...
 ```
 
 
@@ -832,7 +832,7 @@ async def list_payment_instruments(
     payment_connector_id: str | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListPaymentInstrumentsResponse: ...
+) -> ListPaymentInstrumentsOutput: ...
 ```
 
 Also available as `client.paginators.list_payment_instruments(...)`, returning an
@@ -849,7 +849,7 @@ async def list_payment_sessions(
     agent_name: str | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListPaymentSessionsResponse: ...
+) -> ListPaymentSessionsOutput: ...
 ```
 
 Also available as `client.paginators.list_payment_sessions(...)`, returning an
@@ -864,7 +864,7 @@ async def list_recommendations(
     max_results: int | None = None,
     next_token: str | None = None,
     status_filter: RecommendationStatus | None = None,
-) -> ListRecommendationsResponse: ...
+) -> ListRecommendationsOutput: ...
 ```
 
 Also available as `client.paginators.list_recommendations(...)`, returning an
@@ -901,7 +901,7 @@ async def process_payment(
     user_id: str | None = None,
     agent_name: str | None = None,
     client_token: str | None = None,
-) -> ProcessPaymentResponse: ...
+) -> ProcessPaymentOutput: ...
 ```
 
 
@@ -934,7 +934,7 @@ async def save_browser_session_profile(
     trace_id: str | None = None,
     trace_parent: str | None = None,
     client_token: str | None = None,
-) -> SaveBrowserSessionProfileResponse: ...
+) -> SaveBrowserSessionProfileOutput: ...
 ```
 
 
@@ -947,7 +947,7 @@ async def search_registry_records(
     registry_ids: Sequence[str],
     max_results: int | None = None,
     filters: JSONValue | None = None,
-) -> SearchRegistryRecordsResponse: ...
+) -> SearchRegistryRecordsOutput: ...
 ```
 
 
@@ -966,7 +966,7 @@ async def start_batch_evaluation(
     kms_key_arn: str | None = None,
     description: str | None = None,
     output_config: OutputConfig | None = None,
-) -> StartBatchEvaluationResponse: ...
+) -> StartBatchEvaluationOutput: ...
 ```
 
 
@@ -988,7 +988,7 @@ async def start_browser_session(
     certificates: Sequence[Certificate] | None = None,
     filesystem_configurations: Sequence[ToolsFileSystemConfiguration] | None = None,
     client_token: str | None = None,
-) -> StartBrowserSessionResponse: ...
+) -> StartBrowserSessionOutput: ...
 ```
 
 
@@ -1005,7 +1005,7 @@ async def start_code_interpreter_session(
     certificates: Sequence[Certificate] | None = None,
     filesystem_configurations: Sequence[ToolsFileSystemConfiguration] | None = None,
     client_token: str | None = None,
-) -> StartCodeInterpreterSessionResponse: ...
+) -> StartCodeInterpreterSessionOutput: ...
 ```
 
 
@@ -1033,7 +1033,7 @@ async def start_recommendation(
     kms_key_arn: str | None = None,
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
-) -> StartRecommendationResponse: ...
+) -> StartRecommendationOutput: ...
 ```
 
 
@@ -1043,7 +1043,7 @@ async def start_recommendation(
 async def stop_batch_evaluation(
     *,
     batch_evaluation_id: str,
-) -> StopBatchEvaluationResponse: ...
+) -> StopBatchEvaluationOutput: ...
 ```
 
 
@@ -1057,7 +1057,7 @@ async def stop_browser_session(
     trace_id: str | None = None,
     trace_parent: str | None = None,
     client_token: str | None = None,
-) -> StopBrowserSessionResponse: ...
+) -> StopBrowserSessionOutput: ...
 ```
 
 
@@ -1071,7 +1071,7 @@ async def stop_code_interpreter_session(
     trace_id: str | None = None,
     trace_parent: str | None = None,
     client_token: str | None = None,
-) -> StopCodeInterpreterSessionResponse: ...
+) -> StopCodeInterpreterSessionOutput: ...
 ```
 
 
@@ -1084,7 +1084,7 @@ async def stop_runtime_session(
     agent_runtime_arn: str,
     qualifier: str | None = None,
     client_token: str | None = None,
-) -> StopRuntimeSessionResponse: ...
+) -> StopRuntimeSessionOutput: ...
 ```
 
 
@@ -1102,7 +1102,7 @@ async def update_ab_test(
     evaluation_config: ABTestEvaluationConfig | None = None,
     role_arn: str | None = None,
     execution_status: ABTestExecutionStatus | None = None,
-) -> UpdateABTestResponse: ...
+) -> UpdateABTestOutput: ...
 ```
 
 
@@ -1115,7 +1115,7 @@ async def update_browser_stream(
     session_id: str,
     stream_update: StreamUpdate,
     client_token: str | None = None,
-) -> UpdateBrowserStreamResponse: ...
+) -> UpdateBrowserStreamOutput: ...
 ```
 
 

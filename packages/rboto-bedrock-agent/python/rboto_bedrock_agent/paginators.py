@@ -8,23 +8,23 @@ from typing import TYPE_CHECKING
 from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _paginate
 
 from ._native import (
-    ListAgentActionGroupsResponse,
-    ListAgentAliasesResponse,
-    ListAgentCollaboratorsResponse,
-    ListAgentKnowledgeBasesResponse,
-    ListAgentVersionsResponse,
-    ListAgentsResponse,
-    ListDataSourcesResponse,
-    ListFlowAliasesResponse,
-    ListFlowVersionsResponse,
-    ListFlowsResponse,
-    ListIngestionJobsResponse,
-    ListKnowledgeBaseDocumentsResponse,
-    ListKnowledgeBasesResponse,
-    ListPromptsResponse,
-    ListRetrievalInstructionVersionsResponse,
-    ListRetrievalInstructionsResponse,
-    ListVpcConfigurationsResponse,
+    ListAgentActionGroupsOutput,
+    ListAgentAliasesOutput,
+    ListAgentCollaboratorsOutput,
+    ListAgentKnowledgeBasesOutput,
+    ListAgentVersionsOutput,
+    ListAgentsOutput,
+    ListDataSourcesOutput,
+    ListFlowAliasesOutput,
+    ListFlowVersionsOutput,
+    ListFlowsOutput,
+    ListIngestionJobsOutput,
+    ListKnowledgeBaseDocumentsOutput,
+    ListKnowledgeBasesOutput,
+    ListPromptsOutput,
+    ListRetrievalInstructionVersionsOutput,
+    ListRetrievalInstructionsOutput,
+    ListVpcConfigurationsOutput,
 )
 
 from .types import (
@@ -50,7 +50,7 @@ class BedrockAgentClientPaginators:
         agent_version: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListAgentActionGroupsResponse]:
+    ) -> AsyncIterator[ListAgentActionGroupsOutput]:
         """Yield each page from list_agent_action_groups; requests start on iteration."""
         params: dict[str, object] = {
             "agent_id": agent_id,
@@ -76,7 +76,7 @@ class BedrockAgentClientPaginators:
         agent_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListAgentAliasesResponse]:
+    ) -> AsyncIterator[ListAgentAliasesOutput]:
         """Yield each page from list_agent_aliases; requests start on iteration."""
         params: dict[str, object] = {
             "agent_id": agent_id,
@@ -102,7 +102,7 @@ class BedrockAgentClientPaginators:
         agent_version: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListAgentCollaboratorsResponse]:
+    ) -> AsyncIterator[ListAgentCollaboratorsOutput]:
         """Yield each page from list_agent_collaborators; requests start on iteration."""
         params: dict[str, object] = {
             "agent_id": agent_id,
@@ -129,7 +129,7 @@ class BedrockAgentClientPaginators:
         agent_version: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListAgentKnowledgeBasesResponse]:
+    ) -> AsyncIterator[ListAgentKnowledgeBasesOutput]:
         """Yield each page from list_agent_knowledge_bases; requests start on iteration."""
         params: dict[str, object] = {
             "agent_id": agent_id,
@@ -155,7 +155,7 @@ class BedrockAgentClientPaginators:
         agent_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListAgentVersionsResponse]:
+    ) -> AsyncIterator[ListAgentVersionsOutput]:
         """Yield each page from list_agent_versions; requests start on iteration."""
         params: dict[str, object] = {
             "agent_id": agent_id,
@@ -179,7 +179,7 @@ class BedrockAgentClientPaginators:
         *,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListAgentsResponse]:
+    ) -> AsyncIterator[ListAgentsOutput]:
         """Yield each page from list_agents; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -203,7 +203,7 @@ class BedrockAgentClientPaginators:
         knowledge_base_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListDataSourcesResponse]:
+    ) -> AsyncIterator[ListDataSourcesOutput]:
         """Yield each page from list_data_sources; requests start on iteration."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
@@ -228,7 +228,7 @@ class BedrockAgentClientPaginators:
         flow_identifier: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListFlowAliasesResponse]:
+    ) -> AsyncIterator[ListFlowAliasesOutput]:
         """Yield each page from list_flow_aliases; requests start on iteration."""
         params: dict[str, object] = {
             "flow_identifier": flow_identifier,
@@ -253,7 +253,7 @@ class BedrockAgentClientPaginators:
         flow_identifier: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListFlowVersionsResponse]:
+    ) -> AsyncIterator[ListFlowVersionsOutput]:
         """Yield each page from list_flow_versions; requests start on iteration."""
         params: dict[str, object] = {
             "flow_identifier": flow_identifier,
@@ -277,7 +277,7 @@ class BedrockAgentClientPaginators:
         *,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListFlowsResponse]:
+    ) -> AsyncIterator[ListFlowsOutput]:
         """Yield each page from list_flows; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -304,7 +304,7 @@ class BedrockAgentClientPaginators:
         sort_by: IngestionJobSortBy | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListIngestionJobsResponse]:
+    ) -> AsyncIterator[ListIngestionJobsOutput]:
         """Yield each page from list_ingestion_jobs; requests start on iteration."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
@@ -335,7 +335,7 @@ class BedrockAgentClientPaginators:
         data_source_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListKnowledgeBaseDocumentsResponse]:
+    ) -> AsyncIterator[ListKnowledgeBaseDocumentsOutput]:
         """Yield each page from list_knowledge_base_documents; requests start on iteration."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
@@ -360,7 +360,7 @@ class BedrockAgentClientPaginators:
         *,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListKnowledgeBasesResponse]:
+    ) -> AsyncIterator[ListKnowledgeBasesOutput]:
         """Yield each page from list_knowledge_bases; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -384,7 +384,7 @@ class BedrockAgentClientPaginators:
         prompt_identifier: str | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListPromptsResponse]:
+    ) -> AsyncIterator[ListPromptsOutput]:
         """Yield each page from list_prompts; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -410,7 +410,7 @@ class BedrockAgentClientPaginators:
         retrieval_instruction_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListRetrievalInstructionVersionsResponse]:
+    ) -> AsyncIterator[ListRetrievalInstructionVersionsOutput]:
         """Yield each page from list_retrieval_instruction_versions; requests start on iteration."""
         params: dict[str, object] = {
             "retrieval_instruction_id": retrieval_instruction_id,
@@ -435,7 +435,7 @@ class BedrockAgentClientPaginators:
         status: RetrievalInstructionStatus | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListRetrievalInstructionsResponse]:
+    ) -> AsyncIterator[ListRetrievalInstructionsOutput]:
         """Yield each page from list_retrieval_instructions; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -462,7 +462,7 @@ class BedrockAgentClientPaginators:
         status_filter: VpcConfigurationStatus | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListVpcConfigurationsResponse]:
+    ) -> AsyncIterator[ListVpcConfigurationsOutput]:
         """Yield each page from list_vpc_configurations; requests start on iteration."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,

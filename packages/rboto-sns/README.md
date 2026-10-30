@@ -88,47 +88,47 @@ native response definitions are in the package's `_native.pyi`.
 | Method | Required arguments | Return type |
 |---|---|---|
 | [`add_permission`](#add_permission) | <code>topic_arn: str</code>, <code>label: str</code>, <code>aws_account_id: Sequence[str]</code>, <code>action_name: Sequence[str]</code> | <code>None</code> |
-| [`check_if_phone_number_is_opted_out`](#check_if_phone_number_is_opted_out) | <code>phone_number: str</code> | <code>CheckIfPhoneNumberIsOptedOutResponse</code> |
-| [`confirm_subscription`](#confirm_subscription) | <code>topic_arn: str</code>, <code>token: str</code> | <code>ConfirmSubscriptionResponse</code> |
-| [`create_platform_application`](#create_platform_application) | <code>name: str</code>, <code>platform: str</code>, <code>attributes: dict[str, str]</code> | <code>CreatePlatformApplicationResponse</code> |
-| [`create_platform_endpoint`](#create_platform_endpoint) | <code>platform_application_arn: str</code>, <code>token: str</code> | <code>CreateEndpointResponse</code> |
-| [`create_sms_sandbox_phone_number`](#create_sms_sandbox_phone_number) | <code>phone_number: str</code> | <code>CreateSMSSandboxPhoneNumberResult</code> |
-| [`create_topic`](#create_topic) | <code>name: str</code> | <code>CreateTopicResponse</code> |
+| [`check_if_phone_number_is_opted_out`](#check_if_phone_number_is_opted_out) | <code>phone_number: str</code> | <code>CheckIfPhoneNumberIsOptedOutOutput</code> |
+| [`confirm_subscription`](#confirm_subscription) | <code>topic_arn: str</code>, <code>token: str</code> | <code>ConfirmSubscriptionOutput</code> |
+| [`create_platform_application`](#create_platform_application) | <code>name: str</code>, <code>platform: str</code>, <code>attributes: dict[str, str]</code> | <code>CreatePlatformApplicationOutput</code> |
+| [`create_platform_endpoint`](#create_platform_endpoint) | <code>platform_application_arn: str</code>, <code>token: str</code> | <code>CreatePlatformEndpointOutput</code> |
+| [`create_sms_sandbox_phone_number`](#create_sms_sandbox_phone_number) | <code>phone_number: str</code> | <code>CreateSMSSandboxPhoneNumberOutput</code> |
+| [`create_topic`](#create_topic) | <code>name: str</code> | <code>CreateTopicOutput</code> |
 | [`delete_endpoint`](#delete_endpoint) | <code>endpoint_arn: str</code> | <code>None</code> |
 | [`delete_platform_application`](#delete_platform_application) | <code>platform_application_arn: str</code> | <code>None</code> |
-| [`delete_sms_sandbox_phone_number`](#delete_sms_sandbox_phone_number) | <code>phone_number: str</code> | <code>DeleteSMSSandboxPhoneNumberResult</code> |
+| [`delete_sms_sandbox_phone_number`](#delete_sms_sandbox_phone_number) | <code>phone_number: str</code> | <code>DeleteSMSSandboxPhoneNumberOutput</code> |
 | [`delete_topic`](#delete_topic) | <code>topic_arn: str</code> | <code>None</code> |
-| [`get_data_protection_policy`](#get_data_protection_policy) | <code>resource_arn: str</code> | <code>GetDataProtectionPolicyResponse</code> |
-| [`get_endpoint_attributes`](#get_endpoint_attributes) | <code>endpoint_arn: str</code> | <code>GetEndpointAttributesResponse</code> |
-| [`get_platform_application_attributes`](#get_platform_application_attributes) | <code>platform_application_arn: str</code> | <code>GetPlatformApplicationAttributesResponse</code> |
-| [`get_sms_attributes`](#get_sms_attributes) | None | <code>GetSMSAttributesResponse</code> |
-| [`get_sms_sandbox_account_status`](#get_sms_sandbox_account_status) | None | <code>GetSMSSandboxAccountStatusResult</code> |
-| [`get_subscription_attributes`](#get_subscription_attributes) | <code>subscription_arn: str</code> | <code>GetSubscriptionAttributesResponse</code> |
-| [`get_topic_attributes`](#get_topic_attributes) | <code>topic_arn: str</code> | <code>GetTopicAttributesResponse</code> |
-| [`list_endpoints_by_platform_application`](#list_endpoints_by_platform_application) | <code>platform_application_arn: str</code> | <code>ListEndpointsByPlatformApplicationResponse</code> |
-| [`list_origination_numbers`](#list_origination_numbers) | None | <code>ListOriginationNumbersResult</code> |
-| [`list_phone_numbers_opted_out`](#list_phone_numbers_opted_out) | None | <code>ListPhoneNumbersOptedOutResponse</code> |
-| [`list_platform_applications`](#list_platform_applications) | None | <code>ListPlatformApplicationsResponse</code> |
-| [`list_sms_sandbox_phone_numbers`](#list_sms_sandbox_phone_numbers) | None | <code>ListSMSSandboxPhoneNumbersResult</code> |
-| [`list_subscriptions`](#list_subscriptions) | None | <code>ListSubscriptionsResponse</code> |
-| [`list_subscriptions_by_topic`](#list_subscriptions_by_topic) | <code>topic_arn: str</code> | <code>ListSubscriptionsByTopicResponse</code> |
-| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceResponse</code> |
-| [`list_topics`](#list_topics) | None | <code>ListTopicsResponse</code> |
-| [`opt_in_phone_number`](#opt_in_phone_number) | <code>phone_number: str</code> | <code>OptInPhoneNumberResponse</code> |
-| [`publish`](#publish) | <code>message: str</code> | <code>PublishResponse</code> |
-| [`publish_batch`](#publish_batch) | <code>topic_arn: str</code>, <code>publish_batch_request_entries: Sequence[PublishBatchRequestEntry]</code> | <code>PublishBatchResponse</code> |
+| [`get_data_protection_policy`](#get_data_protection_policy) | <code>resource_arn: str</code> | <code>GetDataProtectionPolicyOutput</code> |
+| [`get_endpoint_attributes`](#get_endpoint_attributes) | <code>endpoint_arn: str</code> | <code>GetEndpointAttributesOutput</code> |
+| [`get_platform_application_attributes`](#get_platform_application_attributes) | <code>platform_application_arn: str</code> | <code>GetPlatformApplicationAttributesOutput</code> |
+| [`get_sms_attributes`](#get_sms_attributes) | None | <code>GetSMSAttributesOutput</code> |
+| [`get_sms_sandbox_account_status`](#get_sms_sandbox_account_status) | None | <code>GetSMSSandboxAccountStatusOutput</code> |
+| [`get_subscription_attributes`](#get_subscription_attributes) | <code>subscription_arn: str</code> | <code>GetSubscriptionAttributesOutput</code> |
+| [`get_topic_attributes`](#get_topic_attributes) | <code>topic_arn: str</code> | <code>GetTopicAttributesOutput</code> |
+| [`list_endpoints_by_platform_application`](#list_endpoints_by_platform_application) | <code>platform_application_arn: str</code> | <code>ListEndpointsByPlatformApplicationOutput</code> |
+| [`list_origination_numbers`](#list_origination_numbers) | None | <code>ListOriginationNumbersOutput</code> |
+| [`list_phone_numbers_opted_out`](#list_phone_numbers_opted_out) | None | <code>ListPhoneNumbersOptedOutOutput</code> |
+| [`list_platform_applications`](#list_platform_applications) | None | <code>ListPlatformApplicationsOutput</code> |
+| [`list_sms_sandbox_phone_numbers`](#list_sms_sandbox_phone_numbers) | None | <code>ListSMSSandboxPhoneNumbersOutput</code> |
+| [`list_subscriptions`](#list_subscriptions) | None | <code>ListSubscriptionsOutput</code> |
+| [`list_subscriptions_by_topic`](#list_subscriptions_by_topic) | <code>topic_arn: str</code> | <code>ListSubscriptionsByTopicOutput</code> |
+| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceOutput</code> |
+| [`list_topics`](#list_topics) | None | <code>ListTopicsOutput</code> |
+| [`opt_in_phone_number`](#opt_in_phone_number) | <code>phone_number: str</code> | <code>OptInPhoneNumberOutput</code> |
+| [`publish`](#publish) | <code>message: str</code> | <code>PublishOutput</code> |
+| [`publish_batch`](#publish_batch) | <code>topic_arn: str</code>, <code>publish_batch_request_entries: Sequence[PublishBatchRequestEntry]</code> | <code>PublishBatchOutput</code> |
 | [`put_data_protection_policy`](#put_data_protection_policy) | <code>resource_arn: str</code>, <code>data_protection_policy: str</code> | <code>None</code> |
 | [`remove_permission`](#remove_permission) | <code>topic_arn: str</code>, <code>label: str</code> | <code>None</code> |
 | [`set_endpoint_attributes`](#set_endpoint_attributes) | <code>endpoint_arn: str</code>, <code>attributes: dict[str, str]</code> | <code>None</code> |
 | [`set_platform_application_attributes`](#set_platform_application_attributes) | <code>platform_application_arn: str</code>, <code>attributes: dict[str, str]</code> | <code>None</code> |
-| [`set_sms_attributes`](#set_sms_attributes) | <code>attributes: dict[str, str]</code> | <code>SetSMSAttributesResponse</code> |
+| [`set_sms_attributes`](#set_sms_attributes) | <code>attributes: dict[str, str]</code> | <code>SetSMSAttributesOutput</code> |
 | [`set_subscription_attributes`](#set_subscription_attributes) | <code>subscription_arn: str</code>, <code>attribute_name: str</code> | <code>None</code> |
 | [`set_topic_attributes`](#set_topic_attributes) | <code>topic_arn: str</code>, <code>attribute_name: str</code> | <code>None</code> |
-| [`subscribe`](#subscribe) | <code>topic_arn: str</code>, <code>protocol: str</code> | <code>SubscribeResponse</code> |
-| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>TagResourceResponse</code> |
+| [`subscribe`](#subscribe) | <code>topic_arn: str</code>, <code>protocol: str</code> | <code>SubscribeOutput</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>TagResourceOutput</code> |
 | [`unsubscribe`](#unsubscribe) | <code>subscription_arn: str</code> | <code>None</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
-| [`verify_sms_sandbox_phone_number`](#verify_sms_sandbox_phone_number) | <code>phone_number: str</code>, <code>one_time_password: str</code> | <code>VerifySMSSandboxPhoneNumberResult</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceOutput</code> |
+| [`verify_sms_sandbox_phone_number`](#verify_sms_sandbox_phone_number) | <code>phone_number: str</code>, <code>one_time_password: str</code> | <code>VerifySMSSandboxPhoneNumberOutput</code> |
 
 ## Complete signatures
 
@@ -151,7 +151,7 @@ async def add_permission(
 async def check_if_phone_number_is_opted_out(
     *,
     phone_number: str,
-) -> CheckIfPhoneNumberIsOptedOutResponse: ...
+) -> CheckIfPhoneNumberIsOptedOutOutput: ...
 ```
 
 
@@ -163,7 +163,7 @@ async def confirm_subscription(
     topic_arn: str,
     token: str,
     authenticate_on_unsubscribe: str | None = None,
-) -> ConfirmSubscriptionResponse: ...
+) -> ConfirmSubscriptionOutput: ...
 ```
 
 
@@ -175,7 +175,7 @@ async def create_platform_application(
     name: str,
     platform: str,
     attributes: dict[str, str],
-) -> CreatePlatformApplicationResponse: ...
+) -> CreatePlatformApplicationOutput: ...
 ```
 
 
@@ -188,7 +188,7 @@ async def create_platform_endpoint(
     token: str,
     custom_user_data: str | None = None,
     attributes: dict[str, str] | None = None,
-) -> CreateEndpointResponse: ...
+) -> CreatePlatformEndpointOutput: ...
 ```
 
 
@@ -199,7 +199,7 @@ async def create_sms_sandbox_phone_number(
     *,
     phone_number: str,
     language_code: LanguageCodeString | None = None,
-) -> CreateSMSSandboxPhoneNumberResult: ...
+) -> CreateSMSSandboxPhoneNumberOutput: ...
 ```
 
 
@@ -212,7 +212,7 @@ async def create_topic(
     attributes: dict[str, str] | None = None,
     tags: Sequence[Tag] | None = None,
     data_protection_policy: str | None = None,
-) -> CreateTopicResponse: ...
+) -> CreateTopicOutput: ...
 ```
 
 
@@ -242,7 +242,7 @@ async def delete_platform_application(
 async def delete_sms_sandbox_phone_number(
     *,
     phone_number: str,
-) -> DeleteSMSSandboxPhoneNumberResult: ...
+) -> DeleteSMSSandboxPhoneNumberOutput: ...
 ```
 
 
@@ -262,7 +262,7 @@ async def delete_topic(
 async def get_data_protection_policy(
     *,
     resource_arn: str,
-) -> GetDataProtectionPolicyResponse: ...
+) -> GetDataProtectionPolicyOutput: ...
 ```
 
 
@@ -272,7 +272,7 @@ async def get_data_protection_policy(
 async def get_endpoint_attributes(
     *,
     endpoint_arn: str,
-) -> GetEndpointAttributesResponse: ...
+) -> GetEndpointAttributesOutput: ...
 ```
 
 
@@ -282,7 +282,7 @@ async def get_endpoint_attributes(
 async def get_platform_application_attributes(
     *,
     platform_application_arn: str,
-) -> GetPlatformApplicationAttributesResponse: ...
+) -> GetPlatformApplicationAttributesOutput: ...
 ```
 
 
@@ -292,14 +292,14 @@ async def get_platform_application_attributes(
 async def get_sms_attributes(
     *,
     attributes: Sequence[str] | None = None,
-) -> GetSMSAttributesResponse: ...
+) -> GetSMSAttributesOutput: ...
 ```
 
 
 ### get_sms_sandbox_account_status
 
 ```python
-async def get_sms_sandbox_account_status() -> GetSMSSandboxAccountStatusResult: ...
+async def get_sms_sandbox_account_status() -> GetSMSSandboxAccountStatusOutput: ...
 ```
 
 
@@ -309,7 +309,7 @@ async def get_sms_sandbox_account_status() -> GetSMSSandboxAccountStatusResult: 
 async def get_subscription_attributes(
     *,
     subscription_arn: str,
-) -> GetSubscriptionAttributesResponse: ...
+) -> GetSubscriptionAttributesOutput: ...
 ```
 
 
@@ -319,7 +319,7 @@ async def get_subscription_attributes(
 async def get_topic_attributes(
     *,
     topic_arn: str,
-) -> GetTopicAttributesResponse: ...
+) -> GetTopicAttributesOutput: ...
 ```
 
 
@@ -330,7 +330,7 @@ async def list_endpoints_by_platform_application(
     *,
     platform_application_arn: str,
     next_token: str | None = None,
-) -> ListEndpointsByPlatformApplicationResponse: ...
+) -> ListEndpointsByPlatformApplicationOutput: ...
 ```
 
 Also available as `client.paginators.list_endpoints_by_platform_application(...)`, returning an
@@ -344,7 +344,7 @@ async def list_origination_numbers(
     *,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListOriginationNumbersResult: ...
+) -> ListOriginationNumbersOutput: ...
 ```
 
 Also available as `client.paginators.list_origination_numbers(...)`, returning an
@@ -357,7 +357,7 @@ async iterator of the response type above.
 async def list_phone_numbers_opted_out(
     *,
     next_token: str | None = None,
-) -> ListPhoneNumbersOptedOutResponse: ...
+) -> ListPhoneNumbersOptedOutOutput: ...
 ```
 
 Also available as `client.paginators.list_phone_numbers_opted_out(...)`, returning an
@@ -370,7 +370,7 @@ async iterator of the response type above.
 async def list_platform_applications(
     *,
     next_token: str | None = None,
-) -> ListPlatformApplicationsResponse: ...
+) -> ListPlatformApplicationsOutput: ...
 ```
 
 Also available as `client.paginators.list_platform_applications(...)`, returning an
@@ -384,7 +384,7 @@ async def list_sms_sandbox_phone_numbers(
     *,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListSMSSandboxPhoneNumbersResult: ...
+) -> ListSMSSandboxPhoneNumbersOutput: ...
 ```
 
 Also available as `client.paginators.list_sms_sandbox_phone_numbers(...)`, returning an
@@ -397,7 +397,7 @@ async iterator of the response type above.
 async def list_subscriptions(
     *,
     next_token: str | None = None,
-) -> ListSubscriptionsResponse: ...
+) -> ListSubscriptionsOutput: ...
 ```
 
 Also available as `client.paginators.list_subscriptions(...)`, returning an
@@ -411,7 +411,7 @@ async def list_subscriptions_by_topic(
     *,
     topic_arn: str,
     next_token: str | None = None,
-) -> ListSubscriptionsByTopicResponse: ...
+) -> ListSubscriptionsByTopicOutput: ...
 ```
 
 Also available as `client.paginators.list_subscriptions_by_topic(...)`, returning an
@@ -424,7 +424,7 @@ async iterator of the response type above.
 async def list_tags_for_resource(
     *,
     resource_arn: str,
-) -> ListTagsForResourceResponse: ...
+) -> ListTagsForResourceOutput: ...
 ```
 
 
@@ -434,7 +434,7 @@ async def list_tags_for_resource(
 async def list_topics(
     *,
     next_token: str | None = None,
-) -> ListTopicsResponse: ...
+) -> ListTopicsOutput: ...
 ```
 
 Also available as `client.paginators.list_topics(...)`, returning an
@@ -447,7 +447,7 @@ async iterator of the response type above.
 async def opt_in_phone_number(
     *,
     phone_number: str,
-) -> OptInPhoneNumberResponse: ...
+) -> OptInPhoneNumberOutput: ...
 ```
 
 
@@ -465,7 +465,7 @@ async def publish(
     message_attributes: dict[str, MessageAttributeValue] | None = None,
     message_deduplication_id: str | None = None,
     message_group_id: str | None = None,
-) -> PublishResponse: ...
+) -> PublishOutput: ...
 ```
 
 
@@ -476,7 +476,7 @@ async def publish_batch(
     *,
     topic_arn: str,
     publish_batch_request_entries: Sequence[PublishBatchRequestEntry],
-) -> PublishBatchResponse: ...
+) -> PublishBatchOutput: ...
 ```
 
 
@@ -530,7 +530,7 @@ async def set_platform_application_attributes(
 async def set_sms_attributes(
     *,
     attributes: dict[str, str],
-) -> SetSMSAttributesResponse: ...
+) -> SetSMSAttributesOutput: ...
 ```
 
 
@@ -568,7 +568,7 @@ async def subscribe(
     endpoint: str | None = None,
     attributes: dict[str, str] | None = None,
     return_subscription_arn: bool | None = None,
-) -> SubscribeResponse: ...
+) -> SubscribeOutput: ...
 ```
 
 
@@ -579,7 +579,7 @@ async def tag_resource(
     *,
     resource_arn: str,
     tags: Sequence[Tag],
-) -> TagResourceResponse: ...
+) -> TagResourceOutput: ...
 ```
 
 
@@ -600,7 +600,7 @@ async def untag_resource(
     *,
     resource_arn: str,
     tag_keys: Sequence[str],
-) -> UntagResourceResponse: ...
+) -> UntagResourceOutput: ...
 ```
 
 
@@ -611,7 +611,7 @@ async def verify_sms_sandbox_phone_number(
     *,
     phone_number: str,
     one_time_password: str,
-) -> VerifySMSSandboxPhoneNumberResult: ...
+) -> VerifySMSSandboxPhoneNumberOutput: ...
 ```
 
 

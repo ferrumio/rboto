@@ -3043,16 +3043,16 @@ impl PyMedicalScribeStreamDetails {
 }
 
 #[pyclass(
-    name = "GetMedicalScribeStreamResponse",
+    name = "GetMedicalScribeStreamOutput",
     module = "rboto_transcribe_streaming._native",
     frozen
 )]
-struct PyGetMedicalScribeStreamResponse {
+struct PyOperationGetMedicalScribeStreamOutput {
     inner: aws_sdk_transcribestreaming::operation::get_medical_scribe_stream::GetMedicalScribeStreamOutput,
 }
 
 #[pymethods]
-impl PyGetMedicalScribeStreamResponse {
+impl PyOperationGetMedicalScribeStreamOutput {
     #[getter]
     fn medical_scribe_stream_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.medical_scribe_stream_details {
@@ -3378,7 +3378,7 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyMedicalScribePostStreamAnalyticsResult>()?;
     module.add_class::<PyMedicalScribePostStreamAnalyticsSettings>()?;
     module.add_class::<PyMedicalScribeStreamDetails>()?;
-    module.add_class::<PyGetMedicalScribeStreamResponse>()?;
+    module.add_class::<PyOperationGetMedicalScribeStreamOutput>()?;
 
     module.add_class::<PyCallAnalyticsTranscriptResultStreamReceiver>()?;
     module.add_class::<PyMedicalScribeResultStreamReceiver>()?;
@@ -3449,7 +3449,7 @@ impl TranscribeStreamingClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMedicalScribeStream"))
             })?;
-            Ok(PyGetMedicalScribeStreamResponse { inner: output })
+            Ok(PyOperationGetMedicalScribeStreamOutput { inner: output })
         })
     }
 

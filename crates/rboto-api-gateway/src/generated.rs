@@ -6346,12 +6346,12 @@ impl PyVpcLink {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyCreateApiKeyOutput {
+struct PyOperationCreateApiKeyOutput {
     inner: aws_sdk_apigateway::operation::create_api_key::CreateApiKeyOutput,
 }
 
 #[pymethods]
-impl PyCreateApiKeyOutput {
+impl PyOperationCreateApiKeyOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -6537,12 +6537,12 @@ impl PyCreateApiKeyOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyCreateAuthorizerOutput {
+struct PyOperationCreateAuthorizerOutput {
     inner: aws_sdk_apigateway::operation::create_authorizer::CreateAuthorizerOutput,
 }
 
 #[pymethods]
-impl PyCreateAuthorizerOutput {
+impl PyOperationCreateAuthorizerOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -6724,12 +6724,12 @@ impl PyCreateAuthorizerOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyCreateBasePathMappingOutput {
+struct PyOperationCreateBasePathMappingOutput {
     inner: aws_sdk_apigateway::operation::create_base_path_mapping::CreateBasePathMappingOutput,
 }
 
 #[pymethods]
-impl PyCreateBasePathMappingOutput {
+impl PyOperationCreateBasePathMappingOutput {
     #[getter]
     fn base_path(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.base_path {
@@ -6789,12 +6789,12 @@ impl PyCreateBasePathMappingOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyCreateDeploymentOutput {
+struct PyOperationCreateDeploymentOutput {
     inner: aws_sdk_apigateway::operation::create_deployment::CreateDeploymentOutput,
 }
 
 #[pymethods]
-impl PyCreateDeploymentOutput {
+impl PyOperationCreateDeploymentOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -6900,12 +6900,12 @@ impl PyCreateDeploymentOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyCreateDocumentationPartOutput {
+struct PyOperationCreateDocumentationPartOutput {
     inner: aws_sdk_apigateway::operation::create_documentation_part::CreateDocumentationPartOutput,
 }
 
 #[pymethods]
-impl PyCreateDocumentationPartOutput {
+impl PyOperationCreateDocumentationPartOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -6971,12 +6971,12 @@ impl PyCreateDocumentationPartOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyCreateDocumentationVersionOutput {
+struct PyOperationCreateDocumentationVersionOutput {
     inner: aws_sdk_apigateway::operation::create_documentation_version::CreateDocumentationVersionOutput,
 }
 
 #[pymethods]
-impl PyCreateDocumentationVersionOutput {
+impl PyOperationCreateDocumentationVersionOutput {
     #[getter]
     fn version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.version {
@@ -7036,12 +7036,12 @@ impl PyCreateDocumentationVersionOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyCreateDomainNameOutput {
+struct PyOperationCreateDomainNameOutput {
     inner: aws_sdk_apigateway::operation::create_domain_name::CreateDomainNameOutput,
 }
 
 #[pymethods]
-impl PyCreateDomainNameOutput {
+impl PyOperationCreateDomainNameOutput {
     #[getter]
     fn domain_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.domain_name {
@@ -7445,12 +7445,12 @@ impl PyCreateDomainNameOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyCreateDomainNameAccessAssociationOutput {
+struct PyOperationCreateDomainNameAccessAssociationOutput {
     inner: aws_sdk_apigateway::operation::create_domain_name_access_association::CreateDomainNameAccessAssociationOutput,
 }
 
 #[pymethods]
-impl PyCreateDomainNameAccessAssociationOutput {
+impl PyOperationCreateDomainNameAccessAssociationOutput {
     #[getter]
     fn domain_name_access_association_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.domain_name_access_association_arn {
@@ -7554,12 +7554,12 @@ impl PyCreateDomainNameAccessAssociationOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyCreateModelOutput {
+struct PyOperationCreateModelOutput {
     inner: aws_sdk_apigateway::operation::create_model::CreateModelOutput,
 }
 
 #[pymethods]
-impl PyCreateModelOutput {
+impl PyOperationCreateModelOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -7651,12 +7651,12 @@ impl PyCreateModelOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyCreateRequestValidatorOutput {
+struct PyOperationCreateRequestValidatorOutput {
     inner: aws_sdk_apigateway::operation::create_request_validator::CreateRequestValidatorOutput,
 }
 
 #[pymethods]
-impl PyCreateRequestValidatorOutput {
+impl PyOperationCreateRequestValidatorOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -7724,12 +7724,12 @@ impl PyCreateRequestValidatorOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyCreateResourceOutput {
+struct PyOperationCreateResourceOutput {
     inner: aws_sdk_apigateway::operation::create_resource::CreateResourceOutput,
 }
 
 #[pymethods]
-impl PyCreateResourceOutput {
+impl PyOperationCreateResourceOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -7839,12 +7839,12 @@ impl PyCreateResourceOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyCreateRestApiOutput {
+struct PyOperationCreateRestApiOutput {
     inner: aws_sdk_apigateway::operation::create_rest_api::CreateRestApiOutput,
 }
 
 #[pymethods]
-impl PyCreateRestApiOutput {
+impl PyOperationCreateRestApiOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -8178,12 +8178,12 @@ impl PyCreateRestApiOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyCreateStageOutput {
+struct PyOperationCreateStageOutput {
     inner: aws_sdk_apigateway::operation::create_stage::CreateStageOutput,
 }
 
 #[pymethods]
-impl PyCreateStageOutput {
+impl PyOperationCreateStageOutput {
     #[getter]
     fn deployment_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.deployment_id {
@@ -8509,12 +8509,12 @@ impl PyCreateStageOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyCreateUsagePlanOutput {
+struct PyOperationCreateUsagePlanOutput {
     inner: aws_sdk_apigateway::operation::create_usage_plan::CreateUsagePlanOutput,
 }
 
 #[pymethods]
-impl PyCreateUsagePlanOutput {
+impl PyOperationCreateUsagePlanOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -8694,12 +8694,12 @@ impl PyCreateUsagePlanOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyCreateUsagePlanKeyOutput {
+struct PyOperationCreateUsagePlanKeyOutput {
     inner: aws_sdk_apigateway::operation::create_usage_plan_key::CreateUsagePlanKeyOutput,
 }
 
 #[pymethods]
-impl PyCreateUsagePlanKeyOutput {
+impl PyOperationCreateUsagePlanKeyOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -8775,12 +8775,12 @@ impl PyCreateUsagePlanKeyOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyCreateVpcLinkOutput {
+struct PyOperationCreateVpcLinkOutput {
     inner: aws_sdk_apigateway::operation::create_vpc_link::CreateVpcLinkOutput,
 }
 
 #[pymethods]
-impl PyCreateVpcLinkOutput {
+impl PyOperationCreateVpcLinkOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -8926,13 +8926,13 @@ impl PyCreateVpcLinkOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyGenerateClientCertificateOutput {
+struct PyOperationGenerateClientCertificateOutput {
     inner:
         aws_sdk_apigateway::operation::generate_client_certificate::GenerateClientCertificateOutput,
 }
 
 #[pymethods]
-impl PyGenerateClientCertificateOutput {
+impl PyOperationGenerateClientCertificateOutput {
     #[getter]
     fn client_certificate_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.client_certificate_id {
@@ -9052,12 +9052,12 @@ impl PyGenerateClientCertificateOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyGetAccountOutput {
+struct PyOperationGetAccountOutput {
     inner: aws_sdk_apigateway::operation::get_account::GetAccountOutput,
 }
 
 #[pymethods]
-impl PyGetAccountOutput {
+impl PyOperationGetAccountOutput {
     #[getter]
     fn cloudwatch_role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cloudwatch_role_arn {
@@ -9145,12 +9145,12 @@ impl PyGetAccountOutput {
 }
 
 #[pyclass(name = "GetApiKeyOutput", module = "rboto_api_gateway._native", frozen)]
-struct PyGetApiKeyOutput {
+struct PyOperationGetApiKeyOutput {
     inner: aws_sdk_apigateway::operation::get_api_key::GetApiKeyOutput,
 }
 
 #[pymethods]
-impl PyGetApiKeyOutput {
+impl PyOperationGetApiKeyOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -9331,13 +9331,17 @@ impl PyGetApiKeyOutput {
     }
 }
 
-#[pyclass(name = "ApiKeys", module = "rboto_api_gateway._native", frozen)]
-struct PyApiKeys {
+#[pyclass(
+    name = "GetApiKeysOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
+struct PyOperationGetApiKeysOutput {
     inner: aws_sdk_apigateway::operation::get_api_keys::GetApiKeysOutput,
 }
 
 #[pymethods]
-impl PyApiKeys {
+impl PyOperationGetApiKeysOutput {
     #[getter]
     fn warnings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.warnings {
@@ -9423,12 +9427,12 @@ impl PyApiKeys {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyGetAuthorizerOutput {
+struct PyOperationGetAuthorizerOutput {
     inner: aws_sdk_apigateway::operation::get_authorizer::GetAuthorizerOutput,
 }
 
 #[pymethods]
-impl PyGetAuthorizerOutput {
+impl PyOperationGetAuthorizerOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -9605,13 +9609,17 @@ impl PyGetAuthorizerOutput {
     }
 }
 
-#[pyclass(name = "Authorizers", module = "rboto_api_gateway._native", frozen)]
-struct PyAuthorizers {
+#[pyclass(
+    name = "GetAuthorizersOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
+struct PyOperationGetAuthorizersOutput {
     inner: aws_sdk_apigateway::operation::get_authorizers::GetAuthorizersOutput,
 }
 
 #[pymethods]
-impl PyAuthorizers {
+impl PyOperationGetAuthorizersOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.items {
@@ -9671,12 +9679,12 @@ impl PyAuthorizers {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyGetBasePathMappingOutput {
+struct PyOperationGetBasePathMappingOutput {
     inner: aws_sdk_apigateway::operation::get_base_path_mapping::GetBasePathMappingOutput,
 }
 
 #[pymethods]
-impl PyGetBasePathMappingOutput {
+impl PyOperationGetBasePathMappingOutput {
     #[getter]
     fn base_path(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.base_path {
@@ -9732,16 +9740,16 @@ impl PyGetBasePathMappingOutput {
 }
 
 #[pyclass(
-    name = "BasePathMappings",
+    name = "GetBasePathMappingsOutput",
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyBasePathMappings {
+struct PyOperationGetBasePathMappingsOutput {
     inner: aws_sdk_apigateway::operation::get_base_path_mappings::GetBasePathMappingsOutput,
 }
 
 #[pymethods]
-impl PyBasePathMappings {
+impl PyOperationGetBasePathMappingsOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.items {
@@ -9801,12 +9809,12 @@ impl PyBasePathMappings {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyGetClientCertificateOutput {
+struct PyOperationGetClientCertificateOutput {
     inner: aws_sdk_apigateway::operation::get_client_certificate::GetClientCertificateOutput,
 }
 
 #[pymethods]
-impl PyGetClientCertificateOutput {
+impl PyOperationGetClientCertificateOutput {
     #[getter]
     fn client_certificate_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.client_certificate_id {
@@ -9922,16 +9930,16 @@ impl PyGetClientCertificateOutput {
 }
 
 #[pyclass(
-    name = "ClientCertificates",
+    name = "GetClientCertificatesOutput",
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyClientCertificates {
+struct PyOperationGetClientCertificatesOutput {
     inner: aws_sdk_apigateway::operation::get_client_certificates::GetClientCertificatesOutput,
 }
 
 #[pymethods]
-impl PyClientCertificates {
+impl PyOperationGetClientCertificatesOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.items {
@@ -9991,12 +9999,12 @@ impl PyClientCertificates {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyGetDeploymentOutput {
+struct PyOperationGetDeploymentOutput {
     inner: aws_sdk_apigateway::operation::get_deployment::GetDeploymentOutput,
 }
 
 #[pymethods]
-impl PyGetDeploymentOutput {
+impl PyOperationGetDeploymentOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -10097,13 +10105,17 @@ impl PyGetDeploymentOutput {
     }
 }
 
-#[pyclass(name = "Deployments", module = "rboto_api_gateway._native", frozen)]
-struct PyDeployments {
+#[pyclass(
+    name = "GetDeploymentsOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
+struct PyOperationGetDeploymentsOutput {
     inner: aws_sdk_apigateway::operation::get_deployments::GetDeploymentsOutput,
 }
 
 #[pymethods]
-impl PyDeployments {
+impl PyOperationGetDeploymentsOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.items {
@@ -10163,12 +10175,12 @@ impl PyDeployments {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyGetDocumentationPartOutput {
+struct PyOperationGetDocumentationPartOutput {
     inner: aws_sdk_apigateway::operation::get_documentation_part::GetDocumentationPartOutput,
 }
 
 #[pymethods]
-impl PyGetDocumentationPartOutput {
+impl PyOperationGetDocumentationPartOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -10230,16 +10242,16 @@ impl PyGetDocumentationPartOutput {
 }
 
 #[pyclass(
-    name = "DocumentationParts",
+    name = "GetDocumentationPartsOutput",
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyDocumentationParts {
+struct PyOperationGetDocumentationPartsOutput {
     inner: aws_sdk_apigateway::operation::get_documentation_parts::GetDocumentationPartsOutput,
 }
 
 #[pymethods]
-impl PyDocumentationParts {
+impl PyOperationGetDocumentationPartsOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.items {
@@ -10299,12 +10311,12 @@ impl PyDocumentationParts {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyGetDocumentationVersionOutput {
+struct PyOperationGetDocumentationVersionOutput {
     inner: aws_sdk_apigateway::operation::get_documentation_version::GetDocumentationVersionOutput,
 }
 
 #[pymethods]
-impl PyGetDocumentationVersionOutput {
+impl PyOperationGetDocumentationVersionOutput {
     #[getter]
     fn version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.version {
@@ -10360,17 +10372,17 @@ impl PyGetDocumentationVersionOutput {
 }
 
 #[pyclass(
-    name = "DocumentationVersions",
+    name = "GetDocumentationVersionsOutput",
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyDocumentationVersions {
+struct PyOperationGetDocumentationVersionsOutput {
     inner:
         aws_sdk_apigateway::operation::get_documentation_versions::GetDocumentationVersionsOutput,
 }
 
 #[pymethods]
-impl PyDocumentationVersions {
+impl PyOperationGetDocumentationVersionsOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.items {
@@ -10430,12 +10442,12 @@ impl PyDocumentationVersions {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyGetDomainNameOutput {
+struct PyOperationGetDomainNameOutput {
     inner: aws_sdk_apigateway::operation::get_domain_name::GetDomainNameOutput,
 }
 
 #[pymethods]
-impl PyGetDomainNameOutput {
+impl PyOperationGetDomainNameOutput {
     #[getter]
     fn domain_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.domain_name {
@@ -10835,16 +10847,16 @@ impl PyGetDomainNameOutput {
 }
 
 #[pyclass(
-    name = "DomainNameAccessAssociations",
+    name = "GetDomainNameAccessAssociationsOutput",
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyDomainNameAccessAssociations {
+struct PyOperationGetDomainNameAccessAssociationsOutput {
     inner: aws_sdk_apigateway::operation::get_domain_name_access_associations::GetDomainNameAccessAssociationsOutput,
 }
 
 #[pymethods]
-impl PyDomainNameAccessAssociations {
+impl PyOperationGetDomainNameAccessAssociationsOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.items {
@@ -10899,13 +10911,17 @@ impl PyDomainNameAccessAssociations {
     }
 }
 
-#[pyclass(name = "DomainNames", module = "rboto_api_gateway._native", frozen)]
-struct PyDomainNames {
+#[pyclass(
+    name = "GetDomainNamesOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
+struct PyOperationGetDomainNamesOutput {
     inner: aws_sdk_apigateway::operation::get_domain_names::GetDomainNamesOutput,
 }
 
 #[pymethods]
-impl PyDomainNames {
+impl PyOperationGetDomainNamesOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.items {
@@ -10960,13 +10976,13 @@ impl PyDomainNames {
     }
 }
 
-#[pyclass(name = "ExportResponse", module = "rboto_api_gateway._native", frozen)]
-struct PyExportResponse {
+#[pyclass(name = "GetExportOutput", module = "rboto_api_gateway._native", frozen)]
+struct PyOperationGetExportOutput {
     inner: aws_sdk_apigateway::operation::get_export::GetExportOutput,
 }
 
 #[pymethods]
-impl PyExportResponse {
+impl PyOperationGetExportOutput {
     #[getter]
     fn content_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.content_type {
@@ -11026,12 +11042,12 @@ impl PyExportResponse {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyGetGatewayResponseOutput {
+struct PyOperationGetGatewayResponseOutput {
     inner: aws_sdk_apigateway::operation::get_gateway_response::GetGatewayResponseOutput,
 }
 
 #[pymethods]
-impl PyGetGatewayResponseOutput {
+impl PyOperationGetGatewayResponseOutput {
     #[getter]
     fn response_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.response_type {
@@ -11135,16 +11151,16 @@ impl PyGetGatewayResponseOutput {
 }
 
 #[pyclass(
-    name = "GatewayResponses",
+    name = "GetGatewayResponsesOutput",
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyGatewayResponses {
+struct PyOperationGetGatewayResponsesOutput {
     inner: aws_sdk_apigateway::operation::get_gateway_responses::GetGatewayResponsesOutput,
 }
 
 #[pymethods]
-impl PyGatewayResponses {
+impl PyOperationGetGatewayResponsesOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.items {
@@ -11204,12 +11220,12 @@ impl PyGatewayResponses {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyGetIntegrationOutput {
+struct PyOperationGetIntegrationOutput {
     inner: aws_sdk_apigateway::operation::get_integration::GetIntegrationOutput,
 }
 
 #[pymethods]
-impl PyGetIntegrationOutput {
+impl PyOperationGetIntegrationOutput {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.r#type {
@@ -11543,12 +11559,12 @@ impl PyGetIntegrationOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyGetIntegrationResponseOutput {
+struct PyOperationGetIntegrationResponseOutput {
     inner: aws_sdk_apigateway::operation::get_integration_response::GetIntegrationResponseOutput,
 }
 
 #[pymethods]
-impl PyGetIntegrationResponseOutput {
+impl PyOperationGetIntegrationResponseOutput {
     #[getter]
     fn status_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status_code {
@@ -11660,12 +11676,12 @@ impl PyGetIntegrationResponseOutput {
 }
 
 #[pyclass(name = "GetMethodOutput", module = "rboto_api_gateway._native", frozen)]
-struct PyGetMethodOutput {
+struct PyOperationGetMethodOutput {
     inner: aws_sdk_apigateway::operation::get_method::GetMethodOutput,
 }
 
 #[pymethods]
-impl PyGetMethodOutput {
+impl PyOperationGetMethodOutput {
     #[getter]
     fn http_method(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.http_method {
@@ -11911,12 +11927,12 @@ impl PyGetMethodOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyGetMethodResponseOutput {
+struct PyOperationGetMethodResponseOutput {
     inner: aws_sdk_apigateway::operation::get_method_response::GetMethodResponseOutput,
 }
 
 #[pymethods]
-impl PyGetMethodResponseOutput {
+impl PyOperationGetMethodResponseOutput {
     #[getter]
     fn status_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status_code {
@@ -11996,12 +12012,12 @@ impl PyGetMethodResponseOutput {
 }
 
 #[pyclass(name = "GetModelOutput", module = "rboto_api_gateway._native", frozen)]
-struct PyGetModelOutput {
+struct PyOperationGetModelOutput {
     inner: aws_sdk_apigateway::operation::get_model::GetModelOutput,
 }
 
 #[pymethods]
-impl PyGetModelOutput {
+impl PyOperationGetModelOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -12088,13 +12104,17 @@ impl PyGetModelOutput {
     }
 }
 
-#[pyclass(name = "Template", module = "rboto_api_gateway._native", frozen)]
-struct PyTemplate {
+#[pyclass(
+    name = "GetModelTemplateOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
+struct PyOperationGetModelTemplateOutput {
     inner: aws_sdk_apigateway::operation::get_model_template::GetModelTemplateOutput,
 }
 
 #[pymethods]
-impl PyTemplate {
+impl PyOperationGetModelTemplateOutput {
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.value {
@@ -12117,13 +12137,13 @@ impl PyTemplate {
     }
 }
 
-#[pyclass(name = "Models", module = "rboto_api_gateway._native", frozen)]
-struct PyModels {
+#[pyclass(name = "GetModelsOutput", module = "rboto_api_gateway._native", frozen)]
+struct PyOperationGetModelsOutput {
     inner: aws_sdk_apigateway::operation::get_models::GetModelsOutput,
 }
 
 #[pymethods]
-impl PyModels {
+impl PyOperationGetModelsOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.items {
@@ -12183,12 +12203,12 @@ impl PyModels {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyGetRequestValidatorOutput {
+struct PyOperationGetRequestValidatorOutput {
     inner: aws_sdk_apigateway::operation::get_request_validator::GetRequestValidatorOutput,
 }
 
 #[pymethods]
-impl PyGetRequestValidatorOutput {
+impl PyOperationGetRequestValidatorOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -12252,16 +12272,16 @@ impl PyGetRequestValidatorOutput {
 }
 
 #[pyclass(
-    name = "RequestValidators",
+    name = "GetRequestValidatorsOutput",
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyRequestValidators {
+struct PyOperationGetRequestValidatorsOutput {
     inner: aws_sdk_apigateway::operation::get_request_validators::GetRequestValidatorsOutput,
 }
 
 #[pymethods]
-impl PyRequestValidators {
+impl PyOperationGetRequestValidatorsOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.items {
@@ -12321,12 +12341,12 @@ impl PyRequestValidators {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyGetResourceOutput {
+struct PyOperationGetResourceOutput {
     inner: aws_sdk_apigateway::operation::get_resource::GetResourceOutput,
 }
 
 #[pymethods]
-impl PyGetResourceOutput {
+impl PyOperationGetResourceOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -12431,13 +12451,17 @@ impl PyGetResourceOutput {
     }
 }
 
-#[pyclass(name = "Resources", module = "rboto_api_gateway._native", frozen)]
-struct PyResources {
+#[pyclass(
+    name = "GetResourcesOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
+struct PyOperationGetResourcesOutput {
     inner: aws_sdk_apigateway::operation::get_resources::GetResourcesOutput,
 }
 
 #[pymethods]
-impl PyResources {
+impl PyOperationGetResourcesOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.items {
@@ -12497,12 +12521,12 @@ impl PyResources {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyGetRestApiOutput {
+struct PyOperationGetRestApiOutput {
     inner: aws_sdk_apigateway::operation::get_rest_api::GetRestApiOutput,
 }
 
 #[pymethods]
-impl PyGetRestApiOutput {
+impl PyOperationGetRestApiOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -12831,13 +12855,17 @@ impl PyGetRestApiOutput {
     }
 }
 
-#[pyclass(name = "RestApis", module = "rboto_api_gateway._native", frozen)]
-struct PyRestApis {
+#[pyclass(
+    name = "GetRestApisOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
+struct PyOperationGetRestApisOutput {
     inner: aws_sdk_apigateway::operation::get_rest_apis::GetRestApisOutput,
 }
 
 #[pymethods]
-impl PyRestApis {
+impl PyOperationGetRestApisOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.items {
@@ -12892,13 +12920,13 @@ impl PyRestApis {
     }
 }
 
-#[pyclass(name = "SdkResponse", module = "rboto_api_gateway._native", frozen)]
-struct PySdkResponse {
+#[pyclass(name = "GetSdkOutput", module = "rboto_api_gateway._native", frozen)]
+struct PyOperationGetSdkOutput {
     inner: aws_sdk_apigateway::operation::get_sdk::GetSdkOutput,
 }
 
 #[pymethods]
-impl PySdkResponse {
+impl PyOperationGetSdkOutput {
     #[getter]
     fn content_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.content_type {
@@ -12958,12 +12986,12 @@ impl PySdkResponse {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyGetSdkTypeOutput {
+struct PyOperationGetSdkTypeOutput {
     inner: aws_sdk_apigateway::operation::get_sdk_type::GetSdkTypeOutput,
 }
 
 #[pymethods]
-impl PyGetSdkTypeOutput {
+impl PyOperationGetSdkTypeOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -13050,13 +13078,17 @@ impl PyGetSdkTypeOutput {
     }
 }
 
-#[pyclass(name = "SdkTypes", module = "rboto_api_gateway._native", frozen)]
-struct PySdkTypes {
+#[pyclass(
+    name = "GetSdkTypesOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
+struct PyOperationGetSdkTypesOutput {
     inner: aws_sdk_apigateway::operation::get_sdk_types::GetSdkTypesOutput,
 }
 
 #[pymethods]
-impl PySdkTypes {
+impl PyOperationGetSdkTypesOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.items {
@@ -13096,12 +13128,12 @@ impl PySdkTypes {
 }
 
 #[pyclass(name = "GetStageOutput", module = "rboto_api_gateway._native", frozen)]
-struct PyGetStageOutput {
+struct PyOperationGetStageOutput {
     inner: aws_sdk_apigateway::operation::get_stage::GetStageOutput,
 }
 
 #[pymethods]
-impl PyGetStageOutput {
+impl PyOperationGetStageOutput {
     #[getter]
     fn deployment_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.deployment_id {
@@ -13422,13 +13454,13 @@ impl PyGetStageOutput {
     }
 }
 
-#[pyclass(name = "Stages", module = "rboto_api_gateway._native", frozen)]
-struct PyStages {
+#[pyclass(name = "GetStagesOutput", module = "rboto_api_gateway._native", frozen)]
+struct PyOperationGetStagesOutput {
     inner: aws_sdk_apigateway::operation::get_stages::GetStagesOutput,
 }
 
 #[pymethods]
-impl PyStages {
+impl PyOperationGetStagesOutput {
     #[getter]
     fn item(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.item {
@@ -13467,13 +13499,13 @@ impl PyStages {
     }
 }
 
-#[pyclass(name = "Tags", module = "rboto_api_gateway._native", frozen)]
-struct PyTags {
+#[pyclass(name = "GetTagsOutput", module = "rboto_api_gateway._native", frozen)]
+struct PyOperationGetTagsOutput {
     inner: aws_sdk_apigateway::operation::get_tags::GetTagsOutput,
 }
 
 #[pymethods]
-impl PyTags {
+impl PyOperationGetTagsOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
@@ -13509,12 +13541,12 @@ impl PyTags {
 }
 
 #[pyclass(name = "GetUsageOutput", module = "rboto_api_gateway._native", frozen)]
-struct PyGetUsageOutput {
+struct PyOperationGetUsageOutput {
     inner: aws_sdk_apigateway::operation::get_usage::GetUsageOutput,
 }
 
 #[pymethods]
-impl PyGetUsageOutput {
+impl PyOperationGetUsageOutput {
     #[getter]
     fn usage_plan_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.usage_plan_id {
@@ -13638,12 +13670,12 @@ impl PyGetUsageOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyGetUsagePlanOutput {
+struct PyOperationGetUsagePlanOutput {
     inner: aws_sdk_apigateway::operation::get_usage_plan::GetUsagePlanOutput,
 }
 
 #[pymethods]
-impl PyGetUsagePlanOutput {
+impl PyOperationGetUsagePlanOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -13823,12 +13855,12 @@ impl PyGetUsagePlanOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyGetUsagePlanKeyOutput {
+struct PyOperationGetUsagePlanKeyOutput {
     inner: aws_sdk_apigateway::operation::get_usage_plan_key::GetUsagePlanKeyOutput,
 }
 
 #[pymethods]
-impl PyGetUsagePlanKeyOutput {
+impl PyOperationGetUsagePlanKeyOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -13899,13 +13931,17 @@ impl PyGetUsagePlanKeyOutput {
     }
 }
 
-#[pyclass(name = "UsagePlanKeys", module = "rboto_api_gateway._native", frozen)]
-struct PyUsagePlanKeys {
+#[pyclass(
+    name = "GetUsagePlanKeysOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
+struct PyOperationGetUsagePlanKeysOutput {
     inner: aws_sdk_apigateway::operation::get_usage_plan_keys::GetUsagePlanKeysOutput,
 }
 
 #[pymethods]
-impl PyUsagePlanKeys {
+impl PyOperationGetUsagePlanKeysOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.items {
@@ -13960,13 +13996,17 @@ impl PyUsagePlanKeys {
     }
 }
 
-#[pyclass(name = "UsagePlans", module = "rboto_api_gateway._native", frozen)]
-struct PyUsagePlans {
+#[pyclass(
+    name = "GetUsagePlansOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
+struct PyOperationGetUsagePlansOutput {
     inner: aws_sdk_apigateway::operation::get_usage_plans::GetUsagePlansOutput,
 }
 
 #[pymethods]
-impl PyUsagePlans {
+impl PyOperationGetUsagePlansOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.items {
@@ -14026,12 +14066,12 @@ impl PyUsagePlans {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyGetVpcLinkOutput {
+struct PyOperationGetVpcLinkOutput {
     inner: aws_sdk_apigateway::operation::get_vpc_link::GetVpcLinkOutput,
 }
 
 #[pymethods]
-impl PyGetVpcLinkOutput {
+impl PyOperationGetVpcLinkOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -14172,13 +14212,17 @@ impl PyGetVpcLinkOutput {
     }
 }
 
-#[pyclass(name = "VpcLinks", module = "rboto_api_gateway._native", frozen)]
-struct PyVpcLinks {
+#[pyclass(
+    name = "GetVpcLinksOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
+struct PyOperationGetVpcLinksOutput {
     inner: aws_sdk_apigateway::operation::get_vpc_links::GetVpcLinksOutput,
 }
 
 #[pymethods]
-impl PyVpcLinks {
+impl PyOperationGetVpcLinksOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.items {
@@ -14233,13 +14277,17 @@ impl PyVpcLinks {
     }
 }
 
-#[pyclass(name = "ApiKeyIds", module = "rboto_api_gateway._native", frozen)]
-struct PyApiKeyIds {
+#[pyclass(
+    name = "ImportApiKeysOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
+struct PyOperationImportApiKeysOutput {
     inner: aws_sdk_apigateway::operation::import_api_keys::ImportApiKeysOutput,
 }
 
 #[pymethods]
-impl PyApiKeyIds {
+impl PyOperationImportApiKeysOutput {
     #[getter]
     fn ids(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ids {
@@ -14299,17 +14347,17 @@ impl PyApiKeyIds {
 }
 
 #[pyclass(
-    name = "DocumentationPartIds",
+    name = "ImportDocumentationPartsOutput",
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyDocumentationPartIds {
+struct PyOperationImportDocumentationPartsOutput {
     inner:
         aws_sdk_apigateway::operation::import_documentation_parts::ImportDocumentationPartsOutput,
 }
 
 #[pymethods]
-impl PyDocumentationPartIds {
+impl PyOperationImportDocumentationPartsOutput {
     #[getter]
     fn ids(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ids {
@@ -14373,12 +14421,12 @@ impl PyDocumentationPartIds {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyImportRestApiOutput {
+struct PyOperationImportRestApiOutput {
     inner: aws_sdk_apigateway::operation::import_rest_api::ImportRestApiOutput,
 }
 
 #[pymethods]
-impl PyImportRestApiOutput {
+impl PyOperationImportRestApiOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -14712,12 +14760,12 @@ impl PyImportRestApiOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyPutGatewayResponseOutput {
+struct PyOperationPutGatewayResponseOutput {
     inner: aws_sdk_apigateway::operation::put_gateway_response::PutGatewayResponseOutput,
 }
 
 #[pymethods]
-impl PyPutGatewayResponseOutput {
+impl PyOperationPutGatewayResponseOutput {
     #[getter]
     fn response_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.response_type {
@@ -14825,12 +14873,12 @@ impl PyPutGatewayResponseOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyPutIntegrationOutput {
+struct PyOperationPutIntegrationOutput {
     inner: aws_sdk_apigateway::operation::put_integration::PutIntegrationOutput,
 }
 
 #[pymethods]
-impl PyPutIntegrationOutput {
+impl PyOperationPutIntegrationOutput {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.r#type {
@@ -15164,12 +15212,12 @@ impl PyPutIntegrationOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyPutIntegrationResponseOutput {
+struct PyOperationPutIntegrationResponseOutput {
     inner: aws_sdk_apigateway::operation::put_integration_response::PutIntegrationResponseOutput,
 }
 
 #[pymethods]
-impl PyPutIntegrationResponseOutput {
+impl PyOperationPutIntegrationResponseOutput {
     #[getter]
     fn status_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status_code {
@@ -15281,12 +15329,12 @@ impl PyPutIntegrationResponseOutput {
 }
 
 #[pyclass(name = "PutMethodOutput", module = "rboto_api_gateway._native", frozen)]
-struct PyPutMethodOutput {
+struct PyOperationPutMethodOutput {
     inner: aws_sdk_apigateway::operation::put_method::PutMethodOutput,
 }
 
 #[pymethods]
-impl PyPutMethodOutput {
+impl PyOperationPutMethodOutput {
     #[getter]
     fn http_method(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.http_method {
@@ -15532,12 +15580,12 @@ impl PyPutMethodOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyPutMethodResponseOutput {
+struct PyOperationPutMethodResponseOutput {
     inner: aws_sdk_apigateway::operation::put_method_response::PutMethodResponseOutput,
 }
 
 #[pymethods]
-impl PyPutMethodResponseOutput {
+impl PyOperationPutMethodResponseOutput {
     #[getter]
     fn status_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status_code {
@@ -15621,12 +15669,12 @@ impl PyPutMethodResponseOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyPutRestApiOutput {
+struct PyOperationPutRestApiOutput {
     inner: aws_sdk_apigateway::operation::put_rest_api::PutRestApiOutput,
 }
 
 #[pymethods]
-impl PyPutRestApiOutput {
+impl PyOperationPutRestApiOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -15956,16 +16004,16 @@ impl PyPutRestApiOutput {
 }
 
 #[pyclass(
-    name = "TestInvokeAuthorizerResponse",
+    name = "TestInvokeAuthorizerOutput",
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyTestInvokeAuthorizerResponse {
+struct PyOperationTestInvokeAuthorizerOutput {
     inner: aws_sdk_apigateway::operation::test_invoke_authorizer::TestInvokeAuthorizerOutput,
 }
 
 #[pymethods]
-impl PyTestInvokeAuthorizerResponse {
+impl PyOperationTestInvokeAuthorizerOutput {
     #[getter]
     fn client_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3414 = (&self.inner.client_status).to_owned().into_py_any(py)?;
@@ -16103,16 +16151,16 @@ impl PyTestInvokeAuthorizerResponse {
 }
 
 #[pyclass(
-    name = "TestInvokeMethodResponse",
+    name = "TestInvokeMethodOutput",
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyTestInvokeMethodResponse {
+struct PyOperationTestInvokeMethodOutput {
     inner: aws_sdk_apigateway::operation::test_invoke_method::TestInvokeMethodOutput,
 }
 
 #[pymethods]
-impl PyTestInvokeMethodResponse {
+impl PyOperationTestInvokeMethodOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3448 = (&self.inner.status).to_owned().into_py_any(py)?;
@@ -16238,12 +16286,12 @@ impl PyTestInvokeMethodResponse {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyUpdateAccountOutput {
+struct PyOperationUpdateAccountOutput {
     inner: aws_sdk_apigateway::operation::update_account::UpdateAccountOutput,
 }
 
 #[pymethods]
-impl PyUpdateAccountOutput {
+impl PyOperationUpdateAccountOutput {
     #[getter]
     fn cloudwatch_role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cloudwatch_role_arn {
@@ -16335,12 +16383,12 @@ impl PyUpdateAccountOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyUpdateApiKeyOutput {
+struct PyOperationUpdateApiKeyOutput {
     inner: aws_sdk_apigateway::operation::update_api_key::UpdateApiKeyOutput,
 }
 
 #[pymethods]
-impl PyUpdateApiKeyOutput {
+impl PyOperationUpdateApiKeyOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -16526,12 +16574,12 @@ impl PyUpdateApiKeyOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyUpdateAuthorizerOutput {
+struct PyOperationUpdateAuthorizerOutput {
     inner: aws_sdk_apigateway::operation::update_authorizer::UpdateAuthorizerOutput,
 }
 
 #[pymethods]
-impl PyUpdateAuthorizerOutput {
+impl PyOperationUpdateAuthorizerOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -16713,12 +16761,12 @@ impl PyUpdateAuthorizerOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyUpdateBasePathMappingOutput {
+struct PyOperationUpdateBasePathMappingOutput {
     inner: aws_sdk_apigateway::operation::update_base_path_mapping::UpdateBasePathMappingOutput,
 }
 
 #[pymethods]
-impl PyUpdateBasePathMappingOutput {
+impl PyOperationUpdateBasePathMappingOutput {
     #[getter]
     fn base_path(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.base_path {
@@ -16778,12 +16826,12 @@ impl PyUpdateBasePathMappingOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyUpdateClientCertificateOutput {
+struct PyOperationUpdateClientCertificateOutput {
     inner: aws_sdk_apigateway::operation::update_client_certificate::UpdateClientCertificateOutput,
 }
 
 #[pymethods]
-impl PyUpdateClientCertificateOutput {
+impl PyOperationUpdateClientCertificateOutput {
     #[getter]
     fn client_certificate_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.client_certificate_id {
@@ -16903,12 +16951,12 @@ impl PyUpdateClientCertificateOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyUpdateDeploymentOutput {
+struct PyOperationUpdateDeploymentOutput {
     inner: aws_sdk_apigateway::operation::update_deployment::UpdateDeploymentOutput,
 }
 
 #[pymethods]
-impl PyUpdateDeploymentOutput {
+impl PyOperationUpdateDeploymentOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -17014,12 +17062,12 @@ impl PyUpdateDeploymentOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyUpdateDocumentationPartOutput {
+struct PyOperationUpdateDocumentationPartOutput {
     inner: aws_sdk_apigateway::operation::update_documentation_part::UpdateDocumentationPartOutput,
 }
 
 #[pymethods]
-impl PyUpdateDocumentationPartOutput {
+impl PyOperationUpdateDocumentationPartOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -17085,12 +17133,12 @@ impl PyUpdateDocumentationPartOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyUpdateDocumentationVersionOutput {
+struct PyOperationUpdateDocumentationVersionOutput {
     inner: aws_sdk_apigateway::operation::update_documentation_version::UpdateDocumentationVersionOutput,
 }
 
 #[pymethods]
-impl PyUpdateDocumentationVersionOutput {
+impl PyOperationUpdateDocumentationVersionOutput {
     #[getter]
     fn version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.version {
@@ -17150,12 +17198,12 @@ impl PyUpdateDocumentationVersionOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyUpdateDomainNameOutput {
+struct PyOperationUpdateDomainNameOutput {
     inner: aws_sdk_apigateway::operation::update_domain_name::UpdateDomainNameOutput,
 }
 
 #[pymethods]
-impl PyUpdateDomainNameOutput {
+impl PyOperationUpdateDomainNameOutput {
     #[getter]
     fn domain_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.domain_name {
@@ -17559,12 +17607,12 @@ impl PyUpdateDomainNameOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyUpdateGatewayResponseOutput {
+struct PyOperationUpdateGatewayResponseOutput {
     inner: aws_sdk_apigateway::operation::update_gateway_response::UpdateGatewayResponseOutput,
 }
 
 #[pymethods]
-impl PyUpdateGatewayResponseOutput {
+impl PyOperationUpdateGatewayResponseOutput {
     #[getter]
     fn response_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.response_type {
@@ -17672,12 +17720,12 @@ impl PyUpdateGatewayResponseOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyUpdateIntegrationOutput {
+struct PyOperationUpdateIntegrationOutput {
     inner: aws_sdk_apigateway::operation::update_integration::UpdateIntegrationOutput,
 }
 
 #[pymethods]
-impl PyUpdateIntegrationOutput {
+impl PyOperationUpdateIntegrationOutput {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.r#type {
@@ -18011,13 +18059,13 @@ impl PyUpdateIntegrationOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyUpdateIntegrationResponseOutput {
+struct PyOperationUpdateIntegrationResponseOutput {
     inner:
         aws_sdk_apigateway::operation::update_integration_response::UpdateIntegrationResponseOutput,
 }
 
 #[pymethods]
-impl PyUpdateIntegrationResponseOutput {
+impl PyOperationUpdateIntegrationResponseOutput {
     #[getter]
     fn status_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status_code {
@@ -18133,12 +18181,12 @@ impl PyUpdateIntegrationResponseOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyUpdateMethodOutput {
+struct PyOperationUpdateMethodOutput {
     inner: aws_sdk_apigateway::operation::update_method::UpdateMethodOutput,
 }
 
 #[pymethods]
-impl PyUpdateMethodOutput {
+impl PyOperationUpdateMethodOutput {
     #[getter]
     fn http_method(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.http_method {
@@ -18384,12 +18432,12 @@ impl PyUpdateMethodOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyUpdateMethodResponseOutput {
+struct PyOperationUpdateMethodResponseOutput {
     inner: aws_sdk_apigateway::operation::update_method_response::UpdateMethodResponseOutput,
 }
 
 #[pymethods]
-impl PyUpdateMethodResponseOutput {
+impl PyOperationUpdateMethodResponseOutput {
     #[getter]
     fn status_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status_code {
@@ -18473,12 +18521,12 @@ impl PyUpdateMethodResponseOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyUpdateModelOutput {
+struct PyOperationUpdateModelOutput {
     inner: aws_sdk_apigateway::operation::update_model::UpdateModelOutput,
 }
 
 #[pymethods]
-impl PyUpdateModelOutput {
+impl PyOperationUpdateModelOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -18570,12 +18618,12 @@ impl PyUpdateModelOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyUpdateRequestValidatorOutput {
+struct PyOperationUpdateRequestValidatorOutput {
     inner: aws_sdk_apigateway::operation::update_request_validator::UpdateRequestValidatorOutput,
 }
 
 #[pymethods]
-impl PyUpdateRequestValidatorOutput {
+impl PyOperationUpdateRequestValidatorOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -18643,12 +18691,12 @@ impl PyUpdateRequestValidatorOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyUpdateResourceOutput {
+struct PyOperationUpdateResourceOutput {
     inner: aws_sdk_apigateway::operation::update_resource::UpdateResourceOutput,
 }
 
 #[pymethods]
-impl PyUpdateResourceOutput {
+impl PyOperationUpdateResourceOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -18758,12 +18806,12 @@ impl PyUpdateResourceOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyUpdateRestApiOutput {
+struct PyOperationUpdateRestApiOutput {
     inner: aws_sdk_apigateway::operation::update_rest_api::UpdateRestApiOutput,
 }
 
 #[pymethods]
-impl PyUpdateRestApiOutput {
+impl PyOperationUpdateRestApiOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -19097,12 +19145,12 @@ impl PyUpdateRestApiOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyUpdateStageOutput {
+struct PyOperationUpdateStageOutput {
     inner: aws_sdk_apigateway::operation::update_stage::UpdateStageOutput,
 }
 
 #[pymethods]
-impl PyUpdateStageOutput {
+impl PyOperationUpdateStageOutput {
     #[getter]
     fn deployment_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.deployment_id {
@@ -19428,12 +19476,12 @@ impl PyUpdateStageOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyUpdateUsageOutput {
+struct PyOperationUpdateUsageOutput {
     inner: aws_sdk_apigateway::operation::update_usage::UpdateUsageOutput,
 }
 
 #[pymethods]
-impl PyUpdateUsageOutput {
+impl PyOperationUpdateUsageOutput {
     #[getter]
     fn usage_plan_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.usage_plan_id {
@@ -19557,12 +19605,12 @@ impl PyUpdateUsageOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyUpdateUsagePlanOutput {
+struct PyOperationUpdateUsagePlanOutput {
     inner: aws_sdk_apigateway::operation::update_usage_plan::UpdateUsagePlanOutput,
 }
 
 #[pymethods]
-impl PyUpdateUsagePlanOutput {
+impl PyOperationUpdateUsagePlanOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -19742,12 +19790,12 @@ impl PyUpdateUsagePlanOutput {
     module = "rboto_api_gateway._native",
     frozen
 )]
-struct PyUpdateVpcLinkOutput {
+struct PyOperationUpdateVpcLinkOutput {
     inner: aws_sdk_apigateway::operation::update_vpc_link::UpdateVpcLinkOutput,
 }
 
 #[pymethods]
-impl PyUpdateVpcLinkOutput {
+impl PyOperationUpdateVpcLinkOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
@@ -19924,103 +19972,103 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyUsagePlan>()?;
     module.add_class::<PyUsagePlanKey>()?;
     module.add_class::<PyVpcLink>()?;
-    module.add_class::<PyCreateApiKeyOutput>()?;
-    module.add_class::<PyCreateAuthorizerOutput>()?;
-    module.add_class::<PyCreateBasePathMappingOutput>()?;
-    module.add_class::<PyCreateDeploymentOutput>()?;
-    module.add_class::<PyCreateDocumentationPartOutput>()?;
-    module.add_class::<PyCreateDocumentationVersionOutput>()?;
-    module.add_class::<PyCreateDomainNameOutput>()?;
-    module.add_class::<PyCreateDomainNameAccessAssociationOutput>()?;
-    module.add_class::<PyCreateModelOutput>()?;
-    module.add_class::<PyCreateRequestValidatorOutput>()?;
-    module.add_class::<PyCreateResourceOutput>()?;
-    module.add_class::<PyCreateRestApiOutput>()?;
-    module.add_class::<PyCreateStageOutput>()?;
-    module.add_class::<PyCreateUsagePlanOutput>()?;
-    module.add_class::<PyCreateUsagePlanKeyOutput>()?;
-    module.add_class::<PyCreateVpcLinkOutput>()?;
-    module.add_class::<PyGenerateClientCertificateOutput>()?;
-    module.add_class::<PyGetAccountOutput>()?;
-    module.add_class::<PyGetApiKeyOutput>()?;
-    module.add_class::<PyApiKeys>()?;
-    module.add_class::<PyGetAuthorizerOutput>()?;
-    module.add_class::<PyAuthorizers>()?;
-    module.add_class::<PyGetBasePathMappingOutput>()?;
-    module.add_class::<PyBasePathMappings>()?;
-    module.add_class::<PyGetClientCertificateOutput>()?;
-    module.add_class::<PyClientCertificates>()?;
-    module.add_class::<PyGetDeploymentOutput>()?;
-    module.add_class::<PyDeployments>()?;
-    module.add_class::<PyGetDocumentationPartOutput>()?;
-    module.add_class::<PyDocumentationParts>()?;
-    module.add_class::<PyGetDocumentationVersionOutput>()?;
-    module.add_class::<PyDocumentationVersions>()?;
-    module.add_class::<PyGetDomainNameOutput>()?;
-    module.add_class::<PyDomainNameAccessAssociations>()?;
-    module.add_class::<PyDomainNames>()?;
-    module.add_class::<PyExportResponse>()?;
-    module.add_class::<PyGetGatewayResponseOutput>()?;
-    module.add_class::<PyGatewayResponses>()?;
-    module.add_class::<PyGetIntegrationOutput>()?;
-    module.add_class::<PyGetIntegrationResponseOutput>()?;
-    module.add_class::<PyGetMethodOutput>()?;
-    module.add_class::<PyGetMethodResponseOutput>()?;
-    module.add_class::<PyGetModelOutput>()?;
-    module.add_class::<PyTemplate>()?;
-    module.add_class::<PyModels>()?;
-    module.add_class::<PyGetRequestValidatorOutput>()?;
-    module.add_class::<PyRequestValidators>()?;
-    module.add_class::<PyGetResourceOutput>()?;
-    module.add_class::<PyResources>()?;
-    module.add_class::<PyGetRestApiOutput>()?;
-    module.add_class::<PyRestApis>()?;
-    module.add_class::<PySdkResponse>()?;
-    module.add_class::<PyGetSdkTypeOutput>()?;
-    module.add_class::<PySdkTypes>()?;
-    module.add_class::<PyGetStageOutput>()?;
-    module.add_class::<PyStages>()?;
-    module.add_class::<PyTags>()?;
-    module.add_class::<PyGetUsageOutput>()?;
-    module.add_class::<PyGetUsagePlanOutput>()?;
-    module.add_class::<PyGetUsagePlanKeyOutput>()?;
-    module.add_class::<PyUsagePlanKeys>()?;
-    module.add_class::<PyUsagePlans>()?;
-    module.add_class::<PyGetVpcLinkOutput>()?;
-    module.add_class::<PyVpcLinks>()?;
-    module.add_class::<PyApiKeyIds>()?;
-    module.add_class::<PyDocumentationPartIds>()?;
-    module.add_class::<PyImportRestApiOutput>()?;
-    module.add_class::<PyPutGatewayResponseOutput>()?;
-    module.add_class::<PyPutIntegrationOutput>()?;
-    module.add_class::<PyPutIntegrationResponseOutput>()?;
-    module.add_class::<PyPutMethodOutput>()?;
-    module.add_class::<PyPutMethodResponseOutput>()?;
-    module.add_class::<PyPutRestApiOutput>()?;
-    module.add_class::<PyTestInvokeAuthorizerResponse>()?;
-    module.add_class::<PyTestInvokeMethodResponse>()?;
-    module.add_class::<PyUpdateAccountOutput>()?;
-    module.add_class::<PyUpdateApiKeyOutput>()?;
-    module.add_class::<PyUpdateAuthorizerOutput>()?;
-    module.add_class::<PyUpdateBasePathMappingOutput>()?;
-    module.add_class::<PyUpdateClientCertificateOutput>()?;
-    module.add_class::<PyUpdateDeploymentOutput>()?;
-    module.add_class::<PyUpdateDocumentationPartOutput>()?;
-    module.add_class::<PyUpdateDocumentationVersionOutput>()?;
-    module.add_class::<PyUpdateDomainNameOutput>()?;
-    module.add_class::<PyUpdateGatewayResponseOutput>()?;
-    module.add_class::<PyUpdateIntegrationOutput>()?;
-    module.add_class::<PyUpdateIntegrationResponseOutput>()?;
-    module.add_class::<PyUpdateMethodOutput>()?;
-    module.add_class::<PyUpdateMethodResponseOutput>()?;
-    module.add_class::<PyUpdateModelOutput>()?;
-    module.add_class::<PyUpdateRequestValidatorOutput>()?;
-    module.add_class::<PyUpdateResourceOutput>()?;
-    module.add_class::<PyUpdateRestApiOutput>()?;
-    module.add_class::<PyUpdateStageOutput>()?;
-    module.add_class::<PyUpdateUsageOutput>()?;
-    module.add_class::<PyUpdateUsagePlanOutput>()?;
-    module.add_class::<PyUpdateVpcLinkOutput>()?;
+    module.add_class::<PyOperationCreateApiKeyOutput>()?;
+    module.add_class::<PyOperationCreateAuthorizerOutput>()?;
+    module.add_class::<PyOperationCreateBasePathMappingOutput>()?;
+    module.add_class::<PyOperationCreateDeploymentOutput>()?;
+    module.add_class::<PyOperationCreateDocumentationPartOutput>()?;
+    module.add_class::<PyOperationCreateDocumentationVersionOutput>()?;
+    module.add_class::<PyOperationCreateDomainNameOutput>()?;
+    module.add_class::<PyOperationCreateDomainNameAccessAssociationOutput>()?;
+    module.add_class::<PyOperationCreateModelOutput>()?;
+    module.add_class::<PyOperationCreateRequestValidatorOutput>()?;
+    module.add_class::<PyOperationCreateResourceOutput>()?;
+    module.add_class::<PyOperationCreateRestApiOutput>()?;
+    module.add_class::<PyOperationCreateStageOutput>()?;
+    module.add_class::<PyOperationCreateUsagePlanOutput>()?;
+    module.add_class::<PyOperationCreateUsagePlanKeyOutput>()?;
+    module.add_class::<PyOperationCreateVpcLinkOutput>()?;
+    module.add_class::<PyOperationGenerateClientCertificateOutput>()?;
+    module.add_class::<PyOperationGetAccountOutput>()?;
+    module.add_class::<PyOperationGetApiKeyOutput>()?;
+    module.add_class::<PyOperationGetApiKeysOutput>()?;
+    module.add_class::<PyOperationGetAuthorizerOutput>()?;
+    module.add_class::<PyOperationGetAuthorizersOutput>()?;
+    module.add_class::<PyOperationGetBasePathMappingOutput>()?;
+    module.add_class::<PyOperationGetBasePathMappingsOutput>()?;
+    module.add_class::<PyOperationGetClientCertificateOutput>()?;
+    module.add_class::<PyOperationGetClientCertificatesOutput>()?;
+    module.add_class::<PyOperationGetDeploymentOutput>()?;
+    module.add_class::<PyOperationGetDeploymentsOutput>()?;
+    module.add_class::<PyOperationGetDocumentationPartOutput>()?;
+    module.add_class::<PyOperationGetDocumentationPartsOutput>()?;
+    module.add_class::<PyOperationGetDocumentationVersionOutput>()?;
+    module.add_class::<PyOperationGetDocumentationVersionsOutput>()?;
+    module.add_class::<PyOperationGetDomainNameOutput>()?;
+    module.add_class::<PyOperationGetDomainNameAccessAssociationsOutput>()?;
+    module.add_class::<PyOperationGetDomainNamesOutput>()?;
+    module.add_class::<PyOperationGetExportOutput>()?;
+    module.add_class::<PyOperationGetGatewayResponseOutput>()?;
+    module.add_class::<PyOperationGetGatewayResponsesOutput>()?;
+    module.add_class::<PyOperationGetIntegrationOutput>()?;
+    module.add_class::<PyOperationGetIntegrationResponseOutput>()?;
+    module.add_class::<PyOperationGetMethodOutput>()?;
+    module.add_class::<PyOperationGetMethodResponseOutput>()?;
+    module.add_class::<PyOperationGetModelOutput>()?;
+    module.add_class::<PyOperationGetModelTemplateOutput>()?;
+    module.add_class::<PyOperationGetModelsOutput>()?;
+    module.add_class::<PyOperationGetRequestValidatorOutput>()?;
+    module.add_class::<PyOperationGetRequestValidatorsOutput>()?;
+    module.add_class::<PyOperationGetResourceOutput>()?;
+    module.add_class::<PyOperationGetResourcesOutput>()?;
+    module.add_class::<PyOperationGetRestApiOutput>()?;
+    module.add_class::<PyOperationGetRestApisOutput>()?;
+    module.add_class::<PyOperationGetSdkOutput>()?;
+    module.add_class::<PyOperationGetSdkTypeOutput>()?;
+    module.add_class::<PyOperationGetSdkTypesOutput>()?;
+    module.add_class::<PyOperationGetStageOutput>()?;
+    module.add_class::<PyOperationGetStagesOutput>()?;
+    module.add_class::<PyOperationGetTagsOutput>()?;
+    module.add_class::<PyOperationGetUsageOutput>()?;
+    module.add_class::<PyOperationGetUsagePlanOutput>()?;
+    module.add_class::<PyOperationGetUsagePlanKeyOutput>()?;
+    module.add_class::<PyOperationGetUsagePlanKeysOutput>()?;
+    module.add_class::<PyOperationGetUsagePlansOutput>()?;
+    module.add_class::<PyOperationGetVpcLinkOutput>()?;
+    module.add_class::<PyOperationGetVpcLinksOutput>()?;
+    module.add_class::<PyOperationImportApiKeysOutput>()?;
+    module.add_class::<PyOperationImportDocumentationPartsOutput>()?;
+    module.add_class::<PyOperationImportRestApiOutput>()?;
+    module.add_class::<PyOperationPutGatewayResponseOutput>()?;
+    module.add_class::<PyOperationPutIntegrationOutput>()?;
+    module.add_class::<PyOperationPutIntegrationResponseOutput>()?;
+    module.add_class::<PyOperationPutMethodOutput>()?;
+    module.add_class::<PyOperationPutMethodResponseOutput>()?;
+    module.add_class::<PyOperationPutRestApiOutput>()?;
+    module.add_class::<PyOperationTestInvokeAuthorizerOutput>()?;
+    module.add_class::<PyOperationTestInvokeMethodOutput>()?;
+    module.add_class::<PyOperationUpdateAccountOutput>()?;
+    module.add_class::<PyOperationUpdateApiKeyOutput>()?;
+    module.add_class::<PyOperationUpdateAuthorizerOutput>()?;
+    module.add_class::<PyOperationUpdateBasePathMappingOutput>()?;
+    module.add_class::<PyOperationUpdateClientCertificateOutput>()?;
+    module.add_class::<PyOperationUpdateDeploymentOutput>()?;
+    module.add_class::<PyOperationUpdateDocumentationPartOutput>()?;
+    module.add_class::<PyOperationUpdateDocumentationVersionOutput>()?;
+    module.add_class::<PyOperationUpdateDomainNameOutput>()?;
+    module.add_class::<PyOperationUpdateGatewayResponseOutput>()?;
+    module.add_class::<PyOperationUpdateIntegrationOutput>()?;
+    module.add_class::<PyOperationUpdateIntegrationResponseOutput>()?;
+    module.add_class::<PyOperationUpdateMethodOutput>()?;
+    module.add_class::<PyOperationUpdateMethodResponseOutput>()?;
+    module.add_class::<PyOperationUpdateModelOutput>()?;
+    module.add_class::<PyOperationUpdateRequestValidatorOutput>()?;
+    module.add_class::<PyOperationUpdateResourceOutput>()?;
+    module.add_class::<PyOperationUpdateRestApiOutput>()?;
+    module.add_class::<PyOperationUpdateStageOutput>()?;
+    module.add_class::<PyOperationUpdateUsageOutput>()?;
+    module.add_class::<PyOperationUpdateUsagePlanOutput>()?;
+    module.add_class::<PyOperationUpdateVpcLinkOutput>()?;
 
     Ok(())
 }
@@ -20149,7 +20197,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateApiKey"))
             })?;
-            Ok(PyCreateApiKeyOutput { inner: output })
+            Ok(PyOperationCreateApiKeyOutput { inner: output })
         })
     }
 
@@ -20261,7 +20309,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateAuthorizer"))
             })?;
-            Ok(PyCreateAuthorizerOutput { inner: output })
+            Ok(PyOperationCreateAuthorizerOutput { inner: output })
         })
     }
 
@@ -20327,7 +20375,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateBasePathMapping"))
             })?;
-            Ok(PyCreateBasePathMappingOutput { inner: output })
+            Ok(PyOperationCreateBasePathMappingOutput { inner: output })
         })
     }
 
@@ -20432,7 +20480,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDeployment"))
             })?;
-            Ok(PyCreateDeploymentOutput { inner: output })
+            Ok(PyOperationCreateDeploymentOutput { inner: output })
         })
     }
 
@@ -20484,7 +20532,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDocumentationPart"))
             })?;
-            Ok(PyCreateDocumentationPartOutput { inner: output })
+            Ok(PyOperationCreateDocumentationPartOutput { inner: output })
         })
     }
 
@@ -20544,7 +20592,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDocumentationVersion"))
             })?;
-            Ok(PyCreateDocumentationVersionOutput { inner: output })
+            Ok(PyOperationCreateDocumentationVersionOutput { inner: output })
         })
     }
 
@@ -20709,7 +20757,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDomainName"))
             })?;
-            Ok(PyCreateDomainNameOutput { inner: output })
+            Ok(PyOperationCreateDomainNameOutput { inner: output })
         })
     }
 
@@ -20781,7 +20829,7 @@ impl APIGatewayClient {
                     sdk_error_to_py(py, &error, "CreateDomainNameAccessAssociation")
                 })
             })?;
-            Ok(PyCreateDomainNameAccessAssociationOutput { inner: output })
+            Ok(PyOperationCreateDomainNameAccessAssociationOutput { inner: output })
         })
     }
 
@@ -20846,7 +20894,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateModel")))?;
-            Ok(PyCreateModelOutput { inner: output })
+            Ok(PyOperationCreateModelOutput { inner: output })
         })
     }
 
@@ -20907,7 +20955,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateRequestValidator"))
             })?;
-            Ok(PyCreateRequestValidatorOutput { inner: output })
+            Ok(PyOperationCreateRequestValidatorOutput { inner: output })
         })
     }
 
@@ -20959,7 +21007,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateResource"))
             })?;
-            Ok(PyCreateResourceOutput { inner: output })
+            Ok(PyOperationCreateResourceOutput { inner: output })
         })
     }
 
@@ -21104,7 +21152,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateRestApi"))
             })?;
-            Ok(PyCreateRestApiOutput { inner: output })
+            Ok(PyOperationCreateRestApiOutput { inner: output })
         })
     }
 
@@ -21228,7 +21276,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateStage")))?;
-            Ok(PyCreateStageOutput { inner: output })
+            Ok(PyOperationCreateStageOutput { inner: output })
         })
     }
 
@@ -21313,7 +21361,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateUsagePlan"))
             })?;
-            Ok(PyCreateUsagePlanOutput { inner: output })
+            Ok(PyOperationCreateUsagePlanOutput { inner: output })
         })
     }
 
@@ -21365,7 +21413,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateUsagePlanKey"))
             })?;
-            Ok(PyCreateUsagePlanKeyOutput { inner: output })
+            Ok(PyOperationCreateUsagePlanKeyOutput { inner: output })
         })
     }
 
@@ -21436,7 +21484,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateVpcLink"))
             })?;
-            Ok(PyCreateVpcLinkOutput { inner: output })
+            Ok(PyOperationCreateVpcLinkOutput { inner: output })
         })
     }
 
@@ -22575,7 +22623,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GenerateClientCertificate"))
             })?;
-            Ok(PyGenerateClientCertificateOutput { inner: output })
+            Ok(PyOperationGenerateClientCertificateOutput { inner: output })
         })
     }
 
@@ -22604,7 +22652,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetAccount")))?;
-            Ok(PyGetAccountOutput { inner: output })
+            Ok(PyOperationGetAccountOutput { inner: output })
         })
     }
 
@@ -22648,7 +22696,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetApiKey")))?;
-            Ok(PyGetApiKeyOutput { inner: output })
+            Ok(PyOperationGetApiKeyOutput { inner: output })
         })
     }
 
@@ -22713,7 +22761,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetApiKeys")))?;
-            Ok(PyApiKeys { inner: output })
+            Ok(PyOperationGetApiKeysOutput { inner: output })
         })
     }
 
@@ -22758,7 +22806,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAuthorizer"))
             })?;
-            Ok(PyGetAuthorizerOutput { inner: output })
+            Ok(PyOperationGetAuthorizerOutput { inner: output })
         })
     }
 
@@ -22810,7 +22858,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAuthorizers"))
             })?;
-            Ok(PyAuthorizers { inner: output })
+            Ok(PyOperationGetAuthorizersOutput { inner: output })
         })
     }
 
@@ -22862,7 +22910,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBasePathMapping"))
             })?;
-            Ok(PyGetBasePathMappingOutput { inner: output })
+            Ok(PyOperationGetBasePathMappingOutput { inner: output })
         })
     }
 
@@ -22921,7 +22969,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBasePathMappings"))
             })?;
-            Ok(PyBasePathMappings { inner: output })
+            Ok(PyOperationGetBasePathMappingsOutput { inner: output })
         })
     }
 
@@ -22960,7 +23008,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetClientCertificate"))
             })?;
-            Ok(PyGetClientCertificateOutput { inner: output })
+            Ok(PyOperationGetClientCertificateOutput { inner: output })
         })
     }
 
@@ -23005,7 +23053,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetClientCertificates"))
             })?;
-            Ok(PyClientCertificates { inner: output })
+            Ok(PyOperationGetClientCertificatesOutput { inner: output })
         })
     }
 
@@ -23063,7 +23111,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDeployment"))
             })?;
-            Ok(PyGetDeploymentOutput { inner: output })
+            Ok(PyOperationGetDeploymentOutput { inner: output })
         })
     }
 
@@ -23115,7 +23163,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDeployments"))
             })?;
-            Ok(PyDeployments { inner: output })
+            Ok(PyOperationGetDeploymentsOutput { inner: output })
         })
     }
 
@@ -23161,7 +23209,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDocumentationPart"))
             })?;
-            Ok(PyGetDocumentationPartOutput { inner: output })
+            Ok(PyOperationGetDocumentationPartOutput { inner: output })
         })
     }
 
@@ -23245,7 +23293,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDocumentationParts"))
             })?;
-            Ok(PyDocumentationParts { inner: output })
+            Ok(PyOperationGetDocumentationPartsOutput { inner: output })
         })
     }
 
@@ -23291,7 +23339,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDocumentationVersion"))
             })?;
-            Ok(PyGetDocumentationVersionOutput { inner: output })
+            Ok(PyOperationGetDocumentationVersionOutput { inner: output })
         })
     }
 
@@ -23343,7 +23391,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDocumentationVersions"))
             })?;
-            Ok(PyDocumentationVersions { inner: output })
+            Ok(PyOperationGetDocumentationVersionsOutput { inner: output })
         })
     }
 
@@ -23388,7 +23436,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDomainName"))
             })?;
-            Ok(PyGetDomainNameOutput { inner: output })
+            Ok(PyOperationGetDomainNameOutput { inner: output })
         })
     }
 
@@ -23442,7 +23490,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDomainNameAccessAssociations"))
             })?;
-            Ok(PyDomainNameAccessAssociations { inner: output })
+            Ok(PyOperationGetDomainNameAccessAssociationsOutput { inner: output })
         })
     }
 
@@ -23496,7 +23544,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDomainNames"))
             })?;
-            Ok(PyDomainNames { inner: output })
+            Ok(PyOperationGetDomainNamesOutput { inner: output })
         })
     }
 
@@ -23567,7 +23615,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetExport")))?;
-            Ok(PyExportResponse { inner: output })
+            Ok(PyOperationGetExportOutput { inner: output })
         })
     }
 
@@ -23614,7 +23662,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetGatewayResponse"))
             })?;
-            Ok(PyGetGatewayResponseOutput { inner: output })
+            Ok(PyOperationGetGatewayResponseOutput { inner: output })
         })
     }
 
@@ -23666,7 +23714,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetGatewayResponses"))
             })?;
-            Ok(PyGatewayResponses { inner: output })
+            Ok(PyOperationGetGatewayResponsesOutput { inner: output })
         })
     }
 
@@ -23718,7 +23766,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetIntegration"))
             })?;
-            Ok(PyGetIntegrationOutput { inner: output })
+            Ok(PyOperationGetIntegrationOutput { inner: output })
         })
     }
 
@@ -23777,7 +23825,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetIntegrationResponse"))
             })?;
-            Ok(PyGetIntegrationResponseOutput { inner: output })
+            Ok(PyOperationGetIntegrationResponseOutput { inner: output })
         })
     }
 
@@ -23828,7 +23876,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetMethod")))?;
-            Ok(PyGetMethodOutput { inner: output })
+            Ok(PyOperationGetMethodOutput { inner: output })
         })
     }
 
@@ -23887,7 +23935,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMethodResponse"))
             })?;
-            Ok(PyGetMethodResponseOutput { inner: output })
+            Ok(PyOperationGetMethodResponseOutput { inner: output })
         })
     }
 
@@ -23938,7 +23986,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetModel")))?;
-            Ok(PyGetModelOutput { inner: output })
+            Ok(PyOperationGetModelOutput { inner: output })
         })
     }
 
@@ -23983,7 +24031,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetModelTemplate"))
             })?;
-            Ok(PyTemplate { inner: output })
+            Ok(PyOperationGetModelTemplateOutput { inner: output })
         })
     }
 
@@ -24034,7 +24082,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetModels")))?;
-            Ok(PyModels { inner: output })
+            Ok(PyOperationGetModelsOutput { inner: output })
         })
     }
 
@@ -24080,7 +24128,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetRequestValidator"))
             })?;
-            Ok(PyGetRequestValidatorOutput { inner: output })
+            Ok(PyOperationGetRequestValidatorOutput { inner: output })
         })
     }
 
@@ -24132,7 +24180,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetRequestValidators"))
             })?;
-            Ok(PyRequestValidators { inner: output })
+            Ok(PyOperationGetRequestValidatorsOutput { inner: output })
         })
     }
 
@@ -24189,7 +24237,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetResource")))?;
-            Ok(PyGetResourceOutput { inner: output })
+            Ok(PyOperationGetResourceOutput { inner: output })
         })
     }
 
@@ -24254,7 +24302,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetResources"))
             })?;
-            Ok(PyResources { inner: output })
+            Ok(PyOperationGetResourcesOutput { inner: output })
         })
     }
 
@@ -24289,7 +24337,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetRestApi")))?;
-            Ok(PyGetRestApiOutput { inner: output })
+            Ok(PyOperationGetRestApiOutput { inner: output })
         })
     }
 
@@ -24333,7 +24381,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetRestApis")))?;
-            Ok(PyRestApis { inner: output })
+            Ok(PyOperationGetRestApisOutput { inner: output })
         })
     }
 
@@ -24397,7 +24445,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetSdk")))?;
-            Ok(PySdkResponse { inner: output })
+            Ok(PyOperationGetSdkOutput { inner: output })
         })
     }
 
@@ -24432,7 +24480,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetSdkType")))?;
-            Ok(PyGetSdkTypeOutput { inner: output })
+            Ok(PyOperationGetSdkTypeOutput { inner: output })
         })
     }
 
@@ -24476,7 +24524,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetSdkTypes")))?;
-            Ok(PySdkTypes { inner: output })
+            Ok(PyOperationGetSdkTypesOutput { inner: output })
         })
     }
 
@@ -24520,7 +24568,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetStage")))?;
-            Ok(PyGetStageOutput { inner: output })
+            Ok(PyOperationGetStageOutput { inner: output })
         })
     }
 
@@ -24564,7 +24612,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetStages")))?;
-            Ok(PyStages { inner: output })
+            Ok(PyOperationGetStagesOutput { inner: output })
         })
     }
 
@@ -24615,7 +24663,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetTags")))?;
-            Ok(PyTags { inner: output })
+            Ok(PyOperationGetTagsOutput { inner: output })
         })
     }
 
@@ -24687,7 +24735,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetUsage")))?;
-            Ok(PyGetUsageOutput { inner: output })
+            Ok(PyOperationGetUsageOutput { inner: output })
         })
     }
 
@@ -24725,7 +24773,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetUsagePlan"))
             })?;
-            Ok(PyGetUsagePlanOutput { inner: output })
+            Ok(PyOperationGetUsagePlanOutput { inner: output })
         })
     }
 
@@ -24770,7 +24818,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetUsagePlanKey"))
             })?;
-            Ok(PyGetUsagePlanKeyOutput { inner: output })
+            Ok(PyOperationGetUsagePlanKeyOutput { inner: output })
         })
     }
 
@@ -24829,7 +24877,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetUsagePlanKeys"))
             })?;
-            Ok(PyUsagePlanKeys { inner: output })
+            Ok(PyOperationGetUsagePlanKeysOutput { inner: output })
         })
     }
 
@@ -24881,7 +24929,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetUsagePlans"))
             })?;
-            Ok(PyUsagePlans { inner: output })
+            Ok(PyOperationGetUsagePlansOutput { inner: output })
         })
     }
 
@@ -24916,7 +24964,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetVpcLink")))?;
-            Ok(PyGetVpcLinkOutput { inner: output })
+            Ok(PyOperationGetVpcLinkOutput { inner: output })
         })
     }
 
@@ -24960,7 +25008,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetVpcLinks")))?;
-            Ok(PyVpcLinks { inner: output })
+            Ok(PyOperationGetVpcLinksOutput { inner: output })
         })
     }
 
@@ -25015,7 +25063,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ImportApiKeys"))
             })?;
-            Ok(PyApiKeyIds { inner: output })
+            Ok(PyOperationImportApiKeysOutput { inner: output })
         })
     }
 
@@ -25076,7 +25124,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ImportDocumentationParts"))
             })?;
-            Ok(PyDocumentationPartIds { inner: output })
+            Ok(PyOperationImportDocumentationPartsOutput { inner: output })
         })
     }
 
@@ -25135,7 +25183,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ImportRestApi"))
             })?;
-            Ok(PyImportRestApiOutput { inner: output })
+            Ok(PyOperationImportRestApiOutput { inner: output })
         })
     }
 
@@ -25217,7 +25265,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutGatewayResponse"))
             })?;
-            Ok(PyPutGatewayResponseOutput { inner: output })
+            Ok(PyOperationPutGatewayResponseOutput { inner: output })
         })
     }
 
@@ -25415,7 +25463,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutIntegration"))
             })?;
-            Ok(PyPutIntegrationOutput { inner: output })
+            Ok(PyOperationPutIntegrationOutput { inner: output })
         })
     }
 
@@ -25519,7 +25567,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutIntegrationResponse"))
             })?;
-            Ok(PyPutIntegrationResponseOutput { inner: output })
+            Ok(PyOperationPutIntegrationResponseOutput { inner: output })
         })
     }
 
@@ -25648,7 +25696,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutMethod")))?;
-            Ok(PyPutMethodOutput { inner: output })
+            Ok(PyOperationPutMethodOutput { inner: output })
         })
     }
 
@@ -25734,7 +25782,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutMethodResponse"))
             })?;
-            Ok(PyPutMethodResponseOutput { inner: output })
+            Ok(PyOperationPutMethodResponseOutput { inner: output })
         })
     }
 
@@ -25807,7 +25855,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutRestApi")))?;
-            Ok(PyPutRestApiOutput { inner: output })
+            Ok(PyOperationPutRestApiOutput { inner: output })
         })
     }
 
@@ -26026,7 +26074,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "TestInvokeAuthorizer"))
             })?;
-            Ok(PyTestInvokeAuthorizerResponse { inner: output })
+            Ok(PyOperationTestInvokeAuthorizerOutput { inner: output })
         })
     }
 
@@ -26148,7 +26196,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "TestInvokeMethod"))
             })?;
-            Ok(PyTestInvokeMethodResponse { inner: output })
+            Ok(PyOperationTestInvokeMethodOutput { inner: output })
         })
     }
 
@@ -26243,7 +26291,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAccount"))
             })?;
-            Ok(PyUpdateAccountOutput { inner: output })
+            Ok(PyOperationUpdateAccountOutput { inner: output })
         })
     }
 
@@ -26294,7 +26342,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateApiKey"))
             })?;
-            Ok(PyUpdateApiKeyOutput { inner: output })
+            Ok(PyOperationUpdateApiKeyOutput { inner: output })
         })
     }
 
@@ -26352,7 +26400,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAuthorizer"))
             })?;
-            Ok(PyUpdateAuthorizerOutput { inner: output })
+            Ok(PyOperationUpdateAuthorizerOutput { inner: output })
         })
     }
 
@@ -26417,7 +26465,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateBasePathMapping"))
             })?;
-            Ok(PyUpdateBasePathMappingOutput { inner: output })
+            Ok(PyOperationUpdateBasePathMappingOutput { inner: output })
         })
     }
 
@@ -26469,7 +26517,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateClientCertificate"))
             })?;
-            Ok(PyUpdateClientCertificateOutput { inner: output })
+            Ok(PyOperationUpdateClientCertificateOutput { inner: output })
         })
     }
 
@@ -26527,7 +26575,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDeployment"))
             })?;
-            Ok(PyUpdateDeploymentOutput { inner: output })
+            Ok(PyOperationUpdateDeploymentOutput { inner: output })
         })
     }
 
@@ -26586,7 +26634,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDocumentationPart"))
             })?;
-            Ok(PyUpdateDocumentationPartOutput { inner: output })
+            Ok(PyOperationUpdateDocumentationPartOutput { inner: output })
         })
     }
 
@@ -26645,7 +26693,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDocumentationVersion"))
             })?;
-            Ok(PyUpdateDocumentationVersionOutput { inner: output })
+            Ok(PyOperationUpdateDocumentationVersionOutput { inner: output })
         })
     }
 
@@ -26703,7 +26751,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDomainName"))
             })?;
-            Ok(PyUpdateDomainNameOutput { inner: output })
+            Ok(PyOperationUpdateDomainNameOutput { inner: output })
         })
     }
 
@@ -26763,7 +26811,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateGatewayResponse"))
             })?;
-            Ok(PyUpdateGatewayResponseOutput { inner: output })
+            Ok(PyOperationUpdateGatewayResponseOutput { inner: output })
         })
     }
 
@@ -26828,7 +26876,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateIntegration"))
             })?;
-            Ok(PyUpdateIntegrationOutput { inner: output })
+            Ok(PyOperationUpdateIntegrationOutput { inner: output })
         })
     }
 
@@ -26900,7 +26948,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateIntegrationResponse"))
             })?;
-            Ok(PyUpdateIntegrationResponseOutput { inner: output })
+            Ok(PyOperationUpdateIntegrationResponseOutput { inner: output })
         })
     }
 
@@ -26965,7 +27013,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMethod"))
             })?;
-            Ok(PyUpdateMethodOutput { inner: output })
+            Ok(PyOperationUpdateMethodOutput { inner: output })
         })
     }
 
@@ -27037,7 +27085,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMethodResponse"))
             })?;
-            Ok(PyUpdateMethodResponseOutput { inner: output })
+            Ok(PyOperationUpdateMethodResponseOutput { inner: output })
         })
     }
 
@@ -27094,7 +27142,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateModel")))?;
-            Ok(PyUpdateModelOutput { inner: output })
+            Ok(PyOperationUpdateModelOutput { inner: output })
         })
     }
 
@@ -27153,7 +27201,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateRequestValidator"))
             })?;
-            Ok(PyUpdateRequestValidatorOutput { inner: output })
+            Ok(PyOperationUpdateRequestValidatorOutput { inner: output })
         })
     }
 
@@ -27211,7 +27259,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateResource"))
             })?;
-            Ok(PyUpdateResourceOutput { inner: output })
+            Ok(PyOperationUpdateResourceOutput { inner: output })
         })
     }
 
@@ -27262,7 +27310,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateRestApi"))
             })?;
-            Ok(PyUpdateRestApiOutput { inner: output })
+            Ok(PyOperationUpdateRestApiOutput { inner: output })
         })
     }
 
@@ -27319,7 +27367,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateStage")))?;
-            Ok(PyUpdateStageOutput { inner: output })
+            Ok(PyOperationUpdateStageOutput { inner: output })
         })
     }
 
@@ -27376,7 +27424,7 @@ impl APIGatewayClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateUsage")))?;
-            Ok(PyUpdateUsageOutput { inner: output })
+            Ok(PyOperationUpdateUsageOutput { inner: output })
         })
     }
 
@@ -27427,7 +27475,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateUsagePlan"))
             })?;
-            Ok(PyUpdateUsagePlanOutput { inner: output })
+            Ok(PyOperationUpdateUsagePlanOutput { inner: output })
         })
     }
 
@@ -27478,7 +27526,7 @@ impl APIGatewayClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateVpcLink"))
             })?;
-            Ok(PyUpdateVpcLinkOutput { inner: output })
+            Ok(PyOperationUpdateVpcLinkOutput { inner: output })
         })
     }
 }

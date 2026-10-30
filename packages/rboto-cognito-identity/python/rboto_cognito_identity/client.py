@@ -9,7 +9,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto.logging import operation_interceptors
 
-from ._native import CognitoIdentityClient as NativeClient, CreateIdentityPoolOutput, DeleteIdentitiesResponse, DescribeIdentityOutput, DescribeIdentityPoolOutput, GetCredentialsForIdentityResponse, GetIdResponse, GetIdentityPoolRolesResponse, GetOpenIdTokenForDeveloperIdentityResponse, GetOpenIdTokenResponse, GetPrincipalTagAttributeMapResponse, ListIdentitiesResponse, ListIdentityPoolsResponse, ListTagsForResourceResponse, LookupDeveloperIdentityResponse, MergeDeveloperIdentitiesResponse, SetPrincipalTagAttributeMapResponse, TagResourceResponse, UntagResourceResponse, UpdateIdentityPoolOutput
+from ._native import CognitoIdentityClient as NativeClient, CreateIdentityPoolOutput, DeleteIdentitiesOutput, DescribeIdentityOutput, DescribeIdentityPoolOutput, GetCredentialsForIdentityOutput, GetIdOutput, GetIdentityPoolRolesOutput, GetOpenIdTokenForDeveloperIdentityOutput, GetOpenIdTokenOutput, GetPrincipalTagAttributeMapOutput, ListIdentitiesOutput, ListIdentityPoolsOutput, ListTagsForResourceOutput, LookupDeveloperIdentityOutput, MergeDeveloperIdentitiesOutput, SetPrincipalTagAttributeMapOutput, TagResourceOutput, UntagResourceOutput, UpdateIdentityPoolOutput
 from .types import (
     CognitoIdentityProvider,
     RoleMapping,
@@ -103,7 +103,7 @@ class CognitoIdentityClient:
         self,
         *,
         identity_ids_to_delete: Sequence[str],
-    ) -> DeleteIdentitiesResponse:
+    ) -> DeleteIdentitiesOutput:
         params: dict[str, object] = {
             "identity_ids_to_delete": identity_ids_to_delete,
         }
@@ -112,7 +112,7 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.delete_identities, params, _interceptors,
                 "cognito-identity", "DeleteIdentities", self._region,
-                DeleteIdentitiesResponse,
+                DeleteIdentitiesOutput,
                 ("identity_ids_to_delete", ),
                 ("identity_ids_to_delete", ),
             )
@@ -193,7 +193,7 @@ class CognitoIdentityClient:
         identity_id: str,
         logins: dict[str, str] | None = None,
         custom_role_arn: str | None = None,
-    ) -> GetCredentialsForIdentityResponse:
+    ) -> GetCredentialsForIdentityOutput:
         params: dict[str, object] = {
             "identity_id": identity_id,
         }
@@ -206,7 +206,7 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.get_credentials_for_identity, params, _interceptors,
                 "cognito-identity", "GetCredentialsForIdentity", self._region,
-                GetCredentialsForIdentityResponse,
+                GetCredentialsForIdentityOutput,
                 ("identity_id", "logins", "custom_role_arn", ),
                 ("identity_id", ),
             )
@@ -221,7 +221,7 @@ class CognitoIdentityClient:
         identity_pool_id: str,
         account_id: str | None = None,
         logins: dict[str, str] | None = None,
-    ) -> GetIdResponse:
+    ) -> GetIdOutput:
         params: dict[str, object] = {
             "identity_pool_id": identity_pool_id,
         }
@@ -234,7 +234,7 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.get_id, params, _interceptors,
                 "cognito-identity", "GetId", self._region,
-                GetIdResponse,
+                GetIdOutput,
                 ("identity_pool_id", "account_id", "logins", ),
                 ("identity_pool_id", ),
             )
@@ -247,7 +247,7 @@ class CognitoIdentityClient:
         self,
         *,
         identity_pool_id: str,
-    ) -> GetIdentityPoolRolesResponse:
+    ) -> GetIdentityPoolRolesOutput:
         params: dict[str, object] = {
             "identity_pool_id": identity_pool_id,
         }
@@ -256,7 +256,7 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.get_identity_pool_roles, params, _interceptors,
                 "cognito-identity", "GetIdentityPoolRoles", self._region,
-                GetIdentityPoolRolesResponse,
+                GetIdentityPoolRolesOutput,
                 ("identity_pool_id", ),
                 ("identity_pool_id", ),
             )
@@ -270,7 +270,7 @@ class CognitoIdentityClient:
         *,
         identity_id: str,
         logins: dict[str, str] | None = None,
-    ) -> GetOpenIdTokenResponse:
+    ) -> GetOpenIdTokenOutput:
         params: dict[str, object] = {
             "identity_id": identity_id,
         }
@@ -281,7 +281,7 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.get_open_id_token, params, _interceptors,
                 "cognito-identity", "GetOpenIdToken", self._region,
-                GetOpenIdTokenResponse,
+                GetOpenIdTokenOutput,
                 ("identity_id", "logins", ),
                 ("identity_id", ),
             )
@@ -298,7 +298,7 @@ class CognitoIdentityClient:
         identity_id: str | None = None,
         principal_tags: dict[str, str] | None = None,
         token_duration: int | None = None,
-    ) -> GetOpenIdTokenForDeveloperIdentityResponse:
+    ) -> GetOpenIdTokenForDeveloperIdentityOutput:
         params: dict[str, object] = {
             "identity_pool_id": identity_pool_id,
             "logins": logins,
@@ -314,7 +314,7 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.get_open_id_token_for_developer_identity, params, _interceptors,
                 "cognito-identity", "GetOpenIdTokenForDeveloperIdentity", self._region,
-                GetOpenIdTokenForDeveloperIdentityResponse,
+                GetOpenIdTokenForDeveloperIdentityOutput,
                 ("identity_pool_id", "logins", "identity_id", "principal_tags", "token_duration", ),
                 ("identity_pool_id", "logins", ),
             )
@@ -328,7 +328,7 @@ class CognitoIdentityClient:
         *,
         identity_pool_id: str,
         identity_provider_name: str,
-    ) -> GetPrincipalTagAttributeMapResponse:
+    ) -> GetPrincipalTagAttributeMapOutput:
         params: dict[str, object] = {
             "identity_pool_id": identity_pool_id,
             "identity_provider_name": identity_provider_name,
@@ -338,7 +338,7 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.get_principal_tag_attribute_map, params, _interceptors,
                 "cognito-identity", "GetPrincipalTagAttributeMap", self._region,
-                GetPrincipalTagAttributeMapResponse,
+                GetPrincipalTagAttributeMapOutput,
                 ("identity_pool_id", "identity_provider_name", ),
                 ("identity_pool_id", "identity_provider_name", ),
             )
@@ -354,7 +354,7 @@ class CognitoIdentityClient:
         max_results: int,
         next_token: str | None = None,
         hide_disabled: bool | None = None,
-    ) -> ListIdentitiesResponse:
+    ) -> ListIdentitiesOutput:
         params: dict[str, object] = {
             "identity_pool_id": identity_pool_id,
             "max_results": max_results,
@@ -368,7 +368,7 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.list_identities, params, _interceptors,
                 "cognito-identity", "ListIdentities", self._region,
-                ListIdentitiesResponse,
+                ListIdentitiesOutput,
                 ("identity_pool_id", "max_results", "next_token", "hide_disabled", ),
                 ("identity_pool_id", "max_results", ),
             )
@@ -382,7 +382,7 @@ class CognitoIdentityClient:
         *,
         max_results: int,
         next_token: str | None = None,
-    ) -> ListIdentityPoolsResponse:
+    ) -> ListIdentityPoolsOutput:
         params: dict[str, object] = {
             "max_results": max_results,
         }
@@ -393,7 +393,7 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.list_identity_pools, params, _interceptors,
                 "cognito-identity", "ListIdentityPools", self._region,
-                ListIdentityPoolsResponse,
+                ListIdentityPoolsOutput,
                 ("max_results", "next_token", ),
                 ("max_results", ),
             )
@@ -406,7 +406,7 @@ class CognitoIdentityClient:
         self,
         *,
         resource_arn: str,
-    ) -> ListTagsForResourceResponse:
+    ) -> ListTagsForResourceOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -415,7 +415,7 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.list_tags_for_resource, params, _interceptors,
                 "cognito-identity", "ListTagsForResource", self._region,
-                ListTagsForResourceResponse,
+                ListTagsForResourceOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
             )
@@ -432,7 +432,7 @@ class CognitoIdentityClient:
         developer_user_identifier: str | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> LookupDeveloperIdentityResponse:
+    ) -> LookupDeveloperIdentityOutput:
         params: dict[str, object] = {
             "identity_pool_id": identity_pool_id,
         }
@@ -449,7 +449,7 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.lookup_developer_identity, params, _interceptors,
                 "cognito-identity", "LookupDeveloperIdentity", self._region,
-                LookupDeveloperIdentityResponse,
+                LookupDeveloperIdentityOutput,
                 ("identity_pool_id", "identity_id", "developer_user_identifier", "max_results", "next_token", ),
                 ("identity_pool_id", ),
             )
@@ -465,7 +465,7 @@ class CognitoIdentityClient:
         destination_user_identifier: str,
         developer_provider_name: str,
         identity_pool_id: str,
-    ) -> MergeDeveloperIdentitiesResponse:
+    ) -> MergeDeveloperIdentitiesOutput:
         params: dict[str, object] = {
             "source_user_identifier": source_user_identifier,
             "destination_user_identifier": destination_user_identifier,
@@ -477,7 +477,7 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.merge_developer_identities, params, _interceptors,
                 "cognito-identity", "MergeDeveloperIdentities", self._region,
-                MergeDeveloperIdentitiesResponse,
+                MergeDeveloperIdentitiesOutput,
                 ("source_user_identifier", "destination_user_identifier", "developer_provider_name", "identity_pool_id", ),
                 ("source_user_identifier", "destination_user_identifier", "developer_provider_name", "identity_pool_id", ),
             )
@@ -520,7 +520,7 @@ class CognitoIdentityClient:
         identity_provider_name: str,
         use_defaults: bool | None = None,
         principal_tags: dict[str, str] | None = None,
-    ) -> SetPrincipalTagAttributeMapResponse:
+    ) -> SetPrincipalTagAttributeMapOutput:
         params: dict[str, object] = {
             "identity_pool_id": identity_pool_id,
             "identity_provider_name": identity_provider_name,
@@ -534,7 +534,7 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.set_principal_tag_attribute_map, params, _interceptors,
                 "cognito-identity", "SetPrincipalTagAttributeMap", self._region,
-                SetPrincipalTagAttributeMapResponse,
+                SetPrincipalTagAttributeMapOutput,
                 ("identity_pool_id", "identity_provider_name", "use_defaults", "principal_tags", ),
                 ("identity_pool_id", "identity_provider_name", ),
             )
@@ -548,7 +548,7 @@ class CognitoIdentityClient:
         *,
         resource_arn: str,
         tags: dict[str, str],
-    ) -> TagResourceResponse:
+    ) -> TagResourceOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -558,7 +558,7 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.tag_resource, params, _interceptors,
                 "cognito-identity", "TagResource", self._region,
-                TagResourceResponse,
+                TagResourceOutput,
                 ("resource_arn", "tags", ),
                 ("resource_arn", "tags", ),
             )
@@ -626,7 +626,7 @@ class CognitoIdentityClient:
         *,
         resource_arn: str,
         tag_keys: Sequence[str],
-    ) -> UntagResourceResponse:
+    ) -> UntagResourceOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
@@ -636,7 +636,7 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.untag_resource, params, _interceptors,
                 "cognito-identity", "UntagResource", self._region,
-                UntagResourceResponse,
+                UntagResourceOutput,
                 ("resource_arn", "tag_keys", ),
                 ("resource_arn", "tag_keys", ),
             )
