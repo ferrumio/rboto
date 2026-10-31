@@ -8,9 +8,9 @@ from typing import TYPE_CHECKING
 from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _paginate
 
 from ._native import (
-    ListRuleNamesByTargetResponse,
-    ListRulesResponse,
-    ListTargetsByRuleResponse,
+    ListRuleNamesByTargetOutput,
+    ListRulesOutput,
+    ListTargetsByRuleOutput,
 )
 
 
@@ -30,7 +30,7 @@ class EventBridgeClientPaginators:
         event_bus_name: str | None = None,
         next_token: str | None = None,
         limit: int | None = None,
-    ) -> AsyncIterator[ListRuleNamesByTargetResponse]:
+    ) -> AsyncIterator[ListRuleNamesByTargetOutput]:
         """Yield each page from list_rule_names_by_target; requests start on iteration."""
         params: dict[str, object] = {
             "target_arn": target_arn,
@@ -58,7 +58,7 @@ class EventBridgeClientPaginators:
         event_bus_name: str | None = None,
         next_token: str | None = None,
         limit: int | None = None,
-    ) -> AsyncIterator[ListRulesResponse]:
+    ) -> AsyncIterator[ListRulesOutput]:
         """Yield each page from list_rules; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -87,7 +87,7 @@ class EventBridgeClientPaginators:
         event_bus_name: str | None = None,
         next_token: str | None = None,
         limit: int | None = None,
-    ) -> AsyncIterator[ListTargetsByRuleResponse]:
+    ) -> AsyncIterator[ListTargetsByRuleOutput]:
         """Yield each page from list_targets_by_rule; requests start on iteration."""
         params: dict[str, object] = {
             "rule": rule,

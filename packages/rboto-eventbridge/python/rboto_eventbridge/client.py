@@ -9,7 +9,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto.logging import operation_interceptors
 
-from ._native import EventBridgeClient as NativeClient, CancelReplayResponse, CreateApiDestinationResponse, CreateArchiveResponse, CreateConnectionResponse, CreateEndpointResponse, CreateEventBusResponse, CreatePartnerEventSourceResponse, DeauthorizeConnectionResponse, DeleteApiDestinationResponse, DeleteArchiveResponse, DeleteConnectionResponse, DeleteEndpointResponse, DescribeApiDestinationResponse, DescribeArchiveResponse, DescribeConnectionResponse, DescribeEndpointResponse, DescribeEventBusResponse, DescribeEventSourceResponse, DescribePartnerEventSourceResponse, DescribeReplayResponse, DescribeRuleResponse, ListApiDestinationsResponse, ListArchivesResponse, ListConnectionsResponse, ListEndpointsResponse, ListEventBusesResponse, ListEventSourcesResponse, ListPartnerEventSourceAccountsResponse, ListPartnerEventSourcesResponse, ListReplaysResponse, ListRuleNamesByTargetResponse, ListRulesResponse, ListTagsForResourceResponse, ListTargetsByRuleResponse, PutEventsResponse, PutPartnerEventsResponse, PutRuleResponse, PutTargetsResponse, RemoveTargetsResponse, StartReplayResponse, TagResourceResponse, TestEventPatternResponse, UntagResourceResponse, UpdateApiDestinationResponse, UpdateArchiveResponse, UpdateConnectionResponse, UpdateEndpointResponse, UpdateEventBusResponse
+from ._native import EventBridgeClient as NativeClient, CancelReplayOutput, CreateApiDestinationOutput, CreateArchiveOutput, CreateConnectionOutput, CreateEndpointOutput, CreateEventBusOutput, CreatePartnerEventSourceOutput, DeauthorizeConnectionOutput, DeleteApiDestinationOutput, DeleteArchiveOutput, DeleteConnectionOutput, DeleteEndpointOutput, DescribeApiDestinationOutput, DescribeArchiveOutput, DescribeConnectionOutput, DescribeEndpointOutput, DescribeEventBusOutput, DescribeEventSourceOutput, DescribePartnerEventSourceOutput, DescribeReplayOutput, DescribeRuleOutput, ListApiDestinationsOutput, ListArchivesOutput, ListConnectionsOutput, ListEndpointsOutput, ListEventBusesOutput, ListEventSourcesOutput, ListPartnerEventSourceAccountsOutput, ListPartnerEventSourcesOutput, ListReplaysOutput, ListRuleNamesByTargetOutput, ListRulesOutput, ListTagsForResourceOutput, ListTargetsByRuleOutput, PutEventsOutput, PutPartnerEventsOutput, PutRuleOutput, PutTargetsOutput, RemoveTargetsOutput, StartReplayOutput, TagResourceOutput, TestEventPatternOutput, UntagResourceOutput, UpdateApiDestinationOutput, UpdateArchiveOutput, UpdateConnectionOutput, UpdateEndpointOutput, UpdateEventBusOutput
 from .types import (
     ApiDestinationHttpMethod,
     ArchiveState,
@@ -98,7 +98,7 @@ class EventBridgeClient:
         self,
         *,
         replay_name: str,
-    ) -> CancelReplayResponse:
+    ) -> CancelReplayOutput:
         params: dict[str, object] = {
             "replay_name": replay_name,
         }
@@ -107,7 +107,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.cancel_replay, params, _interceptors,
                 "eventbridge", "CancelReplay", self._region,
-                CancelReplayResponse,
+                CancelReplayOutput,
                 ("replay_name", ),
                 ("replay_name", ),
             )
@@ -125,7 +125,7 @@ class EventBridgeClient:
         http_method: ApiDestinationHttpMethod,
         description: str | None = None,
         invocation_rate_limit_per_second: int | None = None,
-    ) -> CreateApiDestinationResponse:
+    ) -> CreateApiDestinationOutput:
         params: dict[str, object] = {
             "name": name,
             "connection_arn": connection_arn,
@@ -141,7 +141,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.create_api_destination, params, _interceptors,
                 "eventbridge", "CreateApiDestination", self._region,
-                CreateApiDestinationResponse,
+                CreateApiDestinationOutput,
                 ("name", "connection_arn", "invocation_endpoint", "http_method", "description", "invocation_rate_limit_per_second", ),
                 ("name", "connection_arn", "invocation_endpoint", "http_method", ),
             )
@@ -159,7 +159,7 @@ class EventBridgeClient:
         event_pattern: str | None = None,
         retention_days: int | None = None,
         kms_key_identifier: str | None = None,
-    ) -> CreateArchiveResponse:
+    ) -> CreateArchiveOutput:
         params: dict[str, object] = {
             "archive_name": archive_name,
             "event_source_arn": event_source_arn,
@@ -177,7 +177,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.create_archive, params, _interceptors,
                 "eventbridge", "CreateArchive", self._region,
-                CreateArchiveResponse,
+                CreateArchiveOutput,
                 ("archive_name", "event_source_arn", "description", "event_pattern", "retention_days", "kms_key_identifier", ),
                 ("archive_name", "event_source_arn", ),
             )
@@ -195,7 +195,7 @@ class EventBridgeClient:
         description: str | None = None,
         invocation_connectivity_parameters: ConnectivityResourceParameters | None = None,
         kms_key_identifier: str | None = None,
-    ) -> CreateConnectionResponse:
+    ) -> CreateConnectionOutput:
         params: dict[str, object] = {
             "name": name,
             "authorization_type": authorization_type,
@@ -212,7 +212,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.create_connection, params, _interceptors,
                 "eventbridge", "CreateConnection", self._region,
-                CreateConnectionResponse,
+                CreateConnectionOutput,
                 ("name", "authorization_type", "auth_parameters", "description", "invocation_connectivity_parameters", "kms_key_identifier", ),
                 ("name", "authorization_type", "auth_parameters", ),
             )
@@ -230,7 +230,7 @@ class EventBridgeClient:
         description: str | None = None,
         replication_config: ReplicationConfig | None = None,
         role_arn: str | None = None,
-    ) -> CreateEndpointResponse:
+    ) -> CreateEndpointOutput:
         params: dict[str, object] = {
             "name": name,
             "routing_config": routing_config,
@@ -247,7 +247,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.create_endpoint, params, _interceptors,
                 "eventbridge", "CreateEndpoint", self._region,
-                CreateEndpointResponse,
+                CreateEndpointOutput,
                 ("name", "routing_config", "event_buses", "description", "replication_config", "role_arn", ),
                 ("name", "routing_config", "event_buses", ),
             )
@@ -266,7 +266,7 @@ class EventBridgeClient:
         dead_letter_config: DeadLetterConfig | None = None,
         log_config: LogConfig | None = None,
         tags: Sequence[Tag] | None = None,
-    ) -> CreateEventBusResponse:
+    ) -> CreateEventBusOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -287,7 +287,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.create_event_bus, params, _interceptors,
                 "eventbridge", "CreateEventBus", self._region,
-                CreateEventBusResponse,
+                CreateEventBusOutput,
                 ("name", "event_source_name", "description", "kms_key_identifier", "dead_letter_config", "log_config", "tags", ),
                 ("name", ),
             )
@@ -301,7 +301,7 @@ class EventBridgeClient:
         *,
         name: str,
         account: str,
-    ) -> CreatePartnerEventSourceResponse:
+    ) -> CreatePartnerEventSourceOutput:
         params: dict[str, object] = {
             "name": name,
             "account": account,
@@ -311,7 +311,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.create_partner_event_source, params, _interceptors,
                 "eventbridge", "CreatePartnerEventSource", self._region,
-                CreatePartnerEventSourceResponse,
+                CreatePartnerEventSourceOutput,
                 ("name", "account", ),
                 ("name", "account", ),
             )
@@ -346,7 +346,7 @@ class EventBridgeClient:
         self,
         *,
         name: str,
-    ) -> DeauthorizeConnectionResponse:
+    ) -> DeauthorizeConnectionOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -355,7 +355,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.deauthorize_connection, params, _interceptors,
                 "eventbridge", "DeauthorizeConnection", self._region,
-                DeauthorizeConnectionResponse,
+                DeauthorizeConnectionOutput,
                 ("name", ),
                 ("name", ),
             )
@@ -368,7 +368,7 @@ class EventBridgeClient:
         self,
         *,
         name: str,
-    ) -> DeleteApiDestinationResponse:
+    ) -> DeleteApiDestinationOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -377,7 +377,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.delete_api_destination, params, _interceptors,
                 "eventbridge", "DeleteApiDestination", self._region,
-                DeleteApiDestinationResponse,
+                DeleteApiDestinationOutput,
                 ("name", ),
                 ("name", ),
             )
@@ -390,7 +390,7 @@ class EventBridgeClient:
         self,
         *,
         archive_name: str,
-    ) -> DeleteArchiveResponse:
+    ) -> DeleteArchiveOutput:
         params: dict[str, object] = {
             "archive_name": archive_name,
         }
@@ -399,7 +399,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.delete_archive, params, _interceptors,
                 "eventbridge", "DeleteArchive", self._region,
-                DeleteArchiveResponse,
+                DeleteArchiveOutput,
                 ("archive_name", ),
                 ("archive_name", ),
             )
@@ -412,7 +412,7 @@ class EventBridgeClient:
         self,
         *,
         name: str,
-    ) -> DeleteConnectionResponse:
+    ) -> DeleteConnectionOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -421,7 +421,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.delete_connection, params, _interceptors,
                 "eventbridge", "DeleteConnection", self._region,
-                DeleteConnectionResponse,
+                DeleteConnectionOutput,
                 ("name", ),
                 ("name", ),
             )
@@ -434,7 +434,7 @@ class EventBridgeClient:
         self,
         *,
         name: str,
-    ) -> DeleteEndpointResponse:
+    ) -> DeleteEndpointOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -443,7 +443,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.delete_endpoint, params, _interceptors,
                 "eventbridge", "DeleteEndpoint", self._region,
-                DeleteEndpointResponse,
+                DeleteEndpointOutput,
                 ("name", ),
                 ("name", ),
             )
@@ -530,7 +530,7 @@ class EventBridgeClient:
         self,
         *,
         name: str,
-    ) -> DescribeApiDestinationResponse:
+    ) -> DescribeApiDestinationOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -539,7 +539,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.describe_api_destination, params, _interceptors,
                 "eventbridge", "DescribeApiDestination", self._region,
-                DescribeApiDestinationResponse,
+                DescribeApiDestinationOutput,
                 ("name", ),
                 ("name", ),
             )
@@ -552,7 +552,7 @@ class EventBridgeClient:
         self,
         *,
         archive_name: str,
-    ) -> DescribeArchiveResponse:
+    ) -> DescribeArchiveOutput:
         params: dict[str, object] = {
             "archive_name": archive_name,
         }
@@ -561,7 +561,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.describe_archive, params, _interceptors,
                 "eventbridge", "DescribeArchive", self._region,
-                DescribeArchiveResponse,
+                DescribeArchiveOutput,
                 ("archive_name", ),
                 ("archive_name", ),
             )
@@ -574,7 +574,7 @@ class EventBridgeClient:
         self,
         *,
         name: str,
-    ) -> DescribeConnectionResponse:
+    ) -> DescribeConnectionOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -583,7 +583,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.describe_connection, params, _interceptors,
                 "eventbridge", "DescribeConnection", self._region,
-                DescribeConnectionResponse,
+                DescribeConnectionOutput,
                 ("name", ),
                 ("name", ),
             )
@@ -597,7 +597,7 @@ class EventBridgeClient:
         *,
         name: str,
         home_region: str | None = None,
-    ) -> DescribeEndpointResponse:
+    ) -> DescribeEndpointOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -608,7 +608,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.describe_endpoint, params, _interceptors,
                 "eventbridge", "DescribeEndpoint", self._region,
-                DescribeEndpointResponse,
+                DescribeEndpointOutput,
                 ("name", "home_region", ),
                 ("name", ),
             )
@@ -621,7 +621,7 @@ class EventBridgeClient:
         self,
         *,
         name: str | None = None,
-    ) -> DescribeEventBusResponse:
+    ) -> DescribeEventBusOutput:
         params: dict[str, object] = {
         }
         if name is not None:
@@ -631,7 +631,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.describe_event_bus, params, _interceptors,
                 "eventbridge", "DescribeEventBus", self._region,
-                DescribeEventBusResponse,
+                DescribeEventBusOutput,
                 ("name", ),
                 (),
             )
@@ -644,7 +644,7 @@ class EventBridgeClient:
         self,
         *,
         name: str,
-    ) -> DescribeEventSourceResponse:
+    ) -> DescribeEventSourceOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -653,7 +653,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.describe_event_source, params, _interceptors,
                 "eventbridge", "DescribeEventSource", self._region,
-                DescribeEventSourceResponse,
+                DescribeEventSourceOutput,
                 ("name", ),
                 ("name", ),
             )
@@ -666,7 +666,7 @@ class EventBridgeClient:
         self,
         *,
         name: str,
-    ) -> DescribePartnerEventSourceResponse:
+    ) -> DescribePartnerEventSourceOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -675,7 +675,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.describe_partner_event_source, params, _interceptors,
                 "eventbridge", "DescribePartnerEventSource", self._region,
-                DescribePartnerEventSourceResponse,
+                DescribePartnerEventSourceOutput,
                 ("name", ),
                 ("name", ),
             )
@@ -688,7 +688,7 @@ class EventBridgeClient:
         self,
         *,
         replay_name: str,
-    ) -> DescribeReplayResponse:
+    ) -> DescribeReplayOutput:
         params: dict[str, object] = {
             "replay_name": replay_name,
         }
@@ -697,7 +697,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.describe_replay, params, _interceptors,
                 "eventbridge", "DescribeReplay", self._region,
-                DescribeReplayResponse,
+                DescribeReplayOutput,
                 ("replay_name", ),
                 ("replay_name", ),
             )
@@ -711,7 +711,7 @@ class EventBridgeClient:
         *,
         name: str,
         event_bus_name: str | None = None,
-    ) -> DescribeRuleResponse:
+    ) -> DescribeRuleOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -722,7 +722,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.describe_rule, params, _interceptors,
                 "eventbridge", "DescribeRule", self._region,
-                DescribeRuleResponse,
+                DescribeRuleOutput,
                 ("name", "event_bus_name", ),
                 ("name", ),
             )
@@ -788,7 +788,7 @@ class EventBridgeClient:
         connection_arn: str | None = None,
         next_token: str | None = None,
         limit: int | None = None,
-    ) -> ListApiDestinationsResponse:
+    ) -> ListApiDestinationsOutput:
         params: dict[str, object] = {
         }
         if name_prefix is not None:
@@ -804,7 +804,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_api_destinations, params, _interceptors,
                 "eventbridge", "ListApiDestinations", self._region,
-                ListApiDestinationsResponse,
+                ListApiDestinationsOutput,
                 ("name_prefix", "connection_arn", "next_token", "limit", ),
                 (),
             )
@@ -821,7 +821,7 @@ class EventBridgeClient:
         state: ArchiveState | None = None,
         next_token: str | None = None,
         limit: int | None = None,
-    ) -> ListArchivesResponse:
+    ) -> ListArchivesOutput:
         params: dict[str, object] = {
         }
         if name_prefix is not None:
@@ -839,7 +839,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_archives, params, _interceptors,
                 "eventbridge", "ListArchives", self._region,
-                ListArchivesResponse,
+                ListArchivesOutput,
                 ("name_prefix", "event_source_arn", "state", "next_token", "limit", ),
                 (),
             )
@@ -855,7 +855,7 @@ class EventBridgeClient:
         connection_state: ConnectionState | None = None,
         next_token: str | None = None,
         limit: int | None = None,
-    ) -> ListConnectionsResponse:
+    ) -> ListConnectionsOutput:
         params: dict[str, object] = {
         }
         if name_prefix is not None:
@@ -871,7 +871,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_connections, params, _interceptors,
                 "eventbridge", "ListConnections", self._region,
-                ListConnectionsResponse,
+                ListConnectionsOutput,
                 ("name_prefix", "connection_state", "next_token", "limit", ),
                 (),
             )
@@ -887,7 +887,7 @@ class EventBridgeClient:
         home_region: str | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListEndpointsResponse:
+    ) -> ListEndpointsOutput:
         params: dict[str, object] = {
         }
         if name_prefix is not None:
@@ -903,7 +903,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_endpoints, params, _interceptors,
                 "eventbridge", "ListEndpoints", self._region,
-                ListEndpointsResponse,
+                ListEndpointsOutput,
                 ("name_prefix", "home_region", "next_token", "max_results", ),
                 (),
             )
@@ -918,7 +918,7 @@ class EventBridgeClient:
         name_prefix: str | None = None,
         next_token: str | None = None,
         limit: int | None = None,
-    ) -> ListEventBusesResponse:
+    ) -> ListEventBusesOutput:
         params: dict[str, object] = {
         }
         if name_prefix is not None:
@@ -932,7 +932,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_event_buses, params, _interceptors,
                 "eventbridge", "ListEventBuses", self._region,
-                ListEventBusesResponse,
+                ListEventBusesOutput,
                 ("name_prefix", "next_token", "limit", ),
                 (),
             )
@@ -947,7 +947,7 @@ class EventBridgeClient:
         name_prefix: str | None = None,
         next_token: str | None = None,
         limit: int | None = None,
-    ) -> ListEventSourcesResponse:
+    ) -> ListEventSourcesOutput:
         params: dict[str, object] = {
         }
         if name_prefix is not None:
@@ -961,7 +961,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_event_sources, params, _interceptors,
                 "eventbridge", "ListEventSources", self._region,
-                ListEventSourcesResponse,
+                ListEventSourcesOutput,
                 ("name_prefix", "next_token", "limit", ),
                 (),
             )
@@ -976,7 +976,7 @@ class EventBridgeClient:
         event_source_name: str,
         next_token: str | None = None,
         limit: int | None = None,
-    ) -> ListPartnerEventSourceAccountsResponse:
+    ) -> ListPartnerEventSourceAccountsOutput:
         params: dict[str, object] = {
             "event_source_name": event_source_name,
         }
@@ -989,7 +989,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_partner_event_source_accounts, params, _interceptors,
                 "eventbridge", "ListPartnerEventSourceAccounts", self._region,
-                ListPartnerEventSourceAccountsResponse,
+                ListPartnerEventSourceAccountsOutput,
                 ("event_source_name", "next_token", "limit", ),
                 ("event_source_name", ),
             )
@@ -1004,7 +1004,7 @@ class EventBridgeClient:
         name_prefix: str,
         next_token: str | None = None,
         limit: int | None = None,
-    ) -> ListPartnerEventSourcesResponse:
+    ) -> ListPartnerEventSourcesOutput:
         params: dict[str, object] = {
             "name_prefix": name_prefix,
         }
@@ -1017,7 +1017,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_partner_event_sources, params, _interceptors,
                 "eventbridge", "ListPartnerEventSources", self._region,
-                ListPartnerEventSourcesResponse,
+                ListPartnerEventSourcesOutput,
                 ("name_prefix", "next_token", "limit", ),
                 ("name_prefix", ),
             )
@@ -1034,7 +1034,7 @@ class EventBridgeClient:
         event_source_arn: str | None = None,
         next_token: str | None = None,
         limit: int | None = None,
-    ) -> ListReplaysResponse:
+    ) -> ListReplaysOutput:
         params: dict[str, object] = {
         }
         if name_prefix is not None:
@@ -1052,7 +1052,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_replays, params, _interceptors,
                 "eventbridge", "ListReplays", self._region,
-                ListReplaysResponse,
+                ListReplaysOutput,
                 ("name_prefix", "state", "event_source_arn", "next_token", "limit", ),
                 (),
             )
@@ -1068,7 +1068,7 @@ class EventBridgeClient:
         event_bus_name: str | None = None,
         next_token: str | None = None,
         limit: int | None = None,
-    ) -> ListRuleNamesByTargetResponse:
+    ) -> ListRuleNamesByTargetOutput:
         params: dict[str, object] = {
             "target_arn": target_arn,
         }
@@ -1083,7 +1083,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_rule_names_by_target, params, _interceptors,
                 "eventbridge", "ListRuleNamesByTarget", self._region,
-                ListRuleNamesByTargetResponse,
+                ListRuleNamesByTargetOutput,
                 ("target_arn", "event_bus_name", "next_token", "limit", ),
                 ("target_arn", ),
             )
@@ -1099,7 +1099,7 @@ class EventBridgeClient:
         event_bus_name: str | None = None,
         next_token: str | None = None,
         limit: int | None = None,
-    ) -> ListRulesResponse:
+    ) -> ListRulesOutput:
         params: dict[str, object] = {
         }
         if name_prefix is not None:
@@ -1115,7 +1115,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_rules, params, _interceptors,
                 "eventbridge", "ListRules", self._region,
-                ListRulesResponse,
+                ListRulesOutput,
                 ("name_prefix", "event_bus_name", "next_token", "limit", ),
                 (),
             )
@@ -1128,7 +1128,7 @@ class EventBridgeClient:
         self,
         *,
         resource_arn: str,
-    ) -> ListTagsForResourceResponse:
+    ) -> ListTagsForResourceOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -1137,7 +1137,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_tags_for_resource, params, _interceptors,
                 "eventbridge", "ListTagsForResource", self._region,
-                ListTagsForResourceResponse,
+                ListTagsForResourceOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
             )
@@ -1153,7 +1153,7 @@ class EventBridgeClient:
         event_bus_name: str | None = None,
         next_token: str | None = None,
         limit: int | None = None,
-    ) -> ListTargetsByRuleResponse:
+    ) -> ListTargetsByRuleOutput:
         params: dict[str, object] = {
             "rule": rule,
         }
@@ -1168,7 +1168,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_targets_by_rule, params, _interceptors,
                 "eventbridge", "ListTargetsByRule", self._region,
-                ListTargetsByRuleResponse,
+                ListTargetsByRuleOutput,
                 ("rule", "event_bus_name", "next_token", "limit", ),
                 ("rule", ),
             )
@@ -1182,7 +1182,7 @@ class EventBridgeClient:
         *,
         entries: Sequence[PutEventsRequestEntry],
         endpoint_id: str | None = None,
-    ) -> PutEventsResponse:
+    ) -> PutEventsOutput:
         params: dict[str, object] = {
             "entries": entries,
         }
@@ -1193,7 +1193,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.put_events, params, _interceptors,
                 "eventbridge", "PutEvents", self._region,
-                PutEventsResponse,
+                PutEventsOutput,
                 ("entries", "endpoint_id", ),
                 ("entries", ),
             )
@@ -1206,7 +1206,7 @@ class EventBridgeClient:
         self,
         *,
         entries: Sequence[PutPartnerEventsRequestEntry],
-    ) -> PutPartnerEventsResponse:
+    ) -> PutPartnerEventsOutput:
         params: dict[str, object] = {
             "entries": entries,
         }
@@ -1215,7 +1215,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.put_partner_events, params, _interceptors,
                 "eventbridge", "PutPartnerEvents", self._region,
-                PutPartnerEventsResponse,
+                PutPartnerEventsOutput,
                 ("entries", ),
                 ("entries", ),
             )
@@ -1273,7 +1273,7 @@ class EventBridgeClient:
         role_arn: str | None = None,
         tags: Sequence[Tag] | None = None,
         event_bus_name: str | None = None,
-    ) -> PutRuleResponse:
+    ) -> PutRuleOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -1296,7 +1296,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.put_rule, params, _interceptors,
                 "eventbridge", "PutRule", self._region,
-                PutRuleResponse,
+                PutRuleOutput,
                 ("name", "schedule_expression", "event_pattern", "state", "description", "role_arn", "tags", "event_bus_name", ),
                 ("name", ),
             )
@@ -1311,7 +1311,7 @@ class EventBridgeClient:
         rule: str,
         targets: Sequence[Target],
         event_bus_name: str | None = None,
-    ) -> PutTargetsResponse:
+    ) -> PutTargetsOutput:
         params: dict[str, object] = {
             "rule": rule,
             "targets": targets,
@@ -1323,7 +1323,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.put_targets, params, _interceptors,
                 "eventbridge", "PutTargets", self._region,
-                PutTargetsResponse,
+                PutTargetsOutput,
                 ("rule", "targets", "event_bus_name", ),
                 ("rule", "targets", ),
             )
@@ -1368,7 +1368,7 @@ class EventBridgeClient:
         ids: Sequence[str],
         event_bus_name: str | None = None,
         force: bool | None = None,
-    ) -> RemoveTargetsResponse:
+    ) -> RemoveTargetsOutput:
         params: dict[str, object] = {
             "rule": rule,
             "ids": ids,
@@ -1382,7 +1382,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.remove_targets, params, _interceptors,
                 "eventbridge", "RemoveTargets", self._region,
-                RemoveTargetsResponse,
+                RemoveTargetsOutput,
                 ("rule", "ids", "event_bus_name", "force", ),
                 ("rule", "ids", ),
             )
@@ -1400,7 +1400,7 @@ class EventBridgeClient:
         event_end_time: str,
         destination: ReplayDestination,
         description: str | None = None,
-    ) -> StartReplayResponse:
+    ) -> StartReplayOutput:
         params: dict[str, object] = {
             "replay_name": replay_name,
             "event_source_arn": event_source_arn,
@@ -1415,7 +1415,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.start_replay, params, _interceptors,
                 "eventbridge", "StartReplay", self._region,
-                StartReplayResponse,
+                StartReplayOutput,
                 ("replay_name", "event_source_arn", "event_start_time", "event_end_time", "destination", "description", ),
                 ("replay_name", "event_source_arn", "event_start_time", "event_end_time", "destination", ),
             )
@@ -1429,7 +1429,7 @@ class EventBridgeClient:
         *,
         resource_arn: str,
         tags: Sequence[Tag],
-    ) -> TagResourceResponse:
+    ) -> TagResourceOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -1439,7 +1439,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.tag_resource, params, _interceptors,
                 "eventbridge", "TagResource", self._region,
-                TagResourceResponse,
+                TagResourceOutput,
                 ("resource_arn", "tags", ),
                 ("resource_arn", "tags", ),
             )
@@ -1453,7 +1453,7 @@ class EventBridgeClient:
         *,
         event_pattern: str,
         event: str,
-    ) -> TestEventPatternResponse:
+    ) -> TestEventPatternOutput:
         params: dict[str, object] = {
             "event_pattern": event_pattern,
             "event": event,
@@ -1463,7 +1463,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.test_event_pattern, params, _interceptors,
                 "eventbridge", "TestEventPattern", self._region,
-                TestEventPatternResponse,
+                TestEventPatternOutput,
                 ("event_pattern", "event", ),
                 ("event_pattern", "event", ),
             )
@@ -1477,7 +1477,7 @@ class EventBridgeClient:
         *,
         resource_arn: str,
         tag_keys: Sequence[str],
-    ) -> UntagResourceResponse:
+    ) -> UntagResourceOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
@@ -1487,7 +1487,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.untag_resource, params, _interceptors,
                 "eventbridge", "UntagResource", self._region,
-                UntagResourceResponse,
+                UntagResourceOutput,
                 ("resource_arn", "tag_keys", ),
                 ("resource_arn", "tag_keys", ),
             )
@@ -1505,7 +1505,7 @@ class EventBridgeClient:
         invocation_endpoint: str | None = None,
         http_method: ApiDestinationHttpMethod | None = None,
         invocation_rate_limit_per_second: int | None = None,
-    ) -> UpdateApiDestinationResponse:
+    ) -> UpdateApiDestinationOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -1524,7 +1524,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.update_api_destination, params, _interceptors,
                 "eventbridge", "UpdateApiDestination", self._region,
-                UpdateApiDestinationResponse,
+                UpdateApiDestinationOutput,
                 ("name", "description", "connection_arn", "invocation_endpoint", "http_method", "invocation_rate_limit_per_second", ),
                 ("name", ),
             )
@@ -1541,7 +1541,7 @@ class EventBridgeClient:
         event_pattern: str | None = None,
         retention_days: int | None = None,
         kms_key_identifier: str | None = None,
-    ) -> UpdateArchiveResponse:
+    ) -> UpdateArchiveOutput:
         params: dict[str, object] = {
             "archive_name": archive_name,
         }
@@ -1558,7 +1558,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.update_archive, params, _interceptors,
                 "eventbridge", "UpdateArchive", self._region,
-                UpdateArchiveResponse,
+                UpdateArchiveOutput,
                 ("archive_name", "description", "event_pattern", "retention_days", "kms_key_identifier", ),
                 ("archive_name", ),
             )
@@ -1576,7 +1576,7 @@ class EventBridgeClient:
         auth_parameters: UpdateConnectionAuthRequestParameters | None = None,
         invocation_connectivity_parameters: ConnectivityResourceParameters | None = None,
         kms_key_identifier: str | None = None,
-    ) -> UpdateConnectionResponse:
+    ) -> UpdateConnectionOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -1595,7 +1595,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.update_connection, params, _interceptors,
                 "eventbridge", "UpdateConnection", self._region,
-                UpdateConnectionResponse,
+                UpdateConnectionOutput,
                 ("name", "description", "authorization_type", "auth_parameters", "invocation_connectivity_parameters", "kms_key_identifier", ),
                 ("name", ),
             )
@@ -1613,7 +1613,7 @@ class EventBridgeClient:
         replication_config: ReplicationConfig | None = None,
         event_buses: Sequence[EndpointEventBus] | None = None,
         role_arn: str | None = None,
-    ) -> UpdateEndpointResponse:
+    ) -> UpdateEndpointOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -1632,7 +1632,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.update_endpoint, params, _interceptors,
                 "eventbridge", "UpdateEndpoint", self._region,
-                UpdateEndpointResponse,
+                UpdateEndpointOutput,
                 ("name", "description", "routing_config", "replication_config", "event_buses", "role_arn", ),
                 ("name", ),
             )
@@ -1649,7 +1649,7 @@ class EventBridgeClient:
         description: str | None = None,
         dead_letter_config: DeadLetterConfig | None = None,
         log_config: LogConfig | None = None,
-    ) -> UpdateEventBusResponse:
+    ) -> UpdateEventBusOutput:
         params: dict[str, object] = {
         }
         if name is not None:
@@ -1667,7 +1667,7 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.update_event_bus, params, _interceptors,
                 "eventbridge", "UpdateEventBus", self._region,
-                UpdateEventBusResponse,
+                UpdateEventBusOutput,
                 ("name", "kms_key_identifier", "description", "dead_letter_config", "log_config", ),
                 (),
             )

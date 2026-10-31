@@ -3,15 +3,15 @@ from typing import assert_type
 
 from rboto import DynamoDBClient, LambdaClient, S3Client
 from rboto_dynamodb.types import QueryOutput
-from rboto_lambda.types import ListFunctionsResponse
+from rboto_lambda.types import ListFunctionsOutput
 from rboto_s3.types import ListMultipartUploadsOutput
 
 
 async def pagination(ddb: DynamoDBClient, lamb: LambdaClient, s3: S3Client) -> None:
     functions = lamb.paginators.list_functions(max_items=50)
-    assert_type(functions, AsyncIterator[ListFunctionsResponse])
+    assert_type(functions, AsyncIterator[ListFunctionsOutput])
     async for page in functions:
-        assert_type(page, ListFunctionsResponse)
+        assert_type(page, ListFunctionsOutput)
         for function in page.functions or []:
             assert_type(function.function_name, str | None)
 

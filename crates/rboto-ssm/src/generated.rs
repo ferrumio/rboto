@@ -26951,13 +26951,13 @@ impl PyValidationFindingScope {
     }
 }
 
-#[pyclass(name = "AddTagsToResourceResult", module = "rboto_ssm._native", frozen)]
-struct PyAddTagsToResourceResult {
+#[pyclass(name = "AddTagsToResourceOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationAddTagsToResourceOutput {
     inner: aws_sdk_ssm::operation::add_tags_to_resource::AddTagsToResourceOutput,
 }
 
 #[pymethods]
-impl PyAddTagsToResourceResult {
+impl PyOperationAddTagsToResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -26965,17 +26965,17 @@ impl PyAddTagsToResourceResult {
 }
 
 #[pyclass(
-    name = "AssociateOpsItemRelatedItemResponse",
+    name = "AssociateOpsItemRelatedItemOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyAssociateOpsItemRelatedItemResponse {
+struct PyOperationAssociateOpsItemRelatedItemOutput {
     inner:
         aws_sdk_ssm::operation::associate_ops_item_related_item::AssociateOpsItemRelatedItemOutput,
 }
 
 #[pymethods]
-impl PyAssociateOpsItemRelatedItemResponse {
+impl PyOperationAssociateOpsItemRelatedItemOutput {
     #[getter]
     fn association_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.association_id {
@@ -26998,13 +26998,13 @@ impl PyAssociateOpsItemRelatedItemResponse {
     }
 }
 
-#[pyclass(name = "CancelCommandResult", module = "rboto_ssm._native", frozen)]
-struct PyCancelCommandResult {
+#[pyclass(name = "CancelCommandOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationCancelCommandOutput {
     inner: aws_sdk_ssm::operation::cancel_command::CancelCommandOutput,
 }
 
 #[pymethods]
-impl PyCancelCommandResult {
+impl PyOperationCancelCommandOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -27012,16 +27012,16 @@ impl PyCancelCommandResult {
 }
 
 #[pyclass(
-    name = "CancelMaintenanceWindowExecutionResult",
+    name = "CancelMaintenanceWindowExecutionOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyCancelMaintenanceWindowExecutionResult {
+struct PyOperationCancelMaintenanceWindowExecutionOutput {
     inner: aws_sdk_ssm::operation::cancel_maintenance_window_execution::CancelMaintenanceWindowExecutionOutput,
 }
 
 #[pymethods]
-impl PyCancelMaintenanceWindowExecutionResult {
+impl PyOperationCancelMaintenanceWindowExecutionOutput {
     #[getter]
     fn window_execution_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.window_execution_id {
@@ -27044,13 +27044,13 @@ impl PyCancelMaintenanceWindowExecutionResult {
     }
 }
 
-#[pyclass(name = "CreateActivationResult", module = "rboto_ssm._native", frozen)]
-struct PyCreateActivationResult {
+#[pyclass(name = "CreateActivationOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationCreateActivationOutput {
     inner: aws_sdk_ssm::operation::create_activation::CreateActivationOutput,
 }
 
 #[pymethods]
-impl PyCreateActivationResult {
+impl PyOperationCreateActivationOutput {
     #[getter]
     fn activation_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.activation_id {
@@ -27089,13 +27089,13 @@ impl PyCreateActivationResult {
     }
 }
 
-#[pyclass(name = "CreateAssociationResult", module = "rboto_ssm._native", frozen)]
-struct PyCreateAssociationResult {
+#[pyclass(name = "CreateAssociationOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationCreateAssociationOutput {
     inner: aws_sdk_ssm::operation::create_association::CreateAssociationOutput,
 }
 
 #[pymethods]
-impl PyCreateAssociationResult {
+impl PyOperationCreateAssociationOutput {
     #[getter]
     fn association_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.association_description {
@@ -27125,16 +27125,16 @@ impl PyCreateAssociationResult {
 }
 
 #[pyclass(
-    name = "CreateAssociationBatchResult",
+    name = "CreateAssociationBatchOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyCreateAssociationBatchResult {
+struct PyOperationCreateAssociationBatchOutput {
     inner: aws_sdk_ssm::operation::create_association_batch::CreateAssociationBatchOutput,
 }
 
 #[pymethods]
-impl PyCreateAssociationBatchResult {
+impl PyOperationCreateAssociationBatchOutput {
     #[getter]
     fn successful(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.successful {
@@ -27206,16 +27206,16 @@ impl PyCreateAssociationBatchResult {
 }
 
 #[pyclass(
-    name = "CreateCloudConnectorResult",
+    name = "CreateCloudConnectorOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyCreateCloudConnectorResult {
+struct PyOperationCreateCloudConnectorOutput {
     inner: aws_sdk_ssm::operation::create_cloud_connector::CreateCloudConnectorOutput,
 }
 
 #[pymethods]
-impl PyCreateCloudConnectorResult {
+impl PyOperationCreateCloudConnectorOutput {
     #[getter]
     fn cloud_connector_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cloud_connector_id {
@@ -27238,13 +27238,13 @@ impl PyCreateCloudConnectorResult {
     }
 }
 
-#[pyclass(name = "CreateDocumentResult", module = "rboto_ssm._native", frozen)]
-struct PyCreateDocumentResult {
+#[pyclass(name = "CreateDocumentOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationCreateDocumentOutput {
     inner: aws_sdk_ssm::operation::create_document::CreateDocumentOutput,
 }
 
 #[pymethods]
-impl PyCreateDocumentResult {
+impl PyOperationCreateDocumentOutput {
     #[getter]
     fn document_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.document_description {
@@ -27274,16 +27274,16 @@ impl PyCreateDocumentResult {
 }
 
 #[pyclass(
-    name = "CreateMaintenanceWindowResult",
+    name = "CreateMaintenanceWindowOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyCreateMaintenanceWindowResult {
+struct PyOperationCreateMaintenanceWindowOutput {
     inner: aws_sdk_ssm::operation::create_maintenance_window::CreateMaintenanceWindowOutput,
 }
 
 #[pymethods]
-impl PyCreateMaintenanceWindowResult {
+impl PyOperationCreateMaintenanceWindowOutput {
     #[getter]
     fn window_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.window_id {
@@ -27306,13 +27306,13 @@ impl PyCreateMaintenanceWindowResult {
     }
 }
 
-#[pyclass(name = "CreateOpsItemResponse", module = "rboto_ssm._native", frozen)]
-struct PyCreateOpsItemResponse {
+#[pyclass(name = "CreateOpsItemOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationCreateOpsItemOutput {
     inner: aws_sdk_ssm::operation::create_ops_item::CreateOpsItemOutput,
 }
 
 #[pymethods]
-impl PyCreateOpsItemResponse {
+impl PyOperationCreateOpsItemOutput {
     #[getter]
     fn ops_item_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ops_item_id {
@@ -27351,13 +27351,13 @@ impl PyCreateOpsItemResponse {
     }
 }
 
-#[pyclass(name = "CreateOpsMetadataResult", module = "rboto_ssm._native", frozen)]
-struct PyCreateOpsMetadataResult {
+#[pyclass(name = "CreateOpsMetadataOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationCreateOpsMetadataOutput {
     inner: aws_sdk_ssm::operation::create_ops_metadata::CreateOpsMetadataOutput,
 }
 
 #[pymethods]
-impl PyCreateOpsMetadataResult {
+impl PyOperationCreateOpsMetadataOutput {
     #[getter]
     fn ops_metadata_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ops_metadata_arn {
@@ -27381,16 +27381,16 @@ impl PyCreateOpsMetadataResult {
 }
 
 #[pyclass(
-    name = "CreatePatchBaselineResult",
+    name = "CreatePatchBaselineOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyCreatePatchBaselineResult {
+struct PyOperationCreatePatchBaselineOutput {
     inner: aws_sdk_ssm::operation::create_patch_baseline::CreatePatchBaselineOutput,
 }
 
 #[pymethods]
-impl PyCreatePatchBaselineResult {
+impl PyOperationCreatePatchBaselineOutput {
     #[getter]
     fn baseline_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.baseline_id {
@@ -27414,42 +27414,42 @@ impl PyCreatePatchBaselineResult {
 }
 
 #[pyclass(
-    name = "CreateResourceDataSyncResult",
+    name = "CreateResourceDataSyncOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyCreateResourceDataSyncResult {
+struct PyOperationCreateResourceDataSyncOutput {
     inner: aws_sdk_ssm::operation::create_resource_data_sync::CreateResourceDataSyncOutput,
 }
 
 #[pymethods]
-impl PyCreateResourceDataSyncResult {
+impl PyOperationCreateResourceDataSyncOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "DeleteActivationResult", module = "rboto_ssm._native", frozen)]
-struct PyDeleteActivationResult {
+#[pyclass(name = "DeleteActivationOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationDeleteActivationOutput {
     inner: aws_sdk_ssm::operation::delete_activation::DeleteActivationOutput,
 }
 
 #[pymethods]
-impl PyDeleteActivationResult {
+impl PyOperationDeleteActivationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "DeleteAssociationResult", module = "rboto_ssm._native", frozen)]
-struct PyDeleteAssociationResult {
+#[pyclass(name = "DeleteAssociationOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationDeleteAssociationOutput {
     inner: aws_sdk_ssm::operation::delete_association::DeleteAssociationOutput,
 }
 
 #[pymethods]
-impl PyDeleteAssociationResult {
+impl PyOperationDeleteAssociationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -27457,16 +27457,16 @@ impl PyDeleteAssociationResult {
 }
 
 #[pyclass(
-    name = "DeleteCloudConnectorResult",
+    name = "DeleteCloudConnectorOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDeleteCloudConnectorResult {
+struct PyOperationDeleteCloudConnectorOutput {
     inner: aws_sdk_ssm::operation::delete_cloud_connector::DeleteCloudConnectorOutput,
 }
 
 #[pymethods]
-impl PyDeleteCloudConnectorResult {
+impl PyOperationDeleteCloudConnectorOutput {
     #[getter]
     fn cloud_connector_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cloud_connector_id {
@@ -27489,26 +27489,26 @@ impl PyDeleteCloudConnectorResult {
     }
 }
 
-#[pyclass(name = "DeleteDocumentResult", module = "rboto_ssm._native", frozen)]
-struct PyDeleteDocumentResult {
+#[pyclass(name = "DeleteDocumentOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationDeleteDocumentOutput {
     inner: aws_sdk_ssm::operation::delete_document::DeleteDocumentOutput,
 }
 
 #[pymethods]
-impl PyDeleteDocumentResult {
+impl PyOperationDeleteDocumentOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "DeleteInventoryResult", module = "rboto_ssm._native", frozen)]
-struct PyDeleteInventoryResult {
+#[pyclass(name = "DeleteInventoryOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationDeleteInventoryOutput {
     inner: aws_sdk_ssm::operation::delete_inventory::DeleteInventoryOutput,
 }
 
 #[pymethods]
-impl PyDeleteInventoryResult {
+impl PyOperationDeleteInventoryOutput {
     #[getter]
     fn deletion_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.deletion_id {
@@ -27570,16 +27570,16 @@ impl PyDeleteInventoryResult {
 }
 
 #[pyclass(
-    name = "DeleteMaintenanceWindowResult",
+    name = "DeleteMaintenanceWindowOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDeleteMaintenanceWindowResult {
+struct PyOperationDeleteMaintenanceWindowOutput {
     inner: aws_sdk_ssm::operation::delete_maintenance_window::DeleteMaintenanceWindowOutput,
 }
 
 #[pymethods]
-impl PyDeleteMaintenanceWindowResult {
+impl PyOperationDeleteMaintenanceWindowOutput {
     #[getter]
     fn window_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.window_id {
@@ -27602,52 +27602,52 @@ impl PyDeleteMaintenanceWindowResult {
     }
 }
 
-#[pyclass(name = "DeleteOpsItemResponse", module = "rboto_ssm._native", frozen)]
-struct PyDeleteOpsItemResponse {
+#[pyclass(name = "DeleteOpsItemOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationDeleteOpsItemOutput {
     inner: aws_sdk_ssm::operation::delete_ops_item::DeleteOpsItemOutput,
 }
 
 #[pymethods]
-impl PyDeleteOpsItemResponse {
+impl PyOperationDeleteOpsItemOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "DeleteOpsMetadataResult", module = "rboto_ssm._native", frozen)]
-struct PyDeleteOpsMetadataResult {
+#[pyclass(name = "DeleteOpsMetadataOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationDeleteOpsMetadataOutput {
     inner: aws_sdk_ssm::operation::delete_ops_metadata::DeleteOpsMetadataOutput,
 }
 
 #[pymethods]
-impl PyDeleteOpsMetadataResult {
+impl PyOperationDeleteOpsMetadataOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "DeleteParameterResult", module = "rboto_ssm._native", frozen)]
-struct PyDeleteParameterResult {
+#[pyclass(name = "DeleteParameterOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationDeleteParameterOutput {
     inner: aws_sdk_ssm::operation::delete_parameter::DeleteParameterOutput,
 }
 
 #[pymethods]
-impl PyDeleteParameterResult {
+impl PyOperationDeleteParameterOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "DeleteParametersResult", module = "rboto_ssm._native", frozen)]
-struct PyDeleteParametersResult {
+#[pyclass(name = "DeleteParametersOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationDeleteParametersOutput {
     inner: aws_sdk_ssm::operation::delete_parameters::DeleteParametersOutput,
 }
 
 #[pymethods]
-impl PyDeleteParametersResult {
+impl PyOperationDeleteParametersOutput {
     #[getter]
     fn deleted_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.deleted_parameters {
@@ -27707,16 +27707,16 @@ impl PyDeleteParametersResult {
 }
 
 #[pyclass(
-    name = "DeletePatchBaselineResult",
+    name = "DeletePatchBaselineOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDeletePatchBaselineResult {
+struct PyOperationDeletePatchBaselineOutput {
     inner: aws_sdk_ssm::operation::delete_patch_baseline::DeletePatchBaselineOutput,
 }
 
 #[pymethods]
-impl PyDeletePatchBaselineResult {
+impl PyOperationDeletePatchBaselineOutput {
     #[getter]
     fn baseline_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.baseline_id {
@@ -27740,16 +27740,16 @@ impl PyDeletePatchBaselineResult {
 }
 
 #[pyclass(
-    name = "DeleteResourceDataSyncResult",
+    name = "DeleteResourceDataSyncOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDeleteResourceDataSyncResult {
+struct PyOperationDeleteResourceDataSyncOutput {
     inner: aws_sdk_ssm::operation::delete_resource_data_sync::DeleteResourceDataSyncOutput,
 }
 
 #[pymethods]
-impl PyDeleteResourceDataSyncResult {
+impl PyOperationDeleteResourceDataSyncOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -27757,16 +27757,16 @@ impl PyDeleteResourceDataSyncResult {
 }
 
 #[pyclass(
-    name = "DeleteResourcePolicyResponse",
+    name = "DeleteResourcePolicyOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDeleteResourcePolicyResponse {
+struct PyOperationDeleteResourcePolicyOutput {
     inner: aws_sdk_ssm::operation::delete_resource_policy::DeleteResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyDeleteResourcePolicyResponse {
+impl PyOperationDeleteResourcePolicyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -27774,16 +27774,16 @@ impl PyDeleteResourcePolicyResponse {
 }
 
 #[pyclass(
-    name = "DeregisterManagedInstanceResult",
+    name = "DeregisterManagedInstanceOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDeregisterManagedInstanceResult {
+struct PyOperationDeregisterManagedInstanceOutput {
     inner: aws_sdk_ssm::operation::deregister_managed_instance::DeregisterManagedInstanceOutput,
 }
 
 #[pymethods]
-impl PyDeregisterManagedInstanceResult {
+impl PyOperationDeregisterManagedInstanceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -27791,16 +27791,16 @@ impl PyDeregisterManagedInstanceResult {
 }
 
 #[pyclass(
-    name = "DeregisterPatchBaselineForPatchGroupResult",
+    name = "DeregisterPatchBaselineForPatchGroupOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDeregisterPatchBaselineForPatchGroupResult {
+struct PyOperationDeregisterPatchBaselineForPatchGroupOutput {
     inner: aws_sdk_ssm::operation::deregister_patch_baseline_for_patch_group::DeregisterPatchBaselineForPatchGroupOutput,
 }
 
 #[pymethods]
-impl PyDeregisterPatchBaselineForPatchGroupResult {
+impl PyOperationDeregisterPatchBaselineForPatchGroupOutput {
     #[getter]
     fn baseline_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.baseline_id {
@@ -27840,16 +27840,16 @@ impl PyDeregisterPatchBaselineForPatchGroupResult {
 }
 
 #[pyclass(
-    name = "DeregisterTargetFromMaintenanceWindowResult",
+    name = "DeregisterTargetFromMaintenanceWindowOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDeregisterTargetFromMaintenanceWindowResult {
+struct PyOperationDeregisterTargetFromMaintenanceWindowOutput {
     inner: aws_sdk_ssm::operation::deregister_target_from_maintenance_window::DeregisterTargetFromMaintenanceWindowOutput,
 }
 
 #[pymethods]
-impl PyDeregisterTargetFromMaintenanceWindowResult {
+impl PyOperationDeregisterTargetFromMaintenanceWindowOutput {
     #[getter]
     fn window_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.window_id {
@@ -27889,16 +27889,16 @@ impl PyDeregisterTargetFromMaintenanceWindowResult {
 }
 
 #[pyclass(
-    name = "DeregisterTaskFromMaintenanceWindowResult",
+    name = "DeregisterTaskFromMaintenanceWindowOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDeregisterTaskFromMaintenanceWindowResult {
+struct PyOperationDeregisterTaskFromMaintenanceWindowOutput {
     inner: aws_sdk_ssm::operation::deregister_task_from_maintenance_window::DeregisterTaskFromMaintenanceWindowOutput,
 }
 
 #[pymethods]
-impl PyDeregisterTaskFromMaintenanceWindowResult {
+impl PyOperationDeregisterTaskFromMaintenanceWindowOutput {
     #[getter]
     fn window_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.window_id {
@@ -27938,16 +27938,16 @@ impl PyDeregisterTaskFromMaintenanceWindowResult {
 }
 
 #[pyclass(
-    name = "DescribeActivationsResult",
+    name = "DescribeActivationsOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeActivationsResult {
+struct PyOperationDescribeActivationsOutput {
     inner: aws_sdk_ssm::operation::describe_activations::DescribeActivationsOutput,
 }
 
 #[pymethods]
-impl PyDescribeActivationsResult {
+impl PyOperationDescribeActivationsOutput {
     #[getter]
     fn activation_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.activation_list {
@@ -28003,16 +28003,16 @@ impl PyDescribeActivationsResult {
 }
 
 #[pyclass(
-    name = "DescribeAssociationResult",
+    name = "DescribeAssociationOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeAssociationResult {
+struct PyOperationDescribeAssociationOutput {
     inner: aws_sdk_ssm::operation::describe_association::DescribeAssociationOutput,
 }
 
 #[pymethods]
-impl PyDescribeAssociationResult {
+impl PyOperationDescribeAssociationOutput {
     #[getter]
     fn association_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.association_description {
@@ -28042,16 +28042,16 @@ impl PyDescribeAssociationResult {
 }
 
 #[pyclass(
-    name = "DescribeAssociationExecutionTargetsResult",
+    name = "DescribeAssociationExecutionTargetsOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeAssociationExecutionTargetsResult {
+struct PyOperationDescribeAssociationExecutionTargetsOutput {
     inner: aws_sdk_ssm::operation::describe_association_execution_targets::DescribeAssociationExecutionTargetsOutput,
 }
 
 #[pymethods]
-impl PyDescribeAssociationExecutionTargetsResult {
+impl PyOperationDescribeAssociationExecutionTargetsOutput {
     #[getter]
     fn association_execution_targets(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.association_execution_targets {
@@ -28107,16 +28107,16 @@ impl PyDescribeAssociationExecutionTargetsResult {
 }
 
 #[pyclass(
-    name = "DescribeAssociationExecutionsResult",
+    name = "DescribeAssociationExecutionsOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeAssociationExecutionsResult {
+struct PyOperationDescribeAssociationExecutionsOutput {
     inner: aws_sdk_ssm::operation::describe_association_executions::DescribeAssociationExecutionsOutput,
 }
 
 #[pymethods]
-impl PyDescribeAssociationExecutionsResult {
+impl PyOperationDescribeAssociationExecutionsOutput {
     #[getter]
     fn association_executions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.association_executions {
@@ -28172,17 +28172,17 @@ impl PyDescribeAssociationExecutionsResult {
 }
 
 #[pyclass(
-    name = "DescribeAutomationExecutionsResult",
+    name = "DescribeAutomationExecutionsOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeAutomationExecutionsResult {
+struct PyOperationDescribeAutomationExecutionsOutput {
     inner:
         aws_sdk_ssm::operation::describe_automation_executions::DescribeAutomationExecutionsOutput,
 }
 
 #[pymethods]
-impl PyDescribeAutomationExecutionsResult {
+impl PyOperationDescribeAutomationExecutionsOutput {
     #[getter]
     fn automation_execution_metadata_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.automation_execution_metadata_list {
@@ -28238,16 +28238,16 @@ impl PyDescribeAutomationExecutionsResult {
 }
 
 #[pyclass(
-    name = "DescribeAutomationStepExecutionsResult",
+    name = "DescribeAutomationStepExecutionsOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeAutomationStepExecutionsResult {
+struct PyOperationDescribeAutomationStepExecutionsOutput {
     inner: aws_sdk_ssm::operation::describe_automation_step_executions::DescribeAutomationStepExecutionsOutput,
 }
 
 #[pymethods]
-impl PyDescribeAutomationStepExecutionsResult {
+impl PyOperationDescribeAutomationStepExecutionsOutput {
     #[getter]
     fn step_executions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.step_executions {
@@ -28303,16 +28303,16 @@ impl PyDescribeAutomationStepExecutionsResult {
 }
 
 #[pyclass(
-    name = "DescribeAvailablePatchesResult",
+    name = "DescribeAvailablePatchesOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeAvailablePatchesResult {
+struct PyOperationDescribeAvailablePatchesOutput {
     inner: aws_sdk_ssm::operation::describe_available_patches::DescribeAvailablePatchesOutput,
 }
 
 #[pymethods]
-impl PyDescribeAvailablePatchesResult {
+impl PyOperationDescribeAvailablePatchesOutput {
     #[getter]
     fn patches(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.patches {
@@ -28367,13 +28367,13 @@ impl PyDescribeAvailablePatchesResult {
     }
 }
 
-#[pyclass(name = "DescribeDocumentResult", module = "rboto_ssm._native", frozen)]
-struct PyDescribeDocumentResult {
+#[pyclass(name = "DescribeDocumentOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationDescribeDocumentOutput {
     inner: aws_sdk_ssm::operation::describe_document::DescribeDocumentOutput,
 }
 
 #[pymethods]
-impl PyDescribeDocumentResult {
+impl PyOperationDescribeDocumentOutput {
     #[getter]
     fn document(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.document {
@@ -28403,16 +28403,16 @@ impl PyDescribeDocumentResult {
 }
 
 #[pyclass(
-    name = "DescribeDocumentPermissionResponse",
+    name = "DescribeDocumentPermissionOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeDocumentPermissionResponse {
+struct PyOperationDescribeDocumentPermissionOutput {
     inner: aws_sdk_ssm::operation::describe_document_permission::DescribeDocumentPermissionOutput,
 }
 
 #[pymethods]
-impl PyDescribeDocumentPermissionResponse {
+impl PyOperationDescribeDocumentPermissionOutput {
     #[getter]
     fn account_ids(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.account_ids {
@@ -28494,16 +28494,16 @@ impl PyDescribeDocumentPermissionResponse {
 }
 
 #[pyclass(
-    name = "DescribeEffectiveInstanceAssociationsResult",
+    name = "DescribeEffectiveInstanceAssociationsOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeEffectiveInstanceAssociationsResult {
+struct PyOperationDescribeEffectiveInstanceAssociationsOutput {
     inner: aws_sdk_ssm::operation::describe_effective_instance_associations::DescribeEffectiveInstanceAssociationsOutput,
 }
 
 #[pymethods]
-impl PyDescribeEffectiveInstanceAssociationsResult {
+impl PyOperationDescribeEffectiveInstanceAssociationsOutput {
     #[getter]
     fn associations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.associations {
@@ -28559,16 +28559,16 @@ impl PyDescribeEffectiveInstanceAssociationsResult {
 }
 
 #[pyclass(
-    name = "DescribeEffectivePatchesForPatchBaselineResult",
+    name = "DescribeEffectivePatchesForPatchBaselineOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeEffectivePatchesForPatchBaselineResult {
+struct PyOperationDescribeEffectivePatchesForPatchBaselineOutput {
     inner: aws_sdk_ssm::operation::describe_effective_patches_for_patch_baseline::DescribeEffectivePatchesForPatchBaselineOutput,
 }
 
 #[pymethods]
-impl PyDescribeEffectivePatchesForPatchBaselineResult {
+impl PyOperationDescribeEffectivePatchesForPatchBaselineOutput {
     #[getter]
     fn effective_patches(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.effective_patches {
@@ -28624,16 +28624,16 @@ impl PyDescribeEffectivePatchesForPatchBaselineResult {
 }
 
 #[pyclass(
-    name = "DescribeInstanceAssociationsStatusResult",
+    name = "DescribeInstanceAssociationsStatusOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeInstanceAssociationsStatusResult {
+struct PyOperationDescribeInstanceAssociationsStatusOutput {
     inner: aws_sdk_ssm::operation::describe_instance_associations_status::DescribeInstanceAssociationsStatusOutput,
 }
 
 #[pymethods]
-impl PyDescribeInstanceAssociationsStatusResult {
+impl PyOperationDescribeInstanceAssociationsStatusOutput {
     #[getter]
     fn instance_association_status_infos(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.instance_association_status_infos {
@@ -28689,16 +28689,16 @@ impl PyDescribeInstanceAssociationsStatusResult {
 }
 
 #[pyclass(
-    name = "DescribeInstanceInformationResult",
+    name = "DescribeInstanceInformationOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeInstanceInformationResult {
+struct PyOperationDescribeInstanceInformationOutput {
     inner: aws_sdk_ssm::operation::describe_instance_information::DescribeInstanceInformationOutput,
 }
 
 #[pymethods]
-impl PyDescribeInstanceInformationResult {
+impl PyOperationDescribeInstanceInformationOutput {
     #[getter]
     fn instance_information_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.instance_information_list {
@@ -28754,17 +28754,17 @@ impl PyDescribeInstanceInformationResult {
 }
 
 #[pyclass(
-    name = "DescribeInstancePatchStatesResult",
+    name = "DescribeInstancePatchStatesOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeInstancePatchStatesResult {
+struct PyOperationDescribeInstancePatchStatesOutput {
     inner:
         aws_sdk_ssm::operation::describe_instance_patch_states::DescribeInstancePatchStatesOutput,
 }
 
 #[pymethods]
-impl PyDescribeInstancePatchStatesResult {
+impl PyOperationDescribeInstancePatchStatesOutput {
     #[getter]
     fn instance_patch_states(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.instance_patch_states {
@@ -28820,16 +28820,16 @@ impl PyDescribeInstancePatchStatesResult {
 }
 
 #[pyclass(
-    name = "DescribeInstancePatchStatesForPatchGroupResult",
+    name = "DescribeInstancePatchStatesForPatchGroupOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeInstancePatchStatesForPatchGroupResult {
+struct PyOperationDescribeInstancePatchStatesForPatchGroupOutput {
     inner: aws_sdk_ssm::operation::describe_instance_patch_states_for_patch_group::DescribeInstancePatchStatesForPatchGroupOutput,
 }
 
 #[pymethods]
-impl PyDescribeInstancePatchStatesForPatchGroupResult {
+impl PyOperationDescribeInstancePatchStatesForPatchGroupOutput {
     #[getter]
     fn instance_patch_states(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.instance_patch_states {
@@ -28885,16 +28885,16 @@ impl PyDescribeInstancePatchStatesForPatchGroupResult {
 }
 
 #[pyclass(
-    name = "DescribeInstancePatchesResult",
+    name = "DescribeInstancePatchesOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeInstancePatchesResult {
+struct PyOperationDescribeInstancePatchesOutput {
     inner: aws_sdk_ssm::operation::describe_instance_patches::DescribeInstancePatchesOutput,
 }
 
 #[pymethods]
-impl PyDescribeInstancePatchesResult {
+impl PyOperationDescribeInstancePatchesOutput {
     #[getter]
     fn patches(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.patches {
@@ -28950,16 +28950,16 @@ impl PyDescribeInstancePatchesResult {
 }
 
 #[pyclass(
-    name = "DescribeInstancePropertiesResult",
+    name = "DescribeInstancePropertiesOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeInstancePropertiesResult {
+struct PyOperationDescribeInstancePropertiesOutput {
     inner: aws_sdk_ssm::operation::describe_instance_properties::DescribeInstancePropertiesOutput,
 }
 
 #[pymethods]
-impl PyDescribeInstancePropertiesResult {
+impl PyOperationDescribeInstancePropertiesOutput {
     #[getter]
     fn instance_properties(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.instance_properties {
@@ -29015,16 +29015,16 @@ impl PyDescribeInstancePropertiesResult {
 }
 
 #[pyclass(
-    name = "DescribeInventoryDeletionsResult",
+    name = "DescribeInventoryDeletionsOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeInventoryDeletionsResult {
+struct PyOperationDescribeInventoryDeletionsOutput {
     inner: aws_sdk_ssm::operation::describe_inventory_deletions::DescribeInventoryDeletionsOutput,
 }
 
 #[pymethods]
-impl PyDescribeInventoryDeletionsResult {
+impl PyOperationDescribeInventoryDeletionsOutput {
     #[getter]
     fn inventory_deletions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.inventory_deletions {
@@ -29080,16 +29080,16 @@ impl PyDescribeInventoryDeletionsResult {
 }
 
 #[pyclass(
-    name = "DescribeMaintenanceWindowExecutionTaskInvocationsResult",
+    name = "DescribeMaintenanceWindowExecutionTaskInvocationsOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeMaintenanceWindowExecutionTaskInvocationsResult {
+struct PyOperationDescribeMaintenanceWindowExecutionTaskInvocationsOutput {
     inner: aws_sdk_ssm::operation::describe_maintenance_window_execution_task_invocations::DescribeMaintenanceWindowExecutionTaskInvocationsOutput,
 }
 
 #[pymethods]
-impl PyDescribeMaintenanceWindowExecutionTaskInvocationsResult {
+impl PyOperationDescribeMaintenanceWindowExecutionTaskInvocationsOutput {
     #[getter]
     fn window_execution_task_invocation_identities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.window_execution_task_invocation_identities {
@@ -29149,16 +29149,16 @@ impl PyDescribeMaintenanceWindowExecutionTaskInvocationsResult {
 }
 
 #[pyclass(
-    name = "DescribeMaintenanceWindowExecutionTasksResult",
+    name = "DescribeMaintenanceWindowExecutionTasksOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeMaintenanceWindowExecutionTasksResult {
+struct PyOperationDescribeMaintenanceWindowExecutionTasksOutput {
     inner: aws_sdk_ssm::operation::describe_maintenance_window_execution_tasks::DescribeMaintenanceWindowExecutionTasksOutput,
 }
 
 #[pymethods]
-impl PyDescribeMaintenanceWindowExecutionTasksResult {
+impl PyOperationDescribeMaintenanceWindowExecutionTasksOutput {
     #[getter]
     fn window_execution_task_identities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.window_execution_task_identities {
@@ -29215,16 +29215,16 @@ impl PyDescribeMaintenanceWindowExecutionTasksResult {
 }
 
 #[pyclass(
-    name = "DescribeMaintenanceWindowExecutionsResult",
+    name = "DescribeMaintenanceWindowExecutionsOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeMaintenanceWindowExecutionsResult {
+struct PyOperationDescribeMaintenanceWindowExecutionsOutput {
     inner: aws_sdk_ssm::operation::describe_maintenance_window_executions::DescribeMaintenanceWindowExecutionsOutput,
 }
 
 #[pymethods]
-impl PyDescribeMaintenanceWindowExecutionsResult {
+impl PyOperationDescribeMaintenanceWindowExecutionsOutput {
     #[getter]
     fn window_executions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.window_executions {
@@ -29280,16 +29280,16 @@ impl PyDescribeMaintenanceWindowExecutionsResult {
 }
 
 #[pyclass(
-    name = "DescribeMaintenanceWindowScheduleResult",
+    name = "DescribeMaintenanceWindowScheduleOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeMaintenanceWindowScheduleResult {
+struct PyOperationDescribeMaintenanceWindowScheduleOutput {
     inner: aws_sdk_ssm::operation::describe_maintenance_window_schedule::DescribeMaintenanceWindowScheduleOutput,
 }
 
 #[pymethods]
-impl PyDescribeMaintenanceWindowScheduleResult {
+impl PyOperationDescribeMaintenanceWindowScheduleOutput {
     #[getter]
     fn scheduled_window_executions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.scheduled_window_executions {
@@ -29345,16 +29345,16 @@ impl PyDescribeMaintenanceWindowScheduleResult {
 }
 
 #[pyclass(
-    name = "DescribeMaintenanceWindowTargetsResult",
+    name = "DescribeMaintenanceWindowTargetsOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeMaintenanceWindowTargetsResult {
+struct PyOperationDescribeMaintenanceWindowTargetsOutput {
     inner: aws_sdk_ssm::operation::describe_maintenance_window_targets::DescribeMaintenanceWindowTargetsOutput,
 }
 
 #[pymethods]
-impl PyDescribeMaintenanceWindowTargetsResult {
+impl PyOperationDescribeMaintenanceWindowTargetsOutput {
     #[getter]
     fn targets(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.targets {
@@ -29410,16 +29410,16 @@ impl PyDescribeMaintenanceWindowTargetsResult {
 }
 
 #[pyclass(
-    name = "DescribeMaintenanceWindowTasksResult",
+    name = "DescribeMaintenanceWindowTasksOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeMaintenanceWindowTasksResult {
+struct PyOperationDescribeMaintenanceWindowTasksOutput {
     inner: aws_sdk_ssm::operation::describe_maintenance_window_tasks::DescribeMaintenanceWindowTasksOutput,
 }
 
 #[pymethods]
-impl PyDescribeMaintenanceWindowTasksResult {
+impl PyOperationDescribeMaintenanceWindowTasksOutput {
     #[getter]
     fn tasks(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tasks {
@@ -29475,16 +29475,16 @@ impl PyDescribeMaintenanceWindowTasksResult {
 }
 
 #[pyclass(
-    name = "DescribeMaintenanceWindowsResult",
+    name = "DescribeMaintenanceWindowsOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeMaintenanceWindowsResult {
+struct PyOperationDescribeMaintenanceWindowsOutput {
     inner: aws_sdk_ssm::operation::describe_maintenance_windows::DescribeMaintenanceWindowsOutput,
 }
 
 #[pymethods]
-impl PyDescribeMaintenanceWindowsResult {
+impl PyOperationDescribeMaintenanceWindowsOutput {
     #[getter]
     fn window_identities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.window_identities {
@@ -29540,16 +29540,16 @@ impl PyDescribeMaintenanceWindowsResult {
 }
 
 #[pyclass(
-    name = "DescribeMaintenanceWindowsForTargetResult",
+    name = "DescribeMaintenanceWindowsForTargetOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeMaintenanceWindowsForTargetResult {
+struct PyOperationDescribeMaintenanceWindowsForTargetOutput {
     inner: aws_sdk_ssm::operation::describe_maintenance_windows_for_target::DescribeMaintenanceWindowsForTargetOutput,
 }
 
 #[pymethods]
-impl PyDescribeMaintenanceWindowsForTargetResult {
+impl PyOperationDescribeMaintenanceWindowsForTargetOutput {
     #[getter]
     fn window_identities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.window_identities {
@@ -29605,17 +29605,13 @@ impl PyDescribeMaintenanceWindowsForTargetResult {
     }
 }
 
-#[pyclass(
-    name = "DescribeOpsItemsResponse",
-    module = "rboto_ssm._native",
-    frozen
-)]
-struct PyDescribeOpsItemsResponse {
+#[pyclass(name = "DescribeOpsItemsOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationDescribeOpsItemsOutput {
     inner: aws_sdk_ssm::operation::describe_ops_items::DescribeOpsItemsOutput,
 }
 
 #[pymethods]
-impl PyDescribeOpsItemsResponse {
+impl PyOperationDescribeOpsItemsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -29671,16 +29667,16 @@ impl PyDescribeOpsItemsResponse {
 }
 
 #[pyclass(
-    name = "DescribeParametersResult",
+    name = "DescribeParametersOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribeParametersResult {
+struct PyOperationDescribeParametersOutput {
     inner: aws_sdk_ssm::operation::describe_parameters::DescribeParametersOutput,
 }
 
 #[pymethods]
-impl PyDescribeParametersResult {
+impl PyOperationDescribeParametersOutput {
     #[getter]
     fn parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.parameters {
@@ -29736,16 +29732,16 @@ impl PyDescribeParametersResult {
 }
 
 #[pyclass(
-    name = "DescribePatchBaselinesResult",
+    name = "DescribePatchBaselinesOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribePatchBaselinesResult {
+struct PyOperationDescribePatchBaselinesOutput {
     inner: aws_sdk_ssm::operation::describe_patch_baselines::DescribePatchBaselinesOutput,
 }
 
 #[pymethods]
-impl PyDescribePatchBaselinesResult {
+impl PyOperationDescribePatchBaselinesOutput {
     #[getter]
     fn baseline_identities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.baseline_identities {
@@ -29801,16 +29797,16 @@ impl PyDescribePatchBaselinesResult {
 }
 
 #[pyclass(
-    name = "DescribePatchGroupStateResult",
+    name = "DescribePatchGroupStateOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribePatchGroupStateResult {
+struct PyOperationDescribePatchGroupStateOutput {
     inner: aws_sdk_ssm::operation::describe_patch_group_state::DescribePatchGroupStateOutput,
 }
 
 #[pymethods]
-impl PyDescribePatchGroupStateResult {
+impl PyOperationDescribePatchGroupStateOutput {
     #[getter]
     fn instances(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6058 = (&self.inner.instances).to_owned().into_py_any(py)?;
@@ -30019,16 +30015,16 @@ impl PyDescribePatchGroupStateResult {
 }
 
 #[pyclass(
-    name = "DescribePatchGroupsResult",
+    name = "DescribePatchGroupsOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribePatchGroupsResult {
+struct PyOperationDescribePatchGroupsOutput {
     inner: aws_sdk_ssm::operation::describe_patch_groups::DescribePatchGroupsOutput,
 }
 
 #[pymethods]
-impl PyDescribePatchGroupsResult {
+impl PyOperationDescribePatchGroupsOutput {
     #[getter]
     fn mappings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.mappings {
@@ -30084,16 +30080,16 @@ impl PyDescribePatchGroupsResult {
 }
 
 #[pyclass(
-    name = "DescribePatchPropertiesResult",
+    name = "DescribePatchPropertiesOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDescribePatchPropertiesResult {
+struct PyOperationDescribePatchPropertiesOutput {
     inner: aws_sdk_ssm::operation::describe_patch_properties::DescribePatchPropertiesOutput,
 }
 
 #[pymethods]
-impl PyDescribePatchPropertiesResult {
+impl PyOperationDescribePatchPropertiesOutput {
     #[getter]
     fn properties(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.properties {
@@ -30154,17 +30150,13 @@ impl PyDescribePatchPropertiesResult {
     }
 }
 
-#[pyclass(
-    name = "DescribeSessionsResponse",
-    module = "rboto_ssm._native",
-    frozen
-)]
-struct PyDescribeSessionsResponse {
+#[pyclass(name = "DescribeSessionsOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationDescribeSessionsOutput {
     inner: aws_sdk_ssm::operation::describe_sessions::DescribeSessionsOutput,
 }
 
 #[pymethods]
-impl PyDescribeSessionsResponse {
+impl PyOperationDescribeSessionsOutput {
     #[getter]
     fn sessions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sessions {
@@ -30220,29 +30212,29 @@ impl PyDescribeSessionsResponse {
 }
 
 #[pyclass(
-    name = "DisassociateOpsItemRelatedItemResponse",
+    name = "DisassociateOpsItemRelatedItemOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyDisassociateOpsItemRelatedItemResponse {
+struct PyOperationDisassociateOpsItemRelatedItemOutput {
     inner: aws_sdk_ssm::operation::disassociate_ops_item_related_item::DisassociateOpsItemRelatedItemOutput,
 }
 
 #[pymethods]
-impl PyDisassociateOpsItemRelatedItemResponse {
+impl PyOperationDisassociateOpsItemRelatedItemOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "GetAccessTokenResponse", module = "rboto_ssm._native", frozen)]
-struct PyGetAccessTokenResponse {
+#[pyclass(name = "GetAccessTokenOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationGetAccessTokenOutput {
     inner: aws_sdk_ssm::operation::get_access_token::GetAccessTokenOutput,
 }
 
 #[pymethods]
-impl PyGetAccessTokenResponse {
+impl PyOperationGetAccessTokenOutput {
     #[getter]
     fn credentials(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.credentials {
@@ -30288,16 +30280,16 @@ impl PyGetAccessTokenResponse {
 }
 
 #[pyclass(
-    name = "GetAutomationExecutionResult",
+    name = "GetAutomationExecutionOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyGetAutomationExecutionResult {
+struct PyOperationGetAutomationExecutionOutput {
     inner: aws_sdk_ssm::operation::get_automation_execution::GetAutomationExecutionOutput,
 }
 
 #[pymethods]
-impl PyGetAutomationExecutionResult {
+impl PyOperationGetAutomationExecutionOutput {
     #[getter]
     fn automation_execution(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.automation_execution {
@@ -30326,17 +30318,13 @@ impl PyGetAutomationExecutionResult {
     }
 }
 
-#[pyclass(
-    name = "GetCalendarStateResponse",
-    module = "rboto_ssm._native",
-    frozen
-)]
-struct PyGetCalendarStateResponse {
+#[pyclass(name = "GetCalendarStateOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationGetCalendarStateOutput {
     inner: aws_sdk_ssm::operation::get_calendar_state::GetCalendarStateOutput,
 }
 
 #[pymethods]
-impl PyGetCalendarStateResponse {
+impl PyOperationGetCalendarStateOutput {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state {
@@ -30391,13 +30379,13 @@ impl PyGetCalendarStateResponse {
     }
 }
 
-#[pyclass(name = "GetCloudConnectorResult", module = "rboto_ssm._native", frozen)]
-struct PyGetCloudConnectorResult {
+#[pyclass(name = "GetCloudConnectorOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationGetCloudConnectorOutput {
     inner: aws_sdk_ssm::operation::get_cloud_connector::GetCloudConnectorOutput,
 }
 
 #[pymethods]
-impl PyGetCloudConnectorResult {
+impl PyOperationGetCloudConnectorOutput {
     #[getter]
     fn cloud_connector_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cloud_connector_arn {
@@ -30533,16 +30521,16 @@ impl PyGetCloudConnectorResult {
 }
 
 #[pyclass(
-    name = "GetCommandInvocationResult",
+    name = "GetCommandInvocationOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyGetCommandInvocationResult {
+struct PyOperationGetCommandInvocationOutput {
     inner: aws_sdk_ssm::operation::get_command_invocation::GetCommandInvocationOutput,
 }
 
 #[pymethods]
-impl PyGetCommandInvocationResult {
+impl PyOperationGetCommandInvocationOutput {
     #[getter]
     fn command_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.command_id {
@@ -30820,16 +30808,16 @@ impl PyGetCommandInvocationResult {
 }
 
 #[pyclass(
-    name = "GetConnectionStatusResponse",
+    name = "GetConnectionStatusOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyGetConnectionStatusResponse {
+struct PyOperationGetConnectionStatusOutput {
     inner: aws_sdk_ssm::operation::get_connection_status::GetConnectionStatusOutput,
 }
 
 #[pymethods]
-impl PyGetConnectionStatusResponse {
+impl PyOperationGetConnectionStatusOutput {
     #[getter]
     fn target(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.target {
@@ -30869,16 +30857,16 @@ impl PyGetConnectionStatusResponse {
 }
 
 #[pyclass(
-    name = "GetDefaultPatchBaselineResult",
+    name = "GetDefaultPatchBaselineOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyGetDefaultPatchBaselineResult {
+struct PyOperationGetDefaultPatchBaselineOutput {
     inner: aws_sdk_ssm::operation::get_default_patch_baseline::GetDefaultPatchBaselineOutput,
 }
 
 #[pymethods]
-impl PyGetDefaultPatchBaselineResult {
+impl PyOperationGetDefaultPatchBaselineOutput {
     #[getter]
     fn baseline_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.baseline_id {
@@ -30918,16 +30906,16 @@ impl PyGetDefaultPatchBaselineResult {
 }
 
 #[pyclass(
-    name = "GetDeployablePatchSnapshotForInstanceResult",
+    name = "GetDeployablePatchSnapshotForInstanceOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyGetDeployablePatchSnapshotForInstanceResult {
+struct PyOperationGetDeployablePatchSnapshotForInstanceOutput {
     inner: aws_sdk_ssm::operation::get_deployable_patch_snapshot_for_instance::GetDeployablePatchSnapshotForInstanceOutput,
 }
 
 #[pymethods]
-impl PyGetDeployablePatchSnapshotForInstanceResult {
+impl PyOperationGetDeployablePatchSnapshotForInstanceOutput {
     #[getter]
     fn instance_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.instance_id {
@@ -30998,13 +30986,13 @@ impl PyGetDeployablePatchSnapshotForInstanceResult {
     }
 }
 
-#[pyclass(name = "GetDocumentResult", module = "rboto_ssm._native", frozen)]
-struct PyGetDocumentResult {
+#[pyclass(name = "GetDocumentOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationGetDocumentOutput {
     inner: aws_sdk_ssm::operation::get_document::GetDocumentOutput,
 }
 
 #[pymethods]
-impl PyGetDocumentResult {
+impl PyOperationGetDocumentOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
@@ -31252,16 +31240,16 @@ impl PyGetDocumentResult {
 }
 
 #[pyclass(
-    name = "GetExecutionPreviewResponse",
+    name = "GetExecutionPreviewOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyGetExecutionPreviewResponse {
+struct PyOperationGetExecutionPreviewOutput {
     inner: aws_sdk_ssm::operation::get_execution_preview::GetExecutionPreviewOutput,
 }
 
 #[pymethods]
-impl PyGetExecutionPreviewResponse {
+impl PyOperationGetExecutionPreviewOutput {
     #[getter]
     fn execution_preview_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.execution_preview_id {
@@ -31348,13 +31336,13 @@ impl PyGetExecutionPreviewResponse {
     }
 }
 
-#[pyclass(name = "GetInventoryResult", module = "rboto_ssm._native", frozen)]
-struct PyGetInventoryResult {
+#[pyclass(name = "GetInventoryOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationGetInventoryOutput {
     inner: aws_sdk_ssm::operation::get_inventory::GetInventoryOutput,
 }
 
 #[pymethods]
-impl PyGetInventoryResult {
+impl PyOperationGetInventoryOutput {
     #[getter]
     fn entities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.entities {
@@ -31410,16 +31398,16 @@ impl PyGetInventoryResult {
 }
 
 #[pyclass(
-    name = "GetInventorySchemaResult",
+    name = "GetInventorySchemaOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyGetInventorySchemaResult {
+struct PyOperationGetInventorySchemaOutput {
     inner: aws_sdk_ssm::operation::get_inventory_schema::GetInventorySchemaOutput,
 }
 
 #[pymethods]
-impl PyGetInventorySchemaResult {
+impl PyOperationGetInventorySchemaOutput {
     #[getter]
     fn schemas(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.schemas {
@@ -31475,16 +31463,16 @@ impl PyGetInventorySchemaResult {
 }
 
 #[pyclass(
-    name = "GetMaintenanceWindowResult",
+    name = "GetMaintenanceWindowOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyGetMaintenanceWindowResult {
+struct PyOperationGetMaintenanceWindowOutput {
     inner: aws_sdk_ssm::operation::get_maintenance_window::GetMaintenanceWindowOutput,
 }
 
 #[pymethods]
-impl PyGetMaintenanceWindowResult {
+impl PyOperationGetMaintenanceWindowOutput {
     #[getter]
     fn window_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.window_id {
@@ -31712,16 +31700,16 @@ impl PyGetMaintenanceWindowResult {
 }
 
 #[pyclass(
-    name = "GetMaintenanceWindowExecutionResult",
+    name = "GetMaintenanceWindowExecutionOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyGetMaintenanceWindowExecutionResult {
+struct PyOperationGetMaintenanceWindowExecutionOutput {
     inner: aws_sdk_ssm::operation::get_maintenance_window_execution::GetMaintenanceWindowExecutionOutput,
 }
 
 #[pymethods]
-impl PyGetMaintenanceWindowExecutionResult {
+impl PyOperationGetMaintenanceWindowExecutionOutput {
     #[getter]
     fn window_execution_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.window_execution_id {
@@ -31835,16 +31823,16 @@ impl PyGetMaintenanceWindowExecutionResult {
 }
 
 #[pyclass(
-    name = "GetMaintenanceWindowExecutionTaskResult",
+    name = "GetMaintenanceWindowExecutionTaskOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyGetMaintenanceWindowExecutionTaskResult {
+struct PyOperationGetMaintenanceWindowExecutionTaskOutput {
     inner: aws_sdk_ssm::operation::get_maintenance_window_execution_task::GetMaintenanceWindowExecutionTaskOutput,
 }
 
 #[pymethods]
-impl PyGetMaintenanceWindowExecutionTaskResult {
+impl PyOperationGetMaintenanceWindowExecutionTaskOutput {
     #[getter]
     fn window_execution_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.window_execution_id {
@@ -32135,16 +32123,16 @@ impl PyGetMaintenanceWindowExecutionTaskResult {
 }
 
 #[pyclass(
-    name = "GetMaintenanceWindowExecutionTaskInvocationResult",
+    name = "GetMaintenanceWindowExecutionTaskInvocationOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyGetMaintenanceWindowExecutionTaskInvocationResult {
+struct PyOperationGetMaintenanceWindowExecutionTaskInvocationOutput {
     inner: aws_sdk_ssm::operation::get_maintenance_window_execution_task_invocation::GetMaintenanceWindowExecutionTaskInvocationOutput,
 }
 
 #[pymethods]
-impl PyGetMaintenanceWindowExecutionTaskInvocationResult {
+impl PyOperationGetMaintenanceWindowExecutionTaskInvocationOutput {
     #[getter]
     fn window_execution_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.window_execution_id {
@@ -32344,16 +32332,16 @@ impl PyGetMaintenanceWindowExecutionTaskInvocationResult {
 }
 
 #[pyclass(
-    name = "GetMaintenanceWindowTaskResult",
+    name = "GetMaintenanceWindowTaskOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyGetMaintenanceWindowTaskResult {
+struct PyOperationGetMaintenanceWindowTaskOutput {
     inner: aws_sdk_ssm::operation::get_maintenance_window_task::GetMaintenanceWindowTaskOutput,
 }
 
 #[pymethods]
-impl PyGetMaintenanceWindowTaskResult {
+impl PyOperationGetMaintenanceWindowTaskOutput {
     #[getter]
     fn window_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.window_id {
@@ -32661,13 +32649,13 @@ impl PyGetMaintenanceWindowTaskResult {
     }
 }
 
-#[pyclass(name = "GetOpsItemResponse", module = "rboto_ssm._native", frozen)]
-struct PyGetOpsItemResponse {
+#[pyclass(name = "GetOpsItemOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationGetOpsItemOutput {
     inner: aws_sdk_ssm::operation::get_ops_item::GetOpsItemOutput,
 }
 
 #[pymethods]
-impl PyGetOpsItemResponse {
+impl PyOperationGetOpsItemOutput {
     #[getter]
     fn ops_item(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ops_item {
@@ -32696,13 +32684,13 @@ impl PyGetOpsItemResponse {
     }
 }
 
-#[pyclass(name = "GetOpsMetadataResult", module = "rboto_ssm._native", frozen)]
-struct PyGetOpsMetadataResult {
+#[pyclass(name = "GetOpsMetadataOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationGetOpsMetadataOutput {
     inner: aws_sdk_ssm::operation::get_ops_metadata::GetOpsMetadataOutput,
 }
 
 #[pymethods]
-impl PyGetOpsMetadataResult {
+impl PyOperationGetOpsMetadataOutput {
     #[getter]
     fn resource_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_id {
@@ -32775,13 +32763,13 @@ impl PyGetOpsMetadataResult {
     }
 }
 
-#[pyclass(name = "GetOpsSummaryResult", module = "rboto_ssm._native", frozen)]
-struct PyGetOpsSummaryResult {
+#[pyclass(name = "GetOpsSummaryOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationGetOpsSummaryOutput {
     inner: aws_sdk_ssm::operation::get_ops_summary::GetOpsSummaryOutput,
 }
 
 #[pymethods]
-impl PyGetOpsSummaryResult {
+impl PyOperationGetOpsSummaryOutput {
     #[getter]
     fn entities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.entities {
@@ -32836,13 +32824,13 @@ impl PyGetOpsSummaryResult {
     }
 }
 
-#[pyclass(name = "GetParameterResult", module = "rboto_ssm._native", frozen)]
-struct PyGetParameterResult {
+#[pyclass(name = "GetParameterOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationGetParameterOutput {
     inner: aws_sdk_ssm::operation::get_parameter::GetParameterOutput,
 }
 
 #[pymethods]
-impl PyGetParameterResult {
+impl PyOperationGetParameterOutput {
     #[getter]
     fn parameter(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.parameter {
@@ -32872,16 +32860,16 @@ impl PyGetParameterResult {
 }
 
 #[pyclass(
-    name = "GetParameterHistoryResult",
+    name = "GetParameterHistoryOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyGetParameterHistoryResult {
+struct PyOperationGetParameterHistoryOutput {
     inner: aws_sdk_ssm::operation::get_parameter_history::GetParameterHistoryOutput,
 }
 
 #[pymethods]
-impl PyGetParameterHistoryResult {
+impl PyOperationGetParameterHistoryOutput {
     #[getter]
     fn parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.parameters {
@@ -32936,13 +32924,13 @@ impl PyGetParameterHistoryResult {
     }
 }
 
-#[pyclass(name = "GetParametersResult", module = "rboto_ssm._native", frozen)]
-struct PyGetParametersResult {
+#[pyclass(name = "GetParametersOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationGetParametersOutput {
     inner: aws_sdk_ssm::operation::get_parameters::GetParametersOutput,
 }
 
 #[pymethods]
-impl PyGetParametersResult {
+impl PyOperationGetParametersOutput {
     #[getter]
     fn parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.parameters {
@@ -33008,16 +32996,16 @@ impl PyGetParametersResult {
 }
 
 #[pyclass(
-    name = "GetParametersByPathResult",
+    name = "GetParametersByPathOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyGetParametersByPathResult {
+struct PyOperationGetParametersByPathOutput {
     inner: aws_sdk_ssm::operation::get_parameters_by_path::GetParametersByPathOutput,
 }
 
 #[pymethods]
-impl PyGetParametersByPathResult {
+impl PyOperationGetParametersByPathOutput {
     #[getter]
     fn parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.parameters {
@@ -33072,13 +33060,13 @@ impl PyGetParametersByPathResult {
     }
 }
 
-#[pyclass(name = "GetPatchBaselineResult", module = "rboto_ssm._native", frozen)]
-struct PyGetPatchBaselineResult {
+#[pyclass(name = "GetPatchBaselineOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationGetPatchBaselineOutput {
     inner: aws_sdk_ssm::operation::get_patch_baseline::GetPatchBaselineOutput,
 }
 
 #[pymethods]
-impl PyGetPatchBaselineResult {
+impl PyOperationGetPatchBaselineOutput {
     #[getter]
     fn baseline_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.baseline_id {
@@ -33403,16 +33391,16 @@ impl PyGetPatchBaselineResult {
 }
 
 #[pyclass(
-    name = "GetPatchBaselineForPatchGroupResult",
+    name = "GetPatchBaselineForPatchGroupOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyGetPatchBaselineForPatchGroupResult {
+struct PyOperationGetPatchBaselineForPatchGroupOutput {
     inner: aws_sdk_ssm::operation::get_patch_baseline_for_patch_group::GetPatchBaselineForPatchGroupOutput,
 }
 
 #[pymethods]
-impl PyGetPatchBaselineForPatchGroupResult {
+impl PyOperationGetPatchBaselineForPatchGroupOutput {
     #[getter]
     fn baseline_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.baseline_id {
@@ -33468,16 +33456,16 @@ impl PyGetPatchBaselineForPatchGroupResult {
 }
 
 #[pyclass(
-    name = "GetResourcePoliciesResponse",
+    name = "GetResourcePoliciesOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyGetResourcePoliciesResponse {
+struct PyOperationGetResourcePoliciesOutput {
     inner: aws_sdk_ssm::operation::get_resource_policies::GetResourcePoliciesOutput,
 }
 
 #[pymethods]
-impl PyGetResourcePoliciesResponse {
+impl PyOperationGetResourcePoliciesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -33533,13 +33521,13 @@ impl PyGetResourcePoliciesResponse {
     }
 }
 
-#[pyclass(name = "GetServiceSettingResult", module = "rboto_ssm._native", frozen)]
-struct PyGetServiceSettingResult {
+#[pyclass(name = "GetServiceSettingOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationGetServiceSettingOutput {
     inner: aws_sdk_ssm::operation::get_service_setting::GetServiceSettingOutput,
 }
 
 #[pymethods]
-impl PyGetServiceSettingResult {
+impl PyOperationGetServiceSettingOutput {
     #[getter]
     fn service_setting(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.service_setting {
@@ -33569,16 +33557,16 @@ impl PyGetServiceSettingResult {
 }
 
 #[pyclass(
-    name = "LabelParameterVersionResult",
+    name = "LabelParameterVersionOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyLabelParameterVersionResult {
+struct PyOperationLabelParameterVersionOutput {
     inner: aws_sdk_ssm::operation::label_parameter_version::LabelParameterVersionOutput,
 }
 
 #[pymethods]
-impl PyLabelParameterVersionResult {
+impl PyOperationLabelParameterVersionOutput {
     #[getter]
     fn invalid_labels(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.invalid_labels {
@@ -33620,16 +33608,16 @@ impl PyLabelParameterVersionResult {
 }
 
 #[pyclass(
-    name = "ListAssociationVersionsResult",
+    name = "ListAssociationVersionsOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyListAssociationVersionsResult {
+struct PyOperationListAssociationVersionsOutput {
     inner: aws_sdk_ssm::operation::list_association_versions::ListAssociationVersionsOutput,
 }
 
 #[pymethods]
-impl PyListAssociationVersionsResult {
+impl PyOperationListAssociationVersionsOutput {
     #[getter]
     fn association_versions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.association_versions {
@@ -33684,13 +33672,13 @@ impl PyListAssociationVersionsResult {
     }
 }
 
-#[pyclass(name = "ListAssociationsResult", module = "rboto_ssm._native", frozen)]
-struct PyListAssociationsResult {
+#[pyclass(name = "ListAssociationsOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationListAssociationsOutput {
     inner: aws_sdk_ssm::operation::list_associations::ListAssociationsOutput,
 }
 
 #[pymethods]
-impl PyListAssociationsResult {
+impl PyOperationListAssociationsOutput {
     #[getter]
     fn associations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.associations {
@@ -33746,16 +33734,16 @@ impl PyListAssociationsResult {
 }
 
 #[pyclass(
-    name = "ListCloudConnectorsResult",
+    name = "ListCloudConnectorsOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyListCloudConnectorsResult {
+struct PyOperationListCloudConnectorsOutput {
     inner: aws_sdk_ssm::operation::list_cloud_connectors::ListCloudConnectorsOutput,
 }
 
 #[pymethods]
-impl PyListCloudConnectorsResult {
+impl PyOperationListCloudConnectorsOutput {
     #[getter]
     fn cloud_connectors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cloud_connectors {
@@ -33811,16 +33799,16 @@ impl PyListCloudConnectorsResult {
 }
 
 #[pyclass(
-    name = "ListCommandInvocationsResult",
+    name = "ListCommandInvocationsOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyListCommandInvocationsResult {
+struct PyOperationListCommandInvocationsOutput {
     inner: aws_sdk_ssm::operation::list_command_invocations::ListCommandInvocationsOutput,
 }
 
 #[pymethods]
-impl PyListCommandInvocationsResult {
+impl PyOperationListCommandInvocationsOutput {
     #[getter]
     fn command_invocations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.command_invocations {
@@ -33875,13 +33863,13 @@ impl PyListCommandInvocationsResult {
     }
 }
 
-#[pyclass(name = "ListCommandsResult", module = "rboto_ssm._native", frozen)]
-struct PyListCommandsResult {
+#[pyclass(name = "ListCommandsOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationListCommandsOutput {
     inner: aws_sdk_ssm::operation::list_commands::ListCommandsOutput,
 }
 
 #[pymethods]
-impl PyListCommandsResult {
+impl PyOperationListCommandsOutput {
     #[getter]
     fn commands(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.commands {
@@ -33937,16 +33925,16 @@ impl PyListCommandsResult {
 }
 
 #[pyclass(
-    name = "ListComplianceItemsResult",
+    name = "ListComplianceItemsOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyListComplianceItemsResult {
+struct PyOperationListComplianceItemsOutput {
     inner: aws_sdk_ssm::operation::list_compliance_items::ListComplianceItemsOutput,
 }
 
 #[pymethods]
-impl PyListComplianceItemsResult {
+impl PyOperationListComplianceItemsOutput {
     #[getter]
     fn compliance_items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.compliance_items {
@@ -34002,16 +33990,16 @@ impl PyListComplianceItemsResult {
 }
 
 #[pyclass(
-    name = "ListComplianceSummariesResult",
+    name = "ListComplianceSummariesOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyListComplianceSummariesResult {
+struct PyOperationListComplianceSummariesOutput {
     inner: aws_sdk_ssm::operation::list_compliance_summaries::ListComplianceSummariesOutput,
 }
 
 #[pymethods]
-impl PyListComplianceSummariesResult {
+impl PyOperationListComplianceSummariesOutput {
     #[getter]
     fn compliance_summary_items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.compliance_summary_items {
@@ -34067,17 +34055,17 @@ impl PyListComplianceSummariesResult {
 }
 
 #[pyclass(
-    name = "ListDocumentMetadataHistoryResponse",
+    name = "ListDocumentMetadataHistoryOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyListDocumentMetadataHistoryResponse {
+struct PyOperationListDocumentMetadataHistoryOutput {
     inner:
         aws_sdk_ssm::operation::list_document_metadata_history::ListDocumentMetadataHistoryOutput,
 }
 
 #[pymethods]
-impl PyListDocumentMetadataHistoryResponse {
+impl PyOperationListDocumentMetadataHistoryOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
@@ -34171,16 +34159,16 @@ impl PyListDocumentMetadataHistoryResponse {
 }
 
 #[pyclass(
-    name = "ListDocumentVersionsResult",
+    name = "ListDocumentVersionsOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyListDocumentVersionsResult {
+struct PyOperationListDocumentVersionsOutput {
     inner: aws_sdk_ssm::operation::list_document_versions::ListDocumentVersionsOutput,
 }
 
 #[pymethods]
-impl PyListDocumentVersionsResult {
+impl PyOperationListDocumentVersionsOutput {
     #[getter]
     fn document_versions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.document_versions {
@@ -34235,13 +34223,13 @@ impl PyListDocumentVersionsResult {
     }
 }
 
-#[pyclass(name = "ListDocumentsResult", module = "rboto_ssm._native", frozen)]
-struct PyListDocumentsResult {
+#[pyclass(name = "ListDocumentsOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationListDocumentsOutput {
     inner: aws_sdk_ssm::operation::list_documents::ListDocumentsOutput,
 }
 
 #[pymethods]
-impl PyListDocumentsResult {
+impl PyOperationListDocumentsOutput {
     #[getter]
     fn document_identifiers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.document_identifiers {
@@ -34297,16 +34285,16 @@ impl PyListDocumentsResult {
 }
 
 #[pyclass(
-    name = "ListInventoryEntriesResult",
+    name = "ListInventoryEntriesOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyListInventoryEntriesResult {
+struct PyOperationListInventoryEntriesOutput {
     inner: aws_sdk_ssm::operation::list_inventory_entries::ListInventoryEntriesOutput,
 }
 
 #[pymethods]
-impl PyListInventoryEntriesResult {
+impl PyOperationListInventoryEntriesOutput {
     #[getter]
     fn type_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.type_name {
@@ -34431,13 +34419,13 @@ impl PyListInventoryEntriesResult {
     }
 }
 
-#[pyclass(name = "ListNodesResult", module = "rboto_ssm._native", frozen)]
-struct PyListNodesResult {
+#[pyclass(name = "ListNodesOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationListNodesOutput {
     inner: aws_sdk_ssm::operation::list_nodes::ListNodesOutput,
 }
 
 #[pymethods]
-impl PyListNodesResult {
+impl PyOperationListNodesOutput {
     #[getter]
     fn nodes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.nodes {
@@ -34492,13 +34480,13 @@ impl PyListNodesResult {
     }
 }
 
-#[pyclass(name = "ListNodesSummaryResult", module = "rboto_ssm._native", frozen)]
-struct PyListNodesSummaryResult {
+#[pyclass(name = "ListNodesSummaryOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationListNodesSummaryOutput {
     inner: aws_sdk_ssm::operation::list_nodes_summary::ListNodesSummaryOutput,
 }
 
 #[pymethods]
-impl PyListNodesSummaryResult {
+impl PyOperationListNodesSummaryOutput {
     #[getter]
     fn summary(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.summary {
@@ -34559,17 +34547,13 @@ impl PyListNodesSummaryResult {
     }
 }
 
-#[pyclass(
-    name = "ListOpsItemEventsResponse",
-    module = "rboto_ssm._native",
-    frozen
-)]
-struct PyListOpsItemEventsResponse {
+#[pyclass(name = "ListOpsItemEventsOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationListOpsItemEventsOutput {
     inner: aws_sdk_ssm::operation::list_ops_item_events::ListOpsItemEventsOutput,
 }
 
 #[pymethods]
-impl PyListOpsItemEventsResponse {
+impl PyOperationListOpsItemEventsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -34625,16 +34609,16 @@ impl PyListOpsItemEventsResponse {
 }
 
 #[pyclass(
-    name = "ListOpsItemRelatedItemsResponse",
+    name = "ListOpsItemRelatedItemsOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyListOpsItemRelatedItemsResponse {
+struct PyOperationListOpsItemRelatedItemsOutput {
     inner: aws_sdk_ssm::operation::list_ops_item_related_items::ListOpsItemRelatedItemsOutput,
 }
 
 #[pymethods]
-impl PyListOpsItemRelatedItemsResponse {
+impl PyOperationListOpsItemRelatedItemsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -34689,13 +34673,13 @@ impl PyListOpsItemRelatedItemsResponse {
     }
 }
 
-#[pyclass(name = "ListOpsMetadataResult", module = "rboto_ssm._native", frozen)]
-struct PyListOpsMetadataResult {
+#[pyclass(name = "ListOpsMetadataOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationListOpsMetadataOutput {
     inner: aws_sdk_ssm::operation::list_ops_metadata::ListOpsMetadataOutput,
 }
 
 #[pymethods]
-impl PyListOpsMetadataResult {
+impl PyOperationListOpsMetadataOutput {
     #[getter]
     fn ops_metadata_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ops_metadata_list {
@@ -34751,16 +34735,16 @@ impl PyListOpsMetadataResult {
 }
 
 #[pyclass(
-    name = "ListResourceComplianceSummariesResult",
+    name = "ListResourceComplianceSummariesOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyListResourceComplianceSummariesResult {
+struct PyOperationListResourceComplianceSummariesOutput {
     inner: aws_sdk_ssm::operation::list_resource_compliance_summaries::ListResourceComplianceSummariesOutput,
 }
 
 #[pymethods]
-impl PyListResourceComplianceSummariesResult {
+impl PyOperationListResourceComplianceSummariesOutput {
     #[getter]
     fn resource_compliance_summary_items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_compliance_summary_items {
@@ -34816,16 +34800,16 @@ impl PyListResourceComplianceSummariesResult {
 }
 
 #[pyclass(
-    name = "ListResourceDataSyncResult",
+    name = "ListResourceDataSyncOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyListResourceDataSyncResult {
+struct PyOperationListResourceDataSyncOutput {
     inner: aws_sdk_ssm::operation::list_resource_data_sync::ListResourceDataSyncOutput,
 }
 
 #[pymethods]
-impl PyListResourceDataSyncResult {
+impl PyOperationListResourceDataSyncOutput {
     #[getter]
     fn resource_data_sync_items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_data_sync_items {
@@ -34881,16 +34865,16 @@ impl PyListResourceDataSyncResult {
 }
 
 #[pyclass(
-    name = "ListTagsForResourceResult",
+    name = "ListTagsForResourceOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyListTagsForResourceResult {
+struct PyOperationListTagsForResourceOutput {
     inner: aws_sdk_ssm::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
 
 #[pymethods]
-impl PyListTagsForResourceResult {
+impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tag_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tag_list {
@@ -34930,16 +34914,16 @@ impl PyListTagsForResourceResult {
 }
 
 #[pyclass(
-    name = "ModifyDocumentPermissionResponse",
+    name = "ModifyDocumentPermissionOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyModifyDocumentPermissionResponse {
+struct PyOperationModifyDocumentPermissionOutput {
     inner: aws_sdk_ssm::operation::modify_document_permission::ModifyDocumentPermissionOutput,
 }
 
 #[pymethods]
-impl PyModifyDocumentPermissionResponse {
+impl PyOperationModifyDocumentPermissionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -34947,29 +34931,29 @@ impl PyModifyDocumentPermissionResponse {
 }
 
 #[pyclass(
-    name = "PutComplianceItemsResult",
+    name = "PutComplianceItemsOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyPutComplianceItemsResult {
+struct PyOperationPutComplianceItemsOutput {
     inner: aws_sdk_ssm::operation::put_compliance_items::PutComplianceItemsOutput,
 }
 
 #[pymethods]
-impl PyPutComplianceItemsResult {
+impl PyOperationPutComplianceItemsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "PutInventoryResult", module = "rboto_ssm._native", frozen)]
-struct PyPutInventoryResult {
+#[pyclass(name = "PutInventoryOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationPutInventoryOutput {
     inner: aws_sdk_ssm::operation::put_inventory::PutInventoryOutput,
 }
 
 #[pymethods]
-impl PyPutInventoryResult {
+impl PyOperationPutInventoryOutput {
     #[getter]
     fn message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.message {
@@ -34992,13 +34976,13 @@ impl PyPutInventoryResult {
     }
 }
 
-#[pyclass(name = "PutParameterResult", module = "rboto_ssm._native", frozen)]
-struct PyPutParameterResult {
+#[pyclass(name = "PutParameterOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationPutParameterOutput {
     inner: aws_sdk_ssm::operation::put_parameter::PutParameterOutput,
 }
 
 #[pymethods]
-impl PyPutParameterResult {
+impl PyOperationPutParameterOutput {
     #[getter]
     fn version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6718 = (&self.inner.version).to_owned().into_py_any(py)?;
@@ -35029,17 +35013,13 @@ impl PyPutParameterResult {
     }
 }
 
-#[pyclass(
-    name = "PutResourcePolicyResponse",
-    module = "rboto_ssm._native",
-    frozen
-)]
-struct PyPutResourcePolicyResponse {
+#[pyclass(name = "PutResourcePolicyOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationPutResourcePolicyOutput {
     inner: aws_sdk_ssm::operation::put_resource_policy::PutResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyPutResourcePolicyResponse {
+impl PyOperationPutResourcePolicyOutput {
     #[getter]
     fn policy_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.policy_id {
@@ -35079,17 +35059,17 @@ impl PyPutResourcePolicyResponse {
 }
 
 #[pyclass(
-    name = "RegisterDefaultPatchBaselineResult",
+    name = "RegisterDefaultPatchBaselineOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyRegisterDefaultPatchBaselineResult {
+struct PyOperationRegisterDefaultPatchBaselineOutput {
     inner:
         aws_sdk_ssm::operation::register_default_patch_baseline::RegisterDefaultPatchBaselineOutput,
 }
 
 #[pymethods]
-impl PyRegisterDefaultPatchBaselineResult {
+impl PyOperationRegisterDefaultPatchBaselineOutput {
     #[getter]
     fn baseline_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.baseline_id {
@@ -35113,16 +35093,16 @@ impl PyRegisterDefaultPatchBaselineResult {
 }
 
 #[pyclass(
-    name = "RegisterPatchBaselineForPatchGroupResult",
+    name = "RegisterPatchBaselineForPatchGroupOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyRegisterPatchBaselineForPatchGroupResult {
+struct PyOperationRegisterPatchBaselineForPatchGroupOutput {
     inner: aws_sdk_ssm::operation::register_patch_baseline_for_patch_group::RegisterPatchBaselineForPatchGroupOutput,
 }
 
 #[pymethods]
-impl PyRegisterPatchBaselineForPatchGroupResult {
+impl PyOperationRegisterPatchBaselineForPatchGroupOutput {
     #[getter]
     fn baseline_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.baseline_id {
@@ -35162,16 +35142,16 @@ impl PyRegisterPatchBaselineForPatchGroupResult {
 }
 
 #[pyclass(
-    name = "RegisterTargetWithMaintenanceWindowResult",
+    name = "RegisterTargetWithMaintenanceWindowOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyRegisterTargetWithMaintenanceWindowResult {
+struct PyOperationRegisterTargetWithMaintenanceWindowOutput {
     inner: aws_sdk_ssm::operation::register_target_with_maintenance_window::RegisterTargetWithMaintenanceWindowOutput,
 }
 
 #[pymethods]
-impl PyRegisterTargetWithMaintenanceWindowResult {
+impl PyOperationRegisterTargetWithMaintenanceWindowOutput {
     #[getter]
     fn window_target_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.window_target_id {
@@ -35195,16 +35175,16 @@ impl PyRegisterTargetWithMaintenanceWindowResult {
 }
 
 #[pyclass(
-    name = "RegisterTaskWithMaintenanceWindowResult",
+    name = "RegisterTaskWithMaintenanceWindowOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyRegisterTaskWithMaintenanceWindowResult {
+struct PyOperationRegisterTaskWithMaintenanceWindowOutput {
     inner: aws_sdk_ssm::operation::register_task_with_maintenance_window::RegisterTaskWithMaintenanceWindowOutput,
 }
 
 #[pymethods]
-impl PyRegisterTaskWithMaintenanceWindowResult {
+impl PyOperationRegisterTaskWithMaintenanceWindowOutput {
     #[getter]
     fn window_task_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.window_task_id {
@@ -35228,16 +35208,16 @@ impl PyRegisterTaskWithMaintenanceWindowResult {
 }
 
 #[pyclass(
-    name = "RemoveTagsFromResourceResult",
+    name = "RemoveTagsFromResourceOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyRemoveTagsFromResourceResult {
+struct PyOperationRemoveTagsFromResourceOutput {
     inner: aws_sdk_ssm::operation::remove_tags_from_resource::RemoveTagsFromResourceOutput,
 }
 
 #[pymethods]
-impl PyRemoveTagsFromResourceResult {
+impl PyOperationRemoveTagsFromResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -35245,16 +35225,16 @@ impl PyRemoveTagsFromResourceResult {
 }
 
 #[pyclass(
-    name = "ResetServiceSettingResult",
+    name = "ResetServiceSettingOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyResetServiceSettingResult {
+struct PyOperationResetServiceSettingOutput {
     inner: aws_sdk_ssm::operation::reset_service_setting::ResetServiceSettingOutput,
 }
 
 #[pymethods]
-impl PyResetServiceSettingResult {
+impl PyOperationResetServiceSettingOutput {
     #[getter]
     fn service_setting(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.service_setting {
@@ -35283,13 +35263,13 @@ impl PyResetServiceSettingResult {
     }
 }
 
-#[pyclass(name = "ResumeSessionResponse", module = "rboto_ssm._native", frozen)]
-struct PyResumeSessionResponse {
+#[pyclass(name = "ResumeSessionOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationResumeSessionOutput {
     inner: aws_sdk_ssm::operation::resume_session::ResumeSessionOutput,
 }
 
 #[pymethods]
-impl PyResumeSessionResponse {
+impl PyOperationResumeSessionOutput {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_id {
@@ -35345,29 +35325,29 @@ impl PyResumeSessionResponse {
 }
 
 #[pyclass(
-    name = "SendAutomationSignalResult",
+    name = "SendAutomationSignalOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PySendAutomationSignalResult {
+struct PyOperationSendAutomationSignalOutput {
     inner: aws_sdk_ssm::operation::send_automation_signal::SendAutomationSignalOutput,
 }
 
 #[pymethods]
-impl PySendAutomationSignalResult {
+impl PyOperationSendAutomationSignalOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "SendCommandResult", module = "rboto_ssm._native", frozen)]
-struct PySendCommandResult {
+#[pyclass(name = "SendCommandOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationSendCommandOutput {
     inner: aws_sdk_ssm::operation::send_command::SendCommandOutput,
 }
 
 #[pymethods]
-impl PySendCommandResult {
+impl PyOperationSendCommandOutput {
     #[getter]
     fn command(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.command {
@@ -35397,16 +35377,16 @@ impl PySendCommandResult {
 }
 
 #[pyclass(
-    name = "StartAccessRequestResponse",
+    name = "StartAccessRequestOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyStartAccessRequestResponse {
+struct PyOperationStartAccessRequestOutput {
     inner: aws_sdk_ssm::operation::start_access_request::StartAccessRequestOutput,
 }
 
 #[pymethods]
-impl PyStartAccessRequestResponse {
+impl PyOperationStartAccessRequestOutput {
     #[getter]
     fn access_request_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.access_request_id {
@@ -35430,16 +35410,16 @@ impl PyStartAccessRequestResponse {
 }
 
 #[pyclass(
-    name = "StartAssociationsOnceResult",
+    name = "StartAssociationsOnceOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyStartAssociationsOnceResult {
+struct PyOperationStartAssociationsOnceOutput {
     inner: aws_sdk_ssm::operation::start_associations_once::StartAssociationsOnceOutput,
 }
 
 #[pymethods]
-impl PyStartAssociationsOnceResult {
+impl PyOperationStartAssociationsOnceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -35447,16 +35427,16 @@ impl PyStartAssociationsOnceResult {
 }
 
 #[pyclass(
-    name = "StartAutomationExecutionResult",
+    name = "StartAutomationExecutionOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyStartAutomationExecutionResult {
+struct PyOperationStartAutomationExecutionOutput {
     inner: aws_sdk_ssm::operation::start_automation_execution::StartAutomationExecutionOutput,
 }
 
 #[pymethods]
-impl PyStartAutomationExecutionResult {
+impl PyOperationStartAutomationExecutionOutput {
     #[getter]
     fn automation_execution_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.automation_execution_id {
@@ -35480,17 +35460,17 @@ impl PyStartAutomationExecutionResult {
 }
 
 #[pyclass(
-    name = "StartChangeRequestExecutionResult",
+    name = "StartChangeRequestExecutionOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyStartChangeRequestExecutionResult {
+struct PyOperationStartChangeRequestExecutionOutput {
     inner:
         aws_sdk_ssm::operation::start_change_request_execution::StartChangeRequestExecutionOutput,
 }
 
 #[pymethods]
-impl PyStartChangeRequestExecutionResult {
+impl PyOperationStartChangeRequestExecutionOutput {
     #[getter]
     fn automation_execution_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.automation_execution_id {
@@ -35514,16 +35494,16 @@ impl PyStartChangeRequestExecutionResult {
 }
 
 #[pyclass(
-    name = "StartExecutionPreviewResponse",
+    name = "StartExecutionPreviewOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyStartExecutionPreviewResponse {
+struct PyOperationStartExecutionPreviewOutput {
     inner: aws_sdk_ssm::operation::start_execution_preview::StartExecutionPreviewOutput,
 }
 
 #[pymethods]
-impl PyStartExecutionPreviewResponse {
+impl PyOperationStartExecutionPreviewOutput {
     #[getter]
     fn execution_preview_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.execution_preview_id {
@@ -35546,13 +35526,13 @@ impl PyStartExecutionPreviewResponse {
     }
 }
 
-#[pyclass(name = "StartSessionResponse", module = "rboto_ssm._native", frozen)]
-struct PyStartSessionResponse {
+#[pyclass(name = "StartSessionOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationStartSessionOutput {
     inner: aws_sdk_ssm::operation::start_session::StartSessionOutput,
 }
 
 #[pymethods]
-impl PyStartSessionResponse {
+impl PyOperationStartSessionOutput {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_id {
@@ -35608,33 +35588,29 @@ impl PyStartSessionResponse {
 }
 
 #[pyclass(
-    name = "StopAutomationExecutionResult",
+    name = "StopAutomationExecutionOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyStopAutomationExecutionResult {
+struct PyOperationStopAutomationExecutionOutput {
     inner: aws_sdk_ssm::operation::stop_automation_execution::StopAutomationExecutionOutput,
 }
 
 #[pymethods]
-impl PyStopAutomationExecutionResult {
+impl PyOperationStopAutomationExecutionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(
-    name = "TerminateSessionResponse",
-    module = "rboto_ssm._native",
-    frozen
-)]
-struct PyTerminateSessionResponse {
+#[pyclass(name = "TerminateSessionOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationTerminateSessionOutput {
     inner: aws_sdk_ssm::operation::terminate_session::TerminateSessionOutput,
 }
 
 #[pymethods]
-impl PyTerminateSessionResponse {
+impl PyOperationTerminateSessionOutput {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_id {
@@ -35658,16 +35634,16 @@ impl PyTerminateSessionResponse {
 }
 
 #[pyclass(
-    name = "UnlabelParameterVersionResult",
+    name = "UnlabelParameterVersionOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyUnlabelParameterVersionResult {
+struct PyOperationUnlabelParameterVersionOutput {
     inner: aws_sdk_ssm::operation::unlabel_parameter_version::UnlabelParameterVersionOutput,
 }
 
 #[pymethods]
-impl PyUnlabelParameterVersionResult {
+impl PyOperationUnlabelParameterVersionOutput {
     #[getter]
     fn removed_labels(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.removed_labels {
@@ -35726,13 +35702,13 @@ impl PyUnlabelParameterVersionResult {
     }
 }
 
-#[pyclass(name = "UpdateAssociationResult", module = "rboto_ssm._native", frozen)]
-struct PyUpdateAssociationResult {
+#[pyclass(name = "UpdateAssociationOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationUpdateAssociationOutput {
     inner: aws_sdk_ssm::operation::update_association::UpdateAssociationOutput,
 }
 
 #[pymethods]
-impl PyUpdateAssociationResult {
+impl PyOperationUpdateAssociationOutput {
     #[getter]
     fn association_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.association_description {
@@ -35762,16 +35738,16 @@ impl PyUpdateAssociationResult {
 }
 
 #[pyclass(
-    name = "UpdateAssociationStatusResult",
+    name = "UpdateAssociationStatusOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyUpdateAssociationStatusResult {
+struct PyOperationUpdateAssociationStatusOutput {
     inner: aws_sdk_ssm::operation::update_association_status::UpdateAssociationStatusOutput,
 }
 
 #[pymethods]
-impl PyUpdateAssociationStatusResult {
+impl PyOperationUpdateAssociationStatusOutput {
     #[getter]
     fn association_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.association_description {
@@ -35801,16 +35777,16 @@ impl PyUpdateAssociationStatusResult {
 }
 
 #[pyclass(
-    name = "UpdateCloudConnectorResult",
+    name = "UpdateCloudConnectorOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyUpdateCloudConnectorResult {
+struct PyOperationUpdateCloudConnectorOutput {
     inner: aws_sdk_ssm::operation::update_cloud_connector::UpdateCloudConnectorOutput,
 }
 
 #[pymethods]
-impl PyUpdateCloudConnectorResult {
+impl PyOperationUpdateCloudConnectorOutput {
     #[getter]
     fn cloud_connector_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cloud_connector_id {
@@ -35833,13 +35809,13 @@ impl PyUpdateCloudConnectorResult {
     }
 }
 
-#[pyclass(name = "UpdateDocumentResult", module = "rboto_ssm._native", frozen)]
-struct PyUpdateDocumentResult {
+#[pyclass(name = "UpdateDocumentOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationUpdateDocumentOutput {
     inner: aws_sdk_ssm::operation::update_document::UpdateDocumentOutput,
 }
 
 #[pymethods]
-impl PyUpdateDocumentResult {
+impl PyOperationUpdateDocumentOutput {
     #[getter]
     fn document_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.document_description {
@@ -35869,17 +35845,17 @@ impl PyUpdateDocumentResult {
 }
 
 #[pyclass(
-    name = "UpdateDocumentDefaultVersionResult",
+    name = "UpdateDocumentDefaultVersionOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyUpdateDocumentDefaultVersionResult {
+struct PyOperationUpdateDocumentDefaultVersionOutput {
     inner:
         aws_sdk_ssm::operation::update_document_default_version::UpdateDocumentDefaultVersionOutput,
 }
 
 #[pymethods]
-impl PyUpdateDocumentDefaultVersionResult {
+impl PyOperationUpdateDocumentDefaultVersionOutput {
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
@@ -35909,16 +35885,16 @@ impl PyUpdateDocumentDefaultVersionResult {
 }
 
 #[pyclass(
-    name = "UpdateDocumentMetadataResponse",
+    name = "UpdateDocumentMetadataOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyUpdateDocumentMetadataResponse {
+struct PyOperationUpdateDocumentMetadataOutput {
     inner: aws_sdk_ssm::operation::update_document_metadata::UpdateDocumentMetadataOutput,
 }
 
 #[pymethods]
-impl PyUpdateDocumentMetadataResponse {
+impl PyOperationUpdateDocumentMetadataOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -35926,16 +35902,16 @@ impl PyUpdateDocumentMetadataResponse {
 }
 
 #[pyclass(
-    name = "UpdateMaintenanceWindowResult",
+    name = "UpdateMaintenanceWindowOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyUpdateMaintenanceWindowResult {
+struct PyOperationUpdateMaintenanceWindowOutput {
     inner: aws_sdk_ssm::operation::update_maintenance_window::UpdateMaintenanceWindowOutput,
 }
 
 #[pymethods]
-impl PyUpdateMaintenanceWindowResult {
+impl PyOperationUpdateMaintenanceWindowOutput {
     #[getter]
     fn window_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.window_id {
@@ -36115,16 +36091,16 @@ impl PyUpdateMaintenanceWindowResult {
 }
 
 #[pyclass(
-    name = "UpdateMaintenanceWindowTargetResult",
+    name = "UpdateMaintenanceWindowTargetOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyUpdateMaintenanceWindowTargetResult {
+struct PyOperationUpdateMaintenanceWindowTargetOutput {
     inner: aws_sdk_ssm::operation::update_maintenance_window_target::UpdateMaintenanceWindowTargetOutput,
 }
 
 #[pymethods]
-impl PyUpdateMaintenanceWindowTargetResult {
+impl PyOperationUpdateMaintenanceWindowTargetOutput {
     #[getter]
     fn window_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.window_id {
@@ -36244,17 +36220,17 @@ impl PyUpdateMaintenanceWindowTargetResult {
 }
 
 #[pyclass(
-    name = "UpdateMaintenanceWindowTaskResult",
+    name = "UpdateMaintenanceWindowTaskOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyUpdateMaintenanceWindowTaskResult {
+struct PyOperationUpdateMaintenanceWindowTaskOutput {
     inner:
         aws_sdk_ssm::operation::update_maintenance_window_task::UpdateMaintenanceWindowTaskOutput,
 }
 
 #[pymethods]
-impl PyUpdateMaintenanceWindowTaskResult {
+impl PyOperationUpdateMaintenanceWindowTaskOutput {
     #[getter]
     fn window_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.window_id {
@@ -36547,42 +36523,42 @@ impl PyUpdateMaintenanceWindowTaskResult {
 }
 
 #[pyclass(
-    name = "UpdateManagedInstanceRoleResult",
+    name = "UpdateManagedInstanceRoleOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyUpdateManagedInstanceRoleResult {
+struct PyOperationUpdateManagedInstanceRoleOutput {
     inner: aws_sdk_ssm::operation::update_managed_instance_role::UpdateManagedInstanceRoleOutput,
 }
 
 #[pymethods]
-impl PyUpdateManagedInstanceRoleResult {
+impl PyOperationUpdateManagedInstanceRoleOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "UpdateOpsItemResponse", module = "rboto_ssm._native", frozen)]
-struct PyUpdateOpsItemResponse {
+#[pyclass(name = "UpdateOpsItemOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationUpdateOpsItemOutput {
     inner: aws_sdk_ssm::operation::update_ops_item::UpdateOpsItemOutput,
 }
 
 #[pymethods]
-impl PyUpdateOpsItemResponse {
+impl PyOperationUpdateOpsItemOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "UpdateOpsMetadataResult", module = "rboto_ssm._native", frozen)]
-struct PyUpdateOpsMetadataResult {
+#[pyclass(name = "UpdateOpsMetadataOutput", module = "rboto_ssm._native", frozen)]
+struct PyOperationUpdateOpsMetadataOutput {
     inner: aws_sdk_ssm::operation::update_ops_metadata::UpdateOpsMetadataOutput,
 }
 
 #[pymethods]
-impl PyUpdateOpsMetadataResult {
+impl PyOperationUpdateOpsMetadataOutput {
     #[getter]
     fn ops_metadata_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ops_metadata_arn {
@@ -36606,16 +36582,16 @@ impl PyUpdateOpsMetadataResult {
 }
 
 #[pyclass(
-    name = "UpdatePatchBaselineResult",
+    name = "UpdatePatchBaselineOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyUpdatePatchBaselineResult {
+struct PyOperationUpdatePatchBaselineOutput {
     inner: aws_sdk_ssm::operation::update_patch_baseline::UpdatePatchBaselineOutput,
 }
 
 #[pymethods]
-impl PyUpdatePatchBaselineResult {
+impl PyOperationUpdatePatchBaselineOutput {
     #[getter]
     fn baseline_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.baseline_id {
@@ -36914,16 +36890,16 @@ impl PyUpdatePatchBaselineResult {
 }
 
 #[pyclass(
-    name = "UpdateResourceDataSyncResult",
+    name = "UpdateResourceDataSyncOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyUpdateResourceDataSyncResult {
+struct PyOperationUpdateResourceDataSyncOutput {
     inner: aws_sdk_ssm::operation::update_resource_data_sync::UpdateResourceDataSyncOutput,
 }
 
 #[pymethods]
-impl PyUpdateResourceDataSyncResult {
+impl PyOperationUpdateResourceDataSyncOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -36931,16 +36907,16 @@ impl PyUpdateResourceDataSyncResult {
 }
 
 #[pyclass(
-    name = "UpdateServiceSettingResult",
+    name = "UpdateServiceSettingOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyUpdateServiceSettingResult {
+struct PyOperationUpdateServiceSettingOutput {
     inner: aws_sdk_ssm::operation::update_service_setting::UpdateServiceSettingOutput,
 }
 
 #[pymethods]
-impl PyUpdateServiceSettingResult {
+impl PyOperationUpdateServiceSettingOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -36948,16 +36924,16 @@ impl PyUpdateServiceSettingResult {
 }
 
 #[pyclass(
-    name = "ValidateCloudConnectorResult",
+    name = "ValidateCloudConnectorOutput",
     module = "rboto_ssm._native",
     frozen
 )]
-struct PyValidateCloudConnectorResult {
+struct PyOperationValidateCloudConnectorOutput {
     inner: aws_sdk_ssm::operation::validate_cloud_connector::ValidateCloudConnectorOutput,
 }
 
 #[pymethods]
-impl PyValidateCloudConnectorResult {
+impl PyOperationValidateCloudConnectorOutput {
     #[getter]
     fn validation_findings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.validation_findings {
@@ -37138,158 +37114,158 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyTargetLocation>()?;
     module.add_class::<PyValidationFinding>()?;
     module.add_class::<PyValidationFindingScope>()?;
-    module.add_class::<PyAddTagsToResourceResult>()?;
-    module.add_class::<PyAssociateOpsItemRelatedItemResponse>()?;
-    module.add_class::<PyCancelCommandResult>()?;
-    module.add_class::<PyCancelMaintenanceWindowExecutionResult>()?;
-    module.add_class::<PyCreateActivationResult>()?;
-    module.add_class::<PyCreateAssociationResult>()?;
-    module.add_class::<PyCreateAssociationBatchResult>()?;
-    module.add_class::<PyCreateCloudConnectorResult>()?;
-    module.add_class::<PyCreateDocumentResult>()?;
-    module.add_class::<PyCreateMaintenanceWindowResult>()?;
-    module.add_class::<PyCreateOpsItemResponse>()?;
-    module.add_class::<PyCreateOpsMetadataResult>()?;
-    module.add_class::<PyCreatePatchBaselineResult>()?;
-    module.add_class::<PyCreateResourceDataSyncResult>()?;
-    module.add_class::<PyDeleteActivationResult>()?;
-    module.add_class::<PyDeleteAssociationResult>()?;
-    module.add_class::<PyDeleteCloudConnectorResult>()?;
-    module.add_class::<PyDeleteDocumentResult>()?;
-    module.add_class::<PyDeleteInventoryResult>()?;
-    module.add_class::<PyDeleteMaintenanceWindowResult>()?;
-    module.add_class::<PyDeleteOpsItemResponse>()?;
-    module.add_class::<PyDeleteOpsMetadataResult>()?;
-    module.add_class::<PyDeleteParameterResult>()?;
-    module.add_class::<PyDeleteParametersResult>()?;
-    module.add_class::<PyDeletePatchBaselineResult>()?;
-    module.add_class::<PyDeleteResourceDataSyncResult>()?;
-    module.add_class::<PyDeleteResourcePolicyResponse>()?;
-    module.add_class::<PyDeregisterManagedInstanceResult>()?;
-    module.add_class::<PyDeregisterPatchBaselineForPatchGroupResult>()?;
-    module.add_class::<PyDeregisterTargetFromMaintenanceWindowResult>()?;
-    module.add_class::<PyDeregisterTaskFromMaintenanceWindowResult>()?;
-    module.add_class::<PyDescribeActivationsResult>()?;
-    module.add_class::<PyDescribeAssociationResult>()?;
-    module.add_class::<PyDescribeAssociationExecutionTargetsResult>()?;
-    module.add_class::<PyDescribeAssociationExecutionsResult>()?;
-    module.add_class::<PyDescribeAutomationExecutionsResult>()?;
-    module.add_class::<PyDescribeAutomationStepExecutionsResult>()?;
-    module.add_class::<PyDescribeAvailablePatchesResult>()?;
-    module.add_class::<PyDescribeDocumentResult>()?;
-    module.add_class::<PyDescribeDocumentPermissionResponse>()?;
-    module.add_class::<PyDescribeEffectiveInstanceAssociationsResult>()?;
-    module.add_class::<PyDescribeEffectivePatchesForPatchBaselineResult>()?;
-    module.add_class::<PyDescribeInstanceAssociationsStatusResult>()?;
-    module.add_class::<PyDescribeInstanceInformationResult>()?;
-    module.add_class::<PyDescribeInstancePatchStatesResult>()?;
-    module.add_class::<PyDescribeInstancePatchStatesForPatchGroupResult>()?;
-    module.add_class::<PyDescribeInstancePatchesResult>()?;
-    module.add_class::<PyDescribeInstancePropertiesResult>()?;
-    module.add_class::<PyDescribeInventoryDeletionsResult>()?;
-    module.add_class::<PyDescribeMaintenanceWindowExecutionTaskInvocationsResult>()?;
-    module.add_class::<PyDescribeMaintenanceWindowExecutionTasksResult>()?;
-    module.add_class::<PyDescribeMaintenanceWindowExecutionsResult>()?;
-    module.add_class::<PyDescribeMaintenanceWindowScheduleResult>()?;
-    module.add_class::<PyDescribeMaintenanceWindowTargetsResult>()?;
-    module.add_class::<PyDescribeMaintenanceWindowTasksResult>()?;
-    module.add_class::<PyDescribeMaintenanceWindowsResult>()?;
-    module.add_class::<PyDescribeMaintenanceWindowsForTargetResult>()?;
-    module.add_class::<PyDescribeOpsItemsResponse>()?;
-    module.add_class::<PyDescribeParametersResult>()?;
-    module.add_class::<PyDescribePatchBaselinesResult>()?;
-    module.add_class::<PyDescribePatchGroupStateResult>()?;
-    module.add_class::<PyDescribePatchGroupsResult>()?;
-    module.add_class::<PyDescribePatchPropertiesResult>()?;
-    module.add_class::<PyDescribeSessionsResponse>()?;
-    module.add_class::<PyDisassociateOpsItemRelatedItemResponse>()?;
-    module.add_class::<PyGetAccessTokenResponse>()?;
-    module.add_class::<PyGetAutomationExecutionResult>()?;
-    module.add_class::<PyGetCalendarStateResponse>()?;
-    module.add_class::<PyGetCloudConnectorResult>()?;
-    module.add_class::<PyGetCommandInvocationResult>()?;
-    module.add_class::<PyGetConnectionStatusResponse>()?;
-    module.add_class::<PyGetDefaultPatchBaselineResult>()?;
-    module.add_class::<PyGetDeployablePatchSnapshotForInstanceResult>()?;
-    module.add_class::<PyGetDocumentResult>()?;
-    module.add_class::<PyGetExecutionPreviewResponse>()?;
-    module.add_class::<PyGetInventoryResult>()?;
-    module.add_class::<PyGetInventorySchemaResult>()?;
-    module.add_class::<PyGetMaintenanceWindowResult>()?;
-    module.add_class::<PyGetMaintenanceWindowExecutionResult>()?;
-    module.add_class::<PyGetMaintenanceWindowExecutionTaskResult>()?;
-    module.add_class::<PyGetMaintenanceWindowExecutionTaskInvocationResult>()?;
-    module.add_class::<PyGetMaintenanceWindowTaskResult>()?;
-    module.add_class::<PyGetOpsItemResponse>()?;
-    module.add_class::<PyGetOpsMetadataResult>()?;
-    module.add_class::<PyGetOpsSummaryResult>()?;
-    module.add_class::<PyGetParameterResult>()?;
-    module.add_class::<PyGetParameterHistoryResult>()?;
-    module.add_class::<PyGetParametersResult>()?;
-    module.add_class::<PyGetParametersByPathResult>()?;
-    module.add_class::<PyGetPatchBaselineResult>()?;
-    module.add_class::<PyGetPatchBaselineForPatchGroupResult>()?;
-    module.add_class::<PyGetResourcePoliciesResponse>()?;
-    module.add_class::<PyGetServiceSettingResult>()?;
-    module.add_class::<PyLabelParameterVersionResult>()?;
-    module.add_class::<PyListAssociationVersionsResult>()?;
-    module.add_class::<PyListAssociationsResult>()?;
-    module.add_class::<PyListCloudConnectorsResult>()?;
-    module.add_class::<PyListCommandInvocationsResult>()?;
-    module.add_class::<PyListCommandsResult>()?;
-    module.add_class::<PyListComplianceItemsResult>()?;
-    module.add_class::<PyListComplianceSummariesResult>()?;
-    module.add_class::<PyListDocumentMetadataHistoryResponse>()?;
-    module.add_class::<PyListDocumentVersionsResult>()?;
-    module.add_class::<PyListDocumentsResult>()?;
-    module.add_class::<PyListInventoryEntriesResult>()?;
-    module.add_class::<PyListNodesResult>()?;
-    module.add_class::<PyListNodesSummaryResult>()?;
-    module.add_class::<PyListOpsItemEventsResponse>()?;
-    module.add_class::<PyListOpsItemRelatedItemsResponse>()?;
-    module.add_class::<PyListOpsMetadataResult>()?;
-    module.add_class::<PyListResourceComplianceSummariesResult>()?;
-    module.add_class::<PyListResourceDataSyncResult>()?;
-    module.add_class::<PyListTagsForResourceResult>()?;
-    module.add_class::<PyModifyDocumentPermissionResponse>()?;
-    module.add_class::<PyPutComplianceItemsResult>()?;
-    module.add_class::<PyPutInventoryResult>()?;
-    module.add_class::<PyPutParameterResult>()?;
-    module.add_class::<PyPutResourcePolicyResponse>()?;
-    module.add_class::<PyRegisterDefaultPatchBaselineResult>()?;
-    module.add_class::<PyRegisterPatchBaselineForPatchGroupResult>()?;
-    module.add_class::<PyRegisterTargetWithMaintenanceWindowResult>()?;
-    module.add_class::<PyRegisterTaskWithMaintenanceWindowResult>()?;
-    module.add_class::<PyRemoveTagsFromResourceResult>()?;
-    module.add_class::<PyResetServiceSettingResult>()?;
-    module.add_class::<PyResumeSessionResponse>()?;
-    module.add_class::<PySendAutomationSignalResult>()?;
-    module.add_class::<PySendCommandResult>()?;
-    module.add_class::<PyStartAccessRequestResponse>()?;
-    module.add_class::<PyStartAssociationsOnceResult>()?;
-    module.add_class::<PyStartAutomationExecutionResult>()?;
-    module.add_class::<PyStartChangeRequestExecutionResult>()?;
-    module.add_class::<PyStartExecutionPreviewResponse>()?;
-    module.add_class::<PyStartSessionResponse>()?;
-    module.add_class::<PyStopAutomationExecutionResult>()?;
-    module.add_class::<PyTerminateSessionResponse>()?;
-    module.add_class::<PyUnlabelParameterVersionResult>()?;
-    module.add_class::<PyUpdateAssociationResult>()?;
-    module.add_class::<PyUpdateAssociationStatusResult>()?;
-    module.add_class::<PyUpdateCloudConnectorResult>()?;
-    module.add_class::<PyUpdateDocumentResult>()?;
-    module.add_class::<PyUpdateDocumentDefaultVersionResult>()?;
-    module.add_class::<PyUpdateDocumentMetadataResponse>()?;
-    module.add_class::<PyUpdateMaintenanceWindowResult>()?;
-    module.add_class::<PyUpdateMaintenanceWindowTargetResult>()?;
-    module.add_class::<PyUpdateMaintenanceWindowTaskResult>()?;
-    module.add_class::<PyUpdateManagedInstanceRoleResult>()?;
-    module.add_class::<PyUpdateOpsItemResponse>()?;
-    module.add_class::<PyUpdateOpsMetadataResult>()?;
-    module.add_class::<PyUpdatePatchBaselineResult>()?;
-    module.add_class::<PyUpdateResourceDataSyncResult>()?;
-    module.add_class::<PyUpdateServiceSettingResult>()?;
-    module.add_class::<PyValidateCloudConnectorResult>()?;
+    module.add_class::<PyOperationAddTagsToResourceOutput>()?;
+    module.add_class::<PyOperationAssociateOpsItemRelatedItemOutput>()?;
+    module.add_class::<PyOperationCancelCommandOutput>()?;
+    module.add_class::<PyOperationCancelMaintenanceWindowExecutionOutput>()?;
+    module.add_class::<PyOperationCreateActivationOutput>()?;
+    module.add_class::<PyOperationCreateAssociationOutput>()?;
+    module.add_class::<PyOperationCreateAssociationBatchOutput>()?;
+    module.add_class::<PyOperationCreateCloudConnectorOutput>()?;
+    module.add_class::<PyOperationCreateDocumentOutput>()?;
+    module.add_class::<PyOperationCreateMaintenanceWindowOutput>()?;
+    module.add_class::<PyOperationCreateOpsItemOutput>()?;
+    module.add_class::<PyOperationCreateOpsMetadataOutput>()?;
+    module.add_class::<PyOperationCreatePatchBaselineOutput>()?;
+    module.add_class::<PyOperationCreateResourceDataSyncOutput>()?;
+    module.add_class::<PyOperationDeleteActivationOutput>()?;
+    module.add_class::<PyOperationDeleteAssociationOutput>()?;
+    module.add_class::<PyOperationDeleteCloudConnectorOutput>()?;
+    module.add_class::<PyOperationDeleteDocumentOutput>()?;
+    module.add_class::<PyOperationDeleteInventoryOutput>()?;
+    module.add_class::<PyOperationDeleteMaintenanceWindowOutput>()?;
+    module.add_class::<PyOperationDeleteOpsItemOutput>()?;
+    module.add_class::<PyOperationDeleteOpsMetadataOutput>()?;
+    module.add_class::<PyOperationDeleteParameterOutput>()?;
+    module.add_class::<PyOperationDeleteParametersOutput>()?;
+    module.add_class::<PyOperationDeletePatchBaselineOutput>()?;
+    module.add_class::<PyOperationDeleteResourceDataSyncOutput>()?;
+    module.add_class::<PyOperationDeleteResourcePolicyOutput>()?;
+    module.add_class::<PyOperationDeregisterManagedInstanceOutput>()?;
+    module.add_class::<PyOperationDeregisterPatchBaselineForPatchGroupOutput>()?;
+    module.add_class::<PyOperationDeregisterTargetFromMaintenanceWindowOutput>()?;
+    module.add_class::<PyOperationDeregisterTaskFromMaintenanceWindowOutput>()?;
+    module.add_class::<PyOperationDescribeActivationsOutput>()?;
+    module.add_class::<PyOperationDescribeAssociationOutput>()?;
+    module.add_class::<PyOperationDescribeAssociationExecutionTargetsOutput>()?;
+    module.add_class::<PyOperationDescribeAssociationExecutionsOutput>()?;
+    module.add_class::<PyOperationDescribeAutomationExecutionsOutput>()?;
+    module.add_class::<PyOperationDescribeAutomationStepExecutionsOutput>()?;
+    module.add_class::<PyOperationDescribeAvailablePatchesOutput>()?;
+    module.add_class::<PyOperationDescribeDocumentOutput>()?;
+    module.add_class::<PyOperationDescribeDocumentPermissionOutput>()?;
+    module.add_class::<PyOperationDescribeEffectiveInstanceAssociationsOutput>()?;
+    module.add_class::<PyOperationDescribeEffectivePatchesForPatchBaselineOutput>()?;
+    module.add_class::<PyOperationDescribeInstanceAssociationsStatusOutput>()?;
+    module.add_class::<PyOperationDescribeInstanceInformationOutput>()?;
+    module.add_class::<PyOperationDescribeInstancePatchStatesOutput>()?;
+    module.add_class::<PyOperationDescribeInstancePatchStatesForPatchGroupOutput>()?;
+    module.add_class::<PyOperationDescribeInstancePatchesOutput>()?;
+    module.add_class::<PyOperationDescribeInstancePropertiesOutput>()?;
+    module.add_class::<PyOperationDescribeInventoryDeletionsOutput>()?;
+    module.add_class::<PyOperationDescribeMaintenanceWindowExecutionTaskInvocationsOutput>()?;
+    module.add_class::<PyOperationDescribeMaintenanceWindowExecutionTasksOutput>()?;
+    module.add_class::<PyOperationDescribeMaintenanceWindowExecutionsOutput>()?;
+    module.add_class::<PyOperationDescribeMaintenanceWindowScheduleOutput>()?;
+    module.add_class::<PyOperationDescribeMaintenanceWindowTargetsOutput>()?;
+    module.add_class::<PyOperationDescribeMaintenanceWindowTasksOutput>()?;
+    module.add_class::<PyOperationDescribeMaintenanceWindowsOutput>()?;
+    module.add_class::<PyOperationDescribeMaintenanceWindowsForTargetOutput>()?;
+    module.add_class::<PyOperationDescribeOpsItemsOutput>()?;
+    module.add_class::<PyOperationDescribeParametersOutput>()?;
+    module.add_class::<PyOperationDescribePatchBaselinesOutput>()?;
+    module.add_class::<PyOperationDescribePatchGroupStateOutput>()?;
+    module.add_class::<PyOperationDescribePatchGroupsOutput>()?;
+    module.add_class::<PyOperationDescribePatchPropertiesOutput>()?;
+    module.add_class::<PyOperationDescribeSessionsOutput>()?;
+    module.add_class::<PyOperationDisassociateOpsItemRelatedItemOutput>()?;
+    module.add_class::<PyOperationGetAccessTokenOutput>()?;
+    module.add_class::<PyOperationGetAutomationExecutionOutput>()?;
+    module.add_class::<PyOperationGetCalendarStateOutput>()?;
+    module.add_class::<PyOperationGetCloudConnectorOutput>()?;
+    module.add_class::<PyOperationGetCommandInvocationOutput>()?;
+    module.add_class::<PyOperationGetConnectionStatusOutput>()?;
+    module.add_class::<PyOperationGetDefaultPatchBaselineOutput>()?;
+    module.add_class::<PyOperationGetDeployablePatchSnapshotForInstanceOutput>()?;
+    module.add_class::<PyOperationGetDocumentOutput>()?;
+    module.add_class::<PyOperationGetExecutionPreviewOutput>()?;
+    module.add_class::<PyOperationGetInventoryOutput>()?;
+    module.add_class::<PyOperationGetInventorySchemaOutput>()?;
+    module.add_class::<PyOperationGetMaintenanceWindowOutput>()?;
+    module.add_class::<PyOperationGetMaintenanceWindowExecutionOutput>()?;
+    module.add_class::<PyOperationGetMaintenanceWindowExecutionTaskOutput>()?;
+    module.add_class::<PyOperationGetMaintenanceWindowExecutionTaskInvocationOutput>()?;
+    module.add_class::<PyOperationGetMaintenanceWindowTaskOutput>()?;
+    module.add_class::<PyOperationGetOpsItemOutput>()?;
+    module.add_class::<PyOperationGetOpsMetadataOutput>()?;
+    module.add_class::<PyOperationGetOpsSummaryOutput>()?;
+    module.add_class::<PyOperationGetParameterOutput>()?;
+    module.add_class::<PyOperationGetParameterHistoryOutput>()?;
+    module.add_class::<PyOperationGetParametersOutput>()?;
+    module.add_class::<PyOperationGetParametersByPathOutput>()?;
+    module.add_class::<PyOperationGetPatchBaselineOutput>()?;
+    module.add_class::<PyOperationGetPatchBaselineForPatchGroupOutput>()?;
+    module.add_class::<PyOperationGetResourcePoliciesOutput>()?;
+    module.add_class::<PyOperationGetServiceSettingOutput>()?;
+    module.add_class::<PyOperationLabelParameterVersionOutput>()?;
+    module.add_class::<PyOperationListAssociationVersionsOutput>()?;
+    module.add_class::<PyOperationListAssociationsOutput>()?;
+    module.add_class::<PyOperationListCloudConnectorsOutput>()?;
+    module.add_class::<PyOperationListCommandInvocationsOutput>()?;
+    module.add_class::<PyOperationListCommandsOutput>()?;
+    module.add_class::<PyOperationListComplianceItemsOutput>()?;
+    module.add_class::<PyOperationListComplianceSummariesOutput>()?;
+    module.add_class::<PyOperationListDocumentMetadataHistoryOutput>()?;
+    module.add_class::<PyOperationListDocumentVersionsOutput>()?;
+    module.add_class::<PyOperationListDocumentsOutput>()?;
+    module.add_class::<PyOperationListInventoryEntriesOutput>()?;
+    module.add_class::<PyOperationListNodesOutput>()?;
+    module.add_class::<PyOperationListNodesSummaryOutput>()?;
+    module.add_class::<PyOperationListOpsItemEventsOutput>()?;
+    module.add_class::<PyOperationListOpsItemRelatedItemsOutput>()?;
+    module.add_class::<PyOperationListOpsMetadataOutput>()?;
+    module.add_class::<PyOperationListResourceComplianceSummariesOutput>()?;
+    module.add_class::<PyOperationListResourceDataSyncOutput>()?;
+    module.add_class::<PyOperationListTagsForResourceOutput>()?;
+    module.add_class::<PyOperationModifyDocumentPermissionOutput>()?;
+    module.add_class::<PyOperationPutComplianceItemsOutput>()?;
+    module.add_class::<PyOperationPutInventoryOutput>()?;
+    module.add_class::<PyOperationPutParameterOutput>()?;
+    module.add_class::<PyOperationPutResourcePolicyOutput>()?;
+    module.add_class::<PyOperationRegisterDefaultPatchBaselineOutput>()?;
+    module.add_class::<PyOperationRegisterPatchBaselineForPatchGroupOutput>()?;
+    module.add_class::<PyOperationRegisterTargetWithMaintenanceWindowOutput>()?;
+    module.add_class::<PyOperationRegisterTaskWithMaintenanceWindowOutput>()?;
+    module.add_class::<PyOperationRemoveTagsFromResourceOutput>()?;
+    module.add_class::<PyOperationResetServiceSettingOutput>()?;
+    module.add_class::<PyOperationResumeSessionOutput>()?;
+    module.add_class::<PyOperationSendAutomationSignalOutput>()?;
+    module.add_class::<PyOperationSendCommandOutput>()?;
+    module.add_class::<PyOperationStartAccessRequestOutput>()?;
+    module.add_class::<PyOperationStartAssociationsOnceOutput>()?;
+    module.add_class::<PyOperationStartAutomationExecutionOutput>()?;
+    module.add_class::<PyOperationStartChangeRequestExecutionOutput>()?;
+    module.add_class::<PyOperationStartExecutionPreviewOutput>()?;
+    module.add_class::<PyOperationStartSessionOutput>()?;
+    module.add_class::<PyOperationStopAutomationExecutionOutput>()?;
+    module.add_class::<PyOperationTerminateSessionOutput>()?;
+    module.add_class::<PyOperationUnlabelParameterVersionOutput>()?;
+    module.add_class::<PyOperationUpdateAssociationOutput>()?;
+    module.add_class::<PyOperationUpdateAssociationStatusOutput>()?;
+    module.add_class::<PyOperationUpdateCloudConnectorOutput>()?;
+    module.add_class::<PyOperationUpdateDocumentOutput>()?;
+    module.add_class::<PyOperationUpdateDocumentDefaultVersionOutput>()?;
+    module.add_class::<PyOperationUpdateDocumentMetadataOutput>()?;
+    module.add_class::<PyOperationUpdateMaintenanceWindowOutput>()?;
+    module.add_class::<PyOperationUpdateMaintenanceWindowTargetOutput>()?;
+    module.add_class::<PyOperationUpdateMaintenanceWindowTaskOutput>()?;
+    module.add_class::<PyOperationUpdateManagedInstanceRoleOutput>()?;
+    module.add_class::<PyOperationUpdateOpsItemOutput>()?;
+    module.add_class::<PyOperationUpdateOpsMetadataOutput>()?;
+    module.add_class::<PyOperationUpdatePatchBaselineOutput>()?;
+    module.add_class::<PyOperationUpdateResourceDataSyncOutput>()?;
+    module.add_class::<PyOperationUpdateServiceSettingOutput>()?;
+    module.add_class::<PyOperationValidateCloudConnectorOutput>()?;
 
     Ok(())
 }
@@ -37378,7 +37354,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AddTagsToResource"))
             })?;
-            Ok(PyAddTagsToResourceResult { inner: output })
+            Ok(PyOperationAddTagsToResourceOutput { inner: output })
         })
     }
 
@@ -37437,7 +37413,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AssociateOpsItemRelatedItem"))
             })?;
-            Ok(PyAssociateOpsItemRelatedItemResponse { inner: output })
+            Ok(PyOperationAssociateOpsItemRelatedItemOutput { inner: output })
         })
     }
 
@@ -37488,7 +37464,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CancelCommand"))
             })?;
-            Ok(PyCancelCommandResult { inner: output })
+            Ok(PyOperationCancelCommandOutput { inner: output })
         })
     }
 
@@ -37527,7 +37503,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CancelMaintenanceWindowExecution"))
             })?;
-            Ok(PyCancelMaintenanceWindowExecutionResult { inner: output })
+            Ok(PyOperationCancelMaintenanceWindowExecutionOutput { inner: output })
         })
     }
 
@@ -37627,7 +37603,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateActivation"))
             })?;
-            Ok(PyCreateActivationResult { inner: output })
+            Ok(PyOperationCreateActivationOutput { inner: output })
         })
     }
 
@@ -37878,7 +37854,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateAssociation"))
             })?;
-            Ok(PyCreateAssociationResult { inner: output })
+            Ok(PyOperationCreateAssociationOutput { inner: output })
         })
     }
 
@@ -37931,7 +37907,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateAssociationBatch"))
             })?;
-            Ok(PyCreateAssociationBatchResult { inner: output })
+            Ok(PyOperationCreateAssociationBatchOutput { inner: output })
         })
     }
 
@@ -38011,7 +37987,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateCloudConnector"))
             })?;
-            Ok(PyCreateCloudConnectorResult { inner: output })
+            Ok(PyOperationCreateCloudConnectorOutput { inner: output })
         })
     }
 
@@ -38132,7 +38108,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDocument"))
             })?;
-            Ok(PyCreateDocumentResult { inner: output })
+            Ok(PyOperationCreateDocumentOutput { inner: output })
         })
     }
 
@@ -38255,7 +38231,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateMaintenanceWindow"))
             })?;
-            Ok(PyCreateMaintenanceWindowResult { inner: output })
+            Ok(PyOperationCreateMaintenanceWindowOutput { inner: output })
         })
     }
 
@@ -38445,7 +38421,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateOpsItem"))
             })?;
-            Ok(PyCreateOpsItemResponse { inner: output })
+            Ok(PyOperationCreateOpsItemOutput { inner: output })
         })
     }
 
@@ -38509,7 +38485,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateOpsMetadata"))
             })?;
-            Ok(PyCreateOpsMetadataResult { inner: output })
+            Ok(PyOperationCreateOpsMetadataOutput { inner: output })
         })
     }
 
@@ -38679,7 +38655,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreatePatchBaseline"))
             })?;
-            Ok(PyCreatePatchBaselineResult { inner: output })
+            Ok(PyOperationCreatePatchBaselineOutput { inner: output })
         })
     }
 
@@ -38738,7 +38714,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateResourceDataSync"))
             })?;
-            Ok(PyCreateResourceDataSyncResult { inner: output })
+            Ok(PyOperationCreateResourceDataSyncOutput { inner: output })
         })
     }
 
@@ -38776,7 +38752,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteActivation"))
             })?;
-            Ok(PyDeleteActivationResult { inner: output })
+            Ok(PyOperationDeleteActivationOutput { inner: output })
         })
     }
 
@@ -38828,7 +38804,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAssociation"))
             })?;
-            Ok(PyDeleteAssociationResult { inner: output })
+            Ok(PyOperationDeleteAssociationOutput { inner: output })
         })
     }
 
@@ -38867,7 +38843,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteCloudConnector"))
             })?;
-            Ok(PyDeleteCloudConnectorResult { inner: output })
+            Ok(PyOperationDeleteCloudConnectorOutput { inner: output })
         })
     }
 
@@ -38926,7 +38902,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDocument"))
             })?;
-            Ok(PyDeleteDocumentResult { inner: output })
+            Ok(PyOperationDeleteDocumentOutput { inner: output })
         })
     }
 
@@ -38988,7 +38964,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteInventory"))
             })?;
-            Ok(PyDeleteInventoryResult { inner: output })
+            Ok(PyOperationDeleteInventoryOutput { inner: output })
         })
     }
 
@@ -39026,7 +39002,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteMaintenanceWindow"))
             })?;
-            Ok(PyDeleteMaintenanceWindowResult { inner: output })
+            Ok(PyOperationDeleteMaintenanceWindowOutput { inner: output })
         })
     }
 
@@ -39062,7 +39038,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteOpsItem"))
             })?;
-            Ok(PyDeleteOpsItemResponse { inner: output })
+            Ok(PyOperationDeleteOpsItemOutput { inner: output })
         })
     }
 
@@ -39100,7 +39076,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteOpsMetadata"))
             })?;
-            Ok(PyDeleteOpsMetadataResult { inner: output })
+            Ok(PyOperationDeleteOpsMetadataOutput { inner: output })
         })
     }
 
@@ -39136,7 +39112,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteParameter"))
             })?;
-            Ok(PyDeleteParameterResult { inner: output })
+            Ok(PyOperationDeleteParameterOutput { inner: output })
         })
     }
 
@@ -39178,7 +39154,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteParameters"))
             })?;
-            Ok(PyDeleteParametersResult { inner: output })
+            Ok(PyOperationDeleteParametersOutput { inner: output })
         })
     }
 
@@ -39216,7 +39192,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeletePatchBaseline"))
             })?;
-            Ok(PyDeletePatchBaselineResult { inner: output })
+            Ok(PyOperationDeletePatchBaselineOutput { inner: output })
         })
     }
 
@@ -39261,7 +39237,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteResourceDataSync"))
             })?;
-            Ok(PyDeleteResourceDataSyncResult { inner: output })
+            Ok(PyOperationDeleteResourceDataSyncOutput { inner: output })
         })
     }
 
@@ -39321,7 +39297,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteResourcePolicy"))
             })?;
-            Ok(PyDeleteResourcePolicyResponse { inner: output })
+            Ok(PyOperationDeleteResourcePolicyOutput { inner: output })
         })
     }
 
@@ -39359,7 +39335,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeregisterManagedInstance"))
             })?;
-            Ok(PyDeregisterManagedInstanceResult { inner: output })
+            Ok(PyOperationDeregisterManagedInstanceOutput { inner: output })
         })
     }
 
@@ -39406,7 +39382,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "DeregisterPatchBaselineForPatchGroup")
                 })
             })?;
-            Ok(PyDeregisterPatchBaselineForPatchGroupResult { inner: output })
+            Ok(PyOperationDeregisterPatchBaselineForPatchGroupOutput { inner: output })
         })
     }
 
@@ -39460,7 +39436,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "DeregisterTargetFromMaintenanceWindow")
                 })
             })?;
-            Ok(PyDeregisterTargetFromMaintenanceWindowResult { inner: output })
+            Ok(PyOperationDeregisterTargetFromMaintenanceWindowOutput { inner: output })
         })
     }
 
@@ -39507,7 +39483,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "DeregisterTaskFromMaintenanceWindow")
                 })
             })?;
-            Ok(PyDeregisterTaskFromMaintenanceWindowResult { inner: output })
+            Ok(PyOperationDeregisterTaskFromMaintenanceWindowOutput { inner: output })
         })
     }
 
@@ -39565,7 +39541,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeActivations"))
             })?;
-            Ok(PyDescribeActivationsResult { inner: output })
+            Ok(PyOperationDescribeActivationsOutput { inner: output })
         })
     }
 
@@ -39625,7 +39601,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeAssociation"))
             })?;
-            Ok(PyDescribeAssociationResult { inner: output })
+            Ok(PyOperationDescribeAssociationOutput { inner: output })
         })
     }
 
@@ -39699,7 +39675,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "DescribeAssociationExecutionTargets")
                 })
             })?;
-            Ok(PyDescribeAssociationExecutionTargetsResult { inner: output })
+            Ok(PyOperationDescribeAssociationExecutionTargetsOutput { inner: output })
         })
     }
 
@@ -39764,7 +39740,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeAssociationExecutions"))
             })?;
-            Ok(PyDescribeAssociationExecutionsResult { inner: output })
+            Ok(PyOperationDescribeAssociationExecutionsOutput { inner: output })
         })
     }
 
@@ -39822,7 +39798,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeAutomationExecutions"))
             })?;
-            Ok(PyDescribeAutomationExecutionsResult { inner: output })
+            Ok(PyOperationDescribeAutomationExecutionsOutput { inner: output })
         })
     }
 
@@ -39895,7 +39871,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeAutomationStepExecutions"))
             })?;
-            Ok(PyDescribeAutomationStepExecutionsResult { inner: output })
+            Ok(PyOperationDescribeAutomationStepExecutionsOutput { inner: output })
         })
     }
 
@@ -39953,7 +39929,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeAvailablePatches"))
             })?;
-            Ok(PyDescribeAvailablePatchesResult { inner: output })
+            Ok(PyOperationDescribeAvailablePatchesOutput { inner: output })
         })
     }
 
@@ -40005,7 +39981,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeDocument"))
             })?;
-            Ok(PyDescribeDocumentResult { inner: output })
+            Ok(PyOperationDescribeDocumentOutput { inner: output })
         })
     }
 
@@ -40066,7 +40042,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeDocumentPermission"))
             })?;
-            Ok(PyDescribeDocumentPermissionResponse { inner: output })
+            Ok(PyOperationDescribeDocumentPermissionOutput { inner: output })
         })
     }
 
@@ -40120,7 +40096,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "DescribeEffectiveInstanceAssociations")
                 })
             })?;
-            Ok(PyDescribeEffectiveInstanceAssociationsResult { inner: output })
+            Ok(PyOperationDescribeEffectiveInstanceAssociationsOutput { inner: output })
         })
     }
 
@@ -40174,7 +40150,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "DescribeEffectivePatchesForPatchBaseline")
                 })
             })?;
-            Ok(PyDescribeEffectivePatchesForPatchBaselineResult { inner: output })
+            Ok(PyOperationDescribeEffectivePatchesForPatchBaselineOutput { inner: output })
         })
     }
 
@@ -40228,7 +40204,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "DescribeInstanceAssociationsStatus")
                 })
             })?;
-            Ok(PyDescribeInstanceAssociationsStatusResult { inner: output })
+            Ok(PyOperationDescribeInstanceAssociationsStatusOutput { inner: output })
         })
     }
 
@@ -40300,7 +40276,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeInstanceInformation"))
             })?;
-            Ok(PyDescribeInstanceInformationResult { inner: output })
+            Ok(PyOperationDescribeInstanceInformationOutput { inner: output })
         })
     }
 
@@ -40358,7 +40334,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeInstancePatchStates"))
             })?;
-            Ok(PyDescribeInstancePatchStatesResult { inner: output })
+            Ok(PyOperationDescribeInstancePatchStatesOutput { inner: output })
         })
     }
 
@@ -40425,7 +40401,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "DescribeInstancePatchStatesForPatchGroup")
                 })
             })?;
-            Ok(PyDescribeInstancePatchStatesForPatchGroupResult { inner: output })
+            Ok(PyOperationDescribeInstancePatchStatesForPatchGroupOutput { inner: output })
         })
     }
 
@@ -40490,7 +40466,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeInstancePatches"))
             })?;
-            Ok(PyDescribeInstancePatchesResult { inner: output })
+            Ok(PyOperationDescribeInstancePatchesOutput { inner: output })
         })
     }
 
@@ -40563,7 +40539,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeInstanceProperties"))
             })?;
-            Ok(PyDescribeInstancePropertiesResult { inner: output })
+            Ok(PyOperationDescribeInstancePropertiesOutput { inner: output })
         })
     }
 
@@ -40615,7 +40591,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeInventoryDeletions"))
             })?;
-            Ok(PyDescribeInventoryDeletionsResult { inner: output })
+            Ok(PyOperationDescribeInventoryDeletionsOutput { inner: output })
         })
     }
 
@@ -40694,7 +40670,11 @@ impl SSMClient {
                     )
                 })
             })?;
-            Ok(PyDescribeMaintenanceWindowExecutionTaskInvocationsResult { inner: output })
+            Ok(
+                PyOperationDescribeMaintenanceWindowExecutionTaskInvocationsOutput {
+                    inner: output,
+                },
+            )
         })
     }
 
@@ -40762,7 +40742,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "DescribeMaintenanceWindowExecutionTasks")
                 })
             })?;
-            Ok(PyDescribeMaintenanceWindowExecutionTasksResult { inner: output })
+            Ok(PyOperationDescribeMaintenanceWindowExecutionTasksOutput { inner: output })
         })
     }
 
@@ -40829,7 +40809,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "DescribeMaintenanceWindowExecutions")
                 })
             })?;
-            Ok(PyDescribeMaintenanceWindowExecutionsResult { inner: output })
+            Ok(PyOperationDescribeMaintenanceWindowExecutionsOutput { inner: output })
         })
     }
 
@@ -40918,7 +40898,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "DescribeMaintenanceWindowSchedule")
                 })
             })?;
-            Ok(PyDescribeMaintenanceWindowScheduleResult { inner: output })
+            Ok(PyOperationDescribeMaintenanceWindowScheduleOutput { inner: output })
         })
     }
 
@@ -40983,7 +40963,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeMaintenanceWindowTargets"))
             })?;
-            Ok(PyDescribeMaintenanceWindowTargetsResult { inner: output })
+            Ok(PyOperationDescribeMaintenanceWindowTargetsOutput { inner: output })
         })
     }
 
@@ -41048,7 +41028,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeMaintenanceWindowTasks"))
             })?;
-            Ok(PyDescribeMaintenanceWindowTasksResult { inner: output })
+            Ok(PyOperationDescribeMaintenanceWindowTasksOutput { inner: output })
         })
     }
 
@@ -41106,7 +41086,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeMaintenanceWindows"))
             })?;
-            Ok(PyDescribeMaintenanceWindowsResult { inner: output })
+            Ok(PyOperationDescribeMaintenanceWindowsOutput { inner: output })
         })
     }
 
@@ -41175,7 +41155,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "DescribeMaintenanceWindowsForTarget")
                 })
             })?;
-            Ok(PyDescribeMaintenanceWindowsForTargetResult { inner: output })
+            Ok(PyOperationDescribeMaintenanceWindowsForTargetOutput { inner: output })
         })
     }
 
@@ -41233,7 +41213,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeOpsItems"))
             })?;
-            Ok(PyDescribeOpsItemsResponse { inner: output })
+            Ok(PyOperationDescribeOpsItemsOutput { inner: output })
         })
     }
 
@@ -41312,7 +41292,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeParameters"))
             })?;
-            Ok(PyDescribeParametersResult { inner: output })
+            Ok(PyOperationDescribeParametersOutput { inner: output })
         })
     }
 
@@ -41370,7 +41350,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribePatchBaselines"))
             })?;
-            Ok(PyDescribePatchBaselinesResult { inner: output })
+            Ok(PyOperationDescribePatchBaselinesOutput { inner: output })
         })
     }
 
@@ -41408,7 +41388,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribePatchGroupState"))
             })?;
-            Ok(PyDescribePatchGroupStateResult { inner: output })
+            Ok(PyOperationDescribePatchGroupStateOutput { inner: output })
         })
     }
 
@@ -41466,7 +41446,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribePatchGroups"))
             })?;
-            Ok(PyDescribePatchGroupsResult { inner: output })
+            Ok(PyOperationDescribePatchGroupsOutput { inner: output })
         })
     }
 
@@ -41536,7 +41516,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribePatchProperties"))
             })?;
-            Ok(PyDescribePatchPropertiesResult { inner: output })
+            Ok(PyOperationDescribePatchPropertiesOutput { inner: output })
         })
     }
 
@@ -41602,7 +41582,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeSessions"))
             })?;
-            Ok(PyDescribeSessionsResponse { inner: output })
+            Ok(PyOperationDescribeSessionsOutput { inner: output })
         })
     }
 
@@ -41647,7 +41627,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DisassociateOpsItemRelatedItem"))
             })?;
-            Ok(PyDisassociateOpsItemRelatedItemResponse { inner: output })
+            Ok(PyOperationDisassociateOpsItemRelatedItemOutput { inner: output })
         })
     }
 
@@ -41686,7 +41666,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAccessToken"))
             })?;
-            Ok(PyGetAccessTokenResponse { inner: output })
+            Ok(PyOperationGetAccessTokenOutput { inner: output })
         })
     }
 
@@ -41725,7 +41705,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAutomationExecution"))
             })?;
-            Ok(PyGetAutomationExecutionResult { inner: output })
+            Ok(PyOperationGetAutomationExecutionOutput { inner: output })
         })
     }
 
@@ -41776,7 +41756,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCalendarState"))
             })?;
-            Ok(PyGetCalendarStateResponse { inner: output })
+            Ok(PyOperationGetCalendarStateOutput { inner: output })
         })
     }
 
@@ -41815,7 +41795,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCloudConnector"))
             })?;
-            Ok(PyGetCloudConnectorResult { inner: output })
+            Ok(PyOperationGetCloudConnectorOutput { inner: output })
         })
     }
 
@@ -41867,7 +41847,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCommandInvocation"))
             })?;
-            Ok(PyGetCommandInvocationResult { inner: output })
+            Ok(PyOperationGetCommandInvocationOutput { inner: output })
         })
     }
 
@@ -41903,7 +41883,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetConnectionStatus"))
             })?;
-            Ok(PyGetConnectionStatusResponse { inner: output })
+            Ok(PyOperationGetConnectionStatusOutput { inner: output })
         })
     }
 
@@ -41943,7 +41923,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDefaultPatchBaseline"))
             })?;
-            Ok(PyGetDefaultPatchBaselineResult { inner: output })
+            Ok(PyOperationGetDefaultPatchBaselineOutput { inner: output })
         })
     }
 
@@ -42006,7 +41986,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "GetDeployablePatchSnapshotForInstance")
                 })
             })?;
-            Ok(PyGetDeployablePatchSnapshotForInstanceResult { inner: output })
+            Ok(PyOperationGetDeployablePatchSnapshotForInstanceOutput { inner: output })
         })
     }
 
@@ -42065,7 +42045,7 @@ impl SSMClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetDocument")))?;
-            Ok(PyGetDocumentResult { inner: output })
+            Ok(PyOperationGetDocumentOutput { inner: output })
         })
     }
 
@@ -42104,7 +42084,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetExecutionPreview"))
             })?;
-            Ok(PyGetExecutionPreviewResponse { inner: output })
+            Ok(PyOperationGetExecutionPreviewOutput { inner: output })
         })
     }
 
@@ -42189,7 +42169,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetInventory"))
             })?;
-            Ok(PyGetInventoryResult { inner: output })
+            Ok(PyOperationGetInventoryOutput { inner: output })
         })
     }
 
@@ -42255,7 +42235,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetInventorySchema"))
             })?;
-            Ok(PyGetInventorySchemaResult { inner: output })
+            Ok(PyOperationGetInventorySchemaOutput { inner: output })
         })
     }
 
@@ -42293,7 +42273,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMaintenanceWindow"))
             })?;
-            Ok(PyGetMaintenanceWindowResult { inner: output })
+            Ok(PyOperationGetMaintenanceWindowOutput { inner: output })
         })
     }
 
@@ -42332,7 +42312,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMaintenanceWindowExecution"))
             })?;
-            Ok(PyGetMaintenanceWindowExecutionResult { inner: output })
+            Ok(PyOperationGetMaintenanceWindowExecutionOutput { inner: output })
         })
     }
 
@@ -42380,7 +42360,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "GetMaintenanceWindowExecutionTask")
                 })
             })?;
-            Ok(PyGetMaintenanceWindowExecutionTaskResult { inner: output })
+            Ok(PyOperationGetMaintenanceWindowExecutionTaskOutput { inner: output })
         })
     }
 
@@ -42435,7 +42415,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "GetMaintenanceWindowExecutionTaskInvocation")
                 })
             })?;
-            Ok(PyGetMaintenanceWindowExecutionTaskInvocationResult { inner: output })
+            Ok(PyOperationGetMaintenanceWindowExecutionTaskInvocationOutput { inner: output })
         })
     }
 
@@ -42480,7 +42460,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMaintenanceWindowTask"))
             })?;
-            Ok(PyGetMaintenanceWindowTaskResult { inner: output })
+            Ok(PyOperationGetMaintenanceWindowTaskOutput { inner: output })
         })
     }
 
@@ -42524,7 +42504,7 @@ impl SSMClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetOpsItem")))?;
-            Ok(PyGetOpsItemResponse { inner: output })
+            Ok(PyOperationGetOpsItemOutput { inner: output })
         })
     }
 
@@ -42576,7 +42556,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetOpsMetadata"))
             })?;
-            Ok(PyGetOpsMetadataResult { inner: output })
+            Ok(PyOperationGetOpsMetadataOutput { inner: output })
         })
     }
 
@@ -42668,7 +42648,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetOpsSummary"))
             })?;
-            Ok(PyGetOpsSummaryResult { inner: output })
+            Ok(PyOperationGetOpsSummaryOutput { inner: output })
         })
     }
 
@@ -42713,7 +42693,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetParameter"))
             })?;
-            Ok(PyGetParameterResult { inner: output })
+            Ok(PyOperationGetParameterOutput { inner: output })
         })
     }
 
@@ -42772,7 +42752,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetParameterHistory"))
             })?;
-            Ok(PyGetParameterHistoryResult { inner: output })
+            Ok(PyOperationGetParameterHistoryOutput { inner: output })
         })
     }
 
@@ -42823,7 +42803,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetParameters"))
             })?;
-            Ok(PyGetParametersResult { inner: output })
+            Ok(PyOperationGetParametersOutput { inner: output })
         })
     }
 
@@ -42903,7 +42883,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetParametersByPath"))
             })?;
-            Ok(PyGetParametersByPathResult { inner: output })
+            Ok(PyOperationGetParametersByPathOutput { inner: output })
         })
     }
 
@@ -42941,7 +42921,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPatchBaseline"))
             })?;
-            Ok(PyGetPatchBaselineResult { inner: output })
+            Ok(PyOperationGetPatchBaselineOutput { inner: output })
         })
     }
 
@@ -42988,7 +42968,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPatchBaselineForPatchGroup"))
             })?;
-            Ok(PyGetPatchBaselineForPatchGroupResult { inner: output })
+            Ok(PyOperationGetPatchBaselineForPatchGroupOutput { inner: output })
         })
     }
 
@@ -43040,7 +43020,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicies"))
             })?;
-            Ok(PyGetResourcePoliciesResponse { inner: output })
+            Ok(PyOperationGetResourcePoliciesOutput { inner: output })
         })
     }
 
@@ -43078,7 +43058,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetServiceSetting"))
             })?;
-            Ok(PyGetServiceSettingResult { inner: output })
+            Ok(PyOperationGetServiceSettingOutput { inner: output })
         })
     }
 
@@ -43137,7 +43117,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "LabelParameterVersion"))
             })?;
-            Ok(PyLabelParameterVersionResult { inner: output })
+            Ok(PyOperationLabelParameterVersionOutput { inner: output })
         })
     }
 
@@ -43189,7 +43169,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAssociationVersions"))
             })?;
-            Ok(PyListAssociationVersionsResult { inner: output })
+            Ok(PyOperationListAssociationVersionsOutput { inner: output })
         })
     }
 
@@ -43248,7 +43228,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAssociations"))
             })?;
-            Ok(PyListAssociationsResult { inner: output })
+            Ok(PyOperationListAssociationsOutput { inner: output })
         })
     }
 
@@ -43306,7 +43286,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListCloudConnectors"))
             })?;
-            Ok(PyListCloudConnectorsResult { inner: output })
+            Ok(PyOperationListCloudConnectorsOutput { inner: output })
         })
     }
 
@@ -43385,7 +43365,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListCommandInvocations"))
             })?;
-            Ok(PyListCommandInvocationsResult { inner: output })
+            Ok(PyOperationListCommandInvocationsOutput { inner: output })
         })
     }
 
@@ -43457,7 +43437,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListCommands"))
             })?;
-            Ok(PyListCommandsResult { inner: output })
+            Ok(PyOperationListCommandsOutput { inner: output })
         })
     }
 
@@ -43541,7 +43521,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListComplianceItems"))
             })?;
-            Ok(PyListComplianceItemsResult { inner: output })
+            Ok(PyOperationListComplianceItemsOutput { inner: output })
         })
     }
 
@@ -43599,7 +43579,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListComplianceSummaries"))
             })?;
-            Ok(PyListComplianceSummariesResult { inner: output })
+            Ok(PyOperationListComplianceSummariesOutput { inner: output })
         })
     }
 
@@ -43667,7 +43647,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDocumentMetadataHistory"))
             })?;
-            Ok(PyListDocumentMetadataHistoryResponse { inner: output })
+            Ok(PyOperationListDocumentMetadataHistoryOutput { inner: output })
         })
     }
 
@@ -43719,7 +43699,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDocumentVersions"))
             })?;
-            Ok(PyListDocumentVersionsResult { inner: output })
+            Ok(PyOperationListDocumentVersionsOutput { inner: output })
         })
     }
 
@@ -43791,7 +43771,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDocuments"))
             })?;
-            Ok(PyListDocumentsResult { inner: output })
+            Ok(PyOperationListDocumentsOutput { inner: output })
         })
     }
 
@@ -43863,7 +43843,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListInventoryEntries"))
             })?;
-            Ok(PyListInventoryEntriesResult { inner: output })
+            Ok(PyOperationListInventoryEntriesOutput { inner: output })
         })
     }
 
@@ -43927,7 +43907,7 @@ impl SSMClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListNodes")))?;
-            Ok(PyListNodesResult { inner: output })
+            Ok(PyOperationListNodesOutput { inner: output })
         })
     }
 
@@ -44005,7 +43985,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListNodesSummary"))
             })?;
-            Ok(PyListNodesSummaryResult { inner: output })
+            Ok(PyOperationListNodesSummaryOutput { inner: output })
         })
     }
 
@@ -44063,7 +44043,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListOpsItemEvents"))
             })?;
-            Ok(PyListOpsItemEventsResponse { inner: output })
+            Ok(PyOperationListOpsItemEventsOutput { inner: output })
         })
     }
 
@@ -44128,7 +44108,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListOpsItemRelatedItems"))
             })?;
-            Ok(PyListOpsItemRelatedItemsResponse { inner: output })
+            Ok(PyOperationListOpsItemRelatedItemsOutput { inner: output })
         })
     }
 
@@ -44186,7 +44166,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListOpsMetadata"))
             })?;
-            Ok(PyListOpsMetadataResult { inner: output })
+            Ok(PyOperationListOpsMetadataOutput { inner: output })
         })
     }
 
@@ -44244,7 +44224,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListResourceComplianceSummaries"))
             })?;
-            Ok(PyListResourceComplianceSummariesResult { inner: output })
+            Ok(PyOperationListResourceComplianceSummariesOutput { inner: output })
         })
     }
 
@@ -44296,7 +44276,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListResourceDataSync"))
             })?;
-            Ok(PyListResourceDataSyncResult { inner: output })
+            Ok(PyOperationListResourceDataSyncOutput { inner: output })
         })
     }
 
@@ -44343,7 +44323,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Ok(PyListTagsForResourceResult { inner: output })
+            Ok(PyOperationListTagsForResourceOutput { inner: output })
         })
     }
 
@@ -44426,7 +44406,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ModifyDocumentPermission"))
             })?;
-            Ok(PyModifyDocumentPermissionResponse { inner: output })
+            Ok(PyOperationModifyDocumentPermissionOutput { inner: output })
         })
     }
 
@@ -44516,7 +44496,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutComplianceItems"))
             })?;
-            Ok(PyPutComplianceItemsResult { inner: output })
+            Ok(PyOperationPutComplianceItemsOutput { inner: output })
         })
     }
 
@@ -44567,7 +44547,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutInventory"))
             })?;
-            Ok(PyPutInventoryResult { inner: output })
+            Ok(PyOperationPutInventoryOutput { inner: output })
         })
     }
 
@@ -44683,7 +44663,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutParameter"))
             })?;
-            Ok(PyPutParameterResult { inner: output })
+            Ok(PyOperationPutParameterOutput { inner: output })
         })
     }
 
@@ -44742,7 +44722,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePolicy"))
             })?;
-            Ok(PyPutResourcePolicyResponse { inner: output })
+            Ok(PyOperationPutResourcePolicyOutput { inner: output })
         })
     }
 
@@ -44780,7 +44760,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RegisterDefaultPatchBaseline"))
             })?;
-            Ok(PyRegisterDefaultPatchBaselineResult { inner: output })
+            Ok(PyOperationRegisterDefaultPatchBaselineOutput { inner: output })
         })
     }
 
@@ -44827,7 +44807,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "RegisterPatchBaselineForPatchGroup")
                 })
             })?;
-            Ok(PyRegisterPatchBaselineForPatchGroupResult { inner: output })
+            Ok(PyOperationRegisterPatchBaselineForPatchGroupOutput { inner: output })
         })
     }
 
@@ -44918,7 +44898,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "RegisterTargetWithMaintenanceWindow")
                 })
             })?;
-            Ok(PyRegisterTargetWithMaintenanceWindowResult { inner: output })
+            Ok(PyOperationRegisterTargetWithMaintenanceWindowOutput { inner: output })
         })
     }
 
@@ -45083,7 +45063,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "RegisterTaskWithMaintenanceWindow")
                 })
             })?;
-            Ok(PyRegisterTaskWithMaintenanceWindowResult { inner: output })
+            Ok(PyOperationRegisterTaskWithMaintenanceWindowOutput { inner: output })
         })
     }
 
@@ -45143,7 +45123,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RemoveTagsFromResource"))
             })?;
-            Ok(PyRemoveTagsFromResourceResult { inner: output })
+            Ok(PyOperationRemoveTagsFromResourceOutput { inner: output })
         })
     }
 
@@ -45181,7 +45161,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ResetServiceSetting"))
             })?;
-            Ok(PyResetServiceSettingResult { inner: output })
+            Ok(PyOperationResetServiceSettingOutput { inner: output })
         })
     }
 
@@ -45217,7 +45197,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ResumeSession"))
             })?;
-            Ok(PyResumeSessionResponse { inner: output })
+            Ok(PyOperationResumeSessionOutput { inner: output })
         })
     }
 
@@ -45283,7 +45263,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SendAutomationSignal"))
             })?;
-            Ok(PySendAutomationSignalResult { inner: output })
+            Ok(PyOperationSendAutomationSignalOutput { inner: output })
         })
     }
 
@@ -45471,7 +45451,7 @@ impl SSMClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "SendCommand")))?;
-            Ok(PySendCommandResult { inner: output })
+            Ok(PyOperationSendCommandOutput { inner: output })
         })
     }
 
@@ -45535,7 +45515,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartAccessRequest"))
             })?;
-            Ok(PyStartAccessRequestResponse { inner: output })
+            Ok(PyOperationStartAccessRequestOutput { inner: output })
         })
     }
 
@@ -45579,7 +45559,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartAssociationsOnce"))
             })?;
-            Ok(PyStartAssociationsOnceResult { inner: output })
+            Ok(PyOperationStartAssociationsOnceOutput { inner: output })
         })
     }
 
@@ -45761,7 +45741,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartAutomationExecution"))
             })?;
-            Ok(PyStartAutomationExecutionResult { inner: output })
+            Ok(PyOperationStartAutomationExecutionOutput { inner: output })
         })
     }
 
@@ -45905,7 +45885,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartChangeRequestExecution"))
             })?;
-            Ok(PyStartChangeRequestExecutionResult { inner: output })
+            Ok(PyOperationStartChangeRequestExecutionOutput { inner: output })
         })
     }
 
@@ -45957,7 +45937,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartExecutionPreview"))
             })?;
-            Ok(PyStartExecutionPreviewResponse { inner: output })
+            Ok(PyOperationStartExecutionPreviewOutput { inner: output })
         })
     }
 
@@ -46028,7 +46008,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartSession"))
             })?;
-            Ok(PyStartSessionResponse { inner: output })
+            Ok(PyOperationStartSessionOutput { inner: output })
         })
     }
 
@@ -46075,7 +46055,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopAutomationExecution"))
             })?;
-            Ok(PyStopAutomationExecutionResult { inner: output })
+            Ok(PyOperationStopAutomationExecutionOutput { inner: output })
         })
     }
 
@@ -46111,7 +46091,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "TerminateSession"))
             })?;
-            Ok(PyTerminateSessionResponse { inner: output })
+            Ok(PyOperationTerminateSessionOutput { inner: output })
         })
     }
 
@@ -46170,7 +46150,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UnlabelParameterVersion"))
             })?;
-            Ok(PyUnlabelParameterVersionResult { inner: output })
+            Ok(PyOperationUnlabelParameterVersionOutput { inner: output })
         })
     }
 
@@ -46416,7 +46396,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAssociation"))
             })?;
-            Ok(PyUpdateAssociationResult { inner: output })
+            Ok(PyOperationUpdateAssociationOutput { inner: output })
         })
     }
 
@@ -46469,7 +46449,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAssociationStatus"))
             })?;
-            Ok(PyUpdateAssociationStatusResult { inner: output })
+            Ok(PyOperationUpdateAssociationStatusOutput { inner: output })
         })
     }
 
@@ -46529,7 +46509,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateCloudConnector"))
             })?;
-            Ok(PyUpdateCloudConnectorResult { inner: output })
+            Ok(PyOperationUpdateCloudConnectorOutput { inner: output })
         })
     }
 
@@ -46623,7 +46603,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDocument"))
             })?;
-            Ok(PyUpdateDocumentResult { inner: output })
+            Ok(PyOperationUpdateDocumentOutput { inner: output })
         })
     }
 
@@ -46668,7 +46648,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDocumentDefaultVersion"))
             })?;
-            Ok(PyUpdateDocumentDefaultVersionResult { inner: output })
+            Ok(PyOperationUpdateDocumentDefaultVersionOutput { inner: output })
         })
     }
 
@@ -46720,7 +46700,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDocumentMetadata"))
             })?;
-            Ok(PyUpdateDocumentMetadataResponse { inner: output })
+            Ok(PyOperationUpdateDocumentMetadataOutput { inner: output })
         })
     }
 
@@ -46844,7 +46824,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMaintenanceWindow"))
             })?;
-            Ok(PyUpdateMaintenanceWindowResult { inner: output })
+            Ok(PyOperationUpdateMaintenanceWindowOutput { inner: output })
         })
     }
 
@@ -46931,7 +46911,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMaintenanceWindowTarget"))
             })?;
-            Ok(PyUpdateMaintenanceWindowTargetResult { inner: output })
+            Ok(PyOperationUpdateMaintenanceWindowTargetOutput { inner: output })
         })
     }
 
@@ -47092,7 +47072,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMaintenanceWindowTask"))
             })?;
-            Ok(PyUpdateMaintenanceWindowTaskResult { inner: output })
+            Ok(PyOperationUpdateMaintenanceWindowTaskOutput { inner: output })
         })
     }
 
@@ -47137,7 +47117,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateManagedInstanceRole"))
             })?;
-            Ok(PyUpdateManagedInstanceRoleResult { inner: output })
+            Ok(PyOperationUpdateManagedInstanceRoleOutput { inner: output })
         })
     }
 
@@ -47329,7 +47309,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateOpsItem"))
             })?;
-            Ok(PyUpdateOpsItemResponse { inner: output })
+            Ok(PyOperationUpdateOpsItemOutput { inner: output })
         })
     }
 
@@ -47394,7 +47374,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateOpsMetadata"))
             })?;
-            Ok(PyUpdateOpsMetadataResult { inner: output })
+            Ok(PyOperationUpdateOpsMetadataOutput { inner: output })
         })
     }
 
@@ -47549,7 +47529,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdatePatchBaseline"))
             })?;
-            Ok(PyUpdatePatchBaselineResult { inner: output })
+            Ok(PyOperationUpdatePatchBaselineOutput { inner: output })
         })
     }
 
@@ -47601,7 +47581,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateResourceDataSync"))
             })?;
-            Ok(PyUpdateResourceDataSyncResult { inner: output })
+            Ok(PyOperationUpdateResourceDataSyncOutput { inner: output })
         })
     }
 
@@ -47646,7 +47626,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateServiceSetting"))
             })?;
-            Ok(PyUpdateServiceSettingResult { inner: output })
+            Ok(PyOperationUpdateServiceSettingOutput { inner: output })
         })
     }
 
@@ -47699,7 +47679,7 @@ impl SSMClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ValidateCloudConnector"))
             })?;
-            Ok(PyValidateCloudConnectorResult { inner: output })
+            Ok(PyOperationValidateCloudConnectorOutput { inner: output })
         })
     }
 }

@@ -13,7 +13,7 @@ from .model import ServiceDescriptor
 from .pagination import resolve_pagination
 from .registry import list_services
 from .rust_crate import RustField, RustOperation, RustType, parse_crate
-from .smithy import SmithyMember, SmithyShape, load_model, short_name, to_snake_case
+from .smithy import SmithyMember, SmithyShape, load_model, to_snake_case
 
 STRING = "::std::string::String"
 DATETIME = "::aws_smithy_types::DateTime"
@@ -81,6 +81,15 @@ def _crate_type_name(rust_type: str) -> str | None:
 
 def _safe_parameter(name: str) -> str:
     return name + "_" if keyword.iskeyword(name) else name
+
+
+def _available_output_name(name: str, reserved: set[str]) -> str:
+    stem = name.removesuffix("Output")
+    candidate = f"{stem}Output"
+    while candidate in reserved:
+        stem += "Value"
+        candidate = f"{stem}Output"
+    return candidate
 
 
 def _write_generated(path: Path, content: str) -> None:
@@ -158,6 +167,22 @@ class ServiceGenerator:
         )
         native = self._native_output_operations()
         native_names = {item["operation"] for item in native}
+        self._operation_output_names = {
+            f"{operation.name}Output"
+            for operation in self.service.operations
+            if operation.output_target not in {None, "smithy.api#Unit"}
+        }
+        nested_names = {rust.name for rust in self._native_structs()}
+        reserved_native = nested_names | self._operation_output_names
+        self._native_struct_names: dict[str, str] = {}
+        for name in sorted(nested_names):
+            public_name = (
+                _available_output_name(name, reserved_native)
+                if name in self._operation_output_names else name
+            )
+            reserved_native.add(public_name)
+            self._native_struct_names[name] = public_name
+
         dictionary_roots: list[str | None] = [
             target for target in outputs if self.service.shapes[target].kind == "union"
         ]
@@ -167,14 +192,36 @@ class ServiceGenerator:
             if operation.rust_name not in native_names
         )
         self._dictionary_output_targets = self._reachable_shapes(dictionary_roots)
+        self._dictionary_operation_outputs: dict[str, list[str]] = {}
+        for operation in self.service.operations:
+            if (
+                operation.rust_name not in native_names
+                and operation.output_target not in {None, "smithy.api#Unit"}
+            ):
+                assert operation.output_target is not None
+                self._dictionary_operation_outputs.setdefault(operation.output_target, []).append(
+                    f"{operation.name}Output"
+                )
         reserved = {shape.name for shape in self.service.shapes.values()}
-        reserved.update(item["class_name"] for item in native)
+        reserved.update(self._operation_output_names)
         reserved.update(
             f"{shape.name}{member.name}"
             for shape in self.service.shapes.values()
             if shape.kind == "union"
             for member in shape.members
         )
+        self._input_type_names: dict[str, str] = {}
+        for shape in sorted(self.service.shapes.values(), key=lambda shape: shape.name):
+            name = shape.name
+            if shape.shape_id in self._input_targets and name in self._operation_output_names:
+                stem = name.removesuffix("Output")
+                name = f"{stem}Input"
+                while name in reserved:
+                    stem += "Value"
+                    name = f"{stem}Input"
+                reserved.add(name)
+            self._input_type_names[shape.shape_id] = name
+
         self._output_type_names: dict[str, str] = {}
         for shape in sorted(self.service.shapes.values(), key=lambda shape: shape.name):
             if not shape.enum_values and (
@@ -183,12 +230,19 @@ class ServiceGenerator:
             ):
                 continue
             name = shape.name
-            if shape.enum_values or shape.shape_id in self._input_targets:
-                name += "Response" if name.endswith("Output") else "Output"
-                while name in reserved:
-                    name += "Value"
+            if shape.shape_id in self._dictionary_operation_outputs:
+                name = self._dictionary_operation_outputs[shape.shape_id][0]
+            elif shape.enum_values or shape.shape_id in self._input_targets:
+                name = _available_output_name(name, reserved)
+            elif name in self._operation_output_names:
+                stem = name.removesuffix("Output")
+                suffix = "Event" if shape.streaming and shape.kind == "union" else "Value"
+                name = _available_output_name(f"{stem}{suffix}Output", reserved)
             reserved.add(name)
             self._output_type_names[shape.shape_id] = name
+
+    def _input_type_name(self, shape: SmithyShape) -> str:
+        return self._input_type_names[shape.shape_id]
 
     def _output_type_name(self, shape: SmithyShape) -> str:
         return self._output_type_names[shape.shape_id]
@@ -665,18 +719,6 @@ class ServiceGenerator:
     def _native_output_operations(self) -> list[dict[str, str]]:
         if not self.descriptor.native_outputs:
             return []
-        target_counts: dict[str, int] = {}
-        input_member_targets: set[str] = set()
-        for operation in self.service.operations:
-            if operation.output_target not in {None, "smithy.api#Unit"}:
-                target = operation.output_target
-                assert target is not None
-                target_counts[target] = target_counts.get(target, 0) + 1
-            if operation.input_target not in {None, "smithy.api#Unit"}:
-                assert operation.input_target is not None
-                input_member_targets.update(
-                    member.target for member in self.service.shapes[operation.input_target].members
-                )
         outputs: list[dict[str, str]] = []
         for smithy in self.service.operations:
             if smithy.output_target is None or smithy.output_target == "smithy.api#Unit":
@@ -689,18 +731,12 @@ class ServiceGenerator:
                 for field in rust_operation.output_fields
             ):
                 continue
-            class_name = short_name(smithy.output_target)
-            if (
-                target_counts[smithy.output_target] > 1
-                or smithy.output_target in input_member_targets
-                or class_name in self.crate.types
-            ):
-                class_name = f"{smithy.name}Output"
+            class_name = f"{smithy.name}Output"
             outputs.append(
                 {
                     "operation": smithy.rust_name,
                     "class_name": class_name,
-                    "rust_class": f"Py{class_name}",
+                    "rust_class": f"PyOperation{class_name}",
                     "rust_type": (
                         f"{self.rust_module}::operation::{smithy.rust_name}::"
                         f"{rust_operation.output_type}"
@@ -766,7 +802,7 @@ class ServiceGenerator:
         converter = f"{to_snake_case(rust.name)}_to_py"
         return "\n".join(
             [
-                f'#[pyclass(name = "{rust.name}", module = "{self.descriptor.python_package}._native", frozen)]',
+                f'#[pyclass(name = "{self._native_struct_names[rust.name]}", module = "{self.descriptor.python_package}._native", frozen)]',
                 f"struct Py{rust.name} {{",
                 f"    inner: {self.rust_module}::types::{rust.name},",
                 "}",
@@ -1119,7 +1155,7 @@ class ServiceGenerator:
             return "\n".join(lines)
 
         if native_metadata is not None:
-            output_class = native_metadata["class_name"]
+            output_class = native_metadata["rust_class"]
             constructor_fields: list[str] = ["inner: output"]
             stream_setup: list[str] = []
             for field in operation.output_fields:
@@ -1141,7 +1177,7 @@ class ServiceGenerator:
             lines.extend(
                 [
                     *stream_setup,
-                    f"                Py::new(py, Py{output_class} {{ {', '.join(constructor_fields)} }})",
+                    f"                Py::new(py, {output_class} {{ {', '.join(constructor_fields)} }})",
                     "            })",
                     "        })",
                     "    }",
@@ -1288,14 +1324,14 @@ class ServiceGenerator:
             return builtin[target]
         shape = self.service.shapes[target]
         if shape.streaming and shape.kind == "union":
-            name = self._output_type_name(shape) if output else shape.name
+            name = self._output_type_name(shape) if output else self._input_type_name(shape)
             return f"AsyncIterator[{name}]"
         if shape.kind in {"string", "enum"}:
             if shape.enum_values:
-                return self._output_type_name(shape) if output else shape.name
+                return self._output_type_name(shape) if output else self._input_type_name(shape)
             return "str"
         if shape.kind in {"structure", "union"}:
-            return self._output_type_name(shape) if output else shape.name
+            return self._output_type_name(shape) if output else self._input_type_name(shape)
         if shape.kind == "document":
             return "JSONValue"
         if shape.kind in {"list", "set"} and shape.member_target:
@@ -1351,7 +1387,8 @@ class ServiceGenerator:
         elif kind == "blob":
             annotation = "bytes"
         elif kind == "struct":
-            annotation = _crate_type_name(rust_type) or "object"
+            name = _crate_type_name(rust_type)
+            annotation = self._native_struct_names[name] if name is not None else "object"
         elif kind == "union":
             name = _crate_type_name(rust_type)
             shape = self._shape_for_rust(name or "")
@@ -1382,7 +1419,7 @@ class ServiceGenerator:
         for rust in self._native_structs():
             classes.append(
                 {
-                    "name": rust.name,
+                    "name": self._native_struct_names[rust.name],
                     "fields": [
                         {
                             "name": _safe_parameter(field.rust_name.removeprefix("r#")),
@@ -1444,18 +1481,23 @@ class ServiceGenerator:
         }
         for shape in shapes:
             if shape.kind in {"string", "enum"} and shape.enum_values:
+                name = self._input_type_name(shape)
                 values = ", ".join(repr(value) for value in shape.enum_values)
-                lines.append(f"{shape.name}: TypeAlias = Literal[{values}]")
+                lines.append(f"{name}: TypeAlias = Literal[{values}]")
                 lines.append(
-                    f"{self._output_type_name(shape)}: TypeAlias = {shape.name} | UnknownEnumValue"
+                    f"{self._output_type_name(shape)}: TypeAlias = {name} | UnknownEnumValue"
                 )
-                reserved.update((shape.name, self._output_type_name(shape)))
+                reserved.update((name, self._output_type_name(shape)))
         lines.append("")
         for shape in shapes:
             if shape.error or shape.kind not in {"structure", "union"}:
                 continue
             contexts: list[bool] = []
-            if shape.shape_id not in native_output_targets:
+            if shape.shape_id not in native_output_targets and (
+                shape.name not in self._operation_output_names
+                or shape.shape_id in self._input_targets
+                or shape.shape_id in self._dictionary_output_targets
+            ):
                 contexts.append(
                     shape.shape_id in self._dictionary_output_targets
                     and shape.shape_id not in self._input_targets
@@ -1466,29 +1508,35 @@ class ServiceGenerator:
             ):
                 contexts.append(True)
             for output in contexts:
-                lines.extend(self._python_shape_definition(shape, output=output))
-                name = self._output_type_name(shape) if output else shape.name
-                reserved.add(name)
-                if shape.kind == "union":
-                    reserved.update(f"{name}{member.name}" for member in shape.members)
-                    if output:
-                        reserved.add(f"{name}Unknown")
+                names = (
+                    self._dictionary_operation_outputs.get(
+                        shape.shape_id, [self._output_type_name(shape)]
+                    )
+                    if output else [self._input_type_name(shape)]
+                )
+                for name in names:
+                    lines.extend(self._python_shape_definition(shape, output=output, name=name))
+                    reserved.add(name)
+                    if shape.kind == "union":
+                        reserved.update(f"{name}{member.name}" for member in shape.members)
+                        if output:
+                            reserved.add(f"{name}Unknown")
 
-        # Keep every existing mapping and alias intact. Native nested structures
-        # often share a name with an input TypedDict, so expose those as *Output.
+        # Operation names have priority. Nested native objects can share modeled
+        # names with dictionaries, so allocate distinct aliases ending in Output.
         exports = [("ByteStream", "ByteStream")]
+        operation_names = {item["class_name"] for item in self._native_output_operations()}
         native_names = [
             *(item["class_name"] for item in self._native_output_operations()),
             *(stream["receiver_class"] for stream in self._event_streams()),
-            *(rust.name for rust in self._native_structs()),
+            *self._native_struct_names.values(),
         ]
         for native_name in dict.fromkeys(native_names):
             public_name = native_name
             if public_name in reserved:
-                public_name += "Response" if public_name.endswith("Output") else "Output"
-                # Avoid taking another native class's canonical public name.
-                while public_name in reserved or public_name in native_names:
-                    public_name += "Value"
+                if native_name in operation_names:
+                    raise GenerationError(f"operation output name collision: {native_name}")
+                public_name = _available_output_name(native_name, reserved | set(native_names))
             reserved.add(public_name)
             exports.append((native_name, public_name))
         imports.extend([
@@ -1497,9 +1545,12 @@ class ServiceGenerator:
         ])
         return "\n".join([*imports, *lines])
 
-    def _python_shape_definition(self, shape: SmithyShape, *, output: bool) -> list[str]:
+    def _python_shape_definition(
+        self, shape: SmithyShape, *, output: bool, name: str | None = None,
+    ) -> list[str]:
         lines: list[str] = []
-        name = self._output_type_name(shape) if output else shape.name
+        if name is None:
+            name = self._output_type_name(shape) if output else self._input_type_name(shape)
         if shape.kind == "structure":
             entries: list[str] = []
             for member in shape.members:
@@ -1581,7 +1632,7 @@ class ServiceGenerator:
             output = metadata["class_name"]
             native_output = True
         else:
-            output = self._output_type_name(self.service.shapes[smithy.output_target])
+            output = f"{smithy.name}Output"
         return {
             "name": operation_name,
             "operation_name": smithy.name,

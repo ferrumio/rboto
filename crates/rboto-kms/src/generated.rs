@@ -2325,17 +2325,13 @@ impl PyXksProxyConfigurationType {
     }
 }
 
-#[pyclass(
-    name = "CancelKeyDeletionResponse",
-    module = "rboto_kms._native",
-    frozen
-)]
-struct PyCancelKeyDeletionResponse {
+#[pyclass(name = "CancelKeyDeletionOutput", module = "rboto_kms._native", frozen)]
+struct PyOperationCancelKeyDeletionOutput {
     inner: aws_sdk_kms::operation::cancel_key_deletion::CancelKeyDeletionOutput,
 }
 
 #[pymethods]
-impl PyCancelKeyDeletionResponse {
+impl PyOperationCancelKeyDeletionOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
@@ -2359,16 +2355,16 @@ impl PyCancelKeyDeletionResponse {
 }
 
 #[pyclass(
-    name = "ConnectCustomKeyStoreResponse",
+    name = "ConnectCustomKeyStoreOutput",
     module = "rboto_kms._native",
     frozen
 )]
-struct PyConnectCustomKeyStoreResponse {
+struct PyOperationConnectCustomKeyStoreOutput {
     inner: aws_sdk_kms::operation::connect_custom_key_store::ConnectCustomKeyStoreOutput,
 }
 
 #[pymethods]
-impl PyConnectCustomKeyStoreResponse {
+impl PyOperationConnectCustomKeyStoreOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -2376,16 +2372,16 @@ impl PyConnectCustomKeyStoreResponse {
 }
 
 #[pyclass(
-    name = "CreateCustomKeyStoreResponse",
+    name = "CreateCustomKeyStoreOutput",
     module = "rboto_kms._native",
     frozen
 )]
-struct PyCreateCustomKeyStoreResponse {
+struct PyOperationCreateCustomKeyStoreOutput {
     inner: aws_sdk_kms::operation::create_custom_key_store::CreateCustomKeyStoreOutput,
 }
 
 #[pymethods]
-impl PyCreateCustomKeyStoreResponse {
+impl PyOperationCreateCustomKeyStoreOutput {
     #[getter]
     fn custom_key_store_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.custom_key_store_id {
@@ -2408,13 +2404,13 @@ impl PyCreateCustomKeyStoreResponse {
     }
 }
 
-#[pyclass(name = "CreateGrantResponse", module = "rboto_kms._native", frozen)]
-struct PyCreateGrantResponse {
+#[pyclass(name = "CreateGrantOutput", module = "rboto_kms._native", frozen)]
+struct PyOperationCreateGrantOutput {
     inner: aws_sdk_kms::operation::create_grant::CreateGrantOutput,
 }
 
 #[pymethods]
-impl PyCreateGrantResponse {
+impl PyOperationCreateGrantOutput {
     #[getter]
     fn grant_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.grant_token {
@@ -2453,13 +2449,13 @@ impl PyCreateGrantResponse {
     }
 }
 
-#[pyclass(name = "CreateKeyResponse", module = "rboto_kms._native", frozen)]
-struct PyCreateKeyResponse {
+#[pyclass(name = "CreateKeyOutput", module = "rboto_kms._native", frozen)]
+struct PyOperationCreateKeyOutput {
     inner: aws_sdk_kms::operation::create_key::CreateKeyOutput,
 }
 
 #[pymethods]
-impl PyCreateKeyResponse {
+impl PyOperationCreateKeyOutput {
     #[getter]
     fn key_metadata(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_metadata {
@@ -2488,13 +2484,13 @@ impl PyCreateKeyResponse {
     }
 }
 
-#[pyclass(name = "DecryptResponse", module = "rboto_kms._native", frozen)]
-struct PyDecryptResponse {
+#[pyclass(name = "DecryptOutput", module = "rboto_kms._native", frozen)]
+struct PyOperationDecryptOutput {
     inner: aws_sdk_kms::operation::decrypt::DecryptOutput,
 }
 
 #[pymethods]
-impl PyDecryptResponse {
+impl PyOperationDecryptOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
@@ -2582,16 +2578,16 @@ impl PyDecryptResponse {
 }
 
 #[pyclass(
-    name = "DeleteCustomKeyStoreResponse",
+    name = "DeleteCustomKeyStoreOutput",
     module = "rboto_kms._native",
     frozen
 )]
-struct PyDeleteCustomKeyStoreResponse {
+struct PyOperationDeleteCustomKeyStoreOutput {
     inner: aws_sdk_kms::operation::delete_custom_key_store::DeleteCustomKeyStoreOutput,
 }
 
 #[pymethods]
-impl PyDeleteCustomKeyStoreResponse {
+impl PyOperationDeleteCustomKeyStoreOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -2599,16 +2595,16 @@ impl PyDeleteCustomKeyStoreResponse {
 }
 
 #[pyclass(
-    name = "DeleteImportedKeyMaterialResponse",
+    name = "DeleteImportedKeyMaterialOutput",
     module = "rboto_kms._native",
     frozen
 )]
-struct PyDeleteImportedKeyMaterialResponse {
+struct PyOperationDeleteImportedKeyMaterialOutput {
     inner: aws_sdk_kms::operation::delete_imported_key_material::DeleteImportedKeyMaterialOutput,
 }
 
 #[pymethods]
-impl PyDeleteImportedKeyMaterialResponse {
+impl PyOperationDeleteImportedKeyMaterialOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
@@ -2648,16 +2644,16 @@ impl PyDeleteImportedKeyMaterialResponse {
 }
 
 #[pyclass(
-    name = "DeriveSharedSecretResponse",
+    name = "DeriveSharedSecretOutput",
     module = "rboto_kms._native",
     frozen
 )]
-struct PyDeriveSharedSecretResponse {
+struct PyOperationDeriveSharedSecretOutput {
     inner: aws_sdk_kms::operation::derive_shared_secret::DeriveSharedSecretOutput,
 }
 
 #[pymethods]
-impl PyDeriveSharedSecretResponse {
+impl PyOperationDeriveSharedSecretOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
@@ -2745,16 +2741,16 @@ impl PyDeriveSharedSecretResponse {
 }
 
 #[pyclass(
-    name = "DescribeCustomKeyStoresResponse",
+    name = "DescribeCustomKeyStoresOutput",
     module = "rboto_kms._native",
     frozen
 )]
-struct PyDescribeCustomKeyStoresResponse {
+struct PyOperationDescribeCustomKeyStoresOutput {
     inner: aws_sdk_kms::operation::describe_custom_key_stores::DescribeCustomKeyStoresOutput,
 }
 
 #[pymethods]
-impl PyDescribeCustomKeyStoresResponse {
+impl PyOperationDescribeCustomKeyStoresOutput {
     #[getter]
     fn custom_key_stores(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.custom_key_stores {
@@ -2817,13 +2813,13 @@ impl PyDescribeCustomKeyStoresResponse {
     }
 }
 
-#[pyclass(name = "DescribeKeyResponse", module = "rboto_kms._native", frozen)]
-struct PyDescribeKeyResponse {
+#[pyclass(name = "DescribeKeyOutput", module = "rboto_kms._native", frozen)]
+struct PyOperationDescribeKeyOutput {
     inner: aws_sdk_kms::operation::describe_key::DescribeKeyOutput,
 }
 
 #[pymethods]
-impl PyDescribeKeyResponse {
+impl PyOperationDescribeKeyOutput {
     #[getter]
     fn key_metadata(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_metadata {
@@ -2853,29 +2849,29 @@ impl PyDescribeKeyResponse {
 }
 
 #[pyclass(
-    name = "DisconnectCustomKeyStoreResponse",
+    name = "DisconnectCustomKeyStoreOutput",
     module = "rboto_kms._native",
     frozen
 )]
-struct PyDisconnectCustomKeyStoreResponse {
+struct PyOperationDisconnectCustomKeyStoreOutput {
     inner: aws_sdk_kms::operation::disconnect_custom_key_store::DisconnectCustomKeyStoreOutput,
 }
 
 #[pymethods]
-impl PyDisconnectCustomKeyStoreResponse {
+impl PyOperationDisconnectCustomKeyStoreOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "EncryptResponse", module = "rboto_kms._native", frozen)]
-struct PyEncryptResponse {
+#[pyclass(name = "EncryptOutput", module = "rboto_kms._native", frozen)]
+struct PyOperationEncryptOutput {
     inner: aws_sdk_kms::operation::encrypt::EncryptOutput,
 }
 
 #[pymethods]
-impl PyEncryptResponse {
+impl PyOperationEncryptOutput {
     #[getter]
     fn ciphertext_blob(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ciphertext_blob {
@@ -2930,13 +2926,13 @@ impl PyEncryptResponse {
     }
 }
 
-#[pyclass(name = "GenerateDataKeyResponse", module = "rboto_kms._native", frozen)]
-struct PyGenerateDataKeyResponse {
+#[pyclass(name = "GenerateDataKeyOutput", module = "rboto_kms._native", frozen)]
+struct PyOperationGenerateDataKeyOutput {
     inner: aws_sdk_kms::operation::generate_data_key::GenerateDataKeyOutput,
 }
 
 #[pymethods]
-impl PyGenerateDataKeyResponse {
+impl PyOperationGenerateDataKeyOutput {
     #[getter]
     fn ciphertext_blob(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ciphertext_blob {
@@ -3024,16 +3020,16 @@ impl PyGenerateDataKeyResponse {
 }
 
 #[pyclass(
-    name = "GenerateDataKeyPairResponse",
+    name = "GenerateDataKeyPairOutput",
     module = "rboto_kms._native",
     frozen
 )]
-struct PyGenerateDataKeyPairResponse {
+struct PyOperationGenerateDataKeyPairOutput {
     inner: aws_sdk_kms::operation::generate_data_key_pair::GenerateDataKeyPairOutput,
 }
 
 #[pymethods]
-impl PyGenerateDataKeyPairResponse {
+impl PyOperationGenerateDataKeyPairOutput {
     #[getter]
     fn private_key_ciphertext_blob(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.private_key_ciphertext_blob {
@@ -3153,16 +3149,16 @@ impl PyGenerateDataKeyPairResponse {
 }
 
 #[pyclass(
-    name = "GenerateDataKeyPairWithoutPlaintextResponse",
+    name = "GenerateDataKeyPairWithoutPlaintextOutput",
     module = "rboto_kms._native",
     frozen
 )]
-struct PyGenerateDataKeyPairWithoutPlaintextResponse {
+struct PyOperationGenerateDataKeyPairWithoutPlaintextOutput {
     inner: aws_sdk_kms::operation::generate_data_key_pair_without_plaintext::GenerateDataKeyPairWithoutPlaintextOutput,
 }
 
 #[pymethods]
-impl PyGenerateDataKeyPairWithoutPlaintextResponse {
+impl PyOperationGenerateDataKeyPairWithoutPlaintextOutput {
     #[getter]
     fn private_key_ciphertext_blob(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.private_key_ciphertext_blob {
@@ -3250,16 +3246,16 @@ impl PyGenerateDataKeyPairWithoutPlaintextResponse {
 }
 
 #[pyclass(
-    name = "GenerateDataKeyWithoutPlaintextResponse",
+    name = "GenerateDataKeyWithoutPlaintextOutput",
     module = "rboto_kms._native",
     frozen
 )]
-struct PyGenerateDataKeyWithoutPlaintextResponse {
+struct PyOperationGenerateDataKeyWithoutPlaintextOutput {
     inner: aws_sdk_kms::operation::generate_data_key_without_plaintext::GenerateDataKeyWithoutPlaintextOutput,
 }
 
 #[pymethods]
-impl PyGenerateDataKeyWithoutPlaintextResponse {
+impl PyOperationGenerateDataKeyWithoutPlaintextOutput {
     #[getter]
     fn ciphertext_blob(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ciphertext_blob {
@@ -3314,13 +3310,13 @@ impl PyGenerateDataKeyWithoutPlaintextResponse {
     }
 }
 
-#[pyclass(name = "GenerateMacResponse", module = "rboto_kms._native", frozen)]
-struct PyGenerateMacResponse {
+#[pyclass(name = "GenerateMacOutput", module = "rboto_kms._native", frozen)]
+struct PyOperationGenerateMacOutput {
     inner: aws_sdk_kms::operation::generate_mac::GenerateMacOutput,
 }
 
 #[pymethods]
-impl PyGenerateMacResponse {
+impl PyOperationGenerateMacOutput {
     #[getter]
     fn mac(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.mac {
@@ -3375,13 +3371,13 @@ impl PyGenerateMacResponse {
     }
 }
 
-#[pyclass(name = "GenerateRandomResponse", module = "rboto_kms._native", frozen)]
-struct PyGenerateRandomResponse {
+#[pyclass(name = "GenerateRandomOutput", module = "rboto_kms._native", frozen)]
+struct PyOperationGenerateRandomOutput {
     inner: aws_sdk_kms::operation::generate_random::GenerateRandomOutput,
 }
 
 #[pymethods]
-impl PyGenerateRandomResponse {
+impl PyOperationGenerateRandomOutput {
     #[getter]
     fn plaintext(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.plaintext {
@@ -3420,13 +3416,13 @@ impl PyGenerateRandomResponse {
     }
 }
 
-#[pyclass(name = "GetKeyLastUsageResponse", module = "rboto_kms._native", frozen)]
-struct PyGetKeyLastUsageResponse {
+#[pyclass(name = "GetKeyLastUsageOutput", module = "rboto_kms._native", frozen)]
+struct PyOperationGetKeyLastUsageOutput {
     inner: aws_sdk_kms::operation::get_key_last_usage::GetKeyLastUsageOutput,
 }
 
 #[pymethods]
-impl PyGetKeyLastUsageResponse {
+impl PyOperationGetKeyLastUsageOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
@@ -3503,13 +3499,13 @@ impl PyGetKeyLastUsageResponse {
     }
 }
 
-#[pyclass(name = "GetKeyPolicyResponse", module = "rboto_kms._native", frozen)]
-struct PyGetKeyPolicyResponse {
+#[pyclass(name = "GetKeyPolicyOutput", module = "rboto_kms._native", frozen)]
+struct PyOperationGetKeyPolicyOutput {
     inner: aws_sdk_kms::operation::get_key_policy::GetKeyPolicyOutput,
 }
 
 #[pymethods]
-impl PyGetKeyPolicyResponse {
+impl PyOperationGetKeyPolicyOutput {
     #[getter]
     fn policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.policy {
@@ -3549,16 +3545,16 @@ impl PyGetKeyPolicyResponse {
 }
 
 #[pyclass(
-    name = "GetKeyRotationStatusResponse",
+    name = "GetKeyRotationStatusOutput",
     module = "rboto_kms._native",
     frozen
 )]
-struct PyGetKeyRotationStatusResponse {
+struct PyOperationGetKeyRotationStatusOutput {
     inner: aws_sdk_kms::operation::get_key_rotation_status::GetKeyRotationStatusOutput,
 }
 
 #[pymethods]
-impl PyGetKeyRotationStatusResponse {
+impl PyOperationGetKeyRotationStatusOutput {
     #[getter]
     fn key_rotation_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_838 = (&self.inner.key_rotation_enabled)
@@ -3642,16 +3638,16 @@ impl PyGetKeyRotationStatusResponse {
 }
 
 #[pyclass(
-    name = "GetParametersForImportResponse",
+    name = "GetParametersForImportOutput",
     module = "rboto_kms._native",
     frozen
 )]
-struct PyGetParametersForImportResponse {
+struct PyOperationGetParametersForImportOutput {
     inner: aws_sdk_kms::operation::get_parameters_for_import::GetParametersForImportOutput,
 }
 
 #[pymethods]
-impl PyGetParametersForImportResponse {
+impl PyOperationGetParametersForImportOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
@@ -3722,13 +3718,13 @@ impl PyGetParametersForImportResponse {
     }
 }
 
-#[pyclass(name = "GetPublicKeyResponse", module = "rboto_kms._native", frozen)]
-struct PyGetPublicKeyResponse {
+#[pyclass(name = "GetPublicKeyOutput", module = "rboto_kms._native", frozen)]
+struct PyOperationGetPublicKeyOutput {
     inner: aws_sdk_kms::operation::get_public_key::GetPublicKeyOutput,
 }
 
 #[pymethods]
-impl PyGetPublicKeyResponse {
+impl PyOperationGetPublicKeyOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
@@ -3893,17 +3889,13 @@ impl PyGetPublicKeyResponse {
     }
 }
 
-#[pyclass(
-    name = "ImportKeyMaterialResponse",
-    module = "rboto_kms._native",
-    frozen
-)]
-struct PyImportKeyMaterialResponse {
+#[pyclass(name = "ImportKeyMaterialOutput", module = "rboto_kms._native", frozen)]
+struct PyOperationImportKeyMaterialOutput {
     inner: aws_sdk_kms::operation::import_key_material::ImportKeyMaterialOutput,
 }
 
 #[pymethods]
-impl PyImportKeyMaterialResponse {
+impl PyOperationImportKeyMaterialOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
@@ -3942,13 +3934,13 @@ impl PyImportKeyMaterialResponse {
     }
 }
 
-#[pyclass(name = "ListAliasesResponse", module = "rboto_kms._native", frozen)]
-struct PyListAliasesResponse {
+#[pyclass(name = "ListAliasesOutput", module = "rboto_kms._native", frozen)]
+struct PyOperationListAliasesOutput {
     inner: aws_sdk_kms::operation::list_aliases::ListAliasesOutput,
 }
 
 #[pymethods]
-impl PyListAliasesResponse {
+impl PyOperationListAliasesOutput {
     #[getter]
     fn aliases(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.aliases {
@@ -4012,12 +4004,12 @@ impl PyListAliasesResponse {
 }
 
 #[pyclass(name = "ListGrantsOutput", module = "rboto_kms._native", frozen)]
-struct PyListGrantsOutput {
+struct PyOperationListGrantsOutput {
     inner: aws_sdk_kms::operation::list_grants::ListGrantsOutput,
 }
 
 #[pymethods]
-impl PyListGrantsOutput {
+impl PyOperationListGrantsOutput {
     #[getter]
     fn grants(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.grants {
@@ -4080,13 +4072,13 @@ impl PyListGrantsOutput {
     }
 }
 
-#[pyclass(name = "ListKeyPoliciesResponse", module = "rboto_kms._native", frozen)]
-struct PyListKeyPoliciesResponse {
+#[pyclass(name = "ListKeyPoliciesOutput", module = "rboto_kms._native", frozen)]
+struct PyOperationListKeyPoliciesOutput {
     inner: aws_sdk_kms::operation::list_key_policies::ListKeyPoliciesOutput,
 }
 
 #[pymethods]
-impl PyListKeyPoliciesResponse {
+impl PyOperationListKeyPoliciesOutput {
     #[getter]
     fn policy_names(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.policy_names {
@@ -4143,17 +4135,13 @@ impl PyListKeyPoliciesResponse {
     }
 }
 
-#[pyclass(
-    name = "ListKeyRotationsResponse",
-    module = "rboto_kms._native",
-    frozen
-)]
-struct PyListKeyRotationsResponse {
+#[pyclass(name = "ListKeyRotationsOutput", module = "rboto_kms._native", frozen)]
+struct PyOperationListKeyRotationsOutput {
     inner: aws_sdk_kms::operation::list_key_rotations::ListKeyRotationsOutput,
 }
 
 #[pymethods]
-impl PyListKeyRotationsResponse {
+impl PyOperationListKeyRotationsOutput {
     #[getter]
     fn rotations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.rotations {
@@ -4216,13 +4204,13 @@ impl PyListKeyRotationsResponse {
     }
 }
 
-#[pyclass(name = "ListKeysResponse", module = "rboto_kms._native", frozen)]
-struct PyListKeysResponse {
+#[pyclass(name = "ListKeysOutput", module = "rboto_kms._native", frozen)]
+struct PyOperationListKeysOutput {
     inner: aws_sdk_kms::operation::list_keys::ListKeysOutput,
 }
 
 #[pymethods]
-impl PyListKeysResponse {
+impl PyOperationListKeysOutput {
     #[getter]
     fn keys(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.keys {
@@ -4285,17 +4273,13 @@ impl PyListKeysResponse {
     }
 }
 
-#[pyclass(
-    name = "ListResourceTagsResponse",
-    module = "rboto_kms._native",
-    frozen
-)]
-struct PyListResourceTagsResponse {
+#[pyclass(name = "ListResourceTagsOutput", module = "rboto_kms._native", frozen)]
+struct PyOperationListResourceTagsOutput {
     inner: aws_sdk_kms::operation::list_resource_tags::ListResourceTagsOutput,
 }
 
 #[pymethods]
-impl PyListResourceTagsResponse {
+impl PyOperationListResourceTagsOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
@@ -4363,12 +4347,12 @@ impl PyListResourceTagsResponse {
     module = "rboto_kms._native",
     frozen
 )]
-struct PyListRetirableGrantsOutput {
+struct PyOperationListRetirableGrantsOutput {
     inner: aws_sdk_kms::operation::list_retirable_grants::ListRetirableGrantsOutput,
 }
 
 #[pymethods]
-impl PyListRetirableGrantsOutput {
+impl PyOperationListRetirableGrantsOutput {
     #[getter]
     fn grants(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.grants {
@@ -4431,13 +4415,13 @@ impl PyListRetirableGrantsOutput {
     }
 }
 
-#[pyclass(name = "ReEncryptResponse", module = "rboto_kms._native", frozen)]
-struct PyReEncryptResponse {
+#[pyclass(name = "ReEncryptOutput", module = "rboto_kms._native", frozen)]
+struct PyOperationReEncryptOutput {
     inner: aws_sdk_kms::operation::re_encrypt::ReEncryptOutput,
 }
 
 #[pymethods]
-impl PyReEncryptResponse {
+impl PyOperationReEncryptOutput {
     #[getter]
     fn ciphertext_blob(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ciphertext_blob {
@@ -4556,13 +4540,13 @@ impl PyReEncryptResponse {
     }
 }
 
-#[pyclass(name = "ReplicateKeyResponse", module = "rboto_kms._native", frozen)]
-struct PyReplicateKeyResponse {
+#[pyclass(name = "ReplicateKeyOutput", module = "rboto_kms._native", frozen)]
+struct PyOperationReplicateKeyOutput {
     inner: aws_sdk_kms::operation::replicate_key::ReplicateKeyOutput,
 }
 
 #[pymethods]
-impl PyReplicateKeyResponse {
+impl PyOperationReplicateKeyOutput {
     #[getter]
     fn replica_key_metadata(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replica_key_metadata {
@@ -4639,17 +4623,13 @@ impl PyReplicateKeyResponse {
     }
 }
 
-#[pyclass(
-    name = "RotateKeyOnDemandResponse",
-    module = "rboto_kms._native",
-    frozen
-)]
-struct PyRotateKeyOnDemandResponse {
+#[pyclass(name = "RotateKeyOnDemandOutput", module = "rboto_kms._native", frozen)]
+struct PyOperationRotateKeyOnDemandOutput {
     inner: aws_sdk_kms::operation::rotate_key_on_demand::RotateKeyOnDemandOutput,
 }
 
 #[pymethods]
-impl PyRotateKeyOnDemandResponse {
+impl PyOperationRotateKeyOnDemandOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
@@ -4673,16 +4653,16 @@ impl PyRotateKeyOnDemandResponse {
 }
 
 #[pyclass(
-    name = "ScheduleKeyDeletionResponse",
+    name = "ScheduleKeyDeletionOutput",
     module = "rboto_kms._native",
     frozen
 )]
-struct PyScheduleKeyDeletionResponse {
+struct PyOperationScheduleKeyDeletionOutput {
     inner: aws_sdk_kms::operation::schedule_key_deletion::ScheduleKeyDeletionOutput,
 }
 
 #[pymethods]
-impl PyScheduleKeyDeletionResponse {
+impl PyOperationScheduleKeyDeletionOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
@@ -4753,13 +4733,13 @@ impl PyScheduleKeyDeletionResponse {
     }
 }
 
-#[pyclass(name = "SignResponse", module = "rboto_kms._native", frozen)]
-struct PySignResponse {
+#[pyclass(name = "SignOutput", module = "rboto_kms._native", frozen)]
+struct PyOperationSignOutput {
     inner: aws_sdk_kms::operation::sign::SignOutput,
 }
 
 #[pymethods]
-impl PySignResponse {
+impl PyOperationSignOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
@@ -4815,29 +4795,29 @@ impl PySignResponse {
 }
 
 #[pyclass(
-    name = "UpdateCustomKeyStoreResponse",
+    name = "UpdateCustomKeyStoreOutput",
     module = "rboto_kms._native",
     frozen
 )]
-struct PyUpdateCustomKeyStoreResponse {
+struct PyOperationUpdateCustomKeyStoreOutput {
     inner: aws_sdk_kms::operation::update_custom_key_store::UpdateCustomKeyStoreOutput,
 }
 
 #[pymethods]
-impl PyUpdateCustomKeyStoreResponse {
+impl PyOperationUpdateCustomKeyStoreOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "VerifyResponse", module = "rboto_kms._native", frozen)]
-struct PyVerifyResponse {
+#[pyclass(name = "VerifyOutput", module = "rboto_kms._native", frozen)]
+struct PyOperationVerifyOutput {
     inner: aws_sdk_kms::operation::verify::VerifyOutput,
 }
 
 #[pymethods]
-impl PyVerifyResponse {
+impl PyOperationVerifyOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
@@ -4884,13 +4864,13 @@ impl PyVerifyResponse {
     }
 }
 
-#[pyclass(name = "VerifyMacResponse", module = "rboto_kms._native", frozen)]
-struct PyVerifyMacResponse {
+#[pyclass(name = "VerifyMacOutput", module = "rboto_kms._native", frozen)]
+struct PyOperationVerifyMacOutput {
     inner: aws_sdk_kms::operation::verify_mac::VerifyMacOutput,
 }
 
 #[pymethods]
-impl PyVerifyMacResponse {
+impl PyOperationVerifyMacOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
@@ -4951,46 +4931,46 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyTag>()?;
     module.add_class::<PyXksKeyConfigurationType>()?;
     module.add_class::<PyXksProxyConfigurationType>()?;
-    module.add_class::<PyCancelKeyDeletionResponse>()?;
-    module.add_class::<PyConnectCustomKeyStoreResponse>()?;
-    module.add_class::<PyCreateCustomKeyStoreResponse>()?;
-    module.add_class::<PyCreateGrantResponse>()?;
-    module.add_class::<PyCreateKeyResponse>()?;
-    module.add_class::<PyDecryptResponse>()?;
-    module.add_class::<PyDeleteCustomKeyStoreResponse>()?;
-    module.add_class::<PyDeleteImportedKeyMaterialResponse>()?;
-    module.add_class::<PyDeriveSharedSecretResponse>()?;
-    module.add_class::<PyDescribeCustomKeyStoresResponse>()?;
-    module.add_class::<PyDescribeKeyResponse>()?;
-    module.add_class::<PyDisconnectCustomKeyStoreResponse>()?;
-    module.add_class::<PyEncryptResponse>()?;
-    module.add_class::<PyGenerateDataKeyResponse>()?;
-    module.add_class::<PyGenerateDataKeyPairResponse>()?;
-    module.add_class::<PyGenerateDataKeyPairWithoutPlaintextResponse>()?;
-    module.add_class::<PyGenerateDataKeyWithoutPlaintextResponse>()?;
-    module.add_class::<PyGenerateMacResponse>()?;
-    module.add_class::<PyGenerateRandomResponse>()?;
-    module.add_class::<PyGetKeyLastUsageResponse>()?;
-    module.add_class::<PyGetKeyPolicyResponse>()?;
-    module.add_class::<PyGetKeyRotationStatusResponse>()?;
-    module.add_class::<PyGetParametersForImportResponse>()?;
-    module.add_class::<PyGetPublicKeyResponse>()?;
-    module.add_class::<PyImportKeyMaterialResponse>()?;
-    module.add_class::<PyListAliasesResponse>()?;
-    module.add_class::<PyListGrantsOutput>()?;
-    module.add_class::<PyListKeyPoliciesResponse>()?;
-    module.add_class::<PyListKeyRotationsResponse>()?;
-    module.add_class::<PyListKeysResponse>()?;
-    module.add_class::<PyListResourceTagsResponse>()?;
-    module.add_class::<PyListRetirableGrantsOutput>()?;
-    module.add_class::<PyReEncryptResponse>()?;
-    module.add_class::<PyReplicateKeyResponse>()?;
-    module.add_class::<PyRotateKeyOnDemandResponse>()?;
-    module.add_class::<PyScheduleKeyDeletionResponse>()?;
-    module.add_class::<PySignResponse>()?;
-    module.add_class::<PyUpdateCustomKeyStoreResponse>()?;
-    module.add_class::<PyVerifyResponse>()?;
-    module.add_class::<PyVerifyMacResponse>()?;
+    module.add_class::<PyOperationCancelKeyDeletionOutput>()?;
+    module.add_class::<PyOperationConnectCustomKeyStoreOutput>()?;
+    module.add_class::<PyOperationCreateCustomKeyStoreOutput>()?;
+    module.add_class::<PyOperationCreateGrantOutput>()?;
+    module.add_class::<PyOperationCreateKeyOutput>()?;
+    module.add_class::<PyOperationDecryptOutput>()?;
+    module.add_class::<PyOperationDeleteCustomKeyStoreOutput>()?;
+    module.add_class::<PyOperationDeleteImportedKeyMaterialOutput>()?;
+    module.add_class::<PyOperationDeriveSharedSecretOutput>()?;
+    module.add_class::<PyOperationDescribeCustomKeyStoresOutput>()?;
+    module.add_class::<PyOperationDescribeKeyOutput>()?;
+    module.add_class::<PyOperationDisconnectCustomKeyStoreOutput>()?;
+    module.add_class::<PyOperationEncryptOutput>()?;
+    module.add_class::<PyOperationGenerateDataKeyOutput>()?;
+    module.add_class::<PyOperationGenerateDataKeyPairOutput>()?;
+    module.add_class::<PyOperationGenerateDataKeyPairWithoutPlaintextOutput>()?;
+    module.add_class::<PyOperationGenerateDataKeyWithoutPlaintextOutput>()?;
+    module.add_class::<PyOperationGenerateMacOutput>()?;
+    module.add_class::<PyOperationGenerateRandomOutput>()?;
+    module.add_class::<PyOperationGetKeyLastUsageOutput>()?;
+    module.add_class::<PyOperationGetKeyPolicyOutput>()?;
+    module.add_class::<PyOperationGetKeyRotationStatusOutput>()?;
+    module.add_class::<PyOperationGetParametersForImportOutput>()?;
+    module.add_class::<PyOperationGetPublicKeyOutput>()?;
+    module.add_class::<PyOperationImportKeyMaterialOutput>()?;
+    module.add_class::<PyOperationListAliasesOutput>()?;
+    module.add_class::<PyOperationListGrantsOutput>()?;
+    module.add_class::<PyOperationListKeyPoliciesOutput>()?;
+    module.add_class::<PyOperationListKeyRotationsOutput>()?;
+    module.add_class::<PyOperationListKeysOutput>()?;
+    module.add_class::<PyOperationListResourceTagsOutput>()?;
+    module.add_class::<PyOperationListRetirableGrantsOutput>()?;
+    module.add_class::<PyOperationReEncryptOutput>()?;
+    module.add_class::<PyOperationReplicateKeyOutput>()?;
+    module.add_class::<PyOperationRotateKeyOnDemandOutput>()?;
+    module.add_class::<PyOperationScheduleKeyDeletionOutput>()?;
+    module.add_class::<PyOperationSignOutput>()?;
+    module.add_class::<PyOperationUpdateCustomKeyStoreOutput>()?;
+    module.add_class::<PyOperationVerifyOutput>()?;
+    module.add_class::<PyOperationVerifyMacOutput>()?;
 
     Ok(())
 }
@@ -5055,7 +5035,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CancelKeyDeletion"))
             })?;
-            Ok(PyCancelKeyDeletionResponse { inner: output })
+            Ok(PyOperationCancelKeyDeletionOutput { inner: output })
         })
     }
 
@@ -5094,7 +5074,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ConnectCustomKeyStore"))
             })?;
-            Ok(PyConnectCustomKeyStoreResponse { inner: output })
+            Ok(PyOperationConnectCustomKeyStoreOutput { inner: output })
         })
     }
 
@@ -5263,7 +5243,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateCustomKeyStore"))
             })?;
-            Ok(PyCreateCustomKeyStoreResponse { inner: output })
+            Ok(PyOperationCreateCustomKeyStoreOutput { inner: output })
         })
     }
 
@@ -5381,7 +5361,7 @@ impl KMSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateGrant")))?;
-            Ok(PyCreateGrantResponse { inner: output })
+            Ok(PyOperationCreateGrantOutput { inner: output })
         })
     }
 
@@ -5502,7 +5482,7 @@ impl KMSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateKey")))?;
-            Ok(PyCreateKeyResponse { inner: output })
+            Ok(PyOperationCreateKeyOutput { inner: output })
         })
     }
 
@@ -5614,7 +5594,7 @@ impl KMSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Decrypt")))?;
-            Ok(PyDecryptResponse { inner: output })
+            Ok(PyOperationDecryptOutput { inner: output })
         })
     }
 
@@ -5688,7 +5668,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteCustomKeyStore"))
             })?;
-            Ok(PyDeleteCustomKeyStoreResponse { inner: output })
+            Ok(PyOperationDeleteCustomKeyStoreOutput { inner: output })
         })
     }
 
@@ -5733,7 +5713,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteImportedKeyMaterial"))
             })?;
-            Ok(PyDeleteImportedKeyMaterialResponse { inner: output })
+            Ok(PyOperationDeleteImportedKeyMaterialOutput { inner: output })
         })
     }
 
@@ -5816,7 +5796,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeriveSharedSecret"))
             })?;
-            Ok(PyDeriveSharedSecretResponse { inner: output })
+            Ok(PyOperationDeriveSharedSecretOutput { inner: output })
         })
     }
 
@@ -5877,7 +5857,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeCustomKeyStores"))
             })?;
-            Ok(PyDescribeCustomKeyStoresResponse { inner: output })
+            Ok(PyOperationDescribeCustomKeyStoresOutput { inner: output })
         })
     }
 
@@ -5927,7 +5907,7 @@ impl KMSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DescribeKey")))?;
-            Ok(PyDescribeKeyResponse { inner: output })
+            Ok(PyOperationDescribeKeyOutput { inner: output })
         })
     }
 
@@ -6037,7 +6017,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DisconnectCustomKeyStore"))
             })?;
-            Ok(PyDisconnectCustomKeyStoreResponse { inner: output })
+            Ok(PyOperationDisconnectCustomKeyStoreOutput { inner: output })
         })
     }
 
@@ -6207,7 +6187,7 @@ impl KMSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Encrypt")))?;
-            Ok(PyEncryptResponse { inner: output })
+            Ok(PyOperationEncryptOutput { inner: output })
         })
     }
 
@@ -6301,7 +6281,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GenerateDataKey"))
             })?;
-            Ok(PyGenerateDataKeyResponse { inner: output })
+            Ok(PyOperationGenerateDataKeyOutput { inner: output })
         })
     }
 
@@ -6388,7 +6368,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GenerateDataKeyPair"))
             })?;
-            Ok(PyGenerateDataKeyPairResponse { inner: output })
+            Ok(PyOperationGenerateDataKeyPairOutput { inner: output })
         })
     }
 
@@ -6470,7 +6450,7 @@ impl KMSClient {
                     sdk_error_to_py(py, &error, "GenerateDataKeyPairWithoutPlaintext")
                 })
             })?;
-            Ok(PyGenerateDataKeyPairWithoutPlaintextResponse { inner: output })
+            Ok(PyOperationGenerateDataKeyPairWithoutPlaintextOutput { inner: output })
         })
     }
 
@@ -6557,7 +6537,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GenerateDataKeyWithoutPlaintext"))
             })?;
-            Ok(PyGenerateDataKeyWithoutPlaintextResponse { inner: output })
+            Ok(PyOperationGenerateDataKeyWithoutPlaintextOutput { inner: output })
         })
     }
 
@@ -6630,7 +6610,7 @@ impl KMSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GenerateMac")))?;
-            Ok(PyGenerateMacResponse { inner: output })
+            Ok(PyOperationGenerateMacOutput { inner: output })
         })
     }
 
@@ -6683,7 +6663,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GenerateRandom"))
             })?;
-            Ok(PyGenerateRandomResponse { inner: output })
+            Ok(PyOperationGenerateRandomOutput { inner: output })
         })
     }
 
@@ -6719,7 +6699,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetKeyLastUsage"))
             })?;
-            Ok(PyGetKeyLastUsageResponse { inner: output })
+            Ok(PyOperationGetKeyLastUsageOutput { inner: output })
         })
     }
 
@@ -6764,7 +6744,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetKeyPolicy"))
             })?;
-            Ok(PyGetKeyPolicyResponse { inner: output })
+            Ok(PyOperationGetKeyPolicyOutput { inner: output })
         })
     }
 
@@ -6800,7 +6780,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetKeyRotationStatus"))
             })?;
-            Ok(PyGetKeyRotationStatusResponse { inner: output })
+            Ok(PyOperationGetKeyRotationStatusOutput { inner: output })
         })
     }
 
@@ -6857,7 +6837,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetParametersForImport"))
             })?;
-            Ok(PyGetParametersForImportResponse { inner: output })
+            Ok(PyOperationGetParametersForImportOutput { inner: output })
         })
     }
 
@@ -6908,7 +6888,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPublicKey"))
             })?;
-            Ok(PyGetPublicKeyResponse { inner: output })
+            Ok(PyOperationGetPublicKeyOutput { inner: output })
         })
     }
 
@@ -7007,7 +6987,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ImportKeyMaterial"))
             })?;
-            Ok(PyImportKeyMaterialResponse { inner: output })
+            Ok(PyOperationImportKeyMaterialOutput { inner: output })
         })
     }
 
@@ -7058,7 +7038,7 @@ impl KMSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListAliases")))?;
-            Ok(PyListAliasesResponse { inner: output })
+            Ok(PyOperationListAliasesOutput { inner: output })
         })
     }
 
@@ -7132,7 +7112,7 @@ impl KMSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListGrants")))?;
-            Ok(PyListGrantsOutput { inner: output })
+            Ok(PyOperationListGrantsOutput { inner: output })
         })
     }
 
@@ -7184,7 +7164,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListKeyPolicies"))
             })?;
-            Ok(PyListKeyPoliciesResponse { inner: output })
+            Ok(PyOperationListKeyPoliciesOutput { inner: output })
         })
     }
 
@@ -7246,7 +7226,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListKeyRotations"))
             })?;
-            Ok(PyListKeyRotationsResponse { inner: output })
+            Ok(PyOperationListKeyRotationsOutput { inner: output })
         })
     }
 
@@ -7290,7 +7270,7 @@ impl KMSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListKeys")))?;
-            Ok(PyListKeysResponse { inner: output })
+            Ok(PyOperationListKeysOutput { inner: output })
         })
     }
 
@@ -7342,7 +7322,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListResourceTags"))
             })?;
-            Ok(PyListResourceTagsResponse { inner: output })
+            Ok(PyOperationListResourceTagsOutput { inner: output })
         })
     }
 
@@ -7403,7 +7383,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListRetirableGrants"))
             })?;
-            Ok(PyListRetirableGrantsOutput { inner: output })
+            Ok(PyOperationListRetirableGrantsOutput { inner: output })
         })
     }
 
@@ -7600,7 +7580,7 @@ impl KMSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ReEncrypt")))?;
-            Ok(PyReEncryptResponse { inner: output })
+            Ok(PyOperationReEncryptOutput { inner: output })
         })
     }
 
@@ -7680,7 +7660,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ReplicateKey"))
             })?;
-            Ok(PyReplicateKeyResponse { inner: output })
+            Ok(PyOperationReplicateKeyOutput { inner: output })
         })
     }
 
@@ -7825,7 +7805,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RotateKeyOnDemand"))
             })?;
-            Ok(PyRotateKeyOnDemandResponse { inner: output })
+            Ok(PyOperationRotateKeyOnDemandOutput { inner: output })
         })
     }
 
@@ -7871,7 +7851,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ScheduleKeyDeletion"))
             })?;
-            Ok(PyScheduleKeyDeletionResponse { inner: output })
+            Ok(PyOperationScheduleKeyDeletionOutput { inner: output })
         })
     }
 
@@ -7954,7 +7934,7 @@ impl KMSClient {
             };
             let output =
                 result.map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Sign")))?;
-            Ok(PySignResponse { inner: output })
+            Ok(PyOperationSignOutput { inner: output })
         })
     }
 
@@ -8214,7 +8194,7 @@ impl KMSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateCustomKeyStore"))
             })?;
-            Ok(PyUpdateCustomKeyStoreResponse { inner: output })
+            Ok(PyOperationUpdateCustomKeyStoreOutput { inner: output })
         })
     }
 
@@ -8395,7 +8375,7 @@ impl KMSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Verify")))?;
-            Ok(PyVerifyResponse { inner: output })
+            Ok(PyOperationVerifyOutput { inner: output })
         })
     }
 
@@ -8476,7 +8456,7 @@ impl KMSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "VerifyMac")))?;
-            Ok(PyVerifyMacResponse { inner: output })
+            Ok(PyOperationVerifyMacOutput { inner: output })
         })
     }
 }

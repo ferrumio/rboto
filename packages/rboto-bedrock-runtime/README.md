@@ -87,17 +87,17 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`apply_guardrail`](#apply_guardrail) | <code>guardrail_identifier: str</code>, <code>guardrail_version: str</code>, <code>source: GuardrailContentSource</code>, <code>content: Sequence[GuardrailContentBlock]</code> | <code>ApplyGuardrailResponse</code> |
-| [`converse`](#converse) | <code>model_id: str</code> | <code>ConverseResponse</code> |
-| [`converse_stream`](#converse_stream) | <code>model_id: str</code> | <code>ConverseStreamResponse</code> |
-| [`count_tokens`](#count_tokens) | <code>model_id: str</code>, <code>input: CountTokensInput</code> | <code>CountTokensResponse</code> |
-| [`get_async_invoke`](#get_async_invoke) | <code>invocation_arn: str</code> | <code>GetAsyncInvokeResponse</code> |
-| [`invoke_guardrail_checks`](#invoke_guardrail_checks) | <code>messages: Sequence[GuardrailChecksMessage]</code>, <code>checks: GuardrailChecksConfig</code> | <code>InvokeGuardrailChecksResponse</code> |
-| [`invoke_model`](#invoke_model) | <code>model_id: str</code> | <code>InvokeModelResponse</code> |
-| [`invoke_model_with_bidirectional_stream`](#invoke_model_with_bidirectional_stream) | <code>model_id: str</code>, <code>body: AsyncIterator[InvokeModelWithBidirectionalStreamInput]</code> | <code>InvokeModelWithBidirectionalStreamResponse</code> |
-| [`invoke_model_with_response_stream`](#invoke_model_with_response_stream) | <code>model_id: str</code> | <code>InvokeModelWithResponseStreamResponse</code> |
-| [`list_async_invokes`](#list_async_invokes) | None | <code>ListAsyncInvokesResponse</code> |
-| [`start_async_invoke`](#start_async_invoke) | <code>model_id: str</code>, <code>model_input: JSONValue</code>, <code>output_data_config: AsyncInvokeOutputDataConfig</code> | <code>StartAsyncInvokeResponse</code> |
+| [`apply_guardrail`](#apply_guardrail) | <code>guardrail_identifier: str</code>, <code>guardrail_version: str</code>, <code>source: GuardrailContentSource</code>, <code>content: Sequence[GuardrailContentBlock]</code> | <code>ApplyGuardrailOutput</code> |
+| [`converse`](#converse) | <code>model_id: str</code> | <code>ConverseOutput</code> |
+| [`converse_stream`](#converse_stream) | <code>model_id: str</code> | <code>ConverseStreamOutput</code> |
+| [`count_tokens`](#count_tokens) | <code>model_id: str</code>, <code>input: CountTokensInput</code> | <code>CountTokensOutput</code> |
+| [`get_async_invoke`](#get_async_invoke) | <code>invocation_arn: str</code> | <code>GetAsyncInvokeOutput</code> |
+| [`invoke_guardrail_checks`](#invoke_guardrail_checks) | <code>messages: Sequence[GuardrailChecksMessage]</code>, <code>checks: GuardrailChecksConfig</code> | <code>InvokeGuardrailChecksOutput</code> |
+| [`invoke_model`](#invoke_model) | <code>model_id: str</code> | <code>InvokeModelOutput</code> |
+| [`invoke_model_with_bidirectional_stream`](#invoke_model_with_bidirectional_stream) | <code>model_id: str</code>, <code>body: AsyncIterator[InvokeModelWithBidirectionalStreamInput]</code> | <code>InvokeModelWithBidirectionalStreamOutput</code> |
+| [`invoke_model_with_response_stream`](#invoke_model_with_response_stream) | <code>model_id: str</code> | <code>InvokeModelWithResponseStreamOutput</code> |
+| [`list_async_invokes`](#list_async_invokes) | None | <code>ListAsyncInvokesOutput</code> |
+| [`start_async_invoke`](#start_async_invoke) | <code>model_id: str</code>, <code>model_input: JSONValue</code>, <code>output_data_config: AsyncInvokeOutputDataConfig</code> | <code>StartAsyncInvokeOutput</code> |
 
 ## Complete signatures
 
@@ -111,7 +111,7 @@ async def apply_guardrail(
     source: GuardrailContentSource,
     content: Sequence[GuardrailContentBlock],
     output_scope: GuardrailOutputScope | None = None,
-) -> ApplyGuardrailResponse: ...
+) -> ApplyGuardrailOutput: ...
 ```
 
 
@@ -133,7 +133,7 @@ async def converse(
     performance_config: PerformanceConfiguration | None = None,
     service_tier: ServiceTier | None = None,
     output_config: OutputConfig | None = None,
-) -> ConverseResponse: ...
+) -> ConverseOutput: ...
 ```
 
 
@@ -155,7 +155,7 @@ async def converse_stream(
     performance_config: PerformanceConfiguration | None = None,
     service_tier: ServiceTier | None = None,
     output_config: OutputConfig | None = None,
-) -> ConverseStreamResponse: ...
+) -> ConverseStreamOutput: ...
 ```
 
 
@@ -166,7 +166,7 @@ async def count_tokens(
     *,
     model_id: str,
     input: CountTokensInput,
-) -> CountTokensResponse: ...
+) -> CountTokensOutput: ...
 ```
 
 
@@ -176,7 +176,7 @@ async def count_tokens(
 async def get_async_invoke(
     *,
     invocation_arn: str,
-) -> GetAsyncInvokeResponse: ...
+) -> GetAsyncInvokeOutput: ...
 ```
 
 
@@ -187,7 +187,7 @@ async def invoke_guardrail_checks(
     *,
     messages: Sequence[GuardrailChecksMessage],
     checks: GuardrailChecksConfig,
-) -> InvokeGuardrailChecksResponse: ...
+) -> InvokeGuardrailChecksOutput: ...
 ```
 
 
@@ -206,7 +206,7 @@ async def invoke_model(
     performance_config_latency: PerformanceConfigLatency | None = None,
     service_tier: ServiceTierType | None = None,
     request_metadata: str | None = None,
-) -> InvokeModelResponse: ...
+) -> InvokeModelOutput: ...
 ```
 
 
@@ -217,7 +217,7 @@ async def invoke_model_with_bidirectional_stream(
     *,
     model_id: str,
     body: AsyncIterator[InvokeModelWithBidirectionalStreamInput],
-) -> InvokeModelWithBidirectionalStreamResponse: ...
+) -> InvokeModelWithBidirectionalStreamOutput: ...
 ```
 
 
@@ -236,7 +236,7 @@ async def invoke_model_with_response_stream(
     performance_config_latency: PerformanceConfigLatency | None = None,
     service_tier: ServiceTierType | None = None,
     request_metadata: str | None = None,
-) -> InvokeModelWithResponseStreamResponse: ...
+) -> InvokeModelWithResponseStreamOutput: ...
 ```
 
 
@@ -252,7 +252,7 @@ async def list_async_invokes(
     next_token: str | None = None,
     sort_by: SortAsyncInvocationBy | None = None,
     sort_order: SortOrder | None = None,
-) -> ListAsyncInvokesResponse: ...
+) -> ListAsyncInvokesOutput: ...
 ```
 
 Also available as `client.paginators.list_async_invokes(...)`, returning an
@@ -269,7 +269,7 @@ async def start_async_invoke(
     output_data_config: AsyncInvokeOutputDataConfig,
     client_request_token: str | None = None,
     tags: Sequence[Tag] | None = None,
-) -> StartAsyncInvokeResponse: ...
+) -> StartAsyncInvokeOutput: ...
 ```
 
 

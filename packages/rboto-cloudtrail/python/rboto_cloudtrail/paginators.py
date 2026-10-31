@@ -8,18 +8,18 @@ from typing import TYPE_CHECKING
 from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _paginate
 
 from ._native import (
-    GetQueryResultsResponse,
-    ListChannelsResponse,
-    ListEventDataStoresResponse,
-    ListImportFailuresResponse,
-    ListImportsResponse,
-    ListInsightsDataResponse,
-    ListInsightsMetricDataResponse,
-    ListPublicKeysResponse,
-    ListQueriesResponse,
-    ListTagsResponse,
-    ListTrailsResponse,
-    LookupEventsResponse,
+    GetQueryResultsOutput,
+    ListChannelsOutput,
+    ListEventDataStoresOutput,
+    ListImportFailuresOutput,
+    ListImportsOutput,
+    ListInsightsDataOutput,
+    ListInsightsMetricDataOutput,
+    ListPublicKeysOutput,
+    ListQueriesOutput,
+    ListTagsOutput,
+    ListTrailsOutput,
+    LookupEventsOutput,
 )
 
 from .types import (
@@ -50,7 +50,7 @@ class CloudTrailClientPaginators:
         next_token: str | None = None,
         max_query_results: int | None = None,
         event_data_store_owner_account_id: str | None = None,
-    ) -> AsyncIterator[GetQueryResultsResponse]:
+    ) -> AsyncIterator[GetQueryResultsOutput]:
         """Yield each page from get_query_results; requests start on iteration."""
         params: dict[str, object] = {
             "query_id": query_id,
@@ -78,7 +78,7 @@ class CloudTrailClientPaginators:
         *,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListChannelsResponse]:
+    ) -> AsyncIterator[ListChannelsOutput]:
         """Yield each page from list_channels; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -101,7 +101,7 @@ class CloudTrailClientPaginators:
         *,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListEventDataStoresResponse]:
+    ) -> AsyncIterator[ListEventDataStoresOutput]:
         """Yield each page from list_event_data_stores; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -125,7 +125,7 @@ class CloudTrailClientPaginators:
         import_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListImportFailuresResponse]:
+    ) -> AsyncIterator[ListImportFailuresOutput]:
         """Yield each page from list_import_failures; requests start on iteration."""
         params: dict[str, object] = {
             "import_id": import_id,
@@ -151,7 +151,7 @@ class CloudTrailClientPaginators:
         destination: str | None = None,
         import_status: ImportStatus | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListImportsResponse]:
+    ) -> AsyncIterator[ListImportsOutput]:
         """Yield each page from list_imports; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -183,7 +183,7 @@ class CloudTrailClientPaginators:
         end_time: str | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListInsightsDataResponse]:
+    ) -> AsyncIterator[ListInsightsDataOutput]:
         """Yield each page from list_insights_data; requests start on iteration."""
         params: dict[str, object] = {
             "insight_source": insight_source,
@@ -223,7 +223,7 @@ class CloudTrailClientPaginators:
         data_type: InsightsMetricDataType | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListInsightsMetricDataResponse]:
+    ) -> AsyncIterator[ListInsightsMetricDataOutput]:
         """Yield each page from list_insights_metric_data; requests start on iteration."""
         params: dict[str, object] = {
             "event_source": event_source,
@@ -262,7 +262,7 @@ class CloudTrailClientPaginators:
         start_time: str | None = None,
         end_time: str | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListPublicKeysResponse]:
+    ) -> AsyncIterator[ListPublicKeysOutput]:
         """Yield each page from list_public_keys; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -291,7 +291,7 @@ class CloudTrailClientPaginators:
         start_time: str | None = None,
         end_time: str | None = None,
         query_status: QueryStatus | None = None,
-    ) -> AsyncIterator[ListQueriesResponse]:
+    ) -> AsyncIterator[ListQueriesOutput]:
         """Yield each page from list_queries; requests start on iteration."""
         params: dict[str, object] = {
             "event_data_store": event_data_store,
@@ -321,7 +321,7 @@ class CloudTrailClientPaginators:
         *,
         resource_id_list: Sequence[str],
         next_token: str | None = None,
-    ) -> AsyncIterator[ListTagsResponse]:
+    ) -> AsyncIterator[ListTagsOutput]:
         """Yield each page from list_tags; requests start on iteration."""
         params: dict[str, object] = {
             "resource_id_list": resource_id_list,
@@ -342,7 +342,7 @@ class CloudTrailClientPaginators:
         self,
         *,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListTrailsResponse]:
+    ) -> AsyncIterator[ListTrailsOutput]:
         """Yield each page from list_trails; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -367,7 +367,7 @@ class CloudTrailClientPaginators:
         event_category: EventCategory | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[LookupEventsResponse]:
+    ) -> AsyncIterator[LookupEventsOutput]:
         """Yield each page from lookup_events; requests start on iteration."""
         params: dict[str, object] = {
         }

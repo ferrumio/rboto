@@ -103,11 +103,11 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`get_medical_scribe_stream`](#get_medical_scribe_stream) | <code>session_id: str</code> | <code>GetMedicalScribeStreamResponse</code> |
-| [`start_call_analytics_stream_transcription`](#start_call_analytics_stream_transcription) | <code>media_sample_rate_hertz: int</code>, <code>media_encoding: MediaEncoding</code>, <code>audio_stream: AsyncIterator[AudioStream]</code> | <code>StartCallAnalyticsStreamTranscriptionResponse</code> |
-| [`start_medical_scribe_stream`](#start_medical_scribe_stream) | <code>language_code: MedicalScribeLanguageCode</code>, <code>media_sample_rate_hertz: int</code>, <code>media_encoding: MedicalScribeMediaEncoding</code>, <code>input_stream: AsyncIterator[MedicalScribeInputStream]</code> | <code>StartMedicalScribeStreamResponse</code> |
-| [`start_medical_stream_transcription`](#start_medical_stream_transcription) | <code>language_code: LanguageCode</code>, <code>media_sample_rate_hertz: int</code>, <code>media_encoding: MediaEncoding</code>, <code>specialty: Specialty</code>, <code>type: Type</code>, <code>audio_stream: AsyncIterator[AudioStream]</code> | <code>StartMedicalStreamTranscriptionResponse</code> |
-| [`start_stream_transcription`](#start_stream_transcription) | <code>media_sample_rate_hertz: int</code>, <code>media_encoding: MediaEncoding</code>, <code>audio_stream: AsyncIterator[AudioStream]</code> | <code>StartStreamTranscriptionResponse</code> |
+| [`get_medical_scribe_stream`](#get_medical_scribe_stream) | <code>session_id: str</code> | <code>GetMedicalScribeStreamOutput</code> |
+| [`start_call_analytics_stream_transcription`](#start_call_analytics_stream_transcription) | <code>media_sample_rate_hertz: int</code>, <code>media_encoding: MediaEncoding</code>, <code>audio_stream: AsyncIterator[AudioStream]</code> | <code>StartCallAnalyticsStreamTranscriptionOutput</code> |
+| [`start_medical_scribe_stream`](#start_medical_scribe_stream) | <code>language_code: MedicalScribeLanguageCode</code>, <code>media_sample_rate_hertz: int</code>, <code>media_encoding: MedicalScribeMediaEncoding</code>, <code>input_stream: AsyncIterator[MedicalScribeInputStream]</code> | <code>StartMedicalScribeStreamOutput</code> |
+| [`start_medical_stream_transcription`](#start_medical_stream_transcription) | <code>language_code: LanguageCode</code>, <code>media_sample_rate_hertz: int</code>, <code>media_encoding: MediaEncoding</code>, <code>specialty: Specialty</code>, <code>type: Type</code>, <code>audio_stream: AsyncIterator[AudioStream]</code> | <code>StartMedicalStreamTranscriptionOutput</code> |
+| [`start_stream_transcription`](#start_stream_transcription) | <code>media_sample_rate_hertz: int</code>, <code>media_encoding: MediaEncoding</code>, <code>audio_stream: AsyncIterator[AudioStream]</code> | <code>StartStreamTranscriptionOutput</code> |
 
 ## Complete signatures
 
@@ -117,7 +117,7 @@ native response definitions are in the package's `_native.pyi`.
 async def get_medical_scribe_stream(
     *,
     session_id: str,
-) -> GetMedicalScribeStreamResponse: ...
+) -> GetMedicalScribeStreamOutput: ...
 ```
 
 
@@ -145,7 +145,7 @@ async def start_call_analytics_stream_transcription(
     content_identification_type: ContentIdentificationType | None = None,
     content_redaction_type: ContentRedactionType | None = None,
     pii_entity_types: str | None = None,
-) -> StartCallAnalyticsStreamTranscriptionResponse: ...
+) -> StartCallAnalyticsStreamTranscriptionOutput: ...
 ```
 
 
@@ -159,7 +159,7 @@ async def start_medical_scribe_stream(
     media_encoding: MedicalScribeMediaEncoding,
     input_stream: AsyncIterator[MedicalScribeInputStream],
     session_id: str | None = None,
-) -> StartMedicalScribeStreamResponse: ...
+) -> StartMedicalScribeStreamOutput: ...
 ```
 
 
@@ -180,7 +180,7 @@ async def start_medical_stream_transcription(
     enable_channel_identification: bool | None = None,
     number_of_channels: int | None = None,
     content_identification_type: MedicalContentIdentificationType | None = None,
-) -> StartMedicalStreamTranscriptionResponse: ...
+) -> StartMedicalStreamTranscriptionOutput: ...
 ```
 
 
@@ -214,7 +214,7 @@ async def start_stream_transcription(
     vocabulary_filter_names: str | None = None,
     session_resume_window: int | None = None,
     transcript_format: TranscriptFormat | None = None,
-) -> StartStreamTranscriptionResponse: ...
+) -> StartStreamTranscriptionOutput: ...
 ```
 
 

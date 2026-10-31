@@ -9,7 +9,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto.logging import operation_interceptors
 
-from ._native import SQSClient as NativeClient, CancelMessageMoveTaskResult, ChangeMessageVisibilityBatchResult, CreateQueueResult, DeleteMessageBatchResult, GetQueueAttributesResult, GetQueueUrlResult, ListDeadLetterSourceQueuesResult, ListMessageMoveTasksResult, ListQueueTagsResult, ListQueuesResult, ReceiveMessageResult, SendMessageBatchResult, SendMessageResult, StartMessageMoveTaskResult
+from ._native import SQSClient as NativeClient, CancelMessageMoveTaskOutput, ChangeMessageVisibilityBatchOutput, CreateQueueOutput, DeleteMessageBatchOutput, GetQueueAttributesOutput, GetQueueUrlOutput, ListDeadLetterSourceQueuesOutput, ListMessageMoveTasksOutput, ListQueueTagsOutput, ListQueuesOutput, ReceiveMessageOutput, SendMessageBatchOutput, SendMessageOutput, StartMessageMoveTaskOutput
 from .types import (
     ChangeMessageVisibilityBatchRequestEntry,
     DeleteMessageBatchRequestEntry,
@@ -92,7 +92,7 @@ class SQSClient:
         self,
         *,
         task_handle: str,
-    ) -> CancelMessageMoveTaskResult:
+    ) -> CancelMessageMoveTaskOutput:
         params: dict[str, object] = {
             "task_handle": task_handle,
         }
@@ -101,7 +101,7 @@ class SQSClient:
             _response = await invoke(
                 self._native.cancel_message_move_task, params, _interceptors,
                 "sqs", "CancelMessageMoveTask", self._region,
-                CancelMessageMoveTaskResult,
+                CancelMessageMoveTaskOutput,
                 ("task_handle", ),
                 ("task_handle", ),
             )
@@ -141,7 +141,7 @@ class SQSClient:
         *,
         queue_url: str,
         entries: Sequence[ChangeMessageVisibilityBatchRequestEntry],
-    ) -> ChangeMessageVisibilityBatchResult:
+    ) -> ChangeMessageVisibilityBatchOutput:
         params: dict[str, object] = {
             "queue_url": queue_url,
             "entries": entries,
@@ -151,7 +151,7 @@ class SQSClient:
             _response = await invoke(
                 self._native.change_message_visibility_batch, params, _interceptors,
                 "sqs", "ChangeMessageVisibilityBatch", self._region,
-                ChangeMessageVisibilityBatchResult,
+                ChangeMessageVisibilityBatchOutput,
                 ("queue_url", "entries", ),
                 ("queue_url", "entries", ),
             )
@@ -166,7 +166,7 @@ class SQSClient:
         queue_name: str,
         attributes: dict[QueueAttributeName, str] | None = None,
         tags: dict[str, str] | None = None,
-    ) -> CreateQueueResult:
+    ) -> CreateQueueOutput:
         params: dict[str, object] = {
             "queue_name": queue_name,
         }
@@ -179,7 +179,7 @@ class SQSClient:
             _response = await invoke(
                 self._native.create_queue, params, _interceptors,
                 "sqs", "CreateQueue", self._region,
-                CreateQueueResult,
+                CreateQueueOutput,
                 ("queue_name", "attributes", "tags", ),
                 ("queue_name", ),
             )
@@ -217,7 +217,7 @@ class SQSClient:
         *,
         queue_url: str,
         entries: Sequence[DeleteMessageBatchRequestEntry],
-    ) -> DeleteMessageBatchResult:
+    ) -> DeleteMessageBatchOutput:
         params: dict[str, object] = {
             "queue_url": queue_url,
             "entries": entries,
@@ -227,7 +227,7 @@ class SQSClient:
             _response = await invoke(
                 self._native.delete_message_batch, params, _interceptors,
                 "sqs", "DeleteMessageBatch", self._region,
-                DeleteMessageBatchResult,
+                DeleteMessageBatchOutput,
                 ("queue_url", "entries", ),
                 ("queue_url", "entries", ),
             )
@@ -263,7 +263,7 @@ class SQSClient:
         *,
         queue_url: str,
         attribute_names: Sequence[QueueAttributeName] | None = None,
-    ) -> GetQueueAttributesResult:
+    ) -> GetQueueAttributesOutput:
         params: dict[str, object] = {
             "queue_url": queue_url,
         }
@@ -274,7 +274,7 @@ class SQSClient:
             _response = await invoke(
                 self._native.get_queue_attributes, params, _interceptors,
                 "sqs", "GetQueueAttributes", self._region,
-                GetQueueAttributesResult,
+                GetQueueAttributesOutput,
                 ("queue_url", "attribute_names", ),
                 ("queue_url", ),
             )
@@ -288,7 +288,7 @@ class SQSClient:
         *,
         queue_name: str,
         queue_owner_aws_account_id: str | None = None,
-    ) -> GetQueueUrlResult:
+    ) -> GetQueueUrlOutput:
         params: dict[str, object] = {
             "queue_name": queue_name,
         }
@@ -299,7 +299,7 @@ class SQSClient:
             _response = await invoke(
                 self._native.get_queue_url, params, _interceptors,
                 "sqs", "GetQueueUrl", self._region,
-                GetQueueUrlResult,
+                GetQueueUrlOutput,
                 ("queue_name", "queue_owner_aws_account_id", ),
                 ("queue_name", ),
             )
@@ -314,7 +314,7 @@ class SQSClient:
         queue_url: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListDeadLetterSourceQueuesResult:
+    ) -> ListDeadLetterSourceQueuesOutput:
         params: dict[str, object] = {
             "queue_url": queue_url,
         }
@@ -327,7 +327,7 @@ class SQSClient:
             _response = await invoke(
                 self._native.list_dead_letter_source_queues, params, _interceptors,
                 "sqs", "ListDeadLetterSourceQueues", self._region,
-                ListDeadLetterSourceQueuesResult,
+                ListDeadLetterSourceQueuesOutput,
                 ("queue_url", "next_token", "max_results", ),
                 ("queue_url", ),
             )
@@ -341,7 +341,7 @@ class SQSClient:
         *,
         source_arn: str,
         max_results: int | None = None,
-    ) -> ListMessageMoveTasksResult:
+    ) -> ListMessageMoveTasksOutput:
         params: dict[str, object] = {
             "source_arn": source_arn,
         }
@@ -352,7 +352,7 @@ class SQSClient:
             _response = await invoke(
                 self._native.list_message_move_tasks, params, _interceptors,
                 "sqs", "ListMessageMoveTasks", self._region,
-                ListMessageMoveTasksResult,
+                ListMessageMoveTasksOutput,
                 ("source_arn", "max_results", ),
                 ("source_arn", ),
             )
@@ -365,7 +365,7 @@ class SQSClient:
         self,
         *,
         queue_url: str,
-    ) -> ListQueueTagsResult:
+    ) -> ListQueueTagsOutput:
         params: dict[str, object] = {
             "queue_url": queue_url,
         }
@@ -374,7 +374,7 @@ class SQSClient:
             _response = await invoke(
                 self._native.list_queue_tags, params, _interceptors,
                 "sqs", "ListQueueTags", self._region,
-                ListQueueTagsResult,
+                ListQueueTagsOutput,
                 ("queue_url", ),
                 ("queue_url", ),
             )
@@ -389,7 +389,7 @@ class SQSClient:
         queue_name_prefix: str | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListQueuesResult:
+    ) -> ListQueuesOutput:
         params: dict[str, object] = {
         }
         if queue_name_prefix is not None:
@@ -403,7 +403,7 @@ class SQSClient:
             _response = await invoke(
                 self._native.list_queues, params, _interceptors,
                 "sqs", "ListQueues", self._region,
-                ListQueuesResult,
+                ListQueuesOutput,
                 ("queue_name_prefix", "next_token", "max_results", ),
                 (),
             )
@@ -445,7 +445,7 @@ class SQSClient:
         visibility_timeout: int | None = None,
         wait_time_seconds: int | None = None,
         receive_request_attempt_id: str | None = None,
-    ) -> ReceiveMessageResult:
+    ) -> ReceiveMessageOutput:
         params: dict[str, object] = {
             "queue_url": queue_url,
         }
@@ -468,7 +468,7 @@ class SQSClient:
             _response = await invoke(
                 self._native.receive_message, params, _interceptors,
                 "sqs", "ReceiveMessage", self._region,
-                ReceiveMessageResult,
+                ReceiveMessageOutput,
                 ("queue_url", "attribute_names", "message_system_attribute_names", "message_attribute_names", "max_number_of_messages", "visibility_timeout", "wait_time_seconds", "receive_request_attempt_id", ),
                 ("queue_url", ),
             )
@@ -511,7 +511,7 @@ class SQSClient:
         message_system_attributes: dict[MessageSystemAttributeNameForSends, MessageSystemAttributeValue] | None = None,
         message_deduplication_id: str | None = None,
         message_group_id: str | None = None,
-    ) -> SendMessageResult:
+    ) -> SendMessageOutput:
         params: dict[str, object] = {
             "queue_url": queue_url,
             "message_body": message_body,
@@ -531,7 +531,7 @@ class SQSClient:
             _response = await invoke(
                 self._native.send_message, params, _interceptors,
                 "sqs", "SendMessage", self._region,
-                SendMessageResult,
+                SendMessageOutput,
                 ("queue_url", "message_body", "delay_seconds", "message_attributes", "message_system_attributes", "message_deduplication_id", "message_group_id", ),
                 ("queue_url", "message_body", ),
             )
@@ -545,7 +545,7 @@ class SQSClient:
         *,
         queue_url: str,
         entries: Sequence[SendMessageBatchRequestEntry],
-    ) -> SendMessageBatchResult:
+    ) -> SendMessageBatchOutput:
         params: dict[str, object] = {
             "queue_url": queue_url,
             "entries": entries,
@@ -555,7 +555,7 @@ class SQSClient:
             _response = await invoke(
                 self._native.send_message_batch, params, _interceptors,
                 "sqs", "SendMessageBatch", self._region,
-                SendMessageBatchResult,
+                SendMessageBatchOutput,
                 ("queue_url", "entries", ),
                 ("queue_url", "entries", ),
             )
@@ -594,7 +594,7 @@ class SQSClient:
         source_arn: str,
         destination_arn: str | None = None,
         max_number_of_messages_per_second: int | None = None,
-    ) -> StartMessageMoveTaskResult:
+    ) -> StartMessageMoveTaskOutput:
         params: dict[str, object] = {
             "source_arn": source_arn,
         }
@@ -607,7 +607,7 @@ class SQSClient:
             _response = await invoke(
                 self._native.start_message_move_task, params, _interceptors,
                 "sqs", "StartMessageMoveTask", self._region,
-                StartMessageMoveTaskResult,
+                StartMessageMoveTaskOutput,
                 ("source_arn", "destination_arn", "max_number_of_messages_per_second", ),
                 ("source_arn", ),
             )

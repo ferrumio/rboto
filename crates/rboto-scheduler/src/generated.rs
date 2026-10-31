@@ -1951,12 +1951,12 @@ impl PyTargetSummary {
     module = "rboto_scheduler._native",
     frozen
 )]
-struct PyCreateScheduleOutput {
+struct PyOperationCreateScheduleOutput {
     inner: aws_sdk_scheduler::operation::create_schedule::CreateScheduleOutput,
 }
 
 #[pymethods]
-impl PyCreateScheduleOutput {
+impl PyOperationCreateScheduleOutput {
     #[getter]
     fn schedule_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_329 = (&self.inner.schedule_arn).as_str().into_py_any(py)?;
@@ -1976,12 +1976,12 @@ impl PyCreateScheduleOutput {
     module = "rboto_scheduler._native",
     frozen
 )]
-struct PyCreateScheduleGroupOutput {
+struct PyOperationCreateScheduleGroupOutput {
     inner: aws_sdk_scheduler::operation::create_schedule_group::CreateScheduleGroupOutput,
 }
 
 #[pymethods]
-impl PyCreateScheduleGroupOutput {
+impl PyOperationCreateScheduleGroupOutput {
     #[getter]
     fn schedule_group_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_331 = (&self.inner.schedule_group_arn).as_str().into_py_any(py)?;
@@ -2001,12 +2001,12 @@ impl PyCreateScheduleGroupOutput {
     module = "rboto_scheduler._native",
     frozen
 )]
-struct PyDeleteScheduleOutput {
+struct PyOperationDeleteScheduleOutput {
     inner: aws_sdk_scheduler::operation::delete_schedule::DeleteScheduleOutput,
 }
 
 #[pymethods]
-impl PyDeleteScheduleOutput {
+impl PyOperationDeleteScheduleOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -2018,12 +2018,12 @@ impl PyDeleteScheduleOutput {
     module = "rboto_scheduler._native",
     frozen
 )]
-struct PyDeleteScheduleGroupOutput {
+struct PyOperationDeleteScheduleGroupOutput {
     inner: aws_sdk_scheduler::operation::delete_schedule_group::DeleteScheduleGroupOutput,
 }
 
 #[pymethods]
-impl PyDeleteScheduleGroupOutput {
+impl PyOperationDeleteScheduleGroupOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -2031,12 +2031,12 @@ impl PyDeleteScheduleGroupOutput {
 }
 
 #[pyclass(name = "GetScheduleOutput", module = "rboto_scheduler._native", frozen)]
-struct PyGetScheduleOutput {
+struct PyOperationGetScheduleOutput {
     inner: aws_sdk_scheduler::operation::get_schedule::GetScheduleOutput,
 }
 
 #[pymethods]
-impl PyGetScheduleOutput {
+impl PyOperationGetScheduleOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -2300,12 +2300,12 @@ impl PyGetScheduleOutput {
     module = "rboto_scheduler._native",
     frozen
 )]
-struct PyGetScheduleGroupOutput {
+struct PyOperationGetScheduleGroupOutput {
     inner: aws_sdk_scheduler::operation::get_schedule_group::GetScheduleGroupOutput,
 }
 
 #[pymethods]
-impl PyGetScheduleGroupOutput {
+impl PyOperationGetScheduleGroupOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -2397,12 +2397,12 @@ impl PyGetScheduleGroupOutput {
     module = "rboto_scheduler._native",
     frozen
 )]
-struct PyListScheduleGroupsOutput {
+struct PyOperationListScheduleGroupsOutput {
     inner: aws_sdk_scheduler::operation::list_schedule_groups::ListScheduleGroupsOutput,
 }
 
 #[pymethods]
-impl PyListScheduleGroupsOutput {
+impl PyOperationListScheduleGroupsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -2454,12 +2454,12 @@ impl PyListScheduleGroupsOutput {
     module = "rboto_scheduler._native",
     frozen
 )]
-struct PyListSchedulesOutput {
+struct PyOperationListSchedulesOutput {
     inner: aws_sdk_scheduler::operation::list_schedules::ListSchedulesOutput,
 }
 
 #[pymethods]
-impl PyListSchedulesOutput {
+impl PyOperationListSchedulesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -2511,12 +2511,12 @@ impl PyListSchedulesOutput {
     module = "rboto_scheduler._native",
     frozen
 )]
-struct PyListTagsForResourceOutput {
+struct PyOperationListTagsForResourceOutput {
     inner: aws_sdk_scheduler::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
 
 #[pymethods]
-impl PyListTagsForResourceOutput {
+impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
@@ -2556,12 +2556,12 @@ impl PyListTagsForResourceOutput {
 }
 
 #[pyclass(name = "TagResourceOutput", module = "rboto_scheduler._native", frozen)]
-struct PyTagResourceOutput {
+struct PyOperationTagResourceOutput {
     inner: aws_sdk_scheduler::operation::tag_resource::TagResourceOutput,
 }
 
 #[pymethods]
-impl PyTagResourceOutput {
+impl PyOperationTagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -2573,12 +2573,12 @@ impl PyTagResourceOutput {
     module = "rboto_scheduler._native",
     frozen
 )]
-struct PyUntagResourceOutput {
+struct PyOperationUntagResourceOutput {
     inner: aws_sdk_scheduler::operation::untag_resource::UntagResourceOutput,
 }
 
 #[pymethods]
-impl PyUntagResourceOutput {
+impl PyOperationUntagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -2590,12 +2590,12 @@ impl PyUntagResourceOutput {
     module = "rboto_scheduler._native",
     frozen
 )]
-struct PyUpdateScheduleOutput {
+struct PyOperationUpdateScheduleOutput {
     inner: aws_sdk_scheduler::operation::update_schedule::UpdateScheduleOutput,
 }
 
 #[pymethods]
-impl PyUpdateScheduleOutput {
+impl PyOperationUpdateScheduleOutput {
     #[getter]
     fn schedule_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_395 = (&self.inner.schedule_arn).as_str().into_py_any(py)?;
@@ -2630,18 +2630,18 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyTag>()?;
     module.add_class::<PyTarget>()?;
     module.add_class::<PyTargetSummary>()?;
-    module.add_class::<PyCreateScheduleOutput>()?;
-    module.add_class::<PyCreateScheduleGroupOutput>()?;
-    module.add_class::<PyDeleteScheduleOutput>()?;
-    module.add_class::<PyDeleteScheduleGroupOutput>()?;
-    module.add_class::<PyGetScheduleOutput>()?;
-    module.add_class::<PyGetScheduleGroupOutput>()?;
-    module.add_class::<PyListScheduleGroupsOutput>()?;
-    module.add_class::<PyListSchedulesOutput>()?;
-    module.add_class::<PyListTagsForResourceOutput>()?;
-    module.add_class::<PyTagResourceOutput>()?;
-    module.add_class::<PyUntagResourceOutput>()?;
-    module.add_class::<PyUpdateScheduleOutput>()?;
+    module.add_class::<PyOperationCreateScheduleOutput>()?;
+    module.add_class::<PyOperationCreateScheduleGroupOutput>()?;
+    module.add_class::<PyOperationDeleteScheduleOutput>()?;
+    module.add_class::<PyOperationDeleteScheduleGroupOutput>()?;
+    module.add_class::<PyOperationGetScheduleOutput>()?;
+    module.add_class::<PyOperationGetScheduleGroupOutput>()?;
+    module.add_class::<PyOperationListScheduleGroupsOutput>()?;
+    module.add_class::<PyOperationListSchedulesOutput>()?;
+    module.add_class::<PyOperationListTagsForResourceOutput>()?;
+    module.add_class::<PyOperationTagResourceOutput>()?;
+    module.add_class::<PyOperationUntagResourceOutput>()?;
+    module.add_class::<PyOperationUpdateScheduleOutput>()?;
 
     Ok(())
 }
@@ -2810,7 +2810,7 @@ impl SchedulerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateSchedule"))
             })?;
-            Ok(PyCreateScheduleOutput { inner: output })
+            Ok(PyOperationCreateScheduleOutput { inner: output })
         })
     }
 
@@ -2868,7 +2868,7 @@ impl SchedulerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateScheduleGroup"))
             })?;
-            Ok(PyCreateScheduleGroupOutput { inner: output })
+            Ok(PyOperationCreateScheduleGroupOutput { inner: output })
         })
     }
 
@@ -2920,7 +2920,7 @@ impl SchedulerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteSchedule"))
             })?;
-            Ok(PyDeleteScheduleOutput { inner: output })
+            Ok(PyOperationDeleteScheduleOutput { inner: output })
         })
     }
 
@@ -2965,7 +2965,7 @@ impl SchedulerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteScheduleGroup"))
             })?;
-            Ok(PyDeleteScheduleGroupOutput { inner: output })
+            Ok(PyOperationDeleteScheduleGroupOutput { inner: output })
         })
     }
 
@@ -3009,7 +3009,7 @@ impl SchedulerClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetSchedule")))?;
-            Ok(PyGetScheduleOutput { inner: output })
+            Ok(PyOperationGetScheduleOutput { inner: output })
         })
     }
 
@@ -3045,7 +3045,7 @@ impl SchedulerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetScheduleGroup"))
             })?;
-            Ok(PyGetScheduleGroupOutput { inner: output })
+            Ok(PyOperationGetScheduleGroupOutput { inner: output })
         })
     }
 
@@ -3097,7 +3097,7 @@ impl SchedulerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListScheduleGroups"))
             })?;
-            Ok(PyListScheduleGroupsOutput { inner: output })
+            Ok(PyOperationListScheduleGroupsOutput { inner: output })
         })
     }
 
@@ -3165,7 +3165,7 @@ impl SchedulerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSchedules"))
             })?;
-            Ok(PyListSchedulesOutput { inner: output })
+            Ok(PyOperationListSchedulesOutput { inner: output })
         })
     }
 
@@ -3203,7 +3203,7 @@ impl SchedulerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Ok(PyListTagsForResourceOutput { inner: output })
+            Ok(PyOperationListTagsForResourceOutput { inner: output })
         })
     }
 
@@ -3253,7 +3253,7 @@ impl SchedulerClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
-            Ok(PyTagResourceOutput { inner: output })
+            Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
 
@@ -3304,7 +3304,7 @@ impl SchedulerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
-            Ok(PyUntagResourceOutput { inner: output })
+            Ok(PyOperationUntagResourceOutput { inner: output })
         })
     }
 
@@ -3444,7 +3444,7 @@ impl SchedulerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateSchedule"))
             })?;
-            Ok(PyUpdateScheduleOutput { inner: output })
+            Ok(PyOperationUpdateScheduleOutput { inner: output })
         })
     }
 }

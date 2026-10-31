@@ -9,13 +9,13 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto.logging import operation_interceptors
 
-from ._native import LexRuntimeV2Client as NativeClient, DeleteSessionResponse, GetSessionResponse, PutSessionResponse, RecognizeTextResponse, RecognizeUtteranceResponse
+from ._native import LexRuntimeV2Client as NativeClient, DeleteSessionOutput, GetSessionOutput, PutSessionOutput, RecognizeTextOutput, RecognizeUtteranceOutput
 from .types import (
     ConversationMode,
     Message,
     SessionState,
+    StartConversationOutput,
     StartConversationRequestEventStream,
-    StartConversationResponse,
 )
 
 
@@ -54,7 +54,7 @@ class LexRuntimeV2Client:
         bot_alias_id: str,
         locale_id: str,
         session_id: str,
-    ) -> DeleteSessionResponse:
+    ) -> DeleteSessionOutput:
         params: dict[str, object] = {
             "bot_id": bot_id,
             "bot_alias_id": bot_alias_id,
@@ -66,7 +66,7 @@ class LexRuntimeV2Client:
             _response = await invoke(
                 self._native.delete_session, params, _interceptors,
                 "lex-runtime-v2", "DeleteSession", self._region,
-                DeleteSessionResponse,
+                DeleteSessionOutput,
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", ),
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", ),
             )
@@ -82,7 +82,7 @@ class LexRuntimeV2Client:
         bot_alias_id: str,
         locale_id: str,
         session_id: str,
-    ) -> GetSessionResponse:
+    ) -> GetSessionOutput:
         params: dict[str, object] = {
             "bot_id": bot_id,
             "bot_alias_id": bot_alias_id,
@@ -94,7 +94,7 @@ class LexRuntimeV2Client:
             _response = await invoke(
                 self._native.get_session, params, _interceptors,
                 "lex-runtime-v2", "GetSession", self._region,
-                GetSessionResponse,
+                GetSessionOutput,
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", ),
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", ),
             )
@@ -114,7 +114,7 @@ class LexRuntimeV2Client:
         messages: Sequence[Message] | None = None,
         request_attributes: dict[str, str] | None = None,
         response_content_type: str | None = None,
-    ) -> PutSessionResponse:
+    ) -> PutSessionOutput:
         params: dict[str, object] = {
             "bot_id": bot_id,
             "bot_alias_id": bot_alias_id,
@@ -133,7 +133,7 @@ class LexRuntimeV2Client:
             _response = await invoke(
                 self._native.put_session, params, _interceptors,
                 "lex-runtime-v2", "PutSession", self._region,
-                PutSessionResponse,
+                PutSessionOutput,
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", "session_state", "messages", "request_attributes", "response_content_type", ),
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", "session_state", ),
             )
@@ -152,7 +152,7 @@ class LexRuntimeV2Client:
         text: str,
         session_state: SessionState | None = None,
         request_attributes: dict[str, str] | None = None,
-    ) -> RecognizeTextResponse:
+    ) -> RecognizeTextOutput:
         params: dict[str, object] = {
             "bot_id": bot_id,
             "bot_alias_id": bot_alias_id,
@@ -169,7 +169,7 @@ class LexRuntimeV2Client:
             _response = await invoke(
                 self._native.recognize_text, params, _interceptors,
                 "lex-runtime-v2", "RecognizeText", self._region,
-                RecognizeTextResponse,
+                RecognizeTextOutput,
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", "text", "session_state", "request_attributes", ),
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", "text", ),
             )
@@ -190,7 +190,7 @@ class LexRuntimeV2Client:
         request_attributes: str | None = None,
         response_content_type: str | None = None,
         input_stream: bytes | None = None,
-    ) -> RecognizeUtteranceResponse:
+    ) -> RecognizeUtteranceOutput:
         params: dict[str, object] = {
             "bot_id": bot_id,
             "bot_alias_id": bot_alias_id,
@@ -211,7 +211,7 @@ class LexRuntimeV2Client:
             _response = await invoke(
                 self._native.recognize_utterance, params, _interceptors,
                 "lex-runtime-v2", "RecognizeUtterance", self._region,
-                RecognizeUtteranceResponse,
+                RecognizeUtteranceOutput,
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", "request_content_type", "session_state", "request_attributes", "response_content_type", "input_stream", ),
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", "request_content_type", ),
             )
@@ -229,7 +229,7 @@ class LexRuntimeV2Client:
         session_id: str,
         request_event_stream: AsyncIterator[StartConversationRequestEventStream],
         conversation_mode: ConversationMode | None = None,
-    ) -> StartConversationResponse:
+    ) -> StartConversationOutput:
         params: dict[str, object] = {
             "bot_id": bot_id,
             "bot_alias_id": bot_alias_id,

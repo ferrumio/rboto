@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING
 from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _paginate
 
 from ._native import (
-    ListAsyncInvokesResponse,
+    ListAsyncInvokesOutput,
 )
 
 from .types import (
@@ -36,7 +36,7 @@ class BedrockRuntimeClientPaginators:
         next_token: str | None = None,
         sort_by: SortAsyncInvocationBy | None = None,
         sort_order: SortOrder | None = None,
-    ) -> AsyncIterator[ListAsyncInvokesResponse]:
+    ) -> AsyncIterator[ListAsyncInvokesOutput]:
         """Yield each page from list_async_invokes; requests start on iteration."""
         params: dict[str, object] = {
         }

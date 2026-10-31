@@ -2667,16 +2667,16 @@ impl PyValue {
 }
 
 #[pyclass(
-    name = "DeleteSessionResponse",
+    name = "DeleteSessionOutput",
     module = "rboto_lex_runtime_v2._native",
     frozen
 )]
-struct PyDeleteSessionResponse {
+struct PyOperationDeleteSessionOutput {
     inner: aws_sdk_lexruntimev2::operation::delete_session::DeleteSessionOutput,
 }
 
 #[pymethods]
-impl PyDeleteSessionResponse {
+impl PyOperationDeleteSessionOutput {
     #[getter]
     fn bot_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.bot_id {
@@ -2748,16 +2748,16 @@ impl PyDeleteSessionResponse {
 }
 
 #[pyclass(
-    name = "GetSessionResponse",
+    name = "GetSessionOutput",
     module = "rboto_lex_runtime_v2._native",
     frozen
 )]
-struct PyGetSessionResponse {
+struct PyOperationGetSessionOutput {
     inner: aws_sdk_lexruntimev2::operation::get_session::GetSessionOutput,
 }
 
 #[pymethods]
-impl PyGetSessionResponse {
+impl PyOperationGetSessionOutput {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_id {
@@ -2867,17 +2867,17 @@ impl PyGetSessionResponse {
 }
 
 #[pyclass(
-    name = "PutSessionResponse",
+    name = "PutSessionOutput",
     module = "rboto_lex_runtime_v2._native",
     frozen
 )]
-struct PyPutSessionResponse {
+struct PyOperationPutSessionOutput {
     inner: aws_sdk_lexruntimev2::operation::put_session::PutSessionOutput,
     audio_stream: Py<PyByteStream>,
 }
 
 #[pymethods]
-impl PyPutSessionResponse {
+impl PyOperationPutSessionOutput {
     #[getter]
     fn content_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.content_type {
@@ -2971,16 +2971,16 @@ impl PyPutSessionResponse {
 }
 
 #[pyclass(
-    name = "RecognizeTextResponse",
+    name = "RecognizeTextOutput",
     module = "rboto_lex_runtime_v2._native",
     frozen
 )]
-struct PyRecognizeTextResponse {
+struct PyOperationRecognizeTextOutput {
     inner: aws_sdk_lexruntimev2::operation::recognize_text::RecognizeTextOutput,
 }
 
 #[pymethods]
-impl PyRecognizeTextResponse {
+impl PyOperationRecognizeTextOutput {
     #[getter]
     fn messages(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.messages {
@@ -3140,17 +3140,17 @@ impl PyRecognizeTextResponse {
 }
 
 #[pyclass(
-    name = "RecognizeUtteranceResponse",
+    name = "RecognizeUtteranceOutput",
     module = "rboto_lex_runtime_v2._native",
     frozen
 )]
-struct PyRecognizeUtteranceResponse {
+struct PyOperationRecognizeUtteranceOutput {
     inner: aws_sdk_lexruntimev2::operation::recognize_utterance::RecognizeUtteranceOutput,
     audio_stream: Py<PyByteStream>,
 }
 
 #[pymethods]
-impl PyRecognizeUtteranceResponse {
+impl PyOperationRecognizeUtteranceOutput {
     #[getter]
     fn input_mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_mode {
@@ -3405,11 +3405,11 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PySessionState>()?;
     module.add_class::<PySlot>()?;
     module.add_class::<PyValue>()?;
-    module.add_class::<PyDeleteSessionResponse>()?;
-    module.add_class::<PyGetSessionResponse>()?;
-    module.add_class::<PyPutSessionResponse>()?;
-    module.add_class::<PyRecognizeTextResponse>()?;
-    module.add_class::<PyRecognizeUtteranceResponse>()?;
+    module.add_class::<PyOperationDeleteSessionOutput>()?;
+    module.add_class::<PyOperationGetSessionOutput>()?;
+    module.add_class::<PyOperationPutSessionOutput>()?;
+    module.add_class::<PyOperationRecognizeTextOutput>()?;
+    module.add_class::<PyOperationRecognizeUtteranceOutput>()?;
 
     module.add_class::<PyStartConversationResponseEventStreamReceiver>()?;
     Ok(())
@@ -3498,7 +3498,7 @@ impl LexRuntimeV2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteSession"))
             })?;
-            Ok(PyDeleteSessionResponse { inner: output })
+            Ok(PyOperationDeleteSessionOutput { inner: output })
         })
     }
 
@@ -3556,7 +3556,7 @@ impl LexRuntimeV2Client {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetSession")))?;
-            Ok(PyGetSessionResponse { inner: output })
+            Ok(PyOperationGetSessionOutput { inner: output })
         })
     }
 
@@ -3661,7 +3661,7 @@ impl LexRuntimeV2Client {
                 let py_audio_stream = Py::new(py, PyByteStream::new(audio_stream))?;
                 Py::new(
                     py,
-                    PyPutSessionResponse {
+                    PyOperationPutSessionOutput {
                         inner: output,
                         audio_stream: py_audio_stream,
                     },
@@ -3753,7 +3753,7 @@ impl LexRuntimeV2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RecognizeText"))
             })?;
-            Ok(PyRecognizeTextResponse { inner: output })
+            Ok(PyOperationRecognizeTextOutput { inner: output })
         })
     }
 
@@ -3856,7 +3856,7 @@ impl LexRuntimeV2Client {
                 let py_audio_stream = Py::new(py, PyByteStream::new(audio_stream))?;
                 Py::new(
                     py,
-                    PyRecognizeUtteranceResponse {
+                    PyOperationRecognizeUtteranceOutput {
                         inner: output,
                         audio_stream: py_audio_stream,
                     },

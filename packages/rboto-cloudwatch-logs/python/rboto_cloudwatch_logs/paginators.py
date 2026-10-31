@@ -8,27 +8,27 @@ from typing import TYPE_CHECKING
 from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _paginate
 
 from ._native import (
-    DescribeConfigurationTemplatesResponse,
-    DescribeDeliveriesResponse,
-    DescribeDeliveryDestinationsResponse,
-    DescribeDeliverySourcesResponse,
-    DescribeDestinationsResponse,
-    DescribeExportTasksResponse,
-    DescribeLogGroupsResponse,
-    DescribeLogStreamsResponse,
-    DescribeMetricFiltersResponse,
-    DescribeQueriesResponse,
-    DescribeResourcePoliciesResponse,
-    DescribeSubscriptionFiltersResponse,
-    FilterLogEventsResponse,
-    GetLogEventsResponse,
-    GetScheduledQueryHistoryResponse,
-    ListAggregateLogGroupSummariesResponse,
-    ListAnomaliesResponse,
-    ListLogAnomalyDetectorsResponse,
-    ListLogGroupsForQueryResponse,
-    ListScheduledQueriesResponse,
-    ListSourcesForS3TableIntegrationResponse,
+    DescribeConfigurationTemplatesOutput,
+    DescribeDeliveriesOutput,
+    DescribeDeliveryDestinationsOutput,
+    DescribeDeliverySourcesOutput,
+    DescribeDestinationsOutput,
+    DescribeExportTasksOutput,
+    DescribeLogGroupsOutput,
+    DescribeLogStreamsOutput,
+    DescribeMetricFiltersOutput,
+    DescribeQueriesOutput,
+    DescribeResourcePoliciesOutput,
+    DescribeSubscriptionFiltersOutput,
+    FilterLogEventsOutput,
+    GetLogEventsOutput,
+    GetScheduledQueryHistoryOutput,
+    ListAggregateLogGroupSummariesOutput,
+    ListAnomaliesOutput,
+    ListLogAnomalyDetectorsOutput,
+    ListLogGroupsForQueryOutput,
+    ListScheduledQueriesOutput,
+    ListSourcesForS3TableIntegrationOutput,
 )
 
 from .types import (
@@ -65,7 +65,7 @@ class CloudWatchLogsClientPaginators:
         delivery_destination_types: Sequence[DeliveryDestinationType] | None = None,
         next_token: str | None = None,
         limit: int | None = None,
-    ) -> AsyncIterator[DescribeConfigurationTemplatesResponse]:
+    ) -> AsyncIterator[DescribeConfigurationTemplatesOutput]:
         """Yield each page from describe_configuration_templates; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -97,7 +97,7 @@ class CloudWatchLogsClientPaginators:
         next_token: str | None = None,
         limit: int | None = None,
         delivery_source_names: Sequence[str] | None = None,
-    ) -> AsyncIterator[DescribeDeliveriesResponse]:
+    ) -> AsyncIterator[DescribeDeliveriesOutput]:
         """Yield each page from describe_deliveries; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -123,7 +123,7 @@ class CloudWatchLogsClientPaginators:
         next_token: str | None = None,
         limit: int | None = None,
         names: Sequence[str] | None = None,
-    ) -> AsyncIterator[DescribeDeliveryDestinationsResponse]:
+    ) -> AsyncIterator[DescribeDeliveryDestinationsOutput]:
         """Yield each page from describe_delivery_destinations; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -149,7 +149,7 @@ class CloudWatchLogsClientPaginators:
         next_token: str | None = None,
         limit: int | None = None,
         resource_arns: Sequence[str] | None = None,
-    ) -> AsyncIterator[DescribeDeliverySourcesResponse]:
+    ) -> AsyncIterator[DescribeDeliverySourcesOutput]:
         """Yield each page from describe_delivery_sources; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -175,7 +175,7 @@ class CloudWatchLogsClientPaginators:
         destination_name_prefix: str | None = None,
         next_token: str | None = None,
         limit: int | None = None,
-    ) -> AsyncIterator[DescribeDestinationsResponse]:
+    ) -> AsyncIterator[DescribeDestinationsOutput]:
         """Yield each page from describe_destinations; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -202,7 +202,7 @@ class CloudWatchLogsClientPaginators:
         status_code: ExportTaskStatusCode | None = None,
         next_token: str | None = None,
         limit: int | None = None,
-    ) -> AsyncIterator[DescribeExportTasksResponse]:
+    ) -> AsyncIterator[DescribeExportTasksOutput]:
         """Yield each page from describe_export_tasks; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -235,7 +235,7 @@ class CloudWatchLogsClientPaginators:
         include_linked_accounts: bool | None = None,
         log_group_class: LogGroupClass | None = None,
         log_group_identifiers: Sequence[str] | None = None,
-    ) -> AsyncIterator[DescribeLogGroupsResponse]:
+    ) -> AsyncIterator[DescribeLogGroupsOutput]:
         """Yield each page from describe_log_groups; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -275,7 +275,7 @@ class CloudWatchLogsClientPaginators:
         descending: bool | None = None,
         next_token: str | None = None,
         limit: int | None = None,
-    ) -> AsyncIterator[DescribeLogStreamsResponse]:
+    ) -> AsyncIterator[DescribeLogStreamsOutput]:
         """Yield each page from describe_log_streams; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -312,7 +312,7 @@ class CloudWatchLogsClientPaginators:
         limit: int | None = None,
         metric_name: str | None = None,
         metric_namespace: str | None = None,
-    ) -> AsyncIterator[DescribeMetricFiltersResponse]:
+    ) -> AsyncIterator[DescribeMetricFiltersOutput]:
         """Yield each page from describe_metric_filters; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -346,7 +346,7 @@ class CloudWatchLogsClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
         query_language: QueryLanguage | None = None,
-    ) -> AsyncIterator[DescribeQueriesResponse]:
+    ) -> AsyncIterator[DescribeQueriesOutput]:
         """Yield each page from describe_queries; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -377,7 +377,7 @@ class CloudWatchLogsClientPaginators:
         limit: int | None = None,
         resource_arn: str | None = None,
         policy_scope: PolicyScope | None = None,
-    ) -> AsyncIterator[DescribeResourcePoliciesResponse]:
+    ) -> AsyncIterator[DescribeResourcePoliciesOutput]:
         """Yield each page from describe_resource_policies; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -406,7 +406,7 @@ class CloudWatchLogsClientPaginators:
         filter_name_prefix: str | None = None,
         next_token: str | None = None,
         limit: int | None = None,
-    ) -> AsyncIterator[DescribeSubscriptionFiltersResponse]:
+    ) -> AsyncIterator[DescribeSubscriptionFiltersOutput]:
         """Yield each page from describe_subscription_filters; requests start on iteration."""
         params: dict[str, object] = {
             "log_group_name": log_group_name,
@@ -442,7 +442,7 @@ class CloudWatchLogsClientPaginators:
         start_from_head: bool | None = None,
         interleaved: bool | None = None,
         unmask: bool | None = None,
-    ) -> AsyncIterator[FilterLogEventsResponse]:
+    ) -> AsyncIterator[FilterLogEventsOutput]:
         """Yield each page from filter_log_events; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -492,7 +492,7 @@ class CloudWatchLogsClientPaginators:
         limit: int | None = None,
         start_from_head: bool | None = None,
         unmask: bool | None = None,
-    ) -> AsyncIterator[GetLogEventsResponse]:
+    ) -> AsyncIterator[GetLogEventsOutput]:
         """Yield each page from get_log_events; requests start on iteration."""
         params: dict[str, object] = {
             "log_stream_name": log_stream_name,
@@ -532,7 +532,7 @@ class CloudWatchLogsClientPaginators:
         execution_statuses: Sequence[ExecutionStatus] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[GetScheduledQueryHistoryResponse]:
+    ) -> AsyncIterator[GetScheduledQueryHistoryOutput]:
         """Yield each page from get_scheduled_query_history; requests start on iteration."""
         params: dict[str, object] = {
             "identifier": identifier,
@@ -566,7 +566,7 @@ class CloudWatchLogsClientPaginators:
         data_sources: Sequence[DataSourceFilter] | None = None,
         next_token: str | None = None,
         limit: int | None = None,
-    ) -> AsyncIterator[ListAggregateLogGroupSummariesResponse]:
+    ) -> AsyncIterator[ListAggregateLogGroupSummariesOutput]:
         """Yield each page from list_aggregate_log_group_summaries; requests start on iteration."""
         params: dict[str, object] = {
             "group_by": group_by,
@@ -602,7 +602,7 @@ class CloudWatchLogsClientPaginators:
         suppression_state: SuppressionState | None = None,
         limit: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListAnomaliesResponse]:
+    ) -> AsyncIterator[ListAnomaliesOutput]:
         """Yield each page from list_anomalies; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -630,7 +630,7 @@ class CloudWatchLogsClientPaginators:
         filter_log_group_arn: str | None = None,
         limit: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListLogAnomalyDetectorsResponse]:
+    ) -> AsyncIterator[ListLogAnomalyDetectorsOutput]:
         """Yield each page from list_log_anomaly_detectors; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -656,7 +656,7 @@ class CloudWatchLogsClientPaginators:
         query_id: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListLogGroupsForQueryResponse]:
+    ) -> AsyncIterator[ListLogGroupsForQueryOutput]:
         """Yield each page from list_log_groups_for_query; requests start on iteration."""
         params: dict[str, object] = {
             "query_id": query_id,
@@ -682,7 +682,7 @@ class CloudWatchLogsClientPaginators:
         next_token: str | None = None,
         state: ScheduledQueryState | None = None,
         schedule_type: ScheduleType | None = None,
-    ) -> AsyncIterator[ListScheduledQueriesResponse]:
+    ) -> AsyncIterator[ListScheduledQueriesOutput]:
         """Yield each page from list_scheduled_queries; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -710,7 +710,7 @@ class CloudWatchLogsClientPaginators:
         integration_arn: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListSourcesForS3TableIntegrationResponse]:
+    ) -> AsyncIterator[ListSourcesForS3TableIntegrationOutput]:
         """Yield each page from list_sources_for_s3_table_integration; requests start on iteration."""
         params: dict[str, object] = {
             "integration_arn": integration_arn,

@@ -8,26 +8,26 @@ from typing import TYPE_CHECKING
 from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _paginate
 
 from ._native import (
-    GetChatControlsConfigurationResponse,
-    ListApplicationsResponse,
-    ListAttachmentsResponse,
-    ListChatResponseConfigurationsResponse,
-    ListConversationsResponse,
-    ListDataAccessorsResponse,
-    ListDataSourceSyncJobsResponse,
-    ListDataSourcesResponse,
-    ListDocumentsResponse,
-    ListGroupsResponse,
-    ListIndicesResponse,
-    ListMessagesResponse,
-    ListPluginActionsResponse,
-    ListPluginTypeActionsResponse,
-    ListPluginTypeMetadataResponse,
-    ListPluginsResponse,
-    ListRetrieversResponse,
-    ListSubscriptionsResponse,
-    ListWebExperiencesResponse,
-    SearchRelevantContentResponse,
+    GetChatControlsConfigurationOutput,
+    ListApplicationsOutput,
+    ListAttachmentsOutput,
+    ListChatResponseConfigurationsOutput,
+    ListConversationsOutput,
+    ListDataAccessorsOutput,
+    ListDataSourceSyncJobsOutput,
+    ListDataSourcesOutput,
+    ListDocumentsOutput,
+    ListGroupsOutput,
+    ListIndicesOutput,
+    ListMessagesOutput,
+    ListPluginActionsOutput,
+    ListPluginTypeActionsOutput,
+    ListPluginTypeMetadataOutput,
+    ListPluginsOutput,
+    ListRetrieversOutput,
+    ListSubscriptionsOutput,
+    ListWebExperiencesOutput,
+    SearchRelevantContentOutput,
 )
 
 from .types import (
@@ -52,7 +52,7 @@ class QBusinessClientPaginators:
         application_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[GetChatControlsConfigurationResponse]:
+    ) -> AsyncIterator[GetChatControlsConfigurationOutput]:
         """Yield each page from get_chat_controls_configuration; requests start on iteration."""
         params: dict[str, object] = {
             "application_id": application_id,
@@ -76,7 +76,7 @@ class QBusinessClientPaginators:
         *,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListApplicationsResponse]:
+    ) -> AsyncIterator[ListApplicationsOutput]:
         """Yield each page from list_applications; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -102,7 +102,7 @@ class QBusinessClientPaginators:
         user_id: str | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListAttachmentsResponse]:
+    ) -> AsyncIterator[ListAttachmentsOutput]:
         """Yield each page from list_attachments; requests start on iteration."""
         params: dict[str, object] = {
             "application_id": application_id,
@@ -131,7 +131,7 @@ class QBusinessClientPaginators:
         application_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListChatResponseConfigurationsResponse]:
+    ) -> AsyncIterator[ListChatResponseConfigurationsOutput]:
         """Yield each page from list_chat_response_configurations; requests start on iteration."""
         params: dict[str, object] = {
             "application_id": application_id,
@@ -157,7 +157,7 @@ class QBusinessClientPaginators:
         user_id: str | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListConversationsResponse]:
+    ) -> AsyncIterator[ListConversationsOutput]:
         """Yield each page from list_conversations; requests start on iteration."""
         params: dict[str, object] = {
             "application_id": application_id,
@@ -184,7 +184,7 @@ class QBusinessClientPaginators:
         application_id: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListDataAccessorsResponse]:
+    ) -> AsyncIterator[ListDataAccessorsOutput]:
         """Yield each page from list_data_accessors; requests start on iteration."""
         params: dict[str, object] = {
             "application_id": application_id,
@@ -214,7 +214,7 @@ class QBusinessClientPaginators:
         start_time: str | None = None,
         end_time: str | None = None,
         status_filter: DataSourceSyncJobStatus | None = None,
-    ) -> AsyncIterator[ListDataSourceSyncJobsResponse]:
+    ) -> AsyncIterator[ListDataSourceSyncJobsOutput]:
         """Yield each page from list_data_source_sync_jobs; requests start on iteration."""
         params: dict[str, object] = {
             "data_source_id": data_source_id,
@@ -248,7 +248,7 @@ class QBusinessClientPaginators:
         index_id: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListDataSourcesResponse]:
+    ) -> AsyncIterator[ListDataSourcesOutput]:
         """Yield each page from list_data_sources; requests start on iteration."""
         params: dict[str, object] = {
             "application_id": application_id,
@@ -276,7 +276,7 @@ class QBusinessClientPaginators:
         data_source_ids: Sequence[str] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListDocumentsResponse]:
+    ) -> AsyncIterator[ListDocumentsOutput]:
         """Yield each page from list_documents; requests start on iteration."""
         params: dict[str, object] = {
             "application_id": application_id,
@@ -307,7 +307,7 @@ class QBusinessClientPaginators:
         data_source_id: str | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListGroupsResponse]:
+    ) -> AsyncIterator[ListGroupsOutput]:
         """Yield each page from list_groups; requests start on iteration."""
         params: dict[str, object] = {
             "application_id": application_id,
@@ -336,7 +336,7 @@ class QBusinessClientPaginators:
         application_id: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListIndicesResponse]:
+    ) -> AsyncIterator[ListIndicesOutput]:
         """Yield each page from list_indices; requests start on iteration."""
         params: dict[str, object] = {
             "application_id": application_id,
@@ -363,7 +363,7 @@ class QBusinessClientPaginators:
         user_id: str | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListMessagesResponse]:
+    ) -> AsyncIterator[ListMessagesOutput]:
         """Yield each page from list_messages; requests start on iteration."""
         params: dict[str, object] = {
             "conversation_id": conversation_id,
@@ -392,7 +392,7 @@ class QBusinessClientPaginators:
         plugin_id: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListPluginActionsResponse]:
+    ) -> AsyncIterator[ListPluginActionsOutput]:
         """Yield each page from list_plugin_actions; requests start on iteration."""
         params: dict[str, object] = {
             "application_id": application_id,
@@ -418,7 +418,7 @@ class QBusinessClientPaginators:
         plugin_type: PluginType,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListPluginTypeActionsResponse]:
+    ) -> AsyncIterator[ListPluginTypeActionsOutput]:
         """Yield each page from list_plugin_type_actions; requests start on iteration."""
         params: dict[str, object] = {
             "plugin_type": plugin_type,
@@ -442,7 +442,7 @@ class QBusinessClientPaginators:
         *,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListPluginTypeMetadataResponse]:
+    ) -> AsyncIterator[ListPluginTypeMetadataOutput]:
         """Yield each page from list_plugin_type_metadata; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -466,7 +466,7 @@ class QBusinessClientPaginators:
         application_id: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListPluginsResponse]:
+    ) -> AsyncIterator[ListPluginsOutput]:
         """Yield each page from list_plugins; requests start on iteration."""
         params: dict[str, object] = {
             "application_id": application_id,
@@ -491,7 +491,7 @@ class QBusinessClientPaginators:
         application_id: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListRetrieversResponse]:
+    ) -> AsyncIterator[ListRetrieversOutput]:
         """Yield each page from list_retrievers; requests start on iteration."""
         params: dict[str, object] = {
             "application_id": application_id,
@@ -516,7 +516,7 @@ class QBusinessClientPaginators:
         application_id: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListSubscriptionsResponse]:
+    ) -> AsyncIterator[ListSubscriptionsOutput]:
         """Yield each page from list_subscriptions; requests start on iteration."""
         params: dict[str, object] = {
             "application_id": application_id,
@@ -541,7 +541,7 @@ class QBusinessClientPaginators:
         application_id: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListWebExperiencesResponse]:
+    ) -> AsyncIterator[ListWebExperiencesOutput]:
         """Yield each page from list_web_experiences; requests start on iteration."""
         params: dict[str, object] = {
             "application_id": application_id,
@@ -569,7 +569,7 @@ class QBusinessClientPaginators:
         attribute_filter: AttributeFilter | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[SearchRelevantContentResponse]:
+    ) -> AsyncIterator[SearchRelevantContentOutput]:
         """Yield each page from search_relevant_content; requests start on iteration."""
         params: dict[str, object] = {
             "application_id": application_id,

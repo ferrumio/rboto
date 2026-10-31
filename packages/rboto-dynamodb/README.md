@@ -99,7 +99,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`describe_backup`](#describe_backup) | <code>backup_arn: str</code> | <code>DescribeBackupOutput</code> |
 | [`describe_continuous_backups`](#describe_continuous_backups) | <code>table_name: str</code> | <code>DescribeContinuousBackupsOutput</code> |
 | [`describe_contributor_insights`](#describe_contributor_insights) | <code>table_name: str</code> | <code>DescribeContributorInsightsOutput</code> |
-| [`describe_endpoints`](#describe_endpoints) | None | <code>DescribeEndpointsResponse</code> |
+| [`describe_endpoints`](#describe_endpoints) | None | <code>DescribeEndpointsOutput</code> |
 | [`describe_export`](#describe_export) | <code>export_arn: str</code> | <code>DescribeExportOutput</code> |
 | [`describe_global_table`](#describe_global_table) | <code>global_table_name: str</code> | <code>DescribeGlobalTableOutput</code> |
 | [`describe_global_table_settings`](#describe_global_table_settings) | <code>global_table_name: str</code> | <code>DescribeGlobalTableSettingsOutput</code> |
@@ -315,7 +315,7 @@ async def describe_contributor_insights(
 ### describe_endpoints
 
 ```python
-async def describe_endpoints() -> DescribeEndpointsResponse: ...
+async def describe_endpoints() -> DescribeEndpointsOutput: ...
 ```
 
 

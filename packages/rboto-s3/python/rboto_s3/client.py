@@ -9,7 +9,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto.logging import operation_interceptors
 
-from ._native import S3Client as NativeClient, AbortMultipartUploadOutput, CompleteMultipartUploadOutput, CopyObjectOutput, CreateBucketOutput, CreateMultipartUploadOutput, CreateSessionOutput, DeleteObjectAnnotationOutput, DeleteObjectOutput, DeleteObjectTaggingOutput, DeleteObjectsOutput, GetBucketAbacOutput, GetBucketAccelerateConfigurationOutput, GetBucketAclOutput, GetBucketAnalyticsConfigurationOutput, GetBucketCorsOutput, GetBucketEncryptionOutput, GetBucketIntelligentTieringConfigurationOutput, GetBucketInventoryConfigurationOutput, GetBucketLifecycleConfigurationOutput, GetBucketLocationOutput, GetBucketLoggingOutput, GetBucketMetadataConfigurationOutput, GetBucketMetadataTableConfigurationOutput, GetBucketMetricsConfigurationOutput, GetBucketNotificationConfigurationOutput, GetBucketOwnershipControlsOutput, GetBucketPolicyOutput, GetBucketPolicyStatusOutput, GetBucketReplicationOutput, GetBucketRequestPaymentOutput, GetBucketTaggingOutput, GetBucketVersioningOutput, GetBucketWebsiteOutput, GetObjectAclOutput, GetObjectAnnotationOutput, GetObjectAttributesOutput, GetObjectLegalHoldOutput, GetObjectLockConfigurationOutput, GetObjectOutput, GetObjectRetentionOutput, GetObjectTaggingOutput, GetObjectTorrentOutput, GetPublicAccessBlockOutput, HeadBucketOutput, HeadObjectOutput, ListBucketAnalyticsConfigurationsOutput, ListBucketIntelligentTieringConfigurationsOutput, ListBucketInventoryConfigurationsOutput, ListBucketMetricsConfigurationsOutput, ListBucketsOutput, ListDirectoryBucketsOutput, ListMultipartUploadsOutput, ListObjectAnnotationsOutput, ListObjectVersionsOutput, ListObjectsOutput, ListObjectsV2Output, ListPartsOutput, PutBucketLifecycleConfigurationOutput, PutObjectAclOutput, PutObjectAnnotationOutput, PutObjectLegalHoldOutput, PutObjectLockConfigurationOutput, PutObjectOutput, PutObjectRetentionOutput, PutObjectTaggingOutput, RenameObjectOutput, RestoreObjectOutput, UpdateObjectEncryptionResponse, UploadPartCopyOutput, UploadPartOutput
+from ._native import S3Client as NativeClient, AbortMultipartUploadOutput, CompleteMultipartUploadOutput, CopyObjectOutput, CreateBucketOutput, CreateMultipartUploadOutput, CreateSessionOutput, DeleteObjectAnnotationOutput, DeleteObjectOutput, DeleteObjectTaggingOutput, DeleteObjectsOutput, GetBucketAbacOutput, GetBucketAccelerateConfigurationOutput, GetBucketAclOutput, GetBucketAnalyticsConfigurationOutput, GetBucketCorsOutput, GetBucketEncryptionOutput, GetBucketIntelligentTieringConfigurationOutput, GetBucketInventoryConfigurationOutput, GetBucketLifecycleConfigurationOutput, GetBucketLocationOutput, GetBucketLoggingOutput, GetBucketMetadataConfigurationOutput, GetBucketMetadataTableConfigurationOutput, GetBucketMetricsConfigurationOutput, GetBucketNotificationConfigurationOutput, GetBucketOwnershipControlsOutput, GetBucketPolicyOutput, GetBucketPolicyStatusOutput, GetBucketReplicationOutput, GetBucketRequestPaymentOutput, GetBucketTaggingOutput, GetBucketVersioningOutput, GetBucketWebsiteOutput, GetObjectAclOutput, GetObjectAnnotationOutput, GetObjectAttributesOutput, GetObjectLegalHoldOutput, GetObjectLockConfigurationOutput, GetObjectOutput, GetObjectRetentionOutput, GetObjectTaggingOutput, GetObjectTorrentOutput, GetPublicAccessBlockOutput, HeadBucketOutput, HeadObjectOutput, ListBucketAnalyticsConfigurationsOutput, ListBucketIntelligentTieringConfigurationsOutput, ListBucketInventoryConfigurationsOutput, ListBucketMetricsConfigurationsOutput, ListBucketsOutput, ListDirectoryBucketsOutput, ListMultipartUploadsOutput, ListObjectAnnotationsOutput, ListObjectVersionsOutput, ListObjectsOutput, ListObjectsV2Output, ListPartsOutput, PutBucketLifecycleConfigurationOutput, PutObjectAclOutput, PutObjectAnnotationOutput, PutObjectLegalHoldOutput, PutObjectLockConfigurationOutput, PutObjectOutput, PutObjectRetentionOutput, PutObjectTaggingOutput, RenameObjectOutput, RestoreObjectOutput, UpdateObjectEncryptionOutput, UploadPartCopyOutput, UploadPartOutput
 from .types import (
     AbacStatus,
     AccelerateConfiguration,
@@ -4143,7 +4143,7 @@ class S3Client:
         expected_bucket_owner: str | None = None,
         content_md5: str | None = None,
         checksum_algorithm: ChecksumAlgorithm | None = None,
-    ) -> UpdateObjectEncryptionResponse:
+    ) -> UpdateObjectEncryptionOutput:
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -4164,7 +4164,7 @@ class S3Client:
             _response = await invoke(
                 self._native.update_object_encryption, params, _interceptors,
                 "s3", "UpdateObjectEncryption", self._region,
-                UpdateObjectEncryptionResponse,
+                UpdateObjectEncryptionOutput,
                 ("bucket", "key", "object_encryption", "version_id", "request_payer", "expected_bucket_owner", "content_md5", "checksum_algorithm", ),
                 ("bucket", "key", "object_encryption", ),
             )

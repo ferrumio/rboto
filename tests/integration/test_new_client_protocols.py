@@ -254,10 +254,12 @@ async def test_s3_list_objects_paginator_falls_back_to_last_key(peer: Peer) -> N
 @service("sqs")
 async def test_sqs_paginator_forwards_token_and_stops_when_it_repeats(peer: Peer) -> None:
     from rboto import SQSClient
+    from rboto_sqs.types import ListQueuesOutput
 
     client = SQSClient(region="us-east-1", endpoint_url=peer.endpoint)
     peer.body = b'{"QueueUrls":[],"NextToken":"same"}'
     pages = [page async for page in client.paginators.list_queues(max_results=10)]
+    assert all(type(page) is ListQueuesOutput for page in pages)
     assert len(pages) == len(peer.requests) == 2
     assert json.loads(peer.requests[1][1]) == {"MaxResults": 10, "NextToken": "same"}
 
@@ -448,17 +450,53 @@ async def test_nullable_member_inside_response_union(peer: Peer) -> None:
 @service("sqs")
 async def test_sequence_input_and_unknown_enum_output(peer: Peer) -> None:
     from rboto import SQSClient, UnknownEnumValue
+    from rboto_sqs.types import GetQueueAttributesOutput
 
     peer.body = b'{"Attributes":{"VisibilityTimeout":"30","FutureAttribute":"new"}}'
     client = SQSClient(region="us-east-1", endpoint_url=peer.endpoint)
     response = await client.get_queue_attributes(
         queue_url=f"{peer.endpoint}/123456789012/example", attribute_names=("All",),
     )
+    assert type(response) is GetQueueAttributesOutput
     assert response.attributes is not None
     assert response.attributes["VisibilityTimeout"] == "30"
     assert response.attributes[UnknownEnumValue("FutureAttribute")] == "new"
     assert all(isinstance(key, str) for key in response.attributes)
     assert len(peer.requests) == 1
+
+
+@pytest.mark.asyncio
+@service("lambda")
+async def test_operation_and_paginator_use_the_normalized_output_class(peer: Peer) -> None:
+    from rboto import LambdaClient
+    from rboto_lambda.types import ListFunctionsOutput
+
+    peer.body = b'{"Functions":[{"FunctionName":"example"}]}'
+    client = LambdaClient(region="us-east-1", endpoint_url=peer.endpoint)
+    response = await client.list_functions()
+    assert type(response) is ListFunctionsOutput
+    assert response.__class__.__name__ == "ListFunctionsOutput"
+    assert response.functions and response.functions[0].function_name == "example"
+    pages = [page async for page in client.paginators.list_functions()]
+    assert len(pages) == 1 and type(pages[0]) is ListFunctionsOutput
+
+
+@pytest.mark.asyncio
+@service("bedrock-agent-runtime")
+async def test_operation_and_nested_output_names_do_not_collide(peer: Peer) -> None:
+    from rboto import BedrockAgentRuntimeClient
+    from rboto_bedrock_agent_runtime.types import (
+        RetrieveAndGenerateOutput,
+        RetrieveAndGenerateValueOutput,
+    )
+
+    peer.body = b'{"output":{"text":"answer"},"sessionId":"session"}'
+    client = BedrockAgentRuntimeClient(region="us-east-1", endpoint_url=peer.endpoint)
+    response = await client.retrieve_and_generate(input={"text": "question"})
+    assert type(response) is RetrieveAndGenerateOutput
+    assert type(response.output) is RetrieveAndGenerateValueOutput
+    assert response.output.text == "answer"
+    assert response.to_dict()["output"] == {"text": "answer"}
 
 
 @pytest.mark.asyncio

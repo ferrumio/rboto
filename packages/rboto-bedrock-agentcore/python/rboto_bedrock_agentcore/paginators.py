@@ -8,15 +8,15 @@ from typing import TYPE_CHECKING
 from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _paginate
 
 from ._native import (
-    ListABTestsResponse,
+    ListABTestsOutput,
     ListActorsOutput,
-    ListBatchEvaluationsResponse,
+    ListBatchEvaluationsOutput,
     ListEventsOutput,
     ListMemoryExtractionJobsOutput,
     ListMemoryRecordsOutput,
-    ListPaymentInstrumentsResponse,
-    ListPaymentSessionsResponse,
-    ListRecommendationsResponse,
+    ListPaymentInstrumentsOutput,
+    ListPaymentSessionsOutput,
+    ListRecommendationsOutput,
     ListSessionsOutput,
     RetrieveMemoryRecordsOutput,
 )
@@ -44,7 +44,7 @@ class BedrockAgentCoreClientPaginators:
         *,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListABTestsResponse]:
+    ) -> AsyncIterator[ListABTestsOutput]:
         """Yield each page from list_ab_tests; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -92,7 +92,7 @@ class BedrockAgentCoreClientPaginators:
         *,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListBatchEvaluationsResponse]:
+    ) -> AsyncIterator[ListBatchEvaluationsOutput]:
         """Yield each page from list_batch_evaluations; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -219,7 +219,7 @@ class BedrockAgentCoreClientPaginators:
         payment_connector_id: str | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListPaymentInstrumentsResponse]:
+    ) -> AsyncIterator[ListPaymentInstrumentsOutput]:
         """Yield each page from list_payment_instruments; requests start on iteration."""
         params: dict[str, object] = {
             "payment_manager_arn": payment_manager_arn,
@@ -252,7 +252,7 @@ class BedrockAgentCoreClientPaginators:
         agent_name: str | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListPaymentSessionsResponse]:
+    ) -> AsyncIterator[ListPaymentSessionsOutput]:
         """Yield each page from list_payment_sessions; requests start on iteration."""
         params: dict[str, object] = {
             "payment_manager_arn": payment_manager_arn,
@@ -281,7 +281,7 @@ class BedrockAgentCoreClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
         status_filter: RecommendationStatus | None = None,
-    ) -> AsyncIterator[ListRecommendationsResponse]:
+    ) -> AsyncIterator[ListRecommendationsOutput]:
         """Yield each page from list_recommendations; requests start on iteration."""
         params: dict[str, object] = {
         }

@@ -128,53 +128,53 @@ native response definitions are in the package's `_native.pyi`.
 | [`generate_client_certificate`](#generate_client_certificate) | None | <code>GenerateClientCertificateOutput</code> |
 | [`get_account`](#get_account) | None | <code>GetAccountOutput</code> |
 | [`get_api_key`](#get_api_key) | <code>api_key: str</code> | <code>GetApiKeyOutput</code> |
-| [`get_api_keys`](#get_api_keys) | None | <code>ApiKeys</code> |
+| [`get_api_keys`](#get_api_keys) | None | <code>GetApiKeysOutput</code> |
 | [`get_authorizer`](#get_authorizer) | <code>rest_api_id: str</code>, <code>authorizer_id: str</code> | <code>GetAuthorizerOutput</code> |
-| [`get_authorizers`](#get_authorizers) | <code>rest_api_id: str</code> | <code>Authorizers</code> |
+| [`get_authorizers`](#get_authorizers) | <code>rest_api_id: str</code> | <code>GetAuthorizersOutput</code> |
 | [`get_base_path_mapping`](#get_base_path_mapping) | <code>domain_name: str</code>, <code>base_path: str</code> | <code>GetBasePathMappingOutput</code> |
-| [`get_base_path_mappings`](#get_base_path_mappings) | <code>domain_name: str</code> | <code>BasePathMappings</code> |
+| [`get_base_path_mappings`](#get_base_path_mappings) | <code>domain_name: str</code> | <code>GetBasePathMappingsOutput</code> |
 | [`get_client_certificate`](#get_client_certificate) | <code>client_certificate_id: str</code> | <code>GetClientCertificateOutput</code> |
-| [`get_client_certificates`](#get_client_certificates) | None | <code>ClientCertificates</code> |
+| [`get_client_certificates`](#get_client_certificates) | None | <code>GetClientCertificatesOutput</code> |
 | [`get_deployment`](#get_deployment) | <code>rest_api_id: str</code>, <code>deployment_id: str</code> | <code>GetDeploymentOutput</code> |
-| [`get_deployments`](#get_deployments) | <code>rest_api_id: str</code> | <code>Deployments</code> |
+| [`get_deployments`](#get_deployments) | <code>rest_api_id: str</code> | <code>GetDeploymentsOutput</code> |
 | [`get_documentation_part`](#get_documentation_part) | <code>rest_api_id: str</code>, <code>documentation_part_id: str</code> | <code>GetDocumentationPartOutput</code> |
-| [`get_documentation_parts`](#get_documentation_parts) | <code>rest_api_id: str</code> | <code>DocumentationParts</code> |
+| [`get_documentation_parts`](#get_documentation_parts) | <code>rest_api_id: str</code> | <code>GetDocumentationPartsOutput</code> |
 | [`get_documentation_version`](#get_documentation_version) | <code>rest_api_id: str</code>, <code>documentation_version: str</code> | <code>GetDocumentationVersionOutput</code> |
-| [`get_documentation_versions`](#get_documentation_versions) | <code>rest_api_id: str</code> | <code>DocumentationVersions</code> |
+| [`get_documentation_versions`](#get_documentation_versions) | <code>rest_api_id: str</code> | <code>GetDocumentationVersionsOutput</code> |
 | [`get_domain_name`](#get_domain_name) | <code>domain_name: str</code> | <code>GetDomainNameOutput</code> |
-| [`get_domain_name_access_associations`](#get_domain_name_access_associations) | None | <code>DomainNameAccessAssociations</code> |
-| [`get_domain_names`](#get_domain_names) | None | <code>DomainNames</code> |
-| [`get_export`](#get_export) | <code>rest_api_id: str</code>, <code>stage_name: str</code>, <code>export_type: str</code> | <code>ExportResponse</code> |
+| [`get_domain_name_access_associations`](#get_domain_name_access_associations) | None | <code>GetDomainNameAccessAssociationsOutput</code> |
+| [`get_domain_names`](#get_domain_names) | None | <code>GetDomainNamesOutput</code> |
+| [`get_export`](#get_export) | <code>rest_api_id: str</code>, <code>stage_name: str</code>, <code>export_type: str</code> | <code>GetExportOutput</code> |
 | [`get_gateway_response`](#get_gateway_response) | <code>rest_api_id: str</code>, <code>response_type: GatewayResponseType</code> | <code>GetGatewayResponseOutput</code> |
-| [`get_gateway_responses`](#get_gateway_responses) | <code>rest_api_id: str</code> | <code>GatewayResponses</code> |
+| [`get_gateway_responses`](#get_gateway_responses) | <code>rest_api_id: str</code> | <code>GetGatewayResponsesOutput</code> |
 | [`get_integration`](#get_integration) | <code>rest_api_id: str</code>, <code>resource_id: str</code>, <code>http_method: str</code> | <code>GetIntegrationOutput</code> |
 | [`get_integration_response`](#get_integration_response) | <code>rest_api_id: str</code>, <code>resource_id: str</code>, <code>http_method: str</code>, <code>status_code: str</code> | <code>GetIntegrationResponseOutput</code> |
 | [`get_method`](#get_method) | <code>rest_api_id: str</code>, <code>resource_id: str</code>, <code>http_method: str</code> | <code>GetMethodOutput</code> |
 | [`get_method_response`](#get_method_response) | <code>rest_api_id: str</code>, <code>resource_id: str</code>, <code>http_method: str</code>, <code>status_code: str</code> | <code>GetMethodResponseOutput</code> |
 | [`get_model`](#get_model) | <code>rest_api_id: str</code>, <code>model_name: str</code> | <code>GetModelOutput</code> |
-| [`get_model_template`](#get_model_template) | <code>rest_api_id: str</code>, <code>model_name: str</code> | <code>Template</code> |
-| [`get_models`](#get_models) | <code>rest_api_id: str</code> | <code>Models</code> |
+| [`get_model_template`](#get_model_template) | <code>rest_api_id: str</code>, <code>model_name: str</code> | <code>GetModelTemplateOutput</code> |
+| [`get_models`](#get_models) | <code>rest_api_id: str</code> | <code>GetModelsOutput</code> |
 | [`get_request_validator`](#get_request_validator) | <code>rest_api_id: str</code>, <code>request_validator_id: str</code> | <code>GetRequestValidatorOutput</code> |
-| [`get_request_validators`](#get_request_validators) | <code>rest_api_id: str</code> | <code>RequestValidators</code> |
+| [`get_request_validators`](#get_request_validators) | <code>rest_api_id: str</code> | <code>GetRequestValidatorsOutput</code> |
 | [`get_resource`](#get_resource) | <code>rest_api_id: str</code>, <code>resource_id: str</code> | <code>GetResourceOutput</code> |
-| [`get_resources`](#get_resources) | <code>rest_api_id: str</code> | <code>Resources</code> |
+| [`get_resources`](#get_resources) | <code>rest_api_id: str</code> | <code>GetResourcesOutput</code> |
 | [`get_rest_api`](#get_rest_api) | <code>rest_api_id: str</code> | <code>GetRestApiOutput</code> |
-| [`get_rest_apis`](#get_rest_apis) | None | <code>RestApis</code> |
-| [`get_sdk`](#get_sdk) | <code>rest_api_id: str</code>, <code>stage_name: str</code>, <code>sdk_type: str</code> | <code>SdkResponse</code> |
+| [`get_rest_apis`](#get_rest_apis) | None | <code>GetRestApisOutput</code> |
+| [`get_sdk`](#get_sdk) | <code>rest_api_id: str</code>, <code>stage_name: str</code>, <code>sdk_type: str</code> | <code>GetSdkOutput</code> |
 | [`get_sdk_type`](#get_sdk_type) | <code>id: str</code> | <code>GetSdkTypeOutput</code> |
-| [`get_sdk_types`](#get_sdk_types) | None | <code>SdkTypes</code> |
+| [`get_sdk_types`](#get_sdk_types) | None | <code>GetSdkTypesOutput</code> |
 | [`get_stage`](#get_stage) | <code>rest_api_id: str</code>, <code>stage_name: str</code> | <code>GetStageOutput</code> |
-| [`get_stages`](#get_stages) | <code>rest_api_id: str</code> | <code>Stages</code> |
-| [`get_tags`](#get_tags) | <code>resource_arn: str</code> | <code>Tags</code> |
+| [`get_stages`](#get_stages) | <code>rest_api_id: str</code> | <code>GetStagesOutput</code> |
+| [`get_tags`](#get_tags) | <code>resource_arn: str</code> | <code>GetTagsOutput</code> |
 | [`get_usage`](#get_usage) | <code>usage_plan_id: str</code>, <code>start_date: str</code>, <code>end_date: str</code> | <code>GetUsageOutput</code> |
 | [`get_usage_plan`](#get_usage_plan) | <code>usage_plan_id: str</code> | <code>GetUsagePlanOutput</code> |
 | [`get_usage_plan_key`](#get_usage_plan_key) | <code>usage_plan_id: str</code>, <code>key_id: str</code> | <code>GetUsagePlanKeyOutput</code> |
-| [`get_usage_plan_keys`](#get_usage_plan_keys) | <code>usage_plan_id: str</code> | <code>UsagePlanKeys</code> |
-| [`get_usage_plans`](#get_usage_plans) | None | <code>UsagePlans</code> |
+| [`get_usage_plan_keys`](#get_usage_plan_keys) | <code>usage_plan_id: str</code> | <code>GetUsagePlanKeysOutput</code> |
+| [`get_usage_plans`](#get_usage_plans) | None | <code>GetUsagePlansOutput</code> |
 | [`get_vpc_link`](#get_vpc_link) | <code>vpc_link_id: str</code> | <code>GetVpcLinkOutput</code> |
-| [`get_vpc_links`](#get_vpc_links) | None | <code>VpcLinks</code> |
-| [`import_api_keys`](#import_api_keys) | <code>body: bytes</code>, <code>format: ApiKeysFormat</code> | <code>ApiKeyIds</code> |
-| [`import_documentation_parts`](#import_documentation_parts) | <code>rest_api_id: str</code>, <code>body: bytes</code> | <code>DocumentationPartIds</code> |
+| [`get_vpc_links`](#get_vpc_links) | None | <code>GetVpcLinksOutput</code> |
+| [`import_api_keys`](#import_api_keys) | <code>body: bytes</code>, <code>format: ApiKeysFormat</code> | <code>ImportApiKeysOutput</code> |
+| [`import_documentation_parts`](#import_documentation_parts) | <code>rest_api_id: str</code>, <code>body: bytes</code> | <code>ImportDocumentationPartsOutput</code> |
 | [`import_rest_api`](#import_rest_api) | <code>body: bytes</code> | <code>ImportRestApiOutput</code> |
 | [`put_gateway_response`](#put_gateway_response) | <code>rest_api_id: str</code>, <code>response_type: GatewayResponseType</code> | <code>PutGatewayResponseOutput</code> |
 | [`put_integration`](#put_integration) | <code>rest_api_id: str</code>, <code>resource_id: str</code>, <code>http_method: str</code>, <code>type: IntegrationType</code> | <code>PutIntegrationOutput</code> |
@@ -184,8 +184,8 @@ native response definitions are in the package's `_native.pyi`.
 | [`put_rest_api`](#put_rest_api) | <code>rest_api_id: str</code>, <code>body: bytes</code> | <code>PutRestApiOutput</code> |
 | [`reject_domain_name_access_association`](#reject_domain_name_access_association) | <code>domain_name_access_association_arn: str</code>, <code>domain_name_arn: str</code> | <code>None</code> |
 | [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>None</code> |
-| [`test_invoke_authorizer`](#test_invoke_authorizer) | <code>rest_api_id: str</code>, <code>authorizer_id: str</code> | <code>TestInvokeAuthorizerResponse</code> |
-| [`test_invoke_method`](#test_invoke_method) | <code>rest_api_id: str</code>, <code>resource_id: str</code>, <code>http_method: str</code> | <code>TestInvokeMethodResponse</code> |
+| [`test_invoke_authorizer`](#test_invoke_authorizer) | <code>rest_api_id: str</code>, <code>authorizer_id: str</code> | <code>TestInvokeAuthorizerOutput</code> |
+| [`test_invoke_method`](#test_invoke_method) | <code>rest_api_id: str</code>, <code>resource_id: str</code>, <code>http_method: str</code> | <code>TestInvokeMethodOutput</code> |
 | [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>None</code> |
 | [`update_account`](#update_account) | None | <code>UpdateAccountOutput</code> |
 | [`update_api_key`](#update_api_key) | <code>api_key: str</code> | <code>UpdateApiKeyOutput</code> |
@@ -768,7 +768,7 @@ async def get_api_keys(
     name_query: str | None = None,
     customer_id: str | None = None,
     include_values: bool | None = None,
-) -> ApiKeys: ...
+) -> GetApiKeysOutput: ...
 ```
 
 Also available as `client.paginators.get_api_keys(...)`, returning an
@@ -794,7 +794,7 @@ async def get_authorizers(
     rest_api_id: str,
     position: str | None = None,
     limit: int | None = None,
-) -> Authorizers: ...
+) -> GetAuthorizersOutput: ...
 ```
 
 Also available as `client.paginators.get_authorizers(...)`, returning an
@@ -822,7 +822,7 @@ async def get_base_path_mappings(
     domain_name_id: str | None = None,
     position: str | None = None,
     limit: int | None = None,
-) -> BasePathMappings: ...
+) -> GetBasePathMappingsOutput: ...
 ```
 
 Also available as `client.paginators.get_base_path_mappings(...)`, returning an
@@ -846,7 +846,7 @@ async def get_client_certificates(
     *,
     position: str | None = None,
     limit: int | None = None,
-) -> ClientCertificates: ...
+) -> GetClientCertificatesOutput: ...
 ```
 
 Also available as `client.paginators.get_client_certificates(...)`, returning an
@@ -873,7 +873,7 @@ async def get_deployments(
     rest_api_id: str,
     position: str | None = None,
     limit: int | None = None,
-) -> Deployments: ...
+) -> GetDeploymentsOutput: ...
 ```
 
 Also available as `client.paginators.get_deployments(...)`, returning an
@@ -903,7 +903,7 @@ async def get_documentation_parts(
     position: str | None = None,
     limit: int | None = None,
     location_status: LocationStatusType | None = None,
-) -> DocumentationParts: ...
+) -> GetDocumentationPartsOutput: ...
 ```
 
 Also available as `client.paginators.get_documentation_parts(...)`, returning an
@@ -929,7 +929,7 @@ async def get_documentation_versions(
     rest_api_id: str,
     position: str | None = None,
     limit: int | None = None,
-) -> DocumentationVersions: ...
+) -> GetDocumentationVersionsOutput: ...
 ```
 
 Also available as `client.paginators.get_documentation_versions(...)`, returning an
@@ -955,7 +955,7 @@ async def get_domain_name_access_associations(
     position: str | None = None,
     limit: int | None = None,
     resource_owner: ResourceOwner | None = None,
-) -> DomainNameAccessAssociations: ...
+) -> GetDomainNameAccessAssociationsOutput: ...
 ```
 
 
@@ -967,7 +967,7 @@ async def get_domain_names(
     position: str | None = None,
     limit: int | None = None,
     resource_owner: ResourceOwner | None = None,
-) -> DomainNames: ...
+) -> GetDomainNamesOutput: ...
 ```
 
 Also available as `client.paginators.get_domain_names(...)`, returning an
@@ -984,7 +984,7 @@ async def get_export(
     export_type: str,
     parameters: dict[str, str] | None = None,
     accepts: str | None = None,
-) -> ExportResponse: ...
+) -> GetExportOutput: ...
 ```
 
 
@@ -1007,7 +1007,7 @@ async def get_gateway_responses(
     rest_api_id: str,
     position: str | None = None,
     limit: int | None = None,
-) -> GatewayResponses: ...
+) -> GetGatewayResponsesOutput: ...
 ```
 
 Also available as `client.paginators.get_gateway_responses(...)`, returning an
@@ -1083,7 +1083,7 @@ async def get_model_template(
     *,
     rest_api_id: str,
     model_name: str,
-) -> Template: ...
+) -> GetModelTemplateOutput: ...
 ```
 
 
@@ -1095,7 +1095,7 @@ async def get_models(
     rest_api_id: str,
     position: str | None = None,
     limit: int | None = None,
-) -> Models: ...
+) -> GetModelsOutput: ...
 ```
 
 Also available as `client.paginators.get_models(...)`, returning an
@@ -1121,7 +1121,7 @@ async def get_request_validators(
     rest_api_id: str,
     position: str | None = None,
     limit: int | None = None,
-) -> RequestValidators: ...
+) -> GetRequestValidatorsOutput: ...
 ```
 
 Also available as `client.paginators.get_request_validators(...)`, returning an
@@ -1149,7 +1149,7 @@ async def get_resources(
     position: str | None = None,
     limit: int | None = None,
     embed: Sequence[str] | None = None,
-) -> Resources: ...
+) -> GetResourcesOutput: ...
 ```
 
 Also available as `client.paginators.get_resources(...)`, returning an
@@ -1173,7 +1173,7 @@ async def get_rest_apis(
     *,
     position: str | None = None,
     limit: int | None = None,
-) -> RestApis: ...
+) -> GetRestApisOutput: ...
 ```
 
 Also available as `client.paginators.get_rest_apis(...)`, returning an
@@ -1189,7 +1189,7 @@ async def get_sdk(
     stage_name: str,
     sdk_type: str,
     parameters: dict[str, str] | None = None,
-) -> SdkResponse: ...
+) -> GetSdkOutput: ...
 ```
 
 
@@ -1210,7 +1210,7 @@ async def get_sdk_types(
     *,
     position: str | None = None,
     limit: int | None = None,
-) -> SdkTypes: ...
+) -> GetSdkTypesOutput: ...
 ```
 
 
@@ -1232,7 +1232,7 @@ async def get_stages(
     *,
     rest_api_id: str,
     deployment_id: str | None = None,
-) -> Stages: ...
+) -> GetStagesOutput: ...
 ```
 
 
@@ -1244,7 +1244,7 @@ async def get_tags(
     resource_arn: str,
     position: str | None = None,
     limit: int | None = None,
-) -> Tags: ...
+) -> GetTagsOutput: ...
 ```
 
 
@@ -1296,7 +1296,7 @@ async def get_usage_plan_keys(
     position: str | None = None,
     limit: int | None = None,
     name_query: str | None = None,
-) -> UsagePlanKeys: ...
+) -> GetUsagePlanKeysOutput: ...
 ```
 
 Also available as `client.paginators.get_usage_plan_keys(...)`, returning an
@@ -1311,7 +1311,7 @@ async def get_usage_plans(
     position: str | None = None,
     key_id: str | None = None,
     limit: int | None = None,
-) -> UsagePlans: ...
+) -> GetUsagePlansOutput: ...
 ```
 
 Also available as `client.paginators.get_usage_plans(...)`, returning an
@@ -1335,7 +1335,7 @@ async def get_vpc_links(
     *,
     position: str | None = None,
     limit: int | None = None,
-) -> VpcLinks: ...
+) -> GetVpcLinksOutput: ...
 ```
 
 Also available as `client.paginators.get_vpc_links(...)`, returning an
@@ -1350,7 +1350,7 @@ async def import_api_keys(
     body: bytes,
     format: ApiKeysFormat,
     fail_on_warnings: bool | None = None,
-) -> ApiKeyIds: ...
+) -> ImportApiKeysOutput: ...
 ```
 
 
@@ -1363,7 +1363,7 @@ async def import_documentation_parts(
     body: bytes,
     mode: PutMode | None = None,
     fail_on_warnings: bool | None = None,
-) -> DocumentationPartIds: ...
+) -> ImportDocumentationPartsOutput: ...
 ```
 
 
@@ -1522,7 +1522,7 @@ async def test_invoke_authorizer(
     body: str | None = None,
     stage_variables: dict[str, str] | None = None,
     additional_context: dict[str, str] | None = None,
-) -> TestInvokeAuthorizerResponse: ...
+) -> TestInvokeAuthorizerOutput: ...
 ```
 
 
@@ -1540,7 +1540,7 @@ async def test_invoke_method(
     multi_value_headers: dict[str, Sequence[str]] | None = None,
     client_certificate_id: str | None = None,
     stage_variables: dict[str, str] | None = None,
-) -> TestInvokeMethodResponse: ...
+) -> TestInvokeMethodOutput: ...
 ```
 
 

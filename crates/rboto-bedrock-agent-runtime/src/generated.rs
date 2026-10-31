@@ -15752,7 +15752,7 @@ impl PyRetrievalResultWebLocation {
 }
 
 #[pyclass(
-    name = "RetrieveAndGenerateOutput",
+    name = "RetrieveAndGenerateValueOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
@@ -15990,16 +15990,16 @@ impl PyVideoSegment {
 }
 
 #[pyclass(
-    name = "CheckIngestedDocumentAclResponse",
+    name = "CheckIngestedDocumentAclOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyCheckIngestedDocumentAclResponse {
+struct PyOperationCheckIngestedDocumentAclOutput {
     inner: aws_sdk_bedrockagentruntime::operation::check_ingested_document_acl::CheckIngestedDocumentAclOutput,
 }
 
 #[pymethods]
-impl PyCheckIngestedDocumentAclResponse {
+impl PyOperationCheckIngestedDocumentAclOutput {
     #[getter]
     fn has_access(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2681 = (&self.inner.has_access).to_owned().into_py_any(py)?;
@@ -16015,16 +16015,16 @@ impl PyCheckIngestedDocumentAclResponse {
 }
 
 #[pyclass(
-    name = "CreateInvocationResponse",
+    name = "CreateInvocationOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyCreateInvocationResponse {
+struct PyOperationCreateInvocationOutput {
     inner: aws_sdk_bedrockagentruntime::operation::create_invocation::CreateInvocationOutput,
 }
 
 #[pymethods]
-impl PyCreateInvocationResponse {
+impl PyOperationCreateInvocationOutput {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2683 = (&self.inner.session_id).as_str().into_py_any(py)?;
@@ -16056,16 +16056,16 @@ impl PyCreateInvocationResponse {
 }
 
 #[pyclass(
-    name = "CreateSessionResponse",
+    name = "CreateSessionOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyCreateSessionResponse {
+struct PyOperationCreateSessionOutput {
     inner: aws_sdk_bedrockagentruntime::operation::create_session::CreateSessionOutput,
 }
 
 #[pymethods]
-impl PyCreateSessionResponse {
+impl PyOperationCreateSessionOutput {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2689 = (&self.inner.session_id).as_str().into_py_any(py)?;
@@ -16105,16 +16105,16 @@ impl PyCreateSessionResponse {
 }
 
 #[pyclass(
-    name = "DeleteAgentMemoryResponse",
+    name = "DeleteAgentMemoryOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyDeleteAgentMemoryResponse {
+struct PyOperationDeleteAgentMemoryOutput {
     inner: aws_sdk_bedrockagentruntime::operation::delete_agent_memory::DeleteAgentMemoryOutput,
 }
 
 #[pymethods]
-impl PyDeleteAgentMemoryResponse {
+impl PyOperationDeleteAgentMemoryOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -16122,16 +16122,16 @@ impl PyDeleteAgentMemoryResponse {
 }
 
 #[pyclass(
-    name = "DeleteSessionResponse",
+    name = "DeleteSessionOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyDeleteSessionResponse {
+struct PyOperationDeleteSessionOutput {
     inner: aws_sdk_bedrockagentruntime::operation::delete_session::DeleteSessionOutput,
 }
 
 #[pymethods]
-impl PyDeleteSessionResponse {
+impl PyOperationDeleteSessionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -16139,16 +16139,16 @@ impl PyDeleteSessionResponse {
 }
 
 #[pyclass(
-    name = "EndSessionResponse",
+    name = "EndSessionOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyEndSessionResponse {
+struct PyOperationEndSessionOutput {
     inner: aws_sdk_bedrockagentruntime::operation::end_session::EndSessionOutput,
 }
 
 #[pymethods]
-impl PyEndSessionResponse {
+impl PyOperationEndSessionOutput {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2697 = (&self.inner.session_id).as_str().into_py_any(py)?;
@@ -16180,16 +16180,16 @@ impl PyEndSessionResponse {
 }
 
 #[pyclass(
-    name = "GenerateQueryResponse",
+    name = "GenerateQueryOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyGenerateQueryResponse {
+struct PyOperationGenerateQueryOutput {
     inner: aws_sdk_bedrockagentruntime::operation::generate_query::GenerateQueryOutput,
 }
 
 #[pymethods]
-impl PyGenerateQueryResponse {
+impl PyOperationGenerateQueryOutput {
     #[getter]
     fn queries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.queries {
@@ -16229,16 +16229,16 @@ impl PyGenerateQueryResponse {
 }
 
 #[pyclass(
-    name = "GetAgentMemoryResponse",
+    name = "GetAgentMemoryOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyGetAgentMemoryResponse {
+struct PyOperationGetAgentMemoryOutput {
     inner: aws_sdk_bedrockagentruntime::operation::get_agent_memory::GetAgentMemoryOutput,
 }
 
 #[pymethods]
-impl PyGetAgentMemoryResponse {
+impl PyOperationGetAgentMemoryOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -16288,16 +16288,16 @@ impl PyGetAgentMemoryResponse {
 }
 
 #[pyclass(
-    name = "GetDocumentContentResponse",
+    name = "GetDocumentContentOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyGetDocumentContentResponse {
+struct PyOperationGetDocumentContentOutput {
     inner: aws_sdk_bedrockagentruntime::operation::get_document_content::GetDocumentContentOutput,
 }
 
 #[pymethods]
-impl PyGetDocumentContentResponse {
+impl PyOperationGetDocumentContentOutput {
     #[getter]
     fn mime_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2717 = (&self.inner.mime_type).as_str().into_py_any(py)?;
@@ -16337,16 +16337,16 @@ impl PyGetDocumentContentResponse {
 }
 
 #[pyclass(
-    name = "GetExecutionFlowSnapshotResponse",
+    name = "GetExecutionFlowSnapshotOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyGetExecutionFlowSnapshotResponse {
+struct PyOperationGetExecutionFlowSnapshotOutput {
     inner: aws_sdk_bedrockagentruntime::operation::get_execution_flow_snapshot::GetExecutionFlowSnapshotOutput,
 }
 
 #[pymethods]
-impl PyGetExecutionFlowSnapshotResponse {
+impl PyOperationGetExecutionFlowSnapshotOutput {
     #[getter]
     fn flow_identifier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2723 = (&self.inner.flow_identifier).as_str().into_py_any(py)?;
@@ -16414,16 +16414,16 @@ impl PyGetExecutionFlowSnapshotResponse {
 }
 
 #[pyclass(
-    name = "GetFlowExecutionResponse",
+    name = "GetFlowExecutionOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyGetFlowExecutionResponse {
+struct PyOperationGetFlowExecutionOutput {
     inner: aws_sdk_bedrockagentruntime::operation::get_flow_execution::GetFlowExecutionOutput,
 }
 
 #[pymethods]
-impl PyGetFlowExecutionResponse {
+impl PyOperationGetFlowExecutionOutput {
     #[getter]
     fn execution_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2735 = (&self.inner.execution_arn).as_str().into_py_any(py)?;
@@ -16531,16 +16531,16 @@ impl PyGetFlowExecutionResponse {
 }
 
 #[pyclass(
-    name = "GetIngestedDocumentAclResponse",
+    name = "GetIngestedDocumentAclOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyGetIngestedDocumentAclResponse {
+struct PyOperationGetIngestedDocumentAclOutput {
     inner: aws_sdk_bedrockagentruntime::operation::get_ingested_document_acl::GetIngestedDocumentAclOutput,
 }
 
 #[pymethods]
-impl PyGetIngestedDocumentAclResponse {
+impl PyOperationGetIngestedDocumentAclOutput {
     #[getter]
     fn document_acl(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.document_acl {
@@ -16570,16 +16570,16 @@ impl PyGetIngestedDocumentAclResponse {
 }
 
 #[pyclass(
-    name = "GetInvocationStepResponse",
+    name = "GetInvocationStepOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyGetInvocationStepResponse {
+struct PyOperationGetInvocationStepOutput {
     inner: aws_sdk_bedrockagentruntime::operation::get_invocation_step::GetInvocationStepOutput,
 }
 
 #[pymethods]
-impl PyGetInvocationStepResponse {
+impl PyOperationGetInvocationStepOutput {
     #[getter]
     fn invocation_step(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.invocation_step {
@@ -16609,16 +16609,16 @@ impl PyGetInvocationStepResponse {
 }
 
 #[pyclass(
-    name = "GetSessionResponse",
+    name = "GetSessionOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyGetSessionResponse {
+struct PyOperationGetSessionOutput {
     inner: aws_sdk_bedrockagentruntime::operation::get_session::GetSessionOutput,
 }
 
 #[pymethods]
-impl PyGetSessionResponse {
+impl PyOperationGetSessionOutput {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2759 = (&self.inner.session_id).as_str().into_py_any(py)?;
@@ -16710,16 +16710,16 @@ impl PyGetSessionResponse {
 }
 
 #[pyclass(
-    name = "ListFlowExecutionEventsResponse",
+    name = "ListFlowExecutionEventsOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyListFlowExecutionEventsResponse {
+struct PyOperationListFlowExecutionEventsOutput {
     inner: aws_sdk_bedrockagentruntime::operation::list_flow_execution_events::ListFlowExecutionEventsOutput,
 }
 
 #[pymethods]
-impl PyListFlowExecutionEventsResponse {
+impl PyOperationListFlowExecutionEventsOutput {
     #[getter]
     fn flow_execution_events(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2781_list = PyList::empty(py);
@@ -16761,16 +16761,16 @@ impl PyListFlowExecutionEventsResponse {
 }
 
 #[pyclass(
-    name = "ListFlowExecutionsResponse",
+    name = "ListFlowExecutionsOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyListFlowExecutionsResponse {
+struct PyOperationListFlowExecutionsOutput {
     inner: aws_sdk_bedrockagentruntime::operation::list_flow_executions::ListFlowExecutionsOutput,
 }
 
 #[pymethods]
-impl PyListFlowExecutionsResponse {
+impl PyOperationListFlowExecutionsOutput {
     #[getter]
     fn flow_execution_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2789_list = PyList::empty(py);
@@ -16818,16 +16818,16 @@ impl PyListFlowExecutionsResponse {
 }
 
 #[pyclass(
-    name = "ListInvocationStepsResponse",
+    name = "ListInvocationStepsOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyListInvocationStepsResponse {
+struct PyOperationListInvocationStepsOutput {
     inner: aws_sdk_bedrockagentruntime::operation::list_invocation_steps::ListInvocationStepsOutput,
 }
 
 #[pymethods]
-impl PyListInvocationStepsResponse {
+impl PyOperationListInvocationStepsOutput {
     #[getter]
     fn invocation_step_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2797_list = PyList::empty(py);
@@ -16875,16 +16875,16 @@ impl PyListInvocationStepsResponse {
 }
 
 #[pyclass(
-    name = "ListInvocationsResponse",
+    name = "ListInvocationsOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyListInvocationsResponse {
+struct PyOperationListInvocationsOutput {
     inner: aws_sdk_bedrockagentruntime::operation::list_invocations::ListInvocationsOutput,
 }
 
 #[pymethods]
-impl PyListInvocationsResponse {
+impl PyOperationListInvocationsOutput {
     #[getter]
     fn invocation_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2805_list = PyList::empty(py);
@@ -16932,16 +16932,16 @@ impl PyListInvocationsResponse {
 }
 
 #[pyclass(
-    name = "ListSessionsResponse",
+    name = "ListSessionsOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyListSessionsResponse {
+struct PyOperationListSessionsOutput {
     inner: aws_sdk_bedrockagentruntime::operation::list_sessions::ListSessionsOutput,
 }
 
 #[pymethods]
-impl PyListSessionsResponse {
+impl PyOperationListSessionsOutput {
     #[getter]
     fn session_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2813_list = PyList::empty(py);
@@ -16989,17 +16989,17 @@ impl PyListSessionsResponse {
 }
 
 #[pyclass(
-    name = "ListTagsForResourceResponse",
+    name = "ListTagsForResourceOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyListTagsForResourceResponse {
+struct PyOperationListTagsForResourceOutput {
     inner:
         aws_sdk_bedrockagentruntime::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
 
 #[pymethods]
-impl PyListTagsForResourceResponse {
+impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
@@ -17035,16 +17035,16 @@ impl PyListTagsForResourceResponse {
 }
 
 #[pyclass(
-    name = "PutInvocationStepResponse",
+    name = "PutInvocationStepOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyPutInvocationStepResponse {
+struct PyOperationPutInvocationStepOutput {
     inner: aws_sdk_bedrockagentruntime::operation::put_invocation_step::PutInvocationStepOutput,
 }
 
 #[pymethods]
-impl PyPutInvocationStepResponse {
+impl PyOperationPutInvocationStepOutput {
     #[getter]
     fn invocation_step_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2831 = (&self.inner.invocation_step_id).as_str().into_py_any(py)?;
@@ -17060,16 +17060,16 @@ impl PyPutInvocationStepResponse {
 }
 
 #[pyclass(
-    name = "RerankResponse",
+    name = "RerankOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyRerankResponse {
+struct PyOperationRerankOutput {
     inner: aws_sdk_bedrockagentruntime::operation::rerank::RerankOutput,
 }
 
 #[pymethods]
-impl PyRerankResponse {
+impl PyOperationRerankOutput {
     #[getter]
     fn results(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2833_list = PyList::empty(py);
@@ -17117,16 +17117,16 @@ impl PyRerankResponse {
 }
 
 #[pyclass(
-    name = "RetrieveResponse",
+    name = "RetrieveOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyRetrieveResponse {
+struct PyOperationRetrieveOutput {
     inner: aws_sdk_bedrockagentruntime::operation::retrieve::RetrieveOutput,
 }
 
 #[pymethods]
-impl PyRetrieveResponse {
+impl PyOperationRetrieveOutput {
     #[getter]
     fn retrieval_results(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2841_list = PyList::empty(py);
@@ -17190,16 +17190,16 @@ impl PyRetrieveResponse {
 }
 
 #[pyclass(
-    name = "RetrieveAndGenerateResponse",
+    name = "RetrieveAndGenerateOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyRetrieveAndGenerateResponse {
+struct PyOperationRetrieveAndGenerateOutput {
     inner: aws_sdk_bedrockagentruntime::operation::retrieve_and_generate::RetrieveAndGenerateOutput,
 }
 
 #[pymethods]
-impl PyRetrieveAndGenerateResponse {
+impl PyOperationRetrieveAndGenerateOutput {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2851 = (&self.inner.session_id).as_str().into_py_any(py)?;
@@ -17285,16 +17285,16 @@ impl PyRetrieveAndGenerateResponse {
 }
 
 #[pyclass(
-    name = "StartFlowExecutionResponse",
+    name = "StartFlowExecutionOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyStartFlowExecutionResponse {
+struct PyOperationStartFlowExecutionOutput {
     inner: aws_sdk_bedrockagentruntime::operation::start_flow_execution::StartFlowExecutionOutput,
 }
 
 #[pymethods]
-impl PyStartFlowExecutionResponse {
+impl PyOperationStartFlowExecutionOutput {
     #[getter]
     fn execution_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.execution_arn {
@@ -17318,16 +17318,16 @@ impl PyStartFlowExecutionResponse {
 }
 
 #[pyclass(
-    name = "StopFlowExecutionResponse",
+    name = "StopFlowExecutionOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyStopFlowExecutionResponse {
+struct PyOperationStopFlowExecutionOutput {
     inner: aws_sdk_bedrockagentruntime::operation::stop_flow_execution::StopFlowExecutionOutput,
 }
 
 #[pymethods]
-impl PyStopFlowExecutionResponse {
+impl PyOperationStopFlowExecutionOutput {
     #[getter]
     fn execution_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.execution_arn {
@@ -17359,16 +17359,16 @@ impl PyStopFlowExecutionResponse {
 }
 
 #[pyclass(
-    name = "TagResourceResponse",
+    name = "TagResourceOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyTagResourceResponse {
+struct PyOperationTagResourceOutput {
     inner: aws_sdk_bedrockagentruntime::operation::tag_resource::TagResourceOutput,
 }
 
 #[pymethods]
-impl PyTagResourceResponse {
+impl PyOperationTagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -17376,16 +17376,16 @@ impl PyTagResourceResponse {
 }
 
 #[pyclass(
-    name = "UntagResourceResponse",
+    name = "UntagResourceOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyUntagResourceResponse {
+struct PyOperationUntagResourceOutput {
     inner: aws_sdk_bedrockagentruntime::operation::untag_resource::UntagResourceOutput,
 }
 
 #[pymethods]
-impl PyUntagResourceResponse {
+impl PyOperationUntagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -17393,16 +17393,16 @@ impl PyUntagResourceResponse {
 }
 
 #[pyclass(
-    name = "UpdateSessionResponse",
+    name = "UpdateSessionOutput",
     module = "rboto_bedrock_agent_runtime._native",
     frozen
 )]
-struct PyUpdateSessionResponse {
+struct PyOperationUpdateSessionOutput {
     inner: aws_sdk_bedrockagentruntime::operation::update_session::UpdateSessionOutput,
 }
 
 #[pymethods]
-impl PyUpdateSessionResponse {
+impl PyOperationUpdateSessionOutput {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2869 = (&self.inner.session_id).as_str().into_py_any(py)?;
@@ -17935,35 +17935,35 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PySpan>()?;
     module.add_class::<PyTextResponsePart>()?;
     module.add_class::<PyVideoSegment>()?;
-    module.add_class::<PyCheckIngestedDocumentAclResponse>()?;
-    module.add_class::<PyCreateInvocationResponse>()?;
-    module.add_class::<PyCreateSessionResponse>()?;
-    module.add_class::<PyDeleteAgentMemoryResponse>()?;
-    module.add_class::<PyDeleteSessionResponse>()?;
-    module.add_class::<PyEndSessionResponse>()?;
-    module.add_class::<PyGenerateQueryResponse>()?;
-    module.add_class::<PyGetAgentMemoryResponse>()?;
-    module.add_class::<PyGetDocumentContentResponse>()?;
-    module.add_class::<PyGetExecutionFlowSnapshotResponse>()?;
-    module.add_class::<PyGetFlowExecutionResponse>()?;
-    module.add_class::<PyGetIngestedDocumentAclResponse>()?;
-    module.add_class::<PyGetInvocationStepResponse>()?;
-    module.add_class::<PyGetSessionResponse>()?;
-    module.add_class::<PyListFlowExecutionEventsResponse>()?;
-    module.add_class::<PyListFlowExecutionsResponse>()?;
-    module.add_class::<PyListInvocationStepsResponse>()?;
-    module.add_class::<PyListInvocationsResponse>()?;
-    module.add_class::<PyListSessionsResponse>()?;
-    module.add_class::<PyListTagsForResourceResponse>()?;
-    module.add_class::<PyPutInvocationStepResponse>()?;
-    module.add_class::<PyRerankResponse>()?;
-    module.add_class::<PyRetrieveResponse>()?;
-    module.add_class::<PyRetrieveAndGenerateResponse>()?;
-    module.add_class::<PyStartFlowExecutionResponse>()?;
-    module.add_class::<PyStopFlowExecutionResponse>()?;
-    module.add_class::<PyTagResourceResponse>()?;
-    module.add_class::<PyUntagResourceResponse>()?;
-    module.add_class::<PyUpdateSessionResponse>()?;
+    module.add_class::<PyOperationCheckIngestedDocumentAclOutput>()?;
+    module.add_class::<PyOperationCreateInvocationOutput>()?;
+    module.add_class::<PyOperationCreateSessionOutput>()?;
+    module.add_class::<PyOperationDeleteAgentMemoryOutput>()?;
+    module.add_class::<PyOperationDeleteSessionOutput>()?;
+    module.add_class::<PyOperationEndSessionOutput>()?;
+    module.add_class::<PyOperationGenerateQueryOutput>()?;
+    module.add_class::<PyOperationGetAgentMemoryOutput>()?;
+    module.add_class::<PyOperationGetDocumentContentOutput>()?;
+    module.add_class::<PyOperationGetExecutionFlowSnapshotOutput>()?;
+    module.add_class::<PyOperationGetFlowExecutionOutput>()?;
+    module.add_class::<PyOperationGetIngestedDocumentAclOutput>()?;
+    module.add_class::<PyOperationGetInvocationStepOutput>()?;
+    module.add_class::<PyOperationGetSessionOutput>()?;
+    module.add_class::<PyOperationListFlowExecutionEventsOutput>()?;
+    module.add_class::<PyOperationListFlowExecutionsOutput>()?;
+    module.add_class::<PyOperationListInvocationStepsOutput>()?;
+    module.add_class::<PyOperationListInvocationsOutput>()?;
+    module.add_class::<PyOperationListSessionsOutput>()?;
+    module.add_class::<PyOperationListTagsForResourceOutput>()?;
+    module.add_class::<PyOperationPutInvocationStepOutput>()?;
+    module.add_class::<PyOperationRerankOutput>()?;
+    module.add_class::<PyOperationRetrieveOutput>()?;
+    module.add_class::<PyOperationRetrieveAndGenerateOutput>()?;
+    module.add_class::<PyOperationStartFlowExecutionOutput>()?;
+    module.add_class::<PyOperationStopFlowExecutionOutput>()?;
+    module.add_class::<PyOperationTagResourceOutput>()?;
+    module.add_class::<PyOperationUntagResourceOutput>()?;
+    module.add_class::<PyOperationUpdateSessionOutput>()?;
 
     module.add_class::<PyAgenticRetrieveStreamResponseOutputReceiver>()?;
     module.add_class::<PyFlowResponseStreamReceiver>()?;
@@ -18180,7 +18180,7 @@ impl BedrockAgentRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CheckIngestedDocumentAcl"))
             })?;
-            Ok(PyCheckIngestedDocumentAclResponse { inner: output })
+            Ok(PyOperationCheckIngestedDocumentAclOutput { inner: output })
         })
     }
 
@@ -18233,7 +18233,7 @@ impl BedrockAgentRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateInvocation"))
             })?;
-            Ok(PyCreateInvocationResponse { inner: output })
+            Ok(PyOperationCreateInvocationOutput { inner: output })
         })
     }
 
@@ -18298,7 +18298,7 @@ impl BedrockAgentRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateSession"))
             })?;
-            Ok(PyCreateSessionResponse { inner: output })
+            Ok(PyOperationCreateSessionOutput { inner: output })
         })
     }
 
@@ -18357,7 +18357,7 @@ impl BedrockAgentRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAgentMemory"))
             })?;
-            Ok(PyDeleteAgentMemoryResponse { inner: output })
+            Ok(PyOperationDeleteAgentMemoryOutput { inner: output })
         })
     }
 
@@ -18396,7 +18396,7 @@ impl BedrockAgentRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteSession"))
             })?;
-            Ok(PyDeleteSessionResponse { inner: output })
+            Ok(PyOperationDeleteSessionOutput { inner: output })
         })
     }
 
@@ -18434,7 +18434,7 @@ impl BedrockAgentRuntimeClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "EndSession")))?;
-            Ok(PyEndSessionResponse { inner: output })
+            Ok(PyOperationEndSessionOutput { inner: output })
         })
     }
 
@@ -18481,7 +18481,7 @@ impl BedrockAgentRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GenerateQuery"))
             })?;
-            Ok(PyGenerateQueryResponse { inner: output })
+            Ok(PyOperationGenerateQueryOutput { inner: output })
         })
     }
 
@@ -18556,7 +18556,7 @@ impl BedrockAgentRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAgentMemory"))
             })?;
-            Ok(PyGetAgentMemoryResponse { inner: output })
+            Ok(PyOperationGetAgentMemoryOutput { inner: output })
         })
     }
 
@@ -18626,7 +18626,7 @@ impl BedrockAgentRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDocumentContent"))
             })?;
-            Ok(PyGetDocumentContentResponse { inner: output })
+            Ok(PyOperationGetDocumentContentOutput { inner: output })
         })
     }
 
@@ -18680,7 +18680,7 @@ impl BedrockAgentRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetExecutionFlowSnapshot"))
             })?;
-            Ok(PyGetExecutionFlowSnapshotResponse { inner: output })
+            Ok(PyOperationGetExecutionFlowSnapshotOutput { inner: output })
         })
     }
 
@@ -18734,7 +18734,7 @@ impl BedrockAgentRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFlowExecution"))
             })?;
-            Ok(PyGetFlowExecutionResponse { inner: output })
+            Ok(PyOperationGetFlowExecutionOutput { inner: output })
         })
     }
 
@@ -18787,7 +18787,7 @@ impl BedrockAgentRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetIngestedDocumentAcl"))
             })?;
-            Ok(PyGetIngestedDocumentAclResponse { inner: output })
+            Ok(PyOperationGetIngestedDocumentAclOutput { inner: output })
         })
     }
 
@@ -18842,7 +18842,7 @@ impl BedrockAgentRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetInvocationStep"))
             })?;
-            Ok(PyGetInvocationStepResponse { inner: output })
+            Ok(PyOperationGetInvocationStepOutput { inner: output })
         })
     }
 
@@ -18880,7 +18880,7 @@ impl BedrockAgentRuntimeClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetSession")))?;
-            Ok(PyGetSessionResponse { inner: output })
+            Ok(PyOperationGetSessionOutput { inner: output })
         })
     }
 
@@ -19429,7 +19429,7 @@ impl BedrockAgentRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListFlowExecutionEvents"))
             })?;
-            Ok(PyListFlowExecutionEventsResponse { inner: output })
+            Ok(PyOperationListFlowExecutionEventsOutput { inner: output })
         })
     }
 
@@ -19489,7 +19489,7 @@ impl BedrockAgentRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListFlowExecutions"))
             })?;
-            Ok(PyListFlowExecutionsResponse { inner: output })
+            Ok(PyOperationListFlowExecutionsOutput { inner: output })
         })
     }
 
@@ -19550,7 +19550,7 @@ impl BedrockAgentRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListInvocationSteps"))
             })?;
-            Ok(PyListInvocationStepsResponse { inner: output })
+            Ok(PyOperationListInvocationStepsOutput { inner: output })
         })
     }
 
@@ -19603,7 +19603,7 @@ impl BedrockAgentRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListInvocations"))
             })?;
-            Ok(PyListInvocationsResponse { inner: output })
+            Ok(PyOperationListInvocationsOutput { inner: output })
         })
     }
 
@@ -19648,7 +19648,7 @@ impl BedrockAgentRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSessions"))
             })?;
-            Ok(PyListSessionsResponse { inner: output })
+            Ok(PyOperationListSessionsOutput { inner: output })
         })
     }
 
@@ -19686,7 +19686,7 @@ impl BedrockAgentRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Ok(PyListTagsForResourceResponse { inner: output })
+            Ok(PyOperationListTagsForResourceOutput { inner: output })
         })
     }
 
@@ -19814,7 +19814,7 @@ impl BedrockAgentRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutInvocationStep"))
             })?;
-            Ok(PyPutInvocationStepResponse { inner: output })
+            Ok(PyOperationPutInvocationStepOutput { inner: output })
         })
     }
 
@@ -19885,7 +19885,7 @@ impl BedrockAgentRuntimeClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Rerank")))?;
-            Ok(PyRerankResponse { inner: output })
+            Ok(PyOperationRerankOutput { inner: output })
         })
     }
 
@@ -19960,7 +19960,7 @@ impl BedrockAgentRuntimeClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Retrieve")))?;
-            Ok(PyRetrieveResponse { inner: output })
+            Ok(PyOperationRetrieveOutput { inner: output })
         })
     }
 
@@ -20028,7 +20028,7 @@ impl BedrockAgentRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RetrieveAndGenerate"))
             })?;
-            Ok(PyRetrieveAndGenerateResponse { inner: output })
+            Ok(PyOperationRetrieveAndGenerateOutput { inner: output })
         })
     }
 
@@ -20184,7 +20184,7 @@ impl BedrockAgentRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartFlowExecution"))
             })?;
-            Ok(PyStartFlowExecutionResponse { inner: output })
+            Ok(PyOperationStartFlowExecutionOutput { inner: output })
         })
     }
 
@@ -20238,7 +20238,7 @@ impl BedrockAgentRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopFlowExecution"))
             })?;
-            Ok(PyStopFlowExecutionResponse { inner: output })
+            Ok(PyOperationStopFlowExecutionOutput { inner: output })
         })
     }
 
@@ -20288,7 +20288,7 @@ impl BedrockAgentRuntimeClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
-            Ok(PyTagResourceResponse { inner: output })
+            Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
 
@@ -20339,7 +20339,7 @@ impl BedrockAgentRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
-            Ok(PyUntagResourceResponse { inner: output })
+            Ok(PyOperationUntagResourceOutput { inner: output })
         })
     }
 
@@ -20391,7 +20391,7 @@ impl BedrockAgentRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateSession"))
             })?;
-            Ok(PyUpdateSessionResponse { inner: output })
+            Ok(PyOperationUpdateSessionOutput { inner: output })
         })
     }
 }

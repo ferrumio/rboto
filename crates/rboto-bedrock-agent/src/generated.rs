@@ -20086,16 +20086,16 @@ impl PyWebSourceConfiguration {
 }
 
 #[pyclass(
-    name = "AssociateAgentCollaboratorResponse",
+    name = "AssociateAgentCollaboratorOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyAssociateAgentCollaboratorResponse {
+struct PyOperationAssociateAgentCollaboratorOutput {
     inner: aws_sdk_bedrockagent::operation::associate_agent_collaborator::AssociateAgentCollaboratorOutput,
 }
 
 #[pymethods]
-impl PyAssociateAgentCollaboratorResponse {
+impl PyOperationAssociateAgentCollaboratorOutput {
     #[getter]
     fn agent_collaborator(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.agent_collaborator {
@@ -20125,16 +20125,16 @@ impl PyAssociateAgentCollaboratorResponse {
 }
 
 #[pyclass(
-    name = "AssociateAgentKnowledgeBaseResponse",
+    name = "AssociateAgentKnowledgeBaseOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyAssociateAgentKnowledgeBaseResponse {
+struct PyOperationAssociateAgentKnowledgeBaseOutput {
     inner: aws_sdk_bedrockagent::operation::associate_agent_knowledge_base::AssociateAgentKnowledgeBaseOutput,
 }
 
 #[pymethods]
-impl PyAssociateAgentKnowledgeBaseResponse {
+impl PyOperationAssociateAgentKnowledgeBaseOutput {
     #[getter]
     fn agent_knowledge_base(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.agent_knowledge_base {
@@ -20164,16 +20164,16 @@ impl PyAssociateAgentKnowledgeBaseResponse {
 }
 
 #[pyclass(
-    name = "CreateAgentResponse",
+    name = "CreateAgentOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyCreateAgentResponse {
+struct PyOperationCreateAgentOutput {
     inner: aws_sdk_bedrockagent::operation::create_agent::CreateAgentOutput,
 }
 
 #[pymethods]
-impl PyCreateAgentResponse {
+impl PyOperationCreateAgentOutput {
     #[getter]
     fn agent(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.agent {
@@ -20203,16 +20203,16 @@ impl PyCreateAgentResponse {
 }
 
 #[pyclass(
-    name = "CreateAgentActionGroupResponse",
+    name = "CreateAgentActionGroupOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyCreateAgentActionGroupResponse {
+struct PyOperationCreateAgentActionGroupOutput {
     inner: aws_sdk_bedrockagent::operation::create_agent_action_group::CreateAgentActionGroupOutput,
 }
 
 #[pymethods]
-impl PyCreateAgentActionGroupResponse {
+impl PyOperationCreateAgentActionGroupOutput {
     #[getter]
     fn agent_action_group(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.agent_action_group {
@@ -20242,16 +20242,16 @@ impl PyCreateAgentActionGroupResponse {
 }
 
 #[pyclass(
-    name = "CreateAgentAliasResponse",
+    name = "CreateAgentAliasOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyCreateAgentAliasResponse {
+struct PyOperationCreateAgentAliasOutput {
     inner: aws_sdk_bedrockagent::operation::create_agent_alias::CreateAgentAliasOutput,
 }
 
 #[pymethods]
-impl PyCreateAgentAliasResponse {
+impl PyOperationCreateAgentAliasOutput {
     #[getter]
     fn agent_alias(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.agent_alias {
@@ -20281,16 +20281,16 @@ impl PyCreateAgentAliasResponse {
 }
 
 #[pyclass(
-    name = "CreateDataSourceResponse",
+    name = "CreateDataSourceOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyCreateDataSourceResponse {
+struct PyOperationCreateDataSourceOutput {
     inner: aws_sdk_bedrockagent::operation::create_data_source::CreateDataSourceOutput,
 }
 
 #[pymethods]
-impl PyCreateDataSourceResponse {
+impl PyOperationCreateDataSourceOutput {
     #[getter]
     fn data_source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.data_source {
@@ -20320,16 +20320,16 @@ impl PyCreateDataSourceResponse {
 }
 
 #[pyclass(
-    name = "CreateFlowResponse",
+    name = "CreateFlowOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyCreateFlowResponse {
+struct PyOperationCreateFlowOutput {
     inner: aws_sdk_bedrockagent::operation::create_flow::CreateFlowOutput,
 }
 
 #[pymethods]
-impl PyCreateFlowResponse {
+impl PyOperationCreateFlowOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3214 = (&self.inner.name).as_str().into_py_any(py)?;
@@ -20455,16 +20455,16 @@ impl PyCreateFlowResponse {
 }
 
 #[pyclass(
-    name = "CreateFlowAliasResponse",
+    name = "CreateFlowAliasOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyCreateFlowAliasResponse {
+struct PyOperationCreateFlowAliasOutput {
     inner: aws_sdk_bedrockagent::operation::create_flow_alias::CreateFlowAliasOutput,
 }
 
 #[pymethods]
-impl PyCreateFlowAliasResponse {
+impl PyOperationCreateFlowAliasOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3236 = (&self.inner.name).as_str().into_py_any(py)?;
@@ -20583,16 +20583,16 @@ impl PyCreateFlowAliasResponse {
 }
 
 #[pyclass(
-    name = "CreateFlowVersionResponse",
+    name = "CreateFlowVersionOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyCreateFlowVersionResponse {
+struct PyOperationCreateFlowVersionOutput {
     inner: aws_sdk_bedrockagent::operation::create_flow_version::CreateFlowVersionOutput,
 }
 
 #[pymethods]
-impl PyCreateFlowVersionResponse {
+impl PyOperationCreateFlowVersionOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3258 = (&self.inner.name).as_str().into_py_any(py)?;
@@ -20710,16 +20710,16 @@ impl PyCreateFlowVersionResponse {
 }
 
 #[pyclass(
-    name = "CreateKnowledgeBaseResponse",
+    name = "CreateKnowledgeBaseOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyCreateKnowledgeBaseResponse {
+struct PyOperationCreateKnowledgeBaseOutput {
     inner: aws_sdk_bedrockagent::operation::create_knowledge_base::CreateKnowledgeBaseOutput,
 }
 
 #[pymethods]
-impl PyCreateKnowledgeBaseResponse {
+impl PyOperationCreateKnowledgeBaseOutput {
     #[getter]
     fn knowledge_base(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.knowledge_base {
@@ -20749,16 +20749,16 @@ impl PyCreateKnowledgeBaseResponse {
 }
 
 #[pyclass(
-    name = "CreatePromptResponse",
+    name = "CreatePromptOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyCreatePromptResponse {
+struct PyOperationCreatePromptOutput {
     inner: aws_sdk_bedrockagent::operation::create_prompt::CreatePromptOutput,
 }
 
 #[pymethods]
-impl PyCreatePromptResponse {
+impl PyOperationCreatePromptOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3280 = (&self.inner.name).as_str().into_py_any(py)?;
@@ -20894,16 +20894,16 @@ impl PyCreatePromptResponse {
 }
 
 #[pyclass(
-    name = "CreatePromptVersionResponse",
+    name = "CreatePromptVersionOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyCreatePromptVersionResponse {
+struct PyOperationCreatePromptVersionOutput {
     inner: aws_sdk_bedrockagent::operation::create_prompt_version::CreatePromptVersionOutput,
 }
 
 #[pymethods]
-impl PyCreatePromptVersionResponse {
+impl PyOperationCreatePromptVersionOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3304 = (&self.inner.name).as_str().into_py_any(py)?;
@@ -21039,16 +21039,16 @@ impl PyCreatePromptVersionResponse {
 }
 
 #[pyclass(
-    name = "CreateRetrievalInstructionResponse",
+    name = "CreateRetrievalInstructionOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyCreateRetrievalInstructionResponse {
+struct PyOperationCreateRetrievalInstructionOutput {
     inner: aws_sdk_bedrockagent::operation::create_retrieval_instruction::CreateRetrievalInstructionOutput,
 }
 
 #[pymethods]
-impl PyCreateRetrievalInstructionResponse {
+impl PyOperationCreateRetrievalInstructionOutput {
     #[getter]
     fn retrieval_instruction_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3328 = (&self.inner.retrieval_instruction_id)
@@ -21124,16 +21124,16 @@ impl PyCreateRetrievalInstructionResponse {
 }
 
 #[pyclass(
-    name = "CreateRetrievalInstructionVersionResponse",
+    name = "CreateRetrievalInstructionVersionOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyCreateRetrievalInstructionVersionResponse {
+struct PyOperationCreateRetrievalInstructionVersionOutput {
     inner: aws_sdk_bedrockagent::operation::create_retrieval_instruction_version::CreateRetrievalInstructionVersionOutput,
 }
 
 #[pymethods]
-impl PyCreateRetrievalInstructionVersionResponse {
+impl PyOperationCreateRetrievalInstructionVersionOutput {
     #[getter]
     fn retrieval_instruction_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3342 = (&self.inner.retrieval_instruction_id)
@@ -21197,16 +21197,16 @@ impl PyCreateRetrievalInstructionVersionResponse {
 }
 
 #[pyclass(
-    name = "CreateVpcConfigurationResponse",
+    name = "CreateVpcConfigurationOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyCreateVpcConfigurationResponse {
+struct PyOperationCreateVpcConfigurationOutput {
     inner: aws_sdk_bedrockagent::operation::create_vpc_configuration::CreateVpcConfigurationOutput,
 }
 
 #[pymethods]
-impl PyCreateVpcConfigurationResponse {
+impl PyOperationCreateVpcConfigurationOutput {
     #[getter]
     fn vpc_configuration_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3352 = (&self.inner.vpc_configuration_id)
@@ -21234,16 +21234,16 @@ impl PyCreateVpcConfigurationResponse {
 }
 
 #[pyclass(
-    name = "DeleteAgentResponse",
+    name = "DeleteAgentOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyDeleteAgentResponse {
+struct PyOperationDeleteAgentOutput {
     inner: aws_sdk_bedrockagent::operation::delete_agent::DeleteAgentOutput,
 }
 
 #[pymethods]
-impl PyDeleteAgentResponse {
+impl PyOperationDeleteAgentOutput {
     #[getter]
     fn agent_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3356 = (&self.inner.agent_id).as_str().into_py_any(py)?;
@@ -21267,16 +21267,16 @@ impl PyDeleteAgentResponse {
 }
 
 #[pyclass(
-    name = "DeleteAgentActionGroupResponse",
+    name = "DeleteAgentActionGroupOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyDeleteAgentActionGroupResponse {
+struct PyOperationDeleteAgentActionGroupOutput {
     inner: aws_sdk_bedrockagent::operation::delete_agent_action_group::DeleteAgentActionGroupOutput,
 }
 
 #[pymethods]
-impl PyDeleteAgentActionGroupResponse {
+impl PyOperationDeleteAgentActionGroupOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -21284,16 +21284,16 @@ impl PyDeleteAgentActionGroupResponse {
 }
 
 #[pyclass(
-    name = "DeleteAgentAliasResponse",
+    name = "DeleteAgentAliasOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyDeleteAgentAliasResponse {
+struct PyOperationDeleteAgentAliasOutput {
     inner: aws_sdk_bedrockagent::operation::delete_agent_alias::DeleteAgentAliasOutput,
 }
 
 #[pymethods]
-impl PyDeleteAgentAliasResponse {
+impl PyOperationDeleteAgentAliasOutput {
     #[getter]
     fn agent_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3360 = (&self.inner.agent_id).as_str().into_py_any(py)?;
@@ -21325,16 +21325,16 @@ impl PyDeleteAgentAliasResponse {
 }
 
 #[pyclass(
-    name = "DeleteAgentVersionResponse",
+    name = "DeleteAgentVersionOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyDeleteAgentVersionResponse {
+struct PyOperationDeleteAgentVersionOutput {
     inner: aws_sdk_bedrockagent::operation::delete_agent_version::DeleteAgentVersionOutput,
 }
 
 #[pymethods]
-impl PyDeleteAgentVersionResponse {
+impl PyOperationDeleteAgentVersionOutput {
     #[getter]
     fn agent_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3366 = (&self.inner.agent_id).as_str().into_py_any(py)?;
@@ -21366,16 +21366,16 @@ impl PyDeleteAgentVersionResponse {
 }
 
 #[pyclass(
-    name = "DeleteDataSourceResponse",
+    name = "DeleteDataSourceOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyDeleteDataSourceResponse {
+struct PyOperationDeleteDataSourceOutput {
     inner: aws_sdk_bedrockagent::operation::delete_data_source::DeleteDataSourceOutput,
 }
 
 #[pymethods]
-impl PyDeleteDataSourceResponse {
+impl PyOperationDeleteDataSourceOutput {
     #[getter]
     fn knowledge_base_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3372 = (&self.inner.knowledge_base_id).as_str().into_py_any(py)?;
@@ -21407,16 +21407,16 @@ impl PyDeleteDataSourceResponse {
 }
 
 #[pyclass(
-    name = "DeleteFlowResponse",
+    name = "DeleteFlowOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyDeleteFlowResponse {
+struct PyOperationDeleteFlowOutput {
     inner: aws_sdk_bedrockagent::operation::delete_flow::DeleteFlowOutput,
 }
 
 #[pymethods]
-impl PyDeleteFlowResponse {
+impl PyOperationDeleteFlowOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3378 = (&self.inner.id).as_str().into_py_any(py)?;
@@ -21432,16 +21432,16 @@ impl PyDeleteFlowResponse {
 }
 
 #[pyclass(
-    name = "DeleteFlowAliasResponse",
+    name = "DeleteFlowAliasOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyDeleteFlowAliasResponse {
+struct PyOperationDeleteFlowAliasOutput {
     inner: aws_sdk_bedrockagent::operation::delete_flow_alias::DeleteFlowAliasOutput,
 }
 
 #[pymethods]
-impl PyDeleteFlowAliasResponse {
+impl PyOperationDeleteFlowAliasOutput {
     #[getter]
     fn flow_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3380 = (&self.inner.flow_id).as_str().into_py_any(py)?;
@@ -21465,16 +21465,16 @@ impl PyDeleteFlowAliasResponse {
 }
 
 #[pyclass(
-    name = "DeleteFlowVersionResponse",
+    name = "DeleteFlowVersionOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyDeleteFlowVersionResponse {
+struct PyOperationDeleteFlowVersionOutput {
     inner: aws_sdk_bedrockagent::operation::delete_flow_version::DeleteFlowVersionOutput,
 }
 
 #[pymethods]
-impl PyDeleteFlowVersionResponse {
+impl PyOperationDeleteFlowVersionOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3384 = (&self.inner.id).as_str().into_py_any(py)?;
@@ -21498,16 +21498,16 @@ impl PyDeleteFlowVersionResponse {
 }
 
 #[pyclass(
-    name = "DeleteKnowledgeBaseResponse",
+    name = "DeleteKnowledgeBaseOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyDeleteKnowledgeBaseResponse {
+struct PyOperationDeleteKnowledgeBaseOutput {
     inner: aws_sdk_bedrockagent::operation::delete_knowledge_base::DeleteKnowledgeBaseOutput,
 }
 
 #[pymethods]
-impl PyDeleteKnowledgeBaseResponse {
+impl PyOperationDeleteKnowledgeBaseOutput {
     #[getter]
     fn knowledge_base_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3388 = (&self.inner.knowledge_base_id).as_str().into_py_any(py)?;
@@ -21531,16 +21531,16 @@ impl PyDeleteKnowledgeBaseResponse {
 }
 
 #[pyclass(
-    name = "DeleteKnowledgeBaseDocumentsResponse",
+    name = "DeleteKnowledgeBaseDocumentsOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyDeleteKnowledgeBaseDocumentsResponse {
+struct PyOperationDeleteKnowledgeBaseDocumentsOutput {
     inner: aws_sdk_bedrockagent::operation::delete_knowledge_base_documents::DeleteKnowledgeBaseDocumentsOutput,
 }
 
 #[pymethods]
-impl PyDeleteKnowledgeBaseDocumentsResponse {
+impl PyOperationDeleteKnowledgeBaseDocumentsOutput {
     #[getter]
     fn document_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.document_details {
@@ -21580,16 +21580,16 @@ impl PyDeleteKnowledgeBaseDocumentsResponse {
 }
 
 #[pyclass(
-    name = "DeletePromptResponse",
+    name = "DeletePromptOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyDeletePromptResponse {
+struct PyOperationDeletePromptOutput {
     inner: aws_sdk_bedrockagent::operation::delete_prompt::DeletePromptOutput,
 }
 
 #[pymethods]
-impl PyDeletePromptResponse {
+impl PyOperationDeletePromptOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3398 = (&self.inner.id).as_str().into_py_any(py)?;
@@ -21621,16 +21621,16 @@ impl PyDeletePromptResponse {
 }
 
 #[pyclass(
-    name = "DeleteResourcePolicyResponse",
+    name = "DeleteResourcePolicyOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyDeleteResourcePolicyResponse {
+struct PyOperationDeleteResourcePolicyOutput {
     inner: aws_sdk_bedrockagent::operation::delete_resource_policy::DeleteResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyDeleteResourcePolicyResponse {
+impl PyOperationDeleteResourcePolicyOutput {
     #[getter]
     fn resource_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3402 = (&self.inner.resource_arn).as_str().into_py_any(py)?;
@@ -21662,16 +21662,16 @@ impl PyDeleteResourcePolicyResponse {
 }
 
 #[pyclass(
-    name = "DeleteRetrievalInstructionResponse",
+    name = "DeleteRetrievalInstructionOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyDeleteRetrievalInstructionResponse {
+struct PyOperationDeleteRetrievalInstructionOutput {
     inner: aws_sdk_bedrockagent::operation::delete_retrieval_instruction::DeleteRetrievalInstructionOutput,
 }
 
 #[pymethods]
-impl PyDeleteRetrievalInstructionResponse {
+impl PyOperationDeleteRetrievalInstructionOutput {
     #[getter]
     fn retrieval_instruction_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3406 = (&self.inner.retrieval_instruction_id)
@@ -21719,16 +21719,16 @@ impl PyDeleteRetrievalInstructionResponse {
 }
 
 #[pyclass(
-    name = "DeleteVpcConfigurationResponse",
+    name = "DeleteVpcConfigurationOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyDeleteVpcConfigurationResponse {
+struct PyOperationDeleteVpcConfigurationOutput {
     inner: aws_sdk_bedrockagent::operation::delete_vpc_configuration::DeleteVpcConfigurationOutput,
 }
 
 #[pymethods]
-impl PyDeleteVpcConfigurationResponse {
+impl PyOperationDeleteVpcConfigurationOutput {
     #[getter]
     fn vpc_configuration_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3412 = (&self.inner.vpc_configuration_id)
@@ -21756,16 +21756,16 @@ impl PyDeleteVpcConfigurationResponse {
 }
 
 #[pyclass(
-    name = "DisassociateAgentCollaboratorResponse",
+    name = "DisassociateAgentCollaboratorOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyDisassociateAgentCollaboratorResponse {
+struct PyOperationDisassociateAgentCollaboratorOutput {
     inner: aws_sdk_bedrockagent::operation::disassociate_agent_collaborator::DisassociateAgentCollaboratorOutput,
 }
 
 #[pymethods]
-impl PyDisassociateAgentCollaboratorResponse {
+impl PyOperationDisassociateAgentCollaboratorOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -21773,16 +21773,16 @@ impl PyDisassociateAgentCollaboratorResponse {
 }
 
 #[pyclass(
-    name = "DisassociateAgentKnowledgeBaseResponse",
+    name = "DisassociateAgentKnowledgeBaseOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyDisassociateAgentKnowledgeBaseResponse {
+struct PyOperationDisassociateAgentKnowledgeBaseOutput {
     inner: aws_sdk_bedrockagent::operation::disassociate_agent_knowledge_base::DisassociateAgentKnowledgeBaseOutput,
 }
 
 #[pymethods]
-impl PyDisassociateAgentKnowledgeBaseResponse {
+impl PyOperationDisassociateAgentKnowledgeBaseOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -21790,16 +21790,16 @@ impl PyDisassociateAgentKnowledgeBaseResponse {
 }
 
 #[pyclass(
-    name = "GetAgentResponse",
+    name = "GetAgentOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyGetAgentResponse {
+struct PyOperationGetAgentOutput {
     inner: aws_sdk_bedrockagent::operation::get_agent::GetAgentOutput,
 }
 
 #[pymethods]
-impl PyGetAgentResponse {
+impl PyOperationGetAgentOutput {
     #[getter]
     fn agent(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.agent {
@@ -21829,16 +21829,16 @@ impl PyGetAgentResponse {
 }
 
 #[pyclass(
-    name = "GetAgentActionGroupResponse",
+    name = "GetAgentActionGroupOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyGetAgentActionGroupResponse {
+struct PyOperationGetAgentActionGroupOutput {
     inner: aws_sdk_bedrockagent::operation::get_agent_action_group::GetAgentActionGroupOutput,
 }
 
 #[pymethods]
-impl PyGetAgentActionGroupResponse {
+impl PyOperationGetAgentActionGroupOutput {
     #[getter]
     fn agent_action_group(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.agent_action_group {
@@ -21868,16 +21868,16 @@ impl PyGetAgentActionGroupResponse {
 }
 
 #[pyclass(
-    name = "GetAgentAliasResponse",
+    name = "GetAgentAliasOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyGetAgentAliasResponse {
+struct PyOperationGetAgentAliasOutput {
     inner: aws_sdk_bedrockagent::operation::get_agent_alias::GetAgentAliasOutput,
 }
 
 #[pymethods]
-impl PyGetAgentAliasResponse {
+impl PyOperationGetAgentAliasOutput {
     #[getter]
     fn agent_alias(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.agent_alias {
@@ -21907,16 +21907,16 @@ impl PyGetAgentAliasResponse {
 }
 
 #[pyclass(
-    name = "GetAgentCollaboratorResponse",
+    name = "GetAgentCollaboratorOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyGetAgentCollaboratorResponse {
+struct PyOperationGetAgentCollaboratorOutput {
     inner: aws_sdk_bedrockagent::operation::get_agent_collaborator::GetAgentCollaboratorOutput,
 }
 
 #[pymethods]
-impl PyGetAgentCollaboratorResponse {
+impl PyOperationGetAgentCollaboratorOutput {
     #[getter]
     fn agent_collaborator(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.agent_collaborator {
@@ -21946,16 +21946,16 @@ impl PyGetAgentCollaboratorResponse {
 }
 
 #[pyclass(
-    name = "GetAgentKnowledgeBaseResponse",
+    name = "GetAgentKnowledgeBaseOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyGetAgentKnowledgeBaseResponse {
+struct PyOperationGetAgentKnowledgeBaseOutput {
     inner: aws_sdk_bedrockagent::operation::get_agent_knowledge_base::GetAgentKnowledgeBaseOutput,
 }
 
 #[pymethods]
-impl PyGetAgentKnowledgeBaseResponse {
+impl PyOperationGetAgentKnowledgeBaseOutput {
     #[getter]
     fn agent_knowledge_base(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.agent_knowledge_base {
@@ -21985,16 +21985,16 @@ impl PyGetAgentKnowledgeBaseResponse {
 }
 
 #[pyclass(
-    name = "GetAgentVersionResponse",
+    name = "GetAgentVersionOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyGetAgentVersionResponse {
+struct PyOperationGetAgentVersionOutput {
     inner: aws_sdk_bedrockagent::operation::get_agent_version::GetAgentVersionOutput,
 }
 
 #[pymethods]
-impl PyGetAgentVersionResponse {
+impl PyOperationGetAgentVersionOutput {
     #[getter]
     fn agent_version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.agent_version {
@@ -22024,16 +22024,16 @@ impl PyGetAgentVersionResponse {
 }
 
 #[pyclass(
-    name = "GetDataSourceResponse",
+    name = "GetDataSourceOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyGetDataSourceResponse {
+struct PyOperationGetDataSourceOutput {
     inner: aws_sdk_bedrockagent::operation::get_data_source::GetDataSourceOutput,
 }
 
 #[pymethods]
-impl PyGetDataSourceResponse {
+impl PyOperationGetDataSourceOutput {
     #[getter]
     fn data_source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.data_source {
@@ -22062,17 +22062,13 @@ impl PyGetDataSourceResponse {
     }
 }
 
-#[pyclass(
-    name = "GetFlowResponse",
-    module = "rboto_bedrock_agent._native",
-    frozen
-)]
-struct PyGetFlowResponse {
+#[pyclass(name = "GetFlowOutput", module = "rboto_bedrock_agent._native", frozen)]
+struct PyOperationGetFlowOutput {
     inner: aws_sdk_bedrockagent::operation::get_flow::GetFlowOutput,
 }
 
 #[pymethods]
-impl PyGetFlowResponse {
+impl PyOperationGetFlowOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3430 = (&self.inner.name).as_str().into_py_any(py)?;
@@ -22230,16 +22226,16 @@ impl PyGetFlowResponse {
 }
 
 #[pyclass(
-    name = "GetFlowAliasResponse",
+    name = "GetFlowAliasOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyGetFlowAliasResponse {
+struct PyOperationGetFlowAliasOutput {
     inner: aws_sdk_bedrockagent::operation::get_flow_alias::GetFlowAliasOutput,
 }
 
 #[pymethods]
-impl PyGetFlowAliasResponse {
+impl PyOperationGetFlowAliasOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3458 = (&self.inner.name).as_str().into_py_any(py)?;
@@ -22358,16 +22354,16 @@ impl PyGetFlowAliasResponse {
 }
 
 #[pyclass(
-    name = "GetFlowVersionResponse",
+    name = "GetFlowVersionOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyGetFlowVersionResponse {
+struct PyOperationGetFlowVersionOutput {
     inner: aws_sdk_bedrockagent::operation::get_flow_version::GetFlowVersionOutput,
 }
 
 #[pymethods]
-impl PyGetFlowVersionResponse {
+impl PyOperationGetFlowVersionOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3480 = (&self.inner.name).as_str().into_py_any(py)?;
@@ -22485,16 +22481,16 @@ impl PyGetFlowVersionResponse {
 }
 
 #[pyclass(
-    name = "GetIngestionJobResponse",
+    name = "GetIngestionJobOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyGetIngestionJobResponse {
+struct PyOperationGetIngestionJobOutput {
     inner: aws_sdk_bedrockagent::operation::get_ingestion_job::GetIngestionJobOutput,
 }
 
 #[pymethods]
-impl PyGetIngestionJobResponse {
+impl PyOperationGetIngestionJobOutput {
     #[getter]
     fn ingestion_job(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ingestion_job {
@@ -22524,16 +22520,16 @@ impl PyGetIngestionJobResponse {
 }
 
 #[pyclass(
-    name = "GetKnowledgeBaseResponse",
+    name = "GetKnowledgeBaseOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyGetKnowledgeBaseResponse {
+struct PyOperationGetKnowledgeBaseOutput {
     inner: aws_sdk_bedrockagent::operation::get_knowledge_base::GetKnowledgeBaseOutput,
 }
 
 #[pymethods]
-impl PyGetKnowledgeBaseResponse {
+impl PyOperationGetKnowledgeBaseOutput {
     #[getter]
     fn knowledge_base(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.knowledge_base {
@@ -22563,16 +22559,16 @@ impl PyGetKnowledgeBaseResponse {
 }
 
 #[pyclass(
-    name = "GetKnowledgeBaseDocumentsResponse",
+    name = "GetKnowledgeBaseDocumentsOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyGetKnowledgeBaseDocumentsResponse {
+struct PyOperationGetKnowledgeBaseDocumentsOutput {
     inner: aws_sdk_bedrockagent::operation::get_knowledge_base_documents::GetKnowledgeBaseDocumentsOutput,
 }
 
 #[pymethods]
-impl PyGetKnowledgeBaseDocumentsResponse {
+impl PyOperationGetKnowledgeBaseDocumentsOutput {
     #[getter]
     fn document_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.document_details {
@@ -22612,16 +22608,16 @@ impl PyGetKnowledgeBaseDocumentsResponse {
 }
 
 #[pyclass(
-    name = "GetPromptResponse",
+    name = "GetPromptOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyGetPromptResponse {
+struct PyOperationGetPromptOutput {
     inner: aws_sdk_bedrockagent::operation::get_prompt::GetPromptOutput,
 }
 
 #[pymethods]
-impl PyGetPromptResponse {
+impl PyOperationGetPromptOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3510 = (&self.inner.name).as_str().into_py_any(py)?;
@@ -22757,16 +22753,16 @@ impl PyGetPromptResponse {
 }
 
 #[pyclass(
-    name = "GetResourcePolicyResponse",
+    name = "GetResourcePolicyOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyGetResourcePolicyResponse {
+struct PyOperationGetResourcePolicyOutput {
     inner: aws_sdk_bedrockagent::operation::get_resource_policy::GetResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyGetResourcePolicyResponse {
+impl PyOperationGetResourcePolicyOutput {
     #[getter]
     fn resource_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3534 = (&self.inner.resource_arn).as_str().into_py_any(py)?;
@@ -22798,17 +22794,17 @@ impl PyGetResourcePolicyResponse {
 }
 
 #[pyclass(
-    name = "GetRetrievalInstructionResponse",
+    name = "GetRetrievalInstructionOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyGetRetrievalInstructionResponse {
+struct PyOperationGetRetrievalInstructionOutput {
     inner:
         aws_sdk_bedrockagent::operation::get_retrieval_instruction::GetRetrievalInstructionOutput,
 }
 
 #[pymethods]
-impl PyGetRetrievalInstructionResponse {
+impl PyOperationGetRetrievalInstructionOutput {
     #[getter]
     fn retrieval_instruction_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3540 = (&self.inner.retrieval_instruction_id)
@@ -23003,16 +22999,16 @@ impl PyGetRetrievalInstructionResponse {
 }
 
 #[pyclass(
-    name = "GetVpcConfigurationResponse",
+    name = "GetVpcConfigurationOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyGetVpcConfigurationResponse {
+struct PyOperationGetVpcConfigurationOutput {
     inner: aws_sdk_bedrockagent::operation::get_vpc_configuration::GetVpcConfigurationOutput,
 }
 
 #[pymethods]
-impl PyGetVpcConfigurationResponse {
+impl PyOperationGetVpcConfigurationOutput {
     #[getter]
     fn vpc_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.vpc_configuration {
@@ -23042,16 +23038,16 @@ impl PyGetVpcConfigurationResponse {
 }
 
 #[pyclass(
-    name = "IngestKnowledgeBaseDocumentsResponse",
+    name = "IngestKnowledgeBaseDocumentsOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyIngestKnowledgeBaseDocumentsResponse {
+struct PyOperationIngestKnowledgeBaseDocumentsOutput {
     inner: aws_sdk_bedrockagent::operation::ingest_knowledge_base_documents::IngestKnowledgeBaseDocumentsOutput,
 }
 
 #[pymethods]
-impl PyIngestKnowledgeBaseDocumentsResponse {
+impl PyOperationIngestKnowledgeBaseDocumentsOutput {
     #[getter]
     fn document_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.document_details {
@@ -23091,16 +23087,16 @@ impl PyIngestKnowledgeBaseDocumentsResponse {
 }
 
 #[pyclass(
-    name = "ListAgentActionGroupsResponse",
+    name = "ListAgentActionGroupsOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyListAgentActionGroupsResponse {
+struct PyOperationListAgentActionGroupsOutput {
     inner: aws_sdk_bedrockagent::operation::list_agent_action_groups::ListAgentActionGroupsOutput,
 }
 
 #[pymethods]
-impl PyListAgentActionGroupsResponse {
+impl PyOperationListAgentActionGroupsOutput {
     #[getter]
     fn action_group_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3578_list = PyList::empty(py);
@@ -23148,16 +23144,16 @@ impl PyListAgentActionGroupsResponse {
 }
 
 #[pyclass(
-    name = "ListAgentAliasesResponse",
+    name = "ListAgentAliasesOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyListAgentAliasesResponse {
+struct PyOperationListAgentAliasesOutput {
     inner: aws_sdk_bedrockagent::operation::list_agent_aliases::ListAgentAliasesOutput,
 }
 
 #[pymethods]
-impl PyListAgentAliasesResponse {
+impl PyOperationListAgentAliasesOutput {
     #[getter]
     fn agent_alias_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3586_list = PyList::empty(py);
@@ -23205,16 +23201,16 @@ impl PyListAgentAliasesResponse {
 }
 
 #[pyclass(
-    name = "ListAgentCollaboratorsResponse",
+    name = "ListAgentCollaboratorsOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyListAgentCollaboratorsResponse {
+struct PyOperationListAgentCollaboratorsOutput {
     inner: aws_sdk_bedrockagent::operation::list_agent_collaborators::ListAgentCollaboratorsOutput,
 }
 
 #[pymethods]
-impl PyListAgentCollaboratorsResponse {
+impl PyOperationListAgentCollaboratorsOutput {
     #[getter]
     fn agent_collaborator_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3594_list = PyList::empty(py);
@@ -23262,17 +23258,17 @@ impl PyListAgentCollaboratorsResponse {
 }
 
 #[pyclass(
-    name = "ListAgentKnowledgeBasesResponse",
+    name = "ListAgentKnowledgeBasesOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyListAgentKnowledgeBasesResponse {
+struct PyOperationListAgentKnowledgeBasesOutput {
     inner:
         aws_sdk_bedrockagent::operation::list_agent_knowledge_bases::ListAgentKnowledgeBasesOutput,
 }
 
 #[pymethods]
-impl PyListAgentKnowledgeBasesResponse {
+impl PyOperationListAgentKnowledgeBasesOutput {
     #[getter]
     fn agent_knowledge_base_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3602_list = PyList::empty(py);
@@ -23320,16 +23316,16 @@ impl PyListAgentKnowledgeBasesResponse {
 }
 
 #[pyclass(
-    name = "ListAgentVersionsResponse",
+    name = "ListAgentVersionsOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyListAgentVersionsResponse {
+struct PyOperationListAgentVersionsOutput {
     inner: aws_sdk_bedrockagent::operation::list_agent_versions::ListAgentVersionsOutput,
 }
 
 #[pymethods]
-impl PyListAgentVersionsResponse {
+impl PyOperationListAgentVersionsOutput {
     #[getter]
     fn agent_version_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3610_list = PyList::empty(py);
@@ -23377,16 +23373,16 @@ impl PyListAgentVersionsResponse {
 }
 
 #[pyclass(
-    name = "ListAgentsResponse",
+    name = "ListAgentsOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyListAgentsResponse {
+struct PyOperationListAgentsOutput {
     inner: aws_sdk_bedrockagent::operation::list_agents::ListAgentsOutput,
 }
 
 #[pymethods]
-impl PyListAgentsResponse {
+impl PyOperationListAgentsOutput {
     #[getter]
     fn agent_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3618_list = PyList::empty(py);
@@ -23434,16 +23430,16 @@ impl PyListAgentsResponse {
 }
 
 #[pyclass(
-    name = "ListDataSourcesResponse",
+    name = "ListDataSourcesOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyListDataSourcesResponse {
+struct PyOperationListDataSourcesOutput {
     inner: aws_sdk_bedrockagent::operation::list_data_sources::ListDataSourcesOutput,
 }
 
 #[pymethods]
-impl PyListDataSourcesResponse {
+impl PyOperationListDataSourcesOutput {
     #[getter]
     fn data_source_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3626_list = PyList::empty(py);
@@ -23491,16 +23487,16 @@ impl PyListDataSourcesResponse {
 }
 
 #[pyclass(
-    name = "ListFlowAliasesResponse",
+    name = "ListFlowAliasesOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyListFlowAliasesResponse {
+struct PyOperationListFlowAliasesOutput {
     inner: aws_sdk_bedrockagent::operation::list_flow_aliases::ListFlowAliasesOutput,
 }
 
 #[pymethods]
-impl PyListFlowAliasesResponse {
+impl PyOperationListFlowAliasesOutput {
     #[getter]
     fn flow_alias_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3634_list = PyList::empty(py);
@@ -23548,16 +23544,16 @@ impl PyListFlowAliasesResponse {
 }
 
 #[pyclass(
-    name = "ListFlowVersionsResponse",
+    name = "ListFlowVersionsOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyListFlowVersionsResponse {
+struct PyOperationListFlowVersionsOutput {
     inner: aws_sdk_bedrockagent::operation::list_flow_versions::ListFlowVersionsOutput,
 }
 
 #[pymethods]
-impl PyListFlowVersionsResponse {
+impl PyOperationListFlowVersionsOutput {
     #[getter]
     fn flow_version_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3642_list = PyList::empty(py);
@@ -23605,16 +23601,16 @@ impl PyListFlowVersionsResponse {
 }
 
 #[pyclass(
-    name = "ListFlowsResponse",
+    name = "ListFlowsOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyListFlowsResponse {
+struct PyOperationListFlowsOutput {
     inner: aws_sdk_bedrockagent::operation::list_flows::ListFlowsOutput,
 }
 
 #[pymethods]
-impl PyListFlowsResponse {
+impl PyOperationListFlowsOutput {
     #[getter]
     fn flow_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3650_list = PyList::empty(py);
@@ -23662,16 +23658,16 @@ impl PyListFlowsResponse {
 }
 
 #[pyclass(
-    name = "ListIngestionJobsResponse",
+    name = "ListIngestionJobsOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyListIngestionJobsResponse {
+struct PyOperationListIngestionJobsOutput {
     inner: aws_sdk_bedrockagent::operation::list_ingestion_jobs::ListIngestionJobsOutput,
 }
 
 #[pymethods]
-impl PyListIngestionJobsResponse {
+impl PyOperationListIngestionJobsOutput {
     #[getter]
     fn ingestion_job_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3658_list = PyList::empty(py);
@@ -23719,16 +23715,16 @@ impl PyListIngestionJobsResponse {
 }
 
 #[pyclass(
-    name = "ListKnowledgeBaseDocumentsResponse",
+    name = "ListKnowledgeBaseDocumentsOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyListKnowledgeBaseDocumentsResponse {
+struct PyOperationListKnowledgeBaseDocumentsOutput {
     inner: aws_sdk_bedrockagent::operation::list_knowledge_base_documents::ListKnowledgeBaseDocumentsOutput,
 }
 
 #[pymethods]
-impl PyListKnowledgeBaseDocumentsResponse {
+impl PyOperationListKnowledgeBaseDocumentsOutput {
     #[getter]
     fn document_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3666_list = PyList::empty(py);
@@ -23776,16 +23772,16 @@ impl PyListKnowledgeBaseDocumentsResponse {
 }
 
 #[pyclass(
-    name = "ListKnowledgeBasesResponse",
+    name = "ListKnowledgeBasesOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyListKnowledgeBasesResponse {
+struct PyOperationListKnowledgeBasesOutput {
     inner: aws_sdk_bedrockagent::operation::list_knowledge_bases::ListKnowledgeBasesOutput,
 }
 
 #[pymethods]
-impl PyListKnowledgeBasesResponse {
+impl PyOperationListKnowledgeBasesOutput {
     #[getter]
     fn knowledge_base_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3674_list = PyList::empty(py);
@@ -23833,16 +23829,16 @@ impl PyListKnowledgeBasesResponse {
 }
 
 #[pyclass(
-    name = "ListPromptsResponse",
+    name = "ListPromptsOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyListPromptsResponse {
+struct PyOperationListPromptsOutput {
     inner: aws_sdk_bedrockagent::operation::list_prompts::ListPromptsOutput,
 }
 
 #[pymethods]
-impl PyListPromptsResponse {
+impl PyOperationListPromptsOutput {
     #[getter]
     fn prompt_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3682_list = PyList::empty(py);
@@ -23890,16 +23886,16 @@ impl PyListPromptsResponse {
 }
 
 #[pyclass(
-    name = "ListRetrievalInstructionVersionsResponse",
+    name = "ListRetrievalInstructionVersionsOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyListRetrievalInstructionVersionsResponse {
+struct PyOperationListRetrievalInstructionVersionsOutput {
     inner: aws_sdk_bedrockagent::operation::list_retrieval_instruction_versions::ListRetrievalInstructionVersionsOutput,
 }
 
 #[pymethods]
-impl PyListRetrievalInstructionVersionsResponse {
+impl PyOperationListRetrievalInstructionVersionsOutput {
     #[getter]
     fn retrieval_instruction_version_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3690_list = PyList::empty(py);
@@ -23947,16 +23943,16 @@ impl PyListRetrievalInstructionVersionsResponse {
 }
 
 #[pyclass(
-    name = "ListRetrievalInstructionsResponse",
+    name = "ListRetrievalInstructionsOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyListRetrievalInstructionsResponse {
+struct PyOperationListRetrievalInstructionsOutput {
     inner: aws_sdk_bedrockagent::operation::list_retrieval_instructions::ListRetrievalInstructionsOutput,
 }
 
 #[pymethods]
-impl PyListRetrievalInstructionsResponse {
+impl PyOperationListRetrievalInstructionsOutput {
     #[getter]
     fn retrieval_instruction_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3698_list = PyList::empty(py);
@@ -24004,16 +24000,16 @@ impl PyListRetrievalInstructionsResponse {
 }
 
 #[pyclass(
-    name = "ListTagsForResourceResponse",
+    name = "ListTagsForResourceOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyListTagsForResourceResponse {
+struct PyOperationListTagsForResourceOutput {
     inner: aws_sdk_bedrockagent::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
 
 #[pymethods]
-impl PyListTagsForResourceResponse {
+impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
@@ -24049,16 +24045,16 @@ impl PyListTagsForResourceResponse {
 }
 
 #[pyclass(
-    name = "ListVpcConfigurationsResponse",
+    name = "ListVpcConfigurationsOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyListVpcConfigurationsResponse {
+struct PyOperationListVpcConfigurationsOutput {
     inner: aws_sdk_bedrockagent::operation::list_vpc_configurations::ListVpcConfigurationsOutput,
 }
 
 #[pymethods]
-impl PyListVpcConfigurationsResponse {
+impl PyOperationListVpcConfigurationsOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3716_list = PyList::empty(py);
@@ -24106,16 +24102,16 @@ impl PyListVpcConfigurationsResponse {
 }
 
 #[pyclass(
-    name = "PrepareAgentResponse",
+    name = "PrepareAgentOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyPrepareAgentResponse {
+struct PyOperationPrepareAgentOutput {
     inner: aws_sdk_bedrockagent::operation::prepare_agent::PrepareAgentOutput,
 }
 
 #[pymethods]
-impl PyPrepareAgentResponse {
+impl PyOperationPrepareAgentOutput {
     #[getter]
     fn agent_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3724 = (&self.inner.agent_id).as_str().into_py_any(py)?;
@@ -24155,16 +24151,16 @@ impl PyPrepareAgentResponse {
 }
 
 #[pyclass(
-    name = "PrepareFlowResponse",
+    name = "PrepareFlowOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyPrepareFlowResponse {
+struct PyOperationPrepareFlowOutput {
     inner: aws_sdk_bedrockagent::operation::prepare_flow::PrepareFlowOutput,
 }
 
 #[pymethods]
-impl PyPrepareFlowResponse {
+impl PyOperationPrepareFlowOutput {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3732 = (&self.inner.id).as_str().into_py_any(py)?;
@@ -24188,16 +24184,16 @@ impl PyPrepareFlowResponse {
 }
 
 #[pyclass(
-    name = "PutResourcePolicyResponse",
+    name = "PutResourcePolicyOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyPutResourcePolicyResponse {
+struct PyOperationPutResourcePolicyOutput {
     inner: aws_sdk_bedrockagent::operation::put_resource_policy::PutResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyPutResourcePolicyResponse {
+impl PyOperationPutResourcePolicyOutput {
     #[getter]
     fn resource_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3736 = (&self.inner.resource_arn).as_str().into_py_any(py)?;
@@ -24221,16 +24217,16 @@ impl PyPutResourcePolicyResponse {
 }
 
 #[pyclass(
-    name = "StartIngestionJobResponse",
+    name = "StartIngestionJobOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyStartIngestionJobResponse {
+struct PyOperationStartIngestionJobOutput {
     inner: aws_sdk_bedrockagent::operation::start_ingestion_job::StartIngestionJobOutput,
 }
 
 #[pymethods]
-impl PyStartIngestionJobResponse {
+impl PyOperationStartIngestionJobOutput {
     #[getter]
     fn ingestion_job(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ingestion_job {
@@ -24260,16 +24256,16 @@ impl PyStartIngestionJobResponse {
 }
 
 #[pyclass(
-    name = "StopIngestionJobResponse",
+    name = "StopIngestionJobOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyStopIngestionJobResponse {
+struct PyOperationStopIngestionJobOutput {
     inner: aws_sdk_bedrockagent::operation::stop_ingestion_job::StopIngestionJobOutput,
 }
 
 #[pymethods]
-impl PyStopIngestionJobResponse {
+impl PyOperationStopIngestionJobOutput {
     #[getter]
     fn ingestion_job(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ingestion_job {
@@ -24299,16 +24295,16 @@ impl PyStopIngestionJobResponse {
 }
 
 #[pyclass(
-    name = "TagResourceResponse",
+    name = "TagResourceOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyTagResourceResponse {
+struct PyOperationTagResourceOutput {
     inner: aws_sdk_bedrockagent::operation::tag_resource::TagResourceOutput,
 }
 
 #[pymethods]
-impl PyTagResourceResponse {
+impl PyOperationTagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -24316,16 +24312,16 @@ impl PyTagResourceResponse {
 }
 
 #[pyclass(
-    name = "UntagResourceResponse",
+    name = "UntagResourceOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyUntagResourceResponse {
+struct PyOperationUntagResourceOutput {
     inner: aws_sdk_bedrockagent::operation::untag_resource::UntagResourceOutput,
 }
 
 #[pymethods]
-impl PyUntagResourceResponse {
+impl PyOperationUntagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -24333,16 +24329,16 @@ impl PyUntagResourceResponse {
 }
 
 #[pyclass(
-    name = "UpdateAgentResponse",
+    name = "UpdateAgentOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyUpdateAgentResponse {
+struct PyOperationUpdateAgentOutput {
     inner: aws_sdk_bedrockagent::operation::update_agent::UpdateAgentOutput,
 }
 
 #[pymethods]
-impl PyUpdateAgentResponse {
+impl PyOperationUpdateAgentOutput {
     #[getter]
     fn agent(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.agent {
@@ -24372,16 +24368,16 @@ impl PyUpdateAgentResponse {
 }
 
 #[pyclass(
-    name = "UpdateAgentActionGroupResponse",
+    name = "UpdateAgentActionGroupOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyUpdateAgentActionGroupResponse {
+struct PyOperationUpdateAgentActionGroupOutput {
     inner: aws_sdk_bedrockagent::operation::update_agent_action_group::UpdateAgentActionGroupOutput,
 }
 
 #[pymethods]
-impl PyUpdateAgentActionGroupResponse {
+impl PyOperationUpdateAgentActionGroupOutput {
     #[getter]
     fn agent_action_group(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.agent_action_group {
@@ -24411,16 +24407,16 @@ impl PyUpdateAgentActionGroupResponse {
 }
 
 #[pyclass(
-    name = "UpdateAgentAliasResponse",
+    name = "UpdateAgentAliasOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyUpdateAgentAliasResponse {
+struct PyOperationUpdateAgentAliasOutput {
     inner: aws_sdk_bedrockagent::operation::update_agent_alias::UpdateAgentAliasOutput,
 }
 
 #[pymethods]
-impl PyUpdateAgentAliasResponse {
+impl PyOperationUpdateAgentAliasOutput {
     #[getter]
     fn agent_alias(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.agent_alias {
@@ -24450,17 +24446,17 @@ impl PyUpdateAgentAliasResponse {
 }
 
 #[pyclass(
-    name = "UpdateAgentCollaboratorResponse",
+    name = "UpdateAgentCollaboratorOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyUpdateAgentCollaboratorResponse {
+struct PyOperationUpdateAgentCollaboratorOutput {
     inner:
         aws_sdk_bedrockagent::operation::update_agent_collaborator::UpdateAgentCollaboratorOutput,
 }
 
 #[pymethods]
-impl PyUpdateAgentCollaboratorResponse {
+impl PyOperationUpdateAgentCollaboratorOutput {
     #[getter]
     fn agent_collaborator(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.agent_collaborator {
@@ -24490,16 +24486,16 @@ impl PyUpdateAgentCollaboratorResponse {
 }
 
 #[pyclass(
-    name = "UpdateAgentKnowledgeBaseResponse",
+    name = "UpdateAgentKnowledgeBaseOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyUpdateAgentKnowledgeBaseResponse {
+struct PyOperationUpdateAgentKnowledgeBaseOutput {
     inner: aws_sdk_bedrockagent::operation::update_agent_knowledge_base::UpdateAgentKnowledgeBaseOutput,
 }
 
 #[pymethods]
-impl PyUpdateAgentKnowledgeBaseResponse {
+impl PyOperationUpdateAgentKnowledgeBaseOutput {
     #[getter]
     fn agent_knowledge_base(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.agent_knowledge_base {
@@ -24529,16 +24525,16 @@ impl PyUpdateAgentKnowledgeBaseResponse {
 }
 
 #[pyclass(
-    name = "UpdateDataSourceResponse",
+    name = "UpdateDataSourceOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyUpdateDataSourceResponse {
+struct PyOperationUpdateDataSourceOutput {
     inner: aws_sdk_bedrockagent::operation::update_data_source::UpdateDataSourceOutput,
 }
 
 #[pymethods]
-impl PyUpdateDataSourceResponse {
+impl PyOperationUpdateDataSourceOutput {
     #[getter]
     fn data_source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.data_source {
@@ -24568,16 +24564,16 @@ impl PyUpdateDataSourceResponse {
 }
 
 #[pyclass(
-    name = "UpdateFlowResponse",
+    name = "UpdateFlowOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyUpdateFlowResponse {
+struct PyOperationUpdateFlowOutput {
     inner: aws_sdk_bedrockagent::operation::update_flow::UpdateFlowOutput,
 }
 
 #[pymethods]
-impl PyUpdateFlowResponse {
+impl PyOperationUpdateFlowOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3756 = (&self.inner.name).as_str().into_py_any(py)?;
@@ -24703,16 +24699,16 @@ impl PyUpdateFlowResponse {
 }
 
 #[pyclass(
-    name = "UpdateFlowAliasResponse",
+    name = "UpdateFlowAliasOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyUpdateFlowAliasResponse {
+struct PyOperationUpdateFlowAliasOutput {
     inner: aws_sdk_bedrockagent::operation::update_flow_alias::UpdateFlowAliasOutput,
 }
 
 #[pymethods]
-impl PyUpdateFlowAliasResponse {
+impl PyOperationUpdateFlowAliasOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3778 = (&self.inner.name).as_str().into_py_any(py)?;
@@ -24831,16 +24827,16 @@ impl PyUpdateFlowAliasResponse {
 }
 
 #[pyclass(
-    name = "UpdateKnowledgeBaseResponse",
+    name = "UpdateKnowledgeBaseOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyUpdateKnowledgeBaseResponse {
+struct PyOperationUpdateKnowledgeBaseOutput {
     inner: aws_sdk_bedrockagent::operation::update_knowledge_base::UpdateKnowledgeBaseOutput,
 }
 
 #[pymethods]
-impl PyUpdateKnowledgeBaseResponse {
+impl PyOperationUpdateKnowledgeBaseOutput {
     #[getter]
     fn knowledge_base(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.knowledge_base {
@@ -24870,16 +24866,16 @@ impl PyUpdateKnowledgeBaseResponse {
 }
 
 #[pyclass(
-    name = "UpdatePromptResponse",
+    name = "UpdatePromptOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyUpdatePromptResponse {
+struct PyOperationUpdatePromptOutput {
     inner: aws_sdk_bedrockagent::operation::update_prompt::UpdatePromptOutput,
 }
 
 #[pymethods]
-impl PyUpdatePromptResponse {
+impl PyOperationUpdatePromptOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3802 = (&self.inner.name).as_str().into_py_any(py)?;
@@ -25015,16 +25011,16 @@ impl PyUpdatePromptResponse {
 }
 
 #[pyclass(
-    name = "UpdateRetrievalInstructionResponse",
+    name = "UpdateRetrievalInstructionOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyUpdateRetrievalInstructionResponse {
+struct PyOperationUpdateRetrievalInstructionOutput {
     inner: aws_sdk_bedrockagent::operation::update_retrieval_instruction::UpdateRetrievalInstructionOutput,
 }
 
 #[pymethods]
-impl PyUpdateRetrievalInstructionResponse {
+impl PyOperationUpdateRetrievalInstructionOutput {
     #[getter]
     fn retrieval_instruction_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3826 = (&self.inner.retrieval_instruction_id)
@@ -25100,16 +25096,16 @@ impl PyUpdateRetrievalInstructionResponse {
 }
 
 #[pyclass(
-    name = "ValidateFlowDefinitionResponse",
+    name = "ValidateFlowDefinitionOutput",
     module = "rboto_bedrock_agent._native",
     frozen
 )]
-struct PyValidateFlowDefinitionResponse {
+struct PyOperationValidateFlowDefinitionOutput {
     inner: aws_sdk_bedrockagent::operation::validate_flow_definition::ValidateFlowDefinitionOutput,
 }
 
 #[pymethods]
-impl PyValidateFlowDefinitionResponse {
+impl PyOperationValidateFlowDefinitionOutput {
     #[getter]
     fn validations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3840_list = PyList::empty(py);
@@ -25282,92 +25278,92 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyWebCrawlerLimits>()?;
     module.add_class::<PyWebDataSourceConfiguration>()?;
     module.add_class::<PyWebSourceConfiguration>()?;
-    module.add_class::<PyAssociateAgentCollaboratorResponse>()?;
-    module.add_class::<PyAssociateAgentKnowledgeBaseResponse>()?;
-    module.add_class::<PyCreateAgentResponse>()?;
-    module.add_class::<PyCreateAgentActionGroupResponse>()?;
-    module.add_class::<PyCreateAgentAliasResponse>()?;
-    module.add_class::<PyCreateDataSourceResponse>()?;
-    module.add_class::<PyCreateFlowResponse>()?;
-    module.add_class::<PyCreateFlowAliasResponse>()?;
-    module.add_class::<PyCreateFlowVersionResponse>()?;
-    module.add_class::<PyCreateKnowledgeBaseResponse>()?;
-    module.add_class::<PyCreatePromptResponse>()?;
-    module.add_class::<PyCreatePromptVersionResponse>()?;
-    module.add_class::<PyCreateRetrievalInstructionResponse>()?;
-    module.add_class::<PyCreateRetrievalInstructionVersionResponse>()?;
-    module.add_class::<PyCreateVpcConfigurationResponse>()?;
-    module.add_class::<PyDeleteAgentResponse>()?;
-    module.add_class::<PyDeleteAgentActionGroupResponse>()?;
-    module.add_class::<PyDeleteAgentAliasResponse>()?;
-    module.add_class::<PyDeleteAgentVersionResponse>()?;
-    module.add_class::<PyDeleteDataSourceResponse>()?;
-    module.add_class::<PyDeleteFlowResponse>()?;
-    module.add_class::<PyDeleteFlowAliasResponse>()?;
-    module.add_class::<PyDeleteFlowVersionResponse>()?;
-    module.add_class::<PyDeleteKnowledgeBaseResponse>()?;
-    module.add_class::<PyDeleteKnowledgeBaseDocumentsResponse>()?;
-    module.add_class::<PyDeletePromptResponse>()?;
-    module.add_class::<PyDeleteResourcePolicyResponse>()?;
-    module.add_class::<PyDeleteRetrievalInstructionResponse>()?;
-    module.add_class::<PyDeleteVpcConfigurationResponse>()?;
-    module.add_class::<PyDisassociateAgentCollaboratorResponse>()?;
-    module.add_class::<PyDisassociateAgentKnowledgeBaseResponse>()?;
-    module.add_class::<PyGetAgentResponse>()?;
-    module.add_class::<PyGetAgentActionGroupResponse>()?;
-    module.add_class::<PyGetAgentAliasResponse>()?;
-    module.add_class::<PyGetAgentCollaboratorResponse>()?;
-    module.add_class::<PyGetAgentKnowledgeBaseResponse>()?;
-    module.add_class::<PyGetAgentVersionResponse>()?;
-    module.add_class::<PyGetDataSourceResponse>()?;
-    module.add_class::<PyGetFlowResponse>()?;
-    module.add_class::<PyGetFlowAliasResponse>()?;
-    module.add_class::<PyGetFlowVersionResponse>()?;
-    module.add_class::<PyGetIngestionJobResponse>()?;
-    module.add_class::<PyGetKnowledgeBaseResponse>()?;
-    module.add_class::<PyGetKnowledgeBaseDocumentsResponse>()?;
-    module.add_class::<PyGetPromptResponse>()?;
-    module.add_class::<PyGetResourcePolicyResponse>()?;
-    module.add_class::<PyGetRetrievalInstructionResponse>()?;
-    module.add_class::<PyGetVpcConfigurationResponse>()?;
-    module.add_class::<PyIngestKnowledgeBaseDocumentsResponse>()?;
-    module.add_class::<PyListAgentActionGroupsResponse>()?;
-    module.add_class::<PyListAgentAliasesResponse>()?;
-    module.add_class::<PyListAgentCollaboratorsResponse>()?;
-    module.add_class::<PyListAgentKnowledgeBasesResponse>()?;
-    module.add_class::<PyListAgentVersionsResponse>()?;
-    module.add_class::<PyListAgentsResponse>()?;
-    module.add_class::<PyListDataSourcesResponse>()?;
-    module.add_class::<PyListFlowAliasesResponse>()?;
-    module.add_class::<PyListFlowVersionsResponse>()?;
-    module.add_class::<PyListFlowsResponse>()?;
-    module.add_class::<PyListIngestionJobsResponse>()?;
-    module.add_class::<PyListKnowledgeBaseDocumentsResponse>()?;
-    module.add_class::<PyListKnowledgeBasesResponse>()?;
-    module.add_class::<PyListPromptsResponse>()?;
-    module.add_class::<PyListRetrievalInstructionVersionsResponse>()?;
-    module.add_class::<PyListRetrievalInstructionsResponse>()?;
-    module.add_class::<PyListTagsForResourceResponse>()?;
-    module.add_class::<PyListVpcConfigurationsResponse>()?;
-    module.add_class::<PyPrepareAgentResponse>()?;
-    module.add_class::<PyPrepareFlowResponse>()?;
-    module.add_class::<PyPutResourcePolicyResponse>()?;
-    module.add_class::<PyStartIngestionJobResponse>()?;
-    module.add_class::<PyStopIngestionJobResponse>()?;
-    module.add_class::<PyTagResourceResponse>()?;
-    module.add_class::<PyUntagResourceResponse>()?;
-    module.add_class::<PyUpdateAgentResponse>()?;
-    module.add_class::<PyUpdateAgentActionGroupResponse>()?;
-    module.add_class::<PyUpdateAgentAliasResponse>()?;
-    module.add_class::<PyUpdateAgentCollaboratorResponse>()?;
-    module.add_class::<PyUpdateAgentKnowledgeBaseResponse>()?;
-    module.add_class::<PyUpdateDataSourceResponse>()?;
-    module.add_class::<PyUpdateFlowResponse>()?;
-    module.add_class::<PyUpdateFlowAliasResponse>()?;
-    module.add_class::<PyUpdateKnowledgeBaseResponse>()?;
-    module.add_class::<PyUpdatePromptResponse>()?;
-    module.add_class::<PyUpdateRetrievalInstructionResponse>()?;
-    module.add_class::<PyValidateFlowDefinitionResponse>()?;
+    module.add_class::<PyOperationAssociateAgentCollaboratorOutput>()?;
+    module.add_class::<PyOperationAssociateAgentKnowledgeBaseOutput>()?;
+    module.add_class::<PyOperationCreateAgentOutput>()?;
+    module.add_class::<PyOperationCreateAgentActionGroupOutput>()?;
+    module.add_class::<PyOperationCreateAgentAliasOutput>()?;
+    module.add_class::<PyOperationCreateDataSourceOutput>()?;
+    module.add_class::<PyOperationCreateFlowOutput>()?;
+    module.add_class::<PyOperationCreateFlowAliasOutput>()?;
+    module.add_class::<PyOperationCreateFlowVersionOutput>()?;
+    module.add_class::<PyOperationCreateKnowledgeBaseOutput>()?;
+    module.add_class::<PyOperationCreatePromptOutput>()?;
+    module.add_class::<PyOperationCreatePromptVersionOutput>()?;
+    module.add_class::<PyOperationCreateRetrievalInstructionOutput>()?;
+    module.add_class::<PyOperationCreateRetrievalInstructionVersionOutput>()?;
+    module.add_class::<PyOperationCreateVpcConfigurationOutput>()?;
+    module.add_class::<PyOperationDeleteAgentOutput>()?;
+    module.add_class::<PyOperationDeleteAgentActionGroupOutput>()?;
+    module.add_class::<PyOperationDeleteAgentAliasOutput>()?;
+    module.add_class::<PyOperationDeleteAgentVersionOutput>()?;
+    module.add_class::<PyOperationDeleteDataSourceOutput>()?;
+    module.add_class::<PyOperationDeleteFlowOutput>()?;
+    module.add_class::<PyOperationDeleteFlowAliasOutput>()?;
+    module.add_class::<PyOperationDeleteFlowVersionOutput>()?;
+    module.add_class::<PyOperationDeleteKnowledgeBaseOutput>()?;
+    module.add_class::<PyOperationDeleteKnowledgeBaseDocumentsOutput>()?;
+    module.add_class::<PyOperationDeletePromptOutput>()?;
+    module.add_class::<PyOperationDeleteResourcePolicyOutput>()?;
+    module.add_class::<PyOperationDeleteRetrievalInstructionOutput>()?;
+    module.add_class::<PyOperationDeleteVpcConfigurationOutput>()?;
+    module.add_class::<PyOperationDisassociateAgentCollaboratorOutput>()?;
+    module.add_class::<PyOperationDisassociateAgentKnowledgeBaseOutput>()?;
+    module.add_class::<PyOperationGetAgentOutput>()?;
+    module.add_class::<PyOperationGetAgentActionGroupOutput>()?;
+    module.add_class::<PyOperationGetAgentAliasOutput>()?;
+    module.add_class::<PyOperationGetAgentCollaboratorOutput>()?;
+    module.add_class::<PyOperationGetAgentKnowledgeBaseOutput>()?;
+    module.add_class::<PyOperationGetAgentVersionOutput>()?;
+    module.add_class::<PyOperationGetDataSourceOutput>()?;
+    module.add_class::<PyOperationGetFlowOutput>()?;
+    module.add_class::<PyOperationGetFlowAliasOutput>()?;
+    module.add_class::<PyOperationGetFlowVersionOutput>()?;
+    module.add_class::<PyOperationGetIngestionJobOutput>()?;
+    module.add_class::<PyOperationGetKnowledgeBaseOutput>()?;
+    module.add_class::<PyOperationGetKnowledgeBaseDocumentsOutput>()?;
+    module.add_class::<PyOperationGetPromptOutput>()?;
+    module.add_class::<PyOperationGetResourcePolicyOutput>()?;
+    module.add_class::<PyOperationGetRetrievalInstructionOutput>()?;
+    module.add_class::<PyOperationGetVpcConfigurationOutput>()?;
+    module.add_class::<PyOperationIngestKnowledgeBaseDocumentsOutput>()?;
+    module.add_class::<PyOperationListAgentActionGroupsOutput>()?;
+    module.add_class::<PyOperationListAgentAliasesOutput>()?;
+    module.add_class::<PyOperationListAgentCollaboratorsOutput>()?;
+    module.add_class::<PyOperationListAgentKnowledgeBasesOutput>()?;
+    module.add_class::<PyOperationListAgentVersionsOutput>()?;
+    module.add_class::<PyOperationListAgentsOutput>()?;
+    module.add_class::<PyOperationListDataSourcesOutput>()?;
+    module.add_class::<PyOperationListFlowAliasesOutput>()?;
+    module.add_class::<PyOperationListFlowVersionsOutput>()?;
+    module.add_class::<PyOperationListFlowsOutput>()?;
+    module.add_class::<PyOperationListIngestionJobsOutput>()?;
+    module.add_class::<PyOperationListKnowledgeBaseDocumentsOutput>()?;
+    module.add_class::<PyOperationListKnowledgeBasesOutput>()?;
+    module.add_class::<PyOperationListPromptsOutput>()?;
+    module.add_class::<PyOperationListRetrievalInstructionVersionsOutput>()?;
+    module.add_class::<PyOperationListRetrievalInstructionsOutput>()?;
+    module.add_class::<PyOperationListTagsForResourceOutput>()?;
+    module.add_class::<PyOperationListVpcConfigurationsOutput>()?;
+    module.add_class::<PyOperationPrepareAgentOutput>()?;
+    module.add_class::<PyOperationPrepareFlowOutput>()?;
+    module.add_class::<PyOperationPutResourcePolicyOutput>()?;
+    module.add_class::<PyOperationStartIngestionJobOutput>()?;
+    module.add_class::<PyOperationStopIngestionJobOutput>()?;
+    module.add_class::<PyOperationTagResourceOutput>()?;
+    module.add_class::<PyOperationUntagResourceOutput>()?;
+    module.add_class::<PyOperationUpdateAgentOutput>()?;
+    module.add_class::<PyOperationUpdateAgentActionGroupOutput>()?;
+    module.add_class::<PyOperationUpdateAgentAliasOutput>()?;
+    module.add_class::<PyOperationUpdateAgentCollaboratorOutput>()?;
+    module.add_class::<PyOperationUpdateAgentKnowledgeBaseOutput>()?;
+    module.add_class::<PyOperationUpdateDataSourceOutput>()?;
+    module.add_class::<PyOperationUpdateFlowOutput>()?;
+    module.add_class::<PyOperationUpdateFlowAliasOutput>()?;
+    module.add_class::<PyOperationUpdateKnowledgeBaseOutput>()?;
+    module.add_class::<PyOperationUpdatePromptOutput>()?;
+    module.add_class::<PyOperationUpdateRetrievalInstructionOutput>()?;
+    module.add_class::<PyOperationValidateFlowDefinitionOutput>()?;
 
     Ok(())
 }
@@ -25482,7 +25478,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AssociateAgentCollaborator"))
             })?;
-            Ok(PyAssociateAgentCollaboratorResponse { inner: output })
+            Ok(PyOperationAssociateAgentCollaboratorOutput { inner: output })
         })
     }
 
@@ -25552,7 +25548,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AssociateAgentKnowledgeBase"))
             })?;
-            Ok(PyAssociateAgentKnowledgeBaseResponse { inner: output })
+            Ok(PyOperationAssociateAgentKnowledgeBaseOutput { inner: output })
         })
     }
 
@@ -25706,7 +25702,7 @@ impl BedrockAgentClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateAgent")))?;
-            Ok(PyCreateAgentResponse { inner: output })
+            Ok(PyOperationCreateAgentOutput { inner: output })
         })
     }
 
@@ -25832,7 +25828,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateAgentActionGroup"))
             })?;
-            Ok(PyCreateAgentActionGroupResponse { inner: output })
+            Ok(PyOperationCreateAgentActionGroupOutput { inner: output })
         })
     }
 
@@ -25919,7 +25915,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateAgentAlias"))
             })?;
-            Ok(PyCreateAgentAliasResponse { inner: output })
+            Ok(PyOperationCreateAgentAliasOutput { inner: output })
         })
     }
 
@@ -26015,7 +26011,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDataSource"))
             })?;
-            Ok(PyCreateDataSourceResponse { inner: output })
+            Ok(PyOperationCreateDataSourceOutput { inner: output })
         })
     }
 
@@ -26102,7 +26098,7 @@ impl BedrockAgentClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateFlow")))?;
-            Ok(PyCreateFlowResponse { inner: output })
+            Ok(PyOperationCreateFlowOutput { inner: output })
         })
     }
 
@@ -26197,7 +26193,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateFlowAlias"))
             })?;
-            Ok(PyCreateFlowAliasResponse { inner: output })
+            Ok(PyOperationCreateFlowAliasOutput { inner: output })
         })
     }
 
@@ -26249,7 +26245,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateFlowVersion"))
             })?;
-            Ok(PyCreateFlowVersionResponse { inner: output })
+            Ok(PyOperationCreateFlowVersionOutput { inner: output })
         })
     }
 
@@ -26337,7 +26333,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateKnowledgeBase"))
             })?;
-            Ok(PyCreateKnowledgeBaseResponse { inner: output })
+            Ok(PyOperationCreateKnowledgeBaseOutput { inner: output })
         })
     }
 
@@ -26430,7 +26426,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreatePrompt"))
             })?;
-            Ok(PyCreatePromptResponse { inner: output })
+            Ok(PyOperationCreatePromptOutput { inner: output })
         })
     }
 
@@ -26496,7 +26492,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreatePromptVersion"))
             })?;
-            Ok(PyCreatePromptVersionResponse { inner: output })
+            Ok(PyOperationCreatePromptVersionOutput { inner: output })
         })
     }
 
@@ -26576,7 +26572,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateRetrievalInstruction"))
             })?;
-            Ok(PyCreateRetrievalInstructionResponse { inner: output })
+            Ok(PyOperationCreateRetrievalInstructionOutput { inner: output })
         })
     }
 
@@ -26631,7 +26627,7 @@ impl BedrockAgentClient {
                     sdk_error_to_py(py, &error, "CreateRetrievalInstructionVersion")
                 })
             })?;
-            Ok(PyCreateRetrievalInstructionVersionResponse { inner: output })
+            Ok(PyOperationCreateRetrievalInstructionVersionOutput { inner: output })
         })
     }
 
@@ -26757,7 +26753,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateVpcConfiguration"))
             })?;
-            Ok(PyCreateVpcConfigurationResponse { inner: output })
+            Ok(PyOperationCreateVpcConfigurationOutput { inner: output })
         })
     }
 
@@ -26802,7 +26798,7 @@ impl BedrockAgentClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAgent")))?;
-            Ok(PyDeleteAgentResponse { inner: output })
+            Ok(PyOperationDeleteAgentOutput { inner: output })
         })
     }
 
@@ -26862,7 +26858,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAgentActionGroup"))
             })?;
-            Ok(PyDeleteAgentActionGroupResponse { inner: output })
+            Ok(PyOperationDeleteAgentActionGroupOutput { inner: output })
         })
     }
 
@@ -26907,7 +26903,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAgentAlias"))
             })?;
-            Ok(PyDeleteAgentAliasResponse { inner: output })
+            Ok(PyOperationDeleteAgentAliasOutput { inner: output })
         })
     }
 
@@ -26960,7 +26956,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAgentVersion"))
             })?;
-            Ok(PyDeleteAgentVersionResponse { inner: output })
+            Ok(PyOperationDeleteAgentVersionOutput { inner: output })
         })
     }
 
@@ -27006,7 +27002,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDataSource"))
             })?;
-            Ok(PyDeleteDataSourceResponse { inner: output })
+            Ok(PyOperationDeleteDataSourceOutput { inner: output })
         })
     }
 
@@ -27051,7 +27047,7 @@ impl BedrockAgentClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteFlow")))?;
-            Ok(PyDeleteFlowResponse { inner: output })
+            Ok(PyOperationDeleteFlowOutput { inner: output })
         })
     }
 
@@ -27096,7 +27092,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteFlowAlias"))
             })?;
-            Ok(PyDeleteFlowAliasResponse { inner: output })
+            Ok(PyOperationDeleteFlowAliasOutput { inner: output })
         })
     }
 
@@ -27149,7 +27145,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteFlowVersion"))
             })?;
-            Ok(PyDeleteFlowVersionResponse { inner: output })
+            Ok(PyOperationDeleteFlowVersionOutput { inner: output })
         })
     }
 
@@ -27188,7 +27184,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteKnowledgeBase"))
             })?;
-            Ok(PyDeleteKnowledgeBaseResponse { inner: output })
+            Ok(PyOperationDeleteKnowledgeBaseOutput { inner: output })
         })
     }
 
@@ -27255,7 +27251,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteKnowledgeBaseDocuments"))
             })?;
-            Ok(PyDeleteKnowledgeBaseDocumentsResponse { inner: output })
+            Ok(PyOperationDeleteKnowledgeBaseDocumentsOutput { inner: output })
         })
     }
 
@@ -27301,7 +27297,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeletePrompt"))
             })?;
-            Ok(PyDeletePromptResponse { inner: output })
+            Ok(PyOperationDeletePromptOutput { inner: output })
         })
     }
 
@@ -27347,7 +27343,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteResourcePolicy"))
             })?;
-            Ok(PyDeleteResourcePolicyResponse { inner: output })
+            Ok(PyOperationDeleteResourcePolicyOutput { inner: output })
         })
     }
 
@@ -27394,7 +27390,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteRetrievalInstruction"))
             })?;
-            Ok(PyDeleteRetrievalInstructionResponse { inner: output })
+            Ok(PyOperationDeleteRetrievalInstructionOutput { inner: output })
         })
     }
 
@@ -27441,7 +27437,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteVpcConfiguration"))
             })?;
-            Ok(PyDeleteVpcConfigurationResponse { inner: output })
+            Ok(PyOperationDeleteVpcConfigurationOutput { inner: output })
         })
     }
 
@@ -27493,7 +27489,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DisassociateAgentCollaborator"))
             })?;
-            Ok(PyDisassociateAgentCollaboratorResponse { inner: output })
+            Ok(PyOperationDisassociateAgentCollaboratorOutput { inner: output })
         })
     }
 
@@ -27546,7 +27542,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DisassociateAgentKnowledgeBase"))
             })?;
-            Ok(PyDisassociateAgentKnowledgeBaseResponse { inner: output })
+            Ok(PyOperationDisassociateAgentKnowledgeBaseOutput { inner: output })
         })
     }
 
@@ -27581,7 +27577,7 @@ impl BedrockAgentClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetAgent")))?;
-            Ok(PyGetAgentResponse { inner: output })
+            Ok(PyOperationGetAgentOutput { inner: output })
         })
     }
 
@@ -27633,7 +27629,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAgentActionGroup"))
             })?;
-            Ok(PyGetAgentActionGroupResponse { inner: output })
+            Ok(PyOperationGetAgentActionGroupOutput { inner: output })
         })
     }
 
@@ -27678,7 +27674,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAgentAlias"))
             })?;
-            Ok(PyGetAgentAliasResponse { inner: output })
+            Ok(PyOperationGetAgentAliasOutput { inner: output })
         })
     }
 
@@ -27730,7 +27726,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAgentCollaborator"))
             })?;
-            Ok(PyGetAgentCollaboratorResponse { inner: output })
+            Ok(PyOperationGetAgentCollaboratorOutput { inner: output })
         })
     }
 
@@ -27783,7 +27779,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAgentKnowledgeBase"))
             })?;
-            Ok(PyGetAgentKnowledgeBaseResponse { inner: output })
+            Ok(PyOperationGetAgentKnowledgeBaseOutput { inner: output })
         })
     }
 
@@ -27828,7 +27824,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAgentVersion"))
             })?;
-            Ok(PyGetAgentVersionResponse { inner: output })
+            Ok(PyOperationGetAgentVersionOutput { inner: output })
         })
     }
 
@@ -27874,7 +27870,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDataSource"))
             })?;
-            Ok(PyGetDataSourceResponse { inner: output })
+            Ok(PyOperationGetDataSourceOutput { inner: output })
         })
     }
 
@@ -27920,7 +27916,7 @@ impl BedrockAgentClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetFlow")))?;
-            Ok(PyGetFlowResponse { inner: output })
+            Ok(PyOperationGetFlowOutput { inner: output })
         })
     }
 
@@ -27965,7 +27961,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFlowAlias"))
             })?;
-            Ok(PyGetFlowAliasResponse { inner: output })
+            Ok(PyOperationGetFlowAliasOutput { inner: output })
         })
     }
 
@@ -28019,7 +28015,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFlowVersion"))
             })?;
-            Ok(PyGetFlowVersionResponse { inner: output })
+            Ok(PyOperationGetFlowVersionOutput { inner: output })
         })
     }
 
@@ -28072,7 +28068,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetIngestionJob"))
             })?;
-            Ok(PyGetIngestionJobResponse { inner: output })
+            Ok(PyOperationGetIngestionJobOutput { inner: output })
         })
     }
 
@@ -28111,7 +28107,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetKnowledgeBase"))
             })?;
-            Ok(PyGetKnowledgeBaseResponse { inner: output })
+            Ok(PyOperationGetKnowledgeBaseOutput { inner: output })
         })
     }
 
@@ -28171,7 +28167,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetKnowledgeBaseDocuments"))
             })?;
-            Ok(PyGetKnowledgeBaseDocumentsResponse { inner: output })
+            Ok(PyOperationGetKnowledgeBaseDocumentsOutput { inner: output })
         })
     }
 
@@ -28225,7 +28221,7 @@ impl BedrockAgentClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetPrompt")))?;
-            Ok(PyGetPromptResponse { inner: output })
+            Ok(PyOperationGetPromptOutput { inner: output })
         })
     }
 
@@ -28263,7 +28259,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicy"))
             })?;
-            Ok(PyGetResourcePolicyResponse { inner: output })
+            Ok(PyOperationGetResourcePolicyOutput { inner: output })
         })
     }
 
@@ -28310,7 +28306,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetRetrievalInstruction"))
             })?;
-            Ok(PyGetRetrievalInstructionResponse { inner: output })
+            Ok(PyOperationGetRetrievalInstructionOutput { inner: output })
         })
     }
 
@@ -28357,7 +28353,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetVpcConfiguration"))
             })?;
-            Ok(PyGetVpcConfigurationResponse { inner: output })
+            Ok(PyOperationGetVpcConfigurationOutput { inner: output })
         })
     }
 
@@ -28423,7 +28419,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "IngestKnowledgeBaseDocuments"))
             })?;
-            Ok(PyIngestKnowledgeBaseDocumentsResponse { inner: output })
+            Ok(PyOperationIngestKnowledgeBaseDocumentsOutput { inner: output })
         })
     }
 
@@ -28482,7 +28478,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAgentActionGroups"))
             })?;
-            Ok(PyListAgentActionGroupsResponse { inner: output })
+            Ok(PyOperationListAgentActionGroupsOutput { inner: output })
         })
     }
 
@@ -28534,7 +28530,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAgentAliases"))
             })?;
-            Ok(PyListAgentAliasesResponse { inner: output })
+            Ok(PyOperationListAgentAliasesOutput { inner: output })
         })
     }
 
@@ -28593,7 +28589,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAgentCollaborators"))
             })?;
-            Ok(PyListAgentCollaboratorsResponse { inner: output })
+            Ok(PyOperationListAgentCollaboratorsOutput { inner: output })
         })
     }
 
@@ -28652,7 +28648,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAgentKnowledgeBases"))
             })?;
-            Ok(PyListAgentKnowledgeBasesResponse { inner: output })
+            Ok(PyOperationListAgentKnowledgeBasesOutput { inner: output })
         })
     }
 
@@ -28704,7 +28700,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAgentVersions"))
             })?;
-            Ok(PyListAgentVersionsResponse { inner: output })
+            Ok(PyOperationListAgentVersionsOutput { inner: output })
         })
     }
 
@@ -28748,7 +28744,7 @@ impl BedrockAgentClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListAgents")))?;
-            Ok(PyListAgentsResponse { inner: output })
+            Ok(PyOperationListAgentsOutput { inner: output })
         })
     }
 
@@ -28801,7 +28797,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDataSources"))
             })?;
-            Ok(PyListDataSourcesResponse { inner: output })
+            Ok(PyOperationListDataSourcesOutput { inner: output })
         })
     }
 
@@ -28853,7 +28849,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListFlowAliases"))
             })?;
-            Ok(PyListFlowAliasesResponse { inner: output })
+            Ok(PyOperationListFlowAliasesOutput { inner: output })
         })
     }
 
@@ -28905,7 +28901,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListFlowVersions"))
             })?;
-            Ok(PyListFlowVersionsResponse { inner: output })
+            Ok(PyOperationListFlowVersionsOutput { inner: output })
         })
     }
 
@@ -28949,7 +28945,7 @@ impl BedrockAgentClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListFlows")))?;
-            Ok(PyListFlowsResponse { inner: output })
+            Ok(PyOperationListFlowsOutput { inner: output })
         })
     }
 
@@ -29029,7 +29025,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListIngestionJobs"))
             })?;
-            Ok(PyListIngestionJobsResponse { inner: output })
+            Ok(PyOperationListIngestionJobsOutput { inner: output })
         })
     }
 
@@ -29089,7 +29085,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListKnowledgeBaseDocuments"))
             })?;
-            Ok(PyListKnowledgeBaseDocumentsResponse { inner: output })
+            Ok(PyOperationListKnowledgeBaseDocumentsOutput { inner: output })
         })
     }
 
@@ -29134,7 +29130,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListKnowledgeBases"))
             })?;
-            Ok(PyListKnowledgeBasesResponse { inner: output })
+            Ok(PyOperationListKnowledgeBasesOutput { inner: output })
         })
     }
 
@@ -29186,7 +29182,7 @@ impl BedrockAgentClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListPrompts")))?;
-            Ok(PyListPromptsResponse { inner: output })
+            Ok(PyOperationListPromptsOutput { inner: output })
         })
     }
 
@@ -29239,7 +29235,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListRetrievalInstructionVersions"))
             })?;
-            Ok(PyListRetrievalInstructionVersionsResponse { inner: output })
+            Ok(PyOperationListRetrievalInstructionVersionsOutput { inner: output })
         })
     }
 
@@ -29294,7 +29290,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListRetrievalInstructions"))
             })?;
-            Ok(PyListRetrievalInstructionsResponse { inner: output })
+            Ok(PyOperationListRetrievalInstructionsOutput { inner: output })
         })
     }
 
@@ -29332,7 +29328,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Ok(PyListTagsForResourceResponse { inner: output })
+            Ok(PyOperationListTagsForResourceOutput { inner: output })
         })
     }
 
@@ -29394,7 +29390,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListVpcConfigurations"))
             })?;
-            Ok(PyListVpcConfigurationsResponse { inner: output })
+            Ok(PyOperationListVpcConfigurationsOutput { inner: output })
         })
     }
 
@@ -29430,7 +29426,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PrepareAgent"))
             })?;
-            Ok(PyPrepareAgentResponse { inner: output })
+            Ok(PyOperationPrepareAgentOutput { inner: output })
         })
     }
 
@@ -29467,7 +29463,7 @@ impl BedrockAgentClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PrepareFlow")))?;
-            Ok(PyPrepareFlowResponse { inner: output })
+            Ok(PyOperationPrepareFlowOutput { inner: output })
         })
     }
 
@@ -29520,7 +29516,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePolicy"))
             })?;
-            Ok(PyPutResourcePolicyResponse { inner: output })
+            Ok(PyOperationPutResourcePolicyOutput { inner: output })
         })
     }
 
@@ -29580,7 +29576,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartIngestionJob"))
             })?;
-            Ok(PyStartIngestionJobResponse { inner: output })
+            Ok(PyOperationStartIngestionJobOutput { inner: output })
         })
     }
 
@@ -29633,7 +29629,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopIngestionJob"))
             })?;
-            Ok(PyStopIngestionJobResponse { inner: output })
+            Ok(PyOperationStopIngestionJobOutput { inner: output })
         })
     }
 
@@ -29683,7 +29679,7 @@ impl BedrockAgentClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
-            Ok(PyTagResourceResponse { inner: output })
+            Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
 
@@ -29734,7 +29730,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
-            Ok(PyUntagResourceResponse { inner: output })
+            Ok(PyOperationUntagResourceOutput { inner: output })
         })
     }
 
@@ -29875,7 +29871,7 @@ impl BedrockAgentClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAgent")))?;
-            Ok(PyUpdateAgentResponse { inner: output })
+            Ok(PyOperationUpdateAgentOutput { inner: output })
         })
     }
 
@@ -30001,7 +29997,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAgentActionGroup"))
             })?;
-            Ok(PyUpdateAgentActionGroupResponse { inner: output })
+            Ok(PyOperationUpdateAgentActionGroupOutput { inner: output })
         })
     }
 
@@ -30086,7 +30082,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAgentAlias"))
             })?;
-            Ok(PyUpdateAgentAliasResponse { inner: output })
+            Ok(PyOperationUpdateAgentAliasOutput { inner: output })
         })
     }
 
@@ -30172,7 +30168,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAgentCollaborator"))
             })?;
-            Ok(PyUpdateAgentCollaboratorResponse { inner: output })
+            Ok(PyOperationUpdateAgentCollaboratorOutput { inner: output })
         })
     }
 
@@ -30242,7 +30238,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAgentKnowledgeBase"))
             })?;
-            Ok(PyUpdateAgentKnowledgeBaseResponse { inner: output })
+            Ok(PyOperationUpdateAgentKnowledgeBaseOutput { inner: output })
         })
     }
 
@@ -30338,7 +30334,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDataSource"))
             })?;
-            Ok(PyUpdateDataSourceResponse { inner: output })
+            Ok(PyOperationUpdateDataSourceOutput { inner: output })
         })
     }
 
@@ -30412,7 +30408,7 @@ impl BedrockAgentClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateFlow")))?;
-            Ok(PyUpdateFlowResponse { inner: output })
+            Ok(PyOperationUpdateFlowOutput { inner: output })
         })
     }
 
@@ -30494,7 +30490,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateFlowAlias"))
             })?;
-            Ok(PyUpdateFlowAliasResponse { inner: output })
+            Ok(PyOperationUpdateFlowAliasOutput { inner: output })
         })
     }
 
@@ -30570,7 +30566,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateKnowledgeBase"))
             })?;
-            Ok(PyUpdateKnowledgeBaseResponse { inner: output })
+            Ok(PyOperationUpdateKnowledgeBaseOutput { inner: output })
         })
     }
 
@@ -30651,7 +30647,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdatePrompt"))
             })?;
-            Ok(PyUpdatePromptResponse { inner: output })
+            Ok(PyOperationUpdatePromptOutput { inner: output })
         })
     }
 
@@ -30704,7 +30700,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateRetrievalInstruction"))
             })?;
-            Ok(PyUpdateRetrievalInstructionResponse { inner: output })
+            Ok(PyOperationUpdateRetrievalInstructionOutput { inner: output })
         })
     }
 
@@ -30742,7 +30738,7 @@ impl BedrockAgentClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ValidateFlowDefinition"))
             })?;
-            Ok(PyValidateFlowDefinitionResponse { inner: output })
+            Ok(PyOperationValidateFlowDefinitionOutput { inner: output })
         })
     }
 }

@@ -8,13 +8,13 @@ from typing import TYPE_CHECKING
 from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _paginate
 
 from ._native import (
-    DescribeCustomKeyStoresResponse,
-    ListAliasesResponse,
+    DescribeCustomKeyStoresOutput,
+    ListAliasesOutput,
     ListGrantsOutput,
-    ListKeyPoliciesResponse,
-    ListKeyRotationsResponse,
-    ListKeysResponse,
-    ListResourceTagsResponse,
+    ListKeyPoliciesOutput,
+    ListKeyRotationsOutput,
+    ListKeysOutput,
+    ListResourceTagsOutput,
     ListRetirableGrantsOutput,
 )
 
@@ -38,7 +38,7 @@ class KMSClientPaginators:
         custom_key_store_name: str | None = None,
         limit: int | None = None,
         marker: str | None = None,
-    ) -> AsyncIterator[DescribeCustomKeyStoresResponse]:
+    ) -> AsyncIterator[DescribeCustomKeyStoresOutput]:
         """Yield each page from describe_custom_key_stores; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -66,7 +66,7 @@ class KMSClientPaginators:
         key_id: str | None = None,
         limit: int | None = None,
         marker: str | None = None,
-    ) -> AsyncIterator[ListAliasesResponse]:
+    ) -> AsyncIterator[ListAliasesOutput]:
         """Yield each page from list_aliases; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -126,7 +126,7 @@ class KMSClientPaginators:
         key_id: str,
         limit: int | None = None,
         marker: str | None = None,
-    ) -> AsyncIterator[ListKeyPoliciesResponse]:
+    ) -> AsyncIterator[ListKeyPoliciesOutput]:
         """Yield each page from list_key_policies; requests start on iteration."""
         params: dict[str, object] = {
             "key_id": key_id,
@@ -152,7 +152,7 @@ class KMSClientPaginators:
         include_key_material: IncludeKeyMaterial | None = None,
         limit: int | None = None,
         marker: str | None = None,
-    ) -> AsyncIterator[ListKeyRotationsResponse]:
+    ) -> AsyncIterator[ListKeyRotationsOutput]:
         """Yield each page from list_key_rotations; requests start on iteration."""
         params: dict[str, object] = {
             "key_id": key_id,
@@ -178,7 +178,7 @@ class KMSClientPaginators:
         *,
         limit: int | None = None,
         marker: str | None = None,
-    ) -> AsyncIterator[ListKeysResponse]:
+    ) -> AsyncIterator[ListKeysOutput]:
         """Yield each page from list_keys; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -202,7 +202,7 @@ class KMSClientPaginators:
         key_id: str,
         limit: int | None = None,
         marker: str | None = None,
-    ) -> AsyncIterator[ListResourceTagsResponse]:
+    ) -> AsyncIterator[ListResourceTagsOutput]:
         """Yield each page from list_resource_tags; requests start on iteration."""
         params: dict[str, object] = {
             "key_id": key_id,

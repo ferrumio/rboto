@@ -84,60 +84,60 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`cancel_key_deletion`](#cancel_key_deletion) | <code>key_id: str</code> | <code>CancelKeyDeletionResponse</code> |
-| [`connect_custom_key_store`](#connect_custom_key_store) | <code>custom_key_store_id: str</code> | <code>ConnectCustomKeyStoreResponse</code> |
+| [`cancel_key_deletion`](#cancel_key_deletion) | <code>key_id: str</code> | <code>CancelKeyDeletionOutput</code> |
+| [`connect_custom_key_store`](#connect_custom_key_store) | <code>custom_key_store_id: str</code> | <code>ConnectCustomKeyStoreOutput</code> |
 | [`create_alias`](#create_alias) | <code>alias_name: str</code>, <code>target_key_id: str</code> | <code>None</code> |
-| [`create_custom_key_store`](#create_custom_key_store) | <code>custom_key_store_name: str</code> | <code>CreateCustomKeyStoreResponse</code> |
-| [`create_grant`](#create_grant) | <code>key_id: str</code>, <code>operations: Sequence[GrantOperation]</code> | <code>CreateGrantResponse</code> |
-| [`create_key`](#create_key) | None | <code>CreateKeyResponse</code> |
-| [`decrypt`](#decrypt) | None | <code>DecryptResponse</code> |
+| [`create_custom_key_store`](#create_custom_key_store) | <code>custom_key_store_name: str</code> | <code>CreateCustomKeyStoreOutput</code> |
+| [`create_grant`](#create_grant) | <code>key_id: str</code>, <code>operations: Sequence[GrantOperation]</code> | <code>CreateGrantOutput</code> |
+| [`create_key`](#create_key) | None | <code>CreateKeyOutput</code> |
+| [`decrypt`](#decrypt) | None | <code>DecryptOutput</code> |
 | [`delete_alias`](#delete_alias) | <code>alias_name: str</code> | <code>None</code> |
-| [`delete_custom_key_store`](#delete_custom_key_store) | <code>custom_key_store_id: str</code> | <code>DeleteCustomKeyStoreResponse</code> |
-| [`delete_imported_key_material`](#delete_imported_key_material) | <code>key_id: str</code> | <code>DeleteImportedKeyMaterialResponse</code> |
-| [`derive_shared_secret`](#derive_shared_secret) | <code>key_id: str</code>, <code>key_agreement_algorithm: KeyAgreementAlgorithmSpec</code>, <code>public_key: bytes</code> | <code>DeriveSharedSecretResponse</code> |
-| [`describe_custom_key_stores`](#describe_custom_key_stores) | None | <code>DescribeCustomKeyStoresResponse</code> |
-| [`describe_key`](#describe_key) | <code>key_id: str</code> | <code>DescribeKeyResponse</code> |
+| [`delete_custom_key_store`](#delete_custom_key_store) | <code>custom_key_store_id: str</code> | <code>DeleteCustomKeyStoreOutput</code> |
+| [`delete_imported_key_material`](#delete_imported_key_material) | <code>key_id: str</code> | <code>DeleteImportedKeyMaterialOutput</code> |
+| [`derive_shared_secret`](#derive_shared_secret) | <code>key_id: str</code>, <code>key_agreement_algorithm: KeyAgreementAlgorithmSpec</code>, <code>public_key: bytes</code> | <code>DeriveSharedSecretOutput</code> |
+| [`describe_custom_key_stores`](#describe_custom_key_stores) | None | <code>DescribeCustomKeyStoresOutput</code> |
+| [`describe_key`](#describe_key) | <code>key_id: str</code> | <code>DescribeKeyOutput</code> |
 | [`disable_key`](#disable_key) | <code>key_id: str</code> | <code>None</code> |
 | [`disable_key_rotation`](#disable_key_rotation) | <code>key_id: str</code> | <code>None</code> |
-| [`disconnect_custom_key_store`](#disconnect_custom_key_store) | <code>custom_key_store_id: str</code> | <code>DisconnectCustomKeyStoreResponse</code> |
+| [`disconnect_custom_key_store`](#disconnect_custom_key_store) | <code>custom_key_store_id: str</code> | <code>DisconnectCustomKeyStoreOutput</code> |
 | [`enable_key`](#enable_key) | <code>key_id: str</code> | <code>None</code> |
 | [`enable_key_rotation`](#enable_key_rotation) | <code>key_id: str</code> | <code>None</code> |
-| [`encrypt`](#encrypt) | <code>key_id: str</code>, <code>plaintext: bytes</code> | <code>EncryptResponse</code> |
-| [`generate_data_key`](#generate_data_key) | <code>key_id: str</code> | <code>GenerateDataKeyResponse</code> |
-| [`generate_data_key_pair`](#generate_data_key_pair) | <code>key_id: str</code>, <code>key_pair_spec: DataKeyPairSpec</code> | <code>GenerateDataKeyPairResponse</code> |
-| [`generate_data_key_pair_without_plaintext`](#generate_data_key_pair_without_plaintext) | <code>key_id: str</code>, <code>key_pair_spec: DataKeyPairSpec</code> | <code>GenerateDataKeyPairWithoutPlaintextResponse</code> |
-| [`generate_data_key_without_plaintext`](#generate_data_key_without_plaintext) | <code>key_id: str</code> | <code>GenerateDataKeyWithoutPlaintextResponse</code> |
-| [`generate_mac`](#generate_mac) | <code>message: bytes</code>, <code>key_id: str</code>, <code>mac_algorithm: MacAlgorithmSpec</code> | <code>GenerateMacResponse</code> |
-| [`generate_random`](#generate_random) | None | <code>GenerateRandomResponse</code> |
-| [`get_key_last_usage`](#get_key_last_usage) | <code>key_id: str</code> | <code>GetKeyLastUsageResponse</code> |
-| [`get_key_policy`](#get_key_policy) | <code>key_id: str</code> | <code>GetKeyPolicyResponse</code> |
-| [`get_key_rotation_status`](#get_key_rotation_status) | <code>key_id: str</code> | <code>GetKeyRotationStatusResponse</code> |
-| [`get_parameters_for_import`](#get_parameters_for_import) | <code>key_id: str</code>, <code>wrapping_algorithm: AlgorithmSpec</code>, <code>wrapping_key_spec: WrappingKeySpec</code> | <code>GetParametersForImportResponse</code> |
-| [`get_public_key`](#get_public_key) | <code>key_id: str</code> | <code>GetPublicKeyResponse</code> |
-| [`import_key_material`](#import_key_material) | <code>key_id: str</code>, <code>import_token: bytes</code>, <code>encrypted_key_material: bytes</code> | <code>ImportKeyMaterialResponse</code> |
-| [`list_aliases`](#list_aliases) | None | <code>ListAliasesResponse</code> |
+| [`encrypt`](#encrypt) | <code>key_id: str</code>, <code>plaintext: bytes</code> | <code>EncryptOutput</code> |
+| [`generate_data_key`](#generate_data_key) | <code>key_id: str</code> | <code>GenerateDataKeyOutput</code> |
+| [`generate_data_key_pair`](#generate_data_key_pair) | <code>key_id: str</code>, <code>key_pair_spec: DataKeyPairSpec</code> | <code>GenerateDataKeyPairOutput</code> |
+| [`generate_data_key_pair_without_plaintext`](#generate_data_key_pair_without_plaintext) | <code>key_id: str</code>, <code>key_pair_spec: DataKeyPairSpec</code> | <code>GenerateDataKeyPairWithoutPlaintextOutput</code> |
+| [`generate_data_key_without_plaintext`](#generate_data_key_without_plaintext) | <code>key_id: str</code> | <code>GenerateDataKeyWithoutPlaintextOutput</code> |
+| [`generate_mac`](#generate_mac) | <code>message: bytes</code>, <code>key_id: str</code>, <code>mac_algorithm: MacAlgorithmSpec</code> | <code>GenerateMacOutput</code> |
+| [`generate_random`](#generate_random) | None | <code>GenerateRandomOutput</code> |
+| [`get_key_last_usage`](#get_key_last_usage) | <code>key_id: str</code> | <code>GetKeyLastUsageOutput</code> |
+| [`get_key_policy`](#get_key_policy) | <code>key_id: str</code> | <code>GetKeyPolicyOutput</code> |
+| [`get_key_rotation_status`](#get_key_rotation_status) | <code>key_id: str</code> | <code>GetKeyRotationStatusOutput</code> |
+| [`get_parameters_for_import`](#get_parameters_for_import) | <code>key_id: str</code>, <code>wrapping_algorithm: AlgorithmSpec</code>, <code>wrapping_key_spec: WrappingKeySpec</code> | <code>GetParametersForImportOutput</code> |
+| [`get_public_key`](#get_public_key) | <code>key_id: str</code> | <code>GetPublicKeyOutput</code> |
+| [`import_key_material`](#import_key_material) | <code>key_id: str</code>, <code>import_token: bytes</code>, <code>encrypted_key_material: bytes</code> | <code>ImportKeyMaterialOutput</code> |
+| [`list_aliases`](#list_aliases) | None | <code>ListAliasesOutput</code> |
 | [`list_grants`](#list_grants) | <code>key_id: str</code> | <code>ListGrantsOutput</code> |
-| [`list_key_policies`](#list_key_policies) | <code>key_id: str</code> | <code>ListKeyPoliciesResponse</code> |
-| [`list_key_rotations`](#list_key_rotations) | <code>key_id: str</code> | <code>ListKeyRotationsResponse</code> |
-| [`list_keys`](#list_keys) | None | <code>ListKeysResponse</code> |
-| [`list_resource_tags`](#list_resource_tags) | <code>key_id: str</code> | <code>ListResourceTagsResponse</code> |
+| [`list_key_policies`](#list_key_policies) | <code>key_id: str</code> | <code>ListKeyPoliciesOutput</code> |
+| [`list_key_rotations`](#list_key_rotations) | <code>key_id: str</code> | <code>ListKeyRotationsOutput</code> |
+| [`list_keys`](#list_keys) | None | <code>ListKeysOutput</code> |
+| [`list_resource_tags`](#list_resource_tags) | <code>key_id: str</code> | <code>ListResourceTagsOutput</code> |
 | [`list_retirable_grants`](#list_retirable_grants) | None | <code>ListRetirableGrantsOutput</code> |
 | [`put_key_policy`](#put_key_policy) | <code>key_id: str</code>, <code>policy: str</code> | <code>None</code> |
-| [`re_encrypt`](#re_encrypt) | <code>destination_key_id: str</code> | <code>ReEncryptResponse</code> |
-| [`replicate_key`](#replicate_key) | <code>key_id: str</code>, <code>replica_region: str</code> | <code>ReplicateKeyResponse</code> |
+| [`re_encrypt`](#re_encrypt) | <code>destination_key_id: str</code> | <code>ReEncryptOutput</code> |
+| [`replicate_key`](#replicate_key) | <code>key_id: str</code>, <code>replica_region: str</code> | <code>ReplicateKeyOutput</code> |
 | [`retire_grant`](#retire_grant) | None | <code>None</code> |
 | [`revoke_grant`](#revoke_grant) | <code>key_id: str</code>, <code>grant_id: str</code> | <code>None</code> |
-| [`rotate_key_on_demand`](#rotate_key_on_demand) | <code>key_id: str</code> | <code>RotateKeyOnDemandResponse</code> |
-| [`schedule_key_deletion`](#schedule_key_deletion) | <code>key_id: str</code> | <code>ScheduleKeyDeletionResponse</code> |
-| [`sign`](#sign) | <code>key_id: str</code>, <code>message: bytes</code>, <code>signing_algorithm: SigningAlgorithmSpec</code> | <code>SignResponse</code> |
+| [`rotate_key_on_demand`](#rotate_key_on_demand) | <code>key_id: str</code> | <code>RotateKeyOnDemandOutput</code> |
+| [`schedule_key_deletion`](#schedule_key_deletion) | <code>key_id: str</code> | <code>ScheduleKeyDeletionOutput</code> |
+| [`sign`](#sign) | <code>key_id: str</code>, <code>message: bytes</code>, <code>signing_algorithm: SigningAlgorithmSpec</code> | <code>SignOutput</code> |
 | [`tag_resource`](#tag_resource) | <code>key_id: str</code>, <code>tags: Sequence[Tag]</code> | <code>None</code> |
 | [`untag_resource`](#untag_resource) | <code>key_id: str</code>, <code>tag_keys: Sequence[str]</code> | <code>None</code> |
 | [`update_alias`](#update_alias) | <code>alias_name: str</code>, <code>target_key_id: str</code> | <code>None</code> |
-| [`update_custom_key_store`](#update_custom_key_store) | <code>custom_key_store_id: str</code> | <code>UpdateCustomKeyStoreResponse</code> |
+| [`update_custom_key_store`](#update_custom_key_store) | <code>custom_key_store_id: str</code> | <code>UpdateCustomKeyStoreOutput</code> |
 | [`update_key_description`](#update_key_description) | <code>key_id: str</code>, <code>description: str</code> | <code>None</code> |
 | [`update_primary_region`](#update_primary_region) | <code>key_id: str</code>, <code>primary_region: str</code> | <code>None</code> |
-| [`verify`](#verify) | <code>key_id: str</code>, <code>message: bytes</code>, <code>signature: bytes</code>, <code>signing_algorithm: SigningAlgorithmSpec</code> | <code>VerifyResponse</code> |
-| [`verify_mac`](#verify_mac) | <code>message: bytes</code>, <code>key_id: str</code>, <code>mac_algorithm: MacAlgorithmSpec</code>, <code>mac: bytes</code> | <code>VerifyMacResponse</code> |
+| [`verify`](#verify) | <code>key_id: str</code>, <code>message: bytes</code>, <code>signature: bytes</code>, <code>signing_algorithm: SigningAlgorithmSpec</code> | <code>VerifyOutput</code> |
+| [`verify_mac`](#verify_mac) | <code>message: bytes</code>, <code>key_id: str</code>, <code>mac_algorithm: MacAlgorithmSpec</code>, <code>mac: bytes</code> | <code>VerifyMacOutput</code> |
 
 ## Complete signatures
 
@@ -147,7 +147,7 @@ native response definitions are in the package's `_native.pyi`.
 async def cancel_key_deletion(
     *,
     key_id: str,
-) -> CancelKeyDeletionResponse: ...
+) -> CancelKeyDeletionOutput: ...
 ```
 
 
@@ -157,7 +157,7 @@ async def cancel_key_deletion(
 async def connect_custom_key_store(
     *,
     custom_key_store_id: str,
-) -> ConnectCustomKeyStoreResponse: ...
+) -> ConnectCustomKeyStoreOutput: ...
 ```
 
 
@@ -188,7 +188,7 @@ async def create_custom_key_store(
     xks_proxy_vpc_endpoint_service_owner: str | None = None,
     xks_proxy_authentication_credential: XksProxyAuthenticationCredentialType | None = None,
     xks_proxy_connectivity: XksProxyConnectivityType | None = None,
-) -> CreateCustomKeyStoreResponse: ...
+) -> CreateCustomKeyStoreOutput: ...
 ```
 
 
@@ -207,7 +207,7 @@ async def create_grant(
     dry_run: bool | None = None,
     grantee_service_principal: str | None = None,
     retiring_service_principal: str | None = None,
-) -> CreateGrantResponse: ...
+) -> CreateGrantOutput: ...
 ```
 
 
@@ -227,7 +227,7 @@ async def create_key(
     tags: Sequence[Tag] | None = None,
     multi_region: bool | None = None,
     xks_key_id: str | None = None,
-) -> CreateKeyResponse: ...
+) -> CreateKeyOutput: ...
 ```
 
 
@@ -244,7 +244,7 @@ async def decrypt(
     recipient: RecipientInfo | None = None,
     dry_run: bool | None = None,
     dry_run_modifiers: Sequence[DryRunModifierType] | None = None,
-) -> DecryptResponse: ...
+) -> DecryptOutput: ...
 ```
 
 
@@ -264,7 +264,7 @@ async def delete_alias(
 async def delete_custom_key_store(
     *,
     custom_key_store_id: str,
-) -> DeleteCustomKeyStoreResponse: ...
+) -> DeleteCustomKeyStoreOutput: ...
 ```
 
 
@@ -275,7 +275,7 @@ async def delete_imported_key_material(
     *,
     key_id: str,
     key_material_id: str | None = None,
-) -> DeleteImportedKeyMaterialResponse: ...
+) -> DeleteImportedKeyMaterialOutput: ...
 ```
 
 
@@ -290,7 +290,7 @@ async def derive_shared_secret(
     grant_tokens: Sequence[str] | None = None,
     dry_run: bool | None = None,
     recipient: RecipientInfo | None = None,
-) -> DeriveSharedSecretResponse: ...
+) -> DeriveSharedSecretOutput: ...
 ```
 
 
@@ -303,7 +303,7 @@ async def describe_custom_key_stores(
     custom_key_store_name: str | None = None,
     limit: int | None = None,
     marker: str | None = None,
-) -> DescribeCustomKeyStoresResponse: ...
+) -> DescribeCustomKeyStoresOutput: ...
 ```
 
 Also available as `client.paginators.describe_custom_key_stores(...)`, returning an
@@ -317,7 +317,7 @@ async def describe_key(
     *,
     key_id: str,
     grant_tokens: Sequence[str] | None = None,
-) -> DescribeKeyResponse: ...
+) -> DescribeKeyOutput: ...
 ```
 
 
@@ -347,7 +347,7 @@ async def disable_key_rotation(
 async def disconnect_custom_key_store(
     *,
     custom_key_store_id: str,
-) -> DisconnectCustomKeyStoreResponse: ...
+) -> DisconnectCustomKeyStoreOutput: ...
 ```
 
 
@@ -383,7 +383,7 @@ async def encrypt(
     grant_tokens: Sequence[str] | None = None,
     encryption_algorithm: EncryptionAlgorithmSpec | None = None,
     dry_run: bool | None = None,
-) -> EncryptResponse: ...
+) -> EncryptOutput: ...
 ```
 
 
@@ -399,7 +399,7 @@ async def generate_data_key(
     grant_tokens: Sequence[str] | None = None,
     recipient: RecipientInfo | None = None,
     dry_run: bool | None = None,
-) -> GenerateDataKeyResponse: ...
+) -> GenerateDataKeyOutput: ...
 ```
 
 
@@ -414,7 +414,7 @@ async def generate_data_key_pair(
     grant_tokens: Sequence[str] | None = None,
     recipient: RecipientInfo | None = None,
     dry_run: bool | None = None,
-) -> GenerateDataKeyPairResponse: ...
+) -> GenerateDataKeyPairOutput: ...
 ```
 
 
@@ -428,7 +428,7 @@ async def generate_data_key_pair_without_plaintext(
     encryption_context: dict[str, str] | None = None,
     grant_tokens: Sequence[str] | None = None,
     dry_run: bool | None = None,
-) -> GenerateDataKeyPairWithoutPlaintextResponse: ...
+) -> GenerateDataKeyPairWithoutPlaintextOutput: ...
 ```
 
 
@@ -443,7 +443,7 @@ async def generate_data_key_without_plaintext(
     number_of_bytes: int | None = None,
     grant_tokens: Sequence[str] | None = None,
     dry_run: bool | None = None,
-) -> GenerateDataKeyWithoutPlaintextResponse: ...
+) -> GenerateDataKeyWithoutPlaintextOutput: ...
 ```
 
 
@@ -457,7 +457,7 @@ async def generate_mac(
     mac_algorithm: MacAlgorithmSpec,
     grant_tokens: Sequence[str] | None = None,
     dry_run: bool | None = None,
-) -> GenerateMacResponse: ...
+) -> GenerateMacOutput: ...
 ```
 
 
@@ -469,7 +469,7 @@ async def generate_random(
     number_of_bytes: int | None = None,
     custom_key_store_id: str | None = None,
     recipient: RecipientInfo | None = None,
-) -> GenerateRandomResponse: ...
+) -> GenerateRandomOutput: ...
 ```
 
 
@@ -479,7 +479,7 @@ async def generate_random(
 async def get_key_last_usage(
     *,
     key_id: str,
-) -> GetKeyLastUsageResponse: ...
+) -> GetKeyLastUsageOutput: ...
 ```
 
 
@@ -490,7 +490,7 @@ async def get_key_policy(
     *,
     key_id: str,
     policy_name: str | None = None,
-) -> GetKeyPolicyResponse: ...
+) -> GetKeyPolicyOutput: ...
 ```
 
 
@@ -500,7 +500,7 @@ async def get_key_policy(
 async def get_key_rotation_status(
     *,
     key_id: str,
-) -> GetKeyRotationStatusResponse: ...
+) -> GetKeyRotationStatusOutput: ...
 ```
 
 
@@ -512,7 +512,7 @@ async def get_parameters_for_import(
     key_id: str,
     wrapping_algorithm: AlgorithmSpec,
     wrapping_key_spec: WrappingKeySpec,
-) -> GetParametersForImportResponse: ...
+) -> GetParametersForImportOutput: ...
 ```
 
 
@@ -523,7 +523,7 @@ async def get_public_key(
     *,
     key_id: str,
     grant_tokens: Sequence[str] | None = None,
-) -> GetPublicKeyResponse: ...
+) -> GetPublicKeyOutput: ...
 ```
 
 
@@ -540,7 +540,7 @@ async def import_key_material(
     import_type: ImportType | None = None,
     key_material_description: str | None = None,
     key_material_id: str | None = None,
-) -> ImportKeyMaterialResponse: ...
+) -> ImportKeyMaterialOutput: ...
 ```
 
 
@@ -552,7 +552,7 @@ async def list_aliases(
     key_id: str | None = None,
     limit: int | None = None,
     marker: str | None = None,
-) -> ListAliasesResponse: ...
+) -> ListAliasesOutput: ...
 ```
 
 Also available as `client.paginators.list_aliases(...)`, returning an
@@ -585,7 +585,7 @@ async def list_key_policies(
     key_id: str,
     limit: int | None = None,
     marker: str | None = None,
-) -> ListKeyPoliciesResponse: ...
+) -> ListKeyPoliciesOutput: ...
 ```
 
 Also available as `client.paginators.list_key_policies(...)`, returning an
@@ -601,7 +601,7 @@ async def list_key_rotations(
     include_key_material: IncludeKeyMaterial | None = None,
     limit: int | None = None,
     marker: str | None = None,
-) -> ListKeyRotationsResponse: ...
+) -> ListKeyRotationsOutput: ...
 ```
 
 Also available as `client.paginators.list_key_rotations(...)`, returning an
@@ -615,7 +615,7 @@ async def list_keys(
     *,
     limit: int | None = None,
     marker: str | None = None,
-) -> ListKeysResponse: ...
+) -> ListKeysOutput: ...
 ```
 
 Also available as `client.paginators.list_keys(...)`, returning an
@@ -630,7 +630,7 @@ async def list_resource_tags(
     key_id: str,
     limit: int | None = None,
     marker: str | None = None,
-) -> ListResourceTagsResponse: ...
+) -> ListResourceTagsOutput: ...
 ```
 
 Also available as `client.paginators.list_resource_tags(...)`, returning an
@@ -681,7 +681,7 @@ async def re_encrypt(
     grant_tokens: Sequence[str] | None = None,
     dry_run: bool | None = None,
     dry_run_modifiers: Sequence[DryRunModifierType] | None = None,
-) -> ReEncryptResponse: ...
+) -> ReEncryptOutput: ...
 ```
 
 
@@ -696,7 +696,7 @@ async def replicate_key(
     bypass_policy_lockout_safety_check: bool | None = None,
     description: str | None = None,
     tags: Sequence[Tag] | None = None,
-) -> ReplicateKeyResponse: ...
+) -> ReplicateKeyOutput: ...
 ```
 
 
@@ -731,7 +731,7 @@ async def revoke_grant(
 async def rotate_key_on_demand(
     *,
     key_id: str,
-) -> RotateKeyOnDemandResponse: ...
+) -> RotateKeyOnDemandOutput: ...
 ```
 
 
@@ -742,7 +742,7 @@ async def schedule_key_deletion(
     *,
     key_id: str,
     pending_window_in_days: int | None = None,
-) -> ScheduleKeyDeletionResponse: ...
+) -> ScheduleKeyDeletionOutput: ...
 ```
 
 
@@ -757,7 +757,7 @@ async def sign(
     message_type: MessageType | None = None,
     grant_tokens: Sequence[str] | None = None,
     dry_run: bool | None = None,
-) -> SignResponse: ...
+) -> SignOutput: ...
 ```
 
 
@@ -809,7 +809,7 @@ async def update_custom_key_store(
     xks_proxy_vpc_endpoint_service_owner: str | None = None,
     xks_proxy_authentication_credential: XksProxyAuthenticationCredentialType | None = None,
     xks_proxy_connectivity: XksProxyConnectivityType | None = None,
-) -> UpdateCustomKeyStoreResponse: ...
+) -> UpdateCustomKeyStoreOutput: ...
 ```
 
 
@@ -847,7 +847,7 @@ async def verify(
     message_type: MessageType | None = None,
     grant_tokens: Sequence[str] | None = None,
     dry_run: bool | None = None,
-) -> VerifyResponse: ...
+) -> VerifyOutput: ...
 ```
 
 
@@ -862,7 +862,7 @@ async def verify_mac(
     mac: bytes,
     grant_tokens: Sequence[str] | None = None,
     dry_run: bool | None = None,
-) -> VerifyMacResponse: ...
+) -> VerifyMacOutput: ...
 ```
 
 

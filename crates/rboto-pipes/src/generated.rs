@@ -7385,13 +7385,13 @@ impl PyTag {
     }
 }
 
-#[pyclass(name = "CreatePipeResponse", module = "rboto_pipes._native", frozen)]
-struct PyCreatePipeResponse {
+#[pyclass(name = "CreatePipeOutput", module = "rboto_pipes._native", frozen)]
+struct PyOperationCreatePipeOutput {
     inner: aws_sdk_pipes::operation::create_pipe::CreatePipeOutput,
 }
 
 #[pymethods]
-impl PyCreatePipeResponse {
+impl PyOperationCreatePipeOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -7494,13 +7494,13 @@ impl PyCreatePipeResponse {
     }
 }
 
-#[pyclass(name = "DeletePipeResponse", module = "rboto_pipes._native", frozen)]
-struct PyDeletePipeResponse {
+#[pyclass(name = "DeletePipeOutput", module = "rboto_pipes._native", frozen)]
+struct PyOperationDeletePipeOutput {
     inner: aws_sdk_pipes::operation::delete_pipe::DeletePipeOutput,
 }
 
 #[pymethods]
-impl PyDeletePipeResponse {
+impl PyOperationDeletePipeOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -7603,13 +7603,13 @@ impl PyDeletePipeResponse {
     }
 }
 
-#[pyclass(name = "DescribePipeResponse", module = "rboto_pipes._native", frozen)]
-struct PyDescribePipeResponse {
+#[pyclass(name = "DescribePipeOutput", module = "rboto_pipes._native", frozen)]
+struct PyOperationDescribePipeOutput {
     inner: aws_sdk_pipes::operation::describe_pipe::DescribePipeOutput,
 }
 
 #[pymethods]
-impl PyDescribePipeResponse {
+impl PyOperationDescribePipeOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -7940,13 +7940,13 @@ impl PyDescribePipeResponse {
     }
 }
 
-#[pyclass(name = "ListPipesResponse", module = "rboto_pipes._native", frozen)]
-struct PyListPipesResponse {
+#[pyclass(name = "ListPipesOutput", module = "rboto_pipes._native", frozen)]
+struct PyOperationListPipesOutput {
     inner: aws_sdk_pipes::operation::list_pipes::ListPipesOutput,
 }
 
 #[pymethods]
-impl PyListPipesResponse {
+impl PyOperationListPipesOutput {
     #[getter]
     fn pipes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.pipes {
@@ -8002,16 +8002,16 @@ impl PyListPipesResponse {
 }
 
 #[pyclass(
-    name = "ListTagsForResourceResponse",
+    name = "ListTagsForResourceOutput",
     module = "rboto_pipes._native",
     frozen
 )]
-struct PyListTagsForResourceResponse {
+struct PyOperationListTagsForResourceOutput {
     inner: aws_sdk_pipes::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
 
 #[pymethods]
-impl PyListTagsForResourceResponse {
+impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
@@ -8046,13 +8046,13 @@ impl PyListTagsForResourceResponse {
     }
 }
 
-#[pyclass(name = "StartPipeResponse", module = "rboto_pipes._native", frozen)]
-struct PyStartPipeResponse {
+#[pyclass(name = "StartPipeOutput", module = "rboto_pipes._native", frozen)]
+struct PyOperationStartPipeOutput {
     inner: aws_sdk_pipes::operation::start_pipe::StartPipeOutput,
 }
 
 #[pymethods]
-impl PyStartPipeResponse {
+impl PyOperationStartPipeOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -8155,13 +8155,13 @@ impl PyStartPipeResponse {
     }
 }
 
-#[pyclass(name = "StopPipeResponse", module = "rboto_pipes._native", frozen)]
-struct PyStopPipeResponse {
+#[pyclass(name = "StopPipeOutput", module = "rboto_pipes._native", frozen)]
+struct PyOperationStopPipeOutput {
     inner: aws_sdk_pipes::operation::stop_pipe::StopPipeOutput,
 }
 
 #[pymethods]
-impl PyStopPipeResponse {
+impl PyOperationStopPipeOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -8264,39 +8264,39 @@ impl PyStopPipeResponse {
     }
 }
 
-#[pyclass(name = "TagResourceResponse", module = "rboto_pipes._native", frozen)]
-struct PyTagResourceResponse {
+#[pyclass(name = "TagResourceOutput", module = "rboto_pipes._native", frozen)]
+struct PyOperationTagResourceOutput {
     inner: aws_sdk_pipes::operation::tag_resource::TagResourceOutput,
 }
 
 #[pymethods]
-impl PyTagResourceResponse {
+impl PyOperationTagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "UntagResourceResponse", module = "rboto_pipes._native", frozen)]
-struct PyUntagResourceResponse {
+#[pyclass(name = "UntagResourceOutput", module = "rboto_pipes._native", frozen)]
+struct PyOperationUntagResourceOutput {
     inner: aws_sdk_pipes::operation::untag_resource::UntagResourceOutput,
 }
 
 #[pymethods]
-impl PyUntagResourceResponse {
+impl PyOperationUntagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "UpdatePipeResponse", module = "rboto_pipes._native", frozen)]
-struct PyUpdatePipeResponse {
+#[pyclass(name = "UpdatePipeOutput", module = "rboto_pipes._native", frozen)]
+struct PyOperationUpdatePipeOutput {
     inner: aws_sdk_pipes::operation::update_pipe::UpdatePipeOutput,
 }
 
 #[pymethods]
-impl PyUpdatePipeResponse {
+impl PyOperationUpdatePipeOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -8456,16 +8456,16 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PySelfManagedKafkaAccessConfigurationVpc>()?;
     module.add_class::<PySingleMeasureMapping>()?;
     module.add_class::<PyTag>()?;
-    module.add_class::<PyCreatePipeResponse>()?;
-    module.add_class::<PyDeletePipeResponse>()?;
-    module.add_class::<PyDescribePipeResponse>()?;
-    module.add_class::<PyListPipesResponse>()?;
-    module.add_class::<PyListTagsForResourceResponse>()?;
-    module.add_class::<PyStartPipeResponse>()?;
-    module.add_class::<PyStopPipeResponse>()?;
-    module.add_class::<PyTagResourceResponse>()?;
-    module.add_class::<PyUntagResourceResponse>()?;
-    module.add_class::<PyUpdatePipeResponse>()?;
+    module.add_class::<PyOperationCreatePipeOutput>()?;
+    module.add_class::<PyOperationDeletePipeOutput>()?;
+    module.add_class::<PyOperationDescribePipeOutput>()?;
+    module.add_class::<PyOperationListPipesOutput>()?;
+    module.add_class::<PyOperationListTagsForResourceOutput>()?;
+    module.add_class::<PyOperationStartPipeOutput>()?;
+    module.add_class::<PyOperationStopPipeOutput>()?;
+    module.add_class::<PyOperationTagResourceOutput>()?;
+    module.add_class::<PyOperationUntagResourceOutput>()?;
+    module.add_class::<PyOperationUpdatePipeOutput>()?;
 
     Ok(())
 }
@@ -8628,7 +8628,7 @@ impl PipesClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreatePipe")))?;
-            Ok(PyCreatePipeResponse { inner: output })
+            Ok(PyOperationCreatePipeOutput { inner: output })
         })
     }
 
@@ -8663,7 +8663,7 @@ impl PipesClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeletePipe")))?;
-            Ok(PyDeletePipeResponse { inner: output })
+            Ok(PyOperationDeletePipeOutput { inner: output })
         })
     }
 
@@ -8699,7 +8699,7 @@ impl PipesClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribePipe"))
             })?;
-            Ok(PyDescribePipeResponse { inner: output })
+            Ok(PyOperationDescribePipeOutput { inner: output })
         })
     }
 
@@ -8781,7 +8781,7 @@ impl PipesClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListPipes")))?;
-            Ok(PyListPipesResponse { inner: output })
+            Ok(PyOperationListPipesOutput { inner: output })
         })
     }
 
@@ -8819,7 +8819,7 @@ impl PipesClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Ok(PyListTagsForResourceResponse { inner: output })
+            Ok(PyOperationListTagsForResourceOutput { inner: output })
         })
     }
 
@@ -8854,7 +8854,7 @@ impl PipesClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "StartPipe")))?;
-            Ok(PyStartPipeResponse { inner: output })
+            Ok(PyOperationStartPipeOutput { inner: output })
         })
     }
 
@@ -8889,7 +8889,7 @@ impl PipesClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "StopPipe")))?;
-            Ok(PyStopPipeResponse { inner: output })
+            Ok(PyOperationStopPipeOutput { inner: output })
         })
     }
 
@@ -8939,7 +8939,7 @@ impl PipesClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
-            Ok(PyTagResourceResponse { inner: output })
+            Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
 
@@ -8990,7 +8990,7 @@ impl PipesClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
-            Ok(PyUntagResourceResponse { inner: output })
+            Ok(PyOperationUntagResourceOutput { inner: output })
         })
     }
 
@@ -9104,7 +9104,7 @@ impl PipesClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdatePipe")))?;
-            Ok(PyUpdatePipeResponse { inner: output })
+            Ok(PyOperationUpdatePipeOutput { inner: output })
         })
     }
 }

@@ -8,9 +8,9 @@ from typing import TYPE_CHECKING
 from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _paginate
 
 from ._native import (
-    BatchGetSecretValueResponse,
-    ListSecretVersionIdsResponse,
-    ListSecretsResponse,
+    BatchGetSecretValueOutput,
+    ListSecretVersionIdsOutput,
+    ListSecretsOutput,
 )
 
 from .types import (
@@ -35,7 +35,7 @@ class SecretsManagerClientPaginators:
         filters: Sequence[Filter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[BatchGetSecretValueResponse]:
+    ) -> AsyncIterator[BatchGetSecretValueOutput]:
         """Yield each page from batch_get_secret_value; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -64,7 +64,7 @@ class SecretsManagerClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
         include_deprecated: bool | None = None,
-    ) -> AsyncIterator[ListSecretVersionIdsResponse]:
+    ) -> AsyncIterator[ListSecretVersionIdsOutput]:
         """Yield each page from list_secret_version_ids; requests start on iteration."""
         params: dict[str, object] = {
             "secret_id": secret_id,
@@ -94,7 +94,7 @@ class SecretsManagerClientPaginators:
         filters: Sequence[Filter] | None = None,
         sort_order: SortOrderType | None = None,
         sort_by: SortByType | None = None,
-    ) -> AsyncIterator[ListSecretsResponse]:
+    ) -> AsyncIterator[ListSecretsOutput]:
         """Yield each page from list_secrets; requests start on iteration."""
         params: dict[str, object] = {
         }

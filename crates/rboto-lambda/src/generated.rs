@@ -12410,16 +12410,16 @@ impl PyWaitSucceededDetails {
 }
 
 #[pyclass(
-    name = "AddLayerVersionPermissionResponse",
+    name = "AddLayerVersionPermissionOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyAddLayerVersionPermissionResponse {
+struct PyOperationAddLayerVersionPermissionOutput {
     inner: aws_sdk_lambda::operation::add_layer_version_permission::AddLayerVersionPermissionOutput,
 }
 
 #[pymethods]
-impl PyAddLayerVersionPermissionResponse {
+impl PyOperationAddLayerVersionPermissionOutput {
     #[getter]
     fn statement(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.statement {
@@ -12458,17 +12458,13 @@ impl PyAddLayerVersionPermissionResponse {
     }
 }
 
-#[pyclass(
-    name = "AddPermissionResponse",
-    module = "rboto_lambda._native",
-    frozen
-)]
-struct PyAddPermissionResponse {
+#[pyclass(name = "AddPermissionOutput", module = "rboto_lambda._native", frozen)]
+struct PyOperationAddPermissionOutput {
     inner: aws_sdk_lambda::operation::add_permission::AddPermissionOutput,
 }
 
 #[pymethods]
-impl PyAddPermissionResponse {
+impl PyOperationAddPermissionOutput {
     #[getter]
     fn statement(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.statement {
@@ -12492,17 +12488,17 @@ impl PyAddPermissionResponse {
 }
 
 #[pyclass(
-    name = "CheckpointDurableExecutionResponse",
+    name = "CheckpointDurableExecutionOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyCheckpointDurableExecutionResponse {
+struct PyOperationCheckpointDurableExecutionOutput {
     inner:
         aws_sdk_lambda::operation::checkpoint_durable_execution::CheckpointDurableExecutionOutput,
 }
 
 #[pymethods]
-impl PyCheckpointDurableExecutionResponse {
+impl PyOperationCheckpointDurableExecutionOutput {
     #[getter]
     fn checkpoint_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.checkpoint_token {
@@ -12548,12 +12544,12 @@ impl PyCheckpointDurableExecutionResponse {
 }
 
 #[pyclass(name = "CreateAliasOutput", module = "rboto_lambda._native", frozen)]
-struct PyCreateAliasOutput {
+struct PyOperationCreateAliasOutput {
     inner: aws_sdk_lambda::operation::create_alias::CreateAliasOutput,
 }
 
 #[pymethods]
-impl PyCreateAliasOutput {
+impl PyOperationCreateAliasOutput {
     #[getter]
     fn alias_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.alias_arn {
@@ -12663,16 +12659,16 @@ impl PyCreateAliasOutput {
 }
 
 #[pyclass(
-    name = "CreateCapacityProviderResponse",
+    name = "CreateCapacityProviderOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyCreateCapacityProviderResponse {
+struct PyOperationCreateCapacityProviderOutput {
     inner: aws_sdk_lambda::operation::create_capacity_provider::CreateCapacityProviderOutput,
 }
 
 #[pymethods]
-impl PyCreateCapacityProviderResponse {
+impl PyOperationCreateCapacityProviderOutput {
     #[getter]
     fn capacity_provider(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.capacity_provider {
@@ -12702,16 +12698,16 @@ impl PyCreateCapacityProviderResponse {
 }
 
 #[pyclass(
-    name = "CreateCodeSigningConfigResponse",
+    name = "CreateCodeSigningConfigOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyCreateCodeSigningConfigResponse {
+struct PyOperationCreateCodeSigningConfigOutput {
     inner: aws_sdk_lambda::operation::create_code_signing_config::CreateCodeSigningConfigOutput,
 }
 
 #[pymethods]
-impl PyCreateCodeSigningConfigResponse {
+impl PyOperationCreateCodeSigningConfigOutput {
     #[getter]
     fn code_signing_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.code_signing_config {
@@ -12745,12 +12741,12 @@ impl PyCreateCodeSigningConfigResponse {
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyCreateEventSourceMappingOutput {
+struct PyOperationCreateEventSourceMappingOutput {
     inner: aws_sdk_lambda::operation::create_event_source_mapping::CreateEventSourceMappingOutput,
 }
 
 #[pymethods]
-impl PyCreateEventSourceMappingOutput {
+impl PyOperationCreateEventSourceMappingOutput {
     #[getter]
     fn uuid(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.uuid {
@@ -13398,12 +13394,12 @@ impl PyCreateEventSourceMappingOutput {
 }
 
 #[pyclass(name = "CreateFunctionOutput", module = "rboto_lambda._native", frozen)]
-struct PyCreateFunctionOutput {
+struct PyOperationCreateFunctionOutput {
     inner: aws_sdk_lambda::operation::create_function::CreateFunctionOutput,
 }
 
 #[pymethods]
-impl PyCreateFunctionOutput {
+impl PyOperationCreateFunctionOutput {
     #[getter]
     fn function_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.function_name {
@@ -14157,16 +14153,16 @@ impl PyCreateFunctionOutput {
 }
 
 #[pyclass(
-    name = "CreateFunctionUrlConfigResponse",
+    name = "CreateFunctionUrlConfigOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyCreateFunctionUrlConfigResponse {
+struct PyOperationCreateFunctionUrlConfigOutput {
     inner: aws_sdk_lambda::operation::create_function_url_config::CreateFunctionUrlConfigOutput,
 }
 
 #[pymethods]
-impl PyCreateFunctionUrlConfigResponse {
+impl PyOperationCreateFunctionUrlConfigOutput {
     #[getter]
     fn function_url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2245 = (&self.inner.function_url).as_str().into_py_any(py)?;
@@ -14244,16 +14240,16 @@ impl PyCreateFunctionUrlConfigResponse {
 }
 
 #[pyclass(
-    name = "DeleteCapacityProviderResponse",
+    name = "DeleteCapacityProviderOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyDeleteCapacityProviderResponse {
+struct PyOperationDeleteCapacityProviderOutput {
     inner: aws_sdk_lambda::operation::delete_capacity_provider::DeleteCapacityProviderOutput,
 }
 
 #[pymethods]
-impl PyDeleteCapacityProviderResponse {
+impl PyOperationDeleteCapacityProviderOutput {
     #[getter]
     fn capacity_provider(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.capacity_provider {
@@ -14283,16 +14279,16 @@ impl PyDeleteCapacityProviderResponse {
 }
 
 #[pyclass(
-    name = "DeleteCodeSigningConfigResponse",
+    name = "DeleteCodeSigningConfigOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyDeleteCodeSigningConfigResponse {
+struct PyOperationDeleteCodeSigningConfigOutput {
     inner: aws_sdk_lambda::operation::delete_code_signing_config::DeleteCodeSigningConfigOutput,
 }
 
 #[pymethods]
-impl PyDeleteCodeSigningConfigResponse {
+impl PyOperationDeleteCodeSigningConfigOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -14304,12 +14300,12 @@ impl PyDeleteCodeSigningConfigResponse {
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyDeleteEventSourceMappingOutput {
+struct PyOperationDeleteEventSourceMappingOutput {
     inner: aws_sdk_lambda::operation::delete_event_source_mapping::DeleteEventSourceMappingOutput,
 }
 
 #[pymethods]
-impl PyDeleteEventSourceMappingOutput {
+impl PyOperationDeleteEventSourceMappingOutput {
     #[getter]
     fn uuid(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.uuid {
@@ -14956,17 +14952,13 @@ impl PyDeleteEventSourceMappingOutput {
     }
 }
 
-#[pyclass(
-    name = "DeleteFunctionResponse",
-    module = "rboto_lambda._native",
-    frozen
-)]
-struct PyDeleteFunctionResponse {
+#[pyclass(name = "DeleteFunctionOutput", module = "rboto_lambda._native", frozen)]
+struct PyOperationDeleteFunctionOutput {
     inner: aws_sdk_lambda::operation::delete_function::DeleteFunctionOutput,
 }
 
 #[pymethods]
-impl PyDeleteFunctionResponse {
+impl PyOperationDeleteFunctionOutput {
     #[getter]
     fn status_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2341 = (&self.inner.status_code).to_owned().into_py_any(py)?;
@@ -14982,16 +14974,16 @@ impl PyDeleteFunctionResponse {
 }
 
 #[pyclass(
-    name = "GetAccountSettingsResponse",
+    name = "GetAccountSettingsOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyGetAccountSettingsResponse {
+struct PyOperationGetAccountSettingsOutput {
     inner: aws_sdk_lambda::operation::get_account_settings::GetAccountSettingsOutput,
 }
 
 #[pymethods]
-impl PyGetAccountSettingsResponse {
+impl PyOperationGetAccountSettingsOutput {
     #[getter]
     fn account_limit(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.account_limit {
@@ -15043,12 +15035,12 @@ impl PyGetAccountSettingsResponse {
 }
 
 #[pyclass(name = "GetAliasOutput", module = "rboto_lambda._native", frozen)]
-struct PyGetAliasOutput {
+struct PyOperationGetAliasOutput {
     inner: aws_sdk_lambda::operation::get_alias::GetAliasOutput,
 }
 
 #[pymethods]
-impl PyGetAliasOutput {
+impl PyOperationGetAliasOutput {
     #[getter]
     fn alias_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.alias_arn {
@@ -15158,16 +15150,16 @@ impl PyGetAliasOutput {
 }
 
 #[pyclass(
-    name = "GetCapacityProviderResponse",
+    name = "GetCapacityProviderOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyGetCapacityProviderResponse {
+struct PyOperationGetCapacityProviderOutput {
     inner: aws_sdk_lambda::operation::get_capacity_provider::GetCapacityProviderOutput,
 }
 
 #[pymethods]
-impl PyGetCapacityProviderResponse {
+impl PyOperationGetCapacityProviderOutput {
     #[getter]
     fn capacity_provider(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.capacity_provider {
@@ -15197,16 +15189,16 @@ impl PyGetCapacityProviderResponse {
 }
 
 #[pyclass(
-    name = "GetCodeSigningConfigResponse",
+    name = "GetCodeSigningConfigOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyGetCodeSigningConfigResponse {
+struct PyOperationGetCodeSigningConfigOutput {
     inner: aws_sdk_lambda::operation::get_code_signing_config::GetCodeSigningConfigOutput,
 }
 
 #[pymethods]
-impl PyGetCodeSigningConfigResponse {
+impl PyOperationGetCodeSigningConfigOutput {
     #[getter]
     fn code_signing_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.code_signing_config {
@@ -15236,16 +15228,16 @@ impl PyGetCodeSigningConfigResponse {
 }
 
 #[pyclass(
-    name = "GetDurableExecutionResponse",
+    name = "GetDurableExecutionOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyGetDurableExecutionResponse {
+struct PyOperationGetDurableExecutionOutput {
     inner: aws_sdk_lambda::operation::get_durable_execution::GetDurableExecutionOutput,
 }
 
 #[pymethods]
-impl PyGetDurableExecutionResponse {
+impl PyOperationGetDurableExecutionOutput {
     #[getter]
     fn durable_execution_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2363 = (&self.inner.durable_execution_arn)
@@ -15447,17 +15439,17 @@ impl PyGetDurableExecutionResponse {
 }
 
 #[pyclass(
-    name = "GetDurableExecutionHistoryResponse",
+    name = "GetDurableExecutionHistoryOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyGetDurableExecutionHistoryResponse {
+struct PyOperationGetDurableExecutionHistoryOutput {
     inner:
         aws_sdk_lambda::operation::get_durable_execution_history::GetDurableExecutionHistoryOutput,
 }
 
 #[pymethods]
-impl PyGetDurableExecutionHistoryResponse {
+impl PyOperationGetDurableExecutionHistoryOutput {
     #[getter]
     fn events(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2389_list = PyList::empty(py);
@@ -15505,16 +15497,16 @@ impl PyGetDurableExecutionHistoryResponse {
 }
 
 #[pyclass(
-    name = "GetDurableExecutionStateResponse",
+    name = "GetDurableExecutionStateOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyGetDurableExecutionStateResponse {
+struct PyOperationGetDurableExecutionStateOutput {
     inner: aws_sdk_lambda::operation::get_durable_execution_state::GetDurableExecutionStateOutput,
 }
 
 #[pymethods]
-impl PyGetDurableExecutionStateResponse {
+impl PyOperationGetDurableExecutionStateOutput {
     #[getter]
     fn operations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2397_list = PyList::empty(py);
@@ -15566,12 +15558,12 @@ impl PyGetDurableExecutionStateResponse {
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyGetEventSourceMappingOutput {
+struct PyOperationGetEventSourceMappingOutput {
     inner: aws_sdk_lambda::operation::get_event_source_mapping::GetEventSourceMappingOutput,
 }
 
 #[pymethods]
-impl PyGetEventSourceMappingOutput {
+impl PyOperationGetEventSourceMappingOutput {
     #[getter]
     fn uuid(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.uuid {
@@ -16218,13 +16210,13 @@ impl PyGetEventSourceMappingOutput {
     }
 }
 
-#[pyclass(name = "GetFunctionResponse", module = "rboto_lambda._native", frozen)]
-struct PyGetFunctionResponse {
+#[pyclass(name = "GetFunctionOutput", module = "rboto_lambda._native", frozen)]
+struct PyOperationGetFunctionOutput {
     inner: aws_sdk_lambda::operation::get_function::GetFunctionOutput,
 }
 
 #[pymethods]
-impl PyGetFunctionResponse {
+impl PyOperationGetFunctionOutput {
     #[getter]
     fn configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.configuration {
@@ -16348,16 +16340,16 @@ impl PyGetFunctionResponse {
 }
 
 #[pyclass(
-    name = "GetFunctionCodeSigningConfigResponse",
+    name = "GetFunctionCodeSigningConfigOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyGetFunctionCodeSigningConfigResponse {
+struct PyOperationGetFunctionCodeSigningConfigOutput {
     inner: aws_sdk_lambda::operation::get_function_code_signing_config::GetFunctionCodeSigningConfigOutput,
 }
 
 #[pymethods]
-impl PyGetFunctionCodeSigningConfigResponse {
+impl PyOperationGetFunctionCodeSigningConfigOutput {
     #[getter]
     fn code_signing_config_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2505 = (&self.inner.code_signing_config_arn)
@@ -16385,16 +16377,16 @@ impl PyGetFunctionCodeSigningConfigResponse {
 }
 
 #[pyclass(
-    name = "GetFunctionConcurrencyResponse",
+    name = "GetFunctionConcurrencyOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyGetFunctionConcurrencyResponse {
+struct PyOperationGetFunctionConcurrencyOutput {
     inner: aws_sdk_lambda::operation::get_function_concurrency::GetFunctionConcurrencyOutput,
 }
 
 #[pymethods]
-impl PyGetFunctionConcurrencyResponse {
+impl PyOperationGetFunctionConcurrencyOutput {
     #[getter]
     fn reserved_concurrent_executions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.reserved_concurrent_executions {
@@ -16422,12 +16414,12 @@ impl PyGetFunctionConcurrencyResponse {
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyGetFunctionConfigurationOutput {
+struct PyOperationGetFunctionConfigurationOutput {
     inner: aws_sdk_lambda::operation::get_function_configuration::GetFunctionConfigurationOutput,
 }
 
 #[pymethods]
-impl PyGetFunctionConfigurationOutput {
+impl PyOperationGetFunctionConfigurationOutput {
     #[getter]
     fn function_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.function_name {
@@ -17185,12 +17177,12 @@ impl PyGetFunctionConfigurationOutput {
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyGetFunctionEventInvokeConfigOutput {
+struct PyOperationGetFunctionEventInvokeConfigOutput {
     inner: aws_sdk_lambda::operation::get_function_event_invoke_config::GetFunctionEventInvokeConfigOutput,
 }
 
 #[pymethods]
-impl PyGetFunctionEventInvokeConfigOutput {
+impl PyOperationGetFunctionEventInvokeConfigOutput {
     #[getter]
     fn last_modified(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified {
@@ -17284,17 +17276,17 @@ impl PyGetFunctionEventInvokeConfigOutput {
 }
 
 #[pyclass(
-    name = "GetFunctionRecursionConfigResponse",
+    name = "GetFunctionRecursionConfigOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyGetFunctionRecursionConfigResponse {
+struct PyOperationGetFunctionRecursionConfigOutput {
     inner:
         aws_sdk_lambda::operation::get_function_recursion_config::GetFunctionRecursionConfigOutput,
 }
 
 #[pymethods]
-impl PyGetFunctionRecursionConfigResponse {
+impl PyOperationGetFunctionRecursionConfigOutput {
     #[getter]
     fn recursive_loop(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.recursive_loop {
@@ -17318,16 +17310,16 @@ impl PyGetFunctionRecursionConfigResponse {
 }
 
 #[pyclass(
-    name = "GetFunctionScalingConfigResponse",
+    name = "GetFunctionScalingConfigOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyGetFunctionScalingConfigResponse {
+struct PyOperationGetFunctionScalingConfigOutput {
     inner: aws_sdk_lambda::operation::get_function_scaling_config::GetFunctionScalingConfigOutput,
 }
 
 #[pymethods]
-impl PyGetFunctionScalingConfigResponse {
+impl PyOperationGetFunctionScalingConfigOutput {
     #[getter]
     fn function_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.function_arn {
@@ -17395,16 +17387,16 @@ impl PyGetFunctionScalingConfigResponse {
 }
 
 #[pyclass(
-    name = "GetFunctionUrlConfigResponse",
+    name = "GetFunctionUrlConfigOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyGetFunctionUrlConfigResponse {
+struct PyOperationGetFunctionUrlConfigOutput {
     inner: aws_sdk_lambda::operation::get_function_url_config::GetFunctionUrlConfigOutput,
 }
 
 #[pymethods]
-impl PyGetFunctionUrlConfigResponse {
+impl PyOperationGetFunctionUrlConfigOutput {
     #[getter]
     fn function_url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2621 = (&self.inner.function_url).as_str().into_py_any(py)?;
@@ -17494,12 +17486,12 @@ impl PyGetFunctionUrlConfigResponse {
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyGetLayerVersionOutput {
+struct PyOperationGetLayerVersionOutput {
     inner: aws_sdk_lambda::operation::get_layer_version::GetLayerVersionOutput,
 }
 
 #[pymethods]
-impl PyGetLayerVersionOutput {
+impl PyOperationGetLayerVersionOutput {
     #[getter]
     fn content(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.content {
@@ -17673,12 +17665,12 @@ impl PyGetLayerVersionOutput {
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyGetLayerVersionByArnOutput {
+struct PyOperationGetLayerVersionByArnOutput {
     inner: aws_sdk_lambda::operation::get_layer_version_by_arn::GetLayerVersionByArnOutput,
 }
 
 #[pymethods]
-impl PyGetLayerVersionByArnOutput {
+impl PyOperationGetLayerVersionByArnOutput {
     #[getter]
     fn content(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.content {
@@ -17848,16 +17840,16 @@ impl PyGetLayerVersionByArnOutput {
 }
 
 #[pyclass(
-    name = "GetLayerVersionPolicyResponse",
+    name = "GetLayerVersionPolicyOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyGetLayerVersionPolicyResponse {
+struct PyOperationGetLayerVersionPolicyOutput {
     inner: aws_sdk_lambda::operation::get_layer_version_policy::GetLayerVersionPolicyOutput,
 }
 
 #[pymethods]
-impl PyGetLayerVersionPolicyResponse {
+impl PyOperationGetLayerVersionPolicyOutput {
     #[getter]
     fn policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.policy {
@@ -17896,13 +17888,13 @@ impl PyGetLayerVersionPolicyResponse {
     }
 }
 
-#[pyclass(name = "GetPolicyResponse", module = "rboto_lambda._native", frozen)]
-struct PyGetPolicyResponse {
+#[pyclass(name = "GetPolicyOutput", module = "rboto_lambda._native", frozen)]
+struct PyOperationGetPolicyOutput {
     inner: aws_sdk_lambda::operation::get_policy::GetPolicyOutput,
 }
 
 #[pymethods]
-impl PyGetPolicyResponse {
+impl PyOperationGetPolicyOutput {
     #[getter]
     fn policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.policy {
@@ -17942,16 +17934,16 @@ impl PyGetPolicyResponse {
 }
 
 #[pyclass(
-    name = "GetProvisionedConcurrencyConfigResponse",
+    name = "GetProvisionedConcurrencyConfigOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyGetProvisionedConcurrencyConfigResponse {
+struct PyOperationGetProvisionedConcurrencyConfigOutput {
     inner: aws_sdk_lambda::operation::get_provisioned_concurrency_config::GetProvisionedConcurrencyConfigOutput,
 }
 
 #[pymethods]
-impl PyGetProvisionedConcurrencyConfigResponse {
+impl PyOperationGetProvisionedConcurrencyConfigOutput {
     #[getter]
     fn requested_provisioned_concurrent_executions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.requested_provisioned_concurrent_executions {
@@ -18064,16 +18056,16 @@ impl PyGetProvisionedConcurrencyConfigResponse {
 }
 
 #[pyclass(
-    name = "GetResourcePolicyResponse",
+    name = "GetResourcePolicyOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyGetResourcePolicyResponse {
+struct PyOperationGetResourcePolicyOutput {
     inner: aws_sdk_lambda::operation::get_resource_policy::GetResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyGetResourcePolicyResponse {
+impl PyOperationGetResourcePolicyOutput {
     #[getter]
     fn policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.policy {
@@ -18113,17 +18105,17 @@ impl PyGetResourcePolicyResponse {
 }
 
 #[pyclass(
-    name = "GetRuntimeManagementConfigResponse",
+    name = "GetRuntimeManagementConfigOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyGetRuntimeManagementConfigResponse {
+struct PyOperationGetRuntimeManagementConfigOutput {
     inner:
         aws_sdk_lambda::operation::get_runtime_management_config::GetRuntimeManagementConfigOutput,
 }
 
 #[pymethods]
-impl PyGetRuntimeManagementConfigResponse {
+impl PyOperationGetRuntimeManagementConfigOutput {
     #[getter]
     fn update_runtime_on(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.update_runtime_on {
@@ -18178,13 +18170,13 @@ impl PyGetRuntimeManagementConfigResponse {
     }
 }
 
-#[pyclass(name = "InvocationResponse", module = "rboto_lambda._native", frozen)]
-struct PyInvocationResponse {
+#[pyclass(name = "InvokeOutput", module = "rboto_lambda._native", frozen)]
+struct PyOperationInvokeOutput {
     inner: aws_sdk_lambda::operation::invoke::InvokeOutput,
 }
 
 #[pymethods]
-impl PyInvocationResponse {
+impl PyOperationInvokeOutput {
     #[getter]
     fn status_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2717 = (&self.inner.status_code).to_owned().into_py_any(py)?;
@@ -18279,13 +18271,13 @@ impl PyInvocationResponse {
     }
 }
 
-#[pyclass(name = "InvokeAsyncResponse", module = "rboto_lambda._native", frozen)]
-struct PyInvokeAsyncResponse {
+#[pyclass(name = "InvokeAsyncOutput", module = "rboto_lambda._native", frozen)]
+struct PyOperationInvokeAsyncOutput {
     inner: aws_sdk_lambda::operation::invoke_async::InvokeAsyncOutput,
 }
 
 #[pymethods]
-impl PyInvokeAsyncResponse {
+impl PyOperationInvokeAsyncOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2729 = (&self.inner.status).to_owned().into_py_any(py)?;
@@ -18300,13 +18292,13 @@ impl PyInvokeAsyncResponse {
     }
 }
 
-#[pyclass(name = "ListAliasesResponse", module = "rboto_lambda._native", frozen)]
-struct PyListAliasesResponse {
+#[pyclass(name = "ListAliasesOutput", module = "rboto_lambda._native", frozen)]
+struct PyOperationListAliasesOutput {
     inner: aws_sdk_lambda::operation::list_aliases::ListAliasesOutput,
 }
 
 #[pymethods]
-impl PyListAliasesResponse {
+impl PyOperationListAliasesOutput {
     #[getter]
     fn next_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_marker {
@@ -18362,16 +18354,16 @@ impl PyListAliasesResponse {
 }
 
 #[pyclass(
-    name = "ListCapacityProvidersResponse",
+    name = "ListCapacityProvidersOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyListCapacityProvidersResponse {
+struct PyOperationListCapacityProvidersOutput {
     inner: aws_sdk_lambda::operation::list_capacity_providers::ListCapacityProvidersOutput,
 }
 
 #[pymethods]
-impl PyListCapacityProvidersResponse {
+impl PyOperationListCapacityProvidersOutput {
     #[getter]
     fn capacity_providers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2739_list = PyList::empty(py);
@@ -18419,16 +18411,16 @@ impl PyListCapacityProvidersResponse {
 }
 
 #[pyclass(
-    name = "ListCodeSigningConfigsResponse",
+    name = "ListCodeSigningConfigsOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyListCodeSigningConfigsResponse {
+struct PyOperationListCodeSigningConfigsOutput {
     inner: aws_sdk_lambda::operation::list_code_signing_configs::ListCodeSigningConfigsOutput,
 }
 
 #[pymethods]
-impl PyListCodeSigningConfigsResponse {
+impl PyOperationListCodeSigningConfigsOutput {
     #[getter]
     fn next_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_marker {
@@ -18484,16 +18476,16 @@ impl PyListCodeSigningConfigsResponse {
 }
 
 #[pyclass(
-    name = "ListDurableExecutionsByFunctionResponse",
+    name = "ListDurableExecutionsByFunctionOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyListDurableExecutionsByFunctionResponse {
+struct PyOperationListDurableExecutionsByFunctionOutput {
     inner: aws_sdk_lambda::operation::list_durable_executions_by_function::ListDurableExecutionsByFunctionOutput,
 }
 
 #[pymethods]
-impl PyListDurableExecutionsByFunctionResponse {
+impl PyOperationListDurableExecutionsByFunctionOutput {
     #[getter]
     fn durable_executions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.durable_executions {
@@ -18549,16 +18541,16 @@ impl PyListDurableExecutionsByFunctionResponse {
 }
 
 #[pyclass(
-    name = "ListEventSourceMappingsResponse",
+    name = "ListEventSourceMappingsOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyListEventSourceMappingsResponse {
+struct PyOperationListEventSourceMappingsOutput {
     inner: aws_sdk_lambda::operation::list_event_source_mappings::ListEventSourceMappingsOutput,
 }
 
 #[pymethods]
-impl PyListEventSourceMappingsResponse {
+impl PyOperationListEventSourceMappingsOutput {
     #[getter]
     fn next_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_marker {
@@ -18614,16 +18606,16 @@ impl PyListEventSourceMappingsResponse {
 }
 
 #[pyclass(
-    name = "ListFunctionEventInvokeConfigsResponse",
+    name = "ListFunctionEventInvokeConfigsOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyListFunctionEventInvokeConfigsResponse {
+struct PyOperationListFunctionEventInvokeConfigsOutput {
     inner: aws_sdk_lambda::operation::list_function_event_invoke_configs::ListFunctionEventInvokeConfigsOutput,
 }
 
 #[pymethods]
-impl PyListFunctionEventInvokeConfigsResponse {
+impl PyOperationListFunctionEventInvokeConfigsOutput {
     #[getter]
     fn function_event_invoke_configs(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.function_event_invoke_configs {
@@ -18679,16 +18671,16 @@ impl PyListFunctionEventInvokeConfigsResponse {
 }
 
 #[pyclass(
-    name = "ListFunctionUrlConfigsResponse",
+    name = "ListFunctionUrlConfigsOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyListFunctionUrlConfigsResponse {
+struct PyOperationListFunctionUrlConfigsOutput {
     inner: aws_sdk_lambda::operation::list_function_url_configs::ListFunctionUrlConfigsOutput,
 }
 
 #[pymethods]
-impl PyListFunctionUrlConfigsResponse {
+impl PyOperationListFunctionUrlConfigsOutput {
     #[getter]
     fn function_url_configs(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2779_list = PyList::empty(py);
@@ -18736,16 +18728,16 @@ impl PyListFunctionUrlConfigsResponse {
 }
 
 #[pyclass(
-    name = "ListFunctionVersionsByCapacityProviderResponse",
+    name = "ListFunctionVersionsByCapacityProviderOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyListFunctionVersionsByCapacityProviderResponse {
+struct PyOperationListFunctionVersionsByCapacityProviderOutput {
     inner: aws_sdk_lambda::operation::list_function_versions_by_capacity_provider::ListFunctionVersionsByCapacityProviderOutput,
 }
 
 #[pymethods]
-impl PyListFunctionVersionsByCapacityProviderResponse {
+impl PyOperationListFunctionVersionsByCapacityProviderOutput {
     #[getter]
     fn capacity_provider_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2787 = (&self.inner.capacity_provider_arn)
@@ -18805,17 +18797,13 @@ impl PyListFunctionVersionsByCapacityProviderResponse {
     }
 }
 
-#[pyclass(
-    name = "ListFunctionsResponse",
-    module = "rboto_lambda._native",
-    frozen
-)]
-struct PyListFunctionsResponse {
+#[pyclass(name = "ListFunctionsOutput", module = "rboto_lambda._native", frozen)]
+struct PyOperationListFunctionsOutput {
     inner: aws_sdk_lambda::operation::list_functions::ListFunctionsOutput,
 }
 
 #[pymethods]
-impl PyListFunctionsResponse {
+impl PyOperationListFunctionsOutput {
     #[getter]
     fn next_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_marker {
@@ -18871,16 +18859,16 @@ impl PyListFunctionsResponse {
 }
 
 #[pyclass(
-    name = "ListFunctionsByCodeSigningConfigResponse",
+    name = "ListFunctionsByCodeSigningConfigOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyListFunctionsByCodeSigningConfigResponse {
+struct PyOperationListFunctionsByCodeSigningConfigOutput {
     inner: aws_sdk_lambda::operation::list_functions_by_code_signing_config::ListFunctionsByCodeSigningConfigOutput,
 }
 
 #[pymethods]
-impl PyListFunctionsByCodeSigningConfigResponse {
+impl PyOperationListFunctionsByCodeSigningConfigOutput {
     #[getter]
     fn next_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_marker {
@@ -18930,16 +18918,16 @@ impl PyListFunctionsByCodeSigningConfigResponse {
 }
 
 #[pyclass(
-    name = "ListLayerVersionsResponse",
+    name = "ListLayerVersionsOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyListLayerVersionsResponse {
+struct PyOperationListLayerVersionsOutput {
     inner: aws_sdk_lambda::operation::list_layer_versions::ListLayerVersionsOutput,
 }
 
 #[pymethods]
-impl PyListLayerVersionsResponse {
+impl PyOperationListLayerVersionsOutput {
     #[getter]
     fn next_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_marker {
@@ -18994,13 +18982,13 @@ impl PyListLayerVersionsResponse {
     }
 }
 
-#[pyclass(name = "ListLayersResponse", module = "rboto_lambda._native", frozen)]
-struct PyListLayersResponse {
+#[pyclass(name = "ListLayersOutput", module = "rboto_lambda._native", frozen)]
+struct PyOperationListLayersOutput {
     inner: aws_sdk_lambda::operation::list_layers::ListLayersOutput,
 }
 
 #[pymethods]
-impl PyListLayersResponse {
+impl PyOperationListLayersOutput {
     #[getter]
     fn next_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_marker {
@@ -19056,16 +19044,16 @@ impl PyListLayersResponse {
 }
 
 #[pyclass(
-    name = "ListProvisionedConcurrencyConfigsResponse",
+    name = "ListProvisionedConcurrencyConfigsOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyListProvisionedConcurrencyConfigsResponse {
+struct PyOperationListProvisionedConcurrencyConfigsOutput {
     inner: aws_sdk_lambda::operation::list_provisioned_concurrency_configs::ListProvisionedConcurrencyConfigsOutput,
 }
 
 #[pymethods]
-impl PyListProvisionedConcurrencyConfigsResponse {
+impl PyOperationListProvisionedConcurrencyConfigsOutput {
     #[getter]
     fn provisioned_concurrency_configs(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.provisioned_concurrency_configs {
@@ -19121,13 +19109,13 @@ impl PyListProvisionedConcurrencyConfigsResponse {
     }
 }
 
-#[pyclass(name = "ListTagsResponse", module = "rboto_lambda._native", frozen)]
-struct PyListTagsResponse {
+#[pyclass(name = "ListTagsOutput", module = "rboto_lambda._native", frozen)]
+struct PyOperationListTagsOutput {
     inner: aws_sdk_lambda::operation::list_tags::ListTagsOutput,
 }
 
 #[pymethods]
-impl PyListTagsResponse {
+impl PyOperationListTagsOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
@@ -19163,16 +19151,16 @@ impl PyListTagsResponse {
 }
 
 #[pyclass(
-    name = "ListVersionsByFunctionResponse",
+    name = "ListVersionsByFunctionOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyListVersionsByFunctionResponse {
+struct PyOperationListVersionsByFunctionOutput {
     inner: aws_sdk_lambda::operation::list_versions_by_function::ListVersionsByFunctionOutput,
 }
 
 #[pymethods]
-impl PyListVersionsByFunctionResponse {
+impl PyOperationListVersionsByFunctionOutput {
     #[getter]
     fn next_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_marker {
@@ -19228,16 +19216,16 @@ impl PyListVersionsByFunctionResponse {
 }
 
 #[pyclass(
-    name = "PublishLayerVersionResponse",
+    name = "PublishLayerVersionOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyPublishLayerVersionResponse {
+struct PyOperationPublishLayerVersionOutput {
     inner: aws_sdk_lambda::operation::publish_layer_version::PublishLayerVersionOutput,
 }
 
 #[pymethods]
-impl PyPublishLayerVersionResponse {
+impl PyOperationPublishLayerVersionOutput {
     #[getter]
     fn content(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.content {
@@ -19407,12 +19395,12 @@ impl PyPublishLayerVersionResponse {
 }
 
 #[pyclass(name = "PublishVersionOutput", module = "rboto_lambda._native", frozen)]
-struct PyPublishVersionOutput {
+struct PyOperationPublishVersionOutput {
     inner: aws_sdk_lambda::operation::publish_version::PublishVersionOutput,
 }
 
 #[pymethods]
-impl PyPublishVersionOutput {
+impl PyOperationPublishVersionOutput {
     #[getter]
     fn function_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.function_name {
@@ -20166,16 +20154,16 @@ impl PyPublishVersionOutput {
 }
 
 #[pyclass(
-    name = "PutFunctionCodeSigningConfigResponse",
+    name = "PutFunctionCodeSigningConfigOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyPutFunctionCodeSigningConfigResponse {
+struct PyOperationPutFunctionCodeSigningConfigOutput {
     inner: aws_sdk_lambda::operation::put_function_code_signing_config::PutFunctionCodeSigningConfigOutput,
 }
 
 #[pymethods]
-impl PyPutFunctionCodeSigningConfigResponse {
+impl PyOperationPutFunctionCodeSigningConfigOutput {
     #[getter]
     fn code_signing_config_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2973 = (&self.inner.code_signing_config_arn)
@@ -20207,12 +20195,12 @@ impl PyPutFunctionCodeSigningConfigResponse {
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyPutFunctionConcurrencyOutput {
+struct PyOperationPutFunctionConcurrencyOutput {
     inner: aws_sdk_lambda::operation::put_function_concurrency::PutFunctionConcurrencyOutput,
 }
 
 #[pymethods]
-impl PyPutFunctionConcurrencyOutput {
+impl PyOperationPutFunctionConcurrencyOutput {
     #[getter]
     fn reserved_concurrent_executions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.reserved_concurrent_executions {
@@ -20240,12 +20228,12 @@ impl PyPutFunctionConcurrencyOutput {
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyPutFunctionEventInvokeConfigOutput {
+struct PyOperationPutFunctionEventInvokeConfigOutput {
     inner: aws_sdk_lambda::operation::put_function_event_invoke_config::PutFunctionEventInvokeConfigOutput,
 }
 
 #[pymethods]
-impl PyPutFunctionEventInvokeConfigOutput {
+impl PyOperationPutFunctionEventInvokeConfigOutput {
     #[getter]
     fn last_modified(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified {
@@ -20339,17 +20327,17 @@ impl PyPutFunctionEventInvokeConfigOutput {
 }
 
 #[pyclass(
-    name = "PutFunctionRecursionConfigResponse",
+    name = "PutFunctionRecursionConfigOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyPutFunctionRecursionConfigResponse {
+struct PyOperationPutFunctionRecursionConfigOutput {
     inner:
         aws_sdk_lambda::operation::put_function_recursion_config::PutFunctionRecursionConfigOutput,
 }
 
 #[pymethods]
-impl PyPutFunctionRecursionConfigResponse {
+impl PyOperationPutFunctionRecursionConfigOutput {
     #[getter]
     fn recursive_loop(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.recursive_loop {
@@ -20373,16 +20361,16 @@ impl PyPutFunctionRecursionConfigResponse {
 }
 
 #[pyclass(
-    name = "PutFunctionScalingConfigResponse",
+    name = "PutFunctionScalingConfigOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyPutFunctionScalingConfigResponse {
+struct PyOperationPutFunctionScalingConfigOutput {
     inner: aws_sdk_lambda::operation::put_function_scaling_config::PutFunctionScalingConfigOutput,
 }
 
 #[pymethods]
-impl PyPutFunctionScalingConfigResponse {
+impl PyOperationPutFunctionScalingConfigOutput {
     #[getter]
     fn function_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.function_state {
@@ -20406,16 +20394,16 @@ impl PyPutFunctionScalingConfigResponse {
 }
 
 #[pyclass(
-    name = "PutProvisionedConcurrencyConfigResponse",
+    name = "PutProvisionedConcurrencyConfigOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyPutProvisionedConcurrencyConfigResponse {
+struct PyOperationPutProvisionedConcurrencyConfigOutput {
     inner: aws_sdk_lambda::operation::put_provisioned_concurrency_config::PutProvisionedConcurrencyConfigOutput,
 }
 
 #[pymethods]
-impl PyPutProvisionedConcurrencyConfigResponse {
+impl PyOperationPutProvisionedConcurrencyConfigOutput {
     #[getter]
     fn requested_provisioned_concurrent_executions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.requested_provisioned_concurrent_executions {
@@ -20528,16 +20516,16 @@ impl PyPutProvisionedConcurrencyConfigResponse {
 }
 
 #[pyclass(
-    name = "PutResourcePolicyResponse",
+    name = "PutResourcePolicyOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyPutResourcePolicyResponse {
+struct PyOperationPutResourcePolicyOutput {
     inner: aws_sdk_lambda::operation::put_resource_policy::PutResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyPutResourcePolicyResponse {
+impl PyOperationPutResourcePolicyOutput {
     #[getter]
     fn policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.policy {
@@ -20577,17 +20565,17 @@ impl PyPutResourcePolicyResponse {
 }
 
 #[pyclass(
-    name = "PutRuntimeManagementConfigResponse",
+    name = "PutRuntimeManagementConfigOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyPutRuntimeManagementConfigResponse {
+struct PyOperationPutRuntimeManagementConfigOutput {
     inner:
         aws_sdk_lambda::operation::put_runtime_management_config::PutRuntimeManagementConfigOutput,
 }
 
 #[pymethods]
-impl PyPutRuntimeManagementConfigResponse {
+impl PyOperationPutRuntimeManagementConfigOutput {
     #[getter]
     fn update_runtime_on(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3009 = (&self.inner.update_runtime_on).as_str().into_py_any(py)?;
@@ -20627,16 +20615,16 @@ impl PyPutRuntimeManagementConfigResponse {
 }
 
 #[pyclass(
-    name = "SendDurableExecutionCallbackFailureResponse",
+    name = "SendDurableExecutionCallbackFailureOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PySendDurableExecutionCallbackFailureResponse {
+struct PyOperationSendDurableExecutionCallbackFailureOutput {
     inner: aws_sdk_lambda::operation::send_durable_execution_callback_failure::SendDurableExecutionCallbackFailureOutput,
 }
 
 #[pymethods]
-impl PySendDurableExecutionCallbackFailureResponse {
+impl PyOperationSendDurableExecutionCallbackFailureOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -20644,16 +20632,16 @@ impl PySendDurableExecutionCallbackFailureResponse {
 }
 
 #[pyclass(
-    name = "SendDurableExecutionCallbackHeartbeatResponse",
+    name = "SendDurableExecutionCallbackHeartbeatOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PySendDurableExecutionCallbackHeartbeatResponse {
+struct PyOperationSendDurableExecutionCallbackHeartbeatOutput {
     inner: aws_sdk_lambda::operation::send_durable_execution_callback_heartbeat::SendDurableExecutionCallbackHeartbeatOutput,
 }
 
 #[pymethods]
-impl PySendDurableExecutionCallbackHeartbeatResponse {
+impl PyOperationSendDurableExecutionCallbackHeartbeatOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -20661,16 +20649,16 @@ impl PySendDurableExecutionCallbackHeartbeatResponse {
 }
 
 #[pyclass(
-    name = "SendDurableExecutionCallbackSuccessResponse",
+    name = "SendDurableExecutionCallbackSuccessOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PySendDurableExecutionCallbackSuccessResponse {
+struct PyOperationSendDurableExecutionCallbackSuccessOutput {
     inner: aws_sdk_lambda::operation::send_durable_execution_callback_success::SendDurableExecutionCallbackSuccessOutput,
 }
 
 #[pymethods]
-impl PySendDurableExecutionCallbackSuccessResponse {
+impl PyOperationSendDurableExecutionCallbackSuccessOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -20678,16 +20666,16 @@ impl PySendDurableExecutionCallbackSuccessResponse {
 }
 
 #[pyclass(
-    name = "StopDurableExecutionResponse",
+    name = "StopDurableExecutionOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyStopDurableExecutionResponse {
+struct PyOperationStopDurableExecutionOutput {
     inner: aws_sdk_lambda::operation::stop_durable_execution::StopDurableExecutionOutput,
 }
 
 #[pymethods]
-impl PyStopDurableExecutionResponse {
+impl PyOperationStopDurableExecutionOutput {
     #[getter]
     fn stop_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3015 = (&self.inner.stop_timestamp).to_string().into_py_any(py)?;
@@ -20703,12 +20691,12 @@ impl PyStopDurableExecutionResponse {
 }
 
 #[pyclass(name = "UpdateAliasOutput", module = "rboto_lambda._native", frozen)]
-struct PyUpdateAliasOutput {
+struct PyOperationUpdateAliasOutput {
     inner: aws_sdk_lambda::operation::update_alias::UpdateAliasOutput,
 }
 
 #[pymethods]
-impl PyUpdateAliasOutput {
+impl PyOperationUpdateAliasOutput {
     #[getter]
     fn alias_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.alias_arn {
@@ -20818,16 +20806,16 @@ impl PyUpdateAliasOutput {
 }
 
 #[pyclass(
-    name = "UpdateCapacityProviderResponse",
+    name = "UpdateCapacityProviderOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyUpdateCapacityProviderResponse {
+struct PyOperationUpdateCapacityProviderOutput {
     inner: aws_sdk_lambda::operation::update_capacity_provider::UpdateCapacityProviderOutput,
 }
 
 #[pymethods]
-impl PyUpdateCapacityProviderResponse {
+impl PyOperationUpdateCapacityProviderOutput {
     #[getter]
     fn capacity_provider(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.capacity_provider {
@@ -20857,16 +20845,16 @@ impl PyUpdateCapacityProviderResponse {
 }
 
 #[pyclass(
-    name = "UpdateCodeSigningConfigResponse",
+    name = "UpdateCodeSigningConfigOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyUpdateCodeSigningConfigResponse {
+struct PyOperationUpdateCodeSigningConfigOutput {
     inner: aws_sdk_lambda::operation::update_code_signing_config::UpdateCodeSigningConfigOutput,
 }
 
 #[pymethods]
-impl PyUpdateCodeSigningConfigResponse {
+impl PyOperationUpdateCodeSigningConfigOutput {
     #[getter]
     fn code_signing_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.code_signing_config {
@@ -20900,12 +20888,12 @@ impl PyUpdateCodeSigningConfigResponse {
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyUpdateEventSourceMappingOutput {
+struct PyOperationUpdateEventSourceMappingOutput {
     inner: aws_sdk_lambda::operation::update_event_source_mapping::UpdateEventSourceMappingOutput,
 }
 
 #[pymethods]
-impl PyUpdateEventSourceMappingOutput {
+impl PyOperationUpdateEventSourceMappingOutput {
     #[getter]
     fn uuid(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.uuid {
@@ -21557,12 +21545,12 @@ impl PyUpdateEventSourceMappingOutput {
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyUpdateFunctionCodeOutput {
+struct PyOperationUpdateFunctionCodeOutput {
     inner: aws_sdk_lambda::operation::update_function_code::UpdateFunctionCodeOutput,
 }
 
 #[pymethods]
-impl PyUpdateFunctionCodeOutput {
+impl PyOperationUpdateFunctionCodeOutput {
     #[getter]
     fn function_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.function_name {
@@ -22320,13 +22308,13 @@ impl PyUpdateFunctionCodeOutput {
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyUpdateFunctionConfigurationOutput {
+struct PyOperationUpdateFunctionConfigurationOutput {
     inner:
         aws_sdk_lambda::operation::update_function_configuration::UpdateFunctionConfigurationOutput,
 }
 
 #[pymethods]
-impl PyUpdateFunctionConfigurationOutput {
+impl PyOperationUpdateFunctionConfigurationOutput {
     #[getter]
     fn function_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.function_name {
@@ -23084,12 +23072,12 @@ impl PyUpdateFunctionConfigurationOutput {
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyUpdateFunctionEventInvokeConfigOutput {
+struct PyOperationUpdateFunctionEventInvokeConfigOutput {
     inner: aws_sdk_lambda::operation::update_function_event_invoke_config::UpdateFunctionEventInvokeConfigOutput,
 }
 
 #[pymethods]
-impl PyUpdateFunctionEventInvokeConfigOutput {
+impl PyOperationUpdateFunctionEventInvokeConfigOutput {
     #[getter]
     fn last_modified(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified {
@@ -23183,16 +23171,16 @@ impl PyUpdateFunctionEventInvokeConfigOutput {
 }
 
 #[pyclass(
-    name = "UpdateFunctionUrlConfigResponse",
+    name = "UpdateFunctionUrlConfigOutput",
     module = "rboto_lambda._native",
     frozen
 )]
-struct PyUpdateFunctionUrlConfigResponse {
+struct PyOperationUpdateFunctionUrlConfigOutput {
     inner: aws_sdk_lambda::operation::update_function_url_config::UpdateFunctionUrlConfigOutput,
 }
 
 #[pymethods]
-impl PyUpdateFunctionUrlConfigResponse {
+impl PyOperationUpdateFunctionUrlConfigOutput {
     #[getter]
     fn function_url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3309 = (&self.inner.function_url).as_str().into_py_any(py)?;
@@ -23456,81 +23444,81 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyWaitDetails>()?;
     module.add_class::<PyWaitStartedDetails>()?;
     module.add_class::<PyWaitSucceededDetails>()?;
-    module.add_class::<PyAddLayerVersionPermissionResponse>()?;
-    module.add_class::<PyAddPermissionResponse>()?;
-    module.add_class::<PyCheckpointDurableExecutionResponse>()?;
-    module.add_class::<PyCreateAliasOutput>()?;
-    module.add_class::<PyCreateCapacityProviderResponse>()?;
-    module.add_class::<PyCreateCodeSigningConfigResponse>()?;
-    module.add_class::<PyCreateEventSourceMappingOutput>()?;
-    module.add_class::<PyCreateFunctionOutput>()?;
-    module.add_class::<PyCreateFunctionUrlConfigResponse>()?;
-    module.add_class::<PyDeleteCapacityProviderResponse>()?;
-    module.add_class::<PyDeleteCodeSigningConfigResponse>()?;
-    module.add_class::<PyDeleteEventSourceMappingOutput>()?;
-    module.add_class::<PyDeleteFunctionResponse>()?;
-    module.add_class::<PyGetAccountSettingsResponse>()?;
-    module.add_class::<PyGetAliasOutput>()?;
-    module.add_class::<PyGetCapacityProviderResponse>()?;
-    module.add_class::<PyGetCodeSigningConfigResponse>()?;
-    module.add_class::<PyGetDurableExecutionResponse>()?;
-    module.add_class::<PyGetDurableExecutionHistoryResponse>()?;
-    module.add_class::<PyGetDurableExecutionStateResponse>()?;
-    module.add_class::<PyGetEventSourceMappingOutput>()?;
-    module.add_class::<PyGetFunctionResponse>()?;
-    module.add_class::<PyGetFunctionCodeSigningConfigResponse>()?;
-    module.add_class::<PyGetFunctionConcurrencyResponse>()?;
-    module.add_class::<PyGetFunctionConfigurationOutput>()?;
-    module.add_class::<PyGetFunctionEventInvokeConfigOutput>()?;
-    module.add_class::<PyGetFunctionRecursionConfigResponse>()?;
-    module.add_class::<PyGetFunctionScalingConfigResponse>()?;
-    module.add_class::<PyGetFunctionUrlConfigResponse>()?;
-    module.add_class::<PyGetLayerVersionOutput>()?;
-    module.add_class::<PyGetLayerVersionByArnOutput>()?;
-    module.add_class::<PyGetLayerVersionPolicyResponse>()?;
-    module.add_class::<PyGetPolicyResponse>()?;
-    module.add_class::<PyGetProvisionedConcurrencyConfigResponse>()?;
-    module.add_class::<PyGetResourcePolicyResponse>()?;
-    module.add_class::<PyGetRuntimeManagementConfigResponse>()?;
-    module.add_class::<PyInvocationResponse>()?;
-    module.add_class::<PyInvokeAsyncResponse>()?;
-    module.add_class::<PyListAliasesResponse>()?;
-    module.add_class::<PyListCapacityProvidersResponse>()?;
-    module.add_class::<PyListCodeSigningConfigsResponse>()?;
-    module.add_class::<PyListDurableExecutionsByFunctionResponse>()?;
-    module.add_class::<PyListEventSourceMappingsResponse>()?;
-    module.add_class::<PyListFunctionEventInvokeConfigsResponse>()?;
-    module.add_class::<PyListFunctionUrlConfigsResponse>()?;
-    module.add_class::<PyListFunctionVersionsByCapacityProviderResponse>()?;
-    module.add_class::<PyListFunctionsResponse>()?;
-    module.add_class::<PyListFunctionsByCodeSigningConfigResponse>()?;
-    module.add_class::<PyListLayerVersionsResponse>()?;
-    module.add_class::<PyListLayersResponse>()?;
-    module.add_class::<PyListProvisionedConcurrencyConfigsResponse>()?;
-    module.add_class::<PyListTagsResponse>()?;
-    module.add_class::<PyListVersionsByFunctionResponse>()?;
-    module.add_class::<PyPublishLayerVersionResponse>()?;
-    module.add_class::<PyPublishVersionOutput>()?;
-    module.add_class::<PyPutFunctionCodeSigningConfigResponse>()?;
-    module.add_class::<PyPutFunctionConcurrencyOutput>()?;
-    module.add_class::<PyPutFunctionEventInvokeConfigOutput>()?;
-    module.add_class::<PyPutFunctionRecursionConfigResponse>()?;
-    module.add_class::<PyPutFunctionScalingConfigResponse>()?;
-    module.add_class::<PyPutProvisionedConcurrencyConfigResponse>()?;
-    module.add_class::<PyPutResourcePolicyResponse>()?;
-    module.add_class::<PyPutRuntimeManagementConfigResponse>()?;
-    module.add_class::<PySendDurableExecutionCallbackFailureResponse>()?;
-    module.add_class::<PySendDurableExecutionCallbackHeartbeatResponse>()?;
-    module.add_class::<PySendDurableExecutionCallbackSuccessResponse>()?;
-    module.add_class::<PyStopDurableExecutionResponse>()?;
-    module.add_class::<PyUpdateAliasOutput>()?;
-    module.add_class::<PyUpdateCapacityProviderResponse>()?;
-    module.add_class::<PyUpdateCodeSigningConfigResponse>()?;
-    module.add_class::<PyUpdateEventSourceMappingOutput>()?;
-    module.add_class::<PyUpdateFunctionCodeOutput>()?;
-    module.add_class::<PyUpdateFunctionConfigurationOutput>()?;
-    module.add_class::<PyUpdateFunctionEventInvokeConfigOutput>()?;
-    module.add_class::<PyUpdateFunctionUrlConfigResponse>()?;
+    module.add_class::<PyOperationAddLayerVersionPermissionOutput>()?;
+    module.add_class::<PyOperationAddPermissionOutput>()?;
+    module.add_class::<PyOperationCheckpointDurableExecutionOutput>()?;
+    module.add_class::<PyOperationCreateAliasOutput>()?;
+    module.add_class::<PyOperationCreateCapacityProviderOutput>()?;
+    module.add_class::<PyOperationCreateCodeSigningConfigOutput>()?;
+    module.add_class::<PyOperationCreateEventSourceMappingOutput>()?;
+    module.add_class::<PyOperationCreateFunctionOutput>()?;
+    module.add_class::<PyOperationCreateFunctionUrlConfigOutput>()?;
+    module.add_class::<PyOperationDeleteCapacityProviderOutput>()?;
+    module.add_class::<PyOperationDeleteCodeSigningConfigOutput>()?;
+    module.add_class::<PyOperationDeleteEventSourceMappingOutput>()?;
+    module.add_class::<PyOperationDeleteFunctionOutput>()?;
+    module.add_class::<PyOperationGetAccountSettingsOutput>()?;
+    module.add_class::<PyOperationGetAliasOutput>()?;
+    module.add_class::<PyOperationGetCapacityProviderOutput>()?;
+    module.add_class::<PyOperationGetCodeSigningConfigOutput>()?;
+    module.add_class::<PyOperationGetDurableExecutionOutput>()?;
+    module.add_class::<PyOperationGetDurableExecutionHistoryOutput>()?;
+    module.add_class::<PyOperationGetDurableExecutionStateOutput>()?;
+    module.add_class::<PyOperationGetEventSourceMappingOutput>()?;
+    module.add_class::<PyOperationGetFunctionOutput>()?;
+    module.add_class::<PyOperationGetFunctionCodeSigningConfigOutput>()?;
+    module.add_class::<PyOperationGetFunctionConcurrencyOutput>()?;
+    module.add_class::<PyOperationGetFunctionConfigurationOutput>()?;
+    module.add_class::<PyOperationGetFunctionEventInvokeConfigOutput>()?;
+    module.add_class::<PyOperationGetFunctionRecursionConfigOutput>()?;
+    module.add_class::<PyOperationGetFunctionScalingConfigOutput>()?;
+    module.add_class::<PyOperationGetFunctionUrlConfigOutput>()?;
+    module.add_class::<PyOperationGetLayerVersionOutput>()?;
+    module.add_class::<PyOperationGetLayerVersionByArnOutput>()?;
+    module.add_class::<PyOperationGetLayerVersionPolicyOutput>()?;
+    module.add_class::<PyOperationGetPolicyOutput>()?;
+    module.add_class::<PyOperationGetProvisionedConcurrencyConfigOutput>()?;
+    module.add_class::<PyOperationGetResourcePolicyOutput>()?;
+    module.add_class::<PyOperationGetRuntimeManagementConfigOutput>()?;
+    module.add_class::<PyOperationInvokeOutput>()?;
+    module.add_class::<PyOperationInvokeAsyncOutput>()?;
+    module.add_class::<PyOperationListAliasesOutput>()?;
+    module.add_class::<PyOperationListCapacityProvidersOutput>()?;
+    module.add_class::<PyOperationListCodeSigningConfigsOutput>()?;
+    module.add_class::<PyOperationListDurableExecutionsByFunctionOutput>()?;
+    module.add_class::<PyOperationListEventSourceMappingsOutput>()?;
+    module.add_class::<PyOperationListFunctionEventInvokeConfigsOutput>()?;
+    module.add_class::<PyOperationListFunctionUrlConfigsOutput>()?;
+    module.add_class::<PyOperationListFunctionVersionsByCapacityProviderOutput>()?;
+    module.add_class::<PyOperationListFunctionsOutput>()?;
+    module.add_class::<PyOperationListFunctionsByCodeSigningConfigOutput>()?;
+    module.add_class::<PyOperationListLayerVersionsOutput>()?;
+    module.add_class::<PyOperationListLayersOutput>()?;
+    module.add_class::<PyOperationListProvisionedConcurrencyConfigsOutput>()?;
+    module.add_class::<PyOperationListTagsOutput>()?;
+    module.add_class::<PyOperationListVersionsByFunctionOutput>()?;
+    module.add_class::<PyOperationPublishLayerVersionOutput>()?;
+    module.add_class::<PyOperationPublishVersionOutput>()?;
+    module.add_class::<PyOperationPutFunctionCodeSigningConfigOutput>()?;
+    module.add_class::<PyOperationPutFunctionConcurrencyOutput>()?;
+    module.add_class::<PyOperationPutFunctionEventInvokeConfigOutput>()?;
+    module.add_class::<PyOperationPutFunctionRecursionConfigOutput>()?;
+    module.add_class::<PyOperationPutFunctionScalingConfigOutput>()?;
+    module.add_class::<PyOperationPutProvisionedConcurrencyConfigOutput>()?;
+    module.add_class::<PyOperationPutResourcePolicyOutput>()?;
+    module.add_class::<PyOperationPutRuntimeManagementConfigOutput>()?;
+    module.add_class::<PyOperationSendDurableExecutionCallbackFailureOutput>()?;
+    module.add_class::<PyOperationSendDurableExecutionCallbackHeartbeatOutput>()?;
+    module.add_class::<PyOperationSendDurableExecutionCallbackSuccessOutput>()?;
+    module.add_class::<PyOperationStopDurableExecutionOutput>()?;
+    module.add_class::<PyOperationUpdateAliasOutput>()?;
+    module.add_class::<PyOperationUpdateCapacityProviderOutput>()?;
+    module.add_class::<PyOperationUpdateCodeSigningConfigOutput>()?;
+    module.add_class::<PyOperationUpdateEventSourceMappingOutput>()?;
+    module.add_class::<PyOperationUpdateFunctionCodeOutput>()?;
+    module.add_class::<PyOperationUpdateFunctionConfigurationOutput>()?;
+    module.add_class::<PyOperationUpdateFunctionEventInvokeConfigOutput>()?;
+    module.add_class::<PyOperationUpdateFunctionUrlConfigOutput>()?;
 
     module.add_class::<PyInvokeWithResponseStreamResponseEventReceiver>()?;
     Ok(())
@@ -23640,7 +23628,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AddLayerVersionPermission"))
             })?;
-            Ok(PyAddLayerVersionPermissionResponse { inner: output })
+            Ok(PyOperationAddLayerVersionPermissionOutput { inner: output })
         })
     }
 
@@ -23760,7 +23748,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AddPermission"))
             })?;
-            Ok(PyAddPermissionResponse { inner: output })
+            Ok(PyOperationAddPermissionOutput { inner: output })
         })
     }
 
@@ -23826,7 +23814,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CheckpointDurableExecution"))
             })?;
-            Ok(PyCheckpointDurableExecutionResponse { inner: output })
+            Ok(PyOperationCheckpointDurableExecutionOutput { inner: output })
         })
     }
 
@@ -23891,7 +23879,7 @@ impl LambdaClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateAlias")))?;
-            Ok(PyCreateAliasOutput { inner: output })
+            Ok(PyOperationCreateAliasOutput { inner: output })
         })
     }
 
@@ -23995,7 +23983,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateCapacityProvider"))
             })?;
-            Ok(PyCreateCapacityProviderResponse { inner: output })
+            Ok(PyOperationCreateCapacityProviderOutput { inner: output })
         })
     }
 
@@ -24062,7 +24050,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateCodeSigningConfig"))
             })?;
-            Ok(PyCreateCodeSigningConfigResponse { inner: output })
+            Ok(PyOperationCreateCodeSigningConfigOutput { inner: output })
         })
     }
 
@@ -24348,7 +24336,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateEventSourceMapping"))
             })?;
-            Ok(PyCreateEventSourceMappingOutput { inner: output })
+            Ok(PyOperationCreateEventSourceMappingOutput { inner: output })
         })
     }
 
@@ -24611,7 +24599,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateFunction"))
             })?;
-            Ok(PyCreateFunctionOutput { inner: output })
+            Ok(PyOperationCreateFunctionOutput { inner: output })
         })
     }
 
@@ -24680,7 +24668,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateFunctionUrlConfig"))
             })?;
-            Ok(PyCreateFunctionUrlConfigResponse { inner: output })
+            Ok(PyOperationCreateFunctionUrlConfigOutput { inner: output })
         })
     }
 
@@ -24763,7 +24751,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteCapacityProvider"))
             })?;
-            Ok(PyDeleteCapacityProviderResponse { inner: output })
+            Ok(PyOperationDeleteCapacityProviderOutput { inner: output })
         })
     }
 
@@ -24802,7 +24790,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteCodeSigningConfig"))
             })?;
-            Ok(PyDeleteCodeSigningConfigResponse { inner: output })
+            Ok(PyOperationDeleteCodeSigningConfigOutput { inner: output })
         })
     }
 
@@ -24838,7 +24826,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteEventSourceMapping"))
             })?;
-            Ok(PyDeleteEventSourceMappingOutput { inner: output })
+            Ok(PyOperationDeleteEventSourceMappingOutput { inner: output })
         })
     }
 
@@ -24883,7 +24871,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteFunction"))
             })?;
-            Ok(PyDeleteFunctionResponse { inner: output })
+            Ok(PyOperationDeleteFunctionOutput { inner: output })
         })
     }
 
@@ -25216,7 +25204,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAccountSettings"))
             })?;
-            Ok(PyGetAccountSettingsResponse { inner: output })
+            Ok(PyOperationGetAccountSettingsOutput { inner: output })
         })
     }
 
@@ -25260,7 +25248,7 @@ impl LambdaClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetAlias")))?;
-            Ok(PyGetAliasOutput { inner: output })
+            Ok(PyOperationGetAliasOutput { inner: output })
         })
     }
 
@@ -25299,7 +25287,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCapacityProvider"))
             })?;
-            Ok(PyGetCapacityProviderResponse { inner: output })
+            Ok(PyOperationGetCapacityProviderOutput { inner: output })
         })
     }
 
@@ -25338,7 +25326,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCodeSigningConfig"))
             })?;
-            Ok(PyGetCodeSigningConfigResponse { inner: output })
+            Ok(PyOperationGetCodeSigningConfigOutput { inner: output })
         })
     }
 
@@ -25385,7 +25373,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDurableExecution"))
             })?;
-            Ok(PyGetDurableExecutionResponse { inner: output })
+            Ok(PyOperationGetDurableExecutionOutput { inner: output })
         })
     }
 
@@ -25453,7 +25441,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDurableExecutionHistory"))
             })?;
-            Ok(PyGetDurableExecutionHistoryResponse { inner: output })
+            Ok(PyOperationGetDurableExecutionHistoryOutput { inner: output })
         })
     }
 
@@ -25513,7 +25501,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDurableExecutionState"))
             })?;
-            Ok(PyGetDurableExecutionStateResponse { inner: output })
+            Ok(PyOperationGetDurableExecutionStateOutput { inner: output })
         })
     }
 
@@ -25549,7 +25537,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetEventSourceMapping"))
             })?;
-            Ok(PyGetEventSourceMappingOutput { inner: output })
+            Ok(PyOperationGetEventSourceMappingOutput { inner: output })
         })
     }
 
@@ -25593,7 +25581,7 @@ impl LambdaClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetFunction")))?;
-            Ok(PyGetFunctionResponse { inner: output })
+            Ok(PyOperationGetFunctionOutput { inner: output })
         })
     }
 
@@ -25631,7 +25619,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFunctionCodeSigningConfig"))
             })?;
-            Ok(PyGetFunctionCodeSigningConfigResponse { inner: output })
+            Ok(PyOperationGetFunctionCodeSigningConfigOutput { inner: output })
         })
     }
 
@@ -25669,7 +25657,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFunctionConcurrency"))
             })?;
-            Ok(PyGetFunctionConcurrencyResponse { inner: output })
+            Ok(PyOperationGetFunctionConcurrencyOutput { inner: output })
         })
     }
 
@@ -25714,7 +25702,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFunctionConfiguration"))
             })?;
-            Ok(PyGetFunctionConfigurationOutput { inner: output })
+            Ok(PyOperationGetFunctionConfigurationOutput { inner: output })
         })
     }
 
@@ -25759,7 +25747,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFunctionEventInvokeConfig"))
             })?;
-            Ok(PyGetFunctionEventInvokeConfigOutput { inner: output })
+            Ok(PyOperationGetFunctionEventInvokeConfigOutput { inner: output })
         })
     }
 
@@ -25797,7 +25785,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFunctionRecursionConfig"))
             })?;
-            Ok(PyGetFunctionRecursionConfigResponse { inner: output })
+            Ok(PyOperationGetFunctionRecursionConfigOutput { inner: output })
         })
     }
 
@@ -25842,7 +25830,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFunctionScalingConfig"))
             })?;
-            Ok(PyGetFunctionScalingConfigResponse { inner: output })
+            Ok(PyOperationGetFunctionScalingConfigOutput { inner: output })
         })
     }
 
@@ -25887,7 +25875,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFunctionUrlConfig"))
             })?;
-            Ok(PyGetFunctionUrlConfigResponse { inner: output })
+            Ok(PyOperationGetFunctionUrlConfigOutput { inner: output })
         })
     }
 
@@ -25932,7 +25920,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetLayerVersion"))
             })?;
-            Ok(PyGetLayerVersionOutput { inner: output })
+            Ok(PyOperationGetLayerVersionOutput { inner: output })
         })
     }
 
@@ -25968,7 +25956,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetLayerVersionByArn"))
             })?;
-            Ok(PyGetLayerVersionByArnOutput { inner: output })
+            Ok(PyOperationGetLayerVersionByArnOutput { inner: output })
         })
     }
 
@@ -26013,7 +26001,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetLayerVersionPolicy"))
             })?;
-            Ok(PyGetLayerVersionPolicyResponse { inner: output })
+            Ok(PyOperationGetLayerVersionPolicyOutput { inner: output })
         })
     }
 
@@ -26057,7 +26045,7 @@ impl LambdaClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetPolicy")))?;
-            Ok(PyGetPolicyResponse { inner: output })
+            Ok(PyOperationGetPolicyOutput { inner: output })
         })
     }
 
@@ -26102,7 +26090,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetProvisionedConcurrencyConfig"))
             })?;
-            Ok(PyGetProvisionedConcurrencyConfigResponse { inner: output })
+            Ok(PyOperationGetProvisionedConcurrencyConfigOutput { inner: output })
         })
     }
 
@@ -26140,7 +26128,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicy"))
             })?;
-            Ok(PyGetResourcePolicyResponse { inner: output })
+            Ok(PyOperationGetResourcePolicyOutput { inner: output })
         })
     }
 
@@ -26185,7 +26173,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetRuntimeManagementConfig"))
             })?;
-            Ok(PyGetRuntimeManagementConfigResponse { inner: output })
+            Ok(PyOperationGetRuntimeManagementConfigOutput { inner: output })
         })
     }
 
@@ -26276,7 +26264,7 @@ impl LambdaClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Invoke")))?;
-            Ok(PyInvocationResponse { inner: output })
+            Ok(PyOperationInvokeOutput { inner: output })
         })
     }
 
@@ -26321,7 +26309,7 @@ impl LambdaClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "InvokeAsync")))?;
-            Ok(PyInvokeAsyncResponse { inner: output })
+            Ok(PyOperationInvokeAsyncOutput { inner: output })
         })
     }
 
@@ -26489,7 +26477,7 @@ impl LambdaClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListAliases")))?;
-            Ok(PyListAliasesResponse { inner: output })
+            Ok(PyOperationListAliasesOutput { inner: output })
         })
     }
 
@@ -26543,7 +26531,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListCapacityProviders"))
             })?;
-            Ok(PyListCapacityProvidersResponse { inner: output })
+            Ok(PyOperationListCapacityProvidersOutput { inner: output })
         })
     }
 
@@ -26588,7 +26576,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListCodeSigningConfigs"))
             })?;
-            Ok(PyListCodeSigningConfigsResponse { inner: output })
+            Ok(PyOperationListCodeSigningConfigsOutput { inner: output })
         })
     }
 
@@ -26701,7 +26689,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDurableExecutionsByFunction"))
             })?;
-            Ok(PyListDurableExecutionsByFunctionResponse { inner: output })
+            Ok(PyOperationListDurableExecutionsByFunctionOutput { inner: output })
         })
     }
 
@@ -26760,7 +26748,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListEventSourceMappings"))
             })?;
-            Ok(PyListEventSourceMappingsResponse { inner: output })
+            Ok(PyOperationListEventSourceMappingsOutput { inner: output })
         })
     }
 
@@ -26812,7 +26800,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListFunctionEventInvokeConfigs"))
             })?;
-            Ok(PyListFunctionEventInvokeConfigsResponse { inner: output })
+            Ok(PyOperationListFunctionEventInvokeConfigsOutput { inner: output })
         })
     }
 
@@ -26864,7 +26852,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListFunctionUrlConfigs"))
             })?;
-            Ok(PyListFunctionUrlConfigsResponse { inner: output })
+            Ok(PyOperationListFunctionUrlConfigsOutput { inner: output })
         })
     }
 
@@ -26919,7 +26907,7 @@ impl LambdaClient {
                     sdk_error_to_py(py, &error, "ListFunctionVersionsByCapacityProvider")
                 })
             })?;
-            Ok(PyListFunctionVersionsByCapacityProviderResponse { inner: output })
+            Ok(PyOperationListFunctionVersionsByCapacityProviderOutput { inner: output })
         })
     }
 
@@ -26980,7 +26968,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListFunctions"))
             })?;
-            Ok(PyListFunctionsResponse { inner: output })
+            Ok(PyOperationListFunctionsOutput { inner: output })
         })
     }
 
@@ -27033,7 +27021,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListFunctionsByCodeSigningConfig"))
             })?;
-            Ok(PyListFunctionsByCodeSigningConfigResponse { inner: output })
+            Ok(PyOperationListFunctionsByCodeSigningConfigOutput { inner: output })
         })
     }
 
@@ -27104,7 +27092,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListLayerVersions"))
             })?;
-            Ok(PyListLayerVersionsResponse { inner: output })
+            Ok(PyOperationListLayerVersionsOutput { inner: output })
         })
     }
 
@@ -27167,7 +27155,7 @@ impl LambdaClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListLayers")))?;
-            Ok(PyListLayersResponse { inner: output })
+            Ok(PyOperationListLayersOutput { inner: output })
         })
     }
 
@@ -27221,7 +27209,7 @@ impl LambdaClient {
                     sdk_error_to_py(py, &error, "ListProvisionedConcurrencyConfigs")
                 })
             })?;
-            Ok(PyListProvisionedConcurrencyConfigsResponse { inner: output })
+            Ok(PyOperationListProvisionedConcurrencyConfigsOutput { inner: output })
         })
     }
 
@@ -27256,7 +27244,7 @@ impl LambdaClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListTags")))?;
-            Ok(PyListTagsResponse { inner: output })
+            Ok(PyOperationListTagsOutput { inner: output })
         })
     }
 
@@ -27308,7 +27296,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListVersionsByFunction"))
             })?;
-            Ok(PyListVersionsByFunctionResponse { inner: output })
+            Ok(PyOperationListVersionsByFunctionOutput { inner: output })
         })
     }
 
@@ -27399,7 +27387,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PublishLayerVersion"))
             })?;
-            Ok(PyPublishLayerVersionResponse { inner: output })
+            Ok(PyOperationPublishLayerVersionOutput { inner: output })
         })
     }
 
@@ -27468,7 +27456,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PublishVersion"))
             })?;
-            Ok(PyPublishVersionOutput { inner: output })
+            Ok(PyOperationPublishVersionOutput { inner: output })
         })
     }
 
@@ -27514,7 +27502,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutFunctionCodeSigningConfig"))
             })?;
-            Ok(PyPutFunctionCodeSigningConfigResponse { inner: output })
+            Ok(PyOperationPutFunctionCodeSigningConfigOutput { inner: output })
         })
     }
 
@@ -27560,7 +27548,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutFunctionConcurrency"))
             })?;
-            Ok(PyPutFunctionConcurrencyOutput { inner: output })
+            Ok(PyOperationPutFunctionConcurrencyOutput { inner: output })
         })
     }
 
@@ -27629,7 +27617,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutFunctionEventInvokeConfig"))
             })?;
-            Ok(PyPutFunctionEventInvokeConfigOutput { inner: output })
+            Ok(PyOperationPutFunctionEventInvokeConfigOutput { inner: output })
         })
     }
 
@@ -27676,7 +27664,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutFunctionRecursionConfig"))
             })?;
-            Ok(PyPutFunctionRecursionConfigResponse { inner: output })
+            Ok(PyOperationPutFunctionRecursionConfigOutput { inner: output })
         })
     }
 
@@ -27729,7 +27717,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutFunctionScalingConfig"))
             })?;
-            Ok(PyPutFunctionScalingConfigResponse { inner: output })
+            Ok(PyOperationPutFunctionScalingConfigOutput { inner: output })
         })
     }
 
@@ -27782,7 +27770,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutProvisionedConcurrencyConfig"))
             })?;
-            Ok(PyPutProvisionedConcurrencyConfigResponse { inner: output })
+            Ok(PyOperationPutProvisionedConcurrencyConfigOutput { inner: output })
         })
     }
 
@@ -27834,7 +27822,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePolicy"))
             })?;
-            Ok(PyPutResourcePolicyResponse { inner: output })
+            Ok(PyOperationPutResourcePolicyOutput { inner: output })
         })
     }
 
@@ -27897,7 +27885,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutRuntimeManagementConfig"))
             })?;
-            Ok(PyPutRuntimeManagementConfigResponse { inner: output })
+            Ok(PyOperationPutRuntimeManagementConfigOutput { inner: output })
         })
     }
 
@@ -28062,7 +28050,7 @@ impl LambdaClient {
                     sdk_error_to_py(py, &error, "SendDurableExecutionCallbackFailure")
                 })
             })?;
-            Ok(PySendDurableExecutionCallbackFailureResponse { inner: output })
+            Ok(PyOperationSendDurableExecutionCallbackFailureOutput { inner: output })
         })
     }
 
@@ -28102,7 +28090,7 @@ impl LambdaClient {
                     sdk_error_to_py(py, &error, "SendDurableExecutionCallbackHeartbeat")
                 })
             })?;
-            Ok(PySendDurableExecutionCallbackHeartbeatResponse { inner: output })
+            Ok(PyOperationSendDurableExecutionCallbackHeartbeatOutput { inner: output })
         })
     }
 
@@ -28150,7 +28138,7 @@ impl LambdaClient {
                     sdk_error_to_py(py, &error, "SendDurableExecutionCallbackSuccess")
                 })
             })?;
-            Ok(PySendDurableExecutionCallbackSuccessResponse { inner: output })
+            Ok(PyOperationSendDurableExecutionCallbackSuccessOutput { inner: output })
         })
     }
 
@@ -28196,7 +28184,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopDurableExecution"))
             })?;
-            Ok(PyStopDurableExecutionResponse { inner: output })
+            Ok(PyOperationStopDurableExecutionOutput { inner: output })
         })
     }
 
@@ -28369,7 +28357,7 @@ impl LambdaClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAlias")))?;
-            Ok(PyUpdateAliasOutput { inner: output })
+            Ok(PyOperationUpdateAliasOutput { inner: output })
         })
     }
 
@@ -28430,7 +28418,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateCapacityProvider"))
             })?;
-            Ok(PyUpdateCapacityProviderResponse { inner: output })
+            Ok(PyOperationUpdateCapacityProviderOutput { inner: output })
         })
     }
 
@@ -28492,7 +28480,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateCodeSigningConfig"))
             })?;
-            Ok(PyUpdateCodeSigningConfigResponse { inner: output })
+            Ok(PyOperationUpdateCodeSigningConfigOutput { inner: output })
         })
     }
 
@@ -28708,7 +28696,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateEventSourceMapping"))
             })?;
-            Ok(PyUpdateEventSourceMappingOutput { inner: output })
+            Ok(PyOperationUpdateEventSourceMappingOutput { inner: output })
         })
     }
 
@@ -28847,7 +28835,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateFunctionCode"))
             })?;
-            Ok(PyUpdateFunctionCodeOutput { inner: output })
+            Ok(PyOperationUpdateFunctionCodeOutput { inner: output })
         })
     }
 
@@ -29042,7 +29030,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateFunctionConfiguration"))
             })?;
-            Ok(PyUpdateFunctionConfigurationOutput { inner: output })
+            Ok(PyOperationUpdateFunctionConfigurationOutput { inner: output })
         })
     }
 
@@ -29111,7 +29099,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateFunctionEventInvokeConfig"))
             })?;
-            Ok(PyUpdateFunctionEventInvokeConfigOutput { inner: output })
+            Ok(PyOperationUpdateFunctionEventInvokeConfigOutput { inner: output })
         })
     }
 
@@ -29180,7 +29168,7 @@ impl LambdaClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateFunctionUrlConfig"))
             })?;
-            Ok(PyUpdateFunctionUrlConfigResponse { inner: output })
+            Ok(PyOperationUpdateFunctionUrlConfigOutput { inner: output })
         })
     }
 }

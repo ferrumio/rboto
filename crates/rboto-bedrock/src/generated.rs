@@ -18534,16 +18534,16 @@ impl PyVpcConfig {
 }
 
 #[pyclass(
-    name = "BatchDeleteAdvancedPromptOptimizationJobResponse",
+    name = "BatchDeleteAdvancedPromptOptimizationJobOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyBatchDeleteAdvancedPromptOptimizationJobResponse {
+struct PyOperationBatchDeleteAdvancedPromptOptimizationJobOutput {
     inner: aws_sdk_bedrock::operation::batch_delete_advanced_prompt_optimization_job::BatchDeleteAdvancedPromptOptimizationJobOutput,
 }
 
 #[pymethods]
-impl PyBatchDeleteAdvancedPromptOptimizationJobResponse {
+impl PyOperationBatchDeleteAdvancedPromptOptimizationJobOutput {
     #[getter]
     fn errors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3454_list = PyList::empty(py);
@@ -18601,16 +18601,16 @@ impl PyBatchDeleteAdvancedPromptOptimizationJobResponse {
 }
 
 #[pyclass(
-    name = "BatchDeleteEvaluationJobResponse",
+    name = "BatchDeleteEvaluationJobOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyBatchDeleteEvaluationJobResponse {
+struct PyOperationBatchDeleteEvaluationJobOutput {
     inner: aws_sdk_bedrock::operation::batch_delete_evaluation_job::BatchDeleteEvaluationJobOutput,
 }
 
 #[pymethods]
-impl PyBatchDeleteEvaluationJobResponse {
+impl PyOperationBatchDeleteEvaluationJobOutput {
     #[getter]
     fn errors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3466_list = PyList::empty(py);
@@ -18666,16 +18666,16 @@ impl PyBatchDeleteEvaluationJobResponse {
 }
 
 #[pyclass(
-    name = "CancelAutomatedReasoningPolicyBuildWorkflowResponse",
+    name = "CancelAutomatedReasoningPolicyBuildWorkflowOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyCancelAutomatedReasoningPolicyBuildWorkflowResponse {
+struct PyOperationCancelAutomatedReasoningPolicyBuildWorkflowOutput {
     inner: aws_sdk_bedrock::operation::cancel_automated_reasoning_policy_build_workflow::CancelAutomatedReasoningPolicyBuildWorkflowOutput,
 }
 
 #[pymethods]
-impl PyCancelAutomatedReasoningPolicyBuildWorkflowResponse {
+impl PyOperationCancelAutomatedReasoningPolicyBuildWorkflowOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -18683,16 +18683,16 @@ impl PyCancelAutomatedReasoningPolicyBuildWorkflowResponse {
 }
 
 #[pyclass(
-    name = "CreateAdvancedPromptOptimizationJobResponse",
+    name = "CreateAdvancedPromptOptimizationJobOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyCreateAdvancedPromptOptimizationJobResponse {
+struct PyOperationCreateAdvancedPromptOptimizationJobOutput {
     inner: aws_sdk_bedrock::operation::create_advanced_prompt_optimization_job::CreateAdvancedPromptOptimizationJobOutput,
 }
 
 #[pymethods]
-impl PyCreateAdvancedPromptOptimizationJobResponse {
+impl PyOperationCreateAdvancedPromptOptimizationJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3478 = (&self.inner.job_arn).as_str().into_py_any(py)?;
@@ -18708,16 +18708,16 @@ impl PyCreateAdvancedPromptOptimizationJobResponse {
 }
 
 #[pyclass(
-    name = "CreateAutomatedReasoningPolicyResponse",
+    name = "CreateAutomatedReasoningPolicyOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyCreateAutomatedReasoningPolicyResponse {
+struct PyOperationCreateAutomatedReasoningPolicyOutput {
     inner: aws_sdk_bedrock::operation::create_automated_reasoning_policy::CreateAutomatedReasoningPolicyOutput,
 }
 
 #[pymethods]
-impl PyCreateAutomatedReasoningPolicyResponse {
+impl PyOperationCreateAutomatedReasoningPolicyOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3480 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
@@ -18797,16 +18797,16 @@ impl PyCreateAutomatedReasoningPolicyResponse {
 }
 
 #[pyclass(
-    name = "CreateAutomatedReasoningPolicyTestCaseResponse",
+    name = "CreateAutomatedReasoningPolicyTestCaseOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyCreateAutomatedReasoningPolicyTestCaseResponse {
+struct PyOperationCreateAutomatedReasoningPolicyTestCaseOutput {
     inner: aws_sdk_bedrock::operation::create_automated_reasoning_policy_test_case::CreateAutomatedReasoningPolicyTestCaseOutput,
 }
 
 #[pymethods]
-impl PyCreateAutomatedReasoningPolicyTestCaseResponse {
+impl PyOperationCreateAutomatedReasoningPolicyTestCaseOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3494 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
@@ -18830,16 +18830,16 @@ impl PyCreateAutomatedReasoningPolicyTestCaseResponse {
 }
 
 #[pyclass(
-    name = "CreateAutomatedReasoningPolicyVersionResponse",
+    name = "CreateAutomatedReasoningPolicyVersionOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyCreateAutomatedReasoningPolicyVersionResponse {
+struct PyOperationCreateAutomatedReasoningPolicyVersionOutput {
     inner: aws_sdk_bedrock::operation::create_automated_reasoning_policy_version::CreateAutomatedReasoningPolicyVersionOutput,
 }
 
 #[pymethods]
-impl PyCreateAutomatedReasoningPolicyVersionResponse {
+impl PyOperationCreateAutomatedReasoningPolicyVersionOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3498 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
@@ -18903,16 +18903,16 @@ impl PyCreateAutomatedReasoningPolicyVersionResponse {
 }
 
 #[pyclass(
-    name = "CreateCustomModelResponse",
+    name = "CreateCustomModelOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyCreateCustomModelResponse {
+struct PyOperationCreateCustomModelOutput {
     inner: aws_sdk_bedrock::operation::create_custom_model::CreateCustomModelOutput,
 }
 
 #[pymethods]
-impl PyCreateCustomModelResponse {
+impl PyOperationCreateCustomModelOutput {
     #[getter]
     fn model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3510 = (&self.inner.model_arn).as_str().into_py_any(py)?;
@@ -18928,16 +18928,16 @@ impl PyCreateCustomModelResponse {
 }
 
 #[pyclass(
-    name = "CreateCustomModelDeploymentResponse",
+    name = "CreateCustomModelDeploymentOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyCreateCustomModelDeploymentResponse {
+struct PyOperationCreateCustomModelDeploymentOutput {
     inner: aws_sdk_bedrock::operation::create_custom_model_deployment::CreateCustomModelDeploymentOutput,
 }
 
 #[pymethods]
-impl PyCreateCustomModelDeploymentResponse {
+impl PyOperationCreateCustomModelDeploymentOutput {
     #[getter]
     fn custom_model_deployment_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3512 = (&self.inner.custom_model_deployment_arn)
@@ -18957,16 +18957,16 @@ impl PyCreateCustomModelDeploymentResponse {
 }
 
 #[pyclass(
-    name = "CreateEvaluationJobResponse",
+    name = "CreateEvaluationJobOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyCreateEvaluationJobResponse {
+struct PyOperationCreateEvaluationJobOutput {
     inner: aws_sdk_bedrock::operation::create_evaluation_job::CreateEvaluationJobOutput,
 }
 
 #[pymethods]
-impl PyCreateEvaluationJobResponse {
+impl PyOperationCreateEvaluationJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3514 = (&self.inner.job_arn).as_str().into_py_any(py)?;
@@ -18982,16 +18982,16 @@ impl PyCreateEvaluationJobResponse {
 }
 
 #[pyclass(
-    name = "CreateFoundationModelAgreementResponse",
+    name = "CreateFoundationModelAgreementOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyCreateFoundationModelAgreementResponse {
+struct PyOperationCreateFoundationModelAgreementOutput {
     inner: aws_sdk_bedrock::operation::create_foundation_model_agreement::CreateFoundationModelAgreementOutput,
 }
 
 #[pymethods]
-impl PyCreateFoundationModelAgreementResponse {
+impl PyOperationCreateFoundationModelAgreementOutput {
     #[getter]
     fn model_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3516 = (&self.inner.model_id).as_str().into_py_any(py)?;
@@ -19007,16 +19007,16 @@ impl PyCreateFoundationModelAgreementResponse {
 }
 
 #[pyclass(
-    name = "CreateGuardrailResponse",
+    name = "CreateGuardrailOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyCreateGuardrailResponse {
+struct PyOperationCreateGuardrailOutput {
     inner: aws_sdk_bedrock::operation::create_guardrail::CreateGuardrailOutput,
 }
 
 #[pymethods]
-impl PyCreateGuardrailResponse {
+impl PyOperationCreateGuardrailOutput {
     #[getter]
     fn guardrail_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3518 = (&self.inner.guardrail_id).as_str().into_py_any(py)?;
@@ -19056,16 +19056,16 @@ impl PyCreateGuardrailResponse {
 }
 
 #[pyclass(
-    name = "CreateGuardrailVersionResponse",
+    name = "CreateGuardrailVersionOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyCreateGuardrailVersionResponse {
+struct PyOperationCreateGuardrailVersionOutput {
     inner: aws_sdk_bedrock::operation::create_guardrail_version::CreateGuardrailVersionOutput,
 }
 
 #[pymethods]
-impl PyCreateGuardrailVersionResponse {
+impl PyOperationCreateGuardrailVersionOutput {
     #[getter]
     fn guardrail_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3526 = (&self.inner.guardrail_id).as_str().into_py_any(py)?;
@@ -19089,16 +19089,16 @@ impl PyCreateGuardrailVersionResponse {
 }
 
 #[pyclass(
-    name = "CreateInferenceProfileResponse",
+    name = "CreateInferenceProfileOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyCreateInferenceProfileResponse {
+struct PyOperationCreateInferenceProfileOutput {
     inner: aws_sdk_bedrock::operation::create_inference_profile::CreateInferenceProfileOutput,
 }
 
 #[pymethods]
-impl PyCreateInferenceProfileResponse {
+impl PyOperationCreateInferenceProfileOutput {
     #[getter]
     fn inference_profile_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3530 = (&self.inner.inference_profile_arn)
@@ -19134,16 +19134,16 @@ impl PyCreateInferenceProfileResponse {
 }
 
 #[pyclass(
-    name = "CreateMarketplaceModelEndpointResponse",
+    name = "CreateMarketplaceModelEndpointOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyCreateMarketplaceModelEndpointResponse {
+struct PyOperationCreateMarketplaceModelEndpointOutput {
     inner: aws_sdk_bedrock::operation::create_marketplace_model_endpoint::CreateMarketplaceModelEndpointOutput,
 }
 
 #[pymethods]
-impl PyCreateMarketplaceModelEndpointResponse {
+impl PyOperationCreateMarketplaceModelEndpointOutput {
     #[getter]
     fn marketplace_model_endpoint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.marketplace_model_endpoint {
@@ -19173,16 +19173,16 @@ impl PyCreateMarketplaceModelEndpointResponse {
 }
 
 #[pyclass(
-    name = "CreateModelCopyJobResponse",
+    name = "CreateModelCopyJobOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyCreateModelCopyJobResponse {
+struct PyOperationCreateModelCopyJobOutput {
     inner: aws_sdk_bedrock::operation::create_model_copy_job::CreateModelCopyJobOutput,
 }
 
 #[pymethods]
-impl PyCreateModelCopyJobResponse {
+impl PyOperationCreateModelCopyJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3536 = (&self.inner.job_arn).as_str().into_py_any(py)?;
@@ -19198,16 +19198,16 @@ impl PyCreateModelCopyJobResponse {
 }
 
 #[pyclass(
-    name = "CreateModelCustomizationJobResponse",
+    name = "CreateModelCustomizationJobOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyCreateModelCustomizationJobResponse {
+struct PyOperationCreateModelCustomizationJobOutput {
     inner: aws_sdk_bedrock::operation::create_model_customization_job::CreateModelCustomizationJobOutput,
 }
 
 #[pymethods]
-impl PyCreateModelCustomizationJobResponse {
+impl PyOperationCreateModelCustomizationJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3538 = (&self.inner.job_arn).as_str().into_py_any(py)?;
@@ -19223,16 +19223,16 @@ impl PyCreateModelCustomizationJobResponse {
 }
 
 #[pyclass(
-    name = "CreateModelImportJobResponse",
+    name = "CreateModelImportJobOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyCreateModelImportJobResponse {
+struct PyOperationCreateModelImportJobOutput {
     inner: aws_sdk_bedrock::operation::create_model_import_job::CreateModelImportJobOutput,
 }
 
 #[pymethods]
-impl PyCreateModelImportJobResponse {
+impl PyOperationCreateModelImportJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3540 = (&self.inner.job_arn).as_str().into_py_any(py)?;
@@ -19248,16 +19248,16 @@ impl PyCreateModelImportJobResponse {
 }
 
 #[pyclass(
-    name = "CreateModelInvocationJobResponse",
+    name = "CreateModelInvocationJobOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyCreateModelInvocationJobResponse {
+struct PyOperationCreateModelInvocationJobOutput {
     inner: aws_sdk_bedrock::operation::create_model_invocation_job::CreateModelInvocationJobOutput,
 }
 
 #[pymethods]
-impl PyCreateModelInvocationJobResponse {
+impl PyOperationCreateModelInvocationJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3542 = (&self.inner.job_arn).as_str().into_py_any(py)?;
@@ -19273,16 +19273,16 @@ impl PyCreateModelInvocationJobResponse {
 }
 
 #[pyclass(
-    name = "CreatePromptRouterResponse",
+    name = "CreatePromptRouterOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyCreatePromptRouterResponse {
+struct PyOperationCreatePromptRouterOutput {
     inner: aws_sdk_bedrock::operation::create_prompt_router::CreatePromptRouterOutput,
 }
 
 #[pymethods]
-impl PyCreatePromptRouterResponse {
+impl PyOperationCreatePromptRouterOutput {
     #[getter]
     fn prompt_router_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.prompt_router_arn {
@@ -19306,16 +19306,16 @@ impl PyCreatePromptRouterResponse {
 }
 
 #[pyclass(
-    name = "CreateProvisionedModelThroughputResponse",
+    name = "CreateProvisionedModelThroughputOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyCreateProvisionedModelThroughputResponse {
+struct PyOperationCreateProvisionedModelThroughputOutput {
     inner: aws_sdk_bedrock::operation::create_provisioned_model_throughput::CreateProvisionedModelThroughputOutput,
 }
 
 #[pymethods]
-impl PyCreateProvisionedModelThroughputResponse {
+impl PyOperationCreateProvisionedModelThroughputOutput {
     #[getter]
     fn provisioned_model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3546 = (&self.inner.provisioned_model_arn)
@@ -19335,16 +19335,16 @@ impl PyCreateProvisionedModelThroughputResponse {
 }
 
 #[pyclass(
-    name = "DeleteAutomatedReasoningPolicyResponse",
+    name = "DeleteAutomatedReasoningPolicyOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyDeleteAutomatedReasoningPolicyResponse {
+struct PyOperationDeleteAutomatedReasoningPolicyOutput {
     inner: aws_sdk_bedrock::operation::delete_automated_reasoning_policy::DeleteAutomatedReasoningPolicyOutput,
 }
 
 #[pymethods]
-impl PyDeleteAutomatedReasoningPolicyResponse {
+impl PyOperationDeleteAutomatedReasoningPolicyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -19352,16 +19352,16 @@ impl PyDeleteAutomatedReasoningPolicyResponse {
 }
 
 #[pyclass(
-    name = "DeleteAutomatedReasoningPolicyBuildWorkflowResponse",
+    name = "DeleteAutomatedReasoningPolicyBuildWorkflowOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyDeleteAutomatedReasoningPolicyBuildWorkflowResponse {
+struct PyOperationDeleteAutomatedReasoningPolicyBuildWorkflowOutput {
     inner: aws_sdk_bedrock::operation::delete_automated_reasoning_policy_build_workflow::DeleteAutomatedReasoningPolicyBuildWorkflowOutput,
 }
 
 #[pymethods]
-impl PyDeleteAutomatedReasoningPolicyBuildWorkflowResponse {
+impl PyOperationDeleteAutomatedReasoningPolicyBuildWorkflowOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -19369,16 +19369,16 @@ impl PyDeleteAutomatedReasoningPolicyBuildWorkflowResponse {
 }
 
 #[pyclass(
-    name = "DeleteAutomatedReasoningPolicyTestCaseResponse",
+    name = "DeleteAutomatedReasoningPolicyTestCaseOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyDeleteAutomatedReasoningPolicyTestCaseResponse {
+struct PyOperationDeleteAutomatedReasoningPolicyTestCaseOutput {
     inner: aws_sdk_bedrock::operation::delete_automated_reasoning_policy_test_case::DeleteAutomatedReasoningPolicyTestCaseOutput,
 }
 
 #[pymethods]
-impl PyDeleteAutomatedReasoningPolicyTestCaseResponse {
+impl PyOperationDeleteAutomatedReasoningPolicyTestCaseOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -19386,16 +19386,16 @@ impl PyDeleteAutomatedReasoningPolicyTestCaseResponse {
 }
 
 #[pyclass(
-    name = "DeleteCustomModelResponse",
+    name = "DeleteCustomModelOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyDeleteCustomModelResponse {
+struct PyOperationDeleteCustomModelOutput {
     inner: aws_sdk_bedrock::operation::delete_custom_model::DeleteCustomModelOutput,
 }
 
 #[pymethods]
-impl PyDeleteCustomModelResponse {
+impl PyOperationDeleteCustomModelOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -19403,16 +19403,16 @@ impl PyDeleteCustomModelResponse {
 }
 
 #[pyclass(
-    name = "DeleteCustomModelDeploymentResponse",
+    name = "DeleteCustomModelDeploymentOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyDeleteCustomModelDeploymentResponse {
+struct PyOperationDeleteCustomModelDeploymentOutput {
     inner: aws_sdk_bedrock::operation::delete_custom_model_deployment::DeleteCustomModelDeploymentOutput,
 }
 
 #[pymethods]
-impl PyDeleteCustomModelDeploymentResponse {
+impl PyOperationDeleteCustomModelDeploymentOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -19420,16 +19420,16 @@ impl PyDeleteCustomModelDeploymentResponse {
 }
 
 #[pyclass(
-    name = "DeleteEnforcedGuardrailConfigurationResponse",
+    name = "DeleteEnforcedGuardrailConfigurationOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyDeleteEnforcedGuardrailConfigurationResponse {
+struct PyOperationDeleteEnforcedGuardrailConfigurationOutput {
     inner: aws_sdk_bedrock::operation::delete_enforced_guardrail_configuration::DeleteEnforcedGuardrailConfigurationOutput,
 }
 
 #[pymethods]
-impl PyDeleteEnforcedGuardrailConfigurationResponse {
+impl PyOperationDeleteEnforcedGuardrailConfigurationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -19437,16 +19437,16 @@ impl PyDeleteEnforcedGuardrailConfigurationResponse {
 }
 
 #[pyclass(
-    name = "DeleteFoundationModelAgreementResponse",
+    name = "DeleteFoundationModelAgreementOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyDeleteFoundationModelAgreementResponse {
+struct PyOperationDeleteFoundationModelAgreementOutput {
     inner: aws_sdk_bedrock::operation::delete_foundation_model_agreement::DeleteFoundationModelAgreementOutput,
 }
 
 #[pymethods]
-impl PyDeleteFoundationModelAgreementResponse {
+impl PyOperationDeleteFoundationModelAgreementOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -19454,16 +19454,16 @@ impl PyDeleteFoundationModelAgreementResponse {
 }
 
 #[pyclass(
-    name = "DeleteGuardrailResponse",
+    name = "DeleteGuardrailOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyDeleteGuardrailResponse {
+struct PyOperationDeleteGuardrailOutput {
     inner: aws_sdk_bedrock::operation::delete_guardrail::DeleteGuardrailOutput,
 }
 
 #[pymethods]
-impl PyDeleteGuardrailResponse {
+impl PyOperationDeleteGuardrailOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -19471,16 +19471,16 @@ impl PyDeleteGuardrailResponse {
 }
 
 #[pyclass(
-    name = "DeleteImportedModelResponse",
+    name = "DeleteImportedModelOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyDeleteImportedModelResponse {
+struct PyOperationDeleteImportedModelOutput {
     inner: aws_sdk_bedrock::operation::delete_imported_model::DeleteImportedModelOutput,
 }
 
 #[pymethods]
-impl PyDeleteImportedModelResponse {
+impl PyOperationDeleteImportedModelOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -19488,16 +19488,16 @@ impl PyDeleteImportedModelResponse {
 }
 
 #[pyclass(
-    name = "DeleteInferenceProfileResponse",
+    name = "DeleteInferenceProfileOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyDeleteInferenceProfileResponse {
+struct PyOperationDeleteInferenceProfileOutput {
     inner: aws_sdk_bedrock::operation::delete_inference_profile::DeleteInferenceProfileOutput,
 }
 
 #[pymethods]
-impl PyDeleteInferenceProfileResponse {
+impl PyOperationDeleteInferenceProfileOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -19505,16 +19505,16 @@ impl PyDeleteInferenceProfileResponse {
 }
 
 #[pyclass(
-    name = "DeleteMarketplaceModelEndpointResponse",
+    name = "DeleteMarketplaceModelEndpointOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyDeleteMarketplaceModelEndpointResponse {
+struct PyOperationDeleteMarketplaceModelEndpointOutput {
     inner: aws_sdk_bedrock::operation::delete_marketplace_model_endpoint::DeleteMarketplaceModelEndpointOutput,
 }
 
 #[pymethods]
-impl PyDeleteMarketplaceModelEndpointResponse {
+impl PyOperationDeleteMarketplaceModelEndpointOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -19522,16 +19522,16 @@ impl PyDeleteMarketplaceModelEndpointResponse {
 }
 
 #[pyclass(
-    name = "DeleteModelInvocationLoggingConfigurationResponse",
+    name = "DeleteModelInvocationLoggingConfigurationOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyDeleteModelInvocationLoggingConfigurationResponse {
+struct PyOperationDeleteModelInvocationLoggingConfigurationOutput {
     inner: aws_sdk_bedrock::operation::delete_model_invocation_logging_configuration::DeleteModelInvocationLoggingConfigurationOutput,
 }
 
 #[pymethods]
-impl PyDeleteModelInvocationLoggingConfigurationResponse {
+impl PyOperationDeleteModelInvocationLoggingConfigurationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -19539,16 +19539,16 @@ impl PyDeleteModelInvocationLoggingConfigurationResponse {
 }
 
 #[pyclass(
-    name = "DeletePromptRouterResponse",
+    name = "DeletePromptRouterOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyDeletePromptRouterResponse {
+struct PyOperationDeletePromptRouterOutput {
     inner: aws_sdk_bedrock::operation::delete_prompt_router::DeletePromptRouterOutput,
 }
 
 #[pymethods]
-impl PyDeletePromptRouterResponse {
+impl PyOperationDeletePromptRouterOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -19556,16 +19556,16 @@ impl PyDeletePromptRouterResponse {
 }
 
 #[pyclass(
-    name = "DeleteProvisionedModelThroughputResponse",
+    name = "DeleteProvisionedModelThroughputOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyDeleteProvisionedModelThroughputResponse {
+struct PyOperationDeleteProvisionedModelThroughputOutput {
     inner: aws_sdk_bedrock::operation::delete_provisioned_model_throughput::DeleteProvisionedModelThroughputOutput,
 }
 
 #[pymethods]
-impl PyDeleteProvisionedModelThroughputResponse {
+impl PyOperationDeleteProvisionedModelThroughputOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -19573,16 +19573,16 @@ impl PyDeleteProvisionedModelThroughputResponse {
 }
 
 #[pyclass(
-    name = "DeleteResourcePolicyResponse",
+    name = "DeleteResourcePolicyOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyDeleteResourcePolicyResponse {
+struct PyOperationDeleteResourcePolicyOutput {
     inner: aws_sdk_bedrock::operation::delete_resource_policy::DeleteResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyDeleteResourcePolicyResponse {
+impl PyOperationDeleteResourcePolicyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -19590,16 +19590,16 @@ impl PyDeleteResourcePolicyResponse {
 }
 
 #[pyclass(
-    name = "DeregisterMarketplaceModelEndpointResponse",
+    name = "DeregisterMarketplaceModelEndpointOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyDeregisterMarketplaceModelEndpointResponse {
+struct PyOperationDeregisterMarketplaceModelEndpointOutput {
     inner: aws_sdk_bedrock::operation::deregister_marketplace_model_endpoint::DeregisterMarketplaceModelEndpointOutput,
 }
 
 #[pymethods]
-impl PyDeregisterMarketplaceModelEndpointResponse {
+impl PyOperationDeregisterMarketplaceModelEndpointOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -19607,16 +19607,16 @@ impl PyDeregisterMarketplaceModelEndpointResponse {
 }
 
 #[pyclass(
-    name = "ExportAutomatedReasoningPolicyVersionResponse",
+    name = "ExportAutomatedReasoningPolicyVersionOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyExportAutomatedReasoningPolicyVersionResponse {
+struct PyOperationExportAutomatedReasoningPolicyVersionOutput {
     inner: aws_sdk_bedrock::operation::export_automated_reasoning_policy_version::ExportAutomatedReasoningPolicyVersionOutput,
 }
 
 #[pymethods]
-impl PyExportAutomatedReasoningPolicyVersionResponse {
+impl PyOperationExportAutomatedReasoningPolicyVersionOutput {
     #[getter]
     fn policy_definition(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.policy_definition {
@@ -19646,16 +19646,16 @@ impl PyExportAutomatedReasoningPolicyVersionResponse {
 }
 
 #[pyclass(
-    name = "GetAccountDataRetentionResponse",
+    name = "GetAccountDataRetentionOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetAccountDataRetentionResponse {
+struct PyOperationGetAccountDataRetentionOutput {
     inner: aws_sdk_bedrock::operation::get_account_data_retention::GetAccountDataRetentionOutput,
 }
 
 #[pymethods]
-impl PyGetAccountDataRetentionResponse {
+impl PyOperationGetAccountDataRetentionOutput {
     #[getter]
     fn mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3550 = (&self.inner.mode).as_str().into_py_any(py)?;
@@ -19687,16 +19687,16 @@ impl PyGetAccountDataRetentionResponse {
 }
 
 #[pyclass(
-    name = "GetAdvancedPromptOptimizationJobResponse",
+    name = "GetAdvancedPromptOptimizationJobOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetAdvancedPromptOptimizationJobResponse {
+struct PyOperationGetAdvancedPromptOptimizationJobOutput {
     inner: aws_sdk_bedrock::operation::get_advanced_prompt_optimization_job::GetAdvancedPromptOptimizationJobOutput,
 }
 
 #[pymethods]
-impl PyGetAdvancedPromptOptimizationJobResponse {
+impl PyOperationGetAdvancedPromptOptimizationJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3554 = (&self.inner.job_arn).as_str().into_py_any(py)?;
@@ -19868,16 +19868,16 @@ impl PyGetAdvancedPromptOptimizationJobResponse {
 }
 
 #[pyclass(
-    name = "GetAutomatedReasoningPolicyResponse",
+    name = "GetAutomatedReasoningPolicyOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetAutomatedReasoningPolicyResponse {
+struct PyOperationGetAutomatedReasoningPolicyOutput {
     inner: aws_sdk_bedrock::operation::get_automated_reasoning_policy::GetAutomatedReasoningPolicyOutput,
 }
 
 #[pymethods]
-impl PyGetAutomatedReasoningPolicyResponse {
+impl PyOperationGetAutomatedReasoningPolicyOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3580 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
@@ -19981,16 +19981,16 @@ impl PyGetAutomatedReasoningPolicyResponse {
 }
 
 #[pyclass(
-    name = "GetAutomatedReasoningPolicyAnnotationsResponse",
+    name = "GetAutomatedReasoningPolicyAnnotationsOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetAutomatedReasoningPolicyAnnotationsResponse {
+struct PyOperationGetAutomatedReasoningPolicyAnnotationsOutput {
     inner: aws_sdk_bedrock::operation::get_automated_reasoning_policy_annotations::GetAutomatedReasoningPolicyAnnotationsOutput,
 }
 
 #[pymethods]
-impl PyGetAutomatedReasoningPolicyAnnotationsResponse {
+impl PyOperationGetAutomatedReasoningPolicyAnnotationsOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3598 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
@@ -20056,16 +20056,16 @@ impl PyGetAutomatedReasoningPolicyAnnotationsResponse {
 }
 
 #[pyclass(
-    name = "GetAutomatedReasoningPolicyBuildWorkflowResponse",
+    name = "GetAutomatedReasoningPolicyBuildWorkflowOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetAutomatedReasoningPolicyBuildWorkflowResponse {
+struct PyOperationGetAutomatedReasoningPolicyBuildWorkflowOutput {
     inner: aws_sdk_bedrock::operation::get_automated_reasoning_policy_build_workflow::GetAutomatedReasoningPolicyBuildWorkflowOutput,
 }
 
 #[pymethods]
-impl PyGetAutomatedReasoningPolicyBuildWorkflowResponse {
+impl PyOperationGetAutomatedReasoningPolicyBuildWorkflowOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3614 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
@@ -20169,16 +20169,16 @@ impl PyGetAutomatedReasoningPolicyBuildWorkflowResponse {
 }
 
 #[pyclass(
-    name = "GetAutomatedReasoningPolicyBuildWorkflowResultAssetsResponse",
+    name = "GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetAutomatedReasoningPolicyBuildWorkflowResultAssetsResponse {
+struct PyOperationGetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput {
     inner: aws_sdk_bedrock::operation::get_automated_reasoning_policy_build_workflow_result_assets::GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput,
 }
 
 #[pymethods]
-impl PyGetAutomatedReasoningPolicyBuildWorkflowResultAssetsResponse {
+impl PyOperationGetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3632 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
@@ -20218,16 +20218,16 @@ impl PyGetAutomatedReasoningPolicyBuildWorkflowResultAssetsResponse {
 }
 
 #[pyclass(
-    name = "GetAutomatedReasoningPolicyNextScenarioResponse",
+    name = "GetAutomatedReasoningPolicyNextScenarioOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetAutomatedReasoningPolicyNextScenarioResponse {
+struct PyOperationGetAutomatedReasoningPolicyNextScenarioOutput {
     inner: aws_sdk_bedrock::operation::get_automated_reasoning_policy_next_scenario::GetAutomatedReasoningPolicyNextScenarioOutput,
 }
 
 #[pymethods]
-impl PyGetAutomatedReasoningPolicyNextScenarioResponse {
+impl PyOperationGetAutomatedReasoningPolicyNextScenarioOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3638 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
@@ -20265,16 +20265,16 @@ impl PyGetAutomatedReasoningPolicyNextScenarioResponse {
 }
 
 #[pyclass(
-    name = "GetAutomatedReasoningPolicyTestCaseResponse",
+    name = "GetAutomatedReasoningPolicyTestCaseOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetAutomatedReasoningPolicyTestCaseResponse {
+struct PyOperationGetAutomatedReasoningPolicyTestCaseOutput {
     inner: aws_sdk_bedrock::operation::get_automated_reasoning_policy_test_case::GetAutomatedReasoningPolicyTestCaseOutput,
 }
 
 #[pymethods]
-impl PyGetAutomatedReasoningPolicyTestCaseResponse {
+impl PyOperationGetAutomatedReasoningPolicyTestCaseOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3642 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
@@ -20312,16 +20312,16 @@ impl PyGetAutomatedReasoningPolicyTestCaseResponse {
 }
 
 #[pyclass(
-    name = "GetAutomatedReasoningPolicyTestResultResponse",
+    name = "GetAutomatedReasoningPolicyTestResultOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetAutomatedReasoningPolicyTestResultResponse {
+struct PyOperationGetAutomatedReasoningPolicyTestResultOutput {
     inner: aws_sdk_bedrock::operation::get_automated_reasoning_policy_test_result::GetAutomatedReasoningPolicyTestResultOutput,
 }
 
 #[pymethods]
-impl PyGetAutomatedReasoningPolicyTestResultResponse {
+impl PyOperationGetAutomatedReasoningPolicyTestResultOutput {
     #[getter]
     fn test_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.test_result {
@@ -20351,16 +20351,16 @@ impl PyGetAutomatedReasoningPolicyTestResultResponse {
 }
 
 #[pyclass(
-    name = "GetCustomModelResponse",
+    name = "GetCustomModelOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetCustomModelResponse {
+struct PyOperationGetCustomModelOutput {
     inner: aws_sdk_bedrock::operation::get_custom_model::GetCustomModelOutput,
 }
 
 #[pymethods]
-impl PyGetCustomModelResponse {
+impl PyOperationGetCustomModelOutput {
     #[getter]
     fn model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3648 = (&self.inner.model_arn).as_str().into_py_any(py)?;
@@ -20668,16 +20668,16 @@ impl PyGetCustomModelResponse {
 }
 
 #[pyclass(
-    name = "GetCustomModelDeploymentResponse",
+    name = "GetCustomModelDeploymentOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetCustomModelDeploymentResponse {
+struct PyOperationGetCustomModelDeploymentOutput {
     inner: aws_sdk_bedrock::operation::get_custom_model_deployment::GetCustomModelDeploymentOutput,
 }
 
 #[pymethods]
-impl PyGetCustomModelDeploymentResponse {
+impl PyOperationGetCustomModelDeploymentOutput {
     #[getter]
     fn custom_model_deployment_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3694 = (&self.inner.custom_model_deployment_arn)
@@ -20803,16 +20803,16 @@ impl PyGetCustomModelDeploymentResponse {
 }
 
 #[pyclass(
-    name = "GetEvaluationJobResponse",
+    name = "GetEvaluationJobOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetEvaluationJobResponse {
+struct PyOperationGetEvaluationJobOutput {
     inner: aws_sdk_bedrock::operation::get_evaluation_job::GetEvaluationJobOutput,
 }
 
 #[pymethods]
-impl PyGetEvaluationJobResponse {
+impl PyOperationGetEvaluationJobOutput {
     #[getter]
     fn job_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3712 = (&self.inner.job_name).as_str().into_py_any(py)?;
@@ -21012,16 +21012,16 @@ impl PyGetEvaluationJobResponse {
 }
 
 #[pyclass(
-    name = "GetFoundationModelResponse",
+    name = "GetFoundationModelOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetFoundationModelResponse {
+struct PyOperationGetFoundationModelOutput {
     inner: aws_sdk_bedrock::operation::get_foundation_model::GetFoundationModelOutput,
 }
 
 #[pymethods]
-impl PyGetFoundationModelResponse {
+impl PyOperationGetFoundationModelOutput {
     #[getter]
     fn model_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_details {
@@ -21051,16 +21051,16 @@ impl PyGetFoundationModelResponse {
 }
 
 #[pyclass(
-    name = "GetFoundationModelAvailabilityResponse",
+    name = "GetFoundationModelAvailabilityOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetFoundationModelAvailabilityResponse {
+struct PyOperationGetFoundationModelAvailabilityOutput {
     inner: aws_sdk_bedrock::operation::get_foundation_model_availability::GetFoundationModelAvailabilityOutput,
 }
 
 #[pymethods]
-impl PyGetFoundationModelAvailabilityResponse {
+impl PyOperationGetFoundationModelAvailabilityOutput {
     #[getter]
     fn model_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3746 = (&self.inner.model_id).as_str().into_py_any(py)?;
@@ -21129,17 +21129,13 @@ impl PyGetFoundationModelAvailabilityResponse {
     }
 }
 
-#[pyclass(
-    name = "GetGuardrailResponse",
-    module = "rboto_bedrock._native",
-    frozen
-)]
-struct PyGetGuardrailResponse {
+#[pyclass(name = "GetGuardrailOutput", module = "rboto_bedrock._native", frozen)]
+struct PyOperationGetGuardrailOutput {
     inner: aws_sdk_bedrock::operation::get_guardrail::GetGuardrailOutput,
 }
 
 #[pymethods]
-impl PyGetGuardrailResponse {
+impl PyOperationGetGuardrailOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3756 = (&self.inner.name).as_str().into_py_any(py)?;
@@ -21465,16 +21461,16 @@ impl PyGetGuardrailResponse {
 }
 
 #[pyclass(
-    name = "GetImportedModelResponse",
+    name = "GetImportedModelOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetImportedModelResponse {
+struct PyOperationGetImportedModelOutput {
     inner: aws_sdk_bedrock::operation::get_imported_model::GetImportedModelOutput,
 }
 
 #[pymethods]
-impl PyGetImportedModelResponse {
+impl PyOperationGetImportedModelOutput {
     #[getter]
     fn model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_arn {
@@ -21648,16 +21644,16 @@ impl PyGetImportedModelResponse {
 }
 
 #[pyclass(
-    name = "GetInferenceProfileResponse",
+    name = "GetInferenceProfileOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetInferenceProfileResponse {
+struct PyOperationGetInferenceProfileOutput {
     inner: aws_sdk_bedrock::operation::get_inference_profile::GetInferenceProfileOutput,
 }
 
 #[pymethods]
-impl PyGetInferenceProfileResponse {
+impl PyOperationGetInferenceProfileOutput {
     #[getter]
     fn inference_profile_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3824 = (&self.inner.inference_profile_name)
@@ -21789,16 +21785,16 @@ impl PyGetInferenceProfileResponse {
 }
 
 #[pyclass(
-    name = "GetMarketplaceModelEndpointResponse",
+    name = "GetMarketplaceModelEndpointOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetMarketplaceModelEndpointResponse {
+struct PyOperationGetMarketplaceModelEndpointOutput {
     inner: aws_sdk_bedrock::operation::get_marketplace_model_endpoint::GetMarketplaceModelEndpointOutput,
 }
 
 #[pymethods]
-impl PyGetMarketplaceModelEndpointResponse {
+impl PyOperationGetMarketplaceModelEndpointOutput {
     #[getter]
     fn marketplace_model_endpoint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.marketplace_model_endpoint {
@@ -21828,16 +21824,16 @@ impl PyGetMarketplaceModelEndpointResponse {
 }
 
 #[pyclass(
-    name = "GetModelCopyJobResponse",
+    name = "GetModelCopyJobOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetModelCopyJobResponse {
+struct PyOperationGetModelCopyJobOutput {
     inner: aws_sdk_bedrock::operation::get_model_copy_job::GetModelCopyJobOutput,
 }
 
 #[pymethods]
-impl PyGetModelCopyJobResponse {
+impl PyOperationGetModelCopyJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3848 = (&self.inner.job_arn).as_str().into_py_any(py)?;
@@ -21989,16 +21985,16 @@ impl PyGetModelCopyJobResponse {
 }
 
 #[pyclass(
-    name = "GetModelCustomizationJobResponse",
+    name = "GetModelCustomizationJobOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetModelCustomizationJobResponse {
+struct PyOperationGetModelCustomizationJobOutput {
     inner: aws_sdk_bedrock::operation::get_model_customization_job::GetModelCustomizationJobOutput,
 }
 
 #[pymethods]
-impl PyGetModelCustomizationJobResponse {
+impl PyOperationGetModelCustomizationJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3874 = (&self.inner.job_arn).as_str().into_py_any(py)?;
@@ -22390,16 +22386,16 @@ impl PyGetModelCustomizationJobResponse {
 }
 
 #[pyclass(
-    name = "GetModelImportJobResponse",
+    name = "GetModelImportJobOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetModelImportJobResponse {
+struct PyOperationGetModelImportJobOutput {
     inner: aws_sdk_bedrock::operation::get_model_import_job::GetModelImportJobOutput,
 }
 
 #[pymethods]
-impl PyGetModelImportJobResponse {
+impl PyOperationGetModelImportJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_arn {
@@ -22621,16 +22617,16 @@ impl PyGetModelImportJobResponse {
 }
 
 #[pyclass(
-    name = "GetModelInvocationJobResponse",
+    name = "GetModelInvocationJobOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetModelInvocationJobResponse {
+struct PyOperationGetModelInvocationJobOutput {
     inner: aws_sdk_bedrock::operation::get_model_invocation_job::GetModelInvocationJobOutput,
 }
 
 #[pymethods]
-impl PyGetModelInvocationJobResponse {
+impl PyOperationGetModelInvocationJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_3958 = (&self.inner.job_arn).as_str().into_py_any(py)?;
@@ -22932,16 +22928,16 @@ impl PyGetModelInvocationJobResponse {
 }
 
 #[pyclass(
-    name = "GetModelInvocationLoggingConfigurationResponse",
+    name = "GetModelInvocationLoggingConfigurationOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetModelInvocationLoggingConfigurationResponse {
+struct PyOperationGetModelInvocationLoggingConfigurationOutput {
     inner: aws_sdk_bedrock::operation::get_model_invocation_logging_configuration::GetModelInvocationLoggingConfigurationOutput,
 }
 
 #[pymethods]
-impl PyGetModelInvocationLoggingConfigurationResponse {
+impl PyOperationGetModelInvocationLoggingConfigurationOutput {
     #[getter]
     fn logging_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.logging_config {
@@ -22971,16 +22967,16 @@ impl PyGetModelInvocationLoggingConfigurationResponse {
 }
 
 #[pyclass(
-    name = "GetPromptRouterResponse",
+    name = "GetPromptRouterOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetPromptRouterResponse {
+struct PyOperationGetPromptRouterOutput {
     inner: aws_sdk_bedrock::operation::get_prompt_router::GetPromptRouterOutput,
 }
 
 #[pymethods]
-impl PyGetPromptRouterResponse {
+impl PyOperationGetPromptRouterOutput {
     #[getter]
     fn prompt_router_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_4000 = (&self.inner.prompt_router_name).as_str().into_py_any(py)?;
@@ -23136,16 +23132,16 @@ impl PyGetPromptRouterResponse {
 }
 
 #[pyclass(
-    name = "GetProvisionedModelThroughputResponse",
+    name = "GetProvisionedModelThroughputOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetProvisionedModelThroughputResponse {
+struct PyOperationGetProvisionedModelThroughputOutput {
     inner: aws_sdk_bedrock::operation::get_provisioned_model_throughput::GetProvisionedModelThroughputOutput,
 }
 
 #[pymethods]
-impl PyGetProvisionedModelThroughputResponse {
+impl PyOperationGetProvisionedModelThroughputOutput {
     #[getter]
     fn model_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_4024 = (&self.inner.model_units).to_owned().into_py_any(py)?;
@@ -23301,16 +23297,16 @@ impl PyGetProvisionedModelThroughputResponse {
 }
 
 #[pyclass(
-    name = "GetResourcePolicyResponse",
+    name = "GetResourcePolicyOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetResourcePolicyResponse {
+struct PyOperationGetResourcePolicyOutput {
     inner: aws_sdk_bedrock::operation::get_resource_policy::GetResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyGetResourcePolicyResponse {
+impl PyOperationGetResourcePolicyOutput {
     #[getter]
     fn resource_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_policy {
@@ -23334,17 +23330,17 @@ impl PyGetResourcePolicyResponse {
 }
 
 #[pyclass(
-    name = "GetUseCaseForModelAccessResponse",
+    name = "GetUseCaseForModelAccessOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyGetUseCaseForModelAccessResponse {
+struct PyOperationGetUseCaseForModelAccessOutput {
     inner:
         aws_sdk_bedrock::operation::get_use_case_for_model_access::GetUseCaseForModelAccessOutput,
 }
 
 #[pymethods]
-impl PyGetUseCaseForModelAccessResponse {
+impl PyOperationGetUseCaseForModelAccessOutput {
     #[getter]
     fn form_data(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_4052 = PyBytes::new(py, (&self.inner.form_data).as_ref())
@@ -23364,16 +23360,16 @@ impl PyGetUseCaseForModelAccessResponse {
 }
 
 #[pyclass(
-    name = "ListAdvancedPromptOptimizationJobsResponse",
+    name = "ListAdvancedPromptOptimizationJobsOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyListAdvancedPromptOptimizationJobsResponse {
+struct PyOperationListAdvancedPromptOptimizationJobsOutput {
     inner: aws_sdk_bedrock::operation::list_advanced_prompt_optimization_jobs::ListAdvancedPromptOptimizationJobsOutput,
 }
 
 #[pymethods]
-impl PyListAdvancedPromptOptimizationJobsResponse {
+impl PyOperationListAdvancedPromptOptimizationJobsOutput {
     #[getter]
     fn job_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_summaries {
@@ -23430,16 +23426,16 @@ impl PyListAdvancedPromptOptimizationJobsResponse {
 }
 
 #[pyclass(
-    name = "ListAutomatedReasoningPoliciesResponse",
+    name = "ListAutomatedReasoningPoliciesOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyListAutomatedReasoningPoliciesResponse {
+struct PyOperationListAutomatedReasoningPoliciesOutput {
     inner: aws_sdk_bedrock::operation::list_automated_reasoning_policies::ListAutomatedReasoningPoliciesOutput,
 }
 
 #[pymethods]
-impl PyListAutomatedReasoningPoliciesResponse {
+impl PyOperationListAutomatedReasoningPoliciesOutput {
     #[getter]
     fn automated_reasoning_policy_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_4062_list = PyList::empty(py);
@@ -23487,16 +23483,16 @@ impl PyListAutomatedReasoningPoliciesResponse {
 }
 
 #[pyclass(
-    name = "ListAutomatedReasoningPolicyBuildWorkflowsResponse",
+    name = "ListAutomatedReasoningPolicyBuildWorkflowsOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyListAutomatedReasoningPolicyBuildWorkflowsResponse {
+struct PyOperationListAutomatedReasoningPolicyBuildWorkflowsOutput {
     inner: aws_sdk_bedrock::operation::list_automated_reasoning_policy_build_workflows::ListAutomatedReasoningPolicyBuildWorkflowsOutput,
 }
 
 #[pymethods]
-impl PyListAutomatedReasoningPolicyBuildWorkflowsResponse {
+impl PyOperationListAutomatedReasoningPolicyBuildWorkflowsOutput {
     #[getter]
     fn automated_reasoning_policy_build_workflow_summaries(
         &self,
@@ -23557,16 +23553,16 @@ impl PyListAutomatedReasoningPolicyBuildWorkflowsResponse {
 }
 
 #[pyclass(
-    name = "ListAutomatedReasoningPolicyTestCasesResponse",
+    name = "ListAutomatedReasoningPolicyTestCasesOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyListAutomatedReasoningPolicyTestCasesResponse {
+struct PyOperationListAutomatedReasoningPolicyTestCasesOutput {
     inner: aws_sdk_bedrock::operation::list_automated_reasoning_policy_test_cases::ListAutomatedReasoningPolicyTestCasesOutput,
 }
 
 #[pymethods]
-impl PyListAutomatedReasoningPolicyTestCasesResponse {
+impl PyOperationListAutomatedReasoningPolicyTestCasesOutput {
     #[getter]
     fn test_cases(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_4078_list = PyList::empty(py);
@@ -23614,16 +23610,16 @@ impl PyListAutomatedReasoningPolicyTestCasesResponse {
 }
 
 #[pyclass(
-    name = "ListAutomatedReasoningPolicyTestResultsResponse",
+    name = "ListAutomatedReasoningPolicyTestResultsOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyListAutomatedReasoningPolicyTestResultsResponse {
+struct PyOperationListAutomatedReasoningPolicyTestResultsOutput {
     inner: aws_sdk_bedrock::operation::list_automated_reasoning_policy_test_results::ListAutomatedReasoningPolicyTestResultsOutput,
 }
 
 #[pymethods]
-impl PyListAutomatedReasoningPolicyTestResultsResponse {
+impl PyOperationListAutomatedReasoningPolicyTestResultsOutput {
     #[getter]
     fn test_results(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_4086_list = PyList::empty(py);
@@ -23671,17 +23667,17 @@ impl PyListAutomatedReasoningPolicyTestResultsResponse {
 }
 
 #[pyclass(
-    name = "ListCustomModelDeploymentsResponse",
+    name = "ListCustomModelDeploymentsOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyListCustomModelDeploymentsResponse {
+struct PyOperationListCustomModelDeploymentsOutput {
     inner:
         aws_sdk_bedrock::operation::list_custom_model_deployments::ListCustomModelDeploymentsOutput,
 }
 
 #[pymethods]
-impl PyListCustomModelDeploymentsResponse {
+impl PyOperationListCustomModelDeploymentsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -23737,16 +23733,16 @@ impl PyListCustomModelDeploymentsResponse {
 }
 
 #[pyclass(
-    name = "ListCustomModelsResponse",
+    name = "ListCustomModelsOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyListCustomModelsResponse {
+struct PyOperationListCustomModelsOutput {
     inner: aws_sdk_bedrock::operation::list_custom_models::ListCustomModelsOutput,
 }
 
 #[pymethods]
-impl PyListCustomModelsResponse {
+impl PyOperationListCustomModelsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -23802,16 +23798,16 @@ impl PyListCustomModelsResponse {
 }
 
 #[pyclass(
-    name = "ListEnforcedGuardrailsConfigurationResponse",
+    name = "ListEnforcedGuardrailsConfigurationOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyListEnforcedGuardrailsConfigurationResponse {
+struct PyOperationListEnforcedGuardrailsConfigurationOutput {
     inner: aws_sdk_bedrock::operation::list_enforced_guardrails_configuration::ListEnforcedGuardrailsConfigurationOutput,
 }
 
 #[pymethods]
-impl PyListEnforcedGuardrailsConfigurationResponse {
+impl PyOperationListEnforcedGuardrailsConfigurationOutput {
     #[getter]
     fn guardrails_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_4110_list = PyList::empty(py);
@@ -23860,16 +23856,16 @@ impl PyListEnforcedGuardrailsConfigurationResponse {
 }
 
 #[pyclass(
-    name = "ListEvaluationJobsResponse",
+    name = "ListEvaluationJobsOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyListEvaluationJobsResponse {
+struct PyOperationListEvaluationJobsOutput {
     inner: aws_sdk_bedrock::operation::list_evaluation_jobs::ListEvaluationJobsOutput,
 }
 
 #[pymethods]
-impl PyListEvaluationJobsResponse {
+impl PyOperationListEvaluationJobsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -23925,16 +23921,16 @@ impl PyListEvaluationJobsResponse {
 }
 
 #[pyclass(
-    name = "ListFoundationModelAgreementOffersResponse",
+    name = "ListFoundationModelAgreementOffersOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyListFoundationModelAgreementOffersResponse {
+struct PyOperationListFoundationModelAgreementOffersOutput {
     inner: aws_sdk_bedrock::operation::list_foundation_model_agreement_offers::ListFoundationModelAgreementOffersOutput,
 }
 
 #[pymethods]
-impl PyListFoundationModelAgreementOffersResponse {
+impl PyOperationListFoundationModelAgreementOffersOutput {
     #[getter]
     fn model_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_4126 = (&self.inner.model_id).as_str().into_py_any(py)?;
@@ -23974,16 +23970,16 @@ impl PyListFoundationModelAgreementOffersResponse {
 }
 
 #[pyclass(
-    name = "ListFoundationModelsResponse",
+    name = "ListFoundationModelsOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyListFoundationModelsResponse {
+struct PyOperationListFoundationModelsOutput {
     inner: aws_sdk_bedrock::operation::list_foundation_models::ListFoundationModelsOutput,
 }
 
 #[pymethods]
-impl PyListFoundationModelsResponse {
+impl PyOperationListFoundationModelsOutput {
     #[getter]
     fn model_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_summaries {
@@ -24023,16 +24019,16 @@ impl PyListFoundationModelsResponse {
 }
 
 #[pyclass(
-    name = "ListGuardrailsResponse",
+    name = "ListGuardrailsOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyListGuardrailsResponse {
+struct PyOperationListGuardrailsOutput {
     inner: aws_sdk_bedrock::operation::list_guardrails::ListGuardrailsOutput,
 }
 
 #[pymethods]
-impl PyListGuardrailsResponse {
+impl PyOperationListGuardrailsOutput {
     #[getter]
     fn guardrails(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_4140_list = PyList::empty(py);
@@ -24080,16 +24076,16 @@ impl PyListGuardrailsResponse {
 }
 
 #[pyclass(
-    name = "ListImportedModelsResponse",
+    name = "ListImportedModelsOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyListImportedModelsResponse {
+struct PyOperationListImportedModelsOutput {
     inner: aws_sdk_bedrock::operation::list_imported_models::ListImportedModelsOutput,
 }
 
 #[pymethods]
-impl PyListImportedModelsResponse {
+impl PyOperationListImportedModelsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -24145,16 +24141,16 @@ impl PyListImportedModelsResponse {
 }
 
 #[pyclass(
-    name = "ListInferenceProfilesResponse",
+    name = "ListInferenceProfilesOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyListInferenceProfilesResponse {
+struct PyOperationListInferenceProfilesOutput {
     inner: aws_sdk_bedrock::operation::list_inference_profiles::ListInferenceProfilesOutput,
 }
 
 #[pymethods]
-impl PyListInferenceProfilesResponse {
+impl PyOperationListInferenceProfilesOutput {
     #[getter]
     fn inference_profile_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.inference_profile_summaries {
@@ -24210,16 +24206,16 @@ impl PyListInferenceProfilesResponse {
 }
 
 #[pyclass(
-    name = "ListMarketplaceModelEndpointsResponse",
+    name = "ListMarketplaceModelEndpointsOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyListMarketplaceModelEndpointsResponse {
+struct PyOperationListMarketplaceModelEndpointsOutput {
     inner: aws_sdk_bedrock::operation::list_marketplace_model_endpoints::ListMarketplaceModelEndpointsOutput,
 }
 
 #[pymethods]
-impl PyListMarketplaceModelEndpointsResponse {
+impl PyOperationListMarketplaceModelEndpointsOutput {
     #[getter]
     fn marketplace_model_endpoints(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.marketplace_model_endpoints {
@@ -24275,16 +24271,16 @@ impl PyListMarketplaceModelEndpointsResponse {
 }
 
 #[pyclass(
-    name = "ListModelCopyJobsResponse",
+    name = "ListModelCopyJobsOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyListModelCopyJobsResponse {
+struct PyOperationListModelCopyJobsOutput {
     inner: aws_sdk_bedrock::operation::list_model_copy_jobs::ListModelCopyJobsOutput,
 }
 
 #[pymethods]
-impl PyListModelCopyJobsResponse {
+impl PyOperationListModelCopyJobsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -24340,17 +24336,17 @@ impl PyListModelCopyJobsResponse {
 }
 
 #[pyclass(
-    name = "ListModelCustomizationJobsResponse",
+    name = "ListModelCustomizationJobsOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyListModelCustomizationJobsResponse {
+struct PyOperationListModelCustomizationJobsOutput {
     inner:
         aws_sdk_bedrock::operation::list_model_customization_jobs::ListModelCustomizationJobsOutput,
 }
 
 #[pymethods]
-impl PyListModelCustomizationJobsResponse {
+impl PyOperationListModelCustomizationJobsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -24406,16 +24402,16 @@ impl PyListModelCustomizationJobsResponse {
 }
 
 #[pyclass(
-    name = "ListModelImportJobsResponse",
+    name = "ListModelImportJobsOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyListModelImportJobsResponse {
+struct PyOperationListModelImportJobsOutput {
     inner: aws_sdk_bedrock::operation::list_model_import_jobs::ListModelImportJobsOutput,
 }
 
 #[pymethods]
-impl PyListModelImportJobsResponse {
+impl PyOperationListModelImportJobsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -24471,16 +24467,16 @@ impl PyListModelImportJobsResponse {
 }
 
 #[pyclass(
-    name = "ListModelInvocationJobsResponse",
+    name = "ListModelInvocationJobsOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyListModelInvocationJobsResponse {
+struct PyOperationListModelInvocationJobsOutput {
     inner: aws_sdk_bedrock::operation::list_model_invocation_jobs::ListModelInvocationJobsOutput,
 }
 
 #[pymethods]
-impl PyListModelInvocationJobsResponse {
+impl PyOperationListModelInvocationJobsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -24536,16 +24532,16 @@ impl PyListModelInvocationJobsResponse {
 }
 
 #[pyclass(
-    name = "ListPromptRoutersResponse",
+    name = "ListPromptRoutersOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyListPromptRoutersResponse {
+struct PyOperationListPromptRoutersOutput {
     inner: aws_sdk_bedrock::operation::list_prompt_routers::ListPromptRoutersOutput,
 }
 
 #[pymethods]
-impl PyListPromptRoutersResponse {
+impl PyOperationListPromptRoutersOutput {
     #[getter]
     fn prompt_router_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.prompt_router_summaries {
@@ -24601,16 +24597,16 @@ impl PyListPromptRoutersResponse {
 }
 
 #[pyclass(
-    name = "ListProvisionedModelThroughputsResponse",
+    name = "ListProvisionedModelThroughputsOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyListProvisionedModelThroughputsResponse {
+struct PyOperationListProvisionedModelThroughputsOutput {
     inner: aws_sdk_bedrock::operation::list_provisioned_model_throughputs::ListProvisionedModelThroughputsOutput,
 }
 
 #[pymethods]
-impl PyListProvisionedModelThroughputsResponse {
+impl PyOperationListProvisionedModelThroughputsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -24666,16 +24662,16 @@ impl PyListProvisionedModelThroughputsResponse {
 }
 
 #[pyclass(
-    name = "ListTagsForResourceResponse",
+    name = "ListTagsForResourceOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyListTagsForResourceResponse {
+struct PyOperationListTagsForResourceOutput {
     inner: aws_sdk_bedrock::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
 
 #[pymethods]
-impl PyListTagsForResourceResponse {
+impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
@@ -24715,16 +24711,16 @@ impl PyListTagsForResourceResponse {
 }
 
 #[pyclass(
-    name = "PutAccountDataRetentionResponse",
+    name = "PutAccountDataRetentionOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyPutAccountDataRetentionResponse {
+struct PyOperationPutAccountDataRetentionOutput {
     inner: aws_sdk_bedrock::operation::put_account_data_retention::PutAccountDataRetentionOutput,
 }
 
 #[pymethods]
-impl PyPutAccountDataRetentionResponse {
+impl PyOperationPutAccountDataRetentionOutput {
     #[getter]
     fn mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_4226 = (&self.inner.mode).as_str().into_py_any(py)?;
@@ -24756,16 +24752,16 @@ impl PyPutAccountDataRetentionResponse {
 }
 
 #[pyclass(
-    name = "PutEnforcedGuardrailConfigurationResponse",
+    name = "PutEnforcedGuardrailConfigurationOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyPutEnforcedGuardrailConfigurationResponse {
+struct PyOperationPutEnforcedGuardrailConfigurationOutput {
     inner: aws_sdk_bedrock::operation::put_enforced_guardrail_configuration::PutEnforcedGuardrailConfigurationOutput,
 }
 
 #[pymethods]
-impl PyPutEnforcedGuardrailConfigurationResponse {
+impl PyOperationPutEnforcedGuardrailConfigurationOutput {
     #[getter]
     fn config_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.config_id {
@@ -24821,16 +24817,16 @@ impl PyPutEnforcedGuardrailConfigurationResponse {
 }
 
 #[pyclass(
-    name = "PutModelInvocationLoggingConfigurationResponse",
+    name = "PutModelInvocationLoggingConfigurationOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyPutModelInvocationLoggingConfigurationResponse {
+struct PyOperationPutModelInvocationLoggingConfigurationOutput {
     inner: aws_sdk_bedrock::operation::put_model_invocation_logging_configuration::PutModelInvocationLoggingConfigurationOutput,
 }
 
 #[pymethods]
-impl PyPutModelInvocationLoggingConfigurationResponse {
+impl PyOperationPutModelInvocationLoggingConfigurationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -24838,16 +24834,16 @@ impl PyPutModelInvocationLoggingConfigurationResponse {
 }
 
 #[pyclass(
-    name = "PutResourcePolicyResponse",
+    name = "PutResourcePolicyOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyPutResourcePolicyResponse {
+struct PyOperationPutResourcePolicyOutput {
     inner: aws_sdk_bedrock::operation::put_resource_policy::PutResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyPutResourcePolicyResponse {
+impl PyOperationPutResourcePolicyOutput {
     #[getter]
     fn resource_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_arn {
@@ -24871,17 +24867,17 @@ impl PyPutResourcePolicyResponse {
 }
 
 #[pyclass(
-    name = "PutUseCaseForModelAccessResponse",
+    name = "PutUseCaseForModelAccessOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyPutUseCaseForModelAccessResponse {
+struct PyOperationPutUseCaseForModelAccessOutput {
     inner:
         aws_sdk_bedrock::operation::put_use_case_for_model_access::PutUseCaseForModelAccessOutput,
 }
 
 #[pymethods]
-impl PyPutUseCaseForModelAccessResponse {
+impl PyOperationPutUseCaseForModelAccessOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -24889,16 +24885,16 @@ impl PyPutUseCaseForModelAccessResponse {
 }
 
 #[pyclass(
-    name = "RegisterMarketplaceModelEndpointResponse",
+    name = "RegisterMarketplaceModelEndpointOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyRegisterMarketplaceModelEndpointResponse {
+struct PyOperationRegisterMarketplaceModelEndpointOutput {
     inner: aws_sdk_bedrock::operation::register_marketplace_model_endpoint::RegisterMarketplaceModelEndpointOutput,
 }
 
 #[pymethods]
-impl PyRegisterMarketplaceModelEndpointResponse {
+impl PyOperationRegisterMarketplaceModelEndpointOutput {
     #[getter]
     fn marketplace_model_endpoint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.marketplace_model_endpoint {
@@ -24928,16 +24924,16 @@ impl PyRegisterMarketplaceModelEndpointResponse {
 }
 
 #[pyclass(
-    name = "StartAutomatedReasoningPolicyBuildWorkflowResponse",
+    name = "StartAutomatedReasoningPolicyBuildWorkflowOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyStartAutomatedReasoningPolicyBuildWorkflowResponse {
+struct PyOperationStartAutomatedReasoningPolicyBuildWorkflowOutput {
     inner: aws_sdk_bedrock::operation::start_automated_reasoning_policy_build_workflow::StartAutomatedReasoningPolicyBuildWorkflowOutput,
 }
 
 #[pymethods]
-impl PyStartAutomatedReasoningPolicyBuildWorkflowResponse {
+impl PyOperationStartAutomatedReasoningPolicyBuildWorkflowOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_4240 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
@@ -24961,16 +24957,16 @@ impl PyStartAutomatedReasoningPolicyBuildWorkflowResponse {
 }
 
 #[pyclass(
-    name = "StartAutomatedReasoningPolicyTestWorkflowResponse",
+    name = "StartAutomatedReasoningPolicyTestWorkflowOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyStartAutomatedReasoningPolicyTestWorkflowResponse {
+struct PyOperationStartAutomatedReasoningPolicyTestWorkflowOutput {
     inner: aws_sdk_bedrock::operation::start_automated_reasoning_policy_test_workflow::StartAutomatedReasoningPolicyTestWorkflowOutput,
 }
 
 #[pymethods]
-impl PyStartAutomatedReasoningPolicyTestWorkflowResponse {
+impl PyOperationStartAutomatedReasoningPolicyTestWorkflowOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_4244 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
@@ -24986,16 +24982,16 @@ impl PyStartAutomatedReasoningPolicyTestWorkflowResponse {
 }
 
 #[pyclass(
-    name = "StopAdvancedPromptOptimizationJobResponse",
+    name = "StopAdvancedPromptOptimizationJobOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyStopAdvancedPromptOptimizationJobResponse {
+struct PyOperationStopAdvancedPromptOptimizationJobOutput {
     inner: aws_sdk_bedrock::operation::stop_advanced_prompt_optimization_job::StopAdvancedPromptOptimizationJobOutput,
 }
 
 #[pymethods]
-impl PyStopAdvancedPromptOptimizationJobResponse {
+impl PyOperationStopAdvancedPromptOptimizationJobOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -25003,16 +24999,16 @@ impl PyStopAdvancedPromptOptimizationJobResponse {
 }
 
 #[pyclass(
-    name = "StopEvaluationJobResponse",
+    name = "StopEvaluationJobOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyStopEvaluationJobResponse {
+struct PyOperationStopEvaluationJobOutput {
     inner: aws_sdk_bedrock::operation::stop_evaluation_job::StopEvaluationJobOutput,
 }
 
 #[pymethods]
-impl PyStopEvaluationJobResponse {
+impl PyOperationStopEvaluationJobOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -25020,17 +25016,17 @@ impl PyStopEvaluationJobResponse {
 }
 
 #[pyclass(
-    name = "StopModelCustomizationJobResponse",
+    name = "StopModelCustomizationJobOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyStopModelCustomizationJobResponse {
+struct PyOperationStopModelCustomizationJobOutput {
     inner:
         aws_sdk_bedrock::operation::stop_model_customization_job::StopModelCustomizationJobOutput,
 }
 
 #[pymethods]
-impl PyStopModelCustomizationJobResponse {
+impl PyOperationStopModelCustomizationJobOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -25038,46 +25034,42 @@ impl PyStopModelCustomizationJobResponse {
 }
 
 #[pyclass(
-    name = "StopModelInvocationJobResponse",
+    name = "StopModelInvocationJobOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyStopModelInvocationJobResponse {
+struct PyOperationStopModelInvocationJobOutput {
     inner: aws_sdk_bedrock::operation::stop_model_invocation_job::StopModelInvocationJobOutput,
 }
 
 #[pymethods]
-impl PyStopModelInvocationJobResponse {
+impl PyOperationStopModelInvocationJobOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "TagResourceResponse", module = "rboto_bedrock._native", frozen)]
-struct PyTagResourceResponse {
+#[pyclass(name = "TagResourceOutput", module = "rboto_bedrock._native", frozen)]
+struct PyOperationTagResourceOutput {
     inner: aws_sdk_bedrock::operation::tag_resource::TagResourceOutput,
 }
 
 #[pymethods]
-impl PyTagResourceResponse {
+impl PyOperationTagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(
-    name = "UntagResourceResponse",
-    module = "rboto_bedrock._native",
-    frozen
-)]
-struct PyUntagResourceResponse {
+#[pyclass(name = "UntagResourceOutput", module = "rboto_bedrock._native", frozen)]
+struct PyOperationUntagResourceOutput {
     inner: aws_sdk_bedrock::operation::untag_resource::UntagResourceOutput,
 }
 
 #[pymethods]
-impl PyUntagResourceResponse {
+impl PyOperationUntagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -25085,16 +25077,16 @@ impl PyUntagResourceResponse {
 }
 
 #[pyclass(
-    name = "UpdateAutomatedReasoningPolicyResponse",
+    name = "UpdateAutomatedReasoningPolicyOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyUpdateAutomatedReasoningPolicyResponse {
+struct PyOperationUpdateAutomatedReasoningPolicyOutput {
     inner: aws_sdk_bedrock::operation::update_automated_reasoning_policy::UpdateAutomatedReasoningPolicyOutput,
 }
 
 #[pymethods]
-impl PyUpdateAutomatedReasoningPolicyResponse {
+impl PyOperationUpdateAutomatedReasoningPolicyOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_4246 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
@@ -25134,16 +25126,16 @@ impl PyUpdateAutomatedReasoningPolicyResponse {
 }
 
 #[pyclass(
-    name = "UpdateAutomatedReasoningPolicyAnnotationsResponse",
+    name = "UpdateAutomatedReasoningPolicyAnnotationsOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyUpdateAutomatedReasoningPolicyAnnotationsResponse {
+struct PyOperationUpdateAutomatedReasoningPolicyAnnotationsOutput {
     inner: aws_sdk_bedrock::operation::update_automated_reasoning_policy_annotations::UpdateAutomatedReasoningPolicyAnnotationsOutput,
 }
 
 #[pymethods]
-impl PyUpdateAutomatedReasoningPolicyAnnotationsResponse {
+impl PyOperationUpdateAutomatedReasoningPolicyAnnotationsOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_4254 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
@@ -25183,16 +25175,16 @@ impl PyUpdateAutomatedReasoningPolicyAnnotationsResponse {
 }
 
 #[pyclass(
-    name = "UpdateAutomatedReasoningPolicyTestCaseResponse",
+    name = "UpdateAutomatedReasoningPolicyTestCaseOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyUpdateAutomatedReasoningPolicyTestCaseResponse {
+struct PyOperationUpdateAutomatedReasoningPolicyTestCaseOutput {
     inner: aws_sdk_bedrock::operation::update_automated_reasoning_policy_test_case::UpdateAutomatedReasoningPolicyTestCaseOutput,
 }
 
 #[pymethods]
-impl PyUpdateAutomatedReasoningPolicyTestCaseResponse {
+impl PyOperationUpdateAutomatedReasoningPolicyTestCaseOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_4262 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
@@ -25216,16 +25208,16 @@ impl PyUpdateAutomatedReasoningPolicyTestCaseResponse {
 }
 
 #[pyclass(
-    name = "UpdateCustomModelDeploymentResponse",
+    name = "UpdateCustomModelDeploymentOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyUpdateCustomModelDeploymentResponse {
+struct PyOperationUpdateCustomModelDeploymentOutput {
     inner: aws_sdk_bedrock::operation::update_custom_model_deployment::UpdateCustomModelDeploymentOutput,
 }
 
 #[pymethods]
-impl PyUpdateCustomModelDeploymentResponse {
+impl PyOperationUpdateCustomModelDeploymentOutput {
     #[getter]
     fn custom_model_deployment_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_4266 = (&self.inner.custom_model_deployment_arn)
@@ -25245,16 +25237,16 @@ impl PyUpdateCustomModelDeploymentResponse {
 }
 
 #[pyclass(
-    name = "UpdateGuardrailResponse",
+    name = "UpdateGuardrailOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyUpdateGuardrailResponse {
+struct PyOperationUpdateGuardrailOutput {
     inner: aws_sdk_bedrock::operation::update_guardrail::UpdateGuardrailOutput,
 }
 
 #[pymethods]
-impl PyUpdateGuardrailResponse {
+impl PyOperationUpdateGuardrailOutput {
     #[getter]
     fn guardrail_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_4268 = (&self.inner.guardrail_id).as_str().into_py_any(py)?;
@@ -25294,16 +25286,16 @@ impl PyUpdateGuardrailResponse {
 }
 
 #[pyclass(
-    name = "UpdateMarketplaceModelEndpointResponse",
+    name = "UpdateMarketplaceModelEndpointOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyUpdateMarketplaceModelEndpointResponse {
+struct PyOperationUpdateMarketplaceModelEndpointOutput {
     inner: aws_sdk_bedrock::operation::update_marketplace_model_endpoint::UpdateMarketplaceModelEndpointOutput,
 }
 
 #[pymethods]
-impl PyUpdateMarketplaceModelEndpointResponse {
+impl PyOperationUpdateMarketplaceModelEndpointOutput {
     #[getter]
     fn marketplace_model_endpoint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.marketplace_model_endpoint {
@@ -25333,16 +25325,16 @@ impl PyUpdateMarketplaceModelEndpointResponse {
 }
 
 #[pyclass(
-    name = "UpdateProvisionedModelThroughputResponse",
+    name = "UpdateProvisionedModelThroughputOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
-struct PyUpdateProvisionedModelThroughputResponse {
+struct PyOperationUpdateProvisionedModelThroughputOutput {
     inner: aws_sdk_bedrock::operation::update_provisioned_model_throughput::UpdateProvisionedModelThroughputOutput,
 }
 
 #[pymethods]
-impl PyUpdateProvisionedModelThroughputResponse {
+impl PyOperationUpdateProvisionedModelThroughputOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -25439,114 +25431,114 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyValidatorMetric>()?;
     module.add_class::<PyValidityTerm>()?;
     module.add_class::<PyVpcConfig>()?;
-    module.add_class::<PyBatchDeleteAdvancedPromptOptimizationJobResponse>()?;
-    module.add_class::<PyBatchDeleteEvaluationJobResponse>()?;
-    module.add_class::<PyCancelAutomatedReasoningPolicyBuildWorkflowResponse>()?;
-    module.add_class::<PyCreateAdvancedPromptOptimizationJobResponse>()?;
-    module.add_class::<PyCreateAutomatedReasoningPolicyResponse>()?;
-    module.add_class::<PyCreateAutomatedReasoningPolicyTestCaseResponse>()?;
-    module.add_class::<PyCreateAutomatedReasoningPolicyVersionResponse>()?;
-    module.add_class::<PyCreateCustomModelResponse>()?;
-    module.add_class::<PyCreateCustomModelDeploymentResponse>()?;
-    module.add_class::<PyCreateEvaluationJobResponse>()?;
-    module.add_class::<PyCreateFoundationModelAgreementResponse>()?;
-    module.add_class::<PyCreateGuardrailResponse>()?;
-    module.add_class::<PyCreateGuardrailVersionResponse>()?;
-    module.add_class::<PyCreateInferenceProfileResponse>()?;
-    module.add_class::<PyCreateMarketplaceModelEndpointResponse>()?;
-    module.add_class::<PyCreateModelCopyJobResponse>()?;
-    module.add_class::<PyCreateModelCustomizationJobResponse>()?;
-    module.add_class::<PyCreateModelImportJobResponse>()?;
-    module.add_class::<PyCreateModelInvocationJobResponse>()?;
-    module.add_class::<PyCreatePromptRouterResponse>()?;
-    module.add_class::<PyCreateProvisionedModelThroughputResponse>()?;
-    module.add_class::<PyDeleteAutomatedReasoningPolicyResponse>()?;
-    module.add_class::<PyDeleteAutomatedReasoningPolicyBuildWorkflowResponse>()?;
-    module.add_class::<PyDeleteAutomatedReasoningPolicyTestCaseResponse>()?;
-    module.add_class::<PyDeleteCustomModelResponse>()?;
-    module.add_class::<PyDeleteCustomModelDeploymentResponse>()?;
-    module.add_class::<PyDeleteEnforcedGuardrailConfigurationResponse>()?;
-    module.add_class::<PyDeleteFoundationModelAgreementResponse>()?;
-    module.add_class::<PyDeleteGuardrailResponse>()?;
-    module.add_class::<PyDeleteImportedModelResponse>()?;
-    module.add_class::<PyDeleteInferenceProfileResponse>()?;
-    module.add_class::<PyDeleteMarketplaceModelEndpointResponse>()?;
-    module.add_class::<PyDeleteModelInvocationLoggingConfigurationResponse>()?;
-    module.add_class::<PyDeletePromptRouterResponse>()?;
-    module.add_class::<PyDeleteProvisionedModelThroughputResponse>()?;
-    module.add_class::<PyDeleteResourcePolicyResponse>()?;
-    module.add_class::<PyDeregisterMarketplaceModelEndpointResponse>()?;
-    module.add_class::<PyExportAutomatedReasoningPolicyVersionResponse>()?;
-    module.add_class::<PyGetAccountDataRetentionResponse>()?;
-    module.add_class::<PyGetAdvancedPromptOptimizationJobResponse>()?;
-    module.add_class::<PyGetAutomatedReasoningPolicyResponse>()?;
-    module.add_class::<PyGetAutomatedReasoningPolicyAnnotationsResponse>()?;
-    module.add_class::<PyGetAutomatedReasoningPolicyBuildWorkflowResponse>()?;
-    module.add_class::<PyGetAutomatedReasoningPolicyBuildWorkflowResultAssetsResponse>()?;
-    module.add_class::<PyGetAutomatedReasoningPolicyNextScenarioResponse>()?;
-    module.add_class::<PyGetAutomatedReasoningPolicyTestCaseResponse>()?;
-    module.add_class::<PyGetAutomatedReasoningPolicyTestResultResponse>()?;
-    module.add_class::<PyGetCustomModelResponse>()?;
-    module.add_class::<PyGetCustomModelDeploymentResponse>()?;
-    module.add_class::<PyGetEvaluationJobResponse>()?;
-    module.add_class::<PyGetFoundationModelResponse>()?;
-    module.add_class::<PyGetFoundationModelAvailabilityResponse>()?;
-    module.add_class::<PyGetGuardrailResponse>()?;
-    module.add_class::<PyGetImportedModelResponse>()?;
-    module.add_class::<PyGetInferenceProfileResponse>()?;
-    module.add_class::<PyGetMarketplaceModelEndpointResponse>()?;
-    module.add_class::<PyGetModelCopyJobResponse>()?;
-    module.add_class::<PyGetModelCustomizationJobResponse>()?;
-    module.add_class::<PyGetModelImportJobResponse>()?;
-    module.add_class::<PyGetModelInvocationJobResponse>()?;
-    module.add_class::<PyGetModelInvocationLoggingConfigurationResponse>()?;
-    module.add_class::<PyGetPromptRouterResponse>()?;
-    module.add_class::<PyGetProvisionedModelThroughputResponse>()?;
-    module.add_class::<PyGetResourcePolicyResponse>()?;
-    module.add_class::<PyGetUseCaseForModelAccessResponse>()?;
-    module.add_class::<PyListAdvancedPromptOptimizationJobsResponse>()?;
-    module.add_class::<PyListAutomatedReasoningPoliciesResponse>()?;
-    module.add_class::<PyListAutomatedReasoningPolicyBuildWorkflowsResponse>()?;
-    module.add_class::<PyListAutomatedReasoningPolicyTestCasesResponse>()?;
-    module.add_class::<PyListAutomatedReasoningPolicyTestResultsResponse>()?;
-    module.add_class::<PyListCustomModelDeploymentsResponse>()?;
-    module.add_class::<PyListCustomModelsResponse>()?;
-    module.add_class::<PyListEnforcedGuardrailsConfigurationResponse>()?;
-    module.add_class::<PyListEvaluationJobsResponse>()?;
-    module.add_class::<PyListFoundationModelAgreementOffersResponse>()?;
-    module.add_class::<PyListFoundationModelsResponse>()?;
-    module.add_class::<PyListGuardrailsResponse>()?;
-    module.add_class::<PyListImportedModelsResponse>()?;
-    module.add_class::<PyListInferenceProfilesResponse>()?;
-    module.add_class::<PyListMarketplaceModelEndpointsResponse>()?;
-    module.add_class::<PyListModelCopyJobsResponse>()?;
-    module.add_class::<PyListModelCustomizationJobsResponse>()?;
-    module.add_class::<PyListModelImportJobsResponse>()?;
-    module.add_class::<PyListModelInvocationJobsResponse>()?;
-    module.add_class::<PyListPromptRoutersResponse>()?;
-    module.add_class::<PyListProvisionedModelThroughputsResponse>()?;
-    module.add_class::<PyListTagsForResourceResponse>()?;
-    module.add_class::<PyPutAccountDataRetentionResponse>()?;
-    module.add_class::<PyPutEnforcedGuardrailConfigurationResponse>()?;
-    module.add_class::<PyPutModelInvocationLoggingConfigurationResponse>()?;
-    module.add_class::<PyPutResourcePolicyResponse>()?;
-    module.add_class::<PyPutUseCaseForModelAccessResponse>()?;
-    module.add_class::<PyRegisterMarketplaceModelEndpointResponse>()?;
-    module.add_class::<PyStartAutomatedReasoningPolicyBuildWorkflowResponse>()?;
-    module.add_class::<PyStartAutomatedReasoningPolicyTestWorkflowResponse>()?;
-    module.add_class::<PyStopAdvancedPromptOptimizationJobResponse>()?;
-    module.add_class::<PyStopEvaluationJobResponse>()?;
-    module.add_class::<PyStopModelCustomizationJobResponse>()?;
-    module.add_class::<PyStopModelInvocationJobResponse>()?;
-    module.add_class::<PyTagResourceResponse>()?;
-    module.add_class::<PyUntagResourceResponse>()?;
-    module.add_class::<PyUpdateAutomatedReasoningPolicyResponse>()?;
-    module.add_class::<PyUpdateAutomatedReasoningPolicyAnnotationsResponse>()?;
-    module.add_class::<PyUpdateAutomatedReasoningPolicyTestCaseResponse>()?;
-    module.add_class::<PyUpdateCustomModelDeploymentResponse>()?;
-    module.add_class::<PyUpdateGuardrailResponse>()?;
-    module.add_class::<PyUpdateMarketplaceModelEndpointResponse>()?;
-    module.add_class::<PyUpdateProvisionedModelThroughputResponse>()?;
+    module.add_class::<PyOperationBatchDeleteAdvancedPromptOptimizationJobOutput>()?;
+    module.add_class::<PyOperationBatchDeleteEvaluationJobOutput>()?;
+    module.add_class::<PyOperationCancelAutomatedReasoningPolicyBuildWorkflowOutput>()?;
+    module.add_class::<PyOperationCreateAdvancedPromptOptimizationJobOutput>()?;
+    module.add_class::<PyOperationCreateAutomatedReasoningPolicyOutput>()?;
+    module.add_class::<PyOperationCreateAutomatedReasoningPolicyTestCaseOutput>()?;
+    module.add_class::<PyOperationCreateAutomatedReasoningPolicyVersionOutput>()?;
+    module.add_class::<PyOperationCreateCustomModelOutput>()?;
+    module.add_class::<PyOperationCreateCustomModelDeploymentOutput>()?;
+    module.add_class::<PyOperationCreateEvaluationJobOutput>()?;
+    module.add_class::<PyOperationCreateFoundationModelAgreementOutput>()?;
+    module.add_class::<PyOperationCreateGuardrailOutput>()?;
+    module.add_class::<PyOperationCreateGuardrailVersionOutput>()?;
+    module.add_class::<PyOperationCreateInferenceProfileOutput>()?;
+    module.add_class::<PyOperationCreateMarketplaceModelEndpointOutput>()?;
+    module.add_class::<PyOperationCreateModelCopyJobOutput>()?;
+    module.add_class::<PyOperationCreateModelCustomizationJobOutput>()?;
+    module.add_class::<PyOperationCreateModelImportJobOutput>()?;
+    module.add_class::<PyOperationCreateModelInvocationJobOutput>()?;
+    module.add_class::<PyOperationCreatePromptRouterOutput>()?;
+    module.add_class::<PyOperationCreateProvisionedModelThroughputOutput>()?;
+    module.add_class::<PyOperationDeleteAutomatedReasoningPolicyOutput>()?;
+    module.add_class::<PyOperationDeleteAutomatedReasoningPolicyBuildWorkflowOutput>()?;
+    module.add_class::<PyOperationDeleteAutomatedReasoningPolicyTestCaseOutput>()?;
+    module.add_class::<PyOperationDeleteCustomModelOutput>()?;
+    module.add_class::<PyOperationDeleteCustomModelDeploymentOutput>()?;
+    module.add_class::<PyOperationDeleteEnforcedGuardrailConfigurationOutput>()?;
+    module.add_class::<PyOperationDeleteFoundationModelAgreementOutput>()?;
+    module.add_class::<PyOperationDeleteGuardrailOutput>()?;
+    module.add_class::<PyOperationDeleteImportedModelOutput>()?;
+    module.add_class::<PyOperationDeleteInferenceProfileOutput>()?;
+    module.add_class::<PyOperationDeleteMarketplaceModelEndpointOutput>()?;
+    module.add_class::<PyOperationDeleteModelInvocationLoggingConfigurationOutput>()?;
+    module.add_class::<PyOperationDeletePromptRouterOutput>()?;
+    module.add_class::<PyOperationDeleteProvisionedModelThroughputOutput>()?;
+    module.add_class::<PyOperationDeleteResourcePolicyOutput>()?;
+    module.add_class::<PyOperationDeregisterMarketplaceModelEndpointOutput>()?;
+    module.add_class::<PyOperationExportAutomatedReasoningPolicyVersionOutput>()?;
+    module.add_class::<PyOperationGetAccountDataRetentionOutput>()?;
+    module.add_class::<PyOperationGetAdvancedPromptOptimizationJobOutput>()?;
+    module.add_class::<PyOperationGetAutomatedReasoningPolicyOutput>()?;
+    module.add_class::<PyOperationGetAutomatedReasoningPolicyAnnotationsOutput>()?;
+    module.add_class::<PyOperationGetAutomatedReasoningPolicyBuildWorkflowOutput>()?;
+    module.add_class::<PyOperationGetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput>()?;
+    module.add_class::<PyOperationGetAutomatedReasoningPolicyNextScenarioOutput>()?;
+    module.add_class::<PyOperationGetAutomatedReasoningPolicyTestCaseOutput>()?;
+    module.add_class::<PyOperationGetAutomatedReasoningPolicyTestResultOutput>()?;
+    module.add_class::<PyOperationGetCustomModelOutput>()?;
+    module.add_class::<PyOperationGetCustomModelDeploymentOutput>()?;
+    module.add_class::<PyOperationGetEvaluationJobOutput>()?;
+    module.add_class::<PyOperationGetFoundationModelOutput>()?;
+    module.add_class::<PyOperationGetFoundationModelAvailabilityOutput>()?;
+    module.add_class::<PyOperationGetGuardrailOutput>()?;
+    module.add_class::<PyOperationGetImportedModelOutput>()?;
+    module.add_class::<PyOperationGetInferenceProfileOutput>()?;
+    module.add_class::<PyOperationGetMarketplaceModelEndpointOutput>()?;
+    module.add_class::<PyOperationGetModelCopyJobOutput>()?;
+    module.add_class::<PyOperationGetModelCustomizationJobOutput>()?;
+    module.add_class::<PyOperationGetModelImportJobOutput>()?;
+    module.add_class::<PyOperationGetModelInvocationJobOutput>()?;
+    module.add_class::<PyOperationGetModelInvocationLoggingConfigurationOutput>()?;
+    module.add_class::<PyOperationGetPromptRouterOutput>()?;
+    module.add_class::<PyOperationGetProvisionedModelThroughputOutput>()?;
+    module.add_class::<PyOperationGetResourcePolicyOutput>()?;
+    module.add_class::<PyOperationGetUseCaseForModelAccessOutput>()?;
+    module.add_class::<PyOperationListAdvancedPromptOptimizationJobsOutput>()?;
+    module.add_class::<PyOperationListAutomatedReasoningPoliciesOutput>()?;
+    module.add_class::<PyOperationListAutomatedReasoningPolicyBuildWorkflowsOutput>()?;
+    module.add_class::<PyOperationListAutomatedReasoningPolicyTestCasesOutput>()?;
+    module.add_class::<PyOperationListAutomatedReasoningPolicyTestResultsOutput>()?;
+    module.add_class::<PyOperationListCustomModelDeploymentsOutput>()?;
+    module.add_class::<PyOperationListCustomModelsOutput>()?;
+    module.add_class::<PyOperationListEnforcedGuardrailsConfigurationOutput>()?;
+    module.add_class::<PyOperationListEvaluationJobsOutput>()?;
+    module.add_class::<PyOperationListFoundationModelAgreementOffersOutput>()?;
+    module.add_class::<PyOperationListFoundationModelsOutput>()?;
+    module.add_class::<PyOperationListGuardrailsOutput>()?;
+    module.add_class::<PyOperationListImportedModelsOutput>()?;
+    module.add_class::<PyOperationListInferenceProfilesOutput>()?;
+    module.add_class::<PyOperationListMarketplaceModelEndpointsOutput>()?;
+    module.add_class::<PyOperationListModelCopyJobsOutput>()?;
+    module.add_class::<PyOperationListModelCustomizationJobsOutput>()?;
+    module.add_class::<PyOperationListModelImportJobsOutput>()?;
+    module.add_class::<PyOperationListModelInvocationJobsOutput>()?;
+    module.add_class::<PyOperationListPromptRoutersOutput>()?;
+    module.add_class::<PyOperationListProvisionedModelThroughputsOutput>()?;
+    module.add_class::<PyOperationListTagsForResourceOutput>()?;
+    module.add_class::<PyOperationPutAccountDataRetentionOutput>()?;
+    module.add_class::<PyOperationPutEnforcedGuardrailConfigurationOutput>()?;
+    module.add_class::<PyOperationPutModelInvocationLoggingConfigurationOutput>()?;
+    module.add_class::<PyOperationPutResourcePolicyOutput>()?;
+    module.add_class::<PyOperationPutUseCaseForModelAccessOutput>()?;
+    module.add_class::<PyOperationRegisterMarketplaceModelEndpointOutput>()?;
+    module.add_class::<PyOperationStartAutomatedReasoningPolicyBuildWorkflowOutput>()?;
+    module.add_class::<PyOperationStartAutomatedReasoningPolicyTestWorkflowOutput>()?;
+    module.add_class::<PyOperationStopAdvancedPromptOptimizationJobOutput>()?;
+    module.add_class::<PyOperationStopEvaluationJobOutput>()?;
+    module.add_class::<PyOperationStopModelCustomizationJobOutput>()?;
+    module.add_class::<PyOperationStopModelInvocationJobOutput>()?;
+    module.add_class::<PyOperationTagResourceOutput>()?;
+    module.add_class::<PyOperationUntagResourceOutput>()?;
+    module.add_class::<PyOperationUpdateAutomatedReasoningPolicyOutput>()?;
+    module.add_class::<PyOperationUpdateAutomatedReasoningPolicyAnnotationsOutput>()?;
+    module.add_class::<PyOperationUpdateAutomatedReasoningPolicyTestCaseOutput>()?;
+    module.add_class::<PyOperationUpdateCustomModelDeploymentOutput>()?;
+    module.add_class::<PyOperationUpdateGuardrailOutput>()?;
+    module.add_class::<PyOperationUpdateMarketplaceModelEndpointOutput>()?;
+    module.add_class::<PyOperationUpdateProvisionedModelThroughputOutput>()?;
 
     Ok(())
 }
@@ -25621,7 +25613,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "BatchDeleteAdvancedPromptOptimizationJob")
                 })
             })?;
-            Ok(PyBatchDeleteAdvancedPromptOptimizationJobResponse { inner: output })
+            Ok(PyOperationBatchDeleteAdvancedPromptOptimizationJobOutput { inner: output })
         })
     }
 
@@ -25665,7 +25657,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchDeleteEvaluationJob"))
             })?;
-            Ok(PyBatchDeleteEvaluationJobResponse { inner: output })
+            Ok(PyOperationBatchDeleteEvaluationJobOutput { inner: output })
         })
     }
 
@@ -25713,7 +25705,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "CancelAutomatedReasoningPolicyBuildWorkflow")
                 })
             })?;
-            Ok(PyCancelAutomatedReasoningPolicyBuildWorkflowResponse { inner: output })
+            Ok(PyOperationCancelAutomatedReasoningPolicyBuildWorkflowOutput { inner: output })
         })
     }
 
@@ -25816,7 +25808,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "CreateAdvancedPromptOptimizationJob")
                 })
             })?;
-            Ok(PyCreateAdvancedPromptOptimizationJobResponse { inner: output })
+            Ok(PyOperationCreateAdvancedPromptOptimizationJobOutput { inner: output })
         })
     }
 
@@ -25897,7 +25889,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateAutomatedReasoningPolicy"))
             })?;
-            Ok(PyCreateAutomatedReasoningPolicyResponse { inner: output })
+            Ok(PyOperationCreateAutomatedReasoningPolicyOutput { inner: output })
         })
     }
 
@@ -25978,7 +25970,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "CreateAutomatedReasoningPolicyTestCase")
                 })
             })?;
-            Ok(PyCreateAutomatedReasoningPolicyTestCaseResponse { inner: output })
+            Ok(PyOperationCreateAutomatedReasoningPolicyTestCaseOutput { inner: output })
         })
     }
 
@@ -26047,7 +26039,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "CreateAutomatedReasoningPolicyVersion")
                 })
             })?;
-            Ok(PyCreateAutomatedReasoningPolicyVersionResponse { inner: output })
+            Ok(PyOperationCreateAutomatedReasoningPolicyVersionOutput { inner: output })
         })
     }
 
@@ -26137,7 +26129,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateCustomModel"))
             })?;
-            Ok(PyCreateCustomModelResponse { inner: output })
+            Ok(PyOperationCreateCustomModelOutput { inner: output })
         })
     }
 
@@ -26211,7 +26203,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateCustomModelDeployment"))
             })?;
-            Ok(PyCreateCustomModelDeploymentResponse { inner: output })
+            Ok(PyOperationCreateCustomModelDeploymentOutput { inner: output })
         })
     }
 
@@ -26324,7 +26316,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateEvaluationJob"))
             })?;
-            Ok(PyCreateEvaluationJobResponse { inner: output })
+            Ok(PyOperationCreateEvaluationJobOutput { inner: output })
         })
     }
 
@@ -26369,7 +26361,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateFoundationModelAgreement"))
             })?;
-            Ok(PyCreateFoundationModelAgreementResponse { inner: output })
+            Ok(PyOperationCreateFoundationModelAgreementOutput { inner: output })
         })
     }
 
@@ -26514,7 +26506,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateGuardrail"))
             })?;
-            Ok(PyCreateGuardrailResponse { inner: output })
+            Ok(PyOperationCreateGuardrailOutput { inner: output })
         })
     }
 
@@ -26568,7 +26560,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateGuardrailVersion"))
             })?;
-            Ok(PyCreateGuardrailVersionResponse { inner: output })
+            Ok(PyOperationCreateGuardrailVersionOutput { inner: output })
         })
     }
 
@@ -26642,7 +26634,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateInferenceProfile"))
             })?;
-            Ok(PyCreateInferenceProfileResponse { inner: output })
+            Ok(PyOperationCreateInferenceProfileOutput { inner: output })
         })
     }
 
@@ -26723,7 +26715,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateMarketplaceModelEndpoint"))
             })?;
-            Ok(PyCreateMarketplaceModelEndpointResponse { inner: output })
+            Ok(PyOperationCreateMarketplaceModelEndpointOutput { inner: output })
         })
     }
 
@@ -26798,7 +26790,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateModelCopyJob"))
             })?;
-            Ok(PyCreateModelCopyJobResponse { inner: output })
+            Ok(PyOperationCreateModelCopyJobOutput { inner: output })
         })
     }
 
@@ -26964,7 +26956,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateModelCustomizationJob"))
             })?;
-            Ok(PyCreateModelCustomizationJobResponse { inner: output })
+            Ok(PyOperationCreateModelCustomizationJobOutput { inner: output })
         })
     }
 
@@ -27075,7 +27067,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateModelImportJob"))
             })?;
-            Ok(PyCreateModelImportJobResponse { inner: output })
+            Ok(PyOperationCreateModelImportJobOutput { inner: output })
         })
     }
 
@@ -27189,7 +27181,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateModelInvocationJob"))
             })?;
-            Ok(PyCreateModelInvocationJobResponse { inner: output })
+            Ok(PyOperationCreateModelInvocationJobOutput { inner: output })
         })
     }
 
@@ -27283,7 +27275,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreatePromptRouter"))
             })?;
-            Ok(PyCreatePromptRouterResponse { inner: output })
+            Ok(PyOperationCreatePromptRouterOutput { inner: output })
         })
     }
 
@@ -27367,7 +27359,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateProvisionedModelThroughput"))
             })?;
-            Ok(PyCreateProvisionedModelThroughputResponse { inner: output })
+            Ok(PyOperationCreateProvisionedModelThroughputOutput { inner: output })
         })
     }
 
@@ -27412,7 +27404,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAutomatedReasoningPolicy"))
             })?;
-            Ok(PyDeleteAutomatedReasoningPolicyResponse { inner: output })
+            Ok(PyOperationDeleteAutomatedReasoningPolicyOutput { inner: output })
         })
     }
 
@@ -27472,7 +27464,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "DeleteAutomatedReasoningPolicyBuildWorkflow")
                 })
             })?;
-            Ok(PyDeleteAutomatedReasoningPolicyBuildWorkflowResponse { inner: output })
+            Ok(PyOperationDeleteAutomatedReasoningPolicyBuildWorkflowOutput { inner: output })
         })
     }
 
@@ -27531,7 +27523,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "DeleteAutomatedReasoningPolicyTestCase")
                 })
             })?;
-            Ok(PyDeleteAutomatedReasoningPolicyTestCaseResponse { inner: output })
+            Ok(PyOperationDeleteAutomatedReasoningPolicyTestCaseOutput { inner: output })
         })
     }
 
@@ -27569,7 +27561,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteCustomModel"))
             })?;
-            Ok(PyDeleteCustomModelResponse { inner: output })
+            Ok(PyOperationDeleteCustomModelOutput { inner: output })
         })
     }
 
@@ -27608,7 +27600,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteCustomModelDeployment"))
             })?;
-            Ok(PyDeleteCustomModelDeploymentResponse { inner: output })
+            Ok(PyOperationDeleteCustomModelDeploymentOutput { inner: output })
         })
     }
 
@@ -27648,7 +27640,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "DeleteEnforcedGuardrailConfiguration")
                 })
             })?;
-            Ok(PyDeleteEnforcedGuardrailConfigurationResponse { inner: output })
+            Ok(PyOperationDeleteEnforcedGuardrailConfigurationOutput { inner: output })
         })
     }
 
@@ -27686,7 +27678,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteFoundationModelAgreement"))
             })?;
-            Ok(PyDeleteFoundationModelAgreementResponse { inner: output })
+            Ok(PyOperationDeleteFoundationModelAgreementOutput { inner: output })
         })
     }
 
@@ -27733,7 +27725,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteGuardrail"))
             })?;
-            Ok(PyDeleteGuardrailResponse { inner: output })
+            Ok(PyOperationDeleteGuardrailOutput { inner: output })
         })
     }
 
@@ -27771,7 +27763,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteImportedModel"))
             })?;
-            Ok(PyDeleteImportedModelResponse { inner: output })
+            Ok(PyOperationDeleteImportedModelOutput { inner: output })
         })
     }
 
@@ -27810,7 +27802,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteInferenceProfile"))
             })?;
-            Ok(PyDeleteInferenceProfileResponse { inner: output })
+            Ok(PyOperationDeleteInferenceProfileOutput { inner: output })
         })
     }
 
@@ -27848,7 +27840,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteMarketplaceModelEndpoint"))
             })?;
-            Ok(PyDeleteMarketplaceModelEndpointResponse { inner: output })
+            Ok(PyOperationDeleteMarketplaceModelEndpointOutput { inner: output })
         })
     }
 
@@ -27880,7 +27872,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "DeleteModelInvocationLoggingConfiguration")
                 })
             })?;
-            Ok(PyDeleteModelInvocationLoggingConfigurationResponse { inner: output })
+            Ok(PyOperationDeleteModelInvocationLoggingConfigurationOutput { inner: output })
         })
     }
 
@@ -27919,7 +27911,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeletePromptRouter"))
             })?;
-            Ok(PyDeletePromptRouterResponse { inner: output })
+            Ok(PyOperationDeletePromptRouterOutput { inner: output })
         })
     }
 
@@ -27958,7 +27950,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteProvisionedModelThroughput"))
             })?;
-            Ok(PyDeleteProvisionedModelThroughputResponse { inner: output })
+            Ok(PyOperationDeleteProvisionedModelThroughputOutput { inner: output })
         })
     }
 
@@ -27996,7 +27988,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteResourcePolicy"))
             })?;
-            Ok(PyDeleteResourcePolicyResponse { inner: output })
+            Ok(PyOperationDeleteResourcePolicyOutput { inner: output })
         })
     }
 
@@ -28036,7 +28028,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "DeregisterMarketplaceModelEndpoint")
                 })
             })?;
-            Ok(PyDeregisterMarketplaceModelEndpointResponse { inner: output })
+            Ok(PyOperationDeregisterMarketplaceModelEndpointOutput { inner: output })
         })
     }
 
@@ -28076,7 +28068,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "ExportAutomatedReasoningPolicyVersion")
                 })
             })?;
-            Ok(PyExportAutomatedReasoningPolicyVersionResponse { inner: output })
+            Ok(PyOperationExportAutomatedReasoningPolicyVersionOutput { inner: output })
         })
     }
 
@@ -28106,7 +28098,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAccountDataRetention"))
             })?;
-            Ok(PyGetAccountDataRetentionResponse { inner: output })
+            Ok(PyOperationGetAccountDataRetentionOutput { inner: output })
         })
     }
 
@@ -28144,7 +28136,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAdvancedPromptOptimizationJob"))
             })?;
-            Ok(PyGetAdvancedPromptOptimizationJobResponse { inner: output })
+            Ok(PyOperationGetAdvancedPromptOptimizationJobOutput { inner: output })
         })
     }
 
@@ -28182,7 +28174,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAutomatedReasoningPolicy"))
             })?;
-            Ok(PyGetAutomatedReasoningPolicyResponse { inner: output })
+            Ok(PyOperationGetAutomatedReasoningPolicyOutput { inner: output })
         })
     }
 
@@ -28230,7 +28222,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "GetAutomatedReasoningPolicyAnnotations")
                 })
             })?;
-            Ok(PyGetAutomatedReasoningPolicyAnnotationsResponse { inner: output })
+            Ok(PyOperationGetAutomatedReasoningPolicyAnnotationsOutput { inner: output })
         })
     }
 
@@ -28278,7 +28270,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "GetAutomatedReasoningPolicyBuildWorkflow")
                 })
             })?;
-            Ok(PyGetAutomatedReasoningPolicyBuildWorkflowResponse { inner: output })
+            Ok(PyOperationGetAutomatedReasoningPolicyBuildWorkflowOutput { inner: output })
         })
     }
 
@@ -28348,7 +28340,11 @@ impl BedrockClient {
                     )
                 })
             })?;
-            Ok(PyGetAutomatedReasoningPolicyBuildWorkflowResultAssetsResponse { inner: output })
+            Ok(
+                PyOperationGetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput {
+                    inner: output,
+                },
+            )
         })
     }
 
@@ -28396,7 +28392,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "GetAutomatedReasoningPolicyNextScenario")
                 })
             })?;
-            Ok(PyGetAutomatedReasoningPolicyNextScenarioResponse { inner: output })
+            Ok(PyOperationGetAutomatedReasoningPolicyNextScenarioOutput { inner: output })
         })
     }
 
@@ -28443,7 +28439,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "GetAutomatedReasoningPolicyTestCase")
                 })
             })?;
-            Ok(PyGetAutomatedReasoningPolicyTestCaseResponse { inner: output })
+            Ok(PyOperationGetAutomatedReasoningPolicyTestCaseOutput { inner: output })
         })
     }
 
@@ -28498,7 +28494,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "GetAutomatedReasoningPolicyTestResult")
                 })
             })?;
-            Ok(PyGetAutomatedReasoningPolicyTestResultResponse { inner: output })
+            Ok(PyOperationGetAutomatedReasoningPolicyTestResultOutput { inner: output })
         })
     }
 
@@ -28536,7 +28532,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCustomModel"))
             })?;
-            Ok(PyGetCustomModelResponse { inner: output })
+            Ok(PyOperationGetCustomModelOutput { inner: output })
         })
     }
 
@@ -28575,7 +28571,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCustomModelDeployment"))
             })?;
-            Ok(PyGetCustomModelDeploymentResponse { inner: output })
+            Ok(PyOperationGetCustomModelDeploymentOutput { inner: output })
         })
     }
 
@@ -28613,7 +28609,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetEvaluationJob"))
             })?;
-            Ok(PyGetEvaluationJobResponse { inner: output })
+            Ok(PyOperationGetEvaluationJobOutput { inner: output })
         })
     }
 
@@ -28651,7 +28647,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFoundationModel"))
             })?;
-            Ok(PyGetFoundationModelResponse { inner: output })
+            Ok(PyOperationGetFoundationModelOutput { inner: output })
         })
     }
 
@@ -28689,7 +28685,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFoundationModelAvailability"))
             })?;
-            Ok(PyGetFoundationModelAvailabilityResponse { inner: output })
+            Ok(PyOperationGetFoundationModelAvailabilityOutput { inner: output })
         })
     }
 
@@ -28736,7 +28732,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetGuardrail"))
             })?;
-            Ok(PyGetGuardrailResponse { inner: output })
+            Ok(PyOperationGetGuardrailOutput { inner: output })
         })
     }
 
@@ -28774,7 +28770,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetImportedModel"))
             })?;
-            Ok(PyGetImportedModelResponse { inner: output })
+            Ok(PyOperationGetImportedModelOutput { inner: output })
         })
     }
 
@@ -28813,7 +28809,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetInferenceProfile"))
             })?;
-            Ok(PyGetInferenceProfileResponse { inner: output })
+            Ok(PyOperationGetInferenceProfileOutput { inner: output })
         })
     }
 
@@ -28851,7 +28847,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMarketplaceModelEndpoint"))
             })?;
-            Ok(PyGetMarketplaceModelEndpointResponse { inner: output })
+            Ok(PyOperationGetMarketplaceModelEndpointOutput { inner: output })
         })
     }
 
@@ -28887,7 +28883,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetModelCopyJob"))
             })?;
-            Ok(PyGetModelCopyJobResponse { inner: output })
+            Ok(PyOperationGetModelCopyJobOutput { inner: output })
         })
     }
 
@@ -28925,7 +28921,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetModelCustomizationJob"))
             })?;
-            Ok(PyGetModelCustomizationJobResponse { inner: output })
+            Ok(PyOperationGetModelCustomizationJobOutput { inner: output })
         })
     }
 
@@ -28963,7 +28959,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetModelImportJob"))
             })?;
-            Ok(PyGetModelImportJobResponse { inner: output })
+            Ok(PyOperationGetModelImportJobOutput { inner: output })
         })
     }
 
@@ -29001,7 +28997,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetModelInvocationJob"))
             })?;
-            Ok(PyGetModelInvocationJobResponse { inner: output })
+            Ok(PyOperationGetModelInvocationJobOutput { inner: output })
         })
     }
 
@@ -29033,7 +29029,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "GetModelInvocationLoggingConfiguration")
                 })
             })?;
-            Ok(PyGetModelInvocationLoggingConfigurationResponse { inner: output })
+            Ok(PyOperationGetModelInvocationLoggingConfigurationOutput { inner: output })
         })
     }
 
@@ -29072,7 +29068,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPromptRouter"))
             })?;
-            Ok(PyGetPromptRouterResponse { inner: output })
+            Ok(PyOperationGetPromptRouterOutput { inner: output })
         })
     }
 
@@ -29111,7 +29107,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetProvisionedModelThroughput"))
             })?;
-            Ok(PyGetProvisionedModelThroughputResponse { inner: output })
+            Ok(PyOperationGetProvisionedModelThroughputOutput { inner: output })
         })
     }
 
@@ -29149,7 +29145,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicy"))
             })?;
-            Ok(PyGetResourcePolicyResponse { inner: output })
+            Ok(PyOperationGetResourcePolicyOutput { inner: output })
         })
     }
 
@@ -29179,7 +29175,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetUseCaseForModelAccess"))
             })?;
-            Ok(PyGetUseCaseForModelAccessResponse { inner: output })
+            Ok(PyOperationGetUseCaseForModelAccessOutput { inner: output })
         })
     }
 
@@ -29242,7 +29238,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "ListAdvancedPromptOptimizationJobs")
                 })
             })?;
-            Ok(PyListAdvancedPromptOptimizationJobsResponse { inner: output })
+            Ok(PyOperationListAdvancedPromptOptimizationJobsOutput { inner: output })
         })
     }
 
@@ -29294,7 +29290,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAutomatedReasoningPolicies"))
             })?;
-            Ok(PyListAutomatedReasoningPoliciesResponse { inner: output })
+            Ok(PyOperationListAutomatedReasoningPoliciesOutput { inner: output })
         })
     }
 
@@ -29348,7 +29344,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "ListAutomatedReasoningPolicyBuildWorkflows")
                 })
             })?;
-            Ok(PyListAutomatedReasoningPolicyBuildWorkflowsResponse { inner: output })
+            Ok(PyOperationListAutomatedReasoningPolicyBuildWorkflowsOutput { inner: output })
         })
     }
 
@@ -29402,7 +29398,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "ListAutomatedReasoningPolicyTestCases")
                 })
             })?;
-            Ok(PyListAutomatedReasoningPolicyTestCasesResponse { inner: output })
+            Ok(PyOperationListAutomatedReasoningPolicyTestCasesOutput { inner: output })
         })
     }
 
@@ -29464,7 +29460,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "ListAutomatedReasoningPolicyTestResults")
                 })
             })?;
-            Ok(PyListAutomatedReasoningPolicyTestResultsResponse { inner: output })
+            Ok(PyOperationListAutomatedReasoningPolicyTestResultsOutput { inner: output })
         })
     }
 
@@ -29573,7 +29569,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListCustomModelDeployments"))
             })?;
-            Ok(PyListCustomModelDeploymentsResponse { inner: output })
+            Ok(PyOperationListCustomModelDeploymentsOutput { inner: output })
         })
     }
 
@@ -29700,7 +29696,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListCustomModels"))
             })?;
-            Ok(PyListCustomModelsResponse { inner: output })
+            Ok(PyOperationListCustomModelsOutput { inner: output })
         })
     }
 
@@ -29740,7 +29736,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "ListEnforcedGuardrailsConfiguration")
                 })
             })?;
-            Ok(PyListEnforcedGuardrailsConfigurationResponse { inner: output })
+            Ok(PyOperationListEnforcedGuardrailsConfigurationOutput { inner: output })
         })
     }
 
@@ -29853,7 +29849,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListEvaluationJobs"))
             })?;
-            Ok(PyListEvaluationJobsResponse { inner: output })
+            Ok(PyOperationListEvaluationJobsOutput { inner: output })
         })
     }
 
@@ -29901,7 +29897,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "ListFoundationModelAgreementOffers")
                 })
             })?;
-            Ok(PyListFoundationModelAgreementOffersResponse { inner: output })
+            Ok(PyOperationListFoundationModelAgreementOffersOutput { inner: output })
         })
     }
 
@@ -29969,7 +29965,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListFoundationModels"))
             })?;
-            Ok(PyListFoundationModelsResponse { inner: output })
+            Ok(PyOperationListFoundationModelsOutput { inner: output })
         })
     }
 
@@ -30022,7 +30018,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListGuardrails"))
             })?;
-            Ok(PyListGuardrailsResponse { inner: output })
+            Ok(PyOperationListGuardrailsOutput { inner: output })
         })
     }
 
@@ -30117,7 +30113,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListImportedModels"))
             })?;
-            Ok(PyListImportedModelsResponse { inner: output })
+            Ok(PyOperationListImportedModelsOutput { inner: output })
         })
     }
 
@@ -30171,7 +30167,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListInferenceProfiles"))
             })?;
-            Ok(PyListInferenceProfilesResponse { inner: output })
+            Ok(PyOperationListInferenceProfilesOutput { inner: output })
         })
     }
 
@@ -30224,7 +30220,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListMarketplaceModelEndpoints"))
             })?;
-            Ok(PyListMarketplaceModelEndpointsResponse { inner: output })
+            Ok(PyOperationListMarketplaceModelEndpointsOutput { inner: output })
         })
     }
 
@@ -30344,7 +30340,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListModelCopyJobs"))
             })?;
-            Ok(PyListModelCopyJobsResponse { inner: output })
+            Ok(PyOperationListModelCopyJobsOutput { inner: output })
         })
     }
 
@@ -30447,7 +30443,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListModelCustomizationJobs"))
             })?;
-            Ok(PyListModelCustomizationJobsResponse { inner: output })
+            Ok(PyOperationListModelCustomizationJobsOutput { inner: output })
         })
     }
 
@@ -30550,7 +30546,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListModelImportJobs"))
             })?;
-            Ok(PyListModelImportJobsResponse { inner: output })
+            Ok(PyOperationListModelImportJobsOutput { inner: output })
         })
     }
 
@@ -30653,7 +30649,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListModelInvocationJobs"))
             })?;
-            Ok(PyListModelInvocationJobsResponse { inner: output })
+            Ok(PyOperationListModelInvocationJobsOutput { inner: output })
         })
     }
 
@@ -30707,7 +30703,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPromptRouters"))
             })?;
-            Ok(PyListPromptRoutersResponse { inner: output })
+            Ok(PyOperationListPromptRoutersOutput { inner: output })
         })
     }
 
@@ -30818,7 +30814,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListProvisionedModelThroughputs"))
             })?;
-            Ok(PyListProvisionedModelThroughputsResponse { inner: output })
+            Ok(PyOperationListProvisionedModelThroughputsOutput { inner: output })
         })
     }
 
@@ -30856,7 +30852,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Ok(PyListTagsForResourceResponse { inner: output })
+            Ok(PyOperationListTagsForResourceOutput { inner: output })
         })
     }
 
@@ -30894,7 +30890,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutAccountDataRetention"))
             })?;
-            Ok(PyPutAccountDataRetentionResponse { inner: output })
+            Ok(PyOperationPutAccountDataRetentionOutput { inner: output })
         })
     }
 
@@ -30943,7 +30939,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "PutEnforcedGuardrailConfiguration")
                 })
             })?;
-            Ok(PyPutEnforcedGuardrailConfigurationResponse { inner: output })
+            Ok(PyOperationPutEnforcedGuardrailConfigurationOutput { inner: output })
         })
     }
 
@@ -30983,7 +30979,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "PutModelInvocationLoggingConfiguration")
                 })
             })?;
-            Ok(PyPutModelInvocationLoggingConfigurationResponse { inner: output })
+            Ok(PyOperationPutModelInvocationLoggingConfigurationOutput { inner: output })
         })
     }
 
@@ -31028,7 +31024,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePolicy"))
             })?;
-            Ok(PyPutResourcePolicyResponse { inner: output })
+            Ok(PyOperationPutResourcePolicyOutput { inner: output })
         })
     }
 
@@ -31067,7 +31063,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutUseCaseForModelAccess"))
             })?;
-            Ok(PyPutUseCaseForModelAccessResponse { inner: output })
+            Ok(PyOperationPutUseCaseForModelAccessOutput { inner: output })
         })
     }
 
@@ -31114,7 +31110,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RegisterMarketplaceModelEndpoint"))
             })?;
-            Ok(PyRegisterMarketplaceModelEndpointResponse { inner: output })
+            Ok(PyOperationRegisterMarketplaceModelEndpointOutput { inner: output })
         })
     }
 
@@ -31181,7 +31177,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "StartAutomatedReasoningPolicyBuildWorkflow")
                 })
             })?;
-            Ok(PyStartAutomatedReasoningPolicyBuildWorkflowResponse { inner: output })
+            Ok(PyOperationStartAutomatedReasoningPolicyBuildWorkflowOutput { inner: output })
         })
     }
 
@@ -31250,7 +31246,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "StartAutomatedReasoningPolicyTestWorkflow")
                 })
             })?;
-            Ok(PyStartAutomatedReasoningPolicyTestWorkflowResponse { inner: output })
+            Ok(PyOperationStartAutomatedReasoningPolicyTestWorkflowOutput { inner: output })
         })
     }
 
@@ -31290,7 +31286,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "StopAdvancedPromptOptimizationJob")
                 })
             })?;
-            Ok(PyStopAdvancedPromptOptimizationJobResponse { inner: output })
+            Ok(PyOperationStopAdvancedPromptOptimizationJobOutput { inner: output })
         })
     }
 
@@ -31328,7 +31324,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopEvaluationJob"))
             })?;
-            Ok(PyStopEvaluationJobResponse { inner: output })
+            Ok(PyOperationStopEvaluationJobOutput { inner: output })
         })
     }
 
@@ -31366,7 +31362,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopModelCustomizationJob"))
             })?;
-            Ok(PyStopModelCustomizationJobResponse { inner: output })
+            Ok(PyOperationStopModelCustomizationJobOutput { inner: output })
         })
     }
 
@@ -31404,7 +31400,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopModelInvocationJob"))
             })?;
-            Ok(PyStopModelInvocationJobResponse { inner: output })
+            Ok(PyOperationStopModelInvocationJobOutput { inner: output })
         })
     }
 
@@ -31454,7 +31450,7 @@ impl BedrockClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
-            Ok(PyTagResourceResponse { inner: output })
+            Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
 
@@ -31505,7 +31501,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
-            Ok(PyUntagResourceResponse { inner: output })
+            Ok(PyOperationUntagResourceOutput { inner: output })
         })
     }
 
@@ -31565,7 +31561,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAutomatedReasoningPolicy"))
             })?;
-            Ok(PyUpdateAutomatedReasoningPolicyResponse { inner: output })
+            Ok(PyOperationUpdateAutomatedReasoningPolicyOutput { inner: output })
         })
     }
 
@@ -31635,7 +31631,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "UpdateAutomatedReasoningPolicyAnnotations")
                 })
             })?;
-            Ok(PyUpdateAutomatedReasoningPolicyAnnotationsResponse { inner: output })
+            Ok(PyOperationUpdateAutomatedReasoningPolicyAnnotationsOutput { inner: output })
         })
     }
 
@@ -31735,7 +31731,7 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "UpdateAutomatedReasoningPolicyTestCase")
                 })
             })?;
-            Ok(PyUpdateAutomatedReasoningPolicyTestCaseResponse { inner: output })
+            Ok(PyOperationUpdateAutomatedReasoningPolicyTestCaseOutput { inner: output })
         })
     }
 
@@ -31781,7 +31777,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateCustomModelDeployment"))
             })?;
-            Ok(PyUpdateCustomModelDeploymentResponse { inner: output })
+            Ok(PyOperationUpdateCustomModelDeploymentOutput { inner: output })
         })
     }
 
@@ -31913,7 +31909,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateGuardrail"))
             })?;
-            Ok(PyUpdateGuardrailResponse { inner: output })
+            Ok(PyOperationUpdateGuardrailOutput { inner: output })
         })
     }
 
@@ -31966,7 +31962,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMarketplaceModelEndpoint"))
             })?;
-            Ok(PyUpdateMarketplaceModelEndpointResponse { inner: output })
+            Ok(PyOperationUpdateMarketplaceModelEndpointOutput { inner: output })
         })
     }
 
@@ -32020,7 +32016,7 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateProvisionedModelThroughput"))
             })?;
-            Ok(PyUpdateProvisionedModelThroughputResponse { inner: output })
+            Ok(PyOperationUpdateProvisionedModelThroughputOutput { inner: output })
         })
     }
 }

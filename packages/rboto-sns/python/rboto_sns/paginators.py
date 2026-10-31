@@ -8,14 +8,14 @@ from typing import TYPE_CHECKING
 from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _paginate
 
 from ._native import (
-    ListEndpointsByPlatformApplicationResponse,
-    ListOriginationNumbersResult,
-    ListPhoneNumbersOptedOutResponse,
-    ListPlatformApplicationsResponse,
-    ListSMSSandboxPhoneNumbersResult,
-    ListSubscriptionsByTopicResponse,
-    ListSubscriptionsResponse,
-    ListTopicsResponse,
+    ListEndpointsByPlatformApplicationOutput,
+    ListOriginationNumbersOutput,
+    ListPhoneNumbersOptedOutOutput,
+    ListPlatformApplicationsOutput,
+    ListSMSSandboxPhoneNumbersOutput,
+    ListSubscriptionsByTopicOutput,
+    ListSubscriptionsOutput,
+    ListTopicsOutput,
 )
 
 
@@ -33,7 +33,7 @@ class SNSClientPaginators:
         *,
         platform_application_arn: str,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListEndpointsByPlatformApplicationResponse]:
+    ) -> AsyncIterator[ListEndpointsByPlatformApplicationOutput]:
         """Yield each page from list_endpoints_by_platform_application; requests start on iteration."""
         params: dict[str, object] = {
             "platform_application_arn": platform_application_arn,
@@ -55,7 +55,7 @@ class SNSClientPaginators:
         *,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListOriginationNumbersResult]:
+    ) -> AsyncIterator[ListOriginationNumbersOutput]:
         """Yield each page from list_origination_numbers; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -77,7 +77,7 @@ class SNSClientPaginators:
         self,
         *,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListPhoneNumbersOptedOutResponse]:
+    ) -> AsyncIterator[ListPhoneNumbersOptedOutOutput]:
         """Yield each page from list_phone_numbers_opted_out; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -97,7 +97,7 @@ class SNSClientPaginators:
         self,
         *,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListPlatformApplicationsResponse]:
+    ) -> AsyncIterator[ListPlatformApplicationsOutput]:
         """Yield each page from list_platform_applications; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -118,7 +118,7 @@ class SNSClientPaginators:
         *,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListSMSSandboxPhoneNumbersResult]:
+    ) -> AsyncIterator[ListSMSSandboxPhoneNumbersOutput]:
         """Yield each page from list_sms_sandbox_phone_numbers; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -140,7 +140,7 @@ class SNSClientPaginators:
         self,
         *,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListSubscriptionsResponse]:
+    ) -> AsyncIterator[ListSubscriptionsOutput]:
         """Yield each page from list_subscriptions; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -161,7 +161,7 @@ class SNSClientPaginators:
         *,
         topic_arn: str,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListSubscriptionsByTopicResponse]:
+    ) -> AsyncIterator[ListSubscriptionsByTopicOutput]:
         """Yield each page from list_subscriptions_by_topic; requests start on iteration."""
         params: dict[str, object] = {
             "topic_arn": topic_arn,
@@ -182,7 +182,7 @@ class SNSClientPaginators:
         self,
         *,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListTopicsResponse]:
+    ) -> AsyncIterator[ListTopicsOutput]:
         """Yield each page from list_topics; requests start on iteration."""
         params: dict[str, object] = {
         }

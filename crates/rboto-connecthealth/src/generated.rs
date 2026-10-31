@@ -2479,12 +2479,12 @@ impl PyWebAppConfiguration {
     module = "rboto_connecthealth._native",
     frozen
 )]
-struct PyActivateSubscriptionOutput {
+struct PyOperationActivateSubscriptionOutput {
     inner: aws_sdk_connecthealth::operation::activate_subscription::ActivateSubscriptionOutput,
 }
 
 #[pymethods]
-impl PyActivateSubscriptionOutput {
+impl PyOperationActivateSubscriptionOutput {
     #[getter]
     fn subscription(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscription {
@@ -2518,12 +2518,12 @@ impl PyActivateSubscriptionOutput {
     module = "rboto_connecthealth._native",
     frozen
 )]
-struct PyCreateDomainOutput {
+struct PyOperationCreateDomainOutput {
     inner: aws_sdk_connecthealth::operation::create_domain::CreateDomainOutput,
 }
 
 #[pymethods]
-impl PyCreateDomainOutput {
+impl PyOperationCreateDomainOutput {
     #[getter]
     fn domain_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_366 = (&self.inner.domain_id).as_str().into_py_any(py)?;
@@ -2651,12 +2651,12 @@ impl PyCreateDomainOutput {
     module = "rboto_connecthealth._native",
     frozen
 )]
-struct PyCreateSubscriptionOutput {
+struct PyOperationCreateSubscriptionOutput {
     inner: aws_sdk_connecthealth::operation::create_subscription::CreateSubscriptionOutput,
 }
 
 #[pymethods]
-impl PyCreateSubscriptionOutput {
+impl PyOperationCreateSubscriptionOutput {
     #[getter]
     fn domain_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_384 = (&self.inner.domain_id).as_str().into_py_any(py)?;
@@ -2748,12 +2748,12 @@ impl PyCreateSubscriptionOutput {
     module = "rboto_connecthealth._native",
     frozen
 )]
-struct PyDeactivateSubscriptionOutput {
+struct PyOperationDeactivateSubscriptionOutput {
     inner: aws_sdk_connecthealth::operation::deactivate_subscription::DeactivateSubscriptionOutput,
 }
 
 #[pymethods]
-impl PyDeactivateSubscriptionOutput {
+impl PyOperationDeactivateSubscriptionOutput {
     #[getter]
     fn subscription(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscription {
@@ -2787,12 +2787,12 @@ impl PyDeactivateSubscriptionOutput {
     module = "rboto_connecthealth._native",
     frozen
 )]
-struct PyDeleteDomainOutput {
+struct PyOperationDeleteDomainOutput {
     inner: aws_sdk_connecthealth::operation::delete_domain::DeleteDomainOutput,
 }
 
 #[pymethods]
-impl PyDeleteDomainOutput {
+impl PyOperationDeleteDomainOutput {
     #[getter]
     fn domain_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_402 = (&self.inner.domain_id).as_str().into_py_any(py)?;
@@ -2828,12 +2828,12 @@ impl PyDeleteDomainOutput {
     module = "rboto_connecthealth._native",
     frozen
 )]
-struct PyGetDomainOutput {
+struct PyOperationGetDomainOutput {
     inner: aws_sdk_connecthealth::operation::get_domain::GetDomainOutput,
 }
 
 #[pymethods]
-impl PyGetDomainOutput {
+impl PyOperationGetDomainOutput {
     #[getter]
     fn domain_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_408 = (&self.inner.domain_id).as_str().into_py_any(py)?;
@@ -2989,12 +2989,12 @@ impl PyGetDomainOutput {
     module = "rboto_connecthealth._native",
     frozen
 )]
-struct PyGetMedicalScribeListeningSessionOutput {
+struct PyOperationGetMedicalScribeListeningSessionOutput {
     inner: aws_sdk_connecthealth::operation::get_medical_scribe_listening_session::GetMedicalScribeListeningSessionOutput,
 }
 
 #[pymethods]
-impl PyGetMedicalScribeListeningSessionOutput {
+impl PyOperationGetMedicalScribeListeningSessionOutput {
     #[getter]
     fn medical_scribe_listening_session_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.medical_scribe_listening_session_details {
@@ -3024,16 +3024,16 @@ impl PyGetMedicalScribeListeningSessionOutput {
 }
 
 #[pyclass(
-    name = "GetPatientInsightsJobResponse",
+    name = "GetPatientInsightsJobOutput",
     module = "rboto_connecthealth._native",
     frozen
 )]
-struct PyGetPatientInsightsJobResponse {
+struct PyOperationGetPatientInsightsJobOutput {
     inner: aws_sdk_connecthealth::operation::get_patient_insights_job::GetPatientInsightsJobOutput,
 }
 
 #[pymethods]
-impl PyGetPatientInsightsJobResponse {
+impl PyOperationGetPatientInsightsJobOutput {
     #[getter]
     fn job_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_438 = (&self.inner.job_id).as_str().into_py_any(py)?;
@@ -3271,12 +3271,12 @@ impl PyGetPatientInsightsJobResponse {
     module = "rboto_connecthealth._native",
     frozen
 )]
-struct PyGetSubscriptionOutput {
+struct PyOperationGetSubscriptionOutput {
     inner: aws_sdk_connecthealth::operation::get_subscription::GetSubscriptionOutput,
 }
 
 #[pymethods]
-impl PyGetSubscriptionOutput {
+impl PyOperationGetSubscriptionOutput {
     #[getter]
     fn subscription(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscription {
@@ -3310,12 +3310,12 @@ impl PyGetSubscriptionOutput {
     module = "rboto_connecthealth._native",
     frozen
 )]
-struct PyListDomainsOutput {
+struct PyOperationListDomainsOutput {
     inner: aws_sdk_connecthealth::operation::list_domains::ListDomainsOutput,
 }
 
 #[pymethods]
-impl PyListDomainsOutput {
+impl PyOperationListDomainsOutput {
     #[getter]
     fn domains(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_466_list = PyList::empty(py);
@@ -3367,12 +3367,12 @@ impl PyListDomainsOutput {
     module = "rboto_connecthealth._native",
     frozen
 )]
-struct PyListSubscriptionsOutput {
+struct PyOperationListSubscriptionsOutput {
     inner: aws_sdk_connecthealth::operation::list_subscriptions::ListSubscriptionsOutput,
 }
 
 #[pymethods]
-impl PyListSubscriptionsOutput {
+impl PyOperationListSubscriptionsOutput {
     #[getter]
     fn subscriptions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_474_list = PyList::empty(py);
@@ -3424,12 +3424,12 @@ impl PyListSubscriptionsOutput {
     module = "rboto_connecthealth._native",
     frozen
 )]
-struct PyListTagsForResourceOutput {
+struct PyOperationListTagsForResourceOutput {
     inner: aws_sdk_connecthealth::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
 
 #[pymethods]
-impl PyListTagsForResourceOutput {
+impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
@@ -3465,17 +3465,17 @@ impl PyListTagsForResourceOutput {
 }
 
 #[pyclass(
-    name = "StartPatientInsightsJobResponse",
+    name = "StartPatientInsightsJobOutput",
     module = "rboto_connecthealth._native",
     frozen
 )]
-struct PyStartPatientInsightsJobResponse {
+struct PyOperationStartPatientInsightsJobOutput {
     inner:
         aws_sdk_connecthealth::operation::start_patient_insights_job::StartPatientInsightsJobOutput,
 }
 
 #[pymethods]
-impl PyStartPatientInsightsJobResponse {
+impl PyOperationStartPatientInsightsJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_492 = (&self.inner.job_arn).as_str().into_py_any(py)?;
@@ -3607,19 +3607,19 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PySubscriptionDescription>()?;
     module.add_class::<PyUserContext>()?;
     module.add_class::<PyWebAppConfiguration>()?;
-    module.add_class::<PyActivateSubscriptionOutput>()?;
-    module.add_class::<PyCreateDomainOutput>()?;
-    module.add_class::<PyCreateSubscriptionOutput>()?;
-    module.add_class::<PyDeactivateSubscriptionOutput>()?;
-    module.add_class::<PyDeleteDomainOutput>()?;
-    module.add_class::<PyGetDomainOutput>()?;
-    module.add_class::<PyGetMedicalScribeListeningSessionOutput>()?;
-    module.add_class::<PyGetPatientInsightsJobResponse>()?;
-    module.add_class::<PyGetSubscriptionOutput>()?;
-    module.add_class::<PyListDomainsOutput>()?;
-    module.add_class::<PyListSubscriptionsOutput>()?;
-    module.add_class::<PyListTagsForResourceOutput>()?;
-    module.add_class::<PyStartPatientInsightsJobResponse>()?;
+    module.add_class::<PyOperationActivateSubscriptionOutput>()?;
+    module.add_class::<PyOperationCreateDomainOutput>()?;
+    module.add_class::<PyOperationCreateSubscriptionOutput>()?;
+    module.add_class::<PyOperationDeactivateSubscriptionOutput>()?;
+    module.add_class::<PyOperationDeleteDomainOutput>()?;
+    module.add_class::<PyOperationGetDomainOutput>()?;
+    module.add_class::<PyOperationGetMedicalScribeListeningSessionOutput>()?;
+    module.add_class::<PyOperationGetPatientInsightsJobOutput>()?;
+    module.add_class::<PyOperationGetSubscriptionOutput>()?;
+    module.add_class::<PyOperationListDomainsOutput>()?;
+    module.add_class::<PyOperationListSubscriptionsOutput>()?;
+    module.add_class::<PyOperationListTagsForResourceOutput>()?;
+    module.add_class::<PyOperationStartPatientInsightsJobOutput>()?;
 
     module.add_class::<PyMedicalScribeOutputStreamReceiver>()?;
     Ok(())
@@ -3694,7 +3694,7 @@ impl ConnectHealthClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ActivateSubscription"))
             })?;
-            Ok(PyActivateSubscriptionOutput { inner: output })
+            Ok(PyOperationActivateSubscriptionOutput { inner: output })
         })
     }
 
@@ -3760,7 +3760,7 @@ impl ConnectHealthClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDomain"))
             })?;
-            Ok(PyCreateDomainOutput { inner: output })
+            Ok(PyOperationCreateDomainOutput { inner: output })
         })
     }
 
@@ -3796,7 +3796,7 @@ impl ConnectHealthClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateSubscription"))
             })?;
-            Ok(PyCreateSubscriptionOutput { inner: output })
+            Ok(PyOperationCreateSubscriptionOutput { inner: output })
         })
     }
 
@@ -3841,7 +3841,7 @@ impl ConnectHealthClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeactivateSubscription"))
             })?;
-            Ok(PyDeactivateSubscriptionOutput { inner: output })
+            Ok(PyOperationDeactivateSubscriptionOutput { inner: output })
         })
     }
 
@@ -3877,7 +3877,7 @@ impl ConnectHealthClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDomain"))
             })?;
-            Ok(PyDeleteDomainOutput { inner: output })
+            Ok(PyOperationDeleteDomainOutput { inner: output })
         })
     }
 
@@ -3912,7 +3912,7 @@ impl ConnectHealthClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetDomain")))?;
-            Ok(PyGetDomainOutput { inner: output })
+            Ok(PyOperationGetDomainOutput { inner: output })
         })
     }
 
@@ -3964,7 +3964,7 @@ impl ConnectHealthClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMedicalScribeListeningSession"))
             })?;
-            Ok(PyGetMedicalScribeListeningSessionOutput { inner: output })
+            Ok(PyOperationGetMedicalScribeListeningSessionOutput { inner: output })
         })
     }
 
@@ -4009,7 +4009,7 @@ impl ConnectHealthClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPatientInsightsJob"))
             })?;
-            Ok(PyGetPatientInsightsJobResponse { inner: output })
+            Ok(PyOperationGetPatientInsightsJobOutput { inner: output })
         })
     }
 
@@ -4054,7 +4054,7 @@ impl ConnectHealthClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetSubscription"))
             })?;
-            Ok(PyGetSubscriptionOutput { inner: output })
+            Ok(PyOperationGetSubscriptionOutput { inner: output })
         })
     }
 
@@ -4107,7 +4107,7 @@ impl ConnectHealthClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListDomains")))?;
-            Ok(PyListDomainsOutput { inner: output })
+            Ok(PyOperationListDomainsOutput { inner: output })
         })
     }
 
@@ -4159,7 +4159,7 @@ impl ConnectHealthClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSubscriptions"))
             })?;
-            Ok(PyListSubscriptionsOutput { inner: output })
+            Ok(PyOperationListSubscriptionsOutput { inner: output })
         })
     }
 
@@ -4197,7 +4197,7 @@ impl ConnectHealthClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Ok(PyListTagsForResourceOutput { inner: output })
+            Ok(PyOperationListTagsForResourceOutput { inner: output })
         })
     }
 
@@ -4437,7 +4437,7 @@ impl ConnectHealthClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartPatientInsightsJob"))
             })?;
-            Ok(PyStartPatientInsightsJobResponse { inner: output })
+            Ok(PyOperationStartPatientInsightsJobOutput { inner: output })
         })
     }
 

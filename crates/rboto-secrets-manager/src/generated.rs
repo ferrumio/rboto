@@ -1537,16 +1537,16 @@ impl PyValidationErrorsEntry {
 }
 
 #[pyclass(
-    name = "BatchGetSecretValueResponse",
+    name = "BatchGetSecretValueOutput",
     module = "rboto_secrets_manager._native",
     frozen
 )]
-struct PyBatchGetSecretValueResponse {
+struct PyOperationBatchGetSecretValueOutput {
     inner: aws_sdk_secretsmanager::operation::batch_get_secret_value::BatchGetSecretValueOutput,
 }
 
 #[pymethods]
-impl PyBatchGetSecretValueResponse {
+impl PyOperationBatchGetSecretValueOutput {
     #[getter]
     fn secret_values(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.secret_values {
@@ -1634,16 +1634,16 @@ impl PyBatchGetSecretValueResponse {
 }
 
 #[pyclass(
-    name = "CancelRotateSecretResponse",
+    name = "CancelRotateSecretOutput",
     module = "rboto_secrets_manager._native",
     frozen
 )]
-struct PyCancelRotateSecretResponse {
+struct PyOperationCancelRotateSecretOutput {
     inner: aws_sdk_secretsmanager::operation::cancel_rotate_secret::CancelRotateSecretOutput,
 }
 
 #[pymethods]
-impl PyCancelRotateSecretResponse {
+impl PyOperationCancelRotateSecretOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -1699,16 +1699,16 @@ impl PyCancelRotateSecretResponse {
 }
 
 #[pyclass(
-    name = "CreateSecretResponse",
+    name = "CreateSecretOutput",
     module = "rboto_secrets_manager._native",
     frozen
 )]
-struct PyCreateSecretResponse {
+struct PyOperationCreateSecretOutput {
     inner: aws_sdk_secretsmanager::operation::create_secret::CreateSecretOutput,
 }
 
 #[pymethods]
-impl PyCreateSecretResponse {
+impl PyOperationCreateSecretOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -1796,16 +1796,16 @@ impl PyCreateSecretResponse {
 }
 
 #[pyclass(
-    name = "DeleteResourcePolicyResponse",
+    name = "DeleteResourcePolicyOutput",
     module = "rboto_secrets_manager._native",
     frozen
 )]
-struct PyDeleteResourcePolicyResponse {
+struct PyOperationDeleteResourcePolicyOutput {
     inner: aws_sdk_secretsmanager::operation::delete_resource_policy::DeleteResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyDeleteResourcePolicyResponse {
+impl PyOperationDeleteResourcePolicyOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -1845,16 +1845,16 @@ impl PyDeleteResourcePolicyResponse {
 }
 
 #[pyclass(
-    name = "DeleteSecretResponse",
+    name = "DeleteSecretOutput",
     module = "rboto_secrets_manager._native",
     frozen
 )]
-struct PyDeleteSecretResponse {
+struct PyOperationDeleteSecretOutput {
     inner: aws_sdk_secretsmanager::operation::delete_secret::DeleteSecretOutput,
 }
 
 #[pymethods]
-impl PyDeleteSecretResponse {
+impl PyOperationDeleteSecretOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -1910,16 +1910,16 @@ impl PyDeleteSecretResponse {
 }
 
 #[pyclass(
-    name = "DescribeSecretResponse",
+    name = "DescribeSecretOutput",
     module = "rboto_secrets_manager._native",
     frozen
 )]
-struct PyDescribeSecretResponse {
+struct PyOperationDescribeSecretOutput {
     inner: aws_sdk_secretsmanager::operation::describe_secret::DescribeSecretOutput,
 }
 
 #[pymethods]
-impl PyDescribeSecretResponse {
+impl PyOperationDescribeSecretOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -2340,16 +2340,16 @@ impl PyDescribeSecretResponse {
 }
 
 #[pyclass(
-    name = "GetRandomPasswordResponse",
+    name = "GetRandomPasswordOutput",
     module = "rboto_secrets_manager._native",
     frozen
 )]
-struct PyGetRandomPasswordResponse {
+struct PyOperationGetRandomPasswordOutput {
     inner: aws_sdk_secretsmanager::operation::get_random_password::GetRandomPasswordOutput,
 }
 
 #[pymethods]
-impl PyGetRandomPasswordResponse {
+impl PyOperationGetRandomPasswordOutput {
     #[getter]
     fn random_password(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.random_password {
@@ -2373,16 +2373,16 @@ impl PyGetRandomPasswordResponse {
 }
 
 #[pyclass(
-    name = "GetResourcePolicyResponse",
+    name = "GetResourcePolicyOutput",
     module = "rboto_secrets_manager._native",
     frozen
 )]
-struct PyGetResourcePolicyResponse {
+struct PyOperationGetResourcePolicyOutput {
     inner: aws_sdk_secretsmanager::operation::get_resource_policy::GetResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyGetResourcePolicyResponse {
+impl PyOperationGetResourcePolicyOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -2438,16 +2438,16 @@ impl PyGetResourcePolicyResponse {
 }
 
 #[pyclass(
-    name = "GetSecretValueResponse",
+    name = "GetSecretValueOutput",
     module = "rboto_secrets_manager._native",
     frozen
 )]
-struct PyGetSecretValueResponse {
+struct PyOperationGetSecretValueOutput {
     inner: aws_sdk_secretsmanager::operation::get_secret_value::GetSecretValueOutput,
 }
 
 #[pymethods]
-impl PyGetSecretValueResponse {
+impl PyOperationGetSecretValueOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -2577,16 +2577,16 @@ impl PyGetSecretValueResponse {
 }
 
 #[pyclass(
-    name = "ListSecretVersionIdsResponse",
+    name = "ListSecretVersionIdsOutput",
     module = "rboto_secrets_manager._native",
     frozen
 )]
-struct PyListSecretVersionIdsResponse {
+struct PyOperationListSecretVersionIdsOutput {
     inner: aws_sdk_secretsmanager::operation::list_secret_version_ids::ListSecretVersionIdsOutput,
 }
 
 #[pymethods]
-impl PyListSecretVersionIdsResponse {
+impl PyOperationListSecretVersionIdsOutput {
     #[getter]
     fn versions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.versions {
@@ -2674,16 +2674,16 @@ impl PyListSecretVersionIdsResponse {
 }
 
 #[pyclass(
-    name = "ListSecretsResponse",
+    name = "ListSecretsOutput",
     module = "rboto_secrets_manager._native",
     frozen
 )]
-struct PyListSecretsResponse {
+struct PyOperationListSecretsOutput {
     inner: aws_sdk_secretsmanager::operation::list_secrets::ListSecretsOutput,
 }
 
 #[pymethods]
-impl PyListSecretsResponse {
+impl PyOperationListSecretsOutput {
     #[getter]
     fn secret_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.secret_list {
@@ -2739,16 +2739,16 @@ impl PyListSecretsResponse {
 }
 
 #[pyclass(
-    name = "PutResourcePolicyResponse",
+    name = "PutResourcePolicyOutput",
     module = "rboto_secrets_manager._native",
     frozen
 )]
-struct PyPutResourcePolicyResponse {
+struct PyOperationPutResourcePolicyOutput {
     inner: aws_sdk_secretsmanager::operation::put_resource_policy::PutResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyPutResourcePolicyResponse {
+impl PyOperationPutResourcePolicyOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -2788,16 +2788,16 @@ impl PyPutResourcePolicyResponse {
 }
 
 #[pyclass(
-    name = "PutSecretValueResponse",
+    name = "PutSecretValueOutput",
     module = "rboto_secrets_manager._native",
     frozen
 )]
-struct PyPutSecretValueResponse {
+struct PyOperationPutSecretValueOutput {
     inner: aws_sdk_secretsmanager::operation::put_secret_value::PutSecretValueOutput,
 }
 
 #[pymethods]
-impl PyPutSecretValueResponse {
+impl PyOperationPutSecretValueOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -2879,16 +2879,16 @@ impl PyPutSecretValueResponse {
 }
 
 #[pyclass(
-    name = "RemoveRegionsFromReplicationResponse",
+    name = "RemoveRegionsFromReplicationOutput",
     module = "rboto_secrets_manager._native",
     frozen
 )]
-struct PyRemoveRegionsFromReplicationResponse {
+struct PyOperationRemoveRegionsFromReplicationOutput {
     inner: aws_sdk_secretsmanager::operation::remove_regions_from_replication::RemoveRegionsFromReplicationOutput,
 }
 
 #[pymethods]
-impl PyRemoveRegionsFromReplicationResponse {
+impl PyOperationRemoveRegionsFromReplicationOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -2944,16 +2944,16 @@ impl PyRemoveRegionsFromReplicationResponse {
 }
 
 #[pyclass(
-    name = "ReplicateSecretToRegionsResponse",
+    name = "ReplicateSecretToRegionsOutput",
     module = "rboto_secrets_manager._native",
     frozen
 )]
-struct PyReplicateSecretToRegionsResponse {
+struct PyOperationReplicateSecretToRegionsOutput {
     inner: aws_sdk_secretsmanager::operation::replicate_secret_to_regions::ReplicateSecretToRegionsOutput,
 }
 
 #[pymethods]
-impl PyReplicateSecretToRegionsResponse {
+impl PyOperationReplicateSecretToRegionsOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -3009,16 +3009,16 @@ impl PyReplicateSecretToRegionsResponse {
 }
 
 #[pyclass(
-    name = "RestoreSecretResponse",
+    name = "RestoreSecretOutput",
     module = "rboto_secrets_manager._native",
     frozen
 )]
-struct PyRestoreSecretResponse {
+struct PyOperationRestoreSecretOutput {
     inner: aws_sdk_secretsmanager::operation::restore_secret::RestoreSecretOutput,
 }
 
 #[pymethods]
-impl PyRestoreSecretResponse {
+impl PyOperationRestoreSecretOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -3058,16 +3058,16 @@ impl PyRestoreSecretResponse {
 }
 
 #[pyclass(
-    name = "RotateSecretResponse",
+    name = "RotateSecretOutput",
     module = "rboto_secrets_manager._native",
     frozen
 )]
-struct PyRotateSecretResponse {
+struct PyOperationRotateSecretOutput {
     inner: aws_sdk_secretsmanager::operation::rotate_secret::RotateSecretOutput,
 }
 
 #[pymethods]
-impl PyRotateSecretResponse {
+impl PyOperationRotateSecretOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -3123,16 +3123,16 @@ impl PyRotateSecretResponse {
 }
 
 #[pyclass(
-    name = "StopReplicationToReplicaResponse",
+    name = "StopReplicationToReplicaOutput",
     module = "rboto_secrets_manager._native",
     frozen
 )]
-struct PyStopReplicationToReplicaResponse {
+struct PyOperationStopReplicationToReplicaOutput {
     inner: aws_sdk_secretsmanager::operation::stop_replication_to_replica::StopReplicationToReplicaOutput,
 }
 
 #[pymethods]
-impl PyStopReplicationToReplicaResponse {
+impl PyOperationStopReplicationToReplicaOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -3156,16 +3156,16 @@ impl PyStopReplicationToReplicaResponse {
 }
 
 #[pyclass(
-    name = "UpdateSecretResponse",
+    name = "UpdateSecretOutput",
     module = "rboto_secrets_manager._native",
     frozen
 )]
-struct PyUpdateSecretResponse {
+struct PyOperationUpdateSecretOutput {
     inner: aws_sdk_secretsmanager::operation::update_secret::UpdateSecretOutput,
 }
 
 #[pymethods]
-impl PyUpdateSecretResponse {
+impl PyOperationUpdateSecretOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -3221,16 +3221,16 @@ impl PyUpdateSecretResponse {
 }
 
 #[pyclass(
-    name = "UpdateSecretVersionStageResponse",
+    name = "UpdateSecretVersionStageOutput",
     module = "rboto_secrets_manager._native",
     frozen
 )]
-struct PyUpdateSecretVersionStageResponse {
+struct PyOperationUpdateSecretVersionStageOutput {
     inner: aws_sdk_secretsmanager::operation::update_secret_version_stage::UpdateSecretVersionStageOutput,
 }
 
 #[pymethods]
-impl PyUpdateSecretVersionStageResponse {
+impl PyOperationUpdateSecretVersionStageOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -3270,17 +3270,17 @@ impl PyUpdateSecretVersionStageResponse {
 }
 
 #[pyclass(
-    name = "ValidateResourcePolicyResponse",
+    name = "ValidateResourcePolicyOutput",
     module = "rboto_secrets_manager._native",
     frozen
 )]
-struct PyValidateResourcePolicyResponse {
+struct PyOperationValidateResourcePolicyOutput {
     inner:
         aws_sdk_secretsmanager::operation::validate_resource_policy::ValidateResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyValidateResourcePolicyResponse {
+impl PyOperationValidateResourcePolicyOutput {
     #[getter]
     fn policy_validation_passed(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_557 = (&self.inner.policy_validation_passed)
@@ -3341,27 +3341,27 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PySecretVersionsListEntry>()?;
     module.add_class::<PyTag>()?;
     module.add_class::<PyValidationErrorsEntry>()?;
-    module.add_class::<PyBatchGetSecretValueResponse>()?;
-    module.add_class::<PyCancelRotateSecretResponse>()?;
-    module.add_class::<PyCreateSecretResponse>()?;
-    module.add_class::<PyDeleteResourcePolicyResponse>()?;
-    module.add_class::<PyDeleteSecretResponse>()?;
-    module.add_class::<PyDescribeSecretResponse>()?;
-    module.add_class::<PyGetRandomPasswordResponse>()?;
-    module.add_class::<PyGetResourcePolicyResponse>()?;
-    module.add_class::<PyGetSecretValueResponse>()?;
-    module.add_class::<PyListSecretVersionIdsResponse>()?;
-    module.add_class::<PyListSecretsResponse>()?;
-    module.add_class::<PyPutResourcePolicyResponse>()?;
-    module.add_class::<PyPutSecretValueResponse>()?;
-    module.add_class::<PyRemoveRegionsFromReplicationResponse>()?;
-    module.add_class::<PyReplicateSecretToRegionsResponse>()?;
-    module.add_class::<PyRestoreSecretResponse>()?;
-    module.add_class::<PyRotateSecretResponse>()?;
-    module.add_class::<PyStopReplicationToReplicaResponse>()?;
-    module.add_class::<PyUpdateSecretResponse>()?;
-    module.add_class::<PyUpdateSecretVersionStageResponse>()?;
-    module.add_class::<PyValidateResourcePolicyResponse>()?;
+    module.add_class::<PyOperationBatchGetSecretValueOutput>()?;
+    module.add_class::<PyOperationCancelRotateSecretOutput>()?;
+    module.add_class::<PyOperationCreateSecretOutput>()?;
+    module.add_class::<PyOperationDeleteResourcePolicyOutput>()?;
+    module.add_class::<PyOperationDeleteSecretOutput>()?;
+    module.add_class::<PyOperationDescribeSecretOutput>()?;
+    module.add_class::<PyOperationGetRandomPasswordOutput>()?;
+    module.add_class::<PyOperationGetResourcePolicyOutput>()?;
+    module.add_class::<PyOperationGetSecretValueOutput>()?;
+    module.add_class::<PyOperationListSecretVersionIdsOutput>()?;
+    module.add_class::<PyOperationListSecretsOutput>()?;
+    module.add_class::<PyOperationPutResourcePolicyOutput>()?;
+    module.add_class::<PyOperationPutSecretValueOutput>()?;
+    module.add_class::<PyOperationRemoveRegionsFromReplicationOutput>()?;
+    module.add_class::<PyOperationReplicateSecretToRegionsOutput>()?;
+    module.add_class::<PyOperationRestoreSecretOutput>()?;
+    module.add_class::<PyOperationRotateSecretOutput>()?;
+    module.add_class::<PyOperationStopReplicationToReplicaOutput>()?;
+    module.add_class::<PyOperationUpdateSecretOutput>()?;
+    module.add_class::<PyOperationUpdateSecretVersionStageOutput>()?;
+    module.add_class::<PyOperationValidateResourcePolicyOutput>()?;
 
     Ok(())
 }
@@ -3461,7 +3461,7 @@ impl SecretsManagerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchGetSecretValue"))
             })?;
-            Ok(PyBatchGetSecretValueResponse { inner: output })
+            Ok(PyOperationBatchGetSecretValueOutput { inner: output })
         })
     }
 
@@ -3497,7 +3497,7 @@ impl SecretsManagerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CancelRotateSecret"))
             })?;
-            Ok(PyCancelRotateSecretResponse { inner: output })
+            Ok(PyOperationCancelRotateSecretOutput { inner: output })
         })
     }
 
@@ -3614,7 +3614,7 @@ impl SecretsManagerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateSecret"))
             })?;
-            Ok(PyCreateSecretResponse { inner: output })
+            Ok(PyOperationCreateSecretOutput { inner: output })
         })
     }
 
@@ -3652,7 +3652,7 @@ impl SecretsManagerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteResourcePolicy"))
             })?;
-            Ok(PyDeleteResourcePolicyResponse { inner: output })
+            Ok(PyOperationDeleteResourcePolicyOutput { inner: output })
         })
     }
 
@@ -3706,7 +3706,7 @@ impl SecretsManagerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteSecret"))
             })?;
-            Ok(PyDeleteSecretResponse { inner: output })
+            Ok(PyOperationDeleteSecretOutput { inner: output })
         })
     }
 
@@ -3742,7 +3742,7 @@ impl SecretsManagerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeSecret"))
             })?;
-            Ok(PyDescribeSecretResponse { inner: output })
+            Ok(PyOperationDescribeSecretOutput { inner: output })
         })
     }
 
@@ -3834,7 +3834,7 @@ impl SecretsManagerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetRandomPassword"))
             })?;
-            Ok(PyGetRandomPasswordResponse { inner: output })
+            Ok(PyOperationGetRandomPasswordOutput { inner: output })
         })
     }
 
@@ -3870,7 +3870,7 @@ impl SecretsManagerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicy"))
             })?;
-            Ok(PyGetResourcePolicyResponse { inner: output })
+            Ok(PyOperationGetResourcePolicyOutput { inner: output })
         })
     }
 
@@ -3922,7 +3922,7 @@ impl SecretsManagerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetSecretValue"))
             })?;
-            Ok(PyGetSecretValueResponse { inner: output })
+            Ok(PyOperationGetSecretValueOutput { inner: output })
         })
     }
 
@@ -3982,7 +3982,7 @@ impl SecretsManagerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSecretVersionIds"))
             })?;
-            Ok(PyListSecretVersionIdsResponse { inner: output })
+            Ok(PyOperationListSecretVersionIdsOutput { inner: output })
         })
     }
 
@@ -4065,7 +4065,7 @@ impl SecretsManagerClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListSecrets")))?;
-            Ok(PyListSecretsResponse { inner: output })
+            Ok(PyOperationListSecretsOutput { inner: output })
         })
     }
 
@@ -4118,7 +4118,7 @@ impl SecretsManagerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePolicy"))
             })?;
-            Ok(PyPutResourcePolicyResponse { inner: output })
+            Ok(PyOperationPutResourcePolicyOutput { inner: output })
         })
     }
 
@@ -4199,7 +4199,7 @@ impl SecretsManagerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutSecretValue"))
             })?;
-            Ok(PyPutSecretValueResponse { inner: output })
+            Ok(PyOperationPutSecretValueOutput { inner: output })
         })
     }
 
@@ -4251,7 +4251,7 @@ impl SecretsManagerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RemoveRegionsFromReplication"))
             })?;
-            Ok(PyRemoveRegionsFromReplicationResponse { inner: output })
+            Ok(PyOperationRemoveRegionsFromReplicationOutput { inner: output })
         })
     }
 
@@ -4311,7 +4311,7 @@ impl SecretsManagerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ReplicateSecretToRegions"))
             })?;
-            Ok(PyReplicateSecretToRegionsResponse { inner: output })
+            Ok(PyOperationReplicateSecretToRegionsOutput { inner: output })
         })
     }
 
@@ -4347,7 +4347,7 @@ impl SecretsManagerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RestoreSecret"))
             })?;
-            Ok(PyRestoreSecretResponse { inner: output })
+            Ok(PyOperationRestoreSecretOutput { inner: output })
         })
     }
 
@@ -4439,7 +4439,7 @@ impl SecretsManagerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RotateSecret"))
             })?;
-            Ok(PyRotateSecretResponse { inner: output })
+            Ok(PyOperationRotateSecretOutput { inner: output })
         })
     }
 
@@ -4477,7 +4477,7 @@ impl SecretsManagerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopReplicationToReplica"))
             })?;
-            Ok(PyStopReplicationToReplicaResponse { inner: output })
+            Ok(PyOperationStopReplicationToReplicaOutput { inner: output })
         })
     }
 
@@ -4660,7 +4660,7 @@ impl SecretsManagerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateSecret"))
             })?;
-            Ok(PyUpdateSecretResponse { inner: output })
+            Ok(PyOperationUpdateSecretOutput { inner: output })
         })
     }
 
@@ -4721,7 +4721,7 @@ impl SecretsManagerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateSecretVersionStage"))
             })?;
-            Ok(PyUpdateSecretVersionStageResponse { inner: output })
+            Ok(PyOperationUpdateSecretVersionStageOutput { inner: output })
         })
     }
 
@@ -4766,7 +4766,7 @@ impl SecretsManagerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ValidateResourcePolicy"))
             })?;
-            Ok(PyValidateResourcePolicyResponse { inner: output })
+            Ok(PyOperationValidateResourcePolicyOutput { inner: output })
         })
     }
 }

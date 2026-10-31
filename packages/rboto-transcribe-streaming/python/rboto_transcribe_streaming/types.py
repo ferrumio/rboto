@@ -12,7 +12,7 @@ ByteStream: TypeAlias = _native.ByteStream
 CallAnalyticsTranscriptResultStreamReceiver: TypeAlias = _native.CallAnalyticsTranscriptResultStreamReceiver
 ClinicalNoteGenerationResultOutput: TypeAlias = _native.ClinicalNoteGenerationResult
 ClinicalNoteGenerationSettingsOutput: TypeAlias = _native.ClinicalNoteGenerationSettings
-GetMedicalScribeStreamResponse: TypeAlias = _native.GetMedicalScribeStreamResponse
+GetMedicalScribeStreamOutput: TypeAlias = _native.GetMedicalScribeStreamOutput
 MedicalScribeChannelDefinitionOutput: TypeAlias = _native.MedicalScribeChannelDefinition
 MedicalScribeEncryptionSettingsOutput: TypeAlias = _native.MedicalScribeEncryptionSettings
 MedicalScribePostStreamAnalyticsResultOutput: TypeAlias = _native.MedicalScribePostStreamAnalyticsResult
@@ -31,7 +31,7 @@ ClinicalNoteGenerationStatusOutput: TypeAlias = ClinicalNoteGenerationStatus | U
 ContentIdentificationType: TypeAlias = Literal['PII']
 ContentIdentificationTypeOutput: TypeAlias = ContentIdentificationType | UnknownEnumValue
 ContentRedactionOutput: TypeAlias = Literal['redacted', 'redacted_and_unredacted']
-ContentRedactionOutputResponse: TypeAlias = ContentRedactionOutput | UnknownEnumValue
+ContentRedactionValueOutput: TypeAlias = ContentRedactionOutput | UnknownEnumValue
 ContentRedactionType: TypeAlias = Literal['PII']
 ContentRedactionTypeOutput: TypeAlias = ContentRedactionType | UnknownEnumValue
 ItemType: TypeAlias = Literal['pronunciation', 'punctuation']
@@ -484,8 +484,8 @@ StartCallAnalyticsStreamTranscriptionRequest = TypedDict(
     },
 )
 
-StartCallAnalyticsStreamTranscriptionResponse = TypedDict(
-    "StartCallAnalyticsStreamTranscriptionResponse",
+StartCallAnalyticsStreamTranscriptionOutput = TypedDict(
+    "StartCallAnalyticsStreamTranscriptionOutput",
     {
     "request_id": Required["str | None"],
     "language_code": Required["CallAnalyticsLanguageCodeOutput | None"],
@@ -521,8 +521,8 @@ StartMedicalScribeStreamRequest = TypedDict(
     },
 )
 
-StartMedicalScribeStreamResponse = TypedDict(
-    "StartMedicalScribeStreamResponse",
+StartMedicalScribeStreamOutput = TypedDict(
+    "StartMedicalScribeStreamOutput",
     {
     "session_id": Required["str | None"],
     "request_id": Required["str | None"],
@@ -551,8 +551,8 @@ StartMedicalStreamTranscriptionRequest = TypedDict(
     },
 )
 
-StartMedicalStreamTranscriptionResponse = TypedDict(
-    "StartMedicalStreamTranscriptionResponse",
+StartMedicalStreamTranscriptionOutput = TypedDict(
+    "StartMedicalStreamTranscriptionOutput",
     {
     "request_id": Required["str | None"],
     "language_code": Required["LanguageCodeOutput | None"],
@@ -601,8 +601,8 @@ StartStreamTranscriptionRequest = TypedDict(
     },
 )
 
-StartStreamTranscriptionResponse = TypedDict(
-    "StartStreamTranscriptionResponse",
+StartStreamTranscriptionOutput = TypedDict(
+    "StartStreamTranscriptionOutput",
     {
     "request_id": Required["str | None"],
     "language_code": Required["LanguageCodeOutput | None"],

@@ -85,16 +85,16 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`create_pipe`](#create_pipe) | <code>name: str</code>, <code>source: str</code>, <code>target: str</code>, <code>role_arn: str</code> | <code>CreatePipeResponse</code> |
-| [`delete_pipe`](#delete_pipe) | <code>name: str</code> | <code>DeletePipeResponse</code> |
-| [`describe_pipe`](#describe_pipe) | <code>name: str</code> | <code>DescribePipeResponse</code> |
-| [`list_pipes`](#list_pipes) | None | <code>ListPipesResponse</code> |
-| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceResponse</code> |
-| [`start_pipe`](#start_pipe) | <code>name: str</code> | <code>StartPipeResponse</code> |
-| [`stop_pipe`](#stop_pipe) | <code>name: str</code> | <code>StopPipeResponse</code> |
-| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>TagResourceResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
-| [`update_pipe`](#update_pipe) | <code>name: str</code>, <code>role_arn: str</code> | <code>UpdatePipeResponse</code> |
+| [`create_pipe`](#create_pipe) | <code>name: str</code>, <code>source: str</code>, <code>target: str</code>, <code>role_arn: str</code> | <code>CreatePipeOutput</code> |
+| [`delete_pipe`](#delete_pipe) | <code>name: str</code> | <code>DeletePipeOutput</code> |
+| [`describe_pipe`](#describe_pipe) | <code>name: str</code> | <code>DescribePipeOutput</code> |
+| [`list_pipes`](#list_pipes) | None | <code>ListPipesOutput</code> |
+| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceOutput</code> |
+| [`start_pipe`](#start_pipe) | <code>name: str</code> | <code>StartPipeOutput</code> |
+| [`stop_pipe`](#stop_pipe) | <code>name: str</code> | <code>StopPipeOutput</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>TagResourceOutput</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceOutput</code> |
+| [`update_pipe`](#update_pipe) | <code>name: str</code>, <code>role_arn: str</code> | <code>UpdatePipeOutput</code> |
 
 ## Complete signatures
 
@@ -116,7 +116,7 @@ async def create_pipe(
     tags: dict[str, str] | None = None,
     log_configuration: PipeLogConfigurationParameters | None = None,
     kms_key_identifier: str | None = None,
-) -> CreatePipeResponse: ...
+) -> CreatePipeOutput: ...
 ```
 
 
@@ -126,7 +126,7 @@ async def create_pipe(
 async def delete_pipe(
     *,
     name: str,
-) -> DeletePipeResponse: ...
+) -> DeletePipeOutput: ...
 ```
 
 
@@ -136,7 +136,7 @@ async def delete_pipe(
 async def describe_pipe(
     *,
     name: str,
-) -> DescribePipeResponse: ...
+) -> DescribePipeOutput: ...
 ```
 
 
@@ -152,7 +152,7 @@ async def list_pipes(
     target_prefix: str | None = None,
     next_token: str | None = None,
     limit: int | None = None,
-) -> ListPipesResponse: ...
+) -> ListPipesOutput: ...
 ```
 
 Also available as `client.paginators.list_pipes(...)`, returning an
@@ -165,7 +165,7 @@ async iterator of the response type above.
 async def list_tags_for_resource(
     *,
     resource_arn: str,
-) -> ListTagsForResourceResponse: ...
+) -> ListTagsForResourceOutput: ...
 ```
 
 
@@ -175,7 +175,7 @@ async def list_tags_for_resource(
 async def start_pipe(
     *,
     name: str,
-) -> StartPipeResponse: ...
+) -> StartPipeOutput: ...
 ```
 
 
@@ -185,7 +185,7 @@ async def start_pipe(
 async def stop_pipe(
     *,
     name: str,
-) -> StopPipeResponse: ...
+) -> StopPipeOutput: ...
 ```
 
 
@@ -196,7 +196,7 @@ async def tag_resource(
     *,
     resource_arn: str,
     tags: dict[str, str],
-) -> TagResourceResponse: ...
+) -> TagResourceOutput: ...
 ```
 
 
@@ -207,7 +207,7 @@ async def untag_resource(
     *,
     resource_arn: str,
     tag_keys: Sequence[str],
-) -> UntagResourceResponse: ...
+) -> UntagResourceOutput: ...
 ```
 
 
@@ -227,7 +227,7 @@ async def update_pipe(
     target_parameters: PipeTargetParameters | None = None,
     log_configuration: PipeLogConfigurationParameters | None = None,
     kms_key_identifier: str | None = None,
-) -> UpdatePipeResponse: ...
+) -> UpdatePipeOutput: ...
 ```
 
 

@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING
 from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _paginate
 
 from ._native import (
-    ListIdentityPoolsResponse,
+    ListIdentityPoolsOutput,
 )
 
 
@@ -26,7 +26,7 @@ class CognitoIdentityClientPaginators:
         *,
         max_results: int,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListIdentityPoolsResponse]:
+    ) -> AsyncIterator[ListIdentityPoolsOutput]:
         """Yield each page from list_identity_pools; requests start on iteration."""
         params: dict[str, object] = {
             "max_results": max_results,

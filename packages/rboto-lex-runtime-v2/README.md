@@ -88,12 +88,12 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`delete_session`](#delete_session) | <code>bot_id: str</code>, <code>bot_alias_id: str</code>, <code>locale_id: str</code>, <code>session_id: str</code> | <code>DeleteSessionResponse</code> |
-| [`get_session`](#get_session) | <code>bot_id: str</code>, <code>bot_alias_id: str</code>, <code>locale_id: str</code>, <code>session_id: str</code> | <code>GetSessionResponse</code> |
-| [`put_session`](#put_session) | <code>bot_id: str</code>, <code>bot_alias_id: str</code>, <code>locale_id: str</code>, <code>session_id: str</code>, <code>session_state: SessionState</code> | <code>PutSessionResponse</code> |
-| [`recognize_text`](#recognize_text) | <code>bot_id: str</code>, <code>bot_alias_id: str</code>, <code>locale_id: str</code>, <code>session_id: str</code>, <code>text: str</code> | <code>RecognizeTextResponse</code> |
-| [`recognize_utterance`](#recognize_utterance) | <code>bot_id: str</code>, <code>bot_alias_id: str</code>, <code>locale_id: str</code>, <code>session_id: str</code>, <code>request_content_type: str</code> | <code>RecognizeUtteranceResponse</code> |
-| [`start_conversation`](#start_conversation) | <code>bot_id: str</code>, <code>bot_alias_id: str</code>, <code>locale_id: str</code>, <code>session_id: str</code>, <code>request_event_stream: AsyncIterator[StartConversationRequestEventStream]</code> | <code>StartConversationResponse</code> |
+| [`delete_session`](#delete_session) | <code>bot_id: str</code>, <code>bot_alias_id: str</code>, <code>locale_id: str</code>, <code>session_id: str</code> | <code>DeleteSessionOutput</code> |
+| [`get_session`](#get_session) | <code>bot_id: str</code>, <code>bot_alias_id: str</code>, <code>locale_id: str</code>, <code>session_id: str</code> | <code>GetSessionOutput</code> |
+| [`put_session`](#put_session) | <code>bot_id: str</code>, <code>bot_alias_id: str</code>, <code>locale_id: str</code>, <code>session_id: str</code>, <code>session_state: SessionState</code> | <code>PutSessionOutput</code> |
+| [`recognize_text`](#recognize_text) | <code>bot_id: str</code>, <code>bot_alias_id: str</code>, <code>locale_id: str</code>, <code>session_id: str</code>, <code>text: str</code> | <code>RecognizeTextOutput</code> |
+| [`recognize_utterance`](#recognize_utterance) | <code>bot_id: str</code>, <code>bot_alias_id: str</code>, <code>locale_id: str</code>, <code>session_id: str</code>, <code>request_content_type: str</code> | <code>RecognizeUtteranceOutput</code> |
+| [`start_conversation`](#start_conversation) | <code>bot_id: str</code>, <code>bot_alias_id: str</code>, <code>locale_id: str</code>, <code>session_id: str</code>, <code>request_event_stream: AsyncIterator[StartConversationRequestEventStream]</code> | <code>StartConversationOutput</code> |
 
 ## Complete signatures
 
@@ -106,7 +106,7 @@ async def delete_session(
     bot_alias_id: str,
     locale_id: str,
     session_id: str,
-) -> DeleteSessionResponse: ...
+) -> DeleteSessionOutput: ...
 ```
 
 
@@ -119,7 +119,7 @@ async def get_session(
     bot_alias_id: str,
     locale_id: str,
     session_id: str,
-) -> GetSessionResponse: ...
+) -> GetSessionOutput: ...
 ```
 
 
@@ -136,7 +136,7 @@ async def put_session(
     messages: Sequence[Message] | None = None,
     request_attributes: dict[str, str] | None = None,
     response_content_type: str | None = None,
-) -> PutSessionResponse: ...
+) -> PutSessionOutput: ...
 ```
 
 
@@ -152,7 +152,7 @@ async def recognize_text(
     text: str,
     session_state: SessionState | None = None,
     request_attributes: dict[str, str] | None = None,
-) -> RecognizeTextResponse: ...
+) -> RecognizeTextOutput: ...
 ```
 
 
@@ -170,7 +170,7 @@ async def recognize_utterance(
     request_attributes: str | None = None,
     response_content_type: str | None = None,
     input_stream: bytes | None = None,
-) -> RecognizeUtteranceResponse: ...
+) -> RecognizeUtteranceOutput: ...
 ```
 
 
@@ -185,7 +185,7 @@ async def start_conversation(
     session_id: str,
     request_event_stream: AsyncIterator[StartConversationRequestEventStream],
     conversation_mode: ConversationMode | None = None,
-) -> StartConversationResponse: ...
+) -> StartConversationOutput: ...
 ```
 
 

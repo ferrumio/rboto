@@ -85,66 +85,66 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`add_tags`](#add_tags) | <code>resource_id: str</code>, <code>tags_list: Sequence[Tag]</code> | <code>AddTagsResponse</code> |
-| [`cancel_query`](#cancel_query) | <code>query_id: str</code> | <code>CancelQueryResponse</code> |
-| [`create_channel`](#create_channel) | <code>name: str</code>, <code>source: str</code>, <code>destinations: Sequence[Destination]</code> | <code>CreateChannelResponse</code> |
-| [`create_dashboard`](#create_dashboard) | <code>name: str</code> | <code>CreateDashboardResponse</code> |
-| [`create_event_data_store`](#create_event_data_store) | <code>name: str</code> | <code>CreateEventDataStoreResponse</code> |
-| [`create_trail`](#create_trail) | <code>name: str</code>, <code>s3_bucket_name: str</code> | <code>CreateTrailResponse</code> |
-| [`delete_channel`](#delete_channel) | <code>channel: str</code> | <code>DeleteChannelResponse</code> |
-| [`delete_dashboard`](#delete_dashboard) | <code>dashboard_id: str</code> | <code>DeleteDashboardResponse</code> |
-| [`delete_event_data_store`](#delete_event_data_store) | <code>event_data_store: str</code> | <code>DeleteEventDataStoreResponse</code> |
-| [`delete_resource_policy`](#delete_resource_policy) | <code>resource_arn: str</code> | <code>DeleteResourcePolicyResponse</code> |
-| [`delete_trail`](#delete_trail) | <code>name: str</code> | <code>DeleteTrailResponse</code> |
-| [`deregister_organization_delegated_admin`](#deregister_organization_delegated_admin) | <code>delegated_admin_account_id: str</code> | <code>DeregisterOrganizationDelegatedAdminResponse</code> |
-| [`describe_query`](#describe_query) | None | <code>DescribeQueryResponse</code> |
-| [`describe_trails`](#describe_trails) | None | <code>DescribeTrailsResponse</code> |
-| [`disable_federation`](#disable_federation) | <code>event_data_store: str</code> | <code>DisableFederationResponse</code> |
-| [`enable_federation`](#enable_federation) | <code>event_data_store: str</code>, <code>federation_role_arn: str</code> | <code>EnableFederationResponse</code> |
-| [`generate_query`](#generate_query) | <code>event_data_stores: Sequence[str]</code>, <code>prompt: str</code> | <code>GenerateQueryResponse</code> |
-| [`get_channel`](#get_channel) | <code>channel: str</code> | <code>GetChannelResponse</code> |
-| [`get_dashboard`](#get_dashboard) | <code>dashboard_id: str</code> | <code>GetDashboardResponse</code> |
-| [`get_event_configuration`](#get_event_configuration) | None | <code>GetEventConfigurationResponse</code> |
-| [`get_event_data_store`](#get_event_data_store) | <code>event_data_store: str</code> | <code>GetEventDataStoreResponse</code> |
-| [`get_event_selectors`](#get_event_selectors) | <code>trail_name: str</code> | <code>GetEventSelectorsResponse</code> |
-| [`get_import`](#get_import) | <code>import_id: str</code> | <code>GetImportResponse</code> |
-| [`get_insight_selectors`](#get_insight_selectors) | None | <code>GetInsightSelectorsResponse</code> |
-| [`get_query_results`](#get_query_results) | <code>query_id: str</code> | <code>GetQueryResultsResponse</code> |
-| [`get_resource_policy`](#get_resource_policy) | <code>resource_arn: str</code> | <code>GetResourcePolicyResponse</code> |
-| [`get_trail`](#get_trail) | <code>name: str</code> | <code>GetTrailResponse</code> |
-| [`get_trail_status`](#get_trail_status) | <code>name: str</code> | <code>GetTrailStatusResponse</code> |
-| [`list_channels`](#list_channels) | None | <code>ListChannelsResponse</code> |
-| [`list_dashboards`](#list_dashboards) | None | <code>ListDashboardsResponse</code> |
-| [`list_event_data_stores`](#list_event_data_stores) | None | <code>ListEventDataStoresResponse</code> |
-| [`list_import_failures`](#list_import_failures) | <code>import_id: str</code> | <code>ListImportFailuresResponse</code> |
-| [`list_imports`](#list_imports) | None | <code>ListImportsResponse</code> |
-| [`list_insights_data`](#list_insights_data) | <code>insight_source: str</code>, <code>data_type: ListInsightsDataType</code> | <code>ListInsightsDataResponse</code> |
-| [`list_insights_metric_data`](#list_insights_metric_data) | <code>event_source: str</code>, <code>event_name: str</code>, <code>insight_type: InsightType</code> | <code>ListInsightsMetricDataResponse</code> |
-| [`list_public_keys`](#list_public_keys) | None | <code>ListPublicKeysResponse</code> |
-| [`list_queries`](#list_queries) | <code>event_data_store: str</code> | <code>ListQueriesResponse</code> |
-| [`list_tags`](#list_tags) | <code>resource_id_list: Sequence[str]</code> | <code>ListTagsResponse</code> |
-| [`list_trails`](#list_trails) | None | <code>ListTrailsResponse</code> |
-| [`lookup_events`](#lookup_events) | None | <code>LookupEventsResponse</code> |
-| [`put_event_configuration`](#put_event_configuration) | None | <code>PutEventConfigurationResponse</code> |
-| [`put_event_selectors`](#put_event_selectors) | <code>trail_name: str</code> | <code>PutEventSelectorsResponse</code> |
-| [`put_insight_selectors`](#put_insight_selectors) | <code>insight_selectors: Sequence[InsightSelector]</code> | <code>PutInsightSelectorsResponse</code> |
-| [`put_resource_policy`](#put_resource_policy) | <code>resource_arn: str</code>, <code>resource_policy: str</code> | <code>PutResourcePolicyResponse</code> |
-| [`register_organization_delegated_admin`](#register_organization_delegated_admin) | <code>member_account_id: str</code> | <code>RegisterOrganizationDelegatedAdminResponse</code> |
-| [`remove_tags`](#remove_tags) | <code>resource_id: str</code>, <code>tags_list: Sequence[Tag]</code> | <code>RemoveTagsResponse</code> |
-| [`restore_event_data_store`](#restore_event_data_store) | <code>event_data_store: str</code> | <code>RestoreEventDataStoreResponse</code> |
-| [`search_sample_queries`](#search_sample_queries) | <code>search_phrase: str</code> | <code>SearchSampleQueriesResponse</code> |
-| [`start_dashboard_refresh`](#start_dashboard_refresh) | <code>dashboard_id: str</code> | <code>StartDashboardRefreshResponse</code> |
-| [`start_event_data_store_ingestion`](#start_event_data_store_ingestion) | <code>event_data_store: str</code> | <code>StartEventDataStoreIngestionResponse</code> |
-| [`start_import`](#start_import) | None | <code>StartImportResponse</code> |
-| [`start_logging`](#start_logging) | <code>name: str</code> | <code>StartLoggingResponse</code> |
-| [`start_query`](#start_query) | None | <code>StartQueryResponse</code> |
-| [`stop_event_data_store_ingestion`](#stop_event_data_store_ingestion) | <code>event_data_store: str</code> | <code>StopEventDataStoreIngestionResponse</code> |
-| [`stop_import`](#stop_import) | <code>import_id: str</code> | <code>StopImportResponse</code> |
-| [`stop_logging`](#stop_logging) | <code>name: str</code> | <code>StopLoggingResponse</code> |
-| [`update_channel`](#update_channel) | <code>channel: str</code> | <code>UpdateChannelResponse</code> |
-| [`update_dashboard`](#update_dashboard) | <code>dashboard_id: str</code> | <code>UpdateDashboardResponse</code> |
-| [`update_event_data_store`](#update_event_data_store) | <code>event_data_store: str</code> | <code>UpdateEventDataStoreResponse</code> |
-| [`update_trail`](#update_trail) | <code>name: str</code> | <code>UpdateTrailResponse</code> |
+| [`add_tags`](#add_tags) | <code>resource_id: str</code>, <code>tags_list: Sequence[Tag]</code> | <code>AddTagsOutput</code> |
+| [`cancel_query`](#cancel_query) | <code>query_id: str</code> | <code>CancelQueryOutput</code> |
+| [`create_channel`](#create_channel) | <code>name: str</code>, <code>source: str</code>, <code>destinations: Sequence[Destination]</code> | <code>CreateChannelOutput</code> |
+| [`create_dashboard`](#create_dashboard) | <code>name: str</code> | <code>CreateDashboardOutput</code> |
+| [`create_event_data_store`](#create_event_data_store) | <code>name: str</code> | <code>CreateEventDataStoreOutput</code> |
+| [`create_trail`](#create_trail) | <code>name: str</code>, <code>s3_bucket_name: str</code> | <code>CreateTrailOutput</code> |
+| [`delete_channel`](#delete_channel) | <code>channel: str</code> | <code>DeleteChannelOutput</code> |
+| [`delete_dashboard`](#delete_dashboard) | <code>dashboard_id: str</code> | <code>DeleteDashboardOutput</code> |
+| [`delete_event_data_store`](#delete_event_data_store) | <code>event_data_store: str</code> | <code>DeleteEventDataStoreOutput</code> |
+| [`delete_resource_policy`](#delete_resource_policy) | <code>resource_arn: str</code> | <code>DeleteResourcePolicyOutput</code> |
+| [`delete_trail`](#delete_trail) | <code>name: str</code> | <code>DeleteTrailOutput</code> |
+| [`deregister_organization_delegated_admin`](#deregister_organization_delegated_admin) | <code>delegated_admin_account_id: str</code> | <code>DeregisterOrganizationDelegatedAdminOutput</code> |
+| [`describe_query`](#describe_query) | None | <code>DescribeQueryOutput</code> |
+| [`describe_trails`](#describe_trails) | None | <code>DescribeTrailsOutput</code> |
+| [`disable_federation`](#disable_federation) | <code>event_data_store: str</code> | <code>DisableFederationOutput</code> |
+| [`enable_federation`](#enable_federation) | <code>event_data_store: str</code>, <code>federation_role_arn: str</code> | <code>EnableFederationOutput</code> |
+| [`generate_query`](#generate_query) | <code>event_data_stores: Sequence[str]</code>, <code>prompt: str</code> | <code>GenerateQueryOutput</code> |
+| [`get_channel`](#get_channel) | <code>channel: str</code> | <code>GetChannelOutput</code> |
+| [`get_dashboard`](#get_dashboard) | <code>dashboard_id: str</code> | <code>GetDashboardOutput</code> |
+| [`get_event_configuration`](#get_event_configuration) | None | <code>GetEventConfigurationOutput</code> |
+| [`get_event_data_store`](#get_event_data_store) | <code>event_data_store: str</code> | <code>GetEventDataStoreOutput</code> |
+| [`get_event_selectors`](#get_event_selectors) | <code>trail_name: str</code> | <code>GetEventSelectorsOutput</code> |
+| [`get_import`](#get_import) | <code>import_id: str</code> | <code>GetImportOutput</code> |
+| [`get_insight_selectors`](#get_insight_selectors) | None | <code>GetInsightSelectorsOutput</code> |
+| [`get_query_results`](#get_query_results) | <code>query_id: str</code> | <code>GetQueryResultsOutput</code> |
+| [`get_resource_policy`](#get_resource_policy) | <code>resource_arn: str</code> | <code>GetResourcePolicyOutput</code> |
+| [`get_trail`](#get_trail) | <code>name: str</code> | <code>GetTrailOutput</code> |
+| [`get_trail_status`](#get_trail_status) | <code>name: str</code> | <code>GetTrailStatusOutput</code> |
+| [`list_channels`](#list_channels) | None | <code>ListChannelsOutput</code> |
+| [`list_dashboards`](#list_dashboards) | None | <code>ListDashboardsOutput</code> |
+| [`list_event_data_stores`](#list_event_data_stores) | None | <code>ListEventDataStoresOutput</code> |
+| [`list_import_failures`](#list_import_failures) | <code>import_id: str</code> | <code>ListImportFailuresOutput</code> |
+| [`list_imports`](#list_imports) | None | <code>ListImportsOutput</code> |
+| [`list_insights_data`](#list_insights_data) | <code>insight_source: str</code>, <code>data_type: ListInsightsDataType</code> | <code>ListInsightsDataOutput</code> |
+| [`list_insights_metric_data`](#list_insights_metric_data) | <code>event_source: str</code>, <code>event_name: str</code>, <code>insight_type: InsightType</code> | <code>ListInsightsMetricDataOutput</code> |
+| [`list_public_keys`](#list_public_keys) | None | <code>ListPublicKeysOutput</code> |
+| [`list_queries`](#list_queries) | <code>event_data_store: str</code> | <code>ListQueriesOutput</code> |
+| [`list_tags`](#list_tags) | <code>resource_id_list: Sequence[str]</code> | <code>ListTagsOutput</code> |
+| [`list_trails`](#list_trails) | None | <code>ListTrailsOutput</code> |
+| [`lookup_events`](#lookup_events) | None | <code>LookupEventsOutput</code> |
+| [`put_event_configuration`](#put_event_configuration) | None | <code>PutEventConfigurationOutput</code> |
+| [`put_event_selectors`](#put_event_selectors) | <code>trail_name: str</code> | <code>PutEventSelectorsOutput</code> |
+| [`put_insight_selectors`](#put_insight_selectors) | <code>insight_selectors: Sequence[InsightSelector]</code> | <code>PutInsightSelectorsOutput</code> |
+| [`put_resource_policy`](#put_resource_policy) | <code>resource_arn: str</code>, <code>resource_policy: str</code> | <code>PutResourcePolicyOutput</code> |
+| [`register_organization_delegated_admin`](#register_organization_delegated_admin) | <code>member_account_id: str</code> | <code>RegisterOrganizationDelegatedAdminOutput</code> |
+| [`remove_tags`](#remove_tags) | <code>resource_id: str</code>, <code>tags_list: Sequence[Tag]</code> | <code>RemoveTagsOutput</code> |
+| [`restore_event_data_store`](#restore_event_data_store) | <code>event_data_store: str</code> | <code>RestoreEventDataStoreOutput</code> |
+| [`search_sample_queries`](#search_sample_queries) | <code>search_phrase: str</code> | <code>SearchSampleQueriesOutput</code> |
+| [`start_dashboard_refresh`](#start_dashboard_refresh) | <code>dashboard_id: str</code> | <code>StartDashboardRefreshOutput</code> |
+| [`start_event_data_store_ingestion`](#start_event_data_store_ingestion) | <code>event_data_store: str</code> | <code>StartEventDataStoreIngestionOutput</code> |
+| [`start_import`](#start_import) | None | <code>StartImportOutput</code> |
+| [`start_logging`](#start_logging) | <code>name: str</code> | <code>StartLoggingOutput</code> |
+| [`start_query`](#start_query) | None | <code>StartQueryOutput</code> |
+| [`stop_event_data_store_ingestion`](#stop_event_data_store_ingestion) | <code>event_data_store: str</code> | <code>StopEventDataStoreIngestionOutput</code> |
+| [`stop_import`](#stop_import) | <code>import_id: str</code> | <code>StopImportOutput</code> |
+| [`stop_logging`](#stop_logging) | <code>name: str</code> | <code>StopLoggingOutput</code> |
+| [`update_channel`](#update_channel) | <code>channel: str</code> | <code>UpdateChannelOutput</code> |
+| [`update_dashboard`](#update_dashboard) | <code>dashboard_id: str</code> | <code>UpdateDashboardOutput</code> |
+| [`update_event_data_store`](#update_event_data_store) | <code>event_data_store: str</code> | <code>UpdateEventDataStoreOutput</code> |
+| [`update_trail`](#update_trail) | <code>name: str</code> | <code>UpdateTrailOutput</code> |
 
 ## Complete signatures
 
@@ -155,7 +155,7 @@ async def add_tags(
     *,
     resource_id: str,
     tags_list: Sequence[Tag],
-) -> AddTagsResponse: ...
+) -> AddTagsOutput: ...
 ```
 
 
@@ -167,7 +167,7 @@ async def cancel_query(
     query_id: str,
     event_data_store: str | None = None,
     event_data_store_owner_account_id: str | None = None,
-) -> CancelQueryResponse: ...
+) -> CancelQueryOutput: ...
 ```
 
 
@@ -180,7 +180,7 @@ async def create_channel(
     source: str,
     destinations: Sequence[Destination],
     tags: Sequence[Tag] | None = None,
-) -> CreateChannelResponse: ...
+) -> CreateChannelOutput: ...
 ```
 
 
@@ -194,7 +194,7 @@ async def create_dashboard(
     tags_list: Sequence[Tag] | None = None,
     termination_protection_enabled: bool | None = None,
     widgets: Sequence[RequestWidget] | None = None,
-) -> CreateDashboardResponse: ...
+) -> CreateDashboardOutput: ...
 ```
 
 
@@ -213,7 +213,7 @@ async def create_event_data_store(
     kms_key_id: str | None = None,
     start_ingestion: bool | None = None,
     billing_mode: BillingMode | None = None,
-) -> CreateEventDataStoreResponse: ...
+) -> CreateEventDataStoreOutput: ...
 ```
 
 
@@ -235,7 +235,7 @@ async def create_trail(
     is_organization_trail: bool | None = None,
     tags_list: Sequence[Tag] | None = None,
     recursive_logging: bool | None = None,
-) -> CreateTrailResponse: ...
+) -> CreateTrailOutput: ...
 ```
 
 
@@ -245,7 +245,7 @@ async def create_trail(
 async def delete_channel(
     *,
     channel: str,
-) -> DeleteChannelResponse: ...
+) -> DeleteChannelOutput: ...
 ```
 
 
@@ -255,7 +255,7 @@ async def delete_channel(
 async def delete_dashboard(
     *,
     dashboard_id: str,
-) -> DeleteDashboardResponse: ...
+) -> DeleteDashboardOutput: ...
 ```
 
 
@@ -265,7 +265,7 @@ async def delete_dashboard(
 async def delete_event_data_store(
     *,
     event_data_store: str,
-) -> DeleteEventDataStoreResponse: ...
+) -> DeleteEventDataStoreOutput: ...
 ```
 
 
@@ -275,7 +275,7 @@ async def delete_event_data_store(
 async def delete_resource_policy(
     *,
     resource_arn: str,
-) -> DeleteResourcePolicyResponse: ...
+) -> DeleteResourcePolicyOutput: ...
 ```
 
 
@@ -285,7 +285,7 @@ async def delete_resource_policy(
 async def delete_trail(
     *,
     name: str,
-) -> DeleteTrailResponse: ...
+) -> DeleteTrailOutput: ...
 ```
 
 
@@ -295,7 +295,7 @@ async def delete_trail(
 async def deregister_organization_delegated_admin(
     *,
     delegated_admin_account_id: str,
-) -> DeregisterOrganizationDelegatedAdminResponse: ...
+) -> DeregisterOrganizationDelegatedAdminOutput: ...
 ```
 
 
@@ -309,7 +309,7 @@ async def describe_query(
     query_alias: str | None = None,
     refresh_id: str | None = None,
     event_data_store_owner_account_id: str | None = None,
-) -> DescribeQueryResponse: ...
+) -> DescribeQueryOutput: ...
 ```
 
 
@@ -320,7 +320,7 @@ async def describe_trails(
     *,
     trail_name_list: Sequence[str] | None = None,
     include_shadow_trails: bool | None = None,
-) -> DescribeTrailsResponse: ...
+) -> DescribeTrailsOutput: ...
 ```
 
 
@@ -330,7 +330,7 @@ async def describe_trails(
 async def disable_federation(
     *,
     event_data_store: str,
-) -> DisableFederationResponse: ...
+) -> DisableFederationOutput: ...
 ```
 
 
@@ -341,7 +341,7 @@ async def enable_federation(
     *,
     event_data_store: str,
     federation_role_arn: str,
-) -> EnableFederationResponse: ...
+) -> EnableFederationOutput: ...
 ```
 
 
@@ -352,7 +352,7 @@ async def generate_query(
     *,
     event_data_stores: Sequence[str],
     prompt: str,
-) -> GenerateQueryResponse: ...
+) -> GenerateQueryOutput: ...
 ```
 
 
@@ -362,7 +362,7 @@ async def generate_query(
 async def get_channel(
     *,
     channel: str,
-) -> GetChannelResponse: ...
+) -> GetChannelOutput: ...
 ```
 
 
@@ -372,7 +372,7 @@ async def get_channel(
 async def get_dashboard(
     *,
     dashboard_id: str,
-) -> GetDashboardResponse: ...
+) -> GetDashboardOutput: ...
 ```
 
 
@@ -383,7 +383,7 @@ async def get_event_configuration(
     *,
     trail_name: str | None = None,
     event_data_store: str | None = None,
-) -> GetEventConfigurationResponse: ...
+) -> GetEventConfigurationOutput: ...
 ```
 
 
@@ -393,7 +393,7 @@ async def get_event_configuration(
 async def get_event_data_store(
     *,
     event_data_store: str,
-) -> GetEventDataStoreResponse: ...
+) -> GetEventDataStoreOutput: ...
 ```
 
 
@@ -403,7 +403,7 @@ async def get_event_data_store(
 async def get_event_selectors(
     *,
     trail_name: str,
-) -> GetEventSelectorsResponse: ...
+) -> GetEventSelectorsOutput: ...
 ```
 
 
@@ -413,7 +413,7 @@ async def get_event_selectors(
 async def get_import(
     *,
     import_id: str,
-) -> GetImportResponse: ...
+) -> GetImportOutput: ...
 ```
 
 
@@ -424,7 +424,7 @@ async def get_insight_selectors(
     *,
     trail_name: str | None = None,
     event_data_store: str | None = None,
-) -> GetInsightSelectorsResponse: ...
+) -> GetInsightSelectorsOutput: ...
 ```
 
 
@@ -438,7 +438,7 @@ async def get_query_results(
     next_token: str | None = None,
     max_query_results: int | None = None,
     event_data_store_owner_account_id: str | None = None,
-) -> GetQueryResultsResponse: ...
+) -> GetQueryResultsOutput: ...
 ```
 
 Also available as `client.paginators.get_query_results(...)`, returning an
@@ -451,7 +451,7 @@ async iterator of the response type above.
 async def get_resource_policy(
     *,
     resource_arn: str,
-) -> GetResourcePolicyResponse: ...
+) -> GetResourcePolicyOutput: ...
 ```
 
 
@@ -461,7 +461,7 @@ async def get_resource_policy(
 async def get_trail(
     *,
     name: str,
-) -> GetTrailResponse: ...
+) -> GetTrailOutput: ...
 ```
 
 
@@ -471,7 +471,7 @@ async def get_trail(
 async def get_trail_status(
     *,
     name: str,
-) -> GetTrailStatusResponse: ...
+) -> GetTrailStatusOutput: ...
 ```
 
 
@@ -482,7 +482,7 @@ async def list_channels(
     *,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListChannelsResponse: ...
+) -> ListChannelsOutput: ...
 ```
 
 Also available as `client.paginators.list_channels(...)`, returning an
@@ -498,7 +498,7 @@ async def list_dashboards(
     type: DashboardType | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListDashboardsResponse: ...
+) -> ListDashboardsOutput: ...
 ```
 
 
@@ -509,7 +509,7 @@ async def list_event_data_stores(
     *,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListEventDataStoresResponse: ...
+) -> ListEventDataStoresOutput: ...
 ```
 
 Also available as `client.paginators.list_event_data_stores(...)`, returning an
@@ -524,7 +524,7 @@ async def list_import_failures(
     import_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListImportFailuresResponse: ...
+) -> ListImportFailuresOutput: ...
 ```
 
 Also available as `client.paginators.list_import_failures(...)`, returning an
@@ -540,7 +540,7 @@ async def list_imports(
     destination: str | None = None,
     import_status: ImportStatus | None = None,
     next_token: str | None = None,
-) -> ListImportsResponse: ...
+) -> ListImportsOutput: ...
 ```
 
 Also available as `client.paginators.list_imports(...)`, returning an
@@ -559,7 +559,7 @@ async def list_insights_data(
     end_time: str | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListInsightsDataResponse: ...
+) -> ListInsightsDataOutput: ...
 ```
 
 Also available as `client.paginators.list_insights_data(...)`, returning an
@@ -582,7 +582,7 @@ async def list_insights_metric_data(
     data_type: InsightsMetricDataType | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListInsightsMetricDataResponse: ...
+) -> ListInsightsMetricDataOutput: ...
 ```
 
 Also available as `client.paginators.list_insights_metric_data(...)`, returning an
@@ -597,7 +597,7 @@ async def list_public_keys(
     start_time: str | None = None,
     end_time: str | None = None,
     next_token: str | None = None,
-) -> ListPublicKeysResponse: ...
+) -> ListPublicKeysOutput: ...
 ```
 
 Also available as `client.paginators.list_public_keys(...)`, returning an
@@ -615,7 +615,7 @@ async def list_queries(
     start_time: str | None = None,
     end_time: str | None = None,
     query_status: QueryStatus | None = None,
-) -> ListQueriesResponse: ...
+) -> ListQueriesOutput: ...
 ```
 
 Also available as `client.paginators.list_queries(...)`, returning an
@@ -629,7 +629,7 @@ async def list_tags(
     *,
     resource_id_list: Sequence[str],
     next_token: str | None = None,
-) -> ListTagsResponse: ...
+) -> ListTagsOutput: ...
 ```
 
 Also available as `client.paginators.list_tags(...)`, returning an
@@ -642,7 +642,7 @@ async iterator of the response type above.
 async def list_trails(
     *,
     next_token: str | None = None,
-) -> ListTrailsResponse: ...
+) -> ListTrailsOutput: ...
 ```
 
 Also available as `client.paginators.list_trails(...)`, returning an
@@ -660,7 +660,7 @@ async def lookup_events(
     event_category: EventCategory | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> LookupEventsResponse: ...
+) -> LookupEventsOutput: ...
 ```
 
 Also available as `client.paginators.lookup_events(...)`, returning an
@@ -677,7 +677,7 @@ async def put_event_configuration(
     max_event_size: MaxEventSize | None = None,
     context_key_selectors: Sequence[ContextKeySelector] | None = None,
     aggregation_configurations: Sequence[AggregationConfiguration] | None = None,
-) -> PutEventConfigurationResponse: ...
+) -> PutEventConfigurationOutput: ...
 ```
 
 
@@ -689,7 +689,7 @@ async def put_event_selectors(
     trail_name: str,
     event_selectors: Sequence[EventSelector] | None = None,
     advanced_event_selectors: Sequence[AdvancedEventSelector] | None = None,
-) -> PutEventSelectorsResponse: ...
+) -> PutEventSelectorsOutput: ...
 ```
 
 
@@ -702,7 +702,7 @@ async def put_insight_selectors(
     trail_name: str | None = None,
     event_data_store: str | None = None,
     insights_destination: str | None = None,
-) -> PutInsightSelectorsResponse: ...
+) -> PutInsightSelectorsOutput: ...
 ```
 
 
@@ -713,7 +713,7 @@ async def put_resource_policy(
     *,
     resource_arn: str,
     resource_policy: str,
-) -> PutResourcePolicyResponse: ...
+) -> PutResourcePolicyOutput: ...
 ```
 
 
@@ -723,7 +723,7 @@ async def put_resource_policy(
 async def register_organization_delegated_admin(
     *,
     member_account_id: str,
-) -> RegisterOrganizationDelegatedAdminResponse: ...
+) -> RegisterOrganizationDelegatedAdminOutput: ...
 ```
 
 
@@ -734,7 +734,7 @@ async def remove_tags(
     *,
     resource_id: str,
     tags_list: Sequence[Tag],
-) -> RemoveTagsResponse: ...
+) -> RemoveTagsOutput: ...
 ```
 
 
@@ -744,7 +744,7 @@ async def remove_tags(
 async def restore_event_data_store(
     *,
     event_data_store: str,
-) -> RestoreEventDataStoreResponse: ...
+) -> RestoreEventDataStoreOutput: ...
 ```
 
 
@@ -756,7 +756,7 @@ async def search_sample_queries(
     search_phrase: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> SearchSampleQueriesResponse: ...
+) -> SearchSampleQueriesOutput: ...
 ```
 
 
@@ -767,7 +767,7 @@ async def start_dashboard_refresh(
     *,
     dashboard_id: str,
     query_parameter_values: dict[str, str] | None = None,
-) -> StartDashboardRefreshResponse: ...
+) -> StartDashboardRefreshOutput: ...
 ```
 
 
@@ -777,7 +777,7 @@ async def start_dashboard_refresh(
 async def start_event_data_store_ingestion(
     *,
     event_data_store: str,
-) -> StartEventDataStoreIngestionResponse: ...
+) -> StartEventDataStoreIngestionOutput: ...
 ```
 
 
@@ -791,7 +791,7 @@ async def start_import(
     start_event_time: str | None = None,
     end_event_time: str | None = None,
     import_id: str | None = None,
-) -> StartImportResponse: ...
+) -> StartImportOutput: ...
 ```
 
 
@@ -801,7 +801,7 @@ async def start_import(
 async def start_logging(
     *,
     name: str,
-) -> StartLoggingResponse: ...
+) -> StartLoggingOutput: ...
 ```
 
 
@@ -815,7 +815,7 @@ async def start_query(
     query_alias: str | None = None,
     query_parameters: Sequence[str] | None = None,
     event_data_store_owner_account_id: str | None = None,
-) -> StartQueryResponse: ...
+) -> StartQueryOutput: ...
 ```
 
 
@@ -825,7 +825,7 @@ async def start_query(
 async def stop_event_data_store_ingestion(
     *,
     event_data_store: str,
-) -> StopEventDataStoreIngestionResponse: ...
+) -> StopEventDataStoreIngestionOutput: ...
 ```
 
 
@@ -835,7 +835,7 @@ async def stop_event_data_store_ingestion(
 async def stop_import(
     *,
     import_id: str,
-) -> StopImportResponse: ...
+) -> StopImportOutput: ...
 ```
 
 
@@ -845,7 +845,7 @@ async def stop_import(
 async def stop_logging(
     *,
     name: str,
-) -> StopLoggingResponse: ...
+) -> StopLoggingOutput: ...
 ```
 
 
@@ -857,7 +857,7 @@ async def update_channel(
     channel: str,
     destinations: Sequence[Destination] | None = None,
     name: str | None = None,
-) -> UpdateChannelResponse: ...
+) -> UpdateChannelOutput: ...
 ```
 
 
@@ -870,7 +870,7 @@ async def update_dashboard(
     widgets: Sequence[RequestWidget] | None = None,
     refresh_schedule: RefreshSchedule | None = None,
     termination_protection_enabled: bool | None = None,
-) -> UpdateDashboardResponse: ...
+) -> UpdateDashboardOutput: ...
 ```
 
 
@@ -888,7 +888,7 @@ async def update_event_data_store(
     termination_protection_enabled: bool | None = None,
     kms_key_id: str | None = None,
     billing_mode: BillingMode | None = None,
-) -> UpdateEventDataStoreResponse: ...
+) -> UpdateEventDataStoreOutput: ...
 ```
 
 
@@ -909,7 +909,7 @@ async def update_trail(
     kms_key_id: str | None = None,
     is_organization_trail: bool | None = None,
     recursive_logging: bool | None = None,
-) -> UpdateTrailResponse: ...
+) -> UpdateTrailOutput: ...
 ```
 
 

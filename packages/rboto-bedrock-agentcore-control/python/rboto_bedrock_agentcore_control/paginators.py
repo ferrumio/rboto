@@ -8,45 +8,45 @@ from typing import TYPE_CHECKING
 from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _paginate
 
 from ._native import (
-    ListAgentRuntimeEndpointsResponse,
+    ListAgentRuntimeEndpointsOutput,
     ListAgentRuntimeVersionsByCapacityProviderOutput,
-    ListAgentRuntimeVersionsResponse,
-    ListAgentRuntimesResponse,
-    ListApiKeyCredentialProvidersResponse,
-    ListBrowserProfilesResponse,
-    ListBrowsersResponse,
+    ListAgentRuntimeVersionsOutput,
+    ListAgentRuntimesOutput,
+    ListApiKeyCredentialProvidersOutput,
+    ListBrowserProfilesOutput,
+    ListBrowsersOutput,
     ListCapacityProvidersOutput,
-    ListCodeInterpretersResponse,
-    ListConfigurationBundleVersionsResponse,
-    ListConfigurationBundlesResponse,
-    ListConsentPortalsResponse,
-    ListDatasetExamplesResponse,
-    ListDatasetVersionsResponse,
-    ListDatasetsResponse,
-    ListEvaluatorsResponse,
-    ListGatewayRateLimitsResponse,
-    ListGatewayRulesResponse,
-    ListGatewayTargetsResponse,
-    ListGatewaysResponse,
-    ListHarnessEndpointsResponse,
-    ListHarnessVersionsResponse,
-    ListHarnessesResponse,
+    ListCodeInterpretersOutput,
+    ListConfigurationBundleVersionsOutput,
+    ListConfigurationBundlesOutput,
+    ListConsentPortalsOutput,
+    ListDatasetExamplesOutput,
+    ListDatasetVersionsOutput,
+    ListDatasetsOutput,
+    ListEvaluatorsOutput,
+    ListGatewayRateLimitsOutput,
+    ListGatewayRulesOutput,
+    ListGatewayTargetsOutput,
+    ListGatewaysOutput,
+    ListHarnessEndpointsOutput,
+    ListHarnessVersionsOutput,
+    ListHarnessesOutput,
     ListMemoriesOutput,
-    ListOauth2CredentialProvidersResponse,
-    ListOnlineEvaluationConfigsResponse,
-    ListPaymentConnectorsResponse,
-    ListPaymentCredentialProvidersResponse,
-    ListPaymentManagersResponse,
-    ListPoliciesResponse,
-    ListPolicyEngineSummariesResponse,
-    ListPolicyEnginesResponse,
-    ListPolicyGenerationAssetsResponse,
-    ListPolicyGenerationSummariesResponse,
-    ListPolicyGenerationsResponse,
-    ListPolicySummariesResponse,
-    ListRegistriesResponse,
-    ListRegistryRecordsResponse,
-    ListWorkloadIdentitiesResponse,
+    ListOauth2CredentialProvidersOutput,
+    ListOnlineEvaluationConfigsOutput,
+    ListPaymentConnectorsOutput,
+    ListPaymentCredentialProvidersOutput,
+    ListPaymentManagersOutput,
+    ListPoliciesOutput,
+    ListPolicyEngineSummariesOutput,
+    ListPolicyEnginesOutput,
+    ListPolicyGenerationAssetsOutput,
+    ListPolicyGenerationSummariesOutput,
+    ListPolicyGenerationsOutput,
+    ListPolicySummariesOutput,
+    ListRegistriesOutput,
+    ListRegistryRecordsOutput,
+    ListWorkloadIdentitiesOutput,
 )
 
 from .types import (
@@ -73,7 +73,7 @@ class BedrockAgentCoreControlClientPaginators:
         agent_runtime_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListAgentRuntimeEndpointsResponse]:
+    ) -> AsyncIterator[ListAgentRuntimeEndpointsOutput]:
         """Yield each page from list_agent_runtime_endpoints; requests start on iteration."""
         params: dict[str, object] = {
             "agent_runtime_id": agent_runtime_id,
@@ -98,7 +98,7 @@ class BedrockAgentCoreControlClientPaginators:
         agent_runtime_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListAgentRuntimeVersionsResponse]:
+    ) -> AsyncIterator[ListAgentRuntimeVersionsOutput]:
         """Yield each page from list_agent_runtime_versions; requests start on iteration."""
         params: dict[str, object] = {
             "agent_runtime_id": agent_runtime_id,
@@ -147,7 +147,7 @@ class BedrockAgentCoreControlClientPaginators:
         *,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListAgentRuntimesResponse]:
+    ) -> AsyncIterator[ListAgentRuntimesOutput]:
         """Yield each page from list_agent_runtimes; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -170,7 +170,7 @@ class BedrockAgentCoreControlClientPaginators:
         *,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListApiKeyCredentialProvidersResponse]:
+    ) -> AsyncIterator[ListApiKeyCredentialProvidersOutput]:
         """Yield each page from list_api_key_credential_providers; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -194,7 +194,7 @@ class BedrockAgentCoreControlClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
         name: str | None = None,
-    ) -> AsyncIterator[ListBrowserProfilesResponse]:
+    ) -> AsyncIterator[ListBrowserProfilesOutput]:
         """Yield each page from list_browser_profiles; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -220,7 +220,7 @@ class BedrockAgentCoreControlClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
         type: ResourceType | None = None,
-    ) -> AsyncIterator[ListBrowsersResponse]:
+    ) -> AsyncIterator[ListBrowsersOutput]:
         """Yield each page from list_browsers; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -269,7 +269,7 @@ class BedrockAgentCoreControlClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
         type: ResourceType | None = None,
-    ) -> AsyncIterator[ListCodeInterpretersResponse]:
+    ) -> AsyncIterator[ListCodeInterpretersOutput]:
         """Yield each page from list_code_interpreters; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -296,7 +296,7 @@ class BedrockAgentCoreControlClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
         filter: VersionFilter | None = None,
-    ) -> AsyncIterator[ListConfigurationBundleVersionsResponse]:
+    ) -> AsyncIterator[ListConfigurationBundleVersionsOutput]:
         """Yield each page from list_configuration_bundle_versions; requests start on iteration."""
         params: dict[str, object] = {
             "bundle_id": bundle_id,
@@ -322,7 +322,7 @@ class BedrockAgentCoreControlClientPaginators:
         *,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListConfigurationBundlesResponse]:
+    ) -> AsyncIterator[ListConfigurationBundlesOutput]:
         """Yield each page from list_configuration_bundles; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -345,7 +345,7 @@ class BedrockAgentCoreControlClientPaginators:
         *,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListConsentPortalsResponse]:
+    ) -> AsyncIterator[ListConsentPortalsOutput]:
         """Yield each page from list_consent_portals; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -370,7 +370,7 @@ class BedrockAgentCoreControlClientPaginators:
         dataset_version: str | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListDatasetExamplesResponse]:
+    ) -> AsyncIterator[ListDatasetExamplesOutput]:
         """Yield each page from list_dataset_examples; requests start on iteration."""
         params: dict[str, object] = {
             "dataset_id": dataset_id,
@@ -397,7 +397,7 @@ class BedrockAgentCoreControlClientPaginators:
         dataset_id: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListDatasetVersionsResponse]:
+    ) -> AsyncIterator[ListDatasetVersionsOutput]:
         """Yield each page from list_dataset_versions; requests start on iteration."""
         params: dict[str, object] = {
             "dataset_id": dataset_id,
@@ -421,7 +421,7 @@ class BedrockAgentCoreControlClientPaginators:
         *,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListDatasetsResponse]:
+    ) -> AsyncIterator[ListDatasetsOutput]:
         """Yield each page from list_datasets; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -444,7 +444,7 @@ class BedrockAgentCoreControlClientPaginators:
         *,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListEvaluatorsResponse]:
+    ) -> AsyncIterator[ListEvaluatorsOutput]:
         """Yield each page from list_evaluators; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -468,7 +468,7 @@ class BedrockAgentCoreControlClientPaginators:
         gateway_identifier: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListGatewayRateLimitsResponse]:
+    ) -> AsyncIterator[ListGatewayRateLimitsOutput]:
         """Yield each page from list_gateway_rate_limits; requests start on iteration."""
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
@@ -493,7 +493,7 @@ class BedrockAgentCoreControlClientPaginators:
         gateway_identifier: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListGatewayRulesResponse]:
+    ) -> AsyncIterator[ListGatewayRulesOutput]:
         """Yield each page from list_gateway_rules; requests start on iteration."""
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
@@ -518,7 +518,7 @@ class BedrockAgentCoreControlClientPaginators:
         gateway_identifier: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListGatewayTargetsResponse]:
+    ) -> AsyncIterator[ListGatewayTargetsOutput]:
         """Yield each page from list_gateway_targets; requests start on iteration."""
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
@@ -542,7 +542,7 @@ class BedrockAgentCoreControlClientPaginators:
         *,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListGatewaysResponse]:
+    ) -> AsyncIterator[ListGatewaysOutput]:
         """Yield each page from list_gateways; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -566,7 +566,7 @@ class BedrockAgentCoreControlClientPaginators:
         harness_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListHarnessEndpointsResponse]:
+    ) -> AsyncIterator[ListHarnessEndpointsOutput]:
         """Yield each page from list_harness_endpoints; requests start on iteration."""
         params: dict[str, object] = {
             "harness_id": harness_id,
@@ -591,7 +591,7 @@ class BedrockAgentCoreControlClientPaginators:
         harness_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListHarnessVersionsResponse]:
+    ) -> AsyncIterator[ListHarnessVersionsOutput]:
         """Yield each page from list_harness_versions; requests start on iteration."""
         params: dict[str, object] = {
             "harness_id": harness_id,
@@ -615,7 +615,7 @@ class BedrockAgentCoreControlClientPaginators:
         *,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListHarnessesResponse]:
+    ) -> AsyncIterator[ListHarnessesOutput]:
         """Yield each page from list_harnesses; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -661,7 +661,7 @@ class BedrockAgentCoreControlClientPaginators:
         *,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListOauth2CredentialProvidersResponse]:
+    ) -> AsyncIterator[ListOauth2CredentialProvidersOutput]:
         """Yield each page from list_oauth2_credential_providers; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -684,7 +684,7 @@ class BedrockAgentCoreControlClientPaginators:
         *,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListOnlineEvaluationConfigsResponse]:
+    ) -> AsyncIterator[ListOnlineEvaluationConfigsOutput]:
         """Yield each page from list_online_evaluation_configs; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -708,7 +708,7 @@ class BedrockAgentCoreControlClientPaginators:
         payment_manager_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListPaymentConnectorsResponse]:
+    ) -> AsyncIterator[ListPaymentConnectorsOutput]:
         """Yield each page from list_payment_connectors; requests start on iteration."""
         params: dict[str, object] = {
             "payment_manager_id": payment_manager_id,
@@ -732,7 +732,7 @@ class BedrockAgentCoreControlClientPaginators:
         *,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListPaymentCredentialProvidersResponse]:
+    ) -> AsyncIterator[ListPaymentCredentialProvidersOutput]:
         """Yield each page from list_payment_credential_providers; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -755,7 +755,7 @@ class BedrockAgentCoreControlClientPaginators:
         *,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListPaymentManagersResponse]:
+    ) -> AsyncIterator[ListPaymentManagersOutput]:
         """Yield each page from list_payment_managers; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -780,7 +780,7 @@ class BedrockAgentCoreControlClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
         target_resource_scope: str | None = None,
-    ) -> AsyncIterator[ListPoliciesResponse]:
+    ) -> AsyncIterator[ListPoliciesOutput]:
         """Yield each page from list_policies; requests start on iteration."""
         params: dict[str, object] = {
             "policy_engine_id": policy_engine_id,
@@ -806,7 +806,7 @@ class BedrockAgentCoreControlClientPaginators:
         *,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListPolicyEngineSummariesResponse]:
+    ) -> AsyncIterator[ListPolicyEngineSummariesOutput]:
         """Yield each page from list_policy_engine_summaries; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -829,7 +829,7 @@ class BedrockAgentCoreControlClientPaginators:
         *,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListPolicyEnginesResponse]:
+    ) -> AsyncIterator[ListPolicyEnginesOutput]:
         """Yield each page from list_policy_engines; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -854,7 +854,7 @@ class BedrockAgentCoreControlClientPaginators:
         policy_engine_id: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListPolicyGenerationAssetsResponse]:
+    ) -> AsyncIterator[ListPolicyGenerationAssetsOutput]:
         """Yield each page from list_policy_generation_assets; requests start on iteration."""
         params: dict[str, object] = {
             "policy_generation_id": policy_generation_id,
@@ -880,7 +880,7 @@ class BedrockAgentCoreControlClientPaginators:
         policy_engine_id: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListPolicyGenerationSummariesResponse]:
+    ) -> AsyncIterator[ListPolicyGenerationSummariesOutput]:
         """Yield each page from list_policy_generation_summaries; requests start on iteration."""
         params: dict[str, object] = {
             "policy_engine_id": policy_engine_id,
@@ -905,7 +905,7 @@ class BedrockAgentCoreControlClientPaginators:
         policy_engine_id: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListPolicyGenerationsResponse]:
+    ) -> AsyncIterator[ListPolicyGenerationsOutput]:
         """Yield each page from list_policy_generations; requests start on iteration."""
         params: dict[str, object] = {
             "policy_engine_id": policy_engine_id,
@@ -931,7 +931,7 @@ class BedrockAgentCoreControlClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
         target_resource_scope: str | None = None,
-    ) -> AsyncIterator[ListPolicySummariesResponse]:
+    ) -> AsyncIterator[ListPolicySummariesOutput]:
         """Yield each page from list_policy_summaries; requests start on iteration."""
         params: dict[str, object] = {
             "policy_engine_id": policy_engine_id,
@@ -959,7 +959,7 @@ class BedrockAgentCoreControlClientPaginators:
         next_token: str | None = None,
         status: RegistryStatus | None = None,
         authorizer_type: RegistryAuthorizerType | None = None,
-    ) -> AsyncIterator[ListRegistriesResponse]:
+    ) -> AsyncIterator[ListRegistriesOutput]:
         """Yield each page from list_registries; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -990,7 +990,7 @@ class BedrockAgentCoreControlClientPaginators:
         name: str | None = None,
         status: RegistryRecordStatus | None = None,
         descriptor_type: DescriptorType | None = None,
-    ) -> AsyncIterator[ListRegistryRecordsResponse]:
+    ) -> AsyncIterator[ListRegistryRecordsOutput]:
         """Yield each page from list_registry_records; requests start on iteration."""
         params: dict[str, object] = {
             "registry_id": registry_id,
@@ -1020,7 +1020,7 @@ class BedrockAgentCoreControlClientPaginators:
         *,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListWorkloadIdentitiesResponse]:
+    ) -> AsyncIterator[ListWorkloadIdentitiesOutput]:
         """Yield each page from list_workload_identities; requests start on iteration."""
         params: dict[str, object] = {
         }

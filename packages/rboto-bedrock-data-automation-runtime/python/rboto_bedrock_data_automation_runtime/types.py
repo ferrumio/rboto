@@ -9,15 +9,15 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 ByteStream: TypeAlias = _native.ByteStream
-GetDataAutomationStatusResponse: TypeAlias = _native.GetDataAutomationStatusResponse
-InvokeDataAutomationAsyncResponse: TypeAlias = _native.InvokeDataAutomationAsyncResponse
-InvokeDataAutomationResponse: TypeAlias = _native.InvokeDataAutomationResponse
-ListTagsForResourceResponse: TypeAlias = _native.ListTagsForResourceResponse
+GetDataAutomationStatusOutput: TypeAlias = _native.GetDataAutomationStatusOutput
+InvokeDataAutomationAsyncOutput: TypeAlias = _native.InvokeDataAutomationAsyncOutput
+InvokeDataAutomationOutput: TypeAlias = _native.InvokeDataAutomationOutput
+ListTagsForResourceOutput: TypeAlias = _native.ListTagsForResourceOutput
 OutputConfigurationOutput: TypeAlias = _native.OutputConfiguration
 OutputSegmentOutput: TypeAlias = _native.OutputSegment
 TagOutput: TypeAlias = _native.Tag
-TagResourceResponse: TypeAlias = _native.TagResourceResponse
-UntagResourceResponse: TypeAlias = _native.UntagResourceResponse
+TagResourceOutput: TypeAlias = _native.TagResourceOutput
+UntagResourceOutput: TypeAlias = _native.UntagResourceOutput
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 

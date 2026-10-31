@@ -8,23 +8,23 @@ from typing import TYPE_CHECKING
 from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _paginate
 
 from ._native import (
-    ApiKeys,
-    Authorizers,
-    BasePathMappings,
-    ClientCertificates,
-    Deployments,
-    DocumentationParts,
-    DocumentationVersions,
-    DomainNames,
-    GatewayResponses,
+    GetApiKeysOutput,
+    GetAuthorizersOutput,
+    GetBasePathMappingsOutput,
+    GetClientCertificatesOutput,
+    GetDeploymentsOutput,
+    GetDocumentationPartsOutput,
+    GetDocumentationVersionsOutput,
+    GetDomainNamesOutput,
+    GetGatewayResponsesOutput,
+    GetModelsOutput,
+    GetRequestValidatorsOutput,
+    GetResourcesOutput,
+    GetRestApisOutput,
     GetUsageOutput,
-    Models,
-    RequestValidators,
-    Resources,
-    RestApis,
-    UsagePlanKeys,
-    UsagePlans,
-    VpcLinks,
+    GetUsagePlanKeysOutput,
+    GetUsagePlansOutput,
+    GetVpcLinksOutput,
 )
 
 from .types import (
@@ -50,7 +50,7 @@ class APIGatewayClientPaginators:
         name_query: str | None = None,
         customer_id: str | None = None,
         include_values: bool | None = None,
-    ) -> AsyncIterator[ApiKeys]:
+    ) -> AsyncIterator[GetApiKeysOutput]:
         """Yield each page from get_api_keys; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -80,7 +80,7 @@ class APIGatewayClientPaginators:
         rest_api_id: str,
         position: str | None = None,
         limit: int | None = None,
-    ) -> AsyncIterator[Authorizers]:
+    ) -> AsyncIterator[GetAuthorizersOutput]:
         """Yield each page from get_authorizers; requests start on iteration."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -106,7 +106,7 @@ class APIGatewayClientPaginators:
         domain_name_id: str | None = None,
         position: str | None = None,
         limit: int | None = None,
-    ) -> AsyncIterator[BasePathMappings]:
+    ) -> AsyncIterator[GetBasePathMappingsOutput]:
         """Yield each page from get_base_path_mappings; requests start on iteration."""
         params: dict[str, object] = {
             "domain_name": domain_name,
@@ -132,7 +132,7 @@ class APIGatewayClientPaginators:
         *,
         position: str | None = None,
         limit: int | None = None,
-    ) -> AsyncIterator[ClientCertificates]:
+    ) -> AsyncIterator[GetClientCertificatesOutput]:
         """Yield each page from get_client_certificates; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -156,7 +156,7 @@ class APIGatewayClientPaginators:
         rest_api_id: str,
         position: str | None = None,
         limit: int | None = None,
-    ) -> AsyncIterator[Deployments]:
+    ) -> AsyncIterator[GetDeploymentsOutput]:
         """Yield each page from get_deployments; requests start on iteration."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -185,7 +185,7 @@ class APIGatewayClientPaginators:
         position: str | None = None,
         limit: int | None = None,
         location_status: LocationStatusType | None = None,
-    ) -> AsyncIterator[DocumentationParts]:
+    ) -> AsyncIterator[GetDocumentationPartsOutput]:
         """Yield each page from get_documentation_parts; requests start on iteration."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -218,7 +218,7 @@ class APIGatewayClientPaginators:
         rest_api_id: str,
         position: str | None = None,
         limit: int | None = None,
-    ) -> AsyncIterator[DocumentationVersions]:
+    ) -> AsyncIterator[GetDocumentationVersionsOutput]:
         """Yield each page from get_documentation_versions; requests start on iteration."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -243,7 +243,7 @@ class APIGatewayClientPaginators:
         position: str | None = None,
         limit: int | None = None,
         resource_owner: ResourceOwner | None = None,
-    ) -> AsyncIterator[DomainNames]:
+    ) -> AsyncIterator[GetDomainNamesOutput]:
         """Yield each page from get_domain_names; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -269,7 +269,7 @@ class APIGatewayClientPaginators:
         rest_api_id: str,
         position: str | None = None,
         limit: int | None = None,
-    ) -> AsyncIterator[GatewayResponses]:
+    ) -> AsyncIterator[GetGatewayResponsesOutput]:
         """Yield each page from get_gateway_responses; requests start on iteration."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -294,7 +294,7 @@ class APIGatewayClientPaginators:
         rest_api_id: str,
         position: str | None = None,
         limit: int | None = None,
-    ) -> AsyncIterator[Models]:
+    ) -> AsyncIterator[GetModelsOutput]:
         """Yield each page from get_models; requests start on iteration."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -319,7 +319,7 @@ class APIGatewayClientPaginators:
         rest_api_id: str,
         position: str | None = None,
         limit: int | None = None,
-    ) -> AsyncIterator[RequestValidators]:
+    ) -> AsyncIterator[GetRequestValidatorsOutput]:
         """Yield each page from get_request_validators; requests start on iteration."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -345,7 +345,7 @@ class APIGatewayClientPaginators:
         position: str | None = None,
         limit: int | None = None,
         embed: Sequence[str] | None = None,
-    ) -> AsyncIterator[Resources]:
+    ) -> AsyncIterator[GetResourcesOutput]:
         """Yield each page from get_resources; requests start on iteration."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -371,7 +371,7 @@ class APIGatewayClientPaginators:
         *,
         position: str | None = None,
         limit: int | None = None,
-    ) -> AsyncIterator[RestApis]:
+    ) -> AsyncIterator[GetRestApisOutput]:
         """Yield each page from get_rest_apis; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -428,7 +428,7 @@ class APIGatewayClientPaginators:
         position: str | None = None,
         limit: int | None = None,
         name_query: str | None = None,
-    ) -> AsyncIterator[UsagePlanKeys]:
+    ) -> AsyncIterator[GetUsagePlanKeysOutput]:
         """Yield each page from get_usage_plan_keys; requests start on iteration."""
         params: dict[str, object] = {
             "usage_plan_id": usage_plan_id,
@@ -455,7 +455,7 @@ class APIGatewayClientPaginators:
         position: str | None = None,
         key_id: str | None = None,
         limit: int | None = None,
-    ) -> AsyncIterator[UsagePlans]:
+    ) -> AsyncIterator[GetUsagePlansOutput]:
         """Yield each page from get_usage_plans; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -480,7 +480,7 @@ class APIGatewayClientPaginators:
         *,
         position: str | None = None,
         limit: int | None = None,
-    ) -> AsyncIterator[VpcLinks]:
+    ) -> AsyncIterator[GetVpcLinksOutput]:
         """Yield each page from get_vpc_links; requests start on iteration."""
         params: dict[str, object] = {
         }

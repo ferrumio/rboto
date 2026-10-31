@@ -9,16 +9,16 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 AppliedGuardrailDetailsOutput: TypeAlias = _native.AppliedGuardrailDetails
-ApplyGuardrailResponse: TypeAlias = _native.ApplyGuardrailResponse
+ApplyGuardrailOutput: TypeAlias = _native.ApplyGuardrailOutput
 AsyncInvokeSummaryOutput: TypeAlias = _native.AsyncInvokeSummary
 ByteStream: TypeAlias = _native.ByteStream
 CacheDetailOutput: TypeAlias = _native.CacheDetail
 ConverseMetricsOutput: TypeAlias = _native.ConverseMetrics
-ConverseResponse: TypeAlias = _native.ConverseResponse
+ConverseOutput: TypeAlias = _native.ConverseOutput
 ConverseStreamOutputReceiver: TypeAlias = _native.ConverseStreamOutputReceiver
 ConverseTraceOutput: TypeAlias = _native.ConverseTrace
-CountTokensResponse: TypeAlias = _native.CountTokensResponse
-GetAsyncInvokeResponse: TypeAlias = _native.GetAsyncInvokeResponse
+CountTokensOutput: TypeAlias = _native.CountTokensOutput
+GetAsyncInvokeOutput: TypeAlias = _native.GetAsyncInvokeOutput
 GuardrailAssessmentOutput: TypeAlias = _native.GuardrailAssessment
 GuardrailAutomatedReasoningPolicyAssessmentOutput: TypeAlias = _native.GuardrailAutomatedReasoningPolicyAssessment
 GuardrailChecksContentFilterResultOutput: TypeAlias = _native.GuardrailChecksContentFilterResult
@@ -51,15 +51,15 @@ GuardrailTopicPolicyAssessmentOutput: TypeAlias = _native.GuardrailTopicPolicyAs
 GuardrailTraceAssessmentOutput: TypeAlias = _native.GuardrailTraceAssessment
 GuardrailUsageOutput: TypeAlias = _native.GuardrailUsage
 GuardrailWordPolicyAssessmentOutput: TypeAlias = _native.GuardrailWordPolicyAssessment
-InvokeGuardrailChecksResponse: TypeAlias = _native.InvokeGuardrailChecksResponse
-InvokeModelResponse: TypeAlias = _native.InvokeModelResponse
+InvokeGuardrailChecksOutput: TypeAlias = _native.InvokeGuardrailChecksOutput
+InvokeModelOutput: TypeAlias = _native.InvokeModelOutput
 InvokeModelWithBidirectionalStreamOutputReceiver: TypeAlias = _native.InvokeModelWithBidirectionalStreamOutputReceiver
-ListAsyncInvokesResponse: TypeAlias = _native.ListAsyncInvokesResponse
-PerformanceConfigurationOutputValue: TypeAlias = _native.PerformanceConfiguration
+ListAsyncInvokesOutput: TypeAlias = _native.ListAsyncInvokesOutput
+PerformanceConfigurationValueOutput: TypeAlias = _native.PerformanceConfiguration
 PromptRouterTraceOutput: TypeAlias = _native.PromptRouterTrace
 ResponseStreamReceiver: TypeAlias = _native.ResponseStreamReceiver
-ServiceTierOutputValue: TypeAlias = _native.ServiceTier
-StartAsyncInvokeResponse: TypeAlias = _native.StartAsyncInvokeResponse
+ServiceTierValueOutput: TypeAlias = _native.ServiceTier
+StartAsyncInvokeOutput: TypeAlias = _native.StartAsyncInvokeOutput
 TokenUsageOutput: TypeAlias = _native.TokenUsage
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
@@ -468,9 +468,9 @@ ConverseMetrics = TypedDict(
     },
 )
 
-ConverseOutputmessage = TypedDict("ConverseOutputmessage", {"message": Required["MessageOutput"]})
-ConverseOutputUnknown = TypedDict("ConverseOutputUnknown", {"unknown": Required[Literal[True]]})
-ConverseOutput: TypeAlias = ConverseOutputmessage | ConverseOutputUnknown
+ConverseValueOutputmessage = TypedDict("ConverseValueOutputmessage", {"message": Required["MessageOutput"]})
+ConverseValueOutputUnknown = TypedDict("ConverseValueOutputUnknown", {"unknown": Required[Literal[True]]})
+ConverseValueOutput: TypeAlias = ConverseValueOutputmessage | ConverseValueOutputUnknown
 
 ConverseRequest = TypedDict(
     "ConverseRequest",
@@ -509,14 +509,14 @@ ConverseStreamMetrics = TypedDict(
     },
 )
 
-ConverseStreamOutputmessageStart = TypedDict("ConverseStreamOutputmessageStart", {"message_start": Required["MessageStartEvent"]})
-ConverseStreamOutputcontentBlockStart = TypedDict("ConverseStreamOutputcontentBlockStart", {"content_block_start": Required["ContentBlockStartEvent"]})
-ConverseStreamOutputcontentBlockDelta = TypedDict("ConverseStreamOutputcontentBlockDelta", {"content_block_delta": Required["ContentBlockDeltaEvent"]})
-ConverseStreamOutputcontentBlockStop = TypedDict("ConverseStreamOutputcontentBlockStop", {"content_block_stop": Required["ContentBlockStopEvent"]})
-ConverseStreamOutputmessageStop = TypedDict("ConverseStreamOutputmessageStop", {"message_stop": Required["MessageStopEvent"]})
-ConverseStreamOutputmetadata = TypedDict("ConverseStreamOutputmetadata", {"metadata": Required["ConverseStreamMetadataEvent"]})
-ConverseStreamOutputUnknown = TypedDict("ConverseStreamOutputUnknown", {"unknown": Required[Literal[True]]})
-ConverseStreamOutput: TypeAlias = ConverseStreamOutputmessageStart | ConverseStreamOutputcontentBlockStart | ConverseStreamOutputcontentBlockDelta | ConverseStreamOutputcontentBlockStop | ConverseStreamOutputmessageStop | ConverseStreamOutputmetadata | ConverseStreamOutputUnknown
+ConverseStreamEventOutputmessageStart = TypedDict("ConverseStreamEventOutputmessageStart", {"message_start": Required["MessageStartEvent"]})
+ConverseStreamEventOutputcontentBlockStart = TypedDict("ConverseStreamEventOutputcontentBlockStart", {"content_block_start": Required["ContentBlockStartEvent"]})
+ConverseStreamEventOutputcontentBlockDelta = TypedDict("ConverseStreamEventOutputcontentBlockDelta", {"content_block_delta": Required["ContentBlockDeltaEvent"]})
+ConverseStreamEventOutputcontentBlockStop = TypedDict("ConverseStreamEventOutputcontentBlockStop", {"content_block_stop": Required["ContentBlockStopEvent"]})
+ConverseStreamEventOutputmessageStop = TypedDict("ConverseStreamEventOutputmessageStop", {"message_stop": Required["MessageStopEvent"]})
+ConverseStreamEventOutputmetadata = TypedDict("ConverseStreamEventOutputmetadata", {"metadata": Required["ConverseStreamMetadataEvent"]})
+ConverseStreamEventOutputUnknown = TypedDict("ConverseStreamEventOutputUnknown", {"unknown": Required[Literal[True]]})
+ConverseStreamEventOutput: TypeAlias = ConverseStreamEventOutputmessageStart | ConverseStreamEventOutputcontentBlockStart | ConverseStreamEventOutputcontentBlockDelta | ConverseStreamEventOutputcontentBlockStop | ConverseStreamEventOutputmessageStop | ConverseStreamEventOutputmetadata | ConverseStreamEventOutputUnknown
 
 ConverseStreamRequest = TypedDict(
     "ConverseStreamRequest",
@@ -537,10 +537,10 @@ ConverseStreamRequest = TypedDict(
     },
 )
 
-ConverseStreamResponse = TypedDict(
-    "ConverseStreamResponse",
+ConverseStreamOutput = TypedDict(
+    "ConverseStreamOutput",
     {
-    "stream": Required["AsyncIterator[ConverseStreamOutput]"],
+    "stream": Required["AsyncIterator[ConverseStreamEventOutput]"],
     },
 )
 
@@ -1346,9 +1346,9 @@ InvokeModelTokensRequest = TypedDict(
 InvokeModelWithBidirectionalStreamInputchunk = TypedDict("InvokeModelWithBidirectionalStreamInputchunk", {"chunk": Required["BidirectionalInputPayloadPart"]})
 InvokeModelWithBidirectionalStreamInput: TypeAlias = InvokeModelWithBidirectionalStreamInputchunk
 
-InvokeModelWithBidirectionalStreamOutputchunk = TypedDict("InvokeModelWithBidirectionalStreamOutputchunk", {"chunk": Required["BidirectionalOutputPayloadPart"]})
-InvokeModelWithBidirectionalStreamOutputUnknown = TypedDict("InvokeModelWithBidirectionalStreamOutputUnknown", {"unknown": Required[Literal[True]]})
-InvokeModelWithBidirectionalStreamOutput: TypeAlias = InvokeModelWithBidirectionalStreamOutputchunk | InvokeModelWithBidirectionalStreamOutputUnknown
+InvokeModelWithBidirectionalStreamEventOutputchunk = TypedDict("InvokeModelWithBidirectionalStreamEventOutputchunk", {"chunk": Required["BidirectionalOutputPayloadPart"]})
+InvokeModelWithBidirectionalStreamEventOutputUnknown = TypedDict("InvokeModelWithBidirectionalStreamEventOutputUnknown", {"unknown": Required[Literal[True]]})
+InvokeModelWithBidirectionalStreamEventOutput: TypeAlias = InvokeModelWithBidirectionalStreamEventOutputchunk | InvokeModelWithBidirectionalStreamEventOutputUnknown
 
 InvokeModelWithBidirectionalStreamRequest = TypedDict(
     "InvokeModelWithBidirectionalStreamRequest",
@@ -1358,10 +1358,10 @@ InvokeModelWithBidirectionalStreamRequest = TypedDict(
     },
 )
 
-InvokeModelWithBidirectionalStreamResponse = TypedDict(
-    "InvokeModelWithBidirectionalStreamResponse",
+InvokeModelWithBidirectionalStreamOutput = TypedDict(
+    "InvokeModelWithBidirectionalStreamOutput",
     {
-    "body": Required["AsyncIterator[InvokeModelWithBidirectionalStreamOutput]"],
+    "body": Required["AsyncIterator[InvokeModelWithBidirectionalStreamEventOutput]"],
     },
 )
 
@@ -1381,8 +1381,8 @@ InvokeModelWithResponseStreamRequest = TypedDict(
     },
 )
 
-InvokeModelWithResponseStreamResponse = TypedDict(
-    "InvokeModelWithResponseStreamResponse",
+InvokeModelWithResponseStreamOutput = TypedDict(
+    "InvokeModelWithResponseStreamOutput",
     {
     "body": Required["AsyncIterator[ResponseStream]"],
     "content_type": Required["str"],

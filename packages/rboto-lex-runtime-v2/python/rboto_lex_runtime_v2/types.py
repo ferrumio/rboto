@@ -8,32 +8,32 @@ from rboto.types import UnknownEnumValue
 
 from . import _native
 
-ActiveContextOutputValue: TypeAlias = _native.ActiveContext
-ActiveContextTimeToLiveOutputValue: TypeAlias = _native.ActiveContextTimeToLive
-ButtonOutputValue: TypeAlias = _native.Button
+ActiveContextValueOutput: TypeAlias = _native.ActiveContext
+ActiveContextTimeToLiveValueOutput: TypeAlias = _native.ActiveContextTimeToLive
+ButtonValueOutput: TypeAlias = _native.Button
 ByteStream: TypeAlias = _native.ByteStream
 ConfidenceScoreOutput: TypeAlias = _native.ConfidenceScore
-DeleteSessionResponse: TypeAlias = _native.DeleteSessionResponse
-DialogActionOutputValue: TypeAlias = _native.DialogAction
-ElicitSubSlotOutputValue: TypeAlias = _native.ElicitSubSlot
-GetSessionResponse: TypeAlias = _native.GetSessionResponse
-ImageResponseCardOutputValue: TypeAlias = _native.ImageResponseCard
-IntentOutputValue: TypeAlias = _native.Intent
+DeleteSessionOutput: TypeAlias = _native.DeleteSessionOutput
+DialogActionValueOutput: TypeAlias = _native.DialogAction
+ElicitSubSlotValueOutput: TypeAlias = _native.ElicitSubSlot
+GetSessionOutput: TypeAlias = _native.GetSessionOutput
+ImageResponseCardValueOutput: TypeAlias = _native.ImageResponseCard
+IntentValueOutput: TypeAlias = _native.Intent
 InterpretationOutput: TypeAlias = _native.Interpretation
-MessageOutputValue: TypeAlias = _native.Message
-PutSessionResponse: TypeAlias = _native.PutSessionResponse
-RecognizeTextResponse: TypeAlias = _native.RecognizeTextResponse
-RecognizeUtteranceResponse: TypeAlias = _native.RecognizeUtteranceResponse
+MessageValueOutput: TypeAlias = _native.Message
+PutSessionOutput: TypeAlias = _native.PutSessionOutput
+RecognizeTextOutput: TypeAlias = _native.RecognizeTextOutput
+RecognizeUtteranceOutput: TypeAlias = _native.RecognizeUtteranceOutput
 RecognizedBotMemberOutput: TypeAlias = _native.RecognizedBotMember
-RuntimeHintDetailsOutputValue: TypeAlias = _native.RuntimeHintDetails
-RuntimeHintValueOutputValue: TypeAlias = _native.RuntimeHintValue
-RuntimeHintsOutputValue: TypeAlias = _native.RuntimeHints
+RuntimeHintDetailsValueOutput: TypeAlias = _native.RuntimeHintDetails
+RuntimeHintValueValueOutput: TypeAlias = _native.RuntimeHintValue
+RuntimeHintsValueOutput: TypeAlias = _native.RuntimeHints
 SentimentResponseOutput: TypeAlias = _native.SentimentResponse
 SentimentScoreOutput: TypeAlias = _native.SentimentScore
-SessionStateOutputValue: TypeAlias = _native.SessionState
-SlotOutputValue: TypeAlias = _native.Slot
+SessionStateValueOutput: TypeAlias = _native.SessionState
+SlotValueOutput: TypeAlias = _native.Slot
 StartConversationResponseEventStreamReceiver: TypeAlias = _native.StartConversationResponseEventStreamReceiver
-ValueOutputValue: TypeAlias = _native.Value
+ValueValueOutput: TypeAlias = _native.Value
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 
@@ -503,8 +503,8 @@ StartConversationRequestEventStreamPlaybackCompletionEvent = TypedDict("StartCon
 StartConversationRequestEventStreamDisconnectionEvent = TypedDict("StartConversationRequestEventStreamDisconnectionEvent", {"disconnection_event": Required["DisconnectionEvent"]})
 StartConversationRequestEventStream: TypeAlias = StartConversationRequestEventStreamConfigurationEvent | StartConversationRequestEventStreamAudioInputEvent | StartConversationRequestEventStreamDTMFInputEvent | StartConversationRequestEventStreamTextInputEvent | StartConversationRequestEventStreamPlaybackCompletionEvent | StartConversationRequestEventStreamDisconnectionEvent
 
-StartConversationResponse = TypedDict(
-    "StartConversationResponse",
+StartConversationOutput = TypedDict(
+    "StartConversationOutput",
     {
     "response_event_stream": Required["AsyncIterator[StartConversationResponseEventStream]"],
     },

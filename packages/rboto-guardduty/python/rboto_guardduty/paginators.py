@@ -8,26 +8,26 @@ from typing import TYPE_CHECKING
 from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _paginate
 
 from ._native import (
-    DescribeMalwareScansResponse,
-    DescribeOrganizationConfigurationResponse,
-    GetUsageStatisticsResponse,
-    ListCoverageResponse,
-    ListCustomDetectionRuleAssociationsResponse,
-    ListCustomDetectionRuleOrgConfigurationsResponse,
-    ListCustomDetectionRulesResponse,
-    ListDetectorsResponse,
-    ListFiltersResponse,
-    ListFindingsResponse,
-    ListIPSetsResponse,
-    ListInvestigationsResponse,
-    ListInvitationsResponse,
-    ListMalwareScansResponse,
-    ListMembersResponse,
-    ListOrganizationAdminAccountsResponse,
-    ListPublishingDestinationsResponse,
-    ListThreatEntitySetsResponse,
-    ListThreatIntelSetsResponse,
-    ListTrustedEntitySetsResponse,
+    DescribeMalwareScansOutput,
+    DescribeOrganizationConfigurationOutput,
+    GetUsageStatisticsOutput,
+    ListCoverageOutput,
+    ListCustomDetectionRuleAssociationsOutput,
+    ListCustomDetectionRuleOrgConfigurationsOutput,
+    ListCustomDetectionRulesOutput,
+    ListDetectorsOutput,
+    ListFiltersOutput,
+    ListFindingsOutput,
+    ListIPSetsOutput,
+    ListInvestigationsOutput,
+    ListInvitationsOutput,
+    ListMalwareScansOutput,
+    ListMembersOutput,
+    ListOrganizationAdminAccountsOutput,
+    ListPublishingDestinationsOutput,
+    ListThreatEntitySetsOutput,
+    ListThreatIntelSetsOutput,
+    ListTrustedEntitySetsOutput,
 )
 
 from .types import (
@@ -62,7 +62,7 @@ class GuardDutyClientPaginators:
         max_results: int | None = None,
         filter_criteria: FilterCriteria | None = None,
         sort_criteria: SortCriteria | None = None,
-    ) -> AsyncIterator[DescribeMalwareScansResponse]:
+    ) -> AsyncIterator[DescribeMalwareScansOutput]:
         """Yield each page from describe_malware_scans; requests start on iteration."""
         params: dict[str, object] = {
             "detector_id": detector_id,
@@ -91,7 +91,7 @@ class GuardDutyClientPaginators:
         detector_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[DescribeOrganizationConfigurationResponse]:
+    ) -> AsyncIterator[DescribeOrganizationConfigurationOutput]:
         """Yield each page from describe_organization_configuration; requests start on iteration."""
         params: dict[str, object] = {
             "detector_id": detector_id,
@@ -119,7 +119,7 @@ class GuardDutyClientPaginators:
         unit: str | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[GetUsageStatisticsResponse]:
+    ) -> AsyncIterator[GetUsageStatisticsOutput]:
         """Yield each page from get_usage_statistics; requests start on iteration."""
         params: dict[str, object] = {
             "detector_id": detector_id,
@@ -150,7 +150,7 @@ class GuardDutyClientPaginators:
         max_results: int | None = None,
         filter_criteria: CoverageFilterCriteria | None = None,
         sort_criteria: CoverageSortCriteria | None = None,
-    ) -> AsyncIterator[ListCoverageResponse]:
+    ) -> AsyncIterator[ListCoverageOutput]:
         """Yield each page from list_coverage; requests start on iteration."""
         params: dict[str, object] = {
             "detector_id": detector_id,
@@ -180,7 +180,7 @@ class GuardDutyClientPaginators:
         next_token: str | None = None,
         rule_id: str | None = None,
         mode: AssociationMode | None = None,
-    ) -> AsyncIterator[ListCustomDetectionRuleAssociationsResponse]:
+    ) -> AsyncIterator[ListCustomDetectionRuleAssociationsOutput]:
         """Yield each page from list_custom_detection_rule_associations; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -208,7 +208,7 @@ class GuardDutyClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
         status: DetectionRuleConfigurationStatus | None = None,
-    ) -> AsyncIterator[ListCustomDetectionRuleOrgConfigurationsResponse]:
+    ) -> AsyncIterator[ListCustomDetectionRuleOrgConfigurationsOutput]:
         """Yield each page from list_custom_detection_rule_org_configurations; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -234,7 +234,7 @@ class GuardDutyClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
         filters: _Sequence[DetectionRuleFilter] | None = None,
-    ) -> AsyncIterator[ListCustomDetectionRulesResponse]:
+    ) -> AsyncIterator[ListCustomDetectionRulesOutput]:
         """Yield each page from list_custom_detection_rules; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -259,7 +259,7 @@ class GuardDutyClientPaginators:
         *,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListDetectorsResponse]:
+    ) -> AsyncIterator[ListDetectorsOutput]:
         """Yield each page from list_detectors; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -283,7 +283,7 @@ class GuardDutyClientPaginators:
         detector_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListFiltersResponse]:
+    ) -> AsyncIterator[ListFiltersOutput]:
         """Yield each page from list_filters; requests start on iteration."""
         params: dict[str, object] = {
             "detector_id": detector_id,
@@ -310,7 +310,7 @@ class GuardDutyClientPaginators:
         sort_criteria: SortCriteria | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListFindingsResponse]:
+    ) -> AsyncIterator[ListFindingsOutput]:
         """Yield each page from list_findings; requests start on iteration."""
         params: dict[str, object] = {
             "detector_id": detector_id,
@@ -339,7 +339,7 @@ class GuardDutyClientPaginators:
         detector_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListIPSetsResponse]:
+    ) -> AsyncIterator[ListIPSetsOutput]:
         """Yield each page from list_ip_sets; requests start on iteration."""
         params: dict[str, object] = {
             "detector_id": detector_id,
@@ -365,7 +365,7 @@ class GuardDutyClientPaginators:
         sort_criteria: InvestigationSortCriteria | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListInvestigationsResponse]:
+    ) -> AsyncIterator[ListInvestigationsOutput]:
         """Yield each page from list_investigations; requests start on iteration."""
         params: dict[str, object] = {
             "detector_id": detector_id,
@@ -391,7 +391,7 @@ class GuardDutyClientPaginators:
         *,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListInvitationsResponse]:
+    ) -> AsyncIterator[ListInvitationsOutput]:
         """Yield each page from list_invitations; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -416,7 +416,7 @@ class GuardDutyClientPaginators:
         next_token: str | None = None,
         filter_criteria: ListMalwareScansFilterCriteria | None = None,
         sort_criteria: SortCriteria | None = None,
-    ) -> AsyncIterator[ListMalwareScansResponse]:
+    ) -> AsyncIterator[ListMalwareScansOutput]:
         """Yield each page from list_malware_scans; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -445,7 +445,7 @@ class GuardDutyClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
         only_associated: str | None = None,
-    ) -> AsyncIterator[ListMembersResponse]:
+    ) -> AsyncIterator[ListMembersOutput]:
         """Yield each page from list_members; requests start on iteration."""
         params: dict[str, object] = {
             "detector_id": detector_id,
@@ -471,7 +471,7 @@ class GuardDutyClientPaginators:
         *,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListOrganizationAdminAccountsResponse]:
+    ) -> AsyncIterator[ListOrganizationAdminAccountsOutput]:
         """Yield each page from list_organization_admin_accounts; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -495,7 +495,7 @@ class GuardDutyClientPaginators:
         detector_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListPublishingDestinationsResponse]:
+    ) -> AsyncIterator[ListPublishingDestinationsOutput]:
         """Yield each page from list_publishing_destinations; requests start on iteration."""
         params: dict[str, object] = {
             "detector_id": detector_id,
@@ -520,7 +520,7 @@ class GuardDutyClientPaginators:
         detector_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListThreatEntitySetsResponse]:
+    ) -> AsyncIterator[ListThreatEntitySetsOutput]:
         """Yield each page from list_threat_entity_sets; requests start on iteration."""
         params: dict[str, object] = {
             "detector_id": detector_id,
@@ -545,7 +545,7 @@ class GuardDutyClientPaginators:
         detector_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListThreatIntelSetsResponse]:
+    ) -> AsyncIterator[ListThreatIntelSetsOutput]:
         """Yield each page from list_threat_intel_sets; requests start on iteration."""
         params: dict[str, object] = {
             "detector_id": detector_id,
@@ -570,7 +570,7 @@ class GuardDutyClientPaginators:
         detector_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListTrustedEntitySetsResponse]:
+    ) -> AsyncIterator[ListTrustedEntitySetsOutput]:
         """Yield each page from list_trusted_entity_sets; requests start on iteration."""
         params: dict[str, object] = {
             "detector_id": detector_id,

@@ -9,7 +9,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto.logging import operation_interceptors
 
-from ._native import BedrockClient as NativeClient, BatchDeleteAdvancedPromptOptimizationJobResponse, BatchDeleteEvaluationJobResponse, CancelAutomatedReasoningPolicyBuildWorkflowResponse, CreateAdvancedPromptOptimizationJobResponse, CreateAutomatedReasoningPolicyResponse, CreateAutomatedReasoningPolicyTestCaseResponse, CreateAutomatedReasoningPolicyVersionResponse, CreateCustomModelDeploymentResponse, CreateCustomModelResponse, CreateEvaluationJobResponse, CreateFoundationModelAgreementResponse, CreateGuardrailResponse, CreateGuardrailVersionResponse, CreateInferenceProfileResponse, CreateMarketplaceModelEndpointResponse, CreateModelCopyJobResponse, CreateModelCustomizationJobResponse, CreateModelImportJobResponse, CreateModelInvocationJobResponse, CreatePromptRouterResponse, CreateProvisionedModelThroughputResponse, DeleteAutomatedReasoningPolicyBuildWorkflowResponse, DeleteAutomatedReasoningPolicyResponse, DeleteAutomatedReasoningPolicyTestCaseResponse, DeleteCustomModelDeploymentResponse, DeleteCustomModelResponse, DeleteEnforcedGuardrailConfigurationResponse, DeleteFoundationModelAgreementResponse, DeleteGuardrailResponse, DeleteImportedModelResponse, DeleteInferenceProfileResponse, DeleteMarketplaceModelEndpointResponse, DeleteModelInvocationLoggingConfigurationResponse, DeletePromptRouterResponse, DeleteProvisionedModelThroughputResponse, DeleteResourcePolicyResponse, DeregisterMarketplaceModelEndpointResponse, ExportAutomatedReasoningPolicyVersionResponse, GetAccountDataRetentionResponse, GetAdvancedPromptOptimizationJobResponse, GetAutomatedReasoningPolicyAnnotationsResponse, GetAutomatedReasoningPolicyBuildWorkflowResponse, GetAutomatedReasoningPolicyBuildWorkflowResultAssetsResponse, GetAutomatedReasoningPolicyNextScenarioResponse, GetAutomatedReasoningPolicyResponse, GetAutomatedReasoningPolicyTestCaseResponse, GetAutomatedReasoningPolicyTestResultResponse, GetCustomModelDeploymentResponse, GetCustomModelResponse, GetEvaluationJobResponse, GetFoundationModelAvailabilityResponse, GetFoundationModelResponse, GetGuardrailResponse, GetImportedModelResponse, GetInferenceProfileResponse, GetMarketplaceModelEndpointResponse, GetModelCopyJobResponse, GetModelCustomizationJobResponse, GetModelImportJobResponse, GetModelInvocationJobResponse, GetModelInvocationLoggingConfigurationResponse, GetPromptRouterResponse, GetProvisionedModelThroughputResponse, GetResourcePolicyResponse, GetUseCaseForModelAccessResponse, ListAdvancedPromptOptimizationJobsResponse, ListAutomatedReasoningPoliciesResponse, ListAutomatedReasoningPolicyBuildWorkflowsResponse, ListAutomatedReasoningPolicyTestCasesResponse, ListAutomatedReasoningPolicyTestResultsResponse, ListCustomModelDeploymentsResponse, ListCustomModelsResponse, ListEnforcedGuardrailsConfigurationResponse, ListEvaluationJobsResponse, ListFoundationModelAgreementOffersResponse, ListFoundationModelsResponse, ListGuardrailsResponse, ListImportedModelsResponse, ListInferenceProfilesResponse, ListMarketplaceModelEndpointsResponse, ListModelCopyJobsResponse, ListModelCustomizationJobsResponse, ListModelImportJobsResponse, ListModelInvocationJobsResponse, ListPromptRoutersResponse, ListProvisionedModelThroughputsResponse, ListTagsForResourceResponse, PutAccountDataRetentionResponse, PutEnforcedGuardrailConfigurationResponse, PutModelInvocationLoggingConfigurationResponse, PutResourcePolicyResponse, PutUseCaseForModelAccessResponse, RegisterMarketplaceModelEndpointResponse, StartAutomatedReasoningPolicyBuildWorkflowResponse, StartAutomatedReasoningPolicyTestWorkflowResponse, StopAdvancedPromptOptimizationJobResponse, StopEvaluationJobResponse, StopModelCustomizationJobResponse, StopModelInvocationJobResponse, TagResourceResponse, UntagResourceResponse, UpdateAutomatedReasoningPolicyAnnotationsResponse, UpdateAutomatedReasoningPolicyResponse, UpdateAutomatedReasoningPolicyTestCaseResponse, UpdateCustomModelDeploymentResponse, UpdateGuardrailResponse, UpdateMarketplaceModelEndpointResponse, UpdateProvisionedModelThroughputResponse
+from ._native import BedrockClient as NativeClient, BatchDeleteAdvancedPromptOptimizationJobOutput, BatchDeleteEvaluationJobOutput, CancelAutomatedReasoningPolicyBuildWorkflowOutput, CreateAdvancedPromptOptimizationJobOutput, CreateAutomatedReasoningPolicyOutput, CreateAutomatedReasoningPolicyTestCaseOutput, CreateAutomatedReasoningPolicyVersionOutput, CreateCustomModelDeploymentOutput, CreateCustomModelOutput, CreateEvaluationJobOutput, CreateFoundationModelAgreementOutput, CreateGuardrailOutput, CreateGuardrailVersionOutput, CreateInferenceProfileOutput, CreateMarketplaceModelEndpointOutput, CreateModelCopyJobOutput, CreateModelCustomizationJobOutput, CreateModelImportJobOutput, CreateModelInvocationJobOutput, CreatePromptRouterOutput, CreateProvisionedModelThroughputOutput, DeleteAutomatedReasoningPolicyBuildWorkflowOutput, DeleteAutomatedReasoningPolicyOutput, DeleteAutomatedReasoningPolicyTestCaseOutput, DeleteCustomModelDeploymentOutput, DeleteCustomModelOutput, DeleteEnforcedGuardrailConfigurationOutput, DeleteFoundationModelAgreementOutput, DeleteGuardrailOutput, DeleteImportedModelOutput, DeleteInferenceProfileOutput, DeleteMarketplaceModelEndpointOutput, DeleteModelInvocationLoggingConfigurationOutput, DeletePromptRouterOutput, DeleteProvisionedModelThroughputOutput, DeleteResourcePolicyOutput, DeregisterMarketplaceModelEndpointOutput, ExportAutomatedReasoningPolicyVersionOutput, GetAccountDataRetentionOutput, GetAdvancedPromptOptimizationJobOutput, GetAutomatedReasoningPolicyAnnotationsOutput, GetAutomatedReasoningPolicyBuildWorkflowOutput, GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput, GetAutomatedReasoningPolicyNextScenarioOutput, GetAutomatedReasoningPolicyOutput, GetAutomatedReasoningPolicyTestCaseOutput, GetAutomatedReasoningPolicyTestResultOutput, GetCustomModelDeploymentOutput, GetCustomModelOutput, GetEvaluationJobOutput, GetFoundationModelAvailabilityOutput, GetFoundationModelOutput, GetGuardrailOutput, GetImportedModelOutput, GetInferenceProfileOutput, GetMarketplaceModelEndpointOutput, GetModelCopyJobOutput, GetModelCustomizationJobOutput, GetModelImportJobOutput, GetModelInvocationJobOutput, GetModelInvocationLoggingConfigurationOutput, GetPromptRouterOutput, GetProvisionedModelThroughputOutput, GetResourcePolicyOutput, GetUseCaseForModelAccessOutput, ListAdvancedPromptOptimizationJobsOutput, ListAutomatedReasoningPoliciesOutput, ListAutomatedReasoningPolicyBuildWorkflowsOutput, ListAutomatedReasoningPolicyTestCasesOutput, ListAutomatedReasoningPolicyTestResultsOutput, ListCustomModelDeploymentsOutput, ListCustomModelsOutput, ListEnforcedGuardrailsConfigurationOutput, ListEvaluationJobsOutput, ListFoundationModelAgreementOffersOutput, ListFoundationModelsOutput, ListGuardrailsOutput, ListImportedModelsOutput, ListInferenceProfilesOutput, ListMarketplaceModelEndpointsOutput, ListModelCopyJobsOutput, ListModelCustomizationJobsOutput, ListModelImportJobsOutput, ListModelInvocationJobsOutput, ListPromptRoutersOutput, ListProvisionedModelThroughputsOutput, ListTagsForResourceOutput, PutAccountDataRetentionOutput, PutEnforcedGuardrailConfigurationOutput, PutModelInvocationLoggingConfigurationOutput, PutResourcePolicyOutput, PutUseCaseForModelAccessOutput, RegisterMarketplaceModelEndpointOutput, StartAutomatedReasoningPolicyBuildWorkflowOutput, StartAutomatedReasoningPolicyTestWorkflowOutput, StopAdvancedPromptOptimizationJobOutput, StopEvaluationJobOutput, StopModelCustomizationJobOutput, StopModelInvocationJobOutput, TagResourceOutput, UntagResourceOutput, UpdateAutomatedReasoningPolicyAnnotationsOutput, UpdateAutomatedReasoningPolicyOutput, UpdateAutomatedReasoningPolicyTestCaseOutput, UpdateCustomModelDeploymentOutput, UpdateGuardrailOutput, UpdateMarketplaceModelEndpointOutput, UpdateProvisionedModelThroughputOutput
 from .types import (
     AccountEnforcedGuardrailInferenceInputConfiguration,
     AdvancedPromptOptimizationInputConfig,
@@ -114,7 +114,7 @@ class BedrockClient:
         self,
         *,
         job_identifiers: Sequence[str],
-    ) -> BatchDeleteAdvancedPromptOptimizationJobResponse:
+    ) -> BatchDeleteAdvancedPromptOptimizationJobOutput:
         params: dict[str, object] = {
             "job_identifiers": job_identifiers,
         }
@@ -123,7 +123,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.batch_delete_advanced_prompt_optimization_job, params, _interceptors,
                 "bedrock", "BatchDeleteAdvancedPromptOptimizationJob", self._region,
-                BatchDeleteAdvancedPromptOptimizationJobResponse,
+                BatchDeleteAdvancedPromptOptimizationJobOutput,
                 ("job_identifiers", ),
                 ("job_identifiers", ),
             )
@@ -136,7 +136,7 @@ class BedrockClient:
         self,
         *,
         job_identifiers: Sequence[str],
-    ) -> BatchDeleteEvaluationJobResponse:
+    ) -> BatchDeleteEvaluationJobOutput:
         params: dict[str, object] = {
             "job_identifiers": job_identifiers,
         }
@@ -145,7 +145,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.batch_delete_evaluation_job, params, _interceptors,
                 "bedrock", "BatchDeleteEvaluationJob", self._region,
-                BatchDeleteEvaluationJobResponse,
+                BatchDeleteEvaluationJobOutput,
                 ("job_identifiers", ),
                 ("job_identifiers", ),
             )
@@ -159,7 +159,7 @@ class BedrockClient:
         *,
         policy_arn: str,
         build_workflow_id: str,
-    ) -> CancelAutomatedReasoningPolicyBuildWorkflowResponse:
+    ) -> CancelAutomatedReasoningPolicyBuildWorkflowOutput:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
@@ -169,7 +169,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.cancel_automated_reasoning_policy_build_workflow, params, _interceptors,
                 "bedrock", "CancelAutomatedReasoningPolicyBuildWorkflow", self._region,
-                CancelAutomatedReasoningPolicyBuildWorkflowResponse,
+                CancelAutomatedReasoningPolicyBuildWorkflowOutput,
                 ("policy_arn", "build_workflow_id", ),
                 ("policy_arn", "build_workflow_id", ),
             )
@@ -189,7 +189,7 @@ class BedrockClient:
         client_token: str | None = None,
         encryption_key_arn: str | None = None,
         tags: Sequence[Tag] | None = None,
-    ) -> CreateAdvancedPromptOptimizationJobResponse:
+    ) -> CreateAdvancedPromptOptimizationJobOutput:
         params: dict[str, object] = {
             "job_name": job_name,
             "input_config": input_config,
@@ -209,7 +209,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_advanced_prompt_optimization_job, params, _interceptors,
                 "bedrock", "CreateAdvancedPromptOptimizationJob", self._region,
-                CreateAdvancedPromptOptimizationJobResponse,
+                CreateAdvancedPromptOptimizationJobOutput,
                 ("job_name", "input_config", "output_config", "model_configurations", "job_description", "client_token", "encryption_key_arn", "tags", ),
                 ("job_name", "input_config", "output_config", "model_configurations", ),
             )
@@ -227,7 +227,7 @@ class BedrockClient:
         policy_definition: AutomatedReasoningPolicyDefinition | None = None,
         kms_key_id: str | None = None,
         tags: Sequence[Tag] | None = None,
-    ) -> CreateAutomatedReasoningPolicyResponse:
+    ) -> CreateAutomatedReasoningPolicyOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -246,7 +246,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_automated_reasoning_policy, params, _interceptors,
                 "bedrock", "CreateAutomatedReasoningPolicy", self._region,
-                CreateAutomatedReasoningPolicyResponse,
+                CreateAutomatedReasoningPolicyOutput,
                 ("name", "description", "client_request_token", "policy_definition", "kms_key_id", "tags", ),
                 ("name", ),
             )
@@ -264,7 +264,7 @@ class BedrockClient:
         query_content: str | None = None,
         client_request_token: str | None = None,
         confidence_threshold: float | None = None,
-    ) -> CreateAutomatedReasoningPolicyTestCaseResponse:
+    ) -> CreateAutomatedReasoningPolicyTestCaseOutput:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "guard_content": guard_content,
@@ -281,7 +281,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_automated_reasoning_policy_test_case, params, _interceptors,
                 "bedrock", "CreateAutomatedReasoningPolicyTestCase", self._region,
-                CreateAutomatedReasoningPolicyTestCaseResponse,
+                CreateAutomatedReasoningPolicyTestCaseOutput,
                 ("policy_arn", "guard_content", "expected_aggregated_findings_result", "query_content", "client_request_token", "confidence_threshold", ),
                 ("policy_arn", "guard_content", "expected_aggregated_findings_result", ),
             )
@@ -297,7 +297,7 @@ class BedrockClient:
         last_updated_definition_hash: str,
         client_request_token: str | None = None,
         tags: Sequence[Tag] | None = None,
-    ) -> CreateAutomatedReasoningPolicyVersionResponse:
+    ) -> CreateAutomatedReasoningPolicyVersionOutput:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "last_updated_definition_hash": last_updated_definition_hash,
@@ -311,7 +311,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_automated_reasoning_policy_version, params, _interceptors,
                 "bedrock", "CreateAutomatedReasoningPolicyVersion", self._region,
-                CreateAutomatedReasoningPolicyVersionResponse,
+                CreateAutomatedReasoningPolicyVersionOutput,
                 ("policy_arn", "last_updated_definition_hash", "client_request_token", "tags", ),
                 ("policy_arn", "last_updated_definition_hash", ),
             )
@@ -330,7 +330,7 @@ class BedrockClient:
         role_arn: str | None = None,
         model_tags: Sequence[Tag] | None = None,
         client_request_token: str | None = None,
-    ) -> CreateCustomModelResponse:
+    ) -> CreateCustomModelOutput:
         params: dict[str, object] = {
             "model_name": model_name,
         }
@@ -351,7 +351,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_custom_model, params, _interceptors,
                 "bedrock", "CreateCustomModel", self._region,
-                CreateCustomModelResponse,
+                CreateCustomModelOutput,
                 ("model_name", "model_source_config", "custom_model_data_source", "model_kms_key_arn", "role_arn", "model_tags", "client_request_token", ),
                 ("model_name", ),
             )
@@ -368,7 +368,7 @@ class BedrockClient:
         description: str | None = None,
         tags: Sequence[Tag] | None = None,
         client_request_token: str | None = None,
-    ) -> CreateCustomModelDeploymentResponse:
+    ) -> CreateCustomModelDeploymentOutput:
         params: dict[str, object] = {
             "model_deployment_name": model_deployment_name,
             "model_arn": model_arn,
@@ -384,7 +384,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_custom_model_deployment, params, _interceptors,
                 "bedrock", "CreateCustomModelDeployment", self._region,
-                CreateCustomModelDeploymentResponse,
+                CreateCustomModelDeploymentOutput,
                 ("model_deployment_name", "model_arn", "description", "tags", "client_request_token", ),
                 ("model_deployment_name", "model_arn", ),
             )
@@ -406,7 +406,7 @@ class BedrockClient:
         customer_encryption_key_id: str | None = None,
         job_tags: Sequence[Tag] | None = None,
         application_type: ApplicationType | None = None,
-    ) -> CreateEvaluationJobResponse:
+    ) -> CreateEvaluationJobOutput:
         params: dict[str, object] = {
             "job_name": job_name,
             "role_arn": role_arn,
@@ -429,7 +429,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_evaluation_job, params, _interceptors,
                 "bedrock", "CreateEvaluationJob", self._region,
-                CreateEvaluationJobResponse,
+                CreateEvaluationJobOutput,
                 ("job_name", "role_arn", "evaluation_config", "inference_config", "output_data_config", "job_description", "client_request_token", "customer_encryption_key_id", "job_tags", "application_type", ),
                 ("job_name", "role_arn", "evaluation_config", "inference_config", "output_data_config", ),
             )
@@ -443,7 +443,7 @@ class BedrockClient:
         *,
         offer_token: str,
         model_id: str,
-    ) -> CreateFoundationModelAgreementResponse:
+    ) -> CreateFoundationModelAgreementOutput:
         params: dict[str, object] = {
             "offer_token": offer_token,
             "model_id": model_id,
@@ -453,7 +453,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_foundation_model_agreement, params, _interceptors,
                 "bedrock", "CreateFoundationModelAgreement", self._region,
-                CreateFoundationModelAgreementResponse,
+                CreateFoundationModelAgreementOutput,
                 ("offer_token", "model_id", ),
                 ("offer_token", "model_id", ),
             )
@@ -479,7 +479,7 @@ class BedrockClient:
         kms_key_id: str | None = None,
         tags: Sequence[Tag] | None = None,
         client_request_token: str | None = None,
-    ) -> CreateGuardrailResponse:
+    ) -> CreateGuardrailOutput:
         params: dict[str, object] = {
             "name": name,
             "blocked_input_messaging": blocked_input_messaging,
@@ -512,7 +512,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_guardrail, params, _interceptors,
                 "bedrock", "CreateGuardrail", self._region,
-                CreateGuardrailResponse,
+                CreateGuardrailOutput,
                 ("name", "blocked_input_messaging", "blocked_outputs_messaging", "description", "topic_policy_config", "content_policy_config", "word_policy_config", "sensitive_information_policy_config", "contextual_grounding_policy_config", "automated_reasoning_policy_config", "cross_region_config", "kms_key_id", "tags", "client_request_token", ),
                 ("name", "blocked_input_messaging", "blocked_outputs_messaging", ),
             )
@@ -527,7 +527,7 @@ class BedrockClient:
         guardrail_identifier: str,
         description: str | None = None,
         client_request_token: str | None = None,
-    ) -> CreateGuardrailVersionResponse:
+    ) -> CreateGuardrailVersionOutput:
         params: dict[str, object] = {
             "guardrail_identifier": guardrail_identifier,
         }
@@ -540,7 +540,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_guardrail_version, params, _interceptors,
                 "bedrock", "CreateGuardrailVersion", self._region,
-                CreateGuardrailVersionResponse,
+                CreateGuardrailVersionOutput,
                 ("guardrail_identifier", "description", "client_request_token", ),
                 ("guardrail_identifier", ),
             )
@@ -557,7 +557,7 @@ class BedrockClient:
         description: str | None = None,
         client_request_token: str | None = None,
         tags: Sequence[Tag] | None = None,
-    ) -> CreateInferenceProfileResponse:
+    ) -> CreateInferenceProfileOutput:
         params: dict[str, object] = {
             "inference_profile_name": inference_profile_name,
             "model_source": model_source,
@@ -573,7 +573,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_inference_profile, params, _interceptors,
                 "bedrock", "CreateInferenceProfile", self._region,
-                CreateInferenceProfileResponse,
+                CreateInferenceProfileOutput,
                 ("inference_profile_name", "model_source", "description", "client_request_token", "tags", ),
                 ("inference_profile_name", "model_source", ),
             )
@@ -591,7 +591,7 @@ class BedrockClient:
         accept_eula: bool | None = None,
         client_request_token: str | None = None,
         tags: Sequence[Tag] | None = None,
-    ) -> CreateMarketplaceModelEndpointResponse:
+    ) -> CreateMarketplaceModelEndpointOutput:
         params: dict[str, object] = {
             "model_source_identifier": model_source_identifier,
             "endpoint_config": endpoint_config,
@@ -608,7 +608,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_marketplace_model_endpoint, params, _interceptors,
                 "bedrock", "CreateMarketplaceModelEndpoint", self._region,
-                CreateMarketplaceModelEndpointResponse,
+                CreateMarketplaceModelEndpointOutput,
                 ("model_source_identifier", "endpoint_config", "endpoint_name", "accept_eula", "client_request_token", "tags", ),
                 ("model_source_identifier", "endpoint_config", "endpoint_name", ),
             )
@@ -625,7 +625,7 @@ class BedrockClient:
         model_kms_key_id: str | None = None,
         target_model_tags: Sequence[Tag] | None = None,
         client_request_token: str | None = None,
-    ) -> CreateModelCopyJobResponse:
+    ) -> CreateModelCopyJobOutput:
         params: dict[str, object] = {
             "source_model_arn": source_model_arn,
             "target_model_name": target_model_name,
@@ -641,7 +641,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_model_copy_job, params, _interceptors,
                 "bedrock", "CreateModelCopyJob", self._region,
-                CreateModelCopyJobResponse,
+                CreateModelCopyJobOutput,
                 ("source_model_arn", "target_model_name", "model_kms_key_id", "target_model_tags", "client_request_token", ),
                 ("source_model_arn", "target_model_name", ),
             )
@@ -668,7 +668,7 @@ class BedrockClient:
         hyper_parameters: dict[str, str] | None = None,
         vpc_config: VpcConfig | None = None,
         customization_config: CustomizationConfig | None = None,
-    ) -> CreateModelCustomizationJobResponse:
+    ) -> CreateModelCustomizationJobOutput:
         params: dict[str, object] = {
             "job_name": job_name,
             "custom_model_name": custom_model_name,
@@ -700,7 +700,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_model_customization_job, params, _interceptors,
                 "bedrock", "CreateModelCustomizationJob", self._region,
-                CreateModelCustomizationJobResponse,
+                CreateModelCustomizationJobOutput,
                 ("job_name", "custom_model_name", "role_arn", "base_model_identifier", "training_data_config", "output_data_config", "client_request_token", "customization_type", "custom_model_kms_key_id", "job_tags", "custom_model_tags", "validation_data_config", "hyper_parameters", "vpc_config", "customization_config", ),
                 ("job_name", "custom_model_name", "role_arn", "base_model_identifier", "training_data_config", "output_data_config", ),
             )
@@ -721,7 +721,7 @@ class BedrockClient:
         client_request_token: str | None = None,
         vpc_config: VpcConfig | None = None,
         imported_model_kms_key_id: str | None = None,
-    ) -> CreateModelImportJobResponse:
+    ) -> CreateModelImportJobOutput:
         params: dict[str, object] = {
             "job_name": job_name,
             "imported_model_name": imported_model_name,
@@ -743,7 +743,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_model_import_job, params, _interceptors,
                 "bedrock", "CreateModelImportJob", self._region,
-                CreateModelImportJobResponse,
+                CreateModelImportJobOutput,
                 ("job_name", "imported_model_name", "role_arn", "model_data_source", "job_tags", "imported_model_tags", "client_request_token", "vpc_config", "imported_model_kms_key_id", ),
                 ("job_name", "imported_model_name", "role_arn", "model_data_source", ),
             )
@@ -765,7 +765,7 @@ class BedrockClient:
         timeout_duration_in_hours: int | None = None,
         tags: Sequence[Tag] | None = None,
         model_invocation_type: ModelInvocationType | None = None,
-    ) -> CreateModelInvocationJobResponse:
+    ) -> CreateModelInvocationJobOutput:
         params: dict[str, object] = {
             "job_name": job_name,
             "role_arn": role_arn,
@@ -788,7 +788,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_model_invocation_job, params, _interceptors,
                 "bedrock", "CreateModelInvocationJob", self._region,
-                CreateModelInvocationJobResponse,
+                CreateModelInvocationJobOutput,
                 ("job_name", "role_arn", "model_id", "input_data_config", "output_data_config", "client_request_token", "vpc_config", "timeout_duration_in_hours", "tags", "model_invocation_type", ),
                 ("job_name", "role_arn", "model_id", "input_data_config", "output_data_config", ),
             )
@@ -807,7 +807,7 @@ class BedrockClient:
         client_request_token: str | None = None,
         description: str | None = None,
         tags: Sequence[Tag] | None = None,
-    ) -> CreatePromptRouterResponse:
+    ) -> CreatePromptRouterOutput:
         params: dict[str, object] = {
             "prompt_router_name": prompt_router_name,
             "models": models,
@@ -825,7 +825,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_prompt_router, params, _interceptors,
                 "bedrock", "CreatePromptRouter", self._region,
-                CreatePromptRouterResponse,
+                CreatePromptRouterOutput,
                 ("prompt_router_name", "models", "routing_criteria", "fallback_model", "client_request_token", "description", "tags", ),
                 ("prompt_router_name", "models", "routing_criteria", "fallback_model", ),
             )
@@ -843,7 +843,7 @@ class BedrockClient:
         client_request_token: str | None = None,
         commitment_duration: CommitmentDuration | None = None,
         tags: Sequence[Tag] | None = None,
-    ) -> CreateProvisionedModelThroughputResponse:
+    ) -> CreateProvisionedModelThroughputOutput:
         params: dict[str, object] = {
             "model_units": model_units,
             "provisioned_model_name": provisioned_model_name,
@@ -860,7 +860,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_provisioned_model_throughput, params, _interceptors,
                 "bedrock", "CreateProvisionedModelThroughput", self._region,
-                CreateProvisionedModelThroughputResponse,
+                CreateProvisionedModelThroughputOutput,
                 ("model_units", "provisioned_model_name", "model_id", "client_request_token", "commitment_duration", "tags", ),
                 ("model_units", "provisioned_model_name", "model_id", ),
             )
@@ -874,7 +874,7 @@ class BedrockClient:
         *,
         policy_arn: str,
         force: bool | None = None,
-    ) -> DeleteAutomatedReasoningPolicyResponse:
+    ) -> DeleteAutomatedReasoningPolicyOutput:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
         }
@@ -885,7 +885,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_automated_reasoning_policy, params, _interceptors,
                 "bedrock", "DeleteAutomatedReasoningPolicy", self._region,
-                DeleteAutomatedReasoningPolicyResponse,
+                DeleteAutomatedReasoningPolicyOutput,
                 ("policy_arn", "force", ),
                 ("policy_arn", ),
             )
@@ -900,7 +900,7 @@ class BedrockClient:
         policy_arn: str,
         build_workflow_id: str,
         last_updated_at: str,
-    ) -> DeleteAutomatedReasoningPolicyBuildWorkflowResponse:
+    ) -> DeleteAutomatedReasoningPolicyBuildWorkflowOutput:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
@@ -911,7 +911,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_automated_reasoning_policy_build_workflow, params, _interceptors,
                 "bedrock", "DeleteAutomatedReasoningPolicyBuildWorkflow", self._region,
-                DeleteAutomatedReasoningPolicyBuildWorkflowResponse,
+                DeleteAutomatedReasoningPolicyBuildWorkflowOutput,
                 ("policy_arn", "build_workflow_id", "last_updated_at", ),
                 ("policy_arn", "build_workflow_id", "last_updated_at", ),
             )
@@ -926,7 +926,7 @@ class BedrockClient:
         policy_arn: str,
         test_case_id: str,
         last_updated_at: str,
-    ) -> DeleteAutomatedReasoningPolicyTestCaseResponse:
+    ) -> DeleteAutomatedReasoningPolicyTestCaseOutput:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "test_case_id": test_case_id,
@@ -937,7 +937,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_automated_reasoning_policy_test_case, params, _interceptors,
                 "bedrock", "DeleteAutomatedReasoningPolicyTestCase", self._region,
-                DeleteAutomatedReasoningPolicyTestCaseResponse,
+                DeleteAutomatedReasoningPolicyTestCaseOutput,
                 ("policy_arn", "test_case_id", "last_updated_at", ),
                 ("policy_arn", "test_case_id", "last_updated_at", ),
             )
@@ -950,7 +950,7 @@ class BedrockClient:
         self,
         *,
         model_identifier: str,
-    ) -> DeleteCustomModelResponse:
+    ) -> DeleteCustomModelOutput:
         params: dict[str, object] = {
             "model_identifier": model_identifier,
         }
@@ -959,7 +959,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_custom_model, params, _interceptors,
                 "bedrock", "DeleteCustomModel", self._region,
-                DeleteCustomModelResponse,
+                DeleteCustomModelOutput,
                 ("model_identifier", ),
                 ("model_identifier", ),
             )
@@ -972,7 +972,7 @@ class BedrockClient:
         self,
         *,
         custom_model_deployment_identifier: str,
-    ) -> DeleteCustomModelDeploymentResponse:
+    ) -> DeleteCustomModelDeploymentOutput:
         params: dict[str, object] = {
             "custom_model_deployment_identifier": custom_model_deployment_identifier,
         }
@@ -981,7 +981,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_custom_model_deployment, params, _interceptors,
                 "bedrock", "DeleteCustomModelDeployment", self._region,
-                DeleteCustomModelDeploymentResponse,
+                DeleteCustomModelDeploymentOutput,
                 ("custom_model_deployment_identifier", ),
                 ("custom_model_deployment_identifier", ),
             )
@@ -994,7 +994,7 @@ class BedrockClient:
         self,
         *,
         config_id: str,
-    ) -> DeleteEnforcedGuardrailConfigurationResponse:
+    ) -> DeleteEnforcedGuardrailConfigurationOutput:
         params: dict[str, object] = {
             "config_id": config_id,
         }
@@ -1003,7 +1003,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_enforced_guardrail_configuration, params, _interceptors,
                 "bedrock", "DeleteEnforcedGuardrailConfiguration", self._region,
-                DeleteEnforcedGuardrailConfigurationResponse,
+                DeleteEnforcedGuardrailConfigurationOutput,
                 ("config_id", ),
                 ("config_id", ),
             )
@@ -1016,7 +1016,7 @@ class BedrockClient:
         self,
         *,
         model_id: str,
-    ) -> DeleteFoundationModelAgreementResponse:
+    ) -> DeleteFoundationModelAgreementOutput:
         params: dict[str, object] = {
             "model_id": model_id,
         }
@@ -1025,7 +1025,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_foundation_model_agreement, params, _interceptors,
                 "bedrock", "DeleteFoundationModelAgreement", self._region,
-                DeleteFoundationModelAgreementResponse,
+                DeleteFoundationModelAgreementOutput,
                 ("model_id", ),
                 ("model_id", ),
             )
@@ -1039,7 +1039,7 @@ class BedrockClient:
         *,
         guardrail_identifier: str,
         guardrail_version: str | None = None,
-    ) -> DeleteGuardrailResponse:
+    ) -> DeleteGuardrailOutput:
         params: dict[str, object] = {
             "guardrail_identifier": guardrail_identifier,
         }
@@ -1050,7 +1050,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_guardrail, params, _interceptors,
                 "bedrock", "DeleteGuardrail", self._region,
-                DeleteGuardrailResponse,
+                DeleteGuardrailOutput,
                 ("guardrail_identifier", "guardrail_version", ),
                 ("guardrail_identifier", ),
             )
@@ -1063,7 +1063,7 @@ class BedrockClient:
         self,
         *,
         model_identifier: str,
-    ) -> DeleteImportedModelResponse:
+    ) -> DeleteImportedModelOutput:
         params: dict[str, object] = {
             "model_identifier": model_identifier,
         }
@@ -1072,7 +1072,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_imported_model, params, _interceptors,
                 "bedrock", "DeleteImportedModel", self._region,
-                DeleteImportedModelResponse,
+                DeleteImportedModelOutput,
                 ("model_identifier", ),
                 ("model_identifier", ),
             )
@@ -1085,7 +1085,7 @@ class BedrockClient:
         self,
         *,
         inference_profile_identifier: str,
-    ) -> DeleteInferenceProfileResponse:
+    ) -> DeleteInferenceProfileOutput:
         params: dict[str, object] = {
             "inference_profile_identifier": inference_profile_identifier,
         }
@@ -1094,7 +1094,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_inference_profile, params, _interceptors,
                 "bedrock", "DeleteInferenceProfile", self._region,
-                DeleteInferenceProfileResponse,
+                DeleteInferenceProfileOutput,
                 ("inference_profile_identifier", ),
                 ("inference_profile_identifier", ),
             )
@@ -1107,7 +1107,7 @@ class BedrockClient:
         self,
         *,
         endpoint_arn: str,
-    ) -> DeleteMarketplaceModelEndpointResponse:
+    ) -> DeleteMarketplaceModelEndpointOutput:
         params: dict[str, object] = {
             "endpoint_arn": endpoint_arn,
         }
@@ -1116,7 +1116,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_marketplace_model_endpoint, params, _interceptors,
                 "bedrock", "DeleteMarketplaceModelEndpoint", self._region,
-                DeleteMarketplaceModelEndpointResponse,
+                DeleteMarketplaceModelEndpointOutput,
                 ("endpoint_arn", ),
                 ("endpoint_arn", ),
             )
@@ -1127,7 +1127,7 @@ class BedrockClient:
 
     async def delete_model_invocation_logging_configuration(
         self,
-    ) -> DeleteModelInvocationLoggingConfigurationResponse:
+    ) -> DeleteModelInvocationLoggingConfigurationOutput:
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("bedrock", self._interceptors)
@@ -1135,7 +1135,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_model_invocation_logging_configuration, params, _interceptors,
                 "bedrock", "DeleteModelInvocationLoggingConfiguration", self._region,
-                DeleteModelInvocationLoggingConfigurationResponse,
+                DeleteModelInvocationLoggingConfigurationOutput,
                 (),
                 (),
             )
@@ -1148,7 +1148,7 @@ class BedrockClient:
         self,
         *,
         prompt_router_arn: str,
-    ) -> DeletePromptRouterResponse:
+    ) -> DeletePromptRouterOutput:
         params: dict[str, object] = {
             "prompt_router_arn": prompt_router_arn,
         }
@@ -1157,7 +1157,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_prompt_router, params, _interceptors,
                 "bedrock", "DeletePromptRouter", self._region,
-                DeletePromptRouterResponse,
+                DeletePromptRouterOutput,
                 ("prompt_router_arn", ),
                 ("prompt_router_arn", ),
             )
@@ -1170,7 +1170,7 @@ class BedrockClient:
         self,
         *,
         provisioned_model_id: str,
-    ) -> DeleteProvisionedModelThroughputResponse:
+    ) -> DeleteProvisionedModelThroughputOutput:
         params: dict[str, object] = {
             "provisioned_model_id": provisioned_model_id,
         }
@@ -1179,7 +1179,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_provisioned_model_throughput, params, _interceptors,
                 "bedrock", "DeleteProvisionedModelThroughput", self._region,
-                DeleteProvisionedModelThroughputResponse,
+                DeleteProvisionedModelThroughputOutput,
                 ("provisioned_model_id", ),
                 ("provisioned_model_id", ),
             )
@@ -1192,7 +1192,7 @@ class BedrockClient:
         self,
         *,
         resource_arn: str,
-    ) -> DeleteResourcePolicyResponse:
+    ) -> DeleteResourcePolicyOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -1201,7 +1201,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_resource_policy, params, _interceptors,
                 "bedrock", "DeleteResourcePolicy", self._region,
-                DeleteResourcePolicyResponse,
+                DeleteResourcePolicyOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
             )
@@ -1214,7 +1214,7 @@ class BedrockClient:
         self,
         *,
         endpoint_arn: str,
-    ) -> DeregisterMarketplaceModelEndpointResponse:
+    ) -> DeregisterMarketplaceModelEndpointOutput:
         params: dict[str, object] = {
             "endpoint_arn": endpoint_arn,
         }
@@ -1223,7 +1223,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.deregister_marketplace_model_endpoint, params, _interceptors,
                 "bedrock", "DeregisterMarketplaceModelEndpoint", self._region,
-                DeregisterMarketplaceModelEndpointResponse,
+                DeregisterMarketplaceModelEndpointOutput,
                 ("endpoint_arn", ),
                 ("endpoint_arn", ),
             )
@@ -1236,7 +1236,7 @@ class BedrockClient:
         self,
         *,
         policy_arn: str,
-    ) -> ExportAutomatedReasoningPolicyVersionResponse:
+    ) -> ExportAutomatedReasoningPolicyVersionOutput:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
         }
@@ -1245,7 +1245,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.export_automated_reasoning_policy_version, params, _interceptors,
                 "bedrock", "ExportAutomatedReasoningPolicyVersion", self._region,
-                ExportAutomatedReasoningPolicyVersionResponse,
+                ExportAutomatedReasoningPolicyVersionOutput,
                 ("policy_arn", ),
                 ("policy_arn", ),
             )
@@ -1256,7 +1256,7 @@ class BedrockClient:
 
     async def get_account_data_retention(
         self,
-    ) -> GetAccountDataRetentionResponse:
+    ) -> GetAccountDataRetentionOutput:
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("bedrock", self._interceptors)
@@ -1264,7 +1264,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_account_data_retention, params, _interceptors,
                 "bedrock", "GetAccountDataRetention", self._region,
-                GetAccountDataRetentionResponse,
+                GetAccountDataRetentionOutput,
                 (),
                 (),
             )
@@ -1277,7 +1277,7 @@ class BedrockClient:
         self,
         *,
         job_identifier: str,
-    ) -> GetAdvancedPromptOptimizationJobResponse:
+    ) -> GetAdvancedPromptOptimizationJobOutput:
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
@@ -1286,7 +1286,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_advanced_prompt_optimization_job, params, _interceptors,
                 "bedrock", "GetAdvancedPromptOptimizationJob", self._region,
-                GetAdvancedPromptOptimizationJobResponse,
+                GetAdvancedPromptOptimizationJobOutput,
                 ("job_identifier", ),
                 ("job_identifier", ),
             )
@@ -1299,7 +1299,7 @@ class BedrockClient:
         self,
         *,
         policy_arn: str,
-    ) -> GetAutomatedReasoningPolicyResponse:
+    ) -> GetAutomatedReasoningPolicyOutput:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
         }
@@ -1308,7 +1308,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_automated_reasoning_policy, params, _interceptors,
                 "bedrock", "GetAutomatedReasoningPolicy", self._region,
-                GetAutomatedReasoningPolicyResponse,
+                GetAutomatedReasoningPolicyOutput,
                 ("policy_arn", ),
                 ("policy_arn", ),
             )
@@ -1322,7 +1322,7 @@ class BedrockClient:
         *,
         policy_arn: str,
         build_workflow_id: str,
-    ) -> GetAutomatedReasoningPolicyAnnotationsResponse:
+    ) -> GetAutomatedReasoningPolicyAnnotationsOutput:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
@@ -1332,7 +1332,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_automated_reasoning_policy_annotations, params, _interceptors,
                 "bedrock", "GetAutomatedReasoningPolicyAnnotations", self._region,
-                GetAutomatedReasoningPolicyAnnotationsResponse,
+                GetAutomatedReasoningPolicyAnnotationsOutput,
                 ("policy_arn", "build_workflow_id", ),
                 ("policy_arn", "build_workflow_id", ),
             )
@@ -1346,7 +1346,7 @@ class BedrockClient:
         *,
         policy_arn: str,
         build_workflow_id: str,
-    ) -> GetAutomatedReasoningPolicyBuildWorkflowResponse:
+    ) -> GetAutomatedReasoningPolicyBuildWorkflowOutput:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
@@ -1356,7 +1356,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_automated_reasoning_policy_build_workflow, params, _interceptors,
                 "bedrock", "GetAutomatedReasoningPolicyBuildWorkflow", self._region,
-                GetAutomatedReasoningPolicyBuildWorkflowResponse,
+                GetAutomatedReasoningPolicyBuildWorkflowOutput,
                 ("policy_arn", "build_workflow_id", ),
                 ("policy_arn", "build_workflow_id", ),
             )
@@ -1372,7 +1372,7 @@ class BedrockClient:
         build_workflow_id: str,
         asset_type: AutomatedReasoningPolicyBuildResultAssetType,
         asset_id: str | None = None,
-    ) -> GetAutomatedReasoningPolicyBuildWorkflowResultAssetsResponse:
+    ) -> GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
@@ -1385,7 +1385,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_automated_reasoning_policy_build_workflow_result_assets, params, _interceptors,
                 "bedrock", "GetAutomatedReasoningPolicyBuildWorkflowResultAssets", self._region,
-                GetAutomatedReasoningPolicyBuildWorkflowResultAssetsResponse,
+                GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput,
                 ("policy_arn", "build_workflow_id", "asset_type", "asset_id", ),
                 ("policy_arn", "build_workflow_id", "asset_type", ),
             )
@@ -1399,7 +1399,7 @@ class BedrockClient:
         *,
         policy_arn: str,
         build_workflow_id: str,
-    ) -> GetAutomatedReasoningPolicyNextScenarioResponse:
+    ) -> GetAutomatedReasoningPolicyNextScenarioOutput:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
@@ -1409,7 +1409,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_automated_reasoning_policy_next_scenario, params, _interceptors,
                 "bedrock", "GetAutomatedReasoningPolicyNextScenario", self._region,
-                GetAutomatedReasoningPolicyNextScenarioResponse,
+                GetAutomatedReasoningPolicyNextScenarioOutput,
                 ("policy_arn", "build_workflow_id", ),
                 ("policy_arn", "build_workflow_id", ),
             )
@@ -1423,7 +1423,7 @@ class BedrockClient:
         *,
         policy_arn: str,
         test_case_id: str,
-    ) -> GetAutomatedReasoningPolicyTestCaseResponse:
+    ) -> GetAutomatedReasoningPolicyTestCaseOutput:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "test_case_id": test_case_id,
@@ -1433,7 +1433,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_automated_reasoning_policy_test_case, params, _interceptors,
                 "bedrock", "GetAutomatedReasoningPolicyTestCase", self._region,
-                GetAutomatedReasoningPolicyTestCaseResponse,
+                GetAutomatedReasoningPolicyTestCaseOutput,
                 ("policy_arn", "test_case_id", ),
                 ("policy_arn", "test_case_id", ),
             )
@@ -1448,7 +1448,7 @@ class BedrockClient:
         policy_arn: str,
         build_workflow_id: str,
         test_case_id: str,
-    ) -> GetAutomatedReasoningPolicyTestResultResponse:
+    ) -> GetAutomatedReasoningPolicyTestResultOutput:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
@@ -1459,7 +1459,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_automated_reasoning_policy_test_result, params, _interceptors,
                 "bedrock", "GetAutomatedReasoningPolicyTestResult", self._region,
-                GetAutomatedReasoningPolicyTestResultResponse,
+                GetAutomatedReasoningPolicyTestResultOutput,
                 ("policy_arn", "build_workflow_id", "test_case_id", ),
                 ("policy_arn", "build_workflow_id", "test_case_id", ),
             )
@@ -1472,7 +1472,7 @@ class BedrockClient:
         self,
         *,
         model_identifier: str,
-    ) -> GetCustomModelResponse:
+    ) -> GetCustomModelOutput:
         params: dict[str, object] = {
             "model_identifier": model_identifier,
         }
@@ -1481,7 +1481,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_custom_model, params, _interceptors,
                 "bedrock", "GetCustomModel", self._region,
-                GetCustomModelResponse,
+                GetCustomModelOutput,
                 ("model_identifier", ),
                 ("model_identifier", ),
             )
@@ -1494,7 +1494,7 @@ class BedrockClient:
         self,
         *,
         custom_model_deployment_identifier: str,
-    ) -> GetCustomModelDeploymentResponse:
+    ) -> GetCustomModelDeploymentOutput:
         params: dict[str, object] = {
             "custom_model_deployment_identifier": custom_model_deployment_identifier,
         }
@@ -1503,7 +1503,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_custom_model_deployment, params, _interceptors,
                 "bedrock", "GetCustomModelDeployment", self._region,
-                GetCustomModelDeploymentResponse,
+                GetCustomModelDeploymentOutput,
                 ("custom_model_deployment_identifier", ),
                 ("custom_model_deployment_identifier", ),
             )
@@ -1516,7 +1516,7 @@ class BedrockClient:
         self,
         *,
         job_identifier: str,
-    ) -> GetEvaluationJobResponse:
+    ) -> GetEvaluationJobOutput:
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
@@ -1525,7 +1525,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_evaluation_job, params, _interceptors,
                 "bedrock", "GetEvaluationJob", self._region,
-                GetEvaluationJobResponse,
+                GetEvaluationJobOutput,
                 ("job_identifier", ),
                 ("job_identifier", ),
             )
@@ -1538,7 +1538,7 @@ class BedrockClient:
         self,
         *,
         model_identifier: str,
-    ) -> GetFoundationModelResponse:
+    ) -> GetFoundationModelOutput:
         params: dict[str, object] = {
             "model_identifier": model_identifier,
         }
@@ -1547,7 +1547,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_foundation_model, params, _interceptors,
                 "bedrock", "GetFoundationModel", self._region,
-                GetFoundationModelResponse,
+                GetFoundationModelOutput,
                 ("model_identifier", ),
                 ("model_identifier", ),
             )
@@ -1560,7 +1560,7 @@ class BedrockClient:
         self,
         *,
         model_id: str,
-    ) -> GetFoundationModelAvailabilityResponse:
+    ) -> GetFoundationModelAvailabilityOutput:
         params: dict[str, object] = {
             "model_id": model_id,
         }
@@ -1569,7 +1569,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_foundation_model_availability, params, _interceptors,
                 "bedrock", "GetFoundationModelAvailability", self._region,
-                GetFoundationModelAvailabilityResponse,
+                GetFoundationModelAvailabilityOutput,
                 ("model_id", ),
                 ("model_id", ),
             )
@@ -1583,7 +1583,7 @@ class BedrockClient:
         *,
         guardrail_identifier: str,
         guardrail_version: str | None = None,
-    ) -> GetGuardrailResponse:
+    ) -> GetGuardrailOutput:
         params: dict[str, object] = {
             "guardrail_identifier": guardrail_identifier,
         }
@@ -1594,7 +1594,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_guardrail, params, _interceptors,
                 "bedrock", "GetGuardrail", self._region,
-                GetGuardrailResponse,
+                GetGuardrailOutput,
                 ("guardrail_identifier", "guardrail_version", ),
                 ("guardrail_identifier", ),
             )
@@ -1607,7 +1607,7 @@ class BedrockClient:
         self,
         *,
         model_identifier: str,
-    ) -> GetImportedModelResponse:
+    ) -> GetImportedModelOutput:
         params: dict[str, object] = {
             "model_identifier": model_identifier,
         }
@@ -1616,7 +1616,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_imported_model, params, _interceptors,
                 "bedrock", "GetImportedModel", self._region,
-                GetImportedModelResponse,
+                GetImportedModelOutput,
                 ("model_identifier", ),
                 ("model_identifier", ),
             )
@@ -1629,7 +1629,7 @@ class BedrockClient:
         self,
         *,
         inference_profile_identifier: str,
-    ) -> GetInferenceProfileResponse:
+    ) -> GetInferenceProfileOutput:
         params: dict[str, object] = {
             "inference_profile_identifier": inference_profile_identifier,
         }
@@ -1638,7 +1638,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_inference_profile, params, _interceptors,
                 "bedrock", "GetInferenceProfile", self._region,
-                GetInferenceProfileResponse,
+                GetInferenceProfileOutput,
                 ("inference_profile_identifier", ),
                 ("inference_profile_identifier", ),
             )
@@ -1651,7 +1651,7 @@ class BedrockClient:
         self,
         *,
         endpoint_arn: str,
-    ) -> GetMarketplaceModelEndpointResponse:
+    ) -> GetMarketplaceModelEndpointOutput:
         params: dict[str, object] = {
             "endpoint_arn": endpoint_arn,
         }
@@ -1660,7 +1660,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_marketplace_model_endpoint, params, _interceptors,
                 "bedrock", "GetMarketplaceModelEndpoint", self._region,
-                GetMarketplaceModelEndpointResponse,
+                GetMarketplaceModelEndpointOutput,
                 ("endpoint_arn", ),
                 ("endpoint_arn", ),
             )
@@ -1673,7 +1673,7 @@ class BedrockClient:
         self,
         *,
         job_arn: str,
-    ) -> GetModelCopyJobResponse:
+    ) -> GetModelCopyJobOutput:
         params: dict[str, object] = {
             "job_arn": job_arn,
         }
@@ -1682,7 +1682,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_model_copy_job, params, _interceptors,
                 "bedrock", "GetModelCopyJob", self._region,
-                GetModelCopyJobResponse,
+                GetModelCopyJobOutput,
                 ("job_arn", ),
                 ("job_arn", ),
             )
@@ -1695,7 +1695,7 @@ class BedrockClient:
         self,
         *,
         job_identifier: str,
-    ) -> GetModelCustomizationJobResponse:
+    ) -> GetModelCustomizationJobOutput:
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
@@ -1704,7 +1704,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_model_customization_job, params, _interceptors,
                 "bedrock", "GetModelCustomizationJob", self._region,
-                GetModelCustomizationJobResponse,
+                GetModelCustomizationJobOutput,
                 ("job_identifier", ),
                 ("job_identifier", ),
             )
@@ -1717,7 +1717,7 @@ class BedrockClient:
         self,
         *,
         job_identifier: str,
-    ) -> GetModelImportJobResponse:
+    ) -> GetModelImportJobOutput:
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
@@ -1726,7 +1726,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_model_import_job, params, _interceptors,
                 "bedrock", "GetModelImportJob", self._region,
-                GetModelImportJobResponse,
+                GetModelImportJobOutput,
                 ("job_identifier", ),
                 ("job_identifier", ),
             )
@@ -1739,7 +1739,7 @@ class BedrockClient:
         self,
         *,
         job_identifier: str,
-    ) -> GetModelInvocationJobResponse:
+    ) -> GetModelInvocationJobOutput:
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
@@ -1748,7 +1748,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_model_invocation_job, params, _interceptors,
                 "bedrock", "GetModelInvocationJob", self._region,
-                GetModelInvocationJobResponse,
+                GetModelInvocationJobOutput,
                 ("job_identifier", ),
                 ("job_identifier", ),
             )
@@ -1759,7 +1759,7 @@ class BedrockClient:
 
     async def get_model_invocation_logging_configuration(
         self,
-    ) -> GetModelInvocationLoggingConfigurationResponse:
+    ) -> GetModelInvocationLoggingConfigurationOutput:
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("bedrock", self._interceptors)
@@ -1767,7 +1767,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_model_invocation_logging_configuration, params, _interceptors,
                 "bedrock", "GetModelInvocationLoggingConfiguration", self._region,
-                GetModelInvocationLoggingConfigurationResponse,
+                GetModelInvocationLoggingConfigurationOutput,
                 (),
                 (),
             )
@@ -1780,7 +1780,7 @@ class BedrockClient:
         self,
         *,
         prompt_router_arn: str,
-    ) -> GetPromptRouterResponse:
+    ) -> GetPromptRouterOutput:
         params: dict[str, object] = {
             "prompt_router_arn": prompt_router_arn,
         }
@@ -1789,7 +1789,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_prompt_router, params, _interceptors,
                 "bedrock", "GetPromptRouter", self._region,
-                GetPromptRouterResponse,
+                GetPromptRouterOutput,
                 ("prompt_router_arn", ),
                 ("prompt_router_arn", ),
             )
@@ -1802,7 +1802,7 @@ class BedrockClient:
         self,
         *,
         provisioned_model_id: str,
-    ) -> GetProvisionedModelThroughputResponse:
+    ) -> GetProvisionedModelThroughputOutput:
         params: dict[str, object] = {
             "provisioned_model_id": provisioned_model_id,
         }
@@ -1811,7 +1811,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_provisioned_model_throughput, params, _interceptors,
                 "bedrock", "GetProvisionedModelThroughput", self._region,
-                GetProvisionedModelThroughputResponse,
+                GetProvisionedModelThroughputOutput,
                 ("provisioned_model_id", ),
                 ("provisioned_model_id", ),
             )
@@ -1824,7 +1824,7 @@ class BedrockClient:
         self,
         *,
         resource_arn: str,
-    ) -> GetResourcePolicyResponse:
+    ) -> GetResourcePolicyOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -1833,7 +1833,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_resource_policy, params, _interceptors,
                 "bedrock", "GetResourcePolicy", self._region,
-                GetResourcePolicyResponse,
+                GetResourcePolicyOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
             )
@@ -1844,7 +1844,7 @@ class BedrockClient:
 
     async def get_use_case_for_model_access(
         self,
-    ) -> GetUseCaseForModelAccessResponse:
+    ) -> GetUseCaseForModelAccessOutput:
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("bedrock", self._interceptors)
@@ -1852,7 +1852,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_use_case_for_model_access, params, _interceptors,
                 "bedrock", "GetUseCaseForModelAccess", self._region,
-                GetUseCaseForModelAccessResponse,
+                GetUseCaseForModelAccessOutput,
                 (),
                 (),
             )
@@ -1868,7 +1868,7 @@ class BedrockClient:
         next_token: str | None = None,
         sort_by: SortJobsBy | None = None,
         sort_order: SortOrder | None = None,
-    ) -> ListAdvancedPromptOptimizationJobsResponse:
+    ) -> ListAdvancedPromptOptimizationJobsOutput:
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -1884,7 +1884,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_advanced_prompt_optimization_jobs, params, _interceptors,
                 "bedrock", "ListAdvancedPromptOptimizationJobs", self._region,
-                ListAdvancedPromptOptimizationJobsResponse,
+                ListAdvancedPromptOptimizationJobsOutput,
                 ("max_results", "next_token", "sort_by", "sort_order", ),
                 (),
             )
@@ -1899,7 +1899,7 @@ class BedrockClient:
         policy_arn: str | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListAutomatedReasoningPoliciesResponse:
+    ) -> ListAutomatedReasoningPoliciesOutput:
         params: dict[str, object] = {
         }
         if policy_arn is not None:
@@ -1913,7 +1913,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_automated_reasoning_policies, params, _interceptors,
                 "bedrock", "ListAutomatedReasoningPolicies", self._region,
-                ListAutomatedReasoningPoliciesResponse,
+                ListAutomatedReasoningPoliciesOutput,
                 ("policy_arn", "next_token", "max_results", ),
                 (),
             )
@@ -1928,7 +1928,7 @@ class BedrockClient:
         policy_arn: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListAutomatedReasoningPolicyBuildWorkflowsResponse:
+    ) -> ListAutomatedReasoningPolicyBuildWorkflowsOutput:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
         }
@@ -1941,7 +1941,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_automated_reasoning_policy_build_workflows, params, _interceptors,
                 "bedrock", "ListAutomatedReasoningPolicyBuildWorkflows", self._region,
-                ListAutomatedReasoningPolicyBuildWorkflowsResponse,
+                ListAutomatedReasoningPolicyBuildWorkflowsOutput,
                 ("policy_arn", "next_token", "max_results", ),
                 ("policy_arn", ),
             )
@@ -1956,7 +1956,7 @@ class BedrockClient:
         policy_arn: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListAutomatedReasoningPolicyTestCasesResponse:
+    ) -> ListAutomatedReasoningPolicyTestCasesOutput:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
         }
@@ -1969,7 +1969,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_automated_reasoning_policy_test_cases, params, _interceptors,
                 "bedrock", "ListAutomatedReasoningPolicyTestCases", self._region,
-                ListAutomatedReasoningPolicyTestCasesResponse,
+                ListAutomatedReasoningPolicyTestCasesOutput,
                 ("policy_arn", "next_token", "max_results", ),
                 ("policy_arn", ),
             )
@@ -1985,7 +1985,7 @@ class BedrockClient:
         build_workflow_id: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListAutomatedReasoningPolicyTestResultsResponse:
+    ) -> ListAutomatedReasoningPolicyTestResultsOutput:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
@@ -1999,7 +1999,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_automated_reasoning_policy_test_results, params, _interceptors,
                 "bedrock", "ListAutomatedReasoningPolicyTestResults", self._region,
-                ListAutomatedReasoningPolicyTestResultsResponse,
+                ListAutomatedReasoningPolicyTestResultsOutput,
                 ("policy_arn", "build_workflow_id", "next_token", "max_results", ),
                 ("policy_arn", "build_workflow_id", ),
             )
@@ -2020,7 +2020,7 @@ class BedrockClient:
         sort_order: SortOrder | None = None,
         status_equals: CustomModelDeploymentStatus | None = None,
         model_arn_equals: str | None = None,
-    ) -> ListCustomModelDeploymentsResponse:
+    ) -> ListCustomModelDeploymentsOutput:
         params: dict[str, object] = {
         }
         if created_before is not None:
@@ -2046,7 +2046,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_custom_model_deployments, params, _interceptors,
                 "bedrock", "ListCustomModelDeployments", self._region,
-                ListCustomModelDeploymentsResponse,
+                ListCustomModelDeploymentsOutput,
                 ("created_before", "created_after", "name_contains", "max_results", "next_token", "sort_by", "sort_order", "status_equals", "model_arn_equals", ),
                 (),
             )
@@ -2069,7 +2069,7 @@ class BedrockClient:
         sort_order: SortOrder | None = None,
         is_owned: bool | None = None,
         model_status: ModelStatus | None = None,
-    ) -> ListCustomModelsResponse:
+    ) -> ListCustomModelsOutput:
         params: dict[str, object] = {
         }
         if creation_time_before is not None:
@@ -2099,7 +2099,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_custom_models, params, _interceptors,
                 "bedrock", "ListCustomModels", self._region,
-                ListCustomModelsResponse,
+                ListCustomModelsOutput,
                 ("creation_time_before", "creation_time_after", "name_contains", "base_model_arn_equals", "foundation_model_arn_equals", "max_results", "next_token", "sort_by", "sort_order", "is_owned", "model_status", ),
                 (),
             )
@@ -2112,7 +2112,7 @@ class BedrockClient:
         self,
         *,
         next_token: str | None = None,
-    ) -> ListEnforcedGuardrailsConfigurationResponse:
+    ) -> ListEnforcedGuardrailsConfigurationOutput:
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -2122,7 +2122,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_enforced_guardrails_configuration, params, _interceptors,
                 "bedrock", "ListEnforcedGuardrailsConfiguration", self._region,
-                ListEnforcedGuardrailsConfigurationResponse,
+                ListEnforcedGuardrailsConfigurationOutput,
                 ("next_token", ),
                 (),
             )
@@ -2143,7 +2143,7 @@ class BedrockClient:
         next_token: str | None = None,
         sort_by: SortJobsBy | None = None,
         sort_order: SortOrder | None = None,
-    ) -> ListEvaluationJobsResponse:
+    ) -> ListEvaluationJobsOutput:
         params: dict[str, object] = {
         }
         if creation_time_after is not None:
@@ -2169,7 +2169,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_evaluation_jobs, params, _interceptors,
                 "bedrock", "ListEvaluationJobs", self._region,
-                ListEvaluationJobsResponse,
+                ListEvaluationJobsOutput,
                 ("creation_time_after", "creation_time_before", "status_equals", "application_type_equals", "name_contains", "max_results", "next_token", "sort_by", "sort_order", ),
                 (),
             )
@@ -2183,7 +2183,7 @@ class BedrockClient:
         *,
         model_id: str,
         offer_type: OfferType | None = None,
-    ) -> ListFoundationModelAgreementOffersResponse:
+    ) -> ListFoundationModelAgreementOffersOutput:
         params: dict[str, object] = {
             "model_id": model_id,
         }
@@ -2194,7 +2194,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_foundation_model_agreement_offers, params, _interceptors,
                 "bedrock", "ListFoundationModelAgreementOffers", self._region,
-                ListFoundationModelAgreementOffersResponse,
+                ListFoundationModelAgreementOffersOutput,
                 ("model_id", "offer_type", ),
                 ("model_id", ),
             )
@@ -2210,7 +2210,7 @@ class BedrockClient:
         by_customization_type: ModelCustomization | None = None,
         by_output_modality: ModelModality | None = None,
         by_inference_type: InferenceType | None = None,
-    ) -> ListFoundationModelsResponse:
+    ) -> ListFoundationModelsOutput:
         params: dict[str, object] = {
         }
         if by_provider is not None:
@@ -2226,7 +2226,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_foundation_models, params, _interceptors,
                 "bedrock", "ListFoundationModels", self._region,
-                ListFoundationModelsResponse,
+                ListFoundationModelsOutput,
                 ("by_provider", "by_customization_type", "by_output_modality", "by_inference_type", ),
                 (),
             )
@@ -2241,7 +2241,7 @@ class BedrockClient:
         guardrail_identifier: str | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> ListGuardrailsResponse:
+    ) -> ListGuardrailsOutput:
         params: dict[str, object] = {
         }
         if guardrail_identifier is not None:
@@ -2255,7 +2255,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_guardrails, params, _interceptors,
                 "bedrock", "ListGuardrails", self._region,
-                ListGuardrailsResponse,
+                ListGuardrailsOutput,
                 ("guardrail_identifier", "max_results", "next_token", ),
                 (),
             )
@@ -2274,7 +2274,7 @@ class BedrockClient:
         next_token: str | None = None,
         sort_by: SortModelsBy | None = None,
         sort_order: SortOrder | None = None,
-    ) -> ListImportedModelsResponse:
+    ) -> ListImportedModelsOutput:
         params: dict[str, object] = {
         }
         if creation_time_before is not None:
@@ -2296,7 +2296,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_imported_models, params, _interceptors,
                 "bedrock", "ListImportedModels", self._region,
-                ListImportedModelsResponse,
+                ListImportedModelsOutput,
                 ("creation_time_before", "creation_time_after", "name_contains", "max_results", "next_token", "sort_by", "sort_order", ),
                 (),
             )
@@ -2311,7 +2311,7 @@ class BedrockClient:
         max_results: int | None = None,
         next_token: str | None = None,
         type_equals: InferenceProfileType | None = None,
-    ) -> ListInferenceProfilesResponse:
+    ) -> ListInferenceProfilesOutput:
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -2325,7 +2325,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_inference_profiles, params, _interceptors,
                 "bedrock", "ListInferenceProfiles", self._region,
-                ListInferenceProfilesResponse,
+                ListInferenceProfilesOutput,
                 ("max_results", "next_token", "type_equals", ),
                 (),
             )
@@ -2340,7 +2340,7 @@ class BedrockClient:
         max_results: int | None = None,
         next_token: str | None = None,
         model_source_equals: str | None = None,
-    ) -> ListMarketplaceModelEndpointsResponse:
+    ) -> ListMarketplaceModelEndpointsOutput:
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -2354,7 +2354,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_marketplace_model_endpoints, params, _interceptors,
                 "bedrock", "ListMarketplaceModelEndpoints", self._region,
-                ListMarketplaceModelEndpointsResponse,
+                ListMarketplaceModelEndpointsOutput,
                 ("max_results", "next_token", "model_source_equals", ),
                 (),
             )
@@ -2376,7 +2376,7 @@ class BedrockClient:
         next_token: str | None = None,
         sort_by: SortJobsBy | None = None,
         sort_order: SortOrder | None = None,
-    ) -> ListModelCopyJobsResponse:
+    ) -> ListModelCopyJobsOutput:
         params: dict[str, object] = {
         }
         if creation_time_after is not None:
@@ -2404,7 +2404,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_model_copy_jobs, params, _interceptors,
                 "bedrock", "ListModelCopyJobs", self._region,
-                ListModelCopyJobsResponse,
+                ListModelCopyJobsOutput,
                 ("creation_time_after", "creation_time_before", "status_equals", "source_account_equals", "source_model_arn_equals", "target_model_name_contains", "max_results", "next_token", "sort_by", "sort_order", ),
                 (),
             )
@@ -2424,7 +2424,7 @@ class BedrockClient:
         next_token: str | None = None,
         sort_by: SortJobsBy | None = None,
         sort_order: SortOrder | None = None,
-    ) -> ListModelCustomizationJobsResponse:
+    ) -> ListModelCustomizationJobsOutput:
         params: dict[str, object] = {
         }
         if creation_time_after is not None:
@@ -2448,7 +2448,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_model_customization_jobs, params, _interceptors,
                 "bedrock", "ListModelCustomizationJobs", self._region,
-                ListModelCustomizationJobsResponse,
+                ListModelCustomizationJobsOutput,
                 ("creation_time_after", "creation_time_before", "status_equals", "name_contains", "max_results", "next_token", "sort_by", "sort_order", ),
                 (),
             )
@@ -2468,7 +2468,7 @@ class BedrockClient:
         next_token: str | None = None,
         sort_by: SortJobsBy | None = None,
         sort_order: SortOrder | None = None,
-    ) -> ListModelImportJobsResponse:
+    ) -> ListModelImportJobsOutput:
         params: dict[str, object] = {
         }
         if creation_time_after is not None:
@@ -2492,7 +2492,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_model_import_jobs, params, _interceptors,
                 "bedrock", "ListModelImportJobs", self._region,
-                ListModelImportJobsResponse,
+                ListModelImportJobsOutput,
                 ("creation_time_after", "creation_time_before", "status_equals", "name_contains", "max_results", "next_token", "sort_by", "sort_order", ),
                 (),
             )
@@ -2512,7 +2512,7 @@ class BedrockClient:
         next_token: str | None = None,
         sort_by: SortJobsBy | None = None,
         sort_order: SortOrder | None = None,
-    ) -> ListModelInvocationJobsResponse:
+    ) -> ListModelInvocationJobsOutput:
         params: dict[str, object] = {
         }
         if submit_time_after is not None:
@@ -2536,7 +2536,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_model_invocation_jobs, params, _interceptors,
                 "bedrock", "ListModelInvocationJobs", self._region,
-                ListModelInvocationJobsResponse,
+                ListModelInvocationJobsOutput,
                 ("submit_time_after", "submit_time_before", "status_equals", "name_contains", "max_results", "next_token", "sort_by", "sort_order", ),
                 (),
             )
@@ -2551,7 +2551,7 @@ class BedrockClient:
         max_results: int | None = None,
         next_token: str | None = None,
         type: PromptRouterType | None = None,
-    ) -> ListPromptRoutersResponse:
+    ) -> ListPromptRoutersOutput:
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -2565,7 +2565,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_prompt_routers, params, _interceptors,
                 "bedrock", "ListPromptRouters", self._region,
-                ListPromptRoutersResponse,
+                ListPromptRoutersOutput,
                 ("max_results", "next_token", "type", ),
                 (),
             )
@@ -2586,7 +2586,7 @@ class BedrockClient:
         next_token: str | None = None,
         sort_by: SortByProvisionedModels | None = None,
         sort_order: SortOrder | None = None,
-    ) -> ListProvisionedModelThroughputsResponse:
+    ) -> ListProvisionedModelThroughputsOutput:
         params: dict[str, object] = {
         }
         if creation_time_after is not None:
@@ -2612,7 +2612,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_provisioned_model_throughputs, params, _interceptors,
                 "bedrock", "ListProvisionedModelThroughputs", self._region,
-                ListProvisionedModelThroughputsResponse,
+                ListProvisionedModelThroughputsOutput,
                 ("creation_time_after", "creation_time_before", "status_equals", "model_arn_equals", "name_contains", "max_results", "next_token", "sort_by", "sort_order", ),
                 (),
             )
@@ -2625,7 +2625,7 @@ class BedrockClient:
         self,
         *,
         resource_arn: str,
-    ) -> ListTagsForResourceResponse:
+    ) -> ListTagsForResourceOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -2634,7 +2634,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_tags_for_resource, params, _interceptors,
                 "bedrock", "ListTagsForResource", self._region,
-                ListTagsForResourceResponse,
+                ListTagsForResourceOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
             )
@@ -2647,7 +2647,7 @@ class BedrockClient:
         self,
         *,
         mode: DataRetentionMode,
-    ) -> PutAccountDataRetentionResponse:
+    ) -> PutAccountDataRetentionOutput:
         params: dict[str, object] = {
             "mode": mode,
         }
@@ -2656,7 +2656,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.put_account_data_retention, params, _interceptors,
                 "bedrock", "PutAccountDataRetention", self._region,
-                PutAccountDataRetentionResponse,
+                PutAccountDataRetentionOutput,
                 ("mode", ),
                 ("mode", ),
             )
@@ -2670,7 +2670,7 @@ class BedrockClient:
         *,
         guardrail_inference_config: AccountEnforcedGuardrailInferenceInputConfiguration,
         config_id: str | None = None,
-    ) -> PutEnforcedGuardrailConfigurationResponse:
+    ) -> PutEnforcedGuardrailConfigurationOutput:
         params: dict[str, object] = {
             "guardrail_inference_config": guardrail_inference_config,
         }
@@ -2681,7 +2681,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.put_enforced_guardrail_configuration, params, _interceptors,
                 "bedrock", "PutEnforcedGuardrailConfiguration", self._region,
-                PutEnforcedGuardrailConfigurationResponse,
+                PutEnforcedGuardrailConfigurationOutput,
                 ("guardrail_inference_config", "config_id", ),
                 ("guardrail_inference_config", ),
             )
@@ -2694,7 +2694,7 @@ class BedrockClient:
         self,
         *,
         logging_config: LoggingConfig,
-    ) -> PutModelInvocationLoggingConfigurationResponse:
+    ) -> PutModelInvocationLoggingConfigurationOutput:
         params: dict[str, object] = {
             "logging_config": logging_config,
         }
@@ -2703,7 +2703,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.put_model_invocation_logging_configuration, params, _interceptors,
                 "bedrock", "PutModelInvocationLoggingConfiguration", self._region,
-                PutModelInvocationLoggingConfigurationResponse,
+                PutModelInvocationLoggingConfigurationOutput,
                 ("logging_config", ),
                 ("logging_config", ),
             )
@@ -2717,7 +2717,7 @@ class BedrockClient:
         *,
         resource_arn: str,
         resource_policy: str,
-    ) -> PutResourcePolicyResponse:
+    ) -> PutResourcePolicyOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "resource_policy": resource_policy,
@@ -2727,7 +2727,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.put_resource_policy, params, _interceptors,
                 "bedrock", "PutResourcePolicy", self._region,
-                PutResourcePolicyResponse,
+                PutResourcePolicyOutput,
                 ("resource_arn", "resource_policy", ),
                 ("resource_arn", "resource_policy", ),
             )
@@ -2740,7 +2740,7 @@ class BedrockClient:
         self,
         *,
         form_data: bytes,
-    ) -> PutUseCaseForModelAccessResponse:
+    ) -> PutUseCaseForModelAccessOutput:
         params: dict[str, object] = {
             "form_data": form_data,
         }
@@ -2749,7 +2749,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.put_use_case_for_model_access, params, _interceptors,
                 "bedrock", "PutUseCaseForModelAccess", self._region,
-                PutUseCaseForModelAccessResponse,
+                PutUseCaseForModelAccessOutput,
                 ("form_data", ),
                 ("form_data", ),
             )
@@ -2763,7 +2763,7 @@ class BedrockClient:
         *,
         endpoint_identifier: str,
         model_source_identifier: str,
-    ) -> RegisterMarketplaceModelEndpointResponse:
+    ) -> RegisterMarketplaceModelEndpointOutput:
         params: dict[str, object] = {
             "endpoint_identifier": endpoint_identifier,
             "model_source_identifier": model_source_identifier,
@@ -2773,7 +2773,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.register_marketplace_model_endpoint, params, _interceptors,
                 "bedrock", "RegisterMarketplaceModelEndpoint", self._region,
-                RegisterMarketplaceModelEndpointResponse,
+                RegisterMarketplaceModelEndpointOutput,
                 ("endpoint_identifier", "model_source_identifier", ),
                 ("endpoint_identifier", "model_source_identifier", ),
             )
@@ -2789,7 +2789,7 @@ class BedrockClient:
         build_workflow_type: AutomatedReasoningPolicyBuildWorkflowType,
         source_content: AutomatedReasoningPolicyBuildWorkflowSource,
         client_request_token: str | None = None,
-    ) -> StartAutomatedReasoningPolicyBuildWorkflowResponse:
+    ) -> StartAutomatedReasoningPolicyBuildWorkflowOutput:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "build_workflow_type": build_workflow_type,
@@ -2802,7 +2802,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.start_automated_reasoning_policy_build_workflow, params, _interceptors,
                 "bedrock", "StartAutomatedReasoningPolicyBuildWorkflow", self._region,
-                StartAutomatedReasoningPolicyBuildWorkflowResponse,
+                StartAutomatedReasoningPolicyBuildWorkflowOutput,
                 ("policy_arn", "build_workflow_type", "source_content", "client_request_token", ),
                 ("policy_arn", "build_workflow_type", "source_content", ),
             )
@@ -2818,7 +2818,7 @@ class BedrockClient:
         build_workflow_id: str,
         test_case_ids: Sequence[str] | None = None,
         client_request_token: str | None = None,
-    ) -> StartAutomatedReasoningPolicyTestWorkflowResponse:
+    ) -> StartAutomatedReasoningPolicyTestWorkflowOutput:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
@@ -2832,7 +2832,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.start_automated_reasoning_policy_test_workflow, params, _interceptors,
                 "bedrock", "StartAutomatedReasoningPolicyTestWorkflow", self._region,
-                StartAutomatedReasoningPolicyTestWorkflowResponse,
+                StartAutomatedReasoningPolicyTestWorkflowOutput,
                 ("policy_arn", "build_workflow_id", "test_case_ids", "client_request_token", ),
                 ("policy_arn", "build_workflow_id", ),
             )
@@ -2845,7 +2845,7 @@ class BedrockClient:
         self,
         *,
         job_identifier: str,
-    ) -> StopAdvancedPromptOptimizationJobResponse:
+    ) -> StopAdvancedPromptOptimizationJobOutput:
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
@@ -2854,7 +2854,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.stop_advanced_prompt_optimization_job, params, _interceptors,
                 "bedrock", "StopAdvancedPromptOptimizationJob", self._region,
-                StopAdvancedPromptOptimizationJobResponse,
+                StopAdvancedPromptOptimizationJobOutput,
                 ("job_identifier", ),
                 ("job_identifier", ),
             )
@@ -2867,7 +2867,7 @@ class BedrockClient:
         self,
         *,
         job_identifier: str,
-    ) -> StopEvaluationJobResponse:
+    ) -> StopEvaluationJobOutput:
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
@@ -2876,7 +2876,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.stop_evaluation_job, params, _interceptors,
                 "bedrock", "StopEvaluationJob", self._region,
-                StopEvaluationJobResponse,
+                StopEvaluationJobOutput,
                 ("job_identifier", ),
                 ("job_identifier", ),
             )
@@ -2889,7 +2889,7 @@ class BedrockClient:
         self,
         *,
         job_identifier: str,
-    ) -> StopModelCustomizationJobResponse:
+    ) -> StopModelCustomizationJobOutput:
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
@@ -2898,7 +2898,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.stop_model_customization_job, params, _interceptors,
                 "bedrock", "StopModelCustomizationJob", self._region,
-                StopModelCustomizationJobResponse,
+                StopModelCustomizationJobOutput,
                 ("job_identifier", ),
                 ("job_identifier", ),
             )
@@ -2911,7 +2911,7 @@ class BedrockClient:
         self,
         *,
         job_identifier: str,
-    ) -> StopModelInvocationJobResponse:
+    ) -> StopModelInvocationJobOutput:
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
@@ -2920,7 +2920,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.stop_model_invocation_job, params, _interceptors,
                 "bedrock", "StopModelInvocationJob", self._region,
-                StopModelInvocationJobResponse,
+                StopModelInvocationJobOutput,
                 ("job_identifier", ),
                 ("job_identifier", ),
             )
@@ -2934,7 +2934,7 @@ class BedrockClient:
         *,
         resource_arn: str,
         tags: Sequence[Tag],
-    ) -> TagResourceResponse:
+    ) -> TagResourceOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -2944,7 +2944,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.tag_resource, params, _interceptors,
                 "bedrock", "TagResource", self._region,
-                TagResourceResponse,
+                TagResourceOutput,
                 ("resource_arn", "tags", ),
                 ("resource_arn", "tags", ),
             )
@@ -2958,7 +2958,7 @@ class BedrockClient:
         *,
         resource_arn: str,
         tag_keys: Sequence[str],
-    ) -> UntagResourceResponse:
+    ) -> UntagResourceOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
@@ -2968,7 +2968,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.untag_resource, params, _interceptors,
                 "bedrock", "UntagResource", self._region,
-                UntagResourceResponse,
+                UntagResourceOutput,
                 ("resource_arn", "tag_keys", ),
                 ("resource_arn", "tag_keys", ),
             )
@@ -2984,7 +2984,7 @@ class BedrockClient:
         policy_definition: AutomatedReasoningPolicyDefinition,
         name: str | None = None,
         description: str | None = None,
-    ) -> UpdateAutomatedReasoningPolicyResponse:
+    ) -> UpdateAutomatedReasoningPolicyOutput:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "policy_definition": policy_definition,
@@ -2998,7 +2998,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.update_automated_reasoning_policy, params, _interceptors,
                 "bedrock", "UpdateAutomatedReasoningPolicy", self._region,
-                UpdateAutomatedReasoningPolicyResponse,
+                UpdateAutomatedReasoningPolicyOutput,
                 ("policy_arn", "policy_definition", "name", "description", ),
                 ("policy_arn", "policy_definition", ),
             )
@@ -3014,7 +3014,7 @@ class BedrockClient:
         build_workflow_id: str,
         annotations: Sequence[AutomatedReasoningPolicyAnnotation],
         last_updated_annotation_set_hash: str,
-    ) -> UpdateAutomatedReasoningPolicyAnnotationsResponse:
+    ) -> UpdateAutomatedReasoningPolicyAnnotationsOutput:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
@@ -3026,7 +3026,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.update_automated_reasoning_policy_annotations, params, _interceptors,
                 "bedrock", "UpdateAutomatedReasoningPolicyAnnotations", self._region,
-                UpdateAutomatedReasoningPolicyAnnotationsResponse,
+                UpdateAutomatedReasoningPolicyAnnotationsOutput,
                 ("policy_arn", "build_workflow_id", "annotations", "last_updated_annotation_set_hash", ),
                 ("policy_arn", "build_workflow_id", "annotations", "last_updated_annotation_set_hash", ),
             )
@@ -3046,7 +3046,7 @@ class BedrockClient:
         query_content: str | None = None,
         confidence_threshold: float | None = None,
         client_request_token: str | None = None,
-    ) -> UpdateAutomatedReasoningPolicyTestCaseResponse:
+    ) -> UpdateAutomatedReasoningPolicyTestCaseOutput:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "test_case_id": test_case_id,
@@ -3065,7 +3065,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.update_automated_reasoning_policy_test_case, params, _interceptors,
                 "bedrock", "UpdateAutomatedReasoningPolicyTestCase", self._region,
-                UpdateAutomatedReasoningPolicyTestCaseResponse,
+                UpdateAutomatedReasoningPolicyTestCaseOutput,
                 ("policy_arn", "test_case_id", "guard_content", "last_updated_at", "expected_aggregated_findings_result", "query_content", "confidence_threshold", "client_request_token", ),
                 ("policy_arn", "test_case_id", "guard_content", "last_updated_at", "expected_aggregated_findings_result", ),
             )
@@ -3079,7 +3079,7 @@ class BedrockClient:
         *,
         model_arn: str,
         custom_model_deployment_identifier: str,
-    ) -> UpdateCustomModelDeploymentResponse:
+    ) -> UpdateCustomModelDeploymentOutput:
         params: dict[str, object] = {
             "model_arn": model_arn,
             "custom_model_deployment_identifier": custom_model_deployment_identifier,
@@ -3089,7 +3089,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.update_custom_model_deployment, params, _interceptors,
                 "bedrock", "UpdateCustomModelDeployment", self._region,
-                UpdateCustomModelDeploymentResponse,
+                UpdateCustomModelDeploymentOutput,
                 ("model_arn", "custom_model_deployment_identifier", ),
                 ("model_arn", "custom_model_deployment_identifier", ),
             )
@@ -3114,7 +3114,7 @@ class BedrockClient:
         automated_reasoning_policy_config: GuardrailAutomatedReasoningPolicyConfig | None = None,
         cross_region_config: GuardrailCrossRegionConfig | None = None,
         kms_key_id: str | None = None,
-    ) -> UpdateGuardrailResponse:
+    ) -> UpdateGuardrailOutput:
         params: dict[str, object] = {
             "guardrail_identifier": guardrail_identifier,
             "name": name,
@@ -3144,7 +3144,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.update_guardrail, params, _interceptors,
                 "bedrock", "UpdateGuardrail", self._region,
-                UpdateGuardrailResponse,
+                UpdateGuardrailOutput,
                 ("guardrail_identifier", "name", "blocked_input_messaging", "blocked_outputs_messaging", "description", "topic_policy_config", "content_policy_config", "word_policy_config", "sensitive_information_policy_config", "contextual_grounding_policy_config", "automated_reasoning_policy_config", "cross_region_config", "kms_key_id", ),
                 ("guardrail_identifier", "name", "blocked_input_messaging", "blocked_outputs_messaging", ),
             )
@@ -3159,7 +3159,7 @@ class BedrockClient:
         endpoint_arn: str,
         endpoint_config: EndpointConfig,
         client_request_token: str | None = None,
-    ) -> UpdateMarketplaceModelEndpointResponse:
+    ) -> UpdateMarketplaceModelEndpointOutput:
         params: dict[str, object] = {
             "endpoint_arn": endpoint_arn,
             "endpoint_config": endpoint_config,
@@ -3171,7 +3171,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.update_marketplace_model_endpoint, params, _interceptors,
                 "bedrock", "UpdateMarketplaceModelEndpoint", self._region,
-                UpdateMarketplaceModelEndpointResponse,
+                UpdateMarketplaceModelEndpointOutput,
                 ("endpoint_arn", "endpoint_config", "client_request_token", ),
                 ("endpoint_arn", "endpoint_config", ),
             )
@@ -3186,7 +3186,7 @@ class BedrockClient:
         provisioned_model_id: str,
         desired_provisioned_model_name: str | None = None,
         desired_model_id: str | None = None,
-    ) -> UpdateProvisionedModelThroughputResponse:
+    ) -> UpdateProvisionedModelThroughputOutput:
         params: dict[str, object] = {
             "provisioned_model_id": provisioned_model_id,
         }
@@ -3199,7 +3199,7 @@ class BedrockClient:
             _response = await invoke(
                 self._native.update_provisioned_model_throughput, params, _interceptors,
                 "bedrock", "UpdateProvisionedModelThroughput", self._region,
-                UpdateProvisionedModelThroughputResponse,
+                UpdateProvisionedModelThroughputOutput,
                 ("provisioned_model_id", "desired_provisioned_model_name", "desired_model_id", ),
                 ("provisioned_model_id", ),
             )

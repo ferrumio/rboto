@@ -1142,12 +1142,12 @@ impl PyVoice {
 }
 
 #[pyclass(name = "DeleteLexiconOutput", module = "rboto_polly._native", frozen)]
-struct PyDeleteLexiconOutput {
+struct PyOperationDeleteLexiconOutput {
     inner: aws_sdk_polly::operation::delete_lexicon::DeleteLexiconOutput,
 }
 
 #[pymethods]
-impl PyDeleteLexiconOutput {
+impl PyOperationDeleteLexiconOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -1155,12 +1155,12 @@ impl PyDeleteLexiconOutput {
 }
 
 #[pyclass(name = "DescribeVoicesOutput", module = "rboto_polly._native", frozen)]
-struct PyDescribeVoicesOutput {
+struct PyOperationDescribeVoicesOutput {
     inner: aws_sdk_polly::operation::describe_voices::DescribeVoicesOutput,
 }
 
 #[pymethods]
-impl PyDescribeVoicesOutput {
+impl PyOperationDescribeVoicesOutput {
     #[getter]
     fn voices(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.voices {
@@ -1216,12 +1216,12 @@ impl PyDescribeVoicesOutput {
 }
 
 #[pyclass(name = "GetLexiconOutput", module = "rboto_polly._native", frozen)]
-struct PyGetLexiconOutput {
+struct PyOperationGetLexiconOutput {
     inner: aws_sdk_polly::operation::get_lexicon::GetLexiconOutput,
 }
 
 #[pymethods]
-impl PyGetLexiconOutput {
+impl PyOperationGetLexiconOutput {
     #[getter]
     fn lexicon(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.lexicon {
@@ -1277,12 +1277,12 @@ impl PyGetLexiconOutput {
     module = "rboto_polly._native",
     frozen
 )]
-struct PyGetSpeechSynthesisTaskOutput {
+struct PyOperationGetSpeechSynthesisTaskOutput {
     inner: aws_sdk_polly::operation::get_speech_synthesis_task::GetSpeechSynthesisTaskOutput,
 }
 
 #[pymethods]
-impl PyGetSpeechSynthesisTaskOutput {
+impl PyOperationGetSpeechSynthesisTaskOutput {
     #[getter]
     fn synthesis_task(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.synthesis_task {
@@ -1312,12 +1312,12 @@ impl PyGetSpeechSynthesisTaskOutput {
 }
 
 #[pyclass(name = "ListLexiconsOutput", module = "rboto_polly._native", frozen)]
-struct PyListLexiconsOutput {
+struct PyOperationListLexiconsOutput {
     inner: aws_sdk_polly::operation::list_lexicons::ListLexiconsOutput,
 }
 
 #[pymethods]
-impl PyListLexiconsOutput {
+impl PyOperationListLexiconsOutput {
     #[getter]
     fn lexicons(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.lexicons {
@@ -1377,12 +1377,12 @@ impl PyListLexiconsOutput {
     module = "rboto_polly._native",
     frozen
 )]
-struct PyListSpeechSynthesisTasksOutput {
+struct PyOperationListSpeechSynthesisTasksOutput {
     inner: aws_sdk_polly::operation::list_speech_synthesis_tasks::ListSpeechSynthesisTasksOutput,
 }
 
 #[pymethods]
-impl PyListSpeechSynthesisTasksOutput {
+impl PyOperationListSpeechSynthesisTasksOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -1438,12 +1438,12 @@ impl PyListSpeechSynthesisTasksOutput {
 }
 
 #[pyclass(name = "PutLexiconOutput", module = "rboto_polly._native", frozen)]
-struct PyPutLexiconOutput {
+struct PyOperationPutLexiconOutput {
     inner: aws_sdk_polly::operation::put_lexicon::PutLexiconOutput,
 }
 
 #[pymethods]
-impl PyPutLexiconOutput {
+impl PyOperationPutLexiconOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -1455,12 +1455,12 @@ impl PyPutLexiconOutput {
     module = "rboto_polly._native",
     frozen
 )]
-struct PyStartSpeechSynthesisTaskOutput {
+struct PyOperationStartSpeechSynthesisTaskOutput {
     inner: aws_sdk_polly::operation::start_speech_synthesis_task::StartSpeechSynthesisTaskOutput,
 }
 
 #[pymethods]
-impl PyStartSpeechSynthesisTaskOutput {
+impl PyOperationStartSpeechSynthesisTaskOutput {
     #[getter]
     fn synthesis_task(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.synthesis_task {
@@ -1494,13 +1494,13 @@ impl PyStartSpeechSynthesisTaskOutput {
     module = "rboto_polly._native",
     frozen
 )]
-struct PySynthesizeSpeechOutput {
+struct PyOperationSynthesizeSpeechOutput {
     inner: aws_sdk_polly::operation::synthesize_speech::SynthesizeSpeechOutput,
     audio_stream: Py<PyByteStream>,
 }
 
 #[pymethods]
-impl PySynthesizeSpeechOutput {
+impl PyOperationSynthesizeSpeechOutput {
     #[getter]
     fn audio_stream(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         self.audio_stream.clone_ref(py).into_py_any(py)
@@ -1621,15 +1621,15 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyLexiconDescription>()?;
     module.add_class::<PySynthesisTask>()?;
     module.add_class::<PyVoice>()?;
-    module.add_class::<PyDeleteLexiconOutput>()?;
-    module.add_class::<PyDescribeVoicesOutput>()?;
-    module.add_class::<PyGetLexiconOutput>()?;
-    module.add_class::<PyGetSpeechSynthesisTaskOutput>()?;
-    module.add_class::<PyListLexiconsOutput>()?;
-    module.add_class::<PyListSpeechSynthesisTasksOutput>()?;
-    module.add_class::<PyPutLexiconOutput>()?;
-    module.add_class::<PyStartSpeechSynthesisTaskOutput>()?;
-    module.add_class::<PySynthesizeSpeechOutput>()?;
+    module.add_class::<PyOperationDeleteLexiconOutput>()?;
+    module.add_class::<PyOperationDescribeVoicesOutput>()?;
+    module.add_class::<PyOperationGetLexiconOutput>()?;
+    module.add_class::<PyOperationGetSpeechSynthesisTaskOutput>()?;
+    module.add_class::<PyOperationListLexiconsOutput>()?;
+    module.add_class::<PyOperationListSpeechSynthesisTasksOutput>()?;
+    module.add_class::<PyOperationPutLexiconOutput>()?;
+    module.add_class::<PyOperationStartSpeechSynthesisTaskOutput>()?;
+    module.add_class::<PyOperationSynthesizeSpeechOutput>()?;
 
     module.add_class::<PyStartSpeechSynthesisStreamEventStreamReceiver>()?;
     Ok(())
@@ -1695,7 +1695,7 @@ impl PollyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteLexicon"))
             })?;
-            Ok(PyDeleteLexiconOutput { inner: output })
+            Ok(PyOperationDeleteLexiconOutput { inner: output })
         })
     }
 
@@ -1757,7 +1757,7 @@ impl PollyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeVoices"))
             })?;
-            Ok(PyDescribeVoicesOutput { inner: output })
+            Ok(PyOperationDescribeVoicesOutput { inner: output })
         })
     }
 
@@ -1792,7 +1792,7 @@ impl PollyClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetLexicon")))?;
-            Ok(PyGetLexiconOutput { inner: output })
+            Ok(PyOperationGetLexiconOutput { inner: output })
         })
     }
 
@@ -1830,7 +1830,7 @@ impl PollyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetSpeechSynthesisTask"))
             })?;
-            Ok(PyGetSpeechSynthesisTaskOutput { inner: output })
+            Ok(PyOperationGetSpeechSynthesisTaskOutput { inner: output })
         })
     }
 
@@ -1866,7 +1866,7 @@ impl PollyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListLexicons"))
             })?;
-            Ok(PyListLexiconsOutput { inner: output })
+            Ok(PyOperationListLexiconsOutput { inner: output })
         })
     }
 
@@ -1919,7 +1919,7 @@ impl PollyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSpeechSynthesisTasks"))
             })?;
-            Ok(PyListSpeechSynthesisTasksOutput { inner: output })
+            Ok(PyOperationListSpeechSynthesisTasksOutput { inner: output })
         })
     }
 
@@ -1963,7 +1963,7 @@ impl PollyClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutLexicon")))?;
-            Ok(PyPutLexiconOutput { inner: output })
+            Ok(PyOperationPutLexiconOutput { inner: output })
         })
     }
 
@@ -2209,7 +2209,7 @@ impl PollyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartSpeechSynthesisTask"))
             })?;
-            Ok(PyStartSpeechSynthesisTaskOutput { inner: output })
+            Ok(PyOperationStartSpeechSynthesisTaskOutput { inner: output })
         })
     }
 
@@ -2328,7 +2328,7 @@ impl PollyClient {
                 let py_audio_stream = Py::new(py, PyByteStream::new(audio_stream))?;
                 Py::new(
                     py,
-                    PySynthesizeSpeechOutput {
+                    PyOperationSynthesizeSpeechOutput {
                         inner: output,
                         audio_stream: py_audio_stream,
                     },

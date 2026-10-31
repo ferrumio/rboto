@@ -9,7 +9,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto.logging import operation_interceptors
 
-from ._native import SESv2Client as NativeClient, AssociateEmailIdentityCertificateResponse, BatchGetMetricDataResponse, CancelExportJobResponse, CreateConfigurationSetEventDestinationResponse, CreateConfigurationSetResponse, CreateContactListResponse, CreateContactResponse, CreateCustomVerificationEmailTemplateResponse, CreateDedicatedIpPoolResponse, CreateDeliverabilityTestReportResponse, CreateEmailIdentityPolicyResponse, CreateEmailIdentityResponse, CreateEmailTemplateResponse, CreateExportJobResponse, CreateImportJobResponse, CreateMultiRegionEndpointResponse, CreateTenantResourceAssociationResponse, CreateTenantResponse, DeleteConfigurationSetEventDestinationResponse, DeleteConfigurationSetResponse, DeleteContactListResponse, DeleteContactResponse, DeleteCustomVerificationEmailTemplateResponse, DeleteDedicatedIpPoolResponse, DeleteEmailIdentityPolicyResponse, DeleteEmailIdentityResponse, DeleteEmailTemplateResponse, DeleteMultiRegionEndpointResponse, DeleteSuppressedDestinationResponse, DeleteTenantResourceAssociationResponse, DeleteTenantResponse, DisassociateEmailIdentityCertificateResponse, GetAccountResponse, GetBlacklistReportsResponse, GetConfigurationSetEventDestinationsResponse, GetConfigurationSetResponse, GetContactListResponse, GetContactResponse, GetCustomVerificationEmailTemplateResponse, GetDedicatedIpPoolResponse, GetDedicatedIpResponse, GetDedicatedIpsResponse, GetDeliverabilityDashboardOptionsResponse, GetDeliverabilityTestReportResponse, GetDomainDeliverabilityCampaignResponse, GetDomainStatisticsReportResponse, GetEmailAddressInsightsResponse, GetEmailIdentityPoliciesResponse, GetEmailIdentityResponse, GetEmailTemplateResponse, GetExportJobResponse, GetImportJobResponse, GetMessageInsightsResponse, GetMultiRegionEndpointResponse, GetReputationEntityResponse, GetSuppressedDestinationResponse, GetTenantResponse, ListConfigurationSetsResponse, ListContactListsResponse, ListContactsResponse, ListCustomVerificationEmailTemplatesResponse, ListDedicatedIpPoolsResponse, ListDeliverabilityTestReportsResponse, ListDomainDeliverabilityCampaignsResponse, ListEmailIdentitiesResponse, ListEmailIdentityCertificatesResponse, ListEmailTemplatesResponse, ListExportJobsResponse, ListImportJobsResponse, ListMultiRegionEndpointsResponse, ListRecommendationsResponse, ListReputationEntitiesResponse, ListResourceTenantsResponse, ListSuppressedDestinationsResponse, ListTagsForResourceResponse, ListTenantResourcesResponse, ListTenantsResponse, PutAccountDedicatedIpWarmupAttributesResponse, PutAccountDetailsResponse, PutAccountPricingAttributesResponse, PutAccountSendingAttributesResponse, PutAccountSuppressionAttributesResponse, PutAccountVdmAttributesResponse, PutConfigurationSetArchivingOptionsResponse, PutConfigurationSetDeliveryOptionsResponse, PutConfigurationSetReputationOptionsResponse, PutConfigurationSetSendingOptionsResponse, PutConfigurationSetSuppressionOptionsResponse, PutConfigurationSetTrackingOptionsResponse, PutConfigurationSetVdmOptionsResponse, PutDedicatedIpInPoolResponse, PutDedicatedIpPoolScalingAttributesResponse, PutDedicatedIpWarmupAttributesResponse, PutDeliverabilityDashboardOptionResponse, PutEmailIdentityConfigurationSetAttributesResponse, PutEmailIdentityDkimAttributesResponse, PutEmailIdentityDkimSigningAttributesResponse, PutEmailIdentityFeedbackAttributesResponse, PutEmailIdentityMailFromAttributesResponse, PutSuppressedDestinationResponse, PutTenantSuppressionAttributesResponse, SendBulkEmailResponse, SendCustomVerificationEmailResponse, SendEmailResponse, TagResourceResponse, TestRenderEmailTemplateResponse, UntagResourceResponse, UpdateConfigurationSetEventDestinationResponse, UpdateConfigurationSetResponse, UpdateContactListResponse, UpdateContactResponse, UpdateCustomVerificationEmailTemplateResponse, UpdateEmailIdentityPolicyResponse, UpdateEmailTemplateResponse, UpdateReputationEntityCustomerManagedStatusResponse, UpdateReputationEntityPolicyResponse
+from ._native import SESv2Client as NativeClient, AssociateEmailIdentityCertificateOutput, BatchGetMetricDataOutput, CancelExportJobOutput, CreateConfigurationSetEventDestinationOutput, CreateConfigurationSetOutput, CreateContactListOutput, CreateContactOutput, CreateCustomVerificationEmailTemplateOutput, CreateDedicatedIpPoolOutput, CreateDeliverabilityTestReportOutput, CreateEmailIdentityOutput, CreateEmailIdentityPolicyOutput, CreateEmailTemplateOutput, CreateExportJobOutput, CreateImportJobOutput, CreateMultiRegionEndpointOutput, CreateTenantOutput, CreateTenantResourceAssociationOutput, DeleteConfigurationSetEventDestinationOutput, DeleteConfigurationSetOutput, DeleteContactListOutput, DeleteContactOutput, DeleteCustomVerificationEmailTemplateOutput, DeleteDedicatedIpPoolOutput, DeleteEmailIdentityOutput, DeleteEmailIdentityPolicyOutput, DeleteEmailTemplateOutput, DeleteMultiRegionEndpointOutput, DeleteSuppressedDestinationOutput, DeleteTenantOutput, DeleteTenantResourceAssociationOutput, DisassociateEmailIdentityCertificateOutput, GetAccountOutput, GetBlacklistReportsOutput, GetConfigurationSetEventDestinationsOutput, GetConfigurationSetOutput, GetContactListOutput, GetContactOutput, GetCustomVerificationEmailTemplateOutput, GetDedicatedIpOutput, GetDedicatedIpPoolOutput, GetDedicatedIpsOutput, GetDeliverabilityDashboardOptionsOutput, GetDeliverabilityTestReportOutput, GetDomainDeliverabilityCampaignOutput, GetDomainStatisticsReportOutput, GetEmailAddressInsightsOutput, GetEmailIdentityOutput, GetEmailIdentityPoliciesOutput, GetEmailTemplateOutput, GetExportJobOutput, GetImportJobOutput, GetMessageInsightsOutput, GetMultiRegionEndpointOutput, GetReputationEntityOutput, GetSuppressedDestinationOutput, GetTenantOutput, ListConfigurationSetsOutput, ListContactListsOutput, ListContactsOutput, ListCustomVerificationEmailTemplatesOutput, ListDedicatedIpPoolsOutput, ListDeliverabilityTestReportsOutput, ListDomainDeliverabilityCampaignsOutput, ListEmailIdentitiesOutput, ListEmailIdentityCertificatesOutput, ListEmailTemplatesOutput, ListExportJobsOutput, ListImportJobsOutput, ListMultiRegionEndpointsOutput, ListRecommendationsOutput, ListReputationEntitiesOutput, ListResourceTenantsOutput, ListSuppressedDestinationsOutput, ListTagsForResourceOutput, ListTenantResourcesOutput, ListTenantsOutput, PutAccountDedicatedIpWarmupAttributesOutput, PutAccountDetailsOutput, PutAccountPricingAttributesOutput, PutAccountSendingAttributesOutput, PutAccountSuppressionAttributesOutput, PutAccountVdmAttributesOutput, PutConfigurationSetArchivingOptionsOutput, PutConfigurationSetDeliveryOptionsOutput, PutConfigurationSetReputationOptionsOutput, PutConfigurationSetSendingOptionsOutput, PutConfigurationSetSuppressionOptionsOutput, PutConfigurationSetTrackingOptionsOutput, PutConfigurationSetVdmOptionsOutput, PutDedicatedIpInPoolOutput, PutDedicatedIpPoolScalingAttributesOutput, PutDedicatedIpWarmupAttributesOutput, PutDeliverabilityDashboardOptionOutput, PutEmailIdentityConfigurationSetAttributesOutput, PutEmailIdentityDkimAttributesOutput, PutEmailIdentityDkimSigningAttributesOutput, PutEmailIdentityFeedbackAttributesOutput, PutEmailIdentityMailFromAttributesOutput, PutSuppressedDestinationOutput, PutTenantSuppressionAttributesOutput, SendBulkEmailOutput, SendCustomVerificationEmailOutput, SendEmailOutput, TagResourceOutput, TestRenderEmailTemplateOutput, UntagResourceOutput, UpdateConfigurationSetEventDestinationOutput, UpdateConfigurationSetOutput, UpdateContactListOutput, UpdateContactOutput, UpdateCustomVerificationEmailTemplateOutput, UpdateEmailIdentityPolicyOutput, UpdateEmailTemplateOutput, UpdateReputationEntityCustomerManagedStatusOutput, UpdateReputationEntityPolicyOutput
 from .types import (
     ArchivingOptions,
     BatchGetMetricDataQuery,
@@ -112,7 +112,7 @@ class SESV2Client:
         email_identity: str,
         certificate_arn: str,
         from_address: str | None = None,
-    ) -> AssociateEmailIdentityCertificateResponse:
+    ) -> AssociateEmailIdentityCertificateOutput:
         params: dict[str, object] = {
             "email_identity": email_identity,
             "certificate_arn": certificate_arn,
@@ -124,7 +124,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.associate_email_identity_certificate, params, _interceptors,
                 "sesv2", "AssociateEmailIdentityCertificate", self._region,
-                AssociateEmailIdentityCertificateResponse,
+                AssociateEmailIdentityCertificateOutput,
                 ("email_identity", "certificate_arn", "from_address", ),
                 ("email_identity", "certificate_arn", ),
             )
@@ -137,7 +137,7 @@ class SESV2Client:
         self,
         *,
         queries: Sequence[BatchGetMetricDataQuery],
-    ) -> BatchGetMetricDataResponse:
+    ) -> BatchGetMetricDataOutput:
         params: dict[str, object] = {
             "queries": queries,
         }
@@ -146,7 +146,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.batch_get_metric_data, params, _interceptors,
                 "sesv2", "BatchGetMetricData", self._region,
-                BatchGetMetricDataResponse,
+                BatchGetMetricDataOutput,
                 ("queries", ),
                 ("queries", ),
             )
@@ -159,7 +159,7 @@ class SESV2Client:
         self,
         *,
         job_id: str,
-    ) -> CancelExportJobResponse:
+    ) -> CancelExportJobOutput:
         params: dict[str, object] = {
             "job_id": job_id,
         }
@@ -168,7 +168,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.cancel_export_job, params, _interceptors,
                 "sesv2", "CancelExportJob", self._region,
-                CancelExportJobResponse,
+                CancelExportJobOutput,
                 ("job_id", ),
                 ("job_id", ),
             )
@@ -190,7 +190,7 @@ class SESV2Client:
         vdm_options: VdmOptions | None = None,
         archiving_options: ArchivingOptions | None = None,
         message_security_options: MessageSecurityOptions | None = None,
-    ) -> CreateConfigurationSetResponse:
+    ) -> CreateConfigurationSetOutput:
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
@@ -217,7 +217,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.create_configuration_set, params, _interceptors,
                 "sesv2", "CreateConfigurationSet", self._region,
-                CreateConfigurationSetResponse,
+                CreateConfigurationSetOutput,
                 ("configuration_set_name", "tracking_options", "delivery_options", "reputation_options", "sending_options", "tags", "suppression_options", "vdm_options", "archiving_options", "message_security_options", ),
                 ("configuration_set_name", ),
             )
@@ -232,7 +232,7 @@ class SESV2Client:
         configuration_set_name: str,
         event_destination_name: str,
         event_destination: EventDestinationDefinition,
-    ) -> CreateConfigurationSetEventDestinationResponse:
+    ) -> CreateConfigurationSetEventDestinationOutput:
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
             "event_destination_name": event_destination_name,
@@ -243,7 +243,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.create_configuration_set_event_destination, params, _interceptors,
                 "sesv2", "CreateConfigurationSetEventDestination", self._region,
-                CreateConfigurationSetEventDestinationResponse,
+                CreateConfigurationSetEventDestinationOutput,
                 ("configuration_set_name", "event_destination_name", "event_destination", ),
                 ("configuration_set_name", "event_destination_name", "event_destination", ),
             )
@@ -260,7 +260,7 @@ class SESV2Client:
         topic_preferences: Sequence[TopicPreference] | None = None,
         unsubscribe_all: bool | None = None,
         attributes_data: str | None = None,
-    ) -> CreateContactResponse:
+    ) -> CreateContactOutput:
         params: dict[str, object] = {
             "contact_list_name": contact_list_name,
             "email_address": email_address,
@@ -276,7 +276,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.create_contact, params, _interceptors,
                 "sesv2", "CreateContact", self._region,
-                CreateContactResponse,
+                CreateContactOutput,
                 ("contact_list_name", "email_address", "topic_preferences", "unsubscribe_all", "attributes_data", ),
                 ("contact_list_name", "email_address", ),
             )
@@ -292,7 +292,7 @@ class SESV2Client:
         topics: Sequence[Topic] | None = None,
         description: str | None = None,
         tags: Sequence[Tag] | None = None,
-    ) -> CreateContactListResponse:
+    ) -> CreateContactListOutput:
         params: dict[str, object] = {
             "contact_list_name": contact_list_name,
         }
@@ -307,7 +307,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.create_contact_list, params, _interceptors,
                 "sesv2", "CreateContactList", self._region,
-                CreateContactListResponse,
+                CreateContactListOutput,
                 ("contact_list_name", "topics", "description", "tags", ),
                 ("contact_list_name", ),
             )
@@ -326,7 +326,7 @@ class SESV2Client:
         success_redirection_url: str,
         failure_redirection_url: str,
         tags: Sequence[Tag] | None = None,
-    ) -> CreateCustomVerificationEmailTemplateResponse:
+    ) -> CreateCustomVerificationEmailTemplateOutput:
         params: dict[str, object] = {
             "template_name": template_name,
             "from_email_address": from_email_address,
@@ -342,7 +342,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.create_custom_verification_email_template, params, _interceptors,
                 "sesv2", "CreateCustomVerificationEmailTemplate", self._region,
-                CreateCustomVerificationEmailTemplateResponse,
+                CreateCustomVerificationEmailTemplateOutput,
                 ("template_name", "from_email_address", "template_subject", "template_content", "success_redirection_url", "failure_redirection_url", "tags", ),
                 ("template_name", "from_email_address", "template_subject", "template_content", "success_redirection_url", "failure_redirection_url", ),
             )
@@ -357,7 +357,7 @@ class SESV2Client:
         pool_name: str,
         tags: Sequence[Tag] | None = None,
         scaling_mode: ScalingMode | None = None,
-    ) -> CreateDedicatedIpPoolResponse:
+    ) -> CreateDedicatedIpPoolOutput:
         params: dict[str, object] = {
             "pool_name": pool_name,
         }
@@ -370,7 +370,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.create_dedicated_ip_pool, params, _interceptors,
                 "sesv2", "CreateDedicatedIpPool", self._region,
-                CreateDedicatedIpPoolResponse,
+                CreateDedicatedIpPoolOutput,
                 ("pool_name", "tags", "scaling_mode", ),
                 ("pool_name", ),
             )
@@ -386,7 +386,7 @@ class SESV2Client:
         content: EmailContent,
         report_name: str | None = None,
         tags: Sequence[Tag] | None = None,
-    ) -> CreateDeliverabilityTestReportResponse:
+    ) -> CreateDeliverabilityTestReportOutput:
         params: dict[str, object] = {
             "from_email_address": from_email_address,
             "content": content,
@@ -400,7 +400,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.create_deliverability_test_report, params, _interceptors,
                 "sesv2", "CreateDeliverabilityTestReport", self._region,
-                CreateDeliverabilityTestReportResponse,
+                CreateDeliverabilityTestReportOutput,
                 ("from_email_address", "content", "report_name", "tags", ),
                 ("from_email_address", "content", ),
             )
@@ -416,7 +416,7 @@ class SESV2Client:
         tags: Sequence[Tag] | None = None,
         dkim_signing_attributes: DkimSigningAttributes | None = None,
         configuration_set_name: str | None = None,
-    ) -> CreateEmailIdentityResponse:
+    ) -> CreateEmailIdentityOutput:
         params: dict[str, object] = {
             "email_identity": email_identity,
         }
@@ -431,7 +431,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.create_email_identity, params, _interceptors,
                 "sesv2", "CreateEmailIdentity", self._region,
-                CreateEmailIdentityResponse,
+                CreateEmailIdentityOutput,
                 ("email_identity", "tags", "dkim_signing_attributes", "configuration_set_name", ),
                 ("email_identity", ),
             )
@@ -446,7 +446,7 @@ class SESV2Client:
         email_identity: str,
         policy_name: str,
         policy: str,
-    ) -> CreateEmailIdentityPolicyResponse:
+    ) -> CreateEmailIdentityPolicyOutput:
         params: dict[str, object] = {
             "email_identity": email_identity,
             "policy_name": policy_name,
@@ -457,7 +457,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.create_email_identity_policy, params, _interceptors,
                 "sesv2", "CreateEmailIdentityPolicy", self._region,
-                CreateEmailIdentityPolicyResponse,
+                CreateEmailIdentityPolicyOutput,
                 ("email_identity", "policy_name", "policy", ),
                 ("email_identity", "policy_name", "policy", ),
             )
@@ -472,7 +472,7 @@ class SESV2Client:
         template_name: str,
         template_content: EmailTemplateContent,
         tags: Sequence[Tag] | None = None,
-    ) -> CreateEmailTemplateResponse:
+    ) -> CreateEmailTemplateOutput:
         params: dict[str, object] = {
             "template_name": template_name,
             "template_content": template_content,
@@ -484,7 +484,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.create_email_template, params, _interceptors,
                 "sesv2", "CreateEmailTemplate", self._region,
-                CreateEmailTemplateResponse,
+                CreateEmailTemplateOutput,
                 ("template_name", "template_content", "tags", ),
                 ("template_name", "template_content", ),
             )
@@ -498,7 +498,7 @@ class SESV2Client:
         *,
         export_data_source: ExportDataSource,
         export_destination: ExportDestination,
-    ) -> CreateExportJobResponse:
+    ) -> CreateExportJobOutput:
         params: dict[str, object] = {
             "export_data_source": export_data_source,
             "export_destination": export_destination,
@@ -508,7 +508,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.create_export_job, params, _interceptors,
                 "sesv2", "CreateExportJob", self._region,
-                CreateExportJobResponse,
+                CreateExportJobOutput,
                 ("export_data_source", "export_destination", ),
                 ("export_data_source", "export_destination", ),
             )
@@ -522,7 +522,7 @@ class SESV2Client:
         *,
         import_destination: ImportDestination,
         import_data_source: ImportDataSource,
-    ) -> CreateImportJobResponse:
+    ) -> CreateImportJobOutput:
         params: dict[str, object] = {
             "import_destination": import_destination,
             "import_data_source": import_data_source,
@@ -532,7 +532,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.create_import_job, params, _interceptors,
                 "sesv2", "CreateImportJob", self._region,
-                CreateImportJobResponse,
+                CreateImportJobOutput,
                 ("import_destination", "import_data_source", ),
                 ("import_destination", "import_data_source", ),
             )
@@ -547,7 +547,7 @@ class SESV2Client:
         endpoint_name: str,
         details: Details,
         tags: Sequence[Tag] | None = None,
-    ) -> CreateMultiRegionEndpointResponse:
+    ) -> CreateMultiRegionEndpointOutput:
         params: dict[str, object] = {
             "endpoint_name": endpoint_name,
             "details": details,
@@ -559,7 +559,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.create_multi_region_endpoint, params, _interceptors,
                 "sesv2", "CreateMultiRegionEndpoint", self._region,
-                CreateMultiRegionEndpointResponse,
+                CreateMultiRegionEndpointOutput,
                 ("endpoint_name", "details", "tags", ),
                 ("endpoint_name", "details", ),
             )
@@ -574,7 +574,7 @@ class SESV2Client:
         tenant_name: str,
         tags: Sequence[Tag] | None = None,
         suppression_attributes: TenantSuppressionAttributes | None = None,
-    ) -> CreateTenantResponse:
+    ) -> CreateTenantOutput:
         params: dict[str, object] = {
             "tenant_name": tenant_name,
         }
@@ -587,7 +587,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.create_tenant, params, _interceptors,
                 "sesv2", "CreateTenant", self._region,
-                CreateTenantResponse,
+                CreateTenantOutput,
                 ("tenant_name", "tags", "suppression_attributes", ),
                 ("tenant_name", ),
             )
@@ -601,7 +601,7 @@ class SESV2Client:
         *,
         tenant_name: str,
         resource_arn: str,
-    ) -> CreateTenantResourceAssociationResponse:
+    ) -> CreateTenantResourceAssociationOutput:
         params: dict[str, object] = {
             "tenant_name": tenant_name,
             "resource_arn": resource_arn,
@@ -611,7 +611,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.create_tenant_resource_association, params, _interceptors,
                 "sesv2", "CreateTenantResourceAssociation", self._region,
-                CreateTenantResourceAssociationResponse,
+                CreateTenantResourceAssociationOutput,
                 ("tenant_name", "resource_arn", ),
                 ("tenant_name", "resource_arn", ),
             )
@@ -624,7 +624,7 @@ class SESV2Client:
         self,
         *,
         configuration_set_name: str,
-    ) -> DeleteConfigurationSetResponse:
+    ) -> DeleteConfigurationSetOutput:
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
@@ -633,7 +633,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.delete_configuration_set, params, _interceptors,
                 "sesv2", "DeleteConfigurationSet", self._region,
-                DeleteConfigurationSetResponse,
+                DeleteConfigurationSetOutput,
                 ("configuration_set_name", ),
                 ("configuration_set_name", ),
             )
@@ -647,7 +647,7 @@ class SESV2Client:
         *,
         configuration_set_name: str,
         event_destination_name: str,
-    ) -> DeleteConfigurationSetEventDestinationResponse:
+    ) -> DeleteConfigurationSetEventDestinationOutput:
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
             "event_destination_name": event_destination_name,
@@ -657,7 +657,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.delete_configuration_set_event_destination, params, _interceptors,
                 "sesv2", "DeleteConfigurationSetEventDestination", self._region,
-                DeleteConfigurationSetEventDestinationResponse,
+                DeleteConfigurationSetEventDestinationOutput,
                 ("configuration_set_name", "event_destination_name", ),
                 ("configuration_set_name", "event_destination_name", ),
             )
@@ -671,7 +671,7 @@ class SESV2Client:
         *,
         contact_list_name: str,
         email_address: str,
-    ) -> DeleteContactResponse:
+    ) -> DeleteContactOutput:
         params: dict[str, object] = {
             "contact_list_name": contact_list_name,
             "email_address": email_address,
@@ -681,7 +681,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.delete_contact, params, _interceptors,
                 "sesv2", "DeleteContact", self._region,
-                DeleteContactResponse,
+                DeleteContactOutput,
                 ("contact_list_name", "email_address", ),
                 ("contact_list_name", "email_address", ),
             )
@@ -694,7 +694,7 @@ class SESV2Client:
         self,
         *,
         contact_list_name: str,
-    ) -> DeleteContactListResponse:
+    ) -> DeleteContactListOutput:
         params: dict[str, object] = {
             "contact_list_name": contact_list_name,
         }
@@ -703,7 +703,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.delete_contact_list, params, _interceptors,
                 "sesv2", "DeleteContactList", self._region,
-                DeleteContactListResponse,
+                DeleteContactListOutput,
                 ("contact_list_name", ),
                 ("contact_list_name", ),
             )
@@ -716,7 +716,7 @@ class SESV2Client:
         self,
         *,
         template_name: str,
-    ) -> DeleteCustomVerificationEmailTemplateResponse:
+    ) -> DeleteCustomVerificationEmailTemplateOutput:
         params: dict[str, object] = {
             "template_name": template_name,
         }
@@ -725,7 +725,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.delete_custom_verification_email_template, params, _interceptors,
                 "sesv2", "DeleteCustomVerificationEmailTemplate", self._region,
-                DeleteCustomVerificationEmailTemplateResponse,
+                DeleteCustomVerificationEmailTemplateOutput,
                 ("template_name", ),
                 ("template_name", ),
             )
@@ -738,7 +738,7 @@ class SESV2Client:
         self,
         *,
         pool_name: str,
-    ) -> DeleteDedicatedIpPoolResponse:
+    ) -> DeleteDedicatedIpPoolOutput:
         params: dict[str, object] = {
             "pool_name": pool_name,
         }
@@ -747,7 +747,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.delete_dedicated_ip_pool, params, _interceptors,
                 "sesv2", "DeleteDedicatedIpPool", self._region,
-                DeleteDedicatedIpPoolResponse,
+                DeleteDedicatedIpPoolOutput,
                 ("pool_name", ),
                 ("pool_name", ),
             )
@@ -760,7 +760,7 @@ class SESV2Client:
         self,
         *,
         email_identity: str,
-    ) -> DeleteEmailIdentityResponse:
+    ) -> DeleteEmailIdentityOutput:
         params: dict[str, object] = {
             "email_identity": email_identity,
         }
@@ -769,7 +769,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.delete_email_identity, params, _interceptors,
                 "sesv2", "DeleteEmailIdentity", self._region,
-                DeleteEmailIdentityResponse,
+                DeleteEmailIdentityOutput,
                 ("email_identity", ),
                 ("email_identity", ),
             )
@@ -783,7 +783,7 @@ class SESV2Client:
         *,
         email_identity: str,
         policy_name: str,
-    ) -> DeleteEmailIdentityPolicyResponse:
+    ) -> DeleteEmailIdentityPolicyOutput:
         params: dict[str, object] = {
             "email_identity": email_identity,
             "policy_name": policy_name,
@@ -793,7 +793,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.delete_email_identity_policy, params, _interceptors,
                 "sesv2", "DeleteEmailIdentityPolicy", self._region,
-                DeleteEmailIdentityPolicyResponse,
+                DeleteEmailIdentityPolicyOutput,
                 ("email_identity", "policy_name", ),
                 ("email_identity", "policy_name", ),
             )
@@ -806,7 +806,7 @@ class SESV2Client:
         self,
         *,
         template_name: str,
-    ) -> DeleteEmailTemplateResponse:
+    ) -> DeleteEmailTemplateOutput:
         params: dict[str, object] = {
             "template_name": template_name,
         }
@@ -815,7 +815,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.delete_email_template, params, _interceptors,
                 "sesv2", "DeleteEmailTemplate", self._region,
-                DeleteEmailTemplateResponse,
+                DeleteEmailTemplateOutput,
                 ("template_name", ),
                 ("template_name", ),
             )
@@ -828,7 +828,7 @@ class SESV2Client:
         self,
         *,
         endpoint_name: str,
-    ) -> DeleteMultiRegionEndpointResponse:
+    ) -> DeleteMultiRegionEndpointOutput:
         params: dict[str, object] = {
             "endpoint_name": endpoint_name,
         }
@@ -837,7 +837,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.delete_multi_region_endpoint, params, _interceptors,
                 "sesv2", "DeleteMultiRegionEndpoint", self._region,
-                DeleteMultiRegionEndpointResponse,
+                DeleteMultiRegionEndpointOutput,
                 ("endpoint_name", ),
                 ("endpoint_name", ),
             )
@@ -851,7 +851,7 @@ class SESV2Client:
         *,
         email_address: str,
         tenant_name: str | None = None,
-    ) -> DeleteSuppressedDestinationResponse:
+    ) -> DeleteSuppressedDestinationOutput:
         params: dict[str, object] = {
             "email_address": email_address,
         }
@@ -862,7 +862,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.delete_suppressed_destination, params, _interceptors,
                 "sesv2", "DeleteSuppressedDestination", self._region,
-                DeleteSuppressedDestinationResponse,
+                DeleteSuppressedDestinationOutput,
                 ("email_address", "tenant_name", ),
                 ("email_address", ),
             )
@@ -875,7 +875,7 @@ class SESV2Client:
         self,
         *,
         tenant_name: str,
-    ) -> DeleteTenantResponse:
+    ) -> DeleteTenantOutput:
         params: dict[str, object] = {
             "tenant_name": tenant_name,
         }
@@ -884,7 +884,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.delete_tenant, params, _interceptors,
                 "sesv2", "DeleteTenant", self._region,
-                DeleteTenantResponse,
+                DeleteTenantOutput,
                 ("tenant_name", ),
                 ("tenant_name", ),
             )
@@ -898,7 +898,7 @@ class SESV2Client:
         *,
         tenant_name: str,
         resource_arn: str,
-    ) -> DeleteTenantResourceAssociationResponse:
+    ) -> DeleteTenantResourceAssociationOutput:
         params: dict[str, object] = {
             "tenant_name": tenant_name,
             "resource_arn": resource_arn,
@@ -908,7 +908,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.delete_tenant_resource_association, params, _interceptors,
                 "sesv2", "DeleteTenantResourceAssociation", self._region,
-                DeleteTenantResourceAssociationResponse,
+                DeleteTenantResourceAssociationOutput,
                 ("tenant_name", "resource_arn", ),
                 ("tenant_name", "resource_arn", ),
             )
@@ -922,7 +922,7 @@ class SESV2Client:
         *,
         email_identity: str,
         from_address: str | None = None,
-    ) -> DisassociateEmailIdentityCertificateResponse:
+    ) -> DisassociateEmailIdentityCertificateOutput:
         params: dict[str, object] = {
             "email_identity": email_identity,
         }
@@ -933,7 +933,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.disassociate_email_identity_certificate, params, _interceptors,
                 "sesv2", "DisassociateEmailIdentityCertificate", self._region,
-                DisassociateEmailIdentityCertificateResponse,
+                DisassociateEmailIdentityCertificateOutput,
                 ("email_identity", "from_address", ),
                 ("email_identity", ),
             )
@@ -944,7 +944,7 @@ class SESV2Client:
 
     async def get_account(
         self,
-    ) -> GetAccountResponse:
+    ) -> GetAccountOutput:
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("sesv2", self._interceptors)
@@ -952,7 +952,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_account, params, _interceptors,
                 "sesv2", "GetAccount", self._region,
-                GetAccountResponse,
+                GetAccountOutput,
                 (),
                 (),
             )
@@ -965,7 +965,7 @@ class SESV2Client:
         self,
         *,
         blacklist_item_names: Sequence[str],
-    ) -> GetBlacklistReportsResponse:
+    ) -> GetBlacklistReportsOutput:
         params: dict[str, object] = {
             "blacklist_item_names": blacklist_item_names,
         }
@@ -974,7 +974,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_blacklist_reports, params, _interceptors,
                 "sesv2", "GetBlacklistReports", self._region,
-                GetBlacklistReportsResponse,
+                GetBlacklistReportsOutput,
                 ("blacklist_item_names", ),
                 ("blacklist_item_names", ),
             )
@@ -987,7 +987,7 @@ class SESV2Client:
         self,
         *,
         configuration_set_name: str,
-    ) -> GetConfigurationSetResponse:
+    ) -> GetConfigurationSetOutput:
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
@@ -996,7 +996,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_configuration_set, params, _interceptors,
                 "sesv2", "GetConfigurationSet", self._region,
-                GetConfigurationSetResponse,
+                GetConfigurationSetOutput,
                 ("configuration_set_name", ),
                 ("configuration_set_name", ),
             )
@@ -1009,7 +1009,7 @@ class SESV2Client:
         self,
         *,
         configuration_set_name: str,
-    ) -> GetConfigurationSetEventDestinationsResponse:
+    ) -> GetConfigurationSetEventDestinationsOutput:
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
@@ -1018,7 +1018,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_configuration_set_event_destinations, params, _interceptors,
                 "sesv2", "GetConfigurationSetEventDestinations", self._region,
-                GetConfigurationSetEventDestinationsResponse,
+                GetConfigurationSetEventDestinationsOutput,
                 ("configuration_set_name", ),
                 ("configuration_set_name", ),
             )
@@ -1032,7 +1032,7 @@ class SESV2Client:
         *,
         contact_list_name: str,
         email_address: str,
-    ) -> GetContactResponse:
+    ) -> GetContactOutput:
         params: dict[str, object] = {
             "contact_list_name": contact_list_name,
             "email_address": email_address,
@@ -1042,7 +1042,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_contact, params, _interceptors,
                 "sesv2", "GetContact", self._region,
-                GetContactResponse,
+                GetContactOutput,
                 ("contact_list_name", "email_address", ),
                 ("contact_list_name", "email_address", ),
             )
@@ -1055,7 +1055,7 @@ class SESV2Client:
         self,
         *,
         contact_list_name: str,
-    ) -> GetContactListResponse:
+    ) -> GetContactListOutput:
         params: dict[str, object] = {
             "contact_list_name": contact_list_name,
         }
@@ -1064,7 +1064,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_contact_list, params, _interceptors,
                 "sesv2", "GetContactList", self._region,
-                GetContactListResponse,
+                GetContactListOutput,
                 ("contact_list_name", ),
                 ("contact_list_name", ),
             )
@@ -1077,7 +1077,7 @@ class SESV2Client:
         self,
         *,
         template_name: str,
-    ) -> GetCustomVerificationEmailTemplateResponse:
+    ) -> GetCustomVerificationEmailTemplateOutput:
         params: dict[str, object] = {
             "template_name": template_name,
         }
@@ -1086,7 +1086,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_custom_verification_email_template, params, _interceptors,
                 "sesv2", "GetCustomVerificationEmailTemplate", self._region,
-                GetCustomVerificationEmailTemplateResponse,
+                GetCustomVerificationEmailTemplateOutput,
                 ("template_name", ),
                 ("template_name", ),
             )
@@ -1099,7 +1099,7 @@ class SESV2Client:
         self,
         *,
         ip: str,
-    ) -> GetDedicatedIpResponse:
+    ) -> GetDedicatedIpOutput:
         params: dict[str, object] = {
             "ip": ip,
         }
@@ -1108,7 +1108,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_dedicated_ip, params, _interceptors,
                 "sesv2", "GetDedicatedIp", self._region,
-                GetDedicatedIpResponse,
+                GetDedicatedIpOutput,
                 ("ip", ),
                 ("ip", ),
             )
@@ -1121,7 +1121,7 @@ class SESV2Client:
         self,
         *,
         pool_name: str,
-    ) -> GetDedicatedIpPoolResponse:
+    ) -> GetDedicatedIpPoolOutput:
         params: dict[str, object] = {
             "pool_name": pool_name,
         }
@@ -1130,7 +1130,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_dedicated_ip_pool, params, _interceptors,
                 "sesv2", "GetDedicatedIpPool", self._region,
-                GetDedicatedIpPoolResponse,
+                GetDedicatedIpPoolOutput,
                 ("pool_name", ),
                 ("pool_name", ),
             )
@@ -1145,7 +1145,7 @@ class SESV2Client:
         pool_name: str | None = None,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> GetDedicatedIpsResponse:
+    ) -> GetDedicatedIpsOutput:
         params: dict[str, object] = {
         }
         if pool_name is not None:
@@ -1159,7 +1159,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_dedicated_ips, params, _interceptors,
                 "sesv2", "GetDedicatedIps", self._region,
-                GetDedicatedIpsResponse,
+                GetDedicatedIpsOutput,
                 ("pool_name", "next_token", "page_size", ),
                 (),
             )
@@ -1170,7 +1170,7 @@ class SESV2Client:
 
     async def get_deliverability_dashboard_options(
         self,
-    ) -> GetDeliverabilityDashboardOptionsResponse:
+    ) -> GetDeliverabilityDashboardOptionsOutput:
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("sesv2", self._interceptors)
@@ -1178,7 +1178,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_deliverability_dashboard_options, params, _interceptors,
                 "sesv2", "GetDeliverabilityDashboardOptions", self._region,
-                GetDeliverabilityDashboardOptionsResponse,
+                GetDeliverabilityDashboardOptionsOutput,
                 (),
                 (),
             )
@@ -1191,7 +1191,7 @@ class SESV2Client:
         self,
         *,
         report_id: str,
-    ) -> GetDeliverabilityTestReportResponse:
+    ) -> GetDeliverabilityTestReportOutput:
         params: dict[str, object] = {
             "report_id": report_id,
         }
@@ -1200,7 +1200,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_deliverability_test_report, params, _interceptors,
                 "sesv2", "GetDeliverabilityTestReport", self._region,
-                GetDeliverabilityTestReportResponse,
+                GetDeliverabilityTestReportOutput,
                 ("report_id", ),
                 ("report_id", ),
             )
@@ -1213,7 +1213,7 @@ class SESV2Client:
         self,
         *,
         campaign_id: str,
-    ) -> GetDomainDeliverabilityCampaignResponse:
+    ) -> GetDomainDeliverabilityCampaignOutput:
         params: dict[str, object] = {
             "campaign_id": campaign_id,
         }
@@ -1222,7 +1222,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_domain_deliverability_campaign, params, _interceptors,
                 "sesv2", "GetDomainDeliverabilityCampaign", self._region,
-                GetDomainDeliverabilityCampaignResponse,
+                GetDomainDeliverabilityCampaignOutput,
                 ("campaign_id", ),
                 ("campaign_id", ),
             )
@@ -1237,7 +1237,7 @@ class SESV2Client:
         domain: str,
         start_date: str,
         end_date: str,
-    ) -> GetDomainStatisticsReportResponse:
+    ) -> GetDomainStatisticsReportOutput:
         params: dict[str, object] = {
             "domain": domain,
             "start_date": start_date,
@@ -1248,7 +1248,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_domain_statistics_report, params, _interceptors,
                 "sesv2", "GetDomainStatisticsReport", self._region,
-                GetDomainStatisticsReportResponse,
+                GetDomainStatisticsReportOutput,
                 ("domain", "start_date", "end_date", ),
                 ("domain", "start_date", "end_date", ),
             )
@@ -1261,7 +1261,7 @@ class SESV2Client:
         self,
         *,
         email_address: str,
-    ) -> GetEmailAddressInsightsResponse:
+    ) -> GetEmailAddressInsightsOutput:
         params: dict[str, object] = {
             "email_address": email_address,
         }
@@ -1270,7 +1270,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_email_address_insights, params, _interceptors,
                 "sesv2", "GetEmailAddressInsights", self._region,
-                GetEmailAddressInsightsResponse,
+                GetEmailAddressInsightsOutput,
                 ("email_address", ),
                 ("email_address", ),
             )
@@ -1283,7 +1283,7 @@ class SESV2Client:
         self,
         *,
         email_identity: str,
-    ) -> GetEmailIdentityResponse:
+    ) -> GetEmailIdentityOutput:
         params: dict[str, object] = {
             "email_identity": email_identity,
         }
@@ -1292,7 +1292,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_email_identity, params, _interceptors,
                 "sesv2", "GetEmailIdentity", self._region,
-                GetEmailIdentityResponse,
+                GetEmailIdentityOutput,
                 ("email_identity", ),
                 ("email_identity", ),
             )
@@ -1305,7 +1305,7 @@ class SESV2Client:
         self,
         *,
         email_identity: str,
-    ) -> GetEmailIdentityPoliciesResponse:
+    ) -> GetEmailIdentityPoliciesOutput:
         params: dict[str, object] = {
             "email_identity": email_identity,
         }
@@ -1314,7 +1314,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_email_identity_policies, params, _interceptors,
                 "sesv2", "GetEmailIdentityPolicies", self._region,
-                GetEmailIdentityPoliciesResponse,
+                GetEmailIdentityPoliciesOutput,
                 ("email_identity", ),
                 ("email_identity", ),
             )
@@ -1327,7 +1327,7 @@ class SESV2Client:
         self,
         *,
         template_name: str,
-    ) -> GetEmailTemplateResponse:
+    ) -> GetEmailTemplateOutput:
         params: dict[str, object] = {
             "template_name": template_name,
         }
@@ -1336,7 +1336,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_email_template, params, _interceptors,
                 "sesv2", "GetEmailTemplate", self._region,
-                GetEmailTemplateResponse,
+                GetEmailTemplateOutput,
                 ("template_name", ),
                 ("template_name", ),
             )
@@ -1349,7 +1349,7 @@ class SESV2Client:
         self,
         *,
         job_id: str,
-    ) -> GetExportJobResponse:
+    ) -> GetExportJobOutput:
         params: dict[str, object] = {
             "job_id": job_id,
         }
@@ -1358,7 +1358,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_export_job, params, _interceptors,
                 "sesv2", "GetExportJob", self._region,
-                GetExportJobResponse,
+                GetExportJobOutput,
                 ("job_id", ),
                 ("job_id", ),
             )
@@ -1371,7 +1371,7 @@ class SESV2Client:
         self,
         *,
         job_id: str,
-    ) -> GetImportJobResponse:
+    ) -> GetImportJobOutput:
         params: dict[str, object] = {
             "job_id": job_id,
         }
@@ -1380,7 +1380,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_import_job, params, _interceptors,
                 "sesv2", "GetImportJob", self._region,
-                GetImportJobResponse,
+                GetImportJobOutput,
                 ("job_id", ),
                 ("job_id", ),
             )
@@ -1393,7 +1393,7 @@ class SESV2Client:
         self,
         *,
         message_id: str,
-    ) -> GetMessageInsightsResponse:
+    ) -> GetMessageInsightsOutput:
         params: dict[str, object] = {
             "message_id": message_id,
         }
@@ -1402,7 +1402,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_message_insights, params, _interceptors,
                 "sesv2", "GetMessageInsights", self._region,
-                GetMessageInsightsResponse,
+                GetMessageInsightsOutput,
                 ("message_id", ),
                 ("message_id", ),
             )
@@ -1415,7 +1415,7 @@ class SESV2Client:
         self,
         *,
         endpoint_name: str,
-    ) -> GetMultiRegionEndpointResponse:
+    ) -> GetMultiRegionEndpointOutput:
         params: dict[str, object] = {
             "endpoint_name": endpoint_name,
         }
@@ -1424,7 +1424,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_multi_region_endpoint, params, _interceptors,
                 "sesv2", "GetMultiRegionEndpoint", self._region,
-                GetMultiRegionEndpointResponse,
+                GetMultiRegionEndpointOutput,
                 ("endpoint_name", ),
                 ("endpoint_name", ),
             )
@@ -1438,7 +1438,7 @@ class SESV2Client:
         *,
         reputation_entity_reference: str,
         reputation_entity_type: ReputationEntityType,
-    ) -> GetReputationEntityResponse:
+    ) -> GetReputationEntityOutput:
         params: dict[str, object] = {
             "reputation_entity_reference": reputation_entity_reference,
             "reputation_entity_type": reputation_entity_type,
@@ -1448,7 +1448,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_reputation_entity, params, _interceptors,
                 "sesv2", "GetReputationEntity", self._region,
-                GetReputationEntityResponse,
+                GetReputationEntityOutput,
                 ("reputation_entity_reference", "reputation_entity_type", ),
                 ("reputation_entity_reference", "reputation_entity_type", ),
             )
@@ -1462,7 +1462,7 @@ class SESV2Client:
         *,
         email_address: str,
         tenant_name: str | None = None,
-    ) -> GetSuppressedDestinationResponse:
+    ) -> GetSuppressedDestinationOutput:
         params: dict[str, object] = {
             "email_address": email_address,
         }
@@ -1473,7 +1473,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_suppressed_destination, params, _interceptors,
                 "sesv2", "GetSuppressedDestination", self._region,
-                GetSuppressedDestinationResponse,
+                GetSuppressedDestinationOutput,
                 ("email_address", "tenant_name", ),
                 ("email_address", ),
             )
@@ -1486,7 +1486,7 @@ class SESV2Client:
         self,
         *,
         tenant_name: str,
-    ) -> GetTenantResponse:
+    ) -> GetTenantOutput:
         params: dict[str, object] = {
             "tenant_name": tenant_name,
         }
@@ -1495,7 +1495,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.get_tenant, params, _interceptors,
                 "sesv2", "GetTenant", self._region,
-                GetTenantResponse,
+                GetTenantOutput,
                 ("tenant_name", ),
                 ("tenant_name", ),
             )
@@ -1510,7 +1510,7 @@ class SESV2Client:
         filter: dict[ConfigurationSetFilterKey, str] | None = None,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> ListConfigurationSetsResponse:
+    ) -> ListConfigurationSetsOutput:
         params: dict[str, object] = {
         }
         if filter is not None:
@@ -1524,7 +1524,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.list_configuration_sets, params, _interceptors,
                 "sesv2", "ListConfigurationSets", self._region,
-                ListConfigurationSetsResponse,
+                ListConfigurationSetsOutput,
                 ("filter", "next_token", "page_size", ),
                 (),
             )
@@ -1538,7 +1538,7 @@ class SESV2Client:
         *,
         page_size: int | None = None,
         next_token: str | None = None,
-    ) -> ListContactListsResponse:
+    ) -> ListContactListsOutput:
         params: dict[str, object] = {
         }
         if page_size is not None:
@@ -1550,7 +1550,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.list_contact_lists, params, _interceptors,
                 "sesv2", "ListContactLists", self._region,
-                ListContactListsResponse,
+                ListContactListsOutput,
                 ("page_size", "next_token", ),
                 (),
             )
@@ -1566,7 +1566,7 @@ class SESV2Client:
         filter: ListContactsFilter | None = None,
         page_size: int | None = None,
         next_token: str | None = None,
-    ) -> ListContactsResponse:
+    ) -> ListContactsOutput:
         params: dict[str, object] = {
             "contact_list_name": contact_list_name,
         }
@@ -1581,7 +1581,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.list_contacts, params, _interceptors,
                 "sesv2", "ListContacts", self._region,
-                ListContactsResponse,
+                ListContactsOutput,
                 ("contact_list_name", "filter", "page_size", "next_token", ),
                 ("contact_list_name", ),
             )
@@ -1595,7 +1595,7 @@ class SESV2Client:
         *,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> ListCustomVerificationEmailTemplatesResponse:
+    ) -> ListCustomVerificationEmailTemplatesOutput:
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -1607,7 +1607,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.list_custom_verification_email_templates, params, _interceptors,
                 "sesv2", "ListCustomVerificationEmailTemplates", self._region,
-                ListCustomVerificationEmailTemplatesResponse,
+                ListCustomVerificationEmailTemplatesOutput,
                 ("next_token", "page_size", ),
                 (),
             )
@@ -1621,7 +1621,7 @@ class SESV2Client:
         *,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> ListDedicatedIpPoolsResponse:
+    ) -> ListDedicatedIpPoolsOutput:
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -1633,7 +1633,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.list_dedicated_ip_pools, params, _interceptors,
                 "sesv2", "ListDedicatedIpPools", self._region,
-                ListDedicatedIpPoolsResponse,
+                ListDedicatedIpPoolsOutput,
                 ("next_token", "page_size", ),
                 (),
             )
@@ -1647,7 +1647,7 @@ class SESV2Client:
         *,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> ListDeliverabilityTestReportsResponse:
+    ) -> ListDeliverabilityTestReportsOutput:
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -1659,7 +1659,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.list_deliverability_test_reports, params, _interceptors,
                 "sesv2", "ListDeliverabilityTestReports", self._region,
-                ListDeliverabilityTestReportsResponse,
+                ListDeliverabilityTestReportsOutput,
                 ("next_token", "page_size", ),
                 (),
             )
@@ -1676,7 +1676,7 @@ class SESV2Client:
         subscribed_domain: str,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> ListDomainDeliverabilityCampaignsResponse:
+    ) -> ListDomainDeliverabilityCampaignsOutput:
         params: dict[str, object] = {
             "start_date": start_date,
             "end_date": end_date,
@@ -1691,7 +1691,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.list_domain_deliverability_campaigns, params, _interceptors,
                 "sesv2", "ListDomainDeliverabilityCampaigns", self._region,
-                ListDomainDeliverabilityCampaignsResponse,
+                ListDomainDeliverabilityCampaignsOutput,
                 ("start_date", "end_date", "subscribed_domain", "next_token", "page_size", ),
                 ("start_date", "end_date", "subscribed_domain", ),
             )
@@ -1706,7 +1706,7 @@ class SESV2Client:
         filter: dict[IdentityFilterKey, str] | None = None,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> ListEmailIdentitiesResponse:
+    ) -> ListEmailIdentitiesOutput:
         params: dict[str, object] = {
         }
         if filter is not None:
@@ -1720,7 +1720,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.list_email_identities, params, _interceptors,
                 "sesv2", "ListEmailIdentities", self._region,
-                ListEmailIdentitiesResponse,
+                ListEmailIdentitiesOutput,
                 ("filter", "next_token", "page_size", ),
                 (),
             )
@@ -1735,7 +1735,7 @@ class SESV2Client:
         email_identity: str,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> ListEmailIdentityCertificatesResponse:
+    ) -> ListEmailIdentityCertificatesOutput:
         params: dict[str, object] = {
             "email_identity": email_identity,
         }
@@ -1748,7 +1748,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.list_email_identity_certificates, params, _interceptors,
                 "sesv2", "ListEmailIdentityCertificates", self._region,
-                ListEmailIdentityCertificatesResponse,
+                ListEmailIdentityCertificatesOutput,
                 ("email_identity", "next_token", "page_size", ),
                 ("email_identity", ),
             )
@@ -1762,7 +1762,7 @@ class SESV2Client:
         *,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> ListEmailTemplatesResponse:
+    ) -> ListEmailTemplatesOutput:
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -1774,7 +1774,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.list_email_templates, params, _interceptors,
                 "sesv2", "ListEmailTemplates", self._region,
-                ListEmailTemplatesResponse,
+                ListEmailTemplatesOutput,
                 ("next_token", "page_size", ),
                 (),
             )
@@ -1790,7 +1790,7 @@ class SESV2Client:
         page_size: int | None = None,
         export_source_type: ExportSourceType | None = None,
         job_status: JobStatus | None = None,
-    ) -> ListExportJobsResponse:
+    ) -> ListExportJobsOutput:
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -1806,7 +1806,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.list_export_jobs, params, _interceptors,
                 "sesv2", "ListExportJobs", self._region,
-                ListExportJobsResponse,
+                ListExportJobsOutput,
                 ("next_token", "page_size", "export_source_type", "job_status", ),
                 (),
             )
@@ -1821,7 +1821,7 @@ class SESV2Client:
         import_destination_type: ImportDestinationType | None = None,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> ListImportJobsResponse:
+    ) -> ListImportJobsOutput:
         params: dict[str, object] = {
         }
         if import_destination_type is not None:
@@ -1835,7 +1835,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.list_import_jobs, params, _interceptors,
                 "sesv2", "ListImportJobs", self._region,
-                ListImportJobsResponse,
+                ListImportJobsOutput,
                 ("import_destination_type", "next_token", "page_size", ),
                 (),
             )
@@ -1849,7 +1849,7 @@ class SESV2Client:
         *,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> ListMultiRegionEndpointsResponse:
+    ) -> ListMultiRegionEndpointsOutput:
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -1861,7 +1861,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.list_multi_region_endpoints, params, _interceptors,
                 "sesv2", "ListMultiRegionEndpoints", self._region,
-                ListMultiRegionEndpointsResponse,
+                ListMultiRegionEndpointsOutput,
                 ("next_token", "page_size", ),
                 (),
             )
@@ -1876,7 +1876,7 @@ class SESV2Client:
         filter: dict[ListRecommendationsFilterKey, str] | None = None,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> ListRecommendationsResponse:
+    ) -> ListRecommendationsOutput:
         params: dict[str, object] = {
         }
         if filter is not None:
@@ -1890,7 +1890,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.list_recommendations, params, _interceptors,
                 "sesv2", "ListRecommendations", self._region,
-                ListRecommendationsResponse,
+                ListRecommendationsOutput,
                 ("filter", "next_token", "page_size", ),
                 (),
             )
@@ -1905,7 +1905,7 @@ class SESV2Client:
         filter: dict[ReputationEntityFilterKey, str] | None = None,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> ListReputationEntitiesResponse:
+    ) -> ListReputationEntitiesOutput:
         params: dict[str, object] = {
         }
         if filter is not None:
@@ -1919,7 +1919,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.list_reputation_entities, params, _interceptors,
                 "sesv2", "ListReputationEntities", self._region,
-                ListReputationEntitiesResponse,
+                ListReputationEntitiesOutput,
                 ("filter", "next_token", "page_size", ),
                 (),
             )
@@ -1934,7 +1934,7 @@ class SESV2Client:
         resource_arn: str,
         page_size: int | None = None,
         next_token: str | None = None,
-    ) -> ListResourceTenantsResponse:
+    ) -> ListResourceTenantsOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -1947,7 +1947,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.list_resource_tenants, params, _interceptors,
                 "sesv2", "ListResourceTenants", self._region,
-                ListResourceTenantsResponse,
+                ListResourceTenantsOutput,
                 ("resource_arn", "page_size", "next_token", ),
                 ("resource_arn", ),
             )
@@ -1965,7 +1965,7 @@ class SESV2Client:
         end_date: str | None = None,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> ListSuppressedDestinationsResponse:
+    ) -> ListSuppressedDestinationsOutput:
         params: dict[str, object] = {
         }
         if tenant_name is not None:
@@ -1985,7 +1985,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.list_suppressed_destinations, params, _interceptors,
                 "sesv2", "ListSuppressedDestinations", self._region,
-                ListSuppressedDestinationsResponse,
+                ListSuppressedDestinationsOutput,
                 ("tenant_name", "reasons", "start_date", "end_date", "next_token", "page_size", ),
                 (),
             )
@@ -1998,7 +1998,7 @@ class SESV2Client:
         self,
         *,
         resource_arn: str,
-    ) -> ListTagsForResourceResponse:
+    ) -> ListTagsForResourceOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -2007,7 +2007,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.list_tags_for_resource, params, _interceptors,
                 "sesv2", "ListTagsForResource", self._region,
-                ListTagsForResourceResponse,
+                ListTagsForResourceOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
             )
@@ -2023,7 +2023,7 @@ class SESV2Client:
         filter: dict[ListTenantResourcesFilterKey, str] | None = None,
         page_size: int | None = None,
         next_token: str | None = None,
-    ) -> ListTenantResourcesResponse:
+    ) -> ListTenantResourcesOutput:
         params: dict[str, object] = {
             "tenant_name": tenant_name,
         }
@@ -2038,7 +2038,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.list_tenant_resources, params, _interceptors,
                 "sesv2", "ListTenantResources", self._region,
-                ListTenantResourcesResponse,
+                ListTenantResourcesOutput,
                 ("tenant_name", "filter", "page_size", "next_token", ),
                 ("tenant_name", ),
             )
@@ -2053,7 +2053,7 @@ class SESV2Client:
         filter: dict[ListTenantsFilterKey, str] | None = None,
         next_token: str | None = None,
         page_size: int | None = None,
-    ) -> ListTenantsResponse:
+    ) -> ListTenantsOutput:
         params: dict[str, object] = {
         }
         if filter is not None:
@@ -2067,7 +2067,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.list_tenants, params, _interceptors,
                 "sesv2", "ListTenants", self._region,
-                ListTenantsResponse,
+                ListTenantsOutput,
                 ("filter", "next_token", "page_size", ),
                 (),
             )
@@ -2080,7 +2080,7 @@ class SESV2Client:
         self,
         *,
         auto_warmup_enabled: bool | None = None,
-    ) -> PutAccountDedicatedIpWarmupAttributesResponse:
+    ) -> PutAccountDedicatedIpWarmupAttributesOutput:
         params: dict[str, object] = {
         }
         if auto_warmup_enabled is not None:
@@ -2090,7 +2090,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.put_account_dedicated_ip_warmup_attributes, params, _interceptors,
                 "sesv2", "PutAccountDedicatedIpWarmupAttributes", self._region,
-                PutAccountDedicatedIpWarmupAttributesResponse,
+                PutAccountDedicatedIpWarmupAttributesOutput,
                 ("auto_warmup_enabled", ),
                 (),
             )
@@ -2108,7 +2108,7 @@ class SESV2Client:
         use_case_description: str | None = None,
         additional_contact_email_addresses: Sequence[str] | None = None,
         production_access_enabled: bool | None = None,
-    ) -> PutAccountDetailsResponse:
+    ) -> PutAccountDetailsOutput:
         params: dict[str, object] = {
             "mail_type": mail_type,
             "website_url": website_url,
@@ -2126,7 +2126,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.put_account_details, params, _interceptors,
                 "sesv2", "PutAccountDetails", self._region,
-                PutAccountDetailsResponse,
+                PutAccountDetailsOutput,
                 ("mail_type", "website_url", "contact_language", "use_case_description", "additional_contact_email_addresses", "production_access_enabled", ),
                 ("mail_type", "website_url", ),
             )
@@ -2139,7 +2139,7 @@ class SESV2Client:
         self,
         *,
         plan: PricingPlan,
-    ) -> PutAccountPricingAttributesResponse:
+    ) -> PutAccountPricingAttributesOutput:
         params: dict[str, object] = {
             "plan": plan,
         }
@@ -2148,7 +2148,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.put_account_pricing_attributes, params, _interceptors,
                 "sesv2", "PutAccountPricingAttributes", self._region,
-                PutAccountPricingAttributesResponse,
+                PutAccountPricingAttributesOutput,
                 ("plan", ),
                 ("plan", ),
             )
@@ -2161,7 +2161,7 @@ class SESV2Client:
         self,
         *,
         sending_enabled: bool | None = None,
-    ) -> PutAccountSendingAttributesResponse:
+    ) -> PutAccountSendingAttributesOutput:
         params: dict[str, object] = {
         }
         if sending_enabled is not None:
@@ -2171,7 +2171,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.put_account_sending_attributes, params, _interceptors,
                 "sesv2", "PutAccountSendingAttributes", self._region,
-                PutAccountSendingAttributesResponse,
+                PutAccountSendingAttributesOutput,
                 ("sending_enabled", ),
                 (),
             )
@@ -2185,7 +2185,7 @@ class SESV2Client:
         *,
         suppressed_reasons: Sequence[SuppressionListReason] | None = None,
         validation_attributes: SuppressionValidationAttributes | None = None,
-    ) -> PutAccountSuppressionAttributesResponse:
+    ) -> PutAccountSuppressionAttributesOutput:
         params: dict[str, object] = {
         }
         if suppressed_reasons is not None:
@@ -2197,7 +2197,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.put_account_suppression_attributes, params, _interceptors,
                 "sesv2", "PutAccountSuppressionAttributes", self._region,
-                PutAccountSuppressionAttributesResponse,
+                PutAccountSuppressionAttributesOutput,
                 ("suppressed_reasons", "validation_attributes", ),
                 (),
             )
@@ -2210,7 +2210,7 @@ class SESV2Client:
         self,
         *,
         vdm_attributes: VdmAttributes,
-    ) -> PutAccountVdmAttributesResponse:
+    ) -> PutAccountVdmAttributesOutput:
         params: dict[str, object] = {
             "vdm_attributes": vdm_attributes,
         }
@@ -2219,7 +2219,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.put_account_vdm_attributes, params, _interceptors,
                 "sesv2", "PutAccountVdmAttributes", self._region,
-                PutAccountVdmAttributesResponse,
+                PutAccountVdmAttributesOutput,
                 ("vdm_attributes", ),
                 ("vdm_attributes", ),
             )
@@ -2233,7 +2233,7 @@ class SESV2Client:
         *,
         configuration_set_name: str,
         archive_arn: str | None = None,
-    ) -> PutConfigurationSetArchivingOptionsResponse:
+    ) -> PutConfigurationSetArchivingOptionsOutput:
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
@@ -2244,7 +2244,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.put_configuration_set_archiving_options, params, _interceptors,
                 "sesv2", "PutConfigurationSetArchivingOptions", self._region,
-                PutConfigurationSetArchivingOptionsResponse,
+                PutConfigurationSetArchivingOptionsOutput,
                 ("configuration_set_name", "archive_arn", ),
                 ("configuration_set_name", ),
             )
@@ -2260,7 +2260,7 @@ class SESV2Client:
         tls_policy: TlsPolicy | None = None,
         sending_pool_name: str | None = None,
         max_delivery_seconds: int | None = None,
-    ) -> PutConfigurationSetDeliveryOptionsResponse:
+    ) -> PutConfigurationSetDeliveryOptionsOutput:
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
@@ -2275,7 +2275,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.put_configuration_set_delivery_options, params, _interceptors,
                 "sesv2", "PutConfigurationSetDeliveryOptions", self._region,
-                PutConfigurationSetDeliveryOptionsResponse,
+                PutConfigurationSetDeliveryOptionsOutput,
                 ("configuration_set_name", "tls_policy", "sending_pool_name", "max_delivery_seconds", ),
                 ("configuration_set_name", ),
             )
@@ -2289,7 +2289,7 @@ class SESV2Client:
         *,
         configuration_set_name: str,
         reputation_metrics_enabled: bool | None = None,
-    ) -> PutConfigurationSetReputationOptionsResponse:
+    ) -> PutConfigurationSetReputationOptionsOutput:
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
@@ -2300,7 +2300,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.put_configuration_set_reputation_options, params, _interceptors,
                 "sesv2", "PutConfigurationSetReputationOptions", self._region,
-                PutConfigurationSetReputationOptionsResponse,
+                PutConfigurationSetReputationOptionsOutput,
                 ("configuration_set_name", "reputation_metrics_enabled", ),
                 ("configuration_set_name", ),
             )
@@ -2314,7 +2314,7 @@ class SESV2Client:
         *,
         configuration_set_name: str,
         sending_enabled: bool | None = None,
-    ) -> PutConfigurationSetSendingOptionsResponse:
+    ) -> PutConfigurationSetSendingOptionsOutput:
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
@@ -2325,7 +2325,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.put_configuration_set_sending_options, params, _interceptors,
                 "sesv2", "PutConfigurationSetSendingOptions", self._region,
-                PutConfigurationSetSendingOptionsResponse,
+                PutConfigurationSetSendingOptionsOutput,
                 ("configuration_set_name", "sending_enabled", ),
                 ("configuration_set_name", ),
             )
@@ -2341,7 +2341,7 @@ class SESV2Client:
         suppression_scope: SuppressionListScope | None = None,
         suppressed_reasons: Sequence[SuppressionListReason] | None = None,
         validation_options: SuppressionValidationOptions | None = None,
-    ) -> PutConfigurationSetSuppressionOptionsResponse:
+    ) -> PutConfigurationSetSuppressionOptionsOutput:
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
@@ -2356,7 +2356,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.put_configuration_set_suppression_options, params, _interceptors,
                 "sesv2", "PutConfigurationSetSuppressionOptions", self._region,
-                PutConfigurationSetSuppressionOptionsResponse,
+                PutConfigurationSetSuppressionOptionsOutput,
                 ("configuration_set_name", "suppression_scope", "suppressed_reasons", "validation_options", ),
                 ("configuration_set_name", ),
             )
@@ -2371,7 +2371,7 @@ class SESV2Client:
         configuration_set_name: str,
         custom_redirect_domain: str | None = None,
         https_policy: HttpsPolicy | None = None,
-    ) -> PutConfigurationSetTrackingOptionsResponse:
+    ) -> PutConfigurationSetTrackingOptionsOutput:
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
@@ -2384,7 +2384,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.put_configuration_set_tracking_options, params, _interceptors,
                 "sesv2", "PutConfigurationSetTrackingOptions", self._region,
-                PutConfigurationSetTrackingOptionsResponse,
+                PutConfigurationSetTrackingOptionsOutput,
                 ("configuration_set_name", "custom_redirect_domain", "https_policy", ),
                 ("configuration_set_name", ),
             )
@@ -2398,7 +2398,7 @@ class SESV2Client:
         *,
         configuration_set_name: str,
         vdm_options: VdmOptions | None = None,
-    ) -> PutConfigurationSetVdmOptionsResponse:
+    ) -> PutConfigurationSetVdmOptionsOutput:
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
@@ -2409,7 +2409,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.put_configuration_set_vdm_options, params, _interceptors,
                 "sesv2", "PutConfigurationSetVdmOptions", self._region,
-                PutConfigurationSetVdmOptionsResponse,
+                PutConfigurationSetVdmOptionsOutput,
                 ("configuration_set_name", "vdm_options", ),
                 ("configuration_set_name", ),
             )
@@ -2423,7 +2423,7 @@ class SESV2Client:
         *,
         ip: str,
         destination_pool_name: str,
-    ) -> PutDedicatedIpInPoolResponse:
+    ) -> PutDedicatedIpInPoolOutput:
         params: dict[str, object] = {
             "ip": ip,
             "destination_pool_name": destination_pool_name,
@@ -2433,7 +2433,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.put_dedicated_ip_in_pool, params, _interceptors,
                 "sesv2", "PutDedicatedIpInPool", self._region,
-                PutDedicatedIpInPoolResponse,
+                PutDedicatedIpInPoolOutput,
                 ("ip", "destination_pool_name", ),
                 ("ip", "destination_pool_name", ),
             )
@@ -2447,7 +2447,7 @@ class SESV2Client:
         *,
         pool_name: str,
         scaling_mode: ScalingMode,
-    ) -> PutDedicatedIpPoolScalingAttributesResponse:
+    ) -> PutDedicatedIpPoolScalingAttributesOutput:
         params: dict[str, object] = {
             "pool_name": pool_name,
             "scaling_mode": scaling_mode,
@@ -2457,7 +2457,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.put_dedicated_ip_pool_scaling_attributes, params, _interceptors,
                 "sesv2", "PutDedicatedIpPoolScalingAttributes", self._region,
-                PutDedicatedIpPoolScalingAttributesResponse,
+                PutDedicatedIpPoolScalingAttributesOutput,
                 ("pool_name", "scaling_mode", ),
                 ("pool_name", "scaling_mode", ),
             )
@@ -2471,7 +2471,7 @@ class SESV2Client:
         *,
         ip: str,
         warmup_percentage: int,
-    ) -> PutDedicatedIpWarmupAttributesResponse:
+    ) -> PutDedicatedIpWarmupAttributesOutput:
         params: dict[str, object] = {
             "ip": ip,
             "warmup_percentage": warmup_percentage,
@@ -2481,7 +2481,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.put_dedicated_ip_warmup_attributes, params, _interceptors,
                 "sesv2", "PutDedicatedIpWarmupAttributes", self._region,
-                PutDedicatedIpWarmupAttributesResponse,
+                PutDedicatedIpWarmupAttributesOutput,
                 ("ip", "warmup_percentage", ),
                 ("ip", "warmup_percentage", ),
             )
@@ -2495,7 +2495,7 @@ class SESV2Client:
         *,
         dashboard_enabled: bool,
         subscribed_domains: Sequence[DomainDeliverabilityTrackingOption] | None = None,
-    ) -> PutDeliverabilityDashboardOptionResponse:
+    ) -> PutDeliverabilityDashboardOptionOutput:
         params: dict[str, object] = {
             "dashboard_enabled": dashboard_enabled,
         }
@@ -2506,7 +2506,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.put_deliverability_dashboard_option, params, _interceptors,
                 "sesv2", "PutDeliverabilityDashboardOption", self._region,
-                PutDeliverabilityDashboardOptionResponse,
+                PutDeliverabilityDashboardOptionOutput,
                 ("dashboard_enabled", "subscribed_domains", ),
                 ("dashboard_enabled", ),
             )
@@ -2520,7 +2520,7 @@ class SESV2Client:
         *,
         email_identity: str,
         configuration_set_name: str | None = None,
-    ) -> PutEmailIdentityConfigurationSetAttributesResponse:
+    ) -> PutEmailIdentityConfigurationSetAttributesOutput:
         params: dict[str, object] = {
             "email_identity": email_identity,
         }
@@ -2531,7 +2531,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.put_email_identity_configuration_set_attributes, params, _interceptors,
                 "sesv2", "PutEmailIdentityConfigurationSetAttributes", self._region,
-                PutEmailIdentityConfigurationSetAttributesResponse,
+                PutEmailIdentityConfigurationSetAttributesOutput,
                 ("email_identity", "configuration_set_name", ),
                 ("email_identity", ),
             )
@@ -2545,7 +2545,7 @@ class SESV2Client:
         *,
         email_identity: str,
         signing_enabled: bool | None = None,
-    ) -> PutEmailIdentityDkimAttributesResponse:
+    ) -> PutEmailIdentityDkimAttributesOutput:
         params: dict[str, object] = {
             "email_identity": email_identity,
         }
@@ -2556,7 +2556,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.put_email_identity_dkim_attributes, params, _interceptors,
                 "sesv2", "PutEmailIdentityDkimAttributes", self._region,
-                PutEmailIdentityDkimAttributesResponse,
+                PutEmailIdentityDkimAttributesOutput,
                 ("email_identity", "signing_enabled", ),
                 ("email_identity", ),
             )
@@ -2571,7 +2571,7 @@ class SESV2Client:
         email_identity: str,
         signing_attributes_origin: DkimSigningAttributesOrigin,
         signing_attributes: DkimSigningAttributes | None = None,
-    ) -> PutEmailIdentityDkimSigningAttributesResponse:
+    ) -> PutEmailIdentityDkimSigningAttributesOutput:
         params: dict[str, object] = {
             "email_identity": email_identity,
             "signing_attributes_origin": signing_attributes_origin,
@@ -2583,7 +2583,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.put_email_identity_dkim_signing_attributes, params, _interceptors,
                 "sesv2", "PutEmailIdentityDkimSigningAttributes", self._region,
-                PutEmailIdentityDkimSigningAttributesResponse,
+                PutEmailIdentityDkimSigningAttributesOutput,
                 ("email_identity", "signing_attributes_origin", "signing_attributes", ),
                 ("email_identity", "signing_attributes_origin", ),
             )
@@ -2597,7 +2597,7 @@ class SESV2Client:
         *,
         email_identity: str,
         email_forwarding_enabled: bool | None = None,
-    ) -> PutEmailIdentityFeedbackAttributesResponse:
+    ) -> PutEmailIdentityFeedbackAttributesOutput:
         params: dict[str, object] = {
             "email_identity": email_identity,
         }
@@ -2608,7 +2608,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.put_email_identity_feedback_attributes, params, _interceptors,
                 "sesv2", "PutEmailIdentityFeedbackAttributes", self._region,
-                PutEmailIdentityFeedbackAttributesResponse,
+                PutEmailIdentityFeedbackAttributesOutput,
                 ("email_identity", "email_forwarding_enabled", ),
                 ("email_identity", ),
             )
@@ -2623,7 +2623,7 @@ class SESV2Client:
         email_identity: str,
         mail_from_domain: str | None = None,
         behavior_on_mx_failure: BehaviorOnMxFailure | None = None,
-    ) -> PutEmailIdentityMailFromAttributesResponse:
+    ) -> PutEmailIdentityMailFromAttributesOutput:
         params: dict[str, object] = {
             "email_identity": email_identity,
         }
@@ -2636,7 +2636,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.put_email_identity_mail_from_attributes, params, _interceptors,
                 "sesv2", "PutEmailIdentityMailFromAttributes", self._region,
-                PutEmailIdentityMailFromAttributesResponse,
+                PutEmailIdentityMailFromAttributesOutput,
                 ("email_identity", "mail_from_domain", "behavior_on_mx_failure", ),
                 ("email_identity", ),
             )
@@ -2651,7 +2651,7 @@ class SESV2Client:
         email_address: str,
         reason: SuppressionListReason,
         tenant_name: str | None = None,
-    ) -> PutSuppressedDestinationResponse:
+    ) -> PutSuppressedDestinationOutput:
         params: dict[str, object] = {
             "email_address": email_address,
             "reason": reason,
@@ -2663,7 +2663,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.put_suppressed_destination, params, _interceptors,
                 "sesv2", "PutSuppressedDestination", self._region,
-                PutSuppressedDestinationResponse,
+                PutSuppressedDestinationOutput,
                 ("email_address", "reason", "tenant_name", ),
                 ("email_address", "reason", ),
             )
@@ -2678,7 +2678,7 @@ class SESV2Client:
         tenant_name: str,
         suppressed_reasons: Sequence[SuppressionListReason] | None = None,
         suppression_scope: SuppressionListScope | None = None,
-    ) -> PutTenantSuppressionAttributesResponse:
+    ) -> PutTenantSuppressionAttributesOutput:
         params: dict[str, object] = {
             "tenant_name": tenant_name,
         }
@@ -2691,7 +2691,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.put_tenant_suppression_attributes, params, _interceptors,
                 "sesv2", "PutTenantSuppressionAttributes", self._region,
-                PutTenantSuppressionAttributesResponse,
+                PutTenantSuppressionAttributesOutput,
                 ("tenant_name", "suppressed_reasons", "suppression_scope", ),
                 ("tenant_name", ),
             )
@@ -2715,7 +2715,7 @@ class SESV2Client:
         endpoint_id: str | None = None,
         tenant_name: str | None = None,
         configuration_overrides: ConfigurationOverrides | None = None,
-    ) -> SendBulkEmailResponse:
+    ) -> SendBulkEmailOutput:
         params: dict[str, object] = {
             "default_content": default_content,
             "bulk_email_entries": bulk_email_entries,
@@ -2745,7 +2745,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.send_bulk_email, params, _interceptors,
                 "sesv2", "SendBulkEmail", self._region,
-                SendBulkEmailResponse,
+                SendBulkEmailOutput,
                 ("default_content", "bulk_email_entries", "from_email_address", "from_email_address_identity_arn", "reply_to_addresses", "feedback_forwarding_email_address", "feedback_forwarding_email_address_identity_arn", "default_email_tags", "configuration_set_name", "endpoint_id", "tenant_name", "configuration_overrides", ),
                 ("default_content", "bulk_email_entries", ),
             )
@@ -2760,7 +2760,7 @@ class SESV2Client:
         email_address: str,
         template_name: str,
         configuration_set_name: str | None = None,
-    ) -> SendCustomVerificationEmailResponse:
+    ) -> SendCustomVerificationEmailOutput:
         params: dict[str, object] = {
             "email_address": email_address,
             "template_name": template_name,
@@ -2772,7 +2772,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.send_custom_verification_email, params, _interceptors,
                 "sesv2", "SendCustomVerificationEmail", self._region,
-                SendCustomVerificationEmailResponse,
+                SendCustomVerificationEmailOutput,
                 ("email_address", "template_name", "configuration_set_name", ),
                 ("email_address", "template_name", ),
             )
@@ -2797,7 +2797,7 @@ class SESV2Client:
         tenant_name: str | None = None,
         list_management_options: ListManagementOptions | None = None,
         configuration_overrides: ConfigurationOverrides | None = None,
-    ) -> SendEmailResponse:
+    ) -> SendEmailOutput:
         params: dict[str, object] = {
             "content": content,
         }
@@ -2830,7 +2830,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.send_email, params, _interceptors,
                 "sesv2", "SendEmail", self._region,
-                SendEmailResponse,
+                SendEmailOutput,
                 ("content", "from_email_address", "from_email_address_identity_arn", "destination", "reply_to_addresses", "feedback_forwarding_email_address", "feedback_forwarding_email_address_identity_arn", "email_tags", "configuration_set_name", "endpoint_id", "tenant_name", "list_management_options", "configuration_overrides", ),
                 ("content", ),
             )
@@ -2844,7 +2844,7 @@ class SESV2Client:
         *,
         resource_arn: str,
         tags: Sequence[Tag],
-    ) -> TagResourceResponse:
+    ) -> TagResourceOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -2854,7 +2854,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.tag_resource, params, _interceptors,
                 "sesv2", "TagResource", self._region,
-                TagResourceResponse,
+                TagResourceOutput,
                 ("resource_arn", "tags", ),
                 ("resource_arn", "tags", ),
             )
@@ -2868,7 +2868,7 @@ class SESV2Client:
         *,
         template_name: str,
         template_data: str,
-    ) -> TestRenderEmailTemplateResponse:
+    ) -> TestRenderEmailTemplateOutput:
         params: dict[str, object] = {
             "template_name": template_name,
             "template_data": template_data,
@@ -2878,7 +2878,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.test_render_email_template, params, _interceptors,
                 "sesv2", "TestRenderEmailTemplate", self._region,
-                TestRenderEmailTemplateResponse,
+                TestRenderEmailTemplateOutput,
                 ("template_name", "template_data", ),
                 ("template_name", "template_data", ),
             )
@@ -2892,7 +2892,7 @@ class SESV2Client:
         *,
         resource_arn: str,
         tag_keys: Sequence[str],
-    ) -> UntagResourceResponse:
+    ) -> UntagResourceOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
@@ -2902,7 +2902,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.untag_resource, params, _interceptors,
                 "sesv2", "UntagResource", self._region,
-                UntagResourceResponse,
+                UntagResourceOutput,
                 ("resource_arn", "tag_keys", ),
                 ("resource_arn", "tag_keys", ),
             )
@@ -2916,7 +2916,7 @@ class SESV2Client:
         *,
         configuration_set_name: str,
         message_security_options: MessageSecurityOptions | None = None,
-    ) -> UpdateConfigurationSetResponse:
+    ) -> UpdateConfigurationSetOutput:
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
@@ -2927,7 +2927,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.update_configuration_set, params, _interceptors,
                 "sesv2", "UpdateConfigurationSet", self._region,
-                UpdateConfigurationSetResponse,
+                UpdateConfigurationSetOutput,
                 ("configuration_set_name", "message_security_options", ),
                 ("configuration_set_name", ),
             )
@@ -2942,7 +2942,7 @@ class SESV2Client:
         configuration_set_name: str,
         event_destination_name: str,
         event_destination: EventDestinationDefinition,
-    ) -> UpdateConfigurationSetEventDestinationResponse:
+    ) -> UpdateConfigurationSetEventDestinationOutput:
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
             "event_destination_name": event_destination_name,
@@ -2953,7 +2953,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.update_configuration_set_event_destination, params, _interceptors,
                 "sesv2", "UpdateConfigurationSetEventDestination", self._region,
-                UpdateConfigurationSetEventDestinationResponse,
+                UpdateConfigurationSetEventDestinationOutput,
                 ("configuration_set_name", "event_destination_name", "event_destination", ),
                 ("configuration_set_name", "event_destination_name", "event_destination", ),
             )
@@ -2970,7 +2970,7 @@ class SESV2Client:
         topic_preferences: Sequence[TopicPreference] | None = None,
         unsubscribe_all: bool | None = None,
         attributes_data: str | None = None,
-    ) -> UpdateContactResponse:
+    ) -> UpdateContactOutput:
         params: dict[str, object] = {
             "contact_list_name": contact_list_name,
             "email_address": email_address,
@@ -2986,7 +2986,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.update_contact, params, _interceptors,
                 "sesv2", "UpdateContact", self._region,
-                UpdateContactResponse,
+                UpdateContactOutput,
                 ("contact_list_name", "email_address", "topic_preferences", "unsubscribe_all", "attributes_data", ),
                 ("contact_list_name", "email_address", ),
             )
@@ -3001,7 +3001,7 @@ class SESV2Client:
         contact_list_name: str,
         topics: Sequence[Topic] | None = None,
         description: str | None = None,
-    ) -> UpdateContactListResponse:
+    ) -> UpdateContactListOutput:
         params: dict[str, object] = {
             "contact_list_name": contact_list_name,
         }
@@ -3014,7 +3014,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.update_contact_list, params, _interceptors,
                 "sesv2", "UpdateContactList", self._region,
-                UpdateContactListResponse,
+                UpdateContactListOutput,
                 ("contact_list_name", "topics", "description", ),
                 ("contact_list_name", ),
             )
@@ -3032,7 +3032,7 @@ class SESV2Client:
         template_content: str,
         success_redirection_url: str,
         failure_redirection_url: str,
-    ) -> UpdateCustomVerificationEmailTemplateResponse:
+    ) -> UpdateCustomVerificationEmailTemplateOutput:
         params: dict[str, object] = {
             "template_name": template_name,
             "from_email_address": from_email_address,
@@ -3046,7 +3046,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.update_custom_verification_email_template, params, _interceptors,
                 "sesv2", "UpdateCustomVerificationEmailTemplate", self._region,
-                UpdateCustomVerificationEmailTemplateResponse,
+                UpdateCustomVerificationEmailTemplateOutput,
                 ("template_name", "from_email_address", "template_subject", "template_content", "success_redirection_url", "failure_redirection_url", ),
                 ("template_name", "from_email_address", "template_subject", "template_content", "success_redirection_url", "failure_redirection_url", ),
             )
@@ -3061,7 +3061,7 @@ class SESV2Client:
         email_identity: str,
         policy_name: str,
         policy: str,
-    ) -> UpdateEmailIdentityPolicyResponse:
+    ) -> UpdateEmailIdentityPolicyOutput:
         params: dict[str, object] = {
             "email_identity": email_identity,
             "policy_name": policy_name,
@@ -3072,7 +3072,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.update_email_identity_policy, params, _interceptors,
                 "sesv2", "UpdateEmailIdentityPolicy", self._region,
-                UpdateEmailIdentityPolicyResponse,
+                UpdateEmailIdentityPolicyOutput,
                 ("email_identity", "policy_name", "policy", ),
                 ("email_identity", "policy_name", "policy", ),
             )
@@ -3086,7 +3086,7 @@ class SESV2Client:
         *,
         template_name: str,
         template_content: EmailTemplateContent,
-    ) -> UpdateEmailTemplateResponse:
+    ) -> UpdateEmailTemplateOutput:
         params: dict[str, object] = {
             "template_name": template_name,
             "template_content": template_content,
@@ -3096,7 +3096,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.update_email_template, params, _interceptors,
                 "sesv2", "UpdateEmailTemplate", self._region,
-                UpdateEmailTemplateResponse,
+                UpdateEmailTemplateOutput,
                 ("template_name", "template_content", ),
                 ("template_name", "template_content", ),
             )
@@ -3111,7 +3111,7 @@ class SESV2Client:
         reputation_entity_type: ReputationEntityType,
         reputation_entity_reference: str,
         sending_status: SendingStatus,
-    ) -> UpdateReputationEntityCustomerManagedStatusResponse:
+    ) -> UpdateReputationEntityCustomerManagedStatusOutput:
         params: dict[str, object] = {
             "reputation_entity_type": reputation_entity_type,
             "reputation_entity_reference": reputation_entity_reference,
@@ -3122,7 +3122,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.update_reputation_entity_customer_managed_status, params, _interceptors,
                 "sesv2", "UpdateReputationEntityCustomerManagedStatus", self._region,
-                UpdateReputationEntityCustomerManagedStatusResponse,
+                UpdateReputationEntityCustomerManagedStatusOutput,
                 ("reputation_entity_type", "reputation_entity_reference", "sending_status", ),
                 ("reputation_entity_type", "reputation_entity_reference", "sending_status", ),
             )
@@ -3137,7 +3137,7 @@ class SESV2Client:
         reputation_entity_type: ReputationEntityType,
         reputation_entity_reference: str,
         reputation_entity_policy: str,
-    ) -> UpdateReputationEntityPolicyResponse:
+    ) -> UpdateReputationEntityPolicyOutput:
         params: dict[str, object] = {
             "reputation_entity_type": reputation_entity_type,
             "reputation_entity_reference": reputation_entity_reference,
@@ -3148,7 +3148,7 @@ class SESV2Client:
             _response = await invoke(
                 self._native.update_reputation_entity_policy, params, _interceptors,
                 "sesv2", "UpdateReputationEntityPolicy", self._region,
-                UpdateReputationEntityPolicyResponse,
+                UpdateReputationEntityPolicyOutput,
                 ("reputation_entity_type", "reputation_entity_reference", "reputation_entity_policy", ),
                 ("reputation_entity_type", "reputation_entity_reference", "reputation_entity_policy", ),
             )

@@ -9,7 +9,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto.logging import operation_interceptors
 
-from ._native import SignInClient as NativeClient, CreateOAuth2TokenResponse, CreateOAuth2TokenWithIAMResponse, DeleteConsoleAuthorizationConfigurationOutput, DeleteResourcePermissionStatementOutput, GetConsoleAuthorizationConfigurationOutput, GetResourcePolicyOutput, IntrospectOAuth2TokenWithIAMResponse, ListResourcePermissionStatementsOutput, PutConsoleAuthorizationConfigurationOutput, PutResourcePermissionStatementOutput, RevokeOAuth2TokenWithIAMResponse
+from ._native import SignInClient as NativeClient, CreateOAuth2TokenOutput, CreateOAuth2TokenWithIAMOutput, DeleteConsoleAuthorizationConfigurationOutput, DeleteResourcePermissionStatementOutput, GetConsoleAuthorizationConfigurationOutput, GetResourcePolicyOutput, IntrospectOAuth2TokenWithIAMOutput, ListResourcePermissionStatementsOutput, PutConsoleAuthorizationConfigurationOutput, PutResourcePermissionStatementOutput, RevokeOAuth2TokenWithIAMOutput
 from .types import (
     CreateOAuth2TokenRequestBody,
 )
@@ -57,7 +57,7 @@ class SignInClient:
         self,
         *,
         token_input: CreateOAuth2TokenRequestBody,
-    ) -> CreateOAuth2TokenResponse:
+    ) -> CreateOAuth2TokenOutput:
         params: dict[str, object] = {
             "token_input": token_input,
         }
@@ -66,7 +66,7 @@ class SignInClient:
             _response = await invoke(
                 self._native.create_o_auth2_token, params, _interceptors,
                 "signin", "CreateOAuth2Token", self._region,
-                CreateOAuth2TokenResponse,
+                CreateOAuth2TokenOutput,
                 ("token_input", ),
                 ("token_input", ),
             )
@@ -80,7 +80,7 @@ class SignInClient:
         *,
         grant_type: str,
         resource: str,
-    ) -> CreateOAuth2TokenWithIAMResponse:
+    ) -> CreateOAuth2TokenWithIAMOutput:
         params: dict[str, object] = {
             "grant_type": grant_type,
             "resource": resource,
@@ -90,7 +90,7 @@ class SignInClient:
             _response = await invoke(
                 self._native.create_o_auth2_token_with_iam, params, _interceptors,
                 "signin", "CreateOAuth2TokenWithIAM", self._region,
-                CreateOAuth2TokenWithIAMResponse,
+                CreateOAuth2TokenWithIAMOutput,
                 ("grant_type", "resource", ),
                 ("grant_type", "resource", ),
             )
@@ -194,7 +194,7 @@ class SignInClient:
         *,
         token: str,
         token_type_hint: str | None = None,
-    ) -> IntrospectOAuth2TokenWithIAMResponse:
+    ) -> IntrospectOAuth2TokenWithIAMOutput:
         params: dict[str, object] = {
             "token": token,
         }
@@ -205,7 +205,7 @@ class SignInClient:
             _response = await invoke(
                 self._native.introspect_o_auth2_token_with_iam, params, _interceptors,
                 "signin", "IntrospectOAuth2TokenWithIAM", self._region,
-                IntrospectOAuth2TokenWithIAMResponse,
+                IntrospectOAuth2TokenWithIAMOutput,
                 ("token", "token_type_hint", ),
                 ("token", ),
             )
@@ -311,7 +311,7 @@ class SignInClient:
         self,
         *,
         token: str,
-    ) -> RevokeOAuth2TokenWithIAMResponse:
+    ) -> RevokeOAuth2TokenWithIAMOutput:
         params: dict[str, object] = {
             "token": token,
         }
@@ -320,7 +320,7 @@ class SignInClient:
             _response = await invoke(
                 self._native.revoke_o_auth2_token_with_iam, params, _interceptors,
                 "signin", "RevokeOAuth2TokenWithIAM", self._region,
-                RevokeOAuth2TokenWithIAMResponse,
+                RevokeOAuth2TokenWithIAMOutput,
                 ("token", ),
                 ("token", ),
             )

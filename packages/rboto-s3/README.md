@@ -199,7 +199,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`update_bucket_metadata_annotation_table_configuration`](#update_bucket_metadata_annotation_table_configuration) | <code>bucket: str</code>, <code>annotation_table_configuration: AnnotationTableConfigurationUpdates</code> | <code>None</code> |
 | [`update_bucket_metadata_inventory_table_configuration`](#update_bucket_metadata_inventory_table_configuration) | <code>bucket: str</code>, <code>inventory_table_configuration: InventoryTableConfigurationUpdates</code> | <code>None</code> |
 | [`update_bucket_metadata_journal_table_configuration`](#update_bucket_metadata_journal_table_configuration) | <code>bucket: str</code>, <code>journal_table_configuration: JournalTableConfigurationUpdates</code> | <code>None</code> |
-| [`update_object_encryption`](#update_object_encryption) | <code>bucket: str</code>, <code>key: str</code>, <code>object_encryption: ObjectEncryption</code> | <code>UpdateObjectEncryptionResponse</code> |
+| [`update_object_encryption`](#update_object_encryption) | <code>bucket: str</code>, <code>key: str</code>, <code>object_encryption: ObjectEncryption</code> | <code>UpdateObjectEncryptionOutput</code> |
 | [`upload_part`](#upload_part) | <code>bucket: str</code>, <code>key: str</code>, <code>part_number: int</code>, <code>upload_id: str</code> | <code>UploadPartOutput</code> |
 | [`upload_part_copy`](#upload_part_copy) | <code>bucket: str</code>, <code>copy_source: str</code>, <code>key: str</code>, <code>part_number: int</code>, <code>upload_id: str</code> | <code>UploadPartCopyOutput</code> |
 | [`write_get_object_response`](#write_get_object_response) | <code>request_route: str</code>, <code>request_token: str</code> | <code>None</code> |
@@ -1896,7 +1896,7 @@ async def update_object_encryption(
     expected_bucket_owner: str | None = None,
     content_md5: str | None = None,
     checksum_algorithm: ChecksumAlgorithm | None = None,
-) -> UpdateObjectEncryptionResponse: ...
+) -> UpdateObjectEncryptionOutput: ...
 ```
 
 
