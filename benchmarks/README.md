@@ -99,3 +99,65 @@ bytes unconfigured, 709,525 with pass-through middleware, 354,253 with logging O
 893,242 with INFO, and 896,250 with DEBUG. These include the last 256 serialized
 JSON lines. Repeat with release wheels and the intended destination before
 estimating production cost.
+
+## Full-body stream reads
+
+`bytestream_read.py` compares two release builds against real S3. Build both
+revisions with the same Python, Rust toolchain, target, and release profile,
+then extract each service wheel into a separate directory. The runner needs
+`rboto`, `rboto-s3`, `boto3`, and `psutil` installed, plus credentials that can
+create and delete the temporary bucket and its objects.
+
+```bash
+python benchmarks/bytestream_read.py \
+  --before-path /path/to/extracted-before-wheel \
+  --after-path /path/to/extracted-after-wheel \
+  --region us-east-1 \
+  --output /path/to/results.json
+```
+
+Each case starts a fresh process and warms its connections before measuring
+12 complete downloads. The cases use 1 MiB and 8 MiB objects, sequentially and
+at concurrency 12. Build order alternates across three rounds. Both builds use
+the same objects, endpoint configuration, CRC32 validation, and retry policy.
+Every warmup and measured body also passes length and SHA-256 checks.
+
+The JSON includes elapsed time, process CPU, RSS sampled every millisecond,
+and memory with all results held and after releasing them. CPU covers all
+native threads. SHA-256 verification and memory diagnostics are outside the
+timed interval. On glibc, allocator snapshots distinguish free arena space
+from allocations still in use; free arena space can remain resident. The
+benchmark does not trim the allocator or change the runtime's thread count.
+
+The script creates one private UUID bucket and removes its two fixtures and
+the bucket in `finally`. It records native library hashes to identify the
+builds. Network timing and sampled RSS peaks vary between runs; inspect the
+individual cases before drawing conclusions from their medians.
+
+### Read comparison, 2026-10-31
+
+Before/after values below are medians of three rounds, with 12 measured
+downloads per case. Both S3 wheels were built locally using CPython 3.13.16,
+Rust 1.98.1, and the same release profile (LTO, one codegen unit, stripped).
+The host was Linux ARM64 with 32 CPUs; the bucket was in `us-east-1`.
+The baseline was `a07f76b`, whose runtime code matches the parent of this
+change. The after build uses the shared segment-to-Python-bytes helper.
+
+| Body / concurrency | Elapsed (s) | Process CPU (ms) | Peak RSS (MiB) | RSS after release (MiB) |
+| --- | ---: | ---: | ---: | ---: |
+| 1 MiB / 1 | 1.351 → 1.307 | 26.8 → 24.2 | 62.7 → 59.3 | 52.0 → 49.0 |
+| 1 MiB / 12 | 0.186 → 0.189 | 31.4 → 30.3 | 84.2 → 80.0 | 69.3 → 63.1 |
+| 8 MiB / 1 | 3.098 → 3.146 | 156.0 → 149.6 | 192.7 → 166.1 | 80.2 → 78.3 |
+| 8 MiB / 12 | 0.476 → 0.494 | 187.1 → 170.0 | 339.1 → 287.1 | 182.3 → 213.8 |
+
+The change reduced measured CPU and peak RSS in these cases. Elapsed time did
+not improve consistently. At 8 MiB/concurrency 12, RSS after releasing the
+results increased by 17.3%, despite the 15.3% lower peak. In that case, median
+free glibc arena space increased from 202.3 to 252.3 MiB, while arena space
+not marked free stayed near 7.1 MiB. These allocator counters do not include
+all Python or process mappings and are not equivalent to RSS. Removing the
+intermediate copy does not guarantee lower retained memory.
+
+All 288 measured downloads and 156 warmup downloads passed length and
+SHA-256 validation. The two objects and temporary bucket were deleted, with
+an independent `HeadBucket` request confirming HTTP 404 afterward.
