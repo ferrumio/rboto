@@ -102,13 +102,18 @@ commit the token or put it in workflow inputs. Confirm the secret exists before
 starting a publishing run; token checks run in the publisher jobs after builds
 and validation.
 
-Before the first publication, create every release project under `ferrumio`
-and grant the token's account publishing access. Use the organization's
-Projects page to create the empty projects. The maintainer chose organization
-ownership before upload: do not start a publishing run until all projects
-are created. Organization membership and token authentication alone do not
-assign new uploads to the organization. Tokens do not bypass PyPI's
-project-creation limits.
+Existing projects under `ferrumio` keep their organization ownership. The
+maintainer authorized the remaining projects to be created by their first
+upload under the token's account, then transferred to `ferrumio` through the
+organization's Projects page. Organization membership and token authentication
+alone do not assign new uploads to the organization.
+
+Tokens do not bypass PyPI's project-creation limits. If a first publication
+reaches that limit, respect the server's retry interval and rerun only the
+failed jobs in the original Actions run. This reuses the validated artifacts
+and skips files whose published hashes already match. Do not start another
+full build to finish publishing that version. Project transfers require the
+maintainer's authenticated PyPI session.
 
 The release catalog still includes `trusted-publishers.csv` as a project
 inventory and for a possible future switch to Trusted Publishing. Registering

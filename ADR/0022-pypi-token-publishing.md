@@ -26,9 +26,11 @@ Keep the complete build and smoke matrix, checksum validation, service-first
 publication, and recovery from original artifacts. Validation-only runs do not
 require publication credentials.
 
-Create every release project under the PyPI organization `ferrumio` before the
-first upload. The maintainer will perform this setup in PyPI's organization
-management interface. Do not publish first to a personal account.
+Keep existing projects under the PyPI organization `ferrumio`. The maintainer
+authorized first uploads to create remaining projects under the token's
+account, followed by transfer to `ferrumio` in PyPI's organization interface.
+If project creation reaches PyPI's quota, respect its retry interval and resume
+failed publishing jobs from the original run without rebuilding artifacts.
 
 ## Consequences
 
@@ -36,7 +38,7 @@ management interface. Do not publish first to a personal account.
   future services.
 - The token grants access beyond a single project and requires rotation or
   revocation by the maintainer.
-- The token does not assign organization ownership. Projects must already
-  belong to `ferrumio` before upload.
+- The token does not assign organization ownership. Projects created under
+  the publishing account need a subsequent transfer to `ferrumio`.
 - PyPI's project-creation limits still apply.
 - Releases retain their checksums but do not upload digital attestations.
