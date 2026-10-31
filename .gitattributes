@@ -1,0 +1,16 @@
+# Generated service bindings; keep handwritten helpers and the shared core visible.
+/crates/rboto-*/src/generated.rs linguist-generated=true
+/crates/rboto-*/src/lib.rs linguist-generated=true
+/crates/rboto-core/** linguist-generated=false
+
+/packages/rboto-*/python/rboto_*/__init__.py linguist-generated=true
+/packages/rboto-*/python/rboto_*/client.py linguist-generated=true
+/packages/rboto-*/python/rboto_*/types.py linguist-generated=true
+/packages/rboto-*/python/rboto_*/exceptions.py linguist-generated=true
+/packages/rboto-*/python/rboto_*/paginators.py linguist-generated=true
+/packages/rboto-*/python/rboto_*/_native.pyi linguist-generated=true
+
+# Generated facade exports; other rboto modules are handwritten.
+/packages/rboto/src/rboto/__init__.py linguist-generated=true
+/packages/rboto/src/rboto/__init__.pyi linguist-generated=true
+/packages/rboto/src/rboto/services.py linguist-generated=true
