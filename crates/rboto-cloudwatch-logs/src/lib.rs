@@ -103,12 +103,11 @@ impl PyByteStream {
             let Some(stream) = stream else {
                 return Python::attach(|py| Ok(PyBytes::new(py, b"").unbind()));
             };
-            let bytes = stream
+            let body = stream
                 .collect()
                 .await
-                .map_err(|error| PyOSError::new_err(error.to_string()))?
-                .into_bytes();
-            Python::attach(|py| Ok(PyBytes::new(py, &bytes).unbind()))
+                .map_err(|error| PyOSError::new_err(error.to_string()))?;
+            Python::attach(|py| rboto_core::collected_body_to_bytes(py, body))
         })
     }
 }
