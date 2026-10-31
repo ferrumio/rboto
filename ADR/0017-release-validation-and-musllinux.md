@@ -3,6 +3,7 @@
 - Status: Accepted
 - Date: 2026-10-29
 - Supersedes: [ADR-0010](0010-python315-validation-and-release-matrix.md)
+- Publication authentication superseded by [ADR-0022](0022-pypi-token-publishing.md)
 
 ## Context
 

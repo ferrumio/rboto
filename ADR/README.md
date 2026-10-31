@@ -36,6 +36,7 @@ separate from the public documentation under `docs/`.
 - [ADR-0019: Generate typed paginators from validated metadata](0019-typed-pagination.md)
 - [ADR-0020: Expose service input and response types together](0020-service-type-namespace.md)
 - [ADR-0021: Name every operation result with an Output suffix](0021-operation-output-names.md)
+- [ADR-0022: Publish the package family with a PyPI API token](0022-pypi-token-publishing.md)
 
 ## Creating an ADR
 
