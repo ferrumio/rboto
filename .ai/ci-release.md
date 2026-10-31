@@ -75,6 +75,11 @@ jobs pass. All publisher jobs use environment `pypi`. Services publish in separa
 jobs without a matrix concurrency cap; the facade publishes last.
 Runs for the same version remain serialized to avoid overlapping publication.
 
+Publication uses the `PYPI_API_TOKEN` environment secret. Both publisher jobs fail
+explicitly if it is missing. They do not request an OIDC token, and digital
+attestations are disabled because the publishing action requires Trusted
+Publishing for them. Validation-only runs do not need the secret. See ADR-0022.
+
 If publication is interrupted, rerun the failed jobs in the original Actions run.
 They download the original artifacts, compare local hashes with `SHA256SUMS`, and
 query PyPI. Identical files are skipped, different bytes fail, and only missing
@@ -87,20 +92,27 @@ retried from the same run.
 
 ### One-time PyPI setup
 
-Download `trusted-publishers.csv` from the `release-catalog` artifact, or produce it:
+Create a PyPI API token with `Entire account` scope on the publishing account,
+then store it in the repository's `pypi` environment as `PYPI_API_TOKEN`.
+One token covers all release projects that the account can publish. A
+project-scoped token cannot create or publish the other service projects.
 
-```bash
-.venv/bin/python .github/scripts/release_catalog.py \
-  --version 0.1.0 --commit "$(git rev-parse HEAD)" --output /tmp/rboto-release
-```
+In GitHub, use Settings → Environments → pypi → Environment secrets. Do not
+commit the token or put it in workflow inputs. Confirm the secret exists before
+starting a publishing run; token checks run in the publisher jobs after builds
+and validation.
 
-Register a pending Trusted Publisher for each project in PyPI's Publishing page:
-owner `ferrumio`, repository `rboto`, workflow `release.yml`, environment `pypi`.
-This includes the facade and every service, but not the internal code generator.
-There is no per-release registration. Add a registration when adding a new service.
-For a PyPI organization, create pending publishers under that organization so the
-first upload creates organization-owned projects. Pending registration does not
-reserve a name until the first upload.
+Before the first publication, create every release project under `ferrumio`
+and grant the token's account publishing access. Use the organization's
+Projects page to create the empty projects. The maintainer chose organization
+ownership before upload: do not start a publishing run until all projects
+are created. Organization membership and token authentication alone do not
+assign new uploads to the organization. Tokens do not bypass PyPI's
+project-creation limits.
+
+The release catalog still includes `trusted-publishers.csv` as a project
+inventory and for a possible future switch to Trusted Publishing. Registering
+these publishers is not required by the current token-based workflow.
 
 ## Model updates and package versions
 
