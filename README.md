@@ -1,5 +1,9 @@
 # rboto
 
+**Alpha.** rboto is under active development, and its API may change between
+releases. We aim to preserve compatibility where practical and document breaking
+changes so you can update your application.
+
 [![CI](https://github.com/ferrumio/rboto/actions/workflows/ci.yml/badge.svg)](https://github.com/ferrumio/rboto/actions/workflows/ci.yml)
 [![Integration](https://github.com/ferrumio/rboto/actions/workflows/integration.yml/badge.svg)](https://github.com/ferrumio/rboto/actions/workflows/integration.yml)
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/ferrumio/rboto/badge)](https://scorecard.dev/viewer/?uri=github.com/ferrumio/rboto)
@@ -11,40 +15,27 @@
 
 rboto has clients for 34 services, including S3, DynamoDB, Lambda, Bedrock,
 EventBridge, and SQS. Install the services you use, import their client classes
-from `rboto`, and await operations. Requests run through the AWS SDK for Rust;
-Python inputs and response attributes carry types for your editor and type checker.
+from `rboto`, and await operations. Python inputs and response attributes carry
+types for your editor and type checker.
 
 rboto is an independent project maintained by [Ferrumio](https://github.com/ferrumio).
 It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS).
-
-**Preview (Alpha).** rboto is under active development. APIs may change between releases.
 
 [Documentation](https://ferrumio.github.io/rboto/) ·
 [Client catalog](docs/clients.md) ·
 [Examples](examples/clients/) ·
 [Issues](https://github.com/ferrumio/rboto/issues)
 
-## Install a client
+## Install
 
-rboto packages are not published on PyPI yet. To try the project, install from a
-checkout with CPython 3.12–3.15, Rust 1.94.1 or newer, a C compiler, and CMake:
-
-```bash
-git clone https://github.com/ferrumio/rboto.git
-cd rboto
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install ./packages/rboto ./packages/rboto-sts
-```
-
-This builds only the STS client used below. Install additional service directories
-from the same checkout when you need them:
+Use CPython 3.12–3.15. Select the clients you need with extras; the first example
+uses STS:
 
 ```bash
-python -m pip install ./packages/rboto ./packages/rboto-s3 ./packages/rboto-dynamodb
+python -m pip install "rboto[sts]"
 ```
 
-For published releases, the equivalent installation uses extras:
+To install S3 and DynamoDB together:
 
 ```bash
 python -m pip install "rboto[s3,dynamodb]"
@@ -54,6 +45,11 @@ Each extra selects a service package at the matching rboto version. Installing
 `rboto` alone gives you shared configuration and utilities; it installs no
 service clients. `rboto[all]` selects every service.
 
+**Initial PyPI publication is still in progress.** Both `rboto` and your selected
+service packages need to be published for these commands to work. If a package
+is not available yet, [build the clients locally](#build-locally).
+
+Published wheels do not require a Rust toolchain to install.
 See [getting started](docs/getting-started.md) for credentials and the Linux and
 macOS wheel targets.
 
@@ -82,14 +78,32 @@ if __name__ == "__main__":
 Run `python identity.py` to print the account ID and principal ARN associated
 with those credentials.
 
+## Async execution and performance
+
 Client construction is synchronous and sends no request. **Every service
 operation is asynchronous.** In a script, start the event loop with
 `asyncio.run()` as above. Inside an async application or notebook, await the
-operation directly. Reuse clients across calls.
+operation directly.
 
-Independent requests can run concurrently with `asyncio.gather()`. For larger
-workloads, limit the number of requests in flight. See the
-[async guide](docs/guides/async-only.md) for concurrency and deadlines.
+Requests run through the AWS SDK for Rust on Tokio. While a request waits for
+network I/O, Python's event loop can run other coroutines. Use `asyncio.gather()`
+for independent requests, reuse clients to reuse their connections, and limit
+the number of requests in flight for larger workloads.
+
+rboto keeps regular outputs in Rust and converts their fields when you access
+them. This avoids building a full Python dictionary for every response.
+Byte streams support async iteration, so you can consume chunks without loading
+the whole body into memory. Calling `read()` collects the full body;
+`to_dict()` explicitly converts a regular output into Python dictionaries.
+
+These choices reduce eager conversion and buffering. Input conversion, output
+property access, logging, and application callbacks can still do synchronous
+work. Large values or slow callbacks can affect event-loop responsiveness.
+Measure latency, CPU, and memory with your payloads and concurrency; network
+conditions, service quotas, and retries also affect request time.
+
+See the [async guide](docs/guides/async-only.md) for concurrency and deadlines,
+and [streaming](docs/guides/streaming.md) for consuming response bodies.
 
 ## Typed inputs and responses
 
@@ -220,6 +234,32 @@ IDs, and output configuration.
 | Catch service exceptions and handle partial failures | [Errors](docs/guides/errors.md) |
 | Add caching, change parameters, or wrap operations | [Interceptors](docs/guides/interceptors.md) |
 | Use rboto inside a Lambda handler | [AWS Lambda](docs/guides/aws-lambda.md) |
+
+## Build locally
+
+To try unpublished changes or build without a compatible wheel, use CPython
+3.12–3.15, Rust 1.94.1 or newer, a C compiler, and CMake:
+
+```bash
+git clone https://github.com/ferrumio/rboto.git
+cd rboto
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install ./packages/rboto ./packages/rboto-sts
+```
+
+This builds only the STS client used in the first example. Save that example as
+`identity.py` and run `python identity.py` in this environment.
+
+Build additional clients by selecting their package directories:
+
+```bash
+python -m pip install ./packages/rboto ./packages/rboto-s3 ./packages/rboto-dynamodb
+```
+
+Use packages from the same checkout so the core and service versions match.
+For editable builds, code generation, and contributor checks, see
+[CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Contributing
 
