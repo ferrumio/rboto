@@ -2718,6 +2718,7 @@ dependencies = [
  "aws-smithy-http-client",
  "aws-smithy-runtime-api",
  "aws-smithy-types",
+ "bytes",
  "futures-util",
  "pyo3",
  "pyo3-async-runtimes",
