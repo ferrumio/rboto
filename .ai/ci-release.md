@@ -83,12 +83,23 @@ Publishing for them. Validation-only runs do not need the secret. See ADR-0022.
 If publication is interrupted, rerun the failed jobs in the original Actions run.
 They download the original artifacts, compare local hashes with `SHA256SUMS`, and
 query PyPI. Identical files are skipped, different bytes fail, and only missing
-files are uploaded. The job verifies the complete project after upload. Do not
+files are uploaded. Inventory queries use fresh cache keys and request cache
+revalidation, because a pre-upload query can leave a cached 404 or partial list.
+After a successful upload, the job checks for all expected files up to 12 times,
+waiting 10 seconds between incomplete inventories. Local hashes are checked once;
+remote hash mismatches fail immediately. HTTP failures retain the query's bounded
+retry policy. A failed upload still fails the publisher step; verification does not
+turn an upload error into success. If files remain missing, the error explains how
+to resume the original run. Do not
 rebuild files under a published version to recover a partial upload: native builds
 can differ byte-for-byte.
 
-The GitHub release is finalized only after PyPI publication. Its assets can be
-retried from the same run.
+The GitHub release is finalized only after PyPI publication. Attach only
+`SHA256SUMS` and `release.json`; wheels and source distributions are distributed
+through PyPI. The GitHub release job downloads only the validated metadata and
+can be retried from the same run. Keep the original distributions as temporary
+Actions artifacts for the configured 14-day retention so interrupted publication
+can resume without rebuilding.
 
 ### One-time PyPI setup
 
