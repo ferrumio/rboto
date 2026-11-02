@@ -9,6 +9,7 @@ from email.message import Message
 from pathlib import Path
 from types import ModuleType, SimpleNamespace
 from urllib.error import HTTPError
+from urllib.request import Request
 from zipfile import ZipFile
 
 import pytest
@@ -140,6 +141,96 @@ def test_upload_resumes_only_identical_files(
     assert not (tmp_path / "conflict").exists()
 
 
+def test_verify_command_waits_for_publication_without_rehashing(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    checker = load_script("release_artifacts")
+    dist, catalog, checksums = seed_wheelhouse(tmp_path)
+    checker.validate(dist, catalog, checksums)
+    for path in dist.glob("rboto_sts*"):
+        path.unlink()
+    expected = {path.name: checker.digest(path) for path in dist.iterdir()}
+    wheel = next(dist.glob("*.whl"))
+    inventories = iter([{}, {wheel.name: expected[wheel.name]}, expected])
+    sleeps: list[float] = []
+    hashed: list[str] = []
+    original_digest = checker.digest
+
+    def published_files(name: str, version: str) -> dict[str, str]:
+        assert (name, version) == ("rboto", "0.1.0")
+        return next(inventories)
+
+    def digest(path: Path) -> str:
+        hashed.append(path.name)
+        return str(original_digest(path))
+
+    monkeypatch.setattr(checker, "published_files", published_files)
+    monkeypatch.setattr(checker, "digest", digest)
+    monkeypatch.setattr(checker.time, "sleep", sleeps.append)
+    upload = tmp_path / "upload"
+    monkeypatch.setattr("sys.argv", [
+        "release_artifacts.py", "verify-published",
+        "--dist", str(dist), "--checksums", str(checksums), "--output", str(upload),
+    ])
+    checker.main()
+    assert sleeps == [10, 10]
+    assert sorted(hashed) == sorted(expected)
+    assert not upload.exists()
+
+
+@pytest.mark.parametrize("conflict", [False, True])
+def test_verification_never_accepts_missing_or_different_files(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, conflict: bool,
+) -> None:
+    checker = load_script("release_artifacts")
+    dist, catalog, checksums = seed_wheelhouse(tmp_path)
+    checker.validate(dist, catalog, checksums)
+    for path in dist.glob("rboto_sts*"):
+        path.unlink()
+    wheel = next(dist.glob("*.whl"))
+    requests: list[tuple[str, str]] = []
+    sleeps: list[float] = []
+
+    def published_files(name: str, version: str) -> dict[str, str]:
+        requests.append((name, version))
+        return {wheel.name: "0" * 64 if conflict else checker.digest(wheel)}
+
+    monkeypatch.setattr(checker, "published_files", published_files)
+    monkeypatch.setattr(checker.time, "sleep", sleeps.append)
+    match = "different bytes" if conflict else "incomplete after 3 checks.*original Actions run"
+    with pytest.raises(ValueError, match=match):
+        checker.verify_published(dist, checksums, attempts=3, interval=2)
+    assert requests == [("rboto", "0.1.0")] * (1 if conflict else 3)
+    assert sleeps == ([] if conflict else [2, 2])
+
+
+def test_pypi_inventory_queries_request_fresh_metadata(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    checker = load_script("release_artifacts")
+    requests: list[Request] = []
+    timestamps = iter([100, 101])
+
+    def request(url: Request, **kwargs: object) -> io.BytesIO:
+        requests.append(url)
+        assert url.get_header("Cache-control") == "no-cache"
+        assert kwargs["timeout"] == 30
+        return io.BytesIO(json.dumps({
+            "urls": [{"filename": "rboto-0.1.0.tar.gz", "digests": {"sha256": "a" * 64}}],
+        }).encode())
+
+    monkeypatch.setattr(checker, "urlopen", request)
+    monkeypatch.setattr(checker.time, "time_ns", lambda: next(timestamps))
+    for _ in range(2):
+        assert checker.published_files("rboto", "0.1.0") == {
+            "rboto-0.1.0.tar.gz": "a" * 64,
+        }
+    assert [request.full_url for request in requests] == [
+        f"https://pypi.org/pypi/rboto/0.1.0/json?rboto_release_check={timestamp}"
+        for timestamp in (100, 101)
+    ]
+
+
 @pytest.mark.parametrize("changed", [True, False])
 def test_missing_or_changed_local_files_fail_before_network(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch, changed: bool,
@@ -163,16 +254,16 @@ def test_missing_or_changed_local_files_fail_before_network(
         checker.prepare_upload(dist, checksums, tmp_path / "upload")
 
 
-@pytest.mark.parametrize("status", [404, 403, 500])
+@pytest.mark.parametrize("status", [404, 403, 429, 500])
 def test_pypi_errors_are_not_silently_treated_as_missing_files(
     monkeypatch: pytest.MonkeyPatch, status: int,
 ) -> None:
     checker = load_script("release_artifacts")
     attempts: list[str] = []
 
-    def request(url: str, **kwargs: object) -> None:
-        attempts.append(url)
-        raise HTTPError(url, status, "error", Message(), None)
+    def request(url: Request, **kwargs: object) -> None:
+        attempts.append(url.full_url)
+        raise HTTPError(url.full_url, status, "error", Message(), None)
 
     def sleep(delay: float) -> None:
         pass
@@ -184,7 +275,7 @@ def test_pypi_errors_are_not_silently_treated_as_missing_files(
     else:
         with pytest.raises(HTTPError):
             checker.published_files("rboto", "0.1.0")
-    assert len(attempts) == (3 if status == 500 else 1)
+    assert len(attempts) == (3 if status in (429, 500) else 1)
 
 
 def test_smoke_uses_catalog_clients_instead_of_all_public_symbols(

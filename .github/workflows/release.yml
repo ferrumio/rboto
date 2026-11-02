@@ -10,7 +10,7 @@ on:
         required: true
         type: string
       publish:
-        description: "Publish validated artifacts to PyPI and GitHub"
+        description: "Publish packages to PyPI and release metadata to GitHub"
         type: boolean
         default: false
 
@@ -256,13 +256,14 @@ jobs:
         run: |
           pip install packaging
           python .github/scripts/release_artifacts.py prepare-upload --github-output "$GITHUB_OUTPUT"
-      - uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086 # v1.14.3
+      - name: Upload missing files to PyPI
+        uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086 # v1.14.3
         if: steps.upload.outputs.pending == 'true'
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
           packages-dir: upload
           attestations: false
-      - name: Verify published files
+      - name: Wait for published files and verify hashes
         run: python .github/scripts/release_artifacts.py verify-published
 
   publish-core:
@@ -303,13 +304,14 @@ jobs:
         run: |
           pip install packaging
           python .github/scripts/release_artifacts.py prepare-upload --github-output "$GITHUB_OUTPUT"
-      - uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086 # v1.14.3
+      - name: Upload missing files to PyPI
+        uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086 # v1.14.3
         if: steps.upload.outputs.pending == 'true'
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
           packages-dir: upload
           attestations: false
-      - name: Verify published files
+      - name: Wait for published files and verify hashes
         run: python .github/scripts/release_artifacts.py verify-published
 
   github-release:
@@ -324,18 +326,9 @@ jobs:
           persist-credentials: false
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
-          pattern: service--*
-          path: dist
-          merge-multiple: true
-      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
-        with:
-          name: core
-          path: dist
-      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
-        with:
           name: validated-release
           path: release
-      - name: Publish release and artifacts
+      - name: Publish release notes and metadata
         env:
           GH_TOKEN: ${{ github.token }}
           VERSION: ${{ needs.prepare.outputs.version }}
@@ -343,7 +336,7 @@ jobs:
           if ! gh release view "v$VERSION" >/dev/null 2>&1; then
             gh release create "v$VERSION" --target "$GITHUB_SHA" --draft --generate-notes
           fi
-          gh release upload "v$VERSION" dist/* release/SHA256SUMS release/release.json --clobber
+          gh release upload "v$VERSION" release/SHA256SUMS release/release.json --clobber
           gh release edit "v$VERSION" --draft=false
 
   docs:

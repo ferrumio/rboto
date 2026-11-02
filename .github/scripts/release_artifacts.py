@@ -11,7 +11,7 @@ from email.parser import BytesParser
 from pathlib import Path
 from typing import cast
 from urllib.error import HTTPError, URLError
-from urllib.request import urlopen
+from urllib.request import Request, urlopen
 from zipfile import ZipFile
 
 from packaging.utils import canonicalize_name, parse_sdist_filename, parse_wheel_filename
@@ -120,7 +120,14 @@ def validate(dist: Path, catalog_path: Path, checksums: Path) -> None:
 def published_files(name: str, version: str) -> dict[str, str]:
     for attempt in range(3):
         try:
-            with urlopen(f"https://pypi.org/pypi/{name}/{version}/json", timeout=30) as response:
+            # A pre-upload lookup can cache a 404 or a partial file list. Use a
+            # fresh cache key as well as requesting revalidation on every read.
+            request = Request(
+                f"https://pypi.org/pypi/{name}/{version}/json"
+                f"?rboto_release_check={time.time_ns()}",
+                headers={"Cache-Control": "no-cache"},
+            )
+            with urlopen(request, timeout=30) as response:
                 data = json.load(response)
             return {item["filename"]: item["digests"]["sha256"] for item in data["urls"]}
         except HTTPError as error:
@@ -137,7 +144,7 @@ def published_files(name: str, version: str) -> dict[str, str]:
     raise AssertionError("unreachable")
 
 
-def prepare_upload(dist: Path, checksums: Path, output: Path | None) -> int:
+def validated_project(dist: Path, checksums: Path) -> tuple[str, str, dict[str, str]]:
     hashes = {filename: sha for sha, filename in (
         line.split("  ", 1) for line in checksums.read_text().splitlines()
     )}
@@ -157,24 +164,61 @@ def prepare_upload(dist: Path, checksums: Path, output: Path | None) -> int:
     for path in files:
         if digest(path) != hashes.get(path.name):
             raise ValueError(f"artifact changed after validation: {path.name}")
+    return name, version, {path.name: hashes[path.name] for path in files}
+
+
+def pending_files(name: str, version: str, expected: dict[str, str]) -> list[str]:
     existing = published_files(name, version)
     pending = []
-    for path in files:
-        remote = existing.get(path.name)
-        if remote is not None and remote != hashes[path.name]:
-            raise ValueError(f"PyPI already has different bytes for {path.name}")
+    for filename, sha in expected.items():
+        remote = existing.get(filename)
+        if remote is not None and remote != sha:
+            raise ValueError(f"PyPI already has different bytes for {filename}")
         if remote is None:
-            pending.append(path)
+            pending.append(filename)
+    print(f"{name} {version}: {len(expected) - len(pending)} identical files on PyPI; "
+          f"{len(pending)} remaining.", flush=True)
+    return pending
+
+
+def prepare_upload(dist: Path, checksums: Path, output: Path | None) -> int:
+    name, version, expected = validated_project(dist, checksums)
+    pending = pending_files(name, version, expected)
     if output is None:
         if pending:
-            raise ValueError(f"publication is incomplete: {[path.name for path in pending]}")
+            raise ValueError(f"publication is incomplete: {pending}")
     elif pending:
         output.mkdir(parents=True, exist_ok=False)
-        for path in pending:
-            shutil.copyfile(path, output / path.name)
-    print(f"{name} {version}: {len(files) - len(pending)} identical files on PyPI; "
-          f"{len(pending)} remaining.")
+        for filename in pending:
+            shutil.copyfile(dist / filename, output / filename)
     return len(pending)
+
+
+def verify_published(
+    dist: Path, checksums: Path, *, attempts: int = 12, interval: float = 10,
+) -> None:
+    if attempts < 1 or interval < 0:
+        raise ValueError("verification requires positive attempts and a nonnegative interval")
+    # Hash downloaded artifacts once. Subsequent checks only refresh PyPI's
+    # inventory; a differing hash or an HTTP/authentication error still fails.
+    name, version, expected = validated_project(dist, checksums)
+    pending = list(expected)
+    for attempt in range(attempts):
+        pending = pending_files(name, version, expected)
+        if not pending:
+            return
+        if attempt + 1 < attempts:
+            print(
+                f"PyPI has not listed every file yet "
+                f"(check {attempt + 1}/{attempts}); retrying in {interval:g}s.",
+                flush=True,
+            )
+            time.sleep(interval)
+    raise ValueError(
+        f"publication is incomplete after {attempts} checks: {pending}. "
+        "Rerun the failed jobs in the original Actions run to reuse the validated "
+        "artifacts and upload only missing files; do not rebuild this version."
+    )
 
 
 def main() -> None:
@@ -188,11 +232,10 @@ def main() -> None:
     args = parser.parse_args()
     if args.command == "validate":
         validate(args.dist, args.catalog, args.checksums)
+    elif args.command == "verify-published":
+        verify_published(args.dist, args.checksums)
     else:
-        pending = prepare_upload(
-            args.dist, args.checksums,
-            args.output if args.command == "prepare-upload" else None,
-        )
+        pending = prepare_upload(args.dist, args.checksums, args.output)
         if args.github_output is not None:
             with args.github_output.open("a") as stream:
                 stream.write(f"pending={'true' if pending else 'false'}\n")
