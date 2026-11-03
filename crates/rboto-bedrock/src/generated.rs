@@ -13605,13 +13605,130 @@ fn vpc_config_to_py(
     Ok(result.into_any().unbind())
 }
 
+struct SharedAccountEnforcedGuardrailOutputConfiguration {
+    config_id: Option<::std::string::String>,
+    guardrail_arn: Option<::std::string::String>,
+    guardrail_id: Option<::std::string::String>,
+    input_tags: Option<aws_sdk_bedrock::types::InputTags>,
+    selective_content_guarding: Option<Arc<aws_sdk_bedrock::types::SelectiveContentGuarding>>,
+    guardrail_version: Option<::std::string::String>,
+    created_at: Option<::aws_smithy_types::DateTime>,
+    created_by: Option<::std::string::String>,
+    updated_at: Option<::aws_smithy_types::DateTime>,
+    updated_by: Option<::std::string::String>,
+    owner: Option<aws_sdk_bedrock::types::ConfigurationOwner>,
+    model_enforcement: Option<Arc<aws_sdk_bedrock::types::ModelEnforcement>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::AccountEnforcedGuardrailOutputConfiguration>
+    for SharedAccountEnforcedGuardrailOutputConfiguration
+{
+    fn from(value: aws_sdk_bedrock::types::AccountEnforcedGuardrailOutputConfiguration) -> Self {
+        Self {
+            config_id: value.config_id,
+            guardrail_arn: value.guardrail_arn,
+            guardrail_id: value.guardrail_id,
+            input_tags: value.input_tags,
+            selective_content_guarding: value.selective_content_guarding.map(|item| Arc::new(item)),
+            guardrail_version: value.guardrail_version,
+            created_at: value.created_at,
+            created_by: value.created_by,
+            updated_at: value.updated_at,
+            updated_by: value.updated_by,
+            owner: value.owner,
+            model_enforcement: value.model_enforcement.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn account_enforced_guardrail_output_configuration_shared_to_py(
+    py: Python<'_>,
+    value: &SharedAccountEnforcedGuardrailOutputConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.config_id {
+        let converted_2995 = (value).as_str().into_py_any(py)?;
+        result.set_item("config_id", converted_2995)?;
+    } else {
+        result.set_item("config_id", py.None())?;
+    }
+    if let Some(value) = &value.guardrail_arn {
+        let converted_2996 = (value).as_str().into_py_any(py)?;
+        result.set_item("guardrail_arn", converted_2996)?;
+    } else {
+        result.set_item("guardrail_arn", py.None())?;
+    }
+    if let Some(value) = &value.guardrail_id {
+        let converted_2997 = (value).as_str().into_py_any(py)?;
+        result.set_item("guardrail_id", converted_2997)?;
+    } else {
+        result.set_item("guardrail_id", py.None())?;
+    }
+    if let Some(value) = &value.input_tags {
+        let converted_2998 = (value).as_str().into_py_any(py)?;
+        result.set_item("input_tags", converted_2998)?;
+    } else {
+        result.set_item("input_tags", py.None())?;
+    }
+    if let Some(value) = &value.selective_content_guarding {
+        let converted_2999 = selective_content_guarding_to_py(py, value)?;
+        result.set_item("selective_content_guarding", converted_2999)?;
+    } else {
+        result.set_item("selective_content_guarding", py.None())?;
+    }
+    if let Some(value) = &value.guardrail_version {
+        let converted_3000 = (value).as_str().into_py_any(py)?;
+        result.set_item("guardrail_version", converted_3000)?;
+    } else {
+        result.set_item("guardrail_version", py.None())?;
+    }
+    if let Some(value) = &value.created_at {
+        let converted_3001 = (value).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_3001)?;
+    } else {
+        result.set_item("created_at", py.None())?;
+    }
+    if let Some(value) = &value.created_by {
+        let converted_3002 = (value).as_str().into_py_any(py)?;
+        result.set_item("created_by", converted_3002)?;
+    } else {
+        result.set_item("created_by", py.None())?;
+    }
+    if let Some(value) = &value.updated_at {
+        let converted_3003 = (value).to_string().into_py_any(py)?;
+        result.set_item("updated_at", converted_3003)?;
+    } else {
+        result.set_item("updated_at", py.None())?;
+    }
+    if let Some(value) = &value.updated_by {
+        let converted_3004 = (value).as_str().into_py_any(py)?;
+        result.set_item("updated_by", converted_3004)?;
+    } else {
+        result.set_item("updated_by", py.None())?;
+    }
+    if let Some(value) = &value.owner {
+        let converted_3005 = (value).as_str().into_py_any(py)?;
+        result.set_item("owner", converted_3005)?;
+    } else {
+        result.set_item("owner", py.None())?;
+    }
+    if let Some(value) = &value.model_enforcement {
+        let converted_3006 = model_enforcement_to_py(py, value)?;
+        result.set_item("model_enforcement", converted_3006)?;
+    } else {
+        result.set_item("model_enforcement", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "AccountEnforcedGuardrailOutputConfiguration",
     module = "rboto_bedrock._native",
     frozen
 )]
 struct PyAccountEnforcedGuardrailOutputConfiguration {
-    inner: aws_sdk_bedrock::types::AccountEnforcedGuardrailOutputConfiguration,
+    inner: Arc<SharedAccountEnforcedGuardrailOutputConfiguration>,
 }
 
 #[pymethods]
@@ -13662,7 +13779,7 @@ impl PyAccountEnforcedGuardrailOutputConfiguration {
             let converted_2987 = Py::new(
                 py,
                 PySelectiveContentGuarding {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -13738,7 +13855,7 @@ impl PyAccountEnforcedGuardrailOutputConfiguration {
             let converted_2994 = Py::new(
                 py,
                 PyModelEnforcement {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -13749,7 +13866,7 @@ impl PyAccountEnforcedGuardrailOutputConfiguration {
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        account_enforced_guardrail_output_configuration_to_py(py, &self.inner)
+        account_enforced_guardrail_output_configuration_shared_to_py(py, &self.inner)
     }
 }
 
@@ -13759,15 +13876,15 @@ impl PyAccountEnforcedGuardrailOutputConfiguration {
     frozen
 )]
 struct PyAdvancedPromptOptimizationInputConfig {
-    inner: aws_sdk_bedrock::types::AdvancedPromptOptimizationInputConfig,
+    inner: Arc<aws_sdk_bedrock::types::AdvancedPromptOptimizationInputConfig>,
 }
 
 #[pymethods]
 impl PyAdvancedPromptOptimizationInputConfig {
     #[getter]
     fn s3_uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2995 = (&self.inner.s3_uri).as_str().into_py_any(py)?;
-        Ok(converted_2995)
+        let converted_3007 = (&self.inner.s3_uri).as_str().into_py_any(py)?;
+        Ok(converted_3007)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -13781,40 +13898,40 @@ impl PyAdvancedPromptOptimizationInputConfig {
     frozen
 )]
 struct PyAdvancedPromptOptimizationJobSummary {
-    inner: aws_sdk_bedrock::types::AdvancedPromptOptimizationJobSummary,
+    inner: Arc<aws_sdk_bedrock::types::AdvancedPromptOptimizationJobSummary>,
 }
 
 #[pymethods]
 impl PyAdvancedPromptOptimizationJobSummary {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2996 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        Ok(converted_2996)
+        let converted_3008 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_3008)
     }
 
     #[getter]
     fn job_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2997 = (&self.inner.job_name).as_str().into_py_any(py)?;
-        Ok(converted_2997)
+        let converted_3009 = (&self.inner.job_name).as_str().into_py_any(py)?;
+        Ok(converted_3009)
     }
 
     #[getter]
     fn job_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2998 = (&self.inner.job_status).as_str().into_py_any(py)?;
-        Ok(converted_2998)
+        let converted_3010 = (&self.inner.job_status).as_str().into_py_any(py)?;
+        Ok(converted_3010)
     }
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2999 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        Ok(converted_2999)
+        let converted_3011 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        Ok(converted_3011)
     }
 
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_3000 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3000)
+            let converted_3012 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3012)
         } else {
             Ok(py.None())
         }
@@ -13831,15 +13948,15 @@ impl PyAdvancedPromptOptimizationJobSummary {
     frozen
 )]
 struct PyAdvancedPromptOptimizationOutputConfig {
-    inner: aws_sdk_bedrock::types::AdvancedPromptOptimizationOutputConfig,
+    inner: Arc<aws_sdk_bedrock::types::AdvancedPromptOptimizationOutputConfig>,
 }
 
 #[pymethods]
 impl PyAdvancedPromptOptimizationOutputConfig {
     #[getter]
     fn s3_uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3001 = (&self.inner.s3_uri).as_str().into_py_any(py)?;
-        Ok(converted_3001)
+        let converted_3013 = (&self.inner.s3_uri).as_str().into_py_any(py)?;
+        Ok(converted_3013)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -13853,22 +13970,22 @@ impl PyAdvancedPromptOptimizationOutputConfig {
     frozen
 )]
 struct PyAgreementAvailability {
-    inner: aws_sdk_bedrock::types::AgreementAvailability,
+    inner: Arc<aws_sdk_bedrock::types::AgreementAvailability>,
 }
 
 #[pymethods]
 impl PyAgreementAvailability {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3002 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_3002)
+        let converted_3014 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_3014)
     }
 
     #[getter]
     fn error_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_message {
-            let converted_3003 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3003)
+            let converted_3015 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3015)
         } else {
             Ok(py.None())
         }
@@ -13885,50 +14002,140 @@ impl PyAgreementAvailability {
     frozen
 )]
 struct PyAutomatedReasoningPolicyBuildWorkflowSummary {
-    inner: aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildWorkflowSummary,
+    inner: Arc<aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildWorkflowSummary>,
 }
 
 #[pymethods]
 impl PyAutomatedReasoningPolicyBuildWorkflowSummary {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3004 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        Ok(converted_3004)
+        let converted_3016 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        Ok(converted_3016)
     }
 
     #[getter]
     fn build_workflow_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3005 = (&self.inner.build_workflow_id).as_str().into_py_any(py)?;
-        Ok(converted_3005)
+        let converted_3017 = (&self.inner.build_workflow_id).as_str().into_py_any(py)?;
+        Ok(converted_3017)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3006 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_3006)
+        let converted_3018 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_3018)
     }
 
     #[getter]
     fn build_workflow_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3007 = (&self.inner.build_workflow_type).as_str().into_py_any(py)?;
-        Ok(converted_3007)
+        let converted_3019 = (&self.inner.build_workflow_type).as_str().into_py_any(py)?;
+        Ok(converted_3019)
     }
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3008 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_3008)
+        let converted_3020 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_3020)
     }
 
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3009 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        Ok(converted_3009)
+        let converted_3021 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        Ok(converted_3021)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         automated_reasoning_policy_build_workflow_summary_to_py(py, &self.inner)
     }
+}
+
+struct SharedAutomatedReasoningPolicyDefinition {
+    version: ::std::string::String,
+    types: Option<::std::vec::Vec<Arc<SharedAutomatedReasoningPolicyDefinitionType>>>,
+    rules: Option<
+        ::std::vec::Vec<Arc<aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionRule>>,
+    >,
+    variables: Option<
+        ::std::vec::Vec<Arc<aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionVariable>>,
+    >,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinition>
+    for SharedAutomatedReasoningPolicyDefinition
+{
+    fn from(value: aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinition) -> Self {
+        Self {
+            version: value.version,
+            types: value.types.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3032| {
+                        Arc::new(SharedAutomatedReasoningPolicyDefinitionType::from(
+                            owned_3032,
+                        ))
+                    })
+                    .collect()
+            }),
+            rules: value.rules.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3033| Arc::new(owned_3033))
+                    .collect()
+            }),
+            variables: value.variables.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3034| Arc::new(owned_3034))
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn automated_reasoning_policy_definition_shared_to_py(
+    py: Python<'_>,
+    value: &SharedAutomatedReasoningPolicyDefinition,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_3035 = (&value.version).as_str().into_py_any(py)?;
+    result.set_item("version", converted_3035)?;
+    if let Some(value) = &value.types {
+        let converted_3036_list = PyList::empty(py);
+        for item_3037 in value {
+            let converted_item_3038 =
+                automated_reasoning_policy_definition_type_shared_to_py(py, item_3037)?;
+            converted_3036_list.append(converted_item_3038)?;
+        }
+        let converted_3036 = converted_3036_list.into_any().unbind();
+        result.set_item("types", converted_3036)?;
+    } else {
+        result.set_item("types", py.None())?;
+    }
+    if let Some(value) = &value.rules {
+        let converted_3039_list = PyList::empty(py);
+        for item_3040 in value {
+            let converted_item_3041 =
+                automated_reasoning_policy_definition_rule_to_py(py, item_3040)?;
+            converted_3039_list.append(converted_item_3041)?;
+        }
+        let converted_3039 = converted_3039_list.into_any().unbind();
+        result.set_item("rules", converted_3039)?;
+    } else {
+        result.set_item("rules", py.None())?;
+    }
+    if let Some(value) = &value.variables {
+        let converted_3042_list = PyList::empty(py);
+        for item_3043 in value {
+            let converted_item_3044 =
+                automated_reasoning_policy_definition_variable_to_py(py, item_3043)?;
+            converted_3042_list.append(converted_item_3044)?;
+        }
+        let converted_3042 = converted_3042_list.into_any().unbind();
+        result.set_item("variables", converted_3042)?;
+    } else {
+        result.set_item("variables", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -13937,33 +14144,33 @@ impl PyAutomatedReasoningPolicyBuildWorkflowSummary {
     frozen
 )]
 struct PyAutomatedReasoningPolicyDefinition {
-    inner: aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinition,
+    inner: Arc<SharedAutomatedReasoningPolicyDefinition>,
 }
 
 #[pymethods]
 impl PyAutomatedReasoningPolicyDefinition {
     #[getter]
     fn version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3010 = (&self.inner.version).as_str().into_py_any(py)?;
-        Ok(converted_3010)
+        let converted_3022 = (&self.inner.version).as_str().into_py_any(py)?;
+        Ok(converted_3022)
     }
 
     #[getter]
     fn types(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.types {
-            let converted_3011_list = PyList::empty(py);
-            for item_3012 in value {
-                let converted_item_3013 = Py::new(
+            let converted_3023_list = PyList::empty(py);
+            for item_3024 in value {
+                let converted_item_3025 = Py::new(
                     py,
                     PyAutomatedReasoningPolicyDefinitionType {
-                        inner: (item_3012).to_owned(),
+                        inner: Arc::clone(item_3024),
                     },
                 )?
                 .into_any();
-                converted_3011_list.append(converted_item_3013)?;
+                converted_3023_list.append(converted_item_3025)?;
             }
-            let converted_3011 = converted_3011_list.into_any().unbind();
-            Ok(converted_3011)
+            let converted_3023 = converted_3023_list.into_any().unbind();
+            Ok(converted_3023)
         } else {
             Ok(py.None())
         }
@@ -13972,19 +14179,19 @@ impl PyAutomatedReasoningPolicyDefinition {
     #[getter]
     fn rules(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.rules {
-            let converted_3014_list = PyList::empty(py);
-            for item_3015 in value {
-                let converted_item_3016 = Py::new(
+            let converted_3026_list = PyList::empty(py);
+            for item_3027 in value {
+                let converted_item_3028 = Py::new(
                     py,
                     PyAutomatedReasoningPolicyDefinitionRule {
-                        inner: (item_3015).to_owned(),
+                        inner: Arc::clone(item_3027),
                     },
                 )?
                 .into_any();
-                converted_3014_list.append(converted_item_3016)?;
+                converted_3026_list.append(converted_item_3028)?;
             }
-            let converted_3014 = converted_3014_list.into_any().unbind();
-            Ok(converted_3014)
+            let converted_3026 = converted_3026_list.into_any().unbind();
+            Ok(converted_3026)
         } else {
             Ok(py.None())
         }
@@ -13993,26 +14200,26 @@ impl PyAutomatedReasoningPolicyDefinition {
     #[getter]
     fn variables(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.variables {
-            let converted_3017_list = PyList::empty(py);
-            for item_3018 in value {
-                let converted_item_3019 = Py::new(
+            let converted_3029_list = PyList::empty(py);
+            for item_3030 in value {
+                let converted_item_3031 = Py::new(
                     py,
                     PyAutomatedReasoningPolicyDefinitionVariable {
-                        inner: (item_3018).to_owned(),
+                        inner: Arc::clone(item_3030),
                     },
                 )?
                 .into_any();
-                converted_3017_list.append(converted_item_3019)?;
+                converted_3029_list.append(converted_item_3031)?;
             }
-            let converted_3017 = converted_3017_list.into_any().unbind();
-            Ok(converted_3017)
+            let converted_3029 = converted_3029_list.into_any().unbind();
+            Ok(converted_3029)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        automated_reasoning_policy_definition_to_py(py, &self.inner)
+        automated_reasoning_policy_definition_shared_to_py(py, &self.inner)
     }
 }
 
@@ -14022,28 +14229,28 @@ impl PyAutomatedReasoningPolicyDefinition {
     frozen
 )]
 struct PyAutomatedReasoningPolicyDefinitionRule {
-    inner: aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionRule,
+    inner: Arc<aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionRule>,
 }
 
 #[pymethods]
 impl PyAutomatedReasoningPolicyDefinitionRule {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3020 = (&self.inner.id).as_str().into_py_any(py)?;
-        Ok(converted_3020)
+        let converted_3045 = (&self.inner.id).as_str().into_py_any(py)?;
+        Ok(converted_3045)
     }
 
     #[getter]
     fn expression(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3021 = (&self.inner.expression).as_str().into_py_any(py)?;
-        Ok(converted_3021)
+        let converted_3046 = (&self.inner.expression).as_str().into_py_any(py)?;
+        Ok(converted_3046)
     }
 
     #[getter]
     fn alternate_expression(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.alternate_expression {
-            let converted_3022 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3022)
+            let converted_3047 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3047)
         } else {
             Ok(py.None())
         }
@@ -14054,28 +14261,75 @@ impl PyAutomatedReasoningPolicyDefinitionRule {
     }
 }
 
+struct SharedAutomatedReasoningPolicyDefinitionType {
+    name: ::std::string::String,
+    description: Option<::std::string::String>,
+    values:
+        ::std::vec::Vec<Arc<aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionTypeValue>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionType>
+    for SharedAutomatedReasoningPolicyDefinitionType
+{
+    fn from(value: aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionType) -> Self {
+        Self {
+            name: value.name,
+            description: value.description,
+            values: (value.values)
+                .into_iter()
+                .map(|owned_3053| Arc::new(owned_3053))
+                .collect(),
+        }
+    }
+}
+
+fn automated_reasoning_policy_definition_type_shared_to_py(
+    py: Python<'_>,
+    value: &SharedAutomatedReasoningPolicyDefinitionType,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_3054 = (&value.name).as_str().into_py_any(py)?;
+    result.set_item("name", converted_3054)?;
+    if let Some(value) = &value.description {
+        let converted_3055 = (value).as_str().into_py_any(py)?;
+        result.set_item("description", converted_3055)?;
+    } else {
+        result.set_item("description", py.None())?;
+    }
+    let converted_3056_list = PyList::empty(py);
+    for item_3057 in &value.values {
+        let converted_item_3058 =
+            automated_reasoning_policy_definition_type_value_to_py(py, item_3057)?;
+        converted_3056_list.append(converted_item_3058)?;
+    }
+    let converted_3056 = converted_3056_list.into_any().unbind();
+    result.set_item("values", converted_3056)?;
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "AutomatedReasoningPolicyDefinitionType",
     module = "rboto_bedrock._native",
     frozen
 )]
 struct PyAutomatedReasoningPolicyDefinitionType {
-    inner: aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionType,
+    inner: Arc<SharedAutomatedReasoningPolicyDefinitionType>,
 }
 
 #[pymethods]
 impl PyAutomatedReasoningPolicyDefinitionType {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3023 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_3023)
+        let converted_3048 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_3048)
     }
 
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_3024 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3024)
+            let converted_3049 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3049)
         } else {
             Ok(py.None())
         }
@@ -14083,23 +14337,23 @@ impl PyAutomatedReasoningPolicyDefinitionType {
 
     #[getter]
     fn values(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3025_list = PyList::empty(py);
-        for item_3026 in &self.inner.values {
-            let converted_item_3027 = Py::new(
+        let converted_3050_list = PyList::empty(py);
+        for item_3051 in &self.inner.values {
+            let converted_item_3052 = Py::new(
                 py,
                 PyAutomatedReasoningPolicyDefinitionTypeValue {
-                    inner: (item_3026).to_owned(),
+                    inner: Arc::clone(item_3051),
                 },
             )?
             .into_any();
-            converted_3025_list.append(converted_item_3027)?;
+            converted_3050_list.append(converted_item_3052)?;
         }
-        let converted_3025 = converted_3025_list.into_any().unbind();
-        Ok(converted_3025)
+        let converted_3050 = converted_3050_list.into_any().unbind();
+        Ok(converted_3050)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        automated_reasoning_policy_definition_type_to_py(py, &self.inner)
+        automated_reasoning_policy_definition_type_shared_to_py(py, &self.inner)
     }
 }
 
@@ -14109,22 +14363,22 @@ impl PyAutomatedReasoningPolicyDefinitionType {
     frozen
 )]
 struct PyAutomatedReasoningPolicyDefinitionTypeValue {
-    inner: aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionTypeValue,
+    inner: Arc<aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionTypeValue>,
 }
 
 #[pymethods]
 impl PyAutomatedReasoningPolicyDefinitionTypeValue {
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3028 = (&self.inner.value).as_str().into_py_any(py)?;
-        Ok(converted_3028)
+        let converted_3059 = (&self.inner.value).as_str().into_py_any(py)?;
+        Ok(converted_3059)
     }
 
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_3029 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3029)
+            let converted_3060 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3060)
         } else {
             Ok(py.None())
         }
@@ -14141,27 +14395,27 @@ impl PyAutomatedReasoningPolicyDefinitionTypeValue {
     frozen
 )]
 struct PyAutomatedReasoningPolicyDefinitionVariable {
-    inner: aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionVariable,
+    inner: Arc<aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionVariable>,
 }
 
 #[pymethods]
 impl PyAutomatedReasoningPolicyDefinitionVariable {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3030 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_3030)
+        let converted_3061 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_3061)
     }
 
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3031 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_3031)
+        let converted_3062 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_3062)
     }
 
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3032 = (&self.inner.description).as_str().into_py_any(py)?;
-        Ok(converted_3032)
+        let converted_3063 = (&self.inner.description).as_str().into_py_any(py)?;
+        Ok(converted_3063)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -14175,40 +14429,40 @@ impl PyAutomatedReasoningPolicyDefinitionVariable {
     frozen
 )]
 struct PyAutomatedReasoningPolicyScenario {
-    inner: aws_sdk_bedrock::types::AutomatedReasoningPolicyScenario,
+    inner: Arc<aws_sdk_bedrock::types::AutomatedReasoningPolicyScenario>,
 }
 
 #[pymethods]
 impl PyAutomatedReasoningPolicyScenario {
     #[getter]
     fn expression(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3033 = (&self.inner.expression).as_str().into_py_any(py)?;
-        Ok(converted_3033)
+        let converted_3064 = (&self.inner.expression).as_str().into_py_any(py)?;
+        Ok(converted_3064)
     }
 
     #[getter]
     fn alternate_expression(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3034 = (&self.inner.alternate_expression)
+        let converted_3065 = (&self.inner.alternate_expression)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3034)
+        Ok(converted_3065)
     }
 
     #[getter]
     fn expected_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3035 = (&self.inner.expected_result).as_str().into_py_any(py)?;
-        Ok(converted_3035)
+        let converted_3066 = (&self.inner.expected_result).as_str().into_py_any(py)?;
+        Ok(converted_3066)
     }
 
     #[getter]
     fn rule_ids(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3036_list = PyList::empty(py);
-        for item_3037 in &self.inner.rule_ids {
-            let converted_item_3038 = (item_3037).as_str().into_py_any(py)?;
-            converted_3036_list.append(converted_item_3038)?;
+        let converted_3067_list = PyList::empty(py);
+        for item_3068 in &self.inner.rule_ids {
+            let converted_item_3069 = (item_3068).as_str().into_py_any(py)?;
+            converted_3067_list.append(converted_item_3069)?;
         }
-        let converted_3036 = converted_3036_list.into_any().unbind();
-        Ok(converted_3036)
+        let converted_3067 = converted_3067_list.into_any().unbind();
+        Ok(converted_3067)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -14222,28 +14476,28 @@ impl PyAutomatedReasoningPolicyScenario {
     frozen
 )]
 struct PyAutomatedReasoningPolicySummary {
-    inner: aws_sdk_bedrock::types::AutomatedReasoningPolicySummary,
+    inner: Arc<aws_sdk_bedrock::types::AutomatedReasoningPolicySummary>,
 }
 
 #[pymethods]
 impl PyAutomatedReasoningPolicySummary {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3039 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        Ok(converted_3039)
+        let converted_3070 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        Ok(converted_3070)
     }
 
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3040 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_3040)
+        let converted_3071 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_3071)
     }
 
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_3041 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3041)
+            let converted_3072 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3072)
         } else {
             Ok(py.None())
         }
@@ -14251,26 +14505,26 @@ impl PyAutomatedReasoningPolicySummary {
 
     #[getter]
     fn version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3042 = (&self.inner.version).as_str().into_py_any(py)?;
-        Ok(converted_3042)
+        let converted_3073 = (&self.inner.version).as_str().into_py_any(py)?;
+        Ok(converted_3073)
     }
 
     #[getter]
     fn policy_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3043 = (&self.inner.policy_id).as_str().into_py_any(py)?;
-        Ok(converted_3043)
+        let converted_3074 = (&self.inner.policy_id).as_str().into_py_any(py)?;
+        Ok(converted_3074)
     }
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3044 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_3044)
+        let converted_3075 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_3075)
     }
 
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3045 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        Ok(converted_3045)
+        let converted_3076 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        Ok(converted_3076)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -14284,28 +14538,28 @@ impl PyAutomatedReasoningPolicySummary {
     frozen
 )]
 struct PyAutomatedReasoningPolicyTestCase {
-    inner: aws_sdk_bedrock::types::AutomatedReasoningPolicyTestCase,
+    inner: Arc<aws_sdk_bedrock::types::AutomatedReasoningPolicyTestCase>,
 }
 
 #[pymethods]
 impl PyAutomatedReasoningPolicyTestCase {
     #[getter]
     fn test_case_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3046 = (&self.inner.test_case_id).as_str().into_py_any(py)?;
-        Ok(converted_3046)
+        let converted_3077 = (&self.inner.test_case_id).as_str().into_py_any(py)?;
+        Ok(converted_3077)
     }
 
     #[getter]
     fn guard_content(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3047 = (&self.inner.guard_content).as_str().into_py_any(py)?;
-        Ok(converted_3047)
+        let converted_3078 = (&self.inner.guard_content).as_str().into_py_any(py)?;
+        Ok(converted_3078)
     }
 
     #[getter]
     fn query_content(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_content {
-            let converted_3048 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3048)
+            let converted_3079 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3079)
         } else {
             Ok(py.None())
         }
@@ -14314,8 +14568,8 @@ impl PyAutomatedReasoningPolicyTestCase {
     #[getter]
     fn expected_aggregated_findings_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.expected_aggregated_findings_result {
-            let converted_3049 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3049)
+            let converted_3080 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3080)
         } else {
             Ok(py.None())
         }
@@ -14323,21 +14577,21 @@ impl PyAutomatedReasoningPolicyTestCase {
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3050 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_3050)
+        let converted_3081 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_3081)
     }
 
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3051 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        Ok(converted_3051)
+        let converted_3082 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        Ok(converted_3082)
     }
 
     #[getter]
     fn confidence_threshold(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.confidence_threshold {
-            let converted_3052 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3052)
+            let converted_3083 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3083)
         } else {
             Ok(py.None())
         }
@@ -14348,13 +14602,83 @@ impl PyAutomatedReasoningPolicyTestCase {
     }
 }
 
+struct SharedAutomatedReasoningPolicyTestResult {
+    test_case: Option<Arc<aws_sdk_bedrock::types::AutomatedReasoningPolicyTestCase>>,
+    policy_arn: ::std::string::String,
+    test_run_status: aws_sdk_bedrock::types::AutomatedReasoningPolicyTestRunStatus,
+    test_findings: Option<::std::vec::Vec<aws_sdk_bedrock::types::AutomatedReasoningCheckFinding>>,
+    test_run_result: Option<aws_sdk_bedrock::types::AutomatedReasoningPolicyTestRunResult>,
+    aggregated_test_findings_result: Option<aws_sdk_bedrock::types::AutomatedReasoningCheckResult>,
+    updated_at: ::aws_smithy_types::DateTime,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::AutomatedReasoningPolicyTestResult>
+    for SharedAutomatedReasoningPolicyTestResult
+{
+    fn from(value: aws_sdk_bedrock::types::AutomatedReasoningPolicyTestResult) -> Self {
+        Self {
+            test_case: value.test_case.map(|item| Arc::new(item)),
+            policy_arn: value.policy_arn,
+            test_run_status: value.test_run_status,
+            test_findings: value.test_findings,
+            test_run_result: value.test_run_result,
+            aggregated_test_findings_result: value.aggregated_test_findings_result,
+            updated_at: value.updated_at,
+        }
+    }
+}
+
+fn automated_reasoning_policy_test_result_shared_to_py(
+    py: Python<'_>,
+    value: &SharedAutomatedReasoningPolicyTestResult,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.test_case {
+        let converted_3093 = automated_reasoning_policy_test_case_to_py(py, value)?;
+        result.set_item("test_case", converted_3093)?;
+    } else {
+        result.set_item("test_case", py.None())?;
+    }
+    let converted_3094 = (&value.policy_arn).as_str().into_py_any(py)?;
+    result.set_item("policy_arn", converted_3094)?;
+    let converted_3095 = (&value.test_run_status).as_str().into_py_any(py)?;
+    result.set_item("test_run_status", converted_3095)?;
+    if let Some(value) = &value.test_findings {
+        let converted_3096_list = PyList::empty(py);
+        for item_3097 in value {
+            let converted_item_3098 = automated_reasoning_check_finding_to_py(py, item_3097)?;
+            converted_3096_list.append(converted_item_3098)?;
+        }
+        let converted_3096 = converted_3096_list.into_any().unbind();
+        result.set_item("test_findings", converted_3096)?;
+    } else {
+        result.set_item("test_findings", py.None())?;
+    }
+    if let Some(value) = &value.test_run_result {
+        let converted_3099 = (value).as_str().into_py_any(py)?;
+        result.set_item("test_run_result", converted_3099)?;
+    } else {
+        result.set_item("test_run_result", py.None())?;
+    }
+    if let Some(value) = &value.aggregated_test_findings_result {
+        let converted_3100 = (value).as_str().into_py_any(py)?;
+        result.set_item("aggregated_test_findings_result", converted_3100)?;
+    } else {
+        result.set_item("aggregated_test_findings_result", py.None())?;
+    }
+    let converted_3101 = (&value.updated_at).to_string().into_py_any(py)?;
+    result.set_item("updated_at", converted_3101)?;
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "AutomatedReasoningPolicyTestResult",
     module = "rboto_bedrock._native",
     frozen
 )]
 struct PyAutomatedReasoningPolicyTestResult {
-    inner: aws_sdk_bedrock::types::AutomatedReasoningPolicyTestResult,
+    inner: Arc<SharedAutomatedReasoningPolicyTestResult>,
 }
 
 #[pymethods]
@@ -14362,14 +14686,14 @@ impl PyAutomatedReasoningPolicyTestResult {
     #[getter]
     fn test_case(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.test_case {
-            let converted_3053 = Py::new(
+            let converted_3084 = Py::new(
                 py,
                 PyAutomatedReasoningPolicyTestCase {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3053)
+            Ok(converted_3084)
         } else {
             Ok(py.None())
         }
@@ -14377,26 +14701,26 @@ impl PyAutomatedReasoningPolicyTestResult {
 
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3054 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        Ok(converted_3054)
+        let converted_3085 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        Ok(converted_3085)
     }
 
     #[getter]
     fn test_run_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3055 = (&self.inner.test_run_status).as_str().into_py_any(py)?;
-        Ok(converted_3055)
+        let converted_3086 = (&self.inner.test_run_status).as_str().into_py_any(py)?;
+        Ok(converted_3086)
     }
 
     #[getter]
     fn test_findings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.test_findings {
-            let converted_3056_list = PyList::empty(py);
-            for item_3057 in value {
-                let converted_item_3058 = automated_reasoning_check_finding_to_py(py, item_3057)?;
-                converted_3056_list.append(converted_item_3058)?;
+            let converted_3087_list = PyList::empty(py);
+            for item_3088 in value {
+                let converted_item_3089 = automated_reasoning_check_finding_to_py(py, item_3088)?;
+                converted_3087_list.append(converted_item_3089)?;
             }
-            let converted_3056 = converted_3056_list.into_any().unbind();
-            Ok(converted_3056)
+            let converted_3087 = converted_3087_list.into_any().unbind();
+            Ok(converted_3087)
         } else {
             Ok(py.None())
         }
@@ -14405,8 +14729,8 @@ impl PyAutomatedReasoningPolicyTestResult {
     #[getter]
     fn test_run_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.test_run_result {
-            let converted_3059 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3059)
+            let converted_3090 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3090)
         } else {
             Ok(py.None())
         }
@@ -14415,8 +14739,8 @@ impl PyAutomatedReasoningPolicyTestResult {
     #[getter]
     fn aggregated_test_findings_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.aggregated_test_findings_result {
-            let converted_3060 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3060)
+            let converted_3091 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3091)
         } else {
             Ok(py.None())
         }
@@ -14424,12 +14748,12 @@ impl PyAutomatedReasoningPolicyTestResult {
 
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3061 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        Ok(converted_3061)
+        let converted_3092 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        Ok(converted_3092)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        automated_reasoning_policy_test_result_to_py(py, &self.inner)
+        automated_reasoning_policy_test_result_shared_to_py(py, &self.inner)
     }
 }
 
@@ -14439,28 +14763,28 @@ impl PyAutomatedReasoningPolicyTestResult {
     frozen
 )]
 struct PyBatchDeleteAdvancedPromptOptimizationJobError {
-    inner: aws_sdk_bedrock::types::BatchDeleteAdvancedPromptOptimizationJobError,
+    inner: Arc<aws_sdk_bedrock::types::BatchDeleteAdvancedPromptOptimizationJobError>,
 }
 
 #[pymethods]
 impl PyBatchDeleteAdvancedPromptOptimizationJobError {
     #[getter]
     fn job_identifier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3062 = (&self.inner.job_identifier).as_str().into_py_any(py)?;
-        Ok(converted_3062)
+        let converted_3102 = (&self.inner.job_identifier).as_str().into_py_any(py)?;
+        Ok(converted_3102)
     }
 
     #[getter]
     fn code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3063 = (&self.inner.code).as_str().into_py_any(py)?;
-        Ok(converted_3063)
+        let converted_3103 = (&self.inner.code).as_str().into_py_any(py)?;
+        Ok(converted_3103)
     }
 
     #[getter]
     fn message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.message {
-            let converted_3064 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3064)
+            let converted_3104 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3104)
         } else {
             Ok(py.None())
         }
@@ -14477,21 +14801,21 @@ impl PyBatchDeleteAdvancedPromptOptimizationJobError {
     frozen
 )]
 struct PyBatchDeleteAdvancedPromptOptimizationJobItem {
-    inner: aws_sdk_bedrock::types::BatchDeleteAdvancedPromptOptimizationJobItem,
+    inner: Arc<aws_sdk_bedrock::types::BatchDeleteAdvancedPromptOptimizationJobItem>,
 }
 
 #[pymethods]
 impl PyBatchDeleteAdvancedPromptOptimizationJobItem {
     #[getter]
     fn job_identifier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3065 = (&self.inner.job_identifier).as_str().into_py_any(py)?;
-        Ok(converted_3065)
+        let converted_3105 = (&self.inner.job_identifier).as_str().into_py_any(py)?;
+        Ok(converted_3105)
     }
 
     #[getter]
     fn job_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3066 = (&self.inner.job_status).as_str().into_py_any(py)?;
-        Ok(converted_3066)
+        let converted_3106 = (&self.inner.job_status).as_str().into_py_any(py)?;
+        Ok(converted_3106)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -14505,28 +14829,28 @@ impl PyBatchDeleteAdvancedPromptOptimizationJobItem {
     frozen
 )]
 struct PyBatchDeleteEvaluationJobError {
-    inner: aws_sdk_bedrock::types::BatchDeleteEvaluationJobError,
+    inner: Arc<aws_sdk_bedrock::types::BatchDeleteEvaluationJobError>,
 }
 
 #[pymethods]
 impl PyBatchDeleteEvaluationJobError {
     #[getter]
     fn job_identifier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3067 = (&self.inner.job_identifier).as_str().into_py_any(py)?;
-        Ok(converted_3067)
+        let converted_3107 = (&self.inner.job_identifier).as_str().into_py_any(py)?;
+        Ok(converted_3107)
     }
 
     #[getter]
     fn code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3068 = (&self.inner.code).as_str().into_py_any(py)?;
-        Ok(converted_3068)
+        let converted_3108 = (&self.inner.code).as_str().into_py_any(py)?;
+        Ok(converted_3108)
     }
 
     #[getter]
     fn message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.message {
-            let converted_3069 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3069)
+            let converted_3109 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3109)
         } else {
             Ok(py.None())
         }
@@ -14543,21 +14867,21 @@ impl PyBatchDeleteEvaluationJobError {
     frozen
 )]
 struct PyBatchDeleteEvaluationJobItem {
-    inner: aws_sdk_bedrock::types::BatchDeleteEvaluationJobItem,
+    inner: Arc<aws_sdk_bedrock::types::BatchDeleteEvaluationJobItem>,
 }
 
 #[pymethods]
 impl PyBatchDeleteEvaluationJobItem {
     #[getter]
     fn job_identifier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3070 = (&self.inner.job_identifier).as_str().into_py_any(py)?;
-        Ok(converted_3070)
+        let converted_3110 = (&self.inner.job_identifier).as_str().into_py_any(py)?;
+        Ok(converted_3110)
     }
 
     #[getter]
     fn job_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3071 = (&self.inner.job_status).as_str().into_py_any(py)?;
-        Ok(converted_3071)
+        let converted_3111 = (&self.inner.job_status).as_str().into_py_any(py)?;
+        Ok(converted_3111)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -14565,43 +14889,80 @@ impl PyBatchDeleteEvaluationJobItem {
     }
 }
 
+struct SharedCloudWatchConfig {
+    log_group_name: ::std::string::String,
+    role_arn: ::std::string::String,
+    large_data_delivery_s3_config: Option<Arc<aws_sdk_bedrock::types::S3Config>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::CloudWatchConfig> for SharedCloudWatchConfig {
+    fn from(value: aws_sdk_bedrock::types::CloudWatchConfig) -> Self {
+        Self {
+            log_group_name: value.log_group_name,
+            role_arn: value.role_arn,
+            large_data_delivery_s3_config: value
+                .large_data_delivery_s3_config
+                .map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn cloud_watch_config_shared_to_py(
+    py: Python<'_>,
+    value: &SharedCloudWatchConfig,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_3115 = (&value.log_group_name).as_str().into_py_any(py)?;
+    result.set_item("log_group_name", converted_3115)?;
+    let converted_3116 = (&value.role_arn).as_str().into_py_any(py)?;
+    result.set_item("role_arn", converted_3116)?;
+    if let Some(value) = &value.large_data_delivery_s3_config {
+        let converted_3117 = s3_config_to_py(py, value)?;
+        result.set_item("large_data_delivery_s3_config", converted_3117)?;
+    } else {
+        result.set_item("large_data_delivery_s3_config", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "CloudWatchConfig", module = "rboto_bedrock._native", frozen)]
 struct PyCloudWatchConfig {
-    inner: aws_sdk_bedrock::types::CloudWatchConfig,
+    inner: Arc<SharedCloudWatchConfig>,
 }
 
 #[pymethods]
 impl PyCloudWatchConfig {
     #[getter]
     fn log_group_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3072 = (&self.inner.log_group_name).as_str().into_py_any(py)?;
-        Ok(converted_3072)
+        let converted_3112 = (&self.inner.log_group_name).as_str().into_py_any(py)?;
+        Ok(converted_3112)
     }
 
     #[getter]
     fn role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3073 = (&self.inner.role_arn).as_str().into_py_any(py)?;
-        Ok(converted_3073)
+        let converted_3113 = (&self.inner.role_arn).as_str().into_py_any(py)?;
+        Ok(converted_3113)
     }
 
     #[getter]
     fn large_data_delivery_s3_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.large_data_delivery_s3_config {
-            let converted_3074 = Py::new(
+            let converted_3114 = Py::new(
                 py,
                 PyS3Config {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3074)
+            Ok(converted_3114)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        cloud_watch_config_to_py(py, &self.inner)
+        cloud_watch_config_shared_to_py(py, &self.inner)
     }
 }
 
@@ -14611,50 +14972,50 @@ impl PyCloudWatchConfig {
     frozen
 )]
 struct PyCustomModelDeploymentSummary {
-    inner: aws_sdk_bedrock::types::CustomModelDeploymentSummary,
+    inner: Arc<aws_sdk_bedrock::types::CustomModelDeploymentSummary>,
 }
 
 #[pymethods]
 impl PyCustomModelDeploymentSummary {
     #[getter]
     fn custom_model_deployment_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3075 = (&self.inner.custom_model_deployment_arn)
+        let converted_3118 = (&self.inner.custom_model_deployment_arn)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3075)
+        Ok(converted_3118)
     }
 
     #[getter]
     fn custom_model_deployment_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3076 = (&self.inner.custom_model_deployment_name)
+        let converted_3119 = (&self.inner.custom_model_deployment_name)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3076)
+        Ok(converted_3119)
     }
 
     #[getter]
     fn model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3077 = (&self.inner.model_arn).as_str().into_py_any(py)?;
-        Ok(converted_3077)
+        let converted_3120 = (&self.inner.model_arn).as_str().into_py_any(py)?;
+        Ok(converted_3120)
     }
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3078 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_3078)
+        let converted_3121 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_3121)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3079 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_3079)
+        let converted_3122 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_3122)
     }
 
     #[getter]
     fn last_updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_updated_at {
-            let converted_3080 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3080)
+            let converted_3123 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3123)
         } else {
             Ok(py.None())
         }
@@ -14663,8 +15024,8 @@ impl PyCustomModelDeploymentSummary {
     #[getter]
     fn failure_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failure_message {
-            let converted_3081 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3081)
+            let converted_3124 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3124)
         } else {
             Ok(py.None())
         }
@@ -14681,21 +15042,21 @@ impl PyCustomModelDeploymentSummary {
     frozen
 )]
 struct PyCustomModelDeploymentUpdateDetails {
-    inner: aws_sdk_bedrock::types::CustomModelDeploymentUpdateDetails,
+    inner: Arc<aws_sdk_bedrock::types::CustomModelDeploymentUpdateDetails>,
 }
 
 #[pymethods]
 impl PyCustomModelDeploymentUpdateDetails {
     #[getter]
     fn model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3082 = (&self.inner.model_arn).as_str().into_py_any(py)?;
-        Ok(converted_3082)
+        let converted_3125 = (&self.inner.model_arn).as_str().into_py_any(py)?;
+        Ok(converted_3125)
     }
 
     #[getter]
     fn update_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3083 = (&self.inner.update_status).as_str().into_py_any(py)?;
-        Ok(converted_3083)
+        let converted_3126 = (&self.inner.update_status).as_str().into_py_any(py)?;
+        Ok(converted_3126)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -14705,46 +15066,46 @@ impl PyCustomModelDeploymentUpdateDetails {
 
 #[pyclass(name = "CustomModelSummary", module = "rboto_bedrock._native", frozen)]
 struct PyCustomModelSummary {
-    inner: aws_sdk_bedrock::types::CustomModelSummary,
+    inner: Arc<aws_sdk_bedrock::types::CustomModelSummary>,
 }
 
 #[pymethods]
 impl PyCustomModelSummary {
     #[getter]
     fn model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3084 = (&self.inner.model_arn).as_str().into_py_any(py)?;
-        Ok(converted_3084)
+        let converted_3127 = (&self.inner.model_arn).as_str().into_py_any(py)?;
+        Ok(converted_3127)
     }
 
     #[getter]
     fn model_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3085 = (&self.inner.model_name).as_str().into_py_any(py)?;
-        Ok(converted_3085)
+        let converted_3128 = (&self.inner.model_name).as_str().into_py_any(py)?;
+        Ok(converted_3128)
     }
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3086 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        Ok(converted_3086)
+        let converted_3129 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        Ok(converted_3129)
     }
 
     #[getter]
     fn base_model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3087 = (&self.inner.base_model_arn).as_str().into_py_any(py)?;
-        Ok(converted_3087)
+        let converted_3130 = (&self.inner.base_model_arn).as_str().into_py_any(py)?;
+        Ok(converted_3130)
     }
 
     #[getter]
     fn base_model_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3088 = (&self.inner.base_model_name).as_str().into_py_any(py)?;
-        Ok(converted_3088)
+        let converted_3131 = (&self.inner.base_model_name).as_str().into_py_any(py)?;
+        Ok(converted_3131)
     }
 
     #[getter]
     fn customization_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.customization_type {
-            let converted_3089 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3089)
+            let converted_3132 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3132)
         } else {
             Ok(py.None())
         }
@@ -14753,8 +15114,8 @@ impl PyCustomModelSummary {
     #[getter]
     fn owner_account_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.owner_account_id {
-            let converted_3090 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3090)
+            let converted_3133 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3133)
         } else {
             Ok(py.None())
         }
@@ -14763,8 +15124,8 @@ impl PyCustomModelSummary {
     #[getter]
     fn model_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_status {
-            let converted_3091 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3091)
+            let converted_3134 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3134)
         } else {
             Ok(py.None())
         }
@@ -14777,7 +15138,7 @@ impl PyCustomModelSummary {
 
 #[pyclass(name = "CustomModelUnits", module = "rboto_bedrock._native", frozen)]
 struct PyCustomModelUnits {
-    inner: aws_sdk_bedrock::types::CustomModelUnits,
+    inner: Arc<aws_sdk_bedrock::types::CustomModelUnits>,
 }
 
 #[pymethods]
@@ -14785,8 +15146,8 @@ impl PyCustomModelUnits {
     #[getter]
     fn custom_model_units_per_model_copy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.custom_model_units_per_model_copy {
-            let converted_3092 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3092)
+            let converted_3135 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3135)
         } else {
             Ok(py.None())
         }
@@ -14795,8 +15156,8 @@ impl PyCustomModelUnits {
     #[getter]
     fn custom_model_units_version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.custom_model_units_version {
-            let converted_3093 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3093)
+            let converted_3136 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3136)
         } else {
             Ok(py.None())
         }
@@ -14813,7 +15174,7 @@ impl PyCustomModelUnits {
     frozen
 )]
 struct PyDataProcessingDetails {
-    inner: aws_sdk_bedrock::types::DataProcessingDetails,
+    inner: Arc<aws_sdk_bedrock::types::DataProcessingDetails>,
 }
 
 #[pymethods]
@@ -14821,8 +15182,8 @@ impl PyDataProcessingDetails {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_3094 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3094)
+            let converted_3137 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3137)
         } else {
             Ok(py.None())
         }
@@ -14831,8 +15192,8 @@ impl PyDataProcessingDetails {
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_time {
-            let converted_3095 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3095)
+            let converted_3138 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3138)
         } else {
             Ok(py.None())
         }
@@ -14841,8 +15202,8 @@ impl PyDataProcessingDetails {
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_3096 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3096)
+            let converted_3139 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3139)
         } else {
             Ok(py.None())
         }
@@ -14859,7 +15220,7 @@ impl PyDataProcessingDetails {
     frozen
 )]
 struct PyDimensionalPriceRate {
-    inner: aws_sdk_bedrock::types::DimensionalPriceRate,
+    inner: Arc<aws_sdk_bedrock::types::DimensionalPriceRate>,
 }
 
 #[pymethods]
@@ -14867,8 +15228,8 @@ impl PyDimensionalPriceRate {
     #[getter]
     fn dimension(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dimension {
-            let converted_3097 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3097)
+            let converted_3140 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3140)
         } else {
             Ok(py.None())
         }
@@ -14877,8 +15238,8 @@ impl PyDimensionalPriceRate {
     #[getter]
     fn price(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.price {
-            let converted_3098 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3098)
+            let converted_3141 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3141)
         } else {
             Ok(py.None())
         }
@@ -14887,8 +15248,8 @@ impl PyDimensionalPriceRate {
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_3099 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3099)
+            let converted_3142 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3142)
         } else {
             Ok(py.None())
         }
@@ -14897,8 +15258,8 @@ impl PyDimensionalPriceRate {
     #[getter]
     fn unit(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.unit {
-            let converted_3100 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3100)
+            let converted_3143 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3143)
         } else {
             Ok(py.None())
         }
@@ -14909,13 +15270,50 @@ impl PyDimensionalPriceRate {
     }
 }
 
+struct SharedEvaluationInferenceConfigSummary {
+    model_config_summary: Option<Arc<aws_sdk_bedrock::types::EvaluationModelConfigSummary>>,
+    rag_config_summary: Option<Arc<aws_sdk_bedrock::types::EvaluationRagConfigSummary>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::EvaluationInferenceConfigSummary>
+    for SharedEvaluationInferenceConfigSummary
+{
+    fn from(value: aws_sdk_bedrock::types::EvaluationInferenceConfigSummary) -> Self {
+        Self {
+            model_config_summary: value.model_config_summary.map(|item| Arc::new(item)),
+            rag_config_summary: value.rag_config_summary.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn evaluation_inference_config_summary_shared_to_py(
+    py: Python<'_>,
+    value: &SharedEvaluationInferenceConfigSummary,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.model_config_summary {
+        let converted_3146 = evaluation_model_config_summary_to_py(py, value)?;
+        result.set_item("model_config_summary", converted_3146)?;
+    } else {
+        result.set_item("model_config_summary", py.None())?;
+    }
+    if let Some(value) = &value.rag_config_summary {
+        let converted_3147 = evaluation_rag_config_summary_to_py(py, value)?;
+        result.set_item("rag_config_summary", converted_3147)?;
+    } else {
+        result.set_item("rag_config_summary", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "EvaluationInferenceConfigSummary",
     module = "rboto_bedrock._native",
     frozen
 )]
 struct PyEvaluationInferenceConfigSummary {
-    inner: aws_sdk_bedrock::types::EvaluationInferenceConfigSummary,
+    inner: Arc<SharedEvaluationInferenceConfigSummary>,
 }
 
 #[pymethods]
@@ -14923,14 +15321,14 @@ impl PyEvaluationInferenceConfigSummary {
     #[getter]
     fn model_config_summary(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_config_summary {
-            let converted_3101 = Py::new(
+            let converted_3144 = Py::new(
                 py,
                 PyEvaluationModelConfigSummary {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3101)
+            Ok(converted_3144)
         } else {
             Ok(py.None())
         }
@@ -14939,21 +15337,21 @@ impl PyEvaluationInferenceConfigSummary {
     #[getter]
     fn rag_config_summary(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.rag_config_summary {
-            let converted_3102 = Py::new(
+            let converted_3145 = Py::new(
                 py,
                 PyEvaluationRagConfigSummary {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3102)
+            Ok(converted_3145)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        evaluation_inference_config_summary_to_py(py, &self.inner)
+        evaluation_inference_config_summary_shared_to_py(py, &self.inner)
     }
 }
 
@@ -14963,7 +15361,7 @@ impl PyEvaluationInferenceConfigSummary {
     frozen
 )]
 struct PyEvaluationModelConfigSummary {
-    inner: aws_sdk_bedrock::types::EvaluationModelConfigSummary,
+    inner: Arc<aws_sdk_bedrock::types::EvaluationModelConfigSummary>,
 }
 
 #[pymethods]
@@ -14971,13 +15369,13 @@ impl PyEvaluationModelConfigSummary {
     #[getter]
     fn bedrock_model_identifiers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.bedrock_model_identifiers {
-            let converted_3103_list = PyList::empty(py);
-            for item_3104 in value {
-                let converted_item_3105 = (item_3104).as_str().into_py_any(py)?;
-                converted_3103_list.append(converted_item_3105)?;
+            let converted_3148_list = PyList::empty(py);
+            for item_3149 in value {
+                let converted_item_3150 = (item_3149).as_str().into_py_any(py)?;
+                converted_3148_list.append(converted_item_3150)?;
             }
-            let converted_3103 = converted_3103_list.into_any().unbind();
-            Ok(converted_3103)
+            let converted_3148 = converted_3148_list.into_any().unbind();
+            Ok(converted_3148)
         } else {
             Ok(py.None())
         }
@@ -14986,13 +15384,13 @@ impl PyEvaluationModelConfigSummary {
     #[getter]
     fn precomputed_inference_source_identifiers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.precomputed_inference_source_identifiers {
-            let converted_3106_list = PyList::empty(py);
-            for item_3107 in value {
-                let converted_item_3108 = (item_3107).as_str().into_py_any(py)?;
-                converted_3106_list.append(converted_item_3108)?;
+            let converted_3151_list = PyList::empty(py);
+            for item_3152 in value {
+                let converted_item_3153 = (item_3152).as_str().into_py_any(py)?;
+                converted_3151_list.append(converted_item_3153)?;
             }
-            let converted_3106 = converted_3106_list.into_any().unbind();
-            Ok(converted_3106)
+            let converted_3151 = converted_3151_list.into_any().unbind();
+            Ok(converted_3151)
         } else {
             Ok(py.None())
         }
@@ -15009,15 +15407,15 @@ impl PyEvaluationModelConfigSummary {
     frozen
 )]
 struct PyEvaluationOutputDataConfig {
-    inner: aws_sdk_bedrock::types::EvaluationOutputDataConfig,
+    inner: Arc<aws_sdk_bedrock::types::EvaluationOutputDataConfig>,
 }
 
 #[pymethods]
 impl PyEvaluationOutputDataConfig {
     #[getter]
     fn s3_uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3109 = (&self.inner.s3_uri).as_str().into_py_any(py)?;
-        Ok(converted_3109)
+        let converted_3154 = (&self.inner.s3_uri).as_str().into_py_any(py)?;
+        Ok(converted_3154)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -15031,7 +15429,7 @@ impl PyEvaluationOutputDataConfig {
     frozen
 )]
 struct PyEvaluationRagConfigSummary {
-    inner: aws_sdk_bedrock::types::EvaluationRagConfigSummary,
+    inner: Arc<aws_sdk_bedrock::types::EvaluationRagConfigSummary>,
 }
 
 #[pymethods]
@@ -15039,13 +15437,13 @@ impl PyEvaluationRagConfigSummary {
     #[getter]
     fn bedrock_knowledge_base_identifiers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.bedrock_knowledge_base_identifiers {
-            let converted_3110_list = PyList::empty(py);
-            for item_3111 in value {
-                let converted_item_3112 = (item_3111).as_str().into_py_any(py)?;
-                converted_3110_list.append(converted_item_3112)?;
+            let converted_3155_list = PyList::empty(py);
+            for item_3156 in value {
+                let converted_item_3157 = (item_3156).as_str().into_py_any(py)?;
+                converted_3155_list.append(converted_item_3157)?;
             }
-            let converted_3110 = converted_3110_list.into_any().unbind();
-            Ok(converted_3110)
+            let converted_3155 = converted_3155_list.into_any().unbind();
+            Ok(converted_3155)
         } else {
             Ok(py.None())
         }
@@ -15054,13 +15452,13 @@ impl PyEvaluationRagConfigSummary {
     #[getter]
     fn precomputed_rag_source_identifiers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.precomputed_rag_source_identifiers {
-            let converted_3113_list = PyList::empty(py);
-            for item_3114 in value {
-                let converted_item_3115 = (item_3114).as_str().into_py_any(py)?;
-                converted_3113_list.append(converted_item_3115)?;
+            let converted_3158_list = PyList::empty(py);
+            for item_3159 in value {
+                let converted_item_3160 = (item_3159).as_str().into_py_any(py)?;
+                converted_3158_list.append(converted_item_3160)?;
             }
-            let converted_3113 = converted_3113_list.into_any().unbind();
-            Ok(converted_3113)
+            let converted_3158 = converted_3158_list.into_any().unbind();
+            Ok(converted_3158)
         } else {
             Ok(py.None())
         }
@@ -15071,423 +15469,183 @@ impl PyEvaluationRagConfigSummary {
     }
 }
 
+struct SharedEvaluationSummary {
+    job_arn: ::std::string::String,
+    job_name: ::std::string::String,
+    status: aws_sdk_bedrock::types::EvaluationJobStatus,
+    creation_time: ::aws_smithy_types::DateTime,
+    job_type: aws_sdk_bedrock::types::EvaluationJobType,
+    evaluation_task_types: ::std::vec::Vec<aws_sdk_bedrock::types::EvaluationTaskType>,
+    model_identifiers: ::std::vec::Vec<::std::string::String>,
+    rag_identifiers: Option<::std::vec::Vec<::std::string::String>>,
+    evaluator_model_identifiers: Option<::std::vec::Vec<::std::string::String>>,
+    custom_metrics_evaluator_model_identifiers: Option<::std::vec::Vec<::std::string::String>>,
+    inference_config_summary: Option<Arc<SharedEvaluationInferenceConfigSummary>>,
+    application_type: Option<aws_sdk_bedrock::types::ApplicationType>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::EvaluationSummary> for SharedEvaluationSummary {
+    fn from(value: aws_sdk_bedrock::types::EvaluationSummary) -> Self {
+        Self {
+            job_arn: value.job_arn,
+            job_name: value.job_name,
+            status: value.status,
+            creation_time: value.creation_time,
+            job_type: value.job_type,
+            evaluation_task_types: value.evaluation_task_types,
+            model_identifiers: value.model_identifiers,
+            rag_identifiers: value.rag_identifiers,
+            evaluator_model_identifiers: value.evaluator_model_identifiers,
+            custom_metrics_evaluator_model_identifiers: value
+                .custom_metrics_evaluator_model_identifiers,
+            inference_config_summary: value
+                .inference_config_summary
+                .map(|item| Arc::new(SharedEvaluationInferenceConfigSummary::from(item))),
+            application_type: value.application_type,
+        }
+    }
+}
+
+fn evaluation_summary_shared_to_py(
+    py: Python<'_>,
+    value: &SharedEvaluationSummary,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_3183 = (&value.job_arn).as_str().into_py_any(py)?;
+    result.set_item("job_arn", converted_3183)?;
+    let converted_3184 = (&value.job_name).as_str().into_py_any(py)?;
+    result.set_item("job_name", converted_3184)?;
+    let converted_3185 = (&value.status).as_str().into_py_any(py)?;
+    result.set_item("status", converted_3185)?;
+    let converted_3186 = (&value.creation_time).to_string().into_py_any(py)?;
+    result.set_item("creation_time", converted_3186)?;
+    let converted_3187 = (&value.job_type).as_str().into_py_any(py)?;
+    result.set_item("job_type", converted_3187)?;
+    let converted_3188_list = PyList::empty(py);
+    for item_3189 in &value.evaluation_task_types {
+        let converted_item_3190 = (item_3189).as_str().into_py_any(py)?;
+        converted_3188_list.append(converted_item_3190)?;
+    }
+    let converted_3188 = converted_3188_list.into_any().unbind();
+    result.set_item("evaluation_task_types", converted_3188)?;
+    let converted_3191_list = PyList::empty(py);
+    for item_3192 in &value.model_identifiers {
+        let converted_item_3193 = (item_3192).as_str().into_py_any(py)?;
+        converted_3191_list.append(converted_item_3193)?;
+    }
+    let converted_3191 = converted_3191_list.into_any().unbind();
+    result.set_item("model_identifiers", converted_3191)?;
+    if let Some(value) = &value.rag_identifiers {
+        let converted_3194_list = PyList::empty(py);
+        for item_3195 in value {
+            let converted_item_3196 = (item_3195).as_str().into_py_any(py)?;
+            converted_3194_list.append(converted_item_3196)?;
+        }
+        let converted_3194 = converted_3194_list.into_any().unbind();
+        result.set_item("rag_identifiers", converted_3194)?;
+    } else {
+        result.set_item("rag_identifiers", py.None())?;
+    }
+    if let Some(value) = &value.evaluator_model_identifiers {
+        let converted_3197_list = PyList::empty(py);
+        for item_3198 in value {
+            let converted_item_3199 = (item_3198).as_str().into_py_any(py)?;
+            converted_3197_list.append(converted_item_3199)?;
+        }
+        let converted_3197 = converted_3197_list.into_any().unbind();
+        result.set_item("evaluator_model_identifiers", converted_3197)?;
+    } else {
+        result.set_item("evaluator_model_identifiers", py.None())?;
+    }
+    if let Some(value) = &value.custom_metrics_evaluator_model_identifiers {
+        let converted_3200_list = PyList::empty(py);
+        for item_3201 in value {
+            let converted_item_3202 = (item_3201).as_str().into_py_any(py)?;
+            converted_3200_list.append(converted_item_3202)?;
+        }
+        let converted_3200 = converted_3200_list.into_any().unbind();
+        result.set_item("custom_metrics_evaluator_model_identifiers", converted_3200)?;
+    } else {
+        result.set_item("custom_metrics_evaluator_model_identifiers", py.None())?;
+    }
+    if let Some(value) = &value.inference_config_summary {
+        let converted_3203 = evaluation_inference_config_summary_shared_to_py(py, value)?;
+        result.set_item("inference_config_summary", converted_3203)?;
+    } else {
+        result.set_item("inference_config_summary", py.None())?;
+    }
+    if let Some(value) = &value.application_type {
+        let converted_3204 = (value).as_str().into_py_any(py)?;
+        result.set_item("application_type", converted_3204)?;
+    } else {
+        result.set_item("application_type", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "EvaluationSummary", module = "rboto_bedrock._native", frozen)]
 struct PyEvaluationSummary {
-    inner: aws_sdk_bedrock::types::EvaluationSummary,
+    inner: Arc<SharedEvaluationSummary>,
 }
 
 #[pymethods]
 impl PyEvaluationSummary {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3116 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        Ok(converted_3116)
+        let converted_3161 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_3161)
     }
 
     #[getter]
     fn job_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3117 = (&self.inner.job_name).as_str().into_py_any(py)?;
-        Ok(converted_3117)
+        let converted_3162 = (&self.inner.job_name).as_str().into_py_any(py)?;
+        Ok(converted_3162)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3118 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_3118)
+        let converted_3163 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_3163)
     }
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3119 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        Ok(converted_3119)
+        let converted_3164 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        Ok(converted_3164)
     }
 
     #[getter]
     fn job_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3120 = (&self.inner.job_type).as_str().into_py_any(py)?;
-        Ok(converted_3120)
+        let converted_3165 = (&self.inner.job_type).as_str().into_py_any(py)?;
+        Ok(converted_3165)
     }
 
     #[getter]
     fn evaluation_task_types(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3121_list = PyList::empty(py);
-        for item_3122 in &self.inner.evaluation_task_types {
-            let converted_item_3123 = (item_3122).as_str().into_py_any(py)?;
-            converted_3121_list.append(converted_item_3123)?;
+        let converted_3166_list = PyList::empty(py);
+        for item_3167 in &self.inner.evaluation_task_types {
+            let converted_item_3168 = (item_3167).as_str().into_py_any(py)?;
+            converted_3166_list.append(converted_item_3168)?;
         }
-        let converted_3121 = converted_3121_list.into_any().unbind();
-        Ok(converted_3121)
+        let converted_3166 = converted_3166_list.into_any().unbind();
+        Ok(converted_3166)
     }
 
     #[getter]
     fn model_identifiers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3124_list = PyList::empty(py);
-        for item_3125 in &self.inner.model_identifiers {
-            let converted_item_3126 = (item_3125).as_str().into_py_any(py)?;
-            converted_3124_list.append(converted_item_3126)?;
+        let converted_3169_list = PyList::empty(py);
+        for item_3170 in &self.inner.model_identifiers {
+            let converted_item_3171 = (item_3170).as_str().into_py_any(py)?;
+            converted_3169_list.append(converted_item_3171)?;
         }
-        let converted_3124 = converted_3124_list.into_any().unbind();
-        Ok(converted_3124)
+        let converted_3169 = converted_3169_list.into_any().unbind();
+        Ok(converted_3169)
     }
 
     #[getter]
     fn rag_identifiers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.rag_identifiers {
-            let converted_3127_list = PyList::empty(py);
-            for item_3128 in value {
-                let converted_item_3129 = (item_3128).as_str().into_py_any(py)?;
-                converted_3127_list.append(converted_item_3129)?;
-            }
-            let converted_3127 = converted_3127_list.into_any().unbind();
-            Ok(converted_3127)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn evaluator_model_identifiers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.evaluator_model_identifiers {
-            let converted_3130_list = PyList::empty(py);
-            for item_3131 in value {
-                let converted_item_3132 = (item_3131).as_str().into_py_any(py)?;
-                converted_3130_list.append(converted_item_3132)?;
-            }
-            let converted_3130 = converted_3130_list.into_any().unbind();
-            Ok(converted_3130)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn custom_metrics_evaluator_model_identifiers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.custom_metrics_evaluator_model_identifiers {
-            let converted_3133_list = PyList::empty(py);
-            for item_3134 in value {
-                let converted_item_3135 = (item_3134).as_str().into_py_any(py)?;
-                converted_3133_list.append(converted_item_3135)?;
-            }
-            let converted_3133 = converted_3133_list.into_any().unbind();
-            Ok(converted_3133)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn inference_config_summary(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.inference_config_summary {
-            let converted_3136 = Py::new(
-                py,
-                PyEvaluationInferenceConfigSummary {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_3136)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn application_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.application_type {
-            let converted_3137 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3137)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        evaluation_summary_to_py(py, &self.inner)
-    }
-}
-
-#[pyclass(
-    name = "FoundationModelDetails",
-    module = "rboto_bedrock._native",
-    frozen
-)]
-struct PyFoundationModelDetails {
-    inner: aws_sdk_bedrock::types::FoundationModelDetails,
-}
-
-#[pymethods]
-impl PyFoundationModelDetails {
-    #[getter]
-    fn model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3138 = (&self.inner.model_arn).as_str().into_py_any(py)?;
-        Ok(converted_3138)
-    }
-
-    #[getter]
-    fn model_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3139 = (&self.inner.model_id).as_str().into_py_any(py)?;
-        Ok(converted_3139)
-    }
-
-    #[getter]
-    fn model_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.model_name {
-            let converted_3140 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3140)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn provider_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.provider_name {
-            let converted_3141 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3141)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn input_modalities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.input_modalities {
-            let converted_3142_list = PyList::empty(py);
-            for item_3143 in value {
-                let converted_item_3144 = (item_3143).as_str().into_py_any(py)?;
-                converted_3142_list.append(converted_item_3144)?;
-            }
-            let converted_3142 = converted_3142_list.into_any().unbind();
-            Ok(converted_3142)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn output_modalities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.output_modalities {
-            let converted_3145_list = PyList::empty(py);
-            for item_3146 in value {
-                let converted_item_3147 = (item_3146).as_str().into_py_any(py)?;
-                converted_3145_list.append(converted_item_3147)?;
-            }
-            let converted_3145 = converted_3145_list.into_any().unbind();
-            Ok(converted_3145)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn response_streaming_supported(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.response_streaming_supported {
-            let converted_3148 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3148)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn customizations_supported(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.customizations_supported {
-            let converted_3149_list = PyList::empty(py);
-            for item_3150 in value {
-                let converted_item_3151 = (item_3150).as_str().into_py_any(py)?;
-                converted_3149_list.append(converted_item_3151)?;
-            }
-            let converted_3149 = converted_3149_list.into_any().unbind();
-            Ok(converted_3149)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn inference_types_supported(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.inference_types_supported {
-            let converted_3152_list = PyList::empty(py);
-            for item_3153 in value {
-                let converted_item_3154 = (item_3153).as_str().into_py_any(py)?;
-                converted_3152_list.append(converted_item_3154)?;
-            }
-            let converted_3152 = converted_3152_list.into_any().unbind();
-            Ok(converted_3152)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn model_lifecycle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.model_lifecycle {
-            let converted_3155 = Py::new(
-                py,
-                PyFoundationModelLifecycle {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_3155)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        foundation_model_details_to_py(py, &self.inner)
-    }
-}
-
-#[pyclass(
-    name = "FoundationModelLifecycle",
-    module = "rboto_bedrock._native",
-    frozen
-)]
-struct PyFoundationModelLifecycle {
-    inner: aws_sdk_bedrock::types::FoundationModelLifecycle,
-}
-
-#[pymethods]
-impl PyFoundationModelLifecycle {
-    #[getter]
-    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3156 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_3156)
-    }
-
-    #[getter]
-    fn start_of_life_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.start_of_life_time {
-            let converted_3157 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3157)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn end_of_life_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.end_of_life_time {
-            let converted_3158 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3158)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn legacy_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.legacy_time {
-            let converted_3159 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3159)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn public_extended_access_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.public_extended_access_time {
-            let converted_3160 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3160)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        foundation_model_lifecycle_to_py(py, &self.inner)
-    }
-}
-
-#[pyclass(
-    name = "FoundationModelSummary",
-    module = "rboto_bedrock._native",
-    frozen
-)]
-struct PyFoundationModelSummary {
-    inner: aws_sdk_bedrock::types::FoundationModelSummary,
-}
-
-#[pymethods]
-impl PyFoundationModelSummary {
-    #[getter]
-    fn model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3161 = (&self.inner.model_arn).as_str().into_py_any(py)?;
-        Ok(converted_3161)
-    }
-
-    #[getter]
-    fn model_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3162 = (&self.inner.model_id).as_str().into_py_any(py)?;
-        Ok(converted_3162)
-    }
-
-    #[getter]
-    fn model_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.model_name {
-            let converted_3163 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3163)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn provider_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.provider_name {
-            let converted_3164 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3164)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn input_modalities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.input_modalities {
-            let converted_3165_list = PyList::empty(py);
-            for item_3166 in value {
-                let converted_item_3167 = (item_3166).as_str().into_py_any(py)?;
-                converted_3165_list.append(converted_item_3167)?;
-            }
-            let converted_3165 = converted_3165_list.into_any().unbind();
-            Ok(converted_3165)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn output_modalities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.output_modalities {
-            let converted_3168_list = PyList::empty(py);
-            for item_3169 in value {
-                let converted_item_3170 = (item_3169).as_str().into_py_any(py)?;
-                converted_3168_list.append(converted_item_3170)?;
-            }
-            let converted_3168 = converted_3168_list.into_any().unbind();
-            Ok(converted_3168)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn response_streaming_supported(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.response_streaming_supported {
-            let converted_3171 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3171)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn customizations_supported(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.customizations_supported {
             let converted_3172_list = PyList::empty(py);
             for item_3173 in value {
                 let converted_item_3174 = (item_3173).as_str().into_py_any(py)?;
@@ -15501,8 +15659,8 @@ impl PyFoundationModelSummary {
     }
 
     #[getter]
-    fn inference_types_supported(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.inference_types_supported {
+    fn evaluator_model_identifiers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.evaluator_model_identifiers {
             let converted_3175_list = PyList::empty(py);
             for item_3176 in value {
                 let converted_item_3177 = (item_3176).as_str().into_py_any(py)?;
@@ -15516,23 +15674,600 @@ impl PyFoundationModelSummary {
     }
 
     #[getter]
-    fn model_lifecycle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.model_lifecycle {
-            let converted_3178 = Py::new(
-                py,
-                PyFoundationModelLifecycle {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
+    fn custom_metrics_evaluator_model_identifiers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.custom_metrics_evaluator_model_identifiers {
+            let converted_3178_list = PyList::empty(py);
+            for item_3179 in value {
+                let converted_item_3180 = (item_3179).as_str().into_py_any(py)?;
+                converted_3178_list.append(converted_item_3180)?;
+            }
+            let converted_3178 = converted_3178_list.into_any().unbind();
             Ok(converted_3178)
         } else {
             Ok(py.None())
         }
     }
 
+    #[getter]
+    fn inference_config_summary(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.inference_config_summary {
+            let converted_3181 = Py::new(
+                py,
+                PyEvaluationInferenceConfigSummary {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_3181)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn application_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.application_type {
+            let converted_3182 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3182)
+        } else {
+            Ok(py.None())
+        }
+    }
+
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        foundation_model_summary_to_py(py, &self.inner)
+        evaluation_summary_shared_to_py(py, &self.inner)
+    }
+}
+
+struct SharedFoundationModelDetails {
+    model_arn: ::std::string::String,
+    model_id: ::std::string::String,
+    model_name: Option<::std::string::String>,
+    provider_name: Option<::std::string::String>,
+    input_modalities: Option<::std::vec::Vec<aws_sdk_bedrock::types::ModelModality>>,
+    output_modalities: Option<::std::vec::Vec<aws_sdk_bedrock::types::ModelModality>>,
+    response_streaming_supported: Option<bool>,
+    customizations_supported: Option<::std::vec::Vec<aws_sdk_bedrock::types::ModelCustomization>>,
+    inference_types_supported: Option<::std::vec::Vec<aws_sdk_bedrock::types::InferenceType>>,
+    model_lifecycle: Option<Arc<aws_sdk_bedrock::types::FoundationModelLifecycle>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::FoundationModelDetails> for SharedFoundationModelDetails {
+    fn from(value: aws_sdk_bedrock::types::FoundationModelDetails) -> Self {
+        Self {
+            model_arn: value.model_arn,
+            model_id: value.model_id,
+            model_name: value.model_name,
+            provider_name: value.provider_name,
+            input_modalities: value.input_modalities,
+            output_modalities: value.output_modalities,
+            response_streaming_supported: value.response_streaming_supported,
+            customizations_supported: value.customizations_supported,
+            inference_types_supported: value.inference_types_supported,
+            model_lifecycle: value.model_lifecycle.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn foundation_model_details_shared_to_py(
+    py: Python<'_>,
+    value: &SharedFoundationModelDetails,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_3223 = (&value.model_arn).as_str().into_py_any(py)?;
+    result.set_item("model_arn", converted_3223)?;
+    let converted_3224 = (&value.model_id).as_str().into_py_any(py)?;
+    result.set_item("model_id", converted_3224)?;
+    if let Some(value) = &value.model_name {
+        let converted_3225 = (value).as_str().into_py_any(py)?;
+        result.set_item("model_name", converted_3225)?;
+    } else {
+        result.set_item("model_name", py.None())?;
+    }
+    if let Some(value) = &value.provider_name {
+        let converted_3226 = (value).as_str().into_py_any(py)?;
+        result.set_item("provider_name", converted_3226)?;
+    } else {
+        result.set_item("provider_name", py.None())?;
+    }
+    if let Some(value) = &value.input_modalities {
+        let converted_3227_list = PyList::empty(py);
+        for item_3228 in value {
+            let converted_item_3229 = (item_3228).as_str().into_py_any(py)?;
+            converted_3227_list.append(converted_item_3229)?;
+        }
+        let converted_3227 = converted_3227_list.into_any().unbind();
+        result.set_item("input_modalities", converted_3227)?;
+    } else {
+        result.set_item("input_modalities", py.None())?;
+    }
+    if let Some(value) = &value.output_modalities {
+        let converted_3230_list = PyList::empty(py);
+        for item_3231 in value {
+            let converted_item_3232 = (item_3231).as_str().into_py_any(py)?;
+            converted_3230_list.append(converted_item_3232)?;
+        }
+        let converted_3230 = converted_3230_list.into_any().unbind();
+        result.set_item("output_modalities", converted_3230)?;
+    } else {
+        result.set_item("output_modalities", py.None())?;
+    }
+    if let Some(value) = &value.response_streaming_supported {
+        let converted_3233 = (value).to_owned().into_py_any(py)?;
+        result.set_item("response_streaming_supported", converted_3233)?;
+    } else {
+        result.set_item("response_streaming_supported", py.None())?;
+    }
+    if let Some(value) = &value.customizations_supported {
+        let converted_3234_list = PyList::empty(py);
+        for item_3235 in value {
+            let converted_item_3236 = (item_3235).as_str().into_py_any(py)?;
+            converted_3234_list.append(converted_item_3236)?;
+        }
+        let converted_3234 = converted_3234_list.into_any().unbind();
+        result.set_item("customizations_supported", converted_3234)?;
+    } else {
+        result.set_item("customizations_supported", py.None())?;
+    }
+    if let Some(value) = &value.inference_types_supported {
+        let converted_3237_list = PyList::empty(py);
+        for item_3238 in value {
+            let converted_item_3239 = (item_3238).as_str().into_py_any(py)?;
+            converted_3237_list.append(converted_item_3239)?;
+        }
+        let converted_3237 = converted_3237_list.into_any().unbind();
+        result.set_item("inference_types_supported", converted_3237)?;
+    } else {
+        result.set_item("inference_types_supported", py.None())?;
+    }
+    if let Some(value) = &value.model_lifecycle {
+        let converted_3240 = foundation_model_lifecycle_to_py(py, value)?;
+        result.set_item("model_lifecycle", converted_3240)?;
+    } else {
+        result.set_item("model_lifecycle", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+#[pyclass(
+    name = "FoundationModelDetails",
+    module = "rboto_bedrock._native",
+    frozen
+)]
+struct PyFoundationModelDetails {
+    inner: Arc<SharedFoundationModelDetails>,
+}
+
+#[pymethods]
+impl PyFoundationModelDetails {
+    #[getter]
+    fn model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_3205 = (&self.inner.model_arn).as_str().into_py_any(py)?;
+        Ok(converted_3205)
+    }
+
+    #[getter]
+    fn model_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_3206 = (&self.inner.model_id).as_str().into_py_any(py)?;
+        Ok(converted_3206)
+    }
+
+    #[getter]
+    fn model_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.model_name {
+            let converted_3207 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3207)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn provider_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.provider_name {
+            let converted_3208 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3208)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn input_modalities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.input_modalities {
+            let converted_3209_list = PyList::empty(py);
+            for item_3210 in value {
+                let converted_item_3211 = (item_3210).as_str().into_py_any(py)?;
+                converted_3209_list.append(converted_item_3211)?;
+            }
+            let converted_3209 = converted_3209_list.into_any().unbind();
+            Ok(converted_3209)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn output_modalities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.output_modalities {
+            let converted_3212_list = PyList::empty(py);
+            for item_3213 in value {
+                let converted_item_3214 = (item_3213).as_str().into_py_any(py)?;
+                converted_3212_list.append(converted_item_3214)?;
+            }
+            let converted_3212 = converted_3212_list.into_any().unbind();
+            Ok(converted_3212)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn response_streaming_supported(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.response_streaming_supported {
+            let converted_3215 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3215)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn customizations_supported(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.customizations_supported {
+            let converted_3216_list = PyList::empty(py);
+            for item_3217 in value {
+                let converted_item_3218 = (item_3217).as_str().into_py_any(py)?;
+                converted_3216_list.append(converted_item_3218)?;
+            }
+            let converted_3216 = converted_3216_list.into_any().unbind();
+            Ok(converted_3216)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn inference_types_supported(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.inference_types_supported {
+            let converted_3219_list = PyList::empty(py);
+            for item_3220 in value {
+                let converted_item_3221 = (item_3220).as_str().into_py_any(py)?;
+                converted_3219_list.append(converted_item_3221)?;
+            }
+            let converted_3219 = converted_3219_list.into_any().unbind();
+            Ok(converted_3219)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn model_lifecycle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.model_lifecycle {
+            let converted_3222 = Py::new(
+                py,
+                PyFoundationModelLifecycle {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_3222)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        foundation_model_details_shared_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "FoundationModelLifecycle",
+    module = "rboto_bedrock._native",
+    frozen
+)]
+struct PyFoundationModelLifecycle {
+    inner: Arc<aws_sdk_bedrock::types::FoundationModelLifecycle>,
+}
+
+#[pymethods]
+impl PyFoundationModelLifecycle {
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_3241 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_3241)
+    }
+
+    #[getter]
+    fn start_of_life_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.start_of_life_time {
+            let converted_3242 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3242)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn end_of_life_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.end_of_life_time {
+            let converted_3243 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3243)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn legacy_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.legacy_time {
+            let converted_3244 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3244)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn public_extended_access_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.public_extended_access_time {
+            let converted_3245 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3245)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        foundation_model_lifecycle_to_py(py, &self.inner)
+    }
+}
+
+struct SharedFoundationModelSummary {
+    model_arn: ::std::string::String,
+    model_id: ::std::string::String,
+    model_name: Option<::std::string::String>,
+    provider_name: Option<::std::string::String>,
+    input_modalities: Option<::std::vec::Vec<aws_sdk_bedrock::types::ModelModality>>,
+    output_modalities: Option<::std::vec::Vec<aws_sdk_bedrock::types::ModelModality>>,
+    response_streaming_supported: Option<bool>,
+    customizations_supported: Option<::std::vec::Vec<aws_sdk_bedrock::types::ModelCustomization>>,
+    inference_types_supported: Option<::std::vec::Vec<aws_sdk_bedrock::types::InferenceType>>,
+    model_lifecycle: Option<Arc<aws_sdk_bedrock::types::FoundationModelLifecycle>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::FoundationModelSummary> for SharedFoundationModelSummary {
+    fn from(value: aws_sdk_bedrock::types::FoundationModelSummary) -> Self {
+        Self {
+            model_arn: value.model_arn,
+            model_id: value.model_id,
+            model_name: value.model_name,
+            provider_name: value.provider_name,
+            input_modalities: value.input_modalities,
+            output_modalities: value.output_modalities,
+            response_streaming_supported: value.response_streaming_supported,
+            customizations_supported: value.customizations_supported,
+            inference_types_supported: value.inference_types_supported,
+            model_lifecycle: value.model_lifecycle.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn foundation_model_summary_shared_to_py(
+    py: Python<'_>,
+    value: &SharedFoundationModelSummary,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_3264 = (&value.model_arn).as_str().into_py_any(py)?;
+    result.set_item("model_arn", converted_3264)?;
+    let converted_3265 = (&value.model_id).as_str().into_py_any(py)?;
+    result.set_item("model_id", converted_3265)?;
+    if let Some(value) = &value.model_name {
+        let converted_3266 = (value).as_str().into_py_any(py)?;
+        result.set_item("model_name", converted_3266)?;
+    } else {
+        result.set_item("model_name", py.None())?;
+    }
+    if let Some(value) = &value.provider_name {
+        let converted_3267 = (value).as_str().into_py_any(py)?;
+        result.set_item("provider_name", converted_3267)?;
+    } else {
+        result.set_item("provider_name", py.None())?;
+    }
+    if let Some(value) = &value.input_modalities {
+        let converted_3268_list = PyList::empty(py);
+        for item_3269 in value {
+            let converted_item_3270 = (item_3269).as_str().into_py_any(py)?;
+            converted_3268_list.append(converted_item_3270)?;
+        }
+        let converted_3268 = converted_3268_list.into_any().unbind();
+        result.set_item("input_modalities", converted_3268)?;
+    } else {
+        result.set_item("input_modalities", py.None())?;
+    }
+    if let Some(value) = &value.output_modalities {
+        let converted_3271_list = PyList::empty(py);
+        for item_3272 in value {
+            let converted_item_3273 = (item_3272).as_str().into_py_any(py)?;
+            converted_3271_list.append(converted_item_3273)?;
+        }
+        let converted_3271 = converted_3271_list.into_any().unbind();
+        result.set_item("output_modalities", converted_3271)?;
+    } else {
+        result.set_item("output_modalities", py.None())?;
+    }
+    if let Some(value) = &value.response_streaming_supported {
+        let converted_3274 = (value).to_owned().into_py_any(py)?;
+        result.set_item("response_streaming_supported", converted_3274)?;
+    } else {
+        result.set_item("response_streaming_supported", py.None())?;
+    }
+    if let Some(value) = &value.customizations_supported {
+        let converted_3275_list = PyList::empty(py);
+        for item_3276 in value {
+            let converted_item_3277 = (item_3276).as_str().into_py_any(py)?;
+            converted_3275_list.append(converted_item_3277)?;
+        }
+        let converted_3275 = converted_3275_list.into_any().unbind();
+        result.set_item("customizations_supported", converted_3275)?;
+    } else {
+        result.set_item("customizations_supported", py.None())?;
+    }
+    if let Some(value) = &value.inference_types_supported {
+        let converted_3278_list = PyList::empty(py);
+        for item_3279 in value {
+            let converted_item_3280 = (item_3279).as_str().into_py_any(py)?;
+            converted_3278_list.append(converted_item_3280)?;
+        }
+        let converted_3278 = converted_3278_list.into_any().unbind();
+        result.set_item("inference_types_supported", converted_3278)?;
+    } else {
+        result.set_item("inference_types_supported", py.None())?;
+    }
+    if let Some(value) = &value.model_lifecycle {
+        let converted_3281 = foundation_model_lifecycle_to_py(py, value)?;
+        result.set_item("model_lifecycle", converted_3281)?;
+    } else {
+        result.set_item("model_lifecycle", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+#[pyclass(
+    name = "FoundationModelSummary",
+    module = "rboto_bedrock._native",
+    frozen
+)]
+struct PyFoundationModelSummary {
+    inner: Arc<SharedFoundationModelSummary>,
+}
+
+#[pymethods]
+impl PyFoundationModelSummary {
+    #[getter]
+    fn model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_3246 = (&self.inner.model_arn).as_str().into_py_any(py)?;
+        Ok(converted_3246)
+    }
+
+    #[getter]
+    fn model_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_3247 = (&self.inner.model_id).as_str().into_py_any(py)?;
+        Ok(converted_3247)
+    }
+
+    #[getter]
+    fn model_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.model_name {
+            let converted_3248 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3248)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn provider_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.provider_name {
+            let converted_3249 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3249)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn input_modalities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.input_modalities {
+            let converted_3250_list = PyList::empty(py);
+            for item_3251 in value {
+                let converted_item_3252 = (item_3251).as_str().into_py_any(py)?;
+                converted_3250_list.append(converted_item_3252)?;
+            }
+            let converted_3250 = converted_3250_list.into_any().unbind();
+            Ok(converted_3250)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn output_modalities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.output_modalities {
+            let converted_3253_list = PyList::empty(py);
+            for item_3254 in value {
+                let converted_item_3255 = (item_3254).as_str().into_py_any(py)?;
+                converted_3253_list.append(converted_item_3255)?;
+            }
+            let converted_3253 = converted_3253_list.into_any().unbind();
+            Ok(converted_3253)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn response_streaming_supported(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.response_streaming_supported {
+            let converted_3256 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3256)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn customizations_supported(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.customizations_supported {
+            let converted_3257_list = PyList::empty(py);
+            for item_3258 in value {
+                let converted_item_3259 = (item_3258).as_str().into_py_any(py)?;
+                converted_3257_list.append(converted_item_3259)?;
+            }
+            let converted_3257 = converted_3257_list.into_any().unbind();
+            Ok(converted_3257)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn inference_types_supported(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.inference_types_supported {
+            let converted_3260_list = PyList::empty(py);
+            for item_3261 in value {
+                let converted_item_3262 = (item_3261).as_str().into_py_any(py)?;
+                converted_3260_list.append(converted_item_3262)?;
+            }
+            let converted_3260 = converted_3260_list.into_any().unbind();
+            Ok(converted_3260)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn model_lifecycle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.model_lifecycle {
+            let converted_3263 = Py::new(
+                py,
+                PyFoundationModelLifecycle {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_3263)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        foundation_model_summary_shared_to_py(py, &self.inner)
     }
 }
 
@@ -15542,27 +16277,27 @@ impl PyFoundationModelSummary {
     frozen
 )]
 struct PyGuardrailAutomatedReasoningPolicy {
-    inner: aws_sdk_bedrock::types::GuardrailAutomatedReasoningPolicy,
+    inner: Arc<aws_sdk_bedrock::types::GuardrailAutomatedReasoningPolicy>,
 }
 
 #[pymethods]
 impl PyGuardrailAutomatedReasoningPolicy {
     #[getter]
     fn policies(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3179_list = PyList::empty(py);
-        for item_3180 in &self.inner.policies {
-            let converted_item_3181 = (item_3180).as_str().into_py_any(py)?;
-            converted_3179_list.append(converted_item_3181)?;
+        let converted_3282_list = PyList::empty(py);
+        for item_3283 in &self.inner.policies {
+            let converted_item_3284 = (item_3283).as_str().into_py_any(py)?;
+            converted_3282_list.append(converted_item_3284)?;
         }
-        let converted_3179 = converted_3179_list.into_any().unbind();
-        Ok(converted_3179)
+        let converted_3282 = converted_3282_list.into_any().unbind();
+        Ok(converted_3282)
     }
 
     #[getter]
     fn confidence_threshold(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.confidence_threshold {
-            let converted_3182 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3182)
+            let converted_3285 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3285)
         } else {
             Ok(py.None())
         }
@@ -15579,39 +16314,39 @@ impl PyGuardrailAutomatedReasoningPolicy {
     frozen
 )]
 struct PyGuardrailContentFilter {
-    inner: aws_sdk_bedrock::types::GuardrailContentFilter,
+    inner: Arc<aws_sdk_bedrock::types::GuardrailContentFilter>,
 }
 
 #[pymethods]
 impl PyGuardrailContentFilter {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3183 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_3183)
+        let converted_3286 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_3286)
     }
 
     #[getter]
     fn input_strength(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3184 = (&self.inner.input_strength).as_str().into_py_any(py)?;
-        Ok(converted_3184)
+        let converted_3287 = (&self.inner.input_strength).as_str().into_py_any(py)?;
+        Ok(converted_3287)
     }
 
     #[getter]
     fn output_strength(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3185 = (&self.inner.output_strength).as_str().into_py_any(py)?;
-        Ok(converted_3185)
+        let converted_3288 = (&self.inner.output_strength).as_str().into_py_any(py)?;
+        Ok(converted_3288)
     }
 
     #[getter]
     fn input_modalities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_modalities {
-            let converted_3186_list = PyList::empty(py);
-            for item_3187 in value {
-                let converted_item_3188 = (item_3187).as_str().into_py_any(py)?;
-                converted_3186_list.append(converted_item_3188)?;
+            let converted_3289_list = PyList::empty(py);
+            for item_3290 in value {
+                let converted_item_3291 = (item_3290).as_str().into_py_any(py)?;
+                converted_3289_list.append(converted_item_3291)?;
             }
-            let converted_3186 = converted_3186_list.into_any().unbind();
-            Ok(converted_3186)
+            let converted_3289 = converted_3289_list.into_any().unbind();
+            Ok(converted_3289)
         } else {
             Ok(py.None())
         }
@@ -15620,13 +16355,13 @@ impl PyGuardrailContentFilter {
     #[getter]
     fn output_modalities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_modalities {
-            let converted_3189_list = PyList::empty(py);
-            for item_3190 in value {
-                let converted_item_3191 = (item_3190).as_str().into_py_any(py)?;
-                converted_3189_list.append(converted_item_3191)?;
+            let converted_3292_list = PyList::empty(py);
+            for item_3293 in value {
+                let converted_item_3294 = (item_3293).as_str().into_py_any(py)?;
+                converted_3292_list.append(converted_item_3294)?;
             }
-            let converted_3189 = converted_3189_list.into_any().unbind();
-            Ok(converted_3189)
+            let converted_3292 = converted_3292_list.into_any().unbind();
+            Ok(converted_3292)
         } else {
             Ok(py.None())
         }
@@ -15635,8 +16370,8 @@ impl PyGuardrailContentFilter {
     #[getter]
     fn input_action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_action {
-            let converted_3192 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3192)
+            let converted_3295 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3295)
         } else {
             Ok(py.None())
         }
@@ -15645,8 +16380,8 @@ impl PyGuardrailContentFilter {
     #[getter]
     fn output_action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_action {
-            let converted_3193 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3193)
+            let converted_3296 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3296)
         } else {
             Ok(py.None())
         }
@@ -15655,8 +16390,8 @@ impl PyGuardrailContentFilter {
     #[getter]
     fn input_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_enabled {
-            let converted_3194 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3194)
+            let converted_3297 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3297)
         } else {
             Ok(py.None())
         }
@@ -15665,8 +16400,8 @@ impl PyGuardrailContentFilter {
     #[getter]
     fn output_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_enabled {
-            let converted_3195 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3195)
+            let converted_3298 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3298)
         } else {
             Ok(py.None())
         }
@@ -15683,20 +16418,65 @@ impl PyGuardrailContentFilter {
     frozen
 )]
 struct PyGuardrailContentFiltersTier {
-    inner: aws_sdk_bedrock::types::GuardrailContentFiltersTier,
+    inner: Arc<aws_sdk_bedrock::types::GuardrailContentFiltersTier>,
 }
 
 #[pymethods]
 impl PyGuardrailContentFiltersTier {
     #[getter]
     fn tier_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3196 = (&self.inner.tier_name).as_str().into_py_any(py)?;
-        Ok(converted_3196)
+        let converted_3299 = (&self.inner.tier_name).as_str().into_py_any(py)?;
+        Ok(converted_3299)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         guardrail_content_filters_tier_to_py(py, &self.inner)
     }
+}
+
+struct SharedGuardrailContentPolicy {
+    filters: Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::GuardrailContentFilter>>>,
+    tier: Option<Arc<aws_sdk_bedrock::types::GuardrailContentFiltersTier>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::GuardrailContentPolicy> for SharedGuardrailContentPolicy {
+    fn from(value: aws_sdk_bedrock::types::GuardrailContentPolicy) -> Self {
+        Self {
+            filters: value.filters.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3304| Arc::new(owned_3304))
+                    .collect()
+            }),
+            tier: value.tier.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn guardrail_content_policy_shared_to_py(
+    py: Python<'_>,
+    value: &SharedGuardrailContentPolicy,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.filters {
+        let converted_3305_list = PyList::empty(py);
+        for item_3306 in value {
+            let converted_item_3307 = guardrail_content_filter_to_py(py, item_3306)?;
+            converted_3305_list.append(converted_item_3307)?;
+        }
+        let converted_3305 = converted_3305_list.into_any().unbind();
+        result.set_item("filters", converted_3305)?;
+    } else {
+        result.set_item("filters", py.None())?;
+    }
+    if let Some(value) = &value.tier {
+        let converted_3308 = guardrail_content_filters_tier_to_py(py, value)?;
+        result.set_item("tier", converted_3308)?;
+    } else {
+        result.set_item("tier", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -15705,7 +16485,7 @@ impl PyGuardrailContentFiltersTier {
     frozen
 )]
 struct PyGuardrailContentPolicy {
-    inner: aws_sdk_bedrock::types::GuardrailContentPolicy,
+    inner: Arc<SharedGuardrailContentPolicy>,
 }
 
 #[pymethods]
@@ -15713,19 +16493,19 @@ impl PyGuardrailContentPolicy {
     #[getter]
     fn filters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.filters {
-            let converted_3197_list = PyList::empty(py);
-            for item_3198 in value {
-                let converted_item_3199 = Py::new(
+            let converted_3300_list = PyList::empty(py);
+            for item_3301 in value {
+                let converted_item_3302 = Py::new(
                     py,
                     PyGuardrailContentFilter {
-                        inner: (item_3198).to_owned(),
+                        inner: Arc::clone(item_3301),
                     },
                 )?
                 .into_any();
-                converted_3197_list.append(converted_item_3199)?;
+                converted_3300_list.append(converted_item_3302)?;
             }
-            let converted_3197 = converted_3197_list.into_any().unbind();
-            Ok(converted_3197)
+            let converted_3300 = converted_3300_list.into_any().unbind();
+            Ok(converted_3300)
         } else {
             Ok(py.None())
         }
@@ -15734,21 +16514,21 @@ impl PyGuardrailContentPolicy {
     #[getter]
     fn tier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tier {
-            let converted_3200 = Py::new(
+            let converted_3303 = Py::new(
                 py,
                 PyGuardrailContentFiltersTier {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3200)
+            Ok(converted_3303)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        guardrail_content_policy_to_py(py, &self.inner)
+        guardrail_content_policy_shared_to_py(py, &self.inner)
     }
 }
 
@@ -15758,28 +16538,28 @@ impl PyGuardrailContentPolicy {
     frozen
 )]
 struct PyGuardrailContextualGroundingFilter {
-    inner: aws_sdk_bedrock::types::GuardrailContextualGroundingFilter,
+    inner: Arc<aws_sdk_bedrock::types::GuardrailContextualGroundingFilter>,
 }
 
 #[pymethods]
 impl PyGuardrailContextualGroundingFilter {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3201 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_3201)
+        let converted_3309 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_3309)
     }
 
     #[getter]
     fn threshold(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3202 = (&self.inner.threshold).to_owned().into_py_any(py)?;
-        Ok(converted_3202)
+        let converted_3310 = (&self.inner.threshold).to_owned().into_py_any(py)?;
+        Ok(converted_3310)
     }
 
     #[getter]
     fn action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.action {
-            let converted_3203 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3203)
+            let converted_3311 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3311)
         } else {
             Ok(py.None())
         }
@@ -15788,8 +16568,8 @@ impl PyGuardrailContextualGroundingFilter {
     #[getter]
     fn enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.enabled {
-            let converted_3204 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3204)
+            let converted_3312 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3312)
         } else {
             Ok(py.None())
         }
@@ -15800,52 +16580,93 @@ impl PyGuardrailContextualGroundingFilter {
     }
 }
 
+struct SharedGuardrailContextualGroundingPolicy {
+    filters: ::std::vec::Vec<Arc<aws_sdk_bedrock::types::GuardrailContextualGroundingFilter>>,
+    tier: Option<Arc<aws_sdk_bedrock::types::GuardrailContextualGroundingTier>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::GuardrailContextualGroundingPolicy>
+    for SharedGuardrailContextualGroundingPolicy
+{
+    fn from(value: aws_sdk_bedrock::types::GuardrailContextualGroundingPolicy) -> Self {
+        Self {
+            filters: (value.filters)
+                .into_iter()
+                .map(|owned_3317| Arc::new(owned_3317))
+                .collect(),
+            tier: value.tier.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn guardrail_contextual_grounding_policy_shared_to_py(
+    py: Python<'_>,
+    value: &SharedGuardrailContextualGroundingPolicy,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_3318_list = PyList::empty(py);
+    for item_3319 in &value.filters {
+        let converted_item_3320 = guardrail_contextual_grounding_filter_to_py(py, item_3319)?;
+        converted_3318_list.append(converted_item_3320)?;
+    }
+    let converted_3318 = converted_3318_list.into_any().unbind();
+    result.set_item("filters", converted_3318)?;
+    if let Some(value) = &value.tier {
+        let converted_3321 = guardrail_contextual_grounding_tier_to_py(py, value)?;
+        result.set_item("tier", converted_3321)?;
+    } else {
+        result.set_item("tier", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "GuardrailContextualGroundingPolicy",
     module = "rboto_bedrock._native",
     frozen
 )]
 struct PyGuardrailContextualGroundingPolicy {
-    inner: aws_sdk_bedrock::types::GuardrailContextualGroundingPolicy,
+    inner: Arc<SharedGuardrailContextualGroundingPolicy>,
 }
 
 #[pymethods]
 impl PyGuardrailContextualGroundingPolicy {
     #[getter]
     fn filters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3205_list = PyList::empty(py);
-        for item_3206 in &self.inner.filters {
-            let converted_item_3207 = Py::new(
+        let converted_3313_list = PyList::empty(py);
+        for item_3314 in &self.inner.filters {
+            let converted_item_3315 = Py::new(
                 py,
                 PyGuardrailContextualGroundingFilter {
-                    inner: (item_3206).to_owned(),
+                    inner: Arc::clone(item_3314),
                 },
             )?
             .into_any();
-            converted_3205_list.append(converted_item_3207)?;
+            converted_3313_list.append(converted_item_3315)?;
         }
-        let converted_3205 = converted_3205_list.into_any().unbind();
-        Ok(converted_3205)
+        let converted_3313 = converted_3313_list.into_any().unbind();
+        Ok(converted_3313)
     }
 
     #[getter]
     fn tier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tier {
-            let converted_3208 = Py::new(
+            let converted_3316 = Py::new(
                 py,
                 PyGuardrailContextualGroundingTier {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3208)
+            Ok(converted_3316)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        guardrail_contextual_grounding_policy_to_py(py, &self.inner)
+        guardrail_contextual_grounding_policy_shared_to_py(py, &self.inner)
     }
 }
 
@@ -15855,15 +16676,15 @@ impl PyGuardrailContextualGroundingPolicy {
     frozen
 )]
 struct PyGuardrailContextualGroundingTier {
-    inner: aws_sdk_bedrock::types::GuardrailContextualGroundingTier,
+    inner: Arc<aws_sdk_bedrock::types::GuardrailContextualGroundingTier>,
 }
 
 #[pymethods]
 impl PyGuardrailContextualGroundingTier {
     #[getter]
     fn tier_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3209 = (&self.inner.tier_name).as_str().into_py_any(py)?;
-        Ok(converted_3209)
+        let converted_3322 = (&self.inner.tier_name).as_str().into_py_any(py)?;
+        Ok(converted_3322)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -15877,7 +16698,7 @@ impl PyGuardrailContextualGroundingTier {
     frozen
 )]
 struct PyGuardrailCrossRegionDetails {
-    inner: aws_sdk_bedrock::types::GuardrailCrossRegionDetails,
+    inner: Arc<aws_sdk_bedrock::types::GuardrailCrossRegionDetails>,
 }
 
 #[pymethods]
@@ -15885,8 +16706,8 @@ impl PyGuardrailCrossRegionDetails {
     #[getter]
     fn guardrail_profile_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.guardrail_profile_id {
-            let converted_3210 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3210)
+            let converted_3323 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3323)
         } else {
             Ok(py.None())
         }
@@ -15895,8 +16716,8 @@ impl PyGuardrailCrossRegionDetails {
     #[getter]
     fn guardrail_profile_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.guardrail_profile_arn {
-            let converted_3211 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3211)
+            let converted_3324 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3324)
         } else {
             Ok(py.None())
         }
@@ -15913,22 +16734,22 @@ impl PyGuardrailCrossRegionDetails {
     frozen
 )]
 struct PyGuardrailManagedWords {
-    inner: aws_sdk_bedrock::types::GuardrailManagedWords,
+    inner: Arc<aws_sdk_bedrock::types::GuardrailManagedWords>,
 }
 
 #[pymethods]
 impl PyGuardrailManagedWords {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3212 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_3212)
+        let converted_3325 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_3325)
     }
 
     #[getter]
     fn input_action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_action {
-            let converted_3213 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3213)
+            let converted_3326 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3326)
         } else {
             Ok(py.None())
         }
@@ -15937,8 +16758,8 @@ impl PyGuardrailManagedWords {
     #[getter]
     fn output_action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_action {
-            let converted_3214 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3214)
+            let converted_3327 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3327)
         } else {
             Ok(py.None())
         }
@@ -15947,8 +16768,8 @@ impl PyGuardrailManagedWords {
     #[getter]
     fn input_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_enabled {
-            let converted_3215 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3215)
+            let converted_3328 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3328)
         } else {
             Ok(py.None())
         }
@@ -15957,8 +16778,8 @@ impl PyGuardrailManagedWords {
     #[getter]
     fn output_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_enabled {
-            let converted_3216 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3216)
+            let converted_3329 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3329)
         } else {
             Ok(py.None())
         }
@@ -15971,28 +16792,28 @@ impl PyGuardrailManagedWords {
 
 #[pyclass(name = "GuardrailPiiEntity", module = "rboto_bedrock._native", frozen)]
 struct PyGuardrailPiiEntity {
-    inner: aws_sdk_bedrock::types::GuardrailPiiEntity,
+    inner: Arc<aws_sdk_bedrock::types::GuardrailPiiEntity>,
 }
 
 #[pymethods]
 impl PyGuardrailPiiEntity {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3217 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_3217)
+        let converted_3330 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_3330)
     }
 
     #[getter]
     fn action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3218 = (&self.inner.action).as_str().into_py_any(py)?;
-        Ok(converted_3218)
+        let converted_3331 = (&self.inner.action).as_str().into_py_any(py)?;
+        Ok(converted_3331)
     }
 
     #[getter]
     fn input_action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_action {
-            let converted_3219 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3219)
+            let converted_3332 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3332)
         } else {
             Ok(py.None())
         }
@@ -16001,8 +16822,8 @@ impl PyGuardrailPiiEntity {
     #[getter]
     fn output_action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_action {
-            let converted_3220 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3220)
+            let converted_3333 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3333)
         } else {
             Ok(py.None())
         }
@@ -16011,8 +16832,8 @@ impl PyGuardrailPiiEntity {
     #[getter]
     fn input_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_enabled {
-            let converted_3221 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3221)
+            let converted_3334 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3334)
         } else {
             Ok(py.None())
         }
@@ -16021,8 +16842,8 @@ impl PyGuardrailPiiEntity {
     #[getter]
     fn output_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_enabled {
-            let converted_3222 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3222)
+            let converted_3335 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3335)
         } else {
             Ok(py.None())
         }
@@ -16035,22 +16856,22 @@ impl PyGuardrailPiiEntity {
 
 #[pyclass(name = "GuardrailRegex", module = "rboto_bedrock._native", frozen)]
 struct PyGuardrailRegex {
-    inner: aws_sdk_bedrock::types::GuardrailRegex,
+    inner: Arc<aws_sdk_bedrock::types::GuardrailRegex>,
 }
 
 #[pymethods]
 impl PyGuardrailRegex {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3223 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_3223)
+        let converted_3336 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_3336)
     }
 
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_3224 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3224)
+            let converted_3337 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3337)
         } else {
             Ok(py.None())
         }
@@ -16058,21 +16879,21 @@ impl PyGuardrailRegex {
 
     #[getter]
     fn pattern(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3225 = (&self.inner.pattern).as_str().into_py_any(py)?;
-        Ok(converted_3225)
+        let converted_3338 = (&self.inner.pattern).as_str().into_py_any(py)?;
+        Ok(converted_3338)
     }
 
     #[getter]
     fn action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3226 = (&self.inner.action).as_str().into_py_any(py)?;
-        Ok(converted_3226)
+        let converted_3339 = (&self.inner.action).as_str().into_py_any(py)?;
+        Ok(converted_3339)
     }
 
     #[getter]
     fn input_action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_action {
-            let converted_3227 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3227)
+            let converted_3340 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3340)
         } else {
             Ok(py.None())
         }
@@ -16081,8 +16902,8 @@ impl PyGuardrailRegex {
     #[getter]
     fn output_action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_action {
-            let converted_3228 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3228)
+            let converted_3341 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3341)
         } else {
             Ok(py.None())
         }
@@ -16091,8 +16912,8 @@ impl PyGuardrailRegex {
     #[getter]
     fn input_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_enabled {
-            let converted_3229 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3229)
+            let converted_3342 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3342)
         } else {
             Ok(py.None())
         }
@@ -16101,8 +16922,8 @@ impl PyGuardrailRegex {
     #[getter]
     fn output_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_enabled {
-            let converted_3230 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3230)
+            let converted_3343 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3343)
         } else {
             Ok(py.None())
         }
@@ -16113,13 +16934,70 @@ impl PyGuardrailRegex {
     }
 }
 
+struct SharedGuardrailSensitiveInformationPolicy {
+    pii_entities: Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::GuardrailPiiEntity>>>,
+    regexes: Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::GuardrailRegex>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::GuardrailSensitiveInformationPolicy>
+    for SharedGuardrailSensitiveInformationPolicy
+{
+    fn from(value: aws_sdk_bedrock::types::GuardrailSensitiveInformationPolicy) -> Self {
+        Self {
+            pii_entities: value.pii_entities.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3350| Arc::new(owned_3350))
+                    .collect()
+            }),
+            regexes: value.regexes.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3351| Arc::new(owned_3351))
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn guardrail_sensitive_information_policy_shared_to_py(
+    py: Python<'_>,
+    value: &SharedGuardrailSensitiveInformationPolicy,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.pii_entities {
+        let converted_3352_list = PyList::empty(py);
+        for item_3353 in value {
+            let converted_item_3354 = guardrail_pii_entity_to_py(py, item_3353)?;
+            converted_3352_list.append(converted_item_3354)?;
+        }
+        let converted_3352 = converted_3352_list.into_any().unbind();
+        result.set_item("pii_entities", converted_3352)?;
+    } else {
+        result.set_item("pii_entities", py.None())?;
+    }
+    if let Some(value) = &value.regexes {
+        let converted_3355_list = PyList::empty(py);
+        for item_3356 in value {
+            let converted_item_3357 = guardrail_regex_to_py(py, item_3356)?;
+            converted_3355_list.append(converted_item_3357)?;
+        }
+        let converted_3355 = converted_3355_list.into_any().unbind();
+        result.set_item("regexes", converted_3355)?;
+    } else {
+        result.set_item("regexes", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "GuardrailSensitiveInformationPolicy",
     module = "rboto_bedrock._native",
     frozen
 )]
 struct PyGuardrailSensitiveInformationPolicy {
-    inner: aws_sdk_bedrock::types::GuardrailSensitiveInformationPolicy,
+    inner: Arc<SharedGuardrailSensitiveInformationPolicy>,
 }
 
 #[pymethods]
@@ -16127,19 +17005,19 @@ impl PyGuardrailSensitiveInformationPolicy {
     #[getter]
     fn pii_entities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.pii_entities {
-            let converted_3231_list = PyList::empty(py);
-            for item_3232 in value {
-                let converted_item_3233 = Py::new(
+            let converted_3344_list = PyList::empty(py);
+            for item_3345 in value {
+                let converted_item_3346 = Py::new(
                     py,
                     PyGuardrailPiiEntity {
-                        inner: (item_3232).to_owned(),
+                        inner: Arc::clone(item_3345),
                     },
                 )?
                 .into_any();
-                converted_3231_list.append(converted_item_3233)?;
+                converted_3344_list.append(converted_item_3346)?;
             }
-            let converted_3231 = converted_3231_list.into_any().unbind();
-            Ok(converted_3231)
+            let converted_3344 = converted_3344_list.into_any().unbind();
+            Ok(converted_3344)
         } else {
             Ok(py.None())
         }
@@ -16148,65 +17026,128 @@ impl PyGuardrailSensitiveInformationPolicy {
     #[getter]
     fn regexes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.regexes {
-            let converted_3234_list = PyList::empty(py);
-            for item_3235 in value {
-                let converted_item_3236 = Py::new(
+            let converted_3347_list = PyList::empty(py);
+            for item_3348 in value {
+                let converted_item_3349 = Py::new(
                     py,
                     PyGuardrailRegex {
-                        inner: (item_3235).to_owned(),
+                        inner: Arc::clone(item_3348),
                     },
                 )?
                 .into_any();
-                converted_3234_list.append(converted_item_3236)?;
+                converted_3347_list.append(converted_item_3349)?;
             }
-            let converted_3234 = converted_3234_list.into_any().unbind();
-            Ok(converted_3234)
+            let converted_3347 = converted_3347_list.into_any().unbind();
+            Ok(converted_3347)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        guardrail_sensitive_information_policy_to_py(py, &self.inner)
+        guardrail_sensitive_information_policy_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedGuardrailSummary {
+    id: ::std::string::String,
+    arn: ::std::string::String,
+    status: aws_sdk_bedrock::types::GuardrailStatus,
+    name: ::std::string::String,
+    description: Option<::std::string::String>,
+    version: ::std::string::String,
+    created_at: ::aws_smithy_types::DateTime,
+    updated_at: ::aws_smithy_types::DateTime,
+    cross_region_details: Option<Arc<aws_sdk_bedrock::types::GuardrailCrossRegionDetails>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::GuardrailSummary> for SharedGuardrailSummary {
+    fn from(value: aws_sdk_bedrock::types::GuardrailSummary) -> Self {
+        Self {
+            id: value.id,
+            arn: value.arn,
+            status: value.status,
+            name: value.name,
+            description: value.description,
+            version: value.version,
+            created_at: value.created_at,
+            updated_at: value.updated_at,
+            cross_region_details: value.cross_region_details.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn guardrail_summary_shared_to_py(
+    py: Python<'_>,
+    value: &SharedGuardrailSummary,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_3367 = (&value.id).as_str().into_py_any(py)?;
+    result.set_item("id", converted_3367)?;
+    let converted_3368 = (&value.arn).as_str().into_py_any(py)?;
+    result.set_item("arn", converted_3368)?;
+    let converted_3369 = (&value.status).as_str().into_py_any(py)?;
+    result.set_item("status", converted_3369)?;
+    let converted_3370 = (&value.name).as_str().into_py_any(py)?;
+    result.set_item("name", converted_3370)?;
+    if let Some(value) = &value.description {
+        let converted_3371 = (value).as_str().into_py_any(py)?;
+        result.set_item("description", converted_3371)?;
+    } else {
+        result.set_item("description", py.None())?;
+    }
+    let converted_3372 = (&value.version).as_str().into_py_any(py)?;
+    result.set_item("version", converted_3372)?;
+    let converted_3373 = (&value.created_at).to_string().into_py_any(py)?;
+    result.set_item("created_at", converted_3373)?;
+    let converted_3374 = (&value.updated_at).to_string().into_py_any(py)?;
+    result.set_item("updated_at", converted_3374)?;
+    if let Some(value) = &value.cross_region_details {
+        let converted_3375 = guardrail_cross_region_details_to_py(py, value)?;
+        result.set_item("cross_region_details", converted_3375)?;
+    } else {
+        result.set_item("cross_region_details", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(name = "GuardrailSummary", module = "rboto_bedrock._native", frozen)]
 struct PyGuardrailSummary {
-    inner: aws_sdk_bedrock::types::GuardrailSummary,
+    inner: Arc<SharedGuardrailSummary>,
 }
 
 #[pymethods]
 impl PyGuardrailSummary {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3237 = (&self.inner.id).as_str().into_py_any(py)?;
-        Ok(converted_3237)
+        let converted_3358 = (&self.inner.id).as_str().into_py_any(py)?;
+        Ok(converted_3358)
     }
 
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3238 = (&self.inner.arn).as_str().into_py_any(py)?;
-        Ok(converted_3238)
+        let converted_3359 = (&self.inner.arn).as_str().into_py_any(py)?;
+        Ok(converted_3359)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3239 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_3239)
+        let converted_3360 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_3360)
     }
 
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3240 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_3240)
+        let converted_3361 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_3361)
     }
 
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_3241 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3241)
+            let converted_3362 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3362)
         } else {
             Ok(py.None())
         }
@@ -16214,72 +17155,72 @@ impl PyGuardrailSummary {
 
     #[getter]
     fn version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3242 = (&self.inner.version).as_str().into_py_any(py)?;
-        Ok(converted_3242)
+        let converted_3363 = (&self.inner.version).as_str().into_py_any(py)?;
+        Ok(converted_3363)
     }
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3243 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_3243)
+        let converted_3364 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_3364)
     }
 
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3244 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        Ok(converted_3244)
+        let converted_3365 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        Ok(converted_3365)
     }
 
     #[getter]
     fn cross_region_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cross_region_details {
-            let converted_3245 = Py::new(
+            let converted_3366 = Py::new(
                 py,
                 PyGuardrailCrossRegionDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3245)
+            Ok(converted_3366)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        guardrail_summary_to_py(py, &self.inner)
+        guardrail_summary_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "GuardrailTopic", module = "rboto_bedrock._native", frozen)]
 struct PyGuardrailTopic {
-    inner: aws_sdk_bedrock::types::GuardrailTopic,
+    inner: Arc<aws_sdk_bedrock::types::GuardrailTopic>,
 }
 
 #[pymethods]
 impl PyGuardrailTopic {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3246 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_3246)
+        let converted_3376 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_3376)
     }
 
     #[getter]
     fn definition(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3247 = (&self.inner.definition).as_str().into_py_any(py)?;
-        Ok(converted_3247)
+        let converted_3377 = (&self.inner.definition).as_str().into_py_any(py)?;
+        Ok(converted_3377)
     }
 
     #[getter]
     fn examples(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.examples {
-            let converted_3248_list = PyList::empty(py);
-            for item_3249 in value {
-                let converted_item_3250 = (item_3249).as_str().into_py_any(py)?;
-                converted_3248_list.append(converted_item_3250)?;
+            let converted_3378_list = PyList::empty(py);
+            for item_3379 in value {
+                let converted_item_3380 = (item_3379).as_str().into_py_any(py)?;
+                converted_3378_list.append(converted_item_3380)?;
             }
-            let converted_3248 = converted_3248_list.into_any().unbind();
-            Ok(converted_3248)
+            let converted_3378 = converted_3378_list.into_any().unbind();
+            Ok(converted_3378)
         } else {
             Ok(py.None())
         }
@@ -16288,8 +17229,8 @@ impl PyGuardrailTopic {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.r#type {
-            let converted_3251 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3251)
+            let converted_3381 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3381)
         } else {
             Ok(py.None())
         }
@@ -16298,8 +17239,8 @@ impl PyGuardrailTopic {
     #[getter]
     fn input_action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_action {
-            let converted_3252 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3252)
+            let converted_3382 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3382)
         } else {
             Ok(py.None())
         }
@@ -16308,8 +17249,8 @@ impl PyGuardrailTopic {
     #[getter]
     fn output_action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_action {
-            let converted_3253 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3253)
+            let converted_3383 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3383)
         } else {
             Ok(py.None())
         }
@@ -16318,8 +17259,8 @@ impl PyGuardrailTopic {
     #[getter]
     fn input_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_enabled {
-            let converted_3254 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3254)
+            let converted_3384 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3384)
         } else {
             Ok(py.None())
         }
@@ -16328,8 +17269,8 @@ impl PyGuardrailTopic {
     #[getter]
     fn output_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_enabled {
-            let converted_3255 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3255)
+            let converted_3385 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3385)
         } else {
             Ok(py.None())
         }
@@ -16340,66 +17281,105 @@ impl PyGuardrailTopic {
     }
 }
 
+struct SharedGuardrailTopicPolicy {
+    topics: ::std::vec::Vec<Arc<aws_sdk_bedrock::types::GuardrailTopic>>,
+    tier: Option<Arc<aws_sdk_bedrock::types::GuardrailTopicsTier>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::GuardrailTopicPolicy> for SharedGuardrailTopicPolicy {
+    fn from(value: aws_sdk_bedrock::types::GuardrailTopicPolicy) -> Self {
+        Self {
+            topics: (value.topics)
+                .into_iter()
+                .map(|owned_3390| Arc::new(owned_3390))
+                .collect(),
+            tier: value.tier.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn guardrail_topic_policy_shared_to_py(
+    py: Python<'_>,
+    value: &SharedGuardrailTopicPolicy,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_3391_list = PyList::empty(py);
+    for item_3392 in &value.topics {
+        let converted_item_3393 = guardrail_topic_to_py(py, item_3392)?;
+        converted_3391_list.append(converted_item_3393)?;
+    }
+    let converted_3391 = converted_3391_list.into_any().unbind();
+    result.set_item("topics", converted_3391)?;
+    if let Some(value) = &value.tier {
+        let converted_3394 = guardrail_topics_tier_to_py(py, value)?;
+        result.set_item("tier", converted_3394)?;
+    } else {
+        result.set_item("tier", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "GuardrailTopicPolicy",
     module = "rboto_bedrock._native",
     frozen
 )]
 struct PyGuardrailTopicPolicy {
-    inner: aws_sdk_bedrock::types::GuardrailTopicPolicy,
+    inner: Arc<SharedGuardrailTopicPolicy>,
 }
 
 #[pymethods]
 impl PyGuardrailTopicPolicy {
     #[getter]
     fn topics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3256_list = PyList::empty(py);
-        for item_3257 in &self.inner.topics {
-            let converted_item_3258 = Py::new(
+        let converted_3386_list = PyList::empty(py);
+        for item_3387 in &self.inner.topics {
+            let converted_item_3388 = Py::new(
                 py,
                 PyGuardrailTopic {
-                    inner: (item_3257).to_owned(),
+                    inner: Arc::clone(item_3387),
                 },
             )?
             .into_any();
-            converted_3256_list.append(converted_item_3258)?;
+            converted_3386_list.append(converted_item_3388)?;
         }
-        let converted_3256 = converted_3256_list.into_any().unbind();
-        Ok(converted_3256)
+        let converted_3386 = converted_3386_list.into_any().unbind();
+        Ok(converted_3386)
     }
 
     #[getter]
     fn tier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tier {
-            let converted_3259 = Py::new(
+            let converted_3389 = Py::new(
                 py,
                 PyGuardrailTopicsTier {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3259)
+            Ok(converted_3389)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        guardrail_topic_policy_to_py(py, &self.inner)
+        guardrail_topic_policy_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "GuardrailTopicsTier", module = "rboto_bedrock._native", frozen)]
 struct PyGuardrailTopicsTier {
-    inner: aws_sdk_bedrock::types::GuardrailTopicsTier,
+    inner: Arc<aws_sdk_bedrock::types::GuardrailTopicsTier>,
 }
 
 #[pymethods]
 impl PyGuardrailTopicsTier {
     #[getter]
     fn tier_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3260 = (&self.inner.tier_name).as_str().into_py_any(py)?;
-        Ok(converted_3260)
+        let converted_3395 = (&self.inner.tier_name).as_str().into_py_any(py)?;
+        Ok(converted_3395)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -16409,22 +17389,22 @@ impl PyGuardrailTopicsTier {
 
 #[pyclass(name = "GuardrailWord", module = "rboto_bedrock._native", frozen)]
 struct PyGuardrailWord {
-    inner: aws_sdk_bedrock::types::GuardrailWord,
+    inner: Arc<aws_sdk_bedrock::types::GuardrailWord>,
 }
 
 #[pymethods]
 impl PyGuardrailWord {
     #[getter]
     fn text(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3261 = (&self.inner.text).as_str().into_py_any(py)?;
-        Ok(converted_3261)
+        let converted_3396 = (&self.inner.text).as_str().into_py_any(py)?;
+        Ok(converted_3396)
     }
 
     #[getter]
     fn input_action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_action {
-            let converted_3262 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3262)
+            let converted_3397 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3397)
         } else {
             Ok(py.None())
         }
@@ -16433,8 +17413,8 @@ impl PyGuardrailWord {
     #[getter]
     fn output_action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_action {
-            let converted_3263 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3263)
+            let converted_3398 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3398)
         } else {
             Ok(py.None())
         }
@@ -16443,8 +17423,8 @@ impl PyGuardrailWord {
     #[getter]
     fn input_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_enabled {
-            let converted_3264 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3264)
+            let converted_3399 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3399)
         } else {
             Ok(py.None())
         }
@@ -16453,8 +17433,8 @@ impl PyGuardrailWord {
     #[getter]
     fn output_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_enabled {
-            let converted_3265 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3265)
+            let converted_3400 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3400)
         } else {
             Ok(py.None())
         }
@@ -16465,9 +17445,64 @@ impl PyGuardrailWord {
     }
 }
 
+struct SharedGuardrailWordPolicy {
+    words: Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::GuardrailWord>>>,
+    managed_word_lists: Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::GuardrailManagedWords>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::GuardrailWordPolicy> for SharedGuardrailWordPolicy {
+    fn from(value: aws_sdk_bedrock::types::GuardrailWordPolicy) -> Self {
+        Self {
+            words: value.words.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3407| Arc::new(owned_3407))
+                    .collect()
+            }),
+            managed_word_lists: value.managed_word_lists.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3408| Arc::new(owned_3408))
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn guardrail_word_policy_shared_to_py(
+    py: Python<'_>,
+    value: &SharedGuardrailWordPolicy,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.words {
+        let converted_3409_list = PyList::empty(py);
+        for item_3410 in value {
+            let converted_item_3411 = guardrail_word_to_py(py, item_3410)?;
+            converted_3409_list.append(converted_item_3411)?;
+        }
+        let converted_3409 = converted_3409_list.into_any().unbind();
+        result.set_item("words", converted_3409)?;
+    } else {
+        result.set_item("words", py.None())?;
+    }
+    if let Some(value) = &value.managed_word_lists {
+        let converted_3412_list = PyList::empty(py);
+        for item_3413 in value {
+            let converted_item_3414 = guardrail_managed_words_to_py(py, item_3413)?;
+            converted_3412_list.append(converted_item_3414)?;
+        }
+        let converted_3412 = converted_3412_list.into_any().unbind();
+        result.set_item("managed_word_lists", converted_3412)?;
+    } else {
+        result.set_item("managed_word_lists", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "GuardrailWordPolicy", module = "rboto_bedrock._native", frozen)]
 struct PyGuardrailWordPolicy {
-    inner: aws_sdk_bedrock::types::GuardrailWordPolicy,
+    inner: Arc<SharedGuardrailWordPolicy>,
 }
 
 #[pymethods]
@@ -16475,19 +17510,19 @@ impl PyGuardrailWordPolicy {
     #[getter]
     fn words(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.words {
-            let converted_3266_list = PyList::empty(py);
-            for item_3267 in value {
-                let converted_item_3268 = Py::new(
+            let converted_3401_list = PyList::empty(py);
+            for item_3402 in value {
+                let converted_item_3403 = Py::new(
                     py,
                     PyGuardrailWord {
-                        inner: (item_3267).to_owned(),
+                        inner: Arc::clone(item_3402),
                     },
                 )?
                 .into_any();
-                converted_3266_list.append(converted_item_3268)?;
+                converted_3401_list.append(converted_item_3403)?;
             }
-            let converted_3266 = converted_3266_list.into_any().unbind();
-            Ok(converted_3266)
+            let converted_3401 = converted_3401_list.into_any().unbind();
+            Ok(converted_3401)
         } else {
             Ok(py.None())
         }
@@ -16496,26 +17531,26 @@ impl PyGuardrailWordPolicy {
     #[getter]
     fn managed_word_lists(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.managed_word_lists {
-            let converted_3269_list = PyList::empty(py);
-            for item_3270 in value {
-                let converted_item_3271 = Py::new(
+            let converted_3404_list = PyList::empty(py);
+            for item_3405 in value {
+                let converted_item_3406 = Py::new(
                     py,
                     PyGuardrailManagedWords {
-                        inner: (item_3270).to_owned(),
+                        inner: Arc::clone(item_3405),
                     },
                 )?
                 .into_any();
-                converted_3269_list.append(converted_item_3271)?;
+                converted_3404_list.append(converted_item_3406)?;
             }
-            let converted_3269 = converted_3269_list.into_any().unbind();
-            Ok(converted_3269)
+            let converted_3404 = converted_3404_list.into_any().unbind();
+            Ok(converted_3404)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        guardrail_word_policy_to_py(py, &self.inner)
+        guardrail_word_policy_shared_to_py(py, &self.inner)
     }
 }
 
@@ -16525,34 +17560,34 @@ impl PyGuardrailWordPolicy {
     frozen
 )]
 struct PyImportedModelSummary {
-    inner: aws_sdk_bedrock::types::ImportedModelSummary,
+    inner: Arc<aws_sdk_bedrock::types::ImportedModelSummary>,
 }
 
 #[pymethods]
 impl PyImportedModelSummary {
     #[getter]
     fn model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3272 = (&self.inner.model_arn).as_str().into_py_any(py)?;
-        Ok(converted_3272)
+        let converted_3415 = (&self.inner.model_arn).as_str().into_py_any(py)?;
+        Ok(converted_3415)
     }
 
     #[getter]
     fn model_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3273 = (&self.inner.model_name).as_str().into_py_any(py)?;
-        Ok(converted_3273)
+        let converted_3416 = (&self.inner.model_name).as_str().into_py_any(py)?;
+        Ok(converted_3416)
     }
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3274 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        Ok(converted_3274)
+        let converted_3417 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        Ok(converted_3417)
     }
 
     #[getter]
     fn instruct_supported(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.instruct_supported {
-            let converted_3275 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3275)
+            let converted_3418 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3418)
         } else {
             Ok(py.None())
         }
@@ -16561,8 +17596,8 @@ impl PyImportedModelSummary {
     #[getter]
     fn model_architecture(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_architecture {
-            let converted_3276 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3276)
+            let converted_3419 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3419)
         } else {
             Ok(py.None())
         }
@@ -16579,7 +17614,7 @@ impl PyImportedModelSummary {
     frozen
 )]
 struct PyInferenceConfiguration {
-    inner: aws_sdk_bedrock::types::InferenceConfiguration,
+    inner: Arc<aws_sdk_bedrock::types::InferenceConfiguration>,
 }
 
 #[pymethods]
@@ -16587,8 +17622,8 @@ impl PyInferenceConfiguration {
     #[getter]
     fn max_tokens(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.max_tokens {
-            let converted_3277 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3277)
+            let converted_3420 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3420)
         } else {
             Ok(py.None())
         }
@@ -16597,8 +17632,8 @@ impl PyInferenceConfiguration {
     #[getter]
     fn temperature(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.temperature {
-            let converted_3278 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3278)
+            let converted_3421 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3421)
         } else {
             Ok(py.None())
         }
@@ -16607,8 +17642,8 @@ impl PyInferenceConfiguration {
     #[getter]
     fn top_p(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.top_p {
-            let converted_3279 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3279)
+            let converted_3422 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3422)
         } else {
             Ok(py.None())
         }
@@ -16617,13 +17652,13 @@ impl PyInferenceConfiguration {
     #[getter]
     fn stop_sequences(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stop_sequences {
-            let converted_3280_list = PyList::empty(py);
-            for item_3281 in value {
-                let converted_item_3282 = (item_3281).as_str().into_py_any(py)?;
-                converted_3280_list.append(converted_item_3282)?;
+            let converted_3423_list = PyList::empty(py);
+            for item_3424 in value {
+                let converted_item_3425 = (item_3424).as_str().into_py_any(py)?;
+                converted_3423_list.append(converted_item_3425)?;
             }
-            let converted_3280 = converted_3280_list.into_any().unbind();
-            Ok(converted_3280)
+            let converted_3423 = converted_3423_list.into_any().unbind();
+            Ok(converted_3423)
         } else {
             Ok(py.None())
         }
@@ -16640,7 +17675,7 @@ impl PyInferenceConfiguration {
     frozen
 )]
 struct PyInferenceProfileModel {
-    inner: aws_sdk_bedrock::types::InferenceProfileModel,
+    inner: Arc<aws_sdk_bedrock::types::InferenceProfileModel>,
 }
 
 #[pymethods]
@@ -16648,8 +17683,8 @@ impl PyInferenceProfileModel {
     #[getter]
     fn model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_arn {
-            let converted_3283 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3283)
+            let converted_3426 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3426)
         } else {
             Ok(py.None())
         }
@@ -16660,30 +17695,105 @@ impl PyInferenceProfileModel {
     }
 }
 
+struct SharedInferenceProfileSummary {
+    inference_profile_name: ::std::string::String,
+    description: Option<::std::string::String>,
+    created_at: Option<::aws_smithy_types::DateTime>,
+    updated_at: Option<::aws_smithy_types::DateTime>,
+    inference_profile_arn: ::std::string::String,
+    models: ::std::vec::Vec<Arc<aws_sdk_bedrock::types::InferenceProfileModel>>,
+    inference_profile_id: ::std::string::String,
+    status: aws_sdk_bedrock::types::InferenceProfileStatus,
+    r#type: aws_sdk_bedrock::types::InferenceProfileType,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::InferenceProfileSummary> for SharedInferenceProfileSummary {
+    fn from(value: aws_sdk_bedrock::types::InferenceProfileSummary) -> Self {
+        Self {
+            inference_profile_name: value.inference_profile_name,
+            description: value.description,
+            created_at: value.created_at,
+            updated_at: value.updated_at,
+            inference_profile_arn: value.inference_profile_arn,
+            models: (value.models)
+                .into_iter()
+                .map(|owned_3438| Arc::new(owned_3438))
+                .collect(),
+            inference_profile_id: value.inference_profile_id,
+            status: value.status,
+            r#type: value.r#type,
+        }
+    }
+}
+
+fn inference_profile_summary_shared_to_py(
+    py: Python<'_>,
+    value: &SharedInferenceProfileSummary,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_3439 = (&value.inference_profile_name).as_str().into_py_any(py)?;
+    result.set_item("inference_profile_name", converted_3439)?;
+    if let Some(value) = &value.description {
+        let converted_3440 = (value).as_str().into_py_any(py)?;
+        result.set_item("description", converted_3440)?;
+    } else {
+        result.set_item("description", py.None())?;
+    }
+    if let Some(value) = &value.created_at {
+        let converted_3441 = (value).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_3441)?;
+    } else {
+        result.set_item("created_at", py.None())?;
+    }
+    if let Some(value) = &value.updated_at {
+        let converted_3442 = (value).to_string().into_py_any(py)?;
+        result.set_item("updated_at", converted_3442)?;
+    } else {
+        result.set_item("updated_at", py.None())?;
+    }
+    let converted_3443 = (&value.inference_profile_arn).as_str().into_py_any(py)?;
+    result.set_item("inference_profile_arn", converted_3443)?;
+    let converted_3444_list = PyList::empty(py);
+    for item_3445 in &value.models {
+        let converted_item_3446 = inference_profile_model_to_py(py, item_3445)?;
+        converted_3444_list.append(converted_item_3446)?;
+    }
+    let converted_3444 = converted_3444_list.into_any().unbind();
+    result.set_item("models", converted_3444)?;
+    let converted_3447 = (&value.inference_profile_id).as_str().into_py_any(py)?;
+    result.set_item("inference_profile_id", converted_3447)?;
+    let converted_3448 = (&value.status).as_str().into_py_any(py)?;
+    result.set_item("status", converted_3448)?;
+    let converted_3449 = (&value.r#type).as_str().into_py_any(py)?;
+    result.set_item("type", converted_3449)?;
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "InferenceProfileSummary",
     module = "rboto_bedrock._native",
     frozen
 )]
 struct PyInferenceProfileSummary {
-    inner: aws_sdk_bedrock::types::InferenceProfileSummary,
+    inner: Arc<SharedInferenceProfileSummary>,
 }
 
 #[pymethods]
 impl PyInferenceProfileSummary {
     #[getter]
     fn inference_profile_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3284 = (&self.inner.inference_profile_name)
+        let converted_3427 = (&self.inner.inference_profile_name)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3284)
+        Ok(converted_3427)
     }
 
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_3285 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3285)
+            let converted_3428 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3428)
         } else {
             Ok(py.None())
         }
@@ -16692,8 +17802,8 @@ impl PyInferenceProfileSummary {
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.created_at {
-            let converted_3286 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3286)
+            let converted_3429 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3429)
         } else {
             Ok(py.None())
         }
@@ -16702,8 +17812,8 @@ impl PyInferenceProfileSummary {
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_at {
-            let converted_3287 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3287)
+            let converted_3430 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3430)
         } else {
             Ok(py.None())
         }
@@ -16711,51 +17821,51 @@ impl PyInferenceProfileSummary {
 
     #[getter]
     fn inference_profile_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3288 = (&self.inner.inference_profile_arn)
+        let converted_3431 = (&self.inner.inference_profile_arn)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3288)
+        Ok(converted_3431)
     }
 
     #[getter]
     fn models(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3289_list = PyList::empty(py);
-        for item_3290 in &self.inner.models {
-            let converted_item_3291 = Py::new(
+        let converted_3432_list = PyList::empty(py);
+        for item_3433 in &self.inner.models {
+            let converted_item_3434 = Py::new(
                 py,
                 PyInferenceProfileModel {
-                    inner: (item_3290).to_owned(),
+                    inner: Arc::clone(item_3433),
                 },
             )?
             .into_any();
-            converted_3289_list.append(converted_item_3291)?;
+            converted_3432_list.append(converted_item_3434)?;
         }
-        let converted_3289 = converted_3289_list.into_any().unbind();
-        Ok(converted_3289)
+        let converted_3432 = converted_3432_list.into_any().unbind();
+        Ok(converted_3432)
     }
 
     #[getter]
     fn inference_profile_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3292 = (&self.inner.inference_profile_id)
+        let converted_3435 = (&self.inner.inference_profile_id)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3292)
+        Ok(converted_3435)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3293 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_3293)
+        let converted_3436 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_3436)
     }
 
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3294 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_3294)
+        let converted_3437 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_3437)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        inference_profile_summary_to_py(py, &self.inner)
+        inference_profile_summary_shared_to_py(py, &self.inner)
     }
 }
 
@@ -16765,24 +17875,24 @@ impl PyInferenceProfileSummary {
     frozen
 )]
 struct PyInvocationLogsConfig {
-    inner: aws_sdk_bedrock::types::InvocationLogsConfig,
+    inner: Arc<aws_sdk_bedrock::types::InvocationLogsConfig>,
 }
 
 #[pymethods]
 impl PyInvocationLogsConfig {
     #[getter]
     fn use_prompt_response(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3295 = (&self.inner.use_prompt_response)
+        let converted_3450 = (&self.inner.use_prompt_response)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_3295)
+        Ok(converted_3450)
     }
 
     #[getter]
     fn invocation_log_source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.invocation_log_source {
-            let converted_3296 = invocation_log_source_to_py(py, value)?;
-            Ok(converted_3296)
+            let converted_3451 = invocation_log_source_to_py(py, value)?;
+            Ok(converted_3451)
         } else {
             Ok(py.None())
         }
@@ -16791,8 +17901,8 @@ impl PyInvocationLogsConfig {
     #[getter]
     fn request_metadata_filters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.request_metadata_filters {
-            let converted_3297 = request_metadata_filters_to_py(py, value)?;
-            Ok(converted_3297)
+            let converted_3452 = request_metadata_filters_to_py(py, value)?;
+            Ok(converted_3452)
         } else {
             Ok(py.None())
         }
@@ -16805,7 +17915,7 @@ impl PyInvocationLogsConfig {
 
 #[pyclass(name = "LegalTerm", module = "rboto_bedrock._native", frozen)]
 struct PyLegalTerm {
-    inner: aws_sdk_bedrock::types::LegalTerm,
+    inner: Arc<aws_sdk_bedrock::types::LegalTerm>,
 }
 
 #[pymethods]
@@ -16813,8 +17923,8 @@ impl PyLegalTerm {
     #[getter]
     fn url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.url {
-            let converted_3298 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3298)
+            let converted_3453 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3453)
         } else {
             Ok(py.None())
         }
@@ -16825,9 +17935,83 @@ impl PyLegalTerm {
     }
 }
 
+struct SharedLoggingConfig {
+    cloud_watch_config: Option<Arc<SharedCloudWatchConfig>>,
+    s3_config: Option<Arc<aws_sdk_bedrock::types::S3Config>>,
+    text_data_delivery_enabled: Option<bool>,
+    image_data_delivery_enabled: Option<bool>,
+    embedding_data_delivery_enabled: Option<bool>,
+    video_data_delivery_enabled: Option<bool>,
+    audio_data_delivery_enabled: Option<bool>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::LoggingConfig> for SharedLoggingConfig {
+    fn from(value: aws_sdk_bedrock::types::LoggingConfig) -> Self {
+        Self {
+            cloud_watch_config: value
+                .cloud_watch_config
+                .map(|item| Arc::new(SharedCloudWatchConfig::from(item))),
+            s3_config: value.s3_config.map(|item| Arc::new(item)),
+            text_data_delivery_enabled: value.text_data_delivery_enabled,
+            image_data_delivery_enabled: value.image_data_delivery_enabled,
+            embedding_data_delivery_enabled: value.embedding_data_delivery_enabled,
+            video_data_delivery_enabled: value.video_data_delivery_enabled,
+            audio_data_delivery_enabled: value.audio_data_delivery_enabled,
+        }
+    }
+}
+
+fn logging_config_shared_to_py(py: Python<'_>, value: &SharedLoggingConfig) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.cloud_watch_config {
+        let converted_3461 = cloud_watch_config_shared_to_py(py, value)?;
+        result.set_item("cloud_watch_config", converted_3461)?;
+    } else {
+        result.set_item("cloud_watch_config", py.None())?;
+    }
+    if let Some(value) = &value.s3_config {
+        let converted_3462 = s3_config_to_py(py, value)?;
+        result.set_item("s3_config", converted_3462)?;
+    } else {
+        result.set_item("s3_config", py.None())?;
+    }
+    if let Some(value) = &value.text_data_delivery_enabled {
+        let converted_3463 = (value).to_owned().into_py_any(py)?;
+        result.set_item("text_data_delivery_enabled", converted_3463)?;
+    } else {
+        result.set_item("text_data_delivery_enabled", py.None())?;
+    }
+    if let Some(value) = &value.image_data_delivery_enabled {
+        let converted_3464 = (value).to_owned().into_py_any(py)?;
+        result.set_item("image_data_delivery_enabled", converted_3464)?;
+    } else {
+        result.set_item("image_data_delivery_enabled", py.None())?;
+    }
+    if let Some(value) = &value.embedding_data_delivery_enabled {
+        let converted_3465 = (value).to_owned().into_py_any(py)?;
+        result.set_item("embedding_data_delivery_enabled", converted_3465)?;
+    } else {
+        result.set_item("embedding_data_delivery_enabled", py.None())?;
+    }
+    if let Some(value) = &value.video_data_delivery_enabled {
+        let converted_3466 = (value).to_owned().into_py_any(py)?;
+        result.set_item("video_data_delivery_enabled", converted_3466)?;
+    } else {
+        result.set_item("video_data_delivery_enabled", py.None())?;
+    }
+    if let Some(value) = &value.audio_data_delivery_enabled {
+        let converted_3467 = (value).to_owned().into_py_any(py)?;
+        result.set_item("audio_data_delivery_enabled", converted_3467)?;
+    } else {
+        result.set_item("audio_data_delivery_enabled", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "LoggingConfig", module = "rboto_bedrock._native", frozen)]
 struct PyLoggingConfig {
-    inner: aws_sdk_bedrock::types::LoggingConfig,
+    inner: Arc<SharedLoggingConfig>,
 }
 
 #[pymethods]
@@ -16835,14 +18019,14 @@ impl PyLoggingConfig {
     #[getter]
     fn cloud_watch_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cloud_watch_config {
-            let converted_3299 = Py::new(
+            let converted_3454 = Py::new(
                 py,
                 PyCloudWatchConfig {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3299)
+            Ok(converted_3454)
         } else {
             Ok(py.None())
         }
@@ -16851,14 +18035,14 @@ impl PyLoggingConfig {
     #[getter]
     fn s3_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.s3_config {
-            let converted_3300 = Py::new(
+            let converted_3455 = Py::new(
                 py,
                 PyS3Config {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3300)
+            Ok(converted_3455)
         } else {
             Ok(py.None())
         }
@@ -16867,8 +18051,8 @@ impl PyLoggingConfig {
     #[getter]
     fn text_data_delivery_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.text_data_delivery_enabled {
-            let converted_3301 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3301)
+            let converted_3456 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3456)
         } else {
             Ok(py.None())
         }
@@ -16877,8 +18061,8 @@ impl PyLoggingConfig {
     #[getter]
     fn image_data_delivery_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.image_data_delivery_enabled {
-            let converted_3302 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3302)
+            let converted_3457 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3457)
         } else {
             Ok(py.None())
         }
@@ -16887,8 +18071,8 @@ impl PyLoggingConfig {
     #[getter]
     fn embedding_data_delivery_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.embedding_data_delivery_enabled {
-            let converted_3303 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3303)
+            let converted_3458 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3458)
         } else {
             Ok(py.None())
         }
@@ -16897,8 +18081,8 @@ impl PyLoggingConfig {
     #[getter]
     fn video_data_delivery_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.video_data_delivery_enabled {
-            let converted_3304 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3304)
+            let converted_3459 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3459)
         } else {
             Ok(py.None())
         }
@@ -16907,15 +18091,15 @@ impl PyLoggingConfig {
     #[getter]
     fn audio_data_delivery_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.audio_data_delivery_enabled {
-            let converted_3305 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3305)
+            let converted_3460 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3460)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        logging_config_to_py(py, &self.inner)
+        logging_config_shared_to_py(py, &self.inner)
     }
 }
 
@@ -16925,30 +18109,30 @@ impl PyLoggingConfig {
     frozen
 )]
 struct PyMarketplaceModelEndpoint {
-    inner: aws_sdk_bedrock::types::MarketplaceModelEndpoint,
+    inner: Arc<aws_sdk_bedrock::types::MarketplaceModelEndpoint>,
 }
 
 #[pymethods]
 impl PyMarketplaceModelEndpoint {
     #[getter]
     fn endpoint_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3306 = (&self.inner.endpoint_arn).as_str().into_py_any(py)?;
-        Ok(converted_3306)
+        let converted_3468 = (&self.inner.endpoint_arn).as_str().into_py_any(py)?;
+        Ok(converted_3468)
     }
 
     #[getter]
     fn model_source_identifier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3307 = (&self.inner.model_source_identifier)
+        let converted_3469 = (&self.inner.model_source_identifier)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3307)
+        Ok(converted_3469)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_3308 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3308)
+            let converted_3470 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3470)
         } else {
             Ok(py.None())
         }
@@ -16957,8 +18141,8 @@ impl PyMarketplaceModelEndpoint {
     #[getter]
     fn status_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status_message {
-            let converted_3309 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3309)
+            let converted_3471 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3471)
         } else {
             Ok(py.None())
         }
@@ -16966,21 +18150,21 @@ impl PyMarketplaceModelEndpoint {
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3310 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_3310)
+        let converted_3472 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_3472)
     }
 
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3311 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        Ok(converted_3311)
+        let converted_3473 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        Ok(converted_3473)
     }
 
     #[getter]
     fn endpoint_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.endpoint_config {
-            let converted_3312 = endpoint_config_to_py(py, value)?;
-            Ok(converted_3312)
+            let converted_3474 = endpoint_config_to_py(py, value)?;
+            Ok(converted_3474)
         } else {
             Ok(py.None())
         }
@@ -16988,15 +18172,15 @@ impl PyMarketplaceModelEndpoint {
 
     #[getter]
     fn endpoint_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3313 = (&self.inner.endpoint_status).as_str().into_py_any(py)?;
-        Ok(converted_3313)
+        let converted_3475 = (&self.inner.endpoint_status).as_str().into_py_any(py)?;
+        Ok(converted_3475)
     }
 
     #[getter]
     fn endpoint_status_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.endpoint_status_message {
-            let converted_3314 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3314)
+            let converted_3476 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3476)
         } else {
             Ok(py.None())
         }
@@ -17013,30 +18197,30 @@ impl PyMarketplaceModelEndpoint {
     frozen
 )]
 struct PyMarketplaceModelEndpointSummary {
-    inner: aws_sdk_bedrock::types::MarketplaceModelEndpointSummary,
+    inner: Arc<aws_sdk_bedrock::types::MarketplaceModelEndpointSummary>,
 }
 
 #[pymethods]
 impl PyMarketplaceModelEndpointSummary {
     #[getter]
     fn endpoint_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3315 = (&self.inner.endpoint_arn).as_str().into_py_any(py)?;
-        Ok(converted_3315)
+        let converted_3477 = (&self.inner.endpoint_arn).as_str().into_py_any(py)?;
+        Ok(converted_3477)
     }
 
     #[getter]
     fn model_source_identifier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3316 = (&self.inner.model_source_identifier)
+        let converted_3478 = (&self.inner.model_source_identifier)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3316)
+        Ok(converted_3478)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_3317 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3317)
+            let converted_3479 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3479)
         } else {
             Ok(py.None())
         }
@@ -17045,8 +18229,8 @@ impl PyMarketplaceModelEndpointSummary {
     #[getter]
     fn status_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status_message {
-            let converted_3318 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3318)
+            let converted_3480 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3480)
         } else {
             Ok(py.None())
         }
@@ -17054,14 +18238,14 @@ impl PyMarketplaceModelEndpointSummary {
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3319 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_3319)
+        let converted_3481 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_3481)
     }
 
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3320 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        Ok(converted_3320)
+        let converted_3482 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        Ok(converted_3482)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -17069,30 +18253,76 @@ impl PyMarketplaceModelEndpointSummary {
     }
 }
 
+struct SharedModelConfiguration {
+    model_id: ::std::string::String,
+    inference_config: Option<Arc<aws_sdk_bedrock::types::InferenceConfiguration>>,
+    additional_model_request_fields:
+        Option<::std::collections::HashMap<::std::string::String, ::aws_smithy_types::Document>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::ModelConfiguration> for SharedModelConfiguration {
+    fn from(value: aws_sdk_bedrock::types::ModelConfiguration) -> Self {
+        Self {
+            model_id: value.model_id,
+            inference_config: value.inference_config.map(|item| Arc::new(item)),
+            additional_model_request_fields: value.additional_model_request_fields,
+        }
+    }
+}
+
+fn model_configuration_shared_to_py(
+    py: Python<'_>,
+    value: &SharedModelConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_3490 = (&value.model_id).as_str().into_py_any(py)?;
+    result.set_item("model_id", converted_3490)?;
+    if let Some(value) = &value.inference_config {
+        let converted_3491 = inference_configuration_to_py(py, value)?;
+        result.set_item("inference_config", converted_3491)?;
+    } else {
+        result.set_item("inference_config", py.None())?;
+    }
+    if let Some(value) = &value.additional_model_request_fields {
+        let converted_3492_dict = PyDict::new(py);
+        for (key_3493, value_3494) in value {
+            let converted_key_3495 = (key_3493).as_str().into_py_any(py)?;
+            let converted_value_3496 = rboto_core::document_to_py(py, value_3494)?;
+            converted_3492_dict.set_item(converted_key_3495, converted_value_3496)?;
+        }
+        let converted_3492 = converted_3492_dict.into_any().unbind();
+        result.set_item("additional_model_request_fields", converted_3492)?;
+    } else {
+        result.set_item("additional_model_request_fields", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "ModelConfiguration", module = "rboto_bedrock._native", frozen)]
 struct PyModelConfiguration {
-    inner: aws_sdk_bedrock::types::ModelConfiguration,
+    inner: Arc<SharedModelConfiguration>,
 }
 
 #[pymethods]
 impl PyModelConfiguration {
     #[getter]
     fn model_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3321 = (&self.inner.model_id).as_str().into_py_any(py)?;
-        Ok(converted_3321)
+        let converted_3483 = (&self.inner.model_id).as_str().into_py_any(py)?;
+        Ok(converted_3483)
     }
 
     #[getter]
     fn inference_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.inference_config {
-            let converted_3322 = Py::new(
+            let converted_3484 = Py::new(
                 py,
                 PyInferenceConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3322)
+            Ok(converted_3484)
         } else {
             Ok(py.None())
         }
@@ -17101,60 +18331,153 @@ impl PyModelConfiguration {
     #[getter]
     fn additional_model_request_fields(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.additional_model_request_fields {
-            let converted_3323_dict = PyDict::new(py);
-            for (key_3324, value_3325) in value {
-                let converted_key_3326 = (key_3324).as_str().into_py_any(py)?;
-                let converted_value_3327 = rboto_core::document_to_py(py, value_3325)?;
-                converted_3323_dict.set_item(converted_key_3326, converted_value_3327)?;
+            let converted_3485_dict = PyDict::new(py);
+            for (key_3486, value_3487) in value {
+                let converted_key_3488 = (key_3486).as_str().into_py_any(py)?;
+                let converted_value_3489 = rboto_core::document_to_py(py, value_3487)?;
+                converted_3485_dict.set_item(converted_key_3488, converted_value_3489)?;
             }
-            let converted_3323 = converted_3323_dict.into_any().unbind();
-            Ok(converted_3323)
+            let converted_3485 = converted_3485_dict.into_any().unbind();
+            Ok(converted_3485)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        model_configuration_to_py(py, &self.inner)
+        model_configuration_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedModelCopyJobSummary {
+    job_arn: ::std::string::String,
+    status: aws_sdk_bedrock::types::ModelCopyJobStatus,
+    creation_time: ::aws_smithy_types::DateTime,
+    target_model_arn: ::std::string::String,
+    target_model_name: Option<::std::string::String>,
+    source_account_id: ::std::string::String,
+    source_model_arn: ::std::string::String,
+    target_model_kms_key_arn: Option<::std::string::String>,
+    target_model_tags: Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::Tag>>>,
+    failure_message: Option<::std::string::String>,
+    source_model_name: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::ModelCopyJobSummary> for SharedModelCopyJobSummary {
+    fn from(value: aws_sdk_bedrock::types::ModelCopyJobSummary) -> Self {
+        Self {
+            job_arn: value.job_arn,
+            status: value.status,
+            creation_time: value.creation_time,
+            target_model_arn: value.target_model_arn,
+            target_model_name: value.target_model_name,
+            source_account_id: value.source_account_id,
+            source_model_arn: value.source_model_arn,
+            target_model_kms_key_arn: value.target_model_kms_key_arn,
+            target_model_tags: value.target_model_tags.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3510| Arc::new(owned_3510))
+                    .collect()
+            }),
+            failure_message: value.failure_message,
+            source_model_name: value.source_model_name,
+        }
+    }
+}
+
+fn model_copy_job_summary_shared_to_py(
+    py: Python<'_>,
+    value: &SharedModelCopyJobSummary,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_3511 = (&value.job_arn).as_str().into_py_any(py)?;
+    result.set_item("job_arn", converted_3511)?;
+    let converted_3512 = (&value.status).as_str().into_py_any(py)?;
+    result.set_item("status", converted_3512)?;
+    let converted_3513 = (&value.creation_time).to_string().into_py_any(py)?;
+    result.set_item("creation_time", converted_3513)?;
+    let converted_3514 = (&value.target_model_arn).as_str().into_py_any(py)?;
+    result.set_item("target_model_arn", converted_3514)?;
+    if let Some(value) = &value.target_model_name {
+        let converted_3515 = (value).as_str().into_py_any(py)?;
+        result.set_item("target_model_name", converted_3515)?;
+    } else {
+        result.set_item("target_model_name", py.None())?;
+    }
+    let converted_3516 = (&value.source_account_id).as_str().into_py_any(py)?;
+    result.set_item("source_account_id", converted_3516)?;
+    let converted_3517 = (&value.source_model_arn).as_str().into_py_any(py)?;
+    result.set_item("source_model_arn", converted_3517)?;
+    if let Some(value) = &value.target_model_kms_key_arn {
+        let converted_3518 = (value).as_str().into_py_any(py)?;
+        result.set_item("target_model_kms_key_arn", converted_3518)?;
+    } else {
+        result.set_item("target_model_kms_key_arn", py.None())?;
+    }
+    if let Some(value) = &value.target_model_tags {
+        let converted_3519_list = PyList::empty(py);
+        for item_3520 in value {
+            let converted_item_3521 = tag_to_py(py, item_3520)?;
+            converted_3519_list.append(converted_item_3521)?;
+        }
+        let converted_3519 = converted_3519_list.into_any().unbind();
+        result.set_item("target_model_tags", converted_3519)?;
+    } else {
+        result.set_item("target_model_tags", py.None())?;
+    }
+    if let Some(value) = &value.failure_message {
+        let converted_3522 = (value).as_str().into_py_any(py)?;
+        result.set_item("failure_message", converted_3522)?;
+    } else {
+        result.set_item("failure_message", py.None())?;
+    }
+    if let Some(value) = &value.source_model_name {
+        let converted_3523 = (value).as_str().into_py_any(py)?;
+        result.set_item("source_model_name", converted_3523)?;
+    } else {
+        result.set_item("source_model_name", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(name = "ModelCopyJobSummary", module = "rboto_bedrock._native", frozen)]
 struct PyModelCopyJobSummary {
-    inner: aws_sdk_bedrock::types::ModelCopyJobSummary,
+    inner: Arc<SharedModelCopyJobSummary>,
 }
 
 #[pymethods]
 impl PyModelCopyJobSummary {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3328 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        Ok(converted_3328)
+        let converted_3497 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_3497)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3329 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_3329)
+        let converted_3498 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_3498)
     }
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3330 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        Ok(converted_3330)
+        let converted_3499 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        Ok(converted_3499)
     }
 
     #[getter]
     fn target_model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3331 = (&self.inner.target_model_arn).as_str().into_py_any(py)?;
-        Ok(converted_3331)
+        let converted_3500 = (&self.inner.target_model_arn).as_str().into_py_any(py)?;
+        Ok(converted_3500)
     }
 
     #[getter]
     fn target_model_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.target_model_name {
-            let converted_3332 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3332)
+            let converted_3501 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3501)
         } else {
             Ok(py.None())
         }
@@ -17162,21 +18485,21 @@ impl PyModelCopyJobSummary {
 
     #[getter]
     fn source_account_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3333 = (&self.inner.source_account_id).as_str().into_py_any(py)?;
-        Ok(converted_3333)
+        let converted_3502 = (&self.inner.source_account_id).as_str().into_py_any(py)?;
+        Ok(converted_3502)
     }
 
     #[getter]
     fn source_model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3334 = (&self.inner.source_model_arn).as_str().into_py_any(py)?;
-        Ok(converted_3334)
+        let converted_3503 = (&self.inner.source_model_arn).as_str().into_py_any(py)?;
+        Ok(converted_3503)
     }
 
     #[getter]
     fn target_model_kms_key_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.target_model_kms_key_arn {
-            let converted_3335 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3335)
+            let converted_3504 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3504)
         } else {
             Ok(py.None())
         }
@@ -17185,19 +18508,19 @@ impl PyModelCopyJobSummary {
     #[getter]
     fn target_model_tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.target_model_tags {
-            let converted_3336_list = PyList::empty(py);
-            for item_3337 in value {
-                let converted_item_3338 = Py::new(
+            let converted_3505_list = PyList::empty(py);
+            for item_3506 in value {
+                let converted_item_3507 = Py::new(
                     py,
                     PyTag {
-                        inner: (item_3337).to_owned(),
+                        inner: Arc::clone(item_3506),
                     },
                 )?
                 .into_any();
-                converted_3336_list.append(converted_item_3338)?;
+                converted_3505_list.append(converted_item_3507)?;
             }
-            let converted_3336 = converted_3336_list.into_any().unbind();
-            Ok(converted_3336)
+            let converted_3505 = converted_3505_list.into_any().unbind();
+            Ok(converted_3505)
         } else {
             Ok(py.None())
         }
@@ -17206,8 +18529,8 @@ impl PyModelCopyJobSummary {
     #[getter]
     fn failure_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failure_message {
-            let converted_3339 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3339)
+            let converted_3508 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3508)
         } else {
             Ok(py.None())
         }
@@ -17216,16 +18539,107 @@ impl PyModelCopyJobSummary {
     #[getter]
     fn source_model_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.source_model_name {
-            let converted_3340 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3340)
+            let converted_3509 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3509)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        model_copy_job_summary_to_py(py, &self.inner)
+        model_copy_job_summary_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedModelCustomizationJobSummary {
+    job_arn: ::std::string::String,
+    base_model_arn: ::std::string::String,
+    job_name: ::std::string::String,
+    status: aws_sdk_bedrock::types::ModelCustomizationJobStatus,
+    status_details: Option<Arc<SharedStatusDetails>>,
+    last_modified_time: Option<::aws_smithy_types::DateTime>,
+    creation_time: ::aws_smithy_types::DateTime,
+    end_time: Option<::aws_smithy_types::DateTime>,
+    custom_model_arn: Option<::std::string::String>,
+    custom_model_name: Option<::std::string::String>,
+    customization_type: Option<aws_sdk_bedrock::types::CustomizationType>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::ModelCustomizationJobSummary>
+    for SharedModelCustomizationJobSummary
+{
+    fn from(value: aws_sdk_bedrock::types::ModelCustomizationJobSummary) -> Self {
+        Self {
+            job_arn: value.job_arn,
+            base_model_arn: value.base_model_arn,
+            job_name: value.job_name,
+            status: value.status,
+            status_details: value
+                .status_details
+                .map(|item| Arc::new(SharedStatusDetails::from(item))),
+            last_modified_time: value.last_modified_time,
+            creation_time: value.creation_time,
+            end_time: value.end_time,
+            custom_model_arn: value.custom_model_arn,
+            custom_model_name: value.custom_model_name,
+            customization_type: value.customization_type,
+        }
+    }
+}
+
+fn model_customization_job_summary_shared_to_py(
+    py: Python<'_>,
+    value: &SharedModelCustomizationJobSummary,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_3535 = (&value.job_arn).as_str().into_py_any(py)?;
+    result.set_item("job_arn", converted_3535)?;
+    let converted_3536 = (&value.base_model_arn).as_str().into_py_any(py)?;
+    result.set_item("base_model_arn", converted_3536)?;
+    let converted_3537 = (&value.job_name).as_str().into_py_any(py)?;
+    result.set_item("job_name", converted_3537)?;
+    let converted_3538 = (&value.status).as_str().into_py_any(py)?;
+    result.set_item("status", converted_3538)?;
+    if let Some(value) = &value.status_details {
+        let converted_3539 = status_details_shared_to_py(py, value)?;
+        result.set_item("status_details", converted_3539)?;
+    } else {
+        result.set_item("status_details", py.None())?;
+    }
+    if let Some(value) = &value.last_modified_time {
+        let converted_3540 = (value).to_string().into_py_any(py)?;
+        result.set_item("last_modified_time", converted_3540)?;
+    } else {
+        result.set_item("last_modified_time", py.None())?;
+    }
+    let converted_3541 = (&value.creation_time).to_string().into_py_any(py)?;
+    result.set_item("creation_time", converted_3541)?;
+    if let Some(value) = &value.end_time {
+        let converted_3542 = (value).to_string().into_py_any(py)?;
+        result.set_item("end_time", converted_3542)?;
+    } else {
+        result.set_item("end_time", py.None())?;
+    }
+    if let Some(value) = &value.custom_model_arn {
+        let converted_3543 = (value).as_str().into_py_any(py)?;
+        result.set_item("custom_model_arn", converted_3543)?;
+    } else {
+        result.set_item("custom_model_arn", py.None())?;
+    }
+    if let Some(value) = &value.custom_model_name {
+        let converted_3544 = (value).as_str().into_py_any(py)?;
+        result.set_item("custom_model_name", converted_3544)?;
+    } else {
+        result.set_item("custom_model_name", py.None())?;
+    }
+    if let Some(value) = &value.customization_type {
+        let converted_3545 = (value).as_str().into_py_any(py)?;
+        result.set_item("customization_type", converted_3545)?;
+    } else {
+        result.set_item("customization_type", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -17234,46 +18648,46 @@ impl PyModelCopyJobSummary {
     frozen
 )]
 struct PyModelCustomizationJobSummary {
-    inner: aws_sdk_bedrock::types::ModelCustomizationJobSummary,
+    inner: Arc<SharedModelCustomizationJobSummary>,
 }
 
 #[pymethods]
 impl PyModelCustomizationJobSummary {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3341 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        Ok(converted_3341)
+        let converted_3524 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_3524)
     }
 
     #[getter]
     fn base_model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3342 = (&self.inner.base_model_arn).as_str().into_py_any(py)?;
-        Ok(converted_3342)
+        let converted_3525 = (&self.inner.base_model_arn).as_str().into_py_any(py)?;
+        Ok(converted_3525)
     }
 
     #[getter]
     fn job_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3343 = (&self.inner.job_name).as_str().into_py_any(py)?;
-        Ok(converted_3343)
+        let converted_3526 = (&self.inner.job_name).as_str().into_py_any(py)?;
+        Ok(converted_3526)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3344 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_3344)
+        let converted_3527 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_3527)
     }
 
     #[getter]
     fn status_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status_details {
-            let converted_3345 = Py::new(
+            let converted_3528 = Py::new(
                 py,
                 PyStatusDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3345)
+            Ok(converted_3528)
         } else {
             Ok(py.None())
         }
@@ -17282,8 +18696,8 @@ impl PyModelCustomizationJobSummary {
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_3346 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3346)
+            let converted_3529 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3529)
         } else {
             Ok(py.None())
         }
@@ -17291,15 +18705,15 @@ impl PyModelCustomizationJobSummary {
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3347 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        Ok(converted_3347)
+        let converted_3530 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        Ok(converted_3530)
     }
 
     #[getter]
     fn end_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.end_time {
-            let converted_3348 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3348)
+            let converted_3531 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3531)
         } else {
             Ok(py.None())
         }
@@ -17308,8 +18722,8 @@ impl PyModelCustomizationJobSummary {
     #[getter]
     fn custom_model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.custom_model_arn {
-            let converted_3349 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3349)
+            let converted_3532 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3532)
         } else {
             Ok(py.None())
         }
@@ -17318,8 +18732,8 @@ impl PyModelCustomizationJobSummary {
     #[getter]
     fn custom_model_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.custom_model_name {
-            let converted_3350 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3350)
+            let converted_3533 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3533)
         } else {
             Ok(py.None())
         }
@@ -17328,45 +18742,45 @@ impl PyModelCustomizationJobSummary {
     #[getter]
     fn customization_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.customization_type {
-            let converted_3351 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3351)
+            let converted_3534 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3534)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        model_customization_job_summary_to_py(py, &self.inner)
+        model_customization_job_summary_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "ModelEnforcement", module = "rboto_bedrock._native", frozen)]
 struct PyModelEnforcement {
-    inner: aws_sdk_bedrock::types::ModelEnforcement,
+    inner: Arc<aws_sdk_bedrock::types::ModelEnforcement>,
 }
 
 #[pymethods]
 impl PyModelEnforcement {
     #[getter]
     fn included_models(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3352_list = PyList::empty(py);
-        for item_3353 in &self.inner.included_models {
-            let converted_item_3354 = (item_3353).as_str().into_py_any(py)?;
-            converted_3352_list.append(converted_item_3354)?;
+        let converted_3546_list = PyList::empty(py);
+        for item_3547 in &self.inner.included_models {
+            let converted_item_3548 = (item_3547).as_str().into_py_any(py)?;
+            converted_3546_list.append(converted_item_3548)?;
         }
-        let converted_3352 = converted_3352_list.into_any().unbind();
-        Ok(converted_3352)
+        let converted_3546 = converted_3546_list.into_any().unbind();
+        Ok(converted_3546)
     }
 
     #[getter]
     fn excluded_models(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3355_list = PyList::empty(py);
-        for item_3356 in &self.inner.excluded_models {
-            let converted_item_3357 = (item_3356).as_str().into_py_any(py)?;
-            converted_3355_list.append(converted_item_3357)?;
+        let converted_3549_list = PyList::empty(py);
+        for item_3550 in &self.inner.excluded_models {
+            let converted_item_3551 = (item_3550).as_str().into_py_any(py)?;
+            converted_3549_list.append(converted_item_3551)?;
         }
-        let converted_3355 = converted_3355_list.into_any().unbind();
-        Ok(converted_3355)
+        let converted_3549 = converted_3549_list.into_any().unbind();
+        Ok(converted_3549)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -17380,34 +18794,34 @@ impl PyModelEnforcement {
     frozen
 )]
 struct PyModelImportJobSummary {
-    inner: aws_sdk_bedrock::types::ModelImportJobSummary,
+    inner: Arc<aws_sdk_bedrock::types::ModelImportJobSummary>,
 }
 
 #[pymethods]
 impl PyModelImportJobSummary {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3358 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        Ok(converted_3358)
+        let converted_3552 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_3552)
     }
 
     #[getter]
     fn job_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3359 = (&self.inner.job_name).as_str().into_py_any(py)?;
-        Ok(converted_3359)
+        let converted_3553 = (&self.inner.job_name).as_str().into_py_any(py)?;
+        Ok(converted_3553)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3360 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_3360)
+        let converted_3554 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_3554)
     }
 
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_3361 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3361)
+            let converted_3555 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3555)
         } else {
             Ok(py.None())
         }
@@ -17415,15 +18829,15 @@ impl PyModelImportJobSummary {
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3362 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        Ok(converted_3362)
+        let converted_3556 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        Ok(converted_3556)
     }
 
     #[getter]
     fn end_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.end_time {
-            let converted_3363 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3363)
+            let converted_3557 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3557)
         } else {
             Ok(py.None())
         }
@@ -17432,8 +18846,8 @@ impl PyModelImportJobSummary {
     #[getter]
     fn imported_model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.imported_model_arn {
-            let converted_3364 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3364)
+            let converted_3558 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3558)
         } else {
             Ok(py.None())
         }
@@ -17442,8 +18856,8 @@ impl PyModelImportJobSummary {
     #[getter]
     fn imported_model_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.imported_model_name {
-            let converted_3365 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3365)
+            let converted_3559 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3559)
         } else {
             Ok(py.None())
         }
@@ -17454,40 +18868,199 @@ impl PyModelImportJobSummary {
     }
 }
 
+struct SharedModelInvocationJobSummary {
+    job_arn: ::std::string::String,
+    job_name: ::std::string::String,
+    model_id: ::std::string::String,
+    client_request_token: Option<::std::string::String>,
+    role_arn: ::std::string::String,
+    status: Option<aws_sdk_bedrock::types::ModelInvocationJobStatus>,
+    message: Option<::std::string::String>,
+    submit_time: ::aws_smithy_types::DateTime,
+    last_modified_time: Option<::aws_smithy_types::DateTime>,
+    end_time: Option<::aws_smithy_types::DateTime>,
+    input_data_config: Option<aws_sdk_bedrock::types::ModelInvocationJobInputDataConfig>,
+    output_data_config: Option<aws_sdk_bedrock::types::ModelInvocationJobOutputDataConfig>,
+    vpc_config: Option<Arc<aws_sdk_bedrock::types::VpcConfig>>,
+    timeout_duration_in_hours: Option<i32>,
+    job_expiration_time: Option<::aws_smithy_types::DateTime>,
+    model_invocation_type: Option<aws_sdk_bedrock::types::ModelInvocationType>,
+    total_record_count: Option<i64>,
+    processed_record_count: Option<i64>,
+    success_record_count: Option<i64>,
+    error_record_count: Option<i64>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::ModelInvocationJobSummary> for SharedModelInvocationJobSummary {
+    fn from(value: aws_sdk_bedrock::types::ModelInvocationJobSummary) -> Self {
+        Self {
+            job_arn: value.job_arn,
+            job_name: value.job_name,
+            model_id: value.model_id,
+            client_request_token: value.client_request_token,
+            role_arn: value.role_arn,
+            status: value.status,
+            message: value.message,
+            submit_time: value.submit_time,
+            last_modified_time: value.last_modified_time,
+            end_time: value.end_time,
+            input_data_config: value.input_data_config,
+            output_data_config: value.output_data_config,
+            vpc_config: value.vpc_config.map(|item| Arc::new(item)),
+            timeout_duration_in_hours: value.timeout_duration_in_hours,
+            job_expiration_time: value.job_expiration_time,
+            model_invocation_type: value.model_invocation_type,
+            total_record_count: value.total_record_count,
+            processed_record_count: value.processed_record_count,
+            success_record_count: value.success_record_count,
+            error_record_count: value.error_record_count,
+        }
+    }
+}
+
+fn model_invocation_job_summary_shared_to_py(
+    py: Python<'_>,
+    value: &SharedModelInvocationJobSummary,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_3580 = (&value.job_arn).as_str().into_py_any(py)?;
+    result.set_item("job_arn", converted_3580)?;
+    let converted_3581 = (&value.job_name).as_str().into_py_any(py)?;
+    result.set_item("job_name", converted_3581)?;
+    let converted_3582 = (&value.model_id).as_str().into_py_any(py)?;
+    result.set_item("model_id", converted_3582)?;
+    if let Some(value) = &value.client_request_token {
+        let converted_3583 = (value).as_str().into_py_any(py)?;
+        result.set_item("client_request_token", converted_3583)?;
+    } else {
+        result.set_item("client_request_token", py.None())?;
+    }
+    let converted_3584 = (&value.role_arn).as_str().into_py_any(py)?;
+    result.set_item("role_arn", converted_3584)?;
+    if let Some(value) = &value.status {
+        let converted_3585 = (value).as_str().into_py_any(py)?;
+        result.set_item("status", converted_3585)?;
+    } else {
+        result.set_item("status", py.None())?;
+    }
+    if let Some(value) = &value.message {
+        let converted_3586 = (value).as_str().into_py_any(py)?;
+        result.set_item("message", converted_3586)?;
+    } else {
+        result.set_item("message", py.None())?;
+    }
+    let converted_3587 = (&value.submit_time).to_string().into_py_any(py)?;
+    result.set_item("submit_time", converted_3587)?;
+    if let Some(value) = &value.last_modified_time {
+        let converted_3588 = (value).to_string().into_py_any(py)?;
+        result.set_item("last_modified_time", converted_3588)?;
+    } else {
+        result.set_item("last_modified_time", py.None())?;
+    }
+    if let Some(value) = &value.end_time {
+        let converted_3589 = (value).to_string().into_py_any(py)?;
+        result.set_item("end_time", converted_3589)?;
+    } else {
+        result.set_item("end_time", py.None())?;
+    }
+    if let Some(value) = &value.input_data_config {
+        let converted_3590 = model_invocation_job_input_data_config_to_py(py, value)?;
+        result.set_item("input_data_config", converted_3590)?;
+    } else {
+        result.set_item("input_data_config", py.None())?;
+    }
+    if let Some(value) = &value.output_data_config {
+        let converted_3591 = model_invocation_job_output_data_config_to_py(py, value)?;
+        result.set_item("output_data_config", converted_3591)?;
+    } else {
+        result.set_item("output_data_config", py.None())?;
+    }
+    if let Some(value) = &value.vpc_config {
+        let converted_3592 = vpc_config_to_py(py, value)?;
+        result.set_item("vpc_config", converted_3592)?;
+    } else {
+        result.set_item("vpc_config", py.None())?;
+    }
+    if let Some(value) = &value.timeout_duration_in_hours {
+        let converted_3593 = (value).to_owned().into_py_any(py)?;
+        result.set_item("timeout_duration_in_hours", converted_3593)?;
+    } else {
+        result.set_item("timeout_duration_in_hours", py.None())?;
+    }
+    if let Some(value) = &value.job_expiration_time {
+        let converted_3594 = (value).to_string().into_py_any(py)?;
+        result.set_item("job_expiration_time", converted_3594)?;
+    } else {
+        result.set_item("job_expiration_time", py.None())?;
+    }
+    if let Some(value) = &value.model_invocation_type {
+        let converted_3595 = (value).as_str().into_py_any(py)?;
+        result.set_item("model_invocation_type", converted_3595)?;
+    } else {
+        result.set_item("model_invocation_type", py.None())?;
+    }
+    if let Some(value) = &value.total_record_count {
+        let converted_3596 = (value).to_owned().into_py_any(py)?;
+        result.set_item("total_record_count", converted_3596)?;
+    } else {
+        result.set_item("total_record_count", py.None())?;
+    }
+    if let Some(value) = &value.processed_record_count {
+        let converted_3597 = (value).to_owned().into_py_any(py)?;
+        result.set_item("processed_record_count", converted_3597)?;
+    } else {
+        result.set_item("processed_record_count", py.None())?;
+    }
+    if let Some(value) = &value.success_record_count {
+        let converted_3598 = (value).to_owned().into_py_any(py)?;
+        result.set_item("success_record_count", converted_3598)?;
+    } else {
+        result.set_item("success_record_count", py.None())?;
+    }
+    if let Some(value) = &value.error_record_count {
+        let converted_3599 = (value).to_owned().into_py_any(py)?;
+        result.set_item("error_record_count", converted_3599)?;
+    } else {
+        result.set_item("error_record_count", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "ModelInvocationJobSummary",
     module = "rboto_bedrock._native",
     frozen
 )]
 struct PyModelInvocationJobSummary {
-    inner: aws_sdk_bedrock::types::ModelInvocationJobSummary,
+    inner: Arc<SharedModelInvocationJobSummary>,
 }
 
 #[pymethods]
 impl PyModelInvocationJobSummary {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3366 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        Ok(converted_3366)
+        let converted_3560 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_3560)
     }
 
     #[getter]
     fn job_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3367 = (&self.inner.job_name).as_str().into_py_any(py)?;
-        Ok(converted_3367)
+        let converted_3561 = (&self.inner.job_name).as_str().into_py_any(py)?;
+        Ok(converted_3561)
     }
 
     #[getter]
     fn model_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3368 = (&self.inner.model_id).as_str().into_py_any(py)?;
-        Ok(converted_3368)
+        let converted_3562 = (&self.inner.model_id).as_str().into_py_any(py)?;
+        Ok(converted_3562)
     }
 
     #[getter]
     fn client_request_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.client_request_token {
-            let converted_3369 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3369)
+            let converted_3563 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3563)
         } else {
             Ok(py.None())
         }
@@ -17495,15 +19068,15 @@ impl PyModelInvocationJobSummary {
 
     #[getter]
     fn role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3370 = (&self.inner.role_arn).as_str().into_py_any(py)?;
-        Ok(converted_3370)
+        let converted_3564 = (&self.inner.role_arn).as_str().into_py_any(py)?;
+        Ok(converted_3564)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_3371 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3371)
+            let converted_3565 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3565)
         } else {
             Ok(py.None())
         }
@@ -17512,8 +19085,8 @@ impl PyModelInvocationJobSummary {
     #[getter]
     fn message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.message {
-            let converted_3372 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3372)
+            let converted_3566 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3566)
         } else {
             Ok(py.None())
         }
@@ -17521,15 +19094,15 @@ impl PyModelInvocationJobSummary {
 
     #[getter]
     fn submit_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3373 = (&self.inner.submit_time).to_string().into_py_any(py)?;
-        Ok(converted_3373)
+        let converted_3567 = (&self.inner.submit_time).to_string().into_py_any(py)?;
+        Ok(converted_3567)
     }
 
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_3374 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3374)
+            let converted_3568 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3568)
         } else {
             Ok(py.None())
         }
@@ -17538,8 +19111,8 @@ impl PyModelInvocationJobSummary {
     #[getter]
     fn end_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.end_time {
-            let converted_3375 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3375)
+            let converted_3569 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3569)
         } else {
             Ok(py.None())
         }
@@ -17548,8 +19121,8 @@ impl PyModelInvocationJobSummary {
     #[getter]
     fn input_data_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_data_config {
-            let converted_3376 = model_invocation_job_input_data_config_to_py(py, value)?;
-            Ok(converted_3376)
+            let converted_3570 = model_invocation_job_input_data_config_to_py(py, value)?;
+            Ok(converted_3570)
         } else {
             Ok(py.None())
         }
@@ -17558,8 +19131,8 @@ impl PyModelInvocationJobSummary {
     #[getter]
     fn output_data_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_data_config {
-            let converted_3377 = model_invocation_job_output_data_config_to_py(py, value)?;
-            Ok(converted_3377)
+            let converted_3571 = model_invocation_job_output_data_config_to_py(py, value)?;
+            Ok(converted_3571)
         } else {
             Ok(py.None())
         }
@@ -17568,14 +19141,14 @@ impl PyModelInvocationJobSummary {
     #[getter]
     fn vpc_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.vpc_config {
-            let converted_3378 = Py::new(
+            let converted_3572 = Py::new(
                 py,
                 PyVpcConfig {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3378)
+            Ok(converted_3572)
         } else {
             Ok(py.None())
         }
@@ -17584,8 +19157,8 @@ impl PyModelInvocationJobSummary {
     #[getter]
     fn timeout_duration_in_hours(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.timeout_duration_in_hours {
-            let converted_3379 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3379)
+            let converted_3573 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3573)
         } else {
             Ok(py.None())
         }
@@ -17594,8 +19167,8 @@ impl PyModelInvocationJobSummary {
     #[getter]
     fn job_expiration_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_expiration_time {
-            let converted_3380 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3380)
+            let converted_3574 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3574)
         } else {
             Ok(py.None())
         }
@@ -17604,8 +19177,8 @@ impl PyModelInvocationJobSummary {
     #[getter]
     fn model_invocation_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_invocation_type {
-            let converted_3381 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3381)
+            let converted_3575 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3575)
         } else {
             Ok(py.None())
         }
@@ -17614,8 +19187,8 @@ impl PyModelInvocationJobSummary {
     #[getter]
     fn total_record_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.total_record_count {
-            let converted_3382 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3382)
+            let converted_3576 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3576)
         } else {
             Ok(py.None())
         }
@@ -17624,8 +19197,8 @@ impl PyModelInvocationJobSummary {
     #[getter]
     fn processed_record_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.processed_record_count {
-            let converted_3383 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3383)
+            let converted_3577 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3577)
         } else {
             Ok(py.None())
         }
@@ -17634,8 +19207,8 @@ impl PyModelInvocationJobSummary {
     #[getter]
     fn success_record_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.success_record_count {
-            let converted_3384 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3384)
+            let converted_3578 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3578)
         } else {
             Ok(py.None())
         }
@@ -17644,21 +19217,59 @@ impl PyModelInvocationJobSummary {
     #[getter]
     fn error_record_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_record_count {
-            let converted_3385 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3385)
+            let converted_3579 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3579)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        model_invocation_job_summary_to_py(py, &self.inner)
+        model_invocation_job_summary_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedOffer {
+    offer_id: Option<::std::string::String>,
+    offer_token: ::std::string::String,
+    term_details: Option<Arc<SharedTermDetails>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::Offer> for SharedOffer {
+    fn from(value: aws_sdk_bedrock::types::Offer) -> Self {
+        Self {
+            offer_id: value.offer_id,
+            offer_token: value.offer_token,
+            term_details: value
+                .term_details
+                .map(|item| Arc::new(SharedTermDetails::from(item))),
+        }
+    }
+}
+
+fn offer_shared_to_py(py: Python<'_>, value: &SharedOffer) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.offer_id {
+        let converted_3603 = (value).as_str().into_py_any(py)?;
+        result.set_item("offer_id", converted_3603)?;
+    } else {
+        result.set_item("offer_id", py.None())?;
+    }
+    let converted_3604 = (&value.offer_token).as_str().into_py_any(py)?;
+    result.set_item("offer_token", converted_3604)?;
+    if let Some(value) = &value.term_details {
+        let converted_3605 = term_details_shared_to_py(py, value)?;
+        result.set_item("term_details", converted_3605)?;
+    } else {
+        result.set_item("term_details", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(name = "Offer", module = "rboto_bedrock._native", frozen)]
 struct PyOffer {
-    inner: aws_sdk_bedrock::types::Offer,
+    inner: Arc<SharedOffer>,
 }
 
 #[pymethods]
@@ -17666,8 +19277,8 @@ impl PyOffer {
     #[getter]
     fn offer_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.offer_id {
-            let converted_3386 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3386)
+            let converted_3600 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3600)
         } else {
             Ok(py.None())
         }
@@ -17675,42 +19286,42 @@ impl PyOffer {
 
     #[getter]
     fn offer_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3387 = (&self.inner.offer_token).as_str().into_py_any(py)?;
-        Ok(converted_3387)
+        let converted_3601 = (&self.inner.offer_token).as_str().into_py_any(py)?;
+        Ok(converted_3601)
     }
 
     #[getter]
     fn term_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.term_details {
-            let converted_3388 = Py::new(
+            let converted_3602 = Py::new(
                 py,
                 PyTermDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3388)
+            Ok(converted_3602)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        offer_to_py(py, &self.inner)
+        offer_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "OutputDataConfig", module = "rboto_bedrock._native", frozen)]
 struct PyOutputDataConfig {
-    inner: aws_sdk_bedrock::types::OutputDataConfig,
+    inner: Arc<aws_sdk_bedrock::types::OutputDataConfig>,
 }
 
 #[pymethods]
 impl PyOutputDataConfig {
     #[getter]
     fn s3_uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3389 = (&self.inner.s3_uri).as_str().into_py_any(py)?;
-        Ok(converted_3389)
+        let converted_3606 = (&self.inner.s3_uri).as_str().into_py_any(py)?;
+        Ok(converted_3606)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -17718,59 +19329,174 @@ impl PyOutputDataConfig {
     }
 }
 
+struct SharedPricingTerm {
+    rate_card: ::std::vec::Vec<Arc<aws_sdk_bedrock::types::DimensionalPriceRate>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::PricingTerm> for SharedPricingTerm {
+    fn from(value: aws_sdk_bedrock::types::PricingTerm) -> Self {
+        Self {
+            rate_card: (value.rate_card)
+                .into_iter()
+                .map(|owned_3610| Arc::new(owned_3610))
+                .collect(),
+        }
+    }
+}
+
+fn pricing_term_shared_to_py(py: Python<'_>, value: &SharedPricingTerm) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_3611_list = PyList::empty(py);
+    for item_3612 in &value.rate_card {
+        let converted_item_3613 = dimensional_price_rate_to_py(py, item_3612)?;
+        converted_3611_list.append(converted_item_3613)?;
+    }
+    let converted_3611 = converted_3611_list.into_any().unbind();
+    result.set_item("rate_card", converted_3611)?;
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "PricingTerm", module = "rboto_bedrock._native", frozen)]
 struct PyPricingTerm {
-    inner: aws_sdk_bedrock::types::PricingTerm,
+    inner: Arc<SharedPricingTerm>,
 }
 
 #[pymethods]
 impl PyPricingTerm {
     #[getter]
     fn rate_card(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3390_list = PyList::empty(py);
-        for item_3391 in &self.inner.rate_card {
-            let converted_item_3392 = Py::new(
+        let converted_3607_list = PyList::empty(py);
+        for item_3608 in &self.inner.rate_card {
+            let converted_item_3609 = Py::new(
                 py,
                 PyDimensionalPriceRate {
-                    inner: (item_3391).to_owned(),
+                    inner: Arc::clone(item_3608),
                 },
             )?
             .into_any();
-            converted_3390_list.append(converted_item_3392)?;
+            converted_3607_list.append(converted_item_3609)?;
         }
-        let converted_3390 = converted_3390_list.into_any().unbind();
-        Ok(converted_3390)
+        let converted_3607 = converted_3607_list.into_any().unbind();
+        Ok(converted_3607)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        pricing_term_to_py(py, &self.inner)
+        pricing_term_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedPromptRouterSummary {
+    prompt_router_name: ::std::string::String,
+    routing_criteria: Option<Arc<aws_sdk_bedrock::types::RoutingCriteria>>,
+    description: Option<::std::string::String>,
+    created_at: Option<::aws_smithy_types::DateTime>,
+    updated_at: Option<::aws_smithy_types::DateTime>,
+    prompt_router_arn: ::std::string::String,
+    models: ::std::vec::Vec<Arc<aws_sdk_bedrock::types::PromptRouterTargetModel>>,
+    fallback_model: Option<Arc<aws_sdk_bedrock::types::PromptRouterTargetModel>>,
+    status: aws_sdk_bedrock::types::PromptRouterStatus,
+    r#type: aws_sdk_bedrock::types::PromptRouterType,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::PromptRouterSummary> for SharedPromptRouterSummary {
+    fn from(value: aws_sdk_bedrock::types::PromptRouterSummary) -> Self {
+        Self {
+            prompt_router_name: value.prompt_router_name,
+            routing_criteria: value.routing_criteria.map(|item| Arc::new(item)),
+            description: value.description,
+            created_at: value.created_at,
+            updated_at: value.updated_at,
+            prompt_router_arn: value.prompt_router_arn,
+            models: (value.models)
+                .into_iter()
+                .map(|owned_3626| Arc::new(owned_3626))
+                .collect(),
+            fallback_model: value.fallback_model.map(|item| Arc::new(item)),
+            status: value.status,
+            r#type: value.r#type,
+        }
+    }
+}
+
+fn prompt_router_summary_shared_to_py(
+    py: Python<'_>,
+    value: &SharedPromptRouterSummary,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_3627 = (&value.prompt_router_name).as_str().into_py_any(py)?;
+    result.set_item("prompt_router_name", converted_3627)?;
+    if let Some(value) = &value.routing_criteria {
+        let converted_3628 = routing_criteria_to_py(py, value)?;
+        result.set_item("routing_criteria", converted_3628)?;
+    } else {
+        result.set_item("routing_criteria", py.None())?;
+    }
+    if let Some(value) = &value.description {
+        let converted_3629 = (value).as_str().into_py_any(py)?;
+        result.set_item("description", converted_3629)?;
+    } else {
+        result.set_item("description", py.None())?;
+    }
+    if let Some(value) = &value.created_at {
+        let converted_3630 = (value).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_3630)?;
+    } else {
+        result.set_item("created_at", py.None())?;
+    }
+    if let Some(value) = &value.updated_at {
+        let converted_3631 = (value).to_string().into_py_any(py)?;
+        result.set_item("updated_at", converted_3631)?;
+    } else {
+        result.set_item("updated_at", py.None())?;
+    }
+    let converted_3632 = (&value.prompt_router_arn).as_str().into_py_any(py)?;
+    result.set_item("prompt_router_arn", converted_3632)?;
+    let converted_3633_list = PyList::empty(py);
+    for item_3634 in &value.models {
+        let converted_item_3635 = prompt_router_target_model_to_py(py, item_3634)?;
+        converted_3633_list.append(converted_item_3635)?;
+    }
+    let converted_3633 = converted_3633_list.into_any().unbind();
+    result.set_item("models", converted_3633)?;
+    if let Some(value) = &value.fallback_model {
+        let converted_3636 = prompt_router_target_model_to_py(py, value)?;
+        result.set_item("fallback_model", converted_3636)?;
+    } else {
+        result.set_item("fallback_model", py.None())?;
+    }
+    let converted_3637 = (&value.status).as_str().into_py_any(py)?;
+    result.set_item("status", converted_3637)?;
+    let converted_3638 = (&value.r#type).as_str().into_py_any(py)?;
+    result.set_item("type", converted_3638)?;
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(name = "PromptRouterSummary", module = "rboto_bedrock._native", frozen)]
 struct PyPromptRouterSummary {
-    inner: aws_sdk_bedrock::types::PromptRouterSummary,
+    inner: Arc<SharedPromptRouterSummary>,
 }
 
 #[pymethods]
 impl PyPromptRouterSummary {
     #[getter]
     fn prompt_router_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3393 = (&self.inner.prompt_router_name).as_str().into_py_any(py)?;
-        Ok(converted_3393)
+        let converted_3614 = (&self.inner.prompt_router_name).as_str().into_py_any(py)?;
+        Ok(converted_3614)
     }
 
     #[getter]
     fn routing_criteria(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.routing_criteria {
-            let converted_3394 = Py::new(
+            let converted_3615 = Py::new(
                 py,
                 PyRoutingCriteria {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3394)
+            Ok(converted_3615)
         } else {
             Ok(py.None())
         }
@@ -17779,8 +19505,8 @@ impl PyPromptRouterSummary {
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_3395 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3395)
+            let converted_3616 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3616)
         } else {
             Ok(py.None())
         }
@@ -17789,8 +19515,8 @@ impl PyPromptRouterSummary {
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.created_at {
-            let converted_3396 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3396)
+            let converted_3617 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3617)
         } else {
             Ok(py.None())
         }
@@ -17799,8 +19525,8 @@ impl PyPromptRouterSummary {
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_at {
-            let converted_3397 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3397)
+            let converted_3618 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3618)
         } else {
             Ok(py.None())
         }
@@ -17808,38 +19534,38 @@ impl PyPromptRouterSummary {
 
     #[getter]
     fn prompt_router_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3398 = (&self.inner.prompt_router_arn).as_str().into_py_any(py)?;
-        Ok(converted_3398)
+        let converted_3619 = (&self.inner.prompt_router_arn).as_str().into_py_any(py)?;
+        Ok(converted_3619)
     }
 
     #[getter]
     fn models(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3399_list = PyList::empty(py);
-        for item_3400 in &self.inner.models {
-            let converted_item_3401 = Py::new(
+        let converted_3620_list = PyList::empty(py);
+        for item_3621 in &self.inner.models {
+            let converted_item_3622 = Py::new(
                 py,
                 PyPromptRouterTargetModel {
-                    inner: (item_3400).to_owned(),
+                    inner: Arc::clone(item_3621),
                 },
             )?
             .into_any();
-            converted_3399_list.append(converted_item_3401)?;
+            converted_3620_list.append(converted_item_3622)?;
         }
-        let converted_3399 = converted_3399_list.into_any().unbind();
-        Ok(converted_3399)
+        let converted_3620 = converted_3620_list.into_any().unbind();
+        Ok(converted_3620)
     }
 
     #[getter]
     fn fallback_model(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.fallback_model {
-            let converted_3402 = Py::new(
+            let converted_3623 = Py::new(
                 py,
                 PyPromptRouterTargetModel {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3402)
+            Ok(converted_3623)
         } else {
             Ok(py.None())
         }
@@ -17847,18 +19573,18 @@ impl PyPromptRouterSummary {
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3403 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_3403)
+        let converted_3624 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_3624)
     }
 
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3404 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_3404)
+        let converted_3625 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_3625)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        prompt_router_summary_to_py(py, &self.inner)
+        prompt_router_summary_shared_to_py(py, &self.inner)
     }
 }
 
@@ -17868,7 +19594,7 @@ impl PyPromptRouterSummary {
     frozen
 )]
 struct PyPromptRouterTargetModel {
-    inner: aws_sdk_bedrock::types::PromptRouterTargetModel,
+    inner: Arc<aws_sdk_bedrock::types::PromptRouterTargetModel>,
 }
 
 #[pymethods]
@@ -17876,8 +19602,8 @@ impl PyPromptRouterTargetModel {
     #[getter]
     fn model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_arn {
-            let converted_3405 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3405)
+            let converted_3639 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3639)
         } else {
             Ok(py.None())
         }
@@ -17894,72 +19620,72 @@ impl PyPromptRouterTargetModel {
     frozen
 )]
 struct PyProvisionedModelSummary {
-    inner: aws_sdk_bedrock::types::ProvisionedModelSummary,
+    inner: Arc<aws_sdk_bedrock::types::ProvisionedModelSummary>,
 }
 
 #[pymethods]
 impl PyProvisionedModelSummary {
     #[getter]
     fn provisioned_model_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3406 = (&self.inner.provisioned_model_name)
+        let converted_3640 = (&self.inner.provisioned_model_name)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3406)
+        Ok(converted_3640)
     }
 
     #[getter]
     fn provisioned_model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3407 = (&self.inner.provisioned_model_arn)
+        let converted_3641 = (&self.inner.provisioned_model_arn)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3407)
+        Ok(converted_3641)
     }
 
     #[getter]
     fn model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3408 = (&self.inner.model_arn).as_str().into_py_any(py)?;
-        Ok(converted_3408)
+        let converted_3642 = (&self.inner.model_arn).as_str().into_py_any(py)?;
+        Ok(converted_3642)
     }
 
     #[getter]
     fn desired_model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3409 = (&self.inner.desired_model_arn).as_str().into_py_any(py)?;
-        Ok(converted_3409)
+        let converted_3643 = (&self.inner.desired_model_arn).as_str().into_py_any(py)?;
+        Ok(converted_3643)
     }
 
     #[getter]
     fn foundation_model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3410 = (&self.inner.foundation_model_arn)
+        let converted_3644 = (&self.inner.foundation_model_arn)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3410)
+        Ok(converted_3644)
     }
 
     #[getter]
     fn model_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3411 = (&self.inner.model_units).to_owned().into_py_any(py)?;
-        Ok(converted_3411)
+        let converted_3645 = (&self.inner.model_units).to_owned().into_py_any(py)?;
+        Ok(converted_3645)
     }
 
     #[getter]
     fn desired_model_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3412 = (&self.inner.desired_model_units)
+        let converted_3646 = (&self.inner.desired_model_units)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_3412)
+        Ok(converted_3646)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3413 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_3413)
+        let converted_3647 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_3647)
     }
 
     #[getter]
     fn commitment_duration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.commitment_duration {
-            let converted_3414 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3414)
+            let converted_3648 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3648)
         } else {
             Ok(py.None())
         }
@@ -17968,8 +19694,8 @@ impl PyProvisionedModelSummary {
     #[getter]
     fn commitment_expiration_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.commitment_expiration_time {
-            let converted_3415 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3415)
+            let converted_3649 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3649)
         } else {
             Ok(py.None())
         }
@@ -17977,16 +19703,16 @@ impl PyProvisionedModelSummary {
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3416 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        Ok(converted_3416)
+        let converted_3650 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        Ok(converted_3650)
     }
 
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3417 = (&self.inner.last_modified_time)
+        let converted_3651 = (&self.inner.last_modified_time)
             .to_string()
             .into_py_any(py)?;
-        Ok(converted_3417)
+        Ok(converted_3651)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -17996,17 +19722,17 @@ impl PyProvisionedModelSummary {
 
 #[pyclass(name = "RoutingCriteria", module = "rboto_bedrock._native", frozen)]
 struct PyRoutingCriteria {
-    inner: aws_sdk_bedrock::types::RoutingCriteria,
+    inner: Arc<aws_sdk_bedrock::types::RoutingCriteria>,
 }
 
 #[pymethods]
 impl PyRoutingCriteria {
     #[getter]
     fn response_quality_difference(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3418 = (&self.inner.response_quality_difference)
+        let converted_3652 = (&self.inner.response_quality_difference)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_3418)
+        Ok(converted_3652)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -18016,22 +19742,22 @@ impl PyRoutingCriteria {
 
 #[pyclass(name = "S3Config", module = "rboto_bedrock._native", frozen)]
 struct PyS3Config {
-    inner: aws_sdk_bedrock::types::S3Config,
+    inner: Arc<aws_sdk_bedrock::types::S3Config>,
 }
 
 #[pymethods]
 impl PyS3Config {
     #[getter]
     fn bucket_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3419 = (&self.inner.bucket_name).as_str().into_py_any(py)?;
-        Ok(converted_3419)
+        let converted_3653 = (&self.inner.bucket_name).as_str().into_py_any(py)?;
+        Ok(converted_3653)
     }
 
     #[getter]
     fn key_prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_prefix {
-            let converted_3420 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3420)
+            let converted_3654 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3654)
         } else {
             Ok(py.None())
         }
@@ -18048,7 +19774,7 @@ impl PyS3Config {
     frozen
 )]
 struct PySelectiveContentGuarding {
-    inner: aws_sdk_bedrock::types::SelectiveContentGuarding,
+    inner: Arc<aws_sdk_bedrock::types::SelectiveContentGuarding>,
 }
 
 #[pymethods]
@@ -18056,8 +19782,8 @@ impl PySelectiveContentGuarding {
     #[getter]
     fn system(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.system {
-            let converted_3421 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3421)
+            let converted_3655 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3655)
         } else {
             Ok(py.None())
         }
@@ -18066,8 +19792,8 @@ impl PySelectiveContentGuarding {
     #[getter]
     fn messages(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.messages {
-            let converted_3422 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3422)
+            let converted_3656 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3656)
         } else {
             Ok(py.None())
         }
@@ -18078,9 +19804,49 @@ impl PySelectiveContentGuarding {
     }
 }
 
+struct SharedStatusDetails {
+    validation_details: Option<Arc<aws_sdk_bedrock::types::ValidationDetails>>,
+    data_processing_details: Option<Arc<aws_sdk_bedrock::types::DataProcessingDetails>>,
+    training_details: Option<Arc<aws_sdk_bedrock::types::TrainingDetails>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::StatusDetails> for SharedStatusDetails {
+    fn from(value: aws_sdk_bedrock::types::StatusDetails) -> Self {
+        Self {
+            validation_details: value.validation_details.map(|item| Arc::new(item)),
+            data_processing_details: value.data_processing_details.map(|item| Arc::new(item)),
+            training_details: value.training_details.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn status_details_shared_to_py(py: Python<'_>, value: &SharedStatusDetails) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.validation_details {
+        let converted_3660 = validation_details_to_py(py, value)?;
+        result.set_item("validation_details", converted_3660)?;
+    } else {
+        result.set_item("validation_details", py.None())?;
+    }
+    if let Some(value) = &value.data_processing_details {
+        let converted_3661 = data_processing_details_to_py(py, value)?;
+        result.set_item("data_processing_details", converted_3661)?;
+    } else {
+        result.set_item("data_processing_details", py.None())?;
+    }
+    if let Some(value) = &value.training_details {
+        let converted_3662 = training_details_to_py(py, value)?;
+        result.set_item("training_details", converted_3662)?;
+    } else {
+        result.set_item("training_details", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "StatusDetails", module = "rboto_bedrock._native", frozen)]
 struct PyStatusDetails {
-    inner: aws_sdk_bedrock::types::StatusDetails,
+    inner: Arc<SharedStatusDetails>,
 }
 
 #[pymethods]
@@ -18088,14 +19854,14 @@ impl PyStatusDetails {
     #[getter]
     fn validation_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.validation_details {
-            let converted_3423 = Py::new(
+            let converted_3657 = Py::new(
                 py,
                 PyValidationDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3423)
+            Ok(converted_3657)
         } else {
             Ok(py.None())
         }
@@ -18104,14 +19870,14 @@ impl PyStatusDetails {
     #[getter]
     fn data_processing_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.data_processing_details {
-            let converted_3424 = Py::new(
+            let converted_3658 = Py::new(
                 py,
                 PyDataProcessingDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3424)
+            Ok(converted_3658)
         } else {
             Ok(py.None())
         }
@@ -18120,27 +19886,27 @@ impl PyStatusDetails {
     #[getter]
     fn training_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.training_details {
-            let converted_3425 = Py::new(
+            let converted_3659 = Py::new(
                 py,
                 PyTrainingDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3425)
+            Ok(converted_3659)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        status_details_to_py(py, &self.inner)
+        status_details_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "SupportTerm", module = "rboto_bedrock._native", frozen)]
 struct PySupportTerm {
-    inner: aws_sdk_bedrock::types::SupportTerm,
+    inner: Arc<aws_sdk_bedrock::types::SupportTerm>,
 }
 
 #[pymethods]
@@ -18148,8 +19914,8 @@ impl PySupportTerm {
     #[getter]
     fn refund_policy_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.refund_policy_description {
-            let converted_3426 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3426)
+            let converted_3663 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3663)
         } else {
             Ok(py.None())
         }
@@ -18162,21 +19928,21 @@ impl PySupportTerm {
 
 #[pyclass(name = "Tag", module = "rboto_bedrock._native", frozen)]
 struct PyTag {
-    inner: aws_sdk_bedrock::types::Tag,
+    inner: Arc<aws_sdk_bedrock::types::Tag>,
 }
 
 #[pymethods]
 impl PyTag {
     #[getter]
     fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3427 = (&self.inner.key).as_str().into_py_any(py)?;
-        Ok(converted_3427)
+        let converted_3664 = (&self.inner.key).as_str().into_py_any(py)?;
+        Ok(converted_3664)
     }
 
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3428 = (&self.inner.value).as_str().into_py_any(py)?;
-        Ok(converted_3428)
+        let converted_3665 = (&self.inner.value).as_str().into_py_any(py)?;
+        Ok(converted_3665)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -18184,9 +19950,59 @@ impl PyTag {
     }
 }
 
+struct SharedTermDetails {
+    usage_based_pricing_term: Option<Arc<SharedPricingTerm>>,
+    legal_term: Option<Arc<aws_sdk_bedrock::types::LegalTerm>>,
+    support_term: Option<Arc<aws_sdk_bedrock::types::SupportTerm>>,
+    validity_term: Option<Arc<aws_sdk_bedrock::types::ValidityTerm>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::TermDetails> for SharedTermDetails {
+    fn from(value: aws_sdk_bedrock::types::TermDetails) -> Self {
+        Self {
+            usage_based_pricing_term: value
+                .usage_based_pricing_term
+                .map(|item| Arc::new(SharedPricingTerm::from(item))),
+            legal_term: value.legal_term.map(|item| Arc::new(item)),
+            support_term: value.support_term.map(|item| Arc::new(item)),
+            validity_term: value.validity_term.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn term_details_shared_to_py(py: Python<'_>, value: &SharedTermDetails) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.usage_based_pricing_term {
+        let converted_3670 = pricing_term_shared_to_py(py, value)?;
+        result.set_item("usage_based_pricing_term", converted_3670)?;
+    } else {
+        result.set_item("usage_based_pricing_term", py.None())?;
+    }
+    if let Some(value) = &value.legal_term {
+        let converted_3671 = legal_term_to_py(py, value)?;
+        result.set_item("legal_term", converted_3671)?;
+    } else {
+        result.set_item("legal_term", py.None())?;
+    }
+    if let Some(value) = &value.support_term {
+        let converted_3672 = support_term_to_py(py, value)?;
+        result.set_item("support_term", converted_3672)?;
+    } else {
+        result.set_item("support_term", py.None())?;
+    }
+    if let Some(value) = &value.validity_term {
+        let converted_3673 = validity_term_to_py(py, value)?;
+        result.set_item("validity_term", converted_3673)?;
+    } else {
+        result.set_item("validity_term", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "TermDetails", module = "rboto_bedrock._native", frozen)]
 struct PyTermDetails {
-    inner: aws_sdk_bedrock::types::TermDetails,
+    inner: Arc<SharedTermDetails>,
 }
 
 #[pymethods]
@@ -18194,14 +20010,14 @@ impl PyTermDetails {
     #[getter]
     fn usage_based_pricing_term(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.usage_based_pricing_term {
-            let converted_3429 = Py::new(
+            let converted_3666 = Py::new(
                 py,
                 PyPricingTerm {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3429)
+            Ok(converted_3666)
         } else {
             Ok(py.None())
         }
@@ -18210,14 +20026,14 @@ impl PyTermDetails {
     #[getter]
     fn legal_term(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.legal_term {
-            let converted_3430 = Py::new(
+            let converted_3667 = Py::new(
                 py,
                 PyLegalTerm {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3430)
+            Ok(converted_3667)
         } else {
             Ok(py.None())
         }
@@ -18226,14 +20042,14 @@ impl PyTermDetails {
     #[getter]
     fn support_term(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.support_term {
-            let converted_3431 = Py::new(
+            let converted_3668 = Py::new(
                 py,
                 PySupportTerm {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3431)
+            Ok(converted_3668)
         } else {
             Ok(py.None())
         }
@@ -18242,27 +20058,62 @@ impl PyTermDetails {
     #[getter]
     fn validity_term(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.validity_term {
-            let converted_3432 = Py::new(
+            let converted_3669 = Py::new(
                 py,
                 PyValidityTerm {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3432)
+            Ok(converted_3669)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        term_details_to_py(py, &self.inner)
+        term_details_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedTrainingDataConfig {
+    s3_uri: Option<::std::string::String>,
+    invocation_logs_config: Option<Arc<aws_sdk_bedrock::types::InvocationLogsConfig>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::TrainingDataConfig> for SharedTrainingDataConfig {
+    fn from(value: aws_sdk_bedrock::types::TrainingDataConfig) -> Self {
+        Self {
+            s3_uri: value.s3_uri,
+            invocation_logs_config: value.invocation_logs_config.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn training_data_config_shared_to_py(
+    py: Python<'_>,
+    value: &SharedTrainingDataConfig,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.s3_uri {
+        let converted_3676 = (value).as_str().into_py_any(py)?;
+        result.set_item("s3_uri", converted_3676)?;
+    } else {
+        result.set_item("s3_uri", py.None())?;
+    }
+    if let Some(value) = &value.invocation_logs_config {
+        let converted_3677 = invocation_logs_config_to_py(py, value)?;
+        result.set_item("invocation_logs_config", converted_3677)?;
+    } else {
+        result.set_item("invocation_logs_config", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(name = "TrainingDataConfig", module = "rboto_bedrock._native", frozen)]
 struct PyTrainingDataConfig {
-    inner: aws_sdk_bedrock::types::TrainingDataConfig,
+    inner: Arc<SharedTrainingDataConfig>,
 }
 
 #[pymethods]
@@ -18270,8 +20121,8 @@ impl PyTrainingDataConfig {
     #[getter]
     fn s3_uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.s3_uri {
-            let converted_3433 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3433)
+            let converted_3674 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3674)
         } else {
             Ok(py.None())
         }
@@ -18280,27 +20131,27 @@ impl PyTrainingDataConfig {
     #[getter]
     fn invocation_logs_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.invocation_logs_config {
-            let converted_3434 = Py::new(
+            let converted_3675 = Py::new(
                 py,
                 PyInvocationLogsConfig {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3434)
+            Ok(converted_3675)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        training_data_config_to_py(py, &self.inner)
+        training_data_config_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "TrainingDetails", module = "rboto_bedrock._native", frozen)]
 struct PyTrainingDetails {
-    inner: aws_sdk_bedrock::types::TrainingDetails,
+    inner: Arc<aws_sdk_bedrock::types::TrainingDetails>,
 }
 
 #[pymethods]
@@ -18308,8 +20159,8 @@ impl PyTrainingDetails {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_3435 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3435)
+            let converted_3678 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3678)
         } else {
             Ok(py.None())
         }
@@ -18318,8 +20169,8 @@ impl PyTrainingDetails {
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_time {
-            let converted_3436 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3436)
+            let converted_3679 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3679)
         } else {
             Ok(py.None())
         }
@@ -18328,8 +20179,8 @@ impl PyTrainingDetails {
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_3437 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3437)
+            let converted_3680 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3680)
         } else {
             Ok(py.None())
         }
@@ -18342,7 +20193,7 @@ impl PyTrainingDetails {
 
 #[pyclass(name = "TrainingMetrics", module = "rboto_bedrock._native", frozen)]
 struct PyTrainingMetrics {
-    inner: aws_sdk_bedrock::types::TrainingMetrics,
+    inner: Arc<aws_sdk_bedrock::types::TrainingMetrics>,
 }
 
 #[pymethods]
@@ -18350,8 +20201,8 @@ impl PyTrainingMetrics {
     #[getter]
     fn training_loss(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.training_loss {
-            let converted_3438 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3438)
+            let converted_3681 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3681)
         } else {
             Ok(py.None())
         }
@@ -18362,42 +20213,73 @@ impl PyTrainingMetrics {
     }
 }
 
+struct SharedValidationDataConfig {
+    validators: ::std::vec::Vec<Arc<aws_sdk_bedrock::types::Validator>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::types::ValidationDataConfig> for SharedValidationDataConfig {
+    fn from(value: aws_sdk_bedrock::types::ValidationDataConfig) -> Self {
+        Self {
+            validators: (value.validators)
+                .into_iter()
+                .map(|owned_3685| Arc::new(owned_3685))
+                .collect(),
+        }
+    }
+}
+
+fn validation_data_config_shared_to_py(
+    py: Python<'_>,
+    value: &SharedValidationDataConfig,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_3686_list = PyList::empty(py);
+    for item_3687 in &value.validators {
+        let converted_item_3688 = validator_to_py(py, item_3687)?;
+        converted_3686_list.append(converted_item_3688)?;
+    }
+    let converted_3686 = converted_3686_list.into_any().unbind();
+    result.set_item("validators", converted_3686)?;
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "ValidationDataConfig",
     module = "rboto_bedrock._native",
     frozen
 )]
 struct PyValidationDataConfig {
-    inner: aws_sdk_bedrock::types::ValidationDataConfig,
+    inner: Arc<SharedValidationDataConfig>,
 }
 
 #[pymethods]
 impl PyValidationDataConfig {
     #[getter]
     fn validators(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3439_list = PyList::empty(py);
-        for item_3440 in &self.inner.validators {
-            let converted_item_3441 = Py::new(
+        let converted_3682_list = PyList::empty(py);
+        for item_3683 in &self.inner.validators {
+            let converted_item_3684 = Py::new(
                 py,
                 PyValidator {
-                    inner: (item_3440).to_owned(),
+                    inner: Arc::clone(item_3683),
                 },
             )?
             .into_any();
-            converted_3439_list.append(converted_item_3441)?;
+            converted_3682_list.append(converted_item_3684)?;
         }
-        let converted_3439 = converted_3439_list.into_any().unbind();
-        Ok(converted_3439)
+        let converted_3682 = converted_3682_list.into_any().unbind();
+        Ok(converted_3682)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        validation_data_config_to_py(py, &self.inner)
+        validation_data_config_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "ValidationDetails", module = "rboto_bedrock._native", frozen)]
 struct PyValidationDetails {
-    inner: aws_sdk_bedrock::types::ValidationDetails,
+    inner: Arc<aws_sdk_bedrock::types::ValidationDetails>,
 }
 
 #[pymethods]
@@ -18405,8 +20287,8 @@ impl PyValidationDetails {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_3442 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3442)
+            let converted_3689 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3689)
         } else {
             Ok(py.None())
         }
@@ -18415,8 +20297,8 @@ impl PyValidationDetails {
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_time {
-            let converted_3443 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3443)
+            let converted_3690 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3690)
         } else {
             Ok(py.None())
         }
@@ -18425,8 +20307,8 @@ impl PyValidationDetails {
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_3444 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3444)
+            let converted_3691 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3691)
         } else {
             Ok(py.None())
         }
@@ -18439,15 +20321,15 @@ impl PyValidationDetails {
 
 #[pyclass(name = "Validator", module = "rboto_bedrock._native", frozen)]
 struct PyValidator {
-    inner: aws_sdk_bedrock::types::Validator,
+    inner: Arc<aws_sdk_bedrock::types::Validator>,
 }
 
 #[pymethods]
 impl PyValidator {
     #[getter]
     fn s3_uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3445 = (&self.inner.s3_uri).as_str().into_py_any(py)?;
-        Ok(converted_3445)
+        let converted_3692 = (&self.inner.s3_uri).as_str().into_py_any(py)?;
+        Ok(converted_3692)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -18457,7 +20339,7 @@ impl PyValidator {
 
 #[pyclass(name = "ValidatorMetric", module = "rboto_bedrock._native", frozen)]
 struct PyValidatorMetric {
-    inner: aws_sdk_bedrock::types::ValidatorMetric,
+    inner: Arc<aws_sdk_bedrock::types::ValidatorMetric>,
 }
 
 #[pymethods]
@@ -18465,8 +20347,8 @@ impl PyValidatorMetric {
     #[getter]
     fn validation_loss(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.validation_loss {
-            let converted_3446 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3446)
+            let converted_3693 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3693)
         } else {
             Ok(py.None())
         }
@@ -18479,7 +20361,7 @@ impl PyValidatorMetric {
 
 #[pyclass(name = "ValidityTerm", module = "rboto_bedrock._native", frozen)]
 struct PyValidityTerm {
-    inner: aws_sdk_bedrock::types::ValidityTerm,
+    inner: Arc<aws_sdk_bedrock::types::ValidityTerm>,
 }
 
 #[pymethods]
@@ -18487,8 +20369,8 @@ impl PyValidityTerm {
     #[getter]
     fn agreement_duration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.agreement_duration {
-            let converted_3447 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3447)
+            let converted_3694 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3694)
         } else {
             Ok(py.None())
         }
@@ -18501,35 +20383,52 @@ impl PyValidityTerm {
 
 #[pyclass(name = "VpcConfig", module = "rboto_bedrock._native", frozen)]
 struct PyVpcConfig {
-    inner: aws_sdk_bedrock::types::VpcConfig,
+    inner: Arc<aws_sdk_bedrock::types::VpcConfig>,
 }
 
 #[pymethods]
 impl PyVpcConfig {
     #[getter]
     fn subnet_ids(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3448_list = PyList::empty(py);
-        for item_3449 in &self.inner.subnet_ids {
-            let converted_item_3450 = (item_3449).as_str().into_py_any(py)?;
-            converted_3448_list.append(converted_item_3450)?;
+        let converted_3695_list = PyList::empty(py);
+        for item_3696 in &self.inner.subnet_ids {
+            let converted_item_3697 = (item_3696).as_str().into_py_any(py)?;
+            converted_3695_list.append(converted_item_3697)?;
         }
-        let converted_3448 = converted_3448_list.into_any().unbind();
-        Ok(converted_3448)
+        let converted_3695 = converted_3695_list.into_any().unbind();
+        Ok(converted_3695)
     }
 
     #[getter]
     fn security_group_ids(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3451_list = PyList::empty(py);
-        for item_3452 in &self.inner.security_group_ids {
-            let converted_item_3453 = (item_3452).as_str().into_py_any(py)?;
-            converted_3451_list.append(converted_item_3453)?;
+        let converted_3698_list = PyList::empty(py);
+        for item_3699 in &self.inner.security_group_ids {
+            let converted_item_3700 = (item_3699).as_str().into_py_any(py)?;
+            converted_3698_list.append(converted_item_3700)?;
         }
-        let converted_3451 = converted_3451_list.into_any().unbind();
-        Ok(converted_3451)
+        let converted_3698 = converted_3698_list.into_any().unbind();
+        Ok(converted_3698)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         vpc_config_to_py(py, &self.inner)
+    }
+}
+
+struct SharedPyOperationBatchDeleteAdvancedPromptOptimizationJobOutput {
+    errors:
+        ::std::vec::Vec<Arc<aws_sdk_bedrock::types::BatchDeleteAdvancedPromptOptimizationJobError>>,
+    advanced_prompt_optimization_jobs:
+        ::std::vec::Vec<Arc<aws_sdk_bedrock::types::BatchDeleteAdvancedPromptOptimizationJobItem>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::batch_delete_advanced_prompt_optimization_job::BatchDeleteAdvancedPromptOptimizationJobOutput> for SharedPyOperationBatchDeleteAdvancedPromptOptimizationJobOutput {
+    fn from(value: aws_sdk_bedrock::operation::batch_delete_advanced_prompt_optimization_job::BatchDeleteAdvancedPromptOptimizationJobOutput) -> Self {
+        Self {
+            errors: (value.errors).into_iter().map(|owned_3707| Arc::new(owned_3707)).collect(),
+            advanced_prompt_optimization_jobs: (value.advanced_prompt_optimization_jobs).into_iter().map(|owned_3708| Arc::new(owned_3708)).collect(),
+        }
     }
 }
 
@@ -18539,64 +20438,89 @@ impl PyVpcConfig {
     frozen
 )]
 struct PyOperationBatchDeleteAdvancedPromptOptimizationJobOutput {
-    inner: aws_sdk_bedrock::operation::batch_delete_advanced_prompt_optimization_job::BatchDeleteAdvancedPromptOptimizationJobOutput,
+    inner: SharedPyOperationBatchDeleteAdvancedPromptOptimizationJobOutput,
 }
 
 #[pymethods]
 impl PyOperationBatchDeleteAdvancedPromptOptimizationJobOutput {
     #[getter]
     fn errors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3454_list = PyList::empty(py);
-        for item_3455 in &self.inner.errors {
-            let converted_item_3456 = Py::new(
+        let converted_3701_list = PyList::empty(py);
+        for item_3702 in &self.inner.errors {
+            let converted_item_3703 = Py::new(
                 py,
                 PyBatchDeleteAdvancedPromptOptimizationJobError {
-                    inner: (item_3455).to_owned(),
+                    inner: Arc::clone(item_3702),
                 },
             )?
             .into_any();
-            converted_3454_list.append(converted_item_3456)?;
+            converted_3701_list.append(converted_item_3703)?;
         }
-        let converted_3454 = converted_3454_list.into_any().unbind();
-        Ok(converted_3454)
+        let converted_3701 = converted_3701_list.into_any().unbind();
+        Ok(converted_3701)
     }
 
     #[getter]
     fn advanced_prompt_optimization_jobs(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3457_list = PyList::empty(py);
-        for item_3458 in &self.inner.advanced_prompt_optimization_jobs {
-            let converted_item_3459 = Py::new(
+        let converted_3704_list = PyList::empty(py);
+        for item_3705 in &self.inner.advanced_prompt_optimization_jobs {
+            let converted_item_3706 = Py::new(
                 py,
                 PyBatchDeleteAdvancedPromptOptimizationJobItem {
-                    inner: (item_3458).to_owned(),
+                    inner: Arc::clone(item_3705),
                 },
             )?
             .into_any();
-            converted_3457_list.append(converted_item_3459)?;
+            converted_3704_list.append(converted_item_3706)?;
         }
-        let converted_3457 = converted_3457_list.into_any().unbind();
-        Ok(converted_3457)
+        let converted_3704 = converted_3704_list.into_any().unbind();
+        Ok(converted_3704)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3460_list = PyList::empty(py);
-        for item_3461 in &self.inner.errors {
-            let converted_item_3462 =
-                batch_delete_advanced_prompt_optimization_job_error_to_py(py, item_3461)?;
-            converted_3460_list.append(converted_item_3462)?;
+        let converted_3709_list = PyList::empty(py);
+        for item_3710 in &self.inner.errors {
+            let converted_item_3711 =
+                batch_delete_advanced_prompt_optimization_job_error_to_py(py, item_3710)?;
+            converted_3709_list.append(converted_item_3711)?;
         }
-        let converted_3460 = converted_3460_list.into_any().unbind();
-        result.set_item("errors", converted_3460)?;
-        let converted_3463_list = PyList::empty(py);
-        for item_3464 in &self.inner.advanced_prompt_optimization_jobs {
-            let converted_item_3465 =
-                batch_delete_advanced_prompt_optimization_job_item_to_py(py, item_3464)?;
-            converted_3463_list.append(converted_item_3465)?;
+        let converted_3709 = converted_3709_list.into_any().unbind();
+        result.set_item("errors", converted_3709)?;
+        let converted_3712_list = PyList::empty(py);
+        for item_3713 in &self.inner.advanced_prompt_optimization_jobs {
+            let converted_item_3714 =
+                batch_delete_advanced_prompt_optimization_job_item_to_py(py, item_3713)?;
+            converted_3712_list.append(converted_item_3714)?;
         }
-        let converted_3463 = converted_3463_list.into_any().unbind();
-        result.set_item("advanced_prompt_optimization_jobs", converted_3463)?;
+        let converted_3712 = converted_3712_list.into_any().unbind();
+        result.set_item("advanced_prompt_optimization_jobs", converted_3712)?;
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationBatchDeleteEvaluationJobOutput {
+    errors: ::std::vec::Vec<Arc<aws_sdk_bedrock::types::BatchDeleteEvaluationJobError>>,
+    evaluation_jobs: ::std::vec::Vec<Arc<aws_sdk_bedrock::types::BatchDeleteEvaluationJobItem>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::batch_delete_evaluation_job::BatchDeleteEvaluationJobOutput>
+    for SharedPyOperationBatchDeleteEvaluationJobOutput
+{
+    fn from(
+        value: aws_sdk_bedrock::operation::batch_delete_evaluation_job::BatchDeleteEvaluationJobOutput,
+    ) -> Self {
+        Self {
+            errors: (value.errors)
+                .into_iter()
+                .map(|owned_3721| Arc::new(owned_3721))
+                .collect(),
+            evaluation_jobs: (value.evaluation_jobs)
+                .into_iter()
+                .map(|owned_3722| Arc::new(owned_3722))
+                .collect(),
+        }
     }
 }
 
@@ -18606,61 +20530,61 @@ impl PyOperationBatchDeleteAdvancedPromptOptimizationJobOutput {
     frozen
 )]
 struct PyOperationBatchDeleteEvaluationJobOutput {
-    inner: aws_sdk_bedrock::operation::batch_delete_evaluation_job::BatchDeleteEvaluationJobOutput,
+    inner: SharedPyOperationBatchDeleteEvaluationJobOutput,
 }
 
 #[pymethods]
 impl PyOperationBatchDeleteEvaluationJobOutput {
     #[getter]
     fn errors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3466_list = PyList::empty(py);
-        for item_3467 in &self.inner.errors {
-            let converted_item_3468 = Py::new(
+        let converted_3715_list = PyList::empty(py);
+        for item_3716 in &self.inner.errors {
+            let converted_item_3717 = Py::new(
                 py,
                 PyBatchDeleteEvaluationJobError {
-                    inner: (item_3467).to_owned(),
+                    inner: Arc::clone(item_3716),
                 },
             )?
             .into_any();
-            converted_3466_list.append(converted_item_3468)?;
+            converted_3715_list.append(converted_item_3717)?;
         }
-        let converted_3466 = converted_3466_list.into_any().unbind();
-        Ok(converted_3466)
+        let converted_3715 = converted_3715_list.into_any().unbind();
+        Ok(converted_3715)
     }
 
     #[getter]
     fn evaluation_jobs(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3469_list = PyList::empty(py);
-        for item_3470 in &self.inner.evaluation_jobs {
-            let converted_item_3471 = Py::new(
+        let converted_3718_list = PyList::empty(py);
+        for item_3719 in &self.inner.evaluation_jobs {
+            let converted_item_3720 = Py::new(
                 py,
                 PyBatchDeleteEvaluationJobItem {
-                    inner: (item_3470).to_owned(),
+                    inner: Arc::clone(item_3719),
                 },
             )?
             .into_any();
-            converted_3469_list.append(converted_item_3471)?;
+            converted_3718_list.append(converted_item_3720)?;
         }
-        let converted_3469 = converted_3469_list.into_any().unbind();
-        Ok(converted_3469)
+        let converted_3718 = converted_3718_list.into_any().unbind();
+        Ok(converted_3718)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3472_list = PyList::empty(py);
-        for item_3473 in &self.inner.errors {
-            let converted_item_3474 = batch_delete_evaluation_job_error_to_py(py, item_3473)?;
-            converted_3472_list.append(converted_item_3474)?;
+        let converted_3723_list = PyList::empty(py);
+        for item_3724 in &self.inner.errors {
+            let converted_item_3725 = batch_delete_evaluation_job_error_to_py(py, item_3724)?;
+            converted_3723_list.append(converted_item_3725)?;
         }
-        let converted_3472 = converted_3472_list.into_any().unbind();
-        result.set_item("errors", converted_3472)?;
-        let converted_3475_list = PyList::empty(py);
-        for item_3476 in &self.inner.evaluation_jobs {
-            let converted_item_3477 = batch_delete_evaluation_job_item_to_py(py, item_3476)?;
-            converted_3475_list.append(converted_item_3477)?;
+        let converted_3723 = converted_3723_list.into_any().unbind();
+        result.set_item("errors", converted_3723)?;
+        let converted_3726_list = PyList::empty(py);
+        for item_3727 in &self.inner.evaluation_jobs {
+            let converted_item_3728 = batch_delete_evaluation_job_item_to_py(py, item_3727)?;
+            converted_3726_list.append(converted_item_3728)?;
         }
-        let converted_3475 = converted_3475_list.into_any().unbind();
-        result.set_item("evaluation_jobs", converted_3475)?;
+        let converted_3726 = converted_3726_list.into_any().unbind();
+        result.set_item("evaluation_jobs", converted_3726)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -18695,14 +20619,14 @@ struct PyOperationCreateAdvancedPromptOptimizationJobOutput {
 impl PyOperationCreateAdvancedPromptOptimizationJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3478 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        Ok(converted_3478)
+        let converted_3729 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_3729)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3479 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        result.set_item("job_arn", converted_3479)?;
+        let converted_3730 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        result.set_item("job_arn", converted_3730)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -18720,27 +20644,27 @@ struct PyOperationCreateAutomatedReasoningPolicyOutput {
 impl PyOperationCreateAutomatedReasoningPolicyOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3480 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        Ok(converted_3480)
+        let converted_3731 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        Ok(converted_3731)
     }
 
     #[getter]
     fn version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3481 = (&self.inner.version).as_str().into_py_any(py)?;
-        Ok(converted_3481)
+        let converted_3732 = (&self.inner.version).as_str().into_py_any(py)?;
+        Ok(converted_3732)
     }
 
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3482 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_3482)
+        let converted_3733 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_3733)
     }
 
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_3483 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3483)
+            let converted_3734 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3734)
         } else {
             Ok(py.None())
         }
@@ -18749,8 +20673,8 @@ impl PyOperationCreateAutomatedReasoningPolicyOutput {
     #[getter]
     fn definition_hash(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.definition_hash {
-            let converted_3484 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3484)
+            let converted_3735 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3735)
         } else {
             Ok(py.None())
         }
@@ -18758,40 +20682,40 @@ impl PyOperationCreateAutomatedReasoningPolicyOutput {
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3485 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_3485)
+        let converted_3736 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_3736)
     }
 
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3486 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        Ok(converted_3486)
+        let converted_3737 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        Ok(converted_3737)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3487 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        result.set_item("policy_arn", converted_3487)?;
-        let converted_3488 = (&self.inner.version).as_str().into_py_any(py)?;
-        result.set_item("version", converted_3488)?;
-        let converted_3489 = (&self.inner.name).as_str().into_py_any(py)?;
-        result.set_item("name", converted_3489)?;
+        let converted_3738 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        result.set_item("policy_arn", converted_3738)?;
+        let converted_3739 = (&self.inner.version).as_str().into_py_any(py)?;
+        result.set_item("version", converted_3739)?;
+        let converted_3740 = (&self.inner.name).as_str().into_py_any(py)?;
+        result.set_item("name", converted_3740)?;
         if let Some(value) = &self.inner.description {
-            let converted_3490 = (value).as_str().into_py_any(py)?;
-            result.set_item("description", converted_3490)?;
+            let converted_3741 = (value).as_str().into_py_any(py)?;
+            result.set_item("description", converted_3741)?;
         } else {
             result.set_item("description", py.None())?;
         }
         if let Some(value) = &self.inner.definition_hash {
-            let converted_3491 = (value).as_str().into_py_any(py)?;
-            result.set_item("definition_hash", converted_3491)?;
+            let converted_3742 = (value).as_str().into_py_any(py)?;
+            result.set_item("definition_hash", converted_3742)?;
         } else {
             result.set_item("definition_hash", py.None())?;
         }
-        let converted_3492 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        result.set_item("created_at", converted_3492)?;
-        let converted_3493 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        result.set_item("updated_at", converted_3493)?;
+        let converted_3743 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_3743)?;
+        let converted_3744 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        result.set_item("updated_at", converted_3744)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -18809,22 +20733,22 @@ struct PyOperationCreateAutomatedReasoningPolicyTestCaseOutput {
 impl PyOperationCreateAutomatedReasoningPolicyTestCaseOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3494 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        Ok(converted_3494)
+        let converted_3745 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        Ok(converted_3745)
     }
 
     #[getter]
     fn test_case_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3495 = (&self.inner.test_case_id).as_str().into_py_any(py)?;
-        Ok(converted_3495)
+        let converted_3746 = (&self.inner.test_case_id).as_str().into_py_any(py)?;
+        Ok(converted_3746)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3496 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        result.set_item("policy_arn", converted_3496)?;
-        let converted_3497 = (&self.inner.test_case_id).as_str().into_py_any(py)?;
-        result.set_item("test_case_id", converted_3497)?;
+        let converted_3747 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        result.set_item("policy_arn", converted_3747)?;
+        let converted_3748 = (&self.inner.test_case_id).as_str().into_py_any(py)?;
+        result.set_item("test_case_id", converted_3748)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -18842,27 +20766,27 @@ struct PyOperationCreateAutomatedReasoningPolicyVersionOutput {
 impl PyOperationCreateAutomatedReasoningPolicyVersionOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3498 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        Ok(converted_3498)
+        let converted_3749 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        Ok(converted_3749)
     }
 
     #[getter]
     fn version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3499 = (&self.inner.version).as_str().into_py_any(py)?;
-        Ok(converted_3499)
+        let converted_3750 = (&self.inner.version).as_str().into_py_any(py)?;
+        Ok(converted_3750)
     }
 
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3500 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_3500)
+        let converted_3751 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_3751)
     }
 
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_3501 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3501)
+            let converted_3752 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3752)
         } else {
             Ok(py.None())
         }
@@ -18870,34 +20794,34 @@ impl PyOperationCreateAutomatedReasoningPolicyVersionOutput {
 
     #[getter]
     fn definition_hash(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3502 = (&self.inner.definition_hash).as_str().into_py_any(py)?;
-        Ok(converted_3502)
+        let converted_3753 = (&self.inner.definition_hash).as_str().into_py_any(py)?;
+        Ok(converted_3753)
     }
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3503 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_3503)
+        let converted_3754 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_3754)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3504 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        result.set_item("policy_arn", converted_3504)?;
-        let converted_3505 = (&self.inner.version).as_str().into_py_any(py)?;
-        result.set_item("version", converted_3505)?;
-        let converted_3506 = (&self.inner.name).as_str().into_py_any(py)?;
-        result.set_item("name", converted_3506)?;
+        let converted_3755 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        result.set_item("policy_arn", converted_3755)?;
+        let converted_3756 = (&self.inner.version).as_str().into_py_any(py)?;
+        result.set_item("version", converted_3756)?;
+        let converted_3757 = (&self.inner.name).as_str().into_py_any(py)?;
+        result.set_item("name", converted_3757)?;
         if let Some(value) = &self.inner.description {
-            let converted_3507 = (value).as_str().into_py_any(py)?;
-            result.set_item("description", converted_3507)?;
+            let converted_3758 = (value).as_str().into_py_any(py)?;
+            result.set_item("description", converted_3758)?;
         } else {
             result.set_item("description", py.None())?;
         }
-        let converted_3508 = (&self.inner.definition_hash).as_str().into_py_any(py)?;
-        result.set_item("definition_hash", converted_3508)?;
-        let converted_3509 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        result.set_item("created_at", converted_3509)?;
+        let converted_3759 = (&self.inner.definition_hash).as_str().into_py_any(py)?;
+        result.set_item("definition_hash", converted_3759)?;
+        let converted_3760 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_3760)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -18915,14 +20839,14 @@ struct PyOperationCreateCustomModelOutput {
 impl PyOperationCreateCustomModelOutput {
     #[getter]
     fn model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3510 = (&self.inner.model_arn).as_str().into_py_any(py)?;
-        Ok(converted_3510)
+        let converted_3761 = (&self.inner.model_arn).as_str().into_py_any(py)?;
+        Ok(converted_3761)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3511 = (&self.inner.model_arn).as_str().into_py_any(py)?;
-        result.set_item("model_arn", converted_3511)?;
+        let converted_3762 = (&self.inner.model_arn).as_str().into_py_any(py)?;
+        result.set_item("model_arn", converted_3762)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -18940,18 +20864,18 @@ struct PyOperationCreateCustomModelDeploymentOutput {
 impl PyOperationCreateCustomModelDeploymentOutput {
     #[getter]
     fn custom_model_deployment_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3512 = (&self.inner.custom_model_deployment_arn)
+        let converted_3763 = (&self.inner.custom_model_deployment_arn)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3512)
+        Ok(converted_3763)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3513 = (&self.inner.custom_model_deployment_arn)
+        let converted_3764 = (&self.inner.custom_model_deployment_arn)
             .as_str()
             .into_py_any(py)?;
-        result.set_item("custom_model_deployment_arn", converted_3513)?;
+        result.set_item("custom_model_deployment_arn", converted_3764)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -18969,14 +20893,14 @@ struct PyOperationCreateEvaluationJobOutput {
 impl PyOperationCreateEvaluationJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3514 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        Ok(converted_3514)
+        let converted_3765 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_3765)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3515 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        result.set_item("job_arn", converted_3515)?;
+        let converted_3766 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        result.set_item("job_arn", converted_3766)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -18994,14 +20918,14 @@ struct PyOperationCreateFoundationModelAgreementOutput {
 impl PyOperationCreateFoundationModelAgreementOutput {
     #[getter]
     fn model_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3516 = (&self.inner.model_id).as_str().into_py_any(py)?;
-        Ok(converted_3516)
+        let converted_3767 = (&self.inner.model_id).as_str().into_py_any(py)?;
+        Ok(converted_3767)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3517 = (&self.inner.model_id).as_str().into_py_any(py)?;
-        result.set_item("model_id", converted_3517)?;
+        let converted_3768 = (&self.inner.model_id).as_str().into_py_any(py)?;
+        result.set_item("model_id", converted_3768)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -19019,38 +20943,38 @@ struct PyOperationCreateGuardrailOutput {
 impl PyOperationCreateGuardrailOutput {
     #[getter]
     fn guardrail_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3518 = (&self.inner.guardrail_id).as_str().into_py_any(py)?;
-        Ok(converted_3518)
+        let converted_3769 = (&self.inner.guardrail_id).as_str().into_py_any(py)?;
+        Ok(converted_3769)
     }
 
     #[getter]
     fn guardrail_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3519 = (&self.inner.guardrail_arn).as_str().into_py_any(py)?;
-        Ok(converted_3519)
+        let converted_3770 = (&self.inner.guardrail_arn).as_str().into_py_any(py)?;
+        Ok(converted_3770)
     }
 
     #[getter]
     fn version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3520 = (&self.inner.version).as_str().into_py_any(py)?;
-        Ok(converted_3520)
+        let converted_3771 = (&self.inner.version).as_str().into_py_any(py)?;
+        Ok(converted_3771)
     }
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3521 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_3521)
+        let converted_3772 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_3772)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3522 = (&self.inner.guardrail_id).as_str().into_py_any(py)?;
-        result.set_item("guardrail_id", converted_3522)?;
-        let converted_3523 = (&self.inner.guardrail_arn).as_str().into_py_any(py)?;
-        result.set_item("guardrail_arn", converted_3523)?;
-        let converted_3524 = (&self.inner.version).as_str().into_py_any(py)?;
-        result.set_item("version", converted_3524)?;
-        let converted_3525 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        result.set_item("created_at", converted_3525)?;
+        let converted_3773 = (&self.inner.guardrail_id).as_str().into_py_any(py)?;
+        result.set_item("guardrail_id", converted_3773)?;
+        let converted_3774 = (&self.inner.guardrail_arn).as_str().into_py_any(py)?;
+        result.set_item("guardrail_arn", converted_3774)?;
+        let converted_3775 = (&self.inner.version).as_str().into_py_any(py)?;
+        result.set_item("version", converted_3775)?;
+        let converted_3776 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_3776)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -19068,22 +20992,22 @@ struct PyOperationCreateGuardrailVersionOutput {
 impl PyOperationCreateGuardrailVersionOutput {
     #[getter]
     fn guardrail_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3526 = (&self.inner.guardrail_id).as_str().into_py_any(py)?;
-        Ok(converted_3526)
+        let converted_3777 = (&self.inner.guardrail_id).as_str().into_py_any(py)?;
+        Ok(converted_3777)
     }
 
     #[getter]
     fn version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3527 = (&self.inner.version).as_str().into_py_any(py)?;
-        Ok(converted_3527)
+        let converted_3778 = (&self.inner.version).as_str().into_py_any(py)?;
+        Ok(converted_3778)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3528 = (&self.inner.guardrail_id).as_str().into_py_any(py)?;
-        result.set_item("guardrail_id", converted_3528)?;
-        let converted_3529 = (&self.inner.version).as_str().into_py_any(py)?;
-        result.set_item("version", converted_3529)?;
+        let converted_3779 = (&self.inner.guardrail_id).as_str().into_py_any(py)?;
+        result.set_item("guardrail_id", converted_3779)?;
+        let converted_3780 = (&self.inner.version).as_str().into_py_any(py)?;
+        result.set_item("version", converted_3780)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -19101,17 +21025,17 @@ struct PyOperationCreateInferenceProfileOutput {
 impl PyOperationCreateInferenceProfileOutput {
     #[getter]
     fn inference_profile_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3530 = (&self.inner.inference_profile_arn)
+        let converted_3781 = (&self.inner.inference_profile_arn)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3530)
+        Ok(converted_3781)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_3531 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3531)
+            let converted_3782 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3782)
         } else {
             Ok(py.None())
         }
@@ -19119,17 +21043,30 @@ impl PyOperationCreateInferenceProfileOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3532 = (&self.inner.inference_profile_arn)
+        let converted_3783 = (&self.inner.inference_profile_arn)
             .as_str()
             .into_py_any(py)?;
-        result.set_item("inference_profile_arn", converted_3532)?;
+        result.set_item("inference_profile_arn", converted_3783)?;
         if let Some(value) = &self.inner.status {
-            let converted_3533 = (value).as_str().into_py_any(py)?;
-            result.set_item("status", converted_3533)?;
+            let converted_3784 = (value).as_str().into_py_any(py)?;
+            result.set_item("status", converted_3784)?;
         } else {
             result.set_item("status", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationCreateMarketplaceModelEndpointOutput {
+    marketplace_model_endpoint: Option<Arc<aws_sdk_bedrock::types::MarketplaceModelEndpoint>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::create_marketplace_model_endpoint::CreateMarketplaceModelEndpointOutput> for SharedPyOperationCreateMarketplaceModelEndpointOutput {
+    fn from(value: aws_sdk_bedrock::operation::create_marketplace_model_endpoint::CreateMarketplaceModelEndpointOutput) -> Self {
+        Self {
+            marketplace_model_endpoint: value.marketplace_model_endpoint.map(|item| Arc::new(item)),
+        }
     }
 }
 
@@ -19139,7 +21076,7 @@ impl PyOperationCreateInferenceProfileOutput {
     frozen
 )]
 struct PyOperationCreateMarketplaceModelEndpointOutput {
-    inner: aws_sdk_bedrock::operation::create_marketplace_model_endpoint::CreateMarketplaceModelEndpointOutput,
+    inner: SharedPyOperationCreateMarketplaceModelEndpointOutput,
 }
 
 #[pymethods]
@@ -19147,14 +21084,14 @@ impl PyOperationCreateMarketplaceModelEndpointOutput {
     #[getter]
     fn marketplace_model_endpoint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.marketplace_model_endpoint {
-            let converted_3534 = Py::new(
+            let converted_3785 = Py::new(
                 py,
                 PyMarketplaceModelEndpoint {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3534)
+            Ok(converted_3785)
         } else {
             Ok(py.None())
         }
@@ -19163,8 +21100,8 @@ impl PyOperationCreateMarketplaceModelEndpointOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.marketplace_model_endpoint {
-            let converted_3535 = marketplace_model_endpoint_to_py(py, value)?;
-            result.set_item("marketplace_model_endpoint", converted_3535)?;
+            let converted_3786 = marketplace_model_endpoint_to_py(py, value)?;
+            result.set_item("marketplace_model_endpoint", converted_3786)?;
         } else {
             result.set_item("marketplace_model_endpoint", py.None())?;
         }
@@ -19185,14 +21122,14 @@ struct PyOperationCreateModelCopyJobOutput {
 impl PyOperationCreateModelCopyJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3536 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        Ok(converted_3536)
+        let converted_3787 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_3787)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3537 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        result.set_item("job_arn", converted_3537)?;
+        let converted_3788 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        result.set_item("job_arn", converted_3788)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -19210,14 +21147,14 @@ struct PyOperationCreateModelCustomizationJobOutput {
 impl PyOperationCreateModelCustomizationJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3538 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        Ok(converted_3538)
+        let converted_3789 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_3789)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3539 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        result.set_item("job_arn", converted_3539)?;
+        let converted_3790 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        result.set_item("job_arn", converted_3790)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -19235,14 +21172,14 @@ struct PyOperationCreateModelImportJobOutput {
 impl PyOperationCreateModelImportJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3540 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        Ok(converted_3540)
+        let converted_3791 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_3791)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3541 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        result.set_item("job_arn", converted_3541)?;
+        let converted_3792 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        result.set_item("job_arn", converted_3792)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -19260,14 +21197,14 @@ struct PyOperationCreateModelInvocationJobOutput {
 impl PyOperationCreateModelInvocationJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3542 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        Ok(converted_3542)
+        let converted_3793 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_3793)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3543 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        result.set_item("job_arn", converted_3543)?;
+        let converted_3794 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        result.set_item("job_arn", converted_3794)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -19286,8 +21223,8 @@ impl PyOperationCreatePromptRouterOutput {
     #[getter]
     fn prompt_router_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.prompt_router_arn {
-            let converted_3544 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3544)
+            let converted_3795 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3795)
         } else {
             Ok(py.None())
         }
@@ -19296,8 +21233,8 @@ impl PyOperationCreatePromptRouterOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.prompt_router_arn {
-            let converted_3545 = (value).as_str().into_py_any(py)?;
-            result.set_item("prompt_router_arn", converted_3545)?;
+            let converted_3796 = (value).as_str().into_py_any(py)?;
+            result.set_item("prompt_router_arn", converted_3796)?;
         } else {
             result.set_item("prompt_router_arn", py.None())?;
         }
@@ -19318,18 +21255,18 @@ struct PyOperationCreateProvisionedModelThroughputOutput {
 impl PyOperationCreateProvisionedModelThroughputOutput {
     #[getter]
     fn provisioned_model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3546 = (&self.inner.provisioned_model_arn)
+        let converted_3797 = (&self.inner.provisioned_model_arn)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3546)
+        Ok(converted_3797)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3547 = (&self.inner.provisioned_model_arn)
+        let converted_3798 = (&self.inner.provisioned_model_arn)
             .as_str()
             .into_py_any(py)?;
-        result.set_item("provisioned_model_arn", converted_3547)?;
+        result.set_item("provisioned_model_arn", converted_3798)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -19606,13 +21543,26 @@ impl PyOperationDeregisterMarketplaceModelEndpointOutput {
     }
 }
 
+struct SharedPyOperationExportAutomatedReasoningPolicyVersionOutput {
+    policy_definition: Option<Arc<SharedAutomatedReasoningPolicyDefinition>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::export_automated_reasoning_policy_version::ExportAutomatedReasoningPolicyVersionOutput> for SharedPyOperationExportAutomatedReasoningPolicyVersionOutput {
+    fn from(value: aws_sdk_bedrock::operation::export_automated_reasoning_policy_version::ExportAutomatedReasoningPolicyVersionOutput) -> Self {
+        Self {
+            policy_definition: value.policy_definition.map(|item| Arc::new(SharedAutomatedReasoningPolicyDefinition::from(item))),
+        }
+    }
+}
+
 #[pyclass(
     name = "ExportAutomatedReasoningPolicyVersionOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
 struct PyOperationExportAutomatedReasoningPolicyVersionOutput {
-    inner: aws_sdk_bedrock::operation::export_automated_reasoning_policy_version::ExportAutomatedReasoningPolicyVersionOutput,
+    inner: SharedPyOperationExportAutomatedReasoningPolicyVersionOutput,
 }
 
 #[pymethods]
@@ -19620,14 +21570,14 @@ impl PyOperationExportAutomatedReasoningPolicyVersionOutput {
     #[getter]
     fn policy_definition(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.policy_definition {
-            let converted_3548 = Py::new(
+            let converted_3799 = Py::new(
                 py,
                 PyAutomatedReasoningPolicyDefinition {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3548)
+            Ok(converted_3799)
         } else {
             Ok(py.None())
         }
@@ -19636,8 +21586,8 @@ impl PyOperationExportAutomatedReasoningPolicyVersionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.policy_definition {
-            let converted_3549 = automated_reasoning_policy_definition_to_py(py, value)?;
-            result.set_item("policy_definition", converted_3549)?;
+            let converted_3800 = automated_reasoning_policy_definition_shared_to_py(py, value)?;
+            result.set_item("policy_definition", converted_3800)?;
         } else {
             result.set_item("policy_definition", py.None())?;
         }
@@ -19658,15 +21608,15 @@ struct PyOperationGetAccountDataRetentionOutput {
 impl PyOperationGetAccountDataRetentionOutput {
     #[getter]
     fn mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3550 = (&self.inner.mode).as_str().into_py_any(py)?;
-        Ok(converted_3550)
+        let converted_3801 = (&self.inner.mode).as_str().into_py_any(py)?;
+        Ok(converted_3801)
     }
 
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_at {
-            let converted_3551 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3551)
+            let converted_3802 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3802)
         } else {
             Ok(py.None())
         }
@@ -19674,15 +21624,48 @@ impl PyOperationGetAccountDataRetentionOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3552 = (&self.inner.mode).as_str().into_py_any(py)?;
-        result.set_item("mode", converted_3552)?;
+        let converted_3803 = (&self.inner.mode).as_str().into_py_any(py)?;
+        result.set_item("mode", converted_3803)?;
         if let Some(value) = &self.inner.updated_at {
-            let converted_3553 = (value).to_string().into_py_any(py)?;
-            result.set_item("updated_at", converted_3553)?;
+            let converted_3804 = (value).to_string().into_py_any(py)?;
+            result.set_item("updated_at", converted_3804)?;
         } else {
             result.set_item("updated_at", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetAdvancedPromptOptimizationJobOutput {
+    job_arn: ::std::string::String,
+    job_name: ::std::string::String,
+    job_description: Option<::std::string::String>,
+    job_status: aws_sdk_bedrock::types::AdvancedPromptOptimizationJobStatus,
+    input_config: Option<Arc<aws_sdk_bedrock::types::AdvancedPromptOptimizationInputConfig>>,
+    output_config: Option<Arc<aws_sdk_bedrock::types::AdvancedPromptOptimizationOutputConfig>>,
+    encryption_key_arn: Option<::std::string::String>,
+    creation_time: ::aws_smithy_types::DateTime,
+    last_modified_time: Option<::aws_smithy_types::DateTime>,
+    failure_message: Option<::std::string::String>,
+    model_configurations: ::std::vec::Vec<Arc<SharedModelConfiguration>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::get_advanced_prompt_optimization_job::GetAdvancedPromptOptimizationJobOutput> for SharedPyOperationGetAdvancedPromptOptimizationJobOutput {
+    fn from(value: aws_sdk_bedrock::operation::get_advanced_prompt_optimization_job::GetAdvancedPromptOptimizationJobOutput) -> Self {
+        Self {
+            job_arn: value.job_arn,
+            job_name: value.job_name,
+            job_description: value.job_description,
+            job_status: value.job_status,
+            input_config: value.input_config.map(|item| Arc::new(item)),
+            output_config: value.output_config.map(|item| Arc::new(item)),
+            encryption_key_arn: value.encryption_key_arn,
+            creation_time: value.creation_time,
+            last_modified_time: value.last_modified_time,
+            failure_message: value.failure_message,
+            model_configurations: (value.model_configurations).into_iter().map(|owned_3818| Arc::new(SharedModelConfiguration::from(owned_3818))).collect(),
+        }
     }
 }
 
@@ -19692,28 +21675,28 @@ impl PyOperationGetAccountDataRetentionOutput {
     frozen
 )]
 struct PyOperationGetAdvancedPromptOptimizationJobOutput {
-    inner: aws_sdk_bedrock::operation::get_advanced_prompt_optimization_job::GetAdvancedPromptOptimizationJobOutput,
+    inner: SharedPyOperationGetAdvancedPromptOptimizationJobOutput,
 }
 
 #[pymethods]
 impl PyOperationGetAdvancedPromptOptimizationJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3554 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        Ok(converted_3554)
+        let converted_3805 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_3805)
     }
 
     #[getter]
     fn job_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3555 = (&self.inner.job_name).as_str().into_py_any(py)?;
-        Ok(converted_3555)
+        let converted_3806 = (&self.inner.job_name).as_str().into_py_any(py)?;
+        Ok(converted_3806)
     }
 
     #[getter]
     fn job_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_description {
-            let converted_3556 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3556)
+            let converted_3807 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3807)
         } else {
             Ok(py.None())
         }
@@ -19721,21 +21704,21 @@ impl PyOperationGetAdvancedPromptOptimizationJobOutput {
 
     #[getter]
     fn job_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3557 = (&self.inner.job_status).as_str().into_py_any(py)?;
-        Ok(converted_3557)
+        let converted_3808 = (&self.inner.job_status).as_str().into_py_any(py)?;
+        Ok(converted_3808)
     }
 
     #[getter]
     fn input_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_config {
-            let converted_3558 = Py::new(
+            let converted_3809 = Py::new(
                 py,
                 PyAdvancedPromptOptimizationInputConfig {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3558)
+            Ok(converted_3809)
         } else {
             Ok(py.None())
         }
@@ -19744,14 +21727,14 @@ impl PyOperationGetAdvancedPromptOptimizationJobOutput {
     #[getter]
     fn output_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_config {
-            let converted_3559 = Py::new(
+            let converted_3810 = Py::new(
                 py,
                 PyAdvancedPromptOptimizationOutputConfig {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3559)
+            Ok(converted_3810)
         } else {
             Ok(py.None())
         }
@@ -19760,8 +21743,8 @@ impl PyOperationGetAdvancedPromptOptimizationJobOutput {
     #[getter]
     fn encryption_key_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_key_arn {
-            let converted_3560 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3560)
+            let converted_3811 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3811)
         } else {
             Ok(py.None())
         }
@@ -19769,15 +21752,15 @@ impl PyOperationGetAdvancedPromptOptimizationJobOutput {
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3561 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        Ok(converted_3561)
+        let converted_3812 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        Ok(converted_3812)
     }
 
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_3562 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3562)
+            let converted_3813 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3813)
         } else {
             Ok(py.None())
         }
@@ -19786,8 +21769,8 @@ impl PyOperationGetAdvancedPromptOptimizationJobOutput {
     #[getter]
     fn failure_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failure_message {
-            let converted_3563 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3563)
+            let converted_3814 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3814)
         } else {
             Ok(py.None())
         }
@@ -19795,74 +21778,74 @@ impl PyOperationGetAdvancedPromptOptimizationJobOutput {
 
     #[getter]
     fn model_configurations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3564_list = PyList::empty(py);
-        for item_3565 in &self.inner.model_configurations {
-            let converted_item_3566 = Py::new(
+        let converted_3815_list = PyList::empty(py);
+        for item_3816 in &self.inner.model_configurations {
+            let converted_item_3817 = Py::new(
                 py,
                 PyModelConfiguration {
-                    inner: (item_3565).to_owned(),
+                    inner: Arc::clone(item_3816),
                 },
             )?
             .into_any();
-            converted_3564_list.append(converted_item_3566)?;
+            converted_3815_list.append(converted_item_3817)?;
         }
-        let converted_3564 = converted_3564_list.into_any().unbind();
-        Ok(converted_3564)
+        let converted_3815 = converted_3815_list.into_any().unbind();
+        Ok(converted_3815)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3567 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        result.set_item("job_arn", converted_3567)?;
-        let converted_3568 = (&self.inner.job_name).as_str().into_py_any(py)?;
-        result.set_item("job_name", converted_3568)?;
+        let converted_3819 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        result.set_item("job_arn", converted_3819)?;
+        let converted_3820 = (&self.inner.job_name).as_str().into_py_any(py)?;
+        result.set_item("job_name", converted_3820)?;
         if let Some(value) = &self.inner.job_description {
-            let converted_3569 = (value).as_str().into_py_any(py)?;
-            result.set_item("job_description", converted_3569)?;
+            let converted_3821 = (value).as_str().into_py_any(py)?;
+            result.set_item("job_description", converted_3821)?;
         } else {
             result.set_item("job_description", py.None())?;
         }
-        let converted_3570 = (&self.inner.job_status).as_str().into_py_any(py)?;
-        result.set_item("job_status", converted_3570)?;
+        let converted_3822 = (&self.inner.job_status).as_str().into_py_any(py)?;
+        result.set_item("job_status", converted_3822)?;
         if let Some(value) = &self.inner.input_config {
-            let converted_3571 = advanced_prompt_optimization_input_config_to_py(py, value)?;
-            result.set_item("input_config", converted_3571)?;
+            let converted_3823 = advanced_prompt_optimization_input_config_to_py(py, value)?;
+            result.set_item("input_config", converted_3823)?;
         } else {
             result.set_item("input_config", py.None())?;
         }
         if let Some(value) = &self.inner.output_config {
-            let converted_3572 = advanced_prompt_optimization_output_config_to_py(py, value)?;
-            result.set_item("output_config", converted_3572)?;
+            let converted_3824 = advanced_prompt_optimization_output_config_to_py(py, value)?;
+            result.set_item("output_config", converted_3824)?;
         } else {
             result.set_item("output_config", py.None())?;
         }
         if let Some(value) = &self.inner.encryption_key_arn {
-            let converted_3573 = (value).as_str().into_py_any(py)?;
-            result.set_item("encryption_key_arn", converted_3573)?;
+            let converted_3825 = (value).as_str().into_py_any(py)?;
+            result.set_item("encryption_key_arn", converted_3825)?;
         } else {
             result.set_item("encryption_key_arn", py.None())?;
         }
-        let converted_3574 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        result.set_item("creation_time", converted_3574)?;
+        let converted_3826 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        result.set_item("creation_time", converted_3826)?;
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_3575 = (value).to_string().into_py_any(py)?;
-            result.set_item("last_modified_time", converted_3575)?;
+            let converted_3827 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_modified_time", converted_3827)?;
         } else {
             result.set_item("last_modified_time", py.None())?;
         }
         if let Some(value) = &self.inner.failure_message {
-            let converted_3576 = (value).as_str().into_py_any(py)?;
-            result.set_item("failure_message", converted_3576)?;
+            let converted_3828 = (value).as_str().into_py_any(py)?;
+            result.set_item("failure_message", converted_3828)?;
         } else {
             result.set_item("failure_message", py.None())?;
         }
-        let converted_3577_list = PyList::empty(py);
-        for item_3578 in &self.inner.model_configurations {
-            let converted_item_3579 = model_configuration_to_py(py, item_3578)?;
-            converted_3577_list.append(converted_item_3579)?;
+        let converted_3829_list = PyList::empty(py);
+        for item_3830 in &self.inner.model_configurations {
+            let converted_item_3831 = model_configuration_shared_to_py(py, item_3830)?;
+            converted_3829_list.append(converted_item_3831)?;
         }
-        let converted_3577 = converted_3577_list.into_any().unbind();
-        result.set_item("model_configurations", converted_3577)?;
+        let converted_3829 = converted_3829_list.into_any().unbind();
+        result.set_item("model_configurations", converted_3829)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -19880,33 +21863,33 @@ struct PyOperationGetAutomatedReasoningPolicyOutput {
 impl PyOperationGetAutomatedReasoningPolicyOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3580 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        Ok(converted_3580)
+        let converted_3832 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        Ok(converted_3832)
     }
 
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3581 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_3581)
+        let converted_3833 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_3833)
     }
 
     #[getter]
     fn version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3582 = (&self.inner.version).as_str().into_py_any(py)?;
-        Ok(converted_3582)
+        let converted_3834 = (&self.inner.version).as_str().into_py_any(py)?;
+        Ok(converted_3834)
     }
 
     #[getter]
     fn policy_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3583 = (&self.inner.policy_id).as_str().into_py_any(py)?;
-        Ok(converted_3583)
+        let converted_3835 = (&self.inner.policy_id).as_str().into_py_any(py)?;
+        Ok(converted_3835)
     }
 
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_3584 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3584)
+            let converted_3836 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3836)
         } else {
             Ok(py.None())
         }
@@ -19914,15 +21897,15 @@ impl PyOperationGetAutomatedReasoningPolicyOutput {
 
     #[getter]
     fn definition_hash(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3585 = (&self.inner.definition_hash).as_str().into_py_any(py)?;
-        Ok(converted_3585)
+        let converted_3837 = (&self.inner.definition_hash).as_str().into_py_any(py)?;
+        Ok(converted_3837)
     }
 
     #[getter]
     fn kms_key_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key_arn {
-            let converted_3586 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3586)
+            let converted_3838 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3838)
         } else {
             Ok(py.None())
         }
@@ -19931,8 +21914,8 @@ impl PyOperationGetAutomatedReasoningPolicyOutput {
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.created_at {
-            let converted_3587 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3587)
+            let converted_3839 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3839)
         } else {
             Ok(py.None())
         }
@@ -19940,42 +21923,42 @@ impl PyOperationGetAutomatedReasoningPolicyOutput {
 
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3588 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        Ok(converted_3588)
+        let converted_3840 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        Ok(converted_3840)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3589 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        result.set_item("policy_arn", converted_3589)?;
-        let converted_3590 = (&self.inner.name).as_str().into_py_any(py)?;
-        result.set_item("name", converted_3590)?;
-        let converted_3591 = (&self.inner.version).as_str().into_py_any(py)?;
-        result.set_item("version", converted_3591)?;
-        let converted_3592 = (&self.inner.policy_id).as_str().into_py_any(py)?;
-        result.set_item("policy_id", converted_3592)?;
+        let converted_3841 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        result.set_item("policy_arn", converted_3841)?;
+        let converted_3842 = (&self.inner.name).as_str().into_py_any(py)?;
+        result.set_item("name", converted_3842)?;
+        let converted_3843 = (&self.inner.version).as_str().into_py_any(py)?;
+        result.set_item("version", converted_3843)?;
+        let converted_3844 = (&self.inner.policy_id).as_str().into_py_any(py)?;
+        result.set_item("policy_id", converted_3844)?;
         if let Some(value) = &self.inner.description {
-            let converted_3593 = (value).as_str().into_py_any(py)?;
-            result.set_item("description", converted_3593)?;
+            let converted_3845 = (value).as_str().into_py_any(py)?;
+            result.set_item("description", converted_3845)?;
         } else {
             result.set_item("description", py.None())?;
         }
-        let converted_3594 = (&self.inner.definition_hash).as_str().into_py_any(py)?;
-        result.set_item("definition_hash", converted_3594)?;
+        let converted_3846 = (&self.inner.definition_hash).as_str().into_py_any(py)?;
+        result.set_item("definition_hash", converted_3846)?;
         if let Some(value) = &self.inner.kms_key_arn {
-            let converted_3595 = (value).as_str().into_py_any(py)?;
-            result.set_item("kms_key_arn", converted_3595)?;
+            let converted_3847 = (value).as_str().into_py_any(py)?;
+            result.set_item("kms_key_arn", converted_3847)?;
         } else {
             result.set_item("kms_key_arn", py.None())?;
         }
         if let Some(value) = &self.inner.created_at {
-            let converted_3596 = (value).to_string().into_py_any(py)?;
-            result.set_item("created_at", converted_3596)?;
+            let converted_3848 = (value).to_string().into_py_any(py)?;
+            result.set_item("created_at", converted_3848)?;
         } else {
             result.set_item("created_at", py.None())?;
         }
-        let converted_3597 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        result.set_item("updated_at", converted_3597)?;
+        let converted_3849 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        result.set_item("updated_at", converted_3849)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -19993,64 +21976,64 @@ struct PyOperationGetAutomatedReasoningPolicyAnnotationsOutput {
 impl PyOperationGetAutomatedReasoningPolicyAnnotationsOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3598 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        Ok(converted_3598)
+        let converted_3850 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        Ok(converted_3850)
     }
 
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3599 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_3599)
+        let converted_3851 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_3851)
     }
 
     #[getter]
     fn build_workflow_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3600 = (&self.inner.build_workflow_id).as_str().into_py_any(py)?;
-        Ok(converted_3600)
+        let converted_3852 = (&self.inner.build_workflow_id).as_str().into_py_any(py)?;
+        Ok(converted_3852)
     }
 
     #[getter]
     fn annotations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3601_list = PyList::empty(py);
-        for item_3602 in &self.inner.annotations {
-            let converted_item_3603 = automated_reasoning_policy_annotation_to_py(py, item_3602)?;
-            converted_3601_list.append(converted_item_3603)?;
+        let converted_3853_list = PyList::empty(py);
+        for item_3854 in &self.inner.annotations {
+            let converted_item_3855 = automated_reasoning_policy_annotation_to_py(py, item_3854)?;
+            converted_3853_list.append(converted_item_3855)?;
         }
-        let converted_3601 = converted_3601_list.into_any().unbind();
-        Ok(converted_3601)
+        let converted_3853 = converted_3853_list.into_any().unbind();
+        Ok(converted_3853)
     }
 
     #[getter]
     fn annotation_set_hash(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3604 = (&self.inner.annotation_set_hash).as_str().into_py_any(py)?;
-        Ok(converted_3604)
+        let converted_3856 = (&self.inner.annotation_set_hash).as_str().into_py_any(py)?;
+        Ok(converted_3856)
     }
 
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3605 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        Ok(converted_3605)
+        let converted_3857 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        Ok(converted_3857)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3606 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        result.set_item("policy_arn", converted_3606)?;
-        let converted_3607 = (&self.inner.name).as_str().into_py_any(py)?;
-        result.set_item("name", converted_3607)?;
-        let converted_3608 = (&self.inner.build_workflow_id).as_str().into_py_any(py)?;
-        result.set_item("build_workflow_id", converted_3608)?;
-        let converted_3609_list = PyList::empty(py);
-        for item_3610 in &self.inner.annotations {
-            let converted_item_3611 = automated_reasoning_policy_annotation_to_py(py, item_3610)?;
-            converted_3609_list.append(converted_item_3611)?;
+        let converted_3858 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        result.set_item("policy_arn", converted_3858)?;
+        let converted_3859 = (&self.inner.name).as_str().into_py_any(py)?;
+        result.set_item("name", converted_3859)?;
+        let converted_3860 = (&self.inner.build_workflow_id).as_str().into_py_any(py)?;
+        result.set_item("build_workflow_id", converted_3860)?;
+        let converted_3861_list = PyList::empty(py);
+        for item_3862 in &self.inner.annotations {
+            let converted_item_3863 = automated_reasoning_policy_annotation_to_py(py, item_3862)?;
+            converted_3861_list.append(converted_item_3863)?;
         }
-        let converted_3609 = converted_3609_list.into_any().unbind();
-        result.set_item("annotations", converted_3609)?;
-        let converted_3612 = (&self.inner.annotation_set_hash).as_str().into_py_any(py)?;
-        result.set_item("annotation_set_hash", converted_3612)?;
-        let converted_3613 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        result.set_item("updated_at", converted_3613)?;
+        let converted_3861 = converted_3861_list.into_any().unbind();
+        result.set_item("annotations", converted_3861)?;
+        let converted_3864 = (&self.inner.annotation_set_hash).as_str().into_py_any(py)?;
+        result.set_item("annotation_set_hash", converted_3864)?;
+        let converted_3865 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        result.set_item("updated_at", converted_3865)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -20068,33 +22051,33 @@ struct PyOperationGetAutomatedReasoningPolicyBuildWorkflowOutput {
 impl PyOperationGetAutomatedReasoningPolicyBuildWorkflowOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3614 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        Ok(converted_3614)
+        let converted_3866 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        Ok(converted_3866)
     }
 
     #[getter]
     fn build_workflow_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3615 = (&self.inner.build_workflow_id).as_str().into_py_any(py)?;
-        Ok(converted_3615)
+        let converted_3867 = (&self.inner.build_workflow_id).as_str().into_py_any(py)?;
+        Ok(converted_3867)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3616 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_3616)
+        let converted_3868 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_3868)
     }
 
     #[getter]
     fn build_workflow_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3617 = (&self.inner.build_workflow_type).as_str().into_py_any(py)?;
-        Ok(converted_3617)
+        let converted_3869 = (&self.inner.build_workflow_type).as_str().into_py_any(py)?;
+        Ok(converted_3869)
     }
 
     #[getter]
     fn document_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.document_name {
-            let converted_3618 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3618)
+            let converted_3870 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3870)
         } else {
             Ok(py.None())
         }
@@ -20103,8 +22086,8 @@ impl PyOperationGetAutomatedReasoningPolicyBuildWorkflowOutput {
     #[getter]
     fn document_content_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.document_content_type {
-            let converted_3619 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3619)
+            let converted_3871 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3871)
         } else {
             Ok(py.None())
         }
@@ -20113,8 +22096,8 @@ impl PyOperationGetAutomatedReasoningPolicyBuildWorkflowOutput {
     #[getter]
     fn document_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.document_description {
-            let converted_3620 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3620)
+            let converted_3872 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3872)
         } else {
             Ok(py.None())
         }
@@ -20122,48 +22105,48 @@ impl PyOperationGetAutomatedReasoningPolicyBuildWorkflowOutput {
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3621 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_3621)
+        let converted_3873 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_3873)
     }
 
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3622 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        Ok(converted_3622)
+        let converted_3874 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        Ok(converted_3874)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3623 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        result.set_item("policy_arn", converted_3623)?;
-        let converted_3624 = (&self.inner.build_workflow_id).as_str().into_py_any(py)?;
-        result.set_item("build_workflow_id", converted_3624)?;
-        let converted_3625 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_3625)?;
-        let converted_3626 = (&self.inner.build_workflow_type).as_str().into_py_any(py)?;
-        result.set_item("build_workflow_type", converted_3626)?;
+        let converted_3875 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        result.set_item("policy_arn", converted_3875)?;
+        let converted_3876 = (&self.inner.build_workflow_id).as_str().into_py_any(py)?;
+        result.set_item("build_workflow_id", converted_3876)?;
+        let converted_3877 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_3877)?;
+        let converted_3878 = (&self.inner.build_workflow_type).as_str().into_py_any(py)?;
+        result.set_item("build_workflow_type", converted_3878)?;
         if let Some(value) = &self.inner.document_name {
-            let converted_3627 = (value).as_str().into_py_any(py)?;
-            result.set_item("document_name", converted_3627)?;
+            let converted_3879 = (value).as_str().into_py_any(py)?;
+            result.set_item("document_name", converted_3879)?;
         } else {
             result.set_item("document_name", py.None())?;
         }
         if let Some(value) = &self.inner.document_content_type {
-            let converted_3628 = (value).as_str().into_py_any(py)?;
-            result.set_item("document_content_type", converted_3628)?;
+            let converted_3880 = (value).as_str().into_py_any(py)?;
+            result.set_item("document_content_type", converted_3880)?;
         } else {
             result.set_item("document_content_type", py.None())?;
         }
         if let Some(value) = &self.inner.document_description {
-            let converted_3629 = (value).as_str().into_py_any(py)?;
-            result.set_item("document_description", converted_3629)?;
+            let converted_3881 = (value).as_str().into_py_any(py)?;
+            result.set_item("document_description", converted_3881)?;
         } else {
             result.set_item("document_description", py.None())?;
         }
-        let converted_3630 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        result.set_item("created_at", converted_3630)?;
-        let converted_3631 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        result.set_item("updated_at", converted_3631)?;
+        let converted_3882 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_3882)?;
+        let converted_3883 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        result.set_item("updated_at", converted_3883)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -20181,21 +22164,21 @@ struct PyOperationGetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput {
 impl PyOperationGetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3632 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        Ok(converted_3632)
+        let converted_3884 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        Ok(converted_3884)
     }
 
     #[getter]
     fn build_workflow_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3633 = (&self.inner.build_workflow_id).as_str().into_py_any(py)?;
-        Ok(converted_3633)
+        let converted_3885 = (&self.inner.build_workflow_id).as_str().into_py_any(py)?;
+        Ok(converted_3885)
     }
 
     #[getter]
     fn build_workflow_assets(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.build_workflow_assets {
-            let converted_3634 = automated_reasoning_policy_build_result_assets_to_py(py, value)?;
-            Ok(converted_3634)
+            let converted_3886 = automated_reasoning_policy_build_result_assets_to_py(py, value)?;
+            Ok(converted_3886)
         } else {
             Ok(py.None())
         }
@@ -20203,17 +22186,32 @@ impl PyOperationGetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3635 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        result.set_item("policy_arn", converted_3635)?;
-        let converted_3636 = (&self.inner.build_workflow_id).as_str().into_py_any(py)?;
-        result.set_item("build_workflow_id", converted_3636)?;
+        let converted_3887 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        result.set_item("policy_arn", converted_3887)?;
+        let converted_3888 = (&self.inner.build_workflow_id).as_str().into_py_any(py)?;
+        result.set_item("build_workflow_id", converted_3888)?;
         if let Some(value) = &self.inner.build_workflow_assets {
-            let converted_3637 = automated_reasoning_policy_build_result_assets_to_py(py, value)?;
-            result.set_item("build_workflow_assets", converted_3637)?;
+            let converted_3889 = automated_reasoning_policy_build_result_assets_to_py(py, value)?;
+            result.set_item("build_workflow_assets", converted_3889)?;
         } else {
             result.set_item("build_workflow_assets", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetAutomatedReasoningPolicyNextScenarioOutput {
+    policy_arn: ::std::string::String,
+    scenario: Option<Arc<aws_sdk_bedrock::types::AutomatedReasoningPolicyScenario>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::get_automated_reasoning_policy_next_scenario::GetAutomatedReasoningPolicyNextScenarioOutput> for SharedPyOperationGetAutomatedReasoningPolicyNextScenarioOutput {
+    fn from(value: aws_sdk_bedrock::operation::get_automated_reasoning_policy_next_scenario::GetAutomatedReasoningPolicyNextScenarioOutput) -> Self {
+        Self {
+            policy_arn: value.policy_arn,
+            scenario: value.scenario.map(|item| Arc::new(item)),
+        }
     }
 }
 
@@ -20223,28 +22221,28 @@ impl PyOperationGetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput {
     frozen
 )]
 struct PyOperationGetAutomatedReasoningPolicyNextScenarioOutput {
-    inner: aws_sdk_bedrock::operation::get_automated_reasoning_policy_next_scenario::GetAutomatedReasoningPolicyNextScenarioOutput,
+    inner: SharedPyOperationGetAutomatedReasoningPolicyNextScenarioOutput,
 }
 
 #[pymethods]
 impl PyOperationGetAutomatedReasoningPolicyNextScenarioOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3638 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        Ok(converted_3638)
+        let converted_3890 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        Ok(converted_3890)
     }
 
     #[getter]
     fn scenario(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.scenario {
-            let converted_3639 = Py::new(
+            let converted_3891 = Py::new(
                 py,
                 PyAutomatedReasoningPolicyScenario {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3639)
+            Ok(converted_3891)
         } else {
             Ok(py.None())
         }
@@ -20252,15 +22250,30 @@ impl PyOperationGetAutomatedReasoningPolicyNextScenarioOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3640 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        result.set_item("policy_arn", converted_3640)?;
+        let converted_3892 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        result.set_item("policy_arn", converted_3892)?;
         if let Some(value) = &self.inner.scenario {
-            let converted_3641 = automated_reasoning_policy_scenario_to_py(py, value)?;
-            result.set_item("scenario", converted_3641)?;
+            let converted_3893 = automated_reasoning_policy_scenario_to_py(py, value)?;
+            result.set_item("scenario", converted_3893)?;
         } else {
             result.set_item("scenario", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetAutomatedReasoningPolicyTestCaseOutput {
+    policy_arn: ::std::string::String,
+    test_case: Option<Arc<aws_sdk_bedrock::types::AutomatedReasoningPolicyTestCase>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::get_automated_reasoning_policy_test_case::GetAutomatedReasoningPolicyTestCaseOutput> for SharedPyOperationGetAutomatedReasoningPolicyTestCaseOutput {
+    fn from(value: aws_sdk_bedrock::operation::get_automated_reasoning_policy_test_case::GetAutomatedReasoningPolicyTestCaseOutput) -> Self {
+        Self {
+            policy_arn: value.policy_arn,
+            test_case: value.test_case.map(|item| Arc::new(item)),
+        }
     }
 }
 
@@ -20270,28 +22283,28 @@ impl PyOperationGetAutomatedReasoningPolicyNextScenarioOutput {
     frozen
 )]
 struct PyOperationGetAutomatedReasoningPolicyTestCaseOutput {
-    inner: aws_sdk_bedrock::operation::get_automated_reasoning_policy_test_case::GetAutomatedReasoningPolicyTestCaseOutput,
+    inner: SharedPyOperationGetAutomatedReasoningPolicyTestCaseOutput,
 }
 
 #[pymethods]
 impl PyOperationGetAutomatedReasoningPolicyTestCaseOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3642 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        Ok(converted_3642)
+        let converted_3894 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        Ok(converted_3894)
     }
 
     #[getter]
     fn test_case(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.test_case {
-            let converted_3643 = Py::new(
+            let converted_3895 = Py::new(
                 py,
                 PyAutomatedReasoningPolicyTestCase {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3643)
+            Ok(converted_3895)
         } else {
             Ok(py.None())
         }
@@ -20299,15 +22312,28 @@ impl PyOperationGetAutomatedReasoningPolicyTestCaseOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3644 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        result.set_item("policy_arn", converted_3644)?;
+        let converted_3896 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        result.set_item("policy_arn", converted_3896)?;
         if let Some(value) = &self.inner.test_case {
-            let converted_3645 = automated_reasoning_policy_test_case_to_py(py, value)?;
-            result.set_item("test_case", converted_3645)?;
+            let converted_3897 = automated_reasoning_policy_test_case_to_py(py, value)?;
+            result.set_item("test_case", converted_3897)?;
         } else {
             result.set_item("test_case", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetAutomatedReasoningPolicyTestResultOutput {
+    test_result: Option<Arc<SharedAutomatedReasoningPolicyTestResult>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::get_automated_reasoning_policy_test_result::GetAutomatedReasoningPolicyTestResultOutput> for SharedPyOperationGetAutomatedReasoningPolicyTestResultOutput {
+    fn from(value: aws_sdk_bedrock::operation::get_automated_reasoning_policy_test_result::GetAutomatedReasoningPolicyTestResultOutput) -> Self {
+        Self {
+            test_result: value.test_result.map(|item| Arc::new(SharedAutomatedReasoningPolicyTestResult::from(item))),
+        }
     }
 }
 
@@ -20317,7 +22343,7 @@ impl PyOperationGetAutomatedReasoningPolicyTestCaseOutput {
     frozen
 )]
 struct PyOperationGetAutomatedReasoningPolicyTestResultOutput {
-    inner: aws_sdk_bedrock::operation::get_automated_reasoning_policy_test_result::GetAutomatedReasoningPolicyTestResultOutput,
+    inner: SharedPyOperationGetAutomatedReasoningPolicyTestResultOutput,
 }
 
 #[pymethods]
@@ -20325,14 +22351,14 @@ impl PyOperationGetAutomatedReasoningPolicyTestResultOutput {
     #[getter]
     fn test_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.test_result {
-            let converted_3646 = Py::new(
+            let converted_3898 = Py::new(
                 py,
                 PyAutomatedReasoningPolicyTestResult {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3646)
+            Ok(converted_3898)
         } else {
             Ok(py.None())
         }
@@ -20341,12 +22367,69 @@ impl PyOperationGetAutomatedReasoningPolicyTestResultOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.test_result {
-            let converted_3647 = automated_reasoning_policy_test_result_to_py(py, value)?;
-            result.set_item("test_result", converted_3647)?;
+            let converted_3899 = automated_reasoning_policy_test_result_shared_to_py(py, value)?;
+            result.set_item("test_result", converted_3899)?;
         } else {
             result.set_item("test_result", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetCustomModelOutput {
+    model_arn: ::std::string::String,
+    model_name: ::std::string::String,
+    job_name: Option<::std::string::String>,
+    job_arn: Option<::std::string::String>,
+    base_model_arn: Option<::std::string::String>,
+    customization_type: Option<aws_sdk_bedrock::types::CustomizationType>,
+    model_kms_key_arn: Option<::std::string::String>,
+    hyper_parameters:
+        Option<::std::collections::HashMap<::std::string::String, ::std::string::String>>,
+    training_data_config: Option<Arc<SharedTrainingDataConfig>>,
+    validation_data_config: Option<Arc<SharedValidationDataConfig>>,
+    output_data_config: Option<Arc<aws_sdk_bedrock::types::OutputDataConfig>>,
+    training_metrics: Option<Arc<aws_sdk_bedrock::types::TrainingMetrics>>,
+    validation_metrics: Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::ValidatorMetric>>>,
+    creation_time: ::aws_smithy_types::DateTime,
+    customization_config: Option<aws_sdk_bedrock::types::CustomizationConfig>,
+    model_status: Option<aws_sdk_bedrock::types::ModelStatus>,
+    failure_message: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::get_custom_model::GetCustomModelOutput>
+    for SharedPyOperationGetCustomModelOutput
+{
+    fn from(value: aws_sdk_bedrock::operation::get_custom_model::GetCustomModelOutput) -> Self {
+        Self {
+            model_arn: value.model_arn,
+            model_name: value.model_name,
+            job_name: value.job_name,
+            job_arn: value.job_arn,
+            base_model_arn: value.base_model_arn,
+            customization_type: value.customization_type,
+            model_kms_key_arn: value.model_kms_key_arn,
+            hyper_parameters: value.hyper_parameters,
+            training_data_config: value
+                .training_data_config
+                .map(|item| Arc::new(SharedTrainingDataConfig::from(item))),
+            validation_data_config: value
+                .validation_data_config
+                .map(|item| Arc::new(SharedValidationDataConfig::from(item))),
+            output_data_config: value.output_data_config.map(|item| Arc::new(item)),
+            training_metrics: value.training_metrics.map(|item| Arc::new(item)),
+            validation_metrics: value.validation_metrics.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3923| Arc::new(owned_3923))
+                    .collect()
+            }),
+            creation_time: value.creation_time,
+            customization_config: value.customization_config,
+            model_status: value.model_status,
+            failure_message: value.failure_message,
+        }
     }
 }
 
@@ -20356,28 +22439,28 @@ impl PyOperationGetAutomatedReasoningPolicyTestResultOutput {
     frozen
 )]
 struct PyOperationGetCustomModelOutput {
-    inner: aws_sdk_bedrock::operation::get_custom_model::GetCustomModelOutput,
+    inner: SharedPyOperationGetCustomModelOutput,
 }
 
 #[pymethods]
 impl PyOperationGetCustomModelOutput {
     #[getter]
     fn model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3648 = (&self.inner.model_arn).as_str().into_py_any(py)?;
-        Ok(converted_3648)
+        let converted_3900 = (&self.inner.model_arn).as_str().into_py_any(py)?;
+        Ok(converted_3900)
     }
 
     #[getter]
     fn model_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3649 = (&self.inner.model_name).as_str().into_py_any(py)?;
-        Ok(converted_3649)
+        let converted_3901 = (&self.inner.model_name).as_str().into_py_any(py)?;
+        Ok(converted_3901)
     }
 
     #[getter]
     fn job_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_name {
-            let converted_3650 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3650)
+            let converted_3902 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3902)
         } else {
             Ok(py.None())
         }
@@ -20386,8 +22469,8 @@ impl PyOperationGetCustomModelOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_arn {
-            let converted_3651 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3651)
+            let converted_3903 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3903)
         } else {
             Ok(py.None())
         }
@@ -20396,8 +22479,8 @@ impl PyOperationGetCustomModelOutput {
     #[getter]
     fn base_model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.base_model_arn {
-            let converted_3652 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3652)
+            let converted_3904 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3904)
         } else {
             Ok(py.None())
         }
@@ -20406,8 +22489,8 @@ impl PyOperationGetCustomModelOutput {
     #[getter]
     fn customization_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.customization_type {
-            let converted_3653 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3653)
+            let converted_3905 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3905)
         } else {
             Ok(py.None())
         }
@@ -20416,8 +22499,8 @@ impl PyOperationGetCustomModelOutput {
     #[getter]
     fn model_kms_key_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_kms_key_arn {
-            let converted_3654 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3654)
+            let converted_3906 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3906)
         } else {
             Ok(py.None())
         }
@@ -20426,14 +22509,14 @@ impl PyOperationGetCustomModelOutput {
     #[getter]
     fn hyper_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.hyper_parameters {
-            let converted_3655_dict = PyDict::new(py);
-            for (key_3656, value_3657) in value {
-                let converted_key_3658 = (key_3656).as_str().into_py_any(py)?;
-                let converted_value_3659 = (value_3657).as_str().into_py_any(py)?;
-                converted_3655_dict.set_item(converted_key_3658, converted_value_3659)?;
+            let converted_3907_dict = PyDict::new(py);
+            for (key_3908, value_3909) in value {
+                let converted_key_3910 = (key_3908).as_str().into_py_any(py)?;
+                let converted_value_3911 = (value_3909).as_str().into_py_any(py)?;
+                converted_3907_dict.set_item(converted_key_3910, converted_value_3911)?;
             }
-            let converted_3655 = converted_3655_dict.into_any().unbind();
-            Ok(converted_3655)
+            let converted_3907 = converted_3907_dict.into_any().unbind();
+            Ok(converted_3907)
         } else {
             Ok(py.None())
         }
@@ -20442,14 +22525,14 @@ impl PyOperationGetCustomModelOutput {
     #[getter]
     fn training_data_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.training_data_config {
-            let converted_3660 = Py::new(
+            let converted_3912 = Py::new(
                 py,
                 PyTrainingDataConfig {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3660)
+            Ok(converted_3912)
         } else {
             Ok(py.None())
         }
@@ -20458,14 +22541,14 @@ impl PyOperationGetCustomModelOutput {
     #[getter]
     fn validation_data_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.validation_data_config {
-            let converted_3661 = Py::new(
+            let converted_3913 = Py::new(
                 py,
                 PyValidationDataConfig {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3661)
+            Ok(converted_3913)
         } else {
             Ok(py.None())
         }
@@ -20474,14 +22557,14 @@ impl PyOperationGetCustomModelOutput {
     #[getter]
     fn output_data_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_data_config {
-            let converted_3662 = Py::new(
+            let converted_3914 = Py::new(
                 py,
                 PyOutputDataConfig {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3662)
+            Ok(converted_3914)
         } else {
             Ok(py.None())
         }
@@ -20490,14 +22573,14 @@ impl PyOperationGetCustomModelOutput {
     #[getter]
     fn training_metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.training_metrics {
-            let converted_3663 = Py::new(
+            let converted_3915 = Py::new(
                 py,
                 PyTrainingMetrics {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3663)
+            Ok(converted_3915)
         } else {
             Ok(py.None())
         }
@@ -20506,19 +22589,19 @@ impl PyOperationGetCustomModelOutput {
     #[getter]
     fn validation_metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.validation_metrics {
-            let converted_3664_list = PyList::empty(py);
-            for item_3665 in value {
-                let converted_item_3666 = Py::new(
+            let converted_3916_list = PyList::empty(py);
+            for item_3917 in value {
+                let converted_item_3918 = Py::new(
                     py,
                     PyValidatorMetric {
-                        inner: (item_3665).to_owned(),
+                        inner: Arc::clone(item_3917),
                     },
                 )?
                 .into_any();
-                converted_3664_list.append(converted_item_3666)?;
+                converted_3916_list.append(converted_item_3918)?;
             }
-            let converted_3664 = converted_3664_list.into_any().unbind();
-            Ok(converted_3664)
+            let converted_3916 = converted_3916_list.into_any().unbind();
+            Ok(converted_3916)
         } else {
             Ok(py.None())
         }
@@ -20526,15 +22609,15 @@ impl PyOperationGetCustomModelOutput {
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3667 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        Ok(converted_3667)
+        let converted_3919 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        Ok(converted_3919)
     }
 
     #[getter]
     fn customization_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.customization_config {
-            let converted_3668 = customization_config_to_py(py, value)?;
-            Ok(converted_3668)
+            let converted_3920 = customization_config_to_py(py, value)?;
+            Ok(converted_3920)
         } else {
             Ok(py.None())
         }
@@ -20543,8 +22626,8 @@ impl PyOperationGetCustomModelOutput {
     #[getter]
     fn model_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_status {
-            let converted_3669 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3669)
+            let converted_3921 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3921)
         } else {
             Ok(py.None())
         }
@@ -20553,8 +22636,8 @@ impl PyOperationGetCustomModelOutput {
     #[getter]
     fn failure_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failure_message {
-            let converted_3670 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3670)
+            let converted_3922 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3922)
         } else {
             Ok(py.None())
         }
@@ -20562,108 +22645,141 @@ impl PyOperationGetCustomModelOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3671 = (&self.inner.model_arn).as_str().into_py_any(py)?;
-        result.set_item("model_arn", converted_3671)?;
-        let converted_3672 = (&self.inner.model_name).as_str().into_py_any(py)?;
-        result.set_item("model_name", converted_3672)?;
+        let converted_3924 = (&self.inner.model_arn).as_str().into_py_any(py)?;
+        result.set_item("model_arn", converted_3924)?;
+        let converted_3925 = (&self.inner.model_name).as_str().into_py_any(py)?;
+        result.set_item("model_name", converted_3925)?;
         if let Some(value) = &self.inner.job_name {
-            let converted_3673 = (value).as_str().into_py_any(py)?;
-            result.set_item("job_name", converted_3673)?;
+            let converted_3926 = (value).as_str().into_py_any(py)?;
+            result.set_item("job_name", converted_3926)?;
         } else {
             result.set_item("job_name", py.None())?;
         }
         if let Some(value) = &self.inner.job_arn {
-            let converted_3674 = (value).as_str().into_py_any(py)?;
-            result.set_item("job_arn", converted_3674)?;
+            let converted_3927 = (value).as_str().into_py_any(py)?;
+            result.set_item("job_arn", converted_3927)?;
         } else {
             result.set_item("job_arn", py.None())?;
         }
         if let Some(value) = &self.inner.base_model_arn {
-            let converted_3675 = (value).as_str().into_py_any(py)?;
-            result.set_item("base_model_arn", converted_3675)?;
+            let converted_3928 = (value).as_str().into_py_any(py)?;
+            result.set_item("base_model_arn", converted_3928)?;
         } else {
             result.set_item("base_model_arn", py.None())?;
         }
         if let Some(value) = &self.inner.customization_type {
-            let converted_3676 = (value).as_str().into_py_any(py)?;
-            result.set_item("customization_type", converted_3676)?;
+            let converted_3929 = (value).as_str().into_py_any(py)?;
+            result.set_item("customization_type", converted_3929)?;
         } else {
             result.set_item("customization_type", py.None())?;
         }
         if let Some(value) = &self.inner.model_kms_key_arn {
-            let converted_3677 = (value).as_str().into_py_any(py)?;
-            result.set_item("model_kms_key_arn", converted_3677)?;
+            let converted_3930 = (value).as_str().into_py_any(py)?;
+            result.set_item("model_kms_key_arn", converted_3930)?;
         } else {
             result.set_item("model_kms_key_arn", py.None())?;
         }
         if let Some(value) = &self.inner.hyper_parameters {
-            let converted_3678_dict = PyDict::new(py);
-            for (key_3679, value_3680) in value {
-                let converted_key_3681 = (key_3679).as_str().into_py_any(py)?;
-                let converted_value_3682 = (value_3680).as_str().into_py_any(py)?;
-                converted_3678_dict.set_item(converted_key_3681, converted_value_3682)?;
+            let converted_3931_dict = PyDict::new(py);
+            for (key_3932, value_3933) in value {
+                let converted_key_3934 = (key_3932).as_str().into_py_any(py)?;
+                let converted_value_3935 = (value_3933).as_str().into_py_any(py)?;
+                converted_3931_dict.set_item(converted_key_3934, converted_value_3935)?;
             }
-            let converted_3678 = converted_3678_dict.into_any().unbind();
-            result.set_item("hyper_parameters", converted_3678)?;
+            let converted_3931 = converted_3931_dict.into_any().unbind();
+            result.set_item("hyper_parameters", converted_3931)?;
         } else {
             result.set_item("hyper_parameters", py.None())?;
         }
         if let Some(value) = &self.inner.training_data_config {
-            let converted_3683 = training_data_config_to_py(py, value)?;
-            result.set_item("training_data_config", converted_3683)?;
+            let converted_3936 = training_data_config_shared_to_py(py, value)?;
+            result.set_item("training_data_config", converted_3936)?;
         } else {
             result.set_item("training_data_config", py.None())?;
         }
         if let Some(value) = &self.inner.validation_data_config {
-            let converted_3684 = validation_data_config_to_py(py, value)?;
-            result.set_item("validation_data_config", converted_3684)?;
+            let converted_3937 = validation_data_config_shared_to_py(py, value)?;
+            result.set_item("validation_data_config", converted_3937)?;
         } else {
             result.set_item("validation_data_config", py.None())?;
         }
         if let Some(value) = &self.inner.output_data_config {
-            let converted_3685 = output_data_config_to_py(py, value)?;
-            result.set_item("output_data_config", converted_3685)?;
+            let converted_3938 = output_data_config_to_py(py, value)?;
+            result.set_item("output_data_config", converted_3938)?;
         } else {
             result.set_item("output_data_config", py.None())?;
         }
         if let Some(value) = &self.inner.training_metrics {
-            let converted_3686 = training_metrics_to_py(py, value)?;
-            result.set_item("training_metrics", converted_3686)?;
+            let converted_3939 = training_metrics_to_py(py, value)?;
+            result.set_item("training_metrics", converted_3939)?;
         } else {
             result.set_item("training_metrics", py.None())?;
         }
         if let Some(value) = &self.inner.validation_metrics {
-            let converted_3687_list = PyList::empty(py);
-            for item_3688 in value {
-                let converted_item_3689 = validator_metric_to_py(py, item_3688)?;
-                converted_3687_list.append(converted_item_3689)?;
+            let converted_3940_list = PyList::empty(py);
+            for item_3941 in value {
+                let converted_item_3942 = validator_metric_to_py(py, item_3941)?;
+                converted_3940_list.append(converted_item_3942)?;
             }
-            let converted_3687 = converted_3687_list.into_any().unbind();
-            result.set_item("validation_metrics", converted_3687)?;
+            let converted_3940 = converted_3940_list.into_any().unbind();
+            result.set_item("validation_metrics", converted_3940)?;
         } else {
             result.set_item("validation_metrics", py.None())?;
         }
-        let converted_3690 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        result.set_item("creation_time", converted_3690)?;
+        let converted_3943 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        result.set_item("creation_time", converted_3943)?;
         if let Some(value) = &self.inner.customization_config {
-            let converted_3691 = customization_config_to_py(py, value)?;
-            result.set_item("customization_config", converted_3691)?;
+            let converted_3944 = customization_config_to_py(py, value)?;
+            result.set_item("customization_config", converted_3944)?;
         } else {
             result.set_item("customization_config", py.None())?;
         }
         if let Some(value) = &self.inner.model_status {
-            let converted_3692 = (value).as_str().into_py_any(py)?;
-            result.set_item("model_status", converted_3692)?;
+            let converted_3945 = (value).as_str().into_py_any(py)?;
+            result.set_item("model_status", converted_3945)?;
         } else {
             result.set_item("model_status", py.None())?;
         }
         if let Some(value) = &self.inner.failure_message {
-            let converted_3693 = (value).as_str().into_py_any(py)?;
-            result.set_item("failure_message", converted_3693)?;
+            let converted_3946 = (value).as_str().into_py_any(py)?;
+            result.set_item("failure_message", converted_3946)?;
         } else {
             result.set_item("failure_message", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetCustomModelDeploymentOutput {
+    custom_model_deployment_arn: ::std::string::String,
+    model_deployment_name: ::std::string::String,
+    model_arn: ::std::string::String,
+    created_at: ::aws_smithy_types::DateTime,
+    status: aws_sdk_bedrock::types::CustomModelDeploymentStatus,
+    description: Option<::std::string::String>,
+    update_details: Option<Arc<aws_sdk_bedrock::types::CustomModelDeploymentUpdateDetails>>,
+    failure_message: Option<::std::string::String>,
+    last_updated_at: Option<::aws_smithy_types::DateTime>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::get_custom_model_deployment::GetCustomModelDeploymentOutput>
+    for SharedPyOperationGetCustomModelDeploymentOutput
+{
+    fn from(
+        value: aws_sdk_bedrock::operation::get_custom_model_deployment::GetCustomModelDeploymentOutput,
+    ) -> Self {
+        Self {
+            custom_model_deployment_arn: value.custom_model_deployment_arn,
+            model_deployment_name: value.model_deployment_name,
+            model_arn: value.model_arn,
+            created_at: value.created_at,
+            status: value.status,
+            description: value.description,
+            update_details: value.update_details.map(|item| Arc::new(item)),
+            failure_message: value.failure_message,
+            last_updated_at: value.last_updated_at,
+        }
     }
 }
 
@@ -20673,50 +22789,50 @@ impl PyOperationGetCustomModelOutput {
     frozen
 )]
 struct PyOperationGetCustomModelDeploymentOutput {
-    inner: aws_sdk_bedrock::operation::get_custom_model_deployment::GetCustomModelDeploymentOutput,
+    inner: SharedPyOperationGetCustomModelDeploymentOutput,
 }
 
 #[pymethods]
 impl PyOperationGetCustomModelDeploymentOutput {
     #[getter]
     fn custom_model_deployment_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3694 = (&self.inner.custom_model_deployment_arn)
+        let converted_3947 = (&self.inner.custom_model_deployment_arn)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3694)
+        Ok(converted_3947)
     }
 
     #[getter]
     fn model_deployment_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3695 = (&self.inner.model_deployment_name)
+        let converted_3948 = (&self.inner.model_deployment_name)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3695)
+        Ok(converted_3948)
     }
 
     #[getter]
     fn model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3696 = (&self.inner.model_arn).as_str().into_py_any(py)?;
-        Ok(converted_3696)
+        let converted_3949 = (&self.inner.model_arn).as_str().into_py_any(py)?;
+        Ok(converted_3949)
     }
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3697 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_3697)
+        let converted_3950 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_3950)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3698 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_3698)
+        let converted_3951 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_3951)
     }
 
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_3699 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3699)
+            let converted_3952 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3952)
         } else {
             Ok(py.None())
         }
@@ -20725,14 +22841,14 @@ impl PyOperationGetCustomModelDeploymentOutput {
     #[getter]
     fn update_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.update_details {
-            let converted_3700 = Py::new(
+            let converted_3953 = Py::new(
                 py,
                 PyCustomModelDeploymentUpdateDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3700)
+            Ok(converted_3953)
         } else {
             Ok(py.None())
         }
@@ -20741,8 +22857,8 @@ impl PyOperationGetCustomModelDeploymentOutput {
     #[getter]
     fn failure_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failure_message {
-            let converted_3701 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3701)
+            let converted_3954 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3954)
         } else {
             Ok(py.None())
         }
@@ -20751,8 +22867,8 @@ impl PyOperationGetCustomModelDeploymentOutput {
     #[getter]
     fn last_updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_updated_at {
-            let converted_3702 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3702)
+            let converted_3955 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3955)
         } else {
             Ok(py.None())
         }
@@ -20760,45 +22876,86 @@ impl PyOperationGetCustomModelDeploymentOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3703 = (&self.inner.custom_model_deployment_arn)
+        let converted_3956 = (&self.inner.custom_model_deployment_arn)
             .as_str()
             .into_py_any(py)?;
-        result.set_item("custom_model_deployment_arn", converted_3703)?;
-        let converted_3704 = (&self.inner.model_deployment_name)
+        result.set_item("custom_model_deployment_arn", converted_3956)?;
+        let converted_3957 = (&self.inner.model_deployment_name)
             .as_str()
             .into_py_any(py)?;
-        result.set_item("model_deployment_name", converted_3704)?;
-        let converted_3705 = (&self.inner.model_arn).as_str().into_py_any(py)?;
-        result.set_item("model_arn", converted_3705)?;
-        let converted_3706 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        result.set_item("created_at", converted_3706)?;
-        let converted_3707 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_3707)?;
+        result.set_item("model_deployment_name", converted_3957)?;
+        let converted_3958 = (&self.inner.model_arn).as_str().into_py_any(py)?;
+        result.set_item("model_arn", converted_3958)?;
+        let converted_3959 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_3959)?;
+        let converted_3960 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_3960)?;
         if let Some(value) = &self.inner.description {
-            let converted_3708 = (value).as_str().into_py_any(py)?;
-            result.set_item("description", converted_3708)?;
+            let converted_3961 = (value).as_str().into_py_any(py)?;
+            result.set_item("description", converted_3961)?;
         } else {
             result.set_item("description", py.None())?;
         }
         if let Some(value) = &self.inner.update_details {
-            let converted_3709 = custom_model_deployment_update_details_to_py(py, value)?;
-            result.set_item("update_details", converted_3709)?;
+            let converted_3962 = custom_model_deployment_update_details_to_py(py, value)?;
+            result.set_item("update_details", converted_3962)?;
         } else {
             result.set_item("update_details", py.None())?;
         }
         if let Some(value) = &self.inner.failure_message {
-            let converted_3710 = (value).as_str().into_py_any(py)?;
-            result.set_item("failure_message", converted_3710)?;
+            let converted_3963 = (value).as_str().into_py_any(py)?;
+            result.set_item("failure_message", converted_3963)?;
         } else {
             result.set_item("failure_message", py.None())?;
         }
         if let Some(value) = &self.inner.last_updated_at {
-            let converted_3711 = (value).to_string().into_py_any(py)?;
-            result.set_item("last_updated_at", converted_3711)?;
+            let converted_3964 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_updated_at", converted_3964)?;
         } else {
             result.set_item("last_updated_at", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetEvaluationJobOutput {
+    job_name: ::std::string::String,
+    status: aws_sdk_bedrock::types::EvaluationJobStatus,
+    job_arn: ::std::string::String,
+    job_description: Option<::std::string::String>,
+    role_arn: ::std::string::String,
+    customer_encryption_key_id: Option<::std::string::String>,
+    job_type: aws_sdk_bedrock::types::EvaluationJobType,
+    application_type: Option<aws_sdk_bedrock::types::ApplicationType>,
+    evaluation_config: Option<aws_sdk_bedrock::types::EvaluationConfig>,
+    inference_config: Option<aws_sdk_bedrock::types::EvaluationInferenceConfig>,
+    output_data_config: Option<Arc<aws_sdk_bedrock::types::EvaluationOutputDataConfig>>,
+    creation_time: ::aws_smithy_types::DateTime,
+    last_modified_time: Option<::aws_smithy_types::DateTime>,
+    failure_messages: Option<::std::vec::Vec<::std::string::String>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::get_evaluation_job::GetEvaluationJobOutput>
+    for SharedPyOperationGetEvaluationJobOutput
+{
+    fn from(value: aws_sdk_bedrock::operation::get_evaluation_job::GetEvaluationJobOutput) -> Self {
+        Self {
+            job_name: value.job_name,
+            status: value.status,
+            job_arn: value.job_arn,
+            job_description: value.job_description,
+            role_arn: value.role_arn,
+            customer_encryption_key_id: value.customer_encryption_key_id,
+            job_type: value.job_type,
+            application_type: value.application_type,
+            evaluation_config: value.evaluation_config,
+            inference_config: value.inference_config,
+            output_data_config: value.output_data_config.map(|item| Arc::new(item)),
+            creation_time: value.creation_time,
+            last_modified_time: value.last_modified_time,
+            failure_messages: value.failure_messages,
+        }
     }
 }
 
@@ -20808,34 +22965,34 @@ impl PyOperationGetCustomModelDeploymentOutput {
     frozen
 )]
 struct PyOperationGetEvaluationJobOutput {
-    inner: aws_sdk_bedrock::operation::get_evaluation_job::GetEvaluationJobOutput,
+    inner: SharedPyOperationGetEvaluationJobOutput,
 }
 
 #[pymethods]
 impl PyOperationGetEvaluationJobOutput {
     #[getter]
     fn job_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3712 = (&self.inner.job_name).as_str().into_py_any(py)?;
-        Ok(converted_3712)
+        let converted_3965 = (&self.inner.job_name).as_str().into_py_any(py)?;
+        Ok(converted_3965)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3713 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_3713)
+        let converted_3966 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_3966)
     }
 
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3714 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        Ok(converted_3714)
+        let converted_3967 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_3967)
     }
 
     #[getter]
     fn job_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_description {
-            let converted_3715 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3715)
+            let converted_3968 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3968)
         } else {
             Ok(py.None())
         }
@@ -20843,15 +23000,15 @@ impl PyOperationGetEvaluationJobOutput {
 
     #[getter]
     fn role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3716 = (&self.inner.role_arn).as_str().into_py_any(py)?;
-        Ok(converted_3716)
+        let converted_3969 = (&self.inner.role_arn).as_str().into_py_any(py)?;
+        Ok(converted_3969)
     }
 
     #[getter]
     fn customer_encryption_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.customer_encryption_key_id {
-            let converted_3717 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3717)
+            let converted_3970 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3970)
         } else {
             Ok(py.None())
         }
@@ -20859,15 +23016,15 @@ impl PyOperationGetEvaluationJobOutput {
 
     #[getter]
     fn job_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3718 = (&self.inner.job_type).as_str().into_py_any(py)?;
-        Ok(converted_3718)
+        let converted_3971 = (&self.inner.job_type).as_str().into_py_any(py)?;
+        Ok(converted_3971)
     }
 
     #[getter]
     fn application_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.application_type {
-            let converted_3719 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3719)
+            let converted_3972 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3972)
         } else {
             Ok(py.None())
         }
@@ -20876,8 +23033,8 @@ impl PyOperationGetEvaluationJobOutput {
     #[getter]
     fn evaluation_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.evaluation_config {
-            let converted_3720 = evaluation_config_to_py(py, value)?;
-            Ok(converted_3720)
+            let converted_3973 = evaluation_config_to_py(py, value)?;
+            Ok(converted_3973)
         } else {
             Ok(py.None())
         }
@@ -20886,8 +23043,8 @@ impl PyOperationGetEvaluationJobOutput {
     #[getter]
     fn inference_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.inference_config {
-            let converted_3721 = evaluation_inference_config_to_py(py, value)?;
-            Ok(converted_3721)
+            let converted_3974 = evaluation_inference_config_to_py(py, value)?;
+            Ok(converted_3974)
         } else {
             Ok(py.None())
         }
@@ -20896,14 +23053,14 @@ impl PyOperationGetEvaluationJobOutput {
     #[getter]
     fn output_data_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_data_config {
-            let converted_3722 = Py::new(
+            let converted_3975 = Py::new(
                 py,
                 PyEvaluationOutputDataConfig {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3722)
+            Ok(converted_3975)
         } else {
             Ok(py.None())
         }
@@ -20911,15 +23068,15 @@ impl PyOperationGetEvaluationJobOutput {
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3723 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        Ok(converted_3723)
+        let converted_3976 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        Ok(converted_3976)
     }
 
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_3724 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3724)
+            let converted_3977 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3977)
         } else {
             Ok(py.None())
         }
@@ -20928,13 +23085,13 @@ impl PyOperationGetEvaluationJobOutput {
     #[getter]
     fn failure_messages(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failure_messages {
-            let converted_3725_list = PyList::empty(py);
-            for item_3726 in value {
-                let converted_item_3727 = (item_3726).as_str().into_py_any(py)?;
-                converted_3725_list.append(converted_item_3727)?;
+            let converted_3978_list = PyList::empty(py);
+            for item_3979 in value {
+                let converted_item_3980 = (item_3979).as_str().into_py_any(py)?;
+                converted_3978_list.append(converted_item_3980)?;
             }
-            let converted_3725 = converted_3725_list.into_any().unbind();
-            Ok(converted_3725)
+            let converted_3978 = converted_3978_list.into_any().unbind();
+            Ok(converted_3978)
         } else {
             Ok(py.None())
         }
@@ -20942,72 +23099,91 @@ impl PyOperationGetEvaluationJobOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3728 = (&self.inner.job_name).as_str().into_py_any(py)?;
-        result.set_item("job_name", converted_3728)?;
-        let converted_3729 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_3729)?;
-        let converted_3730 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        result.set_item("job_arn", converted_3730)?;
+        let converted_3981 = (&self.inner.job_name).as_str().into_py_any(py)?;
+        result.set_item("job_name", converted_3981)?;
+        let converted_3982 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_3982)?;
+        let converted_3983 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        result.set_item("job_arn", converted_3983)?;
         if let Some(value) = &self.inner.job_description {
-            let converted_3731 = (value).as_str().into_py_any(py)?;
-            result.set_item("job_description", converted_3731)?;
+            let converted_3984 = (value).as_str().into_py_any(py)?;
+            result.set_item("job_description", converted_3984)?;
         } else {
             result.set_item("job_description", py.None())?;
         }
-        let converted_3732 = (&self.inner.role_arn).as_str().into_py_any(py)?;
-        result.set_item("role_arn", converted_3732)?;
+        let converted_3985 = (&self.inner.role_arn).as_str().into_py_any(py)?;
+        result.set_item("role_arn", converted_3985)?;
         if let Some(value) = &self.inner.customer_encryption_key_id {
-            let converted_3733 = (value).as_str().into_py_any(py)?;
-            result.set_item("customer_encryption_key_id", converted_3733)?;
+            let converted_3986 = (value).as_str().into_py_any(py)?;
+            result.set_item("customer_encryption_key_id", converted_3986)?;
         } else {
             result.set_item("customer_encryption_key_id", py.None())?;
         }
-        let converted_3734 = (&self.inner.job_type).as_str().into_py_any(py)?;
-        result.set_item("job_type", converted_3734)?;
+        let converted_3987 = (&self.inner.job_type).as_str().into_py_any(py)?;
+        result.set_item("job_type", converted_3987)?;
         if let Some(value) = &self.inner.application_type {
-            let converted_3735 = (value).as_str().into_py_any(py)?;
-            result.set_item("application_type", converted_3735)?;
+            let converted_3988 = (value).as_str().into_py_any(py)?;
+            result.set_item("application_type", converted_3988)?;
         } else {
             result.set_item("application_type", py.None())?;
         }
         if let Some(value) = &self.inner.evaluation_config {
-            let converted_3736 = evaluation_config_to_py(py, value)?;
-            result.set_item("evaluation_config", converted_3736)?;
+            let converted_3989 = evaluation_config_to_py(py, value)?;
+            result.set_item("evaluation_config", converted_3989)?;
         } else {
             result.set_item("evaluation_config", py.None())?;
         }
         if let Some(value) = &self.inner.inference_config {
-            let converted_3737 = evaluation_inference_config_to_py(py, value)?;
-            result.set_item("inference_config", converted_3737)?;
+            let converted_3990 = evaluation_inference_config_to_py(py, value)?;
+            result.set_item("inference_config", converted_3990)?;
         } else {
             result.set_item("inference_config", py.None())?;
         }
         if let Some(value) = &self.inner.output_data_config {
-            let converted_3738 = evaluation_output_data_config_to_py(py, value)?;
-            result.set_item("output_data_config", converted_3738)?;
+            let converted_3991 = evaluation_output_data_config_to_py(py, value)?;
+            result.set_item("output_data_config", converted_3991)?;
         } else {
             result.set_item("output_data_config", py.None())?;
         }
-        let converted_3739 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        result.set_item("creation_time", converted_3739)?;
+        let converted_3992 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        result.set_item("creation_time", converted_3992)?;
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_3740 = (value).to_string().into_py_any(py)?;
-            result.set_item("last_modified_time", converted_3740)?;
+            let converted_3993 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_modified_time", converted_3993)?;
         } else {
             result.set_item("last_modified_time", py.None())?;
         }
         if let Some(value) = &self.inner.failure_messages {
-            let converted_3741_list = PyList::empty(py);
-            for item_3742 in value {
-                let converted_item_3743 = (item_3742).as_str().into_py_any(py)?;
-                converted_3741_list.append(converted_item_3743)?;
+            let converted_3994_list = PyList::empty(py);
+            for item_3995 in value {
+                let converted_item_3996 = (item_3995).as_str().into_py_any(py)?;
+                converted_3994_list.append(converted_item_3996)?;
             }
-            let converted_3741 = converted_3741_list.into_any().unbind();
-            result.set_item("failure_messages", converted_3741)?;
+            let converted_3994 = converted_3994_list.into_any().unbind();
+            result.set_item("failure_messages", converted_3994)?;
         } else {
             result.set_item("failure_messages", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetFoundationModelOutput {
+    model_details: Option<Arc<SharedFoundationModelDetails>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::get_foundation_model::GetFoundationModelOutput>
+    for SharedPyOperationGetFoundationModelOutput
+{
+    fn from(
+        value: aws_sdk_bedrock::operation::get_foundation_model::GetFoundationModelOutput,
+    ) -> Self {
+        Self {
+            model_details: value
+                .model_details
+                .map(|item| Arc::new(SharedFoundationModelDetails::from(item))),
+        }
     }
 }
 
@@ -21017,7 +23193,7 @@ impl PyOperationGetEvaluationJobOutput {
     frozen
 )]
 struct PyOperationGetFoundationModelOutput {
-    inner: aws_sdk_bedrock::operation::get_foundation_model::GetFoundationModelOutput,
+    inner: SharedPyOperationGetFoundationModelOutput,
 }
 
 #[pymethods]
@@ -21025,14 +23201,14 @@ impl PyOperationGetFoundationModelOutput {
     #[getter]
     fn model_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_details {
-            let converted_3744 = Py::new(
+            let converted_3997 = Py::new(
                 py,
                 PyFoundationModelDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3744)
+            Ok(converted_3997)
         } else {
             Ok(py.None())
         }
@@ -21041,12 +23217,33 @@ impl PyOperationGetFoundationModelOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.model_details {
-            let converted_3745 = foundation_model_details_to_py(py, value)?;
-            result.set_item("model_details", converted_3745)?;
+            let converted_3998 = foundation_model_details_shared_to_py(py, value)?;
+            result.set_item("model_details", converted_3998)?;
         } else {
             result.set_item("model_details", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetFoundationModelAvailabilityOutput {
+    model_id: ::std::string::String,
+    agreement_availability: Option<Arc<aws_sdk_bedrock::types::AgreementAvailability>>,
+    authorization_status: aws_sdk_bedrock::types::AuthorizationStatus,
+    entitlement_availability: aws_sdk_bedrock::types::EntitlementAvailability,
+    region_availability: aws_sdk_bedrock::types::RegionAvailability,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::get_foundation_model_availability::GetFoundationModelAvailabilityOutput> for SharedPyOperationGetFoundationModelAvailabilityOutput {
+    fn from(value: aws_sdk_bedrock::operation::get_foundation_model_availability::GetFoundationModelAvailabilityOutput) -> Self {
+        Self {
+            model_id: value.model_id,
+            agreement_availability: value.agreement_availability.map(|item| Arc::new(item)),
+            authorization_status: value.authorization_status,
+            entitlement_availability: value.entitlement_availability,
+            region_availability: value.region_availability,
+        }
     }
 }
 
@@ -21056,28 +23253,28 @@ impl PyOperationGetFoundationModelOutput {
     frozen
 )]
 struct PyOperationGetFoundationModelAvailabilityOutput {
-    inner: aws_sdk_bedrock::operation::get_foundation_model_availability::GetFoundationModelAvailabilityOutput,
+    inner: SharedPyOperationGetFoundationModelAvailabilityOutput,
 }
 
 #[pymethods]
 impl PyOperationGetFoundationModelAvailabilityOutput {
     #[getter]
     fn model_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3746 = (&self.inner.model_id).as_str().into_py_any(py)?;
-        Ok(converted_3746)
+        let converted_3999 = (&self.inner.model_id).as_str().into_py_any(py)?;
+        Ok(converted_3999)
     }
 
     #[getter]
     fn agreement_availability(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.agreement_availability {
-            let converted_3747 = Py::new(
+            let converted_4000 = Py::new(
                 py,
                 PyAgreementAvailability {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3747)
+            Ok(converted_4000)
         } else {
             Ok(py.None())
         }
@@ -21085,68 +23282,132 @@ impl PyOperationGetFoundationModelAvailabilityOutput {
 
     #[getter]
     fn authorization_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3748 = (&self.inner.authorization_status)
+        let converted_4001 = (&self.inner.authorization_status)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3748)
+        Ok(converted_4001)
     }
 
     #[getter]
     fn entitlement_availability(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3749 = (&self.inner.entitlement_availability)
+        let converted_4002 = (&self.inner.entitlement_availability)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3749)
+        Ok(converted_4002)
     }
 
     #[getter]
     fn region_availability(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3750 = (&self.inner.region_availability).as_str().into_py_any(py)?;
-        Ok(converted_3750)
+        let converted_4003 = (&self.inner.region_availability).as_str().into_py_any(py)?;
+        Ok(converted_4003)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3751 = (&self.inner.model_id).as_str().into_py_any(py)?;
-        result.set_item("model_id", converted_3751)?;
+        let converted_4004 = (&self.inner.model_id).as_str().into_py_any(py)?;
+        result.set_item("model_id", converted_4004)?;
         if let Some(value) = &self.inner.agreement_availability {
-            let converted_3752 = agreement_availability_to_py(py, value)?;
-            result.set_item("agreement_availability", converted_3752)?;
+            let converted_4005 = agreement_availability_to_py(py, value)?;
+            result.set_item("agreement_availability", converted_4005)?;
         } else {
             result.set_item("agreement_availability", py.None())?;
         }
-        let converted_3753 = (&self.inner.authorization_status)
+        let converted_4006 = (&self.inner.authorization_status)
             .as_str()
             .into_py_any(py)?;
-        result.set_item("authorization_status", converted_3753)?;
-        let converted_3754 = (&self.inner.entitlement_availability)
+        result.set_item("authorization_status", converted_4006)?;
+        let converted_4007 = (&self.inner.entitlement_availability)
             .as_str()
             .into_py_any(py)?;
-        result.set_item("entitlement_availability", converted_3754)?;
-        let converted_3755 = (&self.inner.region_availability).as_str().into_py_any(py)?;
-        result.set_item("region_availability", converted_3755)?;
+        result.set_item("entitlement_availability", converted_4007)?;
+        let converted_4008 = (&self.inner.region_availability).as_str().into_py_any(py)?;
+        result.set_item("region_availability", converted_4008)?;
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetGuardrailOutput {
+    name: ::std::string::String,
+    description: Option<::std::string::String>,
+    guardrail_id: ::std::string::String,
+    guardrail_arn: ::std::string::String,
+    version: ::std::string::String,
+    status: aws_sdk_bedrock::types::GuardrailStatus,
+    topic_policy: Option<Arc<SharedGuardrailTopicPolicy>>,
+    content_policy: Option<Arc<SharedGuardrailContentPolicy>>,
+    word_policy: Option<Arc<SharedGuardrailWordPolicy>>,
+    sensitive_information_policy: Option<Arc<SharedGuardrailSensitiveInformationPolicy>>,
+    contextual_grounding_policy: Option<Arc<SharedGuardrailContextualGroundingPolicy>>,
+    automated_reasoning_policy:
+        Option<Arc<aws_sdk_bedrock::types::GuardrailAutomatedReasoningPolicy>>,
+    cross_region_details: Option<Arc<aws_sdk_bedrock::types::GuardrailCrossRegionDetails>>,
+    created_at: ::aws_smithy_types::DateTime,
+    updated_at: ::aws_smithy_types::DateTime,
+    status_reasons: Option<::std::vec::Vec<::std::string::String>>,
+    failure_recommendations: Option<::std::vec::Vec<::std::string::String>>,
+    blocked_input_messaging: ::std::string::String,
+    blocked_outputs_messaging: ::std::string::String,
+    kms_key_arn: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::get_guardrail::GetGuardrailOutput>
+    for SharedPyOperationGetGuardrailOutput
+{
+    fn from(value: aws_sdk_bedrock::operation::get_guardrail::GetGuardrailOutput) -> Self {
+        Self {
+            name: value.name,
+            description: value.description,
+            guardrail_id: value.guardrail_id,
+            guardrail_arn: value.guardrail_arn,
+            version: value.version,
+            status: value.status,
+            topic_policy: value
+                .topic_policy
+                .map(|item| Arc::new(SharedGuardrailTopicPolicy::from(item))),
+            content_policy: value
+                .content_policy
+                .map(|item| Arc::new(SharedGuardrailContentPolicy::from(item))),
+            word_policy: value
+                .word_policy
+                .map(|item| Arc::new(SharedGuardrailWordPolicy::from(item))),
+            sensitive_information_policy: value
+                .sensitive_information_policy
+                .map(|item| Arc::new(SharedGuardrailSensitiveInformationPolicy::from(item))),
+            contextual_grounding_policy: value
+                .contextual_grounding_policy
+                .map(|item| Arc::new(SharedGuardrailContextualGroundingPolicy::from(item))),
+            automated_reasoning_policy: value.automated_reasoning_policy.map(|item| Arc::new(item)),
+            cross_region_details: value.cross_region_details.map(|item| Arc::new(item)),
+            created_at: value.created_at,
+            updated_at: value.updated_at,
+            status_reasons: value.status_reasons,
+            failure_recommendations: value.failure_recommendations,
+            blocked_input_messaging: value.blocked_input_messaging,
+            blocked_outputs_messaging: value.blocked_outputs_messaging,
+            kms_key_arn: value.kms_key_arn,
+        }
     }
 }
 
 #[pyclass(name = "GetGuardrailOutput", module = "rboto_bedrock._native", frozen)]
 struct PyOperationGetGuardrailOutput {
-    inner: aws_sdk_bedrock::operation::get_guardrail::GetGuardrailOutput,
+    inner: SharedPyOperationGetGuardrailOutput,
 }
 
 #[pymethods]
 impl PyOperationGetGuardrailOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3756 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_3756)
+        let converted_4009 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_4009)
     }
 
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_3757 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3757)
+            let converted_4010 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4010)
         } else {
             Ok(py.None())
         }
@@ -21154,39 +23415,39 @@ impl PyOperationGetGuardrailOutput {
 
     #[getter]
     fn guardrail_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3758 = (&self.inner.guardrail_id).as_str().into_py_any(py)?;
-        Ok(converted_3758)
+        let converted_4011 = (&self.inner.guardrail_id).as_str().into_py_any(py)?;
+        Ok(converted_4011)
     }
 
     #[getter]
     fn guardrail_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3759 = (&self.inner.guardrail_arn).as_str().into_py_any(py)?;
-        Ok(converted_3759)
+        let converted_4012 = (&self.inner.guardrail_arn).as_str().into_py_any(py)?;
+        Ok(converted_4012)
     }
 
     #[getter]
     fn version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3760 = (&self.inner.version).as_str().into_py_any(py)?;
-        Ok(converted_3760)
+        let converted_4013 = (&self.inner.version).as_str().into_py_any(py)?;
+        Ok(converted_4013)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3761 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_3761)
+        let converted_4014 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_4014)
     }
 
     #[getter]
     fn topic_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.topic_policy {
-            let converted_3762 = Py::new(
+            let converted_4015 = Py::new(
                 py,
                 PyGuardrailTopicPolicy {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3762)
+            Ok(converted_4015)
         } else {
             Ok(py.None())
         }
@@ -21195,14 +23456,14 @@ impl PyOperationGetGuardrailOutput {
     #[getter]
     fn content_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.content_policy {
-            let converted_3763 = Py::new(
+            let converted_4016 = Py::new(
                 py,
                 PyGuardrailContentPolicy {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3763)
+            Ok(converted_4016)
         } else {
             Ok(py.None())
         }
@@ -21211,14 +23472,14 @@ impl PyOperationGetGuardrailOutput {
     #[getter]
     fn word_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.word_policy {
-            let converted_3764 = Py::new(
+            let converted_4017 = Py::new(
                 py,
                 PyGuardrailWordPolicy {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3764)
+            Ok(converted_4017)
         } else {
             Ok(py.None())
         }
@@ -21227,14 +23488,14 @@ impl PyOperationGetGuardrailOutput {
     #[getter]
     fn sensitive_information_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sensitive_information_policy {
-            let converted_3765 = Py::new(
+            let converted_4018 = Py::new(
                 py,
                 PyGuardrailSensitiveInformationPolicy {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3765)
+            Ok(converted_4018)
         } else {
             Ok(py.None())
         }
@@ -21243,14 +23504,14 @@ impl PyOperationGetGuardrailOutput {
     #[getter]
     fn contextual_grounding_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.contextual_grounding_policy {
-            let converted_3766 = Py::new(
+            let converted_4019 = Py::new(
                 py,
                 PyGuardrailContextualGroundingPolicy {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3766)
+            Ok(converted_4019)
         } else {
             Ok(py.None())
         }
@@ -21259,14 +23520,14 @@ impl PyOperationGetGuardrailOutput {
     #[getter]
     fn automated_reasoning_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.automated_reasoning_policy {
-            let converted_3767 = Py::new(
+            let converted_4020 = Py::new(
                 py,
                 PyGuardrailAutomatedReasoningPolicy {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3767)
+            Ok(converted_4020)
         } else {
             Ok(py.None())
         }
@@ -21275,14 +23536,14 @@ impl PyOperationGetGuardrailOutput {
     #[getter]
     fn cross_region_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cross_region_details {
-            let converted_3768 = Py::new(
+            let converted_4021 = Py::new(
                 py,
                 PyGuardrailCrossRegionDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3768)
+            Ok(converted_4021)
         } else {
             Ok(py.None())
         }
@@ -21290,26 +23551,26 @@ impl PyOperationGetGuardrailOutput {
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3769 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_3769)
+        let converted_4022 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_4022)
     }
 
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3770 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        Ok(converted_3770)
+        let converted_4023 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        Ok(converted_4023)
     }
 
     #[getter]
     fn status_reasons(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status_reasons {
-            let converted_3771_list = PyList::empty(py);
-            for item_3772 in value {
-                let converted_item_3773 = (item_3772).as_str().into_py_any(py)?;
-                converted_3771_list.append(converted_item_3773)?;
+            let converted_4024_list = PyList::empty(py);
+            for item_4025 in value {
+                let converted_item_4026 = (item_4025).as_str().into_py_any(py)?;
+                converted_4024_list.append(converted_item_4026)?;
             }
-            let converted_3771 = converted_3771_list.into_any().unbind();
-            Ok(converted_3771)
+            let converted_4024 = converted_4024_list.into_any().unbind();
+            Ok(converted_4024)
         } else {
             Ok(py.None())
         }
@@ -21318,13 +23579,13 @@ impl PyOperationGetGuardrailOutput {
     #[getter]
     fn failure_recommendations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failure_recommendations {
-            let converted_3774_list = PyList::empty(py);
-            for item_3775 in value {
-                let converted_item_3776 = (item_3775).as_str().into_py_any(py)?;
-                converted_3774_list.append(converted_item_3776)?;
+            let converted_4027_list = PyList::empty(py);
+            for item_4028 in value {
+                let converted_item_4029 = (item_4028).as_str().into_py_any(py)?;
+                converted_4027_list.append(converted_item_4029)?;
             }
-            let converted_3774 = converted_3774_list.into_any().unbind();
-            Ok(converted_3774)
+            let converted_4027 = converted_4027_list.into_any().unbind();
+            Ok(converted_4027)
         } else {
             Ok(py.None())
         }
@@ -21332,25 +23593,25 @@ impl PyOperationGetGuardrailOutput {
 
     #[getter]
     fn blocked_input_messaging(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3777 = (&self.inner.blocked_input_messaging)
+        let converted_4030 = (&self.inner.blocked_input_messaging)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3777)
+        Ok(converted_4030)
     }
 
     #[getter]
     fn blocked_outputs_messaging(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3778 = (&self.inner.blocked_outputs_messaging)
+        let converted_4031 = (&self.inner.blocked_outputs_messaging)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3778)
+        Ok(converted_4031)
     }
 
     #[getter]
     fn kms_key_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key_arn {
-            let converted_3779 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3779)
+            let converted_4032 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4032)
         } else {
             Ok(py.None())
         }
@@ -21358,105 +23619,138 @@ impl PyOperationGetGuardrailOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3780 = (&self.inner.name).as_str().into_py_any(py)?;
-        result.set_item("name", converted_3780)?;
+        let converted_4033 = (&self.inner.name).as_str().into_py_any(py)?;
+        result.set_item("name", converted_4033)?;
         if let Some(value) = &self.inner.description {
-            let converted_3781 = (value).as_str().into_py_any(py)?;
-            result.set_item("description", converted_3781)?;
+            let converted_4034 = (value).as_str().into_py_any(py)?;
+            result.set_item("description", converted_4034)?;
         } else {
             result.set_item("description", py.None())?;
         }
-        let converted_3782 = (&self.inner.guardrail_id).as_str().into_py_any(py)?;
-        result.set_item("guardrail_id", converted_3782)?;
-        let converted_3783 = (&self.inner.guardrail_arn).as_str().into_py_any(py)?;
-        result.set_item("guardrail_arn", converted_3783)?;
-        let converted_3784 = (&self.inner.version).as_str().into_py_any(py)?;
-        result.set_item("version", converted_3784)?;
-        let converted_3785 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_3785)?;
+        let converted_4035 = (&self.inner.guardrail_id).as_str().into_py_any(py)?;
+        result.set_item("guardrail_id", converted_4035)?;
+        let converted_4036 = (&self.inner.guardrail_arn).as_str().into_py_any(py)?;
+        result.set_item("guardrail_arn", converted_4036)?;
+        let converted_4037 = (&self.inner.version).as_str().into_py_any(py)?;
+        result.set_item("version", converted_4037)?;
+        let converted_4038 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_4038)?;
         if let Some(value) = &self.inner.topic_policy {
-            let converted_3786 = guardrail_topic_policy_to_py(py, value)?;
-            result.set_item("topic_policy", converted_3786)?;
+            let converted_4039 = guardrail_topic_policy_shared_to_py(py, value)?;
+            result.set_item("topic_policy", converted_4039)?;
         } else {
             result.set_item("topic_policy", py.None())?;
         }
         if let Some(value) = &self.inner.content_policy {
-            let converted_3787 = guardrail_content_policy_to_py(py, value)?;
-            result.set_item("content_policy", converted_3787)?;
+            let converted_4040 = guardrail_content_policy_shared_to_py(py, value)?;
+            result.set_item("content_policy", converted_4040)?;
         } else {
             result.set_item("content_policy", py.None())?;
         }
         if let Some(value) = &self.inner.word_policy {
-            let converted_3788 = guardrail_word_policy_to_py(py, value)?;
-            result.set_item("word_policy", converted_3788)?;
+            let converted_4041 = guardrail_word_policy_shared_to_py(py, value)?;
+            result.set_item("word_policy", converted_4041)?;
         } else {
             result.set_item("word_policy", py.None())?;
         }
         if let Some(value) = &self.inner.sensitive_information_policy {
-            let converted_3789 = guardrail_sensitive_information_policy_to_py(py, value)?;
-            result.set_item("sensitive_information_policy", converted_3789)?;
+            let converted_4042 = guardrail_sensitive_information_policy_shared_to_py(py, value)?;
+            result.set_item("sensitive_information_policy", converted_4042)?;
         } else {
             result.set_item("sensitive_information_policy", py.None())?;
         }
         if let Some(value) = &self.inner.contextual_grounding_policy {
-            let converted_3790 = guardrail_contextual_grounding_policy_to_py(py, value)?;
-            result.set_item("contextual_grounding_policy", converted_3790)?;
+            let converted_4043 = guardrail_contextual_grounding_policy_shared_to_py(py, value)?;
+            result.set_item("contextual_grounding_policy", converted_4043)?;
         } else {
             result.set_item("contextual_grounding_policy", py.None())?;
         }
         if let Some(value) = &self.inner.automated_reasoning_policy {
-            let converted_3791 = guardrail_automated_reasoning_policy_to_py(py, value)?;
-            result.set_item("automated_reasoning_policy", converted_3791)?;
+            let converted_4044 = guardrail_automated_reasoning_policy_to_py(py, value)?;
+            result.set_item("automated_reasoning_policy", converted_4044)?;
         } else {
             result.set_item("automated_reasoning_policy", py.None())?;
         }
         if let Some(value) = &self.inner.cross_region_details {
-            let converted_3792 = guardrail_cross_region_details_to_py(py, value)?;
-            result.set_item("cross_region_details", converted_3792)?;
+            let converted_4045 = guardrail_cross_region_details_to_py(py, value)?;
+            result.set_item("cross_region_details", converted_4045)?;
         } else {
             result.set_item("cross_region_details", py.None())?;
         }
-        let converted_3793 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        result.set_item("created_at", converted_3793)?;
-        let converted_3794 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        result.set_item("updated_at", converted_3794)?;
+        let converted_4046 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_4046)?;
+        let converted_4047 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        result.set_item("updated_at", converted_4047)?;
         if let Some(value) = &self.inner.status_reasons {
-            let converted_3795_list = PyList::empty(py);
-            for item_3796 in value {
-                let converted_item_3797 = (item_3796).as_str().into_py_any(py)?;
-                converted_3795_list.append(converted_item_3797)?;
+            let converted_4048_list = PyList::empty(py);
+            for item_4049 in value {
+                let converted_item_4050 = (item_4049).as_str().into_py_any(py)?;
+                converted_4048_list.append(converted_item_4050)?;
             }
-            let converted_3795 = converted_3795_list.into_any().unbind();
-            result.set_item("status_reasons", converted_3795)?;
+            let converted_4048 = converted_4048_list.into_any().unbind();
+            result.set_item("status_reasons", converted_4048)?;
         } else {
             result.set_item("status_reasons", py.None())?;
         }
         if let Some(value) = &self.inner.failure_recommendations {
-            let converted_3798_list = PyList::empty(py);
-            for item_3799 in value {
-                let converted_item_3800 = (item_3799).as_str().into_py_any(py)?;
-                converted_3798_list.append(converted_item_3800)?;
+            let converted_4051_list = PyList::empty(py);
+            for item_4052 in value {
+                let converted_item_4053 = (item_4052).as_str().into_py_any(py)?;
+                converted_4051_list.append(converted_item_4053)?;
             }
-            let converted_3798 = converted_3798_list.into_any().unbind();
-            result.set_item("failure_recommendations", converted_3798)?;
+            let converted_4051 = converted_4051_list.into_any().unbind();
+            result.set_item("failure_recommendations", converted_4051)?;
         } else {
             result.set_item("failure_recommendations", py.None())?;
         }
-        let converted_3801 = (&self.inner.blocked_input_messaging)
+        let converted_4054 = (&self.inner.blocked_input_messaging)
             .as_str()
             .into_py_any(py)?;
-        result.set_item("blocked_input_messaging", converted_3801)?;
-        let converted_3802 = (&self.inner.blocked_outputs_messaging)
+        result.set_item("blocked_input_messaging", converted_4054)?;
+        let converted_4055 = (&self.inner.blocked_outputs_messaging)
             .as_str()
             .into_py_any(py)?;
-        result.set_item("blocked_outputs_messaging", converted_3802)?;
+        result.set_item("blocked_outputs_messaging", converted_4055)?;
         if let Some(value) = &self.inner.kms_key_arn {
-            let converted_3803 = (value).as_str().into_py_any(py)?;
-            result.set_item("kms_key_arn", converted_3803)?;
+            let converted_4056 = (value).as_str().into_py_any(py)?;
+            result.set_item("kms_key_arn", converted_4056)?;
         } else {
             result.set_item("kms_key_arn", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetImportedModelOutput {
+    model_arn: Option<::std::string::String>,
+    model_name: Option<::std::string::String>,
+    job_name: Option<::std::string::String>,
+    job_arn: Option<::std::string::String>,
+    model_data_source: Option<aws_sdk_bedrock::types::ModelDataSource>,
+    creation_time: Option<::aws_smithy_types::DateTime>,
+    model_architecture: Option<::std::string::String>,
+    model_kms_key_arn: Option<::std::string::String>,
+    instruct_supported: Option<bool>,
+    custom_model_units: Option<Arc<aws_sdk_bedrock::types::CustomModelUnits>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::get_imported_model::GetImportedModelOutput>
+    for SharedPyOperationGetImportedModelOutput
+{
+    fn from(value: aws_sdk_bedrock::operation::get_imported_model::GetImportedModelOutput) -> Self {
+        Self {
+            model_arn: value.model_arn,
+            model_name: value.model_name,
+            job_name: value.job_name,
+            job_arn: value.job_arn,
+            model_data_source: value.model_data_source,
+            creation_time: value.creation_time,
+            model_architecture: value.model_architecture,
+            model_kms_key_arn: value.model_kms_key_arn,
+            instruct_supported: value.instruct_supported,
+            custom_model_units: value.custom_model_units.map(|item| Arc::new(item)),
+        }
     }
 }
 
@@ -21466,7 +23760,7 @@ impl PyOperationGetGuardrailOutput {
     frozen
 )]
 struct PyOperationGetImportedModelOutput {
-    inner: aws_sdk_bedrock::operation::get_imported_model::GetImportedModelOutput,
+    inner: SharedPyOperationGetImportedModelOutput,
 }
 
 #[pymethods]
@@ -21474,8 +23768,8 @@ impl PyOperationGetImportedModelOutput {
     #[getter]
     fn model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_arn {
-            let converted_3804 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3804)
+            let converted_4057 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4057)
         } else {
             Ok(py.None())
         }
@@ -21484,8 +23778,8 @@ impl PyOperationGetImportedModelOutput {
     #[getter]
     fn model_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_name {
-            let converted_3805 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3805)
+            let converted_4058 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4058)
         } else {
             Ok(py.None())
         }
@@ -21494,8 +23788,8 @@ impl PyOperationGetImportedModelOutput {
     #[getter]
     fn job_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_name {
-            let converted_3806 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3806)
+            let converted_4059 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4059)
         } else {
             Ok(py.None())
         }
@@ -21504,8 +23798,8 @@ impl PyOperationGetImportedModelOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_arn {
-            let converted_3807 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3807)
+            let converted_4060 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4060)
         } else {
             Ok(py.None())
         }
@@ -21514,8 +23808,8 @@ impl PyOperationGetImportedModelOutput {
     #[getter]
     fn model_data_source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_data_source {
-            let converted_3808 = model_data_source_to_py(py, value)?;
-            Ok(converted_3808)
+            let converted_4061 = model_data_source_to_py(py, value)?;
+            Ok(converted_4061)
         } else {
             Ok(py.None())
         }
@@ -21524,8 +23818,8 @@ impl PyOperationGetImportedModelOutput {
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_time {
-            let converted_3809 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3809)
+            let converted_4062 = (value).to_string().into_py_any(py)?;
+            Ok(converted_4062)
         } else {
             Ok(py.None())
         }
@@ -21534,8 +23828,8 @@ impl PyOperationGetImportedModelOutput {
     #[getter]
     fn model_architecture(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_architecture {
-            let converted_3810 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3810)
+            let converted_4063 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4063)
         } else {
             Ok(py.None())
         }
@@ -21544,8 +23838,8 @@ impl PyOperationGetImportedModelOutput {
     #[getter]
     fn model_kms_key_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_kms_key_arn {
-            let converted_3811 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3811)
+            let converted_4064 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4064)
         } else {
             Ok(py.None())
         }
@@ -21554,8 +23848,8 @@ impl PyOperationGetImportedModelOutput {
     #[getter]
     fn instruct_supported(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.instruct_supported {
-            let converted_3812 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3812)
+            let converted_4065 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_4065)
         } else {
             Ok(py.None())
         }
@@ -21564,14 +23858,14 @@ impl PyOperationGetImportedModelOutput {
     #[getter]
     fn custom_model_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.custom_model_units {
-            let converted_3813 = Py::new(
+            let converted_4066 = Py::new(
                 py,
                 PyCustomModelUnits {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3813)
+            Ok(converted_4066)
         } else {
             Ok(py.None())
         }
@@ -21580,66 +23874,102 @@ impl PyOperationGetImportedModelOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.model_arn {
-            let converted_3814 = (value).as_str().into_py_any(py)?;
-            result.set_item("model_arn", converted_3814)?;
+            let converted_4067 = (value).as_str().into_py_any(py)?;
+            result.set_item("model_arn", converted_4067)?;
         } else {
             result.set_item("model_arn", py.None())?;
         }
         if let Some(value) = &self.inner.model_name {
-            let converted_3815 = (value).as_str().into_py_any(py)?;
-            result.set_item("model_name", converted_3815)?;
+            let converted_4068 = (value).as_str().into_py_any(py)?;
+            result.set_item("model_name", converted_4068)?;
         } else {
             result.set_item("model_name", py.None())?;
         }
         if let Some(value) = &self.inner.job_name {
-            let converted_3816 = (value).as_str().into_py_any(py)?;
-            result.set_item("job_name", converted_3816)?;
+            let converted_4069 = (value).as_str().into_py_any(py)?;
+            result.set_item("job_name", converted_4069)?;
         } else {
             result.set_item("job_name", py.None())?;
         }
         if let Some(value) = &self.inner.job_arn {
-            let converted_3817 = (value).as_str().into_py_any(py)?;
-            result.set_item("job_arn", converted_3817)?;
+            let converted_4070 = (value).as_str().into_py_any(py)?;
+            result.set_item("job_arn", converted_4070)?;
         } else {
             result.set_item("job_arn", py.None())?;
         }
         if let Some(value) = &self.inner.model_data_source {
-            let converted_3818 = model_data_source_to_py(py, value)?;
-            result.set_item("model_data_source", converted_3818)?;
+            let converted_4071 = model_data_source_to_py(py, value)?;
+            result.set_item("model_data_source", converted_4071)?;
         } else {
             result.set_item("model_data_source", py.None())?;
         }
         if let Some(value) = &self.inner.creation_time {
-            let converted_3819 = (value).to_string().into_py_any(py)?;
-            result.set_item("creation_time", converted_3819)?;
+            let converted_4072 = (value).to_string().into_py_any(py)?;
+            result.set_item("creation_time", converted_4072)?;
         } else {
             result.set_item("creation_time", py.None())?;
         }
         if let Some(value) = &self.inner.model_architecture {
-            let converted_3820 = (value).as_str().into_py_any(py)?;
-            result.set_item("model_architecture", converted_3820)?;
+            let converted_4073 = (value).as_str().into_py_any(py)?;
+            result.set_item("model_architecture", converted_4073)?;
         } else {
             result.set_item("model_architecture", py.None())?;
         }
         if let Some(value) = &self.inner.model_kms_key_arn {
-            let converted_3821 = (value).as_str().into_py_any(py)?;
-            result.set_item("model_kms_key_arn", converted_3821)?;
+            let converted_4074 = (value).as_str().into_py_any(py)?;
+            result.set_item("model_kms_key_arn", converted_4074)?;
         } else {
             result.set_item("model_kms_key_arn", py.None())?;
         }
         if let Some(value) = &self.inner.instruct_supported {
-            let converted_3822 = (value).to_owned().into_py_any(py)?;
-            result.set_item("instruct_supported", converted_3822)?;
+            let converted_4075 = (value).to_owned().into_py_any(py)?;
+            result.set_item("instruct_supported", converted_4075)?;
         } else {
             result.set_item("instruct_supported", py.None())?;
         }
         if let Some(value) = &self.inner.custom_model_units {
-            let converted_3823 = custom_model_units_to_py(py, value)?;
-            result.set_item("custom_model_units", converted_3823)?;
+            let converted_4076 = custom_model_units_to_py(py, value)?;
+            result.set_item("custom_model_units", converted_4076)?;
         } else {
             result.set_item("custom_model_units", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetInferenceProfileOutput {
+    inference_profile_name: ::std::string::String,
+    description: Option<::std::string::String>,
+    created_at: Option<::aws_smithy_types::DateTime>,
+    updated_at: Option<::aws_smithy_types::DateTime>,
+    inference_profile_arn: ::std::string::String,
+    models: ::std::vec::Vec<Arc<aws_sdk_bedrock::types::InferenceProfileModel>>,
+    inference_profile_id: ::std::string::String,
+    status: aws_sdk_bedrock::types::InferenceProfileStatus,
+    r#type: aws_sdk_bedrock::types::InferenceProfileType,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::get_inference_profile::GetInferenceProfileOutput>
+    for SharedPyOperationGetInferenceProfileOutput
+{
+    fn from(
+        value: aws_sdk_bedrock::operation::get_inference_profile::GetInferenceProfileOutput,
+    ) -> Self {
+        Self {
+            inference_profile_name: value.inference_profile_name,
+            description: value.description,
+            created_at: value.created_at,
+            updated_at: value.updated_at,
+            inference_profile_arn: value.inference_profile_arn,
+            models: (value.models)
+                .into_iter()
+                .map(|owned_4088| Arc::new(owned_4088))
+                .collect(),
+            inference_profile_id: value.inference_profile_id,
+            status: value.status,
+            r#type: value.r#type,
+        }
     }
 }
 
@@ -21649,24 +23979,24 @@ impl PyOperationGetImportedModelOutput {
     frozen
 )]
 struct PyOperationGetInferenceProfileOutput {
-    inner: aws_sdk_bedrock::operation::get_inference_profile::GetInferenceProfileOutput,
+    inner: SharedPyOperationGetInferenceProfileOutput,
 }
 
 #[pymethods]
 impl PyOperationGetInferenceProfileOutput {
     #[getter]
     fn inference_profile_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3824 = (&self.inner.inference_profile_name)
+        let converted_4077 = (&self.inner.inference_profile_name)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3824)
+        Ok(converted_4077)
     }
 
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_3825 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3825)
+            let converted_4078 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4078)
         } else {
             Ok(py.None())
         }
@@ -21675,8 +24005,8 @@ impl PyOperationGetInferenceProfileOutput {
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.created_at {
-            let converted_3826 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3826)
+            let converted_4079 = (value).to_string().into_py_any(py)?;
+            Ok(converted_4079)
         } else {
             Ok(py.None())
         }
@@ -21685,8 +24015,8 @@ impl PyOperationGetInferenceProfileOutput {
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_at {
-            let converted_3827 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3827)
+            let converted_4080 = (value).to_string().into_py_any(py)?;
+            Ok(converted_4080)
         } else {
             Ok(py.None())
         }
@@ -21694,93 +24024,106 @@ impl PyOperationGetInferenceProfileOutput {
 
     #[getter]
     fn inference_profile_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3828 = (&self.inner.inference_profile_arn)
+        let converted_4081 = (&self.inner.inference_profile_arn)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3828)
+        Ok(converted_4081)
     }
 
     #[getter]
     fn models(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3829_list = PyList::empty(py);
-        for item_3830 in &self.inner.models {
-            let converted_item_3831 = Py::new(
+        let converted_4082_list = PyList::empty(py);
+        for item_4083 in &self.inner.models {
+            let converted_item_4084 = Py::new(
                 py,
                 PyInferenceProfileModel {
-                    inner: (item_3830).to_owned(),
+                    inner: Arc::clone(item_4083),
                 },
             )?
             .into_any();
-            converted_3829_list.append(converted_item_3831)?;
+            converted_4082_list.append(converted_item_4084)?;
         }
-        let converted_3829 = converted_3829_list.into_any().unbind();
-        Ok(converted_3829)
+        let converted_4082 = converted_4082_list.into_any().unbind();
+        Ok(converted_4082)
     }
 
     #[getter]
     fn inference_profile_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3832 = (&self.inner.inference_profile_id)
+        let converted_4085 = (&self.inner.inference_profile_id)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3832)
+        Ok(converted_4085)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3833 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_3833)
+        let converted_4086 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_4086)
     }
 
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3834 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_3834)
+        let converted_4087 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_4087)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3835 = (&self.inner.inference_profile_name)
+        let converted_4089 = (&self.inner.inference_profile_name)
             .as_str()
             .into_py_any(py)?;
-        result.set_item("inference_profile_name", converted_3835)?;
+        result.set_item("inference_profile_name", converted_4089)?;
         if let Some(value) = &self.inner.description {
-            let converted_3836 = (value).as_str().into_py_any(py)?;
-            result.set_item("description", converted_3836)?;
+            let converted_4090 = (value).as_str().into_py_any(py)?;
+            result.set_item("description", converted_4090)?;
         } else {
             result.set_item("description", py.None())?;
         }
         if let Some(value) = &self.inner.created_at {
-            let converted_3837 = (value).to_string().into_py_any(py)?;
-            result.set_item("created_at", converted_3837)?;
+            let converted_4091 = (value).to_string().into_py_any(py)?;
+            result.set_item("created_at", converted_4091)?;
         } else {
             result.set_item("created_at", py.None())?;
         }
         if let Some(value) = &self.inner.updated_at {
-            let converted_3838 = (value).to_string().into_py_any(py)?;
-            result.set_item("updated_at", converted_3838)?;
+            let converted_4092 = (value).to_string().into_py_any(py)?;
+            result.set_item("updated_at", converted_4092)?;
         } else {
             result.set_item("updated_at", py.None())?;
         }
-        let converted_3839 = (&self.inner.inference_profile_arn)
+        let converted_4093 = (&self.inner.inference_profile_arn)
             .as_str()
             .into_py_any(py)?;
-        result.set_item("inference_profile_arn", converted_3839)?;
-        let converted_3840_list = PyList::empty(py);
-        for item_3841 in &self.inner.models {
-            let converted_item_3842 = inference_profile_model_to_py(py, item_3841)?;
-            converted_3840_list.append(converted_item_3842)?;
+        result.set_item("inference_profile_arn", converted_4093)?;
+        let converted_4094_list = PyList::empty(py);
+        for item_4095 in &self.inner.models {
+            let converted_item_4096 = inference_profile_model_to_py(py, item_4095)?;
+            converted_4094_list.append(converted_item_4096)?;
         }
-        let converted_3840 = converted_3840_list.into_any().unbind();
-        result.set_item("models", converted_3840)?;
-        let converted_3843 = (&self.inner.inference_profile_id)
+        let converted_4094 = converted_4094_list.into_any().unbind();
+        result.set_item("models", converted_4094)?;
+        let converted_4097 = (&self.inner.inference_profile_id)
             .as_str()
             .into_py_any(py)?;
-        result.set_item("inference_profile_id", converted_3843)?;
-        let converted_3844 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_3844)?;
-        let converted_3845 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        result.set_item("type", converted_3845)?;
+        result.set_item("inference_profile_id", converted_4097)?;
+        let converted_4098 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_4098)?;
+        let converted_4099 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        result.set_item("type", converted_4099)?;
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetMarketplaceModelEndpointOutput {
+    marketplace_model_endpoint: Option<Arc<aws_sdk_bedrock::types::MarketplaceModelEndpoint>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::get_marketplace_model_endpoint::GetMarketplaceModelEndpointOutput> for SharedPyOperationGetMarketplaceModelEndpointOutput {
+    fn from(value: aws_sdk_bedrock::operation::get_marketplace_model_endpoint::GetMarketplaceModelEndpointOutput) -> Self {
+        Self {
+            marketplace_model_endpoint: value.marketplace_model_endpoint.map(|item| Arc::new(item)),
+        }
     }
 }
 
@@ -21790,7 +24133,7 @@ impl PyOperationGetInferenceProfileOutput {
     frozen
 )]
 struct PyOperationGetMarketplaceModelEndpointOutput {
-    inner: aws_sdk_bedrock::operation::get_marketplace_model_endpoint::GetMarketplaceModelEndpointOutput,
+    inner: SharedPyOperationGetMarketplaceModelEndpointOutput,
 }
 
 #[pymethods]
@@ -21798,14 +24141,14 @@ impl PyOperationGetMarketplaceModelEndpointOutput {
     #[getter]
     fn marketplace_model_endpoint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.marketplace_model_endpoint {
-            let converted_3846 = Py::new(
+            let converted_4100 = Py::new(
                 py,
                 PyMarketplaceModelEndpoint {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3846)
+            Ok(converted_4100)
         } else {
             Ok(py.None())
         }
@@ -21814,12 +24157,52 @@ impl PyOperationGetMarketplaceModelEndpointOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.marketplace_model_endpoint {
-            let converted_3847 = marketplace_model_endpoint_to_py(py, value)?;
-            result.set_item("marketplace_model_endpoint", converted_3847)?;
+            let converted_4101 = marketplace_model_endpoint_to_py(py, value)?;
+            result.set_item("marketplace_model_endpoint", converted_4101)?;
         } else {
             result.set_item("marketplace_model_endpoint", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetModelCopyJobOutput {
+    job_arn: ::std::string::String,
+    status: aws_sdk_bedrock::types::ModelCopyJobStatus,
+    creation_time: ::aws_smithy_types::DateTime,
+    target_model_arn: ::std::string::String,
+    target_model_name: Option<::std::string::String>,
+    source_account_id: ::std::string::String,
+    source_model_arn: ::std::string::String,
+    target_model_kms_key_arn: Option<::std::string::String>,
+    target_model_tags: Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::Tag>>>,
+    failure_message: Option<::std::string::String>,
+    source_model_name: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::get_model_copy_job::GetModelCopyJobOutput>
+    for SharedPyOperationGetModelCopyJobOutput
+{
+    fn from(value: aws_sdk_bedrock::operation::get_model_copy_job::GetModelCopyJobOutput) -> Self {
+        Self {
+            job_arn: value.job_arn,
+            status: value.status,
+            creation_time: value.creation_time,
+            target_model_arn: value.target_model_arn,
+            target_model_name: value.target_model_name,
+            source_account_id: value.source_account_id,
+            source_model_arn: value.source_model_arn,
+            target_model_kms_key_arn: value.target_model_kms_key_arn,
+            target_model_tags: value.target_model_tags.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_4115| Arc::new(owned_4115))
+                    .collect()
+            }),
+            failure_message: value.failure_message,
+            source_model_name: value.source_model_name,
+        }
     }
 }
 
@@ -21829,40 +24212,40 @@ impl PyOperationGetMarketplaceModelEndpointOutput {
     frozen
 )]
 struct PyOperationGetModelCopyJobOutput {
-    inner: aws_sdk_bedrock::operation::get_model_copy_job::GetModelCopyJobOutput,
+    inner: SharedPyOperationGetModelCopyJobOutput,
 }
 
 #[pymethods]
 impl PyOperationGetModelCopyJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3848 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        Ok(converted_3848)
+        let converted_4102 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_4102)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3849 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_3849)
+        let converted_4103 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_4103)
     }
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3850 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        Ok(converted_3850)
+        let converted_4104 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        Ok(converted_4104)
     }
 
     #[getter]
     fn target_model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3851 = (&self.inner.target_model_arn).as_str().into_py_any(py)?;
-        Ok(converted_3851)
+        let converted_4105 = (&self.inner.target_model_arn).as_str().into_py_any(py)?;
+        Ok(converted_4105)
     }
 
     #[getter]
     fn target_model_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.target_model_name {
-            let converted_3852 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3852)
+            let converted_4106 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4106)
         } else {
             Ok(py.None())
         }
@@ -21870,21 +24253,21 @@ impl PyOperationGetModelCopyJobOutput {
 
     #[getter]
     fn source_account_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3853 = (&self.inner.source_account_id).as_str().into_py_any(py)?;
-        Ok(converted_3853)
+        let converted_4107 = (&self.inner.source_account_id).as_str().into_py_any(py)?;
+        Ok(converted_4107)
     }
 
     #[getter]
     fn source_model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3854 = (&self.inner.source_model_arn).as_str().into_py_any(py)?;
-        Ok(converted_3854)
+        let converted_4108 = (&self.inner.source_model_arn).as_str().into_py_any(py)?;
+        Ok(converted_4108)
     }
 
     #[getter]
     fn target_model_kms_key_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.target_model_kms_key_arn {
-            let converted_3855 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3855)
+            let converted_4109 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4109)
         } else {
             Ok(py.None())
         }
@@ -21893,19 +24276,19 @@ impl PyOperationGetModelCopyJobOutput {
     #[getter]
     fn target_model_tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.target_model_tags {
-            let converted_3856_list = PyList::empty(py);
-            for item_3857 in value {
-                let converted_item_3858 = Py::new(
+            let converted_4110_list = PyList::empty(py);
+            for item_4111 in value {
+                let converted_item_4112 = Py::new(
                     py,
                     PyTag {
-                        inner: (item_3857).to_owned(),
+                        inner: Arc::clone(item_4111),
                     },
                 )?
                 .into_any();
-                converted_3856_list.append(converted_item_3858)?;
+                converted_4110_list.append(converted_item_4112)?;
             }
-            let converted_3856 = converted_3856_list.into_any().unbind();
-            Ok(converted_3856)
+            let converted_4110 = converted_4110_list.into_any().unbind();
+            Ok(converted_4110)
         } else {
             Ok(py.None())
         }
@@ -21914,8 +24297,8 @@ impl PyOperationGetModelCopyJobOutput {
     #[getter]
     fn failure_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failure_message {
-            let converted_3859 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3859)
+            let converted_4113 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4113)
         } else {
             Ok(py.None())
         }
@@ -21924,8 +24307,8 @@ impl PyOperationGetModelCopyJobOutput {
     #[getter]
     fn source_model_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.source_model_name {
-            let converted_3860 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3860)
+            let converted_4114 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4114)
         } else {
             Ok(py.None())
         }
@@ -21933,54 +24316,127 @@ impl PyOperationGetModelCopyJobOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3861 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        result.set_item("job_arn", converted_3861)?;
-        let converted_3862 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_3862)?;
-        let converted_3863 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        result.set_item("creation_time", converted_3863)?;
-        let converted_3864 = (&self.inner.target_model_arn).as_str().into_py_any(py)?;
-        result.set_item("target_model_arn", converted_3864)?;
+        let converted_4116 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        result.set_item("job_arn", converted_4116)?;
+        let converted_4117 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_4117)?;
+        let converted_4118 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        result.set_item("creation_time", converted_4118)?;
+        let converted_4119 = (&self.inner.target_model_arn).as_str().into_py_any(py)?;
+        result.set_item("target_model_arn", converted_4119)?;
         if let Some(value) = &self.inner.target_model_name {
-            let converted_3865 = (value).as_str().into_py_any(py)?;
-            result.set_item("target_model_name", converted_3865)?;
+            let converted_4120 = (value).as_str().into_py_any(py)?;
+            result.set_item("target_model_name", converted_4120)?;
         } else {
             result.set_item("target_model_name", py.None())?;
         }
-        let converted_3866 = (&self.inner.source_account_id).as_str().into_py_any(py)?;
-        result.set_item("source_account_id", converted_3866)?;
-        let converted_3867 = (&self.inner.source_model_arn).as_str().into_py_any(py)?;
-        result.set_item("source_model_arn", converted_3867)?;
+        let converted_4121 = (&self.inner.source_account_id).as_str().into_py_any(py)?;
+        result.set_item("source_account_id", converted_4121)?;
+        let converted_4122 = (&self.inner.source_model_arn).as_str().into_py_any(py)?;
+        result.set_item("source_model_arn", converted_4122)?;
         if let Some(value) = &self.inner.target_model_kms_key_arn {
-            let converted_3868 = (value).as_str().into_py_any(py)?;
-            result.set_item("target_model_kms_key_arn", converted_3868)?;
+            let converted_4123 = (value).as_str().into_py_any(py)?;
+            result.set_item("target_model_kms_key_arn", converted_4123)?;
         } else {
             result.set_item("target_model_kms_key_arn", py.None())?;
         }
         if let Some(value) = &self.inner.target_model_tags {
-            let converted_3869_list = PyList::empty(py);
-            for item_3870 in value {
-                let converted_item_3871 = tag_to_py(py, item_3870)?;
-                converted_3869_list.append(converted_item_3871)?;
+            let converted_4124_list = PyList::empty(py);
+            for item_4125 in value {
+                let converted_item_4126 = tag_to_py(py, item_4125)?;
+                converted_4124_list.append(converted_item_4126)?;
             }
-            let converted_3869 = converted_3869_list.into_any().unbind();
-            result.set_item("target_model_tags", converted_3869)?;
+            let converted_4124 = converted_4124_list.into_any().unbind();
+            result.set_item("target_model_tags", converted_4124)?;
         } else {
             result.set_item("target_model_tags", py.None())?;
         }
         if let Some(value) = &self.inner.failure_message {
-            let converted_3872 = (value).as_str().into_py_any(py)?;
-            result.set_item("failure_message", converted_3872)?;
+            let converted_4127 = (value).as_str().into_py_any(py)?;
+            result.set_item("failure_message", converted_4127)?;
         } else {
             result.set_item("failure_message", py.None())?;
         }
         if let Some(value) = &self.inner.source_model_name {
-            let converted_3873 = (value).as_str().into_py_any(py)?;
-            result.set_item("source_model_name", converted_3873)?;
+            let converted_4128 = (value).as_str().into_py_any(py)?;
+            result.set_item("source_model_name", converted_4128)?;
         } else {
             result.set_item("source_model_name", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetModelCustomizationJobOutput {
+    job_arn: ::std::string::String,
+    job_name: ::std::string::String,
+    output_model_name: ::std::string::String,
+    output_model_arn: Option<::std::string::String>,
+    client_request_token: Option<::std::string::String>,
+    role_arn: ::std::string::String,
+    status: Option<aws_sdk_bedrock::types::ModelCustomizationJobStatus>,
+    status_details: Option<Arc<SharedStatusDetails>>,
+    failure_message: Option<::std::string::String>,
+    creation_time: ::aws_smithy_types::DateTime,
+    last_modified_time: Option<::aws_smithy_types::DateTime>,
+    end_time: Option<::aws_smithy_types::DateTime>,
+    base_model_arn: ::std::string::String,
+    hyper_parameters:
+        Option<::std::collections::HashMap<::std::string::String, ::std::string::String>>,
+    training_data_config: Option<Arc<SharedTrainingDataConfig>>,
+    validation_data_config: Option<Arc<SharedValidationDataConfig>>,
+    output_data_config: Option<Arc<aws_sdk_bedrock::types::OutputDataConfig>>,
+    customization_type: Option<aws_sdk_bedrock::types::CustomizationType>,
+    output_model_kms_key_arn: Option<::std::string::String>,
+    training_metrics: Option<Arc<aws_sdk_bedrock::types::TrainingMetrics>>,
+    validation_metrics: Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::ValidatorMetric>>>,
+    vpc_config: Option<Arc<aws_sdk_bedrock::types::VpcConfig>>,
+    customization_config: Option<aws_sdk_bedrock::types::CustomizationConfig>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::get_model_customization_job::GetModelCustomizationJobOutput>
+    for SharedPyOperationGetModelCustomizationJobOutput
+{
+    fn from(
+        value: aws_sdk_bedrock::operation::get_model_customization_job::GetModelCustomizationJobOutput,
+    ) -> Self {
+        Self {
+            job_arn: value.job_arn,
+            job_name: value.job_name,
+            output_model_name: value.output_model_name,
+            output_model_arn: value.output_model_arn,
+            client_request_token: value.client_request_token,
+            role_arn: value.role_arn,
+            status: value.status,
+            status_details: value
+                .status_details
+                .map(|item| Arc::new(SharedStatusDetails::from(item))),
+            failure_message: value.failure_message,
+            creation_time: value.creation_time,
+            last_modified_time: value.last_modified_time,
+            end_time: value.end_time,
+            base_model_arn: value.base_model_arn,
+            hyper_parameters: value.hyper_parameters,
+            training_data_config: value
+                .training_data_config
+                .map(|item| Arc::new(SharedTrainingDataConfig::from(item))),
+            validation_data_config: value
+                .validation_data_config
+                .map(|item| Arc::new(SharedValidationDataConfig::from(item))),
+            output_data_config: value.output_data_config.map(|item| Arc::new(item)),
+            customization_type: value.customization_type,
+            output_model_kms_key_arn: value.output_model_kms_key_arn,
+            training_metrics: value.training_metrics.map(|item| Arc::new(item)),
+            validation_metrics: value.validation_metrics.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_4158| Arc::new(owned_4158))
+                    .collect()
+            }),
+            vpc_config: value.vpc_config.map(|item| Arc::new(item)),
+            customization_config: value.customization_config,
+        }
     }
 }
 
@@ -21990,34 +24446,34 @@ impl PyOperationGetModelCopyJobOutput {
     frozen
 )]
 struct PyOperationGetModelCustomizationJobOutput {
-    inner: aws_sdk_bedrock::operation::get_model_customization_job::GetModelCustomizationJobOutput,
+    inner: SharedPyOperationGetModelCustomizationJobOutput,
 }
 
 #[pymethods]
 impl PyOperationGetModelCustomizationJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3874 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        Ok(converted_3874)
+        let converted_4129 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_4129)
     }
 
     #[getter]
     fn job_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3875 = (&self.inner.job_name).as_str().into_py_any(py)?;
-        Ok(converted_3875)
+        let converted_4130 = (&self.inner.job_name).as_str().into_py_any(py)?;
+        Ok(converted_4130)
     }
 
     #[getter]
     fn output_model_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3876 = (&self.inner.output_model_name).as_str().into_py_any(py)?;
-        Ok(converted_3876)
+        let converted_4131 = (&self.inner.output_model_name).as_str().into_py_any(py)?;
+        Ok(converted_4131)
     }
 
     #[getter]
     fn output_model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_model_arn {
-            let converted_3877 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3877)
+            let converted_4132 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4132)
         } else {
             Ok(py.None())
         }
@@ -22026,8 +24482,8 @@ impl PyOperationGetModelCustomizationJobOutput {
     #[getter]
     fn client_request_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.client_request_token {
-            let converted_3878 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3878)
+            let converted_4133 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4133)
         } else {
             Ok(py.None())
         }
@@ -22035,15 +24491,15 @@ impl PyOperationGetModelCustomizationJobOutput {
 
     #[getter]
     fn role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3879 = (&self.inner.role_arn).as_str().into_py_any(py)?;
-        Ok(converted_3879)
+        let converted_4134 = (&self.inner.role_arn).as_str().into_py_any(py)?;
+        Ok(converted_4134)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_3880 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3880)
+            let converted_4135 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4135)
         } else {
             Ok(py.None())
         }
@@ -22052,14 +24508,14 @@ impl PyOperationGetModelCustomizationJobOutput {
     #[getter]
     fn status_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status_details {
-            let converted_3881 = Py::new(
+            let converted_4136 = Py::new(
                 py,
                 PyStatusDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3881)
+            Ok(converted_4136)
         } else {
             Ok(py.None())
         }
@@ -22068,8 +24524,8 @@ impl PyOperationGetModelCustomizationJobOutput {
     #[getter]
     fn failure_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failure_message {
-            let converted_3882 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3882)
+            let converted_4137 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4137)
         } else {
             Ok(py.None())
         }
@@ -22077,15 +24533,15 @@ impl PyOperationGetModelCustomizationJobOutput {
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3883 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        Ok(converted_3883)
+        let converted_4138 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        Ok(converted_4138)
     }
 
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_3884 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3884)
+            let converted_4139 = (value).to_string().into_py_any(py)?;
+            Ok(converted_4139)
         } else {
             Ok(py.None())
         }
@@ -22094,8 +24550,8 @@ impl PyOperationGetModelCustomizationJobOutput {
     #[getter]
     fn end_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.end_time {
-            let converted_3885 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3885)
+            let converted_4140 = (value).to_string().into_py_any(py)?;
+            Ok(converted_4140)
         } else {
             Ok(py.None())
         }
@@ -22103,21 +24559,21 @@ impl PyOperationGetModelCustomizationJobOutput {
 
     #[getter]
     fn base_model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3886 = (&self.inner.base_model_arn).as_str().into_py_any(py)?;
-        Ok(converted_3886)
+        let converted_4141 = (&self.inner.base_model_arn).as_str().into_py_any(py)?;
+        Ok(converted_4141)
     }
 
     #[getter]
     fn hyper_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.hyper_parameters {
-            let converted_3887_dict = PyDict::new(py);
-            for (key_3888, value_3889) in value {
-                let converted_key_3890 = (key_3888).as_str().into_py_any(py)?;
-                let converted_value_3891 = (value_3889).as_str().into_py_any(py)?;
-                converted_3887_dict.set_item(converted_key_3890, converted_value_3891)?;
+            let converted_4142_dict = PyDict::new(py);
+            for (key_4143, value_4144) in value {
+                let converted_key_4145 = (key_4143).as_str().into_py_any(py)?;
+                let converted_value_4146 = (value_4144).as_str().into_py_any(py)?;
+                converted_4142_dict.set_item(converted_key_4145, converted_value_4146)?;
             }
-            let converted_3887 = converted_3887_dict.into_any().unbind();
-            Ok(converted_3887)
+            let converted_4142 = converted_4142_dict.into_any().unbind();
+            Ok(converted_4142)
         } else {
             Ok(py.None())
         }
@@ -22126,14 +24582,14 @@ impl PyOperationGetModelCustomizationJobOutput {
     #[getter]
     fn training_data_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.training_data_config {
-            let converted_3892 = Py::new(
+            let converted_4147 = Py::new(
                 py,
                 PyTrainingDataConfig {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3892)
+            Ok(converted_4147)
         } else {
             Ok(py.None())
         }
@@ -22142,14 +24598,14 @@ impl PyOperationGetModelCustomizationJobOutput {
     #[getter]
     fn validation_data_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.validation_data_config {
-            let converted_3893 = Py::new(
+            let converted_4148 = Py::new(
                 py,
                 PyValidationDataConfig {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3893)
+            Ok(converted_4148)
         } else {
             Ok(py.None())
         }
@@ -22158,14 +24614,14 @@ impl PyOperationGetModelCustomizationJobOutput {
     #[getter]
     fn output_data_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_data_config {
-            let converted_3894 = Py::new(
+            let converted_4149 = Py::new(
                 py,
                 PyOutputDataConfig {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3894)
+            Ok(converted_4149)
         } else {
             Ok(py.None())
         }
@@ -22174,8 +24630,8 @@ impl PyOperationGetModelCustomizationJobOutput {
     #[getter]
     fn customization_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.customization_type {
-            let converted_3895 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3895)
+            let converted_4150 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4150)
         } else {
             Ok(py.None())
         }
@@ -22184,8 +24640,8 @@ impl PyOperationGetModelCustomizationJobOutput {
     #[getter]
     fn output_model_kms_key_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_model_kms_key_arn {
-            let converted_3896 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3896)
+            let converted_4151 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4151)
         } else {
             Ok(py.None())
         }
@@ -22194,14 +24650,14 @@ impl PyOperationGetModelCustomizationJobOutput {
     #[getter]
     fn training_metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.training_metrics {
-            let converted_3897 = Py::new(
+            let converted_4152 = Py::new(
                 py,
                 PyTrainingMetrics {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3897)
+            Ok(converted_4152)
         } else {
             Ok(py.None())
         }
@@ -22210,19 +24666,19 @@ impl PyOperationGetModelCustomizationJobOutput {
     #[getter]
     fn validation_metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.validation_metrics {
-            let converted_3898_list = PyList::empty(py);
-            for item_3899 in value {
-                let converted_item_3900 = Py::new(
+            let converted_4153_list = PyList::empty(py);
+            for item_4154 in value {
+                let converted_item_4155 = Py::new(
                     py,
                     PyValidatorMetric {
-                        inner: (item_3899).to_owned(),
+                        inner: Arc::clone(item_4154),
                     },
                 )?
                 .into_any();
-                converted_3898_list.append(converted_item_3900)?;
+                converted_4153_list.append(converted_item_4155)?;
             }
-            let converted_3898 = converted_3898_list.into_any().unbind();
-            Ok(converted_3898)
+            let converted_4153 = converted_4153_list.into_any().unbind();
+            Ok(converted_4153)
         } else {
             Ok(py.None())
         }
@@ -22231,14 +24687,14 @@ impl PyOperationGetModelCustomizationJobOutput {
     #[getter]
     fn vpc_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.vpc_config {
-            let converted_3901 = Py::new(
+            let converted_4156 = Py::new(
                 py,
                 PyVpcConfig {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3901)
+            Ok(converted_4156)
         } else {
             Ok(py.None())
         }
@@ -22247,8 +24703,8 @@ impl PyOperationGetModelCustomizationJobOutput {
     #[getter]
     fn customization_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.customization_config {
-            let converted_3902 = customization_config_to_py(py, value)?;
-            Ok(converted_3902)
+            let converted_4157 = customization_config_to_py(py, value)?;
+            Ok(converted_4157)
         } else {
             Ok(py.None())
         }
@@ -22256,132 +24712,173 @@ impl PyOperationGetModelCustomizationJobOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3903 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        result.set_item("job_arn", converted_3903)?;
-        let converted_3904 = (&self.inner.job_name).as_str().into_py_any(py)?;
-        result.set_item("job_name", converted_3904)?;
-        let converted_3905 = (&self.inner.output_model_name).as_str().into_py_any(py)?;
-        result.set_item("output_model_name", converted_3905)?;
+        let converted_4159 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        result.set_item("job_arn", converted_4159)?;
+        let converted_4160 = (&self.inner.job_name).as_str().into_py_any(py)?;
+        result.set_item("job_name", converted_4160)?;
+        let converted_4161 = (&self.inner.output_model_name).as_str().into_py_any(py)?;
+        result.set_item("output_model_name", converted_4161)?;
         if let Some(value) = &self.inner.output_model_arn {
-            let converted_3906 = (value).as_str().into_py_any(py)?;
-            result.set_item("output_model_arn", converted_3906)?;
+            let converted_4162 = (value).as_str().into_py_any(py)?;
+            result.set_item("output_model_arn", converted_4162)?;
         } else {
             result.set_item("output_model_arn", py.None())?;
         }
         if let Some(value) = &self.inner.client_request_token {
-            let converted_3907 = (value).as_str().into_py_any(py)?;
-            result.set_item("client_request_token", converted_3907)?;
+            let converted_4163 = (value).as_str().into_py_any(py)?;
+            result.set_item("client_request_token", converted_4163)?;
         } else {
             result.set_item("client_request_token", py.None())?;
         }
-        let converted_3908 = (&self.inner.role_arn).as_str().into_py_any(py)?;
-        result.set_item("role_arn", converted_3908)?;
+        let converted_4164 = (&self.inner.role_arn).as_str().into_py_any(py)?;
+        result.set_item("role_arn", converted_4164)?;
         if let Some(value) = &self.inner.status {
-            let converted_3909 = (value).as_str().into_py_any(py)?;
-            result.set_item("status", converted_3909)?;
+            let converted_4165 = (value).as_str().into_py_any(py)?;
+            result.set_item("status", converted_4165)?;
         } else {
             result.set_item("status", py.None())?;
         }
         if let Some(value) = &self.inner.status_details {
-            let converted_3910 = status_details_to_py(py, value)?;
-            result.set_item("status_details", converted_3910)?;
+            let converted_4166 = status_details_shared_to_py(py, value)?;
+            result.set_item("status_details", converted_4166)?;
         } else {
             result.set_item("status_details", py.None())?;
         }
         if let Some(value) = &self.inner.failure_message {
-            let converted_3911 = (value).as_str().into_py_any(py)?;
-            result.set_item("failure_message", converted_3911)?;
+            let converted_4167 = (value).as_str().into_py_any(py)?;
+            result.set_item("failure_message", converted_4167)?;
         } else {
             result.set_item("failure_message", py.None())?;
         }
-        let converted_3912 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        result.set_item("creation_time", converted_3912)?;
+        let converted_4168 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        result.set_item("creation_time", converted_4168)?;
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_3913 = (value).to_string().into_py_any(py)?;
-            result.set_item("last_modified_time", converted_3913)?;
+            let converted_4169 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_modified_time", converted_4169)?;
         } else {
             result.set_item("last_modified_time", py.None())?;
         }
         if let Some(value) = &self.inner.end_time {
-            let converted_3914 = (value).to_string().into_py_any(py)?;
-            result.set_item("end_time", converted_3914)?;
+            let converted_4170 = (value).to_string().into_py_any(py)?;
+            result.set_item("end_time", converted_4170)?;
         } else {
             result.set_item("end_time", py.None())?;
         }
-        let converted_3915 = (&self.inner.base_model_arn).as_str().into_py_any(py)?;
-        result.set_item("base_model_arn", converted_3915)?;
+        let converted_4171 = (&self.inner.base_model_arn).as_str().into_py_any(py)?;
+        result.set_item("base_model_arn", converted_4171)?;
         if let Some(value) = &self.inner.hyper_parameters {
-            let converted_3916_dict = PyDict::new(py);
-            for (key_3917, value_3918) in value {
-                let converted_key_3919 = (key_3917).as_str().into_py_any(py)?;
-                let converted_value_3920 = (value_3918).as_str().into_py_any(py)?;
-                converted_3916_dict.set_item(converted_key_3919, converted_value_3920)?;
+            let converted_4172_dict = PyDict::new(py);
+            for (key_4173, value_4174) in value {
+                let converted_key_4175 = (key_4173).as_str().into_py_any(py)?;
+                let converted_value_4176 = (value_4174).as_str().into_py_any(py)?;
+                converted_4172_dict.set_item(converted_key_4175, converted_value_4176)?;
             }
-            let converted_3916 = converted_3916_dict.into_any().unbind();
-            result.set_item("hyper_parameters", converted_3916)?;
+            let converted_4172 = converted_4172_dict.into_any().unbind();
+            result.set_item("hyper_parameters", converted_4172)?;
         } else {
             result.set_item("hyper_parameters", py.None())?;
         }
         if let Some(value) = &self.inner.training_data_config {
-            let converted_3921 = training_data_config_to_py(py, value)?;
-            result.set_item("training_data_config", converted_3921)?;
+            let converted_4177 = training_data_config_shared_to_py(py, value)?;
+            result.set_item("training_data_config", converted_4177)?;
         } else {
             result.set_item("training_data_config", py.None())?;
         }
         if let Some(value) = &self.inner.validation_data_config {
-            let converted_3922 = validation_data_config_to_py(py, value)?;
-            result.set_item("validation_data_config", converted_3922)?;
+            let converted_4178 = validation_data_config_shared_to_py(py, value)?;
+            result.set_item("validation_data_config", converted_4178)?;
         } else {
             result.set_item("validation_data_config", py.None())?;
         }
         if let Some(value) = &self.inner.output_data_config {
-            let converted_3923 = output_data_config_to_py(py, value)?;
-            result.set_item("output_data_config", converted_3923)?;
+            let converted_4179 = output_data_config_to_py(py, value)?;
+            result.set_item("output_data_config", converted_4179)?;
         } else {
             result.set_item("output_data_config", py.None())?;
         }
         if let Some(value) = &self.inner.customization_type {
-            let converted_3924 = (value).as_str().into_py_any(py)?;
-            result.set_item("customization_type", converted_3924)?;
+            let converted_4180 = (value).as_str().into_py_any(py)?;
+            result.set_item("customization_type", converted_4180)?;
         } else {
             result.set_item("customization_type", py.None())?;
         }
         if let Some(value) = &self.inner.output_model_kms_key_arn {
-            let converted_3925 = (value).as_str().into_py_any(py)?;
-            result.set_item("output_model_kms_key_arn", converted_3925)?;
+            let converted_4181 = (value).as_str().into_py_any(py)?;
+            result.set_item("output_model_kms_key_arn", converted_4181)?;
         } else {
             result.set_item("output_model_kms_key_arn", py.None())?;
         }
         if let Some(value) = &self.inner.training_metrics {
-            let converted_3926 = training_metrics_to_py(py, value)?;
-            result.set_item("training_metrics", converted_3926)?;
+            let converted_4182 = training_metrics_to_py(py, value)?;
+            result.set_item("training_metrics", converted_4182)?;
         } else {
             result.set_item("training_metrics", py.None())?;
         }
         if let Some(value) = &self.inner.validation_metrics {
-            let converted_3927_list = PyList::empty(py);
-            for item_3928 in value {
-                let converted_item_3929 = validator_metric_to_py(py, item_3928)?;
-                converted_3927_list.append(converted_item_3929)?;
+            let converted_4183_list = PyList::empty(py);
+            for item_4184 in value {
+                let converted_item_4185 = validator_metric_to_py(py, item_4184)?;
+                converted_4183_list.append(converted_item_4185)?;
             }
-            let converted_3927 = converted_3927_list.into_any().unbind();
-            result.set_item("validation_metrics", converted_3927)?;
+            let converted_4183 = converted_4183_list.into_any().unbind();
+            result.set_item("validation_metrics", converted_4183)?;
         } else {
             result.set_item("validation_metrics", py.None())?;
         }
         if let Some(value) = &self.inner.vpc_config {
-            let converted_3930 = vpc_config_to_py(py, value)?;
-            result.set_item("vpc_config", converted_3930)?;
+            let converted_4186 = vpc_config_to_py(py, value)?;
+            result.set_item("vpc_config", converted_4186)?;
         } else {
             result.set_item("vpc_config", py.None())?;
         }
         if let Some(value) = &self.inner.customization_config {
-            let converted_3931 = customization_config_to_py(py, value)?;
-            result.set_item("customization_config", converted_3931)?;
+            let converted_4187 = customization_config_to_py(py, value)?;
+            result.set_item("customization_config", converted_4187)?;
         } else {
             result.set_item("customization_config", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetModelImportJobOutput {
+    job_arn: Option<::std::string::String>,
+    job_name: Option<::std::string::String>,
+    imported_model_name: Option<::std::string::String>,
+    imported_model_arn: Option<::std::string::String>,
+    role_arn: Option<::std::string::String>,
+    model_data_source: Option<aws_sdk_bedrock::types::ModelDataSource>,
+    status: Option<aws_sdk_bedrock::types::ModelImportJobStatus>,
+    failure_message: Option<::std::string::String>,
+    creation_time: Option<::aws_smithy_types::DateTime>,
+    last_modified_time: Option<::aws_smithy_types::DateTime>,
+    end_time: Option<::aws_smithy_types::DateTime>,
+    vpc_config: Option<Arc<aws_sdk_bedrock::types::VpcConfig>>,
+    imported_model_kms_key_arn: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::get_model_import_job::GetModelImportJobOutput>
+    for SharedPyOperationGetModelImportJobOutput
+{
+    fn from(
+        value: aws_sdk_bedrock::operation::get_model_import_job::GetModelImportJobOutput,
+    ) -> Self {
+        Self {
+            job_arn: value.job_arn,
+            job_name: value.job_name,
+            imported_model_name: value.imported_model_name,
+            imported_model_arn: value.imported_model_arn,
+            role_arn: value.role_arn,
+            model_data_source: value.model_data_source,
+            status: value.status,
+            failure_message: value.failure_message,
+            creation_time: value.creation_time,
+            last_modified_time: value.last_modified_time,
+            end_time: value.end_time,
+            vpc_config: value.vpc_config.map(|item| Arc::new(item)),
+            imported_model_kms_key_arn: value.imported_model_kms_key_arn,
+        }
     }
 }
 
@@ -22391,7 +24888,7 @@ impl PyOperationGetModelCustomizationJobOutput {
     frozen
 )]
 struct PyOperationGetModelImportJobOutput {
-    inner: aws_sdk_bedrock::operation::get_model_import_job::GetModelImportJobOutput,
+    inner: SharedPyOperationGetModelImportJobOutput,
 }
 
 #[pymethods]
@@ -22399,8 +24896,8 @@ impl PyOperationGetModelImportJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_arn {
-            let converted_3932 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3932)
+            let converted_4188 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4188)
         } else {
             Ok(py.None())
         }
@@ -22409,8 +24906,8 @@ impl PyOperationGetModelImportJobOutput {
     #[getter]
     fn job_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_name {
-            let converted_3933 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3933)
+            let converted_4189 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4189)
         } else {
             Ok(py.None())
         }
@@ -22419,8 +24916,8 @@ impl PyOperationGetModelImportJobOutput {
     #[getter]
     fn imported_model_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.imported_model_name {
-            let converted_3934 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3934)
+            let converted_4190 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4190)
         } else {
             Ok(py.None())
         }
@@ -22429,8 +24926,8 @@ impl PyOperationGetModelImportJobOutput {
     #[getter]
     fn imported_model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.imported_model_arn {
-            let converted_3935 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3935)
+            let converted_4191 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4191)
         } else {
             Ok(py.None())
         }
@@ -22439,8 +24936,8 @@ impl PyOperationGetModelImportJobOutput {
     #[getter]
     fn role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.role_arn {
-            let converted_3936 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3936)
+            let converted_4192 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4192)
         } else {
             Ok(py.None())
         }
@@ -22449,8 +24946,8 @@ impl PyOperationGetModelImportJobOutput {
     #[getter]
     fn model_data_source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_data_source {
-            let converted_3937 = model_data_source_to_py(py, value)?;
-            Ok(converted_3937)
+            let converted_4193 = model_data_source_to_py(py, value)?;
+            Ok(converted_4193)
         } else {
             Ok(py.None())
         }
@@ -22459,8 +24956,8 @@ impl PyOperationGetModelImportJobOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_3938 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3938)
+            let converted_4194 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4194)
         } else {
             Ok(py.None())
         }
@@ -22469,8 +24966,8 @@ impl PyOperationGetModelImportJobOutput {
     #[getter]
     fn failure_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failure_message {
-            let converted_3939 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3939)
+            let converted_4195 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4195)
         } else {
             Ok(py.None())
         }
@@ -22479,8 +24976,8 @@ impl PyOperationGetModelImportJobOutput {
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_time {
-            let converted_3940 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3940)
+            let converted_4196 = (value).to_string().into_py_any(py)?;
+            Ok(converted_4196)
         } else {
             Ok(py.None())
         }
@@ -22489,8 +24986,8 @@ impl PyOperationGetModelImportJobOutput {
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_3941 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3941)
+            let converted_4197 = (value).to_string().into_py_any(py)?;
+            Ok(converted_4197)
         } else {
             Ok(py.None())
         }
@@ -22499,8 +24996,8 @@ impl PyOperationGetModelImportJobOutput {
     #[getter]
     fn end_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.end_time {
-            let converted_3942 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3942)
+            let converted_4198 = (value).to_string().into_py_any(py)?;
+            Ok(converted_4198)
         } else {
             Ok(py.None())
         }
@@ -22509,14 +25006,14 @@ impl PyOperationGetModelImportJobOutput {
     #[getter]
     fn vpc_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.vpc_config {
-            let converted_3943 = Py::new(
+            let converted_4199 = Py::new(
                 py,
                 PyVpcConfig {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3943)
+            Ok(converted_4199)
         } else {
             Ok(py.None())
         }
@@ -22525,8 +25022,8 @@ impl PyOperationGetModelImportJobOutput {
     #[getter]
     fn imported_model_kms_key_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.imported_model_kms_key_arn {
-            let converted_3944 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3944)
+            let converted_4200 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4200)
         } else {
             Ok(py.None())
         }
@@ -22535,84 +25032,139 @@ impl PyOperationGetModelImportJobOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.job_arn {
-            let converted_3945 = (value).as_str().into_py_any(py)?;
-            result.set_item("job_arn", converted_3945)?;
+            let converted_4201 = (value).as_str().into_py_any(py)?;
+            result.set_item("job_arn", converted_4201)?;
         } else {
             result.set_item("job_arn", py.None())?;
         }
         if let Some(value) = &self.inner.job_name {
-            let converted_3946 = (value).as_str().into_py_any(py)?;
-            result.set_item("job_name", converted_3946)?;
+            let converted_4202 = (value).as_str().into_py_any(py)?;
+            result.set_item("job_name", converted_4202)?;
         } else {
             result.set_item("job_name", py.None())?;
         }
         if let Some(value) = &self.inner.imported_model_name {
-            let converted_3947 = (value).as_str().into_py_any(py)?;
-            result.set_item("imported_model_name", converted_3947)?;
+            let converted_4203 = (value).as_str().into_py_any(py)?;
+            result.set_item("imported_model_name", converted_4203)?;
         } else {
             result.set_item("imported_model_name", py.None())?;
         }
         if let Some(value) = &self.inner.imported_model_arn {
-            let converted_3948 = (value).as_str().into_py_any(py)?;
-            result.set_item("imported_model_arn", converted_3948)?;
+            let converted_4204 = (value).as_str().into_py_any(py)?;
+            result.set_item("imported_model_arn", converted_4204)?;
         } else {
             result.set_item("imported_model_arn", py.None())?;
         }
         if let Some(value) = &self.inner.role_arn {
-            let converted_3949 = (value).as_str().into_py_any(py)?;
-            result.set_item("role_arn", converted_3949)?;
+            let converted_4205 = (value).as_str().into_py_any(py)?;
+            result.set_item("role_arn", converted_4205)?;
         } else {
             result.set_item("role_arn", py.None())?;
         }
         if let Some(value) = &self.inner.model_data_source {
-            let converted_3950 = model_data_source_to_py(py, value)?;
-            result.set_item("model_data_source", converted_3950)?;
+            let converted_4206 = model_data_source_to_py(py, value)?;
+            result.set_item("model_data_source", converted_4206)?;
         } else {
             result.set_item("model_data_source", py.None())?;
         }
         if let Some(value) = &self.inner.status {
-            let converted_3951 = (value).as_str().into_py_any(py)?;
-            result.set_item("status", converted_3951)?;
+            let converted_4207 = (value).as_str().into_py_any(py)?;
+            result.set_item("status", converted_4207)?;
         } else {
             result.set_item("status", py.None())?;
         }
         if let Some(value) = &self.inner.failure_message {
-            let converted_3952 = (value).as_str().into_py_any(py)?;
-            result.set_item("failure_message", converted_3952)?;
+            let converted_4208 = (value).as_str().into_py_any(py)?;
+            result.set_item("failure_message", converted_4208)?;
         } else {
             result.set_item("failure_message", py.None())?;
         }
         if let Some(value) = &self.inner.creation_time {
-            let converted_3953 = (value).to_string().into_py_any(py)?;
-            result.set_item("creation_time", converted_3953)?;
+            let converted_4209 = (value).to_string().into_py_any(py)?;
+            result.set_item("creation_time", converted_4209)?;
         } else {
             result.set_item("creation_time", py.None())?;
         }
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_3954 = (value).to_string().into_py_any(py)?;
-            result.set_item("last_modified_time", converted_3954)?;
+            let converted_4210 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_modified_time", converted_4210)?;
         } else {
             result.set_item("last_modified_time", py.None())?;
         }
         if let Some(value) = &self.inner.end_time {
-            let converted_3955 = (value).to_string().into_py_any(py)?;
-            result.set_item("end_time", converted_3955)?;
+            let converted_4211 = (value).to_string().into_py_any(py)?;
+            result.set_item("end_time", converted_4211)?;
         } else {
             result.set_item("end_time", py.None())?;
         }
         if let Some(value) = &self.inner.vpc_config {
-            let converted_3956 = vpc_config_to_py(py, value)?;
-            result.set_item("vpc_config", converted_3956)?;
+            let converted_4212 = vpc_config_to_py(py, value)?;
+            result.set_item("vpc_config", converted_4212)?;
         } else {
             result.set_item("vpc_config", py.None())?;
         }
         if let Some(value) = &self.inner.imported_model_kms_key_arn {
-            let converted_3957 = (value).as_str().into_py_any(py)?;
-            result.set_item("imported_model_kms_key_arn", converted_3957)?;
+            let converted_4213 = (value).as_str().into_py_any(py)?;
+            result.set_item("imported_model_kms_key_arn", converted_4213)?;
         } else {
             result.set_item("imported_model_kms_key_arn", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetModelInvocationJobOutput {
+    job_arn: ::std::string::String,
+    job_name: Option<::std::string::String>,
+    model_id: ::std::string::String,
+    client_request_token: Option<::std::string::String>,
+    role_arn: ::std::string::String,
+    status: Option<aws_sdk_bedrock::types::ModelInvocationJobStatus>,
+    message: Option<::std::string::String>,
+    submit_time: ::aws_smithy_types::DateTime,
+    last_modified_time: Option<::aws_smithy_types::DateTime>,
+    end_time: Option<::aws_smithy_types::DateTime>,
+    input_data_config: Option<aws_sdk_bedrock::types::ModelInvocationJobInputDataConfig>,
+    output_data_config: Option<aws_sdk_bedrock::types::ModelInvocationJobOutputDataConfig>,
+    vpc_config: Option<Arc<aws_sdk_bedrock::types::VpcConfig>>,
+    timeout_duration_in_hours: Option<i32>,
+    job_expiration_time: Option<::aws_smithy_types::DateTime>,
+    model_invocation_type: Option<aws_sdk_bedrock::types::ModelInvocationType>,
+    total_record_count: Option<i64>,
+    processed_record_count: Option<i64>,
+    success_record_count: Option<i64>,
+    error_record_count: Option<i64>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::get_model_invocation_job::GetModelInvocationJobOutput>
+    for SharedPyOperationGetModelInvocationJobOutput
+{
+    fn from(
+        value: aws_sdk_bedrock::operation::get_model_invocation_job::GetModelInvocationJobOutput,
+    ) -> Self {
+        Self {
+            job_arn: value.job_arn,
+            job_name: value.job_name,
+            model_id: value.model_id,
+            client_request_token: value.client_request_token,
+            role_arn: value.role_arn,
+            status: value.status,
+            message: value.message,
+            submit_time: value.submit_time,
+            last_modified_time: value.last_modified_time,
+            end_time: value.end_time,
+            input_data_config: value.input_data_config,
+            output_data_config: value.output_data_config,
+            vpc_config: value.vpc_config.map(|item| Arc::new(item)),
+            timeout_duration_in_hours: value.timeout_duration_in_hours,
+            job_expiration_time: value.job_expiration_time,
+            model_invocation_type: value.model_invocation_type,
+            total_record_count: value.total_record_count,
+            processed_record_count: value.processed_record_count,
+            success_record_count: value.success_record_count,
+            error_record_count: value.error_record_count,
+        }
     }
 }
 
@@ -22622,22 +25174,22 @@ impl PyOperationGetModelImportJobOutput {
     frozen
 )]
 struct PyOperationGetModelInvocationJobOutput {
-    inner: aws_sdk_bedrock::operation::get_model_invocation_job::GetModelInvocationJobOutput,
+    inner: SharedPyOperationGetModelInvocationJobOutput,
 }
 
 #[pymethods]
 impl PyOperationGetModelInvocationJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3958 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        Ok(converted_3958)
+        let converted_4214 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_4214)
     }
 
     #[getter]
     fn job_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_name {
-            let converted_3959 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3959)
+            let converted_4215 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4215)
         } else {
             Ok(py.None())
         }
@@ -22645,15 +25197,15 @@ impl PyOperationGetModelInvocationJobOutput {
 
     #[getter]
     fn model_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3960 = (&self.inner.model_id).as_str().into_py_any(py)?;
-        Ok(converted_3960)
+        let converted_4216 = (&self.inner.model_id).as_str().into_py_any(py)?;
+        Ok(converted_4216)
     }
 
     #[getter]
     fn client_request_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.client_request_token {
-            let converted_3961 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3961)
+            let converted_4217 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4217)
         } else {
             Ok(py.None())
         }
@@ -22661,15 +25213,15 @@ impl PyOperationGetModelInvocationJobOutput {
 
     #[getter]
     fn role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3962 = (&self.inner.role_arn).as_str().into_py_any(py)?;
-        Ok(converted_3962)
+        let converted_4218 = (&self.inner.role_arn).as_str().into_py_any(py)?;
+        Ok(converted_4218)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_3963 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3963)
+            let converted_4219 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4219)
         } else {
             Ok(py.None())
         }
@@ -22678,8 +25230,8 @@ impl PyOperationGetModelInvocationJobOutput {
     #[getter]
     fn message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.message {
-            let converted_3964 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3964)
+            let converted_4220 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4220)
         } else {
             Ok(py.None())
         }
@@ -22687,15 +25239,15 @@ impl PyOperationGetModelInvocationJobOutput {
 
     #[getter]
     fn submit_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3965 = (&self.inner.submit_time).to_string().into_py_any(py)?;
-        Ok(converted_3965)
+        let converted_4221 = (&self.inner.submit_time).to_string().into_py_any(py)?;
+        Ok(converted_4221)
     }
 
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_3966 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3966)
+            let converted_4222 = (value).to_string().into_py_any(py)?;
+            Ok(converted_4222)
         } else {
             Ok(py.None())
         }
@@ -22704,8 +25256,8 @@ impl PyOperationGetModelInvocationJobOutput {
     #[getter]
     fn end_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.end_time {
-            let converted_3967 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3967)
+            let converted_4223 = (value).to_string().into_py_any(py)?;
+            Ok(converted_4223)
         } else {
             Ok(py.None())
         }
@@ -22714,8 +25266,8 @@ impl PyOperationGetModelInvocationJobOutput {
     #[getter]
     fn input_data_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_data_config {
-            let converted_3968 = model_invocation_job_input_data_config_to_py(py, value)?;
-            Ok(converted_3968)
+            let converted_4224 = model_invocation_job_input_data_config_to_py(py, value)?;
+            Ok(converted_4224)
         } else {
             Ok(py.None())
         }
@@ -22724,8 +25276,8 @@ impl PyOperationGetModelInvocationJobOutput {
     #[getter]
     fn output_data_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_data_config {
-            let converted_3969 = model_invocation_job_output_data_config_to_py(py, value)?;
-            Ok(converted_3969)
+            let converted_4225 = model_invocation_job_output_data_config_to_py(py, value)?;
+            Ok(converted_4225)
         } else {
             Ok(py.None())
         }
@@ -22734,14 +25286,14 @@ impl PyOperationGetModelInvocationJobOutput {
     #[getter]
     fn vpc_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.vpc_config {
-            let converted_3970 = Py::new(
+            let converted_4226 = Py::new(
                 py,
                 PyVpcConfig {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3970)
+            Ok(converted_4226)
         } else {
             Ok(py.None())
         }
@@ -22750,8 +25302,8 @@ impl PyOperationGetModelInvocationJobOutput {
     #[getter]
     fn timeout_duration_in_hours(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.timeout_duration_in_hours {
-            let converted_3971 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3971)
+            let converted_4227 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_4227)
         } else {
             Ok(py.None())
         }
@@ -22760,8 +25312,8 @@ impl PyOperationGetModelInvocationJobOutput {
     #[getter]
     fn job_expiration_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_expiration_time {
-            let converted_3972 = (value).to_string().into_py_any(py)?;
-            Ok(converted_3972)
+            let converted_4228 = (value).to_string().into_py_any(py)?;
+            Ok(converted_4228)
         } else {
             Ok(py.None())
         }
@@ -22770,8 +25322,8 @@ impl PyOperationGetModelInvocationJobOutput {
     #[getter]
     fn model_invocation_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_invocation_type {
-            let converted_3973 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3973)
+            let converted_4229 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4229)
         } else {
             Ok(py.None())
         }
@@ -22780,8 +25332,8 @@ impl PyOperationGetModelInvocationJobOutput {
     #[getter]
     fn total_record_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.total_record_count {
-            let converted_3974 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3974)
+            let converted_4230 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_4230)
         } else {
             Ok(py.None())
         }
@@ -22790,8 +25342,8 @@ impl PyOperationGetModelInvocationJobOutput {
     #[getter]
     fn processed_record_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.processed_record_count {
-            let converted_3975 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3975)
+            let converted_4231 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_4231)
         } else {
             Ok(py.None())
         }
@@ -22800,8 +25352,8 @@ impl PyOperationGetModelInvocationJobOutput {
     #[getter]
     fn success_record_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.success_record_count {
-            let converted_3976 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3976)
+            let converted_4232 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_4232)
         } else {
             Ok(py.None())
         }
@@ -22810,8 +25362,8 @@ impl PyOperationGetModelInvocationJobOutput {
     #[getter]
     fn error_record_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_record_count {
-            let converted_3977 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3977)
+            let converted_4233 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_4233)
         } else {
             Ok(py.None())
         }
@@ -22819,111 +25371,124 @@ impl PyOperationGetModelInvocationJobOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3978 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        result.set_item("job_arn", converted_3978)?;
+        let converted_4234 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        result.set_item("job_arn", converted_4234)?;
         if let Some(value) = &self.inner.job_name {
-            let converted_3979 = (value).as_str().into_py_any(py)?;
-            result.set_item("job_name", converted_3979)?;
+            let converted_4235 = (value).as_str().into_py_any(py)?;
+            result.set_item("job_name", converted_4235)?;
         } else {
             result.set_item("job_name", py.None())?;
         }
-        let converted_3980 = (&self.inner.model_id).as_str().into_py_any(py)?;
-        result.set_item("model_id", converted_3980)?;
+        let converted_4236 = (&self.inner.model_id).as_str().into_py_any(py)?;
+        result.set_item("model_id", converted_4236)?;
         if let Some(value) = &self.inner.client_request_token {
-            let converted_3981 = (value).as_str().into_py_any(py)?;
-            result.set_item("client_request_token", converted_3981)?;
+            let converted_4237 = (value).as_str().into_py_any(py)?;
+            result.set_item("client_request_token", converted_4237)?;
         } else {
             result.set_item("client_request_token", py.None())?;
         }
-        let converted_3982 = (&self.inner.role_arn).as_str().into_py_any(py)?;
-        result.set_item("role_arn", converted_3982)?;
+        let converted_4238 = (&self.inner.role_arn).as_str().into_py_any(py)?;
+        result.set_item("role_arn", converted_4238)?;
         if let Some(value) = &self.inner.status {
-            let converted_3983 = (value).as_str().into_py_any(py)?;
-            result.set_item("status", converted_3983)?;
+            let converted_4239 = (value).as_str().into_py_any(py)?;
+            result.set_item("status", converted_4239)?;
         } else {
             result.set_item("status", py.None())?;
         }
         if let Some(value) = &self.inner.message {
-            let converted_3984 = (value).as_str().into_py_any(py)?;
-            result.set_item("message", converted_3984)?;
+            let converted_4240 = (value).as_str().into_py_any(py)?;
+            result.set_item("message", converted_4240)?;
         } else {
             result.set_item("message", py.None())?;
         }
-        let converted_3985 = (&self.inner.submit_time).to_string().into_py_any(py)?;
-        result.set_item("submit_time", converted_3985)?;
+        let converted_4241 = (&self.inner.submit_time).to_string().into_py_any(py)?;
+        result.set_item("submit_time", converted_4241)?;
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_3986 = (value).to_string().into_py_any(py)?;
-            result.set_item("last_modified_time", converted_3986)?;
+            let converted_4242 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_modified_time", converted_4242)?;
         } else {
             result.set_item("last_modified_time", py.None())?;
         }
         if let Some(value) = &self.inner.end_time {
-            let converted_3987 = (value).to_string().into_py_any(py)?;
-            result.set_item("end_time", converted_3987)?;
+            let converted_4243 = (value).to_string().into_py_any(py)?;
+            result.set_item("end_time", converted_4243)?;
         } else {
             result.set_item("end_time", py.None())?;
         }
         if let Some(value) = &self.inner.input_data_config {
-            let converted_3988 = model_invocation_job_input_data_config_to_py(py, value)?;
-            result.set_item("input_data_config", converted_3988)?;
+            let converted_4244 = model_invocation_job_input_data_config_to_py(py, value)?;
+            result.set_item("input_data_config", converted_4244)?;
         } else {
             result.set_item("input_data_config", py.None())?;
         }
         if let Some(value) = &self.inner.output_data_config {
-            let converted_3989 = model_invocation_job_output_data_config_to_py(py, value)?;
-            result.set_item("output_data_config", converted_3989)?;
+            let converted_4245 = model_invocation_job_output_data_config_to_py(py, value)?;
+            result.set_item("output_data_config", converted_4245)?;
         } else {
             result.set_item("output_data_config", py.None())?;
         }
         if let Some(value) = &self.inner.vpc_config {
-            let converted_3990 = vpc_config_to_py(py, value)?;
-            result.set_item("vpc_config", converted_3990)?;
+            let converted_4246 = vpc_config_to_py(py, value)?;
+            result.set_item("vpc_config", converted_4246)?;
         } else {
             result.set_item("vpc_config", py.None())?;
         }
         if let Some(value) = &self.inner.timeout_duration_in_hours {
-            let converted_3991 = (value).to_owned().into_py_any(py)?;
-            result.set_item("timeout_duration_in_hours", converted_3991)?;
+            let converted_4247 = (value).to_owned().into_py_any(py)?;
+            result.set_item("timeout_duration_in_hours", converted_4247)?;
         } else {
             result.set_item("timeout_duration_in_hours", py.None())?;
         }
         if let Some(value) = &self.inner.job_expiration_time {
-            let converted_3992 = (value).to_string().into_py_any(py)?;
-            result.set_item("job_expiration_time", converted_3992)?;
+            let converted_4248 = (value).to_string().into_py_any(py)?;
+            result.set_item("job_expiration_time", converted_4248)?;
         } else {
             result.set_item("job_expiration_time", py.None())?;
         }
         if let Some(value) = &self.inner.model_invocation_type {
-            let converted_3993 = (value).as_str().into_py_any(py)?;
-            result.set_item("model_invocation_type", converted_3993)?;
+            let converted_4249 = (value).as_str().into_py_any(py)?;
+            result.set_item("model_invocation_type", converted_4249)?;
         } else {
             result.set_item("model_invocation_type", py.None())?;
         }
         if let Some(value) = &self.inner.total_record_count {
-            let converted_3994 = (value).to_owned().into_py_any(py)?;
-            result.set_item("total_record_count", converted_3994)?;
+            let converted_4250 = (value).to_owned().into_py_any(py)?;
+            result.set_item("total_record_count", converted_4250)?;
         } else {
             result.set_item("total_record_count", py.None())?;
         }
         if let Some(value) = &self.inner.processed_record_count {
-            let converted_3995 = (value).to_owned().into_py_any(py)?;
-            result.set_item("processed_record_count", converted_3995)?;
+            let converted_4251 = (value).to_owned().into_py_any(py)?;
+            result.set_item("processed_record_count", converted_4251)?;
         } else {
             result.set_item("processed_record_count", py.None())?;
         }
         if let Some(value) = &self.inner.success_record_count {
-            let converted_3996 = (value).to_owned().into_py_any(py)?;
-            result.set_item("success_record_count", converted_3996)?;
+            let converted_4252 = (value).to_owned().into_py_any(py)?;
+            result.set_item("success_record_count", converted_4252)?;
         } else {
             result.set_item("success_record_count", py.None())?;
         }
         if let Some(value) = &self.inner.error_record_count {
-            let converted_3997 = (value).to_owned().into_py_any(py)?;
-            result.set_item("error_record_count", converted_3997)?;
+            let converted_4253 = (value).to_owned().into_py_any(py)?;
+            result.set_item("error_record_count", converted_4253)?;
         } else {
             result.set_item("error_record_count", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetModelInvocationLoggingConfigurationOutput {
+    logging_config: Option<Arc<SharedLoggingConfig>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::get_model_invocation_logging_configuration::GetModelInvocationLoggingConfigurationOutput> for SharedPyOperationGetModelInvocationLoggingConfigurationOutput {
+    fn from(value: aws_sdk_bedrock::operation::get_model_invocation_logging_configuration::GetModelInvocationLoggingConfigurationOutput) -> Self {
+        Self {
+            logging_config: value.logging_config.map(|item| Arc::new(SharedLoggingConfig::from(item))),
+        }
     }
 }
 
@@ -22933,7 +25498,7 @@ impl PyOperationGetModelInvocationJobOutput {
     frozen
 )]
 struct PyOperationGetModelInvocationLoggingConfigurationOutput {
-    inner: aws_sdk_bedrock::operation::get_model_invocation_logging_configuration::GetModelInvocationLoggingConfigurationOutput,
+    inner: SharedPyOperationGetModelInvocationLoggingConfigurationOutput,
 }
 
 #[pymethods]
@@ -22941,14 +25506,14 @@ impl PyOperationGetModelInvocationLoggingConfigurationOutput {
     #[getter]
     fn logging_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.logging_config {
-            let converted_3998 = Py::new(
+            let converted_4254 = Py::new(
                 py,
                 PyLoggingConfig {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3998)
+            Ok(converted_4254)
         } else {
             Ok(py.None())
         }
@@ -22957,12 +25522,48 @@ impl PyOperationGetModelInvocationLoggingConfigurationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.logging_config {
-            let converted_3999 = logging_config_to_py(py, value)?;
-            result.set_item("logging_config", converted_3999)?;
+            let converted_4255 = logging_config_shared_to_py(py, value)?;
+            result.set_item("logging_config", converted_4255)?;
         } else {
             result.set_item("logging_config", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetPromptRouterOutput {
+    prompt_router_name: ::std::string::String,
+    routing_criteria: Option<Arc<aws_sdk_bedrock::types::RoutingCriteria>>,
+    description: Option<::std::string::String>,
+    created_at: Option<::aws_smithy_types::DateTime>,
+    updated_at: Option<::aws_smithy_types::DateTime>,
+    prompt_router_arn: ::std::string::String,
+    models: ::std::vec::Vec<Arc<aws_sdk_bedrock::types::PromptRouterTargetModel>>,
+    fallback_model: Option<Arc<aws_sdk_bedrock::types::PromptRouterTargetModel>>,
+    status: aws_sdk_bedrock::types::PromptRouterStatus,
+    r#type: aws_sdk_bedrock::types::PromptRouterType,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::get_prompt_router::GetPromptRouterOutput>
+    for SharedPyOperationGetPromptRouterOutput
+{
+    fn from(value: aws_sdk_bedrock::operation::get_prompt_router::GetPromptRouterOutput) -> Self {
+        Self {
+            prompt_router_name: value.prompt_router_name,
+            routing_criteria: value.routing_criteria.map(|item| Arc::new(item)),
+            description: value.description,
+            created_at: value.created_at,
+            updated_at: value.updated_at,
+            prompt_router_arn: value.prompt_router_arn,
+            models: (value.models)
+                .into_iter()
+                .map(|owned_4268| Arc::new(owned_4268))
+                .collect(),
+            fallback_model: value.fallback_model.map(|item| Arc::new(item)),
+            status: value.status,
+            r#type: value.r#type,
+        }
     }
 }
 
@@ -22972,28 +25573,28 @@ impl PyOperationGetModelInvocationLoggingConfigurationOutput {
     frozen
 )]
 struct PyOperationGetPromptRouterOutput {
-    inner: aws_sdk_bedrock::operation::get_prompt_router::GetPromptRouterOutput,
+    inner: SharedPyOperationGetPromptRouterOutput,
 }
 
 #[pymethods]
 impl PyOperationGetPromptRouterOutput {
     #[getter]
     fn prompt_router_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4000 = (&self.inner.prompt_router_name).as_str().into_py_any(py)?;
-        Ok(converted_4000)
+        let converted_4256 = (&self.inner.prompt_router_name).as_str().into_py_any(py)?;
+        Ok(converted_4256)
     }
 
     #[getter]
     fn routing_criteria(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.routing_criteria {
-            let converted_4001 = Py::new(
+            let converted_4257 = Py::new(
                 py,
                 PyRoutingCriteria {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_4001)
+            Ok(converted_4257)
         } else {
             Ok(py.None())
         }
@@ -23002,8 +25603,8 @@ impl PyOperationGetPromptRouterOutput {
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_4002 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4002)
+            let converted_4258 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4258)
         } else {
             Ok(py.None())
         }
@@ -23012,8 +25613,8 @@ impl PyOperationGetPromptRouterOutput {
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.created_at {
-            let converted_4003 = (value).to_string().into_py_any(py)?;
-            Ok(converted_4003)
+            let converted_4259 = (value).to_string().into_py_any(py)?;
+            Ok(converted_4259)
         } else {
             Ok(py.None())
         }
@@ -23022,8 +25623,8 @@ impl PyOperationGetPromptRouterOutput {
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_at {
-            let converted_4004 = (value).to_string().into_py_any(py)?;
-            Ok(converted_4004)
+            let converted_4260 = (value).to_string().into_py_any(py)?;
+            Ok(converted_4260)
         } else {
             Ok(py.None())
         }
@@ -23031,38 +25632,38 @@ impl PyOperationGetPromptRouterOutput {
 
     #[getter]
     fn prompt_router_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4005 = (&self.inner.prompt_router_arn).as_str().into_py_any(py)?;
-        Ok(converted_4005)
+        let converted_4261 = (&self.inner.prompt_router_arn).as_str().into_py_any(py)?;
+        Ok(converted_4261)
     }
 
     #[getter]
     fn models(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4006_list = PyList::empty(py);
-        for item_4007 in &self.inner.models {
-            let converted_item_4008 = Py::new(
+        let converted_4262_list = PyList::empty(py);
+        for item_4263 in &self.inner.models {
+            let converted_item_4264 = Py::new(
                 py,
                 PyPromptRouterTargetModel {
-                    inner: (item_4007).to_owned(),
+                    inner: Arc::clone(item_4263),
                 },
             )?
             .into_any();
-            converted_4006_list.append(converted_item_4008)?;
+            converted_4262_list.append(converted_item_4264)?;
         }
-        let converted_4006 = converted_4006_list.into_any().unbind();
-        Ok(converted_4006)
+        let converted_4262 = converted_4262_list.into_any().unbind();
+        Ok(converted_4262)
     }
 
     #[getter]
     fn fallback_model(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.fallback_model {
-            let converted_4009 = Py::new(
+            let converted_4265 = Py::new(
                 py,
                 PyPromptRouterTargetModel {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_4009)
+            Ok(converted_4265)
         } else {
             Ok(py.None())
         }
@@ -23070,63 +25671,63 @@ impl PyOperationGetPromptRouterOutput {
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4010 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_4010)
+        let converted_4266 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_4266)
     }
 
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4011 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_4011)
+        let converted_4267 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_4267)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_4012 = (&self.inner.prompt_router_name).as_str().into_py_any(py)?;
-        result.set_item("prompt_router_name", converted_4012)?;
+        let converted_4269 = (&self.inner.prompt_router_name).as_str().into_py_any(py)?;
+        result.set_item("prompt_router_name", converted_4269)?;
         if let Some(value) = &self.inner.routing_criteria {
-            let converted_4013 = routing_criteria_to_py(py, value)?;
-            result.set_item("routing_criteria", converted_4013)?;
+            let converted_4270 = routing_criteria_to_py(py, value)?;
+            result.set_item("routing_criteria", converted_4270)?;
         } else {
             result.set_item("routing_criteria", py.None())?;
         }
         if let Some(value) = &self.inner.description {
-            let converted_4014 = (value).as_str().into_py_any(py)?;
-            result.set_item("description", converted_4014)?;
+            let converted_4271 = (value).as_str().into_py_any(py)?;
+            result.set_item("description", converted_4271)?;
         } else {
             result.set_item("description", py.None())?;
         }
         if let Some(value) = &self.inner.created_at {
-            let converted_4015 = (value).to_string().into_py_any(py)?;
-            result.set_item("created_at", converted_4015)?;
+            let converted_4272 = (value).to_string().into_py_any(py)?;
+            result.set_item("created_at", converted_4272)?;
         } else {
             result.set_item("created_at", py.None())?;
         }
         if let Some(value) = &self.inner.updated_at {
-            let converted_4016 = (value).to_string().into_py_any(py)?;
-            result.set_item("updated_at", converted_4016)?;
+            let converted_4273 = (value).to_string().into_py_any(py)?;
+            result.set_item("updated_at", converted_4273)?;
         } else {
             result.set_item("updated_at", py.None())?;
         }
-        let converted_4017 = (&self.inner.prompt_router_arn).as_str().into_py_any(py)?;
-        result.set_item("prompt_router_arn", converted_4017)?;
-        let converted_4018_list = PyList::empty(py);
-        for item_4019 in &self.inner.models {
-            let converted_item_4020 = prompt_router_target_model_to_py(py, item_4019)?;
-            converted_4018_list.append(converted_item_4020)?;
+        let converted_4274 = (&self.inner.prompt_router_arn).as_str().into_py_any(py)?;
+        result.set_item("prompt_router_arn", converted_4274)?;
+        let converted_4275_list = PyList::empty(py);
+        for item_4276 in &self.inner.models {
+            let converted_item_4277 = prompt_router_target_model_to_py(py, item_4276)?;
+            converted_4275_list.append(converted_item_4277)?;
         }
-        let converted_4018 = converted_4018_list.into_any().unbind();
-        result.set_item("models", converted_4018)?;
+        let converted_4275 = converted_4275_list.into_any().unbind();
+        result.set_item("models", converted_4275)?;
         if let Some(value) = &self.inner.fallback_model {
-            let converted_4021 = prompt_router_target_model_to_py(py, value)?;
-            result.set_item("fallback_model", converted_4021)?;
+            let converted_4278 = prompt_router_target_model_to_py(py, value)?;
+            result.set_item("fallback_model", converted_4278)?;
         } else {
             result.set_item("fallback_model", py.None())?;
         }
-        let converted_4022 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_4022)?;
-        let converted_4023 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        result.set_item("type", converted_4023)?;
+        let converted_4279 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_4279)?;
+        let converted_4280 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        result.set_item("type", converted_4280)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -23144,79 +25745,79 @@ struct PyOperationGetProvisionedModelThroughputOutput {
 impl PyOperationGetProvisionedModelThroughputOutput {
     #[getter]
     fn model_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4024 = (&self.inner.model_units).to_owned().into_py_any(py)?;
-        Ok(converted_4024)
+        let converted_4281 = (&self.inner.model_units).to_owned().into_py_any(py)?;
+        Ok(converted_4281)
     }
 
     #[getter]
     fn desired_model_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4025 = (&self.inner.desired_model_units)
+        let converted_4282 = (&self.inner.desired_model_units)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_4025)
+        Ok(converted_4282)
     }
 
     #[getter]
     fn provisioned_model_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4026 = (&self.inner.provisioned_model_name)
+        let converted_4283 = (&self.inner.provisioned_model_name)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_4026)
+        Ok(converted_4283)
     }
 
     #[getter]
     fn provisioned_model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4027 = (&self.inner.provisioned_model_arn)
+        let converted_4284 = (&self.inner.provisioned_model_arn)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_4027)
+        Ok(converted_4284)
     }
 
     #[getter]
     fn model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4028 = (&self.inner.model_arn).as_str().into_py_any(py)?;
-        Ok(converted_4028)
+        let converted_4285 = (&self.inner.model_arn).as_str().into_py_any(py)?;
+        Ok(converted_4285)
     }
 
     #[getter]
     fn desired_model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4029 = (&self.inner.desired_model_arn).as_str().into_py_any(py)?;
-        Ok(converted_4029)
+        let converted_4286 = (&self.inner.desired_model_arn).as_str().into_py_any(py)?;
+        Ok(converted_4286)
     }
 
     #[getter]
     fn foundation_model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4030 = (&self.inner.foundation_model_arn)
+        let converted_4287 = (&self.inner.foundation_model_arn)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_4030)
+        Ok(converted_4287)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4031 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_4031)
+        let converted_4288 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_4288)
     }
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4032 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        Ok(converted_4032)
+        let converted_4289 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        Ok(converted_4289)
     }
 
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4033 = (&self.inner.last_modified_time)
+        let converted_4290 = (&self.inner.last_modified_time)
             .to_string()
             .into_py_any(py)?;
-        Ok(converted_4033)
+        Ok(converted_4290)
     }
 
     #[getter]
     fn failure_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failure_message {
-            let converted_4034 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4034)
+            let converted_4291 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4291)
         } else {
             Ok(py.None())
         }
@@ -23225,8 +25826,8 @@ impl PyOperationGetProvisionedModelThroughputOutput {
     #[getter]
     fn commitment_duration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.commitment_duration {
-            let converted_4035 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4035)
+            let converted_4292 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4292)
         } else {
             Ok(py.None())
         }
@@ -23235,8 +25836,8 @@ impl PyOperationGetProvisionedModelThroughputOutput {
     #[getter]
     fn commitment_expiration_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.commitment_expiration_time {
-            let converted_4036 = (value).to_string().into_py_any(py)?;
-            Ok(converted_4036)
+            let converted_4293 = (value).to_string().into_py_any(py)?;
+            Ok(converted_4293)
         } else {
             Ok(py.None())
         }
@@ -23244,51 +25845,51 @@ impl PyOperationGetProvisionedModelThroughputOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_4037 = (&self.inner.model_units).to_owned().into_py_any(py)?;
-        result.set_item("model_units", converted_4037)?;
-        let converted_4038 = (&self.inner.desired_model_units)
+        let converted_4294 = (&self.inner.model_units).to_owned().into_py_any(py)?;
+        result.set_item("model_units", converted_4294)?;
+        let converted_4295 = (&self.inner.desired_model_units)
             .to_owned()
             .into_py_any(py)?;
-        result.set_item("desired_model_units", converted_4038)?;
-        let converted_4039 = (&self.inner.provisioned_model_name)
+        result.set_item("desired_model_units", converted_4295)?;
+        let converted_4296 = (&self.inner.provisioned_model_name)
             .as_str()
             .into_py_any(py)?;
-        result.set_item("provisioned_model_name", converted_4039)?;
-        let converted_4040 = (&self.inner.provisioned_model_arn)
+        result.set_item("provisioned_model_name", converted_4296)?;
+        let converted_4297 = (&self.inner.provisioned_model_arn)
             .as_str()
             .into_py_any(py)?;
-        result.set_item("provisioned_model_arn", converted_4040)?;
-        let converted_4041 = (&self.inner.model_arn).as_str().into_py_any(py)?;
-        result.set_item("model_arn", converted_4041)?;
-        let converted_4042 = (&self.inner.desired_model_arn).as_str().into_py_any(py)?;
-        result.set_item("desired_model_arn", converted_4042)?;
-        let converted_4043 = (&self.inner.foundation_model_arn)
+        result.set_item("provisioned_model_arn", converted_4297)?;
+        let converted_4298 = (&self.inner.model_arn).as_str().into_py_any(py)?;
+        result.set_item("model_arn", converted_4298)?;
+        let converted_4299 = (&self.inner.desired_model_arn).as_str().into_py_any(py)?;
+        result.set_item("desired_model_arn", converted_4299)?;
+        let converted_4300 = (&self.inner.foundation_model_arn)
             .as_str()
             .into_py_any(py)?;
-        result.set_item("foundation_model_arn", converted_4043)?;
-        let converted_4044 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_4044)?;
-        let converted_4045 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        result.set_item("creation_time", converted_4045)?;
-        let converted_4046 = (&self.inner.last_modified_time)
+        result.set_item("foundation_model_arn", converted_4300)?;
+        let converted_4301 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_4301)?;
+        let converted_4302 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        result.set_item("creation_time", converted_4302)?;
+        let converted_4303 = (&self.inner.last_modified_time)
             .to_string()
             .into_py_any(py)?;
-        result.set_item("last_modified_time", converted_4046)?;
+        result.set_item("last_modified_time", converted_4303)?;
         if let Some(value) = &self.inner.failure_message {
-            let converted_4047 = (value).as_str().into_py_any(py)?;
-            result.set_item("failure_message", converted_4047)?;
+            let converted_4304 = (value).as_str().into_py_any(py)?;
+            result.set_item("failure_message", converted_4304)?;
         } else {
             result.set_item("failure_message", py.None())?;
         }
         if let Some(value) = &self.inner.commitment_duration {
-            let converted_4048 = (value).as_str().into_py_any(py)?;
-            result.set_item("commitment_duration", converted_4048)?;
+            let converted_4305 = (value).as_str().into_py_any(py)?;
+            result.set_item("commitment_duration", converted_4305)?;
         } else {
             result.set_item("commitment_duration", py.None())?;
         }
         if let Some(value) = &self.inner.commitment_expiration_time {
-            let converted_4049 = (value).to_string().into_py_any(py)?;
-            result.set_item("commitment_expiration_time", converted_4049)?;
+            let converted_4306 = (value).to_string().into_py_any(py)?;
+            result.set_item("commitment_expiration_time", converted_4306)?;
         } else {
             result.set_item("commitment_expiration_time", py.None())?;
         }
@@ -23310,8 +25911,8 @@ impl PyOperationGetResourcePolicyOutput {
     #[getter]
     fn resource_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_policy {
-            let converted_4050 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4050)
+            let converted_4307 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4307)
         } else {
             Ok(py.None())
         }
@@ -23320,8 +25921,8 @@ impl PyOperationGetResourcePolicyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.resource_policy {
-            let converted_4051 = (value).as_str().into_py_any(py)?;
-            result.set_item("resource_policy", converted_4051)?;
+            let converted_4308 = (value).as_str().into_py_any(py)?;
+            result.set_item("resource_policy", converted_4308)?;
         } else {
             result.set_item("resource_policy", py.None())?;
         }
@@ -23343,19 +25944,35 @@ struct PyOperationGetUseCaseForModelAccessOutput {
 impl PyOperationGetUseCaseForModelAccessOutput {
     #[getter]
     fn form_data(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4052 = PyBytes::new(py, (&self.inner.form_data).as_ref())
+        let converted_4309 = PyBytes::new(py, (&self.inner.form_data).as_ref())
             .into_any()
             .unbind();
-        Ok(converted_4052)
+        Ok(converted_4309)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_4053 = PyBytes::new(py, (&self.inner.form_data).as_ref())
+        let converted_4310 = PyBytes::new(py, (&self.inner.form_data).as_ref())
             .into_any()
             .unbind();
-        result.set_item("form_data", converted_4053)?;
+        result.set_item("form_data", converted_4310)?;
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListAdvancedPromptOptimizationJobsOutput {
+    job_summaries:
+        Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::AdvancedPromptOptimizationJobSummary>>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::list_advanced_prompt_optimization_jobs::ListAdvancedPromptOptimizationJobsOutput> for SharedPyOperationListAdvancedPromptOptimizationJobsOutput {
+    fn from(value: aws_sdk_bedrock::operation::list_advanced_prompt_optimization_jobs::ListAdvancedPromptOptimizationJobsOutput) -> Self {
+        Self {
+            job_summaries: value.job_summaries.map(|item| (item).into_iter().map(|owned_4315| Arc::new(owned_4315)).collect()),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -23365,7 +25982,7 @@ impl PyOperationGetUseCaseForModelAccessOutput {
     frozen
 )]
 struct PyOperationListAdvancedPromptOptimizationJobsOutput {
-    inner: aws_sdk_bedrock::operation::list_advanced_prompt_optimization_jobs::ListAdvancedPromptOptimizationJobsOutput,
+    inner: SharedPyOperationListAdvancedPromptOptimizationJobsOutput,
 }
 
 #[pymethods]
@@ -23373,19 +25990,19 @@ impl PyOperationListAdvancedPromptOptimizationJobsOutput {
     #[getter]
     fn job_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_summaries {
-            let converted_4054_list = PyList::empty(py);
-            for item_4055 in value {
-                let converted_item_4056 = Py::new(
+            let converted_4311_list = PyList::empty(py);
+            for item_4312 in value {
+                let converted_item_4313 = Py::new(
                     py,
                     PyAdvancedPromptOptimizationJobSummary {
-                        inner: (item_4055).to_owned(),
+                        inner: Arc::clone(item_4312),
                     },
                 )?
                 .into_any();
-                converted_4054_list.append(converted_item_4056)?;
+                converted_4311_list.append(converted_item_4313)?;
             }
-            let converted_4054 = converted_4054_list.into_any().unbind();
-            Ok(converted_4054)
+            let converted_4311 = converted_4311_list.into_any().unbind();
+            Ok(converted_4311)
         } else {
             Ok(py.None())
         }
@@ -23394,8 +26011,8 @@ impl PyOperationListAdvancedPromptOptimizationJobsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_4057 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4057)
+            let converted_4314 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4314)
         } else {
             Ok(py.None())
         }
@@ -23404,24 +26021,40 @@ impl PyOperationListAdvancedPromptOptimizationJobsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.job_summaries {
-            let converted_4058_list = PyList::empty(py);
-            for item_4059 in value {
-                let converted_item_4060 =
-                    advanced_prompt_optimization_job_summary_to_py(py, item_4059)?;
-                converted_4058_list.append(converted_item_4060)?;
+            let converted_4316_list = PyList::empty(py);
+            for item_4317 in value {
+                let converted_item_4318 =
+                    advanced_prompt_optimization_job_summary_to_py(py, item_4317)?;
+                converted_4316_list.append(converted_item_4318)?;
             }
-            let converted_4058 = converted_4058_list.into_any().unbind();
-            result.set_item("job_summaries", converted_4058)?;
+            let converted_4316 = converted_4316_list.into_any().unbind();
+            result.set_item("job_summaries", converted_4316)?;
         } else {
             result.set_item("job_summaries", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_4061 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_4061)?;
+            let converted_4319 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_4319)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListAutomatedReasoningPoliciesOutput {
+    automated_reasoning_policy_summaries:
+        ::std::vec::Vec<Arc<aws_sdk_bedrock::types::AutomatedReasoningPolicySummary>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::list_automated_reasoning_policies::ListAutomatedReasoningPoliciesOutput> for SharedPyOperationListAutomatedReasoningPoliciesOutput {
+    fn from(value: aws_sdk_bedrock::operation::list_automated_reasoning_policies::ListAutomatedReasoningPoliciesOutput) -> Self {
+        Self {
+            automated_reasoning_policy_summaries: (value.automated_reasoning_policy_summaries).into_iter().map(|owned_4324| Arc::new(owned_4324)).collect(),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -23431,33 +26064,33 @@ impl PyOperationListAdvancedPromptOptimizationJobsOutput {
     frozen
 )]
 struct PyOperationListAutomatedReasoningPoliciesOutput {
-    inner: aws_sdk_bedrock::operation::list_automated_reasoning_policies::ListAutomatedReasoningPoliciesOutput,
+    inner: SharedPyOperationListAutomatedReasoningPoliciesOutput,
 }
 
 #[pymethods]
 impl PyOperationListAutomatedReasoningPoliciesOutput {
     #[getter]
     fn automated_reasoning_policy_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4062_list = PyList::empty(py);
-        for item_4063 in &self.inner.automated_reasoning_policy_summaries {
-            let converted_item_4064 = Py::new(
+        let converted_4320_list = PyList::empty(py);
+        for item_4321 in &self.inner.automated_reasoning_policy_summaries {
+            let converted_item_4322 = Py::new(
                 py,
                 PyAutomatedReasoningPolicySummary {
-                    inner: (item_4063).to_owned(),
+                    inner: Arc::clone(item_4321),
                 },
             )?
             .into_any();
-            converted_4062_list.append(converted_item_4064)?;
+            converted_4320_list.append(converted_item_4322)?;
         }
-        let converted_4062 = converted_4062_list.into_any().unbind();
-        Ok(converted_4062)
+        let converted_4320 = converted_4320_list.into_any().unbind();
+        Ok(converted_4320)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_4065 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4065)
+            let converted_4323 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4323)
         } else {
             Ok(py.None())
         }
@@ -23465,20 +26098,36 @@ impl PyOperationListAutomatedReasoningPoliciesOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_4066_list = PyList::empty(py);
-        for item_4067 in &self.inner.automated_reasoning_policy_summaries {
-            let converted_item_4068 = automated_reasoning_policy_summary_to_py(py, item_4067)?;
-            converted_4066_list.append(converted_item_4068)?;
+        let converted_4325_list = PyList::empty(py);
+        for item_4326 in &self.inner.automated_reasoning_policy_summaries {
+            let converted_item_4327 = automated_reasoning_policy_summary_to_py(py, item_4326)?;
+            converted_4325_list.append(converted_item_4327)?;
         }
-        let converted_4066 = converted_4066_list.into_any().unbind();
-        result.set_item("automated_reasoning_policy_summaries", converted_4066)?;
+        let converted_4325 = converted_4325_list.into_any().unbind();
+        result.set_item("automated_reasoning_policy_summaries", converted_4325)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_4069 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_4069)?;
+            let converted_4328 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_4328)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListAutomatedReasoningPolicyBuildWorkflowsOutput {
+    automated_reasoning_policy_build_workflow_summaries:
+        ::std::vec::Vec<Arc<aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildWorkflowSummary>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::list_automated_reasoning_policy_build_workflows::ListAutomatedReasoningPolicyBuildWorkflowsOutput> for SharedPyOperationListAutomatedReasoningPolicyBuildWorkflowsOutput {
+    fn from(value: aws_sdk_bedrock::operation::list_automated_reasoning_policy_build_workflows::ListAutomatedReasoningPolicyBuildWorkflowsOutput) -> Self {
+        Self {
+            automated_reasoning_policy_build_workflow_summaries: (value.automated_reasoning_policy_build_workflow_summaries).into_iter().map(|owned_4333| Arc::new(owned_4333)).collect(),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -23488,7 +26137,7 @@ impl PyOperationListAutomatedReasoningPoliciesOutput {
     frozen
 )]
 struct PyOperationListAutomatedReasoningPolicyBuildWorkflowsOutput {
-    inner: aws_sdk_bedrock::operation::list_automated_reasoning_policy_build_workflows::ListAutomatedReasoningPolicyBuildWorkflowsOutput,
+    inner: SharedPyOperationListAutomatedReasoningPolicyBuildWorkflowsOutput,
 }
 
 #[pymethods]
@@ -23498,29 +26147,29 @@ impl PyOperationListAutomatedReasoningPolicyBuildWorkflowsOutput {
         &self,
         py: Python<'_>,
     ) -> PyResult<Py<PyAny>> {
-        let converted_4070_list = PyList::empty(py);
-        for item_4071 in &self
+        let converted_4329_list = PyList::empty(py);
+        for item_4330 in &self
             .inner
             .automated_reasoning_policy_build_workflow_summaries
         {
-            let converted_item_4072 = Py::new(
+            let converted_item_4331 = Py::new(
                 py,
                 PyAutomatedReasoningPolicyBuildWorkflowSummary {
-                    inner: (item_4071).to_owned(),
+                    inner: Arc::clone(item_4330),
                 },
             )?
             .into_any();
-            converted_4070_list.append(converted_item_4072)?;
+            converted_4329_list.append(converted_item_4331)?;
         }
-        let converted_4070 = converted_4070_list.into_any().unbind();
-        Ok(converted_4070)
+        let converted_4329 = converted_4329_list.into_any().unbind();
+        Ok(converted_4329)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_4073 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4073)
+            let converted_4332 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4332)
         } else {
             Ok(py.None())
         }
@@ -23528,27 +26177,42 @@ impl PyOperationListAutomatedReasoningPolicyBuildWorkflowsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_4074_list = PyList::empty(py);
-        for item_4075 in &self
+        let converted_4334_list = PyList::empty(py);
+        for item_4335 in &self
             .inner
             .automated_reasoning_policy_build_workflow_summaries
         {
-            let converted_item_4076 =
-                automated_reasoning_policy_build_workflow_summary_to_py(py, item_4075)?;
-            converted_4074_list.append(converted_item_4076)?;
+            let converted_item_4336 =
+                automated_reasoning_policy_build_workflow_summary_to_py(py, item_4335)?;
+            converted_4334_list.append(converted_item_4336)?;
         }
-        let converted_4074 = converted_4074_list.into_any().unbind();
+        let converted_4334 = converted_4334_list.into_any().unbind();
         result.set_item(
             "automated_reasoning_policy_build_workflow_summaries",
-            converted_4074,
+            converted_4334,
         )?;
         if let Some(value) = &self.inner.next_token {
-            let converted_4077 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_4077)?;
+            let converted_4337 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_4337)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListAutomatedReasoningPolicyTestCasesOutput {
+    test_cases: ::std::vec::Vec<Arc<aws_sdk_bedrock::types::AutomatedReasoningPolicyTestCase>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::list_automated_reasoning_policy_test_cases::ListAutomatedReasoningPolicyTestCasesOutput> for SharedPyOperationListAutomatedReasoningPolicyTestCasesOutput {
+    fn from(value: aws_sdk_bedrock::operation::list_automated_reasoning_policy_test_cases::ListAutomatedReasoningPolicyTestCasesOutput) -> Self {
+        Self {
+            test_cases: (value.test_cases).into_iter().map(|owned_4342| Arc::new(owned_4342)).collect(),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -23558,33 +26222,33 @@ impl PyOperationListAutomatedReasoningPolicyBuildWorkflowsOutput {
     frozen
 )]
 struct PyOperationListAutomatedReasoningPolicyTestCasesOutput {
-    inner: aws_sdk_bedrock::operation::list_automated_reasoning_policy_test_cases::ListAutomatedReasoningPolicyTestCasesOutput,
+    inner: SharedPyOperationListAutomatedReasoningPolicyTestCasesOutput,
 }
 
 #[pymethods]
 impl PyOperationListAutomatedReasoningPolicyTestCasesOutput {
     #[getter]
     fn test_cases(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4078_list = PyList::empty(py);
-        for item_4079 in &self.inner.test_cases {
-            let converted_item_4080 = Py::new(
+        let converted_4338_list = PyList::empty(py);
+        for item_4339 in &self.inner.test_cases {
+            let converted_item_4340 = Py::new(
                 py,
                 PyAutomatedReasoningPolicyTestCase {
-                    inner: (item_4079).to_owned(),
+                    inner: Arc::clone(item_4339),
                 },
             )?
             .into_any();
-            converted_4078_list.append(converted_item_4080)?;
+            converted_4338_list.append(converted_item_4340)?;
         }
-        let converted_4078 = converted_4078_list.into_any().unbind();
-        Ok(converted_4078)
+        let converted_4338 = converted_4338_list.into_any().unbind();
+        Ok(converted_4338)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_4081 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4081)
+            let converted_4341 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4341)
         } else {
             Ok(py.None())
         }
@@ -23592,20 +26256,35 @@ impl PyOperationListAutomatedReasoningPolicyTestCasesOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_4082_list = PyList::empty(py);
-        for item_4083 in &self.inner.test_cases {
-            let converted_item_4084 = automated_reasoning_policy_test_case_to_py(py, item_4083)?;
-            converted_4082_list.append(converted_item_4084)?;
+        let converted_4343_list = PyList::empty(py);
+        for item_4344 in &self.inner.test_cases {
+            let converted_item_4345 = automated_reasoning_policy_test_case_to_py(py, item_4344)?;
+            converted_4343_list.append(converted_item_4345)?;
         }
-        let converted_4082 = converted_4082_list.into_any().unbind();
-        result.set_item("test_cases", converted_4082)?;
+        let converted_4343 = converted_4343_list.into_any().unbind();
+        result.set_item("test_cases", converted_4343)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_4085 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_4085)?;
+            let converted_4346 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_4346)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListAutomatedReasoningPolicyTestResultsOutput {
+    test_results: ::std::vec::Vec<Arc<SharedAutomatedReasoningPolicyTestResult>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::list_automated_reasoning_policy_test_results::ListAutomatedReasoningPolicyTestResultsOutput> for SharedPyOperationListAutomatedReasoningPolicyTestResultsOutput {
+    fn from(value: aws_sdk_bedrock::operation::list_automated_reasoning_policy_test_results::ListAutomatedReasoningPolicyTestResultsOutput) -> Self {
+        Self {
+            test_results: (value.test_results).into_iter().map(|owned_4351| Arc::new(SharedAutomatedReasoningPolicyTestResult::from(owned_4351))).collect(),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -23615,33 +26294,33 @@ impl PyOperationListAutomatedReasoningPolicyTestCasesOutput {
     frozen
 )]
 struct PyOperationListAutomatedReasoningPolicyTestResultsOutput {
-    inner: aws_sdk_bedrock::operation::list_automated_reasoning_policy_test_results::ListAutomatedReasoningPolicyTestResultsOutput,
+    inner: SharedPyOperationListAutomatedReasoningPolicyTestResultsOutput,
 }
 
 #[pymethods]
 impl PyOperationListAutomatedReasoningPolicyTestResultsOutput {
     #[getter]
     fn test_results(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4086_list = PyList::empty(py);
-        for item_4087 in &self.inner.test_results {
-            let converted_item_4088 = Py::new(
+        let converted_4347_list = PyList::empty(py);
+        for item_4348 in &self.inner.test_results {
+            let converted_item_4349 = Py::new(
                 py,
                 PyAutomatedReasoningPolicyTestResult {
-                    inner: (item_4087).to_owned(),
+                    inner: Arc::clone(item_4348),
                 },
             )?
             .into_any();
-            converted_4086_list.append(converted_item_4088)?;
+            converted_4347_list.append(converted_item_4349)?;
         }
-        let converted_4086 = converted_4086_list.into_any().unbind();
-        Ok(converted_4086)
+        let converted_4347 = converted_4347_list.into_any().unbind();
+        Ok(converted_4347)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_4089 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4089)
+            let converted_4350 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4350)
         } else {
             Ok(py.None())
         }
@@ -23649,20 +26328,48 @@ impl PyOperationListAutomatedReasoningPolicyTestResultsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_4090_list = PyList::empty(py);
-        for item_4091 in &self.inner.test_results {
-            let converted_item_4092 = automated_reasoning_policy_test_result_to_py(py, item_4091)?;
-            converted_4090_list.append(converted_item_4092)?;
+        let converted_4352_list = PyList::empty(py);
+        for item_4353 in &self.inner.test_results {
+            let converted_item_4354 =
+                automated_reasoning_policy_test_result_shared_to_py(py, item_4353)?;
+            converted_4352_list.append(converted_item_4354)?;
         }
-        let converted_4090 = converted_4090_list.into_any().unbind();
-        result.set_item("test_results", converted_4090)?;
+        let converted_4352 = converted_4352_list.into_any().unbind();
+        result.set_item("test_results", converted_4352)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_4093 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_4093)?;
+            let converted_4355 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_4355)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListCustomModelDeploymentsOutput {
+    next_token: Option<::std::string::String>,
+    model_deployment_summaries:
+        Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::CustomModelDeploymentSummary>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl
+    From<
+        aws_sdk_bedrock::operation::list_custom_model_deployments::ListCustomModelDeploymentsOutput,
+    > for SharedPyOperationListCustomModelDeploymentsOutput
+{
+    fn from(
+        value: aws_sdk_bedrock::operation::list_custom_model_deployments::ListCustomModelDeploymentsOutput,
+    ) -> Self {
+        Self {
+            next_token: value.next_token,
+            model_deployment_summaries: value.model_deployment_summaries.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_4360| Arc::new(owned_4360))
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -23672,8 +26379,7 @@ impl PyOperationListAutomatedReasoningPolicyTestResultsOutput {
     frozen
 )]
 struct PyOperationListCustomModelDeploymentsOutput {
-    inner:
-        aws_sdk_bedrock::operation::list_custom_model_deployments::ListCustomModelDeploymentsOutput,
+    inner: SharedPyOperationListCustomModelDeploymentsOutput,
 }
 
 #[pymethods]
@@ -23681,8 +26387,8 @@ impl PyOperationListCustomModelDeploymentsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_4094 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4094)
+            let converted_4356 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4356)
         } else {
             Ok(py.None())
         }
@@ -23691,19 +26397,19 @@ impl PyOperationListCustomModelDeploymentsOutput {
     #[getter]
     fn model_deployment_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_deployment_summaries {
-            let converted_4095_list = PyList::empty(py);
-            for item_4096 in value {
-                let converted_item_4097 = Py::new(
+            let converted_4357_list = PyList::empty(py);
+            for item_4358 in value {
+                let converted_item_4359 = Py::new(
                     py,
                     PyCustomModelDeploymentSummary {
-                        inner: (item_4096).to_owned(),
+                        inner: Arc::clone(item_4358),
                     },
                 )?
                 .into_any();
-                converted_4095_list.append(converted_item_4097)?;
+                converted_4357_list.append(converted_item_4359)?;
             }
-            let converted_4095 = converted_4095_list.into_any().unbind();
-            Ok(converted_4095)
+            let converted_4357 = converted_4357_list.into_any().unbind();
+            Ok(converted_4357)
         } else {
             Ok(py.None())
         }
@@ -23712,23 +26418,45 @@ impl PyOperationListCustomModelDeploymentsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.next_token {
-            let converted_4098 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_4098)?;
+            let converted_4361 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_4361)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.model_deployment_summaries {
-            let converted_4099_list = PyList::empty(py);
-            for item_4100 in value {
-                let converted_item_4101 = custom_model_deployment_summary_to_py(py, item_4100)?;
-                converted_4099_list.append(converted_item_4101)?;
+            let converted_4362_list = PyList::empty(py);
+            for item_4363 in value {
+                let converted_item_4364 = custom_model_deployment_summary_to_py(py, item_4363)?;
+                converted_4362_list.append(converted_item_4364)?;
             }
-            let converted_4099 = converted_4099_list.into_any().unbind();
-            result.set_item("model_deployment_summaries", converted_4099)?;
+            let converted_4362 = converted_4362_list.into_any().unbind();
+            result.set_item("model_deployment_summaries", converted_4362)?;
         } else {
             result.set_item("model_deployment_summaries", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListCustomModelsOutput {
+    next_token: Option<::std::string::String>,
+    model_summaries: Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::CustomModelSummary>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::list_custom_models::ListCustomModelsOutput>
+    for SharedPyOperationListCustomModelsOutput
+{
+    fn from(value: aws_sdk_bedrock::operation::list_custom_models::ListCustomModelsOutput) -> Self {
+        Self {
+            next_token: value.next_token,
+            model_summaries: value.model_summaries.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_4369| Arc::new(owned_4369))
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -23738,7 +26466,7 @@ impl PyOperationListCustomModelDeploymentsOutput {
     frozen
 )]
 struct PyOperationListCustomModelsOutput {
-    inner: aws_sdk_bedrock::operation::list_custom_models::ListCustomModelsOutput,
+    inner: SharedPyOperationListCustomModelsOutput,
 }
 
 #[pymethods]
@@ -23746,8 +26474,8 @@ impl PyOperationListCustomModelsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_4102 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4102)
+            let converted_4365 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4365)
         } else {
             Ok(py.None())
         }
@@ -23756,19 +26484,19 @@ impl PyOperationListCustomModelsOutput {
     #[getter]
     fn model_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_summaries {
-            let converted_4103_list = PyList::empty(py);
-            for item_4104 in value {
-                let converted_item_4105 = Py::new(
+            let converted_4366_list = PyList::empty(py);
+            for item_4367 in value {
+                let converted_item_4368 = Py::new(
                     py,
                     PyCustomModelSummary {
-                        inner: (item_4104).to_owned(),
+                        inner: Arc::clone(item_4367),
                     },
                 )?
                 .into_any();
-                converted_4103_list.append(converted_item_4105)?;
+                converted_4366_list.append(converted_item_4368)?;
             }
-            let converted_4103 = converted_4103_list.into_any().unbind();
-            Ok(converted_4103)
+            let converted_4366 = converted_4366_list.into_any().unbind();
+            Ok(converted_4366)
         } else {
             Ok(py.None())
         }
@@ -23777,23 +26505,38 @@ impl PyOperationListCustomModelsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.next_token {
-            let converted_4106 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_4106)?;
+            let converted_4370 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_4370)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.model_summaries {
-            let converted_4107_list = PyList::empty(py);
-            for item_4108 in value {
-                let converted_item_4109 = custom_model_summary_to_py(py, item_4108)?;
-                converted_4107_list.append(converted_item_4109)?;
+            let converted_4371_list = PyList::empty(py);
+            for item_4372 in value {
+                let converted_item_4373 = custom_model_summary_to_py(py, item_4372)?;
+                converted_4371_list.append(converted_item_4373)?;
             }
-            let converted_4107 = converted_4107_list.into_any().unbind();
-            result.set_item("model_summaries", converted_4107)?;
+            let converted_4371 = converted_4371_list.into_any().unbind();
+            result.set_item("model_summaries", converted_4371)?;
         } else {
             result.set_item("model_summaries", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListEnforcedGuardrailsConfigurationOutput {
+    guardrails_config: ::std::vec::Vec<Arc<SharedAccountEnforcedGuardrailOutputConfiguration>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::list_enforced_guardrails_configuration::ListEnforcedGuardrailsConfigurationOutput> for SharedPyOperationListEnforcedGuardrailsConfigurationOutput {
+    fn from(value: aws_sdk_bedrock::operation::list_enforced_guardrails_configuration::ListEnforcedGuardrailsConfigurationOutput) -> Self {
+        Self {
+            guardrails_config: (value.guardrails_config).into_iter().map(|owned_4378| Arc::new(SharedAccountEnforcedGuardrailOutputConfiguration::from(owned_4378))).collect(),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -23803,33 +26546,33 @@ impl PyOperationListCustomModelsOutput {
     frozen
 )]
 struct PyOperationListEnforcedGuardrailsConfigurationOutput {
-    inner: aws_sdk_bedrock::operation::list_enforced_guardrails_configuration::ListEnforcedGuardrailsConfigurationOutput,
+    inner: SharedPyOperationListEnforcedGuardrailsConfigurationOutput,
 }
 
 #[pymethods]
 impl PyOperationListEnforcedGuardrailsConfigurationOutput {
     #[getter]
     fn guardrails_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4110_list = PyList::empty(py);
-        for item_4111 in &self.inner.guardrails_config {
-            let converted_item_4112 = Py::new(
+        let converted_4374_list = PyList::empty(py);
+        for item_4375 in &self.inner.guardrails_config {
+            let converted_item_4376 = Py::new(
                 py,
                 PyAccountEnforcedGuardrailOutputConfiguration {
-                    inner: (item_4111).to_owned(),
+                    inner: Arc::clone(item_4375),
                 },
             )?
             .into_any();
-            converted_4110_list.append(converted_item_4112)?;
+            converted_4374_list.append(converted_item_4376)?;
         }
-        let converted_4110 = converted_4110_list.into_any().unbind();
-        Ok(converted_4110)
+        let converted_4374 = converted_4374_list.into_any().unbind();
+        Ok(converted_4374)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_4113 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4113)
+            let converted_4377 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4377)
         } else {
             Ok(py.None())
         }
@@ -23837,21 +26580,45 @@ impl PyOperationListEnforcedGuardrailsConfigurationOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_4114_list = PyList::empty(py);
-        for item_4115 in &self.inner.guardrails_config {
-            let converted_item_4116 =
-                account_enforced_guardrail_output_configuration_to_py(py, item_4115)?;
-            converted_4114_list.append(converted_item_4116)?;
+        let converted_4379_list = PyList::empty(py);
+        for item_4380 in &self.inner.guardrails_config {
+            let converted_item_4381 =
+                account_enforced_guardrail_output_configuration_shared_to_py(py, item_4380)?;
+            converted_4379_list.append(converted_item_4381)?;
         }
-        let converted_4114 = converted_4114_list.into_any().unbind();
-        result.set_item("guardrails_config", converted_4114)?;
+        let converted_4379 = converted_4379_list.into_any().unbind();
+        result.set_item("guardrails_config", converted_4379)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_4117 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_4117)?;
+            let converted_4382 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_4382)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListEvaluationJobsOutput {
+    next_token: Option<::std::string::String>,
+    job_summaries: Option<::std::vec::Vec<Arc<SharedEvaluationSummary>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::list_evaluation_jobs::ListEvaluationJobsOutput>
+    for SharedPyOperationListEvaluationJobsOutput
+{
+    fn from(
+        value: aws_sdk_bedrock::operation::list_evaluation_jobs::ListEvaluationJobsOutput,
+    ) -> Self {
+        Self {
+            next_token: value.next_token,
+            job_summaries: value.job_summaries.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_4387| Arc::new(SharedEvaluationSummary::from(owned_4387)))
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -23861,7 +26628,7 @@ impl PyOperationListEnforcedGuardrailsConfigurationOutput {
     frozen
 )]
 struct PyOperationListEvaluationJobsOutput {
-    inner: aws_sdk_bedrock::operation::list_evaluation_jobs::ListEvaluationJobsOutput,
+    inner: SharedPyOperationListEvaluationJobsOutput,
 }
 
 #[pymethods]
@@ -23869,8 +26636,8 @@ impl PyOperationListEvaluationJobsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_4118 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4118)
+            let converted_4383 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4383)
         } else {
             Ok(py.None())
         }
@@ -23879,19 +26646,19 @@ impl PyOperationListEvaluationJobsOutput {
     #[getter]
     fn job_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_summaries {
-            let converted_4119_list = PyList::empty(py);
-            for item_4120 in value {
-                let converted_item_4121 = Py::new(
+            let converted_4384_list = PyList::empty(py);
+            for item_4385 in value {
+                let converted_item_4386 = Py::new(
                     py,
                     PyEvaluationSummary {
-                        inner: (item_4120).to_owned(),
+                        inner: Arc::clone(item_4385),
                     },
                 )?
                 .into_any();
-                converted_4119_list.append(converted_item_4121)?;
+                converted_4384_list.append(converted_item_4386)?;
             }
-            let converted_4119 = converted_4119_list.into_any().unbind();
-            Ok(converted_4119)
+            let converted_4384 = converted_4384_list.into_any().unbind();
+            Ok(converted_4384)
         } else {
             Ok(py.None())
         }
@@ -23900,23 +26667,38 @@ impl PyOperationListEvaluationJobsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.next_token {
-            let converted_4122 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_4122)?;
+            let converted_4388 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_4388)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.job_summaries {
-            let converted_4123_list = PyList::empty(py);
-            for item_4124 in value {
-                let converted_item_4125 = evaluation_summary_to_py(py, item_4124)?;
-                converted_4123_list.append(converted_item_4125)?;
+            let converted_4389_list = PyList::empty(py);
+            for item_4390 in value {
+                let converted_item_4391 = evaluation_summary_shared_to_py(py, item_4390)?;
+                converted_4389_list.append(converted_item_4391)?;
             }
-            let converted_4123 = converted_4123_list.into_any().unbind();
-            result.set_item("job_summaries", converted_4123)?;
+            let converted_4389 = converted_4389_list.into_any().unbind();
+            result.set_item("job_summaries", converted_4389)?;
         } else {
             result.set_item("job_summaries", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListFoundationModelAgreementOffersOutput {
+    model_id: ::std::string::String,
+    offers: ::std::vec::Vec<Arc<SharedOffer>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::list_foundation_model_agreement_offers::ListFoundationModelAgreementOffersOutput> for SharedPyOperationListFoundationModelAgreementOffersOutput {
+    fn from(value: aws_sdk_bedrock::operation::list_foundation_model_agreement_offers::ListFoundationModelAgreementOffersOutput) -> Self {
+        Self {
+            model_id: value.model_id,
+            offers: (value.offers).into_iter().map(|owned_4396| Arc::new(SharedOffer::from(owned_4396))).collect(),
+        }
     }
 }
 
@@ -23926,46 +26708,68 @@ impl PyOperationListEvaluationJobsOutput {
     frozen
 )]
 struct PyOperationListFoundationModelAgreementOffersOutput {
-    inner: aws_sdk_bedrock::operation::list_foundation_model_agreement_offers::ListFoundationModelAgreementOffersOutput,
+    inner: SharedPyOperationListFoundationModelAgreementOffersOutput,
 }
 
 #[pymethods]
 impl PyOperationListFoundationModelAgreementOffersOutput {
     #[getter]
     fn model_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4126 = (&self.inner.model_id).as_str().into_py_any(py)?;
-        Ok(converted_4126)
+        let converted_4392 = (&self.inner.model_id).as_str().into_py_any(py)?;
+        Ok(converted_4392)
     }
 
     #[getter]
     fn offers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4127_list = PyList::empty(py);
-        for item_4128 in &self.inner.offers {
-            let converted_item_4129 = Py::new(
+        let converted_4393_list = PyList::empty(py);
+        for item_4394 in &self.inner.offers {
+            let converted_item_4395 = Py::new(
                 py,
                 PyOffer {
-                    inner: (item_4128).to_owned(),
+                    inner: Arc::clone(item_4394),
                 },
             )?
             .into_any();
-            converted_4127_list.append(converted_item_4129)?;
+            converted_4393_list.append(converted_item_4395)?;
         }
-        let converted_4127 = converted_4127_list.into_any().unbind();
-        Ok(converted_4127)
+        let converted_4393 = converted_4393_list.into_any().unbind();
+        Ok(converted_4393)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_4130 = (&self.inner.model_id).as_str().into_py_any(py)?;
-        result.set_item("model_id", converted_4130)?;
-        let converted_4131_list = PyList::empty(py);
-        for item_4132 in &self.inner.offers {
-            let converted_item_4133 = offer_to_py(py, item_4132)?;
-            converted_4131_list.append(converted_item_4133)?;
+        let converted_4397 = (&self.inner.model_id).as_str().into_py_any(py)?;
+        result.set_item("model_id", converted_4397)?;
+        let converted_4398_list = PyList::empty(py);
+        for item_4399 in &self.inner.offers {
+            let converted_item_4400 = offer_shared_to_py(py, item_4399)?;
+            converted_4398_list.append(converted_item_4400)?;
         }
-        let converted_4131 = converted_4131_list.into_any().unbind();
-        result.set_item("offers", converted_4131)?;
+        let converted_4398 = converted_4398_list.into_any().unbind();
+        result.set_item("offers", converted_4398)?;
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListFoundationModelsOutput {
+    model_summaries: Option<::std::vec::Vec<Arc<SharedFoundationModelSummary>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::list_foundation_models::ListFoundationModelsOutput>
+    for SharedPyOperationListFoundationModelsOutput
+{
+    fn from(
+        value: aws_sdk_bedrock::operation::list_foundation_models::ListFoundationModelsOutput,
+    ) -> Self {
+        Self {
+            model_summaries: value.model_summaries.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_4404| Arc::new(SharedFoundationModelSummary::from(owned_4404)))
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -23975,7 +26779,7 @@ impl PyOperationListFoundationModelAgreementOffersOutput {
     frozen
 )]
 struct PyOperationListFoundationModelsOutput {
-    inner: aws_sdk_bedrock::operation::list_foundation_models::ListFoundationModelsOutput,
+    inner: SharedPyOperationListFoundationModelsOutput,
 }
 
 #[pymethods]
@@ -23983,19 +26787,19 @@ impl PyOperationListFoundationModelsOutput {
     #[getter]
     fn model_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_summaries {
-            let converted_4134_list = PyList::empty(py);
-            for item_4135 in value {
-                let converted_item_4136 = Py::new(
+            let converted_4401_list = PyList::empty(py);
+            for item_4402 in value {
+                let converted_item_4403 = Py::new(
                     py,
                     PyFoundationModelSummary {
-                        inner: (item_4135).to_owned(),
+                        inner: Arc::clone(item_4402),
                     },
                 )?
                 .into_any();
-                converted_4134_list.append(converted_item_4136)?;
+                converted_4401_list.append(converted_item_4403)?;
             }
-            let converted_4134 = converted_4134_list.into_any().unbind();
-            Ok(converted_4134)
+            let converted_4401 = converted_4401_list.into_any().unbind();
+            Ok(converted_4401)
         } else {
             Ok(py.None())
         }
@@ -24004,17 +26808,37 @@ impl PyOperationListFoundationModelsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.model_summaries {
-            let converted_4137_list = PyList::empty(py);
-            for item_4138 in value {
-                let converted_item_4139 = foundation_model_summary_to_py(py, item_4138)?;
-                converted_4137_list.append(converted_item_4139)?;
+            let converted_4405_list = PyList::empty(py);
+            for item_4406 in value {
+                let converted_item_4407 = foundation_model_summary_shared_to_py(py, item_4406)?;
+                converted_4405_list.append(converted_item_4407)?;
             }
-            let converted_4137 = converted_4137_list.into_any().unbind();
-            result.set_item("model_summaries", converted_4137)?;
+            let converted_4405 = converted_4405_list.into_any().unbind();
+            result.set_item("model_summaries", converted_4405)?;
         } else {
             result.set_item("model_summaries", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListGuardrailsOutput {
+    guardrails: ::std::vec::Vec<Arc<SharedGuardrailSummary>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::list_guardrails::ListGuardrailsOutput>
+    for SharedPyOperationListGuardrailsOutput
+{
+    fn from(value: aws_sdk_bedrock::operation::list_guardrails::ListGuardrailsOutput) -> Self {
+        Self {
+            guardrails: (value.guardrails)
+                .into_iter()
+                .map(|owned_4412| Arc::new(SharedGuardrailSummary::from(owned_4412)))
+                .collect(),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -24024,33 +26848,33 @@ impl PyOperationListFoundationModelsOutput {
     frozen
 )]
 struct PyOperationListGuardrailsOutput {
-    inner: aws_sdk_bedrock::operation::list_guardrails::ListGuardrailsOutput,
+    inner: SharedPyOperationListGuardrailsOutput,
 }
 
 #[pymethods]
 impl PyOperationListGuardrailsOutput {
     #[getter]
     fn guardrails(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4140_list = PyList::empty(py);
-        for item_4141 in &self.inner.guardrails {
-            let converted_item_4142 = Py::new(
+        let converted_4408_list = PyList::empty(py);
+        for item_4409 in &self.inner.guardrails {
+            let converted_item_4410 = Py::new(
                 py,
                 PyGuardrailSummary {
-                    inner: (item_4141).to_owned(),
+                    inner: Arc::clone(item_4409),
                 },
             )?
             .into_any();
-            converted_4140_list.append(converted_item_4142)?;
+            converted_4408_list.append(converted_item_4410)?;
         }
-        let converted_4140 = converted_4140_list.into_any().unbind();
-        Ok(converted_4140)
+        let converted_4408 = converted_4408_list.into_any().unbind();
+        Ok(converted_4408)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_4143 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4143)
+            let converted_4411 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4411)
         } else {
             Ok(py.None())
         }
@@ -24058,20 +26882,44 @@ impl PyOperationListGuardrailsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_4144_list = PyList::empty(py);
-        for item_4145 in &self.inner.guardrails {
-            let converted_item_4146 = guardrail_summary_to_py(py, item_4145)?;
-            converted_4144_list.append(converted_item_4146)?;
+        let converted_4413_list = PyList::empty(py);
+        for item_4414 in &self.inner.guardrails {
+            let converted_item_4415 = guardrail_summary_shared_to_py(py, item_4414)?;
+            converted_4413_list.append(converted_item_4415)?;
         }
-        let converted_4144 = converted_4144_list.into_any().unbind();
-        result.set_item("guardrails", converted_4144)?;
+        let converted_4413 = converted_4413_list.into_any().unbind();
+        result.set_item("guardrails", converted_4413)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_4147 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_4147)?;
+            let converted_4416 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_4416)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListImportedModelsOutput {
+    next_token: Option<::std::string::String>,
+    model_summaries: Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::ImportedModelSummary>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::list_imported_models::ListImportedModelsOutput>
+    for SharedPyOperationListImportedModelsOutput
+{
+    fn from(
+        value: aws_sdk_bedrock::operation::list_imported_models::ListImportedModelsOutput,
+    ) -> Self {
+        Self {
+            next_token: value.next_token,
+            model_summaries: value.model_summaries.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_4421| Arc::new(owned_4421))
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -24081,7 +26929,7 @@ impl PyOperationListGuardrailsOutput {
     frozen
 )]
 struct PyOperationListImportedModelsOutput {
-    inner: aws_sdk_bedrock::operation::list_imported_models::ListImportedModelsOutput,
+    inner: SharedPyOperationListImportedModelsOutput,
 }
 
 #[pymethods]
@@ -24089,8 +26937,8 @@ impl PyOperationListImportedModelsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_4148 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4148)
+            let converted_4417 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4417)
         } else {
             Ok(py.None())
         }
@@ -24099,19 +26947,19 @@ impl PyOperationListImportedModelsOutput {
     #[getter]
     fn model_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_summaries {
-            let converted_4149_list = PyList::empty(py);
-            for item_4150 in value {
-                let converted_item_4151 = Py::new(
+            let converted_4418_list = PyList::empty(py);
+            for item_4419 in value {
+                let converted_item_4420 = Py::new(
                     py,
                     PyImportedModelSummary {
-                        inner: (item_4150).to_owned(),
+                        inner: Arc::clone(item_4419),
                     },
                 )?
                 .into_any();
-                converted_4149_list.append(converted_item_4151)?;
+                converted_4418_list.append(converted_item_4420)?;
             }
-            let converted_4149 = converted_4149_list.into_any().unbind();
-            Ok(converted_4149)
+            let converted_4418 = converted_4418_list.into_any().unbind();
+            Ok(converted_4418)
         } else {
             Ok(py.None())
         }
@@ -24120,23 +26968,47 @@ impl PyOperationListImportedModelsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.next_token {
-            let converted_4152 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_4152)?;
+            let converted_4422 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_4422)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.model_summaries {
-            let converted_4153_list = PyList::empty(py);
-            for item_4154 in value {
-                let converted_item_4155 = imported_model_summary_to_py(py, item_4154)?;
-                converted_4153_list.append(converted_item_4155)?;
+            let converted_4423_list = PyList::empty(py);
+            for item_4424 in value {
+                let converted_item_4425 = imported_model_summary_to_py(py, item_4424)?;
+                converted_4423_list.append(converted_item_4425)?;
             }
-            let converted_4153 = converted_4153_list.into_any().unbind();
-            result.set_item("model_summaries", converted_4153)?;
+            let converted_4423 = converted_4423_list.into_any().unbind();
+            result.set_item("model_summaries", converted_4423)?;
         } else {
             result.set_item("model_summaries", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListInferenceProfilesOutput {
+    inference_profile_summaries: Option<::std::vec::Vec<Arc<SharedInferenceProfileSummary>>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::list_inference_profiles::ListInferenceProfilesOutput>
+    for SharedPyOperationListInferenceProfilesOutput
+{
+    fn from(
+        value: aws_sdk_bedrock::operation::list_inference_profiles::ListInferenceProfilesOutput,
+    ) -> Self {
+        Self {
+            inference_profile_summaries: value.inference_profile_summaries.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_4430| Arc::new(SharedInferenceProfileSummary::from(owned_4430)))
+                    .collect()
+            }),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -24146,7 +27018,7 @@ impl PyOperationListImportedModelsOutput {
     frozen
 )]
 struct PyOperationListInferenceProfilesOutput {
-    inner: aws_sdk_bedrock::operation::list_inference_profiles::ListInferenceProfilesOutput,
+    inner: SharedPyOperationListInferenceProfilesOutput,
 }
 
 #[pymethods]
@@ -24154,19 +27026,19 @@ impl PyOperationListInferenceProfilesOutput {
     #[getter]
     fn inference_profile_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.inference_profile_summaries {
-            let converted_4156_list = PyList::empty(py);
-            for item_4157 in value {
-                let converted_item_4158 = Py::new(
+            let converted_4426_list = PyList::empty(py);
+            for item_4427 in value {
+                let converted_item_4428 = Py::new(
                     py,
                     PyInferenceProfileSummary {
-                        inner: (item_4157).to_owned(),
+                        inner: Arc::clone(item_4427),
                     },
                 )?
                 .into_any();
-                converted_4156_list.append(converted_item_4158)?;
+                converted_4426_list.append(converted_item_4428)?;
             }
-            let converted_4156 = converted_4156_list.into_any().unbind();
-            Ok(converted_4156)
+            let converted_4426 = converted_4426_list.into_any().unbind();
+            Ok(converted_4426)
         } else {
             Ok(py.None())
         }
@@ -24175,8 +27047,8 @@ impl PyOperationListInferenceProfilesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_4159 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4159)
+            let converted_4429 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4429)
         } else {
             Ok(py.None())
         }
@@ -24185,23 +27057,39 @@ impl PyOperationListInferenceProfilesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.inference_profile_summaries {
-            let converted_4160_list = PyList::empty(py);
-            for item_4161 in value {
-                let converted_item_4162 = inference_profile_summary_to_py(py, item_4161)?;
-                converted_4160_list.append(converted_item_4162)?;
+            let converted_4431_list = PyList::empty(py);
+            for item_4432 in value {
+                let converted_item_4433 = inference_profile_summary_shared_to_py(py, item_4432)?;
+                converted_4431_list.append(converted_item_4433)?;
             }
-            let converted_4160 = converted_4160_list.into_any().unbind();
-            result.set_item("inference_profile_summaries", converted_4160)?;
+            let converted_4431 = converted_4431_list.into_any().unbind();
+            result.set_item("inference_profile_summaries", converted_4431)?;
         } else {
             result.set_item("inference_profile_summaries", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_4163 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_4163)?;
+            let converted_4434 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_4434)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListMarketplaceModelEndpointsOutput {
+    marketplace_model_endpoints:
+        Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::MarketplaceModelEndpointSummary>>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::list_marketplace_model_endpoints::ListMarketplaceModelEndpointsOutput> for SharedPyOperationListMarketplaceModelEndpointsOutput {
+    fn from(value: aws_sdk_bedrock::operation::list_marketplace_model_endpoints::ListMarketplaceModelEndpointsOutput) -> Self {
+        Self {
+            marketplace_model_endpoints: value.marketplace_model_endpoints.map(|item| (item).into_iter().map(|owned_4439| Arc::new(owned_4439)).collect()),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -24211,7 +27099,7 @@ impl PyOperationListInferenceProfilesOutput {
     frozen
 )]
 struct PyOperationListMarketplaceModelEndpointsOutput {
-    inner: aws_sdk_bedrock::operation::list_marketplace_model_endpoints::ListMarketplaceModelEndpointsOutput,
+    inner: SharedPyOperationListMarketplaceModelEndpointsOutput,
 }
 
 #[pymethods]
@@ -24219,19 +27107,19 @@ impl PyOperationListMarketplaceModelEndpointsOutput {
     #[getter]
     fn marketplace_model_endpoints(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.marketplace_model_endpoints {
-            let converted_4164_list = PyList::empty(py);
-            for item_4165 in value {
-                let converted_item_4166 = Py::new(
+            let converted_4435_list = PyList::empty(py);
+            for item_4436 in value {
+                let converted_item_4437 = Py::new(
                     py,
                     PyMarketplaceModelEndpointSummary {
-                        inner: (item_4165).to_owned(),
+                        inner: Arc::clone(item_4436),
                     },
                 )?
                 .into_any();
-                converted_4164_list.append(converted_item_4166)?;
+                converted_4435_list.append(converted_item_4437)?;
             }
-            let converted_4164 = converted_4164_list.into_any().unbind();
-            Ok(converted_4164)
+            let converted_4435 = converted_4435_list.into_any().unbind();
+            Ok(converted_4435)
         } else {
             Ok(py.None())
         }
@@ -24240,8 +27128,8 @@ impl PyOperationListMarketplaceModelEndpointsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_4167 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4167)
+            let converted_4438 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4438)
         } else {
             Ok(py.None())
         }
@@ -24250,23 +27138,47 @@ impl PyOperationListMarketplaceModelEndpointsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.marketplace_model_endpoints {
-            let converted_4168_list = PyList::empty(py);
-            for item_4169 in value {
-                let converted_item_4170 = marketplace_model_endpoint_summary_to_py(py, item_4169)?;
-                converted_4168_list.append(converted_item_4170)?;
+            let converted_4440_list = PyList::empty(py);
+            for item_4441 in value {
+                let converted_item_4442 = marketplace_model_endpoint_summary_to_py(py, item_4441)?;
+                converted_4440_list.append(converted_item_4442)?;
             }
-            let converted_4168 = converted_4168_list.into_any().unbind();
-            result.set_item("marketplace_model_endpoints", converted_4168)?;
+            let converted_4440 = converted_4440_list.into_any().unbind();
+            result.set_item("marketplace_model_endpoints", converted_4440)?;
         } else {
             result.set_item("marketplace_model_endpoints", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_4171 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_4171)?;
+            let converted_4443 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_4443)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListModelCopyJobsOutput {
+    next_token: Option<::std::string::String>,
+    model_copy_job_summaries: Option<::std::vec::Vec<Arc<SharedModelCopyJobSummary>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::list_model_copy_jobs::ListModelCopyJobsOutput>
+    for SharedPyOperationListModelCopyJobsOutput
+{
+    fn from(
+        value: aws_sdk_bedrock::operation::list_model_copy_jobs::ListModelCopyJobsOutput,
+    ) -> Self {
+        Self {
+            next_token: value.next_token,
+            model_copy_job_summaries: value.model_copy_job_summaries.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_4448| Arc::new(SharedModelCopyJobSummary::from(owned_4448)))
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -24276,7 +27188,7 @@ impl PyOperationListMarketplaceModelEndpointsOutput {
     frozen
 )]
 struct PyOperationListModelCopyJobsOutput {
-    inner: aws_sdk_bedrock::operation::list_model_copy_jobs::ListModelCopyJobsOutput,
+    inner: SharedPyOperationListModelCopyJobsOutput,
 }
 
 #[pymethods]
@@ -24284,8 +27196,8 @@ impl PyOperationListModelCopyJobsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_4172 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4172)
+            let converted_4444 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4444)
         } else {
             Ok(py.None())
         }
@@ -24294,19 +27206,19 @@ impl PyOperationListModelCopyJobsOutput {
     #[getter]
     fn model_copy_job_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_copy_job_summaries {
-            let converted_4173_list = PyList::empty(py);
-            for item_4174 in value {
-                let converted_item_4175 = Py::new(
+            let converted_4445_list = PyList::empty(py);
+            for item_4446 in value {
+                let converted_item_4447 = Py::new(
                     py,
                     PyModelCopyJobSummary {
-                        inner: (item_4174).to_owned(),
+                        inner: Arc::clone(item_4446),
                     },
                 )?
                 .into_any();
-                converted_4173_list.append(converted_item_4175)?;
+                converted_4445_list.append(converted_item_4447)?;
             }
-            let converted_4173 = converted_4173_list.into_any().unbind();
-            Ok(converted_4173)
+            let converted_4445 = converted_4445_list.into_any().unbind();
+            Ok(converted_4445)
         } else {
             Ok(py.None())
         }
@@ -24315,23 +27227,54 @@ impl PyOperationListModelCopyJobsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.next_token {
-            let converted_4176 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_4176)?;
+            let converted_4449 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_4449)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.model_copy_job_summaries {
-            let converted_4177_list = PyList::empty(py);
-            for item_4178 in value {
-                let converted_item_4179 = model_copy_job_summary_to_py(py, item_4178)?;
-                converted_4177_list.append(converted_item_4179)?;
+            let converted_4450_list = PyList::empty(py);
+            for item_4451 in value {
+                let converted_item_4452 = model_copy_job_summary_shared_to_py(py, item_4451)?;
+                converted_4450_list.append(converted_item_4452)?;
             }
-            let converted_4177 = converted_4177_list.into_any().unbind();
-            result.set_item("model_copy_job_summaries", converted_4177)?;
+            let converted_4450 = converted_4450_list.into_any().unbind();
+            result.set_item("model_copy_job_summaries", converted_4450)?;
         } else {
             result.set_item("model_copy_job_summaries", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListModelCustomizationJobsOutput {
+    next_token: Option<::std::string::String>,
+    model_customization_job_summaries:
+        Option<::std::vec::Vec<Arc<SharedModelCustomizationJobSummary>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl
+    From<
+        aws_sdk_bedrock::operation::list_model_customization_jobs::ListModelCustomizationJobsOutput,
+    > for SharedPyOperationListModelCustomizationJobsOutput
+{
+    fn from(
+        value: aws_sdk_bedrock::operation::list_model_customization_jobs::ListModelCustomizationJobsOutput,
+    ) -> Self {
+        Self {
+            next_token: value.next_token,
+            model_customization_job_summaries: value.model_customization_job_summaries.map(
+                |item| {
+                    (item)
+                        .into_iter()
+                        .map(|owned_4457| {
+                            Arc::new(SharedModelCustomizationJobSummary::from(owned_4457))
+                        })
+                        .collect()
+                },
+            ),
+        }
     }
 }
 
@@ -24341,8 +27284,7 @@ impl PyOperationListModelCopyJobsOutput {
     frozen
 )]
 struct PyOperationListModelCustomizationJobsOutput {
-    inner:
-        aws_sdk_bedrock::operation::list_model_customization_jobs::ListModelCustomizationJobsOutput,
+    inner: SharedPyOperationListModelCustomizationJobsOutput,
 }
 
 #[pymethods]
@@ -24350,8 +27292,8 @@ impl PyOperationListModelCustomizationJobsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_4180 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4180)
+            let converted_4453 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4453)
         } else {
             Ok(py.None())
         }
@@ -24360,19 +27302,19 @@ impl PyOperationListModelCustomizationJobsOutput {
     #[getter]
     fn model_customization_job_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_customization_job_summaries {
-            let converted_4181_list = PyList::empty(py);
-            for item_4182 in value {
-                let converted_item_4183 = Py::new(
+            let converted_4454_list = PyList::empty(py);
+            for item_4455 in value {
+                let converted_item_4456 = Py::new(
                     py,
                     PyModelCustomizationJobSummary {
-                        inner: (item_4182).to_owned(),
+                        inner: Arc::clone(item_4455),
                     },
                 )?
                 .into_any();
-                converted_4181_list.append(converted_item_4183)?;
+                converted_4454_list.append(converted_item_4456)?;
             }
-            let converted_4181 = converted_4181_list.into_any().unbind();
-            Ok(converted_4181)
+            let converted_4454 = converted_4454_list.into_any().unbind();
+            Ok(converted_4454)
         } else {
             Ok(py.None())
         }
@@ -24381,23 +27323,49 @@ impl PyOperationListModelCustomizationJobsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.next_token {
-            let converted_4184 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_4184)?;
+            let converted_4458 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_4458)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.model_customization_job_summaries {
-            let converted_4185_list = PyList::empty(py);
-            for item_4186 in value {
-                let converted_item_4187 = model_customization_job_summary_to_py(py, item_4186)?;
-                converted_4185_list.append(converted_item_4187)?;
+            let converted_4459_list = PyList::empty(py);
+            for item_4460 in value {
+                let converted_item_4461 =
+                    model_customization_job_summary_shared_to_py(py, item_4460)?;
+                converted_4459_list.append(converted_item_4461)?;
             }
-            let converted_4185 = converted_4185_list.into_any().unbind();
-            result.set_item("model_customization_job_summaries", converted_4185)?;
+            let converted_4459 = converted_4459_list.into_any().unbind();
+            result.set_item("model_customization_job_summaries", converted_4459)?;
         } else {
             result.set_item("model_customization_job_summaries", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListModelImportJobsOutput {
+    next_token: Option<::std::string::String>,
+    model_import_job_summaries:
+        Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::ModelImportJobSummary>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::list_model_import_jobs::ListModelImportJobsOutput>
+    for SharedPyOperationListModelImportJobsOutput
+{
+    fn from(
+        value: aws_sdk_bedrock::operation::list_model_import_jobs::ListModelImportJobsOutput,
+    ) -> Self {
+        Self {
+            next_token: value.next_token,
+            model_import_job_summaries: value.model_import_job_summaries.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_4466| Arc::new(owned_4466))
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -24407,7 +27375,7 @@ impl PyOperationListModelCustomizationJobsOutput {
     frozen
 )]
 struct PyOperationListModelImportJobsOutput {
-    inner: aws_sdk_bedrock::operation::list_model_import_jobs::ListModelImportJobsOutput,
+    inner: SharedPyOperationListModelImportJobsOutput,
 }
 
 #[pymethods]
@@ -24415,8 +27383,8 @@ impl PyOperationListModelImportJobsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_4188 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4188)
+            let converted_4462 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4462)
         } else {
             Ok(py.None())
         }
@@ -24425,19 +27393,19 @@ impl PyOperationListModelImportJobsOutput {
     #[getter]
     fn model_import_job_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_import_job_summaries {
-            let converted_4189_list = PyList::empty(py);
-            for item_4190 in value {
-                let converted_item_4191 = Py::new(
+            let converted_4463_list = PyList::empty(py);
+            for item_4464 in value {
+                let converted_item_4465 = Py::new(
                     py,
                     PyModelImportJobSummary {
-                        inner: (item_4190).to_owned(),
+                        inner: Arc::clone(item_4464),
                     },
                 )?
                 .into_any();
-                converted_4189_list.append(converted_item_4191)?;
+                converted_4463_list.append(converted_item_4465)?;
             }
-            let converted_4189 = converted_4189_list.into_any().unbind();
-            Ok(converted_4189)
+            let converted_4463 = converted_4463_list.into_any().unbind();
+            Ok(converted_4463)
         } else {
             Ok(py.None())
         }
@@ -24446,23 +27414,47 @@ impl PyOperationListModelImportJobsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.next_token {
-            let converted_4192 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_4192)?;
+            let converted_4467 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_4467)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.model_import_job_summaries {
-            let converted_4193_list = PyList::empty(py);
-            for item_4194 in value {
-                let converted_item_4195 = model_import_job_summary_to_py(py, item_4194)?;
-                converted_4193_list.append(converted_item_4195)?;
+            let converted_4468_list = PyList::empty(py);
+            for item_4469 in value {
+                let converted_item_4470 = model_import_job_summary_to_py(py, item_4469)?;
+                converted_4468_list.append(converted_item_4470)?;
             }
-            let converted_4193 = converted_4193_list.into_any().unbind();
-            result.set_item("model_import_job_summaries", converted_4193)?;
+            let converted_4468 = converted_4468_list.into_any().unbind();
+            result.set_item("model_import_job_summaries", converted_4468)?;
         } else {
             result.set_item("model_import_job_summaries", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListModelInvocationJobsOutput {
+    next_token: Option<::std::string::String>,
+    invocation_job_summaries: Option<::std::vec::Vec<Arc<SharedModelInvocationJobSummary>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::list_model_invocation_jobs::ListModelInvocationJobsOutput>
+    for SharedPyOperationListModelInvocationJobsOutput
+{
+    fn from(
+        value: aws_sdk_bedrock::operation::list_model_invocation_jobs::ListModelInvocationJobsOutput,
+    ) -> Self {
+        Self {
+            next_token: value.next_token,
+            invocation_job_summaries: value.invocation_job_summaries.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_4475| Arc::new(SharedModelInvocationJobSummary::from(owned_4475)))
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -24472,7 +27464,7 @@ impl PyOperationListModelImportJobsOutput {
     frozen
 )]
 struct PyOperationListModelInvocationJobsOutput {
-    inner: aws_sdk_bedrock::operation::list_model_invocation_jobs::ListModelInvocationJobsOutput,
+    inner: SharedPyOperationListModelInvocationJobsOutput,
 }
 
 #[pymethods]
@@ -24480,8 +27472,8 @@ impl PyOperationListModelInvocationJobsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_4196 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4196)
+            let converted_4471 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4471)
         } else {
             Ok(py.None())
         }
@@ -24490,19 +27482,19 @@ impl PyOperationListModelInvocationJobsOutput {
     #[getter]
     fn invocation_job_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.invocation_job_summaries {
-            let converted_4197_list = PyList::empty(py);
-            for item_4198 in value {
-                let converted_item_4199 = Py::new(
+            let converted_4472_list = PyList::empty(py);
+            for item_4473 in value {
+                let converted_item_4474 = Py::new(
                     py,
                     PyModelInvocationJobSummary {
-                        inner: (item_4198).to_owned(),
+                        inner: Arc::clone(item_4473),
                     },
                 )?
                 .into_any();
-                converted_4197_list.append(converted_item_4199)?;
+                converted_4472_list.append(converted_item_4474)?;
             }
-            let converted_4197 = converted_4197_list.into_any().unbind();
-            Ok(converted_4197)
+            let converted_4472 = converted_4472_list.into_any().unbind();
+            Ok(converted_4472)
         } else {
             Ok(py.None())
         }
@@ -24511,23 +27503,47 @@ impl PyOperationListModelInvocationJobsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.next_token {
-            let converted_4200 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_4200)?;
+            let converted_4476 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_4476)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.invocation_job_summaries {
-            let converted_4201_list = PyList::empty(py);
-            for item_4202 in value {
-                let converted_item_4203 = model_invocation_job_summary_to_py(py, item_4202)?;
-                converted_4201_list.append(converted_item_4203)?;
+            let converted_4477_list = PyList::empty(py);
+            for item_4478 in value {
+                let converted_item_4479 = model_invocation_job_summary_shared_to_py(py, item_4478)?;
+                converted_4477_list.append(converted_item_4479)?;
             }
-            let converted_4201 = converted_4201_list.into_any().unbind();
-            result.set_item("invocation_job_summaries", converted_4201)?;
+            let converted_4477 = converted_4477_list.into_any().unbind();
+            result.set_item("invocation_job_summaries", converted_4477)?;
         } else {
             result.set_item("invocation_job_summaries", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListPromptRoutersOutput {
+    prompt_router_summaries: Option<::std::vec::Vec<Arc<SharedPromptRouterSummary>>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::list_prompt_routers::ListPromptRoutersOutput>
+    for SharedPyOperationListPromptRoutersOutput
+{
+    fn from(
+        value: aws_sdk_bedrock::operation::list_prompt_routers::ListPromptRoutersOutput,
+    ) -> Self {
+        Self {
+            prompt_router_summaries: value.prompt_router_summaries.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_4484| Arc::new(SharedPromptRouterSummary::from(owned_4484)))
+                    .collect()
+            }),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -24537,7 +27553,7 @@ impl PyOperationListModelInvocationJobsOutput {
     frozen
 )]
 struct PyOperationListPromptRoutersOutput {
-    inner: aws_sdk_bedrock::operation::list_prompt_routers::ListPromptRoutersOutput,
+    inner: SharedPyOperationListPromptRoutersOutput,
 }
 
 #[pymethods]
@@ -24545,19 +27561,19 @@ impl PyOperationListPromptRoutersOutput {
     #[getter]
     fn prompt_router_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.prompt_router_summaries {
-            let converted_4204_list = PyList::empty(py);
-            for item_4205 in value {
-                let converted_item_4206 = Py::new(
+            let converted_4480_list = PyList::empty(py);
+            for item_4481 in value {
+                let converted_item_4482 = Py::new(
                     py,
                     PyPromptRouterSummary {
-                        inner: (item_4205).to_owned(),
+                        inner: Arc::clone(item_4481),
                     },
                 )?
                 .into_any();
-                converted_4204_list.append(converted_item_4206)?;
+                converted_4480_list.append(converted_item_4482)?;
             }
-            let converted_4204 = converted_4204_list.into_any().unbind();
-            Ok(converted_4204)
+            let converted_4480 = converted_4480_list.into_any().unbind();
+            Ok(converted_4480)
         } else {
             Ok(py.None())
         }
@@ -24566,8 +27582,8 @@ impl PyOperationListPromptRoutersOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_4207 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4207)
+            let converted_4483 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4483)
         } else {
             Ok(py.None())
         }
@@ -24576,23 +27592,39 @@ impl PyOperationListPromptRoutersOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.prompt_router_summaries {
-            let converted_4208_list = PyList::empty(py);
-            for item_4209 in value {
-                let converted_item_4210 = prompt_router_summary_to_py(py, item_4209)?;
-                converted_4208_list.append(converted_item_4210)?;
+            let converted_4485_list = PyList::empty(py);
+            for item_4486 in value {
+                let converted_item_4487 = prompt_router_summary_shared_to_py(py, item_4486)?;
+                converted_4485_list.append(converted_item_4487)?;
             }
-            let converted_4208 = converted_4208_list.into_any().unbind();
-            result.set_item("prompt_router_summaries", converted_4208)?;
+            let converted_4485 = converted_4485_list.into_any().unbind();
+            result.set_item("prompt_router_summaries", converted_4485)?;
         } else {
             result.set_item("prompt_router_summaries", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_4211 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_4211)?;
+            let converted_4488 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_4488)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListProvisionedModelThroughputsOutput {
+    next_token: Option<::std::string::String>,
+    provisioned_model_summaries:
+        Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::ProvisionedModelSummary>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::list_provisioned_model_throughputs::ListProvisionedModelThroughputsOutput> for SharedPyOperationListProvisionedModelThroughputsOutput {
+    fn from(value: aws_sdk_bedrock::operation::list_provisioned_model_throughputs::ListProvisionedModelThroughputsOutput) -> Self {
+        Self {
+            next_token: value.next_token,
+            provisioned_model_summaries: value.provisioned_model_summaries.map(|item| (item).into_iter().map(|owned_4493| Arc::new(owned_4493)).collect()),
+        }
     }
 }
 
@@ -24602,7 +27634,7 @@ impl PyOperationListPromptRoutersOutput {
     frozen
 )]
 struct PyOperationListProvisionedModelThroughputsOutput {
-    inner: aws_sdk_bedrock::operation::list_provisioned_model_throughputs::ListProvisionedModelThroughputsOutput,
+    inner: SharedPyOperationListProvisionedModelThroughputsOutput,
 }
 
 #[pymethods]
@@ -24610,8 +27642,8 @@ impl PyOperationListProvisionedModelThroughputsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_4212 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4212)
+            let converted_4489 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4489)
         } else {
             Ok(py.None())
         }
@@ -24620,19 +27652,19 @@ impl PyOperationListProvisionedModelThroughputsOutput {
     #[getter]
     fn provisioned_model_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.provisioned_model_summaries {
-            let converted_4213_list = PyList::empty(py);
-            for item_4214 in value {
-                let converted_item_4215 = Py::new(
+            let converted_4490_list = PyList::empty(py);
+            for item_4491 in value {
+                let converted_item_4492 = Py::new(
                     py,
                     PyProvisionedModelSummary {
-                        inner: (item_4214).to_owned(),
+                        inner: Arc::clone(item_4491),
                     },
                 )?
                 .into_any();
-                converted_4213_list.append(converted_item_4215)?;
+                converted_4490_list.append(converted_item_4492)?;
             }
-            let converted_4213 = converted_4213_list.into_any().unbind();
-            Ok(converted_4213)
+            let converted_4490 = converted_4490_list.into_any().unbind();
+            Ok(converted_4490)
         } else {
             Ok(py.None())
         }
@@ -24641,23 +27673,45 @@ impl PyOperationListProvisionedModelThroughputsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.next_token {
-            let converted_4216 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_4216)?;
+            let converted_4494 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_4494)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.provisioned_model_summaries {
-            let converted_4217_list = PyList::empty(py);
-            for item_4218 in value {
-                let converted_item_4219 = provisioned_model_summary_to_py(py, item_4218)?;
-                converted_4217_list.append(converted_item_4219)?;
+            let converted_4495_list = PyList::empty(py);
+            for item_4496 in value {
+                let converted_item_4497 = provisioned_model_summary_to_py(py, item_4496)?;
+                converted_4495_list.append(converted_item_4497)?;
             }
-            let converted_4217 = converted_4217_list.into_any().unbind();
-            result.set_item("provisioned_model_summaries", converted_4217)?;
+            let converted_4495 = converted_4495_list.into_any().unbind();
+            result.set_item("provisioned_model_summaries", converted_4495)?;
         } else {
             result.set_item("provisioned_model_summaries", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListTagsForResourceOutput {
+    tags: Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::Tag>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::list_tags_for_resource::ListTagsForResourceOutput>
+    for SharedPyOperationListTagsForResourceOutput
+{
+    fn from(
+        value: aws_sdk_bedrock::operation::list_tags_for_resource::ListTagsForResourceOutput,
+    ) -> Self {
+        Self {
+            tags: value.tags.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_4501| Arc::new(owned_4501))
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -24667,7 +27721,7 @@ impl PyOperationListProvisionedModelThroughputsOutput {
     frozen
 )]
 struct PyOperationListTagsForResourceOutput {
-    inner: aws_sdk_bedrock::operation::list_tags_for_resource::ListTagsForResourceOutput,
+    inner: SharedPyOperationListTagsForResourceOutput,
 }
 
 #[pymethods]
@@ -24675,19 +27729,19 @@ impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_4220_list = PyList::empty(py);
-            for item_4221 in value {
-                let converted_item_4222 = Py::new(
+            let converted_4498_list = PyList::empty(py);
+            for item_4499 in value {
+                let converted_item_4500 = Py::new(
                     py,
                     PyTag {
-                        inner: (item_4221).to_owned(),
+                        inner: Arc::clone(item_4499),
                     },
                 )?
                 .into_any();
-                converted_4220_list.append(converted_item_4222)?;
+                converted_4498_list.append(converted_item_4500)?;
             }
-            let converted_4220 = converted_4220_list.into_any().unbind();
-            Ok(converted_4220)
+            let converted_4498 = converted_4498_list.into_any().unbind();
+            Ok(converted_4498)
         } else {
             Ok(py.None())
         }
@@ -24696,13 +27750,13 @@ impl PyOperationListTagsForResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.tags {
-            let converted_4223_list = PyList::empty(py);
-            for item_4224 in value {
-                let converted_item_4225 = tag_to_py(py, item_4224)?;
-                converted_4223_list.append(converted_item_4225)?;
+            let converted_4502_list = PyList::empty(py);
+            for item_4503 in value {
+                let converted_item_4504 = tag_to_py(py, item_4503)?;
+                converted_4502_list.append(converted_item_4504)?;
             }
-            let converted_4223 = converted_4223_list.into_any().unbind();
-            result.set_item("tags", converted_4223)?;
+            let converted_4502 = converted_4502_list.into_any().unbind();
+            result.set_item("tags", converted_4502)?;
         } else {
             result.set_item("tags", py.None())?;
         }
@@ -24723,15 +27777,15 @@ struct PyOperationPutAccountDataRetentionOutput {
 impl PyOperationPutAccountDataRetentionOutput {
     #[getter]
     fn mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4226 = (&self.inner.mode).as_str().into_py_any(py)?;
-        Ok(converted_4226)
+        let converted_4505 = (&self.inner.mode).as_str().into_py_any(py)?;
+        Ok(converted_4505)
     }
 
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_at {
-            let converted_4227 = (value).to_string().into_py_any(py)?;
-            Ok(converted_4227)
+            let converted_4506 = (value).to_string().into_py_any(py)?;
+            Ok(converted_4506)
         } else {
             Ok(py.None())
         }
@@ -24739,11 +27793,11 @@ impl PyOperationPutAccountDataRetentionOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_4228 = (&self.inner.mode).as_str().into_py_any(py)?;
-        result.set_item("mode", converted_4228)?;
+        let converted_4507 = (&self.inner.mode).as_str().into_py_any(py)?;
+        result.set_item("mode", converted_4507)?;
         if let Some(value) = &self.inner.updated_at {
-            let converted_4229 = (value).to_string().into_py_any(py)?;
-            result.set_item("updated_at", converted_4229)?;
+            let converted_4508 = (value).to_string().into_py_any(py)?;
+            result.set_item("updated_at", converted_4508)?;
         } else {
             result.set_item("updated_at", py.None())?;
         }
@@ -24765,8 +27819,8 @@ impl PyOperationPutEnforcedGuardrailConfigurationOutput {
     #[getter]
     fn config_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.config_id {
-            let converted_4230 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4230)
+            let converted_4509 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4509)
         } else {
             Ok(py.None())
         }
@@ -24775,8 +27829,8 @@ impl PyOperationPutEnforcedGuardrailConfigurationOutput {
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_at {
-            let converted_4231 = (value).to_string().into_py_any(py)?;
-            Ok(converted_4231)
+            let converted_4510 = (value).to_string().into_py_any(py)?;
+            Ok(converted_4510)
         } else {
             Ok(py.None())
         }
@@ -24785,8 +27839,8 @@ impl PyOperationPutEnforcedGuardrailConfigurationOutput {
     #[getter]
     fn updated_by(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_by {
-            let converted_4232 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4232)
+            let converted_4511 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4511)
         } else {
             Ok(py.None())
         }
@@ -24795,20 +27849,20 @@ impl PyOperationPutEnforcedGuardrailConfigurationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.config_id {
-            let converted_4233 = (value).as_str().into_py_any(py)?;
-            result.set_item("config_id", converted_4233)?;
+            let converted_4512 = (value).as_str().into_py_any(py)?;
+            result.set_item("config_id", converted_4512)?;
         } else {
             result.set_item("config_id", py.None())?;
         }
         if let Some(value) = &self.inner.updated_at {
-            let converted_4234 = (value).to_string().into_py_any(py)?;
-            result.set_item("updated_at", converted_4234)?;
+            let converted_4513 = (value).to_string().into_py_any(py)?;
+            result.set_item("updated_at", converted_4513)?;
         } else {
             result.set_item("updated_at", py.None())?;
         }
         if let Some(value) = &self.inner.updated_by {
-            let converted_4235 = (value).as_str().into_py_any(py)?;
-            result.set_item("updated_by", converted_4235)?;
+            let converted_4514 = (value).as_str().into_py_any(py)?;
+            result.set_item("updated_by", converted_4514)?;
         } else {
             result.set_item("updated_by", py.None())?;
         }
@@ -24847,8 +27901,8 @@ impl PyOperationPutResourcePolicyOutput {
     #[getter]
     fn resource_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_arn {
-            let converted_4236 = (value).as_str().into_py_any(py)?;
-            Ok(converted_4236)
+            let converted_4515 = (value).as_str().into_py_any(py)?;
+            Ok(converted_4515)
         } else {
             Ok(py.None())
         }
@@ -24857,8 +27911,8 @@ impl PyOperationPutResourcePolicyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.resource_arn {
-            let converted_4237 = (value).as_str().into_py_any(py)?;
-            result.set_item("resource_arn", converted_4237)?;
+            let converted_4516 = (value).as_str().into_py_any(py)?;
+            result.set_item("resource_arn", converted_4516)?;
         } else {
             result.set_item("resource_arn", py.None())?;
         }
@@ -24884,13 +27938,26 @@ impl PyOperationPutUseCaseForModelAccessOutput {
     }
 }
 
+struct SharedPyOperationRegisterMarketplaceModelEndpointOutput {
+    marketplace_model_endpoint: Option<Arc<aws_sdk_bedrock::types::MarketplaceModelEndpoint>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::register_marketplace_model_endpoint::RegisterMarketplaceModelEndpointOutput> for SharedPyOperationRegisterMarketplaceModelEndpointOutput {
+    fn from(value: aws_sdk_bedrock::operation::register_marketplace_model_endpoint::RegisterMarketplaceModelEndpointOutput) -> Self {
+        Self {
+            marketplace_model_endpoint: value.marketplace_model_endpoint.map(|item| Arc::new(item)),
+        }
+    }
+}
+
 #[pyclass(
     name = "RegisterMarketplaceModelEndpointOutput",
     module = "rboto_bedrock._native",
     frozen
 )]
 struct PyOperationRegisterMarketplaceModelEndpointOutput {
-    inner: aws_sdk_bedrock::operation::register_marketplace_model_endpoint::RegisterMarketplaceModelEndpointOutput,
+    inner: SharedPyOperationRegisterMarketplaceModelEndpointOutput,
 }
 
 #[pymethods]
@@ -24898,14 +27965,14 @@ impl PyOperationRegisterMarketplaceModelEndpointOutput {
     #[getter]
     fn marketplace_model_endpoint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.marketplace_model_endpoint {
-            let converted_4238 = Py::new(
+            let converted_4517 = Py::new(
                 py,
                 PyMarketplaceModelEndpoint {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_4238)
+            Ok(converted_4517)
         } else {
             Ok(py.None())
         }
@@ -24914,8 +27981,8 @@ impl PyOperationRegisterMarketplaceModelEndpointOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.marketplace_model_endpoint {
-            let converted_4239 = marketplace_model_endpoint_to_py(py, value)?;
-            result.set_item("marketplace_model_endpoint", converted_4239)?;
+            let converted_4518 = marketplace_model_endpoint_to_py(py, value)?;
+            result.set_item("marketplace_model_endpoint", converted_4518)?;
         } else {
             result.set_item("marketplace_model_endpoint", py.None())?;
         }
@@ -24936,22 +28003,22 @@ struct PyOperationStartAutomatedReasoningPolicyBuildWorkflowOutput {
 impl PyOperationStartAutomatedReasoningPolicyBuildWorkflowOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4240 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        Ok(converted_4240)
+        let converted_4519 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        Ok(converted_4519)
     }
 
     #[getter]
     fn build_workflow_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4241 = (&self.inner.build_workflow_id).as_str().into_py_any(py)?;
-        Ok(converted_4241)
+        let converted_4520 = (&self.inner.build_workflow_id).as_str().into_py_any(py)?;
+        Ok(converted_4520)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_4242 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        result.set_item("policy_arn", converted_4242)?;
-        let converted_4243 = (&self.inner.build_workflow_id).as_str().into_py_any(py)?;
-        result.set_item("build_workflow_id", converted_4243)?;
+        let converted_4521 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        result.set_item("policy_arn", converted_4521)?;
+        let converted_4522 = (&self.inner.build_workflow_id).as_str().into_py_any(py)?;
+        result.set_item("build_workflow_id", converted_4522)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -24969,14 +28036,14 @@ struct PyOperationStartAutomatedReasoningPolicyTestWorkflowOutput {
 impl PyOperationStartAutomatedReasoningPolicyTestWorkflowOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4244 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        Ok(converted_4244)
+        let converted_4523 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        Ok(converted_4523)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_4245 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        result.set_item("policy_arn", converted_4245)?;
+        let converted_4524 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        result.set_item("policy_arn", converted_4524)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -25089,38 +28156,38 @@ struct PyOperationUpdateAutomatedReasoningPolicyOutput {
 impl PyOperationUpdateAutomatedReasoningPolicyOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4246 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        Ok(converted_4246)
+        let converted_4525 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        Ok(converted_4525)
     }
 
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4247 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_4247)
+        let converted_4526 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_4526)
     }
 
     #[getter]
     fn definition_hash(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4248 = (&self.inner.definition_hash).as_str().into_py_any(py)?;
-        Ok(converted_4248)
+        let converted_4527 = (&self.inner.definition_hash).as_str().into_py_any(py)?;
+        Ok(converted_4527)
     }
 
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4249 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        Ok(converted_4249)
+        let converted_4528 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        Ok(converted_4528)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_4250 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        result.set_item("policy_arn", converted_4250)?;
-        let converted_4251 = (&self.inner.name).as_str().into_py_any(py)?;
-        result.set_item("name", converted_4251)?;
-        let converted_4252 = (&self.inner.definition_hash).as_str().into_py_any(py)?;
-        result.set_item("definition_hash", converted_4252)?;
-        let converted_4253 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        result.set_item("updated_at", converted_4253)?;
+        let converted_4529 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        result.set_item("policy_arn", converted_4529)?;
+        let converted_4530 = (&self.inner.name).as_str().into_py_any(py)?;
+        result.set_item("name", converted_4530)?;
+        let converted_4531 = (&self.inner.definition_hash).as_str().into_py_any(py)?;
+        result.set_item("definition_hash", converted_4531)?;
+        let converted_4532 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        result.set_item("updated_at", converted_4532)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -25138,38 +28205,38 @@ struct PyOperationUpdateAutomatedReasoningPolicyAnnotationsOutput {
 impl PyOperationUpdateAutomatedReasoningPolicyAnnotationsOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4254 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        Ok(converted_4254)
+        let converted_4533 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        Ok(converted_4533)
     }
 
     #[getter]
     fn build_workflow_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4255 = (&self.inner.build_workflow_id).as_str().into_py_any(py)?;
-        Ok(converted_4255)
+        let converted_4534 = (&self.inner.build_workflow_id).as_str().into_py_any(py)?;
+        Ok(converted_4534)
     }
 
     #[getter]
     fn annotation_set_hash(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4256 = (&self.inner.annotation_set_hash).as_str().into_py_any(py)?;
-        Ok(converted_4256)
+        let converted_4535 = (&self.inner.annotation_set_hash).as_str().into_py_any(py)?;
+        Ok(converted_4535)
     }
 
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4257 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        Ok(converted_4257)
+        let converted_4536 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        Ok(converted_4536)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_4258 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        result.set_item("policy_arn", converted_4258)?;
-        let converted_4259 = (&self.inner.build_workflow_id).as_str().into_py_any(py)?;
-        result.set_item("build_workflow_id", converted_4259)?;
-        let converted_4260 = (&self.inner.annotation_set_hash).as_str().into_py_any(py)?;
-        result.set_item("annotation_set_hash", converted_4260)?;
-        let converted_4261 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        result.set_item("updated_at", converted_4261)?;
+        let converted_4537 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        result.set_item("policy_arn", converted_4537)?;
+        let converted_4538 = (&self.inner.build_workflow_id).as_str().into_py_any(py)?;
+        result.set_item("build_workflow_id", converted_4538)?;
+        let converted_4539 = (&self.inner.annotation_set_hash).as_str().into_py_any(py)?;
+        result.set_item("annotation_set_hash", converted_4539)?;
+        let converted_4540 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        result.set_item("updated_at", converted_4540)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -25187,22 +28254,22 @@ struct PyOperationUpdateAutomatedReasoningPolicyTestCaseOutput {
 impl PyOperationUpdateAutomatedReasoningPolicyTestCaseOutput {
     #[getter]
     fn policy_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4262 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        Ok(converted_4262)
+        let converted_4541 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        Ok(converted_4541)
     }
 
     #[getter]
     fn test_case_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4263 = (&self.inner.test_case_id).as_str().into_py_any(py)?;
-        Ok(converted_4263)
+        let converted_4542 = (&self.inner.test_case_id).as_str().into_py_any(py)?;
+        Ok(converted_4542)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_4264 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
-        result.set_item("policy_arn", converted_4264)?;
-        let converted_4265 = (&self.inner.test_case_id).as_str().into_py_any(py)?;
-        result.set_item("test_case_id", converted_4265)?;
+        let converted_4543 = (&self.inner.policy_arn).as_str().into_py_any(py)?;
+        result.set_item("policy_arn", converted_4543)?;
+        let converted_4544 = (&self.inner.test_case_id).as_str().into_py_any(py)?;
+        result.set_item("test_case_id", converted_4544)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -25220,18 +28287,18 @@ struct PyOperationUpdateCustomModelDeploymentOutput {
 impl PyOperationUpdateCustomModelDeploymentOutput {
     #[getter]
     fn custom_model_deployment_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4266 = (&self.inner.custom_model_deployment_arn)
+        let converted_4545 = (&self.inner.custom_model_deployment_arn)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_4266)
+        Ok(converted_4545)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_4267 = (&self.inner.custom_model_deployment_arn)
+        let converted_4546 = (&self.inner.custom_model_deployment_arn)
             .as_str()
             .into_py_any(py)?;
-        result.set_item("custom_model_deployment_arn", converted_4267)?;
+        result.set_item("custom_model_deployment_arn", converted_4546)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -25249,39 +28316,52 @@ struct PyOperationUpdateGuardrailOutput {
 impl PyOperationUpdateGuardrailOutput {
     #[getter]
     fn guardrail_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4268 = (&self.inner.guardrail_id).as_str().into_py_any(py)?;
-        Ok(converted_4268)
+        let converted_4547 = (&self.inner.guardrail_id).as_str().into_py_any(py)?;
+        Ok(converted_4547)
     }
 
     #[getter]
     fn guardrail_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4269 = (&self.inner.guardrail_arn).as_str().into_py_any(py)?;
-        Ok(converted_4269)
+        let converted_4548 = (&self.inner.guardrail_arn).as_str().into_py_any(py)?;
+        Ok(converted_4548)
     }
 
     #[getter]
     fn version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4270 = (&self.inner.version).as_str().into_py_any(py)?;
-        Ok(converted_4270)
+        let converted_4549 = (&self.inner.version).as_str().into_py_any(py)?;
+        Ok(converted_4549)
     }
 
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_4271 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        Ok(converted_4271)
+        let converted_4550 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        Ok(converted_4550)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_4272 = (&self.inner.guardrail_id).as_str().into_py_any(py)?;
-        result.set_item("guardrail_id", converted_4272)?;
-        let converted_4273 = (&self.inner.guardrail_arn).as_str().into_py_any(py)?;
-        result.set_item("guardrail_arn", converted_4273)?;
-        let converted_4274 = (&self.inner.version).as_str().into_py_any(py)?;
-        result.set_item("version", converted_4274)?;
-        let converted_4275 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        result.set_item("updated_at", converted_4275)?;
+        let converted_4551 = (&self.inner.guardrail_id).as_str().into_py_any(py)?;
+        result.set_item("guardrail_id", converted_4551)?;
+        let converted_4552 = (&self.inner.guardrail_arn).as_str().into_py_any(py)?;
+        result.set_item("guardrail_arn", converted_4552)?;
+        let converted_4553 = (&self.inner.version).as_str().into_py_any(py)?;
+        result.set_item("version", converted_4553)?;
+        let converted_4554 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        result.set_item("updated_at", converted_4554)?;
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationUpdateMarketplaceModelEndpointOutput {
+    marketplace_model_endpoint: Option<Arc<aws_sdk_bedrock::types::MarketplaceModelEndpoint>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrock::operation::update_marketplace_model_endpoint::UpdateMarketplaceModelEndpointOutput> for SharedPyOperationUpdateMarketplaceModelEndpointOutput {
+    fn from(value: aws_sdk_bedrock::operation::update_marketplace_model_endpoint::UpdateMarketplaceModelEndpointOutput) -> Self {
+        Self {
+            marketplace_model_endpoint: value.marketplace_model_endpoint.map(|item| Arc::new(item)),
+        }
     }
 }
 
@@ -25291,7 +28371,7 @@ impl PyOperationUpdateGuardrailOutput {
     frozen
 )]
 struct PyOperationUpdateMarketplaceModelEndpointOutput {
-    inner: aws_sdk_bedrock::operation::update_marketplace_model_endpoint::UpdateMarketplaceModelEndpointOutput,
+    inner: SharedPyOperationUpdateMarketplaceModelEndpointOutput,
 }
 
 #[pymethods]
@@ -25299,14 +28379,14 @@ impl PyOperationUpdateMarketplaceModelEndpointOutput {
     #[getter]
     fn marketplace_model_endpoint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.marketplace_model_endpoint {
-            let converted_4276 = Py::new(
+            let converted_4555 = Py::new(
                 py,
                 PyMarketplaceModelEndpoint {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_4276)
+            Ok(converted_4555)
         } else {
             Ok(py.None())
         }
@@ -25315,8 +28395,8 @@ impl PyOperationUpdateMarketplaceModelEndpointOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.marketplace_model_endpoint {
-            let converted_4277 = marketplace_model_endpoint_to_py(py, value)?;
-            result.set_item("marketplace_model_endpoint", converted_4277)?;
+            let converted_4556 = marketplace_model_endpoint_to_py(py, value)?;
+            result.set_item("marketplace_model_endpoint", converted_4556)?;
         } else {
             result.set_item("marketplace_model_endpoint", py.None())?;
         }
@@ -25613,7 +28693,9 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "BatchDeleteAdvancedPromptOptimizationJob")
                 })
             })?;
-            Ok(PyOperationBatchDeleteAdvancedPromptOptimizationJobOutput { inner: output })
+            Ok(PyOperationBatchDeleteAdvancedPromptOptimizationJobOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -25657,7 +28739,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchDeleteEvaluationJob"))
             })?;
-            Ok(PyOperationBatchDeleteEvaluationJobOutput { inner: output })
+            Ok(PyOperationBatchDeleteEvaluationJobOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -26715,7 +29799,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateMarketplaceModelEndpoint"))
             })?;
-            Ok(PyOperationCreateMarketplaceModelEndpointOutput { inner: output })
+            Ok(PyOperationCreateMarketplaceModelEndpointOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -28068,7 +31154,9 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "ExportAutomatedReasoningPolicyVersion")
                 })
             })?;
-            Ok(PyOperationExportAutomatedReasoningPolicyVersionOutput { inner: output })
+            Ok(PyOperationExportAutomatedReasoningPolicyVersionOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -28136,7 +31224,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAdvancedPromptOptimizationJob"))
             })?;
-            Ok(PyOperationGetAdvancedPromptOptimizationJobOutput { inner: output })
+            Ok(PyOperationGetAdvancedPromptOptimizationJobOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -28392,7 +31482,9 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "GetAutomatedReasoningPolicyNextScenario")
                 })
             })?;
-            Ok(PyOperationGetAutomatedReasoningPolicyNextScenarioOutput { inner: output })
+            Ok(PyOperationGetAutomatedReasoningPolicyNextScenarioOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -28439,7 +31531,9 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "GetAutomatedReasoningPolicyTestCase")
                 })
             })?;
-            Ok(PyOperationGetAutomatedReasoningPolicyTestCaseOutput { inner: output })
+            Ok(PyOperationGetAutomatedReasoningPolicyTestCaseOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -28494,7 +31588,9 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "GetAutomatedReasoningPolicyTestResult")
                 })
             })?;
-            Ok(PyOperationGetAutomatedReasoningPolicyTestResultOutput { inner: output })
+            Ok(PyOperationGetAutomatedReasoningPolicyTestResultOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -28532,7 +31628,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCustomModel"))
             })?;
-            Ok(PyOperationGetCustomModelOutput { inner: output })
+            Ok(PyOperationGetCustomModelOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -28571,7 +31669,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCustomModelDeployment"))
             })?;
-            Ok(PyOperationGetCustomModelDeploymentOutput { inner: output })
+            Ok(PyOperationGetCustomModelDeploymentOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -28609,7 +31709,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetEvaluationJob"))
             })?;
-            Ok(PyOperationGetEvaluationJobOutput { inner: output })
+            Ok(PyOperationGetEvaluationJobOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -28647,7 +31749,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFoundationModel"))
             })?;
-            Ok(PyOperationGetFoundationModelOutput { inner: output })
+            Ok(PyOperationGetFoundationModelOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -28685,7 +31789,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFoundationModelAvailability"))
             })?;
-            Ok(PyOperationGetFoundationModelAvailabilityOutput { inner: output })
+            Ok(PyOperationGetFoundationModelAvailabilityOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -28732,7 +31838,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetGuardrail"))
             })?;
-            Ok(PyOperationGetGuardrailOutput { inner: output })
+            Ok(PyOperationGetGuardrailOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -28770,7 +31878,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetImportedModel"))
             })?;
-            Ok(PyOperationGetImportedModelOutput { inner: output })
+            Ok(PyOperationGetImportedModelOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -28809,7 +31919,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetInferenceProfile"))
             })?;
-            Ok(PyOperationGetInferenceProfileOutput { inner: output })
+            Ok(PyOperationGetInferenceProfileOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -28847,7 +31959,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMarketplaceModelEndpoint"))
             })?;
-            Ok(PyOperationGetMarketplaceModelEndpointOutput { inner: output })
+            Ok(PyOperationGetMarketplaceModelEndpointOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -28883,7 +31997,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetModelCopyJob"))
             })?;
-            Ok(PyOperationGetModelCopyJobOutput { inner: output })
+            Ok(PyOperationGetModelCopyJobOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -28921,7 +32037,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetModelCustomizationJob"))
             })?;
-            Ok(PyOperationGetModelCustomizationJobOutput { inner: output })
+            Ok(PyOperationGetModelCustomizationJobOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -28959,7 +32077,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetModelImportJob"))
             })?;
-            Ok(PyOperationGetModelImportJobOutput { inner: output })
+            Ok(PyOperationGetModelImportJobOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -28997,7 +32117,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetModelInvocationJob"))
             })?;
-            Ok(PyOperationGetModelInvocationJobOutput { inner: output })
+            Ok(PyOperationGetModelInvocationJobOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -29029,7 +32151,9 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "GetModelInvocationLoggingConfiguration")
                 })
             })?;
-            Ok(PyOperationGetModelInvocationLoggingConfigurationOutput { inner: output })
+            Ok(PyOperationGetModelInvocationLoggingConfigurationOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -29068,7 +32192,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPromptRouter"))
             })?;
-            Ok(PyOperationGetPromptRouterOutput { inner: output })
+            Ok(PyOperationGetPromptRouterOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -29238,7 +32364,9 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "ListAdvancedPromptOptimizationJobs")
                 })
             })?;
-            Ok(PyOperationListAdvancedPromptOptimizationJobsOutput { inner: output })
+            Ok(PyOperationListAdvancedPromptOptimizationJobsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -29290,7 +32418,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAutomatedReasoningPolicies"))
             })?;
-            Ok(PyOperationListAutomatedReasoningPoliciesOutput { inner: output })
+            Ok(PyOperationListAutomatedReasoningPoliciesOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -29344,7 +32474,11 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "ListAutomatedReasoningPolicyBuildWorkflows")
                 })
             })?;
-            Ok(PyOperationListAutomatedReasoningPolicyBuildWorkflowsOutput { inner: output })
+            Ok(
+                PyOperationListAutomatedReasoningPolicyBuildWorkflowsOutput {
+                    inner: output.into(),
+                },
+            )
         })
     }
 
@@ -29398,7 +32532,9 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "ListAutomatedReasoningPolicyTestCases")
                 })
             })?;
-            Ok(PyOperationListAutomatedReasoningPolicyTestCasesOutput { inner: output })
+            Ok(PyOperationListAutomatedReasoningPolicyTestCasesOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -29460,7 +32596,9 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "ListAutomatedReasoningPolicyTestResults")
                 })
             })?;
-            Ok(PyOperationListAutomatedReasoningPolicyTestResultsOutput { inner: output })
+            Ok(PyOperationListAutomatedReasoningPolicyTestResultsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -29569,7 +32707,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListCustomModelDeployments"))
             })?;
-            Ok(PyOperationListCustomModelDeploymentsOutput { inner: output })
+            Ok(PyOperationListCustomModelDeploymentsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -29696,7 +32836,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListCustomModels"))
             })?;
-            Ok(PyOperationListCustomModelsOutput { inner: output })
+            Ok(PyOperationListCustomModelsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -29736,7 +32878,9 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "ListEnforcedGuardrailsConfiguration")
                 })
             })?;
-            Ok(PyOperationListEnforcedGuardrailsConfigurationOutput { inner: output })
+            Ok(PyOperationListEnforcedGuardrailsConfigurationOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -29849,7 +32993,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListEvaluationJobs"))
             })?;
-            Ok(PyOperationListEvaluationJobsOutput { inner: output })
+            Ok(PyOperationListEvaluationJobsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -29897,7 +33043,9 @@ impl BedrockClient {
                     sdk_error_to_py(py, &error, "ListFoundationModelAgreementOffers")
                 })
             })?;
-            Ok(PyOperationListFoundationModelAgreementOffersOutput { inner: output })
+            Ok(PyOperationListFoundationModelAgreementOffersOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -29965,7 +33113,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListFoundationModels"))
             })?;
-            Ok(PyOperationListFoundationModelsOutput { inner: output })
+            Ok(PyOperationListFoundationModelsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -30018,7 +33168,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListGuardrails"))
             })?;
-            Ok(PyOperationListGuardrailsOutput { inner: output })
+            Ok(PyOperationListGuardrailsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -30113,7 +33265,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListImportedModels"))
             })?;
-            Ok(PyOperationListImportedModelsOutput { inner: output })
+            Ok(PyOperationListImportedModelsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -30167,7 +33321,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListInferenceProfiles"))
             })?;
-            Ok(PyOperationListInferenceProfilesOutput { inner: output })
+            Ok(PyOperationListInferenceProfilesOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -30220,7 +33376,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListMarketplaceModelEndpoints"))
             })?;
-            Ok(PyOperationListMarketplaceModelEndpointsOutput { inner: output })
+            Ok(PyOperationListMarketplaceModelEndpointsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -30340,7 +33498,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListModelCopyJobs"))
             })?;
-            Ok(PyOperationListModelCopyJobsOutput { inner: output })
+            Ok(PyOperationListModelCopyJobsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -30443,7 +33603,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListModelCustomizationJobs"))
             })?;
-            Ok(PyOperationListModelCustomizationJobsOutput { inner: output })
+            Ok(PyOperationListModelCustomizationJobsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -30546,7 +33708,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListModelImportJobs"))
             })?;
-            Ok(PyOperationListModelImportJobsOutput { inner: output })
+            Ok(PyOperationListModelImportJobsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -30649,7 +33813,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListModelInvocationJobs"))
             })?;
-            Ok(PyOperationListModelInvocationJobsOutput { inner: output })
+            Ok(PyOperationListModelInvocationJobsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -30703,7 +33869,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPromptRouters"))
             })?;
-            Ok(PyOperationListPromptRoutersOutput { inner: output })
+            Ok(PyOperationListPromptRoutersOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -30814,7 +33982,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListProvisionedModelThroughputs"))
             })?;
-            Ok(PyOperationListProvisionedModelThroughputsOutput { inner: output })
+            Ok(PyOperationListProvisionedModelThroughputsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -30852,7 +34022,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Ok(PyOperationListTagsForResourceOutput { inner: output })
+            Ok(PyOperationListTagsForResourceOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -31110,7 +34282,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RegisterMarketplaceModelEndpoint"))
             })?;
-            Ok(PyOperationRegisterMarketplaceModelEndpointOutput { inner: output })
+            Ok(PyOperationRegisterMarketplaceModelEndpointOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -31962,7 +35136,9 @@ impl BedrockClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMarketplaceModelEndpoint"))
             })?;
-            Ok(PyOperationUpdateMarketplaceModelEndpointOutput { inner: output })
+            Ok(PyOperationUpdateMarketplaceModelEndpointOutput {
+                inner: output.into(),
+            })
         })
     }
 

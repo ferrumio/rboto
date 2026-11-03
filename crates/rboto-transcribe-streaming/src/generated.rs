@@ -2625,7 +2625,7 @@ fn utterance_event_to_py(
     frozen
 )]
 struct PyClinicalNoteGenerationResult {
-    inner: aws_sdk_transcribestreaming::types::ClinicalNoteGenerationResult,
+    inner: Arc<aws_sdk_transcribestreaming::types::ClinicalNoteGenerationResult>,
 }
 
 #[pymethods]
@@ -2681,7 +2681,7 @@ impl PyClinicalNoteGenerationResult {
     frozen
 )]
 struct PyClinicalNoteGenerationSettings {
-    inner: aws_sdk_transcribestreaming::types::ClinicalNoteGenerationSettings,
+    inner: Arc<aws_sdk_transcribestreaming::types::ClinicalNoteGenerationSettings>,
 }
 
 #[pymethods]
@@ -2713,7 +2713,7 @@ impl PyClinicalNoteGenerationSettings {
     frozen
 )]
 struct PyMedicalScribeChannelDefinition {
-    inner: aws_sdk_transcribestreaming::types::MedicalScribeChannelDefinition,
+    inner: Arc<aws_sdk_transcribestreaming::types::MedicalScribeChannelDefinition>,
 }
 
 #[pymethods]
@@ -2741,7 +2741,7 @@ impl PyMedicalScribeChannelDefinition {
     frozen
 )]
 struct PyMedicalScribeEncryptionSettings {
-    inner: aws_sdk_transcribestreaming::types::MedicalScribeEncryptionSettings,
+    inner: Arc<aws_sdk_transcribestreaming::types::MedicalScribeEncryptionSettings>,
 }
 
 #[pymethods]
@@ -2773,13 +2773,47 @@ impl PyMedicalScribeEncryptionSettings {
     }
 }
 
+struct SharedMedicalScribePostStreamAnalyticsResult {
+    clinical_note_generation_result:
+        Option<Arc<aws_sdk_transcribestreaming::types::ClinicalNoteGenerationResult>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_transcribestreaming::types::MedicalScribePostStreamAnalyticsResult>
+    for SharedMedicalScribePostStreamAnalyticsResult
+{
+    fn from(
+        value: aws_sdk_transcribestreaming::types::MedicalScribePostStreamAnalyticsResult,
+    ) -> Self {
+        Self {
+            clinical_note_generation_result: value
+                .clinical_note_generation_result
+                .map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn medical_scribe_post_stream_analytics_result_shared_to_py(
+    py: Python<'_>,
+    value: &SharedMedicalScribePostStreamAnalyticsResult,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.clinical_note_generation_result {
+        let converted_618 = clinical_note_generation_result_to_py(py, value)?;
+        result.set_item("clinical_note_generation_result", converted_618)?;
+    } else {
+        result.set_item("clinical_note_generation_result", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "MedicalScribePostStreamAnalyticsResult",
     module = "rboto_transcribe_streaming._native",
     frozen
 )]
 struct PyMedicalScribePostStreamAnalyticsResult {
-    inner: aws_sdk_transcribestreaming::types::MedicalScribePostStreamAnalyticsResult,
+    inner: Arc<SharedMedicalScribePostStreamAnalyticsResult>,
 }
 
 #[pymethods]
@@ -2790,7 +2824,7 @@ impl PyMedicalScribePostStreamAnalyticsResult {
             let converted_617 = Py::new(
                 py,
                 PyClinicalNoteGenerationResult {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -2801,8 +2835,42 @@ impl PyMedicalScribePostStreamAnalyticsResult {
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        medical_scribe_post_stream_analytics_result_to_py(py, &self.inner)
+        medical_scribe_post_stream_analytics_result_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedMedicalScribePostStreamAnalyticsSettings {
+    clinical_note_generation_settings:
+        Option<Arc<aws_sdk_transcribestreaming::types::ClinicalNoteGenerationSettings>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_transcribestreaming::types::MedicalScribePostStreamAnalyticsSettings>
+    for SharedMedicalScribePostStreamAnalyticsSettings
+{
+    fn from(
+        value: aws_sdk_transcribestreaming::types::MedicalScribePostStreamAnalyticsSettings,
+    ) -> Self {
+        Self {
+            clinical_note_generation_settings: value
+                .clinical_note_generation_settings
+                .map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn medical_scribe_post_stream_analytics_settings_shared_to_py(
+    py: Python<'_>,
+    value: &SharedMedicalScribePostStreamAnalyticsSettings,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.clinical_note_generation_settings {
+        let converted_620 = clinical_note_generation_settings_to_py(py, value)?;
+        result.set_item("clinical_note_generation_settings", converted_620)?;
+    } else {
+        result.set_item("clinical_note_generation_settings", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -2811,7 +2879,7 @@ impl PyMedicalScribePostStreamAnalyticsResult {
     frozen
 )]
 struct PyMedicalScribePostStreamAnalyticsSettings {
-    inner: aws_sdk_transcribestreaming::types::MedicalScribePostStreamAnalyticsSettings,
+    inner: Arc<SharedMedicalScribePostStreamAnalyticsSettings>,
 }
 
 #[pymethods]
@@ -2819,22 +2887,189 @@ impl PyMedicalScribePostStreamAnalyticsSettings {
     #[getter]
     fn clinical_note_generation_settings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.clinical_note_generation_settings {
-            let converted_618 = Py::new(
+            let converted_619 = Py::new(
                 py,
                 PyClinicalNoteGenerationSettings {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_618)
+            Ok(converted_619)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        medical_scribe_post_stream_analytics_settings_to_py(py, &self.inner)
+        medical_scribe_post_stream_analytics_settings_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedMedicalScribeStreamDetails {
+    session_id: Option<::std::string::String>,
+    stream_created_at: Option<::aws_smithy_types::DateTime>,
+    stream_ended_at: Option<::aws_smithy_types::DateTime>,
+    language_code: Option<aws_sdk_transcribestreaming::types::MedicalScribeLanguageCode>,
+    media_sample_rate_hertz: Option<i32>,
+    media_encoding: Option<aws_sdk_transcribestreaming::types::MedicalScribeMediaEncoding>,
+    vocabulary_name: Option<::std::string::String>,
+    vocabulary_filter_name: Option<::std::string::String>,
+    vocabulary_filter_method:
+        Option<aws_sdk_transcribestreaming::types::MedicalScribeVocabularyFilterMethod>,
+    resource_access_role_arn: Option<::std::string::String>,
+    channel_definitions: Option<
+        ::std::vec::Vec<Arc<aws_sdk_transcribestreaming::types::MedicalScribeChannelDefinition>>,
+    >,
+    encryption_settings:
+        Option<Arc<aws_sdk_transcribestreaming::types::MedicalScribeEncryptionSettings>>,
+    stream_status: Option<aws_sdk_transcribestreaming::types::MedicalScribeStreamStatus>,
+    post_stream_analytics_settings: Option<Arc<SharedMedicalScribePostStreamAnalyticsSettings>>,
+    post_stream_analytics_result: Option<Arc<SharedMedicalScribePostStreamAnalyticsResult>>,
+    medical_scribe_context_provided: Option<bool>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_transcribestreaming::types::MedicalScribeStreamDetails>
+    for SharedMedicalScribeStreamDetails
+{
+    fn from(value: aws_sdk_transcribestreaming::types::MedicalScribeStreamDetails) -> Self {
+        Self {
+            session_id: value.session_id,
+            stream_created_at: value.stream_created_at,
+            stream_ended_at: value.stream_ended_at,
+            language_code: value.language_code,
+            media_sample_rate_hertz: value.media_sample_rate_hertz,
+            media_encoding: value.media_encoding,
+            vocabulary_name: value.vocabulary_name,
+            vocabulary_filter_name: value.vocabulary_filter_name,
+            vocabulary_filter_method: value.vocabulary_filter_method,
+            resource_access_role_arn: value.resource_access_role_arn,
+            channel_definitions: value.channel_definitions.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_639| Arc::new(owned_639))
+                    .collect()
+            }),
+            encryption_settings: value.encryption_settings.map(|item| Arc::new(item)),
+            stream_status: value.stream_status,
+            post_stream_analytics_settings: value
+                .post_stream_analytics_settings
+                .map(|item| Arc::new(SharedMedicalScribePostStreamAnalyticsSettings::from(item))),
+            post_stream_analytics_result: value
+                .post_stream_analytics_result
+                .map(|item| Arc::new(SharedMedicalScribePostStreamAnalyticsResult::from(item))),
+            medical_scribe_context_provided: value.medical_scribe_context_provided,
+        }
+    }
+}
+
+fn medical_scribe_stream_details_shared_to_py(
+    py: Python<'_>,
+    value: &SharedMedicalScribeStreamDetails,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.session_id {
+        let converted_640 = (value).as_str().into_py_any(py)?;
+        result.set_item("session_id", converted_640)?;
+    } else {
+        result.set_item("session_id", py.None())?;
+    }
+    if let Some(value) = &value.stream_created_at {
+        let converted_641 = (value).to_string().into_py_any(py)?;
+        result.set_item("stream_created_at", converted_641)?;
+    } else {
+        result.set_item("stream_created_at", py.None())?;
+    }
+    if let Some(value) = &value.stream_ended_at {
+        let converted_642 = (value).to_string().into_py_any(py)?;
+        result.set_item("stream_ended_at", converted_642)?;
+    } else {
+        result.set_item("stream_ended_at", py.None())?;
+    }
+    if let Some(value) = &value.language_code {
+        let converted_643 = (value).as_str().into_py_any(py)?;
+        result.set_item("language_code", converted_643)?;
+    } else {
+        result.set_item("language_code", py.None())?;
+    }
+    if let Some(value) = &value.media_sample_rate_hertz {
+        let converted_644 = (value).to_owned().into_py_any(py)?;
+        result.set_item("media_sample_rate_hertz", converted_644)?;
+    } else {
+        result.set_item("media_sample_rate_hertz", py.None())?;
+    }
+    if let Some(value) = &value.media_encoding {
+        let converted_645 = (value).as_str().into_py_any(py)?;
+        result.set_item("media_encoding", converted_645)?;
+    } else {
+        result.set_item("media_encoding", py.None())?;
+    }
+    if let Some(value) = &value.vocabulary_name {
+        let converted_646 = (value).as_str().into_py_any(py)?;
+        result.set_item("vocabulary_name", converted_646)?;
+    } else {
+        result.set_item("vocabulary_name", py.None())?;
+    }
+    if let Some(value) = &value.vocabulary_filter_name {
+        let converted_647 = (value).as_str().into_py_any(py)?;
+        result.set_item("vocabulary_filter_name", converted_647)?;
+    } else {
+        result.set_item("vocabulary_filter_name", py.None())?;
+    }
+    if let Some(value) = &value.vocabulary_filter_method {
+        let converted_648 = (value).as_str().into_py_any(py)?;
+        result.set_item("vocabulary_filter_method", converted_648)?;
+    } else {
+        result.set_item("vocabulary_filter_method", py.None())?;
+    }
+    if let Some(value) = &value.resource_access_role_arn {
+        let converted_649 = (value).as_str().into_py_any(py)?;
+        result.set_item("resource_access_role_arn", converted_649)?;
+    } else {
+        result.set_item("resource_access_role_arn", py.None())?;
+    }
+    if let Some(value) = &value.channel_definitions {
+        let converted_650_list = PyList::empty(py);
+        for item_651 in value {
+            let converted_item_652 = medical_scribe_channel_definition_to_py(py, item_651)?;
+            converted_650_list.append(converted_item_652)?;
+        }
+        let converted_650 = converted_650_list.into_any().unbind();
+        result.set_item("channel_definitions", converted_650)?;
+    } else {
+        result.set_item("channel_definitions", py.None())?;
+    }
+    if let Some(value) = &value.encryption_settings {
+        let converted_653 = medical_scribe_encryption_settings_to_py(py, value)?;
+        result.set_item("encryption_settings", converted_653)?;
+    } else {
+        result.set_item("encryption_settings", py.None())?;
+    }
+    if let Some(value) = &value.stream_status {
+        let converted_654 = (value).as_str().into_py_any(py)?;
+        result.set_item("stream_status", converted_654)?;
+    } else {
+        result.set_item("stream_status", py.None())?;
+    }
+    if let Some(value) = &value.post_stream_analytics_settings {
+        let converted_655 = medical_scribe_post_stream_analytics_settings_shared_to_py(py, value)?;
+        result.set_item("post_stream_analytics_settings", converted_655)?;
+    } else {
+        result.set_item("post_stream_analytics_settings", py.None())?;
+    }
+    if let Some(value) = &value.post_stream_analytics_result {
+        let converted_656 = medical_scribe_post_stream_analytics_result_shared_to_py(py, value)?;
+        result.set_item("post_stream_analytics_result", converted_656)?;
+    } else {
+        result.set_item("post_stream_analytics_result", py.None())?;
+    }
+    if let Some(value) = &value.medical_scribe_context_provided {
+        let converted_657 = (value).to_owned().into_py_any(py)?;
+        result.set_item("medical_scribe_context_provided", converted_657)?;
+    } else {
+        result.set_item("medical_scribe_context_provided", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -2843,7 +3078,7 @@ impl PyMedicalScribePostStreamAnalyticsSettings {
     frozen
 )]
 struct PyMedicalScribeStreamDetails {
-    inner: aws_sdk_transcribestreaming::types::MedicalScribeStreamDetails,
+    inner: Arc<SharedMedicalScribeStreamDetails>,
 }
 
 #[pymethods]
@@ -2851,8 +3086,8 @@ impl PyMedicalScribeStreamDetails {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_id {
-            let converted_619 = (value).as_str().into_py_any(py)?;
-            Ok(converted_619)
+            let converted_621 = (value).as_str().into_py_any(py)?;
+            Ok(converted_621)
         } else {
             Ok(py.None())
         }
@@ -2861,8 +3096,8 @@ impl PyMedicalScribeStreamDetails {
     #[getter]
     fn stream_created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_created_at {
-            let converted_620 = (value).to_string().into_py_any(py)?;
-            Ok(converted_620)
+            let converted_622 = (value).to_string().into_py_any(py)?;
+            Ok(converted_622)
         } else {
             Ok(py.None())
         }
@@ -2871,8 +3106,8 @@ impl PyMedicalScribeStreamDetails {
     #[getter]
     fn stream_ended_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_ended_at {
-            let converted_621 = (value).to_string().into_py_any(py)?;
-            Ok(converted_621)
+            let converted_623 = (value).to_string().into_py_any(py)?;
+            Ok(converted_623)
         } else {
             Ok(py.None())
         }
@@ -2881,26 +3116,6 @@ impl PyMedicalScribeStreamDetails {
     #[getter]
     fn language_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.language_code {
-            let converted_622 = (value).as_str().into_py_any(py)?;
-            Ok(converted_622)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn media_sample_rate_hertz(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.media_sample_rate_hertz {
-            let converted_623 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_623)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn media_encoding(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.media_encoding {
             let converted_624 = (value).as_str().into_py_any(py)?;
             Ok(converted_624)
         } else {
@@ -2909,9 +3124,9 @@ impl PyMedicalScribeStreamDetails {
     }
 
     #[getter]
-    fn vocabulary_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.vocabulary_name {
-            let converted_625 = (value).as_str().into_py_any(py)?;
+    fn media_sample_rate_hertz(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.media_sample_rate_hertz {
+            let converted_625 = (value).to_owned().into_py_any(py)?;
             Ok(converted_625)
         } else {
             Ok(py.None())
@@ -2919,8 +3134,8 @@ impl PyMedicalScribeStreamDetails {
     }
 
     #[getter]
-    fn vocabulary_filter_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.vocabulary_filter_name {
+    fn media_encoding(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.media_encoding {
             let converted_626 = (value).as_str().into_py_any(py)?;
             Ok(converted_626)
         } else {
@@ -2929,8 +3144,8 @@ impl PyMedicalScribeStreamDetails {
     }
 
     #[getter]
-    fn vocabulary_filter_method(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.vocabulary_filter_method {
+    fn vocabulary_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.vocabulary_name {
             let converted_627 = (value).as_str().into_py_any(py)?;
             Ok(converted_627)
         } else {
@@ -2939,8 +3154,8 @@ impl PyMedicalScribeStreamDetails {
     }
 
     #[getter]
-    fn resource_access_role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.resource_access_role_arn {
+    fn vocabulary_filter_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.vocabulary_filter_name {
             let converted_628 = (value).as_str().into_py_any(py)?;
             Ok(converted_628)
         } else {
@@ -2949,21 +3164,41 @@ impl PyMedicalScribeStreamDetails {
     }
 
     #[getter]
+    fn vocabulary_filter_method(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.vocabulary_filter_method {
+            let converted_629 = (value).as_str().into_py_any(py)?;
+            Ok(converted_629)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn resource_access_role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.resource_access_role_arn {
+            let converted_630 = (value).as_str().into_py_any(py)?;
+            Ok(converted_630)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
     fn channel_definitions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.channel_definitions {
-            let converted_629_list = PyList::empty(py);
-            for item_630 in value {
-                let converted_item_631 = Py::new(
+            let converted_631_list = PyList::empty(py);
+            for item_632 in value {
+                let converted_item_633 = Py::new(
                     py,
                     PyMedicalScribeChannelDefinition {
-                        inner: (item_630).to_owned(),
+                        inner: Arc::clone(item_632),
                     },
                 )?
                 .into_any();
-                converted_629_list.append(converted_item_631)?;
+                converted_631_list.append(converted_item_633)?;
             }
-            let converted_629 = converted_629_list.into_any().unbind();
-            Ok(converted_629)
+            let converted_631 = converted_631_list.into_any().unbind();
+            Ok(converted_631)
         } else {
             Ok(py.None())
         }
@@ -2972,36 +3207,10 @@ impl PyMedicalScribeStreamDetails {
     #[getter]
     fn encryption_settings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_settings {
-            let converted_632 = Py::new(
-                py,
-                PyMedicalScribeEncryptionSettings {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_632)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn stream_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.stream_status {
-            let converted_633 = (value).as_str().into_py_any(py)?;
-            Ok(converted_633)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn post_stream_analytics_settings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.post_stream_analytics_settings {
             let converted_634 = Py::new(
                 py,
-                PyMedicalScribePostStreamAnalyticsSettings {
-                    inner: (value).to_owned(),
+                PyMedicalScribeEncryptionSettings {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -3012,15 +3221,9 @@ impl PyMedicalScribeStreamDetails {
     }
 
     #[getter]
-    fn post_stream_analytics_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.post_stream_analytics_result {
-            let converted_635 = Py::new(
-                py,
-                PyMedicalScribePostStreamAnalyticsResult {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
+    fn stream_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.stream_status {
+            let converted_635 = (value).as_str().into_py_any(py)?;
             Ok(converted_635)
         } else {
             Ok(py.None())
@@ -3028,38 +3231,28 @@ impl PyMedicalScribeStreamDetails {
     }
 
     #[getter]
-    fn medical_scribe_context_provided(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.medical_scribe_context_provided {
-            let converted_636 = (value).to_owned().into_py_any(py)?;
+    fn post_stream_analytics_settings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.post_stream_analytics_settings {
+            let converted_636 = Py::new(
+                py,
+                PyMedicalScribePostStreamAnalyticsSettings {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
             Ok(converted_636)
         } else {
             Ok(py.None())
         }
     }
 
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        medical_scribe_stream_details_to_py(py, &self.inner)
-    }
-}
-
-#[pyclass(
-    name = "GetMedicalScribeStreamOutput",
-    module = "rboto_transcribe_streaming._native",
-    frozen
-)]
-struct PyOperationGetMedicalScribeStreamOutput {
-    inner: aws_sdk_transcribestreaming::operation::get_medical_scribe_stream::GetMedicalScribeStreamOutput,
-}
-
-#[pymethods]
-impl PyOperationGetMedicalScribeStreamOutput {
     #[getter]
-    fn medical_scribe_stream_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.medical_scribe_stream_details {
+    fn post_stream_analytics_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.post_stream_analytics_result {
             let converted_637 = Py::new(
                 py,
-                PyMedicalScribeStreamDetails {
-                    inner: (value).to_owned(),
+                PyMedicalScribePostStreamAnalyticsResult {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -3069,11 +3262,66 @@ impl PyOperationGetMedicalScribeStreamOutput {
         }
     }
 
+    #[getter]
+    fn medical_scribe_context_provided(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.medical_scribe_context_provided {
+            let converted_638 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_638)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        medical_scribe_stream_details_shared_to_py(py, &self.inner)
+    }
+}
+
+struct SharedPyOperationGetMedicalScribeStreamOutput {
+    medical_scribe_stream_details: Option<Arc<SharedMedicalScribeStreamDetails>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_transcribestreaming::operation::get_medical_scribe_stream::GetMedicalScribeStreamOutput> for SharedPyOperationGetMedicalScribeStreamOutput {
+    fn from(value: aws_sdk_transcribestreaming::operation::get_medical_scribe_stream::GetMedicalScribeStreamOutput) -> Self {
+        Self {
+            medical_scribe_stream_details: value.medical_scribe_stream_details.map(|item| Arc::new(SharedMedicalScribeStreamDetails::from(item))),
+        }
+    }
+}
+
+#[pyclass(
+    name = "GetMedicalScribeStreamOutput",
+    module = "rboto_transcribe_streaming._native",
+    frozen
+)]
+struct PyOperationGetMedicalScribeStreamOutput {
+    inner: SharedPyOperationGetMedicalScribeStreamOutput,
+}
+
+#[pymethods]
+impl PyOperationGetMedicalScribeStreamOutput {
+    #[getter]
+    fn medical_scribe_stream_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.medical_scribe_stream_details {
+            let converted_658 = Py::new(
+                py,
+                PyMedicalScribeStreamDetails {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_658)
+        } else {
+            Ok(py.None())
+        }
+    }
+
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.medical_scribe_stream_details {
-            let converted_638 = medical_scribe_stream_details_to_py(py, value)?;
-            result.set_item("medical_scribe_stream_details", converted_638)?;
+            let converted_659 = medical_scribe_stream_details_shared_to_py(py, value)?;
+            result.set_item("medical_scribe_stream_details", converted_659)?;
         } else {
             result.set_item("medical_scribe_stream_details", py.None())?;
         }
@@ -3449,7 +3697,9 @@ impl TranscribeStreamingClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMedicalScribeStream"))
             })?;
-            Ok(PyOperationGetMedicalScribeStreamOutput { inner: output })
+            Ok(PyOperationGetMedicalScribeStreamOutput {
+                inner: output.into(),
+            })
         })
     }
 

@@ -492,7 +492,7 @@ fn video_segment_configuration_to_py(
     frozen
 )]
 struct PyOutputConfiguration {
-    inner: aws_sdk_bedrockdataautomationruntime::types::OutputConfiguration,
+    inner: Arc<aws_sdk_bedrockdataautomationruntime::types::OutputConfiguration>,
 }
 
 #[pymethods]
@@ -514,7 +514,7 @@ impl PyOutputConfiguration {
     frozen
 )]
 struct PyOutputSegment {
-    inner: aws_sdk_bedrockdataautomationruntime::types::OutputSegment,
+    inner: Arc<aws_sdk_bedrockdataautomationruntime::types::OutputSegment>,
 }
 
 #[pymethods]
@@ -560,7 +560,7 @@ impl PyOutputSegment {
     frozen
 )]
 struct PyTag {
-    inner: aws_sdk_bedrockdataautomationruntime::types::Tag,
+    inner: Arc<aws_sdk_bedrockdataautomationruntime::types::Tag>,
 }
 
 #[pymethods]
@@ -582,13 +582,39 @@ impl PyTag {
     }
 }
 
+struct SharedPyOperationGetDataAutomationStatusOutput {
+    status: Option<aws_sdk_bedrockdataautomationruntime::types::AutomationJobStatus>,
+    error_type: Option<::std::string::String>,
+    error_message: Option<::std::string::String>,
+    output_configuration:
+        Option<Arc<aws_sdk_bedrockdataautomationruntime::types::OutputConfiguration>>,
+    job_submission_time: Option<::aws_smithy_types::DateTime>,
+    job_completion_time: Option<::aws_smithy_types::DateTime>,
+    job_duration_in_seconds: Option<i32>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomationruntime::operation::get_data_automation_status::GetDataAutomationStatusOutput> for SharedPyOperationGetDataAutomationStatusOutput {
+    fn from(value: aws_sdk_bedrockdataautomationruntime::operation::get_data_automation_status::GetDataAutomationStatusOutput) -> Self {
+        Self {
+            status: value.status,
+            error_type: value.error_type,
+            error_message: value.error_message,
+            output_configuration: value.output_configuration.map(|item| Arc::new(item)),
+            job_submission_time: value.job_submission_time,
+            job_completion_time: value.job_completion_time,
+            job_duration_in_seconds: value.job_duration_in_seconds,
+        }
+    }
+}
+
 #[pyclass(
     name = "GetDataAutomationStatusOutput",
     module = "rboto_bedrock_data_automation_runtime._native",
     frozen
 )]
 struct PyOperationGetDataAutomationStatusOutput {
-    inner: aws_sdk_bedrockdataautomationruntime::operation::get_data_automation_status::GetDataAutomationStatusOutput,
+    inner: SharedPyOperationGetDataAutomationStatusOutput,
 }
 
 #[pymethods]
@@ -629,7 +655,7 @@ impl PyOperationGetDataAutomationStatusOutput {
             let converted_107 = Py::new(
                 py,
                 PyOutputConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -717,13 +743,32 @@ impl PyOperationGetDataAutomationStatusOutput {
     }
 }
 
+struct SharedPyOperationInvokeDataAutomationOutput {
+    output_configuration:
+        Option<Arc<aws_sdk_bedrockdataautomationruntime::types::OutputConfiguration>>,
+    semantic_modality: aws_sdk_bedrockdataautomationruntime::types::SemanticModality,
+    output_segments:
+        ::std::vec::Vec<Arc<aws_sdk_bedrockdataautomationruntime::types::OutputSegment>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomationruntime::operation::invoke_data_automation::InvokeDataAutomationOutput> for SharedPyOperationInvokeDataAutomationOutput {
+    fn from(value: aws_sdk_bedrockdataautomationruntime::operation::invoke_data_automation::InvokeDataAutomationOutput) -> Self {
+        Self {
+            output_configuration: value.output_configuration.map(|item| Arc::new(item)),
+            semantic_modality: value.semantic_modality,
+            output_segments: (value.output_segments).into_iter().map(|owned_123| Arc::new(owned_123)).collect(),
+        }
+    }
+}
+
 #[pyclass(
     name = "InvokeDataAutomationOutput",
     module = "rboto_bedrock_data_automation_runtime._native",
     frozen
 )]
 struct PyOperationInvokeDataAutomationOutput {
-    inner: aws_sdk_bedrockdataautomationruntime::operation::invoke_data_automation::InvokeDataAutomationOutput,
+    inner: SharedPyOperationInvokeDataAutomationOutput,
 }
 
 #[pymethods]
@@ -734,7 +779,7 @@ impl PyOperationInvokeDataAutomationOutput {
             let converted_118 = Py::new(
                 py,
                 PyOutputConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -757,7 +802,7 @@ impl PyOperationInvokeDataAutomationOutput {
             let converted_item_122 = Py::new(
                 py,
                 PyOutputSegment {
-                    inner: (item_121).to_owned(),
+                    inner: Arc::clone(item_121),
                 },
             )?
             .into_any();
@@ -770,20 +815,20 @@ impl PyOperationInvokeDataAutomationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.output_configuration {
-            let converted_123 = output_configuration_to_py(py, value)?;
-            result.set_item("output_configuration", converted_123)?;
+            let converted_124 = output_configuration_to_py(py, value)?;
+            result.set_item("output_configuration", converted_124)?;
         } else {
             result.set_item("output_configuration", py.None())?;
         }
-        let converted_124 = (&self.inner.semantic_modality).as_str().into_py_any(py)?;
-        result.set_item("semantic_modality", converted_124)?;
-        let converted_125_list = PyList::empty(py);
-        for item_126 in &self.inner.output_segments {
-            let converted_item_127 = output_segment_to_py(py, item_126)?;
-            converted_125_list.append(converted_item_127)?;
+        let converted_125 = (&self.inner.semantic_modality).as_str().into_py_any(py)?;
+        result.set_item("semantic_modality", converted_125)?;
+        let converted_126_list = PyList::empty(py);
+        for item_127 in &self.inner.output_segments {
+            let converted_item_128 = output_segment_to_py(py, item_127)?;
+            converted_126_list.append(converted_item_128)?;
         }
-        let converted_125 = converted_125_list.into_any().unbind();
-        result.set_item("output_segments", converted_125)?;
+        let converted_126 = converted_126_list.into_any().unbind();
+        result.set_item("output_segments", converted_126)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -801,15 +846,28 @@ struct PyOperationInvokeDataAutomationAsyncOutput {
 impl PyOperationInvokeDataAutomationAsyncOutput {
     #[getter]
     fn invocation_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_128 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
-        Ok(converted_128)
+        let converted_129 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
+        Ok(converted_129)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_129 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
-        result.set_item("invocation_arn", converted_129)?;
+        let converted_130 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
+        result.set_item("invocation_arn", converted_130)?;
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListTagsForResourceOutput {
+    tags: Option<::std::vec::Vec<Arc<aws_sdk_bedrockdataautomationruntime::types::Tag>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomationruntime::operation::list_tags_for_resource::ListTagsForResourceOutput> for SharedPyOperationListTagsForResourceOutput {
+    fn from(value: aws_sdk_bedrockdataautomationruntime::operation::list_tags_for_resource::ListTagsForResourceOutput) -> Self {
+        Self {
+            tags: value.tags.map(|item| (item).into_iter().map(|owned_134| Arc::new(owned_134)).collect()),
+        }
     }
 }
 
@@ -819,7 +877,7 @@ impl PyOperationInvokeDataAutomationAsyncOutput {
     frozen
 )]
 struct PyOperationListTagsForResourceOutput {
-    inner: aws_sdk_bedrockdataautomationruntime::operation::list_tags_for_resource::ListTagsForResourceOutput,
+    inner: SharedPyOperationListTagsForResourceOutput,
 }
 
 #[pymethods]
@@ -827,19 +885,19 @@ impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_130_list = PyList::empty(py);
-            for item_131 in value {
-                let converted_item_132 = Py::new(
+            let converted_131_list = PyList::empty(py);
+            for item_132 in value {
+                let converted_item_133 = Py::new(
                     py,
                     PyTag {
-                        inner: (item_131).to_owned(),
+                        inner: Arc::clone(item_132),
                     },
                 )?
                 .into_any();
-                converted_130_list.append(converted_item_132)?;
+                converted_131_list.append(converted_item_133)?;
             }
-            let converted_130 = converted_130_list.into_any().unbind();
-            Ok(converted_130)
+            let converted_131 = converted_131_list.into_any().unbind();
+            Ok(converted_131)
         } else {
             Ok(py.None())
         }
@@ -848,13 +906,13 @@ impl PyOperationListTagsForResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.tags {
-            let converted_133_list = PyList::empty(py);
-            for item_134 in value {
-                let converted_item_135 = tag_to_py(py, item_134)?;
-                converted_133_list.append(converted_item_135)?;
+            let converted_135_list = PyList::empty(py);
+            for item_136 in value {
+                let converted_item_137 = tag_to_py(py, item_136)?;
+                converted_135_list.append(converted_item_137)?;
             }
-            let converted_133 = converted_133_list.into_any().unbind();
-            result.set_item("tags", converted_133)?;
+            let converted_135 = converted_135_list.into_any().unbind();
+            result.set_item("tags", converted_135)?;
         } else {
             result.set_item("tags", py.None())?;
         }
@@ -972,7 +1030,9 @@ impl BedrockDataAutomationRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDataAutomationStatus"))
             })?;
-            Ok(PyOperationGetDataAutomationStatusOutput { inner: output })
+            Ok(PyOperationGetDataAutomationStatusOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -1056,7 +1116,9 @@ impl BedrockDataAutomationRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "InvokeDataAutomation"))
             })?;
-            Ok(PyOperationInvokeDataAutomationOutput { inner: output })
+            Ok(PyOperationInvokeDataAutomationOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -1206,7 +1268,9 @@ impl BedrockDataAutomationRuntimeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Ok(PyOperationListTagsForResourceOutput { inner: output })
+            Ok(PyOperationListTagsForResourceOutput {
+                inner: output.into(),
+            })
         })
     }
 

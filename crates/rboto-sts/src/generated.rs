@@ -202,7 +202,7 @@ fn tag_to_py(py: Python<'_>, value: &aws_sdk_sts::types::Tag) -> PyResult<Py<PyA
 
 #[pyclass(name = "AssumedRoleUser", module = "rboto_sts._native", frozen)]
 struct PyAssumedRoleUser {
-    inner: aws_sdk_sts::types::AssumedRoleUser,
+    inner: Arc<aws_sdk_sts::types::AssumedRoleUser>,
 }
 
 #[pymethods]
@@ -226,7 +226,7 @@ impl PyAssumedRoleUser {
 
 #[pyclass(name = "Credentials", module = "rboto_sts._native", frozen)]
 struct PyCredentials {
-    inner: aws_sdk_sts::types::Credentials,
+    inner: Arc<aws_sdk_sts::types::Credentials>,
 }
 
 #[pymethods]
@@ -262,7 +262,7 @@ impl PyCredentials {
 
 #[pyclass(name = "FederatedUser", module = "rboto_sts._native", frozen)]
 struct PyFederatedUser {
-    inner: aws_sdk_sts::types::FederatedUser,
+    inner: Arc<aws_sdk_sts::types::FederatedUser>,
 }
 
 #[pymethods]
@@ -284,9 +284,34 @@ impl PyFederatedUser {
     }
 }
 
+struct SharedPyOperationAssumeRoleOutput {
+    credentials: Option<Arc<aws_sdk_sts::types::Credentials>>,
+    assumed_role_user: Option<Arc<aws_sdk_sts::types::AssumedRoleUser>>,
+    packed_policy_size: Option<i32>,
+    source_identity: Option<::std::string::String>,
+    session_token_utilization: Option<i32>,
+    session_token_size: Option<i32>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sts::operation::assume_role::AssumeRoleOutput>
+    for SharedPyOperationAssumeRoleOutput
+{
+    fn from(value: aws_sdk_sts::operation::assume_role::AssumeRoleOutput) -> Self {
+        Self {
+            credentials: value.credentials.map(|item| Arc::new(item)),
+            assumed_role_user: value.assumed_role_user.map(|item| Arc::new(item)),
+            packed_policy_size: value.packed_policy_size,
+            source_identity: value.source_identity,
+            session_token_utilization: value.session_token_utilization,
+            session_token_size: value.session_token_size,
+        }
+    }
+}
+
 #[pyclass(name = "AssumeRoleOutput", module = "rboto_sts._native", frozen)]
 struct PyOperationAssumeRoleOutput {
-    inner: aws_sdk_sts::operation::assume_role::AssumeRoleOutput,
+    inner: SharedPyOperationAssumeRoleOutput,
 }
 
 #[pymethods]
@@ -297,7 +322,7 @@ impl PyOperationAssumeRoleOutput {
             let converted_115 = Py::new(
                 py,
                 PyCredentials {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -313,7 +338,7 @@ impl PyOperationAssumeRoleOutput {
             let converted_116 = Py::new(
                 py,
                 PyAssumedRoleUser {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -405,13 +430,50 @@ impl PyOperationAssumeRoleOutput {
     }
 }
 
+struct SharedPyOperationAssumeRoleWithSAMLOutput {
+    credentials: Option<Arc<aws_sdk_sts::types::Credentials>>,
+    assumed_role_user: Option<Arc<aws_sdk_sts::types::AssumedRoleUser>>,
+    packed_policy_size: Option<i32>,
+    subject: Option<::std::string::String>,
+    subject_type: Option<::std::string::String>,
+    issuer: Option<::std::string::String>,
+    audience: Option<::std::string::String>,
+    name_qualifier: Option<::std::string::String>,
+    source_identity: Option<::std::string::String>,
+    session_token_utilization: Option<i32>,
+    session_token_size: Option<i32>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sts::operation::assume_role_with_saml::AssumeRoleWithSamlOutput>
+    for SharedPyOperationAssumeRoleWithSAMLOutput
+{
+    fn from(
+        value: aws_sdk_sts::operation::assume_role_with_saml::AssumeRoleWithSamlOutput,
+    ) -> Self {
+        Self {
+            credentials: value.credentials.map(|item| Arc::new(item)),
+            assumed_role_user: value.assumed_role_user.map(|item| Arc::new(item)),
+            packed_policy_size: value.packed_policy_size,
+            subject: value.subject,
+            subject_type: value.subject_type,
+            issuer: value.issuer,
+            audience: value.audience,
+            name_qualifier: value.name_qualifier,
+            source_identity: value.source_identity,
+            session_token_utilization: value.session_token_utilization,
+            session_token_size: value.session_token_size,
+        }
+    }
+}
+
 #[pyclass(
     name = "AssumeRoleWithSAMLOutput",
     module = "rboto_sts._native",
     frozen
 )]
 struct PyOperationAssumeRoleWithSAMLOutput {
-    inner: aws_sdk_sts::operation::assume_role_with_saml::AssumeRoleWithSamlOutput,
+    inner: SharedPyOperationAssumeRoleWithSAMLOutput,
 }
 
 #[pymethods]
@@ -422,7 +484,7 @@ impl PyOperationAssumeRoleWithSAMLOutput {
             let converted_127 = Py::new(
                 py,
                 PyCredentials {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -438,7 +500,7 @@ impl PyOperationAssumeRoleWithSAMLOutput {
             let converted_128 = Py::new(
                 py,
                 PyAssumedRoleUser {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -610,13 +672,46 @@ impl PyOperationAssumeRoleWithSAMLOutput {
     }
 }
 
+struct SharedPyOperationAssumeRoleWithWebIdentityOutput {
+    credentials: Option<Arc<aws_sdk_sts::types::Credentials>>,
+    subject_from_web_identity_token: Option<::std::string::String>,
+    assumed_role_user: Option<Arc<aws_sdk_sts::types::AssumedRoleUser>>,
+    packed_policy_size: Option<i32>,
+    provider: Option<::std::string::String>,
+    audience: Option<::std::string::String>,
+    source_identity: Option<::std::string::String>,
+    session_token_utilization: Option<i32>,
+    session_token_size: Option<i32>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sts::operation::assume_role_with_web_identity::AssumeRoleWithWebIdentityOutput>
+    for SharedPyOperationAssumeRoleWithWebIdentityOutput
+{
+    fn from(
+        value: aws_sdk_sts::operation::assume_role_with_web_identity::AssumeRoleWithWebIdentityOutput,
+    ) -> Self {
+        Self {
+            credentials: value.credentials.map(|item| Arc::new(item)),
+            subject_from_web_identity_token: value.subject_from_web_identity_token,
+            assumed_role_user: value.assumed_role_user.map(|item| Arc::new(item)),
+            packed_policy_size: value.packed_policy_size,
+            provider: value.provider,
+            audience: value.audience,
+            source_identity: value.source_identity,
+            session_token_utilization: value.session_token_utilization,
+            session_token_size: value.session_token_size,
+        }
+    }
+}
+
 #[pyclass(
     name = "AssumeRoleWithWebIdentityOutput",
     module = "rboto_sts._native",
     frozen
 )]
 struct PyOperationAssumeRoleWithWebIdentityOutput {
-    inner: aws_sdk_sts::operation::assume_role_with_web_identity::AssumeRoleWithWebIdentityOutput,
+    inner: SharedPyOperationAssumeRoleWithWebIdentityOutput,
 }
 
 #[pymethods]
@@ -627,7 +722,7 @@ impl PyOperationAssumeRoleWithWebIdentityOutput {
             let converted_149 = Py::new(
                 py,
                 PyCredentials {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -653,7 +748,7 @@ impl PyOperationAssumeRoleWithWebIdentityOutput {
             let converted_151 = Py::new(
                 py,
                 PyAssumedRoleUser {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -783,9 +878,30 @@ impl PyOperationAssumeRoleWithWebIdentityOutput {
     }
 }
 
+struct SharedPyOperationAssumeRootOutput {
+    credentials: Option<Arc<aws_sdk_sts::types::Credentials>>,
+    source_identity: Option<::std::string::String>,
+    session_token_utilization: Option<i32>,
+    session_token_size: Option<i32>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sts::operation::assume_root::AssumeRootOutput>
+    for SharedPyOperationAssumeRootOutput
+{
+    fn from(value: aws_sdk_sts::operation::assume_root::AssumeRootOutput) -> Self {
+        Self {
+            credentials: value.credentials.map(|item| Arc::new(item)),
+            source_identity: value.source_identity,
+            session_token_utilization: value.session_token_utilization,
+            session_token_size: value.session_token_size,
+        }
+    }
+}
+
 #[pyclass(name = "AssumeRootOutput", module = "rboto_sts._native", frozen)]
 struct PyOperationAssumeRootOutput {
-    inner: aws_sdk_sts::operation::assume_root::AssumeRootOutput,
+    inner: SharedPyOperationAssumeRootOutput,
 }
 
 #[pymethods]
@@ -796,7 +912,7 @@ impl PyOperationAssumeRootOutput {
             let converted_167 = Py::new(
                 py,
                 PyCredentials {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -989,13 +1105,34 @@ impl PyOperationGetCallerIdentityOutput {
     }
 }
 
+struct SharedPyOperationGetDelegatedAccessTokenOutput {
+    credentials: Option<Arc<aws_sdk_sts::types::Credentials>>,
+    packed_policy_size: Option<i32>,
+    assumed_principal: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sts::operation::get_delegated_access_token::GetDelegatedAccessTokenOutput>
+    for SharedPyOperationGetDelegatedAccessTokenOutput
+{
+    fn from(
+        value: aws_sdk_sts::operation::get_delegated_access_token::GetDelegatedAccessTokenOutput,
+    ) -> Self {
+        Self {
+            credentials: value.credentials.map(|item| Arc::new(item)),
+            packed_policy_size: value.packed_policy_size,
+            assumed_principal: value.assumed_principal,
+        }
+    }
+}
+
 #[pyclass(
     name = "GetDelegatedAccessTokenOutput",
     module = "rboto_sts._native",
     frozen
 )]
 struct PyOperationGetDelegatedAccessTokenOutput {
-    inner: aws_sdk_sts::operation::get_delegated_access_token::GetDelegatedAccessTokenOutput,
+    inner: SharedPyOperationGetDelegatedAccessTokenOutput,
 }
 
 #[pymethods]
@@ -1006,7 +1143,7 @@ impl PyOperationGetDelegatedAccessTokenOutput {
             let converted_185 = Py::new(
                 py,
                 PyCredentials {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -1060,13 +1197,36 @@ impl PyOperationGetDelegatedAccessTokenOutput {
     }
 }
 
+struct SharedPyOperationGetFederationTokenOutput {
+    credentials: Option<Arc<aws_sdk_sts::types::Credentials>>,
+    federated_user: Option<Arc<aws_sdk_sts::types::FederatedUser>>,
+    packed_policy_size: Option<i32>,
+    session_token_utilization: Option<i32>,
+    session_token_size: Option<i32>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sts::operation::get_federation_token::GetFederationTokenOutput>
+    for SharedPyOperationGetFederationTokenOutput
+{
+    fn from(value: aws_sdk_sts::operation::get_federation_token::GetFederationTokenOutput) -> Self {
+        Self {
+            credentials: value.credentials.map(|item| Arc::new(item)),
+            federated_user: value.federated_user.map(|item| Arc::new(item)),
+            packed_policy_size: value.packed_policy_size,
+            session_token_utilization: value.session_token_utilization,
+            session_token_size: value.session_token_size,
+        }
+    }
+}
+
 #[pyclass(
     name = "GetFederationTokenOutput",
     module = "rboto_sts._native",
     frozen
 )]
 struct PyOperationGetFederationTokenOutput {
-    inner: aws_sdk_sts::operation::get_federation_token::GetFederationTokenOutput,
+    inner: SharedPyOperationGetFederationTokenOutput,
 }
 
 #[pymethods]
@@ -1077,7 +1237,7 @@ impl PyOperationGetFederationTokenOutput {
             let converted_191 = Py::new(
                 py,
                 PyCredentials {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -1093,7 +1253,7 @@ impl PyOperationGetFederationTokenOutput {
             let converted_192 = Py::new(
                 py,
                 PyFederatedUser {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -1169,9 +1329,28 @@ impl PyOperationGetFederationTokenOutput {
     }
 }
 
+struct SharedPyOperationGetSessionTokenOutput {
+    credentials: Option<Arc<aws_sdk_sts::types::Credentials>>,
+    session_token_utilization: Option<i32>,
+    session_token_size: Option<i32>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sts::operation::get_session_token::GetSessionTokenOutput>
+    for SharedPyOperationGetSessionTokenOutput
+{
+    fn from(value: aws_sdk_sts::operation::get_session_token::GetSessionTokenOutput) -> Self {
+        Self {
+            credentials: value.credentials.map(|item| Arc::new(item)),
+            session_token_utilization: value.session_token_utilization,
+            session_token_size: value.session_token_size,
+        }
+    }
+}
+
 #[pyclass(name = "GetSessionTokenOutput", module = "rboto_sts._native", frozen)]
 struct PyOperationGetSessionTokenOutput {
-    inner: aws_sdk_sts::operation::get_session_token::GetSessionTokenOutput,
+    inner: SharedPyOperationGetSessionTokenOutput,
 }
 
 #[pymethods]
@@ -1182,7 +1361,7 @@ impl PyOperationGetSessionTokenOutput {
             let converted_201 = Py::new(
                 py,
                 PyCredentials {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -1477,7 +1656,9 @@ impl STSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "AssumeRole")))?;
-            Ok(PyOperationAssumeRoleOutput { inner: output })
+            Ok(PyOperationAssumeRoleOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -1564,7 +1745,9 @@ impl STSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AssumeRoleWithSAML"))
             })?;
-            Ok(PyOperationAssumeRoleWithSAMLOutput { inner: output })
+            Ok(PyOperationAssumeRoleWithSAMLOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -1660,7 +1843,9 @@ impl STSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AssumeRoleWithWebIdentity"))
             })?;
-            Ok(PyOperationAssumeRoleWithWebIdentityOutput { inner: output })
+            Ok(PyOperationAssumeRoleWithWebIdentityOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -1719,7 +1904,9 @@ impl STSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "AssumeRoot")))?;
-            Ok(PyOperationAssumeRootOutput { inner: output })
+            Ok(PyOperationAssumeRootOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -1863,7 +2050,9 @@ impl STSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDelegatedAccessToken"))
             })?;
-            Ok(PyOperationGetDelegatedAccessTokenOutput { inner: output })
+            Ok(PyOperationGetDelegatedAccessTokenOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -1949,7 +2138,9 @@ impl STSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFederationToken"))
             })?;
-            Ok(PyOperationGetFederationTokenOutput { inner: output })
+            Ok(PyOperationGetFederationTokenOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -2009,7 +2200,9 @@ impl STSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetSessionToken"))
             })?;
-            Ok(PyOperationGetSessionTokenOutput { inner: output })
+            Ok(PyOperationGetSessionTokenOutput {
+                inner: output.into(),
+            })
         })
     }
 

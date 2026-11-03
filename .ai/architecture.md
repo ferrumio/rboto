@@ -51,6 +51,14 @@ annotations. Do not retain the old modeled response names as compatibility
 aliases. Native exports are direct class aliases. Operation names take priority;
 collision suffixes insert `Value` before `Output`. See ADR-0021.
 
+## Native outputs
+
+Native output child structures own independent shared Rust nodes. Container
+getters allocate fresh Python containers and clone node references, never whole
+SDK objects. Storage conversion runs before Python result delivery; stream
+owners remain separate. Preserve subtree lifetime and sibling release when
+changing this representation. See ADR-0025.
+
 ## Native runtime
 
 `configure_runtime()` sets a global worker policy before native runtime

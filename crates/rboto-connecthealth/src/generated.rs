@@ -1634,7 +1634,7 @@ fn web_app_configuration_to_py(
     frozen
 )]
 struct PyArtifactDetails {
-    inner: aws_sdk_connecthealth::types::ArtifactDetails,
+    inner: Arc<aws_sdk_connecthealth::types::ArtifactDetails>,
 }
 
 #[pymethods]
@@ -1674,13 +1674,58 @@ impl PyArtifactDetails {
     }
 }
 
+struct SharedClinicalNoteGenerationResult {
+    note_result: Option<Arc<aws_sdk_connecthealth::types::ArtifactDetails>>,
+    transcript_result: Option<Arc<aws_sdk_connecthealth::types::ArtifactDetails>>,
+    after_visit_summary_result: Option<Arc<aws_sdk_connecthealth::types::ArtifactDetails>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_connecthealth::types::ClinicalNoteGenerationResult>
+    for SharedClinicalNoteGenerationResult
+{
+    fn from(value: aws_sdk_connecthealth::types::ClinicalNoteGenerationResult) -> Self {
+        Self {
+            note_result: value.note_result.map(|item| Arc::new(item)),
+            transcript_result: value.transcript_result.map(|item| Arc::new(item)),
+            after_visit_summary_result: value.after_visit_summary_result.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn clinical_note_generation_result_shared_to_py(
+    py: Python<'_>,
+    value: &SharedClinicalNoteGenerationResult,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.note_result {
+        let converted_308 = artifact_details_to_py(py, value)?;
+        result.set_item("note_result", converted_308)?;
+    } else {
+        result.set_item("note_result", py.None())?;
+    }
+    if let Some(value) = &value.transcript_result {
+        let converted_309 = artifact_details_to_py(py, value)?;
+        result.set_item("transcript_result", converted_309)?;
+    } else {
+        result.set_item("transcript_result", py.None())?;
+    }
+    if let Some(value) = &value.after_visit_summary_result {
+        let converted_310 = artifact_details_to_py(py, value)?;
+        result.set_item("after_visit_summary_result", converted_310)?;
+    } else {
+        result.set_item("after_visit_summary_result", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "ClinicalNoteGenerationResult",
     module = "rboto_connecthealth._native",
     frozen
 )]
 struct PyClinicalNoteGenerationResult {
-    inner: aws_sdk_connecthealth::types::ClinicalNoteGenerationResult,
+    inner: Arc<SharedClinicalNoteGenerationResult>,
 }
 
 #[pymethods]
@@ -1691,7 +1736,7 @@ impl PyClinicalNoteGenerationResult {
             let converted_305 = Py::new(
                 py,
                 PyArtifactDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -1707,7 +1752,7 @@ impl PyClinicalNoteGenerationResult {
             let converted_306 = Py::new(
                 py,
                 PyArtifactDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -1723,7 +1768,7 @@ impl PyClinicalNoteGenerationResult {
             let converted_307 = Py::new(
                 py,
                 PyArtifactDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -1734,7 +1779,7 @@ impl PyClinicalNoteGenerationResult {
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        clinical_note_generation_result_to_py(py, &self.inner)
+        clinical_note_generation_result_shared_to_py(py, &self.inner)
     }
 }
 
@@ -1744,7 +1789,7 @@ impl PyClinicalNoteGenerationResult {
     frozen
 )]
 struct PyClinicalNoteGenerationSettingsResponse {
-    inner: aws_sdk_connecthealth::types::ClinicalNoteGenerationSettingsResponse,
+    inner: Arc<aws_sdk_connecthealth::types::ClinicalNoteGenerationSettingsResponse>,
 }
 
 #[pymethods]
@@ -1752,8 +1797,8 @@ impl PyClinicalNoteGenerationSettingsResponse {
     #[getter]
     fn note_template_settings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.note_template_settings {
-            let converted_308 = note_template_settings_response_to_py(py, value)?;
-            Ok(converted_308)
+            let converted_311 = note_template_settings_response_to_py(py, value)?;
+            Ok(converted_311)
         } else {
             Ok(py.None())
         }
@@ -1766,39 +1811,39 @@ impl PyClinicalNoteGenerationSettingsResponse {
 
 #[pyclass(name = "DomainSummary", module = "rboto_connecthealth._native", frozen)]
 struct PyDomainSummary {
-    inner: aws_sdk_connecthealth::types::DomainSummary,
+    inner: Arc<aws_sdk_connecthealth::types::DomainSummary>,
 }
 
 #[pymethods]
 impl PyDomainSummary {
     #[getter]
     fn domain_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_309 = (&self.inner.domain_id).as_str().into_py_any(py)?;
-        Ok(converted_309)
-    }
-
-    #[getter]
-    fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_310 = (&self.inner.arn).as_str().into_py_any(py)?;
-        Ok(converted_310)
-    }
-
-    #[getter]
-    fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_311 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_311)
-    }
-
-    #[getter]
-    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_312 = (&self.inner.status).as_str().into_py_any(py)?;
+        let converted_312 = (&self.inner.domain_id).as_str().into_py_any(py)?;
         Ok(converted_312)
     }
 
     #[getter]
-    fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_313 = (&self.inner.created_at).to_string().into_py_any(py)?;
+    fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_313 = (&self.inner.arn).as_str().into_py_any(py)?;
         Ok(converted_313)
+    }
+
+    #[getter]
+    fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_314 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_314)
+    }
+
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_315 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_315)
+    }
+
+    #[getter]
+    fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_316 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_316)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -1812,22 +1857,22 @@ impl PyDomainSummary {
     frozen
 )]
 struct PyEncryptionContext {
-    inner: aws_sdk_connecthealth::types::EncryptionContext,
+    inner: Arc<aws_sdk_connecthealth::types::EncryptionContext>,
 }
 
 #[pymethods]
 impl PyEncryptionContext {
     #[getter]
     fn encryption_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_314 = (&self.inner.encryption_type).as_str().into_py_any(py)?;
-        Ok(converted_314)
+        let converted_317 = (&self.inner.encryption_type).as_str().into_py_any(py)?;
+        Ok(converted_317)
     }
 
     #[getter]
     fn kms_key_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key_arn {
-            let converted_315 = (value).as_str().into_py_any(py)?;
-            Ok(converted_315)
+            let converted_318 = (value).as_str().into_py_any(py)?;
+            Ok(converted_318)
         } else {
             Ok(py.None())
         }
@@ -1840,22 +1885,22 @@ impl PyEncryptionContext {
 
 #[pyclass(name = "FhirServer", module = "rboto_connecthealth._native", frozen)]
 struct PyFhirServer {
-    inner: aws_sdk_connecthealth::types::FhirServer,
+    inner: Arc<aws_sdk_connecthealth::types::FhirServer>,
 }
 
 #[pymethods]
 impl PyFhirServer {
     #[getter]
     fn fhir_endpoint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_316 = (&self.inner.fhir_endpoint).as_str().into_py_any(py)?;
-        Ok(converted_316)
+        let converted_319 = (&self.inner.fhir_endpoint).as_str().into_py_any(py)?;
+        Ok(converted_319)
     }
 
     #[getter]
     fn oauth_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.oauth_token {
-            let converted_317 = (value).as_str().into_py_any(py)?;
-            Ok(converted_317)
+            let converted_320 = (value).as_str().into_py_any(py)?;
+            Ok(converted_320)
         } else {
             Ok(py.None())
         }
@@ -1866,13 +1911,58 @@ impl PyFhirServer {
     }
 }
 
+struct SharedInputDataConfig {
+    fhir_server: Option<Arc<aws_sdk_connecthealth::types::FhirServer>>,
+    s3_sources: Option<::std::vec::Vec<Arc<aws_sdk_connecthealth::types::S3Source>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_connecthealth::types::InputDataConfig> for SharedInputDataConfig {
+    fn from(value: aws_sdk_connecthealth::types::InputDataConfig) -> Self {
+        Self {
+            fhir_server: value.fhir_server.map(|item| Arc::new(item)),
+            s3_sources: value.s3_sources.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_325| Arc::new(owned_325))
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn input_data_config_shared_to_py(
+    py: Python<'_>,
+    value: &SharedInputDataConfig,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.fhir_server {
+        let converted_326 = fhir_server_to_py(py, value)?;
+        result.set_item("fhir_server", converted_326)?;
+    } else {
+        result.set_item("fhir_server", py.None())?;
+    }
+    if let Some(value) = &value.s3_sources {
+        let converted_327_list = PyList::empty(py);
+        for item_328 in value {
+            let converted_item_329 = s3_source_to_py(py, item_328)?;
+            converted_327_list.append(converted_item_329)?;
+        }
+        let converted_327 = converted_327_list.into_any().unbind();
+        result.set_item("s3_sources", converted_327)?;
+    } else {
+        result.set_item("s3_sources", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "InputDataConfig",
     module = "rboto_connecthealth._native",
     frozen
 )]
 struct PyInputDataConfig {
-    inner: aws_sdk_connecthealth::types::InputDataConfig,
+    inner: Arc<SharedInputDataConfig>,
 }
 
 #[pymethods]
@@ -1880,14 +1970,14 @@ impl PyInputDataConfig {
     #[getter]
     fn fhir_server(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.fhir_server {
-            let converted_318 = Py::new(
+            let converted_321 = Py::new(
                 py,
                 PyFhirServer {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_318)
+            Ok(converted_321)
         } else {
             Ok(py.None())
         }
@@ -1896,26 +1986,26 @@ impl PyInputDataConfig {
     #[getter]
     fn s3_sources(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.s3_sources {
-            let converted_319_list = PyList::empty(py);
-            for item_320 in value {
-                let converted_item_321 = Py::new(
+            let converted_322_list = PyList::empty(py);
+            for item_323 in value {
+                let converted_item_324 = Py::new(
                     py,
                     PyS3Source {
-                        inner: (item_320).to_owned(),
+                        inner: Arc::clone(item_323),
                     },
                 )?
                 .into_any();
-                converted_319_list.append(converted_item_321)?;
+                converted_322_list.append(converted_item_324)?;
             }
-            let converted_319 = converted_319_list.into_any().unbind();
-            Ok(converted_319)
+            let converted_322 = converted_322_list.into_any().unbind();
+            Ok(converted_322)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        input_data_config_to_py(py, &self.inner)
+        input_data_config_shared_to_py(py, &self.inner)
     }
 }
 
@@ -1925,15 +2015,15 @@ impl PyInputDataConfig {
     frozen
 )]
 struct PyInsightsContext {
-    inner: aws_sdk_connecthealth::types::InsightsContext,
+    inner: Arc<aws_sdk_connecthealth::types::InsightsContext>,
 }
 
 #[pymethods]
 impl PyInsightsContext {
     #[getter]
     fn insights_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_322 = (&self.inner.insights_type).as_str().into_py_any(py)?;
-        Ok(converted_322)
+        let converted_330 = (&self.inner.insights_type).as_str().into_py_any(py)?;
+        Ok(converted_330)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -1947,15 +2037,15 @@ impl PyInsightsContext {
     frozen
 )]
 struct PyInsightsOutput {
-    inner: aws_sdk_connecthealth::types::InsightsOutput,
+    inner: Arc<aws_sdk_connecthealth::types::InsightsOutput>,
 }
 
 #[pymethods]
 impl PyInsightsOutput {
     #[getter]
     fn uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_323 = (&self.inner.uri).as_str().into_py_any(py)?;
-        Ok(converted_323)
+        let converted_331 = (&self.inner.uri).as_str().into_py_any(py)?;
+        Ok(converted_331)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -1969,26 +2059,169 @@ impl PyInsightsOutput {
     frozen
 )]
 struct PyMedicalScribeChannelDefinition {
-    inner: aws_sdk_connecthealth::types::MedicalScribeChannelDefinition,
+    inner: Arc<aws_sdk_connecthealth::types::MedicalScribeChannelDefinition>,
 }
 
 #[pymethods]
 impl PyMedicalScribeChannelDefinition {
     #[getter]
     fn channel_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_324 = (&self.inner.channel_id).to_owned().into_py_any(py)?;
-        Ok(converted_324)
+        let converted_332 = (&self.inner.channel_id).to_owned().into_py_any(py)?;
+        Ok(converted_332)
     }
 
     #[getter]
     fn participant_role(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_325 = (&self.inner.participant_role).as_str().into_py_any(py)?;
-        Ok(converted_325)
+        let converted_333 = (&self.inner.participant_role).as_str().into_py_any(py)?;
+        Ok(converted_333)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         medical_scribe_channel_definition_to_py(py, &self.inner)
     }
+}
+
+struct SharedMedicalScribeListeningSessionDetails {
+    session_id: Option<::std::string::String>,
+    domain_id: Option<::std::string::String>,
+    subscription_id: Option<::std::string::String>,
+    language_code: Option<aws_sdk_connecthealth::types::MedicalScribeLanguageCode>,
+    media_sample_rate_hertz: Option<i32>,
+    media_encoding: Option<aws_sdk_connecthealth::types::MedicalScribeMediaEncoding>,
+    channel_definitions:
+        Option<::std::vec::Vec<Arc<aws_sdk_connecthealth::types::MedicalScribeChannelDefinition>>>,
+    post_stream_action_settings: Option<Arc<SharedMedicalScribePostStreamActionSettingsResponse>>,
+    post_stream_action_result: Option<Arc<SharedMedicalScribePostStreamActionsResult>>,
+    encounter_context_provided: Option<bool>,
+    stream_status: Option<aws_sdk_connecthealth::types::MedicalScribeStreamStatus>,
+    stream_creation_time: Option<::aws_smithy_types::DateTime>,
+    stream_end_time: Option<::aws_smithy_types::DateTime>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_connecthealth::types::MedicalScribeListeningSessionDetails>
+    for SharedMedicalScribeListeningSessionDetails
+{
+    fn from(value: aws_sdk_connecthealth::types::MedicalScribeListeningSessionDetails) -> Self {
+        Self {
+            session_id: value.session_id,
+            domain_id: value.domain_id,
+            subscription_id: value.subscription_id,
+            language_code: value.language_code,
+            media_sample_rate_hertz: value.media_sample_rate_hertz,
+            media_encoding: value.media_encoding,
+            channel_definitions: value.channel_definitions.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_349| Arc::new(owned_349))
+                    .collect()
+            }),
+            post_stream_action_settings: value.post_stream_action_settings.map(|item| {
+                Arc::new(SharedMedicalScribePostStreamActionSettingsResponse::from(
+                    item,
+                ))
+            }),
+            post_stream_action_result: value
+                .post_stream_action_result
+                .map(|item| Arc::new(SharedMedicalScribePostStreamActionsResult::from(item))),
+            encounter_context_provided: value.encounter_context_provided,
+            stream_status: value.stream_status,
+            stream_creation_time: value.stream_creation_time,
+            stream_end_time: value.stream_end_time,
+        }
+    }
+}
+
+fn medical_scribe_listening_session_details_shared_to_py(
+    py: Python<'_>,
+    value: &SharedMedicalScribeListeningSessionDetails,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.session_id {
+        let converted_350 = (value).as_str().into_py_any(py)?;
+        result.set_item("session_id", converted_350)?;
+    } else {
+        result.set_item("session_id", py.None())?;
+    }
+    if let Some(value) = &value.domain_id {
+        let converted_351 = (value).as_str().into_py_any(py)?;
+        result.set_item("domain_id", converted_351)?;
+    } else {
+        result.set_item("domain_id", py.None())?;
+    }
+    if let Some(value) = &value.subscription_id {
+        let converted_352 = (value).as_str().into_py_any(py)?;
+        result.set_item("subscription_id", converted_352)?;
+    } else {
+        result.set_item("subscription_id", py.None())?;
+    }
+    if let Some(value) = &value.language_code {
+        let converted_353 = (value).as_str().into_py_any(py)?;
+        result.set_item("language_code", converted_353)?;
+    } else {
+        result.set_item("language_code", py.None())?;
+    }
+    if let Some(value) = &value.media_sample_rate_hertz {
+        let converted_354 = (value).to_owned().into_py_any(py)?;
+        result.set_item("media_sample_rate_hertz", converted_354)?;
+    } else {
+        result.set_item("media_sample_rate_hertz", py.None())?;
+    }
+    if let Some(value) = &value.media_encoding {
+        let converted_355 = (value).as_str().into_py_any(py)?;
+        result.set_item("media_encoding", converted_355)?;
+    } else {
+        result.set_item("media_encoding", py.None())?;
+    }
+    if let Some(value) = &value.channel_definitions {
+        let converted_356_list = PyList::empty(py);
+        for item_357 in value {
+            let converted_item_358 = medical_scribe_channel_definition_to_py(py, item_357)?;
+            converted_356_list.append(converted_item_358)?;
+        }
+        let converted_356 = converted_356_list.into_any().unbind();
+        result.set_item("channel_definitions", converted_356)?;
+    } else {
+        result.set_item("channel_definitions", py.None())?;
+    }
+    if let Some(value) = &value.post_stream_action_settings {
+        let converted_359 =
+            medical_scribe_post_stream_action_settings_response_shared_to_py(py, value)?;
+        result.set_item("post_stream_action_settings", converted_359)?;
+    } else {
+        result.set_item("post_stream_action_settings", py.None())?;
+    }
+    if let Some(value) = &value.post_stream_action_result {
+        let converted_360 = medical_scribe_post_stream_actions_result_shared_to_py(py, value)?;
+        result.set_item("post_stream_action_result", converted_360)?;
+    } else {
+        result.set_item("post_stream_action_result", py.None())?;
+    }
+    if let Some(value) = &value.encounter_context_provided {
+        let converted_361 = (value).to_owned().into_py_any(py)?;
+        result.set_item("encounter_context_provided", converted_361)?;
+    } else {
+        result.set_item("encounter_context_provided", py.None())?;
+    }
+    if let Some(value) = &value.stream_status {
+        let converted_362 = (value).as_str().into_py_any(py)?;
+        result.set_item("stream_status", converted_362)?;
+    } else {
+        result.set_item("stream_status", py.None())?;
+    }
+    if let Some(value) = &value.stream_creation_time {
+        let converted_363 = (value).to_string().into_py_any(py)?;
+        result.set_item("stream_creation_time", converted_363)?;
+    } else {
+        result.set_item("stream_creation_time", py.None())?;
+    }
+    if let Some(value) = &value.stream_end_time {
+        let converted_364 = (value).to_string().into_py_any(py)?;
+        result.set_item("stream_end_time", converted_364)?;
+    } else {
+        result.set_item("stream_end_time", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -1997,7 +2230,7 @@ impl PyMedicalScribeChannelDefinition {
     frozen
 )]
 struct PyMedicalScribeListeningSessionDetails {
-    inner: aws_sdk_connecthealth::types::MedicalScribeListeningSessionDetails,
+    inner: Arc<SharedMedicalScribeListeningSessionDetails>,
 }
 
 #[pymethods]
@@ -2005,8 +2238,8 @@ impl PyMedicalScribeListeningSessionDetails {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_id {
-            let converted_326 = (value).as_str().into_py_any(py)?;
-            Ok(converted_326)
+            let converted_334 = (value).as_str().into_py_any(py)?;
+            Ok(converted_334)
         } else {
             Ok(py.None())
         }
@@ -2015,8 +2248,8 @@ impl PyMedicalScribeListeningSessionDetails {
     #[getter]
     fn domain_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.domain_id {
-            let converted_327 = (value).as_str().into_py_any(py)?;
-            Ok(converted_327)
+            let converted_335 = (value).as_str().into_py_any(py)?;
+            Ok(converted_335)
         } else {
             Ok(py.None())
         }
@@ -2025,8 +2258,8 @@ impl PyMedicalScribeListeningSessionDetails {
     #[getter]
     fn subscription_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscription_id {
-            let converted_328 = (value).as_str().into_py_any(py)?;
-            Ok(converted_328)
+            let converted_336 = (value).as_str().into_py_any(py)?;
+            Ok(converted_336)
         } else {
             Ok(py.None())
         }
@@ -2035,8 +2268,8 @@ impl PyMedicalScribeListeningSessionDetails {
     #[getter]
     fn language_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.language_code {
-            let converted_329 = (value).as_str().into_py_any(py)?;
-            Ok(converted_329)
+            let converted_337 = (value).as_str().into_py_any(py)?;
+            Ok(converted_337)
         } else {
             Ok(py.None())
         }
@@ -2045,8 +2278,8 @@ impl PyMedicalScribeListeningSessionDetails {
     #[getter]
     fn media_sample_rate_hertz(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.media_sample_rate_hertz {
-            let converted_330 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_330)
+            let converted_338 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_338)
         } else {
             Ok(py.None())
         }
@@ -2055,8 +2288,8 @@ impl PyMedicalScribeListeningSessionDetails {
     #[getter]
     fn media_encoding(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.media_encoding {
-            let converted_331 = (value).as_str().into_py_any(py)?;
-            Ok(converted_331)
+            let converted_339 = (value).as_str().into_py_any(py)?;
+            Ok(converted_339)
         } else {
             Ok(py.None())
         }
@@ -2065,19 +2298,19 @@ impl PyMedicalScribeListeningSessionDetails {
     #[getter]
     fn channel_definitions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.channel_definitions {
-            let converted_332_list = PyList::empty(py);
-            for item_333 in value {
-                let converted_item_334 = Py::new(
+            let converted_340_list = PyList::empty(py);
+            for item_341 in value {
+                let converted_item_342 = Py::new(
                     py,
                     PyMedicalScribeChannelDefinition {
-                        inner: (item_333).to_owned(),
+                        inner: Arc::clone(item_341),
                     },
                 )?
                 .into_any();
-                converted_332_list.append(converted_item_334)?;
+                converted_340_list.append(converted_item_342)?;
             }
-            let converted_332 = converted_332_list.into_any().unbind();
-            Ok(converted_332)
+            let converted_340 = converted_340_list.into_any().unbind();
+            Ok(converted_340)
         } else {
             Ok(py.None())
         }
@@ -2086,136 +2319,10 @@ impl PyMedicalScribeListeningSessionDetails {
     #[getter]
     fn post_stream_action_settings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.post_stream_action_settings {
-            let converted_335 = Py::new(
-                py,
-                PyMedicalScribePostStreamActionSettingsResponse {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_335)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn post_stream_action_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.post_stream_action_result {
-            let converted_336 = Py::new(
-                py,
-                PyMedicalScribePostStreamActionsResult {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_336)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn encounter_context_provided(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.encounter_context_provided {
-            let converted_337 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_337)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn stream_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.stream_status {
-            let converted_338 = (value).as_str().into_py_any(py)?;
-            Ok(converted_338)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn stream_creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.stream_creation_time {
-            let converted_339 = (value).to_string().into_py_any(py)?;
-            Ok(converted_339)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn stream_end_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.stream_end_time {
-            let converted_340 = (value).to_string().into_py_any(py)?;
-            Ok(converted_340)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        medical_scribe_listening_session_details_to_py(py, &self.inner)
-    }
-}
-
-#[pyclass(
-    name = "MedicalScribePostStreamActionSettingsResponse",
-    module = "rboto_connecthealth._native",
-    frozen
-)]
-struct PyMedicalScribePostStreamActionSettingsResponse {
-    inner: aws_sdk_connecthealth::types::MedicalScribePostStreamActionSettingsResponse,
-}
-
-#[pymethods]
-impl PyMedicalScribePostStreamActionSettingsResponse {
-    #[getter]
-    fn output_s3_uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_341 = (&self.inner.output_s3_uri).as_str().into_py_any(py)?;
-        Ok(converted_341)
-    }
-
-    #[getter]
-    fn clinical_note_generation_settings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.clinical_note_generation_settings {
-            let converted_342 = Py::new(
-                py,
-                PyClinicalNoteGenerationSettingsResponse {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_342)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        medical_scribe_post_stream_action_settings_response_to_py(py, &self.inner)
-    }
-}
-
-#[pyclass(
-    name = "MedicalScribePostStreamActionsResult",
-    module = "rboto_connecthealth._native",
-    frozen
-)]
-struct PyMedicalScribePostStreamActionsResult {
-    inner: aws_sdk_connecthealth::types::MedicalScribePostStreamActionsResult,
-}
-
-#[pymethods]
-impl PyMedicalScribePostStreamActionsResult {
-    #[getter]
-    fn clinical_note_generation_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.clinical_note_generation_result {
             let converted_343 = Py::new(
                 py,
-                PyClinicalNoteGenerationResult {
-                    inner: (value).to_owned(),
+                PyMedicalScribePostStreamActionSettingsResponse {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -2225,8 +2332,203 @@ impl PyMedicalScribePostStreamActionsResult {
         }
     }
 
+    #[getter]
+    fn post_stream_action_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.post_stream_action_result {
+            let converted_344 = Py::new(
+                py,
+                PyMedicalScribePostStreamActionsResult {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_344)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn encounter_context_provided(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.encounter_context_provided {
+            let converted_345 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_345)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn stream_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.stream_status {
+            let converted_346 = (value).as_str().into_py_any(py)?;
+            Ok(converted_346)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn stream_creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.stream_creation_time {
+            let converted_347 = (value).to_string().into_py_any(py)?;
+            Ok(converted_347)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn stream_end_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.stream_end_time {
+            let converted_348 = (value).to_string().into_py_any(py)?;
+            Ok(converted_348)
+        } else {
+            Ok(py.None())
+        }
+    }
+
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        medical_scribe_post_stream_actions_result_to_py(py, &self.inner)
+        medical_scribe_listening_session_details_shared_to_py(py, &self.inner)
+    }
+}
+
+struct SharedMedicalScribePostStreamActionSettingsResponse {
+    output_s3_uri: ::std::string::String,
+    clinical_note_generation_settings:
+        Option<Arc<aws_sdk_connecthealth::types::ClinicalNoteGenerationSettingsResponse>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_connecthealth::types::MedicalScribePostStreamActionSettingsResponse>
+    for SharedMedicalScribePostStreamActionSettingsResponse
+{
+    fn from(
+        value: aws_sdk_connecthealth::types::MedicalScribePostStreamActionSettingsResponse,
+    ) -> Self {
+        Self {
+            output_s3_uri: value.output_s3_uri,
+            clinical_note_generation_settings: value
+                .clinical_note_generation_settings
+                .map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn medical_scribe_post_stream_action_settings_response_shared_to_py(
+    py: Python<'_>,
+    value: &SharedMedicalScribePostStreamActionSettingsResponse,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_367 = (&value.output_s3_uri).as_str().into_py_any(py)?;
+    result.set_item("output_s3_uri", converted_367)?;
+    if let Some(value) = &value.clinical_note_generation_settings {
+        let converted_368 = clinical_note_generation_settings_response_to_py(py, value)?;
+        result.set_item("clinical_note_generation_settings", converted_368)?;
+    } else {
+        result.set_item("clinical_note_generation_settings", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+#[pyclass(
+    name = "MedicalScribePostStreamActionSettingsResponse",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
+struct PyMedicalScribePostStreamActionSettingsResponse {
+    inner: Arc<SharedMedicalScribePostStreamActionSettingsResponse>,
+}
+
+#[pymethods]
+impl PyMedicalScribePostStreamActionSettingsResponse {
+    #[getter]
+    fn output_s3_uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_365 = (&self.inner.output_s3_uri).as_str().into_py_any(py)?;
+        Ok(converted_365)
+    }
+
+    #[getter]
+    fn clinical_note_generation_settings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.clinical_note_generation_settings {
+            let converted_366 = Py::new(
+                py,
+                PyClinicalNoteGenerationSettingsResponse {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_366)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        medical_scribe_post_stream_action_settings_response_shared_to_py(py, &self.inner)
+    }
+}
+
+struct SharedMedicalScribePostStreamActionsResult {
+    clinical_note_generation_result: Option<Arc<SharedClinicalNoteGenerationResult>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_connecthealth::types::MedicalScribePostStreamActionsResult>
+    for SharedMedicalScribePostStreamActionsResult
+{
+    fn from(value: aws_sdk_connecthealth::types::MedicalScribePostStreamActionsResult) -> Self {
+        Self {
+            clinical_note_generation_result: value
+                .clinical_note_generation_result
+                .map(|item| Arc::new(SharedClinicalNoteGenerationResult::from(item))),
+        }
+    }
+}
+
+fn medical_scribe_post_stream_actions_result_shared_to_py(
+    py: Python<'_>,
+    value: &SharedMedicalScribePostStreamActionsResult,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.clinical_note_generation_result {
+        let converted_370 = clinical_note_generation_result_shared_to_py(py, value)?;
+        result.set_item("clinical_note_generation_result", converted_370)?;
+    } else {
+        result.set_item("clinical_note_generation_result", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+#[pyclass(
+    name = "MedicalScribePostStreamActionsResult",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
+struct PyMedicalScribePostStreamActionsResult {
+    inner: Arc<SharedMedicalScribePostStreamActionsResult>,
+}
+
+#[pymethods]
+impl PyMedicalScribePostStreamActionsResult {
+    #[getter]
+    fn clinical_note_generation_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.clinical_note_generation_result {
+            let converted_369 = Py::new(
+                py,
+                PyClinicalNoteGenerationResult {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_369)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        medical_scribe_post_stream_actions_result_shared_to_py(py, &self.inner)
     }
 }
 
@@ -2236,15 +2538,15 @@ impl PyMedicalScribePostStreamActionsResult {
     frozen
 )]
 struct PyOutputDataConfig {
-    inner: aws_sdk_connecthealth::types::OutputDataConfig,
+    inner: Arc<aws_sdk_connecthealth::types::OutputDataConfig>,
 }
 
 #[pymethods]
 impl PyOutputDataConfig {
     #[getter]
     fn s3_output_path(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_344 = (&self.inner.s3_output_path).as_str().into_py_any(py)?;
-        Ok(converted_344)
+        let converted_371 = (&self.inner.s3_output_path).as_str().into_py_any(py)?;
+        Ok(converted_371)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -2258,15 +2560,15 @@ impl PyOutputDataConfig {
     frozen
 )]
 struct PyPatientInsightsEncounterContext {
-    inner: aws_sdk_connecthealth::types::PatientInsightsEncounterContext,
+    inner: Arc<aws_sdk_connecthealth::types::PatientInsightsEncounterContext>,
 }
 
 #[pymethods]
 impl PyPatientInsightsEncounterContext {
     #[getter]
     fn encounter_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_345 = (&self.inner.encounter_reason).as_str().into_py_any(py)?;
-        Ok(converted_345)
+        let converted_372 = (&self.inner.encounter_reason).as_str().into_py_any(py)?;
+        Ok(converted_372)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -2280,22 +2582,22 @@ impl PyPatientInsightsEncounterContext {
     frozen
 )]
 struct PyPatientInsightsPatientContext {
-    inner: aws_sdk_connecthealth::types::PatientInsightsPatientContext,
+    inner: Arc<aws_sdk_connecthealth::types::PatientInsightsPatientContext>,
 }
 
 #[pymethods]
 impl PyPatientInsightsPatientContext {
     #[getter]
     fn patient_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_346 = (&self.inner.patient_id).as_str().into_py_any(py)?;
-        Ok(converted_346)
+        let converted_373 = (&self.inner.patient_id).as_str().into_py_any(py)?;
+        Ok(converted_373)
     }
 
     #[getter]
     fn date_of_birth(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.date_of_birth {
-            let converted_347 = (value).as_str().into_py_any(py)?;
-            Ok(converted_347)
+            let converted_374 = (value).as_str().into_py_any(py)?;
+            Ok(converted_374)
         } else {
             Ok(py.None())
         }
@@ -2304,8 +2606,8 @@ impl PyPatientInsightsPatientContext {
     #[getter]
     fn pronouns(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.pronouns {
-            let converted_348 = (value).as_str().into_py_any(py)?;
-            Ok(converted_348)
+            let converted_375 = (value).as_str().into_py_any(py)?;
+            Ok(converted_375)
         } else {
             Ok(py.None())
         }
@@ -2318,15 +2620,15 @@ impl PyPatientInsightsPatientContext {
 
 #[pyclass(name = "S3Source", module = "rboto_connecthealth._native", frozen)]
 struct PyS3Source {
-    inner: aws_sdk_connecthealth::types::S3Source,
+    inner: Arc<aws_sdk_connecthealth::types::S3Source>,
 }
 
 #[pymethods]
 impl PyS3Source {
     #[getter]
     fn uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_349 = (&self.inner.uri).as_str().into_py_any(py)?;
-        Ok(converted_349)
+        let converted_376 = (&self.inner.uri).as_str().into_py_any(py)?;
+        Ok(converted_376)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -2340,52 +2642,52 @@ impl PyS3Source {
     frozen
 )]
 struct PySubscriptionDescription {
-    inner: aws_sdk_connecthealth::types::SubscriptionDescription,
+    inner: Arc<aws_sdk_connecthealth::types::SubscriptionDescription>,
 }
 
 #[pymethods]
 impl PySubscriptionDescription {
     #[getter]
     fn domain_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_350 = (&self.inner.domain_id).as_str().into_py_any(py)?;
-        Ok(converted_350)
+        let converted_377 = (&self.inner.domain_id).as_str().into_py_any(py)?;
+        Ok(converted_377)
     }
 
     #[getter]
     fn subscription_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_351 = (&self.inner.subscription_id).as_str().into_py_any(py)?;
-        Ok(converted_351)
+        let converted_378 = (&self.inner.subscription_id).as_str().into_py_any(py)?;
+        Ok(converted_378)
     }
 
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_352 = (&self.inner.arn).as_str().into_py_any(py)?;
-        Ok(converted_352)
+        let converted_379 = (&self.inner.arn).as_str().into_py_any(py)?;
+        Ok(converted_379)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_353 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_353)
+        let converted_380 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_380)
     }
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_354 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_354)
+        let converted_381 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_381)
     }
 
     #[getter]
     fn last_updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_355 = (&self.inner.last_updated_at).to_string().into_py_any(py)?;
-        Ok(converted_355)
+        let converted_382 = (&self.inner.last_updated_at).to_string().into_py_any(py)?;
+        Ok(converted_382)
     }
 
     #[getter]
     fn activated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.activated_at {
-            let converted_356 = (value).to_string().into_py_any(py)?;
-            Ok(converted_356)
+            let converted_383 = (value).to_string().into_py_any(py)?;
+            Ok(converted_383)
         } else {
             Ok(py.None())
         }
@@ -2394,8 +2696,8 @@ impl PySubscriptionDescription {
     #[getter]
     fn deactivated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.deactivated_at {
-            let converted_357 = (value).to_string().into_py_any(py)?;
-            Ok(converted_357)
+            let converted_384 = (value).to_string().into_py_any(py)?;
+            Ok(converted_384)
         } else {
             Ok(py.None())
         }
@@ -2408,28 +2710,28 @@ impl PySubscriptionDescription {
 
 #[pyclass(name = "UserContext", module = "rboto_connecthealth._native", frozen)]
 struct PyUserContext {
-    inner: aws_sdk_connecthealth::types::UserContext,
+    inner: Arc<aws_sdk_connecthealth::types::UserContext>,
 }
 
 #[pymethods]
 impl PyUserContext {
     #[getter]
     fn role(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_358 = (&self.inner.role).as_str().into_py_any(py)?;
-        Ok(converted_358)
+        let converted_385 = (&self.inner.role).as_str().into_py_any(py)?;
+        Ok(converted_385)
     }
 
     #[getter]
     fn user_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_359 = (&self.inner.user_id).as_str().into_py_any(py)?;
-        Ok(converted_359)
+        let converted_386 = (&self.inner.user_id).as_str().into_py_any(py)?;
+        Ok(converted_386)
     }
 
     #[getter]
     fn specialty(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.specialty {
-            let converted_360 = (value).as_str().into_py_any(py)?;
-            Ok(converted_360)
+            let converted_387 = (value).as_str().into_py_any(py)?;
+            Ok(converted_387)
         } else {
             Ok(py.None())
         }
@@ -2446,31 +2748,48 @@ impl PyUserContext {
     frozen
 )]
 struct PyWebAppConfiguration {
-    inner: aws_sdk_connecthealth::types::WebAppConfiguration,
+    inner: Arc<aws_sdk_connecthealth::types::WebAppConfiguration>,
 }
 
 #[pymethods]
 impl PyWebAppConfiguration {
     #[getter]
     fn ehr_role(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_361 = (&self.inner.ehr_role).as_str().into_py_any(py)?;
-        Ok(converted_361)
+        let converted_388 = (&self.inner.ehr_role).as_str().into_py_any(py)?;
+        Ok(converted_388)
     }
 
     #[getter]
     fn idc_application_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_362 = (&self.inner.idc_application_id).as_str().into_py_any(py)?;
-        Ok(converted_362)
+        let converted_389 = (&self.inner.idc_application_id).as_str().into_py_any(py)?;
+        Ok(converted_389)
     }
 
     #[getter]
     fn idc_region(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_363 = (&self.inner.idc_region).as_str().into_py_any(py)?;
-        Ok(converted_363)
+        let converted_390 = (&self.inner.idc_region).as_str().into_py_any(py)?;
+        Ok(converted_390)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         web_app_configuration_to_py(py, &self.inner)
+    }
+}
+
+struct SharedPyOperationActivateSubscriptionOutput {
+    subscription: Option<Arc<aws_sdk_connecthealth::types::SubscriptionDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_connecthealth::operation::activate_subscription::ActivateSubscriptionOutput>
+    for SharedPyOperationActivateSubscriptionOutput
+{
+    fn from(
+        value: aws_sdk_connecthealth::operation::activate_subscription::ActivateSubscriptionOutput,
+    ) -> Self {
+        Self {
+            subscription: value.subscription.map(|item| Arc::new(item)),
+        }
     }
 }
 
@@ -2480,7 +2799,7 @@ impl PyWebAppConfiguration {
     frozen
 )]
 struct PyOperationActivateSubscriptionOutput {
-    inner: aws_sdk_connecthealth::operation::activate_subscription::ActivateSubscriptionOutput,
+    inner: SharedPyOperationActivateSubscriptionOutput,
 }
 
 #[pymethods]
@@ -2488,14 +2807,14 @@ impl PyOperationActivateSubscriptionOutput {
     #[getter]
     fn subscription(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscription {
-            let converted_364 = Py::new(
+            let converted_391 = Py::new(
                 py,
                 PySubscriptionDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_364)
+            Ok(converted_391)
         } else {
             Ok(py.None())
         }
@@ -2504,12 +2823,43 @@ impl PyOperationActivateSubscriptionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.subscription {
-            let converted_365 = subscription_description_to_py(py, value)?;
-            result.set_item("subscription", converted_365)?;
+            let converted_392 = subscription_description_to_py(py, value)?;
+            result.set_item("subscription", converted_392)?;
         } else {
             result.set_item("subscription", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationCreateDomainOutput {
+    domain_id: ::std::string::String,
+    arn: ::std::string::String,
+    name: ::std::string::String,
+    kms_key_arn: Option<::std::string::String>,
+    encryption_context: Option<Arc<aws_sdk_connecthealth::types::EncryptionContext>>,
+    status: aws_sdk_connecthealth::types::DomainStatus,
+    web_app_url: Option<::std::string::String>,
+    web_app_configuration: Option<Arc<aws_sdk_connecthealth::types::WebAppConfiguration>>,
+    created_at: ::aws_smithy_types::DateTime,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_connecthealth::operation::create_domain::CreateDomainOutput>
+    for SharedPyOperationCreateDomainOutput
+{
+    fn from(value: aws_sdk_connecthealth::operation::create_domain::CreateDomainOutput) -> Self {
+        Self {
+            domain_id: value.domain_id,
+            arn: value.arn,
+            name: value.name,
+            kms_key_arn: value.kms_key_arn,
+            encryption_context: value.encryption_context.map(|item| Arc::new(item)),
+            status: value.status,
+            web_app_url: value.web_app_url,
+            web_app_configuration: value.web_app_configuration.map(|item| Arc::new(item)),
+            created_at: value.created_at,
+        }
     }
 }
 
@@ -2519,34 +2869,34 @@ impl PyOperationActivateSubscriptionOutput {
     frozen
 )]
 struct PyOperationCreateDomainOutput {
-    inner: aws_sdk_connecthealth::operation::create_domain::CreateDomainOutput,
+    inner: SharedPyOperationCreateDomainOutput,
 }
 
 #[pymethods]
 impl PyOperationCreateDomainOutput {
     #[getter]
     fn domain_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_366 = (&self.inner.domain_id).as_str().into_py_any(py)?;
-        Ok(converted_366)
+        let converted_393 = (&self.inner.domain_id).as_str().into_py_any(py)?;
+        Ok(converted_393)
     }
 
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_367 = (&self.inner.arn).as_str().into_py_any(py)?;
-        Ok(converted_367)
+        let converted_394 = (&self.inner.arn).as_str().into_py_any(py)?;
+        Ok(converted_394)
     }
 
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_368 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_368)
+        let converted_395 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_395)
     }
 
     #[getter]
     fn kms_key_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key_arn {
-            let converted_369 = (value).as_str().into_py_any(py)?;
-            Ok(converted_369)
+            let converted_396 = (value).as_str().into_py_any(py)?;
+            Ok(converted_396)
         } else {
             Ok(py.None())
         }
@@ -2555,14 +2905,14 @@ impl PyOperationCreateDomainOutput {
     #[getter]
     fn encryption_context(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_context {
-            let converted_370 = Py::new(
+            let converted_397 = Py::new(
                 py,
                 PyEncryptionContext {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_370)
+            Ok(converted_397)
         } else {
             Ok(py.None())
         }
@@ -2570,15 +2920,15 @@ impl PyOperationCreateDomainOutput {
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_371 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_371)
+        let converted_398 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_398)
     }
 
     #[getter]
     fn web_app_url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.web_app_url {
-            let converted_372 = (value).as_str().into_py_any(py)?;
-            Ok(converted_372)
+            let converted_399 = (value).as_str().into_py_any(py)?;
+            Ok(converted_399)
         } else {
             Ok(py.None())
         }
@@ -2587,14 +2937,14 @@ impl PyOperationCreateDomainOutput {
     #[getter]
     fn web_app_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.web_app_configuration {
-            let converted_373 = Py::new(
+            let converted_400 = Py::new(
                 py,
                 PyWebAppConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_373)
+            Ok(converted_400)
         } else {
             Ok(py.None())
         }
@@ -2602,46 +2952,46 @@ impl PyOperationCreateDomainOutput {
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_374 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_374)
+        let converted_401 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_401)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_375 = (&self.inner.domain_id).as_str().into_py_any(py)?;
-        result.set_item("domain_id", converted_375)?;
-        let converted_376 = (&self.inner.arn).as_str().into_py_any(py)?;
-        result.set_item("arn", converted_376)?;
-        let converted_377 = (&self.inner.name).as_str().into_py_any(py)?;
-        result.set_item("name", converted_377)?;
+        let converted_402 = (&self.inner.domain_id).as_str().into_py_any(py)?;
+        result.set_item("domain_id", converted_402)?;
+        let converted_403 = (&self.inner.arn).as_str().into_py_any(py)?;
+        result.set_item("arn", converted_403)?;
+        let converted_404 = (&self.inner.name).as_str().into_py_any(py)?;
+        result.set_item("name", converted_404)?;
         if let Some(value) = &self.inner.kms_key_arn {
-            let converted_378 = (value).as_str().into_py_any(py)?;
-            result.set_item("kms_key_arn", converted_378)?;
+            let converted_405 = (value).as_str().into_py_any(py)?;
+            result.set_item("kms_key_arn", converted_405)?;
         } else {
             result.set_item("kms_key_arn", py.None())?;
         }
         if let Some(value) = &self.inner.encryption_context {
-            let converted_379 = encryption_context_to_py(py, value)?;
-            result.set_item("encryption_context", converted_379)?;
+            let converted_406 = encryption_context_to_py(py, value)?;
+            result.set_item("encryption_context", converted_406)?;
         } else {
             result.set_item("encryption_context", py.None())?;
         }
-        let converted_380 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_380)?;
+        let converted_407 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_407)?;
         if let Some(value) = &self.inner.web_app_url {
-            let converted_381 = (value).as_str().into_py_any(py)?;
-            result.set_item("web_app_url", converted_381)?;
+            let converted_408 = (value).as_str().into_py_any(py)?;
+            result.set_item("web_app_url", converted_408)?;
         } else {
             result.set_item("web_app_url", py.None())?;
         }
         if let Some(value) = &self.inner.web_app_configuration {
-            let converted_382 = web_app_configuration_to_py(py, value)?;
-            result.set_item("web_app_configuration", converted_382)?;
+            let converted_409 = web_app_configuration_to_py(py, value)?;
+            result.set_item("web_app_configuration", converted_409)?;
         } else {
             result.set_item("web_app_configuration", py.None())?;
         }
-        let converted_383 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        result.set_item("created_at", converted_383)?;
+        let converted_410 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_410)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -2659,45 +3009,45 @@ struct PyOperationCreateSubscriptionOutput {
 impl PyOperationCreateSubscriptionOutput {
     #[getter]
     fn domain_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_384 = (&self.inner.domain_id).as_str().into_py_any(py)?;
-        Ok(converted_384)
+        let converted_411 = (&self.inner.domain_id).as_str().into_py_any(py)?;
+        Ok(converted_411)
     }
 
     #[getter]
     fn subscription_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_385 = (&self.inner.subscription_id).as_str().into_py_any(py)?;
-        Ok(converted_385)
+        let converted_412 = (&self.inner.subscription_id).as_str().into_py_any(py)?;
+        Ok(converted_412)
     }
 
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_386 = (&self.inner.arn).as_str().into_py_any(py)?;
-        Ok(converted_386)
+        let converted_413 = (&self.inner.arn).as_str().into_py_any(py)?;
+        Ok(converted_413)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_387 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_387)
+        let converted_414 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_414)
     }
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_388 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_388)
+        let converted_415 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_415)
     }
 
     #[getter]
     fn last_updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_389 = (&self.inner.last_updated_at).to_string().into_py_any(py)?;
-        Ok(converted_389)
+        let converted_416 = (&self.inner.last_updated_at).to_string().into_py_any(py)?;
+        Ok(converted_416)
     }
 
     #[getter]
     fn activated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.activated_at {
-            let converted_390 = (value).to_string().into_py_any(py)?;
-            Ok(converted_390)
+            let converted_417 = (value).to_string().into_py_any(py)?;
+            Ok(converted_417)
         } else {
             Ok(py.None())
         }
@@ -2706,8 +3056,8 @@ impl PyOperationCreateSubscriptionOutput {
     #[getter]
     fn deactivated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.deactivated_at {
-            let converted_391 = (value).to_string().into_py_any(py)?;
-            Ok(converted_391)
+            let converted_418 = (value).to_string().into_py_any(py)?;
+            Ok(converted_418)
         } else {
             Ok(py.None())
         }
@@ -2715,31 +3065,48 @@ impl PyOperationCreateSubscriptionOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_392 = (&self.inner.domain_id).as_str().into_py_any(py)?;
-        result.set_item("domain_id", converted_392)?;
-        let converted_393 = (&self.inner.subscription_id).as_str().into_py_any(py)?;
-        result.set_item("subscription_id", converted_393)?;
-        let converted_394 = (&self.inner.arn).as_str().into_py_any(py)?;
-        result.set_item("arn", converted_394)?;
-        let converted_395 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_395)?;
-        let converted_396 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        result.set_item("created_at", converted_396)?;
-        let converted_397 = (&self.inner.last_updated_at).to_string().into_py_any(py)?;
-        result.set_item("last_updated_at", converted_397)?;
+        let converted_419 = (&self.inner.domain_id).as_str().into_py_any(py)?;
+        result.set_item("domain_id", converted_419)?;
+        let converted_420 = (&self.inner.subscription_id).as_str().into_py_any(py)?;
+        result.set_item("subscription_id", converted_420)?;
+        let converted_421 = (&self.inner.arn).as_str().into_py_any(py)?;
+        result.set_item("arn", converted_421)?;
+        let converted_422 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_422)?;
+        let converted_423 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_423)?;
+        let converted_424 = (&self.inner.last_updated_at).to_string().into_py_any(py)?;
+        result.set_item("last_updated_at", converted_424)?;
         if let Some(value) = &self.inner.activated_at {
-            let converted_398 = (value).to_string().into_py_any(py)?;
-            result.set_item("activated_at", converted_398)?;
+            let converted_425 = (value).to_string().into_py_any(py)?;
+            result.set_item("activated_at", converted_425)?;
         } else {
             result.set_item("activated_at", py.None())?;
         }
         if let Some(value) = &self.inner.deactivated_at {
-            let converted_399 = (value).to_string().into_py_any(py)?;
-            result.set_item("deactivated_at", converted_399)?;
+            let converted_426 = (value).to_string().into_py_any(py)?;
+            result.set_item("deactivated_at", converted_426)?;
         } else {
             result.set_item("deactivated_at", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationDeactivateSubscriptionOutput {
+    subscription: Option<Arc<aws_sdk_connecthealth::types::SubscriptionDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_connecthealth::operation::deactivate_subscription::DeactivateSubscriptionOutput>
+    for SharedPyOperationDeactivateSubscriptionOutput
+{
+    fn from(
+        value: aws_sdk_connecthealth::operation::deactivate_subscription::DeactivateSubscriptionOutput,
+    ) -> Self {
+        Self {
+            subscription: value.subscription.map(|item| Arc::new(item)),
+        }
     }
 }
 
@@ -2749,7 +3116,7 @@ impl PyOperationCreateSubscriptionOutput {
     frozen
 )]
 struct PyOperationDeactivateSubscriptionOutput {
-    inner: aws_sdk_connecthealth::operation::deactivate_subscription::DeactivateSubscriptionOutput,
+    inner: SharedPyOperationDeactivateSubscriptionOutput,
 }
 
 #[pymethods]
@@ -2757,14 +3124,14 @@ impl PyOperationDeactivateSubscriptionOutput {
     #[getter]
     fn subscription(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscription {
-            let converted_400 = Py::new(
+            let converted_427 = Py::new(
                 py,
                 PySubscriptionDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_400)
+            Ok(converted_427)
         } else {
             Ok(py.None())
         }
@@ -2773,8 +3140,8 @@ impl PyOperationDeactivateSubscriptionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.subscription {
-            let converted_401 = subscription_description_to_py(py, value)?;
-            result.set_item("subscription", converted_401)?;
+            let converted_428 = subscription_description_to_py(py, value)?;
+            result.set_item("subscription", converted_428)?;
         } else {
             result.set_item("subscription", py.None())?;
         }
@@ -2795,31 +3162,64 @@ struct PyOperationDeleteDomainOutput {
 impl PyOperationDeleteDomainOutput {
     #[getter]
     fn domain_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_402 = (&self.inner.domain_id).as_str().into_py_any(py)?;
-        Ok(converted_402)
+        let converted_429 = (&self.inner.domain_id).as_str().into_py_any(py)?;
+        Ok(converted_429)
     }
 
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_403 = (&self.inner.arn).as_str().into_py_any(py)?;
-        Ok(converted_403)
+        let converted_430 = (&self.inner.arn).as_str().into_py_any(py)?;
+        Ok(converted_430)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_404 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_404)
+        let converted_431 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_431)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_405 = (&self.inner.domain_id).as_str().into_py_any(py)?;
-        result.set_item("domain_id", converted_405)?;
-        let converted_406 = (&self.inner.arn).as_str().into_py_any(py)?;
-        result.set_item("arn", converted_406)?;
-        let converted_407 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_407)?;
+        let converted_432 = (&self.inner.domain_id).as_str().into_py_any(py)?;
+        result.set_item("domain_id", converted_432)?;
+        let converted_433 = (&self.inner.arn).as_str().into_py_any(py)?;
+        result.set_item("arn", converted_433)?;
+        let converted_434 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_434)?;
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetDomainOutput {
+    domain_id: ::std::string::String,
+    arn: ::std::string::String,
+    name: ::std::string::String,
+    kms_key_arn: Option<::std::string::String>,
+    encryption_context: Option<Arc<aws_sdk_connecthealth::types::EncryptionContext>>,
+    status: aws_sdk_connecthealth::types::DomainStatus,
+    web_app_url: Option<::std::string::String>,
+    web_app_configuration: Option<Arc<aws_sdk_connecthealth::types::WebAppConfiguration>>,
+    created_at: ::aws_smithy_types::DateTime,
+    tags: Option<::std::collections::HashMap<::std::string::String, ::std::string::String>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_connecthealth::operation::get_domain::GetDomainOutput>
+    for SharedPyOperationGetDomainOutput
+{
+    fn from(value: aws_sdk_connecthealth::operation::get_domain::GetDomainOutput) -> Self {
+        Self {
+            domain_id: value.domain_id,
+            arn: value.arn,
+            name: value.name,
+            kms_key_arn: value.kms_key_arn,
+            encryption_context: value.encryption_context.map(|item| Arc::new(item)),
+            status: value.status,
+            web_app_url: value.web_app_url,
+            web_app_configuration: value.web_app_configuration.map(|item| Arc::new(item)),
+            created_at: value.created_at,
+            tags: value.tags,
+        }
     }
 }
 
@@ -2829,34 +3229,34 @@ impl PyOperationDeleteDomainOutput {
     frozen
 )]
 struct PyOperationGetDomainOutput {
-    inner: aws_sdk_connecthealth::operation::get_domain::GetDomainOutput,
+    inner: SharedPyOperationGetDomainOutput,
 }
 
 #[pymethods]
 impl PyOperationGetDomainOutput {
     #[getter]
     fn domain_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_408 = (&self.inner.domain_id).as_str().into_py_any(py)?;
-        Ok(converted_408)
+        let converted_435 = (&self.inner.domain_id).as_str().into_py_any(py)?;
+        Ok(converted_435)
     }
 
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_409 = (&self.inner.arn).as_str().into_py_any(py)?;
-        Ok(converted_409)
+        let converted_436 = (&self.inner.arn).as_str().into_py_any(py)?;
+        Ok(converted_436)
     }
 
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_410 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_410)
+        let converted_437 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_437)
     }
 
     #[getter]
     fn kms_key_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key_arn {
-            let converted_411 = (value).as_str().into_py_any(py)?;
-            Ok(converted_411)
+            let converted_438 = (value).as_str().into_py_any(py)?;
+            Ok(converted_438)
         } else {
             Ok(py.None())
         }
@@ -2865,14 +3265,14 @@ impl PyOperationGetDomainOutput {
     #[getter]
     fn encryption_context(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_context {
-            let converted_412 = Py::new(
+            let converted_439 = Py::new(
                 py,
                 PyEncryptionContext {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_412)
+            Ok(converted_439)
         } else {
             Ok(py.None())
         }
@@ -2880,15 +3280,15 @@ impl PyOperationGetDomainOutput {
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_413 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_413)
+        let converted_440 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_440)
     }
 
     #[getter]
     fn web_app_url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.web_app_url {
-            let converted_414 = (value).as_str().into_py_any(py)?;
-            Ok(converted_414)
+            let converted_441 = (value).as_str().into_py_any(py)?;
+            Ok(converted_441)
         } else {
             Ok(py.None())
         }
@@ -2897,14 +3297,14 @@ impl PyOperationGetDomainOutput {
     #[getter]
     fn web_app_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.web_app_configuration {
-            let converted_415 = Py::new(
+            let converted_442 = Py::new(
                 py,
                 PyWebAppConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_415)
+            Ok(converted_442)
         } else {
             Ok(py.None())
         }
@@ -2912,21 +3312,21 @@ impl PyOperationGetDomainOutput {
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_416 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_416)
+        let converted_443 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_443)
     }
 
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_417_dict = PyDict::new(py);
-            for (key_418, value_419) in value {
-                let converted_key_420 = (key_418).as_str().into_py_any(py)?;
-                let converted_value_421 = (value_419).as_str().into_py_any(py)?;
-                converted_417_dict.set_item(converted_key_420, converted_value_421)?;
+            let converted_444_dict = PyDict::new(py);
+            for (key_445, value_446) in value {
+                let converted_key_447 = (key_445).as_str().into_py_any(py)?;
+                let converted_value_448 = (value_446).as_str().into_py_any(py)?;
+                converted_444_dict.set_item(converted_key_447, converted_value_448)?;
             }
-            let converted_417 = converted_417_dict.into_any().unbind();
-            Ok(converted_417)
+            let converted_444 = converted_444_dict.into_any().unbind();
+            Ok(converted_444)
         } else {
             Ok(py.None())
         }
@@ -2934,53 +3334,67 @@ impl PyOperationGetDomainOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_422 = (&self.inner.domain_id).as_str().into_py_any(py)?;
-        result.set_item("domain_id", converted_422)?;
-        let converted_423 = (&self.inner.arn).as_str().into_py_any(py)?;
-        result.set_item("arn", converted_423)?;
-        let converted_424 = (&self.inner.name).as_str().into_py_any(py)?;
-        result.set_item("name", converted_424)?;
+        let converted_449 = (&self.inner.domain_id).as_str().into_py_any(py)?;
+        result.set_item("domain_id", converted_449)?;
+        let converted_450 = (&self.inner.arn).as_str().into_py_any(py)?;
+        result.set_item("arn", converted_450)?;
+        let converted_451 = (&self.inner.name).as_str().into_py_any(py)?;
+        result.set_item("name", converted_451)?;
         if let Some(value) = &self.inner.kms_key_arn {
-            let converted_425 = (value).as_str().into_py_any(py)?;
-            result.set_item("kms_key_arn", converted_425)?;
+            let converted_452 = (value).as_str().into_py_any(py)?;
+            result.set_item("kms_key_arn", converted_452)?;
         } else {
             result.set_item("kms_key_arn", py.None())?;
         }
         if let Some(value) = &self.inner.encryption_context {
-            let converted_426 = encryption_context_to_py(py, value)?;
-            result.set_item("encryption_context", converted_426)?;
+            let converted_453 = encryption_context_to_py(py, value)?;
+            result.set_item("encryption_context", converted_453)?;
         } else {
             result.set_item("encryption_context", py.None())?;
         }
-        let converted_427 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_427)?;
+        let converted_454 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_454)?;
         if let Some(value) = &self.inner.web_app_url {
-            let converted_428 = (value).as_str().into_py_any(py)?;
-            result.set_item("web_app_url", converted_428)?;
+            let converted_455 = (value).as_str().into_py_any(py)?;
+            result.set_item("web_app_url", converted_455)?;
         } else {
             result.set_item("web_app_url", py.None())?;
         }
         if let Some(value) = &self.inner.web_app_configuration {
-            let converted_429 = web_app_configuration_to_py(py, value)?;
-            result.set_item("web_app_configuration", converted_429)?;
+            let converted_456 = web_app_configuration_to_py(py, value)?;
+            result.set_item("web_app_configuration", converted_456)?;
         } else {
             result.set_item("web_app_configuration", py.None())?;
         }
-        let converted_430 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        result.set_item("created_at", converted_430)?;
+        let converted_457 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_457)?;
         if let Some(value) = &self.inner.tags {
-            let converted_431_dict = PyDict::new(py);
-            for (key_432, value_433) in value {
-                let converted_key_434 = (key_432).as_str().into_py_any(py)?;
-                let converted_value_435 = (value_433).as_str().into_py_any(py)?;
-                converted_431_dict.set_item(converted_key_434, converted_value_435)?;
+            let converted_458_dict = PyDict::new(py);
+            for (key_459, value_460) in value {
+                let converted_key_461 = (key_459).as_str().into_py_any(py)?;
+                let converted_value_462 = (value_460).as_str().into_py_any(py)?;
+                converted_458_dict.set_item(converted_key_461, converted_value_462)?;
             }
-            let converted_431 = converted_431_dict.into_any().unbind();
-            result.set_item("tags", converted_431)?;
+            let converted_458 = converted_458_dict.into_any().unbind();
+            result.set_item("tags", converted_458)?;
         } else {
             result.set_item("tags", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetMedicalScribeListeningSessionOutput {
+    medical_scribe_listening_session_details:
+        Option<Arc<SharedMedicalScribeListeningSessionDetails>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_connecthealth::operation::get_medical_scribe_listening_session::GetMedicalScribeListeningSessionOutput> for SharedPyOperationGetMedicalScribeListeningSessionOutput {
+    fn from(value: aws_sdk_connecthealth::operation::get_medical_scribe_listening_session::GetMedicalScribeListeningSessionOutput) -> Self {
+        Self {
+            medical_scribe_listening_session_details: value.medical_scribe_listening_session_details.map(|item| Arc::new(SharedMedicalScribeListeningSessionDetails::from(item))),
+        }
     }
 }
 
@@ -2990,7 +3404,7 @@ impl PyOperationGetDomainOutput {
     frozen
 )]
 struct PyOperationGetMedicalScribeListeningSessionOutput {
-    inner: aws_sdk_connecthealth::operation::get_medical_scribe_listening_session::GetMedicalScribeListeningSessionOutput,
+    inner: SharedPyOperationGetMedicalScribeListeningSessionOutput,
 }
 
 #[pymethods]
@@ -2998,14 +3412,14 @@ impl PyOperationGetMedicalScribeListeningSessionOutput {
     #[getter]
     fn medical_scribe_listening_session_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.medical_scribe_listening_session_details {
-            let converted_436 = Py::new(
+            let converted_463 = Py::new(
                 py,
                 PyMedicalScribeListeningSessionDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_436)
+            Ok(converted_463)
         } else {
             Ok(py.None())
         }
@@ -3014,12 +3428,55 @@ impl PyOperationGetMedicalScribeListeningSessionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.medical_scribe_listening_session_details {
-            let converted_437 = medical_scribe_listening_session_details_to_py(py, value)?;
-            result.set_item("medical_scribe_listening_session_details", converted_437)?;
+            let converted_464 = medical_scribe_listening_session_details_shared_to_py(py, value)?;
+            result.set_item("medical_scribe_listening_session_details", converted_464)?;
         } else {
             result.set_item("medical_scribe_listening_session_details", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetPatientInsightsJobOutput {
+    job_id: ::std::string::String,
+    job_arn: ::std::string::String,
+    job_status: aws_sdk_connecthealth::types::JobStatus,
+    creation_time: Option<::aws_smithy_types::DateTime>,
+    updated_time: Option<::aws_smithy_types::DateTime>,
+    insights_output: Option<Arc<aws_sdk_connecthealth::types::InsightsOutput>>,
+    status_details: Option<::std::string::String>,
+    patient_context: Option<Arc<aws_sdk_connecthealth::types::PatientInsightsPatientContext>>,
+    insights_context: Option<Arc<aws_sdk_connecthealth::types::InsightsContext>>,
+    encounter_context: Option<Arc<aws_sdk_connecthealth::types::PatientInsightsEncounterContext>>,
+    user_context: Option<Arc<aws_sdk_connecthealth::types::UserContext>>,
+    input_data_config: Option<Arc<SharedInputDataConfig>>,
+    output_data_config: Option<Arc<aws_sdk_connecthealth::types::OutputDataConfig>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_connecthealth::operation::get_patient_insights_job::GetPatientInsightsJobOutput>
+    for SharedPyOperationGetPatientInsightsJobOutput
+{
+    fn from(
+        value: aws_sdk_connecthealth::operation::get_patient_insights_job::GetPatientInsightsJobOutput,
+    ) -> Self {
+        Self {
+            job_id: value.job_id,
+            job_arn: value.job_arn,
+            job_status: value.job_status,
+            creation_time: value.creation_time,
+            updated_time: value.updated_time,
+            insights_output: value.insights_output.map(|item| Arc::new(item)),
+            status_details: value.status_details,
+            patient_context: value.patient_context.map(|item| Arc::new(item)),
+            insights_context: value.insights_context.map(|item| Arc::new(item)),
+            encounter_context: value.encounter_context.map(|item| Arc::new(item)),
+            user_context: value.user_context.map(|item| Arc::new(item)),
+            input_data_config: value
+                .input_data_config
+                .map(|item| Arc::new(SharedInputDataConfig::from(item))),
+            output_data_config: value.output_data_config.map(|item| Arc::new(item)),
+        }
     }
 }
 
@@ -3029,34 +3486,34 @@ impl PyOperationGetMedicalScribeListeningSessionOutput {
     frozen
 )]
 struct PyOperationGetPatientInsightsJobOutput {
-    inner: aws_sdk_connecthealth::operation::get_patient_insights_job::GetPatientInsightsJobOutput,
+    inner: SharedPyOperationGetPatientInsightsJobOutput,
 }
 
 #[pymethods]
 impl PyOperationGetPatientInsightsJobOutput {
     #[getter]
     fn job_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_438 = (&self.inner.job_id).as_str().into_py_any(py)?;
-        Ok(converted_438)
+        let converted_465 = (&self.inner.job_id).as_str().into_py_any(py)?;
+        Ok(converted_465)
     }
 
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_439 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        Ok(converted_439)
+        let converted_466 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_466)
     }
 
     #[getter]
     fn job_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_440 = (&self.inner.job_status).as_str().into_py_any(py)?;
-        Ok(converted_440)
+        let converted_467 = (&self.inner.job_status).as_str().into_py_any(py)?;
+        Ok(converted_467)
     }
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_time {
-            let converted_441 = (value).to_string().into_py_any(py)?;
-            Ok(converted_441)
+            let converted_468 = (value).to_string().into_py_any(py)?;
+            Ok(converted_468)
         } else {
             Ok(py.None())
         }
@@ -3065,8 +3522,8 @@ impl PyOperationGetPatientInsightsJobOutput {
     #[getter]
     fn updated_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_time {
-            let converted_442 = (value).to_string().into_py_any(py)?;
-            Ok(converted_442)
+            let converted_469 = (value).to_string().into_py_any(py)?;
+            Ok(converted_469)
         } else {
             Ok(py.None())
         }
@@ -3075,14 +3532,14 @@ impl PyOperationGetPatientInsightsJobOutput {
     #[getter]
     fn insights_output(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.insights_output {
-            let converted_443 = Py::new(
+            let converted_470 = Py::new(
                 py,
                 PyInsightsOutput {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_443)
+            Ok(converted_470)
         } else {
             Ok(py.None())
         }
@@ -3091,8 +3548,8 @@ impl PyOperationGetPatientInsightsJobOutput {
     #[getter]
     fn status_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status_details {
-            let converted_444 = (value).as_str().into_py_any(py)?;
-            Ok(converted_444)
+            let converted_471 = (value).as_str().into_py_any(py)?;
+            Ok(converted_471)
         } else {
             Ok(py.None())
         }
@@ -3101,14 +3558,14 @@ impl PyOperationGetPatientInsightsJobOutput {
     #[getter]
     fn patient_context(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.patient_context {
-            let converted_445 = Py::new(
+            let converted_472 = Py::new(
                 py,
                 PyPatientInsightsPatientContext {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_445)
+            Ok(converted_472)
         } else {
             Ok(py.None())
         }
@@ -3117,14 +3574,14 @@ impl PyOperationGetPatientInsightsJobOutput {
     #[getter]
     fn insights_context(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.insights_context {
-            let converted_446 = Py::new(
+            let converted_473 = Py::new(
                 py,
                 PyInsightsContext {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_446)
+            Ok(converted_473)
         } else {
             Ok(py.None())
         }
@@ -3133,14 +3590,14 @@ impl PyOperationGetPatientInsightsJobOutput {
     #[getter]
     fn encounter_context(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encounter_context {
-            let converted_447 = Py::new(
+            let converted_474 = Py::new(
                 py,
                 PyPatientInsightsEncounterContext {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_447)
+            Ok(converted_474)
         } else {
             Ok(py.None())
         }
@@ -3149,14 +3606,14 @@ impl PyOperationGetPatientInsightsJobOutput {
     #[getter]
     fn user_context(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.user_context {
-            let converted_448 = Py::new(
+            let converted_475 = Py::new(
                 py,
                 PyUserContext {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_448)
+            Ok(converted_475)
         } else {
             Ok(py.None())
         }
@@ -3165,14 +3622,14 @@ impl PyOperationGetPatientInsightsJobOutput {
     #[getter]
     fn input_data_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_data_config {
-            let converted_449 = Py::new(
+            let converted_476 = Py::new(
                 py,
                 PyInputDataConfig {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_449)
+            Ok(converted_476)
         } else {
             Ok(py.None())
         }
@@ -3181,14 +3638,14 @@ impl PyOperationGetPatientInsightsJobOutput {
     #[getter]
     fn output_data_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_data_config {
-            let converted_450 = Py::new(
+            let converted_477 = Py::new(
                 py,
                 PyOutputDataConfig {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_450)
+            Ok(converted_477)
         } else {
             Ok(py.None())
         }
@@ -3196,73 +3653,90 @@ impl PyOperationGetPatientInsightsJobOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_451 = (&self.inner.job_id).as_str().into_py_any(py)?;
-        result.set_item("job_id", converted_451)?;
-        let converted_452 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        result.set_item("job_arn", converted_452)?;
-        let converted_453 = (&self.inner.job_status).as_str().into_py_any(py)?;
-        result.set_item("job_status", converted_453)?;
+        let converted_478 = (&self.inner.job_id).as_str().into_py_any(py)?;
+        result.set_item("job_id", converted_478)?;
+        let converted_479 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        result.set_item("job_arn", converted_479)?;
+        let converted_480 = (&self.inner.job_status).as_str().into_py_any(py)?;
+        result.set_item("job_status", converted_480)?;
         if let Some(value) = &self.inner.creation_time {
-            let converted_454 = (value).to_string().into_py_any(py)?;
-            result.set_item("creation_time", converted_454)?;
+            let converted_481 = (value).to_string().into_py_any(py)?;
+            result.set_item("creation_time", converted_481)?;
         } else {
             result.set_item("creation_time", py.None())?;
         }
         if let Some(value) = &self.inner.updated_time {
-            let converted_455 = (value).to_string().into_py_any(py)?;
-            result.set_item("updated_time", converted_455)?;
+            let converted_482 = (value).to_string().into_py_any(py)?;
+            result.set_item("updated_time", converted_482)?;
         } else {
             result.set_item("updated_time", py.None())?;
         }
         if let Some(value) = &self.inner.insights_output {
-            let converted_456 = insights_output_to_py(py, value)?;
-            result.set_item("insights_output", converted_456)?;
+            let converted_483 = insights_output_to_py(py, value)?;
+            result.set_item("insights_output", converted_483)?;
         } else {
             result.set_item("insights_output", py.None())?;
         }
         if let Some(value) = &self.inner.status_details {
-            let converted_457 = (value).as_str().into_py_any(py)?;
-            result.set_item("status_details", converted_457)?;
+            let converted_484 = (value).as_str().into_py_any(py)?;
+            result.set_item("status_details", converted_484)?;
         } else {
             result.set_item("status_details", py.None())?;
         }
         if let Some(value) = &self.inner.patient_context {
-            let converted_458 = patient_insights_patient_context_to_py(py, value)?;
-            result.set_item("patient_context", converted_458)?;
+            let converted_485 = patient_insights_patient_context_to_py(py, value)?;
+            result.set_item("patient_context", converted_485)?;
         } else {
             result.set_item("patient_context", py.None())?;
         }
         if let Some(value) = &self.inner.insights_context {
-            let converted_459 = insights_context_to_py(py, value)?;
-            result.set_item("insights_context", converted_459)?;
+            let converted_486 = insights_context_to_py(py, value)?;
+            result.set_item("insights_context", converted_486)?;
         } else {
             result.set_item("insights_context", py.None())?;
         }
         if let Some(value) = &self.inner.encounter_context {
-            let converted_460 = patient_insights_encounter_context_to_py(py, value)?;
-            result.set_item("encounter_context", converted_460)?;
+            let converted_487 = patient_insights_encounter_context_to_py(py, value)?;
+            result.set_item("encounter_context", converted_487)?;
         } else {
             result.set_item("encounter_context", py.None())?;
         }
         if let Some(value) = &self.inner.user_context {
-            let converted_461 = user_context_to_py(py, value)?;
-            result.set_item("user_context", converted_461)?;
+            let converted_488 = user_context_to_py(py, value)?;
+            result.set_item("user_context", converted_488)?;
         } else {
             result.set_item("user_context", py.None())?;
         }
         if let Some(value) = &self.inner.input_data_config {
-            let converted_462 = input_data_config_to_py(py, value)?;
-            result.set_item("input_data_config", converted_462)?;
+            let converted_489 = input_data_config_shared_to_py(py, value)?;
+            result.set_item("input_data_config", converted_489)?;
         } else {
             result.set_item("input_data_config", py.None())?;
         }
         if let Some(value) = &self.inner.output_data_config {
-            let converted_463 = output_data_config_to_py(py, value)?;
-            result.set_item("output_data_config", converted_463)?;
+            let converted_490 = output_data_config_to_py(py, value)?;
+            result.set_item("output_data_config", converted_490)?;
         } else {
             result.set_item("output_data_config", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetSubscriptionOutput {
+    subscription: Option<Arc<aws_sdk_connecthealth::types::SubscriptionDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_connecthealth::operation::get_subscription::GetSubscriptionOutput>
+    for SharedPyOperationGetSubscriptionOutput
+{
+    fn from(
+        value: aws_sdk_connecthealth::operation::get_subscription::GetSubscriptionOutput,
+    ) -> Self {
+        Self {
+            subscription: value.subscription.map(|item| Arc::new(item)),
+        }
     }
 }
 
@@ -3272,7 +3746,7 @@ impl PyOperationGetPatientInsightsJobOutput {
     frozen
 )]
 struct PyOperationGetSubscriptionOutput {
-    inner: aws_sdk_connecthealth::operation::get_subscription::GetSubscriptionOutput,
+    inner: SharedPyOperationGetSubscriptionOutput,
 }
 
 #[pymethods]
@@ -3280,14 +3754,14 @@ impl PyOperationGetSubscriptionOutput {
     #[getter]
     fn subscription(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscription {
-            let converted_464 = Py::new(
+            let converted_491 = Py::new(
                 py,
                 PySubscriptionDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_464)
+            Ok(converted_491)
         } else {
             Ok(py.None())
         }
@@ -3296,12 +3770,32 @@ impl PyOperationGetSubscriptionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.subscription {
-            let converted_465 = subscription_description_to_py(py, value)?;
-            result.set_item("subscription", converted_465)?;
+            let converted_492 = subscription_description_to_py(py, value)?;
+            result.set_item("subscription", converted_492)?;
         } else {
             result.set_item("subscription", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListDomainsOutput {
+    domains: ::std::vec::Vec<Arc<aws_sdk_connecthealth::types::DomainSummary>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_connecthealth::operation::list_domains::ListDomainsOutput>
+    for SharedPyOperationListDomainsOutput
+{
+    fn from(value: aws_sdk_connecthealth::operation::list_domains::ListDomainsOutput) -> Self {
+        Self {
+            domains: (value.domains)
+                .into_iter()
+                .map(|owned_497| Arc::new(owned_497))
+                .collect(),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -3311,33 +3805,33 @@ impl PyOperationGetSubscriptionOutput {
     frozen
 )]
 struct PyOperationListDomainsOutput {
-    inner: aws_sdk_connecthealth::operation::list_domains::ListDomainsOutput,
+    inner: SharedPyOperationListDomainsOutput,
 }
 
 #[pymethods]
 impl PyOperationListDomainsOutput {
     #[getter]
     fn domains(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_466_list = PyList::empty(py);
-        for item_467 in &self.inner.domains {
-            let converted_item_468 = Py::new(
+        let converted_493_list = PyList::empty(py);
+        for item_494 in &self.inner.domains {
+            let converted_item_495 = Py::new(
                 py,
                 PyDomainSummary {
-                    inner: (item_467).to_owned(),
+                    inner: Arc::clone(item_494),
                 },
             )?
             .into_any();
-            converted_466_list.append(converted_item_468)?;
+            converted_493_list.append(converted_item_495)?;
         }
-        let converted_466 = converted_466_list.into_any().unbind();
-        Ok(converted_466)
+        let converted_493 = converted_493_list.into_any().unbind();
+        Ok(converted_493)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_469 = (value).as_str().into_py_any(py)?;
-            Ok(converted_469)
+            let converted_496 = (value).as_str().into_py_any(py)?;
+            Ok(converted_496)
         } else {
             Ok(py.None())
         }
@@ -3345,20 +3839,42 @@ impl PyOperationListDomainsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_470_list = PyList::empty(py);
-        for item_471 in &self.inner.domains {
-            let converted_item_472 = domain_summary_to_py(py, item_471)?;
-            converted_470_list.append(converted_item_472)?;
+        let converted_498_list = PyList::empty(py);
+        for item_499 in &self.inner.domains {
+            let converted_item_500 = domain_summary_to_py(py, item_499)?;
+            converted_498_list.append(converted_item_500)?;
         }
-        let converted_470 = converted_470_list.into_any().unbind();
-        result.set_item("domains", converted_470)?;
+        let converted_498 = converted_498_list.into_any().unbind();
+        result.set_item("domains", converted_498)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_473 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_473)?;
+            let converted_501 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_501)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListSubscriptionsOutput {
+    subscriptions: ::std::vec::Vec<Arc<aws_sdk_connecthealth::types::SubscriptionDescription>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_connecthealth::operation::list_subscriptions::ListSubscriptionsOutput>
+    for SharedPyOperationListSubscriptionsOutput
+{
+    fn from(
+        value: aws_sdk_connecthealth::operation::list_subscriptions::ListSubscriptionsOutput,
+    ) -> Self {
+        Self {
+            subscriptions: (value.subscriptions)
+                .into_iter()
+                .map(|owned_506| Arc::new(owned_506))
+                .collect(),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -3368,33 +3884,33 @@ impl PyOperationListDomainsOutput {
     frozen
 )]
 struct PyOperationListSubscriptionsOutput {
-    inner: aws_sdk_connecthealth::operation::list_subscriptions::ListSubscriptionsOutput,
+    inner: SharedPyOperationListSubscriptionsOutput,
 }
 
 #[pymethods]
 impl PyOperationListSubscriptionsOutput {
     #[getter]
     fn subscriptions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_474_list = PyList::empty(py);
-        for item_475 in &self.inner.subscriptions {
-            let converted_item_476 = Py::new(
+        let converted_502_list = PyList::empty(py);
+        for item_503 in &self.inner.subscriptions {
+            let converted_item_504 = Py::new(
                 py,
                 PySubscriptionDescription {
-                    inner: (item_475).to_owned(),
+                    inner: Arc::clone(item_503),
                 },
             )?
             .into_any();
-            converted_474_list.append(converted_item_476)?;
+            converted_502_list.append(converted_item_504)?;
         }
-        let converted_474 = converted_474_list.into_any().unbind();
-        Ok(converted_474)
+        let converted_502 = converted_502_list.into_any().unbind();
+        Ok(converted_502)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_477 = (value).as_str().into_py_any(py)?;
-            Ok(converted_477)
+            let converted_505 = (value).as_str().into_py_any(py)?;
+            Ok(converted_505)
         } else {
             Ok(py.None())
         }
@@ -3402,16 +3918,16 @@ impl PyOperationListSubscriptionsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_478_list = PyList::empty(py);
-        for item_479 in &self.inner.subscriptions {
-            let converted_item_480 = subscription_description_to_py(py, item_479)?;
-            converted_478_list.append(converted_item_480)?;
+        let converted_507_list = PyList::empty(py);
+        for item_508 in &self.inner.subscriptions {
+            let converted_item_509 = subscription_description_to_py(py, item_508)?;
+            converted_507_list.append(converted_item_509)?;
         }
-        let converted_478 = converted_478_list.into_any().unbind();
-        result.set_item("subscriptions", converted_478)?;
+        let converted_507 = converted_507_list.into_any().unbind();
+        result.set_item("subscriptions", converted_507)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_481 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_481)?;
+            let converted_510 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_510)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -3433,14 +3949,14 @@ impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_482_dict = PyDict::new(py);
-            for (key_483, value_484) in value {
-                let converted_key_485 = (key_483).as_str().into_py_any(py)?;
-                let converted_value_486 = (value_484).as_str().into_py_any(py)?;
-                converted_482_dict.set_item(converted_key_485, converted_value_486)?;
+            let converted_511_dict = PyDict::new(py);
+            for (key_512, value_513) in value {
+                let converted_key_514 = (key_512).as_str().into_py_any(py)?;
+                let converted_value_515 = (value_513).as_str().into_py_any(py)?;
+                converted_511_dict.set_item(converted_key_514, converted_value_515)?;
             }
-            let converted_482 = converted_482_dict.into_any().unbind();
-            Ok(converted_482)
+            let converted_511 = converted_511_dict.into_any().unbind();
+            Ok(converted_511)
         } else {
             Ok(py.None())
         }
@@ -3449,14 +3965,14 @@ impl PyOperationListTagsForResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.tags {
-            let converted_487_dict = PyDict::new(py);
-            for (key_488, value_489) in value {
-                let converted_key_490 = (key_488).as_str().into_py_any(py)?;
-                let converted_value_491 = (value_489).as_str().into_py_any(py)?;
-                converted_487_dict.set_item(converted_key_490, converted_value_491)?;
+            let converted_516_dict = PyDict::new(py);
+            for (key_517, value_518) in value {
+                let converted_key_519 = (key_517).as_str().into_py_any(py)?;
+                let converted_value_520 = (value_518).as_str().into_py_any(py)?;
+                converted_516_dict.set_item(converted_key_519, converted_value_520)?;
             }
-            let converted_487 = converted_487_dict.into_any().unbind();
-            result.set_item("tags", converted_487)?;
+            let converted_516 = converted_516_dict.into_any().unbind();
+            result.set_item("tags", converted_516)?;
         } else {
             result.set_item("tags", py.None())?;
         }
@@ -3478,21 +3994,21 @@ struct PyOperationStartPatientInsightsJobOutput {
 impl PyOperationStartPatientInsightsJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_492 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        Ok(converted_492)
+        let converted_521 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_521)
     }
 
     #[getter]
     fn job_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_493 = (&self.inner.job_id).as_str().into_py_any(py)?;
-        Ok(converted_493)
+        let converted_522 = (&self.inner.job_id).as_str().into_py_any(py)?;
+        Ok(converted_522)
     }
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_time {
-            let converted_494 = (value).to_string().into_py_any(py)?;
-            Ok(converted_494)
+            let converted_523 = (value).to_string().into_py_any(py)?;
+            Ok(converted_523)
         } else {
             Ok(py.None())
         }
@@ -3500,13 +4016,13 @@ impl PyOperationStartPatientInsightsJobOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_495 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        result.set_item("job_arn", converted_495)?;
-        let converted_496 = (&self.inner.job_id).as_str().into_py_any(py)?;
-        result.set_item("job_id", converted_496)?;
+        let converted_524 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        result.set_item("job_arn", converted_524)?;
+        let converted_525 = (&self.inner.job_id).as_str().into_py_any(py)?;
+        result.set_item("job_id", converted_525)?;
         if let Some(value) = &self.inner.creation_time {
-            let converted_497 = (value).to_string().into_py_any(py)?;
-            result.set_item("creation_time", converted_497)?;
+            let converted_526 = (value).to_string().into_py_any(py)?;
+            result.set_item("creation_time", converted_526)?;
         } else {
             result.set_item("creation_time", py.None())?;
         }
@@ -3694,7 +4210,9 @@ impl ConnectHealthClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ActivateSubscription"))
             })?;
-            Ok(PyOperationActivateSubscriptionOutput { inner: output })
+            Ok(PyOperationActivateSubscriptionOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -3760,7 +4278,9 @@ impl ConnectHealthClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDomain"))
             })?;
-            Ok(PyOperationCreateDomainOutput { inner: output })
+            Ok(PyOperationCreateDomainOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -3841,7 +4361,9 @@ impl ConnectHealthClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeactivateSubscription"))
             })?;
-            Ok(PyOperationDeactivateSubscriptionOutput { inner: output })
+            Ok(PyOperationDeactivateSubscriptionOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -3912,7 +4434,9 @@ impl ConnectHealthClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetDomain")))?;
-            Ok(PyOperationGetDomainOutput { inner: output })
+            Ok(PyOperationGetDomainOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -3964,7 +4488,9 @@ impl ConnectHealthClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMedicalScribeListeningSession"))
             })?;
-            Ok(PyOperationGetMedicalScribeListeningSessionOutput { inner: output })
+            Ok(PyOperationGetMedicalScribeListeningSessionOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -4009,7 +4535,9 @@ impl ConnectHealthClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPatientInsightsJob"))
             })?;
-            Ok(PyOperationGetPatientInsightsJobOutput { inner: output })
+            Ok(PyOperationGetPatientInsightsJobOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -4054,7 +4582,9 @@ impl ConnectHealthClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetSubscription"))
             })?;
-            Ok(PyOperationGetSubscriptionOutput { inner: output })
+            Ok(PyOperationGetSubscriptionOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -4107,7 +4637,9 @@ impl ConnectHealthClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListDomains")))?;
-            Ok(PyOperationListDomainsOutput { inner: output })
+            Ok(PyOperationListDomainsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -4159,7 +4691,9 @@ impl ConnectHealthClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSubscriptions"))
             })?;
-            Ok(PyOperationListSubscriptionsOutput { inner: output })
+            Ok(PyOperationListSubscriptionsOutput {
+                inner: output.into(),
+            })
         })
     }
 

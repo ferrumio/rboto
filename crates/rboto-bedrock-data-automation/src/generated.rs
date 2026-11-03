@@ -3524,13 +3524,62 @@ fn vocabulary_entity_summary_to_py(
     Ok(result.into_any().unbind())
 }
 
+struct SharedAudioExtractionCategory {
+    state: aws_sdk_bedrockdataautomation::types::State,
+    types:
+        Option<::std::vec::Vec<aws_sdk_bedrockdataautomation::types::AudioExtractionCategoryType>>,
+    type_configuration: Option<Arc<SharedAudioExtractionCategoryTypeConfiguration>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::AudioExtractionCategory>
+    for SharedAudioExtractionCategory
+{
+    fn from(value: aws_sdk_bedrockdataautomation::types::AudioExtractionCategory) -> Self {
+        Self {
+            state: value.state,
+            types: value.types,
+            type_configuration: value
+                .type_configuration
+                .map(|item| Arc::new(SharedAudioExtractionCategoryTypeConfiguration::from(item))),
+        }
+    }
+}
+
+fn audio_extraction_category_shared_to_py(
+    py: Python<'_>,
+    value: &SharedAudioExtractionCategory,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_747 = (&value.state).as_str().into_py_any(py)?;
+    result.set_item("state", converted_747)?;
+    if let Some(value) = &value.types {
+        let converted_748_list = PyList::empty(py);
+        for item_749 in value {
+            let converted_item_750 = (item_749).as_str().into_py_any(py)?;
+            converted_748_list.append(converted_item_750)?;
+        }
+        let converted_748 = converted_748_list.into_any().unbind();
+        result.set_item("types", converted_748)?;
+    } else {
+        result.set_item("types", py.None())?;
+    }
+    if let Some(value) = &value.type_configuration {
+        let converted_751 = audio_extraction_category_type_configuration_shared_to_py(py, value)?;
+        result.set_item("type_configuration", converted_751)?;
+    } else {
+        result.set_item("type_configuration", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "AudioExtractionCategory",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
 struct PyAudioExtractionCategory {
-    inner: aws_sdk_bedrockdataautomation::types::AudioExtractionCategory,
+    inner: Arc<SharedAudioExtractionCategory>,
 }
 
 #[pymethods]
@@ -3562,7 +3611,7 @@ impl PyAudioExtractionCategory {
             let converted_746 = Py::new(
                 py,
                 PyAudioExtractionCategoryTypeConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -3573,8 +3622,41 @@ impl PyAudioExtractionCategory {
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        audio_extraction_category_to_py(py, &self.inner)
+        audio_extraction_category_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedAudioExtractionCategoryTypeConfiguration {
+    transcript: Option<Arc<SharedTranscriptConfiguration>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::AudioExtractionCategoryTypeConfiguration>
+    for SharedAudioExtractionCategoryTypeConfiguration
+{
+    fn from(
+        value: aws_sdk_bedrockdataautomation::types::AudioExtractionCategoryTypeConfiguration,
+    ) -> Self {
+        Self {
+            transcript: value
+                .transcript
+                .map(|item| Arc::new(SharedTranscriptConfiguration::from(item))),
+        }
+    }
+}
+
+fn audio_extraction_category_type_configuration_shared_to_py(
+    py: Python<'_>,
+    value: &SharedAudioExtractionCategoryTypeConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.transcript {
+        let converted_753 = transcript_configuration_shared_to_py(py, value)?;
+        result.set_item("transcript", converted_753)?;
+    } else {
+        result.set_item("transcript", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -3583,7 +3665,7 @@ impl PyAudioExtractionCategory {
     frozen
 )]
 struct PyAudioExtractionCategoryTypeConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::AudioExtractionCategoryTypeConfiguration,
+    inner: Arc<SharedAudioExtractionCategoryTypeConfiguration>,
 }
 
 #[pymethods]
@@ -3591,21 +3673,21 @@ impl PyAudioExtractionCategoryTypeConfiguration {
     #[getter]
     fn transcript(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.transcript {
-            let converted_747 = Py::new(
+            let converted_752 = Py::new(
                 py,
                 PyTranscriptConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_747)
+            Ok(converted_752)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        audio_extraction_category_type_configuration_to_py(py, &self.inner)
+        audio_extraction_category_type_configuration_shared_to_py(py, &self.inner)
     }
 }
 
@@ -3615,7 +3697,7 @@ impl PyAudioExtractionCategoryTypeConfiguration {
     frozen
 )]
 struct PyAudioLanguageConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::AudioLanguageConfiguration,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::AudioLanguageConfiguration>,
 }
 
 #[pymethods]
@@ -3623,13 +3705,13 @@ impl PyAudioLanguageConfiguration {
     #[getter]
     fn input_languages(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_languages {
-            let converted_748_list = PyList::empty(py);
-            for item_749 in value {
-                let converted_item_750 = (item_749).as_str().into_py_any(py)?;
-                converted_748_list.append(converted_item_750)?;
+            let converted_754_list = PyList::empty(py);
+            for item_755 in value {
+                let converted_item_756 = (item_755).as_str().into_py_any(py)?;
+                converted_754_list.append(converted_item_756)?;
             }
-            let converted_748 = converted_748_list.into_any().unbind();
-            Ok(converted_748)
+            let converted_754 = converted_754_list.into_any().unbind();
+            Ok(converted_754)
         } else {
             Ok(py.None())
         }
@@ -3638,8 +3720,8 @@ impl PyAudioLanguageConfiguration {
     #[getter]
     fn generative_output_language(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.generative_output_language {
-            let converted_751 = (value).as_str().into_py_any(py)?;
-            Ok(converted_751)
+            let converted_757 = (value).as_str().into_py_any(py)?;
+            Ok(converted_757)
         } else {
             Ok(py.None())
         }
@@ -3648,8 +3730,8 @@ impl PyAudioLanguageConfiguration {
     #[getter]
     fn identify_multiple_languages(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identify_multiple_languages {
-            let converted_752 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_752)
+            let converted_758 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_758)
         } else {
             Ok(py.None())
         }
@@ -3660,13 +3742,62 @@ impl PyAudioLanguageConfiguration {
     }
 }
 
+struct SharedAudioOverrideConfiguration {
+    modality_processing:
+        Option<Arc<aws_sdk_bedrockdataautomation::types::ModalityProcessingConfiguration>>,
+    language_configuration:
+        Option<Arc<aws_sdk_bedrockdataautomation::types::AudioLanguageConfiguration>>,
+    sensitive_data_configuration: Option<Arc<SharedSensitiveDataConfiguration>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::AudioOverrideConfiguration>
+    for SharedAudioOverrideConfiguration
+{
+    fn from(value: aws_sdk_bedrockdataautomation::types::AudioOverrideConfiguration) -> Self {
+        Self {
+            modality_processing: value.modality_processing.map(|item| Arc::new(item)),
+            language_configuration: value.language_configuration.map(|item| Arc::new(item)),
+            sensitive_data_configuration: value
+                .sensitive_data_configuration
+                .map(|item| Arc::new(SharedSensitiveDataConfiguration::from(item))),
+        }
+    }
+}
+
+fn audio_override_configuration_shared_to_py(
+    py: Python<'_>,
+    value: &SharedAudioOverrideConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.modality_processing {
+        let converted_762 = modality_processing_configuration_to_py(py, value)?;
+        result.set_item("modality_processing", converted_762)?;
+    } else {
+        result.set_item("modality_processing", py.None())?;
+    }
+    if let Some(value) = &value.language_configuration {
+        let converted_763 = audio_language_configuration_to_py(py, value)?;
+        result.set_item("language_configuration", converted_763)?;
+    } else {
+        result.set_item("language_configuration", py.None())?;
+    }
+    if let Some(value) = &value.sensitive_data_configuration {
+        let converted_764 = sensitive_data_configuration_shared_to_py(py, value)?;
+        result.set_item("sensitive_data_configuration", converted_764)?;
+    } else {
+        result.set_item("sensitive_data_configuration", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "AudioOverrideConfiguration",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
 struct PyAudioOverrideConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::AudioOverrideConfiguration,
+    inner: Arc<SharedAudioOverrideConfiguration>,
 }
 
 #[pymethods]
@@ -3674,14 +3805,14 @@ impl PyAudioOverrideConfiguration {
     #[getter]
     fn modality_processing(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.modality_processing {
-            let converted_753 = Py::new(
+            let converted_759 = Py::new(
                 py,
                 PyModalityProcessingConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_753)
+            Ok(converted_759)
         } else {
             Ok(py.None())
         }
@@ -3690,14 +3821,14 @@ impl PyAudioOverrideConfiguration {
     #[getter]
     fn language_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.language_configuration {
-            let converted_754 = Py::new(
+            let converted_760 = Py::new(
                 py,
                 PyAudioLanguageConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_754)
+            Ok(converted_760)
         } else {
             Ok(py.None())
         }
@@ -3706,22 +3837,53 @@ impl PyAudioOverrideConfiguration {
     #[getter]
     fn sensitive_data_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sensitive_data_configuration {
-            let converted_755 = Py::new(
+            let converted_761 = Py::new(
                 py,
                 PySensitiveDataConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_755)
+            Ok(converted_761)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        audio_override_configuration_to_py(py, &self.inner)
+        audio_override_configuration_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedAudioStandardExtraction {
+    category: Option<Arc<SharedAudioExtractionCategory>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::AudioStandardExtraction>
+    for SharedAudioStandardExtraction
+{
+    fn from(value: aws_sdk_bedrockdataautomation::types::AudioStandardExtraction) -> Self {
+        Self {
+            category: value
+                .category
+                .map(|item| Arc::new(SharedAudioExtractionCategory::from(item))),
+        }
+    }
+}
+
+fn audio_standard_extraction_shared_to_py(
+    py: Python<'_>,
+    value: &SharedAudioStandardExtraction,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.category {
+        let converted_766 = audio_extraction_category_shared_to_py(py, value)?;
+        result.set_item("category", converted_766)?;
+    } else {
+        result.set_item("category", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -3730,7 +3892,7 @@ impl PyAudioOverrideConfiguration {
     frozen
 )]
 struct PyAudioStandardExtraction {
-    inner: aws_sdk_bedrockdataautomation::types::AudioStandardExtraction,
+    inner: Arc<SharedAudioStandardExtraction>,
 }
 
 #[pymethods]
@@ -3738,21 +3900,21 @@ impl PyAudioStandardExtraction {
     #[getter]
     fn category(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.category {
-            let converted_756 = Py::new(
+            let converted_765 = Py::new(
                 py,
                 PyAudioExtractionCategory {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_756)
+            Ok(converted_765)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        audio_standard_extraction_to_py(py, &self.inner)
+        audio_standard_extraction_shared_to_py(py, &self.inner)
     }
 }
 
@@ -3762,27 +3924,27 @@ impl PyAudioStandardExtraction {
     frozen
 )]
 struct PyAudioStandardGenerativeField {
-    inner: aws_sdk_bedrockdataautomation::types::AudioStandardGenerativeField,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::AudioStandardGenerativeField>,
 }
 
 #[pymethods]
 impl PyAudioStandardGenerativeField {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_757 = (&self.inner.state).as_str().into_py_any(py)?;
-        Ok(converted_757)
+        let converted_767 = (&self.inner.state).as_str().into_py_any(py)?;
+        Ok(converted_767)
     }
 
     #[getter]
     fn types(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.types {
-            let converted_758_list = PyList::empty(py);
-            for item_759 in value {
-                let converted_item_760 = (item_759).as_str().into_py_any(py)?;
-                converted_758_list.append(converted_item_760)?;
+            let converted_768_list = PyList::empty(py);
+            for item_769 in value {
+                let converted_item_770 = (item_769).as_str().into_py_any(py)?;
+                converted_768_list.append(converted_item_770)?;
             }
-            let converted_758 = converted_758_list.into_any().unbind();
-            Ok(converted_758)
+            let converted_768 = converted_768_list.into_any().unbind();
+            Ok(converted_768)
         } else {
             Ok(py.None())
         }
@@ -3793,13 +3955,53 @@ impl PyAudioStandardGenerativeField {
     }
 }
 
+struct SharedAudioStandardOutputConfiguration {
+    extraction: Option<Arc<SharedAudioStandardExtraction>>,
+    generative_field:
+        Option<Arc<aws_sdk_bedrockdataautomation::types::AudioStandardGenerativeField>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::AudioStandardOutputConfiguration>
+    for SharedAudioStandardOutputConfiguration
+{
+    fn from(value: aws_sdk_bedrockdataautomation::types::AudioStandardOutputConfiguration) -> Self {
+        Self {
+            extraction: value
+                .extraction
+                .map(|item| Arc::new(SharedAudioStandardExtraction::from(item))),
+            generative_field: value.generative_field.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn audio_standard_output_configuration_shared_to_py(
+    py: Python<'_>,
+    value: &SharedAudioStandardOutputConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.extraction {
+        let converted_773 = audio_standard_extraction_shared_to_py(py, value)?;
+        result.set_item("extraction", converted_773)?;
+    } else {
+        result.set_item("extraction", py.None())?;
+    }
+    if let Some(value) = &value.generative_field {
+        let converted_774 = audio_standard_generative_field_to_py(py, value)?;
+        result.set_item("generative_field", converted_774)?;
+    } else {
+        result.set_item("generative_field", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "AudioStandardOutputConfiguration",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
 struct PyAudioStandardOutputConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::AudioStandardOutputConfiguration,
+    inner: Arc<SharedAudioStandardOutputConfiguration>,
 }
 
 #[pymethods]
@@ -3807,14 +4009,14 @@ impl PyAudioStandardOutputConfiguration {
     #[getter]
     fn extraction(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.extraction {
-            let converted_761 = Py::new(
+            let converted_771 = Py::new(
                 py,
                 PyAudioStandardExtraction {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_761)
+            Ok(converted_771)
         } else {
             Ok(py.None())
         }
@@ -3823,22 +4025,127 @@ impl PyAudioStandardOutputConfiguration {
     #[getter]
     fn generative_field(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.generative_field {
-            let converted_762 = Py::new(
+            let converted_772 = Py::new(
                 py,
                 PyAudioStandardGenerativeField {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_762)
+            Ok(converted_772)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        audio_standard_output_configuration_to_py(py, &self.inner)
+        audio_standard_output_configuration_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedBlueprint {
+    blueprint_arn: ::std::string::String,
+    schema: ::std::string::String,
+    r#type: aws_sdk_bedrockdataautomation::types::Type,
+    creation_time: ::aws_smithy_types::DateTime,
+    last_modified_time: ::aws_smithy_types::DateTime,
+    blueprint_name: ::std::string::String,
+    blueprint_version: Option<::std::string::String>,
+    blueprint_stage: Option<aws_sdk_bedrockdataautomation::types::BlueprintStage>,
+    kms_key_id: Option<::std::string::String>,
+    kms_encryption_context:
+        Option<::std::collections::HashMap<::std::string::String, ::std::string::String>>,
+    optimization_samples: Option<::std::vec::Vec<Arc<SharedBlueprintOptimizationSample>>>,
+    optimization_time: Option<::aws_smithy_types::DateTime>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::Blueprint> for SharedBlueprint {
+    fn from(value: aws_sdk_bedrockdataautomation::types::Blueprint) -> Self {
+        Self {
+            blueprint_arn: value.blueprint_arn,
+            schema: value.schema,
+            r#type: value.r#type,
+            creation_time: value.creation_time,
+            last_modified_time: value.last_modified_time,
+            blueprint_name: value.blueprint_name,
+            blueprint_version: value.blueprint_version,
+            blueprint_stage: value.blueprint_stage,
+            kms_key_id: value.kms_key_id,
+            kms_encryption_context: value.kms_encryption_context,
+            optimization_samples: value.optimization_samples.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_793| Arc::new(SharedBlueprintOptimizationSample::from(owned_793)))
+                    .collect()
+            }),
+            optimization_time: value.optimization_time,
+        }
+    }
+}
+
+fn blueprint_shared_to_py(py: Python<'_>, value: &SharedBlueprint) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_794 = (&value.blueprint_arn).as_str().into_py_any(py)?;
+    result.set_item("blueprint_arn", converted_794)?;
+    let converted_795 = (&value.schema).as_str().into_py_any(py)?;
+    result.set_item("schema", converted_795)?;
+    let converted_796 = (&value.r#type).as_str().into_py_any(py)?;
+    result.set_item("type", converted_796)?;
+    let converted_797 = (&value.creation_time).to_string().into_py_any(py)?;
+    result.set_item("creation_time", converted_797)?;
+    let converted_798 = (&value.last_modified_time).to_string().into_py_any(py)?;
+    result.set_item("last_modified_time", converted_798)?;
+    let converted_799 = (&value.blueprint_name).as_str().into_py_any(py)?;
+    result.set_item("blueprint_name", converted_799)?;
+    if let Some(value) = &value.blueprint_version {
+        let converted_800 = (value).as_str().into_py_any(py)?;
+        result.set_item("blueprint_version", converted_800)?;
+    } else {
+        result.set_item("blueprint_version", py.None())?;
+    }
+    if let Some(value) = &value.blueprint_stage {
+        let converted_801 = (value).as_str().into_py_any(py)?;
+        result.set_item("blueprint_stage", converted_801)?;
+    } else {
+        result.set_item("blueprint_stage", py.None())?;
+    }
+    if let Some(value) = &value.kms_key_id {
+        let converted_802 = (value).as_str().into_py_any(py)?;
+        result.set_item("kms_key_id", converted_802)?;
+    } else {
+        result.set_item("kms_key_id", py.None())?;
+    }
+    if let Some(value) = &value.kms_encryption_context {
+        let converted_803_dict = PyDict::new(py);
+        for (key_804, value_805) in value {
+            let converted_key_806 = (key_804).as_str().into_py_any(py)?;
+            let converted_value_807 = (value_805).as_str().into_py_any(py)?;
+            converted_803_dict.set_item(converted_key_806, converted_value_807)?;
+        }
+        let converted_803 = converted_803_dict.into_any().unbind();
+        result.set_item("kms_encryption_context", converted_803)?;
+    } else {
+        result.set_item("kms_encryption_context", py.None())?;
+    }
+    if let Some(value) = &value.optimization_samples {
+        let converted_808_list = PyList::empty(py);
+        for item_809 in value {
+            let converted_item_810 = blueprint_optimization_sample_shared_to_py(py, item_809)?;
+            converted_808_list.append(converted_item_810)?;
+        }
+        let converted_808 = converted_808_list.into_any().unbind();
+        result.set_item("optimization_samples", converted_808)?;
+    } else {
+        result.set_item("optimization_samples", py.None())?;
+    }
+    if let Some(value) = &value.optimization_time {
+        let converted_811 = (value).to_string().into_py_any(py)?;
+        result.set_item("optimization_time", converted_811)?;
+    } else {
+        result.set_item("optimization_time", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -3847,54 +4154,54 @@ impl PyAudioStandardOutputConfiguration {
     frozen
 )]
 struct PyBlueprint {
-    inner: aws_sdk_bedrockdataautomation::types::Blueprint,
+    inner: Arc<SharedBlueprint>,
 }
 
 #[pymethods]
 impl PyBlueprint {
     #[getter]
     fn blueprint_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_763 = (&self.inner.blueprint_arn).as_str().into_py_any(py)?;
-        Ok(converted_763)
+        let converted_775 = (&self.inner.blueprint_arn).as_str().into_py_any(py)?;
+        Ok(converted_775)
     }
 
     #[getter]
     fn schema(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_764 = (&self.inner.schema).as_str().into_py_any(py)?;
-        Ok(converted_764)
+        let converted_776 = (&self.inner.schema).as_str().into_py_any(py)?;
+        Ok(converted_776)
     }
 
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_765 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_765)
+        let converted_777 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_777)
     }
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_766 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        Ok(converted_766)
+        let converted_778 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        Ok(converted_778)
     }
 
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_767 = (&self.inner.last_modified_time)
+        let converted_779 = (&self.inner.last_modified_time)
             .to_string()
             .into_py_any(py)?;
-        Ok(converted_767)
+        Ok(converted_779)
     }
 
     #[getter]
     fn blueprint_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_768 = (&self.inner.blueprint_name).as_str().into_py_any(py)?;
-        Ok(converted_768)
+        let converted_780 = (&self.inner.blueprint_name).as_str().into_py_any(py)?;
+        Ok(converted_780)
     }
 
     #[getter]
     fn blueprint_version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.blueprint_version {
-            let converted_769 = (value).as_str().into_py_any(py)?;
-            Ok(converted_769)
+            let converted_781 = (value).as_str().into_py_any(py)?;
+            Ok(converted_781)
         } else {
             Ok(py.None())
         }
@@ -3903,8 +4210,8 @@ impl PyBlueprint {
     #[getter]
     fn blueprint_stage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.blueprint_stage {
-            let converted_770 = (value).as_str().into_py_any(py)?;
-            Ok(converted_770)
+            let converted_782 = (value).as_str().into_py_any(py)?;
+            Ok(converted_782)
         } else {
             Ok(py.None())
         }
@@ -3913,8 +4220,8 @@ impl PyBlueprint {
     #[getter]
     fn kms_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key_id {
-            let converted_771 = (value).as_str().into_py_any(py)?;
-            Ok(converted_771)
+            let converted_783 = (value).as_str().into_py_any(py)?;
+            Ok(converted_783)
         } else {
             Ok(py.None())
         }
@@ -3923,14 +4230,14 @@ impl PyBlueprint {
     #[getter]
     fn kms_encryption_context(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_encryption_context {
-            let converted_772_dict = PyDict::new(py);
-            for (key_773, value_774) in value {
-                let converted_key_775 = (key_773).as_str().into_py_any(py)?;
-                let converted_value_776 = (value_774).as_str().into_py_any(py)?;
-                converted_772_dict.set_item(converted_key_775, converted_value_776)?;
+            let converted_784_dict = PyDict::new(py);
+            for (key_785, value_786) in value {
+                let converted_key_787 = (key_785).as_str().into_py_any(py)?;
+                let converted_value_788 = (value_786).as_str().into_py_any(py)?;
+                converted_784_dict.set_item(converted_key_787, converted_value_788)?;
             }
-            let converted_772 = converted_772_dict.into_any().unbind();
-            Ok(converted_772)
+            let converted_784 = converted_784_dict.into_any().unbind();
+            Ok(converted_784)
         } else {
             Ok(py.None())
         }
@@ -3939,19 +4246,19 @@ impl PyBlueprint {
     #[getter]
     fn optimization_samples(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.optimization_samples {
-            let converted_777_list = PyList::empty(py);
-            for item_778 in value {
-                let converted_item_779 = Py::new(
+            let converted_789_list = PyList::empty(py);
+            for item_790 in value {
+                let converted_item_791 = Py::new(
                     py,
                     PyBlueprintOptimizationSample {
-                        inner: (item_778).to_owned(),
+                        inner: Arc::clone(item_790),
                     },
                 )?
                 .into_any();
-                converted_777_list.append(converted_item_779)?;
+                converted_789_list.append(converted_item_791)?;
             }
-            let converted_777 = converted_777_list.into_any().unbind();
-            Ok(converted_777)
+            let converted_789 = converted_789_list.into_any().unbind();
+            Ok(converted_789)
         } else {
             Ok(py.None())
         }
@@ -3960,15 +4267,15 @@ impl PyBlueprint {
     #[getter]
     fn optimization_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.optimization_time {
-            let converted_780 = (value).to_string().into_py_any(py)?;
-            Ok(converted_780)
+            let converted_792 = (value).to_string().into_py_any(py)?;
+            Ok(converted_792)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        blueprint_to_py(py, &self.inner)
+        blueprint_shared_to_py(py, &self.inner)
     }
 }
 
@@ -3978,22 +4285,22 @@ impl PyBlueprint {
     frozen
 )]
 struct PyBlueprintItem {
-    inner: aws_sdk_bedrockdataautomation::types::BlueprintItem,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::BlueprintItem>,
 }
 
 #[pymethods]
 impl PyBlueprintItem {
     #[getter]
     fn blueprint_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_781 = (&self.inner.blueprint_arn).as_str().into_py_any(py)?;
-        Ok(converted_781)
+        let converted_812 = (&self.inner.blueprint_arn).as_str().into_py_any(py)?;
+        Ok(converted_812)
     }
 
     #[getter]
     fn blueprint_version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.blueprint_version {
-            let converted_782 = (value).as_str().into_py_any(py)?;
-            Ok(converted_782)
+            let converted_813 = (value).as_str().into_py_any(py)?;
+            Ok(converted_813)
         } else {
             Ok(py.None())
         }
@@ -4002,8 +4309,8 @@ impl PyBlueprintItem {
     #[getter]
     fn blueprint_stage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.blueprint_stage {
-            let converted_783 = (value).as_str().into_py_any(py)?;
-            Ok(converted_783)
+            let converted_814 = (value).as_str().into_py_any(py)?;
+            Ok(converted_814)
         } else {
             Ok(py.None())
         }
@@ -4014,13 +4321,44 @@ impl PyBlueprintItem {
     }
 }
 
+struct SharedBlueprintOptimizationOutputConfiguration {
+    s3_object: Option<Arc<aws_sdk_bedrockdataautomation::types::S3Object>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::BlueprintOptimizationOutputConfiguration>
+    for SharedBlueprintOptimizationOutputConfiguration
+{
+    fn from(
+        value: aws_sdk_bedrockdataautomation::types::BlueprintOptimizationOutputConfiguration,
+    ) -> Self {
+        Self {
+            s3_object: value.s3_object.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn blueprint_optimization_output_configuration_shared_to_py(
+    py: Python<'_>,
+    value: &SharedBlueprintOptimizationOutputConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.s3_object {
+        let converted_816 = s3_object_to_py(py, value)?;
+        result.set_item("s3_object", converted_816)?;
+    } else {
+        result.set_item("s3_object", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "BlueprintOptimizationOutputConfiguration",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
 struct PyBlueprintOptimizationOutputConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::BlueprintOptimizationOutputConfiguration,
+    inner: Arc<SharedBlueprintOptimizationOutputConfiguration>,
 }
 
 #[pymethods]
@@ -4028,22 +4366,59 @@ impl PyBlueprintOptimizationOutputConfiguration {
     #[getter]
     fn s3_object(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.s3_object {
-            let converted_784 = Py::new(
+            let converted_815 = Py::new(
                 py,
                 PyS3Object {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_784)
+            Ok(converted_815)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        blueprint_optimization_output_configuration_to_py(py, &self.inner)
+        blueprint_optimization_output_configuration_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedBlueprintOptimizationSample {
+    asset_s3_object: Option<Arc<aws_sdk_bedrockdataautomation::types::S3Object>>,
+    ground_truth_s3_object: Option<Arc<aws_sdk_bedrockdataautomation::types::S3Object>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::BlueprintOptimizationSample>
+    for SharedBlueprintOptimizationSample
+{
+    fn from(value: aws_sdk_bedrockdataautomation::types::BlueprintOptimizationSample) -> Self {
+        Self {
+            asset_s3_object: value.asset_s3_object.map(|item| Arc::new(item)),
+            ground_truth_s3_object: value.ground_truth_s3_object.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn blueprint_optimization_sample_shared_to_py(
+    py: Python<'_>,
+    value: &SharedBlueprintOptimizationSample,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.asset_s3_object {
+        let converted_819 = s3_object_to_py(py, value)?;
+        result.set_item("asset_s3_object", converted_819)?;
+    } else {
+        result.set_item("asset_s3_object", py.None())?;
+    }
+    if let Some(value) = &value.ground_truth_s3_object {
+        let converted_820 = s3_object_to_py(py, value)?;
+        result.set_item("ground_truth_s3_object", converted_820)?;
+    } else {
+        result.set_item("ground_truth_s3_object", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -4052,7 +4427,7 @@ impl PyBlueprintOptimizationOutputConfiguration {
     frozen
 )]
 struct PyBlueprintOptimizationSample {
-    inner: aws_sdk_bedrockdataautomation::types::BlueprintOptimizationSample,
+    inner: Arc<SharedBlueprintOptimizationSample>,
 }
 
 #[pymethods]
@@ -4060,14 +4435,14 @@ impl PyBlueprintOptimizationSample {
     #[getter]
     fn asset_s3_object(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.asset_s3_object {
-            let converted_785 = Py::new(
+            let converted_817 = Py::new(
                 py,
                 PyS3Object {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_785)
+            Ok(converted_817)
         } else {
             Ok(py.None())
         }
@@ -4076,21 +4451,21 @@ impl PyBlueprintOptimizationSample {
     #[getter]
     fn ground_truth_s3_object(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ground_truth_s3_object {
-            let converted_786 = Py::new(
+            let converted_818 = Py::new(
                 py,
                 PyS3Object {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_786)
+            Ok(converted_818)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        blueprint_optimization_sample_to_py(py, &self.inner)
+        blueprint_optimization_sample_shared_to_py(py, &self.inner)
     }
 }
 
@@ -4100,22 +4475,22 @@ impl PyBlueprintOptimizationSample {
     frozen
 )]
 struct PyBlueprintSummary {
-    inner: aws_sdk_bedrockdataautomation::types::BlueprintSummary,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::BlueprintSummary>,
 }
 
 #[pymethods]
 impl PyBlueprintSummary {
     #[getter]
     fn blueprint_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_787 = (&self.inner.blueprint_arn).as_str().into_py_any(py)?;
-        Ok(converted_787)
+        let converted_821 = (&self.inner.blueprint_arn).as_str().into_py_any(py)?;
+        Ok(converted_821)
     }
 
     #[getter]
     fn blueprint_version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.blueprint_version {
-            let converted_788 = (value).as_str().into_py_any(py)?;
-            Ok(converted_788)
+            let converted_822 = (value).as_str().into_py_any(py)?;
+            Ok(converted_822)
         } else {
             Ok(py.None())
         }
@@ -4124,8 +4499,8 @@ impl PyBlueprintSummary {
     #[getter]
     fn blueprint_stage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.blueprint_stage {
-            let converted_789 = (value).as_str().into_py_any(py)?;
-            Ok(converted_789)
+            let converted_823 = (value).as_str().into_py_any(py)?;
+            Ok(converted_823)
         } else {
             Ok(py.None())
         }
@@ -4134,8 +4509,8 @@ impl PyBlueprintSummary {
     #[getter]
     fn blueprint_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.blueprint_name {
-            let converted_790 = (value).as_str().into_py_any(py)?;
-            Ok(converted_790)
+            let converted_824 = (value).as_str().into_py_any(py)?;
+            Ok(converted_824)
         } else {
             Ok(py.None())
         }
@@ -4143,15 +4518,15 @@ impl PyBlueprintSummary {
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_791 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        Ok(converted_791)
+        let converted_825 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        Ok(converted_825)
     }
 
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_792 = (value).to_string().into_py_any(py)?;
-            Ok(converted_792)
+            let converted_826 = (value).to_string().into_py_any(py)?;
+            Ok(converted_826)
         } else {
             Ok(py.None())
         }
@@ -4168,20 +4543,69 @@ impl PyBlueprintSummary {
     frozen
 )]
 struct PyChannelLabelingConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::ChannelLabelingConfiguration,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::ChannelLabelingConfiguration>,
 }
 
 #[pymethods]
 impl PyChannelLabelingConfiguration {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_793 = (&self.inner.state).as_str().into_py_any(py)?;
-        Ok(converted_793)
+        let converted_827 = (&self.inner.state).as_str().into_py_any(py)?;
+        Ok(converted_827)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         channel_labeling_configuration_to_py(py, &self.inner)
     }
+}
+
+struct SharedCustomOutputConfiguration {
+    blueprints: Option<::std::vec::Vec<Arc<aws_sdk_bedrockdataautomation::types::BlueprintItem>>>,
+    document: Option<Arc<SharedDocumentCustomOutputConfiguration>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::CustomOutputConfiguration>
+    for SharedCustomOutputConfiguration
+{
+    fn from(value: aws_sdk_bedrockdataautomation::types::CustomOutputConfiguration) -> Self {
+        Self {
+            blueprints: value.blueprints.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_832| Arc::new(owned_832))
+                    .collect()
+            }),
+            document: value
+                .document
+                .map(|item| Arc::new(SharedDocumentCustomOutputConfiguration::from(item))),
+        }
+    }
+}
+
+fn custom_output_configuration_shared_to_py(
+    py: Python<'_>,
+    value: &SharedCustomOutputConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.blueprints {
+        let converted_833_list = PyList::empty(py);
+        for item_834 in value {
+            let converted_item_835 = blueprint_item_to_py(py, item_834)?;
+            converted_833_list.append(converted_item_835)?;
+        }
+        let converted_833 = converted_833_list.into_any().unbind();
+        result.set_item("blueprints", converted_833)?;
+    } else {
+        result.set_item("blueprints", py.None())?;
+    }
+    if let Some(value) = &value.document {
+        let converted_836 = document_custom_output_configuration_shared_to_py(py, value)?;
+        result.set_item("document", converted_836)?;
+    } else {
+        result.set_item("document", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -4190,7 +4614,7 @@ impl PyChannelLabelingConfiguration {
     frozen
 )]
 struct PyCustomOutputConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::CustomOutputConfiguration,
+    inner: Arc<SharedCustomOutputConfiguration>,
 }
 
 #[pymethods]
@@ -4198,19 +4622,19 @@ impl PyCustomOutputConfiguration {
     #[getter]
     fn blueprints(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.blueprints {
-            let converted_794_list = PyList::empty(py);
-            for item_795 in value {
-                let converted_item_796 = Py::new(
+            let converted_828_list = PyList::empty(py);
+            for item_829 in value {
+                let converted_item_830 = Py::new(
                     py,
                     PyBlueprintItem {
-                        inner: (item_795).to_owned(),
+                        inner: Arc::clone(item_829),
                     },
                 )?
                 .into_any();
-                converted_794_list.append(converted_item_796)?;
+                converted_828_list.append(converted_item_830)?;
             }
-            let converted_794 = converted_794_list.into_any().unbind();
-            Ok(converted_794)
+            let converted_828 = converted_828_list.into_any().unbind();
+            Ok(converted_828)
         } else {
             Ok(py.None())
         }
@@ -4219,22 +4643,109 @@ impl PyCustomOutputConfiguration {
     #[getter]
     fn document(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.document {
-            let converted_797 = Py::new(
+            let converted_831 = Py::new(
                 py,
                 PyDocumentCustomOutputConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_797)
+            Ok(converted_831)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        custom_output_configuration_to_py(py, &self.inner)
+        custom_output_configuration_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedDataAutomationLibrary {
+    library_arn: ::std::string::String,
+    creation_time: ::aws_smithy_types::DateTime,
+    library_name: ::std::string::String,
+    library_description: Option<::std::string::String>,
+    status: aws_sdk_bedrockdataautomation::types::DataAutomationLibraryStatus,
+    entity_types:
+        Option<::std::vec::Vec<Arc<aws_sdk_bedrockdataautomation::types::EntityTypeInfo>>>,
+    kms_key_id: Option<::std::string::String>,
+    kms_encryption_context:
+        Option<::std::collections::HashMap<::std::string::String, ::std::string::String>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::DataAutomationLibrary>
+    for SharedDataAutomationLibrary
+{
+    fn from(value: aws_sdk_bedrockdataautomation::types::DataAutomationLibrary) -> Self {
+        Self {
+            library_arn: value.library_arn,
+            creation_time: value.creation_time,
+            library_name: value.library_name,
+            library_description: value.library_description,
+            status: value.status,
+            entity_types: value.entity_types.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_851| Arc::new(owned_851))
+                    .collect()
+            }),
+            kms_key_id: value.kms_key_id,
+            kms_encryption_context: value.kms_encryption_context,
+        }
+    }
+}
+
+fn data_automation_library_shared_to_py(
+    py: Python<'_>,
+    value: &SharedDataAutomationLibrary,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_852 = (&value.library_arn).as_str().into_py_any(py)?;
+    result.set_item("library_arn", converted_852)?;
+    let converted_853 = (&value.creation_time).to_string().into_py_any(py)?;
+    result.set_item("creation_time", converted_853)?;
+    let converted_854 = (&value.library_name).as_str().into_py_any(py)?;
+    result.set_item("library_name", converted_854)?;
+    if let Some(value) = &value.library_description {
+        let converted_855 = (value).as_str().into_py_any(py)?;
+        result.set_item("library_description", converted_855)?;
+    } else {
+        result.set_item("library_description", py.None())?;
+    }
+    let converted_856 = (&value.status).as_str().into_py_any(py)?;
+    result.set_item("status", converted_856)?;
+    if let Some(value) = &value.entity_types {
+        let converted_857_list = PyList::empty(py);
+        for item_858 in value {
+            let converted_item_859 = entity_type_info_to_py(py, item_858)?;
+            converted_857_list.append(converted_item_859)?;
+        }
+        let converted_857 = converted_857_list.into_any().unbind();
+        result.set_item("entity_types", converted_857)?;
+    } else {
+        result.set_item("entity_types", py.None())?;
+    }
+    if let Some(value) = &value.kms_key_id {
+        let converted_860 = (value).as_str().into_py_any(py)?;
+        result.set_item("kms_key_id", converted_860)?;
+    } else {
+        result.set_item("kms_key_id", py.None())?;
+    }
+    if let Some(value) = &value.kms_encryption_context {
+        let converted_861_dict = PyDict::new(py);
+        for (key_862, value_863) in value {
+            let converted_key_864 = (key_862).as_str().into_py_any(py)?;
+            let converted_value_865 = (value_863).as_str().into_py_any(py)?;
+            converted_861_dict.set_item(converted_key_864, converted_value_865)?;
+        }
+        let converted_861 = converted_861_dict.into_any().unbind();
+        result.set_item("kms_encryption_context", converted_861)?;
+    } else {
+        result.set_item("kms_encryption_context", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -4243,34 +4754,34 @@ impl PyCustomOutputConfiguration {
     frozen
 )]
 struct PyDataAutomationLibrary {
-    inner: aws_sdk_bedrockdataautomation::types::DataAutomationLibrary,
+    inner: Arc<SharedDataAutomationLibrary>,
 }
 
 #[pymethods]
 impl PyDataAutomationLibrary {
     #[getter]
     fn library_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_798 = (&self.inner.library_arn).as_str().into_py_any(py)?;
-        Ok(converted_798)
+        let converted_837 = (&self.inner.library_arn).as_str().into_py_any(py)?;
+        Ok(converted_837)
     }
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_799 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        Ok(converted_799)
+        let converted_838 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        Ok(converted_838)
     }
 
     #[getter]
     fn library_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_800 = (&self.inner.library_name).as_str().into_py_any(py)?;
-        Ok(converted_800)
+        let converted_839 = (&self.inner.library_name).as_str().into_py_any(py)?;
+        Ok(converted_839)
     }
 
     #[getter]
     fn library_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.library_description {
-            let converted_801 = (value).as_str().into_py_any(py)?;
-            Ok(converted_801)
+            let converted_840 = (value).as_str().into_py_any(py)?;
+            Ok(converted_840)
         } else {
             Ok(py.None())
         }
@@ -4278,26 +4789,26 @@ impl PyDataAutomationLibrary {
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_802 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_802)
+        let converted_841 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_841)
     }
 
     #[getter]
     fn entity_types(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.entity_types {
-            let converted_803_list = PyList::empty(py);
-            for item_804 in value {
-                let converted_item_805 = Py::new(
+            let converted_842_list = PyList::empty(py);
+            for item_843 in value {
+                let converted_item_844 = Py::new(
                     py,
                     PyEntityTypeInfo {
-                        inner: (item_804).to_owned(),
+                        inner: Arc::clone(item_843),
                     },
                 )?
                 .into_any();
-                converted_803_list.append(converted_item_805)?;
+                converted_842_list.append(converted_item_844)?;
             }
-            let converted_803 = converted_803_list.into_any().unbind();
-            Ok(converted_803)
+            let converted_842 = converted_842_list.into_any().unbind();
+            Ok(converted_842)
         } else {
             Ok(py.None())
         }
@@ -4306,8 +4817,8 @@ impl PyDataAutomationLibrary {
     #[getter]
     fn kms_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key_id {
-            let converted_806 = (value).as_str().into_py_any(py)?;
-            Ok(converted_806)
+            let converted_845 = (value).as_str().into_py_any(py)?;
+            Ok(converted_845)
         } else {
             Ok(py.None())
         }
@@ -4316,22 +4827,65 @@ impl PyDataAutomationLibrary {
     #[getter]
     fn kms_encryption_context(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_encryption_context {
-            let converted_807_dict = PyDict::new(py);
-            for (key_808, value_809) in value {
-                let converted_key_810 = (key_808).as_str().into_py_any(py)?;
-                let converted_value_811 = (value_809).as_str().into_py_any(py)?;
-                converted_807_dict.set_item(converted_key_810, converted_value_811)?;
+            let converted_846_dict = PyDict::new(py);
+            for (key_847, value_848) in value {
+                let converted_key_849 = (key_847).as_str().into_py_any(py)?;
+                let converted_value_850 = (value_848).as_str().into_py_any(py)?;
+                converted_846_dict.set_item(converted_key_849, converted_value_850)?;
             }
-            let converted_807 = converted_807_dict.into_any().unbind();
-            Ok(converted_807)
+            let converted_846 = converted_846_dict.into_any().unbind();
+            Ok(converted_846)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        data_automation_library_to_py(py, &self.inner)
+        data_automation_library_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedDataAutomationLibraryConfiguration {
+    libraries: Option<
+        ::std::vec::Vec<Arc<aws_sdk_bedrockdataautomation::types::DataAutomationLibraryItem>>,
+    >,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::DataAutomationLibraryConfiguration>
+    for SharedDataAutomationLibraryConfiguration
+{
+    fn from(
+        value: aws_sdk_bedrockdataautomation::types::DataAutomationLibraryConfiguration,
+    ) -> Self {
+        Self {
+            libraries: value.libraries.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_869| Arc::new(owned_869))
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn data_automation_library_configuration_shared_to_py(
+    py: Python<'_>,
+    value: &SharedDataAutomationLibraryConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.libraries {
+        let converted_870_list = PyList::empty(py);
+        for item_871 in value {
+            let converted_item_872 = data_automation_library_item_to_py(py, item_871)?;
+            converted_870_list.append(converted_item_872)?;
+        }
+        let converted_870 = converted_870_list.into_any().unbind();
+        result.set_item("libraries", converted_870)?;
+    } else {
+        result.set_item("libraries", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -4340,7 +4894,7 @@ impl PyDataAutomationLibrary {
     frozen
 )]
 struct PyDataAutomationLibraryConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::DataAutomationLibraryConfiguration,
+    inner: Arc<SharedDataAutomationLibraryConfiguration>,
 }
 
 #[pymethods]
@@ -4348,27 +4902,102 @@ impl PyDataAutomationLibraryConfiguration {
     #[getter]
     fn libraries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.libraries {
-            let converted_812_list = PyList::empty(py);
-            for item_813 in value {
-                let converted_item_814 = Py::new(
+            let converted_866_list = PyList::empty(py);
+            for item_867 in value {
+                let converted_item_868 = Py::new(
                     py,
                     PyDataAutomationLibraryItem {
-                        inner: (item_813).to_owned(),
+                        inner: Arc::clone(item_867),
                     },
                 )?
                 .into_any();
-                converted_812_list.append(converted_item_814)?;
+                converted_866_list.append(converted_item_868)?;
             }
-            let converted_812 = converted_812_list.into_any().unbind();
-            Ok(converted_812)
+            let converted_866 = converted_866_list.into_any().unbind();
+            Ok(converted_866)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        data_automation_library_configuration_to_py(py, &self.inner)
+        data_automation_library_configuration_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedDataAutomationLibraryIngestionJob {
+    job_arn: ::std::string::String,
+    creation_time: ::aws_smithy_types::DateTime,
+    entity_type: aws_sdk_bedrockdataautomation::types::EntityType,
+    operation_type: aws_sdk_bedrockdataautomation::types::LibraryIngestionJobOperationType,
+    job_status: aws_sdk_bedrockdataautomation::types::LibraryIngestionJobStatus,
+    output_configuration: Option<Arc<aws_sdk_bedrockdataautomation::types::OutputConfiguration>>,
+    completion_time: Option<::aws_smithy_types::DateTime>,
+    error_message: Option<::std::string::String>,
+    error_type: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::DataAutomationLibraryIngestionJob>
+    for SharedDataAutomationLibraryIngestionJob
+{
+    fn from(
+        value: aws_sdk_bedrockdataautomation::types::DataAutomationLibraryIngestionJob,
+    ) -> Self {
+        Self {
+            job_arn: value.job_arn,
+            creation_time: value.creation_time,
+            entity_type: value.entity_type,
+            operation_type: value.operation_type,
+            job_status: value.job_status,
+            output_configuration: value.output_configuration.map(|item| Arc::new(item)),
+            completion_time: value.completion_time,
+            error_message: value.error_message,
+            error_type: value.error_type,
+        }
+    }
+}
+
+fn data_automation_library_ingestion_job_shared_to_py(
+    py: Python<'_>,
+    value: &SharedDataAutomationLibraryIngestionJob,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_882 = (&value.job_arn).as_str().into_py_any(py)?;
+    result.set_item("job_arn", converted_882)?;
+    let converted_883 = (&value.creation_time).to_string().into_py_any(py)?;
+    result.set_item("creation_time", converted_883)?;
+    let converted_884 = (&value.entity_type).as_str().into_py_any(py)?;
+    result.set_item("entity_type", converted_884)?;
+    let converted_885 = (&value.operation_type).as_str().into_py_any(py)?;
+    result.set_item("operation_type", converted_885)?;
+    let converted_886 = (&value.job_status).as_str().into_py_any(py)?;
+    result.set_item("job_status", converted_886)?;
+    if let Some(value) = &value.output_configuration {
+        let converted_887 = output_configuration_to_py(py, value)?;
+        result.set_item("output_configuration", converted_887)?;
+    } else {
+        result.set_item("output_configuration", py.None())?;
+    }
+    if let Some(value) = &value.completion_time {
+        let converted_888 = (value).to_string().into_py_any(py)?;
+        result.set_item("completion_time", converted_888)?;
+    } else {
+        result.set_item("completion_time", py.None())?;
+    }
+    if let Some(value) = &value.error_message {
+        let converted_889 = (value).as_str().into_py_any(py)?;
+        result.set_item("error_message", converted_889)?;
+    } else {
+        result.set_item("error_message", py.None())?;
+    }
+    if let Some(value) = &value.error_type {
+        let converted_890 = (value).as_str().into_py_any(py)?;
+        result.set_item("error_type", converted_890)?;
+    } else {
+        result.set_item("error_type", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -4377,52 +5006,52 @@ impl PyDataAutomationLibraryConfiguration {
     frozen
 )]
 struct PyDataAutomationLibraryIngestionJob {
-    inner: aws_sdk_bedrockdataautomation::types::DataAutomationLibraryIngestionJob,
+    inner: Arc<SharedDataAutomationLibraryIngestionJob>,
 }
 
 #[pymethods]
 impl PyDataAutomationLibraryIngestionJob {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_815 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        Ok(converted_815)
+        let converted_873 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_873)
     }
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_816 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        Ok(converted_816)
+        let converted_874 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        Ok(converted_874)
     }
 
     #[getter]
     fn entity_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_817 = (&self.inner.entity_type).as_str().into_py_any(py)?;
-        Ok(converted_817)
+        let converted_875 = (&self.inner.entity_type).as_str().into_py_any(py)?;
+        Ok(converted_875)
     }
 
     #[getter]
     fn operation_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_818 = (&self.inner.operation_type).as_str().into_py_any(py)?;
-        Ok(converted_818)
+        let converted_876 = (&self.inner.operation_type).as_str().into_py_any(py)?;
+        Ok(converted_876)
     }
 
     #[getter]
     fn job_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_819 = (&self.inner.job_status).as_str().into_py_any(py)?;
-        Ok(converted_819)
+        let converted_877 = (&self.inner.job_status).as_str().into_py_any(py)?;
+        Ok(converted_877)
     }
 
     #[getter]
     fn output_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_configuration {
-            let converted_820 = Py::new(
+            let converted_878 = Py::new(
                 py,
                 PyOutputConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_820)
+            Ok(converted_878)
         } else {
             Ok(py.None())
         }
@@ -4431,8 +5060,8 @@ impl PyDataAutomationLibraryIngestionJob {
     #[getter]
     fn completion_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.completion_time {
-            let converted_821 = (value).to_string().into_py_any(py)?;
-            Ok(converted_821)
+            let converted_879 = (value).to_string().into_py_any(py)?;
+            Ok(converted_879)
         } else {
             Ok(py.None())
         }
@@ -4441,8 +5070,8 @@ impl PyDataAutomationLibraryIngestionJob {
     #[getter]
     fn error_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_message {
-            let converted_822 = (value).as_str().into_py_any(py)?;
-            Ok(converted_822)
+            let converted_880 = (value).as_str().into_py_any(py)?;
+            Ok(converted_880)
         } else {
             Ok(py.None())
         }
@@ -4451,15 +5080,15 @@ impl PyDataAutomationLibraryIngestionJob {
     #[getter]
     fn error_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_type {
-            let converted_823 = (value).as_str().into_py_any(py)?;
-            Ok(converted_823)
+            let converted_881 = (value).as_str().into_py_any(py)?;
+            Ok(converted_881)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        data_automation_library_ingestion_job_to_py(py, &self.inner)
+        data_automation_library_ingestion_job_shared_to_py(py, &self.inner)
     }
 }
 
@@ -4469,46 +5098,46 @@ impl PyDataAutomationLibraryIngestionJob {
     frozen
 )]
 struct PyDataAutomationLibraryIngestionJobSummary {
-    inner: aws_sdk_bedrockdataautomation::types::DataAutomationLibraryIngestionJobSummary,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::DataAutomationLibraryIngestionJobSummary>,
 }
 
 #[pymethods]
 impl PyDataAutomationLibraryIngestionJobSummary {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_824 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        Ok(converted_824)
+        let converted_891 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_891)
     }
 
     #[getter]
     fn job_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_825 = (&self.inner.job_status).as_str().into_py_any(py)?;
-        Ok(converted_825)
+        let converted_892 = (&self.inner.job_status).as_str().into_py_any(py)?;
+        Ok(converted_892)
     }
 
     #[getter]
     fn entity_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_826 = (&self.inner.entity_type).as_str().into_py_any(py)?;
-        Ok(converted_826)
+        let converted_893 = (&self.inner.entity_type).as_str().into_py_any(py)?;
+        Ok(converted_893)
     }
 
     #[getter]
     fn operation_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_827 = (&self.inner.operation_type).as_str().into_py_any(py)?;
-        Ok(converted_827)
+        let converted_894 = (&self.inner.operation_type).as_str().into_py_any(py)?;
+        Ok(converted_894)
     }
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_828 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        Ok(converted_828)
+        let converted_895 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        Ok(converted_895)
     }
 
     #[getter]
     fn completion_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.completion_time {
-            let converted_829 = (value).to_string().into_py_any(py)?;
-            Ok(converted_829)
+            let converted_896 = (value).to_string().into_py_any(py)?;
+            Ok(converted_896)
         } else {
             Ok(py.None())
         }
@@ -4525,15 +5154,15 @@ impl PyDataAutomationLibraryIngestionJobSummary {
     frozen
 )]
 struct PyDataAutomationLibraryItem {
-    inner: aws_sdk_bedrockdataautomation::types::DataAutomationLibraryItem,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::DataAutomationLibraryItem>,
 }
 
 #[pymethods]
 impl PyDataAutomationLibraryItem {
     #[getter]
     fn library_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_830 = (&self.inner.library_arn).as_str().into_py_any(py)?;
-        Ok(converted_830)
+        let converted_897 = (&self.inner.library_arn).as_str().into_py_any(py)?;
+        Ok(converted_897)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -4547,22 +5176,22 @@ impl PyDataAutomationLibraryItem {
     frozen
 )]
 struct PyDataAutomationLibrarySummary {
-    inner: aws_sdk_bedrockdataautomation::types::DataAutomationLibrarySummary,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::DataAutomationLibrarySummary>,
 }
 
 #[pymethods]
 impl PyDataAutomationLibrarySummary {
     #[getter]
     fn library_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_831 = (&self.inner.library_arn).as_str().into_py_any(py)?;
-        Ok(converted_831)
+        let converted_898 = (&self.inner.library_arn).as_str().into_py_any(py)?;
+        Ok(converted_898)
     }
 
     #[getter]
     fn library_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.library_name {
-            let converted_832 = (value).as_str().into_py_any(py)?;
-            Ok(converted_832)
+            let converted_899 = (value).as_str().into_py_any(py)?;
+            Ok(converted_899)
         } else {
             Ok(py.None())
         }
@@ -4570,13 +5199,141 @@ impl PyDataAutomationLibrarySummary {
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_833 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        Ok(converted_833)
+        let converted_900 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        Ok(converted_900)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         data_automation_library_summary_to_py(py, &self.inner)
     }
+}
+
+struct SharedDataAutomationProject {
+    project_arn: ::std::string::String,
+    creation_time: ::aws_smithy_types::DateTime,
+    last_modified_time: ::aws_smithy_types::DateTime,
+    project_name: ::std::string::String,
+    project_stage: Option<aws_sdk_bedrockdataautomation::types::DataAutomationProjectStage>,
+    project_type: Option<aws_sdk_bedrockdataautomation::types::DataAutomationProjectType>,
+    project_description: Option<::std::string::String>,
+    standard_output_configuration: Option<Arc<SharedStandardOutputConfiguration>>,
+    custom_output_configuration: Option<Arc<SharedCustomOutputConfiguration>>,
+    override_configuration: Option<Arc<SharedOverrideConfiguration>>,
+    data_automation_library_configuration: Option<Arc<SharedDataAutomationLibraryConfiguration>>,
+    status: aws_sdk_bedrockdataautomation::types::DataAutomationProjectStatus,
+    kms_key_id: Option<::std::string::String>,
+    kms_encryption_context:
+        Option<::std::collections::HashMap<::std::string::String, ::std::string::String>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::DataAutomationProject>
+    for SharedDataAutomationProject
+{
+    fn from(value: aws_sdk_bedrockdataautomation::types::DataAutomationProject) -> Self {
+        Self {
+            project_arn: value.project_arn,
+            creation_time: value.creation_time,
+            last_modified_time: value.last_modified_time,
+            project_name: value.project_name,
+            project_stage: value.project_stage,
+            project_type: value.project_type,
+            project_description: value.project_description,
+            standard_output_configuration: value
+                .standard_output_configuration
+                .map(|item| Arc::new(SharedStandardOutputConfiguration::from(item))),
+            custom_output_configuration: value
+                .custom_output_configuration
+                .map(|item| Arc::new(SharedCustomOutputConfiguration::from(item))),
+            override_configuration: value
+                .override_configuration
+                .map(|item| Arc::new(SharedOverrideConfiguration::from(item))),
+            data_automation_library_configuration: value
+                .data_automation_library_configuration
+                .map(|item| Arc::new(SharedDataAutomationLibraryConfiguration::from(item))),
+            status: value.status,
+            kms_key_id: value.kms_key_id,
+            kms_encryption_context: value.kms_encryption_context,
+        }
+    }
+}
+
+fn data_automation_project_shared_to_py(
+    py: Python<'_>,
+    value: &SharedDataAutomationProject,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_919 = (&value.project_arn).as_str().into_py_any(py)?;
+    result.set_item("project_arn", converted_919)?;
+    let converted_920 = (&value.creation_time).to_string().into_py_any(py)?;
+    result.set_item("creation_time", converted_920)?;
+    let converted_921 = (&value.last_modified_time).to_string().into_py_any(py)?;
+    result.set_item("last_modified_time", converted_921)?;
+    let converted_922 = (&value.project_name).as_str().into_py_any(py)?;
+    result.set_item("project_name", converted_922)?;
+    if let Some(value) = &value.project_stage {
+        let converted_923 = (value).as_str().into_py_any(py)?;
+        result.set_item("project_stage", converted_923)?;
+    } else {
+        result.set_item("project_stage", py.None())?;
+    }
+    if let Some(value) = &value.project_type {
+        let converted_924 = (value).as_str().into_py_any(py)?;
+        result.set_item("project_type", converted_924)?;
+    } else {
+        result.set_item("project_type", py.None())?;
+    }
+    if let Some(value) = &value.project_description {
+        let converted_925 = (value).as_str().into_py_any(py)?;
+        result.set_item("project_description", converted_925)?;
+    } else {
+        result.set_item("project_description", py.None())?;
+    }
+    if let Some(value) = &value.standard_output_configuration {
+        let converted_926 = standard_output_configuration_shared_to_py(py, value)?;
+        result.set_item("standard_output_configuration", converted_926)?;
+    } else {
+        result.set_item("standard_output_configuration", py.None())?;
+    }
+    if let Some(value) = &value.custom_output_configuration {
+        let converted_927 = custom_output_configuration_shared_to_py(py, value)?;
+        result.set_item("custom_output_configuration", converted_927)?;
+    } else {
+        result.set_item("custom_output_configuration", py.None())?;
+    }
+    if let Some(value) = &value.override_configuration {
+        let converted_928 = override_configuration_shared_to_py(py, value)?;
+        result.set_item("override_configuration", converted_928)?;
+    } else {
+        result.set_item("override_configuration", py.None())?;
+    }
+    if let Some(value) = &value.data_automation_library_configuration {
+        let converted_929 = data_automation_library_configuration_shared_to_py(py, value)?;
+        result.set_item("data_automation_library_configuration", converted_929)?;
+    } else {
+        result.set_item("data_automation_library_configuration", py.None())?;
+    }
+    let converted_930 = (&value.status).as_str().into_py_any(py)?;
+    result.set_item("status", converted_930)?;
+    if let Some(value) = &value.kms_key_id {
+        let converted_931 = (value).as_str().into_py_any(py)?;
+        result.set_item("kms_key_id", converted_931)?;
+    } else {
+        result.set_item("kms_key_id", py.None())?;
+    }
+    if let Some(value) = &value.kms_encryption_context {
+        let converted_932_dict = PyDict::new(py);
+        for (key_933, value_934) in value {
+            let converted_key_935 = (key_933).as_str().into_py_any(py)?;
+            let converted_value_936 = (value_934).as_str().into_py_any(py)?;
+            converted_932_dict.set_item(converted_key_935, converted_value_936)?;
+        }
+        let converted_932 = converted_932_dict.into_any().unbind();
+        result.set_item("kms_encryption_context", converted_932)?;
+    } else {
+        result.set_item("kms_encryption_context", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -4585,42 +5342,42 @@ impl PyDataAutomationLibrarySummary {
     frozen
 )]
 struct PyDataAutomationProject {
-    inner: aws_sdk_bedrockdataautomation::types::DataAutomationProject,
+    inner: Arc<SharedDataAutomationProject>,
 }
 
 #[pymethods]
 impl PyDataAutomationProject {
     #[getter]
     fn project_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_834 = (&self.inner.project_arn).as_str().into_py_any(py)?;
-        Ok(converted_834)
+        let converted_901 = (&self.inner.project_arn).as_str().into_py_any(py)?;
+        Ok(converted_901)
     }
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_835 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        Ok(converted_835)
+        let converted_902 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        Ok(converted_902)
     }
 
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_836 = (&self.inner.last_modified_time)
+        let converted_903 = (&self.inner.last_modified_time)
             .to_string()
             .into_py_any(py)?;
-        Ok(converted_836)
+        Ok(converted_903)
     }
 
     #[getter]
     fn project_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_837 = (&self.inner.project_name).as_str().into_py_any(py)?;
-        Ok(converted_837)
+        let converted_904 = (&self.inner.project_name).as_str().into_py_any(py)?;
+        Ok(converted_904)
     }
 
     #[getter]
     fn project_stage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.project_stage {
-            let converted_838 = (value).as_str().into_py_any(py)?;
-            Ok(converted_838)
+            let converted_905 = (value).as_str().into_py_any(py)?;
+            Ok(converted_905)
         } else {
             Ok(py.None())
         }
@@ -4629,8 +5386,8 @@ impl PyDataAutomationProject {
     #[getter]
     fn project_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.project_type {
-            let converted_839 = (value).as_str().into_py_any(py)?;
-            Ok(converted_839)
+            let converted_906 = (value).as_str().into_py_any(py)?;
+            Ok(converted_906)
         } else {
             Ok(py.None())
         }
@@ -4639,8 +5396,8 @@ impl PyDataAutomationProject {
     #[getter]
     fn project_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.project_description {
-            let converted_840 = (value).as_str().into_py_any(py)?;
-            Ok(converted_840)
+            let converted_907 = (value).as_str().into_py_any(py)?;
+            Ok(converted_907)
         } else {
             Ok(py.None())
         }
@@ -4649,14 +5406,14 @@ impl PyDataAutomationProject {
     #[getter]
     fn standard_output_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.standard_output_configuration {
-            let converted_841 = Py::new(
+            let converted_908 = Py::new(
                 py,
                 PyStandardOutputConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_841)
+            Ok(converted_908)
         } else {
             Ok(py.None())
         }
@@ -4665,14 +5422,14 @@ impl PyDataAutomationProject {
     #[getter]
     fn custom_output_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.custom_output_configuration {
-            let converted_842 = Py::new(
+            let converted_909 = Py::new(
                 py,
                 PyCustomOutputConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_842)
+            Ok(converted_909)
         } else {
             Ok(py.None())
         }
@@ -4681,14 +5438,14 @@ impl PyDataAutomationProject {
     #[getter]
     fn override_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.override_configuration {
-            let converted_843 = Py::new(
+            let converted_910 = Py::new(
                 py,
                 PyOverrideConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_843)
+            Ok(converted_910)
         } else {
             Ok(py.None())
         }
@@ -4697,14 +5454,14 @@ impl PyDataAutomationProject {
     #[getter]
     fn data_automation_library_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.data_automation_library_configuration {
-            let converted_844 = Py::new(
+            let converted_911 = Py::new(
                 py,
                 PyDataAutomationLibraryConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_844)
+            Ok(converted_911)
         } else {
             Ok(py.None())
         }
@@ -4712,15 +5469,15 @@ impl PyDataAutomationProject {
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_845 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_845)
+        let converted_912 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_912)
     }
 
     #[getter]
     fn kms_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key_id {
-            let converted_846 = (value).as_str().into_py_any(py)?;
-            Ok(converted_846)
+            let converted_913 = (value).as_str().into_py_any(py)?;
+            Ok(converted_913)
         } else {
             Ok(py.None())
         }
@@ -4729,21 +5486,21 @@ impl PyDataAutomationProject {
     #[getter]
     fn kms_encryption_context(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_encryption_context {
-            let converted_847_dict = PyDict::new(py);
-            for (key_848, value_849) in value {
-                let converted_key_850 = (key_848).as_str().into_py_any(py)?;
-                let converted_value_851 = (value_849).as_str().into_py_any(py)?;
-                converted_847_dict.set_item(converted_key_850, converted_value_851)?;
+            let converted_914_dict = PyDict::new(py);
+            for (key_915, value_916) in value {
+                let converted_key_917 = (key_915).as_str().into_py_any(py)?;
+                let converted_value_918 = (value_916).as_str().into_py_any(py)?;
+                converted_914_dict.set_item(converted_key_917, converted_value_918)?;
             }
-            let converted_847 = converted_847_dict.into_any().unbind();
-            Ok(converted_847)
+            let converted_914 = converted_914_dict.into_any().unbind();
+            Ok(converted_914)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        data_automation_project_to_py(py, &self.inner)
+        data_automation_project_shared_to_py(py, &self.inner)
     }
 }
 
@@ -4753,22 +5510,22 @@ impl PyDataAutomationProject {
     frozen
 )]
 struct PyDataAutomationProjectSummary {
-    inner: aws_sdk_bedrockdataautomation::types::DataAutomationProjectSummary,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::DataAutomationProjectSummary>,
 }
 
 #[pymethods]
 impl PyDataAutomationProjectSummary {
     #[getter]
     fn project_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_852 = (&self.inner.project_arn).as_str().into_py_any(py)?;
-        Ok(converted_852)
+        let converted_937 = (&self.inner.project_arn).as_str().into_py_any(py)?;
+        Ok(converted_937)
     }
 
     #[getter]
     fn project_stage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.project_stage {
-            let converted_853 = (value).as_str().into_py_any(py)?;
-            Ok(converted_853)
+            let converted_938 = (value).as_str().into_py_any(py)?;
+            Ok(converted_938)
         } else {
             Ok(py.None())
         }
@@ -4777,8 +5534,8 @@ impl PyDataAutomationProjectSummary {
     #[getter]
     fn project_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.project_type {
-            let converted_854 = (value).as_str().into_py_any(py)?;
-            Ok(converted_854)
+            let converted_939 = (value).as_str().into_py_any(py)?;
+            Ok(converted_939)
         } else {
             Ok(py.None())
         }
@@ -4787,8 +5544,8 @@ impl PyDataAutomationProjectSummary {
     #[getter]
     fn project_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.project_name {
-            let converted_855 = (value).as_str().into_py_any(py)?;
-            Ok(converted_855)
+            let converted_940 = (value).as_str().into_py_any(py)?;
+            Ok(converted_940)
         } else {
             Ok(py.None())
         }
@@ -4796,8 +5553,8 @@ impl PyDataAutomationProjectSummary {
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_856 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        Ok(converted_856)
+        let converted_941 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        Ok(converted_941)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -4811,20 +5568,62 @@ impl PyDataAutomationProjectSummary {
     frozen
 )]
 struct PyDocumentBoundingBox {
-    inner: aws_sdk_bedrockdataautomation::types::DocumentBoundingBox,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::DocumentBoundingBox>,
 }
 
 #[pymethods]
 impl PyDocumentBoundingBox {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_857 = (&self.inner.state).as_str().into_py_any(py)?;
-        Ok(converted_857)
+        let converted_942 = (&self.inner.state).as_str().into_py_any(py)?;
+        Ok(converted_942)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         document_bounding_box_to_py(py, &self.inner)
     }
+}
+
+struct SharedDocumentCustomOutputConfiguration {
+    fallback_blueprints:
+        Option<::std::vec::Vec<Arc<aws_sdk_bedrockdataautomation::types::BlueprintItem>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::DocumentCustomOutputConfiguration>
+    for SharedDocumentCustomOutputConfiguration
+{
+    fn from(
+        value: aws_sdk_bedrockdataautomation::types::DocumentCustomOutputConfiguration,
+    ) -> Self {
+        Self {
+            fallback_blueprints: value.fallback_blueprints.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_946| Arc::new(owned_946))
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn document_custom_output_configuration_shared_to_py(
+    py: Python<'_>,
+    value: &SharedDocumentCustomOutputConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.fallback_blueprints {
+        let converted_947_list = PyList::empty(py);
+        for item_948 in value {
+            let converted_item_949 = blueprint_item_to_py(py, item_948)?;
+            converted_947_list.append(converted_item_949)?;
+        }
+        let converted_947 = converted_947_list.into_any().unbind();
+        result.set_item("fallback_blueprints", converted_947)?;
+    } else {
+        result.set_item("fallback_blueprints", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -4833,7 +5632,7 @@ impl PyDocumentBoundingBox {
     frozen
 )]
 struct PyDocumentCustomOutputConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::DocumentCustomOutputConfiguration,
+    inner: Arc<SharedDocumentCustomOutputConfiguration>,
 }
 
 #[pymethods]
@@ -4841,26 +5640,26 @@ impl PyDocumentCustomOutputConfiguration {
     #[getter]
     fn fallback_blueprints(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.fallback_blueprints {
-            let converted_858_list = PyList::empty(py);
-            for item_859 in value {
-                let converted_item_860 = Py::new(
+            let converted_943_list = PyList::empty(py);
+            for item_944 in value {
+                let converted_item_945 = Py::new(
                     py,
                     PyBlueprintItem {
-                        inner: (item_859).to_owned(),
+                        inner: Arc::clone(item_944),
                     },
                 )?
                 .into_any();
-                converted_858_list.append(converted_item_860)?;
+                converted_943_list.append(converted_item_945)?;
             }
-            let converted_858 = converted_858_list.into_any().unbind();
-            Ok(converted_858)
+            let converted_943 = converted_943_list.into_any().unbind();
+            Ok(converted_943)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        document_custom_output_configuration_to_py(py, &self.inner)
+        document_custom_output_configuration_shared_to_py(py, &self.inner)
     }
 }
 
@@ -4870,7 +5669,7 @@ impl PyDocumentCustomOutputConfiguration {
     frozen
 )]
 struct PyDocumentExtractionGranularity {
-    inner: aws_sdk_bedrockdataautomation::types::DocumentExtractionGranularity,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::DocumentExtractionGranularity>,
 }
 
 #[pymethods]
@@ -4878,13 +5677,13 @@ impl PyDocumentExtractionGranularity {
     #[getter]
     fn types(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.types {
-            let converted_861_list = PyList::empty(py);
-            for item_862 in value {
-                let converted_item_863 = (item_862).as_str().into_py_any(py)?;
-                converted_861_list.append(converted_item_863)?;
+            let converted_950_list = PyList::empty(py);
+            for item_951 in value {
+                let converted_item_952 = (item_951).as_str().into_py_any(py)?;
+                converted_950_list.append(converted_item_952)?;
             }
-            let converted_861 = converted_861_list.into_any().unbind();
-            Ok(converted_861)
+            let converted_950 = converted_950_list.into_any().unbind();
+            Ok(converted_950)
         } else {
             Ok(py.None())
         }
@@ -4901,20 +5700,58 @@ impl PyDocumentExtractionGranularity {
     frozen
 )]
 struct PyDocumentOutputAdditionalFileFormat {
-    inner: aws_sdk_bedrockdataautomation::types::DocumentOutputAdditionalFileFormat,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::DocumentOutputAdditionalFileFormat>,
 }
 
 #[pymethods]
 impl PyDocumentOutputAdditionalFileFormat {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_864 = (&self.inner.state).as_str().into_py_any(py)?;
-        Ok(converted_864)
+        let converted_953 = (&self.inner.state).as_str().into_py_any(py)?;
+        Ok(converted_953)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         document_output_additional_file_format_to_py(py, &self.inner)
     }
+}
+
+struct SharedDocumentOutputFormat {
+    text_format: Option<Arc<aws_sdk_bedrockdataautomation::types::DocumentOutputTextFormat>>,
+    additional_file_format:
+        Option<Arc<aws_sdk_bedrockdataautomation::types::DocumentOutputAdditionalFileFormat>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::DocumentOutputFormat>
+    for SharedDocumentOutputFormat
+{
+    fn from(value: aws_sdk_bedrockdataautomation::types::DocumentOutputFormat) -> Self {
+        Self {
+            text_format: value.text_format.map(|item| Arc::new(item)),
+            additional_file_format: value.additional_file_format.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn document_output_format_shared_to_py(
+    py: Python<'_>,
+    value: &SharedDocumentOutputFormat,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.text_format {
+        let converted_956 = document_output_text_format_to_py(py, value)?;
+        result.set_item("text_format", converted_956)?;
+    } else {
+        result.set_item("text_format", py.None())?;
+    }
+    if let Some(value) = &value.additional_file_format {
+        let converted_957 = document_output_additional_file_format_to_py(py, value)?;
+        result.set_item("additional_file_format", converted_957)?;
+    } else {
+        result.set_item("additional_file_format", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -4923,7 +5760,7 @@ impl PyDocumentOutputAdditionalFileFormat {
     frozen
 )]
 struct PyDocumentOutputFormat {
-    inner: aws_sdk_bedrockdataautomation::types::DocumentOutputFormat,
+    inner: Arc<SharedDocumentOutputFormat>,
 }
 
 #[pymethods]
@@ -4931,14 +5768,14 @@ impl PyDocumentOutputFormat {
     #[getter]
     fn text_format(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.text_format {
-            let converted_865 = Py::new(
+            let converted_954 = Py::new(
                 py,
                 PyDocumentOutputTextFormat {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_865)
+            Ok(converted_954)
         } else {
             Ok(py.None())
         }
@@ -4947,21 +5784,21 @@ impl PyDocumentOutputFormat {
     #[getter]
     fn additional_file_format(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.additional_file_format {
-            let converted_866 = Py::new(
+            let converted_955 = Py::new(
                 py,
                 PyDocumentOutputAdditionalFileFormat {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_866)
+            Ok(converted_955)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        document_output_format_to_py(py, &self.inner)
+        document_output_format_shared_to_py(py, &self.inner)
     }
 }
 
@@ -4971,7 +5808,7 @@ impl PyDocumentOutputFormat {
     frozen
 )]
 struct PyDocumentOutputTextFormat {
-    inner: aws_sdk_bedrockdataautomation::types::DocumentOutputTextFormat,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::DocumentOutputTextFormat>,
 }
 
 #[pymethods]
@@ -4979,13 +5816,13 @@ impl PyDocumentOutputTextFormat {
     #[getter]
     fn types(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.types {
-            let converted_867_list = PyList::empty(py);
-            for item_868 in value {
-                let converted_item_869 = (item_868).as_str().into_py_any(py)?;
-                converted_867_list.append(converted_item_869)?;
+            let converted_958_list = PyList::empty(py);
+            for item_959 in value {
+                let converted_item_960 = (item_959).as_str().into_py_any(py)?;
+                converted_958_list.append(converted_item_960)?;
             }
-            let converted_867 = converted_867_list.into_any().unbind();
-            Ok(converted_867)
+            let converted_958 = converted_958_list.into_any().unbind();
+            Ok(converted_958)
         } else {
             Ok(py.None())
         }
@@ -4996,13 +5833,61 @@ impl PyDocumentOutputTextFormat {
     }
 }
 
+struct SharedDocumentOverrideConfiguration {
+    splitter: Option<Arc<aws_sdk_bedrockdataautomation::types::SplitterConfiguration>>,
+    modality_processing:
+        Option<Arc<aws_sdk_bedrockdataautomation::types::ModalityProcessingConfiguration>>,
+    sensitive_data_configuration: Option<Arc<SharedSensitiveDataConfiguration>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::DocumentOverrideConfiguration>
+    for SharedDocumentOverrideConfiguration
+{
+    fn from(value: aws_sdk_bedrockdataautomation::types::DocumentOverrideConfiguration) -> Self {
+        Self {
+            splitter: value.splitter.map(|item| Arc::new(item)),
+            modality_processing: value.modality_processing.map(|item| Arc::new(item)),
+            sensitive_data_configuration: value
+                .sensitive_data_configuration
+                .map(|item| Arc::new(SharedSensitiveDataConfiguration::from(item))),
+        }
+    }
+}
+
+fn document_override_configuration_shared_to_py(
+    py: Python<'_>,
+    value: &SharedDocumentOverrideConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.splitter {
+        let converted_964 = splitter_configuration_to_py(py, value)?;
+        result.set_item("splitter", converted_964)?;
+    } else {
+        result.set_item("splitter", py.None())?;
+    }
+    if let Some(value) = &value.modality_processing {
+        let converted_965 = modality_processing_configuration_to_py(py, value)?;
+        result.set_item("modality_processing", converted_965)?;
+    } else {
+        result.set_item("modality_processing", py.None())?;
+    }
+    if let Some(value) = &value.sensitive_data_configuration {
+        let converted_966 = sensitive_data_configuration_shared_to_py(py, value)?;
+        result.set_item("sensitive_data_configuration", converted_966)?;
+    } else {
+        result.set_item("sensitive_data_configuration", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "DocumentOverrideConfiguration",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
 struct PyDocumentOverrideConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::DocumentOverrideConfiguration,
+    inner: Arc<SharedDocumentOverrideConfiguration>,
 }
 
 #[pymethods]
@@ -5010,14 +5895,14 @@ impl PyDocumentOverrideConfiguration {
     #[getter]
     fn splitter(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.splitter {
-            let converted_870 = Py::new(
+            let converted_961 = Py::new(
                 py,
                 PySplitterConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_870)
+            Ok(converted_961)
         } else {
             Ok(py.None())
         }
@@ -5026,14 +5911,14 @@ impl PyDocumentOverrideConfiguration {
     #[getter]
     fn modality_processing(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.modality_processing {
-            let converted_871 = Py::new(
+            let converted_962 = Py::new(
                 py,
                 PyModalityProcessingConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_871)
+            Ok(converted_962)
         } else {
             Ok(py.None())
         }
@@ -5042,22 +5927,59 @@ impl PyDocumentOverrideConfiguration {
     #[getter]
     fn sensitive_data_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sensitive_data_configuration {
-            let converted_872 = Py::new(
+            let converted_963 = Py::new(
                 py,
                 PySensitiveDataConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_872)
+            Ok(converted_963)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        document_override_configuration_to_py(py, &self.inner)
+        document_override_configuration_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedDocumentStandardExtraction {
+    granularity: Option<Arc<aws_sdk_bedrockdataautomation::types::DocumentExtractionGranularity>>,
+    bounding_box: Option<Arc<aws_sdk_bedrockdataautomation::types::DocumentBoundingBox>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::DocumentStandardExtraction>
+    for SharedDocumentStandardExtraction
+{
+    fn from(value: aws_sdk_bedrockdataautomation::types::DocumentStandardExtraction) -> Self {
+        Self {
+            granularity: value.granularity.map(|item| Arc::new(item)),
+            bounding_box: value.bounding_box.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn document_standard_extraction_shared_to_py(
+    py: Python<'_>,
+    value: &SharedDocumentStandardExtraction,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.granularity {
+        let converted_969 = document_extraction_granularity_to_py(py, value)?;
+        result.set_item("granularity", converted_969)?;
+    } else {
+        result.set_item("granularity", py.None())?;
+    }
+    if let Some(value) = &value.bounding_box {
+        let converted_970 = document_bounding_box_to_py(py, value)?;
+        result.set_item("bounding_box", converted_970)?;
+    } else {
+        result.set_item("bounding_box", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -5066,7 +5988,7 @@ impl PyDocumentOverrideConfiguration {
     frozen
 )]
 struct PyDocumentStandardExtraction {
-    inner: aws_sdk_bedrockdataautomation::types::DocumentStandardExtraction,
+    inner: Arc<SharedDocumentStandardExtraction>,
 }
 
 #[pymethods]
@@ -5074,14 +5996,14 @@ impl PyDocumentStandardExtraction {
     #[getter]
     fn granularity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.granularity {
-            let converted_873 = Py::new(
+            let converted_967 = Py::new(
                 py,
                 PyDocumentExtractionGranularity {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_873)
+            Ok(converted_967)
         } else {
             Ok(py.None())
         }
@@ -5090,21 +6012,21 @@ impl PyDocumentStandardExtraction {
     #[getter]
     fn bounding_box(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.bounding_box {
-            let converted_874 = Py::new(
+            let converted_968 = Py::new(
                 py,
                 PyDocumentBoundingBox {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_874)
+            Ok(converted_968)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        document_standard_extraction_to_py(py, &self.inner)
+        document_standard_extraction_shared_to_py(py, &self.inner)
     }
 }
 
@@ -5114,20 +6036,72 @@ impl PyDocumentStandardExtraction {
     frozen
 )]
 struct PyDocumentStandardGenerativeField {
-    inner: aws_sdk_bedrockdataautomation::types::DocumentStandardGenerativeField,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::DocumentStandardGenerativeField>,
 }
 
 #[pymethods]
 impl PyDocumentStandardGenerativeField {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_875 = (&self.inner.state).as_str().into_py_any(py)?;
-        Ok(converted_875)
+        let converted_971 = (&self.inner.state).as_str().into_py_any(py)?;
+        Ok(converted_971)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         document_standard_generative_field_to_py(py, &self.inner)
     }
+}
+
+struct SharedDocumentStandardOutputConfiguration {
+    extraction: Option<Arc<SharedDocumentStandardExtraction>>,
+    generative_field:
+        Option<Arc<aws_sdk_bedrockdataautomation::types::DocumentStandardGenerativeField>>,
+    output_format: Option<Arc<SharedDocumentOutputFormat>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::DocumentStandardOutputConfiguration>
+    for SharedDocumentStandardOutputConfiguration
+{
+    fn from(
+        value: aws_sdk_bedrockdataautomation::types::DocumentStandardOutputConfiguration,
+    ) -> Self {
+        Self {
+            extraction: value
+                .extraction
+                .map(|item| Arc::new(SharedDocumentStandardExtraction::from(item))),
+            generative_field: value.generative_field.map(|item| Arc::new(item)),
+            output_format: value
+                .output_format
+                .map(|item| Arc::new(SharedDocumentOutputFormat::from(item))),
+        }
+    }
+}
+
+fn document_standard_output_configuration_shared_to_py(
+    py: Python<'_>,
+    value: &SharedDocumentStandardOutputConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.extraction {
+        let converted_975 = document_standard_extraction_shared_to_py(py, value)?;
+        result.set_item("extraction", converted_975)?;
+    } else {
+        result.set_item("extraction", py.None())?;
+    }
+    if let Some(value) = &value.generative_field {
+        let converted_976 = document_standard_generative_field_to_py(py, value)?;
+        result.set_item("generative_field", converted_976)?;
+    } else {
+        result.set_item("generative_field", py.None())?;
+    }
+    if let Some(value) = &value.output_format {
+        let converted_977 = document_output_format_shared_to_py(py, value)?;
+        result.set_item("output_format", converted_977)?;
+    } else {
+        result.set_item("output_format", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -5136,7 +6110,7 @@ impl PyDocumentStandardGenerativeField {
     frozen
 )]
 struct PyDocumentStandardOutputConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::DocumentStandardOutputConfiguration,
+    inner: Arc<SharedDocumentStandardOutputConfiguration>,
 }
 
 #[pymethods]
@@ -5144,14 +6118,14 @@ impl PyDocumentStandardOutputConfiguration {
     #[getter]
     fn extraction(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.extraction {
-            let converted_876 = Py::new(
+            let converted_972 = Py::new(
                 py,
                 PyDocumentStandardExtraction {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_876)
+            Ok(converted_972)
         } else {
             Ok(py.None())
         }
@@ -5160,14 +6134,14 @@ impl PyDocumentStandardOutputConfiguration {
     #[getter]
     fn generative_field(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.generative_field {
-            let converted_877 = Py::new(
+            let converted_973 = Py::new(
                 py,
                 PyDocumentStandardGenerativeField {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_877)
+            Ok(converted_973)
         } else {
             Ok(py.None())
         }
@@ -5176,21 +6150,21 @@ impl PyDocumentStandardOutputConfiguration {
     #[getter]
     fn output_format(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_format {
-            let converted_878 = Py::new(
+            let converted_974 = Py::new(
                 py,
                 PyDocumentOutputFormat {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_878)
+            Ok(converted_974)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        document_standard_output_configuration_to_py(py, &self.inner)
+        document_standard_output_configuration_shared_to_py(py, &self.inner)
     }
 }
 
@@ -5200,22 +6174,22 @@ impl PyDocumentStandardOutputConfiguration {
     frozen
 )]
 struct PyEntityTypeInfo {
-    inner: aws_sdk_bedrockdataautomation::types::EntityTypeInfo,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::EntityTypeInfo>,
 }
 
 #[pymethods]
 impl PyEntityTypeInfo {
     #[getter]
     fn entity_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_879 = (&self.inner.entity_type).as_str().into_py_any(py)?;
-        Ok(converted_879)
+        let converted_978 = (&self.inner.entity_type).as_str().into_py_any(py)?;
+        Ok(converted_978)
     }
 
     #[getter]
     fn entity_metadata(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.entity_metadata {
-            let converted_880 = (value).as_str().into_py_any(py)?;
-            Ok(converted_880)
+            let converted_979 = (value).as_str().into_py_any(py)?;
+            Ok(converted_979)
         } else {
             Ok(py.None())
         }
@@ -5232,15 +6206,15 @@ impl PyEntityTypeInfo {
     frozen
 )]
 struct PyImageBoundingBox {
-    inner: aws_sdk_bedrockdataautomation::types::ImageBoundingBox,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::ImageBoundingBox>,
 }
 
 #[pymethods]
 impl PyImageBoundingBox {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_881 = (&self.inner.state).as_str().into_py_any(py)?;
-        Ok(converted_881)
+        let converted_980 = (&self.inner.state).as_str().into_py_any(py)?;
+        Ok(converted_980)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -5254,27 +6228,27 @@ impl PyImageBoundingBox {
     frozen
 )]
 struct PyImageExtractionCategory {
-    inner: aws_sdk_bedrockdataautomation::types::ImageExtractionCategory,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::ImageExtractionCategory>,
 }
 
 #[pymethods]
 impl PyImageExtractionCategory {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_882 = (&self.inner.state).as_str().into_py_any(py)?;
-        Ok(converted_882)
+        let converted_981 = (&self.inner.state).as_str().into_py_any(py)?;
+        Ok(converted_981)
     }
 
     #[getter]
     fn types(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.types {
-            let converted_883_list = PyList::empty(py);
-            for item_884 in value {
-                let converted_item_885 = (item_884).as_str().into_py_any(py)?;
-                converted_883_list.append(converted_item_885)?;
+            let converted_982_list = PyList::empty(py);
+            for item_983 in value {
+                let converted_item_984 = (item_983).as_str().into_py_any(py)?;
+                converted_982_list.append(converted_item_984)?;
             }
-            let converted_883 = converted_883_list.into_any().unbind();
-            Ok(converted_883)
+            let converted_982 = converted_982_list.into_any().unbind();
+            Ok(converted_982)
         } else {
             Ok(py.None())
         }
@@ -5285,13 +6259,53 @@ impl PyImageExtractionCategory {
     }
 }
 
+struct SharedImageOverrideConfiguration {
+    modality_processing:
+        Option<Arc<aws_sdk_bedrockdataautomation::types::ModalityProcessingConfiguration>>,
+    sensitive_data_configuration: Option<Arc<SharedSensitiveDataConfiguration>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::ImageOverrideConfiguration>
+    for SharedImageOverrideConfiguration
+{
+    fn from(value: aws_sdk_bedrockdataautomation::types::ImageOverrideConfiguration) -> Self {
+        Self {
+            modality_processing: value.modality_processing.map(|item| Arc::new(item)),
+            sensitive_data_configuration: value
+                .sensitive_data_configuration
+                .map(|item| Arc::new(SharedSensitiveDataConfiguration::from(item))),
+        }
+    }
+}
+
+fn image_override_configuration_shared_to_py(
+    py: Python<'_>,
+    value: &SharedImageOverrideConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.modality_processing {
+        let converted_987 = modality_processing_configuration_to_py(py, value)?;
+        result.set_item("modality_processing", converted_987)?;
+    } else {
+        result.set_item("modality_processing", py.None())?;
+    }
+    if let Some(value) = &value.sensitive_data_configuration {
+        let converted_988 = sensitive_data_configuration_shared_to_py(py, value)?;
+        result.set_item("sensitive_data_configuration", converted_988)?;
+    } else {
+        result.set_item("sensitive_data_configuration", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "ImageOverrideConfiguration",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
 struct PyImageOverrideConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::ImageOverrideConfiguration,
+    inner: Arc<SharedImageOverrideConfiguration>,
 }
 
 #[pymethods]
@@ -5299,14 +6313,14 @@ impl PyImageOverrideConfiguration {
     #[getter]
     fn modality_processing(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.modality_processing {
-            let converted_886 = Py::new(
+            let converted_985 = Py::new(
                 py,
                 PyModalityProcessingConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_886)
+            Ok(converted_985)
         } else {
             Ok(py.None())
         }
@@ -5315,22 +6329,59 @@ impl PyImageOverrideConfiguration {
     #[getter]
     fn sensitive_data_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sensitive_data_configuration {
-            let converted_887 = Py::new(
+            let converted_986 = Py::new(
                 py,
                 PySensitiveDataConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_887)
+            Ok(converted_986)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        image_override_configuration_to_py(py, &self.inner)
+        image_override_configuration_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedImageStandardExtraction {
+    category: Option<Arc<aws_sdk_bedrockdataautomation::types::ImageExtractionCategory>>,
+    bounding_box: Option<Arc<aws_sdk_bedrockdataautomation::types::ImageBoundingBox>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::ImageStandardExtraction>
+    for SharedImageStandardExtraction
+{
+    fn from(value: aws_sdk_bedrockdataautomation::types::ImageStandardExtraction) -> Self {
+        Self {
+            category: value.category.map(|item| Arc::new(item)),
+            bounding_box: value.bounding_box.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn image_standard_extraction_shared_to_py(
+    py: Python<'_>,
+    value: &SharedImageStandardExtraction,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.category {
+        let converted_991 = image_extraction_category_to_py(py, value)?;
+        result.set_item("category", converted_991)?;
+    } else {
+        result.set_item("category", py.None())?;
+    }
+    if let Some(value) = &value.bounding_box {
+        let converted_992 = image_bounding_box_to_py(py, value)?;
+        result.set_item("bounding_box", converted_992)?;
+    } else {
+        result.set_item("bounding_box", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -5339,7 +6390,7 @@ impl PyImageOverrideConfiguration {
     frozen
 )]
 struct PyImageStandardExtraction {
-    inner: aws_sdk_bedrockdataautomation::types::ImageStandardExtraction,
+    inner: Arc<SharedImageStandardExtraction>,
 }
 
 #[pymethods]
@@ -5347,14 +6398,14 @@ impl PyImageStandardExtraction {
     #[getter]
     fn category(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.category {
-            let converted_888 = Py::new(
+            let converted_989 = Py::new(
                 py,
                 PyImageExtractionCategory {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_888)
+            Ok(converted_989)
         } else {
             Ok(py.None())
         }
@@ -5363,21 +6414,21 @@ impl PyImageStandardExtraction {
     #[getter]
     fn bounding_box(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.bounding_box {
-            let converted_889 = Py::new(
+            let converted_990 = Py::new(
                 py,
                 PyImageBoundingBox {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_889)
+            Ok(converted_990)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        image_standard_extraction_to_py(py, &self.inner)
+        image_standard_extraction_shared_to_py(py, &self.inner)
     }
 }
 
@@ -5387,27 +6438,27 @@ impl PyImageStandardExtraction {
     frozen
 )]
 struct PyImageStandardGenerativeField {
-    inner: aws_sdk_bedrockdataautomation::types::ImageStandardGenerativeField,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::ImageStandardGenerativeField>,
 }
 
 #[pymethods]
 impl PyImageStandardGenerativeField {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_890 = (&self.inner.state).as_str().into_py_any(py)?;
-        Ok(converted_890)
+        let converted_993 = (&self.inner.state).as_str().into_py_any(py)?;
+        Ok(converted_993)
     }
 
     #[getter]
     fn types(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.types {
-            let converted_891_list = PyList::empty(py);
-            for item_892 in value {
-                let converted_item_893 = (item_892).as_str().into_py_any(py)?;
-                converted_891_list.append(converted_item_893)?;
+            let converted_994_list = PyList::empty(py);
+            for item_995 in value {
+                let converted_item_996 = (item_995).as_str().into_py_any(py)?;
+                converted_994_list.append(converted_item_996)?;
             }
-            let converted_891 = converted_891_list.into_any().unbind();
-            Ok(converted_891)
+            let converted_994 = converted_994_list.into_any().unbind();
+            Ok(converted_994)
         } else {
             Ok(py.None())
         }
@@ -5418,13 +6469,53 @@ impl PyImageStandardGenerativeField {
     }
 }
 
+struct SharedImageStandardOutputConfiguration {
+    extraction: Option<Arc<SharedImageStandardExtraction>>,
+    generative_field:
+        Option<Arc<aws_sdk_bedrockdataautomation::types::ImageStandardGenerativeField>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::ImageStandardOutputConfiguration>
+    for SharedImageStandardOutputConfiguration
+{
+    fn from(value: aws_sdk_bedrockdataautomation::types::ImageStandardOutputConfiguration) -> Self {
+        Self {
+            extraction: value
+                .extraction
+                .map(|item| Arc::new(SharedImageStandardExtraction::from(item))),
+            generative_field: value.generative_field.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn image_standard_output_configuration_shared_to_py(
+    py: Python<'_>,
+    value: &SharedImageStandardOutputConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.extraction {
+        let converted_999 = image_standard_extraction_shared_to_py(py, value)?;
+        result.set_item("extraction", converted_999)?;
+    } else {
+        result.set_item("extraction", py.None())?;
+    }
+    if let Some(value) = &value.generative_field {
+        let converted_1000 = image_standard_generative_field_to_py(py, value)?;
+        result.set_item("generative_field", converted_1000)?;
+    } else {
+        result.set_item("generative_field", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "ImageStandardOutputConfiguration",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
 struct PyImageStandardOutputConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::ImageStandardOutputConfiguration,
+    inner: Arc<SharedImageStandardOutputConfiguration>,
 }
 
 #[pymethods]
@@ -5432,14 +6523,14 @@ impl PyImageStandardOutputConfiguration {
     #[getter]
     fn extraction(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.extraction {
-            let converted_894 = Py::new(
+            let converted_997 = Py::new(
                 py,
                 PyImageStandardExtraction {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_894)
+            Ok(converted_997)
         } else {
             Ok(py.None())
         }
@@ -5448,21 +6539,21 @@ impl PyImageStandardOutputConfiguration {
     #[getter]
     fn generative_field(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.generative_field {
-            let converted_895 = Py::new(
+            let converted_998 = Py::new(
                 py,
                 PyImageStandardGenerativeField {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_895)
+            Ok(converted_998)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        image_standard_output_configuration_to_py(py, &self.inner)
+        image_standard_output_configuration_shared_to_py(py, &self.inner)
     }
 }
 
@@ -5472,7 +6563,7 @@ impl PyImageStandardOutputConfiguration {
     frozen
 )]
 struct PyModalityProcessingConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::ModalityProcessingConfiguration,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::ModalityProcessingConfiguration>,
 }
 
 #[pymethods]
@@ -5480,8 +6571,8 @@ impl PyModalityProcessingConfiguration {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state {
-            let converted_896 = (value).as_str().into_py_any(py)?;
-            Ok(converted_896)
+            let converted_1001 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1001)
         } else {
             Ok(py.None())
         }
@@ -5498,7 +6589,7 @@ impl PyModalityProcessingConfiguration {
     frozen
 )]
 struct PyModalityRoutingConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::ModalityRoutingConfiguration,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::ModalityRoutingConfiguration>,
 }
 
 #[pymethods]
@@ -5506,8 +6597,8 @@ impl PyModalityRoutingConfiguration {
     #[getter]
     fn jpeg(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.jpeg {
-            let converted_897 = (value).as_str().into_py_any(py)?;
-            Ok(converted_897)
+            let converted_1002 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1002)
         } else {
             Ok(py.None())
         }
@@ -5516,8 +6607,8 @@ impl PyModalityRoutingConfiguration {
     #[getter]
     fn png(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.png {
-            let converted_898 = (value).as_str().into_py_any(py)?;
-            Ok(converted_898)
+            let converted_1003 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1003)
         } else {
             Ok(py.None())
         }
@@ -5526,8 +6617,8 @@ impl PyModalityRoutingConfiguration {
     #[getter]
     fn mp4(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.mp4 {
-            let converted_899 = (value).as_str().into_py_any(py)?;
-            Ok(converted_899)
+            let converted_1004 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1004)
         } else {
             Ok(py.None())
         }
@@ -5536,8 +6627,8 @@ impl PyModalityRoutingConfiguration {
     #[getter]
     fn mov(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.mov {
-            let converted_900 = (value).as_str().into_py_any(py)?;
-            Ok(converted_900)
+            let converted_1005 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1005)
         } else {
             Ok(py.None())
         }
@@ -5554,20 +6645,90 @@ impl PyModalityRoutingConfiguration {
     frozen
 )]
 struct PyOutputConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::OutputConfiguration,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::OutputConfiguration>,
 }
 
 #[pymethods]
 impl PyOutputConfiguration {
     #[getter]
     fn s3_uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_901 = (&self.inner.s3_uri).as_str().into_py_any(py)?;
-        Ok(converted_901)
+        let converted_1006 = (&self.inner.s3_uri).as_str().into_py_any(py)?;
+        Ok(converted_1006)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         output_configuration_to_py(py, &self.inner)
     }
+}
+
+struct SharedOverrideConfiguration {
+    document: Option<Arc<SharedDocumentOverrideConfiguration>>,
+    image: Option<Arc<SharedImageOverrideConfiguration>>,
+    video: Option<Arc<SharedVideoOverrideConfiguration>>,
+    audio: Option<Arc<SharedAudioOverrideConfiguration>>,
+    modality_routing:
+        Option<Arc<aws_sdk_bedrockdataautomation::types::ModalityRoutingConfiguration>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::OverrideConfiguration>
+    for SharedOverrideConfiguration
+{
+    fn from(value: aws_sdk_bedrockdataautomation::types::OverrideConfiguration) -> Self {
+        Self {
+            document: value
+                .document
+                .map(|item| Arc::new(SharedDocumentOverrideConfiguration::from(item))),
+            image: value
+                .image
+                .map(|item| Arc::new(SharedImageOverrideConfiguration::from(item))),
+            video: value
+                .video
+                .map(|item| Arc::new(SharedVideoOverrideConfiguration::from(item))),
+            audio: value
+                .audio
+                .map(|item| Arc::new(SharedAudioOverrideConfiguration::from(item))),
+            modality_routing: value.modality_routing.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn override_configuration_shared_to_py(
+    py: Python<'_>,
+    value: &SharedOverrideConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.document {
+        let converted_1012 = document_override_configuration_shared_to_py(py, value)?;
+        result.set_item("document", converted_1012)?;
+    } else {
+        result.set_item("document", py.None())?;
+    }
+    if let Some(value) = &value.image {
+        let converted_1013 = image_override_configuration_shared_to_py(py, value)?;
+        result.set_item("image", converted_1013)?;
+    } else {
+        result.set_item("image", py.None())?;
+    }
+    if let Some(value) = &value.video {
+        let converted_1014 = video_override_configuration_shared_to_py(py, value)?;
+        result.set_item("video", converted_1014)?;
+    } else {
+        result.set_item("video", py.None())?;
+    }
+    if let Some(value) = &value.audio {
+        let converted_1015 = audio_override_configuration_shared_to_py(py, value)?;
+        result.set_item("audio", converted_1015)?;
+    } else {
+        result.set_item("audio", py.None())?;
+    }
+    if let Some(value) = &value.modality_routing {
+        let converted_1016 = modality_routing_configuration_to_py(py, value)?;
+        result.set_item("modality_routing", converted_1016)?;
+    } else {
+        result.set_item("modality_routing", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -5576,7 +6737,7 @@ impl PyOutputConfiguration {
     frozen
 )]
 struct PyOverrideConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::OverrideConfiguration,
+    inner: Arc<SharedOverrideConfiguration>,
 }
 
 #[pymethods]
@@ -5584,14 +6745,14 @@ impl PyOverrideConfiguration {
     #[getter]
     fn document(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.document {
-            let converted_902 = Py::new(
+            let converted_1007 = Py::new(
                 py,
                 PyDocumentOverrideConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_902)
+            Ok(converted_1007)
         } else {
             Ok(py.None())
         }
@@ -5600,14 +6761,14 @@ impl PyOverrideConfiguration {
     #[getter]
     fn image(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.image {
-            let converted_903 = Py::new(
+            let converted_1008 = Py::new(
                 py,
                 PyImageOverrideConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_903)
+            Ok(converted_1008)
         } else {
             Ok(py.None())
         }
@@ -5616,14 +6777,14 @@ impl PyOverrideConfiguration {
     #[getter]
     fn video(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.video {
-            let converted_904 = Py::new(
+            let converted_1009 = Py::new(
                 py,
                 PyVideoOverrideConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_904)
+            Ok(converted_1009)
         } else {
             Ok(py.None())
         }
@@ -5632,14 +6793,14 @@ impl PyOverrideConfiguration {
     #[getter]
     fn audio(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.audio {
-            let converted_905 = Py::new(
+            let converted_1010 = Py::new(
                 py,
                 PyAudioOverrideConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_905)
+            Ok(converted_1010)
         } else {
             Ok(py.None())
         }
@@ -5648,21 +6809,21 @@ impl PyOverrideConfiguration {
     #[getter]
     fn modality_routing(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.modality_routing {
-            let converted_906 = Py::new(
+            let converted_1011 = Py::new(
                 py,
                 PyModalityRoutingConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_906)
+            Ok(converted_1011)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        override_configuration_to_py(py, &self.inner)
+        override_configuration_shared_to_py(py, &self.inner)
     }
 }
 
@@ -5672,7 +6833,7 @@ impl PyOverrideConfiguration {
     frozen
 )]
 struct PyPiiEntitiesConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::PiiEntitiesConfiguration,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::PiiEntitiesConfiguration>,
 }
 
 #[pymethods]
@@ -5680,13 +6841,13 @@ impl PyPiiEntitiesConfiguration {
     #[getter]
     fn pii_entity_types(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.pii_entity_types {
-            let converted_907_list = PyList::empty(py);
-            for item_908 in value {
-                let converted_item_909 = (item_908).as_str().into_py_any(py)?;
-                converted_907_list.append(converted_item_909)?;
+            let converted_1017_list = PyList::empty(py);
+            for item_1018 in value {
+                let converted_item_1019 = (item_1018).as_str().into_py_any(py)?;
+                converted_1017_list.append(converted_item_1019)?;
             }
-            let converted_907 = converted_907_list.into_any().unbind();
-            Ok(converted_907)
+            let converted_1017 = converted_1017_list.into_any().unbind();
+            Ok(converted_1017)
         } else {
             Ok(py.None())
         }
@@ -5695,8 +6856,8 @@ impl PyPiiEntitiesConfiguration {
     #[getter]
     fn redaction_mask_mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.redaction_mask_mode {
-            let converted_910 = (value).as_str().into_py_any(py)?;
-            Ok(converted_910)
+            let converted_1020 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1020)
         } else {
             Ok(py.None())
         }
@@ -5713,22 +6874,22 @@ impl PyPiiEntitiesConfiguration {
     frozen
 )]
 struct PyS3Object {
-    inner: aws_sdk_bedrockdataautomation::types::S3Object,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::S3Object>,
 }
 
 #[pymethods]
 impl PyS3Object {
     #[getter]
     fn s3_uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_911 = (&self.inner.s3_uri).as_str().into_py_any(py)?;
-        Ok(converted_911)
+        let converted_1021 = (&self.inner.s3_uri).as_str().into_py_any(py)?;
+        Ok(converted_1021)
     }
 
     #[getter]
     fn version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.version {
-            let converted_912 = (value).as_str().into_py_any(py)?;
-            Ok(converted_912)
+            let converted_1022 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1022)
         } else {
             Ok(py.None())
         }
@@ -5739,33 +6900,82 @@ impl PyS3Object {
     }
 }
 
+struct SharedSensitiveDataConfiguration {
+    detection_mode: aws_sdk_bedrockdataautomation::types::SensitiveDataDetectionMode,
+    detection_scope: Option<
+        ::std::vec::Vec<aws_sdk_bedrockdataautomation::types::SensitiveDataDetectionScopeType>,
+    >,
+    pii_entities_configuration:
+        Option<Arc<aws_sdk_bedrockdataautomation::types::PiiEntitiesConfiguration>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::SensitiveDataConfiguration>
+    for SharedSensitiveDataConfiguration
+{
+    fn from(value: aws_sdk_bedrockdataautomation::types::SensitiveDataConfiguration) -> Self {
+        Self {
+            detection_mode: value.detection_mode,
+            detection_scope: value.detection_scope,
+            pii_entities_configuration: value.pii_entities_configuration.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn sensitive_data_configuration_shared_to_py(
+    py: Python<'_>,
+    value: &SharedSensitiveDataConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_1028 = (&value.detection_mode).as_str().into_py_any(py)?;
+    result.set_item("detection_mode", converted_1028)?;
+    if let Some(value) = &value.detection_scope {
+        let converted_1029_list = PyList::empty(py);
+        for item_1030 in value {
+            let converted_item_1031 = (item_1030).as_str().into_py_any(py)?;
+            converted_1029_list.append(converted_item_1031)?;
+        }
+        let converted_1029 = converted_1029_list.into_any().unbind();
+        result.set_item("detection_scope", converted_1029)?;
+    } else {
+        result.set_item("detection_scope", py.None())?;
+    }
+    if let Some(value) = &value.pii_entities_configuration {
+        let converted_1032 = pii_entities_configuration_to_py(py, value)?;
+        result.set_item("pii_entities_configuration", converted_1032)?;
+    } else {
+        result.set_item("pii_entities_configuration", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "SensitiveDataConfiguration",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
 struct PySensitiveDataConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::SensitiveDataConfiguration,
+    inner: Arc<SharedSensitiveDataConfiguration>,
 }
 
 #[pymethods]
 impl PySensitiveDataConfiguration {
     #[getter]
     fn detection_mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_913 = (&self.inner.detection_mode).as_str().into_py_any(py)?;
-        Ok(converted_913)
+        let converted_1023 = (&self.inner.detection_mode).as_str().into_py_any(py)?;
+        Ok(converted_1023)
     }
 
     #[getter]
     fn detection_scope(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.detection_scope {
-            let converted_914_list = PyList::empty(py);
-            for item_915 in value {
-                let converted_item_916 = (item_915).as_str().into_py_any(py)?;
-                converted_914_list.append(converted_item_916)?;
+            let converted_1024_list = PyList::empty(py);
+            for item_1025 in value {
+                let converted_item_1026 = (item_1025).as_str().into_py_any(py)?;
+                converted_1024_list.append(converted_item_1026)?;
             }
-            let converted_914 = converted_914_list.into_any().unbind();
-            Ok(converted_914)
+            let converted_1024 = converted_1024_list.into_any().unbind();
+            Ok(converted_1024)
         } else {
             Ok(py.None())
         }
@@ -5774,21 +6984,21 @@ impl PySensitiveDataConfiguration {
     #[getter]
     fn pii_entities_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.pii_entities_configuration {
-            let converted_917 = Py::new(
+            let converted_1027 = Py::new(
                 py,
                 PyPiiEntitiesConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_917)
+            Ok(converted_1027)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        sensitive_data_configuration_to_py(py, &self.inner)
+        sensitive_data_configuration_shared_to_py(py, &self.inner)
     }
 }
 
@@ -5798,15 +7008,15 @@ impl PySensitiveDataConfiguration {
     frozen
 )]
 struct PySpeakerLabelingConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::SpeakerLabelingConfiguration,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::SpeakerLabelingConfiguration>,
 }
 
 #[pymethods]
 impl PySpeakerLabelingConfiguration {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_918 = (&self.inner.state).as_str().into_py_any(py)?;
-        Ok(converted_918)
+        let converted_1033 = (&self.inner.state).as_str().into_py_any(py)?;
+        Ok(converted_1033)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -5820,7 +7030,7 @@ impl PySpeakerLabelingConfiguration {
     frozen
 )]
 struct PySplitterConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::SplitterConfiguration,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::SplitterConfiguration>,
 }
 
 #[pymethods]
@@ -5828,8 +7038,8 @@ impl PySplitterConfiguration {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state {
-            let converted_919 = (value).as_str().into_py_any(py)?;
-            Ok(converted_919)
+            let converted_1034 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1034)
         } else {
             Ok(py.None())
         }
@@ -5840,13 +7050,74 @@ impl PySplitterConfiguration {
     }
 }
 
+struct SharedStandardOutputConfiguration {
+    document: Option<Arc<SharedDocumentStandardOutputConfiguration>>,
+    image: Option<Arc<SharedImageStandardOutputConfiguration>>,
+    video: Option<Arc<SharedVideoStandardOutputConfiguration>>,
+    audio: Option<Arc<SharedAudioStandardOutputConfiguration>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::StandardOutputConfiguration>
+    for SharedStandardOutputConfiguration
+{
+    fn from(value: aws_sdk_bedrockdataautomation::types::StandardOutputConfiguration) -> Self {
+        Self {
+            document: value
+                .document
+                .map(|item| Arc::new(SharedDocumentStandardOutputConfiguration::from(item))),
+            image: value
+                .image
+                .map(|item| Arc::new(SharedImageStandardOutputConfiguration::from(item))),
+            video: value
+                .video
+                .map(|item| Arc::new(SharedVideoStandardOutputConfiguration::from(item))),
+            audio: value
+                .audio
+                .map(|item| Arc::new(SharedAudioStandardOutputConfiguration::from(item))),
+        }
+    }
+}
+
+fn standard_output_configuration_shared_to_py(
+    py: Python<'_>,
+    value: &SharedStandardOutputConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.document {
+        let converted_1039 = document_standard_output_configuration_shared_to_py(py, value)?;
+        result.set_item("document", converted_1039)?;
+    } else {
+        result.set_item("document", py.None())?;
+    }
+    if let Some(value) = &value.image {
+        let converted_1040 = image_standard_output_configuration_shared_to_py(py, value)?;
+        result.set_item("image", converted_1040)?;
+    } else {
+        result.set_item("image", py.None())?;
+    }
+    if let Some(value) = &value.video {
+        let converted_1041 = video_standard_output_configuration_shared_to_py(py, value)?;
+        result.set_item("video", converted_1041)?;
+    } else {
+        result.set_item("video", py.None())?;
+    }
+    if let Some(value) = &value.audio {
+        let converted_1042 = audio_standard_output_configuration_shared_to_py(py, value)?;
+        result.set_item("audio", converted_1042)?;
+    } else {
+        result.set_item("audio", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "StandardOutputConfiguration",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
 struct PyStandardOutputConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::StandardOutputConfiguration,
+    inner: Arc<SharedStandardOutputConfiguration>,
 }
 
 #[pymethods]
@@ -5854,14 +7125,14 @@ impl PyStandardOutputConfiguration {
     #[getter]
     fn document(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.document {
-            let converted_920 = Py::new(
+            let converted_1035 = Py::new(
                 py,
                 PyDocumentStandardOutputConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_920)
+            Ok(converted_1035)
         } else {
             Ok(py.None())
         }
@@ -5870,14 +7141,14 @@ impl PyStandardOutputConfiguration {
     #[getter]
     fn image(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.image {
-            let converted_921 = Py::new(
+            let converted_1036 = Py::new(
                 py,
                 PyImageStandardOutputConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_921)
+            Ok(converted_1036)
         } else {
             Ok(py.None())
         }
@@ -5886,14 +7157,14 @@ impl PyStandardOutputConfiguration {
     #[getter]
     fn video(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.video {
-            let converted_922 = Py::new(
+            let converted_1037 = Py::new(
                 py,
                 PyVideoStandardOutputConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_922)
+            Ok(converted_1037)
         } else {
             Ok(py.None())
         }
@@ -5902,46 +7173,85 @@ impl PyStandardOutputConfiguration {
     #[getter]
     fn audio(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.audio {
-            let converted_923 = Py::new(
+            let converted_1038 = Py::new(
                 py,
                 PyAudioStandardOutputConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_923)
+            Ok(converted_1038)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        standard_output_configuration_to_py(py, &self.inner)
+        standard_output_configuration_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "Tag", module = "rboto_bedrock_data_automation._native", frozen)]
 struct PyTag {
-    inner: aws_sdk_bedrockdataautomation::types::Tag,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::Tag>,
 }
 
 #[pymethods]
 impl PyTag {
     #[getter]
     fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_924 = (&self.inner.key).as_str().into_py_any(py)?;
-        Ok(converted_924)
+        let converted_1043 = (&self.inner.key).as_str().into_py_any(py)?;
+        Ok(converted_1043)
     }
 
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_925 = (&self.inner.value).as_str().into_py_any(py)?;
-        Ok(converted_925)
+        let converted_1044 = (&self.inner.value).as_str().into_py_any(py)?;
+        Ok(converted_1044)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         tag_to_py(py, &self.inner)
     }
+}
+
+struct SharedTranscriptConfiguration {
+    speaker_labeling:
+        Option<Arc<aws_sdk_bedrockdataautomation::types::SpeakerLabelingConfiguration>>,
+    channel_labeling:
+        Option<Arc<aws_sdk_bedrockdataautomation::types::ChannelLabelingConfiguration>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::TranscriptConfiguration>
+    for SharedTranscriptConfiguration
+{
+    fn from(value: aws_sdk_bedrockdataautomation::types::TranscriptConfiguration) -> Self {
+        Self {
+            speaker_labeling: value.speaker_labeling.map(|item| Arc::new(item)),
+            channel_labeling: value.channel_labeling.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn transcript_configuration_shared_to_py(
+    py: Python<'_>,
+    value: &SharedTranscriptConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.speaker_labeling {
+        let converted_1047 = speaker_labeling_configuration_to_py(py, value)?;
+        result.set_item("speaker_labeling", converted_1047)?;
+    } else {
+        result.set_item("speaker_labeling", py.None())?;
+    }
+    if let Some(value) = &value.channel_labeling {
+        let converted_1048 = channel_labeling_configuration_to_py(py, value)?;
+        result.set_item("channel_labeling", converted_1048)?;
+    } else {
+        result.set_item("channel_labeling", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -5950,7 +7260,7 @@ impl PyTag {
     frozen
 )]
 struct PyTranscriptConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::TranscriptConfiguration,
+    inner: Arc<SharedTranscriptConfiguration>,
 }
 
 #[pymethods]
@@ -5958,14 +7268,14 @@ impl PyTranscriptConfiguration {
     #[getter]
     fn speaker_labeling(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.speaker_labeling {
-            let converted_926 = Py::new(
+            let converted_1045 = Py::new(
                 py,
                 PySpeakerLabelingConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_926)
+            Ok(converted_1045)
         } else {
             Ok(py.None())
         }
@@ -5974,21 +7284,21 @@ impl PyTranscriptConfiguration {
     #[getter]
     fn channel_labeling(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.channel_labeling {
-            let converted_927 = Py::new(
+            let converted_1046 = Py::new(
                 py,
                 PyChannelLabelingConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_927)
+            Ok(converted_1046)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        transcript_configuration_to_py(py, &self.inner)
+        transcript_configuration_shared_to_py(py, &self.inner)
     }
 }
 
@@ -5998,15 +7308,15 @@ impl PyTranscriptConfiguration {
     frozen
 )]
 struct PyVideoBoundingBox {
-    inner: aws_sdk_bedrockdataautomation::types::VideoBoundingBox,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::VideoBoundingBox>,
 }
 
 #[pymethods]
 impl PyVideoBoundingBox {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_928 = (&self.inner.state).as_str().into_py_any(py)?;
-        Ok(converted_928)
+        let converted_1049 = (&self.inner.state).as_str().into_py_any(py)?;
+        Ok(converted_1049)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -6020,27 +7330,27 @@ impl PyVideoBoundingBox {
     frozen
 )]
 struct PyVideoExtractionCategory {
-    inner: aws_sdk_bedrockdataautomation::types::VideoExtractionCategory,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::VideoExtractionCategory>,
 }
 
 #[pymethods]
 impl PyVideoExtractionCategory {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_929 = (&self.inner.state).as_str().into_py_any(py)?;
-        Ok(converted_929)
+        let converted_1050 = (&self.inner.state).as_str().into_py_any(py)?;
+        Ok(converted_1050)
     }
 
     #[getter]
     fn types(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.types {
-            let converted_930_list = PyList::empty(py);
-            for item_931 in value {
-                let converted_item_932 = (item_931).as_str().into_py_any(py)?;
-                converted_930_list.append(converted_item_932)?;
+            let converted_1051_list = PyList::empty(py);
+            for item_1052 in value {
+                let converted_item_1053 = (item_1052).as_str().into_py_any(py)?;
+                converted_1051_list.append(converted_item_1053)?;
             }
-            let converted_930 = converted_930_list.into_any().unbind();
-            Ok(converted_930)
+            let converted_1051 = converted_1051_list.into_any().unbind();
+            Ok(converted_1051)
         } else {
             Ok(py.None())
         }
@@ -6051,13 +7361,53 @@ impl PyVideoExtractionCategory {
     }
 }
 
+struct SharedVideoOverrideConfiguration {
+    modality_processing:
+        Option<Arc<aws_sdk_bedrockdataautomation::types::ModalityProcessingConfiguration>>,
+    sensitive_data_configuration: Option<Arc<SharedSensitiveDataConfiguration>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::VideoOverrideConfiguration>
+    for SharedVideoOverrideConfiguration
+{
+    fn from(value: aws_sdk_bedrockdataautomation::types::VideoOverrideConfiguration) -> Self {
+        Self {
+            modality_processing: value.modality_processing.map(|item| Arc::new(item)),
+            sensitive_data_configuration: value
+                .sensitive_data_configuration
+                .map(|item| Arc::new(SharedSensitiveDataConfiguration::from(item))),
+        }
+    }
+}
+
+fn video_override_configuration_shared_to_py(
+    py: Python<'_>,
+    value: &SharedVideoOverrideConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.modality_processing {
+        let converted_1056 = modality_processing_configuration_to_py(py, value)?;
+        result.set_item("modality_processing", converted_1056)?;
+    } else {
+        result.set_item("modality_processing", py.None())?;
+    }
+    if let Some(value) = &value.sensitive_data_configuration {
+        let converted_1057 = sensitive_data_configuration_shared_to_py(py, value)?;
+        result.set_item("sensitive_data_configuration", converted_1057)?;
+    } else {
+        result.set_item("sensitive_data_configuration", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "VideoOverrideConfiguration",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
 struct PyVideoOverrideConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::VideoOverrideConfiguration,
+    inner: Arc<SharedVideoOverrideConfiguration>,
 }
 
 #[pymethods]
@@ -6065,14 +7415,14 @@ impl PyVideoOverrideConfiguration {
     #[getter]
     fn modality_processing(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.modality_processing {
-            let converted_933 = Py::new(
+            let converted_1054 = Py::new(
                 py,
                 PyModalityProcessingConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_933)
+            Ok(converted_1054)
         } else {
             Ok(py.None())
         }
@@ -6081,22 +7431,59 @@ impl PyVideoOverrideConfiguration {
     #[getter]
     fn sensitive_data_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sensitive_data_configuration {
-            let converted_934 = Py::new(
+            let converted_1055 = Py::new(
                 py,
                 PySensitiveDataConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_934)
+            Ok(converted_1055)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        video_override_configuration_to_py(py, &self.inner)
+        video_override_configuration_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedVideoStandardExtraction {
+    category: Option<Arc<aws_sdk_bedrockdataautomation::types::VideoExtractionCategory>>,
+    bounding_box: Option<Arc<aws_sdk_bedrockdataautomation::types::VideoBoundingBox>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::VideoStandardExtraction>
+    for SharedVideoStandardExtraction
+{
+    fn from(value: aws_sdk_bedrockdataautomation::types::VideoStandardExtraction) -> Self {
+        Self {
+            category: value.category.map(|item| Arc::new(item)),
+            bounding_box: value.bounding_box.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn video_standard_extraction_shared_to_py(
+    py: Python<'_>,
+    value: &SharedVideoStandardExtraction,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.category {
+        let converted_1060 = video_extraction_category_to_py(py, value)?;
+        result.set_item("category", converted_1060)?;
+    } else {
+        result.set_item("category", py.None())?;
+    }
+    if let Some(value) = &value.bounding_box {
+        let converted_1061 = video_bounding_box_to_py(py, value)?;
+        result.set_item("bounding_box", converted_1061)?;
+    } else {
+        result.set_item("bounding_box", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -6105,7 +7492,7 @@ impl PyVideoOverrideConfiguration {
     frozen
 )]
 struct PyVideoStandardExtraction {
-    inner: aws_sdk_bedrockdataautomation::types::VideoStandardExtraction,
+    inner: Arc<SharedVideoStandardExtraction>,
 }
 
 #[pymethods]
@@ -6113,14 +7500,14 @@ impl PyVideoStandardExtraction {
     #[getter]
     fn category(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.category {
-            let converted_935 = Py::new(
+            let converted_1058 = Py::new(
                 py,
                 PyVideoExtractionCategory {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_935)
+            Ok(converted_1058)
         } else {
             Ok(py.None())
         }
@@ -6129,21 +7516,21 @@ impl PyVideoStandardExtraction {
     #[getter]
     fn bounding_box(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.bounding_box {
-            let converted_936 = Py::new(
+            let converted_1059 = Py::new(
                 py,
                 PyVideoBoundingBox {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_936)
+            Ok(converted_1059)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        video_standard_extraction_to_py(py, &self.inner)
+        video_standard_extraction_shared_to_py(py, &self.inner)
     }
 }
 
@@ -6153,27 +7540,27 @@ impl PyVideoStandardExtraction {
     frozen
 )]
 struct PyVideoStandardGenerativeField {
-    inner: aws_sdk_bedrockdataautomation::types::VideoStandardGenerativeField,
+    inner: Arc<aws_sdk_bedrockdataautomation::types::VideoStandardGenerativeField>,
 }
 
 #[pymethods]
 impl PyVideoStandardGenerativeField {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_937 = (&self.inner.state).as_str().into_py_any(py)?;
-        Ok(converted_937)
+        let converted_1062 = (&self.inner.state).as_str().into_py_any(py)?;
+        Ok(converted_1062)
     }
 
     #[getter]
     fn types(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.types {
-            let converted_938_list = PyList::empty(py);
-            for item_939 in value {
-                let converted_item_940 = (item_939).as_str().into_py_any(py)?;
-                converted_938_list.append(converted_item_940)?;
+            let converted_1063_list = PyList::empty(py);
+            for item_1064 in value {
+                let converted_item_1065 = (item_1064).as_str().into_py_any(py)?;
+                converted_1063_list.append(converted_item_1065)?;
             }
-            let converted_938 = converted_938_list.into_any().unbind();
-            Ok(converted_938)
+            let converted_1063 = converted_1063_list.into_any().unbind();
+            Ok(converted_1063)
         } else {
             Ok(py.None())
         }
@@ -6184,13 +7571,53 @@ impl PyVideoStandardGenerativeField {
     }
 }
 
+struct SharedVideoStandardOutputConfiguration {
+    extraction: Option<Arc<SharedVideoStandardExtraction>>,
+    generative_field:
+        Option<Arc<aws_sdk_bedrockdataautomation::types::VideoStandardGenerativeField>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::types::VideoStandardOutputConfiguration>
+    for SharedVideoStandardOutputConfiguration
+{
+    fn from(value: aws_sdk_bedrockdataautomation::types::VideoStandardOutputConfiguration) -> Self {
+        Self {
+            extraction: value
+                .extraction
+                .map(|item| Arc::new(SharedVideoStandardExtraction::from(item))),
+            generative_field: value.generative_field.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn video_standard_output_configuration_shared_to_py(
+    py: Python<'_>,
+    value: &SharedVideoStandardOutputConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.extraction {
+        let converted_1068 = video_standard_extraction_shared_to_py(py, value)?;
+        result.set_item("extraction", converted_1068)?;
+    } else {
+        result.set_item("extraction", py.None())?;
+    }
+    if let Some(value) = &value.generative_field {
+        let converted_1069 = video_standard_generative_field_to_py(py, value)?;
+        result.set_item("generative_field", converted_1069)?;
+    } else {
+        result.set_item("generative_field", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "VideoStandardOutputConfiguration",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
 struct PyVideoStandardOutputConfiguration {
-    inner: aws_sdk_bedrockdataautomation::types::VideoStandardOutputConfiguration,
+    inner: Arc<SharedVideoStandardOutputConfiguration>,
 }
 
 #[pymethods]
@@ -6198,14 +7625,14 @@ impl PyVideoStandardOutputConfiguration {
     #[getter]
     fn extraction(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.extraction {
-            let converted_941 = Py::new(
+            let converted_1066 = Py::new(
                 py,
                 PyVideoStandardExtraction {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_941)
+            Ok(converted_1066)
         } else {
             Ok(py.None())
         }
@@ -6214,21 +7641,21 @@ impl PyVideoStandardOutputConfiguration {
     #[getter]
     fn generative_field(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.generative_field {
-            let converted_942 = Py::new(
+            let converted_1067 = Py::new(
                 py,
                 PyVideoStandardGenerativeField {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_942)
+            Ok(converted_1067)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        video_standard_output_configuration_to_py(py, &self.inner)
+        video_standard_output_configuration_shared_to_py(py, &self.inner)
     }
 }
 
@@ -6249,13 +7676,32 @@ impl PyOperationCopyBlueprintStageOutput {
     }
 }
 
+struct SharedPyOperationCreateBlueprintOutput {
+    blueprint: Option<Arc<SharedBlueprint>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::operation::create_blueprint::CreateBlueprintOutput>
+    for SharedPyOperationCreateBlueprintOutput
+{
+    fn from(
+        value: aws_sdk_bedrockdataautomation::operation::create_blueprint::CreateBlueprintOutput,
+    ) -> Self {
+        Self {
+            blueprint: value
+                .blueprint
+                .map(|item| Arc::new(SharedBlueprint::from(item))),
+        }
+    }
+}
+
 #[pyclass(
     name = "CreateBlueprintOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
 struct PyOperationCreateBlueprintOutput {
-    inner: aws_sdk_bedrockdataautomation::operation::create_blueprint::CreateBlueprintOutput,
+    inner: SharedPyOperationCreateBlueprintOutput,
 }
 
 #[pymethods]
@@ -6263,14 +7709,14 @@ impl PyOperationCreateBlueprintOutput {
     #[getter]
     fn blueprint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.blueprint {
-            let converted_943 = Py::new(
+            let converted_1070 = Py::new(
                 py,
                 PyBlueprint {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_943)
+            Ok(converted_1070)
         } else {
             Ok(py.None())
         }
@@ -6279,12 +7725,25 @@ impl PyOperationCreateBlueprintOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.blueprint {
-            let converted_944 = blueprint_to_py(py, value)?;
-            result.set_item("blueprint", converted_944)?;
+            let converted_1071 = blueprint_shared_to_py(py, value)?;
+            result.set_item("blueprint", converted_1071)?;
         } else {
             result.set_item("blueprint", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationCreateBlueprintVersionOutput {
+    blueprint: Option<Arc<SharedBlueprint>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::operation::create_blueprint_version::CreateBlueprintVersionOutput> for SharedPyOperationCreateBlueprintVersionOutput {
+    fn from(value: aws_sdk_bedrockdataautomation::operation::create_blueprint_version::CreateBlueprintVersionOutput) -> Self {
+        Self {
+            blueprint: value.blueprint.map(|item| Arc::new(SharedBlueprint::from(item))),
+        }
     }
 }
 
@@ -6294,7 +7753,7 @@ impl PyOperationCreateBlueprintOutput {
     frozen
 )]
 struct PyOperationCreateBlueprintVersionOutput {
-    inner: aws_sdk_bedrockdataautomation::operation::create_blueprint_version::CreateBlueprintVersionOutput,
+    inner: SharedPyOperationCreateBlueprintVersionOutput,
 }
 
 #[pymethods]
@@ -6302,14 +7761,14 @@ impl PyOperationCreateBlueprintVersionOutput {
     #[getter]
     fn blueprint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.blueprint {
-            let converted_945 = Py::new(
+            let converted_1072 = Py::new(
                 py,
                 PyBlueprint {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_945)
+            Ok(converted_1072)
         } else {
             Ok(py.None())
         }
@@ -6318,8 +7777,8 @@ impl PyOperationCreateBlueprintVersionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.blueprint {
-            let converted_946 = blueprint_to_py(py, value)?;
-            result.set_item("blueprint", converted_946)?;
+            let converted_1073 = blueprint_shared_to_py(py, value)?;
+            result.set_item("blueprint", converted_1073)?;
         } else {
             result.set_item("blueprint", py.None())?;
         }
@@ -6341,8 +7800,8 @@ impl PyOperationCreateDataAutomationLibraryOutput {
     #[getter]
     fn library_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.library_arn {
-            let converted_947 = (value).as_str().into_py_any(py)?;
-            Ok(converted_947)
+            let converted_1074 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1074)
         } else {
             Ok(py.None())
         }
@@ -6351,8 +7810,8 @@ impl PyOperationCreateDataAutomationLibraryOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_948 = (value).as_str().into_py_any(py)?;
-            Ok(converted_948)
+            let converted_1075 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1075)
         } else {
             Ok(py.None())
         }
@@ -6361,14 +7820,14 @@ impl PyOperationCreateDataAutomationLibraryOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.library_arn {
-            let converted_949 = (value).as_str().into_py_any(py)?;
-            result.set_item("library_arn", converted_949)?;
+            let converted_1076 = (value).as_str().into_py_any(py)?;
+            result.set_item("library_arn", converted_1076)?;
         } else {
             result.set_item("library_arn", py.None())?;
         }
         if let Some(value) = &self.inner.status {
-            let converted_950 = (value).as_str().into_py_any(py)?;
-            result.set_item("status", converted_950)?;
+            let converted_1077 = (value).as_str().into_py_any(py)?;
+            result.set_item("status", converted_1077)?;
         } else {
             result.set_item("status", py.None())?;
         }
@@ -6389,15 +7848,15 @@ struct PyOperationCreateDataAutomationProjectOutput {
 impl PyOperationCreateDataAutomationProjectOutput {
     #[getter]
     fn project_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_951 = (&self.inner.project_arn).as_str().into_py_any(py)?;
-        Ok(converted_951)
+        let converted_1078 = (&self.inner.project_arn).as_str().into_py_any(py)?;
+        Ok(converted_1078)
     }
 
     #[getter]
     fn project_stage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.project_stage {
-            let converted_952 = (value).as_str().into_py_any(py)?;
-            Ok(converted_952)
+            let converted_1079 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1079)
         } else {
             Ok(py.None())
         }
@@ -6406,8 +7865,8 @@ impl PyOperationCreateDataAutomationProjectOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_953 = (value).as_str().into_py_any(py)?;
-            Ok(converted_953)
+            let converted_1080 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1080)
         } else {
             Ok(py.None())
         }
@@ -6415,17 +7874,17 @@ impl PyOperationCreateDataAutomationProjectOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_954 = (&self.inner.project_arn).as_str().into_py_any(py)?;
-        result.set_item("project_arn", converted_954)?;
+        let converted_1081 = (&self.inner.project_arn).as_str().into_py_any(py)?;
+        result.set_item("project_arn", converted_1081)?;
         if let Some(value) = &self.inner.project_stage {
-            let converted_955 = (value).as_str().into_py_any(py)?;
-            result.set_item("project_stage", converted_955)?;
+            let converted_1082 = (value).as_str().into_py_any(py)?;
+            result.set_item("project_stage", converted_1082)?;
         } else {
             result.set_item("project_stage", py.None())?;
         }
         if let Some(value) = &self.inner.status {
-            let converted_956 = (value).as_str().into_py_any(py)?;
-            result.set_item("status", converted_956)?;
+            let converted_1083 = (value).as_str().into_py_any(py)?;
+            result.set_item("status", converted_1083)?;
         } else {
             result.set_item("status", py.None())?;
         }
@@ -6464,8 +7923,8 @@ impl PyOperationDeleteDataAutomationLibraryOutput {
     #[getter]
     fn library_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.library_arn {
-            let converted_957 = (value).as_str().into_py_any(py)?;
-            Ok(converted_957)
+            let converted_1084 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1084)
         } else {
             Ok(py.None())
         }
@@ -6474,8 +7933,8 @@ impl PyOperationDeleteDataAutomationLibraryOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_958 = (value).as_str().into_py_any(py)?;
-            Ok(converted_958)
+            let converted_1085 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1085)
         } else {
             Ok(py.None())
         }
@@ -6484,14 +7943,14 @@ impl PyOperationDeleteDataAutomationLibraryOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.library_arn {
-            let converted_959 = (value).as_str().into_py_any(py)?;
-            result.set_item("library_arn", converted_959)?;
+            let converted_1086 = (value).as_str().into_py_any(py)?;
+            result.set_item("library_arn", converted_1086)?;
         } else {
             result.set_item("library_arn", py.None())?;
         }
         if let Some(value) = &self.inner.status {
-            let converted_960 = (value).as_str().into_py_any(py)?;
-            result.set_item("status", converted_960)?;
+            let converted_1087 = (value).as_str().into_py_any(py)?;
+            result.set_item("status", converted_1087)?;
         } else {
             result.set_item("status", py.None())?;
         }
@@ -6512,15 +7971,15 @@ struct PyOperationDeleteDataAutomationProjectOutput {
 impl PyOperationDeleteDataAutomationProjectOutput {
     #[getter]
     fn project_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_961 = (&self.inner.project_arn).as_str().into_py_any(py)?;
-        Ok(converted_961)
+        let converted_1088 = (&self.inner.project_arn).as_str().into_py_any(py)?;
+        Ok(converted_1088)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_962 = (value).as_str().into_py_any(py)?;
-            Ok(converted_962)
+            let converted_1089 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1089)
         } else {
             Ok(py.None())
         }
@@ -6528,15 +7987,34 @@ impl PyOperationDeleteDataAutomationProjectOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_963 = (&self.inner.project_arn).as_str().into_py_any(py)?;
-        result.set_item("project_arn", converted_963)?;
+        let converted_1090 = (&self.inner.project_arn).as_str().into_py_any(py)?;
+        result.set_item("project_arn", converted_1090)?;
         if let Some(value) = &self.inner.status {
-            let converted_964 = (value).as_str().into_py_any(py)?;
-            result.set_item("status", converted_964)?;
+            let converted_1091 = (value).as_str().into_py_any(py)?;
+            result.set_item("status", converted_1091)?;
         } else {
             result.set_item("status", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetBlueprintOutput {
+    blueprint: Option<Arc<SharedBlueprint>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::operation::get_blueprint::GetBlueprintOutput>
+    for SharedPyOperationGetBlueprintOutput
+{
+    fn from(
+        value: aws_sdk_bedrockdataautomation::operation::get_blueprint::GetBlueprintOutput,
+    ) -> Self {
+        Self {
+            blueprint: value
+                .blueprint
+                .map(|item| Arc::new(SharedBlueprint::from(item))),
+        }
     }
 }
 
@@ -6546,7 +8024,7 @@ impl PyOperationDeleteDataAutomationProjectOutput {
     frozen
 )]
 struct PyOperationGetBlueprintOutput {
-    inner: aws_sdk_bedrockdataautomation::operation::get_blueprint::GetBlueprintOutput,
+    inner: SharedPyOperationGetBlueprintOutput,
 }
 
 #[pymethods]
@@ -6554,14 +8032,14 @@ impl PyOperationGetBlueprintOutput {
     #[getter]
     fn blueprint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.blueprint {
-            let converted_965 = Py::new(
+            let converted_1092 = Py::new(
                 py,
                 PyBlueprint {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_965)
+            Ok(converted_1092)
         } else {
             Ok(py.None())
         }
@@ -6570,12 +8048,31 @@ impl PyOperationGetBlueprintOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.blueprint {
-            let converted_966 = blueprint_to_py(py, value)?;
-            result.set_item("blueprint", converted_966)?;
+            let converted_1093 = blueprint_shared_to_py(py, value)?;
+            result.set_item("blueprint", converted_1093)?;
         } else {
             result.set_item("blueprint", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetBlueprintOptimizationStatusOutput {
+    status: Option<aws_sdk_bedrockdataautomation::types::BlueprintOptimizationJobStatus>,
+    error_type: Option<::std::string::String>,
+    error_message: Option<::std::string::String>,
+    output_configuration: Option<Arc<SharedBlueprintOptimizationOutputConfiguration>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::operation::get_blueprint_optimization_status::GetBlueprintOptimizationStatusOutput> for SharedPyOperationGetBlueprintOptimizationStatusOutput {
+    fn from(value: aws_sdk_bedrockdataautomation::operation::get_blueprint_optimization_status::GetBlueprintOptimizationStatusOutput) -> Self {
+        Self {
+            status: value.status,
+            error_type: value.error_type,
+            error_message: value.error_message,
+            output_configuration: value.output_configuration.map(|item| Arc::new(SharedBlueprintOptimizationOutputConfiguration::from(item))),
+        }
     }
 }
 
@@ -6585,7 +8082,7 @@ impl PyOperationGetBlueprintOutput {
     frozen
 )]
 struct PyOperationGetBlueprintOptimizationStatusOutput {
-    inner: aws_sdk_bedrockdataautomation::operation::get_blueprint_optimization_status::GetBlueprintOptimizationStatusOutput,
+    inner: SharedPyOperationGetBlueprintOptimizationStatusOutput,
 }
 
 #[pymethods]
@@ -6593,8 +8090,8 @@ impl PyOperationGetBlueprintOptimizationStatusOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_967 = (value).as_str().into_py_any(py)?;
-            Ok(converted_967)
+            let converted_1094 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1094)
         } else {
             Ok(py.None())
         }
@@ -6603,8 +8100,8 @@ impl PyOperationGetBlueprintOptimizationStatusOutput {
     #[getter]
     fn error_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_type {
-            let converted_968 = (value).as_str().into_py_any(py)?;
-            Ok(converted_968)
+            let converted_1095 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1095)
         } else {
             Ok(py.None())
         }
@@ -6613,8 +8110,8 @@ impl PyOperationGetBlueprintOptimizationStatusOutput {
     #[getter]
     fn error_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_message {
-            let converted_969 = (value).as_str().into_py_any(py)?;
-            Ok(converted_969)
+            let converted_1096 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1096)
         } else {
             Ok(py.None())
         }
@@ -6623,14 +8120,14 @@ impl PyOperationGetBlueprintOptimizationStatusOutput {
     #[getter]
     fn output_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_configuration {
-            let converted_970 = Py::new(
+            let converted_1097 = Py::new(
                 py,
                 PyBlueprintOptimizationOutputConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_970)
+            Ok(converted_1097)
         } else {
             Ok(py.None())
         }
@@ -6639,30 +8136,44 @@ impl PyOperationGetBlueprintOptimizationStatusOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.status {
-            let converted_971 = (value).as_str().into_py_any(py)?;
-            result.set_item("status", converted_971)?;
+            let converted_1098 = (value).as_str().into_py_any(py)?;
+            result.set_item("status", converted_1098)?;
         } else {
             result.set_item("status", py.None())?;
         }
         if let Some(value) = &self.inner.error_type {
-            let converted_972 = (value).as_str().into_py_any(py)?;
-            result.set_item("error_type", converted_972)?;
+            let converted_1099 = (value).as_str().into_py_any(py)?;
+            result.set_item("error_type", converted_1099)?;
         } else {
             result.set_item("error_type", py.None())?;
         }
         if let Some(value) = &self.inner.error_message {
-            let converted_973 = (value).as_str().into_py_any(py)?;
-            result.set_item("error_message", converted_973)?;
+            let converted_1100 = (value).as_str().into_py_any(py)?;
+            result.set_item("error_message", converted_1100)?;
         } else {
             result.set_item("error_message", py.None())?;
         }
         if let Some(value) = &self.inner.output_configuration {
-            let converted_974 = blueprint_optimization_output_configuration_to_py(py, value)?;
-            result.set_item("output_configuration", converted_974)?;
+            let converted_1101 =
+                blueprint_optimization_output_configuration_shared_to_py(py, value)?;
+            result.set_item("output_configuration", converted_1101)?;
         } else {
             result.set_item("output_configuration", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetDataAutomationLibraryOutput {
+    library: Option<Arc<SharedDataAutomationLibrary>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::operation::get_data_automation_library::GetDataAutomationLibraryOutput> for SharedPyOperationGetDataAutomationLibraryOutput {
+    fn from(value: aws_sdk_bedrockdataautomation::operation::get_data_automation_library::GetDataAutomationLibraryOutput) -> Self {
+        Self {
+            library: value.library.map(|item| Arc::new(SharedDataAutomationLibrary::from(item))),
+        }
     }
 }
 
@@ -6672,7 +8183,7 @@ impl PyOperationGetBlueprintOptimizationStatusOutput {
     frozen
 )]
 struct PyOperationGetDataAutomationLibraryOutput {
-    inner: aws_sdk_bedrockdataautomation::operation::get_data_automation_library::GetDataAutomationLibraryOutput,
+    inner: SharedPyOperationGetDataAutomationLibraryOutput,
 }
 
 #[pymethods]
@@ -6680,14 +8191,14 @@ impl PyOperationGetDataAutomationLibraryOutput {
     #[getter]
     fn library(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.library {
-            let converted_975 = Py::new(
+            let converted_1102 = Py::new(
                 py,
                 PyDataAutomationLibrary {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_975)
+            Ok(converted_1102)
         } else {
             Ok(py.None())
         }
@@ -6696,8 +8207,8 @@ impl PyOperationGetDataAutomationLibraryOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.library {
-            let converted_976 = data_automation_library_to_py(py, value)?;
-            result.set_item("library", converted_976)?;
+            let converted_1103 = data_automation_library_shared_to_py(py, value)?;
+            result.set_item("library", converted_1103)?;
         } else {
             result.set_item("library", py.None())?;
         }
@@ -6719,8 +8230,8 @@ impl PyOperationGetDataAutomationLibraryEntityOutput {
     #[getter]
     fn entity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.entity {
-            let converted_977 = entity_details_to_py(py, value)?;
-            Ok(converted_977)
+            let converted_1104 = entity_details_to_py(py, value)?;
+            Ok(converted_1104)
         } else {
             Ok(py.None())
         }
@@ -6729,12 +8240,25 @@ impl PyOperationGetDataAutomationLibraryEntityOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.entity {
-            let converted_978 = entity_details_to_py(py, value)?;
-            result.set_item("entity", converted_978)?;
+            let converted_1105 = entity_details_to_py(py, value)?;
+            result.set_item("entity", converted_1105)?;
         } else {
             result.set_item("entity", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetDataAutomationLibraryIngestionJobOutput {
+    job: Option<Arc<SharedDataAutomationLibraryIngestionJob>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::operation::get_data_automation_library_ingestion_job::GetDataAutomationLibraryIngestionJobOutput> for SharedPyOperationGetDataAutomationLibraryIngestionJobOutput {
+    fn from(value: aws_sdk_bedrockdataautomation::operation::get_data_automation_library_ingestion_job::GetDataAutomationLibraryIngestionJobOutput) -> Self {
+        Self {
+            job: value.job.map(|item| Arc::new(SharedDataAutomationLibraryIngestionJob::from(item))),
+        }
     }
 }
 
@@ -6744,7 +8268,7 @@ impl PyOperationGetDataAutomationLibraryEntityOutput {
     frozen
 )]
 struct PyOperationGetDataAutomationLibraryIngestionJobOutput {
-    inner: aws_sdk_bedrockdataautomation::operation::get_data_automation_library_ingestion_job::GetDataAutomationLibraryIngestionJobOutput,
+    inner: SharedPyOperationGetDataAutomationLibraryIngestionJobOutput,
 }
 
 #[pymethods]
@@ -6752,14 +8276,14 @@ impl PyOperationGetDataAutomationLibraryIngestionJobOutput {
     #[getter]
     fn job(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job {
-            let converted_979 = Py::new(
+            let converted_1106 = Py::new(
                 py,
                 PyDataAutomationLibraryIngestionJob {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_979)
+            Ok(converted_1106)
         } else {
             Ok(py.None())
         }
@@ -6768,12 +8292,25 @@ impl PyOperationGetDataAutomationLibraryIngestionJobOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.job {
-            let converted_980 = data_automation_library_ingestion_job_to_py(py, value)?;
-            result.set_item("job", converted_980)?;
+            let converted_1107 = data_automation_library_ingestion_job_shared_to_py(py, value)?;
+            result.set_item("job", converted_1107)?;
         } else {
             result.set_item("job", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetDataAutomationProjectOutput {
+    project: Option<Arc<SharedDataAutomationProject>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::operation::get_data_automation_project::GetDataAutomationProjectOutput> for SharedPyOperationGetDataAutomationProjectOutput {
+    fn from(value: aws_sdk_bedrockdataautomation::operation::get_data_automation_project::GetDataAutomationProjectOutput) -> Self {
+        Self {
+            project: value.project.map(|item| Arc::new(SharedDataAutomationProject::from(item))),
+        }
     }
 }
 
@@ -6783,7 +8320,7 @@ impl PyOperationGetDataAutomationLibraryIngestionJobOutput {
     frozen
 )]
 struct PyOperationGetDataAutomationProjectOutput {
-    inner: aws_sdk_bedrockdataautomation::operation::get_data_automation_project::GetDataAutomationProjectOutput,
+    inner: SharedPyOperationGetDataAutomationProjectOutput,
 }
 
 #[pymethods]
@@ -6791,14 +8328,14 @@ impl PyOperationGetDataAutomationProjectOutput {
     #[getter]
     fn project(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.project {
-            let converted_981 = Py::new(
+            let converted_1108 = Py::new(
                 py,
                 PyDataAutomationProject {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_981)
+            Ok(converted_1108)
         } else {
             Ok(py.None())
         }
@@ -6807,8 +8344,8 @@ impl PyOperationGetDataAutomationProjectOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.project {
-            let converted_982 = data_automation_project_to_py(py, value)?;
-            result.set_item("project", converted_982)?;
+            let converted_1109 = data_automation_project_shared_to_py(py, value)?;
+            result.set_item("project", converted_1109)?;
         } else {
             result.set_item("project", py.None())?;
         }
@@ -6829,14 +8366,14 @@ struct PyOperationInvokeBlueprintOptimizationAsyncOutput {
 impl PyOperationInvokeBlueprintOptimizationAsyncOutput {
     #[getter]
     fn invocation_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_983 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
-        Ok(converted_983)
+        let converted_1110 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
+        Ok(converted_1110)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_984 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
-        result.set_item("invocation_arn", converted_984)?;
+        let converted_1111 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
+        result.set_item("invocation_arn", converted_1111)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -6855,8 +8392,8 @@ impl PyOperationInvokeDataAutomationLibraryIngestionJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_arn {
-            let converted_985 = (value).as_str().into_py_any(py)?;
-            Ok(converted_985)
+            let converted_1112 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1112)
         } else {
             Ok(py.None())
         }
@@ -6865,12 +8402,34 @@ impl PyOperationInvokeDataAutomationLibraryIngestionJobOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.job_arn {
-            let converted_986 = (value).as_str().into_py_any(py)?;
-            result.set_item("job_arn", converted_986)?;
+            let converted_1113 = (value).as_str().into_py_any(py)?;
+            result.set_item("job_arn", converted_1113)?;
         } else {
             result.set_item("job_arn", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListBlueprintsOutput {
+    blueprints: ::std::vec::Vec<Arc<aws_sdk_bedrockdataautomation::types::BlueprintSummary>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::operation::list_blueprints::ListBlueprintsOutput>
+    for SharedPyOperationListBlueprintsOutput
+{
+    fn from(
+        value: aws_sdk_bedrockdataautomation::operation::list_blueprints::ListBlueprintsOutput,
+    ) -> Self {
+        Self {
+            blueprints: (value.blueprints)
+                .into_iter()
+                .map(|owned_1118| Arc::new(owned_1118))
+                .collect(),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -6880,33 +8439,33 @@ impl PyOperationInvokeDataAutomationLibraryIngestionJobOutput {
     frozen
 )]
 struct PyOperationListBlueprintsOutput {
-    inner: aws_sdk_bedrockdataautomation::operation::list_blueprints::ListBlueprintsOutput,
+    inner: SharedPyOperationListBlueprintsOutput,
 }
 
 #[pymethods]
 impl PyOperationListBlueprintsOutput {
     #[getter]
     fn blueprints(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_987_list = PyList::empty(py);
-        for item_988 in &self.inner.blueprints {
-            let converted_item_989 = Py::new(
+        let converted_1114_list = PyList::empty(py);
+        for item_1115 in &self.inner.blueprints {
+            let converted_item_1116 = Py::new(
                 py,
                 PyBlueprintSummary {
-                    inner: (item_988).to_owned(),
+                    inner: Arc::clone(item_1115),
                 },
             )?
             .into_any();
-            converted_987_list.append(converted_item_989)?;
+            converted_1114_list.append(converted_item_1116)?;
         }
-        let converted_987 = converted_987_list.into_any().unbind();
-        Ok(converted_987)
+        let converted_1114 = converted_1114_list.into_any().unbind();
+        Ok(converted_1114)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_990 = (value).as_str().into_py_any(py)?;
-            Ok(converted_990)
+            let converted_1117 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1117)
         } else {
             Ok(py.None())
         }
@@ -6914,20 +8473,37 @@ impl PyOperationListBlueprintsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_991_list = PyList::empty(py);
-        for item_992 in &self.inner.blueprints {
-            let converted_item_993 = blueprint_summary_to_py(py, item_992)?;
-            converted_991_list.append(converted_item_993)?;
+        let converted_1119_list = PyList::empty(py);
+        for item_1120 in &self.inner.blueprints {
+            let converted_item_1121 = blueprint_summary_to_py(py, item_1120)?;
+            converted_1119_list.append(converted_item_1121)?;
         }
-        let converted_991 = converted_991_list.into_any().unbind();
-        result.set_item("blueprints", converted_991)?;
+        let converted_1119 = converted_1119_list.into_any().unbind();
+        result.set_item("blueprints", converted_1119)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_994 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_994)?;
+            let converted_1122 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1122)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListDataAutomationLibrariesOutput {
+    libraries: Option<
+        ::std::vec::Vec<Arc<aws_sdk_bedrockdataautomation::types::DataAutomationLibrarySummary>>,
+    >,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::operation::list_data_automation_libraries::ListDataAutomationLibrariesOutput> for SharedPyOperationListDataAutomationLibrariesOutput {
+    fn from(value: aws_sdk_bedrockdataautomation::operation::list_data_automation_libraries::ListDataAutomationLibrariesOutput) -> Self {
+        Self {
+            libraries: value.libraries.map(|item| (item).into_iter().map(|owned_1127| Arc::new(owned_1127)).collect()),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -6937,7 +8513,7 @@ impl PyOperationListBlueprintsOutput {
     frozen
 )]
 struct PyOperationListDataAutomationLibrariesOutput {
-    inner: aws_sdk_bedrockdataautomation::operation::list_data_automation_libraries::ListDataAutomationLibrariesOutput,
+    inner: SharedPyOperationListDataAutomationLibrariesOutput,
 }
 
 #[pymethods]
@@ -6945,19 +8521,19 @@ impl PyOperationListDataAutomationLibrariesOutput {
     #[getter]
     fn libraries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.libraries {
-            let converted_995_list = PyList::empty(py);
-            for item_996 in value {
-                let converted_item_997 = Py::new(
+            let converted_1123_list = PyList::empty(py);
+            for item_1124 in value {
+                let converted_item_1125 = Py::new(
                     py,
                     PyDataAutomationLibrarySummary {
-                        inner: (item_996).to_owned(),
+                        inner: Arc::clone(item_1124),
                     },
                 )?
                 .into_any();
-                converted_995_list.append(converted_item_997)?;
+                converted_1123_list.append(converted_item_1125)?;
             }
-            let converted_995 = converted_995_list.into_any().unbind();
-            Ok(converted_995)
+            let converted_1123 = converted_1123_list.into_any().unbind();
+            Ok(converted_1123)
         } else {
             Ok(py.None())
         }
@@ -6966,8 +8542,8 @@ impl PyOperationListDataAutomationLibrariesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_998 = (value).as_str().into_py_any(py)?;
-            Ok(converted_998)
+            let converted_1126 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1126)
         } else {
             Ok(py.None())
         }
@@ -6976,19 +8552,19 @@ impl PyOperationListDataAutomationLibrariesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.libraries {
-            let converted_999_list = PyList::empty(py);
-            for item_1000 in value {
-                let converted_item_1001 = data_automation_library_summary_to_py(py, item_1000)?;
-                converted_999_list.append(converted_item_1001)?;
+            let converted_1128_list = PyList::empty(py);
+            for item_1129 in value {
+                let converted_item_1130 = data_automation_library_summary_to_py(py, item_1129)?;
+                converted_1128_list.append(converted_item_1130)?;
             }
-            let converted_999 = converted_999_list.into_any().unbind();
-            result.set_item("libraries", converted_999)?;
+            let converted_1128 = converted_1128_list.into_any().unbind();
+            result.set_item("libraries", converted_1128)?;
         } else {
             result.set_item("libraries", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1002 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1002)?;
+            let converted_1131 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1131)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -7010,14 +8586,14 @@ impl PyOperationListDataAutomationLibraryEntitiesOutput {
     #[getter]
     fn entities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.entities {
-            let converted_1003_list = PyList::empty(py);
-            for item_1004 in value {
-                let converted_item_1005 =
-                    data_automation_library_entity_summary_to_py(py, item_1004)?;
-                converted_1003_list.append(converted_item_1005)?;
+            let converted_1132_list = PyList::empty(py);
+            for item_1133 in value {
+                let converted_item_1134 =
+                    data_automation_library_entity_summary_to_py(py, item_1133)?;
+                converted_1132_list.append(converted_item_1134)?;
             }
-            let converted_1003 = converted_1003_list.into_any().unbind();
-            Ok(converted_1003)
+            let converted_1132 = converted_1132_list.into_any().unbind();
+            Ok(converted_1132)
         } else {
             Ok(py.None())
         }
@@ -7026,8 +8602,8 @@ impl PyOperationListDataAutomationLibraryEntitiesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1006 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1006)
+            let converted_1135 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1135)
         } else {
             Ok(py.None())
         }
@@ -7036,24 +8612,43 @@ impl PyOperationListDataAutomationLibraryEntitiesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.entities {
-            let converted_1007_list = PyList::empty(py);
-            for item_1008 in value {
-                let converted_item_1009 =
-                    data_automation_library_entity_summary_to_py(py, item_1008)?;
-                converted_1007_list.append(converted_item_1009)?;
+            let converted_1136_list = PyList::empty(py);
+            for item_1137 in value {
+                let converted_item_1138 =
+                    data_automation_library_entity_summary_to_py(py, item_1137)?;
+                converted_1136_list.append(converted_item_1138)?;
             }
-            let converted_1007 = converted_1007_list.into_any().unbind();
-            result.set_item("entities", converted_1007)?;
+            let converted_1136 = converted_1136_list.into_any().unbind();
+            result.set_item("entities", converted_1136)?;
         } else {
             result.set_item("entities", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1010 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1010)?;
+            let converted_1139 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1139)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListDataAutomationLibraryIngestionJobsOutput {
+    jobs: Option<
+        ::std::vec::Vec<
+            Arc<aws_sdk_bedrockdataautomation::types::DataAutomationLibraryIngestionJobSummary>,
+        >,
+    >,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::operation::list_data_automation_library_ingestion_jobs::ListDataAutomationLibraryIngestionJobsOutput> for SharedPyOperationListDataAutomationLibraryIngestionJobsOutput {
+    fn from(value: aws_sdk_bedrockdataautomation::operation::list_data_automation_library_ingestion_jobs::ListDataAutomationLibraryIngestionJobsOutput) -> Self {
+        Self {
+            jobs: value.jobs.map(|item| (item).into_iter().map(|owned_1144| Arc::new(owned_1144)).collect()),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -7063,7 +8658,7 @@ impl PyOperationListDataAutomationLibraryEntitiesOutput {
     frozen
 )]
 struct PyOperationListDataAutomationLibraryIngestionJobsOutput {
-    inner: aws_sdk_bedrockdataautomation::operation::list_data_automation_library_ingestion_jobs::ListDataAutomationLibraryIngestionJobsOutput,
+    inner: SharedPyOperationListDataAutomationLibraryIngestionJobsOutput,
 }
 
 #[pymethods]
@@ -7071,19 +8666,19 @@ impl PyOperationListDataAutomationLibraryIngestionJobsOutput {
     #[getter]
     fn jobs(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.jobs {
-            let converted_1011_list = PyList::empty(py);
-            for item_1012 in value {
-                let converted_item_1013 = Py::new(
+            let converted_1140_list = PyList::empty(py);
+            for item_1141 in value {
+                let converted_item_1142 = Py::new(
                     py,
                     PyDataAutomationLibraryIngestionJobSummary {
-                        inner: (item_1012).to_owned(),
+                        inner: Arc::clone(item_1141),
                     },
                 )?
                 .into_any();
-                converted_1011_list.append(converted_item_1013)?;
+                converted_1140_list.append(converted_item_1142)?;
             }
-            let converted_1011 = converted_1011_list.into_any().unbind();
-            Ok(converted_1011)
+            let converted_1140 = converted_1140_list.into_any().unbind();
+            Ok(converted_1140)
         } else {
             Ok(py.None())
         }
@@ -7092,8 +8687,8 @@ impl PyOperationListDataAutomationLibraryIngestionJobsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1014 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1014)
+            let converted_1143 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1143)
         } else {
             Ok(py.None())
         }
@@ -7102,24 +8697,40 @@ impl PyOperationListDataAutomationLibraryIngestionJobsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.jobs {
-            let converted_1015_list = PyList::empty(py);
-            for item_1016 in value {
-                let converted_item_1017 =
-                    data_automation_library_ingestion_job_summary_to_py(py, item_1016)?;
-                converted_1015_list.append(converted_item_1017)?;
+            let converted_1145_list = PyList::empty(py);
+            for item_1146 in value {
+                let converted_item_1147 =
+                    data_automation_library_ingestion_job_summary_to_py(py, item_1146)?;
+                converted_1145_list.append(converted_item_1147)?;
             }
-            let converted_1015 = converted_1015_list.into_any().unbind();
-            result.set_item("jobs", converted_1015)?;
+            let converted_1145 = converted_1145_list.into_any().unbind();
+            result.set_item("jobs", converted_1145)?;
         } else {
             result.set_item("jobs", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1018 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1018)?;
+            let converted_1148 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1148)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListDataAutomationProjectsOutput {
+    projects:
+        ::std::vec::Vec<Arc<aws_sdk_bedrockdataautomation::types::DataAutomationProjectSummary>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::operation::list_data_automation_projects::ListDataAutomationProjectsOutput> for SharedPyOperationListDataAutomationProjectsOutput {
+    fn from(value: aws_sdk_bedrockdataautomation::operation::list_data_automation_projects::ListDataAutomationProjectsOutput) -> Self {
+        Self {
+            projects: (value.projects).into_iter().map(|owned_1153| Arc::new(owned_1153)).collect(),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -7129,33 +8740,33 @@ impl PyOperationListDataAutomationLibraryIngestionJobsOutput {
     frozen
 )]
 struct PyOperationListDataAutomationProjectsOutput {
-    inner: aws_sdk_bedrockdataautomation::operation::list_data_automation_projects::ListDataAutomationProjectsOutput,
+    inner: SharedPyOperationListDataAutomationProjectsOutput,
 }
 
 #[pymethods]
 impl PyOperationListDataAutomationProjectsOutput {
     #[getter]
     fn projects(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1019_list = PyList::empty(py);
-        for item_1020 in &self.inner.projects {
-            let converted_item_1021 = Py::new(
+        let converted_1149_list = PyList::empty(py);
+        for item_1150 in &self.inner.projects {
+            let converted_item_1151 = Py::new(
                 py,
                 PyDataAutomationProjectSummary {
-                    inner: (item_1020).to_owned(),
+                    inner: Arc::clone(item_1150),
                 },
             )?
             .into_any();
-            converted_1019_list.append(converted_item_1021)?;
+            converted_1149_list.append(converted_item_1151)?;
         }
-        let converted_1019 = converted_1019_list.into_any().unbind();
-        Ok(converted_1019)
+        let converted_1149 = converted_1149_list.into_any().unbind();
+        Ok(converted_1149)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1022 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1022)
+            let converted_1152 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1152)
         } else {
             Ok(py.None())
         }
@@ -7163,20 +8774,44 @@ impl PyOperationListDataAutomationProjectsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1023_list = PyList::empty(py);
-        for item_1024 in &self.inner.projects {
-            let converted_item_1025 = data_automation_project_summary_to_py(py, item_1024)?;
-            converted_1023_list.append(converted_item_1025)?;
+        let converted_1154_list = PyList::empty(py);
+        for item_1155 in &self.inner.projects {
+            let converted_item_1156 = data_automation_project_summary_to_py(py, item_1155)?;
+            converted_1154_list.append(converted_item_1156)?;
         }
-        let converted_1023 = converted_1023_list.into_any().unbind();
-        result.set_item("projects", converted_1023)?;
+        let converted_1154 = converted_1154_list.into_any().unbind();
+        result.set_item("projects", converted_1154)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_1026 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1026)?;
+            let converted_1157 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1157)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListTagsForResourceOutput {
+    tags: Option<::std::vec::Vec<Arc<aws_sdk_bedrockdataautomation::types::Tag>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl
+    From<
+        aws_sdk_bedrockdataautomation::operation::list_tags_for_resource::ListTagsForResourceOutput,
+    > for SharedPyOperationListTagsForResourceOutput
+{
+    fn from(
+        value: aws_sdk_bedrockdataautomation::operation::list_tags_for_resource::ListTagsForResourceOutput,
+    ) -> Self {
+        Self {
+            tags: value.tags.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_1161| Arc::new(owned_1161))
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -7186,8 +8821,7 @@ impl PyOperationListDataAutomationProjectsOutput {
     frozen
 )]
 struct PyOperationListTagsForResourceOutput {
-    inner:
-        aws_sdk_bedrockdataautomation::operation::list_tags_for_resource::ListTagsForResourceOutput,
+    inner: SharedPyOperationListTagsForResourceOutput,
 }
 
 #[pymethods]
@@ -7195,19 +8829,19 @@ impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_1027_list = PyList::empty(py);
-            for item_1028 in value {
-                let converted_item_1029 = Py::new(
+            let converted_1158_list = PyList::empty(py);
+            for item_1159 in value {
+                let converted_item_1160 = Py::new(
                     py,
                     PyTag {
-                        inner: (item_1028).to_owned(),
+                        inner: Arc::clone(item_1159),
                     },
                 )?
                 .into_any();
-                converted_1027_list.append(converted_item_1029)?;
+                converted_1158_list.append(converted_item_1160)?;
             }
-            let converted_1027 = converted_1027_list.into_any().unbind();
-            Ok(converted_1027)
+            let converted_1158 = converted_1158_list.into_any().unbind();
+            Ok(converted_1158)
         } else {
             Ok(py.None())
         }
@@ -7216,13 +8850,13 @@ impl PyOperationListTagsForResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.tags {
-            let converted_1030_list = PyList::empty(py);
-            for item_1031 in value {
-                let converted_item_1032 = tag_to_py(py, item_1031)?;
-                converted_1030_list.append(converted_item_1032)?;
+            let converted_1162_list = PyList::empty(py);
+            for item_1163 in value {
+                let converted_item_1164 = tag_to_py(py, item_1163)?;
+                converted_1162_list.append(converted_item_1164)?;
             }
-            let converted_1030 = converted_1030_list.into_any().unbind();
-            result.set_item("tags", converted_1030)?;
+            let converted_1162 = converted_1162_list.into_any().unbind();
+            result.set_item("tags", converted_1162)?;
         } else {
             result.set_item("tags", py.None())?;
         }
@@ -7264,13 +8898,32 @@ impl PyOperationUntagResourceOutput {
     }
 }
 
+struct SharedPyOperationUpdateBlueprintOutput {
+    blueprint: Option<Arc<SharedBlueprint>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_bedrockdataautomation::operation::update_blueprint::UpdateBlueprintOutput>
+    for SharedPyOperationUpdateBlueprintOutput
+{
+    fn from(
+        value: aws_sdk_bedrockdataautomation::operation::update_blueprint::UpdateBlueprintOutput,
+    ) -> Self {
+        Self {
+            blueprint: value
+                .blueprint
+                .map(|item| Arc::new(SharedBlueprint::from(item))),
+        }
+    }
+}
+
 #[pyclass(
     name = "UpdateBlueprintOutput",
     module = "rboto_bedrock_data_automation._native",
     frozen
 )]
 struct PyOperationUpdateBlueprintOutput {
-    inner: aws_sdk_bedrockdataautomation::operation::update_blueprint::UpdateBlueprintOutput,
+    inner: SharedPyOperationUpdateBlueprintOutput,
 }
 
 #[pymethods]
@@ -7278,14 +8931,14 @@ impl PyOperationUpdateBlueprintOutput {
     #[getter]
     fn blueprint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.blueprint {
-            let converted_1033 = Py::new(
+            let converted_1165 = Py::new(
                 py,
                 PyBlueprint {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1033)
+            Ok(converted_1165)
         } else {
             Ok(py.None())
         }
@@ -7294,8 +8947,8 @@ impl PyOperationUpdateBlueprintOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.blueprint {
-            let converted_1034 = blueprint_to_py(py, value)?;
-            result.set_item("blueprint", converted_1034)?;
+            let converted_1166 = blueprint_shared_to_py(py, value)?;
+            result.set_item("blueprint", converted_1166)?;
         } else {
             result.set_item("blueprint", py.None())?;
         }
@@ -7317,8 +8970,8 @@ impl PyOperationUpdateDataAutomationLibraryOutput {
     #[getter]
     fn library_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.library_arn {
-            let converted_1035 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1035)
+            let converted_1167 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1167)
         } else {
             Ok(py.None())
         }
@@ -7327,8 +8980,8 @@ impl PyOperationUpdateDataAutomationLibraryOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_1036 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1036)
+            let converted_1168 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1168)
         } else {
             Ok(py.None())
         }
@@ -7337,14 +8990,14 @@ impl PyOperationUpdateDataAutomationLibraryOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.library_arn {
-            let converted_1037 = (value).as_str().into_py_any(py)?;
-            result.set_item("library_arn", converted_1037)?;
+            let converted_1169 = (value).as_str().into_py_any(py)?;
+            result.set_item("library_arn", converted_1169)?;
         } else {
             result.set_item("library_arn", py.None())?;
         }
         if let Some(value) = &self.inner.status {
-            let converted_1038 = (value).as_str().into_py_any(py)?;
-            result.set_item("status", converted_1038)?;
+            let converted_1170 = (value).as_str().into_py_any(py)?;
+            result.set_item("status", converted_1170)?;
         } else {
             result.set_item("status", py.None())?;
         }
@@ -7365,15 +9018,15 @@ struct PyOperationUpdateDataAutomationProjectOutput {
 impl PyOperationUpdateDataAutomationProjectOutput {
     #[getter]
     fn project_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1039 = (&self.inner.project_arn).as_str().into_py_any(py)?;
-        Ok(converted_1039)
+        let converted_1171 = (&self.inner.project_arn).as_str().into_py_any(py)?;
+        Ok(converted_1171)
     }
 
     #[getter]
     fn project_stage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.project_stage {
-            let converted_1040 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1040)
+            let converted_1172 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1172)
         } else {
             Ok(py.None())
         }
@@ -7382,8 +9035,8 @@ impl PyOperationUpdateDataAutomationProjectOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_1041 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1041)
+            let converted_1173 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1173)
         } else {
             Ok(py.None())
         }
@@ -7391,17 +9044,17 @@ impl PyOperationUpdateDataAutomationProjectOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1042 = (&self.inner.project_arn).as_str().into_py_any(py)?;
-        result.set_item("project_arn", converted_1042)?;
+        let converted_1174 = (&self.inner.project_arn).as_str().into_py_any(py)?;
+        result.set_item("project_arn", converted_1174)?;
         if let Some(value) = &self.inner.project_stage {
-            let converted_1043 = (value).as_str().into_py_any(py)?;
-            result.set_item("project_stage", converted_1043)?;
+            let converted_1175 = (value).as_str().into_py_any(py)?;
+            result.set_item("project_stage", converted_1175)?;
         } else {
             result.set_item("project_stage", py.None())?;
         }
         if let Some(value) = &self.inner.status {
-            let converted_1044 = (value).as_str().into_py_any(py)?;
-            result.set_item("status", converted_1044)?;
+            let converted_1176 = (value).as_str().into_py_any(py)?;
+            result.set_item("status", converted_1176)?;
         } else {
             result.set_item("status", py.None())?;
         }
@@ -7676,7 +9329,9 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateBlueprint"))
             })?;
-            Ok(PyOperationCreateBlueprintOutput { inner: output })
+            Ok(PyOperationCreateBlueprintOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -7721,7 +9376,9 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateBlueprintVersion"))
             })?;
-            Ok(PyOperationCreateBlueprintVersionOutput { inner: output })
+            Ok(PyOperationCreateBlueprintVersionOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -8102,7 +9759,9 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBlueprint"))
             })?;
-            Ok(PyOperationGetBlueprintOutput { inner: output })
+            Ok(PyOperationGetBlueprintOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -8140,7 +9799,9 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBlueprintOptimizationStatus"))
             })?;
-            Ok(PyOperationGetBlueprintOptimizationStatusOutput { inner: output })
+            Ok(PyOperationGetBlueprintOptimizationStatusOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -8178,7 +9839,9 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDataAutomationLibrary"))
             })?;
-            Ok(PyOperationGetDataAutomationLibraryOutput { inner: output })
+            Ok(PyOperationGetDataAutomationLibraryOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -8279,7 +9942,9 @@ impl BedrockDataAutomationClient {
                     sdk_error_to_py(py, &error, "GetDataAutomationLibraryIngestionJob")
                 })
             })?;
-            Ok(PyOperationGetDataAutomationLibraryIngestionJobOutput { inner: output })
+            Ok(PyOperationGetDataAutomationLibraryIngestionJobOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -8328,7 +9993,9 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDataAutomationProject"))
             })?;
-            Ok(PyOperationGetDataAutomationProjectOutput { inner: output })
+            Ok(PyOperationGetDataAutomationProjectOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -8600,7 +10267,9 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListBlueprints"))
             })?;
-            Ok(PyOperationListBlueprintsOutput { inner: output })
+            Ok(PyOperationListBlueprintsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -8652,7 +10321,9 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDataAutomationLibraries"))
             })?;
-            Ok(PyOperationListDataAutomationLibrariesOutput { inner: output })
+            Ok(PyOperationListDataAutomationLibrariesOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -8769,7 +10440,9 @@ impl BedrockDataAutomationClient {
                     sdk_error_to_py(py, &error, "ListDataAutomationLibraryIngestionJobs")
                 })
             })?;
-            Ok(PyOperationListDataAutomationLibraryIngestionJobsOutput { inner: output })
+            Ok(PyOperationListDataAutomationLibraryIngestionJobsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -8849,7 +10522,9 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDataAutomationProjects"))
             })?;
-            Ok(PyOperationListDataAutomationProjectsOutput { inner: output })
+            Ok(PyOperationListDataAutomationProjectsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -8887,7 +10562,9 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Ok(PyOperationListTagsForResourceOutput { inner: output })
+            Ok(PyOperationListTagsForResourceOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -9050,7 +10727,9 @@ impl BedrockDataAutomationClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateBlueprint"))
             })?;
-            Ok(PyOperationUpdateBlueprintOutput { inner: output })
+            Ok(PyOperationUpdateBlueprintOutput {
+                inner: output.into(),
+            })
         })
     }
 

@@ -56,6 +56,16 @@ Fields may be `None` when the service omits them. Check before dereferencing the
 For an optional collection, `response.buckets or []` is useful when absence and an
 empty collection mean the same thing to your application.
 
+Accessing a list or dictionary creates a fresh Python container. Native objects
+inside it share immutable Rust data, so reading the collection does not copy
+large fields you have not accessed. Mutating that container does not change the
+response. A child remains usable after its parent is released; keeping it does
+not keep its siblings alive.
+
+String and bytes properties still create Python values on access. Dictionary
+unions, including DynamoDB `AttributeValue`, recursively convert their contents.
+Save an accessed value locally when you will reuse it many times.
+
 Native response classes, nested response classes, `ByteStream`, and event-stream
 receivers are also available from the service's `types` module. These imports
 refer to the same native classes returned by the client.

@@ -24,6 +24,12 @@
 Do not add service-name branches to generic generation until a declarative customization
 has been shown to be insufficient.
 
+Native child ownership is generated through `_shared_storage` and `_into_shared`.
+Move payloads into independent child nodes; getters clone only their references.
+Decide which collections need transformation from their parsed structure, not
+type-string formatting. Keep streams outside shared metadata and leave dictionary
+unions on their existing conversion path. See ADR-0025.
+
 Recursive `JSONValue` uses a Python 3.12 named type alias, so optional annotations
 resolve through `typing.get_type_hints` and schema generators can follow its
 recursive definition. Do not replace it with a quoted string assigned to

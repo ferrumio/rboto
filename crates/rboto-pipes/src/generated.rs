@@ -4168,7 +4168,7 @@ fn validation_exception_field_to_py(
 
 #[pyclass(name = "AwsVpcConfiguration", module = "rboto_pipes._native", frozen)]
 struct PyAwsVpcConfiguration {
-    inner: aws_sdk_pipes::types::AwsVpcConfiguration,
+    inner: Arc<aws_sdk_pipes::types::AwsVpcConfiguration>,
 }
 
 #[pymethods]
@@ -4216,7 +4216,7 @@ impl PyAwsVpcConfiguration {
 
 #[pyclass(name = "BatchArrayProperties", module = "rboto_pipes._native", frozen)]
 struct PyBatchArrayProperties {
-    inner: aws_sdk_pipes::types::BatchArrayProperties,
+    inner: Arc<aws_sdk_pipes::types::BatchArrayProperties>,
 }
 
 #[pymethods]
@@ -4236,13 +4236,90 @@ impl PyBatchArrayProperties {
     }
 }
 
+struct SharedBatchContainerOverrides {
+    command: Option<::std::vec::Vec<::std::string::String>>,
+    environment: Option<::std::vec::Vec<Arc<aws_sdk_pipes::types::BatchEnvironmentVariable>>>,
+    instance_type: Option<::std::string::String>,
+    resource_requirements:
+        Option<::std::vec::Vec<Arc<aws_sdk_pipes::types::BatchResourceRequirement>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_pipes::types::BatchContainerOverrides> for SharedBatchContainerOverrides {
+    fn from(value: aws_sdk_pipes::types::BatchContainerOverrides) -> Self {
+        Self {
+            command: value.command,
+            environment: value.environment.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_845| Arc::new(owned_845))
+                    .collect()
+            }),
+            instance_type: value.instance_type,
+            resource_requirements: value.resource_requirements.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_846| Arc::new(owned_846))
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn batch_container_overrides_shared_to_py(
+    py: Python<'_>,
+    value: &SharedBatchContainerOverrides,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.command {
+        let converted_847_list = PyList::empty(py);
+        for item_848 in value {
+            let converted_item_849 = (item_848).as_str().into_py_any(py)?;
+            converted_847_list.append(converted_item_849)?;
+        }
+        let converted_847 = converted_847_list.into_any().unbind();
+        result.set_item("command", converted_847)?;
+    } else {
+        result.set_item("command", py.None())?;
+    }
+    if let Some(value) = &value.environment {
+        let converted_850_list = PyList::empty(py);
+        for item_851 in value {
+            let converted_item_852 = batch_environment_variable_to_py(py, item_851)?;
+            converted_850_list.append(converted_item_852)?;
+        }
+        let converted_850 = converted_850_list.into_any().unbind();
+        result.set_item("environment", converted_850)?;
+    } else {
+        result.set_item("environment", py.None())?;
+    }
+    if let Some(value) = &value.instance_type {
+        let converted_853 = (value).as_str().into_py_any(py)?;
+        result.set_item("instance_type", converted_853)?;
+    } else {
+        result.set_item("instance_type", py.None())?;
+    }
+    if let Some(value) = &value.resource_requirements {
+        let converted_854_list = PyList::empty(py);
+        for item_855 in value {
+            let converted_item_856 = batch_resource_requirement_to_py(py, item_855)?;
+            converted_854_list.append(converted_item_856)?;
+        }
+        let converted_854 = converted_854_list.into_any().unbind();
+        result.set_item("resource_requirements", converted_854)?;
+    } else {
+        result.set_item("resource_requirements", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "BatchContainerOverrides",
     module = "rboto_pipes._native",
     frozen
 )]
 struct PyBatchContainerOverrides {
-    inner: aws_sdk_pipes::types::BatchContainerOverrides,
+    inner: Arc<SharedBatchContainerOverrides>,
 }
 
 #[pymethods]
@@ -4270,7 +4347,7 @@ impl PyBatchContainerOverrides {
                 let converted_item_840 = Py::new(
                     py,
                     PyBatchEnvironmentVariable {
-                        inner: (item_839).to_owned(),
+                        inner: Arc::clone(item_839),
                     },
                 )?
                 .into_any();
@@ -4301,7 +4378,7 @@ impl PyBatchContainerOverrides {
                 let converted_item_844 = Py::new(
                     py,
                     PyBatchResourceRequirement {
-                        inner: (item_843).to_owned(),
+                        inner: Arc::clone(item_843),
                     },
                 )?
                 .into_any();
@@ -4315,7 +4392,7 @@ impl PyBatchContainerOverrides {
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        batch_container_overrides_to_py(py, &self.inner)
+        batch_container_overrides_shared_to_py(py, &self.inner)
     }
 }
 
@@ -4325,7 +4402,7 @@ impl PyBatchContainerOverrides {
     frozen
 )]
 struct PyBatchEnvironmentVariable {
-    inner: aws_sdk_pipes::types::BatchEnvironmentVariable,
+    inner: Arc<aws_sdk_pipes::types::BatchEnvironmentVariable>,
 }
 
 #[pymethods]
@@ -4333,8 +4410,8 @@ impl PyBatchEnvironmentVariable {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_845 = (value).as_str().into_py_any(py)?;
-            Ok(converted_845)
+            let converted_857 = (value).as_str().into_py_any(py)?;
+            Ok(converted_857)
         } else {
             Ok(py.None())
         }
@@ -4343,8 +4420,8 @@ impl PyBatchEnvironmentVariable {
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.value {
-            let converted_846 = (value).as_str().into_py_any(py)?;
-            Ok(converted_846)
+            let converted_858 = (value).as_str().into_py_any(py)?;
+            Ok(converted_858)
         } else {
             Ok(py.None())
         }
@@ -4357,7 +4434,7 @@ impl PyBatchEnvironmentVariable {
 
 #[pyclass(name = "BatchJobDependency", module = "rboto_pipes._native", frozen)]
 struct PyBatchJobDependency {
-    inner: aws_sdk_pipes::types::BatchJobDependency,
+    inner: Arc<aws_sdk_pipes::types::BatchJobDependency>,
 }
 
 #[pymethods]
@@ -4365,8 +4442,8 @@ impl PyBatchJobDependency {
     #[getter]
     fn job_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_id {
-            let converted_847 = (value).as_str().into_py_any(py)?;
-            Ok(converted_847)
+            let converted_859 = (value).as_str().into_py_any(py)?;
+            Ok(converted_859)
         } else {
             Ok(py.None())
         }
@@ -4375,8 +4452,8 @@ impl PyBatchJobDependency {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.r#type {
-            let converted_848 = (value).as_str().into_py_any(py)?;
-            Ok(converted_848)
+            let converted_860 = (value).as_str().into_py_any(py)?;
+            Ok(converted_860)
         } else {
             Ok(py.None())
         }
@@ -4393,21 +4470,21 @@ impl PyBatchJobDependency {
     frozen
 )]
 struct PyBatchResourceRequirement {
-    inner: aws_sdk_pipes::types::BatchResourceRequirement,
+    inner: Arc<aws_sdk_pipes::types::BatchResourceRequirement>,
 }
 
 #[pymethods]
 impl PyBatchResourceRequirement {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_849 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_849)
+        let converted_861 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_861)
     }
 
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_850 = (&self.inner.value).as_str().into_py_any(py)?;
-        Ok(converted_850)
+        let converted_862 = (&self.inner.value).as_str().into_py_any(py)?;
+        Ok(converted_862)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -4417,7 +4494,7 @@ impl PyBatchResourceRequirement {
 
 #[pyclass(name = "BatchRetryStrategy", module = "rboto_pipes._native", frozen)]
 struct PyBatchRetryStrategy {
-    inner: aws_sdk_pipes::types::BatchRetryStrategy,
+    inner: Arc<aws_sdk_pipes::types::BatchRetryStrategy>,
 }
 
 #[pymethods]
@@ -4425,8 +4502,8 @@ impl PyBatchRetryStrategy {
     #[getter]
     fn attempts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attempts {
-            let converted_851 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_851)
+            let converted_863 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_863)
         } else {
             Ok(py.None())
         }
@@ -4443,27 +4520,27 @@ impl PyBatchRetryStrategy {
     frozen
 )]
 struct PyCapacityProviderStrategyItem {
-    inner: aws_sdk_pipes::types::CapacityProviderStrategyItem,
+    inner: Arc<aws_sdk_pipes::types::CapacityProviderStrategyItem>,
 }
 
 #[pymethods]
 impl PyCapacityProviderStrategyItem {
     #[getter]
     fn capacity_provider(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_852 = (&self.inner.capacity_provider).as_str().into_py_any(py)?;
-        Ok(converted_852)
+        let converted_864 = (&self.inner.capacity_provider).as_str().into_py_any(py)?;
+        Ok(converted_864)
     }
 
     #[getter]
     fn weight(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_853 = (&self.inner.weight).to_owned().into_py_any(py)?;
-        Ok(converted_853)
+        let converted_865 = (&self.inner.weight).to_owned().into_py_any(py)?;
+        Ok(converted_865)
     }
 
     #[getter]
     fn base(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_854 = (&self.inner.base).to_owned().into_py_any(py)?;
-        Ok(converted_854)
+        let converted_866 = (&self.inner.base).to_owned().into_py_any(py)?;
+        Ok(converted_866)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -4477,7 +4554,7 @@ impl PyCapacityProviderStrategyItem {
     frozen
 )]
 struct PyCloudwatchLogsLogDestination {
-    inner: aws_sdk_pipes::types::CloudwatchLogsLogDestination,
+    inner: Arc<aws_sdk_pipes::types::CloudwatchLogsLogDestination>,
 }
 
 #[pymethods]
@@ -4485,8 +4562,8 @@ impl PyCloudwatchLogsLogDestination {
     #[getter]
     fn log_group_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_group_arn {
-            let converted_855 = (value).as_str().into_py_any(py)?;
-            Ok(converted_855)
+            let converted_867 = (value).as_str().into_py_any(py)?;
+            Ok(converted_867)
         } else {
             Ok(py.None())
         }
@@ -4499,7 +4576,7 @@ impl PyCloudwatchLogsLogDestination {
 
 #[pyclass(name = "DeadLetterConfig", module = "rboto_pipes._native", frozen)]
 struct PyDeadLetterConfig {
-    inner: aws_sdk_pipes::types::DeadLetterConfig,
+    inner: Arc<aws_sdk_pipes::types::DeadLetterConfig>,
 }
 
 #[pymethods]
@@ -4507,8 +4584,8 @@ impl PyDeadLetterConfig {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
-            let converted_856 = (value).as_str().into_py_any(py)?;
-            Ok(converted_856)
+            let converted_868 = (value).as_str().into_py_any(py)?;
+            Ok(converted_868)
         } else {
             Ok(py.None())
         }
@@ -4521,29 +4598,29 @@ impl PyDeadLetterConfig {
 
 #[pyclass(name = "DimensionMapping", module = "rboto_pipes._native", frozen)]
 struct PyDimensionMapping {
-    inner: aws_sdk_pipes::types::DimensionMapping,
+    inner: Arc<aws_sdk_pipes::types::DimensionMapping>,
 }
 
 #[pymethods]
 impl PyDimensionMapping {
     #[getter]
     fn dimension_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_857 = (&self.inner.dimension_value).as_str().into_py_any(py)?;
-        Ok(converted_857)
+        let converted_869 = (&self.inner.dimension_value).as_str().into_py_any(py)?;
+        Ok(converted_869)
     }
 
     #[getter]
     fn dimension_value_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_858 = (&self.inner.dimension_value_type)
+        let converted_870 = (&self.inner.dimension_value_type)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_858)
+        Ok(converted_870)
     }
 
     #[getter]
     fn dimension_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_859 = (&self.inner.dimension_name).as_str().into_py_any(py)?;
-        Ok(converted_859)
+        let converted_871 = (&self.inner.dimension_name).as_str().into_py_any(py)?;
+        Ok(converted_871)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -4551,9 +4628,128 @@ impl PyDimensionMapping {
     }
 }
 
+struct SharedEcsContainerOverride {
+    command: Option<::std::vec::Vec<::std::string::String>>,
+    cpu: Option<i32>,
+    environment: Option<::std::vec::Vec<Arc<aws_sdk_pipes::types::EcsEnvironmentVariable>>>,
+    environment_files: Option<::std::vec::Vec<Arc<aws_sdk_pipes::types::EcsEnvironmentFile>>>,
+    memory: Option<i32>,
+    memory_reservation: Option<i32>,
+    name: Option<::std::string::String>,
+    resource_requirements:
+        Option<::std::vec::Vec<Arc<aws_sdk_pipes::types::EcsResourceRequirement>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_pipes::types::EcsContainerOverride> for SharedEcsContainerOverride {
+    fn from(value: aws_sdk_pipes::types::EcsContainerOverride) -> Self {
+        Self {
+            command: value.command,
+            cpu: value.cpu,
+            environment: value.environment.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_888| Arc::new(owned_888))
+                    .collect()
+            }),
+            environment_files: value.environment_files.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_889| Arc::new(owned_889))
+                    .collect()
+            }),
+            memory: value.memory,
+            memory_reservation: value.memory_reservation,
+            name: value.name,
+            resource_requirements: value.resource_requirements.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_890| Arc::new(owned_890))
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn ecs_container_override_shared_to_py(
+    py: Python<'_>,
+    value: &SharedEcsContainerOverride,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.command {
+        let converted_891_list = PyList::empty(py);
+        for item_892 in value {
+            let converted_item_893 = (item_892).as_str().into_py_any(py)?;
+            converted_891_list.append(converted_item_893)?;
+        }
+        let converted_891 = converted_891_list.into_any().unbind();
+        result.set_item("command", converted_891)?;
+    } else {
+        result.set_item("command", py.None())?;
+    }
+    if let Some(value) = &value.cpu {
+        let converted_894 = (value).to_owned().into_py_any(py)?;
+        result.set_item("cpu", converted_894)?;
+    } else {
+        result.set_item("cpu", py.None())?;
+    }
+    if let Some(value) = &value.environment {
+        let converted_895_list = PyList::empty(py);
+        for item_896 in value {
+            let converted_item_897 = ecs_environment_variable_to_py(py, item_896)?;
+            converted_895_list.append(converted_item_897)?;
+        }
+        let converted_895 = converted_895_list.into_any().unbind();
+        result.set_item("environment", converted_895)?;
+    } else {
+        result.set_item("environment", py.None())?;
+    }
+    if let Some(value) = &value.environment_files {
+        let converted_898_list = PyList::empty(py);
+        for item_899 in value {
+            let converted_item_900 = ecs_environment_file_to_py(py, item_899)?;
+            converted_898_list.append(converted_item_900)?;
+        }
+        let converted_898 = converted_898_list.into_any().unbind();
+        result.set_item("environment_files", converted_898)?;
+    } else {
+        result.set_item("environment_files", py.None())?;
+    }
+    if let Some(value) = &value.memory {
+        let converted_901 = (value).to_owned().into_py_any(py)?;
+        result.set_item("memory", converted_901)?;
+    } else {
+        result.set_item("memory", py.None())?;
+    }
+    if let Some(value) = &value.memory_reservation {
+        let converted_902 = (value).to_owned().into_py_any(py)?;
+        result.set_item("memory_reservation", converted_902)?;
+    } else {
+        result.set_item("memory_reservation", py.None())?;
+    }
+    if let Some(value) = &value.name {
+        let converted_903 = (value).as_str().into_py_any(py)?;
+        result.set_item("name", converted_903)?;
+    } else {
+        result.set_item("name", py.None())?;
+    }
+    if let Some(value) = &value.resource_requirements {
+        let converted_904_list = PyList::empty(py);
+        for item_905 in value {
+            let converted_item_906 = ecs_resource_requirement_to_py(py, item_905)?;
+            converted_904_list.append(converted_item_906)?;
+        }
+        let converted_904 = converted_904_list.into_any().unbind();
+        result.set_item("resource_requirements", converted_904)?;
+    } else {
+        result.set_item("resource_requirements", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "EcsContainerOverride", module = "rboto_pipes._native", frozen)]
 struct PyEcsContainerOverride {
-    inner: aws_sdk_pipes::types::EcsContainerOverride,
+    inner: Arc<SharedEcsContainerOverride>,
 }
 
 #[pymethods]
@@ -4561,13 +4757,13 @@ impl PyEcsContainerOverride {
     #[getter]
     fn command(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.command {
-            let converted_860_list = PyList::empty(py);
-            for item_861 in value {
-                let converted_item_862 = (item_861).as_str().into_py_any(py)?;
-                converted_860_list.append(converted_item_862)?;
+            let converted_872_list = PyList::empty(py);
+            for item_873 in value {
+                let converted_item_874 = (item_873).as_str().into_py_any(py)?;
+                converted_872_list.append(converted_item_874)?;
             }
-            let converted_860 = converted_860_list.into_any().unbind();
-            Ok(converted_860)
+            let converted_872 = converted_872_list.into_any().unbind();
+            Ok(converted_872)
         } else {
             Ok(py.None())
         }
@@ -4576,8 +4772,8 @@ impl PyEcsContainerOverride {
     #[getter]
     fn cpu(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cpu {
-            let converted_863 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_863)
+            let converted_875 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_875)
         } else {
             Ok(py.None())
         }
@@ -4586,19 +4782,19 @@ impl PyEcsContainerOverride {
     #[getter]
     fn environment(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.environment {
-            let converted_864_list = PyList::empty(py);
-            for item_865 in value {
-                let converted_item_866 = Py::new(
+            let converted_876_list = PyList::empty(py);
+            for item_877 in value {
+                let converted_item_878 = Py::new(
                     py,
                     PyEcsEnvironmentVariable {
-                        inner: (item_865).to_owned(),
+                        inner: Arc::clone(item_877),
                     },
                 )?
                 .into_any();
-                converted_864_list.append(converted_item_866)?;
+                converted_876_list.append(converted_item_878)?;
             }
-            let converted_864 = converted_864_list.into_any().unbind();
-            Ok(converted_864)
+            let converted_876 = converted_876_list.into_any().unbind();
+            Ok(converted_876)
         } else {
             Ok(py.None())
         }
@@ -4607,19 +4803,19 @@ impl PyEcsContainerOverride {
     #[getter]
     fn environment_files(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.environment_files {
-            let converted_867_list = PyList::empty(py);
-            for item_868 in value {
-                let converted_item_869 = Py::new(
+            let converted_879_list = PyList::empty(py);
+            for item_880 in value {
+                let converted_item_881 = Py::new(
                     py,
                     PyEcsEnvironmentFile {
-                        inner: (item_868).to_owned(),
+                        inner: Arc::clone(item_880),
                     },
                 )?
                 .into_any();
-                converted_867_list.append(converted_item_869)?;
+                converted_879_list.append(converted_item_881)?;
             }
-            let converted_867 = converted_867_list.into_any().unbind();
-            Ok(converted_867)
+            let converted_879 = converted_879_list.into_any().unbind();
+            Ok(converted_879)
         } else {
             Ok(py.None())
         }
@@ -4628,8 +4824,8 @@ impl PyEcsContainerOverride {
     #[getter]
     fn memory(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.memory {
-            let converted_870 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_870)
+            let converted_882 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_882)
         } else {
             Ok(py.None())
         }
@@ -4638,8 +4834,8 @@ impl PyEcsContainerOverride {
     #[getter]
     fn memory_reservation(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.memory_reservation {
-            let converted_871 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_871)
+            let converted_883 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_883)
         } else {
             Ok(py.None())
         }
@@ -4648,8 +4844,8 @@ impl PyEcsContainerOverride {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_872 = (value).as_str().into_py_any(py)?;
-            Ok(converted_872)
+            let converted_884 = (value).as_str().into_py_any(py)?;
+            Ok(converted_884)
         } else {
             Ok(py.None())
         }
@@ -4658,46 +4854,46 @@ impl PyEcsContainerOverride {
     #[getter]
     fn resource_requirements(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_requirements {
-            let converted_873_list = PyList::empty(py);
-            for item_874 in value {
-                let converted_item_875 = Py::new(
+            let converted_885_list = PyList::empty(py);
+            for item_886 in value {
+                let converted_item_887 = Py::new(
                     py,
                     PyEcsResourceRequirement {
-                        inner: (item_874).to_owned(),
+                        inner: Arc::clone(item_886),
                     },
                 )?
                 .into_any();
-                converted_873_list.append(converted_item_875)?;
+                converted_885_list.append(converted_item_887)?;
             }
-            let converted_873 = converted_873_list.into_any().unbind();
-            Ok(converted_873)
+            let converted_885 = converted_885_list.into_any().unbind();
+            Ok(converted_885)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        ecs_container_override_to_py(py, &self.inner)
+        ecs_container_override_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "EcsEnvironmentFile", module = "rboto_pipes._native", frozen)]
 struct PyEcsEnvironmentFile {
-    inner: aws_sdk_pipes::types::EcsEnvironmentFile,
+    inner: Arc<aws_sdk_pipes::types::EcsEnvironmentFile>,
 }
 
 #[pymethods]
 impl PyEcsEnvironmentFile {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_876 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_876)
+        let converted_907 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_907)
     }
 
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_877 = (&self.inner.value).as_str().into_py_any(py)?;
-        Ok(converted_877)
+        let converted_908 = (&self.inner.value).as_str().into_py_any(py)?;
+        Ok(converted_908)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -4711,7 +4907,7 @@ impl PyEcsEnvironmentFile {
     frozen
 )]
 struct PyEcsEnvironmentVariable {
-    inner: aws_sdk_pipes::types::EcsEnvironmentVariable,
+    inner: Arc<aws_sdk_pipes::types::EcsEnvironmentVariable>,
 }
 
 #[pymethods]
@@ -4719,8 +4915,8 @@ impl PyEcsEnvironmentVariable {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_878 = (value).as_str().into_py_any(py)?;
-            Ok(converted_878)
+            let converted_909 = (value).as_str().into_py_any(py)?;
+            Ok(converted_909)
         } else {
             Ok(py.None())
         }
@@ -4729,8 +4925,8 @@ impl PyEcsEnvironmentVariable {
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.value {
-            let converted_879 = (value).as_str().into_py_any(py)?;
-            Ok(converted_879)
+            let converted_910 = (value).as_str().into_py_any(py)?;
+            Ok(converted_910)
         } else {
             Ok(py.None())
         }
@@ -4743,15 +4939,15 @@ impl PyEcsEnvironmentVariable {
 
 #[pyclass(name = "EcsEphemeralStorage", module = "rboto_pipes._native", frozen)]
 struct PyEcsEphemeralStorage {
-    inner: aws_sdk_pipes::types::EcsEphemeralStorage,
+    inner: Arc<aws_sdk_pipes::types::EcsEphemeralStorage>,
 }
 
 #[pymethods]
 impl PyEcsEphemeralStorage {
     #[getter]
     fn size_in_gib(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_880 = (&self.inner.size_in_gib).to_owned().into_py_any(py)?;
-        Ok(converted_880)
+        let converted_911 = (&self.inner.size_in_gib).to_owned().into_py_any(py)?;
+        Ok(converted_911)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -4765,7 +4961,7 @@ impl PyEcsEphemeralStorage {
     frozen
 )]
 struct PyEcsInferenceAcceleratorOverride {
-    inner: aws_sdk_pipes::types::EcsInferenceAcceleratorOverride,
+    inner: Arc<aws_sdk_pipes::types::EcsInferenceAcceleratorOverride>,
 }
 
 #[pymethods]
@@ -4773,8 +4969,8 @@ impl PyEcsInferenceAcceleratorOverride {
     #[getter]
     fn device_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.device_name {
-            let converted_881 = (value).as_str().into_py_any(py)?;
-            Ok(converted_881)
+            let converted_912 = (value).as_str().into_py_any(py)?;
+            Ok(converted_912)
         } else {
             Ok(py.None())
         }
@@ -4783,8 +4979,8 @@ impl PyEcsInferenceAcceleratorOverride {
     #[getter]
     fn device_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.device_type {
-            let converted_882 = (value).as_str().into_py_any(py)?;
-            Ok(converted_882)
+            let converted_913 = (value).as_str().into_py_any(py)?;
+            Ok(converted_913)
         } else {
             Ok(py.None())
         }
@@ -4801,21 +4997,21 @@ impl PyEcsInferenceAcceleratorOverride {
     frozen
 )]
 struct PyEcsResourceRequirement {
-    inner: aws_sdk_pipes::types::EcsResourceRequirement,
+    inner: Arc<aws_sdk_pipes::types::EcsResourceRequirement>,
 }
 
 #[pymethods]
 impl PyEcsResourceRequirement {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_883 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_883)
+        let converted_914 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_914)
     }
 
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_884 = (&self.inner.value).as_str().into_py_any(py)?;
-        Ok(converted_884)
+        let converted_915 = (&self.inner.value).as_str().into_py_any(py)?;
+        Ok(converted_915)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -4823,9 +5019,105 @@ impl PyEcsResourceRequirement {
     }
 }
 
+struct SharedEcsTaskOverride {
+    container_overrides: Option<::std::vec::Vec<Arc<SharedEcsContainerOverride>>>,
+    cpu: Option<::std::string::String>,
+    ephemeral_storage: Option<Arc<aws_sdk_pipes::types::EcsEphemeralStorage>>,
+    execution_role_arn: Option<::std::string::String>,
+    inference_accelerator_overrides:
+        Option<::std::vec::Vec<Arc<aws_sdk_pipes::types::EcsInferenceAcceleratorOverride>>>,
+    memory: Option<::std::string::String>,
+    task_role_arn: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_pipes::types::EcsTaskOverride> for SharedEcsTaskOverride {
+    fn from(value: aws_sdk_pipes::types::EcsTaskOverride) -> Self {
+        Self {
+            container_overrides: value.container_overrides.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_927| Arc::new(SharedEcsContainerOverride::from(owned_927)))
+                    .collect()
+            }),
+            cpu: value.cpu,
+            ephemeral_storage: value.ephemeral_storage.map(|item| Arc::new(item)),
+            execution_role_arn: value.execution_role_arn,
+            inference_accelerator_overrides: value.inference_accelerator_overrides.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_928| Arc::new(owned_928))
+                    .collect()
+            }),
+            memory: value.memory,
+            task_role_arn: value.task_role_arn,
+        }
+    }
+}
+
+fn ecs_task_override_shared_to_py(
+    py: Python<'_>,
+    value: &SharedEcsTaskOverride,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.container_overrides {
+        let converted_929_list = PyList::empty(py);
+        for item_930 in value {
+            let converted_item_931 = ecs_container_override_shared_to_py(py, item_930)?;
+            converted_929_list.append(converted_item_931)?;
+        }
+        let converted_929 = converted_929_list.into_any().unbind();
+        result.set_item("container_overrides", converted_929)?;
+    } else {
+        result.set_item("container_overrides", py.None())?;
+    }
+    if let Some(value) = &value.cpu {
+        let converted_932 = (value).as_str().into_py_any(py)?;
+        result.set_item("cpu", converted_932)?;
+    } else {
+        result.set_item("cpu", py.None())?;
+    }
+    if let Some(value) = &value.ephemeral_storage {
+        let converted_933 = ecs_ephemeral_storage_to_py(py, value)?;
+        result.set_item("ephemeral_storage", converted_933)?;
+    } else {
+        result.set_item("ephemeral_storage", py.None())?;
+    }
+    if let Some(value) = &value.execution_role_arn {
+        let converted_934 = (value).as_str().into_py_any(py)?;
+        result.set_item("execution_role_arn", converted_934)?;
+    } else {
+        result.set_item("execution_role_arn", py.None())?;
+    }
+    if let Some(value) = &value.inference_accelerator_overrides {
+        let converted_935_list = PyList::empty(py);
+        for item_936 in value {
+            let converted_item_937 = ecs_inference_accelerator_override_to_py(py, item_936)?;
+            converted_935_list.append(converted_item_937)?;
+        }
+        let converted_935 = converted_935_list.into_any().unbind();
+        result.set_item("inference_accelerator_overrides", converted_935)?;
+    } else {
+        result.set_item("inference_accelerator_overrides", py.None())?;
+    }
+    if let Some(value) = &value.memory {
+        let converted_938 = (value).as_str().into_py_any(py)?;
+        result.set_item("memory", converted_938)?;
+    } else {
+        result.set_item("memory", py.None())?;
+    }
+    if let Some(value) = &value.task_role_arn {
+        let converted_939 = (value).as_str().into_py_any(py)?;
+        result.set_item("task_role_arn", converted_939)?;
+    } else {
+        result.set_item("task_role_arn", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "EcsTaskOverride", module = "rboto_pipes._native", frozen)]
 struct PyEcsTaskOverride {
-    inner: aws_sdk_pipes::types::EcsTaskOverride,
+    inner: Arc<SharedEcsTaskOverride>,
 }
 
 #[pymethods]
@@ -4833,19 +5125,19 @@ impl PyEcsTaskOverride {
     #[getter]
     fn container_overrides(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.container_overrides {
-            let converted_885_list = PyList::empty(py);
-            for item_886 in value {
-                let converted_item_887 = Py::new(
+            let converted_916_list = PyList::empty(py);
+            for item_917 in value {
+                let converted_item_918 = Py::new(
                     py,
                     PyEcsContainerOverride {
-                        inner: (item_886).to_owned(),
+                        inner: Arc::clone(item_917),
                     },
                 )?
                 .into_any();
-                converted_885_list.append(converted_item_887)?;
+                converted_916_list.append(converted_item_918)?;
             }
-            let converted_885 = converted_885_list.into_any().unbind();
-            Ok(converted_885)
+            let converted_916 = converted_916_list.into_any().unbind();
+            Ok(converted_916)
         } else {
             Ok(py.None())
         }
@@ -4854,8 +5146,8 @@ impl PyEcsTaskOverride {
     #[getter]
     fn cpu(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cpu {
-            let converted_888 = (value).as_str().into_py_any(py)?;
-            Ok(converted_888)
+            let converted_919 = (value).as_str().into_py_any(py)?;
+            Ok(converted_919)
         } else {
             Ok(py.None())
         }
@@ -4864,14 +5156,14 @@ impl PyEcsTaskOverride {
     #[getter]
     fn ephemeral_storage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ephemeral_storage {
-            let converted_889 = Py::new(
+            let converted_920 = Py::new(
                 py,
                 PyEcsEphemeralStorage {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_889)
+            Ok(converted_920)
         } else {
             Ok(py.None())
         }
@@ -4880,8 +5172,8 @@ impl PyEcsTaskOverride {
     #[getter]
     fn execution_role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.execution_role_arn {
-            let converted_890 = (value).as_str().into_py_any(py)?;
-            Ok(converted_890)
+            let converted_921 = (value).as_str().into_py_any(py)?;
+            Ok(converted_921)
         } else {
             Ok(py.None())
         }
@@ -4890,19 +5182,19 @@ impl PyEcsTaskOverride {
     #[getter]
     fn inference_accelerator_overrides(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.inference_accelerator_overrides {
-            let converted_891_list = PyList::empty(py);
-            for item_892 in value {
-                let converted_item_893 = Py::new(
+            let converted_922_list = PyList::empty(py);
+            for item_923 in value {
+                let converted_item_924 = Py::new(
                     py,
                     PyEcsInferenceAcceleratorOverride {
-                        inner: (item_892).to_owned(),
+                        inner: Arc::clone(item_923),
                     },
                 )?
                 .into_any();
-                converted_891_list.append(converted_item_893)?;
+                converted_922_list.append(converted_item_924)?;
             }
-            let converted_891 = converted_891_list.into_any().unbind();
-            Ok(converted_891)
+            let converted_922 = converted_922_list.into_any().unbind();
+            Ok(converted_922)
         } else {
             Ok(py.None())
         }
@@ -4911,8 +5203,8 @@ impl PyEcsTaskOverride {
     #[getter]
     fn memory(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.memory {
-            let converted_894 = (value).as_str().into_py_any(py)?;
-            Ok(converted_894)
+            let converted_925 = (value).as_str().into_py_any(py)?;
+            Ok(converted_925)
         } else {
             Ok(py.None())
         }
@@ -4921,21 +5213,21 @@ impl PyEcsTaskOverride {
     #[getter]
     fn task_role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.task_role_arn {
-            let converted_895 = (value).as_str().into_py_any(py)?;
-            Ok(converted_895)
+            let converted_926 = (value).as_str().into_py_any(py)?;
+            Ok(converted_926)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        ecs_task_override_to_py(py, &self.inner)
+        ecs_task_override_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "Filter", module = "rboto_pipes._native", frozen)]
 struct PyFilter {
-    inner: aws_sdk_pipes::types::Filter,
+    inner: Arc<aws_sdk_pipes::types::Filter>,
 }
 
 #[pymethods]
@@ -4943,8 +5235,8 @@ impl PyFilter {
     #[getter]
     fn pattern(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.pattern {
-            let converted_896 = (value).as_str().into_py_any(py)?;
-            Ok(converted_896)
+            let converted_940 = (value).as_str().into_py_any(py)?;
+            Ok(converted_940)
         } else {
             Ok(py.None())
         }
@@ -4955,9 +5247,46 @@ impl PyFilter {
     }
 }
 
+struct SharedFilterCriteria {
+    filters: Option<::std::vec::Vec<Arc<aws_sdk_pipes::types::Filter>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_pipes::types::FilterCriteria> for SharedFilterCriteria {
+    fn from(value: aws_sdk_pipes::types::FilterCriteria) -> Self {
+        Self {
+            filters: value.filters.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_944| Arc::new(owned_944))
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn filter_criteria_shared_to_py(
+    py: Python<'_>,
+    value: &SharedFilterCriteria,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.filters {
+        let converted_945_list = PyList::empty(py);
+        for item_946 in value {
+            let converted_item_947 = filter_to_py(py, item_946)?;
+            converted_945_list.append(converted_item_947)?;
+        }
+        let converted_945 = converted_945_list.into_any().unbind();
+        result.set_item("filters", converted_945)?;
+    } else {
+        result.set_item("filters", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "FilterCriteria", module = "rboto_pipes._native", frozen)]
 struct PyFilterCriteria {
-    inner: aws_sdk_pipes::types::FilterCriteria,
+    inner: Arc<SharedFilterCriteria>,
 }
 
 #[pymethods]
@@ -4965,26 +5294,26 @@ impl PyFilterCriteria {
     #[getter]
     fn filters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.filters {
-            let converted_897_list = PyList::empty(py);
-            for item_898 in value {
-                let converted_item_899 = Py::new(
+            let converted_941_list = PyList::empty(py);
+            for item_942 in value {
+                let converted_item_943 = Py::new(
                     py,
                     PyFilter {
-                        inner: (item_898).to_owned(),
+                        inner: Arc::clone(item_942),
                     },
                 )?
                 .into_any();
-                converted_897_list.append(converted_item_899)?;
+                converted_941_list.append(converted_item_943)?;
             }
-            let converted_897 = converted_897_list.into_any().unbind();
-            Ok(converted_897)
+            let converted_941 = converted_941_list.into_any().unbind();
+            Ok(converted_941)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        filter_criteria_to_py(py, &self.inner)
+        filter_criteria_shared_to_py(py, &self.inner)
     }
 }
 
@@ -4994,7 +5323,7 @@ impl PyFilterCriteria {
     frozen
 )]
 struct PyFirehoseLogDestination {
-    inner: aws_sdk_pipes::types::FirehoseLogDestination,
+    inner: Arc<aws_sdk_pipes::types::FirehoseLogDestination>,
 }
 
 #[pymethods]
@@ -5002,8 +5331,8 @@ impl PyFirehoseLogDestination {
     #[getter]
     fn delivery_stream_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.delivery_stream_arn {
-            let converted_900 = (value).as_str().into_py_any(py)?;
-            Ok(converted_900)
+            let converted_948 = (value).as_str().into_py_any(py)?;
+            Ok(converted_948)
         } else {
             Ok(py.None())
         }
@@ -5020,29 +5349,29 @@ impl PyFirehoseLogDestination {
     frozen
 )]
 struct PyMultiMeasureAttributeMapping {
-    inner: aws_sdk_pipes::types::MultiMeasureAttributeMapping,
+    inner: Arc<aws_sdk_pipes::types::MultiMeasureAttributeMapping>,
 }
 
 #[pymethods]
 impl PyMultiMeasureAttributeMapping {
     #[getter]
     fn measure_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_901 = (&self.inner.measure_value).as_str().into_py_any(py)?;
-        Ok(converted_901)
+        let converted_949 = (&self.inner.measure_value).as_str().into_py_any(py)?;
+        Ok(converted_949)
     }
 
     #[getter]
     fn measure_value_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_902 = (&self.inner.measure_value_type).as_str().into_py_any(py)?;
-        Ok(converted_902)
+        let converted_950 = (&self.inner.measure_value_type).as_str().into_py_any(py)?;
+        Ok(converted_950)
     }
 
     #[getter]
     fn multi_measure_attribute_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_903 = (&self.inner.multi_measure_attribute_name)
+        let converted_951 = (&self.inner.multi_measure_attribute_name)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_903)
+        Ok(converted_951)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -5050,44 +5379,107 @@ impl PyMultiMeasureAttributeMapping {
     }
 }
 
+struct SharedMultiMeasureMapping {
+    multi_measure_name: ::std::string::String,
+    multi_measure_attribute_mappings:
+        ::std::vec::Vec<Arc<aws_sdk_pipes::types::MultiMeasureAttributeMapping>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_pipes::types::MultiMeasureMapping> for SharedMultiMeasureMapping {
+    fn from(value: aws_sdk_pipes::types::MultiMeasureMapping) -> Self {
+        Self {
+            multi_measure_name: value.multi_measure_name,
+            multi_measure_attribute_mappings: (value.multi_measure_attribute_mappings)
+                .into_iter()
+                .map(|owned_956| Arc::new(owned_956))
+                .collect(),
+        }
+    }
+}
+
+fn multi_measure_mapping_shared_to_py(
+    py: Python<'_>,
+    value: &SharedMultiMeasureMapping,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_957 = (&value.multi_measure_name).as_str().into_py_any(py)?;
+    result.set_item("multi_measure_name", converted_957)?;
+    let converted_958_list = PyList::empty(py);
+    for item_959 in &value.multi_measure_attribute_mappings {
+        let converted_item_960 = multi_measure_attribute_mapping_to_py(py, item_959)?;
+        converted_958_list.append(converted_item_960)?;
+    }
+    let converted_958 = converted_958_list.into_any().unbind();
+    result.set_item("multi_measure_attribute_mappings", converted_958)?;
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "MultiMeasureMapping", module = "rboto_pipes._native", frozen)]
 struct PyMultiMeasureMapping {
-    inner: aws_sdk_pipes::types::MultiMeasureMapping,
+    inner: Arc<SharedMultiMeasureMapping>,
 }
 
 #[pymethods]
 impl PyMultiMeasureMapping {
     #[getter]
     fn multi_measure_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_904 = (&self.inner.multi_measure_name).as_str().into_py_any(py)?;
-        Ok(converted_904)
+        let converted_952 = (&self.inner.multi_measure_name).as_str().into_py_any(py)?;
+        Ok(converted_952)
     }
 
     #[getter]
     fn multi_measure_attribute_mappings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_905_list = PyList::empty(py);
-        for item_906 in &self.inner.multi_measure_attribute_mappings {
-            let converted_item_907 = Py::new(
+        let converted_953_list = PyList::empty(py);
+        for item_954 in &self.inner.multi_measure_attribute_mappings {
+            let converted_item_955 = Py::new(
                 py,
                 PyMultiMeasureAttributeMapping {
-                    inner: (item_906).to_owned(),
+                    inner: Arc::clone(item_954),
                 },
             )?
             .into_any();
-            converted_905_list.append(converted_item_907)?;
+            converted_953_list.append(converted_item_955)?;
         }
-        let converted_905 = converted_905_list.into_any().unbind();
-        Ok(converted_905)
+        let converted_953 = converted_953_list.into_any().unbind();
+        Ok(converted_953)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        multi_measure_mapping_to_py(py, &self.inner)
+        multi_measure_mapping_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedNetworkConfiguration {
+    awsvpc_configuration: Option<Arc<aws_sdk_pipes::types::AwsVpcConfiguration>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_pipes::types::NetworkConfiguration> for SharedNetworkConfiguration {
+    fn from(value: aws_sdk_pipes::types::NetworkConfiguration) -> Self {
+        Self {
+            awsvpc_configuration: value.awsvpc_configuration.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn network_configuration_shared_to_py(
+    py: Python<'_>,
+    value: &SharedNetworkConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.awsvpc_configuration {
+        let converted_962 = aws_vpc_configuration_to_py(py, value)?;
+        result.set_item("awsvpc_configuration", converted_962)?;
+    } else {
+        result.set_item("awsvpc_configuration", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(name = "NetworkConfiguration", module = "rboto_pipes._native", frozen)]
 struct PyNetworkConfiguration {
-    inner: aws_sdk_pipes::types::NetworkConfiguration,
+    inner: Arc<SharedNetworkConfiguration>,
 }
 
 #[pymethods]
@@ -5095,27 +5487,27 @@ impl PyNetworkConfiguration {
     #[getter]
     fn awsvpc_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.awsvpc_configuration {
-            let converted_908 = Py::new(
+            let converted_961 = Py::new(
                 py,
                 PyAwsVpcConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_908)
+            Ok(converted_961)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        network_configuration_to_py(py, &self.inner)
+        network_configuration_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "Pipe", module = "rboto_pipes._native", frozen)]
 struct PyPipe {
-    inner: aws_sdk_pipes::types::Pipe,
+    inner: Arc<aws_sdk_pipes::types::Pipe>,
 }
 
 #[pymethods]
@@ -5123,8 +5515,8 @@ impl PyPipe {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_909 = (value).as_str().into_py_any(py)?;
-            Ok(converted_909)
+            let converted_963 = (value).as_str().into_py_any(py)?;
+            Ok(converted_963)
         } else {
             Ok(py.None())
         }
@@ -5133,8 +5525,8 @@ impl PyPipe {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
-            let converted_910 = (value).as_str().into_py_any(py)?;
-            Ok(converted_910)
+            let converted_964 = (value).as_str().into_py_any(py)?;
+            Ok(converted_964)
         } else {
             Ok(py.None())
         }
@@ -5143,8 +5535,8 @@ impl PyPipe {
     #[getter]
     fn desired_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.desired_state {
-            let converted_911 = (value).as_str().into_py_any(py)?;
-            Ok(converted_911)
+            let converted_965 = (value).as_str().into_py_any(py)?;
+            Ok(converted_965)
         } else {
             Ok(py.None())
         }
@@ -5153,8 +5545,8 @@ impl PyPipe {
     #[getter]
     fn current_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.current_state {
-            let converted_912 = (value).as_str().into_py_any(py)?;
-            Ok(converted_912)
+            let converted_966 = (value).as_str().into_py_any(py)?;
+            Ok(converted_966)
         } else {
             Ok(py.None())
         }
@@ -5163,8 +5555,8 @@ impl PyPipe {
     #[getter]
     fn state_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state_reason {
-            let converted_913 = (value).as_str().into_py_any(py)?;
-            Ok(converted_913)
+            let converted_967 = (value).as_str().into_py_any(py)?;
+            Ok(converted_967)
         } else {
             Ok(py.None())
         }
@@ -5173,8 +5565,8 @@ impl PyPipe {
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_time {
-            let converted_914 = (value).to_string().into_py_any(py)?;
-            Ok(converted_914)
+            let converted_968 = (value).to_string().into_py_any(py)?;
+            Ok(converted_968)
         } else {
             Ok(py.None())
         }
@@ -5183,8 +5575,8 @@ impl PyPipe {
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_915 = (value).to_string().into_py_any(py)?;
-            Ok(converted_915)
+            let converted_969 = (value).to_string().into_py_any(py)?;
+            Ok(converted_969)
         } else {
             Ok(py.None())
         }
@@ -5193,8 +5585,8 @@ impl PyPipe {
     #[getter]
     fn source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.source {
-            let converted_916 = (value).as_str().into_py_any(py)?;
-            Ok(converted_916)
+            let converted_970 = (value).as_str().into_py_any(py)?;
+            Ok(converted_970)
         } else {
             Ok(py.None())
         }
@@ -5203,8 +5595,8 @@ impl PyPipe {
     #[getter]
     fn target(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.target {
-            let converted_917 = (value).as_str().into_py_any(py)?;
-            Ok(converted_917)
+            let converted_971 = (value).as_str().into_py_any(py)?;
+            Ok(converted_971)
         } else {
             Ok(py.None())
         }
@@ -5213,8 +5605,8 @@ impl PyPipe {
     #[getter]
     fn enrichment(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.enrichment {
-            let converted_918 = (value).as_str().into_py_any(py)?;
-            Ok(converted_918)
+            let converted_972 = (value).as_str().into_py_any(py)?;
+            Ok(converted_972)
         } else {
             Ok(py.None())
         }
@@ -5231,7 +5623,7 @@ impl PyPipe {
     frozen
 )]
 struct PyPipeEnrichmentHttpParameters {
-    inner: aws_sdk_pipes::types::PipeEnrichmentHttpParameters,
+    inner: Arc<aws_sdk_pipes::types::PipeEnrichmentHttpParameters>,
 }
 
 #[pymethods]
@@ -5239,13 +5631,13 @@ impl PyPipeEnrichmentHttpParameters {
     #[getter]
     fn path_parameter_values(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.path_parameter_values {
-            let converted_919_list = PyList::empty(py);
-            for item_920 in value {
-                let converted_item_921 = (item_920).as_str().into_py_any(py)?;
-                converted_919_list.append(converted_item_921)?;
+            let converted_973_list = PyList::empty(py);
+            for item_974 in value {
+                let converted_item_975 = (item_974).as_str().into_py_any(py)?;
+                converted_973_list.append(converted_item_975)?;
             }
-            let converted_919 = converted_919_list.into_any().unbind();
-            Ok(converted_919)
+            let converted_973 = converted_973_list.into_any().unbind();
+            Ok(converted_973)
         } else {
             Ok(py.None())
         }
@@ -5254,14 +5646,14 @@ impl PyPipeEnrichmentHttpParameters {
     #[getter]
     fn header_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.header_parameters {
-            let converted_922_dict = PyDict::new(py);
-            for (key_923, value_924) in value {
-                let converted_key_925 = (key_923).as_str().into_py_any(py)?;
-                let converted_value_926 = (value_924).as_str().into_py_any(py)?;
-                converted_922_dict.set_item(converted_key_925, converted_value_926)?;
+            let converted_976_dict = PyDict::new(py);
+            for (key_977, value_978) in value {
+                let converted_key_979 = (key_977).as_str().into_py_any(py)?;
+                let converted_value_980 = (value_978).as_str().into_py_any(py)?;
+                converted_976_dict.set_item(converted_key_979, converted_value_980)?;
             }
-            let converted_922 = converted_922_dict.into_any().unbind();
-            Ok(converted_922)
+            let converted_976 = converted_976_dict.into_any().unbind();
+            Ok(converted_976)
         } else {
             Ok(py.None())
         }
@@ -5270,14 +5662,14 @@ impl PyPipeEnrichmentHttpParameters {
     #[getter]
     fn query_string_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_string_parameters {
-            let converted_927_dict = PyDict::new(py);
-            for (key_928, value_929) in value {
-                let converted_key_930 = (key_928).as_str().into_py_any(py)?;
-                let converted_value_931 = (value_929).as_str().into_py_any(py)?;
-                converted_927_dict.set_item(converted_key_930, converted_value_931)?;
+            let converted_981_dict = PyDict::new(py);
+            for (key_982, value_983) in value {
+                let converted_key_984 = (key_982).as_str().into_py_any(py)?;
+                let converted_value_985 = (value_983).as_str().into_py_any(py)?;
+                converted_981_dict.set_item(converted_key_984, converted_value_985)?;
             }
-            let converted_927 = converted_927_dict.into_any().unbind();
-            Ok(converted_927)
+            let converted_981 = converted_981_dict.into_any().unbind();
+            Ok(converted_981)
         } else {
             Ok(py.None())
         }
@@ -5288,13 +5680,48 @@ impl PyPipeEnrichmentHttpParameters {
     }
 }
 
+struct SharedPipeEnrichmentParameters {
+    input_template: Option<::std::string::String>,
+    http_parameters: Option<Arc<aws_sdk_pipes::types::PipeEnrichmentHttpParameters>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_pipes::types::PipeEnrichmentParameters> for SharedPipeEnrichmentParameters {
+    fn from(value: aws_sdk_pipes::types::PipeEnrichmentParameters) -> Self {
+        Self {
+            input_template: value.input_template,
+            http_parameters: value.http_parameters.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn pipe_enrichment_parameters_shared_to_py(
+    py: Python<'_>,
+    value: &SharedPipeEnrichmentParameters,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.input_template {
+        let converted_988 = (value).as_str().into_py_any(py)?;
+        result.set_item("input_template", converted_988)?;
+    } else {
+        result.set_item("input_template", py.None())?;
+    }
+    if let Some(value) = &value.http_parameters {
+        let converted_989 = pipe_enrichment_http_parameters_to_py(py, value)?;
+        result.set_item("http_parameters", converted_989)?;
+    } else {
+        result.set_item("http_parameters", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "PipeEnrichmentParameters",
     module = "rboto_pipes._native",
     frozen
 )]
 struct PyPipeEnrichmentParameters {
-    inner: aws_sdk_pipes::types::PipeEnrichmentParameters,
+    inner: Arc<SharedPipeEnrichmentParameters>,
 }
 
 #[pymethods]
@@ -5302,8 +5729,8 @@ impl PyPipeEnrichmentParameters {
     #[getter]
     fn input_template(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_template {
-            let converted_932 = (value).as_str().into_py_any(py)?;
-            Ok(converted_932)
+            let converted_986 = (value).as_str().into_py_any(py)?;
+            Ok(converted_986)
         } else {
             Ok(py.None())
         }
@@ -5312,27 +5739,95 @@ impl PyPipeEnrichmentParameters {
     #[getter]
     fn http_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.http_parameters {
-            let converted_933 = Py::new(
+            let converted_987 = Py::new(
                 py,
                 PyPipeEnrichmentHttpParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_933)
+            Ok(converted_987)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        pipe_enrichment_parameters_to_py(py, &self.inner)
+        pipe_enrichment_parameters_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedPipeLogConfiguration {
+    s3_log_destination: Option<Arc<aws_sdk_pipes::types::S3LogDestination>>,
+    firehose_log_destination: Option<Arc<aws_sdk_pipes::types::FirehoseLogDestination>>,
+    cloudwatch_logs_log_destination:
+        Option<Arc<aws_sdk_pipes::types::CloudwatchLogsLogDestination>>,
+    level: Option<aws_sdk_pipes::types::LogLevel>,
+    include_execution_data:
+        Option<::std::vec::Vec<aws_sdk_pipes::types::IncludeExecutionDataOption>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_pipes::types::PipeLogConfiguration> for SharedPipeLogConfiguration {
+    fn from(value: aws_sdk_pipes::types::PipeLogConfiguration) -> Self {
+        Self {
+            s3_log_destination: value.s3_log_destination.map(|item| Arc::new(item)),
+            firehose_log_destination: value.firehose_log_destination.map(|item| Arc::new(item)),
+            cloudwatch_logs_log_destination: value
+                .cloudwatch_logs_log_destination
+                .map(|item| Arc::new(item)),
+            level: value.level,
+            include_execution_data: value.include_execution_data,
+        }
+    }
+}
+
+fn pipe_log_configuration_shared_to_py(
+    py: Python<'_>,
+    value: &SharedPipeLogConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.s3_log_destination {
+        let converted_997 = s3_log_destination_to_py(py, value)?;
+        result.set_item("s3_log_destination", converted_997)?;
+    } else {
+        result.set_item("s3_log_destination", py.None())?;
+    }
+    if let Some(value) = &value.firehose_log_destination {
+        let converted_998 = firehose_log_destination_to_py(py, value)?;
+        result.set_item("firehose_log_destination", converted_998)?;
+    } else {
+        result.set_item("firehose_log_destination", py.None())?;
+    }
+    if let Some(value) = &value.cloudwatch_logs_log_destination {
+        let converted_999 = cloudwatch_logs_log_destination_to_py(py, value)?;
+        result.set_item("cloudwatch_logs_log_destination", converted_999)?;
+    } else {
+        result.set_item("cloudwatch_logs_log_destination", py.None())?;
+    }
+    if let Some(value) = &value.level {
+        let converted_1000 = (value).as_str().into_py_any(py)?;
+        result.set_item("level", converted_1000)?;
+    } else {
+        result.set_item("level", py.None())?;
+    }
+    if let Some(value) = &value.include_execution_data {
+        let converted_1001_list = PyList::empty(py);
+        for item_1002 in value {
+            let converted_item_1003 = (item_1002).as_str().into_py_any(py)?;
+            converted_1001_list.append(converted_item_1003)?;
+        }
+        let converted_1001 = converted_1001_list.into_any().unbind();
+        result.set_item("include_execution_data", converted_1001)?;
+    } else {
+        result.set_item("include_execution_data", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(name = "PipeLogConfiguration", module = "rboto_pipes._native", frozen)]
 struct PyPipeLogConfiguration {
-    inner: aws_sdk_pipes::types::PipeLogConfiguration,
+    inner: Arc<SharedPipeLogConfiguration>,
 }
 
 #[pymethods]
@@ -5340,14 +5835,14 @@ impl PyPipeLogConfiguration {
     #[getter]
     fn s3_log_destination(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.s3_log_destination {
-            let converted_934 = Py::new(
+            let converted_990 = Py::new(
                 py,
                 PyS3LogDestination {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_934)
+            Ok(converted_990)
         } else {
             Ok(py.None())
         }
@@ -5356,14 +5851,14 @@ impl PyPipeLogConfiguration {
     #[getter]
     fn firehose_log_destination(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.firehose_log_destination {
-            let converted_935 = Py::new(
+            let converted_991 = Py::new(
                 py,
                 PyFirehoseLogDestination {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_935)
+            Ok(converted_991)
         } else {
             Ok(py.None())
         }
@@ -5372,14 +5867,14 @@ impl PyPipeLogConfiguration {
     #[getter]
     fn cloudwatch_logs_log_destination(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cloudwatch_logs_log_destination {
-            let converted_936 = Py::new(
+            let converted_992 = Py::new(
                 py,
                 PyCloudwatchLogsLogDestination {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_936)
+            Ok(converted_992)
         } else {
             Ok(py.None())
         }
@@ -5388,8 +5883,8 @@ impl PyPipeLogConfiguration {
     #[getter]
     fn level(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.level {
-            let converted_937 = (value).as_str().into_py_any(py)?;
-            Ok(converted_937)
+            let converted_993 = (value).as_str().into_py_any(py)?;
+            Ok(converted_993)
         } else {
             Ok(py.None())
         }
@@ -5398,20 +5893,20 @@ impl PyPipeLogConfiguration {
     #[getter]
     fn include_execution_data(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.include_execution_data {
-            let converted_938_list = PyList::empty(py);
-            for item_939 in value {
-                let converted_item_940 = (item_939).as_str().into_py_any(py)?;
-                converted_938_list.append(converted_item_940)?;
+            let converted_994_list = PyList::empty(py);
+            for item_995 in value {
+                let converted_item_996 = (item_995).as_str().into_py_any(py)?;
+                converted_994_list.append(converted_item_996)?;
             }
-            let converted_938 = converted_938_list.into_any().unbind();
-            Ok(converted_938)
+            let converted_994 = converted_994_list.into_any().unbind();
+            Ok(converted_994)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        pipe_log_configuration_to_py(py, &self.inner)
+        pipe_log_configuration_shared_to_py(py, &self.inner)
     }
 }
 
@@ -5421,7 +5916,7 @@ impl PyPipeLogConfiguration {
     frozen
 )]
 struct PyPipeSourceActiveMqBrokerParameters {
-    inner: aws_sdk_pipes::types::PipeSourceActiveMqBrokerParameters,
+    inner: Arc<aws_sdk_pipes::types::PipeSourceActiveMqBrokerParameters>,
 }
 
 #[pymethods]
@@ -5429,8 +5924,8 @@ impl PyPipeSourceActiveMqBrokerParameters {
     #[getter]
     fn credentials(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.credentials {
-            let converted_941 = mq_broker_access_credentials_to_py(py, value)?;
-            Ok(converted_941)
+            let converted_1004 = mq_broker_access_credentials_to_py(py, value)?;
+            Ok(converted_1004)
         } else {
             Ok(py.None())
         }
@@ -5438,15 +5933,15 @@ impl PyPipeSourceActiveMqBrokerParameters {
 
     #[getter]
     fn queue_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_942 = (&self.inner.queue_name).as_str().into_py_any(py)?;
-        Ok(converted_942)
+        let converted_1005 = (&self.inner.queue_name).as_str().into_py_any(py)?;
+        Ok(converted_1005)
     }
 
     #[getter]
     fn batch_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.batch_size {
-            let converted_943 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_943)
+            let converted_1006 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1006)
         } else {
             Ok(py.None())
         }
@@ -5455,8 +5950,8 @@ impl PyPipeSourceActiveMqBrokerParameters {
     #[getter]
     fn maximum_batching_window_in_seconds(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.maximum_batching_window_in_seconds {
-            let converted_944 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_944)
+            let converted_1007 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1007)
         } else {
             Ok(py.None())
         }
@@ -5467,13 +5962,94 @@ impl PyPipeSourceActiveMqBrokerParameters {
     }
 }
 
+struct SharedPipeSourceDynamoDbStreamParameters {
+    batch_size: Option<i32>,
+    dead_letter_config: Option<Arc<aws_sdk_pipes::types::DeadLetterConfig>>,
+    on_partial_batch_item_failure: Option<aws_sdk_pipes::types::OnPartialBatchItemFailureStreams>,
+    maximum_batching_window_in_seconds: Option<i32>,
+    maximum_record_age_in_seconds: Option<i32>,
+    maximum_retry_attempts: Option<i32>,
+    parallelization_factor: Option<i32>,
+    starting_position: aws_sdk_pipes::types::DynamoDbStreamStartPosition,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_pipes::types::PipeSourceDynamoDbStreamParameters>
+    for SharedPipeSourceDynamoDbStreamParameters
+{
+    fn from(value: aws_sdk_pipes::types::PipeSourceDynamoDbStreamParameters) -> Self {
+        Self {
+            batch_size: value.batch_size,
+            dead_letter_config: value.dead_letter_config.map(|item| Arc::new(item)),
+            on_partial_batch_item_failure: value.on_partial_batch_item_failure,
+            maximum_batching_window_in_seconds: value.maximum_batching_window_in_seconds,
+            maximum_record_age_in_seconds: value.maximum_record_age_in_seconds,
+            maximum_retry_attempts: value.maximum_retry_attempts,
+            parallelization_factor: value.parallelization_factor,
+            starting_position: value.starting_position,
+        }
+    }
+}
+
+fn pipe_source_dynamo_db_stream_parameters_shared_to_py(
+    py: Python<'_>,
+    value: &SharedPipeSourceDynamoDbStreamParameters,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.batch_size {
+        let converted_1016 = (value).to_owned().into_py_any(py)?;
+        result.set_item("batch_size", converted_1016)?;
+    } else {
+        result.set_item("batch_size", py.None())?;
+    }
+    if let Some(value) = &value.dead_letter_config {
+        let converted_1017 = dead_letter_config_to_py(py, value)?;
+        result.set_item("dead_letter_config", converted_1017)?;
+    } else {
+        result.set_item("dead_letter_config", py.None())?;
+    }
+    if let Some(value) = &value.on_partial_batch_item_failure {
+        let converted_1018 = (value).as_str().into_py_any(py)?;
+        result.set_item("on_partial_batch_item_failure", converted_1018)?;
+    } else {
+        result.set_item("on_partial_batch_item_failure", py.None())?;
+    }
+    if let Some(value) = &value.maximum_batching_window_in_seconds {
+        let converted_1019 = (value).to_owned().into_py_any(py)?;
+        result.set_item("maximum_batching_window_in_seconds", converted_1019)?;
+    } else {
+        result.set_item("maximum_batching_window_in_seconds", py.None())?;
+    }
+    if let Some(value) = &value.maximum_record_age_in_seconds {
+        let converted_1020 = (value).to_owned().into_py_any(py)?;
+        result.set_item("maximum_record_age_in_seconds", converted_1020)?;
+    } else {
+        result.set_item("maximum_record_age_in_seconds", py.None())?;
+    }
+    if let Some(value) = &value.maximum_retry_attempts {
+        let converted_1021 = (value).to_owned().into_py_any(py)?;
+        result.set_item("maximum_retry_attempts", converted_1021)?;
+    } else {
+        result.set_item("maximum_retry_attempts", py.None())?;
+    }
+    if let Some(value) = &value.parallelization_factor {
+        let converted_1022 = (value).to_owned().into_py_any(py)?;
+        result.set_item("parallelization_factor", converted_1022)?;
+    } else {
+        result.set_item("parallelization_factor", py.None())?;
+    }
+    let converted_1023 = (&value.starting_position).as_str().into_py_any(py)?;
+    result.set_item("starting_position", converted_1023)?;
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "PipeSourceDynamoDbStreamParameters",
     module = "rboto_pipes._native",
     frozen
 )]
 struct PyPipeSourceDynamoDbStreamParameters {
-    inner: aws_sdk_pipes::types::PipeSourceDynamoDbStreamParameters,
+    inner: Arc<SharedPipeSourceDynamoDbStreamParameters>,
 }
 
 #[pymethods]
@@ -5481,8 +6057,8 @@ impl PyPipeSourceDynamoDbStreamParameters {
     #[getter]
     fn batch_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.batch_size {
-            let converted_945 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_945)
+            let converted_1008 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1008)
         } else {
             Ok(py.None())
         }
@@ -5491,14 +6067,14 @@ impl PyPipeSourceDynamoDbStreamParameters {
     #[getter]
     fn dead_letter_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dead_letter_config {
-            let converted_946 = Py::new(
+            let converted_1009 = Py::new(
                 py,
                 PyDeadLetterConfig {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_946)
+            Ok(converted_1009)
         } else {
             Ok(py.None())
         }
@@ -5507,8 +6083,8 @@ impl PyPipeSourceDynamoDbStreamParameters {
     #[getter]
     fn on_partial_batch_item_failure(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.on_partial_batch_item_failure {
-            let converted_947 = (value).as_str().into_py_any(py)?;
-            Ok(converted_947)
+            let converted_1010 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1010)
         } else {
             Ok(py.None())
         }
@@ -5517,8 +6093,8 @@ impl PyPipeSourceDynamoDbStreamParameters {
     #[getter]
     fn maximum_batching_window_in_seconds(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.maximum_batching_window_in_seconds {
-            let converted_948 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_948)
+            let converted_1011 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1011)
         } else {
             Ok(py.None())
         }
@@ -5527,8 +6103,8 @@ impl PyPipeSourceDynamoDbStreamParameters {
     #[getter]
     fn maximum_record_age_in_seconds(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.maximum_record_age_in_seconds {
-            let converted_949 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_949)
+            let converted_1012 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1012)
         } else {
             Ok(py.None())
         }
@@ -5537,8 +6113,8 @@ impl PyPipeSourceDynamoDbStreamParameters {
     #[getter]
     fn maximum_retry_attempts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.maximum_retry_attempts {
-            let converted_950 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_950)
+            let converted_1013 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1013)
         } else {
             Ok(py.None())
         }
@@ -5547,8 +6123,8 @@ impl PyPipeSourceDynamoDbStreamParameters {
     #[getter]
     fn parallelization_factor(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.parallelization_factor {
-            let converted_951 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_951)
+            let converted_1014 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1014)
         } else {
             Ok(py.None())
         }
@@ -5556,13 +6132,102 @@ impl PyPipeSourceDynamoDbStreamParameters {
 
     #[getter]
     fn starting_position(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_952 = (&self.inner.starting_position).as_str().into_py_any(py)?;
-        Ok(converted_952)
+        let converted_1015 = (&self.inner.starting_position).as_str().into_py_any(py)?;
+        Ok(converted_1015)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        pipe_source_dynamo_db_stream_parameters_to_py(py, &self.inner)
+        pipe_source_dynamo_db_stream_parameters_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedPipeSourceKinesisStreamParameters {
+    batch_size: Option<i32>,
+    dead_letter_config: Option<Arc<aws_sdk_pipes::types::DeadLetterConfig>>,
+    on_partial_batch_item_failure: Option<aws_sdk_pipes::types::OnPartialBatchItemFailureStreams>,
+    maximum_batching_window_in_seconds: Option<i32>,
+    maximum_record_age_in_seconds: Option<i32>,
+    maximum_retry_attempts: Option<i32>,
+    parallelization_factor: Option<i32>,
+    starting_position: aws_sdk_pipes::types::KinesisStreamStartPosition,
+    starting_position_timestamp: Option<::aws_smithy_types::DateTime>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_pipes::types::PipeSourceKinesisStreamParameters>
+    for SharedPipeSourceKinesisStreamParameters
+{
+    fn from(value: aws_sdk_pipes::types::PipeSourceKinesisStreamParameters) -> Self {
+        Self {
+            batch_size: value.batch_size,
+            dead_letter_config: value.dead_letter_config.map(|item| Arc::new(item)),
+            on_partial_batch_item_failure: value.on_partial_batch_item_failure,
+            maximum_batching_window_in_seconds: value.maximum_batching_window_in_seconds,
+            maximum_record_age_in_seconds: value.maximum_record_age_in_seconds,
+            maximum_retry_attempts: value.maximum_retry_attempts,
+            parallelization_factor: value.parallelization_factor,
+            starting_position: value.starting_position,
+            starting_position_timestamp: value.starting_position_timestamp,
+        }
+    }
+}
+
+fn pipe_source_kinesis_stream_parameters_shared_to_py(
+    py: Python<'_>,
+    value: &SharedPipeSourceKinesisStreamParameters,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.batch_size {
+        let converted_1033 = (value).to_owned().into_py_any(py)?;
+        result.set_item("batch_size", converted_1033)?;
+    } else {
+        result.set_item("batch_size", py.None())?;
+    }
+    if let Some(value) = &value.dead_letter_config {
+        let converted_1034 = dead_letter_config_to_py(py, value)?;
+        result.set_item("dead_letter_config", converted_1034)?;
+    } else {
+        result.set_item("dead_letter_config", py.None())?;
+    }
+    if let Some(value) = &value.on_partial_batch_item_failure {
+        let converted_1035 = (value).as_str().into_py_any(py)?;
+        result.set_item("on_partial_batch_item_failure", converted_1035)?;
+    } else {
+        result.set_item("on_partial_batch_item_failure", py.None())?;
+    }
+    if let Some(value) = &value.maximum_batching_window_in_seconds {
+        let converted_1036 = (value).to_owned().into_py_any(py)?;
+        result.set_item("maximum_batching_window_in_seconds", converted_1036)?;
+    } else {
+        result.set_item("maximum_batching_window_in_seconds", py.None())?;
+    }
+    if let Some(value) = &value.maximum_record_age_in_seconds {
+        let converted_1037 = (value).to_owned().into_py_any(py)?;
+        result.set_item("maximum_record_age_in_seconds", converted_1037)?;
+    } else {
+        result.set_item("maximum_record_age_in_seconds", py.None())?;
+    }
+    if let Some(value) = &value.maximum_retry_attempts {
+        let converted_1038 = (value).to_owned().into_py_any(py)?;
+        result.set_item("maximum_retry_attempts", converted_1038)?;
+    } else {
+        result.set_item("maximum_retry_attempts", py.None())?;
+    }
+    if let Some(value) = &value.parallelization_factor {
+        let converted_1039 = (value).to_owned().into_py_any(py)?;
+        result.set_item("parallelization_factor", converted_1039)?;
+    } else {
+        result.set_item("parallelization_factor", py.None())?;
+    }
+    let converted_1040 = (&value.starting_position).as_str().into_py_any(py)?;
+    result.set_item("starting_position", converted_1040)?;
+    if let Some(value) = &value.starting_position_timestamp {
+        let converted_1041 = (value).to_string().into_py_any(py)?;
+        result.set_item("starting_position_timestamp", converted_1041)?;
+    } else {
+        result.set_item("starting_position_timestamp", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -5571,7 +6236,7 @@ impl PyPipeSourceDynamoDbStreamParameters {
     frozen
 )]
 struct PyPipeSourceKinesisStreamParameters {
-    inner: aws_sdk_pipes::types::PipeSourceKinesisStreamParameters,
+    inner: Arc<SharedPipeSourceKinesisStreamParameters>,
 }
 
 #[pymethods]
@@ -5579,8 +6244,8 @@ impl PyPipeSourceKinesisStreamParameters {
     #[getter]
     fn batch_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.batch_size {
-            let converted_953 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_953)
+            let converted_1024 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1024)
         } else {
             Ok(py.None())
         }
@@ -5589,14 +6254,14 @@ impl PyPipeSourceKinesisStreamParameters {
     #[getter]
     fn dead_letter_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dead_letter_config {
-            let converted_954 = Py::new(
+            let converted_1025 = Py::new(
                 py,
                 PyDeadLetterConfig {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_954)
+            Ok(converted_1025)
         } else {
             Ok(py.None())
         }
@@ -5605,8 +6270,8 @@ impl PyPipeSourceKinesisStreamParameters {
     #[getter]
     fn on_partial_batch_item_failure(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.on_partial_batch_item_failure {
-            let converted_955 = (value).as_str().into_py_any(py)?;
-            Ok(converted_955)
+            let converted_1026 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1026)
         } else {
             Ok(py.None())
         }
@@ -5615,8 +6280,8 @@ impl PyPipeSourceKinesisStreamParameters {
     #[getter]
     fn maximum_batching_window_in_seconds(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.maximum_batching_window_in_seconds {
-            let converted_956 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_956)
+            let converted_1027 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1027)
         } else {
             Ok(py.None())
         }
@@ -5625,8 +6290,8 @@ impl PyPipeSourceKinesisStreamParameters {
     #[getter]
     fn maximum_record_age_in_seconds(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.maximum_record_age_in_seconds {
-            let converted_957 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_957)
+            let converted_1028 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1028)
         } else {
             Ok(py.None())
         }
@@ -5635,8 +6300,8 @@ impl PyPipeSourceKinesisStreamParameters {
     #[getter]
     fn maximum_retry_attempts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.maximum_retry_attempts {
-            let converted_958 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_958)
+            let converted_1029 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1029)
         } else {
             Ok(py.None())
         }
@@ -5645,8 +6310,8 @@ impl PyPipeSourceKinesisStreamParameters {
     #[getter]
     fn parallelization_factor(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.parallelization_factor {
-            let converted_959 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_959)
+            let converted_1030 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1030)
         } else {
             Ok(py.None())
         }
@@ -5654,22 +6319,22 @@ impl PyPipeSourceKinesisStreamParameters {
 
     #[getter]
     fn starting_position(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_960 = (&self.inner.starting_position).as_str().into_py_any(py)?;
-        Ok(converted_960)
+        let converted_1031 = (&self.inner.starting_position).as_str().into_py_any(py)?;
+        Ok(converted_1031)
     }
 
     #[getter]
     fn starting_position_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.starting_position_timestamp {
-            let converted_961 = (value).to_string().into_py_any(py)?;
-            Ok(converted_961)
+            let converted_1032 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1032)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        pipe_source_kinesis_stream_parameters_to_py(py, &self.inner)
+        pipe_source_kinesis_stream_parameters_shared_to_py(py, &self.inner)
     }
 }
 
@@ -5679,22 +6344,22 @@ impl PyPipeSourceKinesisStreamParameters {
     frozen
 )]
 struct PyPipeSourceManagedStreamingKafkaParameters {
-    inner: aws_sdk_pipes::types::PipeSourceManagedStreamingKafkaParameters,
+    inner: Arc<aws_sdk_pipes::types::PipeSourceManagedStreamingKafkaParameters>,
 }
 
 #[pymethods]
 impl PyPipeSourceManagedStreamingKafkaParameters {
     #[getter]
     fn topic_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_962 = (&self.inner.topic_name).as_str().into_py_any(py)?;
-        Ok(converted_962)
+        let converted_1042 = (&self.inner.topic_name).as_str().into_py_any(py)?;
+        Ok(converted_1042)
     }
 
     #[getter]
     fn starting_position(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.starting_position {
-            let converted_963 = (value).as_str().into_py_any(py)?;
-            Ok(converted_963)
+            let converted_1043 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1043)
         } else {
             Ok(py.None())
         }
@@ -5703,8 +6368,8 @@ impl PyPipeSourceManagedStreamingKafkaParameters {
     #[getter]
     fn batch_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.batch_size {
-            let converted_964 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_964)
+            let converted_1044 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1044)
         } else {
             Ok(py.None())
         }
@@ -5713,8 +6378,8 @@ impl PyPipeSourceManagedStreamingKafkaParameters {
     #[getter]
     fn maximum_batching_window_in_seconds(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.maximum_batching_window_in_seconds {
-            let converted_965 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_965)
+            let converted_1045 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1045)
         } else {
             Ok(py.None())
         }
@@ -5723,8 +6388,8 @@ impl PyPipeSourceManagedStreamingKafkaParameters {
     #[getter]
     fn consumer_group_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.consumer_group_id {
-            let converted_966 = (value).as_str().into_py_any(py)?;
-            Ok(converted_966)
+            let converted_1046 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1046)
         } else {
             Ok(py.None())
         }
@@ -5733,8 +6398,8 @@ impl PyPipeSourceManagedStreamingKafkaParameters {
     #[getter]
     fn credentials(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.credentials {
-            let converted_967 = msk_access_credentials_to_py(py, value)?;
-            Ok(converted_967)
+            let converted_1047 = msk_access_credentials_to_py(py, value)?;
+            Ok(converted_1047)
         } else {
             Ok(py.None())
         }
@@ -5745,9 +6410,109 @@ impl PyPipeSourceManagedStreamingKafkaParameters {
     }
 }
 
+struct SharedPipeSourceParameters {
+    filter_criteria: Option<Arc<SharedFilterCriteria>>,
+    kinesis_stream_parameters: Option<Arc<SharedPipeSourceKinesisStreamParameters>>,
+    dynamo_db_stream_parameters: Option<Arc<SharedPipeSourceDynamoDbStreamParameters>>,
+    sqs_queue_parameters: Option<Arc<aws_sdk_pipes::types::PipeSourceSqsQueueParameters>>,
+    active_mq_broker_parameters:
+        Option<Arc<aws_sdk_pipes::types::PipeSourceActiveMqBrokerParameters>>,
+    rabbit_mq_broker_parameters:
+        Option<Arc<aws_sdk_pipes::types::PipeSourceRabbitMqBrokerParameters>>,
+    managed_streaming_kafka_parameters:
+        Option<Arc<aws_sdk_pipes::types::PipeSourceManagedStreamingKafkaParameters>>,
+    self_managed_kafka_parameters: Option<Arc<SharedPipeSourceSelfManagedKafkaParameters>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_pipes::types::PipeSourceParameters> for SharedPipeSourceParameters {
+    fn from(value: aws_sdk_pipes::types::PipeSourceParameters) -> Self {
+        Self {
+            filter_criteria: value
+                .filter_criteria
+                .map(|item| Arc::new(SharedFilterCriteria::from(item))),
+            kinesis_stream_parameters: value
+                .kinesis_stream_parameters
+                .map(|item| Arc::new(SharedPipeSourceKinesisStreamParameters::from(item))),
+            dynamo_db_stream_parameters: value
+                .dynamo_db_stream_parameters
+                .map(|item| Arc::new(SharedPipeSourceDynamoDbStreamParameters::from(item))),
+            sqs_queue_parameters: value.sqs_queue_parameters.map(|item| Arc::new(item)),
+            active_mq_broker_parameters: value
+                .active_mq_broker_parameters
+                .map(|item| Arc::new(item)),
+            rabbit_mq_broker_parameters: value
+                .rabbit_mq_broker_parameters
+                .map(|item| Arc::new(item)),
+            managed_streaming_kafka_parameters: value
+                .managed_streaming_kafka_parameters
+                .map(|item| Arc::new(item)),
+            self_managed_kafka_parameters: value
+                .self_managed_kafka_parameters
+                .map(|item| Arc::new(SharedPipeSourceSelfManagedKafkaParameters::from(item))),
+        }
+    }
+}
+
+fn pipe_source_parameters_shared_to_py(
+    py: Python<'_>,
+    value: &SharedPipeSourceParameters,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.filter_criteria {
+        let converted_1056 = filter_criteria_shared_to_py(py, value)?;
+        result.set_item("filter_criteria", converted_1056)?;
+    } else {
+        result.set_item("filter_criteria", py.None())?;
+    }
+    if let Some(value) = &value.kinesis_stream_parameters {
+        let converted_1057 = pipe_source_kinesis_stream_parameters_shared_to_py(py, value)?;
+        result.set_item("kinesis_stream_parameters", converted_1057)?;
+    } else {
+        result.set_item("kinesis_stream_parameters", py.None())?;
+    }
+    if let Some(value) = &value.dynamo_db_stream_parameters {
+        let converted_1058 = pipe_source_dynamo_db_stream_parameters_shared_to_py(py, value)?;
+        result.set_item("dynamo_db_stream_parameters", converted_1058)?;
+    } else {
+        result.set_item("dynamo_db_stream_parameters", py.None())?;
+    }
+    if let Some(value) = &value.sqs_queue_parameters {
+        let converted_1059 = pipe_source_sqs_queue_parameters_to_py(py, value)?;
+        result.set_item("sqs_queue_parameters", converted_1059)?;
+    } else {
+        result.set_item("sqs_queue_parameters", py.None())?;
+    }
+    if let Some(value) = &value.active_mq_broker_parameters {
+        let converted_1060 = pipe_source_active_mq_broker_parameters_to_py(py, value)?;
+        result.set_item("active_mq_broker_parameters", converted_1060)?;
+    } else {
+        result.set_item("active_mq_broker_parameters", py.None())?;
+    }
+    if let Some(value) = &value.rabbit_mq_broker_parameters {
+        let converted_1061 = pipe_source_rabbit_mq_broker_parameters_to_py(py, value)?;
+        result.set_item("rabbit_mq_broker_parameters", converted_1061)?;
+    } else {
+        result.set_item("rabbit_mq_broker_parameters", py.None())?;
+    }
+    if let Some(value) = &value.managed_streaming_kafka_parameters {
+        let converted_1062 = pipe_source_managed_streaming_kafka_parameters_to_py(py, value)?;
+        result.set_item("managed_streaming_kafka_parameters", converted_1062)?;
+    } else {
+        result.set_item("managed_streaming_kafka_parameters", py.None())?;
+    }
+    if let Some(value) = &value.self_managed_kafka_parameters {
+        let converted_1063 = pipe_source_self_managed_kafka_parameters_shared_to_py(py, value)?;
+        result.set_item("self_managed_kafka_parameters", converted_1063)?;
+    } else {
+        result.set_item("self_managed_kafka_parameters", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "PipeSourceParameters", module = "rboto_pipes._native", frozen)]
 struct PyPipeSourceParameters {
-    inner: aws_sdk_pipes::types::PipeSourceParameters,
+    inner: Arc<SharedPipeSourceParameters>,
 }
 
 #[pymethods]
@@ -5755,14 +6520,14 @@ impl PyPipeSourceParameters {
     #[getter]
     fn filter_criteria(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.filter_criteria {
-            let converted_968 = Py::new(
+            let converted_1048 = Py::new(
                 py,
                 PyFilterCriteria {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_968)
+            Ok(converted_1048)
         } else {
             Ok(py.None())
         }
@@ -5771,14 +6536,14 @@ impl PyPipeSourceParameters {
     #[getter]
     fn kinesis_stream_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kinesis_stream_parameters {
-            let converted_969 = Py::new(
+            let converted_1049 = Py::new(
                 py,
                 PyPipeSourceKinesisStreamParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_969)
+            Ok(converted_1049)
         } else {
             Ok(py.None())
         }
@@ -5787,14 +6552,14 @@ impl PyPipeSourceParameters {
     #[getter]
     fn dynamo_db_stream_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dynamo_db_stream_parameters {
-            let converted_970 = Py::new(
+            let converted_1050 = Py::new(
                 py,
                 PyPipeSourceDynamoDbStreamParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_970)
+            Ok(converted_1050)
         } else {
             Ok(py.None())
         }
@@ -5803,14 +6568,14 @@ impl PyPipeSourceParameters {
     #[getter]
     fn sqs_queue_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sqs_queue_parameters {
-            let converted_971 = Py::new(
+            let converted_1051 = Py::new(
                 py,
                 PyPipeSourceSqsQueueParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_971)
+            Ok(converted_1051)
         } else {
             Ok(py.None())
         }
@@ -5819,14 +6584,14 @@ impl PyPipeSourceParameters {
     #[getter]
     fn active_mq_broker_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.active_mq_broker_parameters {
-            let converted_972 = Py::new(
+            let converted_1052 = Py::new(
                 py,
                 PyPipeSourceActiveMqBrokerParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_972)
+            Ok(converted_1052)
         } else {
             Ok(py.None())
         }
@@ -5835,14 +6600,14 @@ impl PyPipeSourceParameters {
     #[getter]
     fn rabbit_mq_broker_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.rabbit_mq_broker_parameters {
-            let converted_973 = Py::new(
+            let converted_1053 = Py::new(
                 py,
                 PyPipeSourceRabbitMqBrokerParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_973)
+            Ok(converted_1053)
         } else {
             Ok(py.None())
         }
@@ -5851,14 +6616,14 @@ impl PyPipeSourceParameters {
     #[getter]
     fn managed_streaming_kafka_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.managed_streaming_kafka_parameters {
-            let converted_974 = Py::new(
+            let converted_1054 = Py::new(
                 py,
                 PyPipeSourceManagedStreamingKafkaParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_974)
+            Ok(converted_1054)
         } else {
             Ok(py.None())
         }
@@ -5867,21 +6632,21 @@ impl PyPipeSourceParameters {
     #[getter]
     fn self_managed_kafka_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.self_managed_kafka_parameters {
-            let converted_975 = Py::new(
+            let converted_1055 = Py::new(
                 py,
                 PyPipeSourceSelfManagedKafkaParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_975)
+            Ok(converted_1055)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        pipe_source_parameters_to_py(py, &self.inner)
+        pipe_source_parameters_shared_to_py(py, &self.inner)
     }
 }
 
@@ -5891,7 +6656,7 @@ impl PyPipeSourceParameters {
     frozen
 )]
 struct PyPipeSourceRabbitMqBrokerParameters {
-    inner: aws_sdk_pipes::types::PipeSourceRabbitMqBrokerParameters,
+    inner: Arc<aws_sdk_pipes::types::PipeSourceRabbitMqBrokerParameters>,
 }
 
 #[pymethods]
@@ -5899,8 +6664,8 @@ impl PyPipeSourceRabbitMqBrokerParameters {
     #[getter]
     fn credentials(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.credentials {
-            let converted_976 = mq_broker_access_credentials_to_py(py, value)?;
-            Ok(converted_976)
+            let converted_1064 = mq_broker_access_credentials_to_py(py, value)?;
+            Ok(converted_1064)
         } else {
             Ok(py.None())
         }
@@ -5908,15 +6673,15 @@ impl PyPipeSourceRabbitMqBrokerParameters {
 
     #[getter]
     fn queue_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_977 = (&self.inner.queue_name).as_str().into_py_any(py)?;
-        Ok(converted_977)
+        let converted_1065 = (&self.inner.queue_name).as_str().into_py_any(py)?;
+        Ok(converted_1065)
     }
 
     #[getter]
     fn virtual_host(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.virtual_host {
-            let converted_978 = (value).as_str().into_py_any(py)?;
-            Ok(converted_978)
+            let converted_1066 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1066)
         } else {
             Ok(py.None())
         }
@@ -5925,8 +6690,8 @@ impl PyPipeSourceRabbitMqBrokerParameters {
     #[getter]
     fn batch_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.batch_size {
-            let converted_979 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_979)
+            let converted_1067 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1067)
         } else {
             Ok(py.None())
         }
@@ -5935,8 +6700,8 @@ impl PyPipeSourceRabbitMqBrokerParameters {
     #[getter]
     fn maximum_batching_window_in_seconds(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.maximum_batching_window_in_seconds {
-            let converted_980 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_980)
+            let converted_1068 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1068)
         } else {
             Ok(py.None())
         }
@@ -5947,28 +6712,122 @@ impl PyPipeSourceRabbitMqBrokerParameters {
     }
 }
 
+struct SharedPipeSourceSelfManagedKafkaParameters {
+    topic_name: ::std::string::String,
+    starting_position: Option<aws_sdk_pipes::types::SelfManagedKafkaStartPosition>,
+    additional_bootstrap_servers: Option<::std::vec::Vec<::std::string::String>>,
+    batch_size: Option<i32>,
+    maximum_batching_window_in_seconds: Option<i32>,
+    consumer_group_id: Option<::std::string::String>,
+    credentials: Option<aws_sdk_pipes::types::SelfManagedKafkaAccessConfigurationCredentials>,
+    server_root_ca_certificate: Option<::std::string::String>,
+    vpc: Option<Arc<aws_sdk_pipes::types::SelfManagedKafkaAccessConfigurationVpc>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_pipes::types::PipeSourceSelfManagedKafkaParameters>
+    for SharedPipeSourceSelfManagedKafkaParameters
+{
+    fn from(value: aws_sdk_pipes::types::PipeSourceSelfManagedKafkaParameters) -> Self {
+        Self {
+            topic_name: value.topic_name,
+            starting_position: value.starting_position,
+            additional_bootstrap_servers: value.additional_bootstrap_servers,
+            batch_size: value.batch_size,
+            maximum_batching_window_in_seconds: value.maximum_batching_window_in_seconds,
+            consumer_group_id: value.consumer_group_id,
+            credentials: value.credentials,
+            server_root_ca_certificate: value.server_root_ca_certificate,
+            vpc: value.vpc.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn pipe_source_self_managed_kafka_parameters_shared_to_py(
+    py: Python<'_>,
+    value: &SharedPipeSourceSelfManagedKafkaParameters,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_1080 = (&value.topic_name).as_str().into_py_any(py)?;
+    result.set_item("topic_name", converted_1080)?;
+    if let Some(value) = &value.starting_position {
+        let converted_1081 = (value).as_str().into_py_any(py)?;
+        result.set_item("starting_position", converted_1081)?;
+    } else {
+        result.set_item("starting_position", py.None())?;
+    }
+    if let Some(value) = &value.additional_bootstrap_servers {
+        let converted_1082_list = PyList::empty(py);
+        for item_1083 in value {
+            let converted_item_1084 = (item_1083).as_str().into_py_any(py)?;
+            converted_1082_list.append(converted_item_1084)?;
+        }
+        let converted_1082 = converted_1082_list.into_any().unbind();
+        result.set_item("additional_bootstrap_servers", converted_1082)?;
+    } else {
+        result.set_item("additional_bootstrap_servers", py.None())?;
+    }
+    if let Some(value) = &value.batch_size {
+        let converted_1085 = (value).to_owned().into_py_any(py)?;
+        result.set_item("batch_size", converted_1085)?;
+    } else {
+        result.set_item("batch_size", py.None())?;
+    }
+    if let Some(value) = &value.maximum_batching_window_in_seconds {
+        let converted_1086 = (value).to_owned().into_py_any(py)?;
+        result.set_item("maximum_batching_window_in_seconds", converted_1086)?;
+    } else {
+        result.set_item("maximum_batching_window_in_seconds", py.None())?;
+    }
+    if let Some(value) = &value.consumer_group_id {
+        let converted_1087 = (value).as_str().into_py_any(py)?;
+        result.set_item("consumer_group_id", converted_1087)?;
+    } else {
+        result.set_item("consumer_group_id", py.None())?;
+    }
+    if let Some(value) = &value.credentials {
+        let converted_1088 = self_managed_kafka_access_configuration_credentials_to_py(py, value)?;
+        result.set_item("credentials", converted_1088)?;
+    } else {
+        result.set_item("credentials", py.None())?;
+    }
+    if let Some(value) = &value.server_root_ca_certificate {
+        let converted_1089 = (value).as_str().into_py_any(py)?;
+        result.set_item("server_root_ca_certificate", converted_1089)?;
+    } else {
+        result.set_item("server_root_ca_certificate", py.None())?;
+    }
+    if let Some(value) = &value.vpc {
+        let converted_1090 = self_managed_kafka_access_configuration_vpc_to_py(py, value)?;
+        result.set_item("vpc", converted_1090)?;
+    } else {
+        result.set_item("vpc", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "PipeSourceSelfManagedKafkaParameters",
     module = "rboto_pipes._native",
     frozen
 )]
 struct PyPipeSourceSelfManagedKafkaParameters {
-    inner: aws_sdk_pipes::types::PipeSourceSelfManagedKafkaParameters,
+    inner: Arc<SharedPipeSourceSelfManagedKafkaParameters>,
 }
 
 #[pymethods]
 impl PyPipeSourceSelfManagedKafkaParameters {
     #[getter]
     fn topic_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_981 = (&self.inner.topic_name).as_str().into_py_any(py)?;
-        Ok(converted_981)
+        let converted_1069 = (&self.inner.topic_name).as_str().into_py_any(py)?;
+        Ok(converted_1069)
     }
 
     #[getter]
     fn starting_position(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.starting_position {
-            let converted_982 = (value).as_str().into_py_any(py)?;
-            Ok(converted_982)
+            let converted_1070 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1070)
         } else {
             Ok(py.None())
         }
@@ -5977,13 +6836,13 @@ impl PyPipeSourceSelfManagedKafkaParameters {
     #[getter]
     fn additional_bootstrap_servers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.additional_bootstrap_servers {
-            let converted_983_list = PyList::empty(py);
-            for item_984 in value {
-                let converted_item_985 = (item_984).as_str().into_py_any(py)?;
-                converted_983_list.append(converted_item_985)?;
+            let converted_1071_list = PyList::empty(py);
+            for item_1072 in value {
+                let converted_item_1073 = (item_1072).as_str().into_py_any(py)?;
+                converted_1071_list.append(converted_item_1073)?;
             }
-            let converted_983 = converted_983_list.into_any().unbind();
-            Ok(converted_983)
+            let converted_1071 = converted_1071_list.into_any().unbind();
+            Ok(converted_1071)
         } else {
             Ok(py.None())
         }
@@ -5992,8 +6851,8 @@ impl PyPipeSourceSelfManagedKafkaParameters {
     #[getter]
     fn batch_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.batch_size {
-            let converted_986 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_986)
+            let converted_1074 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1074)
         } else {
             Ok(py.None())
         }
@@ -6002,8 +6861,8 @@ impl PyPipeSourceSelfManagedKafkaParameters {
     #[getter]
     fn maximum_batching_window_in_seconds(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.maximum_batching_window_in_seconds {
-            let converted_987 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_987)
+            let converted_1075 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1075)
         } else {
             Ok(py.None())
         }
@@ -6012,8 +6871,8 @@ impl PyPipeSourceSelfManagedKafkaParameters {
     #[getter]
     fn consumer_group_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.consumer_group_id {
-            let converted_988 = (value).as_str().into_py_any(py)?;
-            Ok(converted_988)
+            let converted_1076 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1076)
         } else {
             Ok(py.None())
         }
@@ -6022,9 +6881,9 @@ impl PyPipeSourceSelfManagedKafkaParameters {
     #[getter]
     fn credentials(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.credentials {
-            let converted_989 =
+            let converted_1077 =
                 self_managed_kafka_access_configuration_credentials_to_py(py, value)?;
-            Ok(converted_989)
+            Ok(converted_1077)
         } else {
             Ok(py.None())
         }
@@ -6033,8 +6892,8 @@ impl PyPipeSourceSelfManagedKafkaParameters {
     #[getter]
     fn server_root_ca_certificate(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.server_root_ca_certificate {
-            let converted_990 = (value).as_str().into_py_any(py)?;
-            Ok(converted_990)
+            let converted_1078 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1078)
         } else {
             Ok(py.None())
         }
@@ -6043,21 +6902,21 @@ impl PyPipeSourceSelfManagedKafkaParameters {
     #[getter]
     fn vpc(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.vpc {
-            let converted_991 = Py::new(
+            let converted_1079 = Py::new(
                 py,
                 PySelfManagedKafkaAccessConfigurationVpc {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_991)
+            Ok(converted_1079)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        pipe_source_self_managed_kafka_parameters_to_py(py, &self.inner)
+        pipe_source_self_managed_kafka_parameters_shared_to_py(py, &self.inner)
     }
 }
 
@@ -6067,7 +6926,7 @@ impl PyPipeSourceSelfManagedKafkaParameters {
     frozen
 )]
 struct PyPipeSourceSqsQueueParameters {
-    inner: aws_sdk_pipes::types::PipeSourceSqsQueueParameters,
+    inner: Arc<aws_sdk_pipes::types::PipeSourceSqsQueueParameters>,
 }
 
 #[pymethods]
@@ -6075,8 +6934,8 @@ impl PyPipeSourceSqsQueueParameters {
     #[getter]
     fn batch_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.batch_size {
-            let converted_992 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_992)
+            let converted_1091 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1091)
         } else {
             Ok(py.None())
         }
@@ -6085,8 +6944,8 @@ impl PyPipeSourceSqsQueueParameters {
     #[getter]
     fn maximum_batching_window_in_seconds(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.maximum_batching_window_in_seconds {
-            let converted_993 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_993)
+            let converted_1092 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1092)
         } else {
             Ok(py.None())
         }
@@ -6097,40 +6956,127 @@ impl PyPipeSourceSqsQueueParameters {
     }
 }
 
+struct SharedPipeTargetBatchJobParameters {
+    job_definition: ::std::string::String,
+    job_name: ::std::string::String,
+    array_properties: Option<Arc<aws_sdk_pipes::types::BatchArrayProperties>>,
+    retry_strategy: Option<Arc<aws_sdk_pipes::types::BatchRetryStrategy>>,
+    container_overrides: Option<Arc<SharedBatchContainerOverrides>>,
+    depends_on: Option<::std::vec::Vec<Arc<aws_sdk_pipes::types::BatchJobDependency>>>,
+    parameters: Option<::std::collections::HashMap<::std::string::String, ::std::string::String>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_pipes::types::PipeTargetBatchJobParameters>
+    for SharedPipeTargetBatchJobParameters
+{
+    fn from(value: aws_sdk_pipes::types::PipeTargetBatchJobParameters) -> Self {
+        Self {
+            job_definition: value.job_definition,
+            job_name: value.job_name,
+            array_properties: value.array_properties.map(|item| Arc::new(item)),
+            retry_strategy: value.retry_strategy.map(|item| Arc::new(item)),
+            container_overrides: value
+                .container_overrides
+                .map(|item| Arc::new(SharedBatchContainerOverrides::from(item))),
+            depends_on: value.depends_on.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_1106| Arc::new(owned_1106))
+                    .collect()
+            }),
+            parameters: value.parameters,
+        }
+    }
+}
+
+fn pipe_target_batch_job_parameters_shared_to_py(
+    py: Python<'_>,
+    value: &SharedPipeTargetBatchJobParameters,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_1107 = (&value.job_definition).as_str().into_py_any(py)?;
+    result.set_item("job_definition", converted_1107)?;
+    let converted_1108 = (&value.job_name).as_str().into_py_any(py)?;
+    result.set_item("job_name", converted_1108)?;
+    if let Some(value) = &value.array_properties {
+        let converted_1109 = batch_array_properties_to_py(py, value)?;
+        result.set_item("array_properties", converted_1109)?;
+    } else {
+        result.set_item("array_properties", py.None())?;
+    }
+    if let Some(value) = &value.retry_strategy {
+        let converted_1110 = batch_retry_strategy_to_py(py, value)?;
+        result.set_item("retry_strategy", converted_1110)?;
+    } else {
+        result.set_item("retry_strategy", py.None())?;
+    }
+    if let Some(value) = &value.container_overrides {
+        let converted_1111 = batch_container_overrides_shared_to_py(py, value)?;
+        result.set_item("container_overrides", converted_1111)?;
+    } else {
+        result.set_item("container_overrides", py.None())?;
+    }
+    if let Some(value) = &value.depends_on {
+        let converted_1112_list = PyList::empty(py);
+        for item_1113 in value {
+            let converted_item_1114 = batch_job_dependency_to_py(py, item_1113)?;
+            converted_1112_list.append(converted_item_1114)?;
+        }
+        let converted_1112 = converted_1112_list.into_any().unbind();
+        result.set_item("depends_on", converted_1112)?;
+    } else {
+        result.set_item("depends_on", py.None())?;
+    }
+    if let Some(value) = &value.parameters {
+        let converted_1115_dict = PyDict::new(py);
+        for (key_1116, value_1117) in value {
+            let converted_key_1118 = (key_1116).as_str().into_py_any(py)?;
+            let converted_value_1119 = (value_1117).as_str().into_py_any(py)?;
+            converted_1115_dict.set_item(converted_key_1118, converted_value_1119)?;
+        }
+        let converted_1115 = converted_1115_dict.into_any().unbind();
+        result.set_item("parameters", converted_1115)?;
+    } else {
+        result.set_item("parameters", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "PipeTargetBatchJobParameters",
     module = "rboto_pipes._native",
     frozen
 )]
 struct PyPipeTargetBatchJobParameters {
-    inner: aws_sdk_pipes::types::PipeTargetBatchJobParameters,
+    inner: Arc<SharedPipeTargetBatchJobParameters>,
 }
 
 #[pymethods]
 impl PyPipeTargetBatchJobParameters {
     #[getter]
     fn job_definition(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_994 = (&self.inner.job_definition).as_str().into_py_any(py)?;
-        Ok(converted_994)
+        let converted_1093 = (&self.inner.job_definition).as_str().into_py_any(py)?;
+        Ok(converted_1093)
     }
 
     #[getter]
     fn job_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_995 = (&self.inner.job_name).as_str().into_py_any(py)?;
-        Ok(converted_995)
+        let converted_1094 = (&self.inner.job_name).as_str().into_py_any(py)?;
+        Ok(converted_1094)
     }
 
     #[getter]
     fn array_properties(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.array_properties {
-            let converted_996 = Py::new(
+            let converted_1095 = Py::new(
                 py,
                 PyBatchArrayProperties {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_996)
+            Ok(converted_1095)
         } else {
             Ok(py.None())
         }
@@ -6139,14 +7085,14 @@ impl PyPipeTargetBatchJobParameters {
     #[getter]
     fn retry_strategy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.retry_strategy {
-            let converted_997 = Py::new(
+            let converted_1096 = Py::new(
                 py,
                 PyBatchRetryStrategy {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_997)
+            Ok(converted_1096)
         } else {
             Ok(py.None())
         }
@@ -6155,14 +7101,14 @@ impl PyPipeTargetBatchJobParameters {
     #[getter]
     fn container_overrides(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.container_overrides {
-            let converted_998 = Py::new(
+            let converted_1097 = Py::new(
                 py,
                 PyBatchContainerOverrides {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_998)
+            Ok(converted_1097)
         } else {
             Ok(py.None())
         }
@@ -6171,19 +7117,19 @@ impl PyPipeTargetBatchJobParameters {
     #[getter]
     fn depends_on(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.depends_on {
-            let converted_999_list = PyList::empty(py);
-            for item_1000 in value {
-                let converted_item_1001 = Py::new(
+            let converted_1098_list = PyList::empty(py);
+            for item_1099 in value {
+                let converted_item_1100 = Py::new(
                     py,
                     PyBatchJobDependency {
-                        inner: (item_1000).to_owned(),
+                        inner: Arc::clone(item_1099),
                     },
                 )?
                 .into_any();
-                converted_999_list.append(converted_item_1001)?;
+                converted_1098_list.append(converted_item_1100)?;
             }
-            let converted_999 = converted_999_list.into_any().unbind();
-            Ok(converted_999)
+            let converted_1098 = converted_1098_list.into_any().unbind();
+            Ok(converted_1098)
         } else {
             Ok(py.None())
         }
@@ -6192,21 +7138,21 @@ impl PyPipeTargetBatchJobParameters {
     #[getter]
     fn parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.parameters {
-            let converted_1002_dict = PyDict::new(py);
-            for (key_1003, value_1004) in value {
-                let converted_key_1005 = (key_1003).as_str().into_py_any(py)?;
-                let converted_value_1006 = (value_1004).as_str().into_py_any(py)?;
-                converted_1002_dict.set_item(converted_key_1005, converted_value_1006)?;
+            let converted_1101_dict = PyDict::new(py);
+            for (key_1102, value_1103) in value {
+                let converted_key_1104 = (key_1102).as_str().into_py_any(py)?;
+                let converted_value_1105 = (value_1103).as_str().into_py_any(py)?;
+                converted_1101_dict.set_item(converted_key_1104, converted_value_1105)?;
             }
-            let converted_1002 = converted_1002_dict.into_any().unbind();
-            Ok(converted_1002)
+            let converted_1101 = converted_1101_dict.into_any().unbind();
+            Ok(converted_1101)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        pipe_target_batch_job_parameters_to_py(py, &self.inner)
+        pipe_target_batch_job_parameters_shared_to_py(py, &self.inner)
     }
 }
 
@@ -6216,7 +7162,7 @@ impl PyPipeTargetBatchJobParameters {
     frozen
 )]
 struct PyPipeTargetCloudWatchLogsParameters {
-    inner: aws_sdk_pipes::types::PipeTargetCloudWatchLogsParameters,
+    inner: Arc<aws_sdk_pipes::types::PipeTargetCloudWatchLogsParameters>,
 }
 
 #[pymethods]
@@ -6224,8 +7170,8 @@ impl PyPipeTargetCloudWatchLogsParameters {
     #[getter]
     fn log_stream_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_stream_name {
-            let converted_1007 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1007)
+            let converted_1120 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1120)
         } else {
             Ok(py.None())
         }
@@ -6234,8 +7180,8 @@ impl PyPipeTargetCloudWatchLogsParameters {
     #[getter]
     fn timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.timestamp {
-            let converted_1008 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1008)
+            let converted_1121 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1121)
         } else {
             Ok(py.None())
         }
@@ -6246,28 +7192,202 @@ impl PyPipeTargetCloudWatchLogsParameters {
     }
 }
 
+struct SharedPipeTargetEcsTaskParameters {
+    task_definition_arn: ::std::string::String,
+    task_count: Option<i32>,
+    launch_type: Option<aws_sdk_pipes::types::LaunchType>,
+    network_configuration: Option<Arc<SharedNetworkConfiguration>>,
+    platform_version: Option<::std::string::String>,
+    group: Option<::std::string::String>,
+    capacity_provider_strategy:
+        Option<::std::vec::Vec<Arc<aws_sdk_pipes::types::CapacityProviderStrategyItem>>>,
+    enable_ecs_managed_tags: bool,
+    enable_execute_command: bool,
+    placement_constraints: Option<::std::vec::Vec<Arc<aws_sdk_pipes::types::PlacementConstraint>>>,
+    placement_strategy: Option<::std::vec::Vec<Arc<aws_sdk_pipes::types::PlacementStrategy>>>,
+    propagate_tags: Option<aws_sdk_pipes::types::PropagateTags>,
+    reference_id: Option<::std::string::String>,
+    overrides: Option<Arc<SharedEcsTaskOverride>>,
+    tags: Option<::std::vec::Vec<Arc<aws_sdk_pipes::types::Tag>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_pipes::types::PipeTargetEcsTaskParameters> for SharedPipeTargetEcsTaskParameters {
+    fn from(value: aws_sdk_pipes::types::PipeTargetEcsTaskParameters) -> Self {
+        Self {
+            task_definition_arn: value.task_definition_arn,
+            task_count: value.task_count,
+            launch_type: value.launch_type,
+            network_configuration: value
+                .network_configuration
+                .map(|item| Arc::new(SharedNetworkConfiguration::from(item))),
+            platform_version: value.platform_version,
+            group: value.group,
+            capacity_provider_strategy: value.capacity_provider_strategy.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_1145| Arc::new(owned_1145))
+                    .collect()
+            }),
+            enable_ecs_managed_tags: value.enable_ecs_managed_tags,
+            enable_execute_command: value.enable_execute_command,
+            placement_constraints: value.placement_constraints.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_1146| Arc::new(owned_1146))
+                    .collect()
+            }),
+            placement_strategy: value.placement_strategy.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_1147| Arc::new(owned_1147))
+                    .collect()
+            }),
+            propagate_tags: value.propagate_tags,
+            reference_id: value.reference_id,
+            overrides: value
+                .overrides
+                .map(|item| Arc::new(SharedEcsTaskOverride::from(item))),
+            tags: value.tags.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_1148| Arc::new(owned_1148))
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn pipe_target_ecs_task_parameters_shared_to_py(
+    py: Python<'_>,
+    value: &SharedPipeTargetEcsTaskParameters,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_1149 = (&value.task_definition_arn).as_str().into_py_any(py)?;
+    result.set_item("task_definition_arn", converted_1149)?;
+    if let Some(value) = &value.task_count {
+        let converted_1150 = (value).to_owned().into_py_any(py)?;
+        result.set_item("task_count", converted_1150)?;
+    } else {
+        result.set_item("task_count", py.None())?;
+    }
+    if let Some(value) = &value.launch_type {
+        let converted_1151 = (value).as_str().into_py_any(py)?;
+        result.set_item("launch_type", converted_1151)?;
+    } else {
+        result.set_item("launch_type", py.None())?;
+    }
+    if let Some(value) = &value.network_configuration {
+        let converted_1152 = network_configuration_shared_to_py(py, value)?;
+        result.set_item("network_configuration", converted_1152)?;
+    } else {
+        result.set_item("network_configuration", py.None())?;
+    }
+    if let Some(value) = &value.platform_version {
+        let converted_1153 = (value).as_str().into_py_any(py)?;
+        result.set_item("platform_version", converted_1153)?;
+    } else {
+        result.set_item("platform_version", py.None())?;
+    }
+    if let Some(value) = &value.group {
+        let converted_1154 = (value).as_str().into_py_any(py)?;
+        result.set_item("group", converted_1154)?;
+    } else {
+        result.set_item("group", py.None())?;
+    }
+    if let Some(value) = &value.capacity_provider_strategy {
+        let converted_1155_list = PyList::empty(py);
+        for item_1156 in value {
+            let converted_item_1157 = capacity_provider_strategy_item_to_py(py, item_1156)?;
+            converted_1155_list.append(converted_item_1157)?;
+        }
+        let converted_1155 = converted_1155_list.into_any().unbind();
+        result.set_item("capacity_provider_strategy", converted_1155)?;
+    } else {
+        result.set_item("capacity_provider_strategy", py.None())?;
+    }
+    let converted_1158 = (&value.enable_ecs_managed_tags)
+        .to_owned()
+        .into_py_any(py)?;
+    result.set_item("enable_ecs_managed_tags", converted_1158)?;
+    let converted_1159 = (&value.enable_execute_command).to_owned().into_py_any(py)?;
+    result.set_item("enable_execute_command", converted_1159)?;
+    if let Some(value) = &value.placement_constraints {
+        let converted_1160_list = PyList::empty(py);
+        for item_1161 in value {
+            let converted_item_1162 = placement_constraint_to_py(py, item_1161)?;
+            converted_1160_list.append(converted_item_1162)?;
+        }
+        let converted_1160 = converted_1160_list.into_any().unbind();
+        result.set_item("placement_constraints", converted_1160)?;
+    } else {
+        result.set_item("placement_constraints", py.None())?;
+    }
+    if let Some(value) = &value.placement_strategy {
+        let converted_1163_list = PyList::empty(py);
+        for item_1164 in value {
+            let converted_item_1165 = placement_strategy_to_py(py, item_1164)?;
+            converted_1163_list.append(converted_item_1165)?;
+        }
+        let converted_1163 = converted_1163_list.into_any().unbind();
+        result.set_item("placement_strategy", converted_1163)?;
+    } else {
+        result.set_item("placement_strategy", py.None())?;
+    }
+    if let Some(value) = &value.propagate_tags {
+        let converted_1166 = (value).as_str().into_py_any(py)?;
+        result.set_item("propagate_tags", converted_1166)?;
+    } else {
+        result.set_item("propagate_tags", py.None())?;
+    }
+    if let Some(value) = &value.reference_id {
+        let converted_1167 = (value).as_str().into_py_any(py)?;
+        result.set_item("reference_id", converted_1167)?;
+    } else {
+        result.set_item("reference_id", py.None())?;
+    }
+    if let Some(value) = &value.overrides {
+        let converted_1168 = ecs_task_override_shared_to_py(py, value)?;
+        result.set_item("overrides", converted_1168)?;
+    } else {
+        result.set_item("overrides", py.None())?;
+    }
+    if let Some(value) = &value.tags {
+        let converted_1169_list = PyList::empty(py);
+        for item_1170 in value {
+            let converted_item_1171 = tag_to_py(py, item_1170)?;
+            converted_1169_list.append(converted_item_1171)?;
+        }
+        let converted_1169 = converted_1169_list.into_any().unbind();
+        result.set_item("tags", converted_1169)?;
+    } else {
+        result.set_item("tags", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "PipeTargetEcsTaskParameters",
     module = "rboto_pipes._native",
     frozen
 )]
 struct PyPipeTargetEcsTaskParameters {
-    inner: aws_sdk_pipes::types::PipeTargetEcsTaskParameters,
+    inner: Arc<SharedPipeTargetEcsTaskParameters>,
 }
 
 #[pymethods]
 impl PyPipeTargetEcsTaskParameters {
     #[getter]
     fn task_definition_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1009 = (&self.inner.task_definition_arn).as_str().into_py_any(py)?;
-        Ok(converted_1009)
+        let converted_1122 = (&self.inner.task_definition_arn).as_str().into_py_any(py)?;
+        Ok(converted_1122)
     }
 
     #[getter]
     fn task_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.task_count {
-            let converted_1010 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1010)
+            let converted_1123 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1123)
         } else {
             Ok(py.None())
         }
@@ -6276,8 +7396,8 @@ impl PyPipeTargetEcsTaskParameters {
     #[getter]
     fn launch_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.launch_type {
-            let converted_1011 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1011)
+            let converted_1124 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1124)
         } else {
             Ok(py.None())
         }
@@ -6286,14 +7406,14 @@ impl PyPipeTargetEcsTaskParameters {
     #[getter]
     fn network_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.network_configuration {
-            let converted_1012 = Py::new(
+            let converted_1125 = Py::new(
                 py,
                 PyNetworkConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1012)
+            Ok(converted_1125)
         } else {
             Ok(py.None())
         }
@@ -6302,8 +7422,8 @@ impl PyPipeTargetEcsTaskParameters {
     #[getter]
     fn platform_version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.platform_version {
-            let converted_1013 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1013)
+            let converted_1126 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1126)
         } else {
             Ok(py.None())
         }
@@ -6312,8 +7432,8 @@ impl PyPipeTargetEcsTaskParameters {
     #[getter]
     fn group(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.group {
-            let converted_1014 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1014)
+            let converted_1127 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1127)
         } else {
             Ok(py.None())
         }
@@ -6322,19 +7442,19 @@ impl PyPipeTargetEcsTaskParameters {
     #[getter]
     fn capacity_provider_strategy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.capacity_provider_strategy {
-            let converted_1015_list = PyList::empty(py);
-            for item_1016 in value {
-                let converted_item_1017 = Py::new(
+            let converted_1128_list = PyList::empty(py);
+            for item_1129 in value {
+                let converted_item_1130 = Py::new(
                     py,
                     PyCapacityProviderStrategyItem {
-                        inner: (item_1016).to_owned(),
+                        inner: Arc::clone(item_1129),
                     },
                 )?
                 .into_any();
-                converted_1015_list.append(converted_item_1017)?;
+                converted_1128_list.append(converted_item_1130)?;
             }
-            let converted_1015 = converted_1015_list.into_any().unbind();
-            Ok(converted_1015)
+            let converted_1128 = converted_1128_list.into_any().unbind();
+            Ok(converted_1128)
         } else {
             Ok(py.None())
         }
@@ -6342,36 +7462,36 @@ impl PyPipeTargetEcsTaskParameters {
 
     #[getter]
     fn enable_ecs_managed_tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1018 = (&self.inner.enable_ecs_managed_tags)
+        let converted_1131 = (&self.inner.enable_ecs_managed_tags)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_1018)
+        Ok(converted_1131)
     }
 
     #[getter]
     fn enable_execute_command(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1019 = (&self.inner.enable_execute_command)
+        let converted_1132 = (&self.inner.enable_execute_command)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_1019)
+        Ok(converted_1132)
     }
 
     #[getter]
     fn placement_constraints(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.placement_constraints {
-            let converted_1020_list = PyList::empty(py);
-            for item_1021 in value {
-                let converted_item_1022 = Py::new(
+            let converted_1133_list = PyList::empty(py);
+            for item_1134 in value {
+                let converted_item_1135 = Py::new(
                     py,
                     PyPlacementConstraint {
-                        inner: (item_1021).to_owned(),
+                        inner: Arc::clone(item_1134),
                     },
                 )?
                 .into_any();
-                converted_1020_list.append(converted_item_1022)?;
+                converted_1133_list.append(converted_item_1135)?;
             }
-            let converted_1020 = converted_1020_list.into_any().unbind();
-            Ok(converted_1020)
+            let converted_1133 = converted_1133_list.into_any().unbind();
+            Ok(converted_1133)
         } else {
             Ok(py.None())
         }
@@ -6380,19 +7500,19 @@ impl PyPipeTargetEcsTaskParameters {
     #[getter]
     fn placement_strategy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.placement_strategy {
-            let converted_1023_list = PyList::empty(py);
-            for item_1024 in value {
-                let converted_item_1025 = Py::new(
+            let converted_1136_list = PyList::empty(py);
+            for item_1137 in value {
+                let converted_item_1138 = Py::new(
                     py,
                     PyPlacementStrategy {
-                        inner: (item_1024).to_owned(),
+                        inner: Arc::clone(item_1137),
                     },
                 )?
                 .into_any();
-                converted_1023_list.append(converted_item_1025)?;
+                converted_1136_list.append(converted_item_1138)?;
             }
-            let converted_1023 = converted_1023_list.into_any().unbind();
-            Ok(converted_1023)
+            let converted_1136 = converted_1136_list.into_any().unbind();
+            Ok(converted_1136)
         } else {
             Ok(py.None())
         }
@@ -6401,8 +7521,8 @@ impl PyPipeTargetEcsTaskParameters {
     #[getter]
     fn propagate_tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.propagate_tags {
-            let converted_1026 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1026)
+            let converted_1139 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1139)
         } else {
             Ok(py.None())
         }
@@ -6411,8 +7531,8 @@ impl PyPipeTargetEcsTaskParameters {
     #[getter]
     fn reference_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.reference_id {
-            let converted_1027 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1027)
+            let converted_1140 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1140)
         } else {
             Ok(py.None())
         }
@@ -6421,14 +7541,14 @@ impl PyPipeTargetEcsTaskParameters {
     #[getter]
     fn overrides(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.overrides {
-            let converted_1028 = Py::new(
+            let converted_1141 = Py::new(
                 py,
                 PyEcsTaskOverride {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1028)
+            Ok(converted_1141)
         } else {
             Ok(py.None())
         }
@@ -6437,26 +7557,26 @@ impl PyPipeTargetEcsTaskParameters {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_1029_list = PyList::empty(py);
-            for item_1030 in value {
-                let converted_item_1031 = Py::new(
+            let converted_1142_list = PyList::empty(py);
+            for item_1143 in value {
+                let converted_item_1144 = Py::new(
                     py,
                     PyTag {
-                        inner: (item_1030).to_owned(),
+                        inner: Arc::clone(item_1143),
                     },
                 )?
                 .into_any();
-                converted_1029_list.append(converted_item_1031)?;
+                converted_1142_list.append(converted_item_1144)?;
             }
-            let converted_1029 = converted_1029_list.into_any().unbind();
-            Ok(converted_1029)
+            let converted_1142 = converted_1142_list.into_any().unbind();
+            Ok(converted_1142)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        pipe_target_ecs_task_parameters_to_py(py, &self.inner)
+        pipe_target_ecs_task_parameters_shared_to_py(py, &self.inner)
     }
 }
 
@@ -6466,7 +7586,7 @@ impl PyPipeTargetEcsTaskParameters {
     frozen
 )]
 struct PyPipeTargetEventBridgeEventBusParameters {
-    inner: aws_sdk_pipes::types::PipeTargetEventBridgeEventBusParameters,
+    inner: Arc<aws_sdk_pipes::types::PipeTargetEventBridgeEventBusParameters>,
 }
 
 #[pymethods]
@@ -6474,8 +7594,8 @@ impl PyPipeTargetEventBridgeEventBusParameters {
     #[getter]
     fn endpoint_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.endpoint_id {
-            let converted_1032 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1032)
+            let converted_1172 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1172)
         } else {
             Ok(py.None())
         }
@@ -6484,8 +7604,8 @@ impl PyPipeTargetEventBridgeEventBusParameters {
     #[getter]
     fn detail_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.detail_type {
-            let converted_1033 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1033)
+            let converted_1173 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1173)
         } else {
             Ok(py.None())
         }
@@ -6494,8 +7614,8 @@ impl PyPipeTargetEventBridgeEventBusParameters {
     #[getter]
     fn source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.source {
-            let converted_1034 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1034)
+            let converted_1174 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1174)
         } else {
             Ok(py.None())
         }
@@ -6504,13 +7624,13 @@ impl PyPipeTargetEventBridgeEventBusParameters {
     #[getter]
     fn resources(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resources {
-            let converted_1035_list = PyList::empty(py);
-            for item_1036 in value {
-                let converted_item_1037 = (item_1036).as_str().into_py_any(py)?;
-                converted_1035_list.append(converted_item_1037)?;
+            let converted_1175_list = PyList::empty(py);
+            for item_1176 in value {
+                let converted_item_1177 = (item_1176).as_str().into_py_any(py)?;
+                converted_1175_list.append(converted_item_1177)?;
             }
-            let converted_1035 = converted_1035_list.into_any().unbind();
-            Ok(converted_1035)
+            let converted_1175 = converted_1175_list.into_any().unbind();
+            Ok(converted_1175)
         } else {
             Ok(py.None())
         }
@@ -6519,8 +7639,8 @@ impl PyPipeTargetEventBridgeEventBusParameters {
     #[getter]
     fn time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.time {
-            let converted_1038 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1038)
+            let converted_1178 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1178)
         } else {
             Ok(py.None())
         }
@@ -6537,7 +7657,7 @@ impl PyPipeTargetEventBridgeEventBusParameters {
     frozen
 )]
 struct PyPipeTargetHttpParameters {
-    inner: aws_sdk_pipes::types::PipeTargetHttpParameters,
+    inner: Arc<aws_sdk_pipes::types::PipeTargetHttpParameters>,
 }
 
 #[pymethods]
@@ -6545,13 +7665,13 @@ impl PyPipeTargetHttpParameters {
     #[getter]
     fn path_parameter_values(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.path_parameter_values {
-            let converted_1039_list = PyList::empty(py);
-            for item_1040 in value {
-                let converted_item_1041 = (item_1040).as_str().into_py_any(py)?;
-                converted_1039_list.append(converted_item_1041)?;
+            let converted_1179_list = PyList::empty(py);
+            for item_1180 in value {
+                let converted_item_1181 = (item_1180).as_str().into_py_any(py)?;
+                converted_1179_list.append(converted_item_1181)?;
             }
-            let converted_1039 = converted_1039_list.into_any().unbind();
-            Ok(converted_1039)
+            let converted_1179 = converted_1179_list.into_any().unbind();
+            Ok(converted_1179)
         } else {
             Ok(py.None())
         }
@@ -6560,14 +7680,14 @@ impl PyPipeTargetHttpParameters {
     #[getter]
     fn header_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.header_parameters {
-            let converted_1042_dict = PyDict::new(py);
-            for (key_1043, value_1044) in value {
-                let converted_key_1045 = (key_1043).as_str().into_py_any(py)?;
-                let converted_value_1046 = (value_1044).as_str().into_py_any(py)?;
-                converted_1042_dict.set_item(converted_key_1045, converted_value_1046)?;
+            let converted_1182_dict = PyDict::new(py);
+            for (key_1183, value_1184) in value {
+                let converted_key_1185 = (key_1183).as_str().into_py_any(py)?;
+                let converted_value_1186 = (value_1184).as_str().into_py_any(py)?;
+                converted_1182_dict.set_item(converted_key_1185, converted_value_1186)?;
             }
-            let converted_1042 = converted_1042_dict.into_any().unbind();
-            Ok(converted_1042)
+            let converted_1182 = converted_1182_dict.into_any().unbind();
+            Ok(converted_1182)
         } else {
             Ok(py.None())
         }
@@ -6576,14 +7696,14 @@ impl PyPipeTargetHttpParameters {
     #[getter]
     fn query_string_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_string_parameters {
-            let converted_1047_dict = PyDict::new(py);
-            for (key_1048, value_1049) in value {
-                let converted_key_1050 = (key_1048).as_str().into_py_any(py)?;
-                let converted_value_1051 = (value_1049).as_str().into_py_any(py)?;
-                converted_1047_dict.set_item(converted_key_1050, converted_value_1051)?;
+            let converted_1187_dict = PyDict::new(py);
+            for (key_1188, value_1189) in value {
+                let converted_key_1190 = (key_1188).as_str().into_py_any(py)?;
+                let converted_value_1191 = (value_1189).as_str().into_py_any(py)?;
+                converted_1187_dict.set_item(converted_key_1190, converted_value_1191)?;
             }
-            let converted_1047 = converted_1047_dict.into_any().unbind();
-            Ok(converted_1047)
+            let converted_1187 = converted_1187_dict.into_any().unbind();
+            Ok(converted_1187)
         } else {
             Ok(py.None())
         }
@@ -6600,15 +7720,15 @@ impl PyPipeTargetHttpParameters {
     frozen
 )]
 struct PyPipeTargetKinesisStreamParameters {
-    inner: aws_sdk_pipes::types::PipeTargetKinesisStreamParameters,
+    inner: Arc<aws_sdk_pipes::types::PipeTargetKinesisStreamParameters>,
 }
 
 #[pymethods]
 impl PyPipeTargetKinesisStreamParameters {
     #[getter]
     fn partition_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1052 = (&self.inner.partition_key).as_str().into_py_any(py)?;
-        Ok(converted_1052)
+        let converted_1192 = (&self.inner.partition_key).as_str().into_py_any(py)?;
+        Ok(converted_1192)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -6622,7 +7742,7 @@ impl PyPipeTargetKinesisStreamParameters {
     frozen
 )]
 struct PyPipeTargetLambdaFunctionParameters {
-    inner: aws_sdk_pipes::types::PipeTargetLambdaFunctionParameters,
+    inner: Arc<aws_sdk_pipes::types::PipeTargetLambdaFunctionParameters>,
 }
 
 #[pymethods]
@@ -6630,8 +7750,8 @@ impl PyPipeTargetLambdaFunctionParameters {
     #[getter]
     fn invocation_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.invocation_type {
-            let converted_1053 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1053)
+            let converted_1193 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1193)
         } else {
             Ok(py.None())
         }
@@ -6642,9 +7762,150 @@ impl PyPipeTargetLambdaFunctionParameters {
     }
 }
 
+struct SharedPipeTargetParameters {
+    input_template: Option<::std::string::String>,
+    lambda_function_parameters:
+        Option<Arc<aws_sdk_pipes::types::PipeTargetLambdaFunctionParameters>>,
+    step_function_state_machine_parameters:
+        Option<Arc<aws_sdk_pipes::types::PipeTargetStateMachineParameters>>,
+    kinesis_stream_parameters: Option<Arc<aws_sdk_pipes::types::PipeTargetKinesisStreamParameters>>,
+    ecs_task_parameters: Option<Arc<SharedPipeTargetEcsTaskParameters>>,
+    batch_job_parameters: Option<Arc<SharedPipeTargetBatchJobParameters>>,
+    sqs_queue_parameters: Option<Arc<aws_sdk_pipes::types::PipeTargetSqsQueueParameters>>,
+    http_parameters: Option<Arc<aws_sdk_pipes::types::PipeTargetHttpParameters>>,
+    redshift_data_parameters: Option<Arc<aws_sdk_pipes::types::PipeTargetRedshiftDataParameters>>,
+    sage_maker_pipeline_parameters: Option<Arc<SharedPipeTargetSageMakerPipelineParameters>>,
+    event_bridge_event_bus_parameters:
+        Option<Arc<aws_sdk_pipes::types::PipeTargetEventBridgeEventBusParameters>>,
+    cloud_watch_logs_parameters:
+        Option<Arc<aws_sdk_pipes::types::PipeTargetCloudWatchLogsParameters>>,
+    timestream_parameters: Option<Arc<SharedPipeTargetTimestreamParameters>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_pipes::types::PipeTargetParameters> for SharedPipeTargetParameters {
+    fn from(value: aws_sdk_pipes::types::PipeTargetParameters) -> Self {
+        Self {
+            input_template: value.input_template,
+            lambda_function_parameters: value.lambda_function_parameters.map(|item| Arc::new(item)),
+            step_function_state_machine_parameters: value
+                .step_function_state_machine_parameters
+                .map(|item| Arc::new(item)),
+            kinesis_stream_parameters: value.kinesis_stream_parameters.map(|item| Arc::new(item)),
+            ecs_task_parameters: value
+                .ecs_task_parameters
+                .map(|item| Arc::new(SharedPipeTargetEcsTaskParameters::from(item))),
+            batch_job_parameters: value
+                .batch_job_parameters
+                .map(|item| Arc::new(SharedPipeTargetBatchJobParameters::from(item))),
+            sqs_queue_parameters: value.sqs_queue_parameters.map(|item| Arc::new(item)),
+            http_parameters: value.http_parameters.map(|item| Arc::new(item)),
+            redshift_data_parameters: value.redshift_data_parameters.map(|item| Arc::new(item)),
+            sage_maker_pipeline_parameters: value
+                .sage_maker_pipeline_parameters
+                .map(|item| Arc::new(SharedPipeTargetSageMakerPipelineParameters::from(item))),
+            event_bridge_event_bus_parameters: value
+                .event_bridge_event_bus_parameters
+                .map(|item| Arc::new(item)),
+            cloud_watch_logs_parameters: value
+                .cloud_watch_logs_parameters
+                .map(|item| Arc::new(item)),
+            timestream_parameters: value
+                .timestream_parameters
+                .map(|item| Arc::new(SharedPipeTargetTimestreamParameters::from(item))),
+        }
+    }
+}
+
+fn pipe_target_parameters_shared_to_py(
+    py: Python<'_>,
+    value: &SharedPipeTargetParameters,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.input_template {
+        let converted_1207 = (value).as_str().into_py_any(py)?;
+        result.set_item("input_template", converted_1207)?;
+    } else {
+        result.set_item("input_template", py.None())?;
+    }
+    if let Some(value) = &value.lambda_function_parameters {
+        let converted_1208 = pipe_target_lambda_function_parameters_to_py(py, value)?;
+        result.set_item("lambda_function_parameters", converted_1208)?;
+    } else {
+        result.set_item("lambda_function_parameters", py.None())?;
+    }
+    if let Some(value) = &value.step_function_state_machine_parameters {
+        let converted_1209 = pipe_target_state_machine_parameters_to_py(py, value)?;
+        result.set_item("step_function_state_machine_parameters", converted_1209)?;
+    } else {
+        result.set_item("step_function_state_machine_parameters", py.None())?;
+    }
+    if let Some(value) = &value.kinesis_stream_parameters {
+        let converted_1210 = pipe_target_kinesis_stream_parameters_to_py(py, value)?;
+        result.set_item("kinesis_stream_parameters", converted_1210)?;
+    } else {
+        result.set_item("kinesis_stream_parameters", py.None())?;
+    }
+    if let Some(value) = &value.ecs_task_parameters {
+        let converted_1211 = pipe_target_ecs_task_parameters_shared_to_py(py, value)?;
+        result.set_item("ecs_task_parameters", converted_1211)?;
+    } else {
+        result.set_item("ecs_task_parameters", py.None())?;
+    }
+    if let Some(value) = &value.batch_job_parameters {
+        let converted_1212 = pipe_target_batch_job_parameters_shared_to_py(py, value)?;
+        result.set_item("batch_job_parameters", converted_1212)?;
+    } else {
+        result.set_item("batch_job_parameters", py.None())?;
+    }
+    if let Some(value) = &value.sqs_queue_parameters {
+        let converted_1213 = pipe_target_sqs_queue_parameters_to_py(py, value)?;
+        result.set_item("sqs_queue_parameters", converted_1213)?;
+    } else {
+        result.set_item("sqs_queue_parameters", py.None())?;
+    }
+    if let Some(value) = &value.http_parameters {
+        let converted_1214 = pipe_target_http_parameters_to_py(py, value)?;
+        result.set_item("http_parameters", converted_1214)?;
+    } else {
+        result.set_item("http_parameters", py.None())?;
+    }
+    if let Some(value) = &value.redshift_data_parameters {
+        let converted_1215 = pipe_target_redshift_data_parameters_to_py(py, value)?;
+        result.set_item("redshift_data_parameters", converted_1215)?;
+    } else {
+        result.set_item("redshift_data_parameters", py.None())?;
+    }
+    if let Some(value) = &value.sage_maker_pipeline_parameters {
+        let converted_1216 = pipe_target_sage_maker_pipeline_parameters_shared_to_py(py, value)?;
+        result.set_item("sage_maker_pipeline_parameters", converted_1216)?;
+    } else {
+        result.set_item("sage_maker_pipeline_parameters", py.None())?;
+    }
+    if let Some(value) = &value.event_bridge_event_bus_parameters {
+        let converted_1217 = pipe_target_event_bridge_event_bus_parameters_to_py(py, value)?;
+        result.set_item("event_bridge_event_bus_parameters", converted_1217)?;
+    } else {
+        result.set_item("event_bridge_event_bus_parameters", py.None())?;
+    }
+    if let Some(value) = &value.cloud_watch_logs_parameters {
+        let converted_1218 = pipe_target_cloud_watch_logs_parameters_to_py(py, value)?;
+        result.set_item("cloud_watch_logs_parameters", converted_1218)?;
+    } else {
+        result.set_item("cloud_watch_logs_parameters", py.None())?;
+    }
+    if let Some(value) = &value.timestream_parameters {
+        let converted_1219 = pipe_target_timestream_parameters_shared_to_py(py, value)?;
+        result.set_item("timestream_parameters", converted_1219)?;
+    } else {
+        result.set_item("timestream_parameters", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "PipeTargetParameters", module = "rboto_pipes._native", frozen)]
 struct PyPipeTargetParameters {
-    inner: aws_sdk_pipes::types::PipeTargetParameters,
+    inner: Arc<SharedPipeTargetParameters>,
 }
 
 #[pymethods]
@@ -6652,8 +7913,8 @@ impl PyPipeTargetParameters {
     #[getter]
     fn input_template(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_template {
-            let converted_1054 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1054)
+            let converted_1194 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1194)
         } else {
             Ok(py.None())
         }
@@ -6662,14 +7923,14 @@ impl PyPipeTargetParameters {
     #[getter]
     fn lambda_function_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.lambda_function_parameters {
-            let converted_1055 = Py::new(
+            let converted_1195 = Py::new(
                 py,
                 PyPipeTargetLambdaFunctionParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1055)
+            Ok(converted_1195)
         } else {
             Ok(py.None())
         }
@@ -6678,14 +7939,14 @@ impl PyPipeTargetParameters {
     #[getter]
     fn step_function_state_machine_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.step_function_state_machine_parameters {
-            let converted_1056 = Py::new(
+            let converted_1196 = Py::new(
                 py,
                 PyPipeTargetStateMachineParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1056)
+            Ok(converted_1196)
         } else {
             Ok(py.None())
         }
@@ -6694,14 +7955,14 @@ impl PyPipeTargetParameters {
     #[getter]
     fn kinesis_stream_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kinesis_stream_parameters {
-            let converted_1057 = Py::new(
+            let converted_1197 = Py::new(
                 py,
                 PyPipeTargetKinesisStreamParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1057)
+            Ok(converted_1197)
         } else {
             Ok(py.None())
         }
@@ -6710,14 +7971,14 @@ impl PyPipeTargetParameters {
     #[getter]
     fn ecs_task_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ecs_task_parameters {
-            let converted_1058 = Py::new(
+            let converted_1198 = Py::new(
                 py,
                 PyPipeTargetEcsTaskParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1058)
+            Ok(converted_1198)
         } else {
             Ok(py.None())
         }
@@ -6726,14 +7987,14 @@ impl PyPipeTargetParameters {
     #[getter]
     fn batch_job_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.batch_job_parameters {
-            let converted_1059 = Py::new(
+            let converted_1199 = Py::new(
                 py,
                 PyPipeTargetBatchJobParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1059)
+            Ok(converted_1199)
         } else {
             Ok(py.None())
         }
@@ -6742,14 +8003,14 @@ impl PyPipeTargetParameters {
     #[getter]
     fn sqs_queue_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sqs_queue_parameters {
-            let converted_1060 = Py::new(
+            let converted_1200 = Py::new(
                 py,
                 PyPipeTargetSqsQueueParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1060)
+            Ok(converted_1200)
         } else {
             Ok(py.None())
         }
@@ -6758,14 +8019,14 @@ impl PyPipeTargetParameters {
     #[getter]
     fn http_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.http_parameters {
-            let converted_1061 = Py::new(
+            let converted_1201 = Py::new(
                 py,
                 PyPipeTargetHttpParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1061)
+            Ok(converted_1201)
         } else {
             Ok(py.None())
         }
@@ -6774,14 +8035,14 @@ impl PyPipeTargetParameters {
     #[getter]
     fn redshift_data_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.redshift_data_parameters {
-            let converted_1062 = Py::new(
+            let converted_1202 = Py::new(
                 py,
                 PyPipeTargetRedshiftDataParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1062)
+            Ok(converted_1202)
         } else {
             Ok(py.None())
         }
@@ -6790,14 +8051,14 @@ impl PyPipeTargetParameters {
     #[getter]
     fn sage_maker_pipeline_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sage_maker_pipeline_parameters {
-            let converted_1063 = Py::new(
+            let converted_1203 = Py::new(
                 py,
                 PyPipeTargetSageMakerPipelineParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1063)
+            Ok(converted_1203)
         } else {
             Ok(py.None())
         }
@@ -6806,14 +8067,14 @@ impl PyPipeTargetParameters {
     #[getter]
     fn event_bridge_event_bus_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_bridge_event_bus_parameters {
-            let converted_1064 = Py::new(
+            let converted_1204 = Py::new(
                 py,
                 PyPipeTargetEventBridgeEventBusParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1064)
+            Ok(converted_1204)
         } else {
             Ok(py.None())
         }
@@ -6822,14 +8083,14 @@ impl PyPipeTargetParameters {
     #[getter]
     fn cloud_watch_logs_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cloud_watch_logs_parameters {
-            let converted_1065 = Py::new(
+            let converted_1205 = Py::new(
                 py,
                 PyPipeTargetCloudWatchLogsParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1065)
+            Ok(converted_1205)
         } else {
             Ok(py.None())
         }
@@ -6838,21 +8099,21 @@ impl PyPipeTargetParameters {
     #[getter]
     fn timestream_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.timestream_parameters {
-            let converted_1066 = Py::new(
+            let converted_1206 = Py::new(
                 py,
                 PyPipeTargetTimestreamParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1066)
+            Ok(converted_1206)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        pipe_target_parameters_to_py(py, &self.inner)
+        pipe_target_parameters_shared_to_py(py, &self.inner)
     }
 }
 
@@ -6862,7 +8123,7 @@ impl PyPipeTargetParameters {
     frozen
 )]
 struct PyPipeTargetRedshiftDataParameters {
-    inner: aws_sdk_pipes::types::PipeTargetRedshiftDataParameters,
+    inner: Arc<aws_sdk_pipes::types::PipeTargetRedshiftDataParameters>,
 }
 
 #[pymethods]
@@ -6870,8 +8131,8 @@ impl PyPipeTargetRedshiftDataParameters {
     #[getter]
     fn secret_manager_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.secret_manager_arn {
-            let converted_1067 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1067)
+            let converted_1220 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1220)
         } else {
             Ok(py.None())
         }
@@ -6879,15 +8140,15 @@ impl PyPipeTargetRedshiftDataParameters {
 
     #[getter]
     fn database(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1068 = (&self.inner.database).as_str().into_py_any(py)?;
-        Ok(converted_1068)
+        let converted_1221 = (&self.inner.database).as_str().into_py_any(py)?;
+        Ok(converted_1221)
     }
 
     #[getter]
     fn db_user(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.db_user {
-            let converted_1069 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1069)
+            let converted_1222 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1222)
         } else {
             Ok(py.None())
         }
@@ -6896,8 +8157,8 @@ impl PyPipeTargetRedshiftDataParameters {
     #[getter]
     fn statement_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.statement_name {
-            let converted_1070 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1070)
+            let converted_1223 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1223)
         } else {
             Ok(py.None())
         }
@@ -6905,24 +8166,64 @@ impl PyPipeTargetRedshiftDataParameters {
 
     #[getter]
     fn with_event(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1071 = (&self.inner.with_event).to_owned().into_py_any(py)?;
-        Ok(converted_1071)
+        let converted_1224 = (&self.inner.with_event).to_owned().into_py_any(py)?;
+        Ok(converted_1224)
     }
 
     #[getter]
     fn sqls(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1072_list = PyList::empty(py);
-        for item_1073 in &self.inner.sqls {
-            let converted_item_1074 = (item_1073).as_str().into_py_any(py)?;
-            converted_1072_list.append(converted_item_1074)?;
+        let converted_1225_list = PyList::empty(py);
+        for item_1226 in &self.inner.sqls {
+            let converted_item_1227 = (item_1226).as_str().into_py_any(py)?;
+            converted_1225_list.append(converted_item_1227)?;
         }
-        let converted_1072 = converted_1072_list.into_any().unbind();
-        Ok(converted_1072)
+        let converted_1225 = converted_1225_list.into_any().unbind();
+        Ok(converted_1225)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         pipe_target_redshift_data_parameters_to_py(py, &self.inner)
     }
+}
+
+struct SharedPipeTargetSageMakerPipelineParameters {
+    pipeline_parameter_list:
+        Option<::std::vec::Vec<Arc<aws_sdk_pipes::types::SageMakerPipelineParameter>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_pipes::types::PipeTargetSageMakerPipelineParameters>
+    for SharedPipeTargetSageMakerPipelineParameters
+{
+    fn from(value: aws_sdk_pipes::types::PipeTargetSageMakerPipelineParameters) -> Self {
+        Self {
+            pipeline_parameter_list: value.pipeline_parameter_list.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_1231| Arc::new(owned_1231))
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn pipe_target_sage_maker_pipeline_parameters_shared_to_py(
+    py: Python<'_>,
+    value: &SharedPipeTargetSageMakerPipelineParameters,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.pipeline_parameter_list {
+        let converted_1232_list = PyList::empty(py);
+        for item_1233 in value {
+            let converted_item_1234 = sage_maker_pipeline_parameter_to_py(py, item_1233)?;
+            converted_1232_list.append(converted_item_1234)?;
+        }
+        let converted_1232 = converted_1232_list.into_any().unbind();
+        result.set_item("pipeline_parameter_list", converted_1232)?;
+    } else {
+        result.set_item("pipeline_parameter_list", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -6931,7 +8232,7 @@ impl PyPipeTargetRedshiftDataParameters {
     frozen
 )]
 struct PyPipeTargetSageMakerPipelineParameters {
-    inner: aws_sdk_pipes::types::PipeTargetSageMakerPipelineParameters,
+    inner: Arc<SharedPipeTargetSageMakerPipelineParameters>,
 }
 
 #[pymethods]
@@ -6939,26 +8240,26 @@ impl PyPipeTargetSageMakerPipelineParameters {
     #[getter]
     fn pipeline_parameter_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.pipeline_parameter_list {
-            let converted_1075_list = PyList::empty(py);
-            for item_1076 in value {
-                let converted_item_1077 = Py::new(
+            let converted_1228_list = PyList::empty(py);
+            for item_1229 in value {
+                let converted_item_1230 = Py::new(
                     py,
                     PySageMakerPipelineParameter {
-                        inner: (item_1076).to_owned(),
+                        inner: Arc::clone(item_1229),
                     },
                 )?
                 .into_any();
-                converted_1075_list.append(converted_item_1077)?;
+                converted_1228_list.append(converted_item_1230)?;
             }
-            let converted_1075 = converted_1075_list.into_any().unbind();
-            Ok(converted_1075)
+            let converted_1228 = converted_1228_list.into_any().unbind();
+            Ok(converted_1228)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        pipe_target_sage_maker_pipeline_parameters_to_py(py, &self.inner)
+        pipe_target_sage_maker_pipeline_parameters_shared_to_py(py, &self.inner)
     }
 }
 
@@ -6968,7 +8269,7 @@ impl PyPipeTargetSageMakerPipelineParameters {
     frozen
 )]
 struct PyPipeTargetSqsQueueParameters {
-    inner: aws_sdk_pipes::types::PipeTargetSqsQueueParameters,
+    inner: Arc<aws_sdk_pipes::types::PipeTargetSqsQueueParameters>,
 }
 
 #[pymethods]
@@ -6976,8 +8277,8 @@ impl PyPipeTargetSqsQueueParameters {
     #[getter]
     fn message_group_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.message_group_id {
-            let converted_1078 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1078)
+            let converted_1235 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1235)
         } else {
             Ok(py.None())
         }
@@ -6986,8 +8287,8 @@ impl PyPipeTargetSqsQueueParameters {
     #[getter]
     fn message_deduplication_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.message_deduplication_id {
-            let converted_1079 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1079)
+            let converted_1236 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1236)
         } else {
             Ok(py.None())
         }
@@ -7004,7 +8305,7 @@ impl PyPipeTargetSqsQueueParameters {
     frozen
 )]
 struct PyPipeTargetStateMachineParameters {
-    inner: aws_sdk_pipes::types::PipeTargetStateMachineParameters,
+    inner: Arc<aws_sdk_pipes::types::PipeTargetStateMachineParameters>,
 }
 
 #[pymethods]
@@ -7012,8 +8313,8 @@ impl PyPipeTargetStateMachineParameters {
     #[getter]
     fn invocation_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.invocation_type {
-            let converted_1080 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1080)
+            let converted_1237 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1237)
         } else {
             Ok(py.None())
         }
@@ -7024,28 +8325,130 @@ impl PyPipeTargetStateMachineParameters {
     }
 }
 
+struct SharedPipeTargetTimestreamParameters {
+    time_value: ::std::string::String,
+    epoch_time_unit: Option<aws_sdk_pipes::types::EpochTimeUnit>,
+    time_field_type: Option<aws_sdk_pipes::types::TimeFieldType>,
+    timestamp_format: Option<::std::string::String>,
+    version_value: ::std::string::String,
+    dimension_mappings: ::std::vec::Vec<Arc<aws_sdk_pipes::types::DimensionMapping>>,
+    single_measure_mappings:
+        Option<::std::vec::Vec<Arc<aws_sdk_pipes::types::SingleMeasureMapping>>>,
+    multi_measure_mappings: Option<::std::vec::Vec<Arc<SharedMultiMeasureMapping>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_pipes::types::PipeTargetTimestreamParameters>
+    for SharedPipeTargetTimestreamParameters
+{
+    fn from(value: aws_sdk_pipes::types::PipeTargetTimestreamParameters) -> Self {
+        Self {
+            time_value: value.time_value,
+            epoch_time_unit: value.epoch_time_unit,
+            time_field_type: value.time_field_type,
+            timestamp_format: value.timestamp_format,
+            version_value: value.version_value,
+            dimension_mappings: (value.dimension_mappings)
+                .into_iter()
+                .map(|owned_1252| Arc::new(owned_1252))
+                .collect(),
+            single_measure_mappings: value.single_measure_mappings.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_1253| Arc::new(owned_1253))
+                    .collect()
+            }),
+            multi_measure_mappings: value.multi_measure_mappings.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_1254| Arc::new(SharedMultiMeasureMapping::from(owned_1254)))
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn pipe_target_timestream_parameters_shared_to_py(
+    py: Python<'_>,
+    value: &SharedPipeTargetTimestreamParameters,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_1255 = (&value.time_value).as_str().into_py_any(py)?;
+    result.set_item("time_value", converted_1255)?;
+    if let Some(value) = &value.epoch_time_unit {
+        let converted_1256 = (value).as_str().into_py_any(py)?;
+        result.set_item("epoch_time_unit", converted_1256)?;
+    } else {
+        result.set_item("epoch_time_unit", py.None())?;
+    }
+    if let Some(value) = &value.time_field_type {
+        let converted_1257 = (value).as_str().into_py_any(py)?;
+        result.set_item("time_field_type", converted_1257)?;
+    } else {
+        result.set_item("time_field_type", py.None())?;
+    }
+    if let Some(value) = &value.timestamp_format {
+        let converted_1258 = (value).as_str().into_py_any(py)?;
+        result.set_item("timestamp_format", converted_1258)?;
+    } else {
+        result.set_item("timestamp_format", py.None())?;
+    }
+    let converted_1259 = (&value.version_value).as_str().into_py_any(py)?;
+    result.set_item("version_value", converted_1259)?;
+    let converted_1260_list = PyList::empty(py);
+    for item_1261 in &value.dimension_mappings {
+        let converted_item_1262 = dimension_mapping_to_py(py, item_1261)?;
+        converted_1260_list.append(converted_item_1262)?;
+    }
+    let converted_1260 = converted_1260_list.into_any().unbind();
+    result.set_item("dimension_mappings", converted_1260)?;
+    if let Some(value) = &value.single_measure_mappings {
+        let converted_1263_list = PyList::empty(py);
+        for item_1264 in value {
+            let converted_item_1265 = single_measure_mapping_to_py(py, item_1264)?;
+            converted_1263_list.append(converted_item_1265)?;
+        }
+        let converted_1263 = converted_1263_list.into_any().unbind();
+        result.set_item("single_measure_mappings", converted_1263)?;
+    } else {
+        result.set_item("single_measure_mappings", py.None())?;
+    }
+    if let Some(value) = &value.multi_measure_mappings {
+        let converted_1266_list = PyList::empty(py);
+        for item_1267 in value {
+            let converted_item_1268 = multi_measure_mapping_shared_to_py(py, item_1267)?;
+            converted_1266_list.append(converted_item_1268)?;
+        }
+        let converted_1266 = converted_1266_list.into_any().unbind();
+        result.set_item("multi_measure_mappings", converted_1266)?;
+    } else {
+        result.set_item("multi_measure_mappings", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "PipeTargetTimestreamParameters",
     module = "rboto_pipes._native",
     frozen
 )]
 struct PyPipeTargetTimestreamParameters {
-    inner: aws_sdk_pipes::types::PipeTargetTimestreamParameters,
+    inner: Arc<SharedPipeTargetTimestreamParameters>,
 }
 
 #[pymethods]
 impl PyPipeTargetTimestreamParameters {
     #[getter]
     fn time_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1081 = (&self.inner.time_value).as_str().into_py_any(py)?;
-        Ok(converted_1081)
+        let converted_1238 = (&self.inner.time_value).as_str().into_py_any(py)?;
+        Ok(converted_1238)
     }
 
     #[getter]
     fn epoch_time_unit(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.epoch_time_unit {
-            let converted_1082 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1082)
+            let converted_1239 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1239)
         } else {
             Ok(py.None())
         }
@@ -7054,8 +8457,8 @@ impl PyPipeTargetTimestreamParameters {
     #[getter]
     fn time_field_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.time_field_type {
-            let converted_1083 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1083)
+            let converted_1240 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1240)
         } else {
             Ok(py.None())
         }
@@ -7064,8 +8467,8 @@ impl PyPipeTargetTimestreamParameters {
     #[getter]
     fn timestamp_format(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.timestamp_format {
-            let converted_1084 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1084)
+            let converted_1241 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1241)
         } else {
             Ok(py.None())
         }
@@ -7073,43 +8476,43 @@ impl PyPipeTargetTimestreamParameters {
 
     #[getter]
     fn version_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1085 = (&self.inner.version_value).as_str().into_py_any(py)?;
-        Ok(converted_1085)
+        let converted_1242 = (&self.inner.version_value).as_str().into_py_any(py)?;
+        Ok(converted_1242)
     }
 
     #[getter]
     fn dimension_mappings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1086_list = PyList::empty(py);
-        for item_1087 in &self.inner.dimension_mappings {
-            let converted_item_1088 = Py::new(
+        let converted_1243_list = PyList::empty(py);
+        for item_1244 in &self.inner.dimension_mappings {
+            let converted_item_1245 = Py::new(
                 py,
                 PyDimensionMapping {
-                    inner: (item_1087).to_owned(),
+                    inner: Arc::clone(item_1244),
                 },
             )?
             .into_any();
-            converted_1086_list.append(converted_item_1088)?;
+            converted_1243_list.append(converted_item_1245)?;
         }
-        let converted_1086 = converted_1086_list.into_any().unbind();
-        Ok(converted_1086)
+        let converted_1243 = converted_1243_list.into_any().unbind();
+        Ok(converted_1243)
     }
 
     #[getter]
     fn single_measure_mappings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.single_measure_mappings {
-            let converted_1089_list = PyList::empty(py);
-            for item_1090 in value {
-                let converted_item_1091 = Py::new(
+            let converted_1246_list = PyList::empty(py);
+            for item_1247 in value {
+                let converted_item_1248 = Py::new(
                     py,
                     PySingleMeasureMapping {
-                        inner: (item_1090).to_owned(),
+                        inner: Arc::clone(item_1247),
                     },
                 )?
                 .into_any();
-                converted_1089_list.append(converted_item_1091)?;
+                converted_1246_list.append(converted_item_1248)?;
             }
-            let converted_1089 = converted_1089_list.into_any().unbind();
-            Ok(converted_1089)
+            let converted_1246 = converted_1246_list.into_any().unbind();
+            Ok(converted_1246)
         } else {
             Ok(py.None())
         }
@@ -7118,32 +8521,32 @@ impl PyPipeTargetTimestreamParameters {
     #[getter]
     fn multi_measure_mappings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.multi_measure_mappings {
-            let converted_1092_list = PyList::empty(py);
-            for item_1093 in value {
-                let converted_item_1094 = Py::new(
+            let converted_1249_list = PyList::empty(py);
+            for item_1250 in value {
+                let converted_item_1251 = Py::new(
                     py,
                     PyMultiMeasureMapping {
-                        inner: (item_1093).to_owned(),
+                        inner: Arc::clone(item_1250),
                     },
                 )?
                 .into_any();
-                converted_1092_list.append(converted_item_1094)?;
+                converted_1249_list.append(converted_item_1251)?;
             }
-            let converted_1092 = converted_1092_list.into_any().unbind();
-            Ok(converted_1092)
+            let converted_1249 = converted_1249_list.into_any().unbind();
+            Ok(converted_1249)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        pipe_target_timestream_parameters_to_py(py, &self.inner)
+        pipe_target_timestream_parameters_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "PlacementConstraint", module = "rboto_pipes._native", frozen)]
 struct PyPlacementConstraint {
-    inner: aws_sdk_pipes::types::PlacementConstraint,
+    inner: Arc<aws_sdk_pipes::types::PlacementConstraint>,
 }
 
 #[pymethods]
@@ -7151,8 +8554,8 @@ impl PyPlacementConstraint {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.r#type {
-            let converted_1095 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1095)
+            let converted_1269 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1269)
         } else {
             Ok(py.None())
         }
@@ -7161,8 +8564,8 @@ impl PyPlacementConstraint {
     #[getter]
     fn expression(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.expression {
-            let converted_1096 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1096)
+            let converted_1270 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1270)
         } else {
             Ok(py.None())
         }
@@ -7175,7 +8578,7 @@ impl PyPlacementConstraint {
 
 #[pyclass(name = "PlacementStrategy", module = "rboto_pipes._native", frozen)]
 struct PyPlacementStrategy {
-    inner: aws_sdk_pipes::types::PlacementStrategy,
+    inner: Arc<aws_sdk_pipes::types::PlacementStrategy>,
 }
 
 #[pymethods]
@@ -7183,8 +8586,8 @@ impl PyPlacementStrategy {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.r#type {
-            let converted_1097 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1097)
+            let converted_1271 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1271)
         } else {
             Ok(py.None())
         }
@@ -7193,8 +8596,8 @@ impl PyPlacementStrategy {
     #[getter]
     fn field(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.field {
-            let converted_1098 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1098)
+            let converted_1272 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1272)
         } else {
             Ok(py.None())
         }
@@ -7207,7 +8610,7 @@ impl PyPlacementStrategy {
 
 #[pyclass(name = "S3LogDestination", module = "rboto_pipes._native", frozen)]
 struct PyS3LogDestination {
-    inner: aws_sdk_pipes::types::S3LogDestination,
+    inner: Arc<aws_sdk_pipes::types::S3LogDestination>,
 }
 
 #[pymethods]
@@ -7215,8 +8618,8 @@ impl PyS3LogDestination {
     #[getter]
     fn bucket_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.bucket_name {
-            let converted_1099 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1099)
+            let converted_1273 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1273)
         } else {
             Ok(py.None())
         }
@@ -7225,8 +8628,8 @@ impl PyS3LogDestination {
     #[getter]
     fn prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.prefix {
-            let converted_1100 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1100)
+            let converted_1274 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1274)
         } else {
             Ok(py.None())
         }
@@ -7235,8 +8638,8 @@ impl PyS3LogDestination {
     #[getter]
     fn bucket_owner(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.bucket_owner {
-            let converted_1101 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1101)
+            let converted_1275 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1275)
         } else {
             Ok(py.None())
         }
@@ -7245,8 +8648,8 @@ impl PyS3LogDestination {
     #[getter]
     fn output_format(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_format {
-            let converted_1102 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1102)
+            let converted_1276 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1276)
         } else {
             Ok(py.None())
         }
@@ -7263,21 +8666,21 @@ impl PyS3LogDestination {
     frozen
 )]
 struct PySageMakerPipelineParameter {
-    inner: aws_sdk_pipes::types::SageMakerPipelineParameter,
+    inner: Arc<aws_sdk_pipes::types::SageMakerPipelineParameter>,
 }
 
 #[pymethods]
 impl PySageMakerPipelineParameter {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1103 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_1103)
+        let converted_1277 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_1277)
     }
 
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1104 = (&self.inner.value).as_str().into_py_any(py)?;
-        Ok(converted_1104)
+        let converted_1278 = (&self.inner.value).as_str().into_py_any(py)?;
+        Ok(converted_1278)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -7291,7 +8694,7 @@ impl PySageMakerPipelineParameter {
     frozen
 )]
 struct PySelfManagedKafkaAccessConfigurationVpc {
-    inner: aws_sdk_pipes::types::SelfManagedKafkaAccessConfigurationVpc,
+    inner: Arc<aws_sdk_pipes::types::SelfManagedKafkaAccessConfigurationVpc>,
 }
 
 #[pymethods]
@@ -7299,13 +8702,13 @@ impl PySelfManagedKafkaAccessConfigurationVpc {
     #[getter]
     fn subnets(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subnets {
-            let converted_1105_list = PyList::empty(py);
-            for item_1106 in value {
-                let converted_item_1107 = (item_1106).as_str().into_py_any(py)?;
-                converted_1105_list.append(converted_item_1107)?;
+            let converted_1279_list = PyList::empty(py);
+            for item_1280 in value {
+                let converted_item_1281 = (item_1280).as_str().into_py_any(py)?;
+                converted_1279_list.append(converted_item_1281)?;
             }
-            let converted_1105 = converted_1105_list.into_any().unbind();
-            Ok(converted_1105)
+            let converted_1279 = converted_1279_list.into_any().unbind();
+            Ok(converted_1279)
         } else {
             Ok(py.None())
         }
@@ -7314,13 +8717,13 @@ impl PySelfManagedKafkaAccessConfigurationVpc {
     #[getter]
     fn security_group(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.security_group {
-            let converted_1108_list = PyList::empty(py);
-            for item_1109 in value {
-                let converted_item_1110 = (item_1109).as_str().into_py_any(py)?;
-                converted_1108_list.append(converted_item_1110)?;
+            let converted_1282_list = PyList::empty(py);
+            for item_1283 in value {
+                let converted_item_1284 = (item_1283).as_str().into_py_any(py)?;
+                converted_1282_list.append(converted_item_1284)?;
             }
-            let converted_1108 = converted_1108_list.into_any().unbind();
-            Ok(converted_1108)
+            let converted_1282 = converted_1282_list.into_any().unbind();
+            Ok(converted_1282)
         } else {
             Ok(py.None())
         }
@@ -7333,27 +8736,27 @@ impl PySelfManagedKafkaAccessConfigurationVpc {
 
 #[pyclass(name = "SingleMeasureMapping", module = "rboto_pipes._native", frozen)]
 struct PySingleMeasureMapping {
-    inner: aws_sdk_pipes::types::SingleMeasureMapping,
+    inner: Arc<aws_sdk_pipes::types::SingleMeasureMapping>,
 }
 
 #[pymethods]
 impl PySingleMeasureMapping {
     #[getter]
     fn measure_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1111 = (&self.inner.measure_value).as_str().into_py_any(py)?;
-        Ok(converted_1111)
+        let converted_1285 = (&self.inner.measure_value).as_str().into_py_any(py)?;
+        Ok(converted_1285)
     }
 
     #[getter]
     fn measure_value_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1112 = (&self.inner.measure_value_type).as_str().into_py_any(py)?;
-        Ok(converted_1112)
+        let converted_1286 = (&self.inner.measure_value_type).as_str().into_py_any(py)?;
+        Ok(converted_1286)
     }
 
     #[getter]
     fn measure_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1113 = (&self.inner.measure_name).as_str().into_py_any(py)?;
-        Ok(converted_1113)
+        let converted_1287 = (&self.inner.measure_name).as_str().into_py_any(py)?;
+        Ok(converted_1287)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -7363,21 +8766,21 @@ impl PySingleMeasureMapping {
 
 #[pyclass(name = "Tag", module = "rboto_pipes._native", frozen)]
 struct PyTag {
-    inner: aws_sdk_pipes::types::Tag,
+    inner: Arc<aws_sdk_pipes::types::Tag>,
 }
 
 #[pymethods]
 impl PyTag {
     #[getter]
     fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1114 = (&self.inner.key).as_str().into_py_any(py)?;
-        Ok(converted_1114)
+        let converted_1288 = (&self.inner.key).as_str().into_py_any(py)?;
+        Ok(converted_1288)
     }
 
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1115 = (&self.inner.value).as_str().into_py_any(py)?;
-        Ok(converted_1115)
+        let converted_1289 = (&self.inner.value).as_str().into_py_any(py)?;
+        Ok(converted_1289)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -7395,8 +8798,8 @@ impl PyOperationCreatePipeOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
-            let converted_1116 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1116)
+            let converted_1290 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1290)
         } else {
             Ok(py.None())
         }
@@ -7405,8 +8808,8 @@ impl PyOperationCreatePipeOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1117 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1117)
+            let converted_1291 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1291)
         } else {
             Ok(py.None())
         }
@@ -7415,8 +8818,8 @@ impl PyOperationCreatePipeOutput {
     #[getter]
     fn desired_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.desired_state {
-            let converted_1118 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1118)
+            let converted_1292 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1292)
         } else {
             Ok(py.None())
         }
@@ -7425,8 +8828,8 @@ impl PyOperationCreatePipeOutput {
     #[getter]
     fn current_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.current_state {
-            let converted_1119 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1119)
+            let converted_1293 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1293)
         } else {
             Ok(py.None())
         }
@@ -7435,8 +8838,8 @@ impl PyOperationCreatePipeOutput {
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_time {
-            let converted_1120 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1120)
+            let converted_1294 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1294)
         } else {
             Ok(py.None())
         }
@@ -7445,8 +8848,8 @@ impl PyOperationCreatePipeOutput {
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_1121 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1121)
+            let converted_1295 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1295)
         } else {
             Ok(py.None())
         }
@@ -7455,38 +8858,38 @@ impl PyOperationCreatePipeOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.arn {
-            let converted_1122 = (value).as_str().into_py_any(py)?;
-            result.set_item("arn", converted_1122)?;
+            let converted_1296 = (value).as_str().into_py_any(py)?;
+            result.set_item("arn", converted_1296)?;
         } else {
             result.set_item("arn", py.None())?;
         }
         if let Some(value) = &self.inner.name {
-            let converted_1123 = (value).as_str().into_py_any(py)?;
-            result.set_item("name", converted_1123)?;
+            let converted_1297 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_1297)?;
         } else {
             result.set_item("name", py.None())?;
         }
         if let Some(value) = &self.inner.desired_state {
-            let converted_1124 = (value).as_str().into_py_any(py)?;
-            result.set_item("desired_state", converted_1124)?;
+            let converted_1298 = (value).as_str().into_py_any(py)?;
+            result.set_item("desired_state", converted_1298)?;
         } else {
             result.set_item("desired_state", py.None())?;
         }
         if let Some(value) = &self.inner.current_state {
-            let converted_1125 = (value).as_str().into_py_any(py)?;
-            result.set_item("current_state", converted_1125)?;
+            let converted_1299 = (value).as_str().into_py_any(py)?;
+            result.set_item("current_state", converted_1299)?;
         } else {
             result.set_item("current_state", py.None())?;
         }
         if let Some(value) = &self.inner.creation_time {
-            let converted_1126 = (value).to_string().into_py_any(py)?;
-            result.set_item("creation_time", converted_1126)?;
+            let converted_1300 = (value).to_string().into_py_any(py)?;
+            result.set_item("creation_time", converted_1300)?;
         } else {
             result.set_item("creation_time", py.None())?;
         }
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_1127 = (value).to_string().into_py_any(py)?;
-            result.set_item("last_modified_time", converted_1127)?;
+            let converted_1301 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_modified_time", converted_1301)?;
         } else {
             result.set_item("last_modified_time", py.None())?;
         }
@@ -7504,8 +8907,8 @@ impl PyOperationDeletePipeOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
-            let converted_1128 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1128)
+            let converted_1302 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1302)
         } else {
             Ok(py.None())
         }
@@ -7514,8 +8917,8 @@ impl PyOperationDeletePipeOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1129 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1129)
+            let converted_1303 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1303)
         } else {
             Ok(py.None())
         }
@@ -7524,8 +8927,8 @@ impl PyOperationDeletePipeOutput {
     #[getter]
     fn desired_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.desired_state {
-            let converted_1130 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1130)
+            let converted_1304 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1304)
         } else {
             Ok(py.None())
         }
@@ -7534,8 +8937,8 @@ impl PyOperationDeletePipeOutput {
     #[getter]
     fn current_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.current_state {
-            let converted_1131 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1131)
+            let converted_1305 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1305)
         } else {
             Ok(py.None())
         }
@@ -7544,8 +8947,8 @@ impl PyOperationDeletePipeOutput {
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_time {
-            let converted_1132 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1132)
+            let converted_1306 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1306)
         } else {
             Ok(py.None())
         }
@@ -7554,8 +8957,8 @@ impl PyOperationDeletePipeOutput {
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_1133 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1133)
+            let converted_1307 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1307)
         } else {
             Ok(py.None())
         }
@@ -7564,38 +8967,38 @@ impl PyOperationDeletePipeOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.arn {
-            let converted_1134 = (value).as_str().into_py_any(py)?;
-            result.set_item("arn", converted_1134)?;
+            let converted_1308 = (value).as_str().into_py_any(py)?;
+            result.set_item("arn", converted_1308)?;
         } else {
             result.set_item("arn", py.None())?;
         }
         if let Some(value) = &self.inner.name {
-            let converted_1135 = (value).as_str().into_py_any(py)?;
-            result.set_item("name", converted_1135)?;
+            let converted_1309 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_1309)?;
         } else {
             result.set_item("name", py.None())?;
         }
         if let Some(value) = &self.inner.desired_state {
-            let converted_1136 = (value).as_str().into_py_any(py)?;
-            result.set_item("desired_state", converted_1136)?;
+            let converted_1310 = (value).as_str().into_py_any(py)?;
+            result.set_item("desired_state", converted_1310)?;
         } else {
             result.set_item("desired_state", py.None())?;
         }
         if let Some(value) = &self.inner.current_state {
-            let converted_1137 = (value).as_str().into_py_any(py)?;
-            result.set_item("current_state", converted_1137)?;
+            let converted_1311 = (value).as_str().into_py_any(py)?;
+            result.set_item("current_state", converted_1311)?;
         } else {
             result.set_item("current_state", py.None())?;
         }
         if let Some(value) = &self.inner.creation_time {
-            let converted_1138 = (value).to_string().into_py_any(py)?;
-            result.set_item("creation_time", converted_1138)?;
+            let converted_1312 = (value).to_string().into_py_any(py)?;
+            result.set_item("creation_time", converted_1312)?;
         } else {
             result.set_item("creation_time", py.None())?;
         }
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_1139 = (value).to_string().into_py_any(py)?;
-            result.set_item("last_modified_time", converted_1139)?;
+            let converted_1313 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_modified_time", converted_1313)?;
         } else {
             result.set_item("last_modified_time", py.None())?;
         }
@@ -7603,9 +9006,66 @@ impl PyOperationDeletePipeOutput {
     }
 }
 
+struct SharedPyOperationDescribePipeOutput {
+    arn: Option<::std::string::String>,
+    name: Option<::std::string::String>,
+    description: Option<::std::string::String>,
+    desired_state: Option<aws_sdk_pipes::types::RequestedPipeStateDescribeResponse>,
+    current_state: Option<aws_sdk_pipes::types::PipeState>,
+    state_reason: Option<::std::string::String>,
+    source: Option<::std::string::String>,
+    source_parameters: Option<Arc<SharedPipeSourceParameters>>,
+    enrichment: Option<::std::string::String>,
+    enrichment_parameters: Option<Arc<SharedPipeEnrichmentParameters>>,
+    target: Option<::std::string::String>,
+    target_parameters: Option<Arc<SharedPipeTargetParameters>>,
+    role_arn: Option<::std::string::String>,
+    tags: Option<::std::collections::HashMap<::std::string::String, ::std::string::String>>,
+    creation_time: Option<::aws_smithy_types::DateTime>,
+    last_modified_time: Option<::aws_smithy_types::DateTime>,
+    log_configuration: Option<Arc<SharedPipeLogConfiguration>>,
+    kms_key_identifier: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_pipes::operation::describe_pipe::DescribePipeOutput>
+    for SharedPyOperationDescribePipeOutput
+{
+    fn from(value: aws_sdk_pipes::operation::describe_pipe::DescribePipeOutput) -> Self {
+        Self {
+            arn: value.arn,
+            name: value.name,
+            description: value.description,
+            desired_state: value.desired_state,
+            current_state: value.current_state,
+            state_reason: value.state_reason,
+            source: value.source,
+            source_parameters: value
+                .source_parameters
+                .map(|item| Arc::new(SharedPipeSourceParameters::from(item))),
+            enrichment: value.enrichment,
+            enrichment_parameters: value
+                .enrichment_parameters
+                .map(|item| Arc::new(SharedPipeEnrichmentParameters::from(item))),
+            target: value.target,
+            target_parameters: value
+                .target_parameters
+                .map(|item| Arc::new(SharedPipeTargetParameters::from(item))),
+            role_arn: value.role_arn,
+            tags: value.tags,
+            creation_time: value.creation_time,
+            last_modified_time: value.last_modified_time,
+            log_configuration: value
+                .log_configuration
+                .map(|item| Arc::new(SharedPipeLogConfiguration::from(item))),
+            kms_key_identifier: value.kms_key_identifier,
+        }
+    }
+}
+
 #[pyclass(name = "DescribePipeOutput", module = "rboto_pipes._native", frozen)]
 struct PyOperationDescribePipeOutput {
-    inner: aws_sdk_pipes::operation::describe_pipe::DescribePipeOutput,
+    inner: SharedPyOperationDescribePipeOutput,
 }
 
 #[pymethods]
@@ -7613,8 +9073,8 @@ impl PyOperationDescribePipeOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
-            let converted_1140 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1140)
+            let converted_1314 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1314)
         } else {
             Ok(py.None())
         }
@@ -7623,8 +9083,8 @@ impl PyOperationDescribePipeOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1141 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1141)
+            let converted_1315 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1315)
         } else {
             Ok(py.None())
         }
@@ -7633,8 +9093,8 @@ impl PyOperationDescribePipeOutput {
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_1142 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1142)
+            let converted_1316 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1316)
         } else {
             Ok(py.None())
         }
@@ -7643,8 +9103,8 @@ impl PyOperationDescribePipeOutput {
     #[getter]
     fn desired_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.desired_state {
-            let converted_1143 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1143)
+            let converted_1317 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1317)
         } else {
             Ok(py.None())
         }
@@ -7653,8 +9113,8 @@ impl PyOperationDescribePipeOutput {
     #[getter]
     fn current_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.current_state {
-            let converted_1144 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1144)
+            let converted_1318 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1318)
         } else {
             Ok(py.None())
         }
@@ -7663,8 +9123,8 @@ impl PyOperationDescribePipeOutput {
     #[getter]
     fn state_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state_reason {
-            let converted_1145 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1145)
+            let converted_1319 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1319)
         } else {
             Ok(py.None())
         }
@@ -7673,8 +9133,8 @@ impl PyOperationDescribePipeOutput {
     #[getter]
     fn source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.source {
-            let converted_1146 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1146)
+            let converted_1320 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1320)
         } else {
             Ok(py.None())
         }
@@ -7683,14 +9143,14 @@ impl PyOperationDescribePipeOutput {
     #[getter]
     fn source_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.source_parameters {
-            let converted_1147 = Py::new(
+            let converted_1321 = Py::new(
                 py,
                 PyPipeSourceParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1147)
+            Ok(converted_1321)
         } else {
             Ok(py.None())
         }
@@ -7699,8 +9159,8 @@ impl PyOperationDescribePipeOutput {
     #[getter]
     fn enrichment(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.enrichment {
-            let converted_1148 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1148)
+            let converted_1322 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1322)
         } else {
             Ok(py.None())
         }
@@ -7709,14 +9169,14 @@ impl PyOperationDescribePipeOutput {
     #[getter]
     fn enrichment_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.enrichment_parameters {
-            let converted_1149 = Py::new(
+            let converted_1323 = Py::new(
                 py,
                 PyPipeEnrichmentParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1149)
+            Ok(converted_1323)
         } else {
             Ok(py.None())
         }
@@ -7725,8 +9185,8 @@ impl PyOperationDescribePipeOutput {
     #[getter]
     fn target(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.target {
-            let converted_1150 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1150)
+            let converted_1324 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1324)
         } else {
             Ok(py.None())
         }
@@ -7735,14 +9195,14 @@ impl PyOperationDescribePipeOutput {
     #[getter]
     fn target_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.target_parameters {
-            let converted_1151 = Py::new(
+            let converted_1325 = Py::new(
                 py,
                 PyPipeTargetParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1151)
+            Ok(converted_1325)
         } else {
             Ok(py.None())
         }
@@ -7751,8 +9211,8 @@ impl PyOperationDescribePipeOutput {
     #[getter]
     fn role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.role_arn {
-            let converted_1152 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1152)
+            let converted_1326 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1326)
         } else {
             Ok(py.None())
         }
@@ -7761,14 +9221,14 @@ impl PyOperationDescribePipeOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_1153_dict = PyDict::new(py);
-            for (key_1154, value_1155) in value {
-                let converted_key_1156 = (key_1154).as_str().into_py_any(py)?;
-                let converted_value_1157 = (value_1155).as_str().into_py_any(py)?;
-                converted_1153_dict.set_item(converted_key_1156, converted_value_1157)?;
+            let converted_1327_dict = PyDict::new(py);
+            for (key_1328, value_1329) in value {
+                let converted_key_1330 = (key_1328).as_str().into_py_any(py)?;
+                let converted_value_1331 = (value_1329).as_str().into_py_any(py)?;
+                converted_1327_dict.set_item(converted_key_1330, converted_value_1331)?;
             }
-            let converted_1153 = converted_1153_dict.into_any().unbind();
-            Ok(converted_1153)
+            let converted_1327 = converted_1327_dict.into_any().unbind();
+            Ok(converted_1327)
         } else {
             Ok(py.None())
         }
@@ -7777,8 +9237,8 @@ impl PyOperationDescribePipeOutput {
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_time {
-            let converted_1158 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1158)
+            let converted_1332 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1332)
         } else {
             Ok(py.None())
         }
@@ -7787,8 +9247,8 @@ impl PyOperationDescribePipeOutput {
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_1159 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1159)
+            let converted_1333 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1333)
         } else {
             Ok(py.None())
         }
@@ -7797,14 +9257,14 @@ impl PyOperationDescribePipeOutput {
     #[getter]
     fn log_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_configuration {
-            let converted_1160 = Py::new(
+            let converted_1334 = Py::new(
                 py,
                 PyPipeLogConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1160)
+            Ok(converted_1334)
         } else {
             Ok(py.None())
         }
@@ -7813,8 +9273,8 @@ impl PyOperationDescribePipeOutput {
     #[getter]
     fn kms_key_identifier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key_identifier {
-            let converted_1161 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1161)
+            let converted_1335 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1335)
         } else {
             Ok(py.None())
         }
@@ -7823,116 +9283,116 @@ impl PyOperationDescribePipeOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.arn {
-            let converted_1162 = (value).as_str().into_py_any(py)?;
-            result.set_item("arn", converted_1162)?;
+            let converted_1336 = (value).as_str().into_py_any(py)?;
+            result.set_item("arn", converted_1336)?;
         } else {
             result.set_item("arn", py.None())?;
         }
         if let Some(value) = &self.inner.name {
-            let converted_1163 = (value).as_str().into_py_any(py)?;
-            result.set_item("name", converted_1163)?;
+            let converted_1337 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_1337)?;
         } else {
             result.set_item("name", py.None())?;
         }
         if let Some(value) = &self.inner.description {
-            let converted_1164 = (value).as_str().into_py_any(py)?;
-            result.set_item("description", converted_1164)?;
+            let converted_1338 = (value).as_str().into_py_any(py)?;
+            result.set_item("description", converted_1338)?;
         } else {
             result.set_item("description", py.None())?;
         }
         if let Some(value) = &self.inner.desired_state {
-            let converted_1165 = (value).as_str().into_py_any(py)?;
-            result.set_item("desired_state", converted_1165)?;
+            let converted_1339 = (value).as_str().into_py_any(py)?;
+            result.set_item("desired_state", converted_1339)?;
         } else {
             result.set_item("desired_state", py.None())?;
         }
         if let Some(value) = &self.inner.current_state {
-            let converted_1166 = (value).as_str().into_py_any(py)?;
-            result.set_item("current_state", converted_1166)?;
+            let converted_1340 = (value).as_str().into_py_any(py)?;
+            result.set_item("current_state", converted_1340)?;
         } else {
             result.set_item("current_state", py.None())?;
         }
         if let Some(value) = &self.inner.state_reason {
-            let converted_1167 = (value).as_str().into_py_any(py)?;
-            result.set_item("state_reason", converted_1167)?;
+            let converted_1341 = (value).as_str().into_py_any(py)?;
+            result.set_item("state_reason", converted_1341)?;
         } else {
             result.set_item("state_reason", py.None())?;
         }
         if let Some(value) = &self.inner.source {
-            let converted_1168 = (value).as_str().into_py_any(py)?;
-            result.set_item("source", converted_1168)?;
+            let converted_1342 = (value).as_str().into_py_any(py)?;
+            result.set_item("source", converted_1342)?;
         } else {
             result.set_item("source", py.None())?;
         }
         if let Some(value) = &self.inner.source_parameters {
-            let converted_1169 = pipe_source_parameters_to_py(py, value)?;
-            result.set_item("source_parameters", converted_1169)?;
+            let converted_1343 = pipe_source_parameters_shared_to_py(py, value)?;
+            result.set_item("source_parameters", converted_1343)?;
         } else {
             result.set_item("source_parameters", py.None())?;
         }
         if let Some(value) = &self.inner.enrichment {
-            let converted_1170 = (value).as_str().into_py_any(py)?;
-            result.set_item("enrichment", converted_1170)?;
+            let converted_1344 = (value).as_str().into_py_any(py)?;
+            result.set_item("enrichment", converted_1344)?;
         } else {
             result.set_item("enrichment", py.None())?;
         }
         if let Some(value) = &self.inner.enrichment_parameters {
-            let converted_1171 = pipe_enrichment_parameters_to_py(py, value)?;
-            result.set_item("enrichment_parameters", converted_1171)?;
+            let converted_1345 = pipe_enrichment_parameters_shared_to_py(py, value)?;
+            result.set_item("enrichment_parameters", converted_1345)?;
         } else {
             result.set_item("enrichment_parameters", py.None())?;
         }
         if let Some(value) = &self.inner.target {
-            let converted_1172 = (value).as_str().into_py_any(py)?;
-            result.set_item("target", converted_1172)?;
+            let converted_1346 = (value).as_str().into_py_any(py)?;
+            result.set_item("target", converted_1346)?;
         } else {
             result.set_item("target", py.None())?;
         }
         if let Some(value) = &self.inner.target_parameters {
-            let converted_1173 = pipe_target_parameters_to_py(py, value)?;
-            result.set_item("target_parameters", converted_1173)?;
+            let converted_1347 = pipe_target_parameters_shared_to_py(py, value)?;
+            result.set_item("target_parameters", converted_1347)?;
         } else {
             result.set_item("target_parameters", py.None())?;
         }
         if let Some(value) = &self.inner.role_arn {
-            let converted_1174 = (value).as_str().into_py_any(py)?;
-            result.set_item("role_arn", converted_1174)?;
+            let converted_1348 = (value).as_str().into_py_any(py)?;
+            result.set_item("role_arn", converted_1348)?;
         } else {
             result.set_item("role_arn", py.None())?;
         }
         if let Some(value) = &self.inner.tags {
-            let converted_1175_dict = PyDict::new(py);
-            for (key_1176, value_1177) in value {
-                let converted_key_1178 = (key_1176).as_str().into_py_any(py)?;
-                let converted_value_1179 = (value_1177).as_str().into_py_any(py)?;
-                converted_1175_dict.set_item(converted_key_1178, converted_value_1179)?;
+            let converted_1349_dict = PyDict::new(py);
+            for (key_1350, value_1351) in value {
+                let converted_key_1352 = (key_1350).as_str().into_py_any(py)?;
+                let converted_value_1353 = (value_1351).as_str().into_py_any(py)?;
+                converted_1349_dict.set_item(converted_key_1352, converted_value_1353)?;
             }
-            let converted_1175 = converted_1175_dict.into_any().unbind();
-            result.set_item("tags", converted_1175)?;
+            let converted_1349 = converted_1349_dict.into_any().unbind();
+            result.set_item("tags", converted_1349)?;
         } else {
             result.set_item("tags", py.None())?;
         }
         if let Some(value) = &self.inner.creation_time {
-            let converted_1180 = (value).to_string().into_py_any(py)?;
-            result.set_item("creation_time", converted_1180)?;
+            let converted_1354 = (value).to_string().into_py_any(py)?;
+            result.set_item("creation_time", converted_1354)?;
         } else {
             result.set_item("creation_time", py.None())?;
         }
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_1181 = (value).to_string().into_py_any(py)?;
-            result.set_item("last_modified_time", converted_1181)?;
+            let converted_1355 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_modified_time", converted_1355)?;
         } else {
             result.set_item("last_modified_time", py.None())?;
         }
         if let Some(value) = &self.inner.log_configuration {
-            let converted_1182 = pipe_log_configuration_to_py(py, value)?;
-            result.set_item("log_configuration", converted_1182)?;
+            let converted_1356 = pipe_log_configuration_shared_to_py(py, value)?;
+            result.set_item("log_configuration", converted_1356)?;
         } else {
             result.set_item("log_configuration", py.None())?;
         }
         if let Some(value) = &self.inner.kms_key_identifier {
-            let converted_1183 = (value).as_str().into_py_any(py)?;
-            result.set_item("kms_key_identifier", converted_1183)?;
+            let converted_1357 = (value).as_str().into_py_any(py)?;
+            result.set_item("kms_key_identifier", converted_1357)?;
         } else {
             result.set_item("kms_key_identifier", py.None())?;
         }
@@ -7940,9 +9400,31 @@ impl PyOperationDescribePipeOutput {
     }
 }
 
+struct SharedPyOperationListPipesOutput {
+    pipes: Option<::std::vec::Vec<Arc<aws_sdk_pipes::types::Pipe>>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_pipes::operation::list_pipes::ListPipesOutput>
+    for SharedPyOperationListPipesOutput
+{
+    fn from(value: aws_sdk_pipes::operation::list_pipes::ListPipesOutput) -> Self {
+        Self {
+            pipes: value.pipes.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_1362| Arc::new(owned_1362))
+                    .collect()
+            }),
+            next_token: value.next_token,
+        }
+    }
+}
+
 #[pyclass(name = "ListPipesOutput", module = "rboto_pipes._native", frozen)]
 struct PyOperationListPipesOutput {
-    inner: aws_sdk_pipes::operation::list_pipes::ListPipesOutput,
+    inner: SharedPyOperationListPipesOutput,
 }
 
 #[pymethods]
@@ -7950,19 +9432,19 @@ impl PyOperationListPipesOutput {
     #[getter]
     fn pipes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.pipes {
-            let converted_1184_list = PyList::empty(py);
-            for item_1185 in value {
-                let converted_item_1186 = Py::new(
+            let converted_1358_list = PyList::empty(py);
+            for item_1359 in value {
+                let converted_item_1360 = Py::new(
                     py,
                     PyPipe {
-                        inner: (item_1185).to_owned(),
+                        inner: Arc::clone(item_1359),
                     },
                 )?
                 .into_any();
-                converted_1184_list.append(converted_item_1186)?;
+                converted_1358_list.append(converted_item_1360)?;
             }
-            let converted_1184 = converted_1184_list.into_any().unbind();
-            Ok(converted_1184)
+            let converted_1358 = converted_1358_list.into_any().unbind();
+            Ok(converted_1358)
         } else {
             Ok(py.None())
         }
@@ -7971,8 +9453,8 @@ impl PyOperationListPipesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1187 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1187)
+            let converted_1361 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1361)
         } else {
             Ok(py.None())
         }
@@ -7981,19 +9463,19 @@ impl PyOperationListPipesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.pipes {
-            let converted_1188_list = PyList::empty(py);
-            for item_1189 in value {
-                let converted_item_1190 = pipe_to_py(py, item_1189)?;
-                converted_1188_list.append(converted_item_1190)?;
+            let converted_1363_list = PyList::empty(py);
+            for item_1364 in value {
+                let converted_item_1365 = pipe_to_py(py, item_1364)?;
+                converted_1363_list.append(converted_item_1365)?;
             }
-            let converted_1188 = converted_1188_list.into_any().unbind();
-            result.set_item("pipes", converted_1188)?;
+            let converted_1363 = converted_1363_list.into_any().unbind();
+            result.set_item("pipes", converted_1363)?;
         } else {
             result.set_item("pipes", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1191 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1191)?;
+            let converted_1366 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1366)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -8015,14 +9497,14 @@ impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_1192_dict = PyDict::new(py);
-            for (key_1193, value_1194) in value {
-                let converted_key_1195 = (key_1193).as_str().into_py_any(py)?;
-                let converted_value_1196 = (value_1194).as_str().into_py_any(py)?;
-                converted_1192_dict.set_item(converted_key_1195, converted_value_1196)?;
+            let converted_1367_dict = PyDict::new(py);
+            for (key_1368, value_1369) in value {
+                let converted_key_1370 = (key_1368).as_str().into_py_any(py)?;
+                let converted_value_1371 = (value_1369).as_str().into_py_any(py)?;
+                converted_1367_dict.set_item(converted_key_1370, converted_value_1371)?;
             }
-            let converted_1192 = converted_1192_dict.into_any().unbind();
-            Ok(converted_1192)
+            let converted_1367 = converted_1367_dict.into_any().unbind();
+            Ok(converted_1367)
         } else {
             Ok(py.None())
         }
@@ -8031,14 +9513,14 @@ impl PyOperationListTagsForResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.tags {
-            let converted_1197_dict = PyDict::new(py);
-            for (key_1198, value_1199) in value {
-                let converted_key_1200 = (key_1198).as_str().into_py_any(py)?;
-                let converted_value_1201 = (value_1199).as_str().into_py_any(py)?;
-                converted_1197_dict.set_item(converted_key_1200, converted_value_1201)?;
+            let converted_1372_dict = PyDict::new(py);
+            for (key_1373, value_1374) in value {
+                let converted_key_1375 = (key_1373).as_str().into_py_any(py)?;
+                let converted_value_1376 = (value_1374).as_str().into_py_any(py)?;
+                converted_1372_dict.set_item(converted_key_1375, converted_value_1376)?;
             }
-            let converted_1197 = converted_1197_dict.into_any().unbind();
-            result.set_item("tags", converted_1197)?;
+            let converted_1372 = converted_1372_dict.into_any().unbind();
+            result.set_item("tags", converted_1372)?;
         } else {
             result.set_item("tags", py.None())?;
         }
@@ -8056,8 +9538,8 @@ impl PyOperationStartPipeOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
-            let converted_1202 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1202)
+            let converted_1377 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1377)
         } else {
             Ok(py.None())
         }
@@ -8066,8 +9548,8 @@ impl PyOperationStartPipeOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1203 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1203)
+            let converted_1378 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1378)
         } else {
             Ok(py.None())
         }
@@ -8076,8 +9558,8 @@ impl PyOperationStartPipeOutput {
     #[getter]
     fn desired_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.desired_state {
-            let converted_1204 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1204)
+            let converted_1379 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1379)
         } else {
             Ok(py.None())
         }
@@ -8086,8 +9568,8 @@ impl PyOperationStartPipeOutput {
     #[getter]
     fn current_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.current_state {
-            let converted_1205 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1205)
+            let converted_1380 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1380)
         } else {
             Ok(py.None())
         }
@@ -8096,8 +9578,8 @@ impl PyOperationStartPipeOutput {
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_time {
-            let converted_1206 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1206)
+            let converted_1381 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1381)
         } else {
             Ok(py.None())
         }
@@ -8106,8 +9588,8 @@ impl PyOperationStartPipeOutput {
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_1207 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1207)
+            let converted_1382 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1382)
         } else {
             Ok(py.None())
         }
@@ -8116,38 +9598,38 @@ impl PyOperationStartPipeOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.arn {
-            let converted_1208 = (value).as_str().into_py_any(py)?;
-            result.set_item("arn", converted_1208)?;
+            let converted_1383 = (value).as_str().into_py_any(py)?;
+            result.set_item("arn", converted_1383)?;
         } else {
             result.set_item("arn", py.None())?;
         }
         if let Some(value) = &self.inner.name {
-            let converted_1209 = (value).as_str().into_py_any(py)?;
-            result.set_item("name", converted_1209)?;
+            let converted_1384 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_1384)?;
         } else {
             result.set_item("name", py.None())?;
         }
         if let Some(value) = &self.inner.desired_state {
-            let converted_1210 = (value).as_str().into_py_any(py)?;
-            result.set_item("desired_state", converted_1210)?;
+            let converted_1385 = (value).as_str().into_py_any(py)?;
+            result.set_item("desired_state", converted_1385)?;
         } else {
             result.set_item("desired_state", py.None())?;
         }
         if let Some(value) = &self.inner.current_state {
-            let converted_1211 = (value).as_str().into_py_any(py)?;
-            result.set_item("current_state", converted_1211)?;
+            let converted_1386 = (value).as_str().into_py_any(py)?;
+            result.set_item("current_state", converted_1386)?;
         } else {
             result.set_item("current_state", py.None())?;
         }
         if let Some(value) = &self.inner.creation_time {
-            let converted_1212 = (value).to_string().into_py_any(py)?;
-            result.set_item("creation_time", converted_1212)?;
+            let converted_1387 = (value).to_string().into_py_any(py)?;
+            result.set_item("creation_time", converted_1387)?;
         } else {
             result.set_item("creation_time", py.None())?;
         }
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_1213 = (value).to_string().into_py_any(py)?;
-            result.set_item("last_modified_time", converted_1213)?;
+            let converted_1388 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_modified_time", converted_1388)?;
         } else {
             result.set_item("last_modified_time", py.None())?;
         }
@@ -8165,8 +9647,8 @@ impl PyOperationStopPipeOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
-            let converted_1214 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1214)
+            let converted_1389 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1389)
         } else {
             Ok(py.None())
         }
@@ -8175,8 +9657,8 @@ impl PyOperationStopPipeOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1215 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1215)
+            let converted_1390 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1390)
         } else {
             Ok(py.None())
         }
@@ -8185,8 +9667,8 @@ impl PyOperationStopPipeOutput {
     #[getter]
     fn desired_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.desired_state {
-            let converted_1216 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1216)
+            let converted_1391 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1391)
         } else {
             Ok(py.None())
         }
@@ -8195,8 +9677,8 @@ impl PyOperationStopPipeOutput {
     #[getter]
     fn current_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.current_state {
-            let converted_1217 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1217)
+            let converted_1392 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1392)
         } else {
             Ok(py.None())
         }
@@ -8205,8 +9687,8 @@ impl PyOperationStopPipeOutput {
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_time {
-            let converted_1218 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1218)
+            let converted_1393 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1393)
         } else {
             Ok(py.None())
         }
@@ -8215,8 +9697,8 @@ impl PyOperationStopPipeOutput {
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_1219 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1219)
+            let converted_1394 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1394)
         } else {
             Ok(py.None())
         }
@@ -8225,38 +9707,38 @@ impl PyOperationStopPipeOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.arn {
-            let converted_1220 = (value).as_str().into_py_any(py)?;
-            result.set_item("arn", converted_1220)?;
+            let converted_1395 = (value).as_str().into_py_any(py)?;
+            result.set_item("arn", converted_1395)?;
         } else {
             result.set_item("arn", py.None())?;
         }
         if let Some(value) = &self.inner.name {
-            let converted_1221 = (value).as_str().into_py_any(py)?;
-            result.set_item("name", converted_1221)?;
+            let converted_1396 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_1396)?;
         } else {
             result.set_item("name", py.None())?;
         }
         if let Some(value) = &self.inner.desired_state {
-            let converted_1222 = (value).as_str().into_py_any(py)?;
-            result.set_item("desired_state", converted_1222)?;
+            let converted_1397 = (value).as_str().into_py_any(py)?;
+            result.set_item("desired_state", converted_1397)?;
         } else {
             result.set_item("desired_state", py.None())?;
         }
         if let Some(value) = &self.inner.current_state {
-            let converted_1223 = (value).as_str().into_py_any(py)?;
-            result.set_item("current_state", converted_1223)?;
+            let converted_1398 = (value).as_str().into_py_any(py)?;
+            result.set_item("current_state", converted_1398)?;
         } else {
             result.set_item("current_state", py.None())?;
         }
         if let Some(value) = &self.inner.creation_time {
-            let converted_1224 = (value).to_string().into_py_any(py)?;
-            result.set_item("creation_time", converted_1224)?;
+            let converted_1399 = (value).to_string().into_py_any(py)?;
+            result.set_item("creation_time", converted_1399)?;
         } else {
             result.set_item("creation_time", py.None())?;
         }
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_1225 = (value).to_string().into_py_any(py)?;
-            result.set_item("last_modified_time", converted_1225)?;
+            let converted_1400 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_modified_time", converted_1400)?;
         } else {
             result.set_item("last_modified_time", py.None())?;
         }
@@ -8300,8 +9782,8 @@ impl PyOperationUpdatePipeOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
-            let converted_1226 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1226)
+            let converted_1401 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1401)
         } else {
             Ok(py.None())
         }
@@ -8310,8 +9792,8 @@ impl PyOperationUpdatePipeOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1227 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1227)
+            let converted_1402 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1402)
         } else {
             Ok(py.None())
         }
@@ -8320,8 +9802,8 @@ impl PyOperationUpdatePipeOutput {
     #[getter]
     fn desired_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.desired_state {
-            let converted_1228 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1228)
+            let converted_1403 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1403)
         } else {
             Ok(py.None())
         }
@@ -8330,8 +9812,8 @@ impl PyOperationUpdatePipeOutput {
     #[getter]
     fn current_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.current_state {
-            let converted_1229 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1229)
+            let converted_1404 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1404)
         } else {
             Ok(py.None())
         }
@@ -8340,8 +9822,8 @@ impl PyOperationUpdatePipeOutput {
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_time {
-            let converted_1230 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1230)
+            let converted_1405 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1405)
         } else {
             Ok(py.None())
         }
@@ -8350,8 +9832,8 @@ impl PyOperationUpdatePipeOutput {
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_1231 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1231)
+            let converted_1406 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1406)
         } else {
             Ok(py.None())
         }
@@ -8360,38 +9842,38 @@ impl PyOperationUpdatePipeOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.arn {
-            let converted_1232 = (value).as_str().into_py_any(py)?;
-            result.set_item("arn", converted_1232)?;
+            let converted_1407 = (value).as_str().into_py_any(py)?;
+            result.set_item("arn", converted_1407)?;
         } else {
             result.set_item("arn", py.None())?;
         }
         if let Some(value) = &self.inner.name {
-            let converted_1233 = (value).as_str().into_py_any(py)?;
-            result.set_item("name", converted_1233)?;
+            let converted_1408 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_1408)?;
         } else {
             result.set_item("name", py.None())?;
         }
         if let Some(value) = &self.inner.desired_state {
-            let converted_1234 = (value).as_str().into_py_any(py)?;
-            result.set_item("desired_state", converted_1234)?;
+            let converted_1409 = (value).as_str().into_py_any(py)?;
+            result.set_item("desired_state", converted_1409)?;
         } else {
             result.set_item("desired_state", py.None())?;
         }
         if let Some(value) = &self.inner.current_state {
-            let converted_1235 = (value).as_str().into_py_any(py)?;
-            result.set_item("current_state", converted_1235)?;
+            let converted_1410 = (value).as_str().into_py_any(py)?;
+            result.set_item("current_state", converted_1410)?;
         } else {
             result.set_item("current_state", py.None())?;
         }
         if let Some(value) = &self.inner.creation_time {
-            let converted_1236 = (value).to_string().into_py_any(py)?;
-            result.set_item("creation_time", converted_1236)?;
+            let converted_1411 = (value).to_string().into_py_any(py)?;
+            result.set_item("creation_time", converted_1411)?;
         } else {
             result.set_item("creation_time", py.None())?;
         }
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_1237 = (value).to_string().into_py_any(py)?;
-            result.set_item("last_modified_time", converted_1237)?;
+            let converted_1412 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_modified_time", converted_1412)?;
         } else {
             result.set_item("last_modified_time", py.None())?;
         }
@@ -8699,7 +10181,9 @@ impl PipesClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribePipe"))
             })?;
-            Ok(PyOperationDescribePipeOutput { inner: output })
+            Ok(PyOperationDescribePipeOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -8781,7 +10265,9 @@ impl PipesClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListPipes")))?;
-            Ok(PyOperationListPipesOutput { inner: output })
+            Ok(PyOperationListPipesOutput {
+                inner: output.into(),
+            })
         })
     }
 

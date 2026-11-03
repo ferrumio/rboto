@@ -732,7 +732,7 @@ fn send_message_batch_result_entry_to_py(
 
 #[pyclass(name = "BatchResultErrorEntry", module = "rboto_sqs._native", frozen)]
 struct PyBatchResultErrorEntry {
-    inner: aws_sdk_sqs::types::BatchResultErrorEntry,
+    inner: Arc<aws_sdk_sqs::types::BatchResultErrorEntry>,
 }
 
 #[pymethods]
@@ -776,7 +776,7 @@ impl PyBatchResultErrorEntry {
     frozen
 )]
 struct PyChangeMessageVisibilityBatchResultEntry {
-    inner: aws_sdk_sqs::types::ChangeMessageVisibilityBatchResultEntry,
+    inner: Arc<aws_sdk_sqs::types::ChangeMessageVisibilityBatchResultEntry>,
 }
 
 #[pymethods]
@@ -798,7 +798,7 @@ impl PyChangeMessageVisibilityBatchResultEntry {
     frozen
 )]
 struct PyDeleteMessageBatchResultEntry {
-    inner: aws_sdk_sqs::types::DeleteMessageBatchResultEntry,
+    inner: Arc<aws_sdk_sqs::types::DeleteMessageBatchResultEntry>,
 }
 
 #[pymethods]
@@ -820,7 +820,7 @@ impl PyDeleteMessageBatchResultEntry {
     frozen
 )]
 struct PyListMessageMoveTasksResultEntry {
-    inner: aws_sdk_sqs::types::ListMessageMoveTasksResultEntry,
+    inner: Arc<aws_sdk_sqs::types::ListMessageMoveTasksResultEntry>,
 }
 
 #[pymethods]
@@ -914,9 +914,108 @@ impl PyListMessageMoveTasksResultEntry {
     }
 }
 
+struct SharedMessage {
+    message_id: Option<::std::string::String>,
+    receipt_handle: Option<::std::string::String>,
+    md5_of_body: Option<::std::string::String>,
+    body: Option<::std::string::String>,
+    attributes: Option<
+        ::std::collections::HashMap<
+            aws_sdk_sqs::types::MessageSystemAttributeName,
+            ::std::string::String,
+        >,
+    >,
+    md5_of_message_attributes: Option<::std::string::String>,
+    message_attributes: Option<
+        ::std::collections::HashMap<
+            ::std::string::String,
+            Arc<aws_sdk_sqs::types::MessageAttributeValue>,
+        >,
+    >,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sqs::types::Message> for SharedMessage {
+    fn from(value: aws_sdk_sqs::types::Message) -> Self {
+        Self {
+            message_id: value.message_id,
+            receipt_handle: value.receipt_handle,
+            md5_of_body: value.md5_of_body,
+            body: value.body,
+            attributes: value.attributes,
+            md5_of_message_attributes: value.md5_of_message_attributes,
+            message_attributes: value.message_attributes.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|(key, owned_319)| (key, Arc::new(owned_319)))
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn message_shared_to_py(py: Python<'_>, value: &SharedMessage) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.message_id {
+        let converted_320 = (value).as_str().into_py_any(py)?;
+        result.set_item("message_id", converted_320)?;
+    } else {
+        result.set_item("message_id", py.None())?;
+    }
+    if let Some(value) = &value.receipt_handle {
+        let converted_321 = (value).as_str().into_py_any(py)?;
+        result.set_item("receipt_handle", converted_321)?;
+    } else {
+        result.set_item("receipt_handle", py.None())?;
+    }
+    if let Some(value) = &value.md5_of_body {
+        let converted_322 = (value).as_str().into_py_any(py)?;
+        result.set_item("md5_of_body", converted_322)?;
+    } else {
+        result.set_item("md5_of_body", py.None())?;
+    }
+    if let Some(value) = &value.body {
+        let converted_323 = (value).as_str().into_py_any(py)?;
+        result.set_item("body", converted_323)?;
+    } else {
+        result.set_item("body", py.None())?;
+    }
+    if let Some(value) = &value.attributes {
+        let converted_324_dict = PyDict::new(py);
+        for (key_325, value_326) in value {
+            let converted_key_327 = (key_325).as_str().into_py_any(py)?;
+            let converted_value_328 = (value_326).as_str().into_py_any(py)?;
+            converted_324_dict.set_item(converted_key_327, converted_value_328)?;
+        }
+        let converted_324 = converted_324_dict.into_any().unbind();
+        result.set_item("attributes", converted_324)?;
+    } else {
+        result.set_item("attributes", py.None())?;
+    }
+    if let Some(value) = &value.md5_of_message_attributes {
+        let converted_329 = (value).as_str().into_py_any(py)?;
+        result.set_item("md5_of_message_attributes", converted_329)?;
+    } else {
+        result.set_item("md5_of_message_attributes", py.None())?;
+    }
+    if let Some(value) = &value.message_attributes {
+        let converted_330_dict = PyDict::new(py);
+        for (key_331, value_332) in value {
+            let converted_key_333 = (key_331).as_str().into_py_any(py)?;
+            let converted_value_334 = message_attribute_value_to_py(py, value_332)?;
+            converted_330_dict.set_item(converted_key_333, converted_value_334)?;
+        }
+        let converted_330 = converted_330_dict.into_any().unbind();
+        result.set_item("message_attributes", converted_330)?;
+    } else {
+        result.set_item("message_attributes", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "Message", module = "rboto_sqs._native", frozen)]
 struct PyMessage {
-    inner: aws_sdk_sqs::types::Message,
+    inner: Arc<SharedMessage>,
 }
 
 #[pymethods]
@@ -996,7 +1095,7 @@ impl PyMessage {
                 let converted_value_318 = Py::new(
                     py,
                     PyMessageAttributeValue {
-                        inner: (value_316).to_owned(),
+                        inner: Arc::clone(value_316),
                     },
                 )?
                 .into_any();
@@ -1010,13 +1109,13 @@ impl PyMessage {
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        message_to_py(py, &self.inner)
+        message_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "MessageAttributeValue", module = "rboto_sqs._native", frozen)]
 struct PyMessageAttributeValue {
-    inner: aws_sdk_sqs::types::MessageAttributeValue,
+    inner: Arc<aws_sdk_sqs::types::MessageAttributeValue>,
 }
 
 #[pymethods]
@@ -1024,8 +1123,8 @@ impl PyMessageAttributeValue {
     #[getter]
     fn string_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.string_value {
-            let converted_319 = (value).as_str().into_py_any(py)?;
-            Ok(converted_319)
+            let converted_335 = (value).as_str().into_py_any(py)?;
+            Ok(converted_335)
         } else {
             Ok(py.None())
         }
@@ -1034,8 +1133,8 @@ impl PyMessageAttributeValue {
     #[getter]
     fn binary_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.binary_value {
-            let converted_320 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_320)
+            let converted_336 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_336)
         } else {
             Ok(py.None())
         }
@@ -1044,13 +1143,13 @@ impl PyMessageAttributeValue {
     #[getter]
     fn string_list_values(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.string_list_values {
-            let converted_321_list = PyList::empty(py);
-            for item_322 in value {
-                let converted_item_323 = (item_322).as_str().into_py_any(py)?;
-                converted_321_list.append(converted_item_323)?;
+            let converted_337_list = PyList::empty(py);
+            for item_338 in value {
+                let converted_item_339 = (item_338).as_str().into_py_any(py)?;
+                converted_337_list.append(converted_item_339)?;
             }
-            let converted_321 = converted_321_list.into_any().unbind();
-            Ok(converted_321)
+            let converted_337 = converted_337_list.into_any().unbind();
+            Ok(converted_337)
         } else {
             Ok(py.None())
         }
@@ -1059,13 +1158,13 @@ impl PyMessageAttributeValue {
     #[getter]
     fn binary_list_values(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.binary_list_values {
-            let converted_324_list = PyList::empty(py);
-            for item_325 in value {
-                let converted_item_326 = PyBytes::new(py, (item_325).as_ref()).into_any().unbind();
-                converted_324_list.append(converted_item_326)?;
+            let converted_340_list = PyList::empty(py);
+            for item_341 in value {
+                let converted_item_342 = PyBytes::new(py, (item_341).as_ref()).into_any().unbind();
+                converted_340_list.append(converted_item_342)?;
             }
-            let converted_324 = converted_324_list.into_any().unbind();
-            Ok(converted_324)
+            let converted_340 = converted_340_list.into_any().unbind();
+            Ok(converted_340)
         } else {
             Ok(py.None())
         }
@@ -1073,8 +1172,8 @@ impl PyMessageAttributeValue {
 
     #[getter]
     fn data_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_327 = (&self.inner.data_type).as_str().into_py_any(py)?;
-        Ok(converted_327)
+        let converted_343 = (&self.inner.data_type).as_str().into_py_any(py)?;
+        Ok(converted_343)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -1088,34 +1187,34 @@ impl PyMessageAttributeValue {
     frozen
 )]
 struct PySendMessageBatchResultEntry {
-    inner: aws_sdk_sqs::types::SendMessageBatchResultEntry,
+    inner: Arc<aws_sdk_sqs::types::SendMessageBatchResultEntry>,
 }
 
 #[pymethods]
 impl PySendMessageBatchResultEntry {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_328 = (&self.inner.id).as_str().into_py_any(py)?;
-        Ok(converted_328)
+        let converted_344 = (&self.inner.id).as_str().into_py_any(py)?;
+        Ok(converted_344)
     }
 
     #[getter]
     fn message_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_329 = (&self.inner.message_id).as_str().into_py_any(py)?;
-        Ok(converted_329)
+        let converted_345 = (&self.inner.message_id).as_str().into_py_any(py)?;
+        Ok(converted_345)
     }
 
     #[getter]
     fn md5_of_message_body(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_330 = (&self.inner.md5_of_message_body).as_str().into_py_any(py)?;
-        Ok(converted_330)
+        let converted_346 = (&self.inner.md5_of_message_body).as_str().into_py_any(py)?;
+        Ok(converted_346)
     }
 
     #[getter]
     fn md5_of_message_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.md5_of_message_attributes {
-            let converted_331 = (value).as_str().into_py_any(py)?;
-            Ok(converted_331)
+            let converted_347 = (value).as_str().into_py_any(py)?;
+            Ok(converted_347)
         } else {
             Ok(py.None())
         }
@@ -1124,8 +1223,8 @@ impl PySendMessageBatchResultEntry {
     #[getter]
     fn md5_of_message_system_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.md5_of_message_system_attributes {
-            let converted_332 = (value).as_str().into_py_any(py)?;
-            Ok(converted_332)
+            let converted_348 = (value).as_str().into_py_any(py)?;
+            Ok(converted_348)
         } else {
             Ok(py.None())
         }
@@ -1134,8 +1233,8 @@ impl PySendMessageBatchResultEntry {
     #[getter]
     fn sequence_number(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sequence_number {
-            let converted_333 = (value).as_str().into_py_any(py)?;
-            Ok(converted_333)
+            let converted_349 = (value).as_str().into_py_any(py)?;
+            Ok(converted_349)
         } else {
             Ok(py.None())
         }
@@ -1159,19 +1258,46 @@ struct PyOperationCancelMessageMoveTaskOutput {
 impl PyOperationCancelMessageMoveTaskOutput {
     #[getter]
     fn approximate_number_of_messages_moved(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_334 = (&self.inner.approximate_number_of_messages_moved)
+        let converted_350 = (&self.inner.approximate_number_of_messages_moved)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_334)
+        Ok(converted_350)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_335 = (&self.inner.approximate_number_of_messages_moved)
+        let converted_351 = (&self.inner.approximate_number_of_messages_moved)
             .to_owned()
             .into_py_any(py)?;
-        result.set_item("approximate_number_of_messages_moved", converted_335)?;
+        result.set_item("approximate_number_of_messages_moved", converted_351)?;
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationChangeMessageVisibilityBatchOutput {
+    successful: ::std::vec::Vec<Arc<aws_sdk_sqs::types::ChangeMessageVisibilityBatchResultEntry>>,
+    failed: ::std::vec::Vec<Arc<aws_sdk_sqs::types::BatchResultErrorEntry>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl
+    From<
+        aws_sdk_sqs::operation::change_message_visibility_batch::ChangeMessageVisibilityBatchOutput,
+    > for SharedPyOperationChangeMessageVisibilityBatchOutput
+{
+    fn from(
+        value: aws_sdk_sqs::operation::change_message_visibility_batch::ChangeMessageVisibilityBatchOutput,
+    ) -> Self {
+        Self {
+            successful: (value.successful)
+                .into_iter()
+                .map(|owned_358| Arc::new(owned_358))
+                .collect(),
+            failed: (value.failed)
+                .into_iter()
+                .map(|owned_359| Arc::new(owned_359))
+                .collect(),
+        }
     }
 }
 
@@ -1181,63 +1307,62 @@ impl PyOperationCancelMessageMoveTaskOutput {
     frozen
 )]
 struct PyOperationChangeMessageVisibilityBatchOutput {
-    inner:
-        aws_sdk_sqs::operation::change_message_visibility_batch::ChangeMessageVisibilityBatchOutput,
+    inner: SharedPyOperationChangeMessageVisibilityBatchOutput,
 }
 
 #[pymethods]
 impl PyOperationChangeMessageVisibilityBatchOutput {
     #[getter]
     fn successful(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_336_list = PyList::empty(py);
-        for item_337 in &self.inner.successful {
-            let converted_item_338 = Py::new(
+        let converted_352_list = PyList::empty(py);
+        for item_353 in &self.inner.successful {
+            let converted_item_354 = Py::new(
                 py,
                 PyChangeMessageVisibilityBatchResultEntry {
-                    inner: (item_337).to_owned(),
+                    inner: Arc::clone(item_353),
                 },
             )?
             .into_any();
-            converted_336_list.append(converted_item_338)?;
+            converted_352_list.append(converted_item_354)?;
         }
-        let converted_336 = converted_336_list.into_any().unbind();
-        Ok(converted_336)
+        let converted_352 = converted_352_list.into_any().unbind();
+        Ok(converted_352)
     }
 
     #[getter]
     fn failed(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_339_list = PyList::empty(py);
-        for item_340 in &self.inner.failed {
-            let converted_item_341 = Py::new(
+        let converted_355_list = PyList::empty(py);
+        for item_356 in &self.inner.failed {
+            let converted_item_357 = Py::new(
                 py,
                 PyBatchResultErrorEntry {
-                    inner: (item_340).to_owned(),
+                    inner: Arc::clone(item_356),
                 },
             )?
             .into_any();
-            converted_339_list.append(converted_item_341)?;
+            converted_355_list.append(converted_item_357)?;
         }
-        let converted_339 = converted_339_list.into_any().unbind();
-        Ok(converted_339)
+        let converted_355 = converted_355_list.into_any().unbind();
+        Ok(converted_355)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_342_list = PyList::empty(py);
-        for item_343 in &self.inner.successful {
-            let converted_item_344 =
-                change_message_visibility_batch_result_entry_to_py(py, item_343)?;
-            converted_342_list.append(converted_item_344)?;
+        let converted_360_list = PyList::empty(py);
+        for item_361 in &self.inner.successful {
+            let converted_item_362 =
+                change_message_visibility_batch_result_entry_to_py(py, item_361)?;
+            converted_360_list.append(converted_item_362)?;
         }
-        let converted_342 = converted_342_list.into_any().unbind();
-        result.set_item("successful", converted_342)?;
-        let converted_345_list = PyList::empty(py);
-        for item_346 in &self.inner.failed {
-            let converted_item_347 = batch_result_error_entry_to_py(py, item_346)?;
-            converted_345_list.append(converted_item_347)?;
+        let converted_360 = converted_360_list.into_any().unbind();
+        result.set_item("successful", converted_360)?;
+        let converted_363_list = PyList::empty(py);
+        for item_364 in &self.inner.failed {
+            let converted_item_365 = batch_result_error_entry_to_py(py, item_364)?;
+            converted_363_list.append(converted_item_365)?;
         }
-        let converted_345 = converted_345_list.into_any().unbind();
-        result.set_item("failed", converted_345)?;
+        let converted_363 = converted_363_list.into_any().unbind();
+        result.set_item("failed", converted_363)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -1252,8 +1377,8 @@ impl PyOperationCreateQueueOutput {
     #[getter]
     fn queue_url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.queue_url {
-            let converted_348 = (value).as_str().into_py_any(py)?;
-            Ok(converted_348)
+            let converted_366 = (value).as_str().into_py_any(py)?;
+            Ok(converted_366)
         } else {
             Ok(py.None())
         }
@@ -1262,12 +1387,35 @@ impl PyOperationCreateQueueOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.queue_url {
-            let converted_349 = (value).as_str().into_py_any(py)?;
-            result.set_item("queue_url", converted_349)?;
+            let converted_367 = (value).as_str().into_py_any(py)?;
+            result.set_item("queue_url", converted_367)?;
         } else {
             result.set_item("queue_url", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationDeleteMessageBatchOutput {
+    successful: ::std::vec::Vec<Arc<aws_sdk_sqs::types::DeleteMessageBatchResultEntry>>,
+    failed: ::std::vec::Vec<Arc<aws_sdk_sqs::types::BatchResultErrorEntry>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sqs::operation::delete_message_batch::DeleteMessageBatchOutput>
+    for SharedPyOperationDeleteMessageBatchOutput
+{
+    fn from(value: aws_sdk_sqs::operation::delete_message_batch::DeleteMessageBatchOutput) -> Self {
+        Self {
+            successful: (value.successful)
+                .into_iter()
+                .map(|owned_374| Arc::new(owned_374))
+                .collect(),
+            failed: (value.failed)
+                .into_iter()
+                .map(|owned_375| Arc::new(owned_375))
+                .collect(),
+        }
     }
 }
 
@@ -1277,61 +1425,61 @@ impl PyOperationCreateQueueOutput {
     frozen
 )]
 struct PyOperationDeleteMessageBatchOutput {
-    inner: aws_sdk_sqs::operation::delete_message_batch::DeleteMessageBatchOutput,
+    inner: SharedPyOperationDeleteMessageBatchOutput,
 }
 
 #[pymethods]
 impl PyOperationDeleteMessageBatchOutput {
     #[getter]
     fn successful(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_350_list = PyList::empty(py);
-        for item_351 in &self.inner.successful {
-            let converted_item_352 = Py::new(
+        let converted_368_list = PyList::empty(py);
+        for item_369 in &self.inner.successful {
+            let converted_item_370 = Py::new(
                 py,
                 PyDeleteMessageBatchResultEntry {
-                    inner: (item_351).to_owned(),
+                    inner: Arc::clone(item_369),
                 },
             )?
             .into_any();
-            converted_350_list.append(converted_item_352)?;
+            converted_368_list.append(converted_item_370)?;
         }
-        let converted_350 = converted_350_list.into_any().unbind();
-        Ok(converted_350)
+        let converted_368 = converted_368_list.into_any().unbind();
+        Ok(converted_368)
     }
 
     #[getter]
     fn failed(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_353_list = PyList::empty(py);
-        for item_354 in &self.inner.failed {
-            let converted_item_355 = Py::new(
+        let converted_371_list = PyList::empty(py);
+        for item_372 in &self.inner.failed {
+            let converted_item_373 = Py::new(
                 py,
                 PyBatchResultErrorEntry {
-                    inner: (item_354).to_owned(),
+                    inner: Arc::clone(item_372),
                 },
             )?
             .into_any();
-            converted_353_list.append(converted_item_355)?;
+            converted_371_list.append(converted_item_373)?;
         }
-        let converted_353 = converted_353_list.into_any().unbind();
-        Ok(converted_353)
+        let converted_371 = converted_371_list.into_any().unbind();
+        Ok(converted_371)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_356_list = PyList::empty(py);
-        for item_357 in &self.inner.successful {
-            let converted_item_358 = delete_message_batch_result_entry_to_py(py, item_357)?;
-            converted_356_list.append(converted_item_358)?;
+        let converted_376_list = PyList::empty(py);
+        for item_377 in &self.inner.successful {
+            let converted_item_378 = delete_message_batch_result_entry_to_py(py, item_377)?;
+            converted_376_list.append(converted_item_378)?;
         }
-        let converted_356 = converted_356_list.into_any().unbind();
-        result.set_item("successful", converted_356)?;
-        let converted_359_list = PyList::empty(py);
-        for item_360 in &self.inner.failed {
-            let converted_item_361 = batch_result_error_entry_to_py(py, item_360)?;
-            converted_359_list.append(converted_item_361)?;
+        let converted_376 = converted_376_list.into_any().unbind();
+        result.set_item("successful", converted_376)?;
+        let converted_379_list = PyList::empty(py);
+        for item_380 in &self.inner.failed {
+            let converted_item_381 = batch_result_error_entry_to_py(py, item_380)?;
+            converted_379_list.append(converted_item_381)?;
         }
-        let converted_359 = converted_359_list.into_any().unbind();
-        result.set_item("failed", converted_359)?;
+        let converted_379 = converted_379_list.into_any().unbind();
+        result.set_item("failed", converted_379)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -1350,14 +1498,14 @@ impl PyOperationGetQueueAttributesOutput {
     #[getter]
     fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attributes {
-            let converted_362_dict = PyDict::new(py);
-            for (key_363, value_364) in value {
-                let converted_key_365 = (key_363).as_str().into_py_any(py)?;
-                let converted_value_366 = (value_364).as_str().into_py_any(py)?;
-                converted_362_dict.set_item(converted_key_365, converted_value_366)?;
+            let converted_382_dict = PyDict::new(py);
+            for (key_383, value_384) in value {
+                let converted_key_385 = (key_383).as_str().into_py_any(py)?;
+                let converted_value_386 = (value_384).as_str().into_py_any(py)?;
+                converted_382_dict.set_item(converted_key_385, converted_value_386)?;
             }
-            let converted_362 = converted_362_dict.into_any().unbind();
-            Ok(converted_362)
+            let converted_382 = converted_382_dict.into_any().unbind();
+            Ok(converted_382)
         } else {
             Ok(py.None())
         }
@@ -1366,14 +1514,14 @@ impl PyOperationGetQueueAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.attributes {
-            let converted_367_dict = PyDict::new(py);
-            for (key_368, value_369) in value {
-                let converted_key_370 = (key_368).as_str().into_py_any(py)?;
-                let converted_value_371 = (value_369).as_str().into_py_any(py)?;
-                converted_367_dict.set_item(converted_key_370, converted_value_371)?;
+            let converted_387_dict = PyDict::new(py);
+            for (key_388, value_389) in value {
+                let converted_key_390 = (key_388).as_str().into_py_any(py)?;
+                let converted_value_391 = (value_389).as_str().into_py_any(py)?;
+                converted_387_dict.set_item(converted_key_390, converted_value_391)?;
             }
-            let converted_367 = converted_367_dict.into_any().unbind();
-            result.set_item("attributes", converted_367)?;
+            let converted_387 = converted_387_dict.into_any().unbind();
+            result.set_item("attributes", converted_387)?;
         } else {
             result.set_item("attributes", py.None())?;
         }
@@ -1391,8 +1539,8 @@ impl PyOperationGetQueueUrlOutput {
     #[getter]
     fn queue_url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.queue_url {
-            let converted_372 = (value).as_str().into_py_any(py)?;
-            Ok(converted_372)
+            let converted_392 = (value).as_str().into_py_any(py)?;
+            Ok(converted_392)
         } else {
             Ok(py.None())
         }
@@ -1401,8 +1549,8 @@ impl PyOperationGetQueueUrlOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.queue_url {
-            let converted_373 = (value).as_str().into_py_any(py)?;
-            result.set_item("queue_url", converted_373)?;
+            let converted_393 = (value).as_str().into_py_any(py)?;
+            result.set_item("queue_url", converted_393)?;
         } else {
             result.set_item("queue_url", py.None())?;
         }
@@ -1423,20 +1571,20 @@ struct PyOperationListDeadLetterSourceQueuesOutput {
 impl PyOperationListDeadLetterSourceQueuesOutput {
     #[getter]
     fn queue_urls(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_374_list = PyList::empty(py);
-        for item_375 in &self.inner.queue_urls {
-            let converted_item_376 = (item_375).as_str().into_py_any(py)?;
-            converted_374_list.append(converted_item_376)?;
+        let converted_394_list = PyList::empty(py);
+        for item_395 in &self.inner.queue_urls {
+            let converted_item_396 = (item_395).as_str().into_py_any(py)?;
+            converted_394_list.append(converted_item_396)?;
         }
-        let converted_374 = converted_374_list.into_any().unbind();
-        Ok(converted_374)
+        let converted_394 = converted_394_list.into_any().unbind();
+        Ok(converted_394)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_377 = (value).as_str().into_py_any(py)?;
-            Ok(converted_377)
+            let converted_397 = (value).as_str().into_py_any(py)?;
+            Ok(converted_397)
         } else {
             Ok(py.None())
         }
@@ -1444,20 +1592,42 @@ impl PyOperationListDeadLetterSourceQueuesOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_378_list = PyList::empty(py);
-        for item_379 in &self.inner.queue_urls {
-            let converted_item_380 = (item_379).as_str().into_py_any(py)?;
-            converted_378_list.append(converted_item_380)?;
+        let converted_398_list = PyList::empty(py);
+        for item_399 in &self.inner.queue_urls {
+            let converted_item_400 = (item_399).as_str().into_py_any(py)?;
+            converted_398_list.append(converted_item_400)?;
         }
-        let converted_378 = converted_378_list.into_any().unbind();
-        result.set_item("queue_urls", converted_378)?;
+        let converted_398 = converted_398_list.into_any().unbind();
+        result.set_item("queue_urls", converted_398)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_381 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_381)?;
+            let converted_401 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_401)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListMessageMoveTasksOutput {
+    results: Option<::std::vec::Vec<Arc<aws_sdk_sqs::types::ListMessageMoveTasksResultEntry>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sqs::operation::list_message_move_tasks::ListMessageMoveTasksOutput>
+    for SharedPyOperationListMessageMoveTasksOutput
+{
+    fn from(
+        value: aws_sdk_sqs::operation::list_message_move_tasks::ListMessageMoveTasksOutput,
+    ) -> Self {
+        Self {
+            results: value.results.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_405| Arc::new(owned_405))
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -1467,7 +1637,7 @@ impl PyOperationListDeadLetterSourceQueuesOutput {
     frozen
 )]
 struct PyOperationListMessageMoveTasksOutput {
-    inner: aws_sdk_sqs::operation::list_message_move_tasks::ListMessageMoveTasksOutput,
+    inner: SharedPyOperationListMessageMoveTasksOutput,
 }
 
 #[pymethods]
@@ -1475,19 +1645,19 @@ impl PyOperationListMessageMoveTasksOutput {
     #[getter]
     fn results(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.results {
-            let converted_382_list = PyList::empty(py);
-            for item_383 in value {
-                let converted_item_384 = Py::new(
+            let converted_402_list = PyList::empty(py);
+            for item_403 in value {
+                let converted_item_404 = Py::new(
                     py,
                     PyListMessageMoveTasksResultEntry {
-                        inner: (item_383).to_owned(),
+                        inner: Arc::clone(item_403),
                     },
                 )?
                 .into_any();
-                converted_382_list.append(converted_item_384)?;
+                converted_402_list.append(converted_item_404)?;
             }
-            let converted_382 = converted_382_list.into_any().unbind();
-            Ok(converted_382)
+            let converted_402 = converted_402_list.into_any().unbind();
+            Ok(converted_402)
         } else {
             Ok(py.None())
         }
@@ -1496,13 +1666,13 @@ impl PyOperationListMessageMoveTasksOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.results {
-            let converted_385_list = PyList::empty(py);
-            for item_386 in value {
-                let converted_item_387 = list_message_move_tasks_result_entry_to_py(py, item_386)?;
-                converted_385_list.append(converted_item_387)?;
+            let converted_406_list = PyList::empty(py);
+            for item_407 in value {
+                let converted_item_408 = list_message_move_tasks_result_entry_to_py(py, item_407)?;
+                converted_406_list.append(converted_item_408)?;
             }
-            let converted_385 = converted_385_list.into_any().unbind();
-            result.set_item("results", converted_385)?;
+            let converted_406 = converted_406_list.into_any().unbind();
+            result.set_item("results", converted_406)?;
         } else {
             result.set_item("results", py.None())?;
         }
@@ -1520,14 +1690,14 @@ impl PyOperationListQueueTagsOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_388_dict = PyDict::new(py);
-            for (key_389, value_390) in value {
-                let converted_key_391 = (key_389).as_str().into_py_any(py)?;
-                let converted_value_392 = (value_390).as_str().into_py_any(py)?;
-                converted_388_dict.set_item(converted_key_391, converted_value_392)?;
+            let converted_409_dict = PyDict::new(py);
+            for (key_410, value_411) in value {
+                let converted_key_412 = (key_410).as_str().into_py_any(py)?;
+                let converted_value_413 = (value_411).as_str().into_py_any(py)?;
+                converted_409_dict.set_item(converted_key_412, converted_value_413)?;
             }
-            let converted_388 = converted_388_dict.into_any().unbind();
-            Ok(converted_388)
+            let converted_409 = converted_409_dict.into_any().unbind();
+            Ok(converted_409)
         } else {
             Ok(py.None())
         }
@@ -1536,14 +1706,14 @@ impl PyOperationListQueueTagsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.tags {
-            let converted_393_dict = PyDict::new(py);
-            for (key_394, value_395) in value {
-                let converted_key_396 = (key_394).as_str().into_py_any(py)?;
-                let converted_value_397 = (value_395).as_str().into_py_any(py)?;
-                converted_393_dict.set_item(converted_key_396, converted_value_397)?;
+            let converted_414_dict = PyDict::new(py);
+            for (key_415, value_416) in value {
+                let converted_key_417 = (key_415).as_str().into_py_any(py)?;
+                let converted_value_418 = (value_416).as_str().into_py_any(py)?;
+                converted_414_dict.set_item(converted_key_417, converted_value_418)?;
             }
-            let converted_393 = converted_393_dict.into_any().unbind();
-            result.set_item("tags", converted_393)?;
+            let converted_414 = converted_414_dict.into_any().unbind();
+            result.set_item("tags", converted_414)?;
         } else {
             result.set_item("tags", py.None())?;
         }
@@ -1561,13 +1731,13 @@ impl PyOperationListQueuesOutput {
     #[getter]
     fn queue_urls(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.queue_urls {
-            let converted_398_list = PyList::empty(py);
-            for item_399 in value {
-                let converted_item_400 = (item_399).as_str().into_py_any(py)?;
-                converted_398_list.append(converted_item_400)?;
+            let converted_419_list = PyList::empty(py);
+            for item_420 in value {
+                let converted_item_421 = (item_420).as_str().into_py_any(py)?;
+                converted_419_list.append(converted_item_421)?;
             }
-            let converted_398 = converted_398_list.into_any().unbind();
-            Ok(converted_398)
+            let converted_419 = converted_419_list.into_any().unbind();
+            Ok(converted_419)
         } else {
             Ok(py.None())
         }
@@ -1576,8 +1746,8 @@ impl PyOperationListQueuesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_401 = (value).as_str().into_py_any(py)?;
-            Ok(converted_401)
+            let converted_422 = (value).as_str().into_py_any(py)?;
+            Ok(converted_422)
         } else {
             Ok(py.None())
         }
@@ -1586,19 +1756,19 @@ impl PyOperationListQueuesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.queue_urls {
-            let converted_402_list = PyList::empty(py);
-            for item_403 in value {
-                let converted_item_404 = (item_403).as_str().into_py_any(py)?;
-                converted_402_list.append(converted_item_404)?;
+            let converted_423_list = PyList::empty(py);
+            for item_424 in value {
+                let converted_item_425 = (item_424).as_str().into_py_any(py)?;
+                converted_423_list.append(converted_item_425)?;
             }
-            let converted_402 = converted_402_list.into_any().unbind();
-            result.set_item("queue_urls", converted_402)?;
+            let converted_423 = converted_423_list.into_any().unbind();
+            result.set_item("queue_urls", converted_423)?;
         } else {
             result.set_item("queue_urls", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_405 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_405)?;
+            let converted_426 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_426)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -1606,9 +1776,29 @@ impl PyOperationListQueuesOutput {
     }
 }
 
+struct SharedPyOperationReceiveMessageOutput {
+    messages: Option<::std::vec::Vec<Arc<SharedMessage>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sqs::operation::receive_message::ReceiveMessageOutput>
+    for SharedPyOperationReceiveMessageOutput
+{
+    fn from(value: aws_sdk_sqs::operation::receive_message::ReceiveMessageOutput) -> Self {
+        Self {
+            messages: value.messages.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_430| Arc::new(SharedMessage::from(owned_430)))
+                    .collect()
+            }),
+        }
+    }
+}
+
 #[pyclass(name = "ReceiveMessageOutput", module = "rboto_sqs._native", frozen)]
 struct PyOperationReceiveMessageOutput {
-    inner: aws_sdk_sqs::operation::receive_message::ReceiveMessageOutput,
+    inner: SharedPyOperationReceiveMessageOutput,
 }
 
 #[pymethods]
@@ -1616,19 +1806,19 @@ impl PyOperationReceiveMessageOutput {
     #[getter]
     fn messages(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.messages {
-            let converted_406_list = PyList::empty(py);
-            for item_407 in value {
-                let converted_item_408 = Py::new(
+            let converted_427_list = PyList::empty(py);
+            for item_428 in value {
+                let converted_item_429 = Py::new(
                     py,
                     PyMessage {
-                        inner: (item_407).to_owned(),
+                        inner: Arc::clone(item_428),
                     },
                 )?
                 .into_any();
-                converted_406_list.append(converted_item_408)?;
+                converted_427_list.append(converted_item_429)?;
             }
-            let converted_406 = converted_406_list.into_any().unbind();
-            Ok(converted_406)
+            let converted_427 = converted_427_list.into_any().unbind();
+            Ok(converted_427)
         } else {
             Ok(py.None())
         }
@@ -1637,13 +1827,13 @@ impl PyOperationReceiveMessageOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.messages {
-            let converted_409_list = PyList::empty(py);
-            for item_410 in value {
-                let converted_item_411 = message_to_py(py, item_410)?;
-                converted_409_list.append(converted_item_411)?;
+            let converted_431_list = PyList::empty(py);
+            for item_432 in value {
+                let converted_item_433 = message_shared_to_py(py, item_432)?;
+                converted_431_list.append(converted_item_433)?;
             }
-            let converted_409 = converted_409_list.into_any().unbind();
-            result.set_item("messages", converted_409)?;
+            let converted_431 = converted_431_list.into_any().unbind();
+            result.set_item("messages", converted_431)?;
         } else {
             result.set_item("messages", py.None())?;
         }
@@ -1661,8 +1851,8 @@ impl PyOperationSendMessageOutput {
     #[getter]
     fn md5_of_message_body(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.md5_of_message_body {
-            let converted_412 = (value).as_str().into_py_any(py)?;
-            Ok(converted_412)
+            let converted_434 = (value).as_str().into_py_any(py)?;
+            Ok(converted_434)
         } else {
             Ok(py.None())
         }
@@ -1671,8 +1861,8 @@ impl PyOperationSendMessageOutput {
     #[getter]
     fn md5_of_message_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.md5_of_message_attributes {
-            let converted_413 = (value).as_str().into_py_any(py)?;
-            Ok(converted_413)
+            let converted_435 = (value).as_str().into_py_any(py)?;
+            Ok(converted_435)
         } else {
             Ok(py.None())
         }
@@ -1681,8 +1871,8 @@ impl PyOperationSendMessageOutput {
     #[getter]
     fn md5_of_message_system_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.md5_of_message_system_attributes {
-            let converted_414 = (value).as_str().into_py_any(py)?;
-            Ok(converted_414)
+            let converted_436 = (value).as_str().into_py_any(py)?;
+            Ok(converted_436)
         } else {
             Ok(py.None())
         }
@@ -1691,8 +1881,8 @@ impl PyOperationSendMessageOutput {
     #[getter]
     fn message_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.message_id {
-            let converted_415 = (value).as_str().into_py_any(py)?;
-            Ok(converted_415)
+            let converted_437 = (value).as_str().into_py_any(py)?;
+            Ok(converted_437)
         } else {
             Ok(py.None())
         }
@@ -1701,8 +1891,8 @@ impl PyOperationSendMessageOutput {
     #[getter]
     fn sequence_number(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sequence_number {
-            let converted_416 = (value).as_str().into_py_any(py)?;
-            Ok(converted_416)
+            let converted_438 = (value).as_str().into_py_any(py)?;
+            Ok(converted_438)
         } else {
             Ok(py.None())
         }
@@ -1711,32 +1901,32 @@ impl PyOperationSendMessageOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.md5_of_message_body {
-            let converted_417 = (value).as_str().into_py_any(py)?;
-            result.set_item("md5_of_message_body", converted_417)?;
+            let converted_439 = (value).as_str().into_py_any(py)?;
+            result.set_item("md5_of_message_body", converted_439)?;
         } else {
             result.set_item("md5_of_message_body", py.None())?;
         }
         if let Some(value) = &self.inner.md5_of_message_attributes {
-            let converted_418 = (value).as_str().into_py_any(py)?;
-            result.set_item("md5_of_message_attributes", converted_418)?;
+            let converted_440 = (value).as_str().into_py_any(py)?;
+            result.set_item("md5_of_message_attributes", converted_440)?;
         } else {
             result.set_item("md5_of_message_attributes", py.None())?;
         }
         if let Some(value) = &self.inner.md5_of_message_system_attributes {
-            let converted_419 = (value).as_str().into_py_any(py)?;
-            result.set_item("md5_of_message_system_attributes", converted_419)?;
+            let converted_441 = (value).as_str().into_py_any(py)?;
+            result.set_item("md5_of_message_system_attributes", converted_441)?;
         } else {
             result.set_item("md5_of_message_system_attributes", py.None())?;
         }
         if let Some(value) = &self.inner.message_id {
-            let converted_420 = (value).as_str().into_py_any(py)?;
-            result.set_item("message_id", converted_420)?;
+            let converted_442 = (value).as_str().into_py_any(py)?;
+            result.set_item("message_id", converted_442)?;
         } else {
             result.set_item("message_id", py.None())?;
         }
         if let Some(value) = &self.inner.sequence_number {
-            let converted_421 = (value).as_str().into_py_any(py)?;
-            result.set_item("sequence_number", converted_421)?;
+            let converted_443 = (value).as_str().into_py_any(py)?;
+            result.set_item("sequence_number", converted_443)?;
         } else {
             result.set_item("sequence_number", py.None())?;
         }
@@ -1744,63 +1934,86 @@ impl PyOperationSendMessageOutput {
     }
 }
 
+struct SharedPyOperationSendMessageBatchOutput {
+    successful: ::std::vec::Vec<Arc<aws_sdk_sqs::types::SendMessageBatchResultEntry>>,
+    failed: ::std::vec::Vec<Arc<aws_sdk_sqs::types::BatchResultErrorEntry>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sqs::operation::send_message_batch::SendMessageBatchOutput>
+    for SharedPyOperationSendMessageBatchOutput
+{
+    fn from(value: aws_sdk_sqs::operation::send_message_batch::SendMessageBatchOutput) -> Self {
+        Self {
+            successful: (value.successful)
+                .into_iter()
+                .map(|owned_450| Arc::new(owned_450))
+                .collect(),
+            failed: (value.failed)
+                .into_iter()
+                .map(|owned_451| Arc::new(owned_451))
+                .collect(),
+        }
+    }
+}
+
 #[pyclass(name = "SendMessageBatchOutput", module = "rboto_sqs._native", frozen)]
 struct PyOperationSendMessageBatchOutput {
-    inner: aws_sdk_sqs::operation::send_message_batch::SendMessageBatchOutput,
+    inner: SharedPyOperationSendMessageBatchOutput,
 }
 
 #[pymethods]
 impl PyOperationSendMessageBatchOutput {
     #[getter]
     fn successful(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_422_list = PyList::empty(py);
-        for item_423 in &self.inner.successful {
-            let converted_item_424 = Py::new(
+        let converted_444_list = PyList::empty(py);
+        for item_445 in &self.inner.successful {
+            let converted_item_446 = Py::new(
                 py,
                 PySendMessageBatchResultEntry {
-                    inner: (item_423).to_owned(),
+                    inner: Arc::clone(item_445),
                 },
             )?
             .into_any();
-            converted_422_list.append(converted_item_424)?;
+            converted_444_list.append(converted_item_446)?;
         }
-        let converted_422 = converted_422_list.into_any().unbind();
-        Ok(converted_422)
+        let converted_444 = converted_444_list.into_any().unbind();
+        Ok(converted_444)
     }
 
     #[getter]
     fn failed(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_425_list = PyList::empty(py);
-        for item_426 in &self.inner.failed {
-            let converted_item_427 = Py::new(
+        let converted_447_list = PyList::empty(py);
+        for item_448 in &self.inner.failed {
+            let converted_item_449 = Py::new(
                 py,
                 PyBatchResultErrorEntry {
-                    inner: (item_426).to_owned(),
+                    inner: Arc::clone(item_448),
                 },
             )?
             .into_any();
-            converted_425_list.append(converted_item_427)?;
+            converted_447_list.append(converted_item_449)?;
         }
-        let converted_425 = converted_425_list.into_any().unbind();
-        Ok(converted_425)
+        let converted_447 = converted_447_list.into_any().unbind();
+        Ok(converted_447)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_428_list = PyList::empty(py);
-        for item_429 in &self.inner.successful {
-            let converted_item_430 = send_message_batch_result_entry_to_py(py, item_429)?;
-            converted_428_list.append(converted_item_430)?;
+        let converted_452_list = PyList::empty(py);
+        for item_453 in &self.inner.successful {
+            let converted_item_454 = send_message_batch_result_entry_to_py(py, item_453)?;
+            converted_452_list.append(converted_item_454)?;
         }
-        let converted_428 = converted_428_list.into_any().unbind();
-        result.set_item("successful", converted_428)?;
-        let converted_431_list = PyList::empty(py);
-        for item_432 in &self.inner.failed {
-            let converted_item_433 = batch_result_error_entry_to_py(py, item_432)?;
-            converted_431_list.append(converted_item_433)?;
+        let converted_452 = converted_452_list.into_any().unbind();
+        result.set_item("successful", converted_452)?;
+        let converted_455_list = PyList::empty(py);
+        for item_456 in &self.inner.failed {
+            let converted_item_457 = batch_result_error_entry_to_py(py, item_456)?;
+            converted_455_list.append(converted_item_457)?;
         }
-        let converted_431 = converted_431_list.into_any().unbind();
-        result.set_item("failed", converted_431)?;
+        let converted_455 = converted_455_list.into_any().unbind();
+        result.set_item("failed", converted_455)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -1819,8 +2032,8 @@ impl PyOperationStartMessageMoveTaskOutput {
     #[getter]
     fn task_handle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.task_handle {
-            let converted_434 = (value).as_str().into_py_any(py)?;
-            Ok(converted_434)
+            let converted_458 = (value).as_str().into_py_any(py)?;
+            Ok(converted_458)
         } else {
             Ok(py.None())
         }
@@ -1829,8 +2042,8 @@ impl PyOperationStartMessageMoveTaskOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.task_handle {
-            let converted_435 = (value).as_str().into_py_any(py)?;
-            result.set_item("task_handle", converted_435)?;
+            let converted_459 = (value).as_str().into_py_any(py)?;
+            result.set_item("task_handle", converted_459)?;
         } else {
             result.set_item("task_handle", py.None())?;
         }
@@ -2102,7 +2315,9 @@ impl SQSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ChangeMessageVisibilityBatch"))
             })?;
-            Ok(PyOperationChangeMessageVisibilityBatchOutput { inner: output })
+            Ok(PyOperationChangeMessageVisibilityBatchOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -2263,7 +2478,9 @@ impl SQSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteMessageBatch"))
             })?;
-            Ok(PyOperationDeleteMessageBatchOutput { inner: output })
+            Ok(PyOperationDeleteMessageBatchOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -2493,7 +2710,9 @@ impl SQSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListMessageMoveTasks"))
             })?;
-            Ok(PyOperationListMessageMoveTasksOutput { inner: output })
+            Ok(PyOperationListMessageMoveTasksOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -2732,7 +2951,9 @@ impl SQSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ReceiveMessage"))
             })?;
-            Ok(PyOperationReceiveMessageOutput { inner: output })
+            Ok(PyOperationReceiveMessageOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -2926,7 +3147,9 @@ impl SQSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SendMessageBatch"))
             })?;
-            Ok(PyOperationSendMessageBatchOutput { inner: output })
+            Ok(PyOperationSendMessageBatchOutput {
+                inner: output.into(),
+            })
         })
     }
 

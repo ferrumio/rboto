@@ -576,7 +576,10 @@ class ServiceGenerator:
             return lines
         raise GenerationError(f"cannot convert Python input to {rust_type}")
 
-    def _to_py(self, rust_type: str, source: str, target: str, indent: str) -> list[str]:
+    def _to_py(
+        self, rust_type: str, source: str, target: str, indent: str,
+        *, shared: bool = False,
+    ) -> list[str]:
         kind = self._kind(rust_type)
         if kind == "string":
             return [f"{indent}let {target} = ({source}).as_str().into_py_any(py)?;"]
@@ -587,14 +590,14 @@ class ServiceGenerator:
         if kind == "box":
             arguments = _generic(rust_type, "::std::boxed::Box")
             assert arguments is not None
-            return self._to_py(arguments[0], f"({source}).as_ref()", target, indent)
+            return self._to_py(arguments[0], f"({source}).as_ref()", target, indent, shared=shared)
         if kind == "option":
             arguments = _generic(rust_type, "::std::option::Option")
             assert arguments is not None
             inner = self._next("inner")
             return [
                 f"{indent}let {target} = if let Some(value) = {source} {{",
-                *self._to_py(arguments[0], "value", inner, indent + "    "),
+                *self._to_py(arguments[0], "value", inner, indent + "    ", shared=shared),
                 f"{indent}    {inner}",
                 f"{indent}}} else {{ py.None() }};",
             ]
@@ -608,7 +611,11 @@ class ServiceGenerator:
             return [f"{indent}let {target} = ({source}).as_str().into_py_any(py)?;"]
         if kind in {"struct", "union"}:
             name = _crate_type_name(rust_type)
-            return [f"{indent}let {target} = {to_snake_case(name or '')}_to_py(py, {source})?;"]
+            suffix = (
+                "_shared" if shared and kind == "struct"
+                and self._shared_fields(self.crate.types[name or ""].fields) else ""
+            )
+            return [f"{indent}let {target} = {to_snake_case(name or '')}{suffix}_to_py(py, {source})?;"]
         if kind == "vec":
             arguments = _generic(rust_type, "::std::vec::Vec")
             if arguments is None or len(arguments) != 1:
@@ -617,7 +624,7 @@ class ServiceGenerator:
             converted = self._next("converted_item")
             result = [f"{indent}let {target}_list = PyList::empty(py);"]
             result.append(f"{indent}for {item} in {source} {{")
-            result.extend(self._to_py(arguments[0], item, converted, indent + "    "))
+            result.extend(self._to_py(arguments[0], item, converted, indent + "    ", shared=shared))
             result.append(f"{indent}    {target}_list.append({converted})?;")
             result.append(f"{indent}}}")
             result.append(f"{indent}let {target} = {target}_list.into_any().unbind();")
@@ -633,7 +640,9 @@ class ServiceGenerator:
             result = [f"{indent}let {target}_dict = PyDict::new(py);"]
             result.append(f"{indent}for ({key}, {value}) in {source} {{")
             result.extend(self._to_py(arguments[0], key, converted_key, indent + "    "))
-            result.extend(self._to_py(arguments[1], value, converted_value, indent + "    "))
+            result.extend(self._to_py(
+                arguments[1], value, converted_value, indent + "    ", shared=shared,
+            ))
             result.append(
                 f"{indent}    {target}_dict.set_item({converted_key}, {converted_value})?;"
             )
@@ -661,7 +670,7 @@ class ServiceGenerator:
         if kind == "struct":
             name = _crate_type_name(rust_type)
             return [
-                f"{indent}let {target} = Py::new(py, Py{name} {{ inner: ({source}).to_owned() }})?.into_any();"
+                f"{indent}let {target} = Py::new(py, Py{name} {{ inner: Arc::clone({source}) }})?.into_any();"
             ]
         if kind == "vec":
             arguments = _generic(rust_type, "::std::vec::Vec")
@@ -695,6 +704,95 @@ class ServiceGenerator:
             lines.append(f"{indent}let {target} = {target}_dict.into_any().unbind();")
             return lines
         return self._to_py(rust_type, source, target, indent)
+
+    def _contains_native_struct(self, rust_type: str) -> bool:
+        kind = self._kind(rust_type)
+        if kind == "struct":
+            return True
+        prefixes = {
+            "box": "::std::boxed::Box", "option": "::std::option::Option",
+            "vec": "::std::vec::Vec", "map": "::std::collections::HashMap",
+        }
+        if kind in prefixes:
+            arguments = _generic(rust_type, prefixes[kind])
+            assert arguments is not None
+            return self._contains_native_struct(arguments[-1])
+        return False
+
+    def _shared_fields(self, fields: tuple[RustField, ...]) -> bool:
+        return any(self._contains_native_struct(field.rust_type) for field in fields)
+
+    def _shared_inner_type(self, name: str) -> str:
+        if self._shared_fields(self.crate.types[name].fields):
+            return f"Shared{name}"
+        return f"{self.rust_module}::types::{name}"
+
+    def _shared_type(self, rust_type: str) -> str:
+        """Rust-only output storage. Unions keep their dictionary representation."""
+        kind = self._kind(rust_type)
+        if kind == "struct":
+            return f"Arc<{self._shared_inner_type(_crate_type_name(rust_type) or '')}>"
+        prefixes = {
+            "box": "::std::boxed::Box", "option": "::std::option::Option",
+            "vec": "::std::vec::Vec", "map": "::std::collections::HashMap",
+        }
+        if kind in prefixes:
+            prefix = prefixes[kind]
+            arguments = _generic(rust_type, prefix)
+            assert arguments is not None
+            return f"{prefix}<{', '.join(self._shared_type(arg) for arg in arguments)}>"
+        return rust_type.replace("crate::", f"{self.rust_module}::")
+
+    def _into_shared(self, rust_type: str, source: str) -> str:
+        """Move nested structures on Tokio, before acquiring Python's GIL."""
+        if not self._contains_native_struct(rust_type):
+            return source
+        kind = self._kind(rust_type)
+        if kind == "struct":
+            name = _crate_type_name(rust_type) or ""
+            if self._shared_fields(self.crate.types[name].fields):
+                return f"Arc::new(Shared{name}::from({source}))"
+            return f"Arc::new({source})"
+        prefixes = {
+            "box": "::std::boxed::Box", "option": "::std::option::Option",
+            "vec": "::std::vec::Vec", "map": "::std::collections::HashMap",
+        }
+        arguments = _generic(rust_type, prefixes[kind])
+        assert arguments is not None
+        if kind == "box":
+            return f"Box::new({self._into_shared(arguments[0], f'*({source})')})"
+        item = self._next("owned")
+        converted = self._into_shared(arguments[-1], item)
+        if kind == "option":
+            return f"({source}).map(|{item}| {converted})"
+        if kind == "vec":
+            return f"({source}).into_iter().map(|{item}| {converted}).collect()"
+        return f"({source}).into_iter().map(|(key, {item})| (key, {converted})).collect()"
+
+    def _shared_storage(self, name: str, rust_type: str, fields: tuple[RustField, ...]) -> str:
+        # Streams are extracted into Python owners before constructing this value.
+        fields = tuple(field for field in fields if self._kind(field.rust_type) != "byte_stream")
+        lines = [f"struct {name} {{"]
+        for field in fields:
+            field_type = self._shared_type(field.rust_type)
+            if field.optional:
+                field_type = f"Option<{field_type}>"
+            lines.append(f"    {field.rust_name}: {field_type},")
+        # Keep one composable closure form for leaf and nested conversions.
+        # Like needless_borrow in generated.rs.j2, this is intentional codegen style.
+        lines.extend(["}", "", "#[allow(clippy::redundant_closure)]",
+                      f"impl From<{rust_type}> for {name} {{",
+                      f"    fn from(value: {rust_type}) -> Self {{", "        Self {"])
+        for field in fields:
+            source = f"value.{field.rust_name}"
+            if field.optional:
+                converted = self._into_shared(field.rust_type, "item")
+                converted = source if converted == "item" else f"{source}.map(|item| {converted})"
+            else:
+                converted = self._into_shared(field.rust_type, source)
+            lines.append(f"            {field.rust_name}: {converted},")
+        lines.extend(["        }", "    }", "}"])
+        return "\n".join(lines)
 
     def _native_structs(self) -> tuple[RustType, ...]:
         if not self.descriptor.native_outputs:
@@ -814,12 +912,21 @@ class ServiceGenerator:
 
     def _native_struct_class(self, rust: RustType) -> str:
         getters = "\n\n".join(self._native_getter(field) for field in rust.fields)
-        converter = f"{to_snake_case(rust.name)}_to_py"
+        shared = self._shared_fields(rust.fields)
+        converter = f"{to_snake_case(rust.name)}{'_shared' if shared else ''}_to_py"
         return "\n".join(
             [
+                *([
+                    self._shared_storage(
+                        f"Shared{rust.name}", f"{self.rust_module}::types::{rust.name}", rust.fields,
+                    ),
+                    "",
+                    self._struct_to_py(rust, shared=True),
+                    "",
+                ] if shared else []),
                 f'#[pyclass(name = "{self._native_struct_names[rust.name]}", module = "{self.descriptor.python_package}._native", frozen)]',
                 f"struct Py{rust.name} {{",
-                f"    inner: {self.rust_module}::types::{rust.name},",
+                f"    inner: Arc<{self._shared_inner_type(rust.name)}>,",
                 "}",
                 "",
                 "#[pymethods]",
@@ -857,7 +964,7 @@ class ServiceGenerator:
             converted = self._next("converted")
             if field.optional:
                 lines.append(f"{indent}if let Some(value) = &{source}.{field.rust_name} {{")
-                lines.extend(self._to_py(field.rust_type, "value", converted, indent + "    "))
+                lines.extend(self._to_py(field.rust_type, "value", converted, indent + "    ", shared=True))
                 lines.append(f'{indent}    result.set_item("{field.name}", {converted})?;')
                 lines.append(f"{indent}}} else {{")
                 lines.append(f'{indent}    result.set_item("{field.name}", py.None())?;')
@@ -869,6 +976,7 @@ class ServiceGenerator:
                         f"&{source}.{field.rust_name}",
                         converted,
                         indent,
+                        shared=True,
                     )
                 )
                 lines.append(f'{indent}result.set_item("{field.name}", {converted})?;')
@@ -883,10 +991,18 @@ class ServiceGenerator:
             for field in operation.output_fields
             if self._kind(field.rust_type) == "byte_stream"
         ]
+        shared = self._shared_fields(operation.output_fields)
+        inner_type = f"Shared{metadata['rust_class']}" if shared else metadata["rust_type"]
         lines = [
+            *([
+                self._shared_storage(
+                    inner_type, metadata["rust_type"], operation.output_fields,
+                ),
+                "",
+            ] if shared else []),
             f'#[pyclass(name = "{metadata["class_name"]}", module = "{self.descriptor.python_package}._native", frozen)]',
             f"struct {metadata['rust_class']} {{",
-            f"    inner: {metadata['rust_type']},",
+            f"    inner: {inner_type},",
             *(
                 f"    {field.name}: "
                 + ("Option<Py<PyByteStream>>," if field.optional else "Py<PyByteStream>,")
@@ -928,17 +1044,18 @@ class ServiceGenerator:
         lines.append("}")
         return "\n".join(lines)
 
-    def _struct_to_py(self, rust: RustType) -> str:
-        name = to_snake_case(rust.name)
+    def _struct_to_py(self, rust: RustType, *, shared: bool = False) -> str:
+        name = to_snake_case(rust.name) + ("_shared" if shared else "")
+        rust_type = f"Shared{rust.name}" if shared else f"{self.rust_module}::types::{rust.name}"
         lines = [
-            f"fn {name}_to_py(py: Python<'_>, value: &{self.rust_module}::types::{rust.name}) -> PyResult<Py<PyAny>> {{",
+            f"fn {name}_to_py(py: Python<'_>, value: &{rust_type}) -> PyResult<Py<PyAny>> {{",
             "    let result = PyDict::new(py);",
         ]
         for field in rust.fields:
             converted = self._next("converted")
             if field.optional:
                 lines.append(f"    if let Some(value) = &value.{field.rust_name} {{")
-                lines.extend(self._to_py(field.rust_type, "value", converted, "        "))
+                lines.extend(self._to_py(field.rust_type, "value", converted, "        ", shared=shared))
                 lines.append(f'        result.set_item("{field.name}", {converted})?;')
                 lines.append("    } else {")
                 lines.append(f'        result.set_item("{field.name}", py.None())?;')
@@ -950,6 +1067,7 @@ class ServiceGenerator:
                         f"&value.{field.rust_name}",
                         converted,
                         "    ",
+                        shared=shared,
                     )
                 )
                 lines.append(f'    result.set_item("{field.name}", {converted})?;')
@@ -1108,6 +1226,8 @@ class ServiceGenerator:
         has_native_stream = native_metadata is not None and any(
             self._kind(field.rust_type) == "byte_stream" for field in operation.output_fields
         )
+        shared_output = native_metadata is not None and self._shared_fields(operation.output_fields)
+        owned_output = "output.into()" if shared_output else "output"
         lines = [
             "    #[pyo3(signature = (params, observation=None))]",
             f"    fn {operation_name}<'py>(&self, py: Python<'py>, params: &Bound<'py, PyDict>, observation: Option<Py<PyDict>>) -> PyResult<Bound<'py, PyAny>> {{",
@@ -1156,17 +1276,11 @@ class ServiceGenerator:
             # result, so creating the Python object here would attach twice.
             lines.extend(
                 [
-                    f"            Ok({native_metadata['rust_class']} {{ inner: output }})",
+                    f"            Ok({native_metadata['rust_class']} {{ inner: {owned_output} }})",
                     "        })",
                     "    }",
                 ]
             )
-            return "\n".join(lines)
-
-        lines.append("            Python::attach(|py| {")
-
-        if smithy.output_target is None or smithy.output_target == "smithy.api#Unit":
-            lines.extend(["                Ok(py.None())", "            })", "        })", "    }"])
             return "\n".join(lines)
 
         if native_metadata is not None:
@@ -1182,15 +1296,16 @@ class ServiceGenerator:
                     if field.optional
                     else f"Py::new(py, PyByteStream::new({field.name}))?"
                 )
-                stream_setup.extend(
-                    [
-                        f"                let {field.name} = std::mem::take(&mut output.{field.rust_name});",
-                        f"                let {stream_name} = {constructor};",
-                    ]
+                lines.append(
+                    f"            let {field.name} = std::mem::take(&mut output.{field.rust_name});"
                 )
+                stream_setup.append(f"                let {stream_name} = {constructor};")
                 constructor_fields.append(f"{field.name}: {stream_name}")
+            if shared_output:
+                lines.append(f"            let output = Shared{output_class}::from(output);")
             lines.extend(
                 [
+                    "            Python::attach(|py| {",
                     *stream_setup,
                     f"                Py::new(py, {output_class} {{ {', '.join(constructor_fields)} }})",
                     "            })",
@@ -1198,6 +1313,11 @@ class ServiceGenerator:
                     "    }",
                 ]
             )
+            return "\n".join(lines)
+
+        lines.append("            Python::attach(|py| {")
+        if smithy.output_target is None or smithy.output_target == "smithy.api#Unit":
+            lines.extend(["                Ok(py.None())", "            })", "        })", "    }"])
             return "\n".join(lines)
 
         lines.append("                let result = PyDict::new(py);")

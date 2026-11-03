@@ -747,7 +747,7 @@ fn voice_to_py(py: Python<'_>, value: &aws_sdk_polly::types::Voice) -> PyResult<
 
 #[pyclass(name = "Lexicon", module = "rboto_polly._native", frozen)]
 struct PyLexicon {
-    inner: aws_sdk_polly::types::Lexicon,
+    inner: Arc<aws_sdk_polly::types::Lexicon>,
 }
 
 #[pymethods]
@@ -779,7 +779,7 @@ impl PyLexicon {
 
 #[pyclass(name = "LexiconAttributes", module = "rboto_polly._native", frozen)]
 struct PyLexiconAttributes {
-    inner: aws_sdk_polly::types::LexiconAttributes,
+    inner: Arc<aws_sdk_polly::types::LexiconAttributes>,
 }
 
 #[pymethods]
@@ -841,9 +841,44 @@ impl PyLexiconAttributes {
     }
 }
 
+struct SharedLexiconDescription {
+    name: Option<::std::string::String>,
+    attributes: Option<Arc<aws_sdk_polly::types::LexiconAttributes>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_polly::types::LexiconDescription> for SharedLexiconDescription {
+    fn from(value: aws_sdk_polly::types::LexiconDescription) -> Self {
+        Self {
+            name: value.name,
+            attributes: value.attributes.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn lexicon_description_shared_to_py(
+    py: Python<'_>,
+    value: &SharedLexiconDescription,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.name {
+        let converted_215 = (value).as_str().into_py_any(py)?;
+        result.set_item("name", converted_215)?;
+    } else {
+        result.set_item("name", py.None())?;
+    }
+    if let Some(value) = &value.attributes {
+        let converted_216 = lexicon_attributes_to_py(py, value)?;
+        result.set_item("attributes", converted_216)?;
+    } else {
+        result.set_item("attributes", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "LexiconDescription", module = "rboto_polly._native", frozen)]
 struct PyLexiconDescription {
-    inner: aws_sdk_polly::types::LexiconDescription,
+    inner: Arc<SharedLexiconDescription>,
 }
 
 #[pymethods]
@@ -864,7 +899,7 @@ impl PyLexiconDescription {
             let converted_214 = Py::new(
                 py,
                 PyLexiconAttributes {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -875,13 +910,13 @@ impl PyLexiconDescription {
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        lexicon_description_to_py(py, &self.inner)
+        lexicon_description_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "SynthesisTask", module = "rboto_polly._native", frozen)]
 struct PySynthesisTask {
-    inner: aws_sdk_polly::types::SynthesisTask,
+    inner: Arc<aws_sdk_polly::types::SynthesisTask>,
 }
 
 #[pymethods]
@@ -889,26 +924,6 @@ impl PySynthesisTask {
     #[getter]
     fn engine(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.engine {
-            let converted_215 = (value).as_str().into_py_any(py)?;
-            Ok(converted_215)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn task_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.task_id {
-            let converted_216 = (value).as_str().into_py_any(py)?;
-            Ok(converted_216)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn task_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.task_status {
             let converted_217 = (value).as_str().into_py_any(py)?;
             Ok(converted_217)
         } else {
@@ -917,8 +932,8 @@ impl PySynthesisTask {
     }
 
     #[getter]
-    fn task_status_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.task_status_reason {
+    fn task_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.task_id {
             let converted_218 = (value).as_str().into_py_any(py)?;
             Ok(converted_218)
         } else {
@@ -927,8 +942,8 @@ impl PySynthesisTask {
     }
 
     #[getter]
-    fn output_uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.output_uri {
+    fn task_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.task_status {
             let converted_219 = (value).as_str().into_py_any(py)?;
             Ok(converted_219)
         } else {
@@ -937,9 +952,9 @@ impl PySynthesisTask {
     }
 
     #[getter]
-    fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.creation_time {
-            let converted_220 = (value).to_string().into_py_any(py)?;
+    fn task_status_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.task_status_reason {
+            let converted_220 = (value).as_str().into_py_any(py)?;
             Ok(converted_220)
         } else {
             Ok(py.None())
@@ -947,18 +962,38 @@ impl PySynthesisTask {
     }
 
     #[getter]
+    fn output_uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.output_uri {
+            let converted_221 = (value).as_str().into_py_any(py)?;
+            Ok(converted_221)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.creation_time {
+            let converted_222 = (value).to_string().into_py_any(py)?;
+            Ok(converted_222)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
     fn request_characters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_221 = (&self.inner.request_characters)
+        let converted_223 = (&self.inner.request_characters)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_221)
+        Ok(converted_223)
     }
 
     #[getter]
     fn sns_topic_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sns_topic_arn {
-            let converted_222 = (value).as_str().into_py_any(py)?;
-            Ok(converted_222)
+            let converted_224 = (value).as_str().into_py_any(py)?;
+            Ok(converted_224)
         } else {
             Ok(py.None())
         }
@@ -967,13 +1002,13 @@ impl PySynthesisTask {
     #[getter]
     fn lexicon_names(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.lexicon_names {
-            let converted_223_list = PyList::empty(py);
-            for item_224 in value {
-                let converted_item_225 = (item_224).as_str().into_py_any(py)?;
-                converted_223_list.append(converted_item_225)?;
+            let converted_225_list = PyList::empty(py);
+            for item_226 in value {
+                let converted_item_227 = (item_226).as_str().into_py_any(py)?;
+                converted_225_list.append(converted_item_227)?;
             }
-            let converted_223 = converted_223_list.into_any().unbind();
-            Ok(converted_223)
+            let converted_225 = converted_225_list.into_any().unbind();
+            Ok(converted_225)
         } else {
             Ok(py.None())
         }
@@ -982,8 +1017,8 @@ impl PySynthesisTask {
     #[getter]
     fn output_format(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_format {
-            let converted_226 = (value).as_str().into_py_any(py)?;
-            Ok(converted_226)
+            let converted_228 = (value).as_str().into_py_any(py)?;
+            Ok(converted_228)
         } else {
             Ok(py.None())
         }
@@ -992,8 +1027,8 @@ impl PySynthesisTask {
     #[getter]
     fn sample_rate(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sample_rate {
-            let converted_227 = (value).as_str().into_py_any(py)?;
-            Ok(converted_227)
+            let converted_229 = (value).as_str().into_py_any(py)?;
+            Ok(converted_229)
         } else {
             Ok(py.None())
         }
@@ -1002,13 +1037,13 @@ impl PySynthesisTask {
     #[getter]
     fn speech_mark_types(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.speech_mark_types {
-            let converted_228_list = PyList::empty(py);
-            for item_229 in value {
-                let converted_item_230 = (item_229).as_str().into_py_any(py)?;
-                converted_228_list.append(converted_item_230)?;
+            let converted_230_list = PyList::empty(py);
+            for item_231 in value {
+                let converted_item_232 = (item_231).as_str().into_py_any(py)?;
+                converted_230_list.append(converted_item_232)?;
             }
-            let converted_228 = converted_228_list.into_any().unbind();
-            Ok(converted_228)
+            let converted_230 = converted_230_list.into_any().unbind();
+            Ok(converted_230)
         } else {
             Ok(py.None())
         }
@@ -1017,8 +1052,8 @@ impl PySynthesisTask {
     #[getter]
     fn text_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.text_type {
-            let converted_231 = (value).as_str().into_py_any(py)?;
-            Ok(converted_231)
+            let converted_233 = (value).as_str().into_py_any(py)?;
+            Ok(converted_233)
         } else {
             Ok(py.None())
         }
@@ -1027,8 +1062,8 @@ impl PySynthesisTask {
     #[getter]
     fn voice_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.voice_id {
-            let converted_232 = (value).as_str().into_py_any(py)?;
-            Ok(converted_232)
+            let converted_234 = (value).as_str().into_py_any(py)?;
+            Ok(converted_234)
         } else {
             Ok(py.None())
         }
@@ -1037,8 +1072,8 @@ impl PySynthesisTask {
     #[getter]
     fn language_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.language_code {
-            let converted_233 = (value).as_str().into_py_any(py)?;
-            Ok(converted_233)
+            let converted_235 = (value).as_str().into_py_any(py)?;
+            Ok(converted_235)
         } else {
             Ok(py.None())
         }
@@ -1051,7 +1086,7 @@ impl PySynthesisTask {
 
 #[pyclass(name = "Voice", module = "rboto_polly._native", frozen)]
 struct PyVoice {
-    inner: aws_sdk_polly::types::Voice,
+    inner: Arc<aws_sdk_polly::types::Voice>,
 }
 
 #[pymethods]
@@ -1059,26 +1094,6 @@ impl PyVoice {
     #[getter]
     fn gender(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.gender {
-            let converted_234 = (value).as_str().into_py_any(py)?;
-            Ok(converted_234)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.id {
-            let converted_235 = (value).as_str().into_py_any(py)?;
-            Ok(converted_235)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn language_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.language_code {
             let converted_236 = (value).as_str().into_py_any(py)?;
             Ok(converted_236)
         } else {
@@ -1087,8 +1102,8 @@ impl PyVoice {
     }
 
     #[getter]
-    fn language_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.language_name {
+    fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.id {
             let converted_237 = (value).as_str().into_py_any(py)?;
             Ok(converted_237)
         } else {
@@ -1097,8 +1112,8 @@ impl PyVoice {
     }
 
     #[getter]
-    fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.name {
+    fn language_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.language_code {
             let converted_238 = (value).as_str().into_py_any(py)?;
             Ok(converted_238)
         } else {
@@ -1107,15 +1122,35 @@ impl PyVoice {
     }
 
     #[getter]
+    fn language_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.language_name {
+            let converted_239 = (value).as_str().into_py_any(py)?;
+            Ok(converted_239)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.name {
+            let converted_240 = (value).as_str().into_py_any(py)?;
+            Ok(converted_240)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
     fn additional_language_codes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.additional_language_codes {
-            let converted_239_list = PyList::empty(py);
-            for item_240 in value {
-                let converted_item_241 = (item_240).as_str().into_py_any(py)?;
-                converted_239_list.append(converted_item_241)?;
+            let converted_241_list = PyList::empty(py);
+            for item_242 in value {
+                let converted_item_243 = (item_242).as_str().into_py_any(py)?;
+                converted_241_list.append(converted_item_243)?;
             }
-            let converted_239 = converted_239_list.into_any().unbind();
-            Ok(converted_239)
+            let converted_241 = converted_241_list.into_any().unbind();
+            Ok(converted_241)
         } else {
             Ok(py.None())
         }
@@ -1124,13 +1159,13 @@ impl PyVoice {
     #[getter]
     fn supported_engines(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.supported_engines {
-            let converted_242_list = PyList::empty(py);
-            for item_243 in value {
-                let converted_item_244 = (item_243).as_str().into_py_any(py)?;
-                converted_242_list.append(converted_item_244)?;
+            let converted_244_list = PyList::empty(py);
+            for item_245 in value {
+                let converted_item_246 = (item_245).as_str().into_py_any(py)?;
+                converted_244_list.append(converted_item_246)?;
             }
-            let converted_242 = converted_242_list.into_any().unbind();
-            Ok(converted_242)
+            let converted_244 = converted_244_list.into_any().unbind();
+            Ok(converted_244)
         } else {
             Ok(py.None())
         }
@@ -1154,9 +1189,31 @@ impl PyOperationDeleteLexiconOutput {
     }
 }
 
+struct SharedPyOperationDescribeVoicesOutput {
+    voices: Option<::std::vec::Vec<Arc<aws_sdk_polly::types::Voice>>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_polly::operation::describe_voices::DescribeVoicesOutput>
+    for SharedPyOperationDescribeVoicesOutput
+{
+    fn from(value: aws_sdk_polly::operation::describe_voices::DescribeVoicesOutput) -> Self {
+        Self {
+            voices: value.voices.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_251| Arc::new(owned_251))
+                    .collect()
+            }),
+            next_token: value.next_token,
+        }
+    }
+}
+
 #[pyclass(name = "DescribeVoicesOutput", module = "rboto_polly._native", frozen)]
 struct PyOperationDescribeVoicesOutput {
-    inner: aws_sdk_polly::operation::describe_voices::DescribeVoicesOutput,
+    inner: SharedPyOperationDescribeVoicesOutput,
 }
 
 #[pymethods]
@@ -1164,19 +1221,19 @@ impl PyOperationDescribeVoicesOutput {
     #[getter]
     fn voices(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.voices {
-            let converted_245_list = PyList::empty(py);
-            for item_246 in value {
-                let converted_item_247 = Py::new(
+            let converted_247_list = PyList::empty(py);
+            for item_248 in value {
+                let converted_item_249 = Py::new(
                     py,
                     PyVoice {
-                        inner: (item_246).to_owned(),
+                        inner: Arc::clone(item_248),
                     },
                 )?
                 .into_any();
-                converted_245_list.append(converted_item_247)?;
+                converted_247_list.append(converted_item_249)?;
             }
-            let converted_245 = converted_245_list.into_any().unbind();
-            Ok(converted_245)
+            let converted_247 = converted_247_list.into_any().unbind();
+            Ok(converted_247)
         } else {
             Ok(py.None())
         }
@@ -1185,8 +1242,8 @@ impl PyOperationDescribeVoicesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_248 = (value).as_str().into_py_any(py)?;
-            Ok(converted_248)
+            let converted_250 = (value).as_str().into_py_any(py)?;
+            Ok(converted_250)
         } else {
             Ok(py.None())
         }
@@ -1195,19 +1252,19 @@ impl PyOperationDescribeVoicesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.voices {
-            let converted_249_list = PyList::empty(py);
-            for item_250 in value {
-                let converted_item_251 = voice_to_py(py, item_250)?;
-                converted_249_list.append(converted_item_251)?;
+            let converted_252_list = PyList::empty(py);
+            for item_253 in value {
+                let converted_item_254 = voice_to_py(py, item_253)?;
+                converted_252_list.append(converted_item_254)?;
             }
-            let converted_249 = converted_249_list.into_any().unbind();
-            result.set_item("voices", converted_249)?;
+            let converted_252 = converted_252_list.into_any().unbind();
+            result.set_item("voices", converted_252)?;
         } else {
             result.set_item("voices", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_252 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_252)?;
+            let converted_255 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_255)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -1215,9 +1272,26 @@ impl PyOperationDescribeVoicesOutput {
     }
 }
 
+struct SharedPyOperationGetLexiconOutput {
+    lexicon: Option<Arc<aws_sdk_polly::types::Lexicon>>,
+    lexicon_attributes: Option<Arc<aws_sdk_polly::types::LexiconAttributes>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_polly::operation::get_lexicon::GetLexiconOutput>
+    for SharedPyOperationGetLexiconOutput
+{
+    fn from(value: aws_sdk_polly::operation::get_lexicon::GetLexiconOutput) -> Self {
+        Self {
+            lexicon: value.lexicon.map(|item| Arc::new(item)),
+            lexicon_attributes: value.lexicon_attributes.map(|item| Arc::new(item)),
+        }
+    }
+}
+
 #[pyclass(name = "GetLexiconOutput", module = "rboto_polly._native", frozen)]
 struct PyOperationGetLexiconOutput {
-    inner: aws_sdk_polly::operation::get_lexicon::GetLexiconOutput,
+    inner: SharedPyOperationGetLexiconOutput,
 }
 
 #[pymethods]
@@ -1225,14 +1299,14 @@ impl PyOperationGetLexiconOutput {
     #[getter]
     fn lexicon(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.lexicon {
-            let converted_253 = Py::new(
+            let converted_256 = Py::new(
                 py,
                 PyLexicon {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_253)
+            Ok(converted_256)
         } else {
             Ok(py.None())
         }
@@ -1241,55 +1315,10 @@ impl PyOperationGetLexiconOutput {
     #[getter]
     fn lexicon_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.lexicon_attributes {
-            let converted_254 = Py::new(
-                py,
-                PyLexiconAttributes {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_254)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let result = PyDict::new(py);
-        if let Some(value) = &self.inner.lexicon {
-            let converted_255 = lexicon_to_py(py, value)?;
-            result.set_item("lexicon", converted_255)?;
-        } else {
-            result.set_item("lexicon", py.None())?;
-        }
-        if let Some(value) = &self.inner.lexicon_attributes {
-            let converted_256 = lexicon_attributes_to_py(py, value)?;
-            result.set_item("lexicon_attributes", converted_256)?;
-        } else {
-            result.set_item("lexicon_attributes", py.None())?;
-        }
-        Ok(result.into_any().unbind())
-    }
-}
-
-#[pyclass(
-    name = "GetSpeechSynthesisTaskOutput",
-    module = "rboto_polly._native",
-    frozen
-)]
-struct PyOperationGetSpeechSynthesisTaskOutput {
-    inner: aws_sdk_polly::operation::get_speech_synthesis_task::GetSpeechSynthesisTaskOutput,
-}
-
-#[pymethods]
-impl PyOperationGetSpeechSynthesisTaskOutput {
-    #[getter]
-    fn synthesis_task(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.synthesis_task {
             let converted_257 = Py::new(
                 py,
-                PySynthesisTask {
-                    inner: (value).to_owned(),
+                PyLexiconAttributes {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -1301,9 +1330,71 @@ impl PyOperationGetSpeechSynthesisTaskOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
+        if let Some(value) = &self.inner.lexicon {
+            let converted_258 = lexicon_to_py(py, value)?;
+            result.set_item("lexicon", converted_258)?;
+        } else {
+            result.set_item("lexicon", py.None())?;
+        }
+        if let Some(value) = &self.inner.lexicon_attributes {
+            let converted_259 = lexicon_attributes_to_py(py, value)?;
+            result.set_item("lexicon_attributes", converted_259)?;
+        } else {
+            result.set_item("lexicon_attributes", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetSpeechSynthesisTaskOutput {
+    synthesis_task: Option<Arc<aws_sdk_polly::types::SynthesisTask>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_polly::operation::get_speech_synthesis_task::GetSpeechSynthesisTaskOutput>
+    for SharedPyOperationGetSpeechSynthesisTaskOutput
+{
+    fn from(
+        value: aws_sdk_polly::operation::get_speech_synthesis_task::GetSpeechSynthesisTaskOutput,
+    ) -> Self {
+        Self {
+            synthesis_task: value.synthesis_task.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+#[pyclass(
+    name = "GetSpeechSynthesisTaskOutput",
+    module = "rboto_polly._native",
+    frozen
+)]
+struct PyOperationGetSpeechSynthesisTaskOutput {
+    inner: SharedPyOperationGetSpeechSynthesisTaskOutput,
+}
+
+#[pymethods]
+impl PyOperationGetSpeechSynthesisTaskOutput {
+    #[getter]
+    fn synthesis_task(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.synthesis_task {
-            let converted_258 = synthesis_task_to_py(py, value)?;
-            result.set_item("synthesis_task", converted_258)?;
+            let converted_260 = Py::new(
+                py,
+                PySynthesisTask {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_260)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.synthesis_task {
+            let converted_261 = synthesis_task_to_py(py, value)?;
+            result.set_item("synthesis_task", converted_261)?;
         } else {
             result.set_item("synthesis_task", py.None())?;
         }
@@ -1311,9 +1402,31 @@ impl PyOperationGetSpeechSynthesisTaskOutput {
     }
 }
 
+struct SharedPyOperationListLexiconsOutput {
+    lexicons: Option<::std::vec::Vec<Arc<SharedLexiconDescription>>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_polly::operation::list_lexicons::ListLexiconsOutput>
+    for SharedPyOperationListLexiconsOutput
+{
+    fn from(value: aws_sdk_polly::operation::list_lexicons::ListLexiconsOutput) -> Self {
+        Self {
+            lexicons: value.lexicons.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_266| Arc::new(SharedLexiconDescription::from(owned_266)))
+                    .collect()
+            }),
+            next_token: value.next_token,
+        }
+    }
+}
+
 #[pyclass(name = "ListLexiconsOutput", module = "rboto_polly._native", frozen)]
 struct PyOperationListLexiconsOutput {
-    inner: aws_sdk_polly::operation::list_lexicons::ListLexiconsOutput,
+    inner: SharedPyOperationListLexiconsOutput,
 }
 
 #[pymethods]
@@ -1321,19 +1434,19 @@ impl PyOperationListLexiconsOutput {
     #[getter]
     fn lexicons(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.lexicons {
-            let converted_259_list = PyList::empty(py);
-            for item_260 in value {
-                let converted_item_261 = Py::new(
+            let converted_262_list = PyList::empty(py);
+            for item_263 in value {
+                let converted_item_264 = Py::new(
                     py,
                     PyLexiconDescription {
-                        inner: (item_260).to_owned(),
+                        inner: Arc::clone(item_263),
                     },
                 )?
                 .into_any();
-                converted_259_list.append(converted_item_261)?;
+                converted_262_list.append(converted_item_264)?;
             }
-            let converted_259 = converted_259_list.into_any().unbind();
-            Ok(converted_259)
+            let converted_262 = converted_262_list.into_any().unbind();
+            Ok(converted_262)
         } else {
             Ok(py.None())
         }
@@ -1342,8 +1455,8 @@ impl PyOperationListLexiconsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_262 = (value).as_str().into_py_any(py)?;
-            Ok(converted_262)
+            let converted_265 = (value).as_str().into_py_any(py)?;
+            Ok(converted_265)
         } else {
             Ok(py.None())
         }
@@ -1352,23 +1465,47 @@ impl PyOperationListLexiconsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.lexicons {
-            let converted_263_list = PyList::empty(py);
-            for item_264 in value {
-                let converted_item_265 = lexicon_description_to_py(py, item_264)?;
-                converted_263_list.append(converted_item_265)?;
+            let converted_267_list = PyList::empty(py);
+            for item_268 in value {
+                let converted_item_269 = lexicon_description_shared_to_py(py, item_268)?;
+                converted_267_list.append(converted_item_269)?;
             }
-            let converted_263 = converted_263_list.into_any().unbind();
-            result.set_item("lexicons", converted_263)?;
+            let converted_267 = converted_267_list.into_any().unbind();
+            result.set_item("lexicons", converted_267)?;
         } else {
             result.set_item("lexicons", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_266 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_266)?;
+            let converted_270 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_270)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListSpeechSynthesisTasksOutput {
+    next_token: Option<::std::string::String>,
+    synthesis_tasks: Option<::std::vec::Vec<Arc<aws_sdk_polly::types::SynthesisTask>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_polly::operation::list_speech_synthesis_tasks::ListSpeechSynthesisTasksOutput>
+    for SharedPyOperationListSpeechSynthesisTasksOutput
+{
+    fn from(
+        value: aws_sdk_polly::operation::list_speech_synthesis_tasks::ListSpeechSynthesisTasksOutput,
+    ) -> Self {
+        Self {
+            next_token: value.next_token,
+            synthesis_tasks: value.synthesis_tasks.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_275| Arc::new(owned_275))
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -1378,7 +1515,7 @@ impl PyOperationListLexiconsOutput {
     frozen
 )]
 struct PyOperationListSpeechSynthesisTasksOutput {
-    inner: aws_sdk_polly::operation::list_speech_synthesis_tasks::ListSpeechSynthesisTasksOutput,
+    inner: SharedPyOperationListSpeechSynthesisTasksOutput,
 }
 
 #[pymethods]
@@ -1386,8 +1523,8 @@ impl PyOperationListSpeechSynthesisTasksOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_267 = (value).as_str().into_py_any(py)?;
-            Ok(converted_267)
+            let converted_271 = (value).as_str().into_py_any(py)?;
+            Ok(converted_271)
         } else {
             Ok(py.None())
         }
@@ -1396,19 +1533,19 @@ impl PyOperationListSpeechSynthesisTasksOutput {
     #[getter]
     fn synthesis_tasks(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.synthesis_tasks {
-            let converted_268_list = PyList::empty(py);
-            for item_269 in value {
-                let converted_item_270 = Py::new(
+            let converted_272_list = PyList::empty(py);
+            for item_273 in value {
+                let converted_item_274 = Py::new(
                     py,
                     PySynthesisTask {
-                        inner: (item_269).to_owned(),
+                        inner: Arc::clone(item_273),
                     },
                 )?
                 .into_any();
-                converted_268_list.append(converted_item_270)?;
+                converted_272_list.append(converted_item_274)?;
             }
-            let converted_268 = converted_268_list.into_any().unbind();
-            Ok(converted_268)
+            let converted_272 = converted_272_list.into_any().unbind();
+            Ok(converted_272)
         } else {
             Ok(py.None())
         }
@@ -1417,19 +1554,19 @@ impl PyOperationListSpeechSynthesisTasksOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.next_token {
-            let converted_271 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_271)?;
+            let converted_276 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_276)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.synthesis_tasks {
-            let converted_272_list = PyList::empty(py);
-            for item_273 in value {
-                let converted_item_274 = synthesis_task_to_py(py, item_273)?;
-                converted_272_list.append(converted_item_274)?;
+            let converted_277_list = PyList::empty(py);
+            for item_278 in value {
+                let converted_item_279 = synthesis_task_to_py(py, item_278)?;
+                converted_277_list.append(converted_item_279)?;
             }
-            let converted_272 = converted_272_list.into_any().unbind();
-            result.set_item("synthesis_tasks", converted_272)?;
+            let converted_277 = converted_277_list.into_any().unbind();
+            result.set_item("synthesis_tasks", converted_277)?;
         } else {
             result.set_item("synthesis_tasks", py.None())?;
         }
@@ -1450,13 +1587,30 @@ impl PyOperationPutLexiconOutput {
     }
 }
 
+struct SharedPyOperationStartSpeechSynthesisTaskOutput {
+    synthesis_task: Option<Arc<aws_sdk_polly::types::SynthesisTask>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_polly::operation::start_speech_synthesis_task::StartSpeechSynthesisTaskOutput>
+    for SharedPyOperationStartSpeechSynthesisTaskOutput
+{
+    fn from(
+        value: aws_sdk_polly::operation::start_speech_synthesis_task::StartSpeechSynthesisTaskOutput,
+    ) -> Self {
+        Self {
+            synthesis_task: value.synthesis_task.map(|item| Arc::new(item)),
+        }
+    }
+}
+
 #[pyclass(
     name = "StartSpeechSynthesisTaskOutput",
     module = "rboto_polly._native",
     frozen
 )]
 struct PyOperationStartSpeechSynthesisTaskOutput {
-    inner: aws_sdk_polly::operation::start_speech_synthesis_task::StartSpeechSynthesisTaskOutput,
+    inner: SharedPyOperationStartSpeechSynthesisTaskOutput,
 }
 
 #[pymethods]
@@ -1464,14 +1618,14 @@ impl PyOperationStartSpeechSynthesisTaskOutput {
     #[getter]
     fn synthesis_task(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.synthesis_task {
-            let converted_275 = Py::new(
+            let converted_280 = Py::new(
                 py,
                 PySynthesisTask {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_275)
+            Ok(converted_280)
         } else {
             Ok(py.None())
         }
@@ -1480,8 +1634,8 @@ impl PyOperationStartSpeechSynthesisTaskOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.synthesis_task {
-            let converted_276 = synthesis_task_to_py(py, value)?;
-            result.set_item("synthesis_task", converted_276)?;
+            let converted_281 = synthesis_task_to_py(py, value)?;
+            result.set_item("synthesis_task", converted_281)?;
         } else {
             result.set_item("synthesis_task", py.None())?;
         }
@@ -1509,8 +1663,8 @@ impl PyOperationSynthesizeSpeechOutput {
     #[getter]
     fn content_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.content_type {
-            let converted_277 = (value).as_str().into_py_any(py)?;
-            Ok(converted_277)
+            let converted_282 = (value).as_str().into_py_any(py)?;
+            Ok(converted_282)
         } else {
             Ok(py.None())
         }
@@ -1518,25 +1672,25 @@ impl PyOperationSynthesizeSpeechOutput {
 
     #[getter]
     fn request_characters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_278 = (&self.inner.request_characters)
+        let converted_283 = (&self.inner.request_characters)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_278)
+        Ok(converted_283)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         result.set_item("audio_stream", self.audio_stream.clone_ref(py))?;
         if let Some(value) = &self.inner.content_type {
-            let converted_279 = (value).as_str().into_py_any(py)?;
-            result.set_item("content_type", converted_279)?;
+            let converted_284 = (value).as_str().into_py_any(py)?;
+            result.set_item("content_type", converted_284)?;
         } else {
             result.set_item("content_type", py.None())?;
         }
-        let converted_280 = (&self.inner.request_characters)
+        let converted_285 = (&self.inner.request_characters)
             .to_owned()
             .into_py_any(py)?;
-        result.set_item("request_characters", converted_280)?;
+        result.set_item("request_characters", converted_285)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -1757,7 +1911,9 @@ impl PollyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeVoices"))
             })?;
-            Ok(PyOperationDescribeVoicesOutput { inner: output })
+            Ok(PyOperationDescribeVoicesOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -1792,7 +1948,9 @@ impl PollyClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetLexicon")))?;
-            Ok(PyOperationGetLexiconOutput { inner: output })
+            Ok(PyOperationGetLexiconOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -1830,7 +1988,9 @@ impl PollyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetSpeechSynthesisTask"))
             })?;
-            Ok(PyOperationGetSpeechSynthesisTaskOutput { inner: output })
+            Ok(PyOperationGetSpeechSynthesisTaskOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -1866,7 +2026,9 @@ impl PollyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListLexicons"))
             })?;
-            Ok(PyOperationListLexiconsOutput { inner: output })
+            Ok(PyOperationListLexiconsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -1919,7 +2081,9 @@ impl PollyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSpeechSynthesisTasks"))
             })?;
-            Ok(PyOperationListSpeechSynthesisTasksOutput { inner: output })
+            Ok(PyOperationListSpeechSynthesisTasksOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -2209,7 +2373,9 @@ impl PollyClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartSpeechSynthesisTask"))
             })?;
-            Ok(PyOperationStartSpeechSynthesisTaskOutput { inner: output })
+            Ok(PyOperationStartSpeechSynthesisTaskOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -2323,8 +2489,8 @@ impl PollyClient {
             let mut output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SynthesizeSpeech"))
             })?;
+            let audio_stream = std::mem::take(&mut output.audio_stream);
             Python::attach(|py| {
-                let audio_stream = std::mem::take(&mut output.audio_stream);
                 let py_audio_stream = Py::new(py, PyByteStream::new(audio_stream))?;
                 Py::new(
                     py,
