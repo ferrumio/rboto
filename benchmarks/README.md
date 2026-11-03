@@ -161,3 +161,12 @@ intermediate copy does not guarantee lower retained memory.
 All 288 measured downloads and 156 warmup downloads passed length and
 SHA-256 validation. The two objects and temporary bucket were deleted, with
 an independent `HeadBucket` request confirming HTTP 404 afterward.
+
+## Runtime workers
+
+`runtime_workers.py` compares 1, 2, 4 and the previous CPU-count setting with
+release S3 and SQS wheels. Each batch uses a fresh process and a separate local
+HTTP peer. It records throughput, latency, CPU, thread counts, sampled RSS and
+event-loop gaps. No account access is required.
+
+See [worker sizing results and methodology](runtime_workers.md).

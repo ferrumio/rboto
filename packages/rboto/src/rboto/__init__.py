@@ -14,6 +14,7 @@ from .interceptors import (
     operation_context,
 )
 from .logging import LogLevel, LogTraceContext, configure_logging, get_logger
+from .runtime import configure_runtime
 from .services import (
     api_gateway,
     bedrock,
@@ -97,6 +98,7 @@ __all__ = [
     "LogLevel",
     "LogTraceContext",
     "configure_logging",
+    "configure_runtime",
     "get_logger",
     "OperationContext",
     "Next",

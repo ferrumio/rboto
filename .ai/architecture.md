@@ -51,6 +51,13 @@ annotations. Do not retain the old modeled response names as compatibility
 aliases. Native exports are direct class aliases. Operation names take priority;
 collision suffixes insert `Value` before `Output`. See ADR-0021.
 
+## Native runtime
+
+`configure_runtime()` sets a global worker policy before native runtime
+initialization. Each extension keeps its own lazy Tokio pool; the core's
+`future_into_py` wrapper applies the policy to operations and streams. Do not
+bypass it with a direct pyo3-async-runtimes future bridge. See ADR-0024.
+
 ## Operation middleware
 
 Configured interceptors form an async `(request, next) -> response` chain in

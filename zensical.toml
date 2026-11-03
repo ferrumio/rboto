@@ -12,6 +12,7 @@ nav = [
     { "Operation reference" = "reference.md" },
     { "Using rboto" = [
         { "Configuration and credentials" = "guides/configuration.md" },
+        { "Runtime workers" = "guides/runtime.md" },
         { "Types and responses" = "guides/types.md" },
         { "Pagination" = "guides/pagination.md" },
         { "Pydantic and dataclasses" = "guides/models.md" },

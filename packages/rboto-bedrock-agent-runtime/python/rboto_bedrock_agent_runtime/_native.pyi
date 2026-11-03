@@ -9,6 +9,8 @@ from .types import JSONValue
 from .types import AgenticRetrieveStreamOutput, InvokeAgentOutput, InvokeFlowOutput, InvokeInlineAgentOutput, OptimizePromptOutput, RetrieveAndGenerateStreamOutput
 
 
+def _runtime_worker_threads() -> int | None: ...
+
 @final
 class ByteStream:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ByteStream/)."""

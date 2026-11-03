@@ -9,6 +9,8 @@ from .types import JSONValue
 from .types import {{ fallback_types | join(', ') }}
 {% endif %}
 
+def _runtime_worker_threads() -> int | None: ...
+
 @final
 class ByteStream:
     def __aiter__(self) -> AsyncIterator[bytes]: ...

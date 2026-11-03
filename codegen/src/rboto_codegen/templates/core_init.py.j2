@@ -14,6 +14,7 @@ from .interceptors import (
     operation_context,
 )
 from .logging import LogLevel, LogTraceContext, configure_logging, get_logger
+from .runtime import configure_runtime
 from .services import (
 {% for service in services %}    {{ service.python_name }},
 {% endfor %})
@@ -31,6 +32,7 @@ __all__ = [
     "LogLevel",
     "LogTraceContext",
     "configure_logging",
+    "configure_runtime",
     "get_logger",
     "OperationContext",
     "Next",

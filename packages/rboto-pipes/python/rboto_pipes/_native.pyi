@@ -7,6 +7,8 @@ from . import types as _types
 from .types import JSONValue
 
 
+def _runtime_worker_threads() -> int | None: ...
+
 @final
 class ByteStream:
     """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/ByteStream/)."""

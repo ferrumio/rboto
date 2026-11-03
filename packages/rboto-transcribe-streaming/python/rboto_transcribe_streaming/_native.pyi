@@ -9,6 +9,8 @@ from .types import JSONValue
 from .types import StartCallAnalyticsStreamTranscriptionOutput, StartMedicalScribeStreamOutput, StartMedicalStreamTranscriptionOutput, StartStreamTranscriptionOutput
 
 
+def _runtime_worker_threads() -> int | None: ...
+
 @final
 class ByteStream:
     """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/ByteStream/)."""
