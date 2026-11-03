@@ -9,6 +9,8 @@ from .types import JSONValue
 from .types import SelectObjectContentOutput
 
 
+def _runtime_worker_threads() -> int | None: ...
+
 @final
 class ByteStream:
     """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ByteStream/)."""

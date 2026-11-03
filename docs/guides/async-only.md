@@ -7,6 +7,9 @@ While a request waits for the network, the Python event loop can run other
 coroutines. Sequential `await` calls still run one at a time. Your application
 chooses which requests can run concurrently.
 
+For the native worker pools shared by clients of each service, see
+[runtime workers](runtime.md).
+
 ## Scripts
 
 Put requests in an async function and start the event loop once:

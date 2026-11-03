@@ -16,8 +16,7 @@ use pyo3::exceptions::{PyOSError, PyStopAsyncIteration, PyValueError};
 use pyo3::prelude::*;
 #[allow(unused_imports)]
 use pyo3::types::{PyBytes, PyDict, PyList};
-use pyo3_async_runtimes::tokio::future_into_py;
-use rboto_core::RequestConfig;
+use rboto_core::{RequestConfig, future_into_py};
 use tokio::sync::{Mutex, OnceCell};
 
 #[derive(Clone)]
@@ -162,6 +161,10 @@ where
 
 #[pymodule]
 fn _native(module: &Bound<'_, PyModule>) -> PyResult<()> {
+    module.add_function(wrap_pyfunction!(
+        rboto_core::runtime_worker_threads,
+        module
+    )?)?;
     module.add_class::<BedrockDataAutomationClient>()?;
     module.add_class::<PyByteStream>()?;
     generated::add_generated_classes(module)?;
