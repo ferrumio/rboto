@@ -1007,7 +1007,7 @@ fn target_summary_to_py(
     frozen
 )]
 struct PyAwsVpcConfiguration {
-    inner: aws_sdk_scheduler::types::AwsVpcConfiguration,
+    inner: Arc<aws_sdk_scheduler::types::AwsVpcConfiguration>,
 }
 
 #[pymethods]
@@ -1059,7 +1059,7 @@ impl PyAwsVpcConfiguration {
     frozen
 )]
 struct PyCapacityProviderStrategyItem {
-    inner: aws_sdk_scheduler::types::CapacityProviderStrategyItem,
+    inner: Arc<aws_sdk_scheduler::types::CapacityProviderStrategyItem>,
 }
 
 #[pymethods]
@@ -1089,7 +1089,7 @@ impl PyCapacityProviderStrategyItem {
 
 #[pyclass(name = "DeadLetterConfig", module = "rboto_scheduler._native", frozen)]
 struct PyDeadLetterConfig {
-    inner: aws_sdk_scheduler::types::DeadLetterConfig,
+    inner: Arc<aws_sdk_scheduler::types::DeadLetterConfig>,
 }
 
 #[pymethods]
@@ -1109,9 +1109,180 @@ impl PyDeadLetterConfig {
     }
 }
 
+struct SharedEcsParameters {
+    task_definition_arn: ::std::string::String,
+    task_count: Option<i32>,
+    launch_type: Option<aws_sdk_scheduler::types::LaunchType>,
+    network_configuration: Option<Arc<SharedNetworkConfiguration>>,
+    platform_version: Option<::std::string::String>,
+    group: Option<::std::string::String>,
+    capacity_provider_strategy:
+        Option<::std::vec::Vec<Arc<aws_sdk_scheduler::types::CapacityProviderStrategyItem>>>,
+    enable_ecs_managed_tags: Option<bool>,
+    enable_execute_command: Option<bool>,
+    placement_constraints:
+        Option<::std::vec::Vec<Arc<aws_sdk_scheduler::types::PlacementConstraint>>>,
+    placement_strategy: Option<::std::vec::Vec<Arc<aws_sdk_scheduler::types::PlacementStrategy>>>,
+    propagate_tags: Option<aws_sdk_scheduler::types::PropagateTags>,
+    reference_id: Option<::std::string::String>,
+    tags: Option<
+        ::std::vec::Vec<::std::collections::HashMap<::std::string::String, ::std::string::String>>,
+    >,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_scheduler::types::EcsParameters> for SharedEcsParameters {
+    fn from(value: aws_sdk_scheduler::types::EcsParameters) -> Self {
+        Self {
+            task_definition_arn: value.task_definition_arn,
+            task_count: value.task_count,
+            launch_type: value.launch_type,
+            network_configuration: value
+                .network_configuration
+                .map(|item| Arc::new(SharedNetworkConfiguration::from(item))),
+            platform_version: value.platform_version,
+            group: value.group,
+            capacity_provider_strategy: value.capacity_provider_strategy.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_286| Arc::new(owned_286))
+                    .collect()
+            }),
+            enable_ecs_managed_tags: value.enable_ecs_managed_tags,
+            enable_execute_command: value.enable_execute_command,
+            placement_constraints: value.placement_constraints.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_287| Arc::new(owned_287))
+                    .collect()
+            }),
+            placement_strategy: value.placement_strategy.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_288| Arc::new(owned_288))
+                    .collect()
+            }),
+            propagate_tags: value.propagate_tags,
+            reference_id: value.reference_id,
+            tags: value.tags,
+        }
+    }
+}
+
+fn ecs_parameters_shared_to_py(py: Python<'_>, value: &SharedEcsParameters) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_289 = (&value.task_definition_arn).as_str().into_py_any(py)?;
+    result.set_item("task_definition_arn", converted_289)?;
+    if let Some(value) = &value.task_count {
+        let converted_290 = (value).to_owned().into_py_any(py)?;
+        result.set_item("task_count", converted_290)?;
+    } else {
+        result.set_item("task_count", py.None())?;
+    }
+    if let Some(value) = &value.launch_type {
+        let converted_291 = (value).as_str().into_py_any(py)?;
+        result.set_item("launch_type", converted_291)?;
+    } else {
+        result.set_item("launch_type", py.None())?;
+    }
+    if let Some(value) = &value.network_configuration {
+        let converted_292 = network_configuration_shared_to_py(py, value)?;
+        result.set_item("network_configuration", converted_292)?;
+    } else {
+        result.set_item("network_configuration", py.None())?;
+    }
+    if let Some(value) = &value.platform_version {
+        let converted_293 = (value).as_str().into_py_any(py)?;
+        result.set_item("platform_version", converted_293)?;
+    } else {
+        result.set_item("platform_version", py.None())?;
+    }
+    if let Some(value) = &value.group {
+        let converted_294 = (value).as_str().into_py_any(py)?;
+        result.set_item("group", converted_294)?;
+    } else {
+        result.set_item("group", py.None())?;
+    }
+    if let Some(value) = &value.capacity_provider_strategy {
+        let converted_295_list = PyList::empty(py);
+        for item_296 in value {
+            let converted_item_297 = capacity_provider_strategy_item_to_py(py, item_296)?;
+            converted_295_list.append(converted_item_297)?;
+        }
+        let converted_295 = converted_295_list.into_any().unbind();
+        result.set_item("capacity_provider_strategy", converted_295)?;
+    } else {
+        result.set_item("capacity_provider_strategy", py.None())?;
+    }
+    if let Some(value) = &value.enable_ecs_managed_tags {
+        let converted_298 = (value).to_owned().into_py_any(py)?;
+        result.set_item("enable_ecs_managed_tags", converted_298)?;
+    } else {
+        result.set_item("enable_ecs_managed_tags", py.None())?;
+    }
+    if let Some(value) = &value.enable_execute_command {
+        let converted_299 = (value).to_owned().into_py_any(py)?;
+        result.set_item("enable_execute_command", converted_299)?;
+    } else {
+        result.set_item("enable_execute_command", py.None())?;
+    }
+    if let Some(value) = &value.placement_constraints {
+        let converted_300_list = PyList::empty(py);
+        for item_301 in value {
+            let converted_item_302 = placement_constraint_to_py(py, item_301)?;
+            converted_300_list.append(converted_item_302)?;
+        }
+        let converted_300 = converted_300_list.into_any().unbind();
+        result.set_item("placement_constraints", converted_300)?;
+    } else {
+        result.set_item("placement_constraints", py.None())?;
+    }
+    if let Some(value) = &value.placement_strategy {
+        let converted_303_list = PyList::empty(py);
+        for item_304 in value {
+            let converted_item_305 = placement_strategy_to_py(py, item_304)?;
+            converted_303_list.append(converted_item_305)?;
+        }
+        let converted_303 = converted_303_list.into_any().unbind();
+        result.set_item("placement_strategy", converted_303)?;
+    } else {
+        result.set_item("placement_strategy", py.None())?;
+    }
+    if let Some(value) = &value.propagate_tags {
+        let converted_306 = (value).as_str().into_py_any(py)?;
+        result.set_item("propagate_tags", converted_306)?;
+    } else {
+        result.set_item("propagate_tags", py.None())?;
+    }
+    if let Some(value) = &value.reference_id {
+        let converted_307 = (value).as_str().into_py_any(py)?;
+        result.set_item("reference_id", converted_307)?;
+    } else {
+        result.set_item("reference_id", py.None())?;
+    }
+    if let Some(value) = &value.tags {
+        let converted_308_list = PyList::empty(py);
+        for item_309 in value {
+            let converted_item_310_dict = PyDict::new(py);
+            for (key_311, value_312) in item_309 {
+                let converted_key_313 = (key_311).as_str().into_py_any(py)?;
+                let converted_value_314 = (value_312).as_str().into_py_any(py)?;
+                converted_item_310_dict.set_item(converted_key_313, converted_value_314)?;
+            }
+            let converted_item_310 = converted_item_310_dict.into_any().unbind();
+            converted_308_list.append(converted_item_310)?;
+        }
+        let converted_308 = converted_308_list.into_any().unbind();
+        result.set_item("tags", converted_308)?;
+    } else {
+        result.set_item("tags", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "EcsParameters", module = "rboto_scheduler._native", frozen)]
 struct PyEcsParameters {
-    inner: aws_sdk_scheduler::types::EcsParameters,
+    inner: Arc<SharedEcsParameters>,
 }
 
 #[pymethods]
@@ -1148,7 +1319,7 @@ impl PyEcsParameters {
             let converted_263 = Py::new(
                 py,
                 PyNetworkConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -1186,7 +1357,7 @@ impl PyEcsParameters {
                 let converted_item_268 = Py::new(
                     py,
                     PyCapacityProviderStrategyItem {
-                        inner: (item_267).to_owned(),
+                        inner: Arc::clone(item_267),
                     },
                 )?
                 .into_any();
@@ -1227,7 +1398,7 @@ impl PyEcsParameters {
                 let converted_item_273 = Py::new(
                     py,
                     PyPlacementConstraint {
-                        inner: (item_272).to_owned(),
+                        inner: Arc::clone(item_272),
                     },
                 )?
                 .into_any();
@@ -1248,7 +1419,7 @@ impl PyEcsParameters {
                 let converted_item_276 = Py::new(
                     py,
                     PyPlacementStrategy {
-                        inner: (item_275).to_owned(),
+                        inner: Arc::clone(item_275),
                     },
                 )?
                 .into_any();
@@ -1303,7 +1474,7 @@ impl PyEcsParameters {
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        ecs_parameters_to_py(py, &self.inner)
+        ecs_parameters_shared_to_py(py, &self.inner)
     }
 }
 
@@ -1313,21 +1484,21 @@ impl PyEcsParameters {
     frozen
 )]
 struct PyEventBridgeParameters {
-    inner: aws_sdk_scheduler::types::EventBridgeParameters,
+    inner: Arc<aws_sdk_scheduler::types::EventBridgeParameters>,
 }
 
 #[pymethods]
 impl PyEventBridgeParameters {
     #[getter]
     fn detail_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_286 = (&self.inner.detail_type).as_str().into_py_any(py)?;
-        Ok(converted_286)
+        let converted_315 = (&self.inner.detail_type).as_str().into_py_any(py)?;
+        Ok(converted_315)
     }
 
     #[getter]
     fn source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_287 = (&self.inner.source).as_str().into_py_any(py)?;
-        Ok(converted_287)
+        let converted_316 = (&self.inner.source).as_str().into_py_any(py)?;
+        Ok(converted_316)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -1341,22 +1512,22 @@ impl PyEventBridgeParameters {
     frozen
 )]
 struct PyFlexibleTimeWindow {
-    inner: aws_sdk_scheduler::types::FlexibleTimeWindow,
+    inner: Arc<aws_sdk_scheduler::types::FlexibleTimeWindow>,
 }
 
 #[pymethods]
 impl PyFlexibleTimeWindow {
     #[getter]
     fn mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_288 = (&self.inner.mode).as_str().into_py_any(py)?;
-        Ok(converted_288)
+        let converted_317 = (&self.inner.mode).as_str().into_py_any(py)?;
+        Ok(converted_317)
     }
 
     #[getter]
     fn maximum_window_in_minutes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.maximum_window_in_minutes {
-            let converted_289 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_289)
+            let converted_318 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_318)
         } else {
             Ok(py.None())
         }
@@ -1369,20 +1540,47 @@ impl PyFlexibleTimeWindow {
 
 #[pyclass(name = "KinesisParameters", module = "rboto_scheduler._native", frozen)]
 struct PyKinesisParameters {
-    inner: aws_sdk_scheduler::types::KinesisParameters,
+    inner: Arc<aws_sdk_scheduler::types::KinesisParameters>,
 }
 
 #[pymethods]
 impl PyKinesisParameters {
     #[getter]
     fn partition_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_290 = (&self.inner.partition_key).as_str().into_py_any(py)?;
-        Ok(converted_290)
+        let converted_319 = (&self.inner.partition_key).as_str().into_py_any(py)?;
+        Ok(converted_319)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         kinesis_parameters_to_py(py, &self.inner)
     }
+}
+
+struct SharedNetworkConfiguration {
+    awsvpc_configuration: Option<Arc<aws_sdk_scheduler::types::AwsVpcConfiguration>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_scheduler::types::NetworkConfiguration> for SharedNetworkConfiguration {
+    fn from(value: aws_sdk_scheduler::types::NetworkConfiguration) -> Self {
+        Self {
+            awsvpc_configuration: value.awsvpc_configuration.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn network_configuration_shared_to_py(
+    py: Python<'_>,
+    value: &SharedNetworkConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.awsvpc_configuration {
+        let converted_321 = aws_vpc_configuration_to_py(py, value)?;
+        result.set_item("awsvpc_configuration", converted_321)?;
+    } else {
+        result.set_item("awsvpc_configuration", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -1391,7 +1589,7 @@ impl PyKinesisParameters {
     frozen
 )]
 struct PyNetworkConfiguration {
-    inner: aws_sdk_scheduler::types::NetworkConfiguration,
+    inner: Arc<SharedNetworkConfiguration>,
 }
 
 #[pymethods]
@@ -1399,21 +1597,21 @@ impl PyNetworkConfiguration {
     #[getter]
     fn awsvpc_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.awsvpc_configuration {
-            let converted_291 = Py::new(
+            let converted_320 = Py::new(
                 py,
                 PyAwsVpcConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_291)
+            Ok(converted_320)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        network_configuration_to_py(py, &self.inner)
+        network_configuration_shared_to_py(py, &self.inner)
     }
 }
 
@@ -1423,7 +1621,7 @@ impl PyNetworkConfiguration {
     frozen
 )]
 struct PyPlacementConstraint {
-    inner: aws_sdk_scheduler::types::PlacementConstraint,
+    inner: Arc<aws_sdk_scheduler::types::PlacementConstraint>,
 }
 
 #[pymethods]
@@ -1431,8 +1629,8 @@ impl PyPlacementConstraint {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.r#type {
-            let converted_292 = (value).as_str().into_py_any(py)?;
-            Ok(converted_292)
+            let converted_322 = (value).as_str().into_py_any(py)?;
+            Ok(converted_322)
         } else {
             Ok(py.None())
         }
@@ -1441,8 +1639,8 @@ impl PyPlacementConstraint {
     #[getter]
     fn expression(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.expression {
-            let converted_293 = (value).as_str().into_py_any(py)?;
-            Ok(converted_293)
+            let converted_323 = (value).as_str().into_py_any(py)?;
+            Ok(converted_323)
         } else {
             Ok(py.None())
         }
@@ -1455,7 +1653,7 @@ impl PyPlacementConstraint {
 
 #[pyclass(name = "PlacementStrategy", module = "rboto_scheduler._native", frozen)]
 struct PyPlacementStrategy {
-    inner: aws_sdk_scheduler::types::PlacementStrategy,
+    inner: Arc<aws_sdk_scheduler::types::PlacementStrategy>,
 }
 
 #[pymethods]
@@ -1463,8 +1661,8 @@ impl PyPlacementStrategy {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.r#type {
-            let converted_294 = (value).as_str().into_py_any(py)?;
-            Ok(converted_294)
+            let converted_324 = (value).as_str().into_py_any(py)?;
+            Ok(converted_324)
         } else {
             Ok(py.None())
         }
@@ -1473,8 +1671,8 @@ impl PyPlacementStrategy {
     #[getter]
     fn field(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.field {
-            let converted_295 = (value).as_str().into_py_any(py)?;
-            Ok(converted_295)
+            let converted_325 = (value).as_str().into_py_any(py)?;
+            Ok(converted_325)
         } else {
             Ok(py.None())
         }
@@ -1487,7 +1685,7 @@ impl PyPlacementStrategy {
 
 #[pyclass(name = "RetryPolicy", module = "rboto_scheduler._native", frozen)]
 struct PyRetryPolicy {
-    inner: aws_sdk_scheduler::types::RetryPolicy,
+    inner: Arc<aws_sdk_scheduler::types::RetryPolicy>,
 }
 
 #[pymethods]
@@ -1495,8 +1693,8 @@ impl PyRetryPolicy {
     #[getter]
     fn maximum_event_age_in_seconds(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.maximum_event_age_in_seconds {
-            let converted_296 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_296)
+            let converted_326 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_326)
         } else {
             Ok(py.None())
         }
@@ -1505,8 +1703,8 @@ impl PyRetryPolicy {
     #[getter]
     fn maximum_retry_attempts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.maximum_retry_attempts {
-            let converted_297 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_297)
+            let converted_327 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_327)
         } else {
             Ok(py.None())
         }
@@ -1523,26 +1721,66 @@ impl PyRetryPolicy {
     frozen
 )]
 struct PySageMakerPipelineParameter {
-    inner: aws_sdk_scheduler::types::SageMakerPipelineParameter,
+    inner: Arc<aws_sdk_scheduler::types::SageMakerPipelineParameter>,
 }
 
 #[pymethods]
 impl PySageMakerPipelineParameter {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_298 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_298)
+        let converted_328 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_328)
     }
 
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_299 = (&self.inner.value).as_str().into_py_any(py)?;
-        Ok(converted_299)
+        let converted_329 = (&self.inner.value).as_str().into_py_any(py)?;
+        Ok(converted_329)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         sage_maker_pipeline_parameter_to_py(py, &self.inner)
     }
+}
+
+struct SharedSageMakerPipelineParameters {
+    pipeline_parameter_list:
+        Option<::std::vec::Vec<Arc<aws_sdk_scheduler::types::SageMakerPipelineParameter>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_scheduler::types::SageMakerPipelineParameters>
+    for SharedSageMakerPipelineParameters
+{
+    fn from(value: aws_sdk_scheduler::types::SageMakerPipelineParameters) -> Self {
+        Self {
+            pipeline_parameter_list: value.pipeline_parameter_list.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_333| Arc::new(owned_333))
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn sage_maker_pipeline_parameters_shared_to_py(
+    py: Python<'_>,
+    value: &SharedSageMakerPipelineParameters,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.pipeline_parameter_list {
+        let converted_334_list = PyList::empty(py);
+        for item_335 in value {
+            let converted_item_336 = sage_maker_pipeline_parameter_to_py(py, item_335)?;
+            converted_334_list.append(converted_item_336)?;
+        }
+        let converted_334 = converted_334_list.into_any().unbind();
+        result.set_item("pipeline_parameter_list", converted_334)?;
+    } else {
+        result.set_item("pipeline_parameter_list", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -1551,7 +1789,7 @@ impl PySageMakerPipelineParameter {
     frozen
 )]
 struct PySageMakerPipelineParameters {
-    inner: aws_sdk_scheduler::types::SageMakerPipelineParameters,
+    inner: Arc<SharedSageMakerPipelineParameters>,
 }
 
 #[pymethods]
@@ -1559,26 +1797,26 @@ impl PySageMakerPipelineParameters {
     #[getter]
     fn pipeline_parameter_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.pipeline_parameter_list {
-            let converted_300_list = PyList::empty(py);
-            for item_301 in value {
-                let converted_item_302 = Py::new(
+            let converted_330_list = PyList::empty(py);
+            for item_331 in value {
+                let converted_item_332 = Py::new(
                     py,
                     PySageMakerPipelineParameter {
-                        inner: (item_301).to_owned(),
+                        inner: Arc::clone(item_331),
                     },
                 )?
                 .into_any();
-                converted_300_list.append(converted_item_302)?;
+                converted_330_list.append(converted_item_332)?;
             }
-            let converted_300 = converted_300_list.into_any().unbind();
-            Ok(converted_300)
+            let converted_330 = converted_330_list.into_any().unbind();
+            Ok(converted_330)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        sage_maker_pipeline_parameters_to_py(py, &self.inner)
+        sage_maker_pipeline_parameters_shared_to_py(py, &self.inner)
     }
 }
 
@@ -1588,7 +1826,7 @@ impl PySageMakerPipelineParameters {
     frozen
 )]
 struct PyScheduleGroupSummary {
-    inner: aws_sdk_scheduler::types::ScheduleGroupSummary,
+    inner: Arc<aws_sdk_scheduler::types::ScheduleGroupSummary>,
 }
 
 #[pymethods]
@@ -1596,8 +1834,8 @@ impl PyScheduleGroupSummary {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
-            let converted_303 = (value).as_str().into_py_any(py)?;
-            Ok(converted_303)
+            let converted_337 = (value).as_str().into_py_any(py)?;
+            Ok(converted_337)
         } else {
             Ok(py.None())
         }
@@ -1606,8 +1844,8 @@ impl PyScheduleGroupSummary {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_304 = (value).as_str().into_py_any(py)?;
-            Ok(converted_304)
+            let converted_338 = (value).as_str().into_py_any(py)?;
+            Ok(converted_338)
         } else {
             Ok(py.None())
         }
@@ -1616,8 +1854,8 @@ impl PyScheduleGroupSummary {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state {
-            let converted_305 = (value).as_str().into_py_any(py)?;
-            Ok(converted_305)
+            let converted_339 = (value).as_str().into_py_any(py)?;
+            Ok(converted_339)
         } else {
             Ok(py.None())
         }
@@ -1626,8 +1864,8 @@ impl PyScheduleGroupSummary {
     #[getter]
     fn creation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_date {
-            let converted_306 = (value).to_string().into_py_any(py)?;
-            Ok(converted_306)
+            let converted_340 = (value).to_string().into_py_any(py)?;
+            Ok(converted_340)
         } else {
             Ok(py.None())
         }
@@ -1636,8 +1874,8 @@ impl PyScheduleGroupSummary {
     #[getter]
     fn last_modification_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modification_date {
-            let converted_307 = (value).to_string().into_py_any(py)?;
-            Ok(converted_307)
+            let converted_341 = (value).to_string().into_py_any(py)?;
+            Ok(converted_341)
         } else {
             Ok(py.None())
         }
@@ -1648,9 +1886,84 @@ impl PyScheduleGroupSummary {
     }
 }
 
+struct SharedScheduleSummary {
+    arn: Option<::std::string::String>,
+    name: Option<::std::string::String>,
+    group_name: Option<::std::string::String>,
+    state: Option<aws_sdk_scheduler::types::ScheduleState>,
+    creation_date: Option<::aws_smithy_types::DateTime>,
+    last_modification_date: Option<::aws_smithy_types::DateTime>,
+    target: Option<Arc<aws_sdk_scheduler::types::TargetSummary>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_scheduler::types::ScheduleSummary> for SharedScheduleSummary {
+    fn from(value: aws_sdk_scheduler::types::ScheduleSummary) -> Self {
+        Self {
+            arn: value.arn,
+            name: value.name,
+            group_name: value.group_name,
+            state: value.state,
+            creation_date: value.creation_date,
+            last_modification_date: value.last_modification_date,
+            target: value.target.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn schedule_summary_shared_to_py(
+    py: Python<'_>,
+    value: &SharedScheduleSummary,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.arn {
+        let converted_349 = (value).as_str().into_py_any(py)?;
+        result.set_item("arn", converted_349)?;
+    } else {
+        result.set_item("arn", py.None())?;
+    }
+    if let Some(value) = &value.name {
+        let converted_350 = (value).as_str().into_py_any(py)?;
+        result.set_item("name", converted_350)?;
+    } else {
+        result.set_item("name", py.None())?;
+    }
+    if let Some(value) = &value.group_name {
+        let converted_351 = (value).as_str().into_py_any(py)?;
+        result.set_item("group_name", converted_351)?;
+    } else {
+        result.set_item("group_name", py.None())?;
+    }
+    if let Some(value) = &value.state {
+        let converted_352 = (value).as_str().into_py_any(py)?;
+        result.set_item("state", converted_352)?;
+    } else {
+        result.set_item("state", py.None())?;
+    }
+    if let Some(value) = &value.creation_date {
+        let converted_353 = (value).to_string().into_py_any(py)?;
+        result.set_item("creation_date", converted_353)?;
+    } else {
+        result.set_item("creation_date", py.None())?;
+    }
+    if let Some(value) = &value.last_modification_date {
+        let converted_354 = (value).to_string().into_py_any(py)?;
+        result.set_item("last_modification_date", converted_354)?;
+    } else {
+        result.set_item("last_modification_date", py.None())?;
+    }
+    if let Some(value) = &value.target {
+        let converted_355 = target_summary_to_py(py, value)?;
+        result.set_item("target", converted_355)?;
+    } else {
+        result.set_item("target", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "ScheduleSummary", module = "rboto_scheduler._native", frozen)]
 struct PyScheduleSummary {
-    inner: aws_sdk_scheduler::types::ScheduleSummary,
+    inner: Arc<SharedScheduleSummary>,
 }
 
 #[pymethods]
@@ -1658,8 +1971,8 @@ impl PyScheduleSummary {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
-            let converted_308 = (value).as_str().into_py_any(py)?;
-            Ok(converted_308)
+            let converted_342 = (value).as_str().into_py_any(py)?;
+            Ok(converted_342)
         } else {
             Ok(py.None())
         }
@@ -1668,8 +1981,8 @@ impl PyScheduleSummary {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_309 = (value).as_str().into_py_any(py)?;
-            Ok(converted_309)
+            let converted_343 = (value).as_str().into_py_any(py)?;
+            Ok(converted_343)
         } else {
             Ok(py.None())
         }
@@ -1678,8 +1991,8 @@ impl PyScheduleSummary {
     #[getter]
     fn group_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.group_name {
-            let converted_310 = (value).as_str().into_py_any(py)?;
-            Ok(converted_310)
+            let converted_344 = (value).as_str().into_py_any(py)?;
+            Ok(converted_344)
         } else {
             Ok(py.None())
         }
@@ -1688,8 +2001,8 @@ impl PyScheduleSummary {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state {
-            let converted_311 = (value).as_str().into_py_any(py)?;
-            Ok(converted_311)
+            let converted_345 = (value).as_str().into_py_any(py)?;
+            Ok(converted_345)
         } else {
             Ok(py.None())
         }
@@ -1698,8 +2011,8 @@ impl PyScheduleSummary {
     #[getter]
     fn creation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_date {
-            let converted_312 = (value).to_string().into_py_any(py)?;
-            Ok(converted_312)
+            let converted_346 = (value).to_string().into_py_any(py)?;
+            Ok(converted_346)
         } else {
             Ok(py.None())
         }
@@ -1708,8 +2021,8 @@ impl PyScheduleSummary {
     #[getter]
     fn last_modification_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modification_date {
-            let converted_313 = (value).to_string().into_py_any(py)?;
-            Ok(converted_313)
+            let converted_347 = (value).to_string().into_py_any(py)?;
+            Ok(converted_347)
         } else {
             Ok(py.None())
         }
@@ -1718,27 +2031,27 @@ impl PyScheduleSummary {
     #[getter]
     fn target(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.target {
-            let converted_314 = Py::new(
+            let converted_348 = Py::new(
                 py,
                 PyTargetSummary {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_314)
+            Ok(converted_348)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        schedule_summary_to_py(py, &self.inner)
+        schedule_summary_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "SqsParameters", module = "rboto_scheduler._native", frozen)]
 struct PySqsParameters {
-    inner: aws_sdk_scheduler::types::SqsParameters,
+    inner: Arc<aws_sdk_scheduler::types::SqsParameters>,
 }
 
 #[pymethods]
@@ -1746,8 +2059,8 @@ impl PySqsParameters {
     #[getter]
     fn message_group_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.message_group_id {
-            let converted_315 = (value).as_str().into_py_any(py)?;
-            Ok(converted_315)
+            let converted_356 = (value).as_str().into_py_any(py)?;
+            Ok(converted_356)
         } else {
             Ok(py.None())
         }
@@ -1760,21 +2073,21 @@ impl PySqsParameters {
 
 #[pyclass(name = "Tag", module = "rboto_scheduler._native", frozen)]
 struct PyTag {
-    inner: aws_sdk_scheduler::types::Tag,
+    inner: Arc<aws_sdk_scheduler::types::Tag>,
 }
 
 #[pymethods]
 impl PyTag {
     #[getter]
     fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_316 = (&self.inner.key).as_str().into_py_any(py)?;
-        Ok(converted_316)
+        let converted_357 = (&self.inner.key).as_str().into_py_any(py)?;
+        Ok(converted_357)
     }
 
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_317 = (&self.inner.value).as_str().into_py_any(py)?;
-        Ok(converted_317)
+        let converted_358 = (&self.inner.value).as_str().into_py_any(py)?;
+        Ok(converted_358)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -1782,36 +2095,128 @@ impl PyTag {
     }
 }
 
+struct SharedTarget {
+    arn: ::std::string::String,
+    role_arn: ::std::string::String,
+    dead_letter_config: Option<Arc<aws_sdk_scheduler::types::DeadLetterConfig>>,
+    retry_policy: Option<Arc<aws_sdk_scheduler::types::RetryPolicy>>,
+    input: Option<::std::string::String>,
+    ecs_parameters: Option<Arc<SharedEcsParameters>>,
+    event_bridge_parameters: Option<Arc<aws_sdk_scheduler::types::EventBridgeParameters>>,
+    kinesis_parameters: Option<Arc<aws_sdk_scheduler::types::KinesisParameters>>,
+    sage_maker_pipeline_parameters: Option<Arc<SharedSageMakerPipelineParameters>>,
+    sqs_parameters: Option<Arc<aws_sdk_scheduler::types::SqsParameters>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_scheduler::types::Target> for SharedTarget {
+    fn from(value: aws_sdk_scheduler::types::Target) -> Self {
+        Self {
+            arn: value.arn,
+            role_arn: value.role_arn,
+            dead_letter_config: value.dead_letter_config.map(|item| Arc::new(item)),
+            retry_policy: value.retry_policy.map(|item| Arc::new(item)),
+            input: value.input,
+            ecs_parameters: value
+                .ecs_parameters
+                .map(|item| Arc::new(SharedEcsParameters::from(item))),
+            event_bridge_parameters: value.event_bridge_parameters.map(|item| Arc::new(item)),
+            kinesis_parameters: value.kinesis_parameters.map(|item| Arc::new(item)),
+            sage_maker_pipeline_parameters: value
+                .sage_maker_pipeline_parameters
+                .map(|item| Arc::new(SharedSageMakerPipelineParameters::from(item))),
+            sqs_parameters: value.sqs_parameters.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn target_shared_to_py(py: Python<'_>, value: &SharedTarget) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_369 = (&value.arn).as_str().into_py_any(py)?;
+    result.set_item("arn", converted_369)?;
+    let converted_370 = (&value.role_arn).as_str().into_py_any(py)?;
+    result.set_item("role_arn", converted_370)?;
+    if let Some(value) = &value.dead_letter_config {
+        let converted_371 = dead_letter_config_to_py(py, value)?;
+        result.set_item("dead_letter_config", converted_371)?;
+    } else {
+        result.set_item("dead_letter_config", py.None())?;
+    }
+    if let Some(value) = &value.retry_policy {
+        let converted_372 = retry_policy_to_py(py, value)?;
+        result.set_item("retry_policy", converted_372)?;
+    } else {
+        result.set_item("retry_policy", py.None())?;
+    }
+    if let Some(value) = &value.input {
+        let converted_373 = (value).as_str().into_py_any(py)?;
+        result.set_item("input", converted_373)?;
+    } else {
+        result.set_item("input", py.None())?;
+    }
+    if let Some(value) = &value.ecs_parameters {
+        let converted_374 = ecs_parameters_shared_to_py(py, value)?;
+        result.set_item("ecs_parameters", converted_374)?;
+    } else {
+        result.set_item("ecs_parameters", py.None())?;
+    }
+    if let Some(value) = &value.event_bridge_parameters {
+        let converted_375 = event_bridge_parameters_to_py(py, value)?;
+        result.set_item("event_bridge_parameters", converted_375)?;
+    } else {
+        result.set_item("event_bridge_parameters", py.None())?;
+    }
+    if let Some(value) = &value.kinesis_parameters {
+        let converted_376 = kinesis_parameters_to_py(py, value)?;
+        result.set_item("kinesis_parameters", converted_376)?;
+    } else {
+        result.set_item("kinesis_parameters", py.None())?;
+    }
+    if let Some(value) = &value.sage_maker_pipeline_parameters {
+        let converted_377 = sage_maker_pipeline_parameters_shared_to_py(py, value)?;
+        result.set_item("sage_maker_pipeline_parameters", converted_377)?;
+    } else {
+        result.set_item("sage_maker_pipeline_parameters", py.None())?;
+    }
+    if let Some(value) = &value.sqs_parameters {
+        let converted_378 = sqs_parameters_to_py(py, value)?;
+        result.set_item("sqs_parameters", converted_378)?;
+    } else {
+        result.set_item("sqs_parameters", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "Target", module = "rboto_scheduler._native", frozen)]
 struct PyTarget {
-    inner: aws_sdk_scheduler::types::Target,
+    inner: Arc<SharedTarget>,
 }
 
 #[pymethods]
 impl PyTarget {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_318 = (&self.inner.arn).as_str().into_py_any(py)?;
-        Ok(converted_318)
+        let converted_359 = (&self.inner.arn).as_str().into_py_any(py)?;
+        Ok(converted_359)
     }
 
     #[getter]
     fn role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_319 = (&self.inner.role_arn).as_str().into_py_any(py)?;
-        Ok(converted_319)
+        let converted_360 = (&self.inner.role_arn).as_str().into_py_any(py)?;
+        Ok(converted_360)
     }
 
     #[getter]
     fn dead_letter_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dead_letter_config {
-            let converted_320 = Py::new(
+            let converted_361 = Py::new(
                 py,
                 PyDeadLetterConfig {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_320)
+            Ok(converted_361)
         } else {
             Ok(py.None())
         }
@@ -1820,14 +2225,14 @@ impl PyTarget {
     #[getter]
     fn retry_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.retry_policy {
-            let converted_321 = Py::new(
+            let converted_362 = Py::new(
                 py,
                 PyRetryPolicy {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_321)
+            Ok(converted_362)
         } else {
             Ok(py.None())
         }
@@ -1836,8 +2241,8 @@ impl PyTarget {
     #[getter]
     fn input(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input {
-            let converted_322 = (value).as_str().into_py_any(py)?;
-            Ok(converted_322)
+            let converted_363 = (value).as_str().into_py_any(py)?;
+            Ok(converted_363)
         } else {
             Ok(py.None())
         }
@@ -1846,14 +2251,14 @@ impl PyTarget {
     #[getter]
     fn ecs_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ecs_parameters {
-            let converted_323 = Py::new(
+            let converted_364 = Py::new(
                 py,
                 PyEcsParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_323)
+            Ok(converted_364)
         } else {
             Ok(py.None())
         }
@@ -1862,14 +2267,14 @@ impl PyTarget {
     #[getter]
     fn event_bridge_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_bridge_parameters {
-            let converted_324 = Py::new(
+            let converted_365 = Py::new(
                 py,
                 PyEventBridgeParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_324)
+            Ok(converted_365)
         } else {
             Ok(py.None())
         }
@@ -1878,14 +2283,14 @@ impl PyTarget {
     #[getter]
     fn kinesis_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kinesis_parameters {
-            let converted_325 = Py::new(
+            let converted_366 = Py::new(
                 py,
                 PyKinesisParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_325)
+            Ok(converted_366)
         } else {
             Ok(py.None())
         }
@@ -1894,14 +2299,14 @@ impl PyTarget {
     #[getter]
     fn sage_maker_pipeline_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sage_maker_pipeline_parameters {
-            let converted_326 = Py::new(
+            let converted_367 = Py::new(
                 py,
                 PySageMakerPipelineParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_326)
+            Ok(converted_367)
         } else {
             Ok(py.None())
         }
@@ -1910,35 +2315,35 @@ impl PyTarget {
     #[getter]
     fn sqs_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sqs_parameters {
-            let converted_327 = Py::new(
+            let converted_368 = Py::new(
                 py,
                 PySqsParameters {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_327)
+            Ok(converted_368)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        target_to_py(py, &self.inner)
+        target_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "TargetSummary", module = "rboto_scheduler._native", frozen)]
 struct PyTargetSummary {
-    inner: aws_sdk_scheduler::types::TargetSummary,
+    inner: Arc<aws_sdk_scheduler::types::TargetSummary>,
 }
 
 #[pymethods]
 impl PyTargetSummary {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_328 = (&self.inner.arn).as_str().into_py_any(py)?;
-        Ok(converted_328)
+        let converted_379 = (&self.inner.arn).as_str().into_py_any(py)?;
+        Ok(converted_379)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -1959,14 +2364,14 @@ struct PyOperationCreateScheduleOutput {
 impl PyOperationCreateScheduleOutput {
     #[getter]
     fn schedule_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_329 = (&self.inner.schedule_arn).as_str().into_py_any(py)?;
-        Ok(converted_329)
+        let converted_380 = (&self.inner.schedule_arn).as_str().into_py_any(py)?;
+        Ok(converted_380)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_330 = (&self.inner.schedule_arn).as_str().into_py_any(py)?;
-        result.set_item("schedule_arn", converted_330)?;
+        let converted_381 = (&self.inner.schedule_arn).as_str().into_py_any(py)?;
+        result.set_item("schedule_arn", converted_381)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -1984,14 +2389,14 @@ struct PyOperationCreateScheduleGroupOutput {
 impl PyOperationCreateScheduleGroupOutput {
     #[getter]
     fn schedule_group_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_331 = (&self.inner.schedule_group_arn).as_str().into_py_any(py)?;
-        Ok(converted_331)
+        let converted_382 = (&self.inner.schedule_group_arn).as_str().into_py_any(py)?;
+        Ok(converted_382)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_332 = (&self.inner.schedule_group_arn).as_str().into_py_any(py)?;
-        result.set_item("schedule_group_arn", converted_332)?;
+        let converted_383 = (&self.inner.schedule_group_arn).as_str().into_py_any(py)?;
+        result.set_item("schedule_group_arn", converted_383)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -2030,9 +2435,52 @@ impl PyOperationDeleteScheduleGroupOutput {
     }
 }
 
+struct SharedPyOperationGetScheduleOutput {
+    arn: Option<::std::string::String>,
+    group_name: Option<::std::string::String>,
+    name: Option<::std::string::String>,
+    schedule_expression: Option<::std::string::String>,
+    start_date: Option<::aws_smithy_types::DateTime>,
+    end_date: Option<::aws_smithy_types::DateTime>,
+    description: Option<::std::string::String>,
+    schedule_expression_timezone: Option<::std::string::String>,
+    state: Option<aws_sdk_scheduler::types::ScheduleState>,
+    creation_date: Option<::aws_smithy_types::DateTime>,
+    last_modification_date: Option<::aws_smithy_types::DateTime>,
+    kms_key_arn: Option<::std::string::String>,
+    target: Option<Arc<SharedTarget>>,
+    flexible_time_window: Option<Arc<aws_sdk_scheduler::types::FlexibleTimeWindow>>,
+    action_after_completion: Option<aws_sdk_scheduler::types::ActionAfterCompletion>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_scheduler::operation::get_schedule::GetScheduleOutput>
+    for SharedPyOperationGetScheduleOutput
+{
+    fn from(value: aws_sdk_scheduler::operation::get_schedule::GetScheduleOutput) -> Self {
+        Self {
+            arn: value.arn,
+            group_name: value.group_name,
+            name: value.name,
+            schedule_expression: value.schedule_expression,
+            start_date: value.start_date,
+            end_date: value.end_date,
+            description: value.description,
+            schedule_expression_timezone: value.schedule_expression_timezone,
+            state: value.state,
+            creation_date: value.creation_date,
+            last_modification_date: value.last_modification_date,
+            kms_key_arn: value.kms_key_arn,
+            target: value.target.map(|item| Arc::new(SharedTarget::from(item))),
+            flexible_time_window: value.flexible_time_window.map(|item| Arc::new(item)),
+            action_after_completion: value.action_after_completion,
+        }
+    }
+}
+
 #[pyclass(name = "GetScheduleOutput", module = "rboto_scheduler._native", frozen)]
 struct PyOperationGetScheduleOutput {
-    inner: aws_sdk_scheduler::operation::get_schedule::GetScheduleOutput,
+    inner: SharedPyOperationGetScheduleOutput,
 }
 
 #[pymethods]
@@ -2040,8 +2488,8 @@ impl PyOperationGetScheduleOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
-            let converted_333 = (value).as_str().into_py_any(py)?;
-            Ok(converted_333)
+            let converted_384 = (value).as_str().into_py_any(py)?;
+            Ok(converted_384)
         } else {
             Ok(py.None())
         }
@@ -2050,8 +2498,8 @@ impl PyOperationGetScheduleOutput {
     #[getter]
     fn group_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.group_name {
-            let converted_334 = (value).as_str().into_py_any(py)?;
-            Ok(converted_334)
+            let converted_385 = (value).as_str().into_py_any(py)?;
+            Ok(converted_385)
         } else {
             Ok(py.None())
         }
@@ -2060,8 +2508,8 @@ impl PyOperationGetScheduleOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_335 = (value).as_str().into_py_any(py)?;
-            Ok(converted_335)
+            let converted_386 = (value).as_str().into_py_any(py)?;
+            Ok(converted_386)
         } else {
             Ok(py.None())
         }
@@ -2070,8 +2518,8 @@ impl PyOperationGetScheduleOutput {
     #[getter]
     fn schedule_expression(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.schedule_expression {
-            let converted_336 = (value).as_str().into_py_any(py)?;
-            Ok(converted_336)
+            let converted_387 = (value).as_str().into_py_any(py)?;
+            Ok(converted_387)
         } else {
             Ok(py.None())
         }
@@ -2080,8 +2528,8 @@ impl PyOperationGetScheduleOutput {
     #[getter]
     fn start_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.start_date {
-            let converted_337 = (value).to_string().into_py_any(py)?;
-            Ok(converted_337)
+            let converted_388 = (value).to_string().into_py_any(py)?;
+            Ok(converted_388)
         } else {
             Ok(py.None())
         }
@@ -2090,8 +2538,8 @@ impl PyOperationGetScheduleOutput {
     #[getter]
     fn end_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.end_date {
-            let converted_338 = (value).to_string().into_py_any(py)?;
-            Ok(converted_338)
+            let converted_389 = (value).to_string().into_py_any(py)?;
+            Ok(converted_389)
         } else {
             Ok(py.None())
         }
@@ -2100,8 +2548,8 @@ impl PyOperationGetScheduleOutput {
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_339 = (value).as_str().into_py_any(py)?;
-            Ok(converted_339)
+            let converted_390 = (value).as_str().into_py_any(py)?;
+            Ok(converted_390)
         } else {
             Ok(py.None())
         }
@@ -2110,8 +2558,8 @@ impl PyOperationGetScheduleOutput {
     #[getter]
     fn schedule_expression_timezone(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.schedule_expression_timezone {
-            let converted_340 = (value).as_str().into_py_any(py)?;
-            Ok(converted_340)
+            let converted_391 = (value).as_str().into_py_any(py)?;
+            Ok(converted_391)
         } else {
             Ok(py.None())
         }
@@ -2120,8 +2568,8 @@ impl PyOperationGetScheduleOutput {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state {
-            let converted_341 = (value).as_str().into_py_any(py)?;
-            Ok(converted_341)
+            let converted_392 = (value).as_str().into_py_any(py)?;
+            Ok(converted_392)
         } else {
             Ok(py.None())
         }
@@ -2130,8 +2578,8 @@ impl PyOperationGetScheduleOutput {
     #[getter]
     fn creation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_date {
-            let converted_342 = (value).to_string().into_py_any(py)?;
-            Ok(converted_342)
+            let converted_393 = (value).to_string().into_py_any(py)?;
+            Ok(converted_393)
         } else {
             Ok(py.None())
         }
@@ -2140,8 +2588,8 @@ impl PyOperationGetScheduleOutput {
     #[getter]
     fn last_modification_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modification_date {
-            let converted_343 = (value).to_string().into_py_any(py)?;
-            Ok(converted_343)
+            let converted_394 = (value).to_string().into_py_any(py)?;
+            Ok(converted_394)
         } else {
             Ok(py.None())
         }
@@ -2150,8 +2598,8 @@ impl PyOperationGetScheduleOutput {
     #[getter]
     fn kms_key_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key_arn {
-            let converted_344 = (value).as_str().into_py_any(py)?;
-            Ok(converted_344)
+            let converted_395 = (value).as_str().into_py_any(py)?;
+            Ok(converted_395)
         } else {
             Ok(py.None())
         }
@@ -2160,14 +2608,14 @@ impl PyOperationGetScheduleOutput {
     #[getter]
     fn target(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.target {
-            let converted_345 = Py::new(
+            let converted_396 = Py::new(
                 py,
                 PyTarget {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_345)
+            Ok(converted_396)
         } else {
             Ok(py.None())
         }
@@ -2176,14 +2624,14 @@ impl PyOperationGetScheduleOutput {
     #[getter]
     fn flexible_time_window(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.flexible_time_window {
-            let converted_346 = Py::new(
+            let converted_397 = Py::new(
                 py,
                 PyFlexibleTimeWindow {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_346)
+            Ok(converted_397)
         } else {
             Ok(py.None())
         }
@@ -2192,8 +2640,8 @@ impl PyOperationGetScheduleOutput {
     #[getter]
     fn action_after_completion(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.action_after_completion {
-            let converted_347 = (value).as_str().into_py_any(py)?;
-            Ok(converted_347)
+            let converted_398 = (value).as_str().into_py_any(py)?;
+            Ok(converted_398)
         } else {
             Ok(py.None())
         }
@@ -2202,92 +2650,92 @@ impl PyOperationGetScheduleOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.arn {
-            let converted_348 = (value).as_str().into_py_any(py)?;
-            result.set_item("arn", converted_348)?;
+            let converted_399 = (value).as_str().into_py_any(py)?;
+            result.set_item("arn", converted_399)?;
         } else {
             result.set_item("arn", py.None())?;
         }
         if let Some(value) = &self.inner.group_name {
-            let converted_349 = (value).as_str().into_py_any(py)?;
-            result.set_item("group_name", converted_349)?;
+            let converted_400 = (value).as_str().into_py_any(py)?;
+            result.set_item("group_name", converted_400)?;
         } else {
             result.set_item("group_name", py.None())?;
         }
         if let Some(value) = &self.inner.name {
-            let converted_350 = (value).as_str().into_py_any(py)?;
-            result.set_item("name", converted_350)?;
+            let converted_401 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_401)?;
         } else {
             result.set_item("name", py.None())?;
         }
         if let Some(value) = &self.inner.schedule_expression {
-            let converted_351 = (value).as_str().into_py_any(py)?;
-            result.set_item("schedule_expression", converted_351)?;
+            let converted_402 = (value).as_str().into_py_any(py)?;
+            result.set_item("schedule_expression", converted_402)?;
         } else {
             result.set_item("schedule_expression", py.None())?;
         }
         if let Some(value) = &self.inner.start_date {
-            let converted_352 = (value).to_string().into_py_any(py)?;
-            result.set_item("start_date", converted_352)?;
+            let converted_403 = (value).to_string().into_py_any(py)?;
+            result.set_item("start_date", converted_403)?;
         } else {
             result.set_item("start_date", py.None())?;
         }
         if let Some(value) = &self.inner.end_date {
-            let converted_353 = (value).to_string().into_py_any(py)?;
-            result.set_item("end_date", converted_353)?;
+            let converted_404 = (value).to_string().into_py_any(py)?;
+            result.set_item("end_date", converted_404)?;
         } else {
             result.set_item("end_date", py.None())?;
         }
         if let Some(value) = &self.inner.description {
-            let converted_354 = (value).as_str().into_py_any(py)?;
-            result.set_item("description", converted_354)?;
+            let converted_405 = (value).as_str().into_py_any(py)?;
+            result.set_item("description", converted_405)?;
         } else {
             result.set_item("description", py.None())?;
         }
         if let Some(value) = &self.inner.schedule_expression_timezone {
-            let converted_355 = (value).as_str().into_py_any(py)?;
-            result.set_item("schedule_expression_timezone", converted_355)?;
+            let converted_406 = (value).as_str().into_py_any(py)?;
+            result.set_item("schedule_expression_timezone", converted_406)?;
         } else {
             result.set_item("schedule_expression_timezone", py.None())?;
         }
         if let Some(value) = &self.inner.state {
-            let converted_356 = (value).as_str().into_py_any(py)?;
-            result.set_item("state", converted_356)?;
+            let converted_407 = (value).as_str().into_py_any(py)?;
+            result.set_item("state", converted_407)?;
         } else {
             result.set_item("state", py.None())?;
         }
         if let Some(value) = &self.inner.creation_date {
-            let converted_357 = (value).to_string().into_py_any(py)?;
-            result.set_item("creation_date", converted_357)?;
+            let converted_408 = (value).to_string().into_py_any(py)?;
+            result.set_item("creation_date", converted_408)?;
         } else {
             result.set_item("creation_date", py.None())?;
         }
         if let Some(value) = &self.inner.last_modification_date {
-            let converted_358 = (value).to_string().into_py_any(py)?;
-            result.set_item("last_modification_date", converted_358)?;
+            let converted_409 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_modification_date", converted_409)?;
         } else {
             result.set_item("last_modification_date", py.None())?;
         }
         if let Some(value) = &self.inner.kms_key_arn {
-            let converted_359 = (value).as_str().into_py_any(py)?;
-            result.set_item("kms_key_arn", converted_359)?;
+            let converted_410 = (value).as_str().into_py_any(py)?;
+            result.set_item("kms_key_arn", converted_410)?;
         } else {
             result.set_item("kms_key_arn", py.None())?;
         }
         if let Some(value) = &self.inner.target {
-            let converted_360 = target_to_py(py, value)?;
-            result.set_item("target", converted_360)?;
+            let converted_411 = target_shared_to_py(py, value)?;
+            result.set_item("target", converted_411)?;
         } else {
             result.set_item("target", py.None())?;
         }
         if let Some(value) = &self.inner.flexible_time_window {
-            let converted_361 = flexible_time_window_to_py(py, value)?;
-            result.set_item("flexible_time_window", converted_361)?;
+            let converted_412 = flexible_time_window_to_py(py, value)?;
+            result.set_item("flexible_time_window", converted_412)?;
         } else {
             result.set_item("flexible_time_window", py.None())?;
         }
         if let Some(value) = &self.inner.action_after_completion {
-            let converted_362 = (value).as_str().into_py_any(py)?;
-            result.set_item("action_after_completion", converted_362)?;
+            let converted_413 = (value).as_str().into_py_any(py)?;
+            result.set_item("action_after_completion", converted_413)?;
         } else {
             result.set_item("action_after_completion", py.None())?;
         }
@@ -2309,8 +2757,8 @@ impl PyOperationGetScheduleGroupOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
-            let converted_363 = (value).as_str().into_py_any(py)?;
-            Ok(converted_363)
+            let converted_414 = (value).as_str().into_py_any(py)?;
+            Ok(converted_414)
         } else {
             Ok(py.None())
         }
@@ -2319,8 +2767,8 @@ impl PyOperationGetScheduleGroupOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_364 = (value).as_str().into_py_any(py)?;
-            Ok(converted_364)
+            let converted_415 = (value).as_str().into_py_any(py)?;
+            Ok(converted_415)
         } else {
             Ok(py.None())
         }
@@ -2329,8 +2777,8 @@ impl PyOperationGetScheduleGroupOutput {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state {
-            let converted_365 = (value).as_str().into_py_any(py)?;
-            Ok(converted_365)
+            let converted_416 = (value).as_str().into_py_any(py)?;
+            Ok(converted_416)
         } else {
             Ok(py.None())
         }
@@ -2339,8 +2787,8 @@ impl PyOperationGetScheduleGroupOutput {
     #[getter]
     fn creation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_date {
-            let converted_366 = (value).to_string().into_py_any(py)?;
-            Ok(converted_366)
+            let converted_417 = (value).to_string().into_py_any(py)?;
+            Ok(converted_417)
         } else {
             Ok(py.None())
         }
@@ -2349,8 +2797,8 @@ impl PyOperationGetScheduleGroupOutput {
     #[getter]
     fn last_modification_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modification_date {
-            let converted_367 = (value).to_string().into_py_any(py)?;
-            Ok(converted_367)
+            let converted_418 = (value).to_string().into_py_any(py)?;
+            Ok(converted_418)
         } else {
             Ok(py.None())
         }
@@ -2359,36 +2807,58 @@ impl PyOperationGetScheduleGroupOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.arn {
-            let converted_368 = (value).as_str().into_py_any(py)?;
-            result.set_item("arn", converted_368)?;
+            let converted_419 = (value).as_str().into_py_any(py)?;
+            result.set_item("arn", converted_419)?;
         } else {
             result.set_item("arn", py.None())?;
         }
         if let Some(value) = &self.inner.name {
-            let converted_369 = (value).as_str().into_py_any(py)?;
-            result.set_item("name", converted_369)?;
+            let converted_420 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_420)?;
         } else {
             result.set_item("name", py.None())?;
         }
         if let Some(value) = &self.inner.state {
-            let converted_370 = (value).as_str().into_py_any(py)?;
-            result.set_item("state", converted_370)?;
+            let converted_421 = (value).as_str().into_py_any(py)?;
+            result.set_item("state", converted_421)?;
         } else {
             result.set_item("state", py.None())?;
         }
         if let Some(value) = &self.inner.creation_date {
-            let converted_371 = (value).to_string().into_py_any(py)?;
-            result.set_item("creation_date", converted_371)?;
+            let converted_422 = (value).to_string().into_py_any(py)?;
+            result.set_item("creation_date", converted_422)?;
         } else {
             result.set_item("creation_date", py.None())?;
         }
         if let Some(value) = &self.inner.last_modification_date {
-            let converted_372 = (value).to_string().into_py_any(py)?;
-            result.set_item("last_modification_date", converted_372)?;
+            let converted_423 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_modification_date", converted_423)?;
         } else {
             result.set_item("last_modification_date", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListScheduleGroupsOutput {
+    next_token: Option<::std::string::String>,
+    schedule_groups: ::std::vec::Vec<Arc<aws_sdk_scheduler::types::ScheduleGroupSummary>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_scheduler::operation::list_schedule_groups::ListScheduleGroupsOutput>
+    for SharedPyOperationListScheduleGroupsOutput
+{
+    fn from(
+        value: aws_sdk_scheduler::operation::list_schedule_groups::ListScheduleGroupsOutput,
+    ) -> Self {
+        Self {
+            next_token: value.next_token,
+            schedule_groups: (value.schedule_groups)
+                .into_iter()
+                .map(|owned_428| Arc::new(owned_428))
+                .collect(),
+        }
     }
 }
 
@@ -2398,7 +2868,7 @@ impl PyOperationGetScheduleGroupOutput {
     frozen
 )]
 struct PyOperationListScheduleGroupsOutput {
-    inner: aws_sdk_scheduler::operation::list_schedule_groups::ListScheduleGroupsOutput,
+    inner: SharedPyOperationListScheduleGroupsOutput,
 }
 
 #[pymethods]
@@ -2406,8 +2876,8 @@ impl PyOperationListScheduleGroupsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_373 = (value).as_str().into_py_any(py)?;
-            Ok(converted_373)
+            let converted_424 = (value).as_str().into_py_any(py)?;
+            Ok(converted_424)
         } else {
             Ok(py.None())
         }
@@ -2415,37 +2885,57 @@ impl PyOperationListScheduleGroupsOutput {
 
     #[getter]
     fn schedule_groups(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_374_list = PyList::empty(py);
-        for item_375 in &self.inner.schedule_groups {
-            let converted_item_376 = Py::new(
+        let converted_425_list = PyList::empty(py);
+        for item_426 in &self.inner.schedule_groups {
+            let converted_item_427 = Py::new(
                 py,
                 PyScheduleGroupSummary {
-                    inner: (item_375).to_owned(),
+                    inner: Arc::clone(item_426),
                 },
             )?
             .into_any();
-            converted_374_list.append(converted_item_376)?;
+            converted_425_list.append(converted_item_427)?;
         }
-        let converted_374 = converted_374_list.into_any().unbind();
-        Ok(converted_374)
+        let converted_425 = converted_425_list.into_any().unbind();
+        Ok(converted_425)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.next_token {
-            let converted_377 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_377)?;
+            let converted_429 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_429)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
-        let converted_378_list = PyList::empty(py);
-        for item_379 in &self.inner.schedule_groups {
-            let converted_item_380 = schedule_group_summary_to_py(py, item_379)?;
-            converted_378_list.append(converted_item_380)?;
+        let converted_430_list = PyList::empty(py);
+        for item_431 in &self.inner.schedule_groups {
+            let converted_item_432 = schedule_group_summary_to_py(py, item_431)?;
+            converted_430_list.append(converted_item_432)?;
         }
-        let converted_378 = converted_378_list.into_any().unbind();
-        result.set_item("schedule_groups", converted_378)?;
+        let converted_430 = converted_430_list.into_any().unbind();
+        result.set_item("schedule_groups", converted_430)?;
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListSchedulesOutput {
+    next_token: Option<::std::string::String>,
+    schedules: ::std::vec::Vec<Arc<SharedScheduleSummary>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_scheduler::operation::list_schedules::ListSchedulesOutput>
+    for SharedPyOperationListSchedulesOutput
+{
+    fn from(value: aws_sdk_scheduler::operation::list_schedules::ListSchedulesOutput) -> Self {
+        Self {
+            next_token: value.next_token,
+            schedules: (value.schedules)
+                .into_iter()
+                .map(|owned_437| Arc::new(SharedScheduleSummary::from(owned_437)))
+                .collect(),
+        }
     }
 }
 
@@ -2455,7 +2945,7 @@ impl PyOperationListScheduleGroupsOutput {
     frozen
 )]
 struct PyOperationListSchedulesOutput {
-    inner: aws_sdk_scheduler::operation::list_schedules::ListSchedulesOutput,
+    inner: SharedPyOperationListSchedulesOutput,
 }
 
 #[pymethods]
@@ -2463,8 +2953,8 @@ impl PyOperationListSchedulesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_381 = (value).as_str().into_py_any(py)?;
-            Ok(converted_381)
+            let converted_433 = (value).as_str().into_py_any(py)?;
+            Ok(converted_433)
         } else {
             Ok(py.None())
         }
@@ -2472,37 +2962,59 @@ impl PyOperationListSchedulesOutput {
 
     #[getter]
     fn schedules(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_382_list = PyList::empty(py);
-        for item_383 in &self.inner.schedules {
-            let converted_item_384 = Py::new(
+        let converted_434_list = PyList::empty(py);
+        for item_435 in &self.inner.schedules {
+            let converted_item_436 = Py::new(
                 py,
                 PyScheduleSummary {
-                    inner: (item_383).to_owned(),
+                    inner: Arc::clone(item_435),
                 },
             )?
             .into_any();
-            converted_382_list.append(converted_item_384)?;
+            converted_434_list.append(converted_item_436)?;
         }
-        let converted_382 = converted_382_list.into_any().unbind();
-        Ok(converted_382)
+        let converted_434 = converted_434_list.into_any().unbind();
+        Ok(converted_434)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.next_token {
-            let converted_385 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_385)?;
+            let converted_438 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_438)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
-        let converted_386_list = PyList::empty(py);
-        for item_387 in &self.inner.schedules {
-            let converted_item_388 = schedule_summary_to_py(py, item_387)?;
-            converted_386_list.append(converted_item_388)?;
+        let converted_439_list = PyList::empty(py);
+        for item_440 in &self.inner.schedules {
+            let converted_item_441 = schedule_summary_shared_to_py(py, item_440)?;
+            converted_439_list.append(converted_item_441)?;
         }
-        let converted_386 = converted_386_list.into_any().unbind();
-        result.set_item("schedules", converted_386)?;
+        let converted_439 = converted_439_list.into_any().unbind();
+        result.set_item("schedules", converted_439)?;
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListTagsForResourceOutput {
+    tags: Option<::std::vec::Vec<Arc<aws_sdk_scheduler::types::Tag>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_scheduler::operation::list_tags_for_resource::ListTagsForResourceOutput>
+    for SharedPyOperationListTagsForResourceOutput
+{
+    fn from(
+        value: aws_sdk_scheduler::operation::list_tags_for_resource::ListTagsForResourceOutput,
+    ) -> Self {
+        Self {
+            tags: value.tags.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_445| Arc::new(owned_445))
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -2512,7 +3024,7 @@ impl PyOperationListSchedulesOutput {
     frozen
 )]
 struct PyOperationListTagsForResourceOutput {
-    inner: aws_sdk_scheduler::operation::list_tags_for_resource::ListTagsForResourceOutput,
+    inner: SharedPyOperationListTagsForResourceOutput,
 }
 
 #[pymethods]
@@ -2520,19 +3032,19 @@ impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_389_list = PyList::empty(py);
-            for item_390 in value {
-                let converted_item_391 = Py::new(
+            let converted_442_list = PyList::empty(py);
+            for item_443 in value {
+                let converted_item_444 = Py::new(
                     py,
                     PyTag {
-                        inner: (item_390).to_owned(),
+                        inner: Arc::clone(item_443),
                     },
                 )?
                 .into_any();
-                converted_389_list.append(converted_item_391)?;
+                converted_442_list.append(converted_item_444)?;
             }
-            let converted_389 = converted_389_list.into_any().unbind();
-            Ok(converted_389)
+            let converted_442 = converted_442_list.into_any().unbind();
+            Ok(converted_442)
         } else {
             Ok(py.None())
         }
@@ -2541,13 +3053,13 @@ impl PyOperationListTagsForResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.tags {
-            let converted_392_list = PyList::empty(py);
-            for item_393 in value {
-                let converted_item_394 = tag_to_py(py, item_393)?;
-                converted_392_list.append(converted_item_394)?;
+            let converted_446_list = PyList::empty(py);
+            for item_447 in value {
+                let converted_item_448 = tag_to_py(py, item_447)?;
+                converted_446_list.append(converted_item_448)?;
             }
-            let converted_392 = converted_392_list.into_any().unbind();
-            result.set_item("tags", converted_392)?;
+            let converted_446 = converted_446_list.into_any().unbind();
+            result.set_item("tags", converted_446)?;
         } else {
             result.set_item("tags", py.None())?;
         }
@@ -2598,14 +3110,14 @@ struct PyOperationUpdateScheduleOutput {
 impl PyOperationUpdateScheduleOutput {
     #[getter]
     fn schedule_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_395 = (&self.inner.schedule_arn).as_str().into_py_any(py)?;
-        Ok(converted_395)
+        let converted_449 = (&self.inner.schedule_arn).as_str().into_py_any(py)?;
+        Ok(converted_449)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_396 = (&self.inner.schedule_arn).as_str().into_py_any(py)?;
-        result.set_item("schedule_arn", converted_396)?;
+        let converted_450 = (&self.inner.schedule_arn).as_str().into_py_any(py)?;
+        result.set_item("schedule_arn", converted_450)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -3009,7 +3521,9 @@ impl SchedulerClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetSchedule")))?;
-            Ok(PyOperationGetScheduleOutput { inner: output })
+            Ok(PyOperationGetScheduleOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -3097,7 +3611,9 @@ impl SchedulerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListScheduleGroups"))
             })?;
-            Ok(PyOperationListScheduleGroupsOutput { inner: output })
+            Ok(PyOperationListScheduleGroupsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -3165,7 +3681,9 @@ impl SchedulerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSchedules"))
             })?;
-            Ok(PyOperationListSchedulesOutput { inner: output })
+            Ok(PyOperationListSchedulesOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -3203,7 +3721,9 @@ impl SchedulerClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Ok(PyOperationListTagsForResourceOutput { inner: output })
+            Ok(PyOperationListTagsForResourceOutput {
+                inner: output.into(),
+            })
         })
     }
 

@@ -576,7 +576,7 @@ fn topic_to_py(py: Python<'_>, value: &aws_sdk_sns::types::Topic) -> PyResult<Py
 
 #[pyclass(name = "BatchResultErrorEntry", module = "rboto_sns._native", frozen)]
 struct PyBatchResultErrorEntry {
-    inner: aws_sdk_sns::types::BatchResultErrorEntry,
+    inner: Arc<aws_sdk_sns::types::BatchResultErrorEntry>,
 }
 
 #[pymethods]
@@ -616,7 +616,7 @@ impl PyBatchResultErrorEntry {
 
 #[pyclass(name = "Endpoint", module = "rboto_sns._native", frozen)]
 struct PyEndpoint {
-    inner: aws_sdk_sns::types::Endpoint,
+    inner: Arc<aws_sdk_sns::types::Endpoint>,
 }
 
 #[pymethods]
@@ -654,7 +654,7 @@ impl PyEndpoint {
 
 #[pyclass(name = "PhoneNumberInformation", module = "rboto_sns._native", frozen)]
 struct PyPhoneNumberInformation {
-    inner: aws_sdk_sns::types::PhoneNumberInformation,
+    inner: Arc<aws_sdk_sns::types::PhoneNumberInformation>,
 }
 
 #[pymethods]
@@ -731,7 +731,7 @@ impl PyPhoneNumberInformation {
 
 #[pyclass(name = "PlatformApplication", module = "rboto_sns._native", frozen)]
 struct PyPlatformApplication {
-    inner: aws_sdk_sns::types::PlatformApplication,
+    inner: Arc<aws_sdk_sns::types::PlatformApplication>,
 }
 
 #[pymethods]
@@ -769,7 +769,7 @@ impl PyPlatformApplication {
 
 #[pyclass(name = "PublishBatchResultEntry", module = "rboto_sns._native", frozen)]
 struct PyPublishBatchResultEntry {
-    inner: aws_sdk_sns::types::PublishBatchResultEntry,
+    inner: Arc<aws_sdk_sns::types::PublishBatchResultEntry>,
 }
 
 #[pymethods]
@@ -811,7 +811,7 @@ impl PyPublishBatchResultEntry {
 
 #[pyclass(name = "SmsSandboxPhoneNumber", module = "rboto_sns._native", frozen)]
 struct PySmsSandboxPhoneNumber {
-    inner: aws_sdk_sns::types::SmsSandboxPhoneNumber,
+    inner: Arc<aws_sdk_sns::types::SmsSandboxPhoneNumber>,
 }
 
 #[pymethods]
@@ -843,7 +843,7 @@ impl PySmsSandboxPhoneNumber {
 
 #[pyclass(name = "Subscription", module = "rboto_sns._native", frozen)]
 struct PySubscription {
-    inner: aws_sdk_sns::types::Subscription,
+    inner: Arc<aws_sdk_sns::types::Subscription>,
 }
 
 #[pymethods]
@@ -905,7 +905,7 @@ impl PySubscription {
 
 #[pyclass(name = "Tag", module = "rboto_sns._native", frozen)]
 struct PyTag {
-    inner: aws_sdk_sns::types::Tag,
+    inner: Arc<aws_sdk_sns::types::Tag>,
 }
 
 #[pymethods]
@@ -929,7 +929,7 @@ impl PyTag {
 
 #[pyclass(name = "Topic", module = "rboto_sns._native", frozen)]
 struct PyTopic {
-    inner: aws_sdk_sns::types::Topic,
+    inner: Arc<aws_sdk_sns::types::Topic>,
 }
 
 #[pymethods]
@@ -1417,13 +1417,28 @@ impl PyOperationGetTopicAttributesOutput {
     }
 }
 
+struct SharedPyOperationListEndpointsByPlatformApplicationOutput {
+    endpoints: Option<::std::vec::Vec<Arc<aws_sdk_sns::types::Endpoint>>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sns::operation::list_endpoints_by_platform_application::ListEndpointsByPlatformApplicationOutput> for SharedPyOperationListEndpointsByPlatformApplicationOutput {
+    fn from(value: aws_sdk_sns::operation::list_endpoints_by_platform_application::ListEndpointsByPlatformApplicationOutput) -> Self {
+        Self {
+            endpoints: value.endpoints.map(|item| (item).into_iter().map(|owned_362| Arc::new(owned_362)).collect()),
+            next_token: value.next_token,
+        }
+    }
+}
+
 #[pyclass(
     name = "ListEndpointsByPlatformApplicationOutput",
     module = "rboto_sns._native",
     frozen
 )]
 struct PyOperationListEndpointsByPlatformApplicationOutput {
-    inner: aws_sdk_sns::operation::list_endpoints_by_platform_application::ListEndpointsByPlatformApplicationOutput,
+    inner: SharedPyOperationListEndpointsByPlatformApplicationOutput,
 }
 
 #[pymethods]
@@ -1436,7 +1451,7 @@ impl PyOperationListEndpointsByPlatformApplicationOutput {
                 let converted_item_360 = Py::new(
                     py,
                     PyEndpoint {
-                        inner: (item_359).to_owned(),
+                        inner: Arc::clone(item_359),
                     },
                 )?
                 .into_any();
@@ -1462,23 +1477,47 @@ impl PyOperationListEndpointsByPlatformApplicationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.endpoints {
-            let converted_362_list = PyList::empty(py);
-            for item_363 in value {
-                let converted_item_364 = endpoint_to_py(py, item_363)?;
-                converted_362_list.append(converted_item_364)?;
+            let converted_363_list = PyList::empty(py);
+            for item_364 in value {
+                let converted_item_365 = endpoint_to_py(py, item_364)?;
+                converted_363_list.append(converted_item_365)?;
             }
-            let converted_362 = converted_362_list.into_any().unbind();
-            result.set_item("endpoints", converted_362)?;
+            let converted_363 = converted_363_list.into_any().unbind();
+            result.set_item("endpoints", converted_363)?;
         } else {
             result.set_item("endpoints", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_365 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_365)?;
+            let converted_366 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_366)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListOriginationNumbersOutput {
+    next_token: Option<::std::string::String>,
+    phone_numbers: Option<::std::vec::Vec<Arc<aws_sdk_sns::types::PhoneNumberInformation>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sns::operation::list_origination_numbers::ListOriginationNumbersOutput>
+    for SharedPyOperationListOriginationNumbersOutput
+{
+    fn from(
+        value: aws_sdk_sns::operation::list_origination_numbers::ListOriginationNumbersOutput,
+    ) -> Self {
+        Self {
+            next_token: value.next_token,
+            phone_numbers: value.phone_numbers.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_371| Arc::new(owned_371))
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -1488,7 +1527,7 @@ impl PyOperationListEndpointsByPlatformApplicationOutput {
     frozen
 )]
 struct PyOperationListOriginationNumbersOutput {
-    inner: aws_sdk_sns::operation::list_origination_numbers::ListOriginationNumbersOutput,
+    inner: SharedPyOperationListOriginationNumbersOutput,
 }
 
 #[pymethods]
@@ -1496,8 +1535,8 @@ impl PyOperationListOriginationNumbersOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_366 = (value).as_str().into_py_any(py)?;
-            Ok(converted_366)
+            let converted_367 = (value).as_str().into_py_any(py)?;
+            Ok(converted_367)
         } else {
             Ok(py.None())
         }
@@ -1506,19 +1545,19 @@ impl PyOperationListOriginationNumbersOutput {
     #[getter]
     fn phone_numbers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.phone_numbers {
-            let converted_367_list = PyList::empty(py);
-            for item_368 in value {
-                let converted_item_369 = Py::new(
+            let converted_368_list = PyList::empty(py);
+            for item_369 in value {
+                let converted_item_370 = Py::new(
                     py,
                     PyPhoneNumberInformation {
-                        inner: (item_368).to_owned(),
+                        inner: Arc::clone(item_369),
                     },
                 )?
                 .into_any();
-                converted_367_list.append(converted_item_369)?;
+                converted_368_list.append(converted_item_370)?;
             }
-            let converted_367 = converted_367_list.into_any().unbind();
-            Ok(converted_367)
+            let converted_368 = converted_368_list.into_any().unbind();
+            Ok(converted_368)
         } else {
             Ok(py.None())
         }
@@ -1527,19 +1566,19 @@ impl PyOperationListOriginationNumbersOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.next_token {
-            let converted_370 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_370)?;
+            let converted_372 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_372)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.phone_numbers {
-            let converted_371_list = PyList::empty(py);
-            for item_372 in value {
-                let converted_item_373 = phone_number_information_to_py(py, item_372)?;
-                converted_371_list.append(converted_item_373)?;
+            let converted_373_list = PyList::empty(py);
+            for item_374 in value {
+                let converted_item_375 = phone_number_information_to_py(py, item_374)?;
+                converted_373_list.append(converted_item_375)?;
             }
-            let converted_371 = converted_371_list.into_any().unbind();
-            result.set_item("phone_numbers", converted_371)?;
+            let converted_373 = converted_373_list.into_any().unbind();
+            result.set_item("phone_numbers", converted_373)?;
         } else {
             result.set_item("phone_numbers", py.None())?;
         }
@@ -1561,13 +1600,13 @@ impl PyOperationListPhoneNumbersOptedOutOutput {
     #[getter]
     fn phone_numbers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.phone_numbers {
-            let converted_374_list = PyList::empty(py);
-            for item_375 in value {
-                let converted_item_376 = (item_375).as_str().into_py_any(py)?;
-                converted_374_list.append(converted_item_376)?;
+            let converted_376_list = PyList::empty(py);
+            for item_377 in value {
+                let converted_item_378 = (item_377).as_str().into_py_any(py)?;
+                converted_376_list.append(converted_item_378)?;
             }
-            let converted_374 = converted_374_list.into_any().unbind();
-            Ok(converted_374)
+            let converted_376 = converted_376_list.into_any().unbind();
+            Ok(converted_376)
         } else {
             Ok(py.None())
         }
@@ -1576,8 +1615,8 @@ impl PyOperationListPhoneNumbersOptedOutOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_377 = (value).as_str().into_py_any(py)?;
-            Ok(converted_377)
+            let converted_379 = (value).as_str().into_py_any(py)?;
+            Ok(converted_379)
         } else {
             Ok(py.None())
         }
@@ -1586,23 +1625,47 @@ impl PyOperationListPhoneNumbersOptedOutOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.phone_numbers {
-            let converted_378_list = PyList::empty(py);
-            for item_379 in value {
-                let converted_item_380 = (item_379).as_str().into_py_any(py)?;
-                converted_378_list.append(converted_item_380)?;
+            let converted_380_list = PyList::empty(py);
+            for item_381 in value {
+                let converted_item_382 = (item_381).as_str().into_py_any(py)?;
+                converted_380_list.append(converted_item_382)?;
             }
-            let converted_378 = converted_378_list.into_any().unbind();
-            result.set_item("phone_numbers", converted_378)?;
+            let converted_380 = converted_380_list.into_any().unbind();
+            result.set_item("phone_numbers", converted_380)?;
         } else {
             result.set_item("phone_numbers", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_381 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_381)?;
+            let converted_383 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_383)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListPlatformApplicationsOutput {
+    platform_applications: Option<::std::vec::Vec<Arc<aws_sdk_sns::types::PlatformApplication>>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sns::operation::list_platform_applications::ListPlatformApplicationsOutput>
+    for SharedPyOperationListPlatformApplicationsOutput
+{
+    fn from(
+        value: aws_sdk_sns::operation::list_platform_applications::ListPlatformApplicationsOutput,
+    ) -> Self {
+        Self {
+            platform_applications: value.platform_applications.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_388| Arc::new(owned_388))
+                    .collect()
+            }),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -1612,7 +1675,7 @@ impl PyOperationListPhoneNumbersOptedOutOutput {
     frozen
 )]
 struct PyOperationListPlatformApplicationsOutput {
-    inner: aws_sdk_sns::operation::list_platform_applications::ListPlatformApplicationsOutput,
+    inner: SharedPyOperationListPlatformApplicationsOutput,
 }
 
 #[pymethods]
@@ -1620,19 +1683,19 @@ impl PyOperationListPlatformApplicationsOutput {
     #[getter]
     fn platform_applications(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.platform_applications {
-            let converted_382_list = PyList::empty(py);
-            for item_383 in value {
-                let converted_item_384 = Py::new(
+            let converted_384_list = PyList::empty(py);
+            for item_385 in value {
+                let converted_item_386 = Py::new(
                     py,
                     PyPlatformApplication {
-                        inner: (item_383).to_owned(),
+                        inner: Arc::clone(item_385),
                     },
                 )?
                 .into_any();
-                converted_382_list.append(converted_item_384)?;
+                converted_384_list.append(converted_item_386)?;
             }
-            let converted_382 = converted_382_list.into_any().unbind();
-            Ok(converted_382)
+            let converted_384 = converted_384_list.into_any().unbind();
+            Ok(converted_384)
         } else {
             Ok(py.None())
         }
@@ -1641,8 +1704,8 @@ impl PyOperationListPlatformApplicationsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_385 = (value).as_str().into_py_any(py)?;
-            Ok(converted_385)
+            let converted_387 = (value).as_str().into_py_any(py)?;
+            Ok(converted_387)
         } else {
             Ok(py.None())
         }
@@ -1651,23 +1714,45 @@ impl PyOperationListPlatformApplicationsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.platform_applications {
-            let converted_386_list = PyList::empty(py);
-            for item_387 in value {
-                let converted_item_388 = platform_application_to_py(py, item_387)?;
-                converted_386_list.append(converted_item_388)?;
+            let converted_389_list = PyList::empty(py);
+            for item_390 in value {
+                let converted_item_391 = platform_application_to_py(py, item_390)?;
+                converted_389_list.append(converted_item_391)?;
             }
-            let converted_386 = converted_386_list.into_any().unbind();
-            result.set_item("platform_applications", converted_386)?;
+            let converted_389 = converted_389_list.into_any().unbind();
+            result.set_item("platform_applications", converted_389)?;
         } else {
             result.set_item("platform_applications", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_389 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_389)?;
+            let converted_392 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_392)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListSMSSandboxPhoneNumbersOutput {
+    phone_numbers: ::std::vec::Vec<Arc<aws_sdk_sns::types::SmsSandboxPhoneNumber>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sns::operation::list_sms_sandbox_phone_numbers::ListSmsSandboxPhoneNumbersOutput>
+    for SharedPyOperationListSMSSandboxPhoneNumbersOutput
+{
+    fn from(
+        value: aws_sdk_sns::operation::list_sms_sandbox_phone_numbers::ListSmsSandboxPhoneNumbersOutput,
+    ) -> Self {
+        Self {
+            phone_numbers: (value.phone_numbers)
+                .into_iter()
+                .map(|owned_397| Arc::new(owned_397))
+                .collect(),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -1677,33 +1762,33 @@ impl PyOperationListPlatformApplicationsOutput {
     frozen
 )]
 struct PyOperationListSMSSandboxPhoneNumbersOutput {
-    inner: aws_sdk_sns::operation::list_sms_sandbox_phone_numbers::ListSmsSandboxPhoneNumbersOutput,
+    inner: SharedPyOperationListSMSSandboxPhoneNumbersOutput,
 }
 
 #[pymethods]
 impl PyOperationListSMSSandboxPhoneNumbersOutput {
     #[getter]
     fn phone_numbers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_390_list = PyList::empty(py);
-        for item_391 in &self.inner.phone_numbers {
-            let converted_item_392 = Py::new(
+        let converted_393_list = PyList::empty(py);
+        for item_394 in &self.inner.phone_numbers {
+            let converted_item_395 = Py::new(
                 py,
                 PySmsSandboxPhoneNumber {
-                    inner: (item_391).to_owned(),
+                    inner: Arc::clone(item_394),
                 },
             )?
             .into_any();
-            converted_390_list.append(converted_item_392)?;
+            converted_393_list.append(converted_item_395)?;
         }
-        let converted_390 = converted_390_list.into_any().unbind();
-        Ok(converted_390)
+        let converted_393 = converted_393_list.into_any().unbind();
+        Ok(converted_393)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_393 = (value).as_str().into_py_any(py)?;
-            Ok(converted_393)
+            let converted_396 = (value).as_str().into_py_any(py)?;
+            Ok(converted_396)
         } else {
             Ok(py.None())
         }
@@ -1711,16 +1796,16 @@ impl PyOperationListSMSSandboxPhoneNumbersOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_394_list = PyList::empty(py);
-        for item_395 in &self.inner.phone_numbers {
-            let converted_item_396 = sms_sandbox_phone_number_to_py(py, item_395)?;
-            converted_394_list.append(converted_item_396)?;
+        let converted_398_list = PyList::empty(py);
+        for item_399 in &self.inner.phone_numbers {
+            let converted_item_400 = sms_sandbox_phone_number_to_py(py, item_399)?;
+            converted_398_list.append(converted_item_400)?;
         }
-        let converted_394 = converted_394_list.into_any().unbind();
-        result.set_item("phone_numbers", converted_394)?;
+        let converted_398 = converted_398_list.into_any().unbind();
+        result.set_item("phone_numbers", converted_398)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_397 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_397)?;
+            let converted_401 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_401)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -1728,9 +1813,31 @@ impl PyOperationListSMSSandboxPhoneNumbersOutput {
     }
 }
 
+struct SharedPyOperationListSubscriptionsOutput {
+    subscriptions: Option<::std::vec::Vec<Arc<aws_sdk_sns::types::Subscription>>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sns::operation::list_subscriptions::ListSubscriptionsOutput>
+    for SharedPyOperationListSubscriptionsOutput
+{
+    fn from(value: aws_sdk_sns::operation::list_subscriptions::ListSubscriptionsOutput) -> Self {
+        Self {
+            subscriptions: value.subscriptions.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_406| Arc::new(owned_406))
+                    .collect()
+            }),
+            next_token: value.next_token,
+        }
+    }
+}
+
 #[pyclass(name = "ListSubscriptionsOutput", module = "rboto_sns._native", frozen)]
 struct PyOperationListSubscriptionsOutput {
-    inner: aws_sdk_sns::operation::list_subscriptions::ListSubscriptionsOutput,
+    inner: SharedPyOperationListSubscriptionsOutput,
 }
 
 #[pymethods]
@@ -1738,19 +1845,19 @@ impl PyOperationListSubscriptionsOutput {
     #[getter]
     fn subscriptions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscriptions {
-            let converted_398_list = PyList::empty(py);
-            for item_399 in value {
-                let converted_item_400 = Py::new(
+            let converted_402_list = PyList::empty(py);
+            for item_403 in value {
+                let converted_item_404 = Py::new(
                     py,
                     PySubscription {
-                        inner: (item_399).to_owned(),
+                        inner: Arc::clone(item_403),
                     },
                 )?
                 .into_any();
-                converted_398_list.append(converted_item_400)?;
+                converted_402_list.append(converted_item_404)?;
             }
-            let converted_398 = converted_398_list.into_any().unbind();
-            Ok(converted_398)
+            let converted_402 = converted_402_list.into_any().unbind();
+            Ok(converted_402)
         } else {
             Ok(py.None())
         }
@@ -1759,8 +1866,8 @@ impl PyOperationListSubscriptionsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_401 = (value).as_str().into_py_any(py)?;
-            Ok(converted_401)
+            let converted_405 = (value).as_str().into_py_any(py)?;
+            Ok(converted_405)
         } else {
             Ok(py.None())
         }
@@ -1769,23 +1876,47 @@ impl PyOperationListSubscriptionsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.subscriptions {
-            let converted_402_list = PyList::empty(py);
-            for item_403 in value {
-                let converted_item_404 = subscription_to_py(py, item_403)?;
-                converted_402_list.append(converted_item_404)?;
+            let converted_407_list = PyList::empty(py);
+            for item_408 in value {
+                let converted_item_409 = subscription_to_py(py, item_408)?;
+                converted_407_list.append(converted_item_409)?;
             }
-            let converted_402 = converted_402_list.into_any().unbind();
-            result.set_item("subscriptions", converted_402)?;
+            let converted_407 = converted_407_list.into_any().unbind();
+            result.set_item("subscriptions", converted_407)?;
         } else {
             result.set_item("subscriptions", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_405 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_405)?;
+            let converted_410 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_410)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListSubscriptionsByTopicOutput {
+    subscriptions: Option<::std::vec::Vec<Arc<aws_sdk_sns::types::Subscription>>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sns::operation::list_subscriptions_by_topic::ListSubscriptionsByTopicOutput>
+    for SharedPyOperationListSubscriptionsByTopicOutput
+{
+    fn from(
+        value: aws_sdk_sns::operation::list_subscriptions_by_topic::ListSubscriptionsByTopicOutput,
+    ) -> Self {
+        Self {
+            subscriptions: value.subscriptions.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_415| Arc::new(owned_415))
+                    .collect()
+            }),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -1795,7 +1926,7 @@ impl PyOperationListSubscriptionsOutput {
     frozen
 )]
 struct PyOperationListSubscriptionsByTopicOutput {
-    inner: aws_sdk_sns::operation::list_subscriptions_by_topic::ListSubscriptionsByTopicOutput,
+    inner: SharedPyOperationListSubscriptionsByTopicOutput,
 }
 
 #[pymethods]
@@ -1803,19 +1934,19 @@ impl PyOperationListSubscriptionsByTopicOutput {
     #[getter]
     fn subscriptions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscriptions {
-            let converted_406_list = PyList::empty(py);
-            for item_407 in value {
-                let converted_item_408 = Py::new(
+            let converted_411_list = PyList::empty(py);
+            for item_412 in value {
+                let converted_item_413 = Py::new(
                     py,
                     PySubscription {
-                        inner: (item_407).to_owned(),
+                        inner: Arc::clone(item_412),
                     },
                 )?
                 .into_any();
-                converted_406_list.append(converted_item_408)?;
+                converted_411_list.append(converted_item_413)?;
             }
-            let converted_406 = converted_406_list.into_any().unbind();
-            Ok(converted_406)
+            let converted_411 = converted_411_list.into_any().unbind();
+            Ok(converted_411)
         } else {
             Ok(py.None())
         }
@@ -1824,8 +1955,8 @@ impl PyOperationListSubscriptionsByTopicOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_409 = (value).as_str().into_py_any(py)?;
-            Ok(converted_409)
+            let converted_414 = (value).as_str().into_py_any(py)?;
+            Ok(converted_414)
         } else {
             Ok(py.None())
         }
@@ -1834,23 +1965,45 @@ impl PyOperationListSubscriptionsByTopicOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.subscriptions {
-            let converted_410_list = PyList::empty(py);
-            for item_411 in value {
-                let converted_item_412 = subscription_to_py(py, item_411)?;
-                converted_410_list.append(converted_item_412)?;
+            let converted_416_list = PyList::empty(py);
+            for item_417 in value {
+                let converted_item_418 = subscription_to_py(py, item_417)?;
+                converted_416_list.append(converted_item_418)?;
             }
-            let converted_410 = converted_410_list.into_any().unbind();
-            result.set_item("subscriptions", converted_410)?;
+            let converted_416 = converted_416_list.into_any().unbind();
+            result.set_item("subscriptions", converted_416)?;
         } else {
             result.set_item("subscriptions", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_413 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_413)?;
+            let converted_419 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_419)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListTagsForResourceOutput {
+    tags: Option<::std::vec::Vec<Arc<aws_sdk_sns::types::Tag>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sns::operation::list_tags_for_resource::ListTagsForResourceOutput>
+    for SharedPyOperationListTagsForResourceOutput
+{
+    fn from(
+        value: aws_sdk_sns::operation::list_tags_for_resource::ListTagsForResourceOutput,
+    ) -> Self {
+        Self {
+            tags: value.tags.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_423| Arc::new(owned_423))
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -1860,7 +2013,7 @@ impl PyOperationListSubscriptionsByTopicOutput {
     frozen
 )]
 struct PyOperationListTagsForResourceOutput {
-    inner: aws_sdk_sns::operation::list_tags_for_resource::ListTagsForResourceOutput,
+    inner: SharedPyOperationListTagsForResourceOutput,
 }
 
 #[pymethods]
@@ -1868,57 +2021,12 @@ impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_414_list = PyList::empty(py);
-            for item_415 in value {
-                let converted_item_416 = Py::new(
-                    py,
-                    PyTag {
-                        inner: (item_415).to_owned(),
-                    },
-                )?
-                .into_any();
-                converted_414_list.append(converted_item_416)?;
-            }
-            let converted_414 = converted_414_list.into_any().unbind();
-            Ok(converted_414)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let result = PyDict::new(py);
-        if let Some(value) = &self.inner.tags {
-            let converted_417_list = PyList::empty(py);
-            for item_418 in value {
-                let converted_item_419 = tag_to_py(py, item_418)?;
-                converted_417_list.append(converted_item_419)?;
-            }
-            let converted_417 = converted_417_list.into_any().unbind();
-            result.set_item("tags", converted_417)?;
-        } else {
-            result.set_item("tags", py.None())?;
-        }
-        Ok(result.into_any().unbind())
-    }
-}
-
-#[pyclass(name = "ListTopicsOutput", module = "rboto_sns._native", frozen)]
-struct PyOperationListTopicsOutput {
-    inner: aws_sdk_sns::operation::list_topics::ListTopicsOutput,
-}
-
-#[pymethods]
-impl PyOperationListTopicsOutput {
-    #[getter]
-    fn topics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.topics {
             let converted_420_list = PyList::empty(py);
             for item_421 in value {
                 let converted_item_422 = Py::new(
                     py,
-                    PyTopic {
-                        inner: (item_421).to_owned(),
+                    PyTag {
+                        inner: Arc::clone(item_421),
                     },
                 )?
                 .into_any();
@@ -1931,11 +2039,78 @@ impl PyOperationListTopicsOutput {
         }
     }
 
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.tags {
+            let converted_424_list = PyList::empty(py);
+            for item_425 in value {
+                let converted_item_426 = tag_to_py(py, item_425)?;
+                converted_424_list.append(converted_item_426)?;
+            }
+            let converted_424 = converted_424_list.into_any().unbind();
+            result.set_item("tags", converted_424)?;
+        } else {
+            result.set_item("tags", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListTopicsOutput {
+    topics: Option<::std::vec::Vec<Arc<aws_sdk_sns::types::Topic>>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sns::operation::list_topics::ListTopicsOutput>
+    for SharedPyOperationListTopicsOutput
+{
+    fn from(value: aws_sdk_sns::operation::list_topics::ListTopicsOutput) -> Self {
+        Self {
+            topics: value.topics.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_431| Arc::new(owned_431))
+                    .collect()
+            }),
+            next_token: value.next_token,
+        }
+    }
+}
+
+#[pyclass(name = "ListTopicsOutput", module = "rboto_sns._native", frozen)]
+struct PyOperationListTopicsOutput {
+    inner: SharedPyOperationListTopicsOutput,
+}
+
+#[pymethods]
+impl PyOperationListTopicsOutput {
+    #[getter]
+    fn topics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.topics {
+            let converted_427_list = PyList::empty(py);
+            for item_428 in value {
+                let converted_item_429 = Py::new(
+                    py,
+                    PyTopic {
+                        inner: Arc::clone(item_428),
+                    },
+                )?
+                .into_any();
+                converted_427_list.append(converted_item_429)?;
+            }
+            let converted_427 = converted_427_list.into_any().unbind();
+            Ok(converted_427)
+        } else {
+            Ok(py.None())
+        }
+    }
+
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_423 = (value).as_str().into_py_any(py)?;
-            Ok(converted_423)
+            let converted_430 = (value).as_str().into_py_any(py)?;
+            Ok(converted_430)
         } else {
             Ok(py.None())
         }
@@ -1944,19 +2119,19 @@ impl PyOperationListTopicsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.topics {
-            let converted_424_list = PyList::empty(py);
-            for item_425 in value {
-                let converted_item_426 = topic_to_py(py, item_425)?;
-                converted_424_list.append(converted_item_426)?;
+            let converted_432_list = PyList::empty(py);
+            for item_433 in value {
+                let converted_item_434 = topic_to_py(py, item_433)?;
+                converted_432_list.append(converted_item_434)?;
             }
-            let converted_424 = converted_424_list.into_any().unbind();
-            result.set_item("topics", converted_424)?;
+            let converted_432 = converted_432_list.into_any().unbind();
+            result.set_item("topics", converted_432)?;
         } else {
             result.set_item("topics", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_427 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_427)?;
+            let converted_435 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_435)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -1987,8 +2162,8 @@ impl PyOperationPublishOutput {
     #[getter]
     fn message_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.message_id {
-            let converted_428 = (value).as_str().into_py_any(py)?;
-            Ok(converted_428)
+            let converted_436 = (value).as_str().into_py_any(py)?;
+            Ok(converted_436)
         } else {
             Ok(py.None())
         }
@@ -1997,8 +2172,8 @@ impl PyOperationPublishOutput {
     #[getter]
     fn sequence_number(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sequence_number {
-            let converted_429 = (value).as_str().into_py_any(py)?;
-            Ok(converted_429)
+            let converted_437 = (value).as_str().into_py_any(py)?;
+            Ok(converted_437)
         } else {
             Ok(py.None())
         }
@@ -2007,14 +2182,14 @@ impl PyOperationPublishOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.message_id {
-            let converted_430 = (value).as_str().into_py_any(py)?;
-            result.set_item("message_id", converted_430)?;
+            let converted_438 = (value).as_str().into_py_any(py)?;
+            result.set_item("message_id", converted_438)?;
         } else {
             result.set_item("message_id", py.None())?;
         }
         if let Some(value) = &self.inner.sequence_number {
-            let converted_431 = (value).as_str().into_py_any(py)?;
-            result.set_item("sequence_number", converted_431)?;
+            let converted_439 = (value).as_str().into_py_any(py)?;
+            result.set_item("sequence_number", converted_439)?;
         } else {
             result.set_item("sequence_number", py.None())?;
         }
@@ -2022,9 +2197,36 @@ impl PyOperationPublishOutput {
     }
 }
 
+struct SharedPyOperationPublishBatchOutput {
+    successful: Option<::std::vec::Vec<Arc<aws_sdk_sns::types::PublishBatchResultEntry>>>,
+    failed: Option<::std::vec::Vec<Arc<aws_sdk_sns::types::BatchResultErrorEntry>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sns::operation::publish_batch::PublishBatchOutput>
+    for SharedPyOperationPublishBatchOutput
+{
+    fn from(value: aws_sdk_sns::operation::publish_batch::PublishBatchOutput) -> Self {
+        Self {
+            successful: value.successful.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_446| Arc::new(owned_446))
+                    .collect()
+            }),
+            failed: value.failed.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_447| Arc::new(owned_447))
+                    .collect()
+            }),
+        }
+    }
+}
+
 #[pyclass(name = "PublishBatchOutput", module = "rboto_sns._native", frozen)]
 struct PyOperationPublishBatchOutput {
-    inner: aws_sdk_sns::operation::publish_batch::PublishBatchOutput,
+    inner: SharedPyOperationPublishBatchOutput,
 }
 
 #[pymethods]
@@ -2032,19 +2234,19 @@ impl PyOperationPublishBatchOutput {
     #[getter]
     fn successful(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.successful {
-            let converted_432_list = PyList::empty(py);
-            for item_433 in value {
-                let converted_item_434 = Py::new(
+            let converted_440_list = PyList::empty(py);
+            for item_441 in value {
+                let converted_item_442 = Py::new(
                     py,
                     PyPublishBatchResultEntry {
-                        inner: (item_433).to_owned(),
+                        inner: Arc::clone(item_441),
                     },
                 )?
                 .into_any();
-                converted_432_list.append(converted_item_434)?;
+                converted_440_list.append(converted_item_442)?;
             }
-            let converted_432 = converted_432_list.into_any().unbind();
-            Ok(converted_432)
+            let converted_440 = converted_440_list.into_any().unbind();
+            Ok(converted_440)
         } else {
             Ok(py.None())
         }
@@ -2053,19 +2255,19 @@ impl PyOperationPublishBatchOutput {
     #[getter]
     fn failed(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failed {
-            let converted_435_list = PyList::empty(py);
-            for item_436 in value {
-                let converted_item_437 = Py::new(
+            let converted_443_list = PyList::empty(py);
+            for item_444 in value {
+                let converted_item_445 = Py::new(
                     py,
                     PyBatchResultErrorEntry {
-                        inner: (item_436).to_owned(),
+                        inner: Arc::clone(item_444),
                     },
                 )?
                 .into_any();
-                converted_435_list.append(converted_item_437)?;
+                converted_443_list.append(converted_item_445)?;
             }
-            let converted_435 = converted_435_list.into_any().unbind();
-            Ok(converted_435)
+            let converted_443 = converted_443_list.into_any().unbind();
+            Ok(converted_443)
         } else {
             Ok(py.None())
         }
@@ -2074,24 +2276,24 @@ impl PyOperationPublishBatchOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.successful {
-            let converted_438_list = PyList::empty(py);
-            for item_439 in value {
-                let converted_item_440 = publish_batch_result_entry_to_py(py, item_439)?;
-                converted_438_list.append(converted_item_440)?;
+            let converted_448_list = PyList::empty(py);
+            for item_449 in value {
+                let converted_item_450 = publish_batch_result_entry_to_py(py, item_449)?;
+                converted_448_list.append(converted_item_450)?;
             }
-            let converted_438 = converted_438_list.into_any().unbind();
-            result.set_item("successful", converted_438)?;
+            let converted_448 = converted_448_list.into_any().unbind();
+            result.set_item("successful", converted_448)?;
         } else {
             result.set_item("successful", py.None())?;
         }
         if let Some(value) = &self.inner.failed {
-            let converted_441_list = PyList::empty(py);
-            for item_442 in value {
-                let converted_item_443 = batch_result_error_entry_to_py(py, item_442)?;
-                converted_441_list.append(converted_item_443)?;
+            let converted_451_list = PyList::empty(py);
+            for item_452 in value {
+                let converted_item_453 = batch_result_error_entry_to_py(py, item_452)?;
+                converted_451_list.append(converted_item_453)?;
             }
-            let converted_441 = converted_441_list.into_any().unbind();
-            result.set_item("failed", converted_441)?;
+            let converted_451 = converted_451_list.into_any().unbind();
+            result.set_item("failed", converted_451)?;
         } else {
             result.set_item("failed", py.None())?;
         }
@@ -2122,8 +2324,8 @@ impl PyOperationSubscribeOutput {
     #[getter]
     fn subscription_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscription_arn {
-            let converted_444 = (value).as_str().into_py_any(py)?;
-            Ok(converted_444)
+            let converted_454 = (value).as_str().into_py_any(py)?;
+            Ok(converted_454)
         } else {
             Ok(py.None())
         }
@@ -2132,8 +2334,8 @@ impl PyOperationSubscribeOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.subscription_arn {
-            let converted_445 = (value).as_str().into_py_any(py)?;
-            result.set_item("subscription_arn", converted_445)?;
+            let converted_455 = (value).as_str().into_py_any(py)?;
+            result.set_item("subscription_arn", converted_455)?;
         } else {
             result.set_item("subscription_arn", py.None())?;
         }
@@ -3117,7 +3319,9 @@ impl SNSClient {
                     sdk_error_to_py(py, &error, "ListEndpointsByPlatformApplication")
                 })
             })?;
-            Ok(PyOperationListEndpointsByPlatformApplicationOutput { inner: output })
+            Ok(PyOperationListEndpointsByPlatformApplicationOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -3162,7 +3366,9 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListOriginationNumbers"))
             })?;
-            Ok(PyOperationListOriginationNumbersOutput { inner: output })
+            Ok(PyOperationListOriginationNumbersOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -3238,7 +3444,9 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPlatformApplications"))
             })?;
-            Ok(PyOperationListPlatformApplicationsOutput { inner: output })
+            Ok(PyOperationListPlatformApplicationsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -3283,7 +3491,9 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSMSSandboxPhoneNumbers"))
             })?;
-            Ok(PyOperationListSMSSandboxPhoneNumbersOutput { inner: output })
+            Ok(PyOperationListSMSSandboxPhoneNumbersOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -3319,7 +3529,9 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSubscriptions"))
             })?;
-            Ok(PyOperationListSubscriptionsOutput { inner: output })
+            Ok(PyOperationListSubscriptionsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -3364,7 +3576,9 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSubscriptionsByTopic"))
             })?;
-            Ok(PyOperationListSubscriptionsByTopicOutput { inner: output })
+            Ok(PyOperationListSubscriptionsByTopicOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -3402,7 +3616,9 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Ok(PyOperationListTagsForResourceOutput { inner: output })
+            Ok(PyOperationListTagsForResourceOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -3437,7 +3653,9 @@ impl SNSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListTopics")))?;
-            Ok(PyOperationListTopicsOutput { inner: output })
+            Ok(PyOperationListTopicsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -3629,7 +3847,9 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PublishBatch"))
             })?;
-            Ok(PyOperationPublishBatchOutput { inner: output })
+            Ok(PyOperationPublishBatchOutput {
+                inner: output.into(),
+            })
         })
     }
 

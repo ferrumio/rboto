@@ -401,7 +401,7 @@ fn unprocessed_identity_id_to_py(
     frozen
 )]
 struct PyCognitoIdentityProvider {
-    inner: aws_sdk_cognitoidentity::types::CognitoIdentityProvider,
+    inner: Arc<aws_sdk_cognitoidentity::types::CognitoIdentityProvider>,
 }
 
 #[pymethods]
@@ -447,7 +447,7 @@ impl PyCognitoIdentityProvider {
     frozen
 )]
 struct PyCredentials {
-    inner: aws_sdk_cognitoidentity::types::Credentials,
+    inner: Arc<aws_sdk_cognitoidentity::types::Credentials>,
 }
 
 #[pymethods]
@@ -503,7 +503,7 @@ impl PyCredentials {
     frozen
 )]
 struct PyIdentityDescription {
-    inner: aws_sdk_cognitoidentity::types::IdentityDescription,
+    inner: Arc<aws_sdk_cognitoidentity::types::IdentityDescription>,
 }
 
 #[pymethods]
@@ -564,7 +564,7 @@ impl PyIdentityDescription {
     frozen
 )]
 struct PyIdentityPoolShortDescription {
-    inner: aws_sdk_cognitoidentity::types::IdentityPoolShortDescription,
+    inner: Arc<aws_sdk_cognitoidentity::types::IdentityPoolShortDescription>,
 }
 
 #[pymethods]
@@ -600,7 +600,7 @@ impl PyIdentityPoolShortDescription {
     frozen
 )]
 struct PyMappingRule {
-    inner: aws_sdk_cognitoidentity::types::MappingRule,
+    inner: Arc<aws_sdk_cognitoidentity::types::MappingRule>,
 }
 
 #[pymethods]
@@ -634,13 +634,51 @@ impl PyMappingRule {
     }
 }
 
+struct SharedRoleMapping {
+    r#type: aws_sdk_cognitoidentity::types::RoleMappingType,
+    ambiguous_role_resolution: Option<aws_sdk_cognitoidentity::types::AmbiguousRoleResolutionType>,
+    rules_configuration: Option<Arc<SharedRulesConfigurationType>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_cognitoidentity::types::RoleMapping> for SharedRoleMapping {
+    fn from(value: aws_sdk_cognitoidentity::types::RoleMapping) -> Self {
+        Self {
+            r#type: value.r#type,
+            ambiguous_role_resolution: value.ambiguous_role_resolution,
+            rules_configuration: value
+                .rules_configuration
+                .map(|item| Arc::new(SharedRulesConfigurationType::from(item))),
+        }
+    }
+}
+
+fn role_mapping_shared_to_py(py: Python<'_>, value: &SharedRoleMapping) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_256 = (&value.r#type).as_str().into_py_any(py)?;
+    result.set_item("type", converted_256)?;
+    if let Some(value) = &value.ambiguous_role_resolution {
+        let converted_257 = (value).as_str().into_py_any(py)?;
+        result.set_item("ambiguous_role_resolution", converted_257)?;
+    } else {
+        result.set_item("ambiguous_role_resolution", py.None())?;
+    }
+    if let Some(value) = &value.rules_configuration {
+        let converted_258 = rules_configuration_type_shared_to_py(py, value)?;
+        result.set_item("rules_configuration", converted_258)?;
+    } else {
+        result.set_item("rules_configuration", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "RoleMapping",
     module = "rboto_cognito_identity._native",
     frozen
 )]
 struct PyRoleMapping {
-    inner: aws_sdk_cognitoidentity::types::RoleMapping,
+    inner: Arc<SharedRoleMapping>,
 }
 
 #[pymethods]
@@ -667,7 +705,7 @@ impl PyRoleMapping {
             let converted_255 = Py::new(
                 py,
                 PyRulesConfigurationType {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -678,8 +716,39 @@ impl PyRoleMapping {
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        role_mapping_to_py(py, &self.inner)
+        role_mapping_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedRulesConfigurationType {
+    rules: ::std::vec::Vec<Arc<aws_sdk_cognitoidentity::types::MappingRule>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_cognitoidentity::types::RulesConfigurationType> for SharedRulesConfigurationType {
+    fn from(value: aws_sdk_cognitoidentity::types::RulesConfigurationType) -> Self {
+        Self {
+            rules: (value.rules)
+                .into_iter()
+                .map(|owned_262| Arc::new(owned_262))
+                .collect(),
+        }
+    }
+}
+
+fn rules_configuration_type_shared_to_py(
+    py: Python<'_>,
+    value: &SharedRulesConfigurationType,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_263_list = PyList::empty(py);
+    for item_264 in &value.rules {
+        let converted_item_265 = mapping_rule_to_py(py, item_264)?;
+        converted_263_list.append(converted_item_265)?;
+    }
+    let converted_263 = converted_263_list.into_any().unbind();
+    result.set_item("rules", converted_263)?;
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -688,30 +757,30 @@ impl PyRoleMapping {
     frozen
 )]
 struct PyRulesConfigurationType {
-    inner: aws_sdk_cognitoidentity::types::RulesConfigurationType,
+    inner: Arc<SharedRulesConfigurationType>,
 }
 
 #[pymethods]
 impl PyRulesConfigurationType {
     #[getter]
     fn rules(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_256_list = PyList::empty(py);
-        for item_257 in &self.inner.rules {
-            let converted_item_258 = Py::new(
+        let converted_259_list = PyList::empty(py);
+        for item_260 in &self.inner.rules {
+            let converted_item_261 = Py::new(
                 py,
                 PyMappingRule {
-                    inner: (item_257).to_owned(),
+                    inner: Arc::clone(item_260),
                 },
             )?
             .into_any();
-            converted_256_list.append(converted_item_258)?;
+            converted_259_list.append(converted_item_261)?;
         }
-        let converted_256 = converted_256_list.into_any().unbind();
-        Ok(converted_256)
+        let converted_259 = converted_259_list.into_any().unbind();
+        Ok(converted_259)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        rules_configuration_type_to_py(py, &self.inner)
+        rules_configuration_type_shared_to_py(py, &self.inner)
     }
 }
 
@@ -721,7 +790,7 @@ impl PyRulesConfigurationType {
     frozen
 )]
 struct PyUnprocessedIdentityId {
-    inner: aws_sdk_cognitoidentity::types::UnprocessedIdentityId,
+    inner: Arc<aws_sdk_cognitoidentity::types::UnprocessedIdentityId>,
 }
 
 #[pymethods]
@@ -729,8 +798,8 @@ impl PyUnprocessedIdentityId {
     #[getter]
     fn identity_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_id {
-            let converted_259 = (value).as_str().into_py_any(py)?;
-            Ok(converted_259)
+            let converted_266 = (value).as_str().into_py_any(py)?;
+            Ok(converted_266)
         } else {
             Ok(py.None())
         }
@@ -739,8 +808,8 @@ impl PyUnprocessedIdentityId {
     #[getter]
     fn error_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_code {
-            let converted_260 = (value).as_str().into_py_any(py)?;
-            Ok(converted_260)
+            let converted_267 = (value).as_str().into_py_any(py)?;
+            Ok(converted_267)
         } else {
             Ok(py.None())
         }
@@ -751,42 +820,85 @@ impl PyUnprocessedIdentityId {
     }
 }
 
+struct SharedPyOperationCreateIdentityPoolOutput {
+    identity_pool_id: ::std::string::String,
+    identity_pool_name: ::std::string::String,
+    allow_unauthenticated_identities: bool,
+    allow_classic_flow: Option<bool>,
+    supported_login_providers:
+        Option<::std::collections::HashMap<::std::string::String, ::std::string::String>>,
+    developer_provider_name: Option<::std::string::String>,
+    open_id_connect_provider_arns: Option<::std::vec::Vec<::std::string::String>>,
+    cognito_identity_providers:
+        Option<::std::vec::Vec<Arc<aws_sdk_cognitoidentity::types::CognitoIdentityProvider>>>,
+    saml_provider_arns: Option<::std::vec::Vec<::std::string::String>>,
+    identity_pool_tags:
+        Option<::std::collections::HashMap<::std::string::String, ::std::string::String>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_cognitoidentity::operation::create_identity_pool::CreateIdentityPoolOutput>
+    for SharedPyOperationCreateIdentityPoolOutput
+{
+    fn from(
+        value: aws_sdk_cognitoidentity::operation::create_identity_pool::CreateIdentityPoolOutput,
+    ) -> Self {
+        Self {
+            identity_pool_id: value.identity_pool_id,
+            identity_pool_name: value.identity_pool_name,
+            allow_unauthenticated_identities: value.allow_unauthenticated_identities,
+            allow_classic_flow: value.allow_classic_flow,
+            supported_login_providers: value.supported_login_providers,
+            developer_provider_name: value.developer_provider_name,
+            open_id_connect_provider_arns: value.open_id_connect_provider_arns,
+            cognito_identity_providers: value.cognito_identity_providers.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_292| Arc::new(owned_292))
+                    .collect()
+            }),
+            saml_provider_arns: value.saml_provider_arns,
+            identity_pool_tags: value.identity_pool_tags,
+        }
+    }
+}
+
 #[pyclass(
     name = "CreateIdentityPoolOutput",
     module = "rboto_cognito_identity._native",
     frozen
 )]
 struct PyOperationCreateIdentityPoolOutput {
-    inner: aws_sdk_cognitoidentity::operation::create_identity_pool::CreateIdentityPoolOutput,
+    inner: SharedPyOperationCreateIdentityPoolOutput,
 }
 
 #[pymethods]
 impl PyOperationCreateIdentityPoolOutput {
     #[getter]
     fn identity_pool_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_261 = (&self.inner.identity_pool_id).as_str().into_py_any(py)?;
-        Ok(converted_261)
+        let converted_268 = (&self.inner.identity_pool_id).as_str().into_py_any(py)?;
+        Ok(converted_268)
     }
 
     #[getter]
     fn identity_pool_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_262 = (&self.inner.identity_pool_name).as_str().into_py_any(py)?;
-        Ok(converted_262)
+        let converted_269 = (&self.inner.identity_pool_name).as_str().into_py_any(py)?;
+        Ok(converted_269)
     }
 
     #[getter]
     fn allow_unauthenticated_identities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_263 = (&self.inner.allow_unauthenticated_identities)
+        let converted_270 = (&self.inner.allow_unauthenticated_identities)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_263)
+        Ok(converted_270)
     }
 
     #[getter]
     fn allow_classic_flow(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.allow_classic_flow {
-            let converted_264 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_264)
+            let converted_271 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_271)
         } else {
             Ok(py.None())
         }
@@ -795,14 +907,14 @@ impl PyOperationCreateIdentityPoolOutput {
     #[getter]
     fn supported_login_providers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.supported_login_providers {
-            let converted_265_dict = PyDict::new(py);
-            for (key_266, value_267) in value {
-                let converted_key_268 = (key_266).as_str().into_py_any(py)?;
-                let converted_value_269 = (value_267).as_str().into_py_any(py)?;
-                converted_265_dict.set_item(converted_key_268, converted_value_269)?;
+            let converted_272_dict = PyDict::new(py);
+            for (key_273, value_274) in value {
+                let converted_key_275 = (key_273).as_str().into_py_any(py)?;
+                let converted_value_276 = (value_274).as_str().into_py_any(py)?;
+                converted_272_dict.set_item(converted_key_275, converted_value_276)?;
             }
-            let converted_265 = converted_265_dict.into_any().unbind();
-            Ok(converted_265)
+            let converted_272 = converted_272_dict.into_any().unbind();
+            Ok(converted_272)
         } else {
             Ok(py.None())
         }
@@ -811,8 +923,8 @@ impl PyOperationCreateIdentityPoolOutput {
     #[getter]
     fn developer_provider_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.developer_provider_name {
-            let converted_270 = (value).as_str().into_py_any(py)?;
-            Ok(converted_270)
+            let converted_277 = (value).as_str().into_py_any(py)?;
+            Ok(converted_277)
         } else {
             Ok(py.None())
         }
@@ -821,13 +933,13 @@ impl PyOperationCreateIdentityPoolOutput {
     #[getter]
     fn open_id_connect_provider_arns(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.open_id_connect_provider_arns {
-            let converted_271_list = PyList::empty(py);
-            for item_272 in value {
-                let converted_item_273 = (item_272).as_str().into_py_any(py)?;
-                converted_271_list.append(converted_item_273)?;
+            let converted_278_list = PyList::empty(py);
+            for item_279 in value {
+                let converted_item_280 = (item_279).as_str().into_py_any(py)?;
+                converted_278_list.append(converted_item_280)?;
             }
-            let converted_271 = converted_271_list.into_any().unbind();
-            Ok(converted_271)
+            let converted_278 = converted_278_list.into_any().unbind();
+            Ok(converted_278)
         } else {
             Ok(py.None())
         }
@@ -836,19 +948,19 @@ impl PyOperationCreateIdentityPoolOutput {
     #[getter]
     fn cognito_identity_providers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cognito_identity_providers {
-            let converted_274_list = PyList::empty(py);
-            for item_275 in value {
-                let converted_item_276 = Py::new(
+            let converted_281_list = PyList::empty(py);
+            for item_282 in value {
+                let converted_item_283 = Py::new(
                     py,
                     PyCognitoIdentityProvider {
-                        inner: (item_275).to_owned(),
+                        inner: Arc::clone(item_282),
                     },
                 )?
                 .into_any();
-                converted_274_list.append(converted_item_276)?;
+                converted_281_list.append(converted_item_283)?;
             }
-            let converted_274 = converted_274_list.into_any().unbind();
-            Ok(converted_274)
+            let converted_281 = converted_281_list.into_any().unbind();
+            Ok(converted_281)
         } else {
             Ok(py.None())
         }
@@ -857,13 +969,13 @@ impl PyOperationCreateIdentityPoolOutput {
     #[getter]
     fn saml_provider_arns(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.saml_provider_arns {
-            let converted_277_list = PyList::empty(py);
-            for item_278 in value {
-                let converted_item_279 = (item_278).as_str().into_py_any(py)?;
-                converted_277_list.append(converted_item_279)?;
+            let converted_284_list = PyList::empty(py);
+            for item_285 in value {
+                let converted_item_286 = (item_285).as_str().into_py_any(py)?;
+                converted_284_list.append(converted_item_286)?;
             }
-            let converted_277 = converted_277_list.into_any().unbind();
-            Ok(converted_277)
+            let converted_284 = converted_284_list.into_any().unbind();
+            Ok(converted_284)
         } else {
             Ok(py.None())
         }
@@ -872,14 +984,14 @@ impl PyOperationCreateIdentityPoolOutput {
     #[getter]
     fn identity_pool_tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_pool_tags {
-            let converted_280_dict = PyDict::new(py);
-            for (key_281, value_282) in value {
-                let converted_key_283 = (key_281).as_str().into_py_any(py)?;
-                let converted_value_284 = (value_282).as_str().into_py_any(py)?;
-                converted_280_dict.set_item(converted_key_283, converted_value_284)?;
+            let converted_287_dict = PyDict::new(py);
+            for (key_288, value_289) in value {
+                let converted_key_290 = (key_288).as_str().into_py_any(py)?;
+                let converted_value_291 = (value_289).as_str().into_py_any(py)?;
+                converted_287_dict.set_item(converted_key_290, converted_value_291)?;
             }
-            let converted_280 = converted_280_dict.into_any().unbind();
-            Ok(converted_280)
+            let converted_287 = converted_287_dict.into_any().unbind();
+            Ok(converted_287)
         } else {
             Ok(py.None())
         }
@@ -887,84 +999,107 @@ impl PyOperationCreateIdentityPoolOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_285 = (&self.inner.identity_pool_id).as_str().into_py_any(py)?;
-        result.set_item("identity_pool_id", converted_285)?;
-        let converted_286 = (&self.inner.identity_pool_name).as_str().into_py_any(py)?;
-        result.set_item("identity_pool_name", converted_286)?;
-        let converted_287 = (&self.inner.allow_unauthenticated_identities)
+        let converted_293 = (&self.inner.identity_pool_id).as_str().into_py_any(py)?;
+        result.set_item("identity_pool_id", converted_293)?;
+        let converted_294 = (&self.inner.identity_pool_name).as_str().into_py_any(py)?;
+        result.set_item("identity_pool_name", converted_294)?;
+        let converted_295 = (&self.inner.allow_unauthenticated_identities)
             .to_owned()
             .into_py_any(py)?;
-        result.set_item("allow_unauthenticated_identities", converted_287)?;
+        result.set_item("allow_unauthenticated_identities", converted_295)?;
         if let Some(value) = &self.inner.allow_classic_flow {
-            let converted_288 = (value).to_owned().into_py_any(py)?;
-            result.set_item("allow_classic_flow", converted_288)?;
+            let converted_296 = (value).to_owned().into_py_any(py)?;
+            result.set_item("allow_classic_flow", converted_296)?;
         } else {
             result.set_item("allow_classic_flow", py.None())?;
         }
         if let Some(value) = &self.inner.supported_login_providers {
-            let converted_289_dict = PyDict::new(py);
-            for (key_290, value_291) in value {
-                let converted_key_292 = (key_290).as_str().into_py_any(py)?;
-                let converted_value_293 = (value_291).as_str().into_py_any(py)?;
-                converted_289_dict.set_item(converted_key_292, converted_value_293)?;
+            let converted_297_dict = PyDict::new(py);
+            for (key_298, value_299) in value {
+                let converted_key_300 = (key_298).as_str().into_py_any(py)?;
+                let converted_value_301 = (value_299).as_str().into_py_any(py)?;
+                converted_297_dict.set_item(converted_key_300, converted_value_301)?;
             }
-            let converted_289 = converted_289_dict.into_any().unbind();
-            result.set_item("supported_login_providers", converted_289)?;
+            let converted_297 = converted_297_dict.into_any().unbind();
+            result.set_item("supported_login_providers", converted_297)?;
         } else {
             result.set_item("supported_login_providers", py.None())?;
         }
         if let Some(value) = &self.inner.developer_provider_name {
-            let converted_294 = (value).as_str().into_py_any(py)?;
-            result.set_item("developer_provider_name", converted_294)?;
+            let converted_302 = (value).as_str().into_py_any(py)?;
+            result.set_item("developer_provider_name", converted_302)?;
         } else {
             result.set_item("developer_provider_name", py.None())?;
         }
         if let Some(value) = &self.inner.open_id_connect_provider_arns {
-            let converted_295_list = PyList::empty(py);
-            for item_296 in value {
-                let converted_item_297 = (item_296).as_str().into_py_any(py)?;
-                converted_295_list.append(converted_item_297)?;
+            let converted_303_list = PyList::empty(py);
+            for item_304 in value {
+                let converted_item_305 = (item_304).as_str().into_py_any(py)?;
+                converted_303_list.append(converted_item_305)?;
             }
-            let converted_295 = converted_295_list.into_any().unbind();
-            result.set_item("open_id_connect_provider_arns", converted_295)?;
+            let converted_303 = converted_303_list.into_any().unbind();
+            result.set_item("open_id_connect_provider_arns", converted_303)?;
         } else {
             result.set_item("open_id_connect_provider_arns", py.None())?;
         }
         if let Some(value) = &self.inner.cognito_identity_providers {
-            let converted_298_list = PyList::empty(py);
-            for item_299 in value {
-                let converted_item_300 = cognito_identity_provider_to_py(py, item_299)?;
-                converted_298_list.append(converted_item_300)?;
+            let converted_306_list = PyList::empty(py);
+            for item_307 in value {
+                let converted_item_308 = cognito_identity_provider_to_py(py, item_307)?;
+                converted_306_list.append(converted_item_308)?;
             }
-            let converted_298 = converted_298_list.into_any().unbind();
-            result.set_item("cognito_identity_providers", converted_298)?;
+            let converted_306 = converted_306_list.into_any().unbind();
+            result.set_item("cognito_identity_providers", converted_306)?;
         } else {
             result.set_item("cognito_identity_providers", py.None())?;
         }
         if let Some(value) = &self.inner.saml_provider_arns {
-            let converted_301_list = PyList::empty(py);
-            for item_302 in value {
-                let converted_item_303 = (item_302).as_str().into_py_any(py)?;
-                converted_301_list.append(converted_item_303)?;
+            let converted_309_list = PyList::empty(py);
+            for item_310 in value {
+                let converted_item_311 = (item_310).as_str().into_py_any(py)?;
+                converted_309_list.append(converted_item_311)?;
             }
-            let converted_301 = converted_301_list.into_any().unbind();
-            result.set_item("saml_provider_arns", converted_301)?;
+            let converted_309 = converted_309_list.into_any().unbind();
+            result.set_item("saml_provider_arns", converted_309)?;
         } else {
             result.set_item("saml_provider_arns", py.None())?;
         }
         if let Some(value) = &self.inner.identity_pool_tags {
-            let converted_304_dict = PyDict::new(py);
-            for (key_305, value_306) in value {
-                let converted_key_307 = (key_305).as_str().into_py_any(py)?;
-                let converted_value_308 = (value_306).as_str().into_py_any(py)?;
-                converted_304_dict.set_item(converted_key_307, converted_value_308)?;
+            let converted_312_dict = PyDict::new(py);
+            for (key_313, value_314) in value {
+                let converted_key_315 = (key_313).as_str().into_py_any(py)?;
+                let converted_value_316 = (value_314).as_str().into_py_any(py)?;
+                converted_312_dict.set_item(converted_key_315, converted_value_316)?;
             }
-            let converted_304 = converted_304_dict.into_any().unbind();
-            result.set_item("identity_pool_tags", converted_304)?;
+            let converted_312 = converted_312_dict.into_any().unbind();
+            result.set_item("identity_pool_tags", converted_312)?;
         } else {
             result.set_item("identity_pool_tags", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationDeleteIdentitiesOutput {
+    unprocessed_identity_ids:
+        Option<::std::vec::Vec<Arc<aws_sdk_cognitoidentity::types::UnprocessedIdentityId>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_cognitoidentity::operation::delete_identities::DeleteIdentitiesOutput>
+    for SharedPyOperationDeleteIdentitiesOutput
+{
+    fn from(
+        value: aws_sdk_cognitoidentity::operation::delete_identities::DeleteIdentitiesOutput,
+    ) -> Self {
+        Self {
+            unprocessed_identity_ids: value.unprocessed_identity_ids.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_320| Arc::new(owned_320))
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -974,7 +1109,7 @@ impl PyOperationCreateIdentityPoolOutput {
     frozen
 )]
 struct PyOperationDeleteIdentitiesOutput {
-    inner: aws_sdk_cognitoidentity::operation::delete_identities::DeleteIdentitiesOutput,
+    inner: SharedPyOperationDeleteIdentitiesOutput,
 }
 
 #[pymethods]
@@ -982,19 +1117,19 @@ impl PyOperationDeleteIdentitiesOutput {
     #[getter]
     fn unprocessed_identity_ids(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.unprocessed_identity_ids {
-            let converted_309_list = PyList::empty(py);
-            for item_310 in value {
-                let converted_item_311 = Py::new(
+            let converted_317_list = PyList::empty(py);
+            for item_318 in value {
+                let converted_item_319 = Py::new(
                     py,
                     PyUnprocessedIdentityId {
-                        inner: (item_310).to_owned(),
+                        inner: Arc::clone(item_318),
                     },
                 )?
                 .into_any();
-                converted_309_list.append(converted_item_311)?;
+                converted_317_list.append(converted_item_319)?;
             }
-            let converted_309 = converted_309_list.into_any().unbind();
-            Ok(converted_309)
+            let converted_317 = converted_317_list.into_any().unbind();
+            Ok(converted_317)
         } else {
             Ok(py.None())
         }
@@ -1003,13 +1138,13 @@ impl PyOperationDeleteIdentitiesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.unprocessed_identity_ids {
-            let converted_312_list = PyList::empty(py);
-            for item_313 in value {
-                let converted_item_314 = unprocessed_identity_id_to_py(py, item_313)?;
-                converted_312_list.append(converted_item_314)?;
+            let converted_321_list = PyList::empty(py);
+            for item_322 in value {
+                let converted_item_323 = unprocessed_identity_id_to_py(py, item_322)?;
+                converted_321_list.append(converted_item_323)?;
             }
-            let converted_312 = converted_312_list.into_any().unbind();
-            result.set_item("unprocessed_identity_ids", converted_312)?;
+            let converted_321 = converted_321_list.into_any().unbind();
+            result.set_item("unprocessed_identity_ids", converted_321)?;
         } else {
             result.set_item("unprocessed_identity_ids", py.None())?;
         }
@@ -1031,8 +1166,8 @@ impl PyOperationDescribeIdentityOutput {
     #[getter]
     fn identity_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_id {
-            let converted_315 = (value).as_str().into_py_any(py)?;
-            Ok(converted_315)
+            let converted_324 = (value).as_str().into_py_any(py)?;
+            Ok(converted_324)
         } else {
             Ok(py.None())
         }
@@ -1041,13 +1176,13 @@ impl PyOperationDescribeIdentityOutput {
     #[getter]
     fn logins(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.logins {
-            let converted_316_list = PyList::empty(py);
-            for item_317 in value {
-                let converted_item_318 = (item_317).as_str().into_py_any(py)?;
-                converted_316_list.append(converted_item_318)?;
+            let converted_325_list = PyList::empty(py);
+            for item_326 in value {
+                let converted_item_327 = (item_326).as_str().into_py_any(py)?;
+                converted_325_list.append(converted_item_327)?;
             }
-            let converted_316 = converted_316_list.into_any().unbind();
-            Ok(converted_316)
+            let converted_325 = converted_325_list.into_any().unbind();
+            Ok(converted_325)
         } else {
             Ok(py.None())
         }
@@ -1056,8 +1191,8 @@ impl PyOperationDescribeIdentityOutput {
     #[getter]
     fn creation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_date {
-            let converted_319 = (value).to_string().into_py_any(py)?;
-            Ok(converted_319)
+            let converted_328 = (value).to_string().into_py_any(py)?;
+            Ok(converted_328)
         } else {
             Ok(py.None())
         }
@@ -1066,8 +1201,8 @@ impl PyOperationDescribeIdentityOutput {
     #[getter]
     fn last_modified_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_date {
-            let converted_320 = (value).to_string().into_py_any(py)?;
-            Ok(converted_320)
+            let converted_329 = (value).to_string().into_py_any(py)?;
+            Ok(converted_329)
         } else {
             Ok(py.None())
         }
@@ -1076,35 +1211,78 @@ impl PyOperationDescribeIdentityOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.identity_id {
-            let converted_321 = (value).as_str().into_py_any(py)?;
-            result.set_item("identity_id", converted_321)?;
+            let converted_330 = (value).as_str().into_py_any(py)?;
+            result.set_item("identity_id", converted_330)?;
         } else {
             result.set_item("identity_id", py.None())?;
         }
         if let Some(value) = &self.inner.logins {
-            let converted_322_list = PyList::empty(py);
-            for item_323 in value {
-                let converted_item_324 = (item_323).as_str().into_py_any(py)?;
-                converted_322_list.append(converted_item_324)?;
+            let converted_331_list = PyList::empty(py);
+            for item_332 in value {
+                let converted_item_333 = (item_332).as_str().into_py_any(py)?;
+                converted_331_list.append(converted_item_333)?;
             }
-            let converted_322 = converted_322_list.into_any().unbind();
-            result.set_item("logins", converted_322)?;
+            let converted_331 = converted_331_list.into_any().unbind();
+            result.set_item("logins", converted_331)?;
         } else {
             result.set_item("logins", py.None())?;
         }
         if let Some(value) = &self.inner.creation_date {
-            let converted_325 = (value).to_string().into_py_any(py)?;
-            result.set_item("creation_date", converted_325)?;
+            let converted_334 = (value).to_string().into_py_any(py)?;
+            result.set_item("creation_date", converted_334)?;
         } else {
             result.set_item("creation_date", py.None())?;
         }
         if let Some(value) = &self.inner.last_modified_date {
-            let converted_326 = (value).to_string().into_py_any(py)?;
-            result.set_item("last_modified_date", converted_326)?;
+            let converted_335 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_modified_date", converted_335)?;
         } else {
             result.set_item("last_modified_date", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationDescribeIdentityPoolOutput {
+    identity_pool_id: ::std::string::String,
+    identity_pool_name: ::std::string::String,
+    allow_unauthenticated_identities: bool,
+    allow_classic_flow: Option<bool>,
+    supported_login_providers:
+        Option<::std::collections::HashMap<::std::string::String, ::std::string::String>>,
+    developer_provider_name: Option<::std::string::String>,
+    open_id_connect_provider_arns: Option<::std::vec::Vec<::std::string::String>>,
+    cognito_identity_providers:
+        Option<::std::vec::Vec<Arc<aws_sdk_cognitoidentity::types::CognitoIdentityProvider>>>,
+    saml_provider_arns: Option<::std::vec::Vec<::std::string::String>>,
+    identity_pool_tags:
+        Option<::std::collections::HashMap<::std::string::String, ::std::string::String>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_cognitoidentity::operation::describe_identity_pool::DescribeIdentityPoolOutput>
+    for SharedPyOperationDescribeIdentityPoolOutput
+{
+    fn from(
+        value: aws_sdk_cognitoidentity::operation::describe_identity_pool::DescribeIdentityPoolOutput,
+    ) -> Self {
+        Self {
+            identity_pool_id: value.identity_pool_id,
+            identity_pool_name: value.identity_pool_name,
+            allow_unauthenticated_identities: value.allow_unauthenticated_identities,
+            allow_classic_flow: value.allow_classic_flow,
+            supported_login_providers: value.supported_login_providers,
+            developer_provider_name: value.developer_provider_name,
+            open_id_connect_provider_arns: value.open_id_connect_provider_arns,
+            cognito_identity_providers: value.cognito_identity_providers.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_360| Arc::new(owned_360))
+                    .collect()
+            }),
+            saml_provider_arns: value.saml_provider_arns,
+            identity_pool_tags: value.identity_pool_tags,
+        }
     }
 }
 
@@ -1114,36 +1292,36 @@ impl PyOperationDescribeIdentityOutput {
     frozen
 )]
 struct PyOperationDescribeIdentityPoolOutput {
-    inner: aws_sdk_cognitoidentity::operation::describe_identity_pool::DescribeIdentityPoolOutput,
+    inner: SharedPyOperationDescribeIdentityPoolOutput,
 }
 
 #[pymethods]
 impl PyOperationDescribeIdentityPoolOutput {
     #[getter]
     fn identity_pool_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_327 = (&self.inner.identity_pool_id).as_str().into_py_any(py)?;
-        Ok(converted_327)
+        let converted_336 = (&self.inner.identity_pool_id).as_str().into_py_any(py)?;
+        Ok(converted_336)
     }
 
     #[getter]
     fn identity_pool_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_328 = (&self.inner.identity_pool_name).as_str().into_py_any(py)?;
-        Ok(converted_328)
+        let converted_337 = (&self.inner.identity_pool_name).as_str().into_py_any(py)?;
+        Ok(converted_337)
     }
 
     #[getter]
     fn allow_unauthenticated_identities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_329 = (&self.inner.allow_unauthenticated_identities)
+        let converted_338 = (&self.inner.allow_unauthenticated_identities)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_329)
+        Ok(converted_338)
     }
 
     #[getter]
     fn allow_classic_flow(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.allow_classic_flow {
-            let converted_330 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_330)
+            let converted_339 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_339)
         } else {
             Ok(py.None())
         }
@@ -1152,14 +1330,14 @@ impl PyOperationDescribeIdentityPoolOutput {
     #[getter]
     fn supported_login_providers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.supported_login_providers {
-            let converted_331_dict = PyDict::new(py);
-            for (key_332, value_333) in value {
-                let converted_key_334 = (key_332).as_str().into_py_any(py)?;
-                let converted_value_335 = (value_333).as_str().into_py_any(py)?;
-                converted_331_dict.set_item(converted_key_334, converted_value_335)?;
+            let converted_340_dict = PyDict::new(py);
+            for (key_341, value_342) in value {
+                let converted_key_343 = (key_341).as_str().into_py_any(py)?;
+                let converted_value_344 = (value_342).as_str().into_py_any(py)?;
+                converted_340_dict.set_item(converted_key_343, converted_value_344)?;
             }
-            let converted_331 = converted_331_dict.into_any().unbind();
-            Ok(converted_331)
+            let converted_340 = converted_340_dict.into_any().unbind();
+            Ok(converted_340)
         } else {
             Ok(py.None())
         }
@@ -1168,8 +1346,8 @@ impl PyOperationDescribeIdentityPoolOutput {
     #[getter]
     fn developer_provider_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.developer_provider_name {
-            let converted_336 = (value).as_str().into_py_any(py)?;
-            Ok(converted_336)
+            let converted_345 = (value).as_str().into_py_any(py)?;
+            Ok(converted_345)
         } else {
             Ok(py.None())
         }
@@ -1178,13 +1356,13 @@ impl PyOperationDescribeIdentityPoolOutput {
     #[getter]
     fn open_id_connect_provider_arns(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.open_id_connect_provider_arns {
-            let converted_337_list = PyList::empty(py);
-            for item_338 in value {
-                let converted_item_339 = (item_338).as_str().into_py_any(py)?;
-                converted_337_list.append(converted_item_339)?;
+            let converted_346_list = PyList::empty(py);
+            for item_347 in value {
+                let converted_item_348 = (item_347).as_str().into_py_any(py)?;
+                converted_346_list.append(converted_item_348)?;
             }
-            let converted_337 = converted_337_list.into_any().unbind();
-            Ok(converted_337)
+            let converted_346 = converted_346_list.into_any().unbind();
+            Ok(converted_346)
         } else {
             Ok(py.None())
         }
@@ -1193,19 +1371,19 @@ impl PyOperationDescribeIdentityPoolOutput {
     #[getter]
     fn cognito_identity_providers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cognito_identity_providers {
-            let converted_340_list = PyList::empty(py);
-            for item_341 in value {
-                let converted_item_342 = Py::new(
+            let converted_349_list = PyList::empty(py);
+            for item_350 in value {
+                let converted_item_351 = Py::new(
                     py,
                     PyCognitoIdentityProvider {
-                        inner: (item_341).to_owned(),
+                        inner: Arc::clone(item_350),
                     },
                 )?
                 .into_any();
-                converted_340_list.append(converted_item_342)?;
+                converted_349_list.append(converted_item_351)?;
             }
-            let converted_340 = converted_340_list.into_any().unbind();
-            Ok(converted_340)
+            let converted_349 = converted_349_list.into_any().unbind();
+            Ok(converted_349)
         } else {
             Ok(py.None())
         }
@@ -1214,13 +1392,13 @@ impl PyOperationDescribeIdentityPoolOutput {
     #[getter]
     fn saml_provider_arns(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.saml_provider_arns {
-            let converted_343_list = PyList::empty(py);
-            for item_344 in value {
-                let converted_item_345 = (item_344).as_str().into_py_any(py)?;
-                converted_343_list.append(converted_item_345)?;
+            let converted_352_list = PyList::empty(py);
+            for item_353 in value {
+                let converted_item_354 = (item_353).as_str().into_py_any(py)?;
+                converted_352_list.append(converted_item_354)?;
             }
-            let converted_343 = converted_343_list.into_any().unbind();
-            Ok(converted_343)
+            let converted_352 = converted_352_list.into_any().unbind();
+            Ok(converted_352)
         } else {
             Ok(py.None())
         }
@@ -1229,36 +1407,6 @@ impl PyOperationDescribeIdentityPoolOutput {
     #[getter]
     fn identity_pool_tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_pool_tags {
-            let converted_346_dict = PyDict::new(py);
-            for (key_347, value_348) in value {
-                let converted_key_349 = (key_347).as_str().into_py_any(py)?;
-                let converted_value_350 = (value_348).as_str().into_py_any(py)?;
-                converted_346_dict.set_item(converted_key_349, converted_value_350)?;
-            }
-            let converted_346 = converted_346_dict.into_any().unbind();
-            Ok(converted_346)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let result = PyDict::new(py);
-        let converted_351 = (&self.inner.identity_pool_id).as_str().into_py_any(py)?;
-        result.set_item("identity_pool_id", converted_351)?;
-        let converted_352 = (&self.inner.identity_pool_name).as_str().into_py_any(py)?;
-        result.set_item("identity_pool_name", converted_352)?;
-        let converted_353 = (&self.inner.allow_unauthenticated_identities)
-            .to_owned()
-            .into_py_any(py)?;
-        result.set_item("allow_unauthenticated_identities", converted_353)?;
-        if let Some(value) = &self.inner.allow_classic_flow {
-            let converted_354 = (value).to_owned().into_py_any(py)?;
-            result.set_item("allow_classic_flow", converted_354)?;
-        } else {
-            result.set_item("allow_classic_flow", py.None())?;
-        }
-        if let Some(value) = &self.inner.supported_login_providers {
             let converted_355_dict = PyDict::new(py);
             for (key_356, value_357) in value {
                 let converted_key_358 = (key_356).as_str().into_py_any(py)?;
@@ -1266,62 +1414,107 @@ impl PyOperationDescribeIdentityPoolOutput {
                 converted_355_dict.set_item(converted_key_358, converted_value_359)?;
             }
             let converted_355 = converted_355_dict.into_any().unbind();
-            result.set_item("supported_login_providers", converted_355)?;
+            Ok(converted_355)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_361 = (&self.inner.identity_pool_id).as_str().into_py_any(py)?;
+        result.set_item("identity_pool_id", converted_361)?;
+        let converted_362 = (&self.inner.identity_pool_name).as_str().into_py_any(py)?;
+        result.set_item("identity_pool_name", converted_362)?;
+        let converted_363 = (&self.inner.allow_unauthenticated_identities)
+            .to_owned()
+            .into_py_any(py)?;
+        result.set_item("allow_unauthenticated_identities", converted_363)?;
+        if let Some(value) = &self.inner.allow_classic_flow {
+            let converted_364 = (value).to_owned().into_py_any(py)?;
+            result.set_item("allow_classic_flow", converted_364)?;
+        } else {
+            result.set_item("allow_classic_flow", py.None())?;
+        }
+        if let Some(value) = &self.inner.supported_login_providers {
+            let converted_365_dict = PyDict::new(py);
+            for (key_366, value_367) in value {
+                let converted_key_368 = (key_366).as_str().into_py_any(py)?;
+                let converted_value_369 = (value_367).as_str().into_py_any(py)?;
+                converted_365_dict.set_item(converted_key_368, converted_value_369)?;
+            }
+            let converted_365 = converted_365_dict.into_any().unbind();
+            result.set_item("supported_login_providers", converted_365)?;
         } else {
             result.set_item("supported_login_providers", py.None())?;
         }
         if let Some(value) = &self.inner.developer_provider_name {
-            let converted_360 = (value).as_str().into_py_any(py)?;
-            result.set_item("developer_provider_name", converted_360)?;
+            let converted_370 = (value).as_str().into_py_any(py)?;
+            result.set_item("developer_provider_name", converted_370)?;
         } else {
             result.set_item("developer_provider_name", py.None())?;
         }
         if let Some(value) = &self.inner.open_id_connect_provider_arns {
-            let converted_361_list = PyList::empty(py);
-            for item_362 in value {
-                let converted_item_363 = (item_362).as_str().into_py_any(py)?;
-                converted_361_list.append(converted_item_363)?;
+            let converted_371_list = PyList::empty(py);
+            for item_372 in value {
+                let converted_item_373 = (item_372).as_str().into_py_any(py)?;
+                converted_371_list.append(converted_item_373)?;
             }
-            let converted_361 = converted_361_list.into_any().unbind();
-            result.set_item("open_id_connect_provider_arns", converted_361)?;
+            let converted_371 = converted_371_list.into_any().unbind();
+            result.set_item("open_id_connect_provider_arns", converted_371)?;
         } else {
             result.set_item("open_id_connect_provider_arns", py.None())?;
         }
         if let Some(value) = &self.inner.cognito_identity_providers {
-            let converted_364_list = PyList::empty(py);
-            for item_365 in value {
-                let converted_item_366 = cognito_identity_provider_to_py(py, item_365)?;
-                converted_364_list.append(converted_item_366)?;
+            let converted_374_list = PyList::empty(py);
+            for item_375 in value {
+                let converted_item_376 = cognito_identity_provider_to_py(py, item_375)?;
+                converted_374_list.append(converted_item_376)?;
             }
-            let converted_364 = converted_364_list.into_any().unbind();
-            result.set_item("cognito_identity_providers", converted_364)?;
+            let converted_374 = converted_374_list.into_any().unbind();
+            result.set_item("cognito_identity_providers", converted_374)?;
         } else {
             result.set_item("cognito_identity_providers", py.None())?;
         }
         if let Some(value) = &self.inner.saml_provider_arns {
-            let converted_367_list = PyList::empty(py);
-            for item_368 in value {
-                let converted_item_369 = (item_368).as_str().into_py_any(py)?;
-                converted_367_list.append(converted_item_369)?;
+            let converted_377_list = PyList::empty(py);
+            for item_378 in value {
+                let converted_item_379 = (item_378).as_str().into_py_any(py)?;
+                converted_377_list.append(converted_item_379)?;
             }
-            let converted_367 = converted_367_list.into_any().unbind();
-            result.set_item("saml_provider_arns", converted_367)?;
+            let converted_377 = converted_377_list.into_any().unbind();
+            result.set_item("saml_provider_arns", converted_377)?;
         } else {
             result.set_item("saml_provider_arns", py.None())?;
         }
         if let Some(value) = &self.inner.identity_pool_tags {
-            let converted_370_dict = PyDict::new(py);
-            for (key_371, value_372) in value {
-                let converted_key_373 = (key_371).as_str().into_py_any(py)?;
-                let converted_value_374 = (value_372).as_str().into_py_any(py)?;
-                converted_370_dict.set_item(converted_key_373, converted_value_374)?;
+            let converted_380_dict = PyDict::new(py);
+            for (key_381, value_382) in value {
+                let converted_key_383 = (key_381).as_str().into_py_any(py)?;
+                let converted_value_384 = (value_382).as_str().into_py_any(py)?;
+                converted_380_dict.set_item(converted_key_383, converted_value_384)?;
             }
-            let converted_370 = converted_370_dict.into_any().unbind();
-            result.set_item("identity_pool_tags", converted_370)?;
+            let converted_380 = converted_380_dict.into_any().unbind();
+            result.set_item("identity_pool_tags", converted_380)?;
         } else {
             result.set_item("identity_pool_tags", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetCredentialsForIdentityOutput {
+    identity_id: Option<::std::string::String>,
+    credentials: Option<Arc<aws_sdk_cognitoidentity::types::Credentials>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_cognitoidentity::operation::get_credentials_for_identity::GetCredentialsForIdentityOutput> for SharedPyOperationGetCredentialsForIdentityOutput {
+    fn from(value: aws_sdk_cognitoidentity::operation::get_credentials_for_identity::GetCredentialsForIdentityOutput) -> Self {
+        Self {
+            identity_id: value.identity_id,
+            credentials: value.credentials.map(|item| Arc::new(item)),
+        }
     }
 }
 
@@ -1331,7 +1524,7 @@ impl PyOperationDescribeIdentityPoolOutput {
     frozen
 )]
 struct PyOperationGetCredentialsForIdentityOutput {
-    inner: aws_sdk_cognitoidentity::operation::get_credentials_for_identity::GetCredentialsForIdentityOutput,
+    inner: SharedPyOperationGetCredentialsForIdentityOutput,
 }
 
 #[pymethods]
@@ -1339,8 +1532,8 @@ impl PyOperationGetCredentialsForIdentityOutput {
     #[getter]
     fn identity_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_id {
-            let converted_375 = (value).as_str().into_py_any(py)?;
-            Ok(converted_375)
+            let converted_385 = (value).as_str().into_py_any(py)?;
+            Ok(converted_385)
         } else {
             Ok(py.None())
         }
@@ -1349,14 +1542,14 @@ impl PyOperationGetCredentialsForIdentityOutput {
     #[getter]
     fn credentials(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.credentials {
-            let converted_376 = Py::new(
+            let converted_386 = Py::new(
                 py,
                 PyCredentials {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_376)
+            Ok(converted_386)
         } else {
             Ok(py.None())
         }
@@ -1365,14 +1558,14 @@ impl PyOperationGetCredentialsForIdentityOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.identity_id {
-            let converted_377 = (value).as_str().into_py_any(py)?;
-            result.set_item("identity_id", converted_377)?;
+            let converted_387 = (value).as_str().into_py_any(py)?;
+            result.set_item("identity_id", converted_387)?;
         } else {
             result.set_item("identity_id", py.None())?;
         }
         if let Some(value) = &self.inner.credentials {
-            let converted_378 = credentials_to_py(py, value)?;
-            result.set_item("credentials", converted_378)?;
+            let converted_388 = credentials_to_py(py, value)?;
+            result.set_item("credentials", converted_388)?;
         } else {
             result.set_item("credentials", py.None())?;
         }
@@ -1394,8 +1587,8 @@ impl PyOperationGetIdOutput {
     #[getter]
     fn identity_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_id {
-            let converted_379 = (value).as_str().into_py_any(py)?;
-            Ok(converted_379)
+            let converted_389 = (value).as_str().into_py_any(py)?;
+            Ok(converted_389)
         } else {
             Ok(py.None())
         }
@@ -1404,12 +1597,39 @@ impl PyOperationGetIdOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.identity_id {
-            let converted_380 = (value).as_str().into_py_any(py)?;
-            result.set_item("identity_id", converted_380)?;
+            let converted_390 = (value).as_str().into_py_any(py)?;
+            result.set_item("identity_id", converted_390)?;
         } else {
             result.set_item("identity_id", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetIdentityPoolRolesOutput {
+    identity_pool_id: Option<::std::string::String>,
+    roles: Option<::std::collections::HashMap<::std::string::String, ::std::string::String>>,
+    role_mappings:
+        Option<::std::collections::HashMap<::std::string::String, Arc<SharedRoleMapping>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_cognitoidentity::operation::get_identity_pool_roles::GetIdentityPoolRolesOutput>
+    for SharedPyOperationGetIdentityPoolRolesOutput
+{
+    fn from(
+        value: aws_sdk_cognitoidentity::operation::get_identity_pool_roles::GetIdentityPoolRolesOutput,
+    ) -> Self {
+        Self {
+            identity_pool_id: value.identity_pool_id,
+            roles: value.roles,
+            role_mappings: value.role_mappings.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|(key, owned_402)| (key, Arc::new(SharedRoleMapping::from(owned_402))))
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -1419,7 +1639,7 @@ impl PyOperationGetIdOutput {
     frozen
 )]
 struct PyOperationGetIdentityPoolRolesOutput {
-    inner: aws_sdk_cognitoidentity::operation::get_identity_pool_roles::GetIdentityPoolRolesOutput,
+    inner: SharedPyOperationGetIdentityPoolRolesOutput,
 }
 
 #[pymethods]
@@ -1427,8 +1647,8 @@ impl PyOperationGetIdentityPoolRolesOutput {
     #[getter]
     fn identity_pool_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_pool_id {
-            let converted_381 = (value).as_str().into_py_any(py)?;
-            Ok(converted_381)
+            let converted_391 = (value).as_str().into_py_any(py)?;
+            Ok(converted_391)
         } else {
             Ok(py.None())
         }
@@ -1437,14 +1657,14 @@ impl PyOperationGetIdentityPoolRolesOutput {
     #[getter]
     fn roles(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.roles {
-            let converted_382_dict = PyDict::new(py);
-            for (key_383, value_384) in value {
-                let converted_key_385 = (key_383).as_str().into_py_any(py)?;
-                let converted_value_386 = (value_384).as_str().into_py_any(py)?;
-                converted_382_dict.set_item(converted_key_385, converted_value_386)?;
+            let converted_392_dict = PyDict::new(py);
+            for (key_393, value_394) in value {
+                let converted_key_395 = (key_393).as_str().into_py_any(py)?;
+                let converted_value_396 = (value_394).as_str().into_py_any(py)?;
+                converted_392_dict.set_item(converted_key_395, converted_value_396)?;
             }
-            let converted_382 = converted_382_dict.into_any().unbind();
-            Ok(converted_382)
+            let converted_392 = converted_392_dict.into_any().unbind();
+            Ok(converted_392)
         } else {
             Ok(py.None())
         }
@@ -1453,20 +1673,20 @@ impl PyOperationGetIdentityPoolRolesOutput {
     #[getter]
     fn role_mappings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.role_mappings {
-            let converted_387_dict = PyDict::new(py);
-            for (key_388, value_389) in value {
-                let converted_key_390 = (key_388).as_str().into_py_any(py)?;
-                let converted_value_391 = Py::new(
+            let converted_397_dict = PyDict::new(py);
+            for (key_398, value_399) in value {
+                let converted_key_400 = (key_398).as_str().into_py_any(py)?;
+                let converted_value_401 = Py::new(
                     py,
                     PyRoleMapping {
-                        inner: (value_389).to_owned(),
+                        inner: Arc::clone(value_399),
                     },
                 )?
                 .into_any();
-                converted_387_dict.set_item(converted_key_390, converted_value_391)?;
+                converted_397_dict.set_item(converted_key_400, converted_value_401)?;
             }
-            let converted_387 = converted_387_dict.into_any().unbind();
-            Ok(converted_387)
+            let converted_397 = converted_397_dict.into_any().unbind();
+            Ok(converted_397)
         } else {
             Ok(py.None())
         }
@@ -1475,32 +1695,32 @@ impl PyOperationGetIdentityPoolRolesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.identity_pool_id {
-            let converted_392 = (value).as_str().into_py_any(py)?;
-            result.set_item("identity_pool_id", converted_392)?;
+            let converted_403 = (value).as_str().into_py_any(py)?;
+            result.set_item("identity_pool_id", converted_403)?;
         } else {
             result.set_item("identity_pool_id", py.None())?;
         }
         if let Some(value) = &self.inner.roles {
-            let converted_393_dict = PyDict::new(py);
-            for (key_394, value_395) in value {
-                let converted_key_396 = (key_394).as_str().into_py_any(py)?;
-                let converted_value_397 = (value_395).as_str().into_py_any(py)?;
-                converted_393_dict.set_item(converted_key_396, converted_value_397)?;
+            let converted_404_dict = PyDict::new(py);
+            for (key_405, value_406) in value {
+                let converted_key_407 = (key_405).as_str().into_py_any(py)?;
+                let converted_value_408 = (value_406).as_str().into_py_any(py)?;
+                converted_404_dict.set_item(converted_key_407, converted_value_408)?;
             }
-            let converted_393 = converted_393_dict.into_any().unbind();
-            result.set_item("roles", converted_393)?;
+            let converted_404 = converted_404_dict.into_any().unbind();
+            result.set_item("roles", converted_404)?;
         } else {
             result.set_item("roles", py.None())?;
         }
         if let Some(value) = &self.inner.role_mappings {
-            let converted_398_dict = PyDict::new(py);
-            for (key_399, value_400) in value {
-                let converted_key_401 = (key_399).as_str().into_py_any(py)?;
-                let converted_value_402 = role_mapping_to_py(py, value_400)?;
-                converted_398_dict.set_item(converted_key_401, converted_value_402)?;
+            let converted_409_dict = PyDict::new(py);
+            for (key_410, value_411) in value {
+                let converted_key_412 = (key_410).as_str().into_py_any(py)?;
+                let converted_value_413 = role_mapping_shared_to_py(py, value_411)?;
+                converted_409_dict.set_item(converted_key_412, converted_value_413)?;
             }
-            let converted_398 = converted_398_dict.into_any().unbind();
-            result.set_item("role_mappings", converted_398)?;
+            let converted_409 = converted_409_dict.into_any().unbind();
+            result.set_item("role_mappings", converted_409)?;
         } else {
             result.set_item("role_mappings", py.None())?;
         }
@@ -1522,8 +1742,8 @@ impl PyOperationGetOpenIdTokenOutput {
     #[getter]
     fn identity_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_id {
-            let converted_403 = (value).as_str().into_py_any(py)?;
-            Ok(converted_403)
+            let converted_414 = (value).as_str().into_py_any(py)?;
+            Ok(converted_414)
         } else {
             Ok(py.None())
         }
@@ -1532,8 +1752,8 @@ impl PyOperationGetOpenIdTokenOutput {
     #[getter]
     fn token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.token {
-            let converted_404 = (value).as_str().into_py_any(py)?;
-            Ok(converted_404)
+            let converted_415 = (value).as_str().into_py_any(py)?;
+            Ok(converted_415)
         } else {
             Ok(py.None())
         }
@@ -1542,14 +1762,14 @@ impl PyOperationGetOpenIdTokenOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.identity_id {
-            let converted_405 = (value).as_str().into_py_any(py)?;
-            result.set_item("identity_id", converted_405)?;
+            let converted_416 = (value).as_str().into_py_any(py)?;
+            result.set_item("identity_id", converted_416)?;
         } else {
             result.set_item("identity_id", py.None())?;
         }
         if let Some(value) = &self.inner.token {
-            let converted_406 = (value).as_str().into_py_any(py)?;
-            result.set_item("token", converted_406)?;
+            let converted_417 = (value).as_str().into_py_any(py)?;
+            result.set_item("token", converted_417)?;
         } else {
             result.set_item("token", py.None())?;
         }
@@ -1571,8 +1791,8 @@ impl PyOperationGetOpenIdTokenForDeveloperIdentityOutput {
     #[getter]
     fn identity_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_id {
-            let converted_407 = (value).as_str().into_py_any(py)?;
-            Ok(converted_407)
+            let converted_418 = (value).as_str().into_py_any(py)?;
+            Ok(converted_418)
         } else {
             Ok(py.None())
         }
@@ -1581,8 +1801,8 @@ impl PyOperationGetOpenIdTokenForDeveloperIdentityOutput {
     #[getter]
     fn token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.token {
-            let converted_408 = (value).as_str().into_py_any(py)?;
-            Ok(converted_408)
+            let converted_419 = (value).as_str().into_py_any(py)?;
+            Ok(converted_419)
         } else {
             Ok(py.None())
         }
@@ -1591,14 +1811,14 @@ impl PyOperationGetOpenIdTokenForDeveloperIdentityOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.identity_id {
-            let converted_409 = (value).as_str().into_py_any(py)?;
-            result.set_item("identity_id", converted_409)?;
+            let converted_420 = (value).as_str().into_py_any(py)?;
+            result.set_item("identity_id", converted_420)?;
         } else {
             result.set_item("identity_id", py.None())?;
         }
         if let Some(value) = &self.inner.token {
-            let converted_410 = (value).as_str().into_py_any(py)?;
-            result.set_item("token", converted_410)?;
+            let converted_421 = (value).as_str().into_py_any(py)?;
+            result.set_item("token", converted_421)?;
         } else {
             result.set_item("token", py.None())?;
         }
@@ -1620,8 +1840,8 @@ impl PyOperationGetPrincipalTagAttributeMapOutput {
     #[getter]
     fn identity_pool_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_pool_id {
-            let converted_411 = (value).as_str().into_py_any(py)?;
-            Ok(converted_411)
+            let converted_422 = (value).as_str().into_py_any(py)?;
+            Ok(converted_422)
         } else {
             Ok(py.None())
         }
@@ -1630,8 +1850,8 @@ impl PyOperationGetPrincipalTagAttributeMapOutput {
     #[getter]
     fn identity_provider_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_provider_name {
-            let converted_412 = (value).as_str().into_py_any(py)?;
-            Ok(converted_412)
+            let converted_423 = (value).as_str().into_py_any(py)?;
+            Ok(converted_423)
         } else {
             Ok(py.None())
         }
@@ -1640,8 +1860,8 @@ impl PyOperationGetPrincipalTagAttributeMapOutput {
     #[getter]
     fn use_defaults(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.use_defaults {
-            let converted_413 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_413)
+            let converted_424 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_424)
         } else {
             Ok(py.None())
         }
@@ -1650,14 +1870,14 @@ impl PyOperationGetPrincipalTagAttributeMapOutput {
     #[getter]
     fn principal_tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.principal_tags {
-            let converted_414_dict = PyDict::new(py);
-            for (key_415, value_416) in value {
-                let converted_key_417 = (key_415).as_str().into_py_any(py)?;
-                let converted_value_418 = (value_416).as_str().into_py_any(py)?;
-                converted_414_dict.set_item(converted_key_417, converted_value_418)?;
+            let converted_425_dict = PyDict::new(py);
+            for (key_426, value_427) in value {
+                let converted_key_428 = (key_426).as_str().into_py_any(py)?;
+                let converted_value_429 = (value_427).as_str().into_py_any(py)?;
+                converted_425_dict.set_item(converted_key_428, converted_value_429)?;
             }
-            let converted_414 = converted_414_dict.into_any().unbind();
-            Ok(converted_414)
+            let converted_425 = converted_425_dict.into_any().unbind();
+            Ok(converted_425)
         } else {
             Ok(py.None())
         }
@@ -1666,36 +1886,62 @@ impl PyOperationGetPrincipalTagAttributeMapOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.identity_pool_id {
-            let converted_419 = (value).as_str().into_py_any(py)?;
-            result.set_item("identity_pool_id", converted_419)?;
+            let converted_430 = (value).as_str().into_py_any(py)?;
+            result.set_item("identity_pool_id", converted_430)?;
         } else {
             result.set_item("identity_pool_id", py.None())?;
         }
         if let Some(value) = &self.inner.identity_provider_name {
-            let converted_420 = (value).as_str().into_py_any(py)?;
-            result.set_item("identity_provider_name", converted_420)?;
+            let converted_431 = (value).as_str().into_py_any(py)?;
+            result.set_item("identity_provider_name", converted_431)?;
         } else {
             result.set_item("identity_provider_name", py.None())?;
         }
         if let Some(value) = &self.inner.use_defaults {
-            let converted_421 = (value).to_owned().into_py_any(py)?;
-            result.set_item("use_defaults", converted_421)?;
+            let converted_432 = (value).to_owned().into_py_any(py)?;
+            result.set_item("use_defaults", converted_432)?;
         } else {
             result.set_item("use_defaults", py.None())?;
         }
         if let Some(value) = &self.inner.principal_tags {
-            let converted_422_dict = PyDict::new(py);
-            for (key_423, value_424) in value {
-                let converted_key_425 = (key_423).as_str().into_py_any(py)?;
-                let converted_value_426 = (value_424).as_str().into_py_any(py)?;
-                converted_422_dict.set_item(converted_key_425, converted_value_426)?;
+            let converted_433_dict = PyDict::new(py);
+            for (key_434, value_435) in value {
+                let converted_key_436 = (key_434).as_str().into_py_any(py)?;
+                let converted_value_437 = (value_435).as_str().into_py_any(py)?;
+                converted_433_dict.set_item(converted_key_436, converted_value_437)?;
             }
-            let converted_422 = converted_422_dict.into_any().unbind();
-            result.set_item("principal_tags", converted_422)?;
+            let converted_433 = converted_433_dict.into_any().unbind();
+            result.set_item("principal_tags", converted_433)?;
         } else {
             result.set_item("principal_tags", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListIdentitiesOutput {
+    identity_pool_id: Option<::std::string::String>,
+    identities: Option<::std::vec::Vec<Arc<aws_sdk_cognitoidentity::types::IdentityDescription>>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_cognitoidentity::operation::list_identities::ListIdentitiesOutput>
+    for SharedPyOperationListIdentitiesOutput
+{
+    fn from(
+        value: aws_sdk_cognitoidentity::operation::list_identities::ListIdentitiesOutput,
+    ) -> Self {
+        Self {
+            identity_pool_id: value.identity_pool_id,
+            identities: value.identities.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_443| Arc::new(owned_443))
+                    .collect()
+            }),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -1705,7 +1951,7 @@ impl PyOperationGetPrincipalTagAttributeMapOutput {
     frozen
 )]
 struct PyOperationListIdentitiesOutput {
-    inner: aws_sdk_cognitoidentity::operation::list_identities::ListIdentitiesOutput,
+    inner: SharedPyOperationListIdentitiesOutput,
 }
 
 #[pymethods]
@@ -1713,8 +1959,8 @@ impl PyOperationListIdentitiesOutput {
     #[getter]
     fn identity_pool_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_pool_id {
-            let converted_427 = (value).as_str().into_py_any(py)?;
-            Ok(converted_427)
+            let converted_438 = (value).as_str().into_py_any(py)?;
+            Ok(converted_438)
         } else {
             Ok(py.None())
         }
@@ -1723,19 +1969,19 @@ impl PyOperationListIdentitiesOutput {
     #[getter]
     fn identities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identities {
-            let converted_428_list = PyList::empty(py);
-            for item_429 in value {
-                let converted_item_430 = Py::new(
+            let converted_439_list = PyList::empty(py);
+            for item_440 in value {
+                let converted_item_441 = Py::new(
                     py,
                     PyIdentityDescription {
-                        inner: (item_429).to_owned(),
+                        inner: Arc::clone(item_440),
                     },
                 )?
                 .into_any();
-                converted_428_list.append(converted_item_430)?;
+                converted_439_list.append(converted_item_441)?;
             }
-            let converted_428 = converted_428_list.into_any().unbind();
-            Ok(converted_428)
+            let converted_439 = converted_439_list.into_any().unbind();
+            Ok(converted_439)
         } else {
             Ok(py.None())
         }
@@ -1744,8 +1990,8 @@ impl PyOperationListIdentitiesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_431 = (value).as_str().into_py_any(py)?;
-            Ok(converted_431)
+            let converted_442 = (value).as_str().into_py_any(py)?;
+            Ok(converted_442)
         } else {
             Ok(py.None())
         }
@@ -1754,29 +2000,54 @@ impl PyOperationListIdentitiesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.identity_pool_id {
-            let converted_432 = (value).as_str().into_py_any(py)?;
-            result.set_item("identity_pool_id", converted_432)?;
+            let converted_444 = (value).as_str().into_py_any(py)?;
+            result.set_item("identity_pool_id", converted_444)?;
         } else {
             result.set_item("identity_pool_id", py.None())?;
         }
         if let Some(value) = &self.inner.identities {
-            let converted_433_list = PyList::empty(py);
-            for item_434 in value {
-                let converted_item_435 = identity_description_to_py(py, item_434)?;
-                converted_433_list.append(converted_item_435)?;
+            let converted_445_list = PyList::empty(py);
+            for item_446 in value {
+                let converted_item_447 = identity_description_to_py(py, item_446)?;
+                converted_445_list.append(converted_item_447)?;
             }
-            let converted_433 = converted_433_list.into_any().unbind();
-            result.set_item("identities", converted_433)?;
+            let converted_445 = converted_445_list.into_any().unbind();
+            result.set_item("identities", converted_445)?;
         } else {
             result.set_item("identities", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_436 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_436)?;
+            let converted_448 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_448)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListIdentityPoolsOutput {
+    identity_pools:
+        Option<::std::vec::Vec<Arc<aws_sdk_cognitoidentity::types::IdentityPoolShortDescription>>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_cognitoidentity::operation::list_identity_pools::ListIdentityPoolsOutput>
+    for SharedPyOperationListIdentityPoolsOutput
+{
+    fn from(
+        value: aws_sdk_cognitoidentity::operation::list_identity_pools::ListIdentityPoolsOutput,
+    ) -> Self {
+        Self {
+            identity_pools: value.identity_pools.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_453| Arc::new(owned_453))
+                    .collect()
+            }),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -1786,7 +2057,7 @@ impl PyOperationListIdentitiesOutput {
     frozen
 )]
 struct PyOperationListIdentityPoolsOutput {
-    inner: aws_sdk_cognitoidentity::operation::list_identity_pools::ListIdentityPoolsOutput,
+    inner: SharedPyOperationListIdentityPoolsOutput,
 }
 
 #[pymethods]
@@ -1794,19 +2065,19 @@ impl PyOperationListIdentityPoolsOutput {
     #[getter]
     fn identity_pools(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_pools {
-            let converted_437_list = PyList::empty(py);
-            for item_438 in value {
-                let converted_item_439 = Py::new(
+            let converted_449_list = PyList::empty(py);
+            for item_450 in value {
+                let converted_item_451 = Py::new(
                     py,
                     PyIdentityPoolShortDescription {
-                        inner: (item_438).to_owned(),
+                        inner: Arc::clone(item_450),
                     },
                 )?
                 .into_any();
-                converted_437_list.append(converted_item_439)?;
+                converted_449_list.append(converted_item_451)?;
             }
-            let converted_437 = converted_437_list.into_any().unbind();
-            Ok(converted_437)
+            let converted_449 = converted_449_list.into_any().unbind();
+            Ok(converted_449)
         } else {
             Ok(py.None())
         }
@@ -1815,8 +2086,8 @@ impl PyOperationListIdentityPoolsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_440 = (value).as_str().into_py_any(py)?;
-            Ok(converted_440)
+            let converted_452 = (value).as_str().into_py_any(py)?;
+            Ok(converted_452)
         } else {
             Ok(py.None())
         }
@@ -1825,19 +2096,19 @@ impl PyOperationListIdentityPoolsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.identity_pools {
-            let converted_441_list = PyList::empty(py);
-            for item_442 in value {
-                let converted_item_443 = identity_pool_short_description_to_py(py, item_442)?;
-                converted_441_list.append(converted_item_443)?;
+            let converted_454_list = PyList::empty(py);
+            for item_455 in value {
+                let converted_item_456 = identity_pool_short_description_to_py(py, item_455)?;
+                converted_454_list.append(converted_item_456)?;
             }
-            let converted_441 = converted_441_list.into_any().unbind();
-            result.set_item("identity_pools", converted_441)?;
+            let converted_454 = converted_454_list.into_any().unbind();
+            result.set_item("identity_pools", converted_454)?;
         } else {
             result.set_item("identity_pools", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_444 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_444)?;
+            let converted_457 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_457)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -1859,14 +2130,14 @@ impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_445_dict = PyDict::new(py);
-            for (key_446, value_447) in value {
-                let converted_key_448 = (key_446).as_str().into_py_any(py)?;
-                let converted_value_449 = (value_447).as_str().into_py_any(py)?;
-                converted_445_dict.set_item(converted_key_448, converted_value_449)?;
+            let converted_458_dict = PyDict::new(py);
+            for (key_459, value_460) in value {
+                let converted_key_461 = (key_459).as_str().into_py_any(py)?;
+                let converted_value_462 = (value_460).as_str().into_py_any(py)?;
+                converted_458_dict.set_item(converted_key_461, converted_value_462)?;
             }
-            let converted_445 = converted_445_dict.into_any().unbind();
-            Ok(converted_445)
+            let converted_458 = converted_458_dict.into_any().unbind();
+            Ok(converted_458)
         } else {
             Ok(py.None())
         }
@@ -1875,14 +2146,14 @@ impl PyOperationListTagsForResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.tags {
-            let converted_450_dict = PyDict::new(py);
-            for (key_451, value_452) in value {
-                let converted_key_453 = (key_451).as_str().into_py_any(py)?;
-                let converted_value_454 = (value_452).as_str().into_py_any(py)?;
-                converted_450_dict.set_item(converted_key_453, converted_value_454)?;
+            let converted_463_dict = PyDict::new(py);
+            for (key_464, value_465) in value {
+                let converted_key_466 = (key_464).as_str().into_py_any(py)?;
+                let converted_value_467 = (value_465).as_str().into_py_any(py)?;
+                converted_463_dict.set_item(converted_key_466, converted_value_467)?;
             }
-            let converted_450 = converted_450_dict.into_any().unbind();
-            result.set_item("tags", converted_450)?;
+            let converted_463 = converted_463_dict.into_any().unbind();
+            result.set_item("tags", converted_463)?;
         } else {
             result.set_item("tags", py.None())?;
         }
@@ -1904,8 +2175,8 @@ impl PyOperationLookupDeveloperIdentityOutput {
     #[getter]
     fn identity_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_id {
-            let converted_455 = (value).as_str().into_py_any(py)?;
-            Ok(converted_455)
+            let converted_468 = (value).as_str().into_py_any(py)?;
+            Ok(converted_468)
         } else {
             Ok(py.None())
         }
@@ -1914,13 +2185,13 @@ impl PyOperationLookupDeveloperIdentityOutput {
     #[getter]
     fn developer_user_identifier_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.developer_user_identifier_list {
-            let converted_456_list = PyList::empty(py);
-            for item_457 in value {
-                let converted_item_458 = (item_457).as_str().into_py_any(py)?;
-                converted_456_list.append(converted_item_458)?;
+            let converted_469_list = PyList::empty(py);
+            for item_470 in value {
+                let converted_item_471 = (item_470).as_str().into_py_any(py)?;
+                converted_469_list.append(converted_item_471)?;
             }
-            let converted_456 = converted_456_list.into_any().unbind();
-            Ok(converted_456)
+            let converted_469 = converted_469_list.into_any().unbind();
+            Ok(converted_469)
         } else {
             Ok(py.None())
         }
@@ -1929,8 +2200,8 @@ impl PyOperationLookupDeveloperIdentityOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_459 = (value).as_str().into_py_any(py)?;
-            Ok(converted_459)
+            let converted_472 = (value).as_str().into_py_any(py)?;
+            Ok(converted_472)
         } else {
             Ok(py.None())
         }
@@ -1939,25 +2210,25 @@ impl PyOperationLookupDeveloperIdentityOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.identity_id {
-            let converted_460 = (value).as_str().into_py_any(py)?;
-            result.set_item("identity_id", converted_460)?;
+            let converted_473 = (value).as_str().into_py_any(py)?;
+            result.set_item("identity_id", converted_473)?;
         } else {
             result.set_item("identity_id", py.None())?;
         }
         if let Some(value) = &self.inner.developer_user_identifier_list {
-            let converted_461_list = PyList::empty(py);
-            for item_462 in value {
-                let converted_item_463 = (item_462).as_str().into_py_any(py)?;
-                converted_461_list.append(converted_item_463)?;
+            let converted_474_list = PyList::empty(py);
+            for item_475 in value {
+                let converted_item_476 = (item_475).as_str().into_py_any(py)?;
+                converted_474_list.append(converted_item_476)?;
             }
-            let converted_461 = converted_461_list.into_any().unbind();
-            result.set_item("developer_user_identifier_list", converted_461)?;
+            let converted_474 = converted_474_list.into_any().unbind();
+            result.set_item("developer_user_identifier_list", converted_474)?;
         } else {
             result.set_item("developer_user_identifier_list", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_464 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_464)?;
+            let converted_477 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_477)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -1979,8 +2250,8 @@ impl PyOperationMergeDeveloperIdentitiesOutput {
     #[getter]
     fn identity_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_id {
-            let converted_465 = (value).as_str().into_py_any(py)?;
-            Ok(converted_465)
+            let converted_478 = (value).as_str().into_py_any(py)?;
+            Ok(converted_478)
         } else {
             Ok(py.None())
         }
@@ -1989,8 +2260,8 @@ impl PyOperationMergeDeveloperIdentitiesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.identity_id {
-            let converted_466 = (value).as_str().into_py_any(py)?;
-            result.set_item("identity_id", converted_466)?;
+            let converted_479 = (value).as_str().into_py_any(py)?;
+            result.set_item("identity_id", converted_479)?;
         } else {
             result.set_item("identity_id", py.None())?;
         }
@@ -2012,8 +2283,8 @@ impl PyOperationSetPrincipalTagAttributeMapOutput {
     #[getter]
     fn identity_pool_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_pool_id {
-            let converted_467 = (value).as_str().into_py_any(py)?;
-            Ok(converted_467)
+            let converted_480 = (value).as_str().into_py_any(py)?;
+            Ok(converted_480)
         } else {
             Ok(py.None())
         }
@@ -2022,8 +2293,8 @@ impl PyOperationSetPrincipalTagAttributeMapOutput {
     #[getter]
     fn identity_provider_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_provider_name {
-            let converted_468 = (value).as_str().into_py_any(py)?;
-            Ok(converted_468)
+            let converted_481 = (value).as_str().into_py_any(py)?;
+            Ok(converted_481)
         } else {
             Ok(py.None())
         }
@@ -2032,8 +2303,8 @@ impl PyOperationSetPrincipalTagAttributeMapOutput {
     #[getter]
     fn use_defaults(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.use_defaults {
-            let converted_469 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_469)
+            let converted_482 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_482)
         } else {
             Ok(py.None())
         }
@@ -2042,14 +2313,14 @@ impl PyOperationSetPrincipalTagAttributeMapOutput {
     #[getter]
     fn principal_tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.principal_tags {
-            let converted_470_dict = PyDict::new(py);
-            for (key_471, value_472) in value {
-                let converted_key_473 = (key_471).as_str().into_py_any(py)?;
-                let converted_value_474 = (value_472).as_str().into_py_any(py)?;
-                converted_470_dict.set_item(converted_key_473, converted_value_474)?;
+            let converted_483_dict = PyDict::new(py);
+            for (key_484, value_485) in value {
+                let converted_key_486 = (key_484).as_str().into_py_any(py)?;
+                let converted_value_487 = (value_485).as_str().into_py_any(py)?;
+                converted_483_dict.set_item(converted_key_486, converted_value_487)?;
             }
-            let converted_470 = converted_470_dict.into_any().unbind();
-            Ok(converted_470)
+            let converted_483 = converted_483_dict.into_any().unbind();
+            Ok(converted_483)
         } else {
             Ok(py.None())
         }
@@ -2058,32 +2329,32 @@ impl PyOperationSetPrincipalTagAttributeMapOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.identity_pool_id {
-            let converted_475 = (value).as_str().into_py_any(py)?;
-            result.set_item("identity_pool_id", converted_475)?;
+            let converted_488 = (value).as_str().into_py_any(py)?;
+            result.set_item("identity_pool_id", converted_488)?;
         } else {
             result.set_item("identity_pool_id", py.None())?;
         }
         if let Some(value) = &self.inner.identity_provider_name {
-            let converted_476 = (value).as_str().into_py_any(py)?;
-            result.set_item("identity_provider_name", converted_476)?;
+            let converted_489 = (value).as_str().into_py_any(py)?;
+            result.set_item("identity_provider_name", converted_489)?;
         } else {
             result.set_item("identity_provider_name", py.None())?;
         }
         if let Some(value) = &self.inner.use_defaults {
-            let converted_477 = (value).to_owned().into_py_any(py)?;
-            result.set_item("use_defaults", converted_477)?;
+            let converted_490 = (value).to_owned().into_py_any(py)?;
+            result.set_item("use_defaults", converted_490)?;
         } else {
             result.set_item("use_defaults", py.None())?;
         }
         if let Some(value) = &self.inner.principal_tags {
-            let converted_478_dict = PyDict::new(py);
-            for (key_479, value_480) in value {
-                let converted_key_481 = (key_479).as_str().into_py_any(py)?;
-                let converted_value_482 = (value_480).as_str().into_py_any(py)?;
-                converted_478_dict.set_item(converted_key_481, converted_value_482)?;
+            let converted_491_dict = PyDict::new(py);
+            for (key_492, value_493) in value {
+                let converted_key_494 = (key_492).as_str().into_py_any(py)?;
+                let converted_value_495 = (value_493).as_str().into_py_any(py)?;
+                converted_491_dict.set_item(converted_key_494, converted_value_495)?;
             }
-            let converted_478 = converted_478_dict.into_any().unbind();
-            result.set_item("principal_tags", converted_478)?;
+            let converted_491 = converted_491_dict.into_any().unbind();
+            result.set_item("principal_tags", converted_491)?;
         } else {
             result.set_item("principal_tags", py.None())?;
         }
@@ -2125,42 +2396,85 @@ impl PyOperationUntagResourceOutput {
     }
 }
 
+struct SharedPyOperationUpdateIdentityPoolOutput {
+    identity_pool_id: ::std::string::String,
+    identity_pool_name: ::std::string::String,
+    allow_unauthenticated_identities: bool,
+    allow_classic_flow: Option<bool>,
+    supported_login_providers:
+        Option<::std::collections::HashMap<::std::string::String, ::std::string::String>>,
+    developer_provider_name: Option<::std::string::String>,
+    open_id_connect_provider_arns: Option<::std::vec::Vec<::std::string::String>>,
+    cognito_identity_providers:
+        Option<::std::vec::Vec<Arc<aws_sdk_cognitoidentity::types::CognitoIdentityProvider>>>,
+    saml_provider_arns: Option<::std::vec::Vec<::std::string::String>>,
+    identity_pool_tags:
+        Option<::std::collections::HashMap<::std::string::String, ::std::string::String>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_cognitoidentity::operation::update_identity_pool::UpdateIdentityPoolOutput>
+    for SharedPyOperationUpdateIdentityPoolOutput
+{
+    fn from(
+        value: aws_sdk_cognitoidentity::operation::update_identity_pool::UpdateIdentityPoolOutput,
+    ) -> Self {
+        Self {
+            identity_pool_id: value.identity_pool_id,
+            identity_pool_name: value.identity_pool_name,
+            allow_unauthenticated_identities: value.allow_unauthenticated_identities,
+            allow_classic_flow: value.allow_classic_flow,
+            supported_login_providers: value.supported_login_providers,
+            developer_provider_name: value.developer_provider_name,
+            open_id_connect_provider_arns: value.open_id_connect_provider_arns,
+            cognito_identity_providers: value.cognito_identity_providers.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_520| Arc::new(owned_520))
+                    .collect()
+            }),
+            saml_provider_arns: value.saml_provider_arns,
+            identity_pool_tags: value.identity_pool_tags,
+        }
+    }
+}
+
 #[pyclass(
     name = "UpdateIdentityPoolOutput",
     module = "rboto_cognito_identity._native",
     frozen
 )]
 struct PyOperationUpdateIdentityPoolOutput {
-    inner: aws_sdk_cognitoidentity::operation::update_identity_pool::UpdateIdentityPoolOutput,
+    inner: SharedPyOperationUpdateIdentityPoolOutput,
 }
 
 #[pymethods]
 impl PyOperationUpdateIdentityPoolOutput {
     #[getter]
     fn identity_pool_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_483 = (&self.inner.identity_pool_id).as_str().into_py_any(py)?;
-        Ok(converted_483)
+        let converted_496 = (&self.inner.identity_pool_id).as_str().into_py_any(py)?;
+        Ok(converted_496)
     }
 
     #[getter]
     fn identity_pool_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_484 = (&self.inner.identity_pool_name).as_str().into_py_any(py)?;
-        Ok(converted_484)
+        let converted_497 = (&self.inner.identity_pool_name).as_str().into_py_any(py)?;
+        Ok(converted_497)
     }
 
     #[getter]
     fn allow_unauthenticated_identities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_485 = (&self.inner.allow_unauthenticated_identities)
+        let converted_498 = (&self.inner.allow_unauthenticated_identities)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_485)
+        Ok(converted_498)
     }
 
     #[getter]
     fn allow_classic_flow(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.allow_classic_flow {
-            let converted_486 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_486)
+            let converted_499 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_499)
         } else {
             Ok(py.None())
         }
@@ -2169,14 +2483,14 @@ impl PyOperationUpdateIdentityPoolOutput {
     #[getter]
     fn supported_login_providers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.supported_login_providers {
-            let converted_487_dict = PyDict::new(py);
-            for (key_488, value_489) in value {
-                let converted_key_490 = (key_488).as_str().into_py_any(py)?;
-                let converted_value_491 = (value_489).as_str().into_py_any(py)?;
-                converted_487_dict.set_item(converted_key_490, converted_value_491)?;
+            let converted_500_dict = PyDict::new(py);
+            for (key_501, value_502) in value {
+                let converted_key_503 = (key_501).as_str().into_py_any(py)?;
+                let converted_value_504 = (value_502).as_str().into_py_any(py)?;
+                converted_500_dict.set_item(converted_key_503, converted_value_504)?;
             }
-            let converted_487 = converted_487_dict.into_any().unbind();
-            Ok(converted_487)
+            let converted_500 = converted_500_dict.into_any().unbind();
+            Ok(converted_500)
         } else {
             Ok(py.None())
         }
@@ -2185,8 +2499,8 @@ impl PyOperationUpdateIdentityPoolOutput {
     #[getter]
     fn developer_provider_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.developer_provider_name {
-            let converted_492 = (value).as_str().into_py_any(py)?;
-            Ok(converted_492)
+            let converted_505 = (value).as_str().into_py_any(py)?;
+            Ok(converted_505)
         } else {
             Ok(py.None())
         }
@@ -2195,13 +2509,13 @@ impl PyOperationUpdateIdentityPoolOutput {
     #[getter]
     fn open_id_connect_provider_arns(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.open_id_connect_provider_arns {
-            let converted_493_list = PyList::empty(py);
-            for item_494 in value {
-                let converted_item_495 = (item_494).as_str().into_py_any(py)?;
-                converted_493_list.append(converted_item_495)?;
+            let converted_506_list = PyList::empty(py);
+            for item_507 in value {
+                let converted_item_508 = (item_507).as_str().into_py_any(py)?;
+                converted_506_list.append(converted_item_508)?;
             }
-            let converted_493 = converted_493_list.into_any().unbind();
-            Ok(converted_493)
+            let converted_506 = converted_506_list.into_any().unbind();
+            Ok(converted_506)
         } else {
             Ok(py.None())
         }
@@ -2210,19 +2524,19 @@ impl PyOperationUpdateIdentityPoolOutput {
     #[getter]
     fn cognito_identity_providers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cognito_identity_providers {
-            let converted_496_list = PyList::empty(py);
-            for item_497 in value {
-                let converted_item_498 = Py::new(
+            let converted_509_list = PyList::empty(py);
+            for item_510 in value {
+                let converted_item_511 = Py::new(
                     py,
                     PyCognitoIdentityProvider {
-                        inner: (item_497).to_owned(),
+                        inner: Arc::clone(item_510),
                     },
                 )?
                 .into_any();
-                converted_496_list.append(converted_item_498)?;
+                converted_509_list.append(converted_item_511)?;
             }
-            let converted_496 = converted_496_list.into_any().unbind();
-            Ok(converted_496)
+            let converted_509 = converted_509_list.into_any().unbind();
+            Ok(converted_509)
         } else {
             Ok(py.None())
         }
@@ -2231,13 +2545,13 @@ impl PyOperationUpdateIdentityPoolOutput {
     #[getter]
     fn saml_provider_arns(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.saml_provider_arns {
-            let converted_499_list = PyList::empty(py);
-            for item_500 in value {
-                let converted_item_501 = (item_500).as_str().into_py_any(py)?;
-                converted_499_list.append(converted_item_501)?;
+            let converted_512_list = PyList::empty(py);
+            for item_513 in value {
+                let converted_item_514 = (item_513).as_str().into_py_any(py)?;
+                converted_512_list.append(converted_item_514)?;
             }
-            let converted_499 = converted_499_list.into_any().unbind();
-            Ok(converted_499)
+            let converted_512 = converted_512_list.into_any().unbind();
+            Ok(converted_512)
         } else {
             Ok(py.None())
         }
@@ -2246,14 +2560,14 @@ impl PyOperationUpdateIdentityPoolOutput {
     #[getter]
     fn identity_pool_tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_pool_tags {
-            let converted_502_dict = PyDict::new(py);
-            for (key_503, value_504) in value {
-                let converted_key_505 = (key_503).as_str().into_py_any(py)?;
-                let converted_value_506 = (value_504).as_str().into_py_any(py)?;
-                converted_502_dict.set_item(converted_key_505, converted_value_506)?;
+            let converted_515_dict = PyDict::new(py);
+            for (key_516, value_517) in value {
+                let converted_key_518 = (key_516).as_str().into_py_any(py)?;
+                let converted_value_519 = (value_517).as_str().into_py_any(py)?;
+                converted_515_dict.set_item(converted_key_518, converted_value_519)?;
             }
-            let converted_502 = converted_502_dict.into_any().unbind();
-            Ok(converted_502)
+            let converted_515 = converted_515_dict.into_any().unbind();
+            Ok(converted_515)
         } else {
             Ok(py.None())
         }
@@ -2261,80 +2575,80 @@ impl PyOperationUpdateIdentityPoolOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_507 = (&self.inner.identity_pool_id).as_str().into_py_any(py)?;
-        result.set_item("identity_pool_id", converted_507)?;
-        let converted_508 = (&self.inner.identity_pool_name).as_str().into_py_any(py)?;
-        result.set_item("identity_pool_name", converted_508)?;
-        let converted_509 = (&self.inner.allow_unauthenticated_identities)
+        let converted_521 = (&self.inner.identity_pool_id).as_str().into_py_any(py)?;
+        result.set_item("identity_pool_id", converted_521)?;
+        let converted_522 = (&self.inner.identity_pool_name).as_str().into_py_any(py)?;
+        result.set_item("identity_pool_name", converted_522)?;
+        let converted_523 = (&self.inner.allow_unauthenticated_identities)
             .to_owned()
             .into_py_any(py)?;
-        result.set_item("allow_unauthenticated_identities", converted_509)?;
+        result.set_item("allow_unauthenticated_identities", converted_523)?;
         if let Some(value) = &self.inner.allow_classic_flow {
-            let converted_510 = (value).to_owned().into_py_any(py)?;
-            result.set_item("allow_classic_flow", converted_510)?;
+            let converted_524 = (value).to_owned().into_py_any(py)?;
+            result.set_item("allow_classic_flow", converted_524)?;
         } else {
             result.set_item("allow_classic_flow", py.None())?;
         }
         if let Some(value) = &self.inner.supported_login_providers {
-            let converted_511_dict = PyDict::new(py);
-            for (key_512, value_513) in value {
-                let converted_key_514 = (key_512).as_str().into_py_any(py)?;
-                let converted_value_515 = (value_513).as_str().into_py_any(py)?;
-                converted_511_dict.set_item(converted_key_514, converted_value_515)?;
+            let converted_525_dict = PyDict::new(py);
+            for (key_526, value_527) in value {
+                let converted_key_528 = (key_526).as_str().into_py_any(py)?;
+                let converted_value_529 = (value_527).as_str().into_py_any(py)?;
+                converted_525_dict.set_item(converted_key_528, converted_value_529)?;
             }
-            let converted_511 = converted_511_dict.into_any().unbind();
-            result.set_item("supported_login_providers", converted_511)?;
+            let converted_525 = converted_525_dict.into_any().unbind();
+            result.set_item("supported_login_providers", converted_525)?;
         } else {
             result.set_item("supported_login_providers", py.None())?;
         }
         if let Some(value) = &self.inner.developer_provider_name {
-            let converted_516 = (value).as_str().into_py_any(py)?;
-            result.set_item("developer_provider_name", converted_516)?;
+            let converted_530 = (value).as_str().into_py_any(py)?;
+            result.set_item("developer_provider_name", converted_530)?;
         } else {
             result.set_item("developer_provider_name", py.None())?;
         }
         if let Some(value) = &self.inner.open_id_connect_provider_arns {
-            let converted_517_list = PyList::empty(py);
-            for item_518 in value {
-                let converted_item_519 = (item_518).as_str().into_py_any(py)?;
-                converted_517_list.append(converted_item_519)?;
+            let converted_531_list = PyList::empty(py);
+            for item_532 in value {
+                let converted_item_533 = (item_532).as_str().into_py_any(py)?;
+                converted_531_list.append(converted_item_533)?;
             }
-            let converted_517 = converted_517_list.into_any().unbind();
-            result.set_item("open_id_connect_provider_arns", converted_517)?;
+            let converted_531 = converted_531_list.into_any().unbind();
+            result.set_item("open_id_connect_provider_arns", converted_531)?;
         } else {
             result.set_item("open_id_connect_provider_arns", py.None())?;
         }
         if let Some(value) = &self.inner.cognito_identity_providers {
-            let converted_520_list = PyList::empty(py);
-            for item_521 in value {
-                let converted_item_522 = cognito_identity_provider_to_py(py, item_521)?;
-                converted_520_list.append(converted_item_522)?;
+            let converted_534_list = PyList::empty(py);
+            for item_535 in value {
+                let converted_item_536 = cognito_identity_provider_to_py(py, item_535)?;
+                converted_534_list.append(converted_item_536)?;
             }
-            let converted_520 = converted_520_list.into_any().unbind();
-            result.set_item("cognito_identity_providers", converted_520)?;
+            let converted_534 = converted_534_list.into_any().unbind();
+            result.set_item("cognito_identity_providers", converted_534)?;
         } else {
             result.set_item("cognito_identity_providers", py.None())?;
         }
         if let Some(value) = &self.inner.saml_provider_arns {
-            let converted_523_list = PyList::empty(py);
-            for item_524 in value {
-                let converted_item_525 = (item_524).as_str().into_py_any(py)?;
-                converted_523_list.append(converted_item_525)?;
+            let converted_537_list = PyList::empty(py);
+            for item_538 in value {
+                let converted_item_539 = (item_538).as_str().into_py_any(py)?;
+                converted_537_list.append(converted_item_539)?;
             }
-            let converted_523 = converted_523_list.into_any().unbind();
-            result.set_item("saml_provider_arns", converted_523)?;
+            let converted_537 = converted_537_list.into_any().unbind();
+            result.set_item("saml_provider_arns", converted_537)?;
         } else {
             result.set_item("saml_provider_arns", py.None())?;
         }
         if let Some(value) = &self.inner.identity_pool_tags {
-            let converted_526_dict = PyDict::new(py);
-            for (key_527, value_528) in value {
-                let converted_key_529 = (key_527).as_str().into_py_any(py)?;
-                let converted_value_530 = (value_528).as_str().into_py_any(py)?;
-                converted_526_dict.set_item(converted_key_529, converted_value_530)?;
+            let converted_540_dict = PyDict::new(py);
+            for (key_541, value_542) in value {
+                let converted_key_543 = (key_541).as_str().into_py_any(py)?;
+                let converted_value_544 = (value_542).as_str().into_py_any(py)?;
+                converted_540_dict.set_item(converted_key_543, converted_value_544)?;
             }
-            let converted_526 = converted_526_dict.into_any().unbind();
-            result.set_item("identity_pool_tags", converted_526)?;
+            let converted_540 = converted_540_dict.into_any().unbind();
+            result.set_item("identity_pool_tags", converted_540)?;
         } else {
             result.set_item("identity_pool_tags", py.None())?;
         }
@@ -2531,7 +2845,9 @@ impl CognitoIdentityClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateIdentityPool"))
             })?;
-            Ok(PyOperationCreateIdentityPoolOutput { inner: output })
+            Ok(PyOperationCreateIdentityPoolOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -2576,7 +2892,9 @@ impl CognitoIdentityClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteIdentities"))
             })?;
-            Ok(PyOperationDeleteIdentitiesOutput { inner: output })
+            Ok(PyOperationDeleteIdentitiesOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -2690,7 +3008,9 @@ impl CognitoIdentityClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeIdentityPool"))
             })?;
-            Ok(PyOperationDescribeIdentityPoolOutput { inner: output })
+            Ok(PyOperationDescribeIdentityPoolOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -2748,7 +3068,9 @@ impl CognitoIdentityClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCredentialsForIdentity"))
             })?;
-            Ok(PyOperationGetCredentialsForIdentityOutput { inner: output })
+            Ok(PyOperationGetCredentialsForIdentityOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -2843,7 +3165,9 @@ impl CognitoIdentityClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetIdentityPoolRoles"))
             })?;
-            Ok(PyOperationGetIdentityPoolRolesOutput { inner: output })
+            Ok(PyOperationGetIdentityPoolRolesOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -3079,7 +3403,9 @@ impl CognitoIdentityClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListIdentities"))
             })?;
-            Ok(PyOperationListIdentitiesOutput { inner: output })
+            Ok(PyOperationListIdentitiesOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -3124,7 +3450,9 @@ impl CognitoIdentityClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListIdentityPools"))
             })?;
-            Ok(PyOperationListIdentityPoolsOutput { inner: output })
+            Ok(PyOperationListIdentityPoolsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -3787,7 +4115,9 @@ impl CognitoIdentityClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateIdentityPool"))
             })?;
-            Ok(PyOperationUpdateIdentityPoolOutput { inner: output })
+            Ok(PyOperationUpdateIdentityPoolOutput {
+                inner: output.into(),
+            })
         })
     }
 }

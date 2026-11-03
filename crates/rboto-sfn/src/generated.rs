@@ -3320,7 +3320,7 @@ fn validate_state_machine_definition_diagnostic_to_py(
     frozen
 )]
 struct PyActivityFailedEventDetails {
-    inner: aws_sdk_sfn::types::ActivityFailedEventDetails,
+    inner: Arc<aws_sdk_sfn::types::ActivityFailedEventDetails>,
 }
 
 #[pymethods]
@@ -3352,7 +3352,7 @@ impl PyActivityFailedEventDetails {
 
 #[pyclass(name = "ActivityListItem", module = "rboto_sfn._native", frozen)]
 struct PyActivityListItem {
-    inner: aws_sdk_sfn::types::ActivityListItem,
+    inner: Arc<aws_sdk_sfn::types::ActivityListItem>,
 }
 
 #[pymethods]
@@ -3386,7 +3386,7 @@ impl PyActivityListItem {
     frozen
 )]
 struct PyActivityScheduleFailedEventDetails {
-    inner: aws_sdk_sfn::types::ActivityScheduleFailedEventDetails,
+    inner: Arc<aws_sdk_sfn::types::ActivityScheduleFailedEventDetails>,
 }
 
 #[pymethods]
@@ -3416,13 +3416,70 @@ impl PyActivityScheduleFailedEventDetails {
     }
 }
 
+struct SharedActivityScheduledEventDetails {
+    resource: ::std::string::String,
+    input: Option<::std::string::String>,
+    input_details: Option<Arc<aws_sdk_sfn::types::HistoryEventExecutionDataDetails>>,
+    timeout_in_seconds: Option<i64>,
+    heartbeat_in_seconds: Option<i64>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::types::ActivityScheduledEventDetails>
+    for SharedActivityScheduledEventDetails
+{
+    fn from(value: aws_sdk_sfn::types::ActivityScheduledEventDetails) -> Self {
+        Self {
+            resource: value.resource,
+            input: value.input,
+            input_details: value.input_details.map(|item| Arc::new(item)),
+            timeout_in_seconds: value.timeout_in_seconds,
+            heartbeat_in_seconds: value.heartbeat_in_seconds,
+        }
+    }
+}
+
+fn activity_scheduled_event_details_shared_to_py(
+    py: Python<'_>,
+    value: &SharedActivityScheduledEventDetails,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_680 = (&value.resource).as_str().into_py_any(py)?;
+    result.set_item("resource", converted_680)?;
+    if let Some(value) = &value.input {
+        let converted_681 = (value).as_str().into_py_any(py)?;
+        result.set_item("input", converted_681)?;
+    } else {
+        result.set_item("input", py.None())?;
+    }
+    if let Some(value) = &value.input_details {
+        let converted_682 = history_event_execution_data_details_to_py(py, value)?;
+        result.set_item("input_details", converted_682)?;
+    } else {
+        result.set_item("input_details", py.None())?;
+    }
+    if let Some(value) = &value.timeout_in_seconds {
+        let converted_683 = (value).to_owned().into_py_any(py)?;
+        result.set_item("timeout_in_seconds", converted_683)?;
+    } else {
+        result.set_item("timeout_in_seconds", py.None())?;
+    }
+    if let Some(value) = &value.heartbeat_in_seconds {
+        let converted_684 = (value).to_owned().into_py_any(py)?;
+        result.set_item("heartbeat_in_seconds", converted_684)?;
+    } else {
+        result.set_item("heartbeat_in_seconds", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "ActivityScheduledEventDetails",
     module = "rboto_sfn._native",
     frozen
 )]
 struct PyActivityScheduledEventDetails {
-    inner: aws_sdk_sfn::types::ActivityScheduledEventDetails,
+    inner: Arc<SharedActivityScheduledEventDetails>,
 }
 
 #[pymethods]
@@ -3449,7 +3506,7 @@ impl PyActivityScheduledEventDetails {
             let converted_677 = Py::new(
                 py,
                 PyHistoryEventExecutionDataDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -3480,7 +3537,7 @@ impl PyActivityScheduledEventDetails {
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        activity_scheduled_event_details_to_py(py, &self.inner)
+        activity_scheduled_event_details_shared_to_py(py, &self.inner)
     }
 }
 
@@ -3490,7 +3547,7 @@ impl PyActivityScheduledEventDetails {
     frozen
 )]
 struct PyActivityStartedEventDetails {
-    inner: aws_sdk_sfn::types::ActivityStartedEventDetails,
+    inner: Arc<aws_sdk_sfn::types::ActivityStartedEventDetails>,
 }
 
 #[pymethods]
@@ -3498,8 +3555,8 @@ impl PyActivityStartedEventDetails {
     #[getter]
     fn worker_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.worker_name {
-            let converted_680 = (value).as_str().into_py_any(py)?;
-            Ok(converted_680)
+            let converted_685 = (value).as_str().into_py_any(py)?;
+            Ok(converted_685)
         } else {
             Ok(py.None())
         }
@@ -3510,13 +3567,50 @@ impl PyActivityStartedEventDetails {
     }
 }
 
+struct SharedActivitySucceededEventDetails {
+    output: Option<::std::string::String>,
+    output_details: Option<Arc<aws_sdk_sfn::types::HistoryEventExecutionDataDetails>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::types::ActivitySucceededEventDetails>
+    for SharedActivitySucceededEventDetails
+{
+    fn from(value: aws_sdk_sfn::types::ActivitySucceededEventDetails) -> Self {
+        Self {
+            output: value.output,
+            output_details: value.output_details.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn activity_succeeded_event_details_shared_to_py(
+    py: Python<'_>,
+    value: &SharedActivitySucceededEventDetails,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.output {
+        let converted_688 = (value).as_str().into_py_any(py)?;
+        result.set_item("output", converted_688)?;
+    } else {
+        result.set_item("output", py.None())?;
+    }
+    if let Some(value) = &value.output_details {
+        let converted_689 = history_event_execution_data_details_to_py(py, value)?;
+        result.set_item("output_details", converted_689)?;
+    } else {
+        result.set_item("output_details", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "ActivitySucceededEventDetails",
     module = "rboto_sfn._native",
     frozen
 )]
 struct PyActivitySucceededEventDetails {
-    inner: aws_sdk_sfn::types::ActivitySucceededEventDetails,
+    inner: Arc<SharedActivitySucceededEventDetails>,
 }
 
 #[pymethods]
@@ -3524,8 +3618,8 @@ impl PyActivitySucceededEventDetails {
     #[getter]
     fn output(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output {
-            let converted_681 = (value).as_str().into_py_any(py)?;
-            Ok(converted_681)
+            let converted_686 = (value).as_str().into_py_any(py)?;
+            Ok(converted_686)
         } else {
             Ok(py.None())
         }
@@ -3534,21 +3628,21 @@ impl PyActivitySucceededEventDetails {
     #[getter]
     fn output_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_details {
-            let converted_682 = Py::new(
+            let converted_687 = Py::new(
                 py,
                 PyHistoryEventExecutionDataDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_682)
+            Ok(converted_687)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        activity_succeeded_event_details_to_py(py, &self.inner)
+        activity_succeeded_event_details_shared_to_py(py, &self.inner)
     }
 }
 
@@ -3558,7 +3652,7 @@ impl PyActivitySucceededEventDetails {
     frozen
 )]
 struct PyActivityTimedOutEventDetails {
-    inner: aws_sdk_sfn::types::ActivityTimedOutEventDetails,
+    inner: Arc<aws_sdk_sfn::types::ActivityTimedOutEventDetails>,
 }
 
 #[pymethods]
@@ -3566,8 +3660,8 @@ impl PyActivityTimedOutEventDetails {
     #[getter]
     fn error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error {
-            let converted_683 = (value).as_str().into_py_any(py)?;
-            Ok(converted_683)
+            let converted_690 = (value).as_str().into_py_any(py)?;
+            Ok(converted_690)
         } else {
             Ok(py.None())
         }
@@ -3576,8 +3670,8 @@ impl PyActivityTimedOutEventDetails {
     #[getter]
     fn cause(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cause {
-            let converted_684 = (value).as_str().into_py_any(py)?;
-            Ok(converted_684)
+            let converted_691 = (value).as_str().into_py_any(py)?;
+            Ok(converted_691)
         } else {
             Ok(py.None())
         }
@@ -3594,15 +3688,15 @@ impl PyActivityTimedOutEventDetails {
     frozen
 )]
 struct PyAssignedVariablesDetails {
-    inner: aws_sdk_sfn::types::AssignedVariablesDetails,
+    inner: Arc<aws_sdk_sfn::types::AssignedVariablesDetails>,
 }
 
 #[pymethods]
 impl PyAssignedVariablesDetails {
     #[getter]
     fn truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_685 = (&self.inner.truncated).to_owned().into_py_any(py)?;
-        Ok(converted_685)
+        let converted_692 = (&self.inner.truncated).to_owned().into_py_any(py)?;
+        Ok(converted_692)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -3612,25 +3706,25 @@ impl PyAssignedVariablesDetails {
 
 #[pyclass(name = "BillingDetails", module = "rboto_sfn._native", frozen)]
 struct PyBillingDetails {
-    inner: aws_sdk_sfn::types::BillingDetails,
+    inner: Arc<aws_sdk_sfn::types::BillingDetails>,
 }
 
 #[pymethods]
 impl PyBillingDetails {
     #[getter]
     fn billed_memory_used_in_mb(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_686 = (&self.inner.billed_memory_used_in_mb)
+        let converted_693 = (&self.inner.billed_memory_used_in_mb)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_686)
+        Ok(converted_693)
     }
 
     #[getter]
     fn billed_duration_in_milliseconds(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_687 = (&self.inner.billed_duration_in_milliseconds)
+        let converted_694 = (&self.inner.billed_duration_in_milliseconds)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_687)
+        Ok(converted_694)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -3644,15 +3738,15 @@ impl PyBillingDetails {
     frozen
 )]
 struct PyCloudWatchEventsExecutionDataDetails {
-    inner: aws_sdk_sfn::types::CloudWatchEventsExecutionDataDetails,
+    inner: Arc<aws_sdk_sfn::types::CloudWatchEventsExecutionDataDetails>,
 }
 
 #[pymethods]
 impl PyCloudWatchEventsExecutionDataDetails {
     #[getter]
     fn included(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_688 = (&self.inner.included).to_owned().into_py_any(py)?;
-        Ok(converted_688)
+        let converted_695 = (&self.inner.included).to_owned().into_py_any(py)?;
+        Ok(converted_695)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -3662,7 +3756,7 @@ impl PyCloudWatchEventsExecutionDataDetails {
 
 #[pyclass(name = "CloudWatchLogsLogGroup", module = "rboto_sfn._native", frozen)]
 struct PyCloudWatchLogsLogGroup {
-    inner: aws_sdk_sfn::types::CloudWatchLogsLogGroup,
+    inner: Arc<aws_sdk_sfn::types::CloudWatchLogsLogGroup>,
 }
 
 #[pymethods]
@@ -3670,8 +3764,8 @@ impl PyCloudWatchLogsLogGroup {
     #[getter]
     fn log_group_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_group_arn {
-            let converted_689 = (value).as_str().into_py_any(py)?;
-            Ok(converted_689)
+            let converted_696 = (value).as_str().into_py_any(py)?;
+            Ok(converted_696)
         } else {
             Ok(py.None())
         }
@@ -3684,7 +3778,7 @@ impl PyCloudWatchLogsLogGroup {
 
 #[pyclass(name = "EncryptionConfiguration", module = "rboto_sfn._native", frozen)]
 struct PyEncryptionConfiguration {
-    inner: aws_sdk_sfn::types::EncryptionConfiguration,
+    inner: Arc<aws_sdk_sfn::types::EncryptionConfiguration>,
 }
 
 #[pymethods]
@@ -3692,8 +3786,8 @@ impl PyEncryptionConfiguration {
     #[getter]
     fn kms_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key_id {
-            let converted_690 = (value).as_str().into_py_any(py)?;
-            Ok(converted_690)
+            let converted_697 = (value).as_str().into_py_any(py)?;
+            Ok(converted_697)
         } else {
             Ok(py.None())
         }
@@ -3702,8 +3796,8 @@ impl PyEncryptionConfiguration {
     #[getter]
     fn kms_data_key_reuse_period_seconds(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_data_key_reuse_period_seconds {
-            let converted_691 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_691)
+            let converted_698 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_698)
         } else {
             Ok(py.None())
         }
@@ -3711,8 +3805,8 @@ impl PyEncryptionConfiguration {
 
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_692 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_692)
+        let converted_699 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_699)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -3726,7 +3820,7 @@ impl PyEncryptionConfiguration {
     frozen
 )]
 struct PyEvaluationFailedEventDetails {
-    inner: aws_sdk_sfn::types::EvaluationFailedEventDetails,
+    inner: Arc<aws_sdk_sfn::types::EvaluationFailedEventDetails>,
 }
 
 #[pymethods]
@@ -3734,8 +3828,8 @@ impl PyEvaluationFailedEventDetails {
     #[getter]
     fn error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error {
-            let converted_693 = (value).as_str().into_py_any(py)?;
-            Ok(converted_693)
+            let converted_700 = (value).as_str().into_py_any(py)?;
+            Ok(converted_700)
         } else {
             Ok(py.None())
         }
@@ -3744,8 +3838,8 @@ impl PyEvaluationFailedEventDetails {
     #[getter]
     fn cause(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cause {
-            let converted_694 = (value).as_str().into_py_any(py)?;
-            Ok(converted_694)
+            let converted_701 = (value).as_str().into_py_any(py)?;
+            Ok(converted_701)
         } else {
             Ok(py.None())
         }
@@ -3754,8 +3848,8 @@ impl PyEvaluationFailedEventDetails {
     #[getter]
     fn location(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.location {
-            let converted_695 = (value).as_str().into_py_any(py)?;
-            Ok(converted_695)
+            let converted_702 = (value).as_str().into_py_any(py)?;
+            Ok(converted_702)
         } else {
             Ok(py.None())
         }
@@ -3763,8 +3857,8 @@ impl PyEvaluationFailedEventDetails {
 
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_696 = (&self.inner.state).as_str().into_py_any(py)?;
-        Ok(converted_696)
+        let converted_703 = (&self.inner.state).as_str().into_py_any(py)?;
+        Ok(converted_703)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -3778,7 +3872,7 @@ impl PyEvaluationFailedEventDetails {
     frozen
 )]
 struct PyExecutionAbortedEventDetails {
-    inner: aws_sdk_sfn::types::ExecutionAbortedEventDetails,
+    inner: Arc<aws_sdk_sfn::types::ExecutionAbortedEventDetails>,
 }
 
 #[pymethods]
@@ -3786,8 +3880,8 @@ impl PyExecutionAbortedEventDetails {
     #[getter]
     fn error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error {
-            let converted_697 = (value).as_str().into_py_any(py)?;
-            Ok(converted_697)
+            let converted_704 = (value).as_str().into_py_any(py)?;
+            Ok(converted_704)
         } else {
             Ok(py.None())
         }
@@ -3796,8 +3890,8 @@ impl PyExecutionAbortedEventDetails {
     #[getter]
     fn cause(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cause {
-            let converted_698 = (value).as_str().into_py_any(py)?;
-            Ok(converted_698)
+            let converted_705 = (value).as_str().into_py_any(py)?;
+            Ok(converted_705)
         } else {
             Ok(py.None())
         }
@@ -3814,7 +3908,7 @@ impl PyExecutionAbortedEventDetails {
     frozen
 )]
 struct PyExecutionFailedEventDetails {
-    inner: aws_sdk_sfn::types::ExecutionFailedEventDetails,
+    inner: Arc<aws_sdk_sfn::types::ExecutionFailedEventDetails>,
 }
 
 #[pymethods]
@@ -3822,8 +3916,8 @@ impl PyExecutionFailedEventDetails {
     #[getter]
     fn error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error {
-            let converted_699 = (value).as_str().into_py_any(py)?;
-            Ok(converted_699)
+            let converted_706 = (value).as_str().into_py_any(py)?;
+            Ok(converted_706)
         } else {
             Ok(py.None())
         }
@@ -3832,8 +3926,8 @@ impl PyExecutionFailedEventDetails {
     #[getter]
     fn cause(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cause {
-            let converted_700 = (value).as_str().into_py_any(py)?;
-            Ok(converted_700)
+            let converted_707 = (value).as_str().into_py_any(py)?;
+            Ok(converted_707)
         } else {
             Ok(py.None())
         }
@@ -3846,46 +3940,46 @@ impl PyExecutionFailedEventDetails {
 
 #[pyclass(name = "ExecutionListItem", module = "rboto_sfn._native", frozen)]
 struct PyExecutionListItem {
-    inner: aws_sdk_sfn::types::ExecutionListItem,
+    inner: Arc<aws_sdk_sfn::types::ExecutionListItem>,
 }
 
 #[pymethods]
 impl PyExecutionListItem {
     #[getter]
     fn execution_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_701 = (&self.inner.execution_arn).as_str().into_py_any(py)?;
-        Ok(converted_701)
+        let converted_708 = (&self.inner.execution_arn).as_str().into_py_any(py)?;
+        Ok(converted_708)
     }
 
     #[getter]
     fn state_machine_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_702 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
-        Ok(converted_702)
+        let converted_709 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
+        Ok(converted_709)
     }
 
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_703 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_703)
+        let converted_710 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_710)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_704 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_704)
+        let converted_711 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_711)
     }
 
     #[getter]
     fn start_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_705 = (&self.inner.start_date).to_string().into_py_any(py)?;
-        Ok(converted_705)
+        let converted_712 = (&self.inner.start_date).to_string().into_py_any(py)?;
+        Ok(converted_712)
     }
 
     #[getter]
     fn stop_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stop_date {
-            let converted_706 = (value).to_string().into_py_any(py)?;
-            Ok(converted_706)
+            let converted_713 = (value).to_string().into_py_any(py)?;
+            Ok(converted_713)
         } else {
             Ok(py.None())
         }
@@ -3894,108 +3988,6 @@ impl PyExecutionListItem {
     #[getter]
     fn map_run_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.map_run_arn {
-            let converted_707 = (value).as_str().into_py_any(py)?;
-            Ok(converted_707)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn item_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.item_count {
-            let converted_708 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_708)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn state_machine_version_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.state_machine_version_arn {
-            let converted_709 = (value).as_str().into_py_any(py)?;
-            Ok(converted_709)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn state_machine_alias_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.state_machine_alias_arn {
-            let converted_710 = (value).as_str().into_py_any(py)?;
-            Ok(converted_710)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn redrive_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.redrive_count {
-            let converted_711 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_711)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn redrive_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.redrive_date {
-            let converted_712 = (value).to_string().into_py_any(py)?;
-            Ok(converted_712)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        execution_list_item_to_py(py, &self.inner)
-    }
-}
-
-#[pyclass(
-    name = "ExecutionRedrivenEventDetails",
-    module = "rboto_sfn._native",
-    frozen
-)]
-struct PyExecutionRedrivenEventDetails {
-    inner: aws_sdk_sfn::types::ExecutionRedrivenEventDetails,
-}
-
-#[pymethods]
-impl PyExecutionRedrivenEventDetails {
-    #[getter]
-    fn redrive_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.redrive_count {
-            let converted_713 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_713)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        execution_redriven_event_details_to_py(py, &self.inner)
-    }
-}
-
-#[pyclass(
-    name = "ExecutionStartedEventDetails",
-    module = "rboto_sfn._native",
-    frozen
-)]
-struct PyExecutionStartedEventDetails {
-    inner: aws_sdk_sfn::types::ExecutionStartedEventDetails,
-}
-
-#[pymethods]
-impl PyExecutionStartedEventDetails {
-    #[getter]
-    fn input(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.input {
             let converted_714 = (value).as_str().into_py_any(py)?;
             Ok(converted_714)
         } else {
@@ -4004,15 +3996,9 @@ impl PyExecutionStartedEventDetails {
     }
 
     #[getter]
-    fn input_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.input_details {
-            let converted_715 = Py::new(
-                py,
-                PyHistoryEventExecutionDataDetails {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
+    fn item_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.item_count {
+            let converted_715 = (value).to_owned().into_py_any(py)?;
             Ok(converted_715)
         } else {
             Ok(py.None())
@@ -4020,8 +4006,8 @@ impl PyExecutionStartedEventDetails {
     }
 
     #[getter]
-    fn role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.role_arn {
+    fn state_machine_version_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.state_machine_version_arn {
             let converted_716 = (value).as_str().into_py_any(py)?;
             Ok(converted_716)
         } else {
@@ -4040,18 +4026,222 @@ impl PyExecutionStartedEventDetails {
     }
 
     #[getter]
-    fn state_machine_version_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.state_machine_version_arn {
-            let converted_718 = (value).as_str().into_py_any(py)?;
+    fn redrive_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.redrive_count {
+            let converted_718 = (value).to_owned().into_py_any(py)?;
             Ok(converted_718)
         } else {
             Ok(py.None())
         }
     }
 
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        execution_started_event_details_to_py(py, &self.inner)
+    #[getter]
+    fn redrive_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.redrive_date {
+            let converted_719 = (value).to_string().into_py_any(py)?;
+            Ok(converted_719)
+        } else {
+            Ok(py.None())
+        }
     }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        execution_list_item_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "ExecutionRedrivenEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
+struct PyExecutionRedrivenEventDetails {
+    inner: Arc<aws_sdk_sfn::types::ExecutionRedrivenEventDetails>,
+}
+
+#[pymethods]
+impl PyExecutionRedrivenEventDetails {
+    #[getter]
+    fn redrive_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.redrive_count {
+            let converted_720 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_720)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        execution_redriven_event_details_to_py(py, &self.inner)
+    }
+}
+
+struct SharedExecutionStartedEventDetails {
+    input: Option<::std::string::String>,
+    input_details: Option<Arc<aws_sdk_sfn::types::HistoryEventExecutionDataDetails>>,
+    role_arn: Option<::std::string::String>,
+    state_machine_alias_arn: Option<::std::string::String>,
+    state_machine_version_arn: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::types::ExecutionStartedEventDetails> for SharedExecutionStartedEventDetails {
+    fn from(value: aws_sdk_sfn::types::ExecutionStartedEventDetails) -> Self {
+        Self {
+            input: value.input,
+            input_details: value.input_details.map(|item| Arc::new(item)),
+            role_arn: value.role_arn,
+            state_machine_alias_arn: value.state_machine_alias_arn,
+            state_machine_version_arn: value.state_machine_version_arn,
+        }
+    }
+}
+
+fn execution_started_event_details_shared_to_py(
+    py: Python<'_>,
+    value: &SharedExecutionStartedEventDetails,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.input {
+        let converted_726 = (value).as_str().into_py_any(py)?;
+        result.set_item("input", converted_726)?;
+    } else {
+        result.set_item("input", py.None())?;
+    }
+    if let Some(value) = &value.input_details {
+        let converted_727 = history_event_execution_data_details_to_py(py, value)?;
+        result.set_item("input_details", converted_727)?;
+    } else {
+        result.set_item("input_details", py.None())?;
+    }
+    if let Some(value) = &value.role_arn {
+        let converted_728 = (value).as_str().into_py_any(py)?;
+        result.set_item("role_arn", converted_728)?;
+    } else {
+        result.set_item("role_arn", py.None())?;
+    }
+    if let Some(value) = &value.state_machine_alias_arn {
+        let converted_729 = (value).as_str().into_py_any(py)?;
+        result.set_item("state_machine_alias_arn", converted_729)?;
+    } else {
+        result.set_item("state_machine_alias_arn", py.None())?;
+    }
+    if let Some(value) = &value.state_machine_version_arn {
+        let converted_730 = (value).as_str().into_py_any(py)?;
+        result.set_item("state_machine_version_arn", converted_730)?;
+    } else {
+        result.set_item("state_machine_version_arn", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+#[pyclass(
+    name = "ExecutionStartedEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
+struct PyExecutionStartedEventDetails {
+    inner: Arc<SharedExecutionStartedEventDetails>,
+}
+
+#[pymethods]
+impl PyExecutionStartedEventDetails {
+    #[getter]
+    fn input(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.input {
+            let converted_721 = (value).as_str().into_py_any(py)?;
+            Ok(converted_721)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn input_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.input_details {
+            let converted_722 = Py::new(
+                py,
+                PyHistoryEventExecutionDataDetails {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_722)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.role_arn {
+            let converted_723 = (value).as_str().into_py_any(py)?;
+            Ok(converted_723)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn state_machine_alias_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.state_machine_alias_arn {
+            let converted_724 = (value).as_str().into_py_any(py)?;
+            Ok(converted_724)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn state_machine_version_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.state_machine_version_arn {
+            let converted_725 = (value).as_str().into_py_any(py)?;
+            Ok(converted_725)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        execution_started_event_details_shared_to_py(py, &self.inner)
+    }
+}
+
+struct SharedExecutionSucceededEventDetails {
+    output: Option<::std::string::String>,
+    output_details: Option<Arc<aws_sdk_sfn::types::HistoryEventExecutionDataDetails>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::types::ExecutionSucceededEventDetails>
+    for SharedExecutionSucceededEventDetails
+{
+    fn from(value: aws_sdk_sfn::types::ExecutionSucceededEventDetails) -> Self {
+        Self {
+            output: value.output,
+            output_details: value.output_details.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn execution_succeeded_event_details_shared_to_py(
+    py: Python<'_>,
+    value: &SharedExecutionSucceededEventDetails,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.output {
+        let converted_733 = (value).as_str().into_py_any(py)?;
+        result.set_item("output", converted_733)?;
+    } else {
+        result.set_item("output", py.None())?;
+    }
+    if let Some(value) = &value.output_details {
+        let converted_734 = history_event_execution_data_details_to_py(py, value)?;
+        result.set_item("output_details", converted_734)?;
+    } else {
+        result.set_item("output_details", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -4060,7 +4250,7 @@ impl PyExecutionStartedEventDetails {
     frozen
 )]
 struct PyExecutionSucceededEventDetails {
-    inner: aws_sdk_sfn::types::ExecutionSucceededEventDetails,
+    inner: Arc<SharedExecutionSucceededEventDetails>,
 }
 
 #[pymethods]
@@ -4068,8 +4258,8 @@ impl PyExecutionSucceededEventDetails {
     #[getter]
     fn output(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output {
-            let converted_719 = (value).as_str().into_py_any(py)?;
-            Ok(converted_719)
+            let converted_731 = (value).as_str().into_py_any(py)?;
+            Ok(converted_731)
         } else {
             Ok(py.None())
         }
@@ -4078,21 +4268,21 @@ impl PyExecutionSucceededEventDetails {
     #[getter]
     fn output_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_details {
-            let converted_720 = Py::new(
+            let converted_732 = Py::new(
                 py,
                 PyHistoryEventExecutionDataDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_720)
+            Ok(converted_732)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        execution_succeeded_event_details_to_py(py, &self.inner)
+        execution_succeeded_event_details_shared_to_py(py, &self.inner)
     }
 }
 
@@ -4102,7 +4292,7 @@ impl PyExecutionSucceededEventDetails {
     frozen
 )]
 struct PyExecutionTimedOutEventDetails {
-    inner: aws_sdk_sfn::types::ExecutionTimedOutEventDetails,
+    inner: Arc<aws_sdk_sfn::types::ExecutionTimedOutEventDetails>,
 }
 
 #[pymethods]
@@ -4110,8 +4300,8 @@ impl PyExecutionTimedOutEventDetails {
     #[getter]
     fn error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error {
-            let converted_721 = (value).as_str().into_py_any(py)?;
-            Ok(converted_721)
+            let converted_735 = (value).as_str().into_py_any(py)?;
+            Ok(converted_735)
         } else {
             Ok(py.None())
         }
@@ -4120,8 +4310,8 @@ impl PyExecutionTimedOutEventDetails {
     #[getter]
     fn cause(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cause {
-            let converted_722 = (value).as_str().into_py_any(py)?;
-            Ok(converted_722)
+            let converted_736 = (value).as_str().into_py_any(py)?;
+            Ok(converted_736)
         } else {
             Ok(py.None())
         }
@@ -4132,268 +4322,453 @@ impl PyExecutionTimedOutEventDetails {
     }
 }
 
+struct SharedHistoryEvent {
+    timestamp: ::aws_smithy_types::DateTime,
+    r#type: aws_sdk_sfn::types::HistoryEventType,
+    id: i64,
+    previous_event_id: i64,
+    activity_failed_event_details: Option<Arc<aws_sdk_sfn::types::ActivityFailedEventDetails>>,
+    activity_schedule_failed_event_details:
+        Option<Arc<aws_sdk_sfn::types::ActivityScheduleFailedEventDetails>>,
+    activity_scheduled_event_details: Option<Arc<SharedActivityScheduledEventDetails>>,
+    activity_started_event_details: Option<Arc<aws_sdk_sfn::types::ActivityStartedEventDetails>>,
+    activity_succeeded_event_details: Option<Arc<SharedActivitySucceededEventDetails>>,
+    activity_timed_out_event_details: Option<Arc<aws_sdk_sfn::types::ActivityTimedOutEventDetails>>,
+    task_failed_event_details: Option<Arc<aws_sdk_sfn::types::TaskFailedEventDetails>>,
+    task_scheduled_event_details: Option<Arc<SharedTaskScheduledEventDetails>>,
+    task_start_failed_event_details: Option<Arc<aws_sdk_sfn::types::TaskStartFailedEventDetails>>,
+    task_started_event_details: Option<Arc<aws_sdk_sfn::types::TaskStartedEventDetails>>,
+    task_submit_failed_event_details: Option<Arc<aws_sdk_sfn::types::TaskSubmitFailedEventDetails>>,
+    task_submitted_event_details: Option<Arc<SharedTaskSubmittedEventDetails>>,
+    task_succeeded_event_details: Option<Arc<SharedTaskSucceededEventDetails>>,
+    task_timed_out_event_details: Option<Arc<aws_sdk_sfn::types::TaskTimedOutEventDetails>>,
+    execution_failed_event_details: Option<Arc<aws_sdk_sfn::types::ExecutionFailedEventDetails>>,
+    execution_started_event_details: Option<Arc<SharedExecutionStartedEventDetails>>,
+    execution_succeeded_event_details: Option<Arc<SharedExecutionSucceededEventDetails>>,
+    execution_aborted_event_details: Option<Arc<aws_sdk_sfn::types::ExecutionAbortedEventDetails>>,
+    execution_timed_out_event_details:
+        Option<Arc<aws_sdk_sfn::types::ExecutionTimedOutEventDetails>>,
+    execution_redriven_event_details:
+        Option<Arc<aws_sdk_sfn::types::ExecutionRedrivenEventDetails>>,
+    map_state_started_event_details: Option<Arc<aws_sdk_sfn::types::MapStateStartedEventDetails>>,
+    map_iteration_started_event_details: Option<Arc<aws_sdk_sfn::types::MapIterationEventDetails>>,
+    map_iteration_succeeded_event_details:
+        Option<Arc<aws_sdk_sfn::types::MapIterationEventDetails>>,
+    map_iteration_failed_event_details: Option<Arc<aws_sdk_sfn::types::MapIterationEventDetails>>,
+    map_iteration_aborted_event_details: Option<Arc<aws_sdk_sfn::types::MapIterationEventDetails>>,
+    lambda_function_failed_event_details:
+        Option<Arc<aws_sdk_sfn::types::LambdaFunctionFailedEventDetails>>,
+    lambda_function_schedule_failed_event_details:
+        Option<Arc<aws_sdk_sfn::types::LambdaFunctionScheduleFailedEventDetails>>,
+    lambda_function_scheduled_event_details: Option<Arc<SharedLambdaFunctionScheduledEventDetails>>,
+    lambda_function_start_failed_event_details:
+        Option<Arc<aws_sdk_sfn::types::LambdaFunctionStartFailedEventDetails>>,
+    lambda_function_succeeded_event_details: Option<Arc<SharedLambdaFunctionSucceededEventDetails>>,
+    lambda_function_timed_out_event_details:
+        Option<Arc<aws_sdk_sfn::types::LambdaFunctionTimedOutEventDetails>>,
+    state_entered_event_details: Option<Arc<SharedStateEnteredEventDetails>>,
+    state_exited_event_details: Option<Arc<SharedStateExitedEventDetails>>,
+    map_run_started_event_details: Option<Arc<aws_sdk_sfn::types::MapRunStartedEventDetails>>,
+    map_run_failed_event_details: Option<Arc<aws_sdk_sfn::types::MapRunFailedEventDetails>>,
+    map_run_redriven_event_details: Option<Arc<aws_sdk_sfn::types::MapRunRedrivenEventDetails>>,
+    evaluation_failed_event_details: Option<Arc<aws_sdk_sfn::types::EvaluationFailedEventDetails>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::types::HistoryEvent> for SharedHistoryEvent {
+    fn from(value: aws_sdk_sfn::types::HistoryEvent) -> Self {
+        Self {
+            timestamp: value.timestamp,
+            r#type: value.r#type,
+            id: value.id,
+            previous_event_id: value.previous_event_id,
+            activity_failed_event_details: value
+                .activity_failed_event_details
+                .map(|item| Arc::new(item)),
+            activity_schedule_failed_event_details: value
+                .activity_schedule_failed_event_details
+                .map(|item| Arc::new(item)),
+            activity_scheduled_event_details: value
+                .activity_scheduled_event_details
+                .map(|item| Arc::new(SharedActivityScheduledEventDetails::from(item))),
+            activity_started_event_details: value
+                .activity_started_event_details
+                .map(|item| Arc::new(item)),
+            activity_succeeded_event_details: value
+                .activity_succeeded_event_details
+                .map(|item| Arc::new(SharedActivitySucceededEventDetails::from(item))),
+            activity_timed_out_event_details: value
+                .activity_timed_out_event_details
+                .map(|item| Arc::new(item)),
+            task_failed_event_details: value.task_failed_event_details.map(|item| Arc::new(item)),
+            task_scheduled_event_details: value
+                .task_scheduled_event_details
+                .map(|item| Arc::new(SharedTaskScheduledEventDetails::from(item))),
+            task_start_failed_event_details: value
+                .task_start_failed_event_details
+                .map(|item| Arc::new(item)),
+            task_started_event_details: value.task_started_event_details.map(|item| Arc::new(item)),
+            task_submit_failed_event_details: value
+                .task_submit_failed_event_details
+                .map(|item| Arc::new(item)),
+            task_submitted_event_details: value
+                .task_submitted_event_details
+                .map(|item| Arc::new(SharedTaskSubmittedEventDetails::from(item))),
+            task_succeeded_event_details: value
+                .task_succeeded_event_details
+                .map(|item| Arc::new(SharedTaskSucceededEventDetails::from(item))),
+            task_timed_out_event_details: value
+                .task_timed_out_event_details
+                .map(|item| Arc::new(item)),
+            execution_failed_event_details: value
+                .execution_failed_event_details
+                .map(|item| Arc::new(item)),
+            execution_started_event_details: value
+                .execution_started_event_details
+                .map(|item| Arc::new(SharedExecutionStartedEventDetails::from(item))),
+            execution_succeeded_event_details: value
+                .execution_succeeded_event_details
+                .map(|item| Arc::new(SharedExecutionSucceededEventDetails::from(item))),
+            execution_aborted_event_details: value
+                .execution_aborted_event_details
+                .map(|item| Arc::new(item)),
+            execution_timed_out_event_details: value
+                .execution_timed_out_event_details
+                .map(|item| Arc::new(item)),
+            execution_redriven_event_details: value
+                .execution_redriven_event_details
+                .map(|item| Arc::new(item)),
+            map_state_started_event_details: value
+                .map_state_started_event_details
+                .map(|item| Arc::new(item)),
+            map_iteration_started_event_details: value
+                .map_iteration_started_event_details
+                .map(|item| Arc::new(item)),
+            map_iteration_succeeded_event_details: value
+                .map_iteration_succeeded_event_details
+                .map(|item| Arc::new(item)),
+            map_iteration_failed_event_details: value
+                .map_iteration_failed_event_details
+                .map(|item| Arc::new(item)),
+            map_iteration_aborted_event_details: value
+                .map_iteration_aborted_event_details
+                .map(|item| Arc::new(item)),
+            lambda_function_failed_event_details: value
+                .lambda_function_failed_event_details
+                .map(|item| Arc::new(item)),
+            lambda_function_schedule_failed_event_details: value
+                .lambda_function_schedule_failed_event_details
+                .map(|item| Arc::new(item)),
+            lambda_function_scheduled_event_details: value
+                .lambda_function_scheduled_event_details
+                .map(|item| Arc::new(SharedLambdaFunctionScheduledEventDetails::from(item))),
+            lambda_function_start_failed_event_details: value
+                .lambda_function_start_failed_event_details
+                .map(|item| Arc::new(item)),
+            lambda_function_succeeded_event_details: value
+                .lambda_function_succeeded_event_details
+                .map(|item| Arc::new(SharedLambdaFunctionSucceededEventDetails::from(item))),
+            lambda_function_timed_out_event_details: value
+                .lambda_function_timed_out_event_details
+                .map(|item| Arc::new(item)),
+            state_entered_event_details: value
+                .state_entered_event_details
+                .map(|item| Arc::new(SharedStateEnteredEventDetails::from(item))),
+            state_exited_event_details: value
+                .state_exited_event_details
+                .map(|item| Arc::new(SharedStateExitedEventDetails::from(item))),
+            map_run_started_event_details: value
+                .map_run_started_event_details
+                .map(|item| Arc::new(item)),
+            map_run_failed_event_details: value
+                .map_run_failed_event_details
+                .map(|item| Arc::new(item)),
+            map_run_redriven_event_details: value
+                .map_run_redriven_event_details
+                .map(|item| Arc::new(item)),
+            evaluation_failed_event_details: value
+                .evaluation_failed_event_details
+                .map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn history_event_shared_to_py(py: Python<'_>, value: &SharedHistoryEvent) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_778 = (&value.timestamp).to_string().into_py_any(py)?;
+    result.set_item("timestamp", converted_778)?;
+    let converted_779 = (&value.r#type).as_str().into_py_any(py)?;
+    result.set_item("type", converted_779)?;
+    let converted_780 = (&value.id).to_owned().into_py_any(py)?;
+    result.set_item("id", converted_780)?;
+    let converted_781 = (&value.previous_event_id).to_owned().into_py_any(py)?;
+    result.set_item("previous_event_id", converted_781)?;
+    if let Some(value) = &value.activity_failed_event_details {
+        let converted_782 = activity_failed_event_details_to_py(py, value)?;
+        result.set_item("activity_failed_event_details", converted_782)?;
+    } else {
+        result.set_item("activity_failed_event_details", py.None())?;
+    }
+    if let Some(value) = &value.activity_schedule_failed_event_details {
+        let converted_783 = activity_schedule_failed_event_details_to_py(py, value)?;
+        result.set_item("activity_schedule_failed_event_details", converted_783)?;
+    } else {
+        result.set_item("activity_schedule_failed_event_details", py.None())?;
+    }
+    if let Some(value) = &value.activity_scheduled_event_details {
+        let converted_784 = activity_scheduled_event_details_shared_to_py(py, value)?;
+        result.set_item("activity_scheduled_event_details", converted_784)?;
+    } else {
+        result.set_item("activity_scheduled_event_details", py.None())?;
+    }
+    if let Some(value) = &value.activity_started_event_details {
+        let converted_785 = activity_started_event_details_to_py(py, value)?;
+        result.set_item("activity_started_event_details", converted_785)?;
+    } else {
+        result.set_item("activity_started_event_details", py.None())?;
+    }
+    if let Some(value) = &value.activity_succeeded_event_details {
+        let converted_786 = activity_succeeded_event_details_shared_to_py(py, value)?;
+        result.set_item("activity_succeeded_event_details", converted_786)?;
+    } else {
+        result.set_item("activity_succeeded_event_details", py.None())?;
+    }
+    if let Some(value) = &value.activity_timed_out_event_details {
+        let converted_787 = activity_timed_out_event_details_to_py(py, value)?;
+        result.set_item("activity_timed_out_event_details", converted_787)?;
+    } else {
+        result.set_item("activity_timed_out_event_details", py.None())?;
+    }
+    if let Some(value) = &value.task_failed_event_details {
+        let converted_788 = task_failed_event_details_to_py(py, value)?;
+        result.set_item("task_failed_event_details", converted_788)?;
+    } else {
+        result.set_item("task_failed_event_details", py.None())?;
+    }
+    if let Some(value) = &value.task_scheduled_event_details {
+        let converted_789 = task_scheduled_event_details_shared_to_py(py, value)?;
+        result.set_item("task_scheduled_event_details", converted_789)?;
+    } else {
+        result.set_item("task_scheduled_event_details", py.None())?;
+    }
+    if let Some(value) = &value.task_start_failed_event_details {
+        let converted_790 = task_start_failed_event_details_to_py(py, value)?;
+        result.set_item("task_start_failed_event_details", converted_790)?;
+    } else {
+        result.set_item("task_start_failed_event_details", py.None())?;
+    }
+    if let Some(value) = &value.task_started_event_details {
+        let converted_791 = task_started_event_details_to_py(py, value)?;
+        result.set_item("task_started_event_details", converted_791)?;
+    } else {
+        result.set_item("task_started_event_details", py.None())?;
+    }
+    if let Some(value) = &value.task_submit_failed_event_details {
+        let converted_792 = task_submit_failed_event_details_to_py(py, value)?;
+        result.set_item("task_submit_failed_event_details", converted_792)?;
+    } else {
+        result.set_item("task_submit_failed_event_details", py.None())?;
+    }
+    if let Some(value) = &value.task_submitted_event_details {
+        let converted_793 = task_submitted_event_details_shared_to_py(py, value)?;
+        result.set_item("task_submitted_event_details", converted_793)?;
+    } else {
+        result.set_item("task_submitted_event_details", py.None())?;
+    }
+    if let Some(value) = &value.task_succeeded_event_details {
+        let converted_794 = task_succeeded_event_details_shared_to_py(py, value)?;
+        result.set_item("task_succeeded_event_details", converted_794)?;
+    } else {
+        result.set_item("task_succeeded_event_details", py.None())?;
+    }
+    if let Some(value) = &value.task_timed_out_event_details {
+        let converted_795 = task_timed_out_event_details_to_py(py, value)?;
+        result.set_item("task_timed_out_event_details", converted_795)?;
+    } else {
+        result.set_item("task_timed_out_event_details", py.None())?;
+    }
+    if let Some(value) = &value.execution_failed_event_details {
+        let converted_796 = execution_failed_event_details_to_py(py, value)?;
+        result.set_item("execution_failed_event_details", converted_796)?;
+    } else {
+        result.set_item("execution_failed_event_details", py.None())?;
+    }
+    if let Some(value) = &value.execution_started_event_details {
+        let converted_797 = execution_started_event_details_shared_to_py(py, value)?;
+        result.set_item("execution_started_event_details", converted_797)?;
+    } else {
+        result.set_item("execution_started_event_details", py.None())?;
+    }
+    if let Some(value) = &value.execution_succeeded_event_details {
+        let converted_798 = execution_succeeded_event_details_shared_to_py(py, value)?;
+        result.set_item("execution_succeeded_event_details", converted_798)?;
+    } else {
+        result.set_item("execution_succeeded_event_details", py.None())?;
+    }
+    if let Some(value) = &value.execution_aborted_event_details {
+        let converted_799 = execution_aborted_event_details_to_py(py, value)?;
+        result.set_item("execution_aborted_event_details", converted_799)?;
+    } else {
+        result.set_item("execution_aborted_event_details", py.None())?;
+    }
+    if let Some(value) = &value.execution_timed_out_event_details {
+        let converted_800 = execution_timed_out_event_details_to_py(py, value)?;
+        result.set_item("execution_timed_out_event_details", converted_800)?;
+    } else {
+        result.set_item("execution_timed_out_event_details", py.None())?;
+    }
+    if let Some(value) = &value.execution_redriven_event_details {
+        let converted_801 = execution_redriven_event_details_to_py(py, value)?;
+        result.set_item("execution_redriven_event_details", converted_801)?;
+    } else {
+        result.set_item("execution_redriven_event_details", py.None())?;
+    }
+    if let Some(value) = &value.map_state_started_event_details {
+        let converted_802 = map_state_started_event_details_to_py(py, value)?;
+        result.set_item("map_state_started_event_details", converted_802)?;
+    } else {
+        result.set_item("map_state_started_event_details", py.None())?;
+    }
+    if let Some(value) = &value.map_iteration_started_event_details {
+        let converted_803 = map_iteration_event_details_to_py(py, value)?;
+        result.set_item("map_iteration_started_event_details", converted_803)?;
+    } else {
+        result.set_item("map_iteration_started_event_details", py.None())?;
+    }
+    if let Some(value) = &value.map_iteration_succeeded_event_details {
+        let converted_804 = map_iteration_event_details_to_py(py, value)?;
+        result.set_item("map_iteration_succeeded_event_details", converted_804)?;
+    } else {
+        result.set_item("map_iteration_succeeded_event_details", py.None())?;
+    }
+    if let Some(value) = &value.map_iteration_failed_event_details {
+        let converted_805 = map_iteration_event_details_to_py(py, value)?;
+        result.set_item("map_iteration_failed_event_details", converted_805)?;
+    } else {
+        result.set_item("map_iteration_failed_event_details", py.None())?;
+    }
+    if let Some(value) = &value.map_iteration_aborted_event_details {
+        let converted_806 = map_iteration_event_details_to_py(py, value)?;
+        result.set_item("map_iteration_aborted_event_details", converted_806)?;
+    } else {
+        result.set_item("map_iteration_aborted_event_details", py.None())?;
+    }
+    if let Some(value) = &value.lambda_function_failed_event_details {
+        let converted_807 = lambda_function_failed_event_details_to_py(py, value)?;
+        result.set_item("lambda_function_failed_event_details", converted_807)?;
+    } else {
+        result.set_item("lambda_function_failed_event_details", py.None())?;
+    }
+    if let Some(value) = &value.lambda_function_schedule_failed_event_details {
+        let converted_808 = lambda_function_schedule_failed_event_details_to_py(py, value)?;
+        result.set_item(
+            "lambda_function_schedule_failed_event_details",
+            converted_808,
+        )?;
+    } else {
+        result.set_item("lambda_function_schedule_failed_event_details", py.None())?;
+    }
+    if let Some(value) = &value.lambda_function_scheduled_event_details {
+        let converted_809 = lambda_function_scheduled_event_details_shared_to_py(py, value)?;
+        result.set_item("lambda_function_scheduled_event_details", converted_809)?;
+    } else {
+        result.set_item("lambda_function_scheduled_event_details", py.None())?;
+    }
+    if let Some(value) = &value.lambda_function_start_failed_event_details {
+        let converted_810 = lambda_function_start_failed_event_details_to_py(py, value)?;
+        result.set_item("lambda_function_start_failed_event_details", converted_810)?;
+    } else {
+        result.set_item("lambda_function_start_failed_event_details", py.None())?;
+    }
+    if let Some(value) = &value.lambda_function_succeeded_event_details {
+        let converted_811 = lambda_function_succeeded_event_details_shared_to_py(py, value)?;
+        result.set_item("lambda_function_succeeded_event_details", converted_811)?;
+    } else {
+        result.set_item("lambda_function_succeeded_event_details", py.None())?;
+    }
+    if let Some(value) = &value.lambda_function_timed_out_event_details {
+        let converted_812 = lambda_function_timed_out_event_details_to_py(py, value)?;
+        result.set_item("lambda_function_timed_out_event_details", converted_812)?;
+    } else {
+        result.set_item("lambda_function_timed_out_event_details", py.None())?;
+    }
+    if let Some(value) = &value.state_entered_event_details {
+        let converted_813 = state_entered_event_details_shared_to_py(py, value)?;
+        result.set_item("state_entered_event_details", converted_813)?;
+    } else {
+        result.set_item("state_entered_event_details", py.None())?;
+    }
+    if let Some(value) = &value.state_exited_event_details {
+        let converted_814 = state_exited_event_details_shared_to_py(py, value)?;
+        result.set_item("state_exited_event_details", converted_814)?;
+    } else {
+        result.set_item("state_exited_event_details", py.None())?;
+    }
+    if let Some(value) = &value.map_run_started_event_details {
+        let converted_815 = map_run_started_event_details_to_py(py, value)?;
+        result.set_item("map_run_started_event_details", converted_815)?;
+    } else {
+        result.set_item("map_run_started_event_details", py.None())?;
+    }
+    if let Some(value) = &value.map_run_failed_event_details {
+        let converted_816 = map_run_failed_event_details_to_py(py, value)?;
+        result.set_item("map_run_failed_event_details", converted_816)?;
+    } else {
+        result.set_item("map_run_failed_event_details", py.None())?;
+    }
+    if let Some(value) = &value.map_run_redriven_event_details {
+        let converted_817 = map_run_redriven_event_details_to_py(py, value)?;
+        result.set_item("map_run_redriven_event_details", converted_817)?;
+    } else {
+        result.set_item("map_run_redriven_event_details", py.None())?;
+    }
+    if let Some(value) = &value.evaluation_failed_event_details {
+        let converted_818 = evaluation_failed_event_details_to_py(py, value)?;
+        result.set_item("evaluation_failed_event_details", converted_818)?;
+    } else {
+        result.set_item("evaluation_failed_event_details", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "HistoryEvent", module = "rboto_sfn._native", frozen)]
 struct PyHistoryEvent {
-    inner: aws_sdk_sfn::types::HistoryEvent,
+    inner: Arc<SharedHistoryEvent>,
 }
 
 #[pymethods]
 impl PyHistoryEvent {
     #[getter]
     fn timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_723 = (&self.inner.timestamp).to_string().into_py_any(py)?;
-        Ok(converted_723)
+        let converted_737 = (&self.inner.timestamp).to_string().into_py_any(py)?;
+        Ok(converted_737)
     }
 
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_724 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_724)
+        let converted_738 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_738)
     }
 
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_725 = (&self.inner.id).to_owned().into_py_any(py)?;
-        Ok(converted_725)
+        let converted_739 = (&self.inner.id).to_owned().into_py_any(py)?;
+        Ok(converted_739)
     }
 
     #[getter]
     fn previous_event_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_726 = (&self.inner.previous_event_id).to_owned().into_py_any(py)?;
-        Ok(converted_726)
+        let converted_740 = (&self.inner.previous_event_id).to_owned().into_py_any(py)?;
+        Ok(converted_740)
     }
 
     #[getter]
     fn activity_failed_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.activity_failed_event_details {
-            let converted_727 = Py::new(
-                py,
-                PyActivityFailedEventDetails {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_727)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn activity_schedule_failed_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.activity_schedule_failed_event_details {
-            let converted_728 = Py::new(
-                py,
-                PyActivityScheduleFailedEventDetails {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_728)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn activity_scheduled_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.activity_scheduled_event_details {
-            let converted_729 = Py::new(
-                py,
-                PyActivityScheduledEventDetails {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_729)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn activity_started_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.activity_started_event_details {
-            let converted_730 = Py::new(
-                py,
-                PyActivityStartedEventDetails {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_730)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn activity_succeeded_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.activity_succeeded_event_details {
-            let converted_731 = Py::new(
-                py,
-                PyActivitySucceededEventDetails {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_731)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn activity_timed_out_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.activity_timed_out_event_details {
-            let converted_732 = Py::new(
-                py,
-                PyActivityTimedOutEventDetails {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_732)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn task_failed_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.task_failed_event_details {
-            let converted_733 = Py::new(
-                py,
-                PyTaskFailedEventDetails {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_733)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn task_scheduled_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.task_scheduled_event_details {
-            let converted_734 = Py::new(
-                py,
-                PyTaskScheduledEventDetails {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_734)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn task_start_failed_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.task_start_failed_event_details {
-            let converted_735 = Py::new(
-                py,
-                PyTaskStartFailedEventDetails {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_735)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn task_started_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.task_started_event_details {
-            let converted_736 = Py::new(
-                py,
-                PyTaskStartedEventDetails {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_736)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn task_submit_failed_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.task_submit_failed_event_details {
-            let converted_737 = Py::new(
-                py,
-                PyTaskSubmitFailedEventDetails {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_737)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn task_submitted_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.task_submitted_event_details {
-            let converted_738 = Py::new(
-                py,
-                PyTaskSubmittedEventDetails {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_738)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn task_succeeded_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.task_succeeded_event_details {
-            let converted_739 = Py::new(
-                py,
-                PyTaskSucceededEventDetails {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_739)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn task_timed_out_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.task_timed_out_event_details {
-            let converted_740 = Py::new(
-                py,
-                PyTaskTimedOutEventDetails {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_740)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn execution_failed_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.execution_failed_event_details {
             let converted_741 = Py::new(
                 py,
-                PyExecutionFailedEventDetails {
-                    inner: (value).to_owned(),
+                PyActivityFailedEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4404,12 +4779,12 @@ impl PyHistoryEvent {
     }
 
     #[getter]
-    fn execution_started_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.execution_started_event_details {
+    fn activity_schedule_failed_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.activity_schedule_failed_event_details {
             let converted_742 = Py::new(
                 py,
-                PyExecutionStartedEventDetails {
-                    inner: (value).to_owned(),
+                PyActivityScheduleFailedEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4420,12 +4795,12 @@ impl PyHistoryEvent {
     }
 
     #[getter]
-    fn execution_succeeded_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.execution_succeeded_event_details {
+    fn activity_scheduled_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.activity_scheduled_event_details {
             let converted_743 = Py::new(
                 py,
-                PyExecutionSucceededEventDetails {
-                    inner: (value).to_owned(),
+                PyActivityScheduledEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4436,12 +4811,12 @@ impl PyHistoryEvent {
     }
 
     #[getter]
-    fn execution_aborted_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.execution_aborted_event_details {
+    fn activity_started_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.activity_started_event_details {
             let converted_744 = Py::new(
                 py,
-                PyExecutionAbortedEventDetails {
-                    inner: (value).to_owned(),
+                PyActivityStartedEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4452,12 +4827,12 @@ impl PyHistoryEvent {
     }
 
     #[getter]
-    fn execution_timed_out_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.execution_timed_out_event_details {
+    fn activity_succeeded_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.activity_succeeded_event_details {
             let converted_745 = Py::new(
                 py,
-                PyExecutionTimedOutEventDetails {
-                    inner: (value).to_owned(),
+                PyActivitySucceededEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4468,12 +4843,12 @@ impl PyHistoryEvent {
     }
 
     #[getter]
-    fn execution_redriven_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.execution_redriven_event_details {
+    fn activity_timed_out_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.activity_timed_out_event_details {
             let converted_746 = Py::new(
                 py,
-                PyExecutionRedrivenEventDetails {
-                    inner: (value).to_owned(),
+                PyActivityTimedOutEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4484,12 +4859,12 @@ impl PyHistoryEvent {
     }
 
     #[getter]
-    fn map_state_started_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.map_state_started_event_details {
+    fn task_failed_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.task_failed_event_details {
             let converted_747 = Py::new(
                 py,
-                PyMapStateStartedEventDetails {
-                    inner: (value).to_owned(),
+                PyTaskFailedEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4500,12 +4875,12 @@ impl PyHistoryEvent {
     }
 
     #[getter]
-    fn map_iteration_started_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.map_iteration_started_event_details {
+    fn task_scheduled_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.task_scheduled_event_details {
             let converted_748 = Py::new(
                 py,
-                PyMapIterationEventDetails {
-                    inner: (value).to_owned(),
+                PyTaskScheduledEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4516,12 +4891,12 @@ impl PyHistoryEvent {
     }
 
     #[getter]
-    fn map_iteration_succeeded_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.map_iteration_succeeded_event_details {
+    fn task_start_failed_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.task_start_failed_event_details {
             let converted_749 = Py::new(
                 py,
-                PyMapIterationEventDetails {
-                    inner: (value).to_owned(),
+                PyTaskStartFailedEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4532,12 +4907,12 @@ impl PyHistoryEvent {
     }
 
     #[getter]
-    fn map_iteration_failed_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.map_iteration_failed_event_details {
+    fn task_started_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.task_started_event_details {
             let converted_750 = Py::new(
                 py,
-                PyMapIterationEventDetails {
-                    inner: (value).to_owned(),
+                PyTaskStartedEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4548,12 +4923,12 @@ impl PyHistoryEvent {
     }
 
     #[getter]
-    fn map_iteration_aborted_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.map_iteration_aborted_event_details {
+    fn task_submit_failed_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.task_submit_failed_event_details {
             let converted_751 = Py::new(
                 py,
-                PyMapIterationEventDetails {
-                    inner: (value).to_owned(),
+                PyTaskSubmitFailedEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4564,12 +4939,12 @@ impl PyHistoryEvent {
     }
 
     #[getter]
-    fn lambda_function_failed_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.lambda_function_failed_event_details {
+    fn task_submitted_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.task_submitted_event_details {
             let converted_752 = Py::new(
                 py,
-                PyLambdaFunctionFailedEventDetails {
-                    inner: (value).to_owned(),
+                PyTaskSubmittedEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4580,12 +4955,12 @@ impl PyHistoryEvent {
     }
 
     #[getter]
-    fn lambda_function_schedule_failed_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.lambda_function_schedule_failed_event_details {
+    fn task_succeeded_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.task_succeeded_event_details {
             let converted_753 = Py::new(
                 py,
-                PyLambdaFunctionScheduleFailedEventDetails {
-                    inner: (value).to_owned(),
+                PyTaskSucceededEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4596,12 +4971,12 @@ impl PyHistoryEvent {
     }
 
     #[getter]
-    fn lambda_function_scheduled_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.lambda_function_scheduled_event_details {
+    fn task_timed_out_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.task_timed_out_event_details {
             let converted_754 = Py::new(
                 py,
-                PyLambdaFunctionScheduledEventDetails {
-                    inner: (value).to_owned(),
+                PyTaskTimedOutEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4612,12 +4987,12 @@ impl PyHistoryEvent {
     }
 
     #[getter]
-    fn lambda_function_start_failed_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.lambda_function_start_failed_event_details {
+    fn execution_failed_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.execution_failed_event_details {
             let converted_755 = Py::new(
                 py,
-                PyLambdaFunctionStartFailedEventDetails {
-                    inner: (value).to_owned(),
+                PyExecutionFailedEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4628,12 +5003,12 @@ impl PyHistoryEvent {
     }
 
     #[getter]
-    fn lambda_function_succeeded_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.lambda_function_succeeded_event_details {
+    fn execution_started_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.execution_started_event_details {
             let converted_756 = Py::new(
                 py,
-                PyLambdaFunctionSucceededEventDetails {
-                    inner: (value).to_owned(),
+                PyExecutionStartedEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4644,12 +5019,12 @@ impl PyHistoryEvent {
     }
 
     #[getter]
-    fn lambda_function_timed_out_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.lambda_function_timed_out_event_details {
+    fn execution_succeeded_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.execution_succeeded_event_details {
             let converted_757 = Py::new(
                 py,
-                PyLambdaFunctionTimedOutEventDetails {
-                    inner: (value).to_owned(),
+                PyExecutionSucceededEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4660,12 +5035,12 @@ impl PyHistoryEvent {
     }
 
     #[getter]
-    fn state_entered_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.state_entered_event_details {
+    fn execution_aborted_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.execution_aborted_event_details {
             let converted_758 = Py::new(
                 py,
-                PyStateEnteredEventDetails {
-                    inner: (value).to_owned(),
+                PyExecutionAbortedEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4676,12 +5051,12 @@ impl PyHistoryEvent {
     }
 
     #[getter]
-    fn state_exited_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.state_exited_event_details {
+    fn execution_timed_out_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.execution_timed_out_event_details {
             let converted_759 = Py::new(
                 py,
-                PyStateExitedEventDetails {
-                    inner: (value).to_owned(),
+                PyExecutionTimedOutEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4692,12 +5067,12 @@ impl PyHistoryEvent {
     }
 
     #[getter]
-    fn map_run_started_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.map_run_started_event_details {
+    fn execution_redriven_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.execution_redriven_event_details {
             let converted_760 = Py::new(
                 py,
-                PyMapRunStartedEventDetails {
-                    inner: (value).to_owned(),
+                PyExecutionRedrivenEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4708,12 +5083,12 @@ impl PyHistoryEvent {
     }
 
     #[getter]
-    fn map_run_failed_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.map_run_failed_event_details {
+    fn map_state_started_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.map_state_started_event_details {
             let converted_761 = Py::new(
                 py,
-                PyMapRunFailedEventDetails {
-                    inner: (value).to_owned(),
+                PyMapStateStartedEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4724,12 +5099,12 @@ impl PyHistoryEvent {
     }
 
     #[getter]
-    fn map_run_redriven_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.map_run_redriven_event_details {
+    fn map_iteration_started_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.map_iteration_started_event_details {
             let converted_762 = Py::new(
                 py,
-                PyMapRunRedrivenEventDetails {
-                    inner: (value).to_owned(),
+                PyMapIterationEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4740,12 +5115,12 @@ impl PyHistoryEvent {
     }
 
     #[getter]
-    fn evaluation_failed_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.evaluation_failed_event_details {
+    fn map_iteration_succeeded_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.map_iteration_succeeded_event_details {
             let converted_763 = Py::new(
                 py,
-                PyEvaluationFailedEventDetails {
-                    inner: (value).to_owned(),
+                PyMapIterationEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4755,44 +5130,32 @@ impl PyHistoryEvent {
         }
     }
 
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        history_event_to_py(py, &self.inner)
-    }
-}
-
-#[pyclass(
-    name = "HistoryEventExecutionDataDetails",
-    module = "rboto_sfn._native",
-    frozen
-)]
-struct PyHistoryEventExecutionDataDetails {
-    inner: aws_sdk_sfn::types::HistoryEventExecutionDataDetails,
-}
-
-#[pymethods]
-impl PyHistoryEventExecutionDataDetails {
     #[getter]
-    fn truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_764 = (&self.inner.truncated).to_owned().into_py_any(py)?;
-        Ok(converted_764)
+    fn map_iteration_failed_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.map_iteration_failed_event_details {
+            let converted_764 = Py::new(
+                py,
+                PyMapIterationEventDetails {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_764)
+        } else {
+            Ok(py.None())
+        }
     }
 
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        history_event_execution_data_details_to_py(py, &self.inner)
-    }
-}
-
-#[pyclass(name = "InspectionData", module = "rboto_sfn._native", frozen)]
-struct PyInspectionData {
-    inner: aws_sdk_sfn::types::InspectionData,
-}
-
-#[pymethods]
-impl PyInspectionData {
     #[getter]
-    fn input(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.input {
-            let converted_765 = (value).as_str().into_py_any(py)?;
+    fn map_iteration_aborted_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.map_iteration_aborted_event_details {
+            let converted_765 = Py::new(
+                py,
+                PyMapIterationEventDetails {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
             Ok(converted_765)
         } else {
             Ok(py.None())
@@ -4800,9 +5163,15 @@ impl PyInspectionData {
     }
 
     #[getter]
-    fn after_arguments(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.after_arguments {
-            let converted_766 = (value).as_str().into_py_any(py)?;
+    fn lambda_function_failed_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.lambda_function_failed_event_details {
+            let converted_766 = Py::new(
+                py,
+                PyLambdaFunctionFailedEventDetails {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
             Ok(converted_766)
         } else {
             Ok(py.None())
@@ -4810,9 +5179,15 @@ impl PyInspectionData {
     }
 
     #[getter]
-    fn after_input_path(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.after_input_path {
-            let converted_767 = (value).as_str().into_py_any(py)?;
+    fn lambda_function_schedule_failed_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.lambda_function_schedule_failed_event_details {
+            let converted_767 = Py::new(
+                py,
+                PyLambdaFunctionScheduleFailedEventDetails {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
             Ok(converted_767)
         } else {
             Ok(py.None())
@@ -4820,9 +5195,15 @@ impl PyInspectionData {
     }
 
     #[getter]
-    fn after_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.after_parameters {
-            let converted_768 = (value).as_str().into_py_any(py)?;
+    fn lambda_function_scheduled_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.lambda_function_scheduled_event_details {
+            let converted_768 = Py::new(
+                py,
+                PyLambdaFunctionScheduledEventDetails {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
             Ok(converted_768)
         } else {
             Ok(py.None())
@@ -4830,9 +5211,15 @@ impl PyInspectionData {
     }
 
     #[getter]
-    fn result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.result {
-            let converted_769 = (value).as_str().into_py_any(py)?;
+    fn lambda_function_start_failed_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.lambda_function_start_failed_event_details {
+            let converted_769 = Py::new(
+                py,
+                PyLambdaFunctionStartFailedEventDetails {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
             Ok(converted_769)
         } else {
             Ok(py.None())
@@ -4840,9 +5227,15 @@ impl PyInspectionData {
     }
 
     #[getter]
-    fn after_result_selector(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.after_result_selector {
-            let converted_770 = (value).as_str().into_py_any(py)?;
+    fn lambda_function_succeeded_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.lambda_function_succeeded_event_details {
+            let converted_770 = Py::new(
+                py,
+                PyLambdaFunctionSucceededEventDetails {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
             Ok(converted_770)
         } else {
             Ok(py.None())
@@ -4850,9 +5243,15 @@ impl PyInspectionData {
     }
 
     #[getter]
-    fn after_result_path(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.after_result_path {
-            let converted_771 = (value).as_str().into_py_any(py)?;
+    fn lambda_function_timed_out_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.lambda_function_timed_out_event_details {
+            let converted_771 = Py::new(
+                py,
+                PyLambdaFunctionTimedOutEventDetails {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
             Ok(converted_771)
         } else {
             Ok(py.None())
@@ -4860,12 +5259,12 @@ impl PyInspectionData {
     }
 
     #[getter]
-    fn request(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.request {
+    fn state_entered_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.state_entered_event_details {
             let converted_772 = Py::new(
                 py,
-                PyInspectionDataRequest {
-                    inner: (value).to_owned(),
+                PyStateEnteredEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4876,12 +5275,12 @@ impl PyInspectionData {
     }
 
     #[getter]
-    fn response(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.response {
+    fn state_exited_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.state_exited_event_details {
             let converted_773 = Py::new(
                 py,
-                PyInspectionDataResponse {
-                    inner: (value).to_owned(),
+                PyStateExitedEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4892,9 +5291,15 @@ impl PyInspectionData {
     }
 
     #[getter]
-    fn variables(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.variables {
-            let converted_774 = (value).as_str().into_py_any(py)?;
+    fn map_run_started_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.map_run_started_event_details {
+            let converted_774 = Py::new(
+                py,
+                PyMapRunStartedEventDetails {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
             Ok(converted_774)
         } else {
             Ok(py.None())
@@ -4902,12 +5307,12 @@ impl PyInspectionData {
     }
 
     #[getter]
-    fn error_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.error_details {
+    fn map_run_failed_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.map_run_failed_event_details {
             let converted_775 = Py::new(
                 py,
-                PyInspectionErrorDetails {
-                    inner: (value).to_owned(),
+                PyMapRunFailedEventDetails {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -4918,10 +5323,367 @@ impl PyInspectionData {
     }
 
     #[getter]
+    fn map_run_redriven_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.map_run_redriven_event_details {
+            let converted_776 = Py::new(
+                py,
+                PyMapRunRedrivenEventDetails {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_776)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn evaluation_failed_event_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.evaluation_failed_event_details {
+            let converted_777 = Py::new(
+                py,
+                PyEvaluationFailedEventDetails {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_777)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        history_event_shared_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "HistoryEventExecutionDataDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
+struct PyHistoryEventExecutionDataDetails {
+    inner: Arc<aws_sdk_sfn::types::HistoryEventExecutionDataDetails>,
+}
+
+#[pymethods]
+impl PyHistoryEventExecutionDataDetails {
+    #[getter]
+    fn truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_819 = (&self.inner.truncated).to_owned().into_py_any(py)?;
+        Ok(converted_819)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        history_event_execution_data_details_to_py(py, &self.inner)
+    }
+}
+
+struct SharedInspectionData {
+    input: Option<::std::string::String>,
+    after_arguments: Option<::std::string::String>,
+    after_input_path: Option<::std::string::String>,
+    after_parameters: Option<::std::string::String>,
+    result: Option<::std::string::String>,
+    after_result_selector: Option<::std::string::String>,
+    after_result_path: Option<::std::string::String>,
+    request: Option<Arc<aws_sdk_sfn::types::InspectionDataRequest>>,
+    response: Option<Arc<aws_sdk_sfn::types::InspectionDataResponse>>,
+    variables: Option<::std::string::String>,
+    error_details: Option<Arc<aws_sdk_sfn::types::InspectionErrorDetails>>,
+    after_items_path: Option<::std::string::String>,
+    after_item_selector: Option<::std::string::String>,
+    after_item_batcher: Option<::std::string::String>,
+    after_items_pointer: Option<::std::string::String>,
+    tolerated_failure_count: Option<i32>,
+    tolerated_failure_percentage: Option<f32>,
+    max_concurrency: Option<i32>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::types::InspectionData> for SharedInspectionData {
+    fn from(value: aws_sdk_sfn::types::InspectionData) -> Self {
+        Self {
+            input: value.input,
+            after_arguments: value.after_arguments,
+            after_input_path: value.after_input_path,
+            after_parameters: value.after_parameters,
+            result: value.result,
+            after_result_selector: value.after_result_selector,
+            after_result_path: value.after_result_path,
+            request: value.request.map(|item| Arc::new(item)),
+            response: value.response.map(|item| Arc::new(item)),
+            variables: value.variables,
+            error_details: value.error_details.map(|item| Arc::new(item)),
+            after_items_path: value.after_items_path,
+            after_item_selector: value.after_item_selector,
+            after_item_batcher: value.after_item_batcher,
+            after_items_pointer: value.after_items_pointer,
+            tolerated_failure_count: value.tolerated_failure_count,
+            tolerated_failure_percentage: value.tolerated_failure_percentage,
+            max_concurrency: value.max_concurrency,
+        }
+    }
+}
+
+fn inspection_data_shared_to_py(
+    py: Python<'_>,
+    value: &SharedInspectionData,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.input {
+        let converted_838 = (value).as_str().into_py_any(py)?;
+        result.set_item("input", converted_838)?;
+    } else {
+        result.set_item("input", py.None())?;
+    }
+    if let Some(value) = &value.after_arguments {
+        let converted_839 = (value).as_str().into_py_any(py)?;
+        result.set_item("after_arguments", converted_839)?;
+    } else {
+        result.set_item("after_arguments", py.None())?;
+    }
+    if let Some(value) = &value.after_input_path {
+        let converted_840 = (value).as_str().into_py_any(py)?;
+        result.set_item("after_input_path", converted_840)?;
+    } else {
+        result.set_item("after_input_path", py.None())?;
+    }
+    if let Some(value) = &value.after_parameters {
+        let converted_841 = (value).as_str().into_py_any(py)?;
+        result.set_item("after_parameters", converted_841)?;
+    } else {
+        result.set_item("after_parameters", py.None())?;
+    }
+    if let Some(value) = &value.result {
+        let converted_842 = (value).as_str().into_py_any(py)?;
+        result.set_item("result", converted_842)?;
+    } else {
+        result.set_item("result", py.None())?;
+    }
+    if let Some(value) = &value.after_result_selector {
+        let converted_843 = (value).as_str().into_py_any(py)?;
+        result.set_item("after_result_selector", converted_843)?;
+    } else {
+        result.set_item("after_result_selector", py.None())?;
+    }
+    if let Some(value) = &value.after_result_path {
+        let converted_844 = (value).as_str().into_py_any(py)?;
+        result.set_item("after_result_path", converted_844)?;
+    } else {
+        result.set_item("after_result_path", py.None())?;
+    }
+    if let Some(value) = &value.request {
+        let converted_845 = inspection_data_request_to_py(py, value)?;
+        result.set_item("request", converted_845)?;
+    } else {
+        result.set_item("request", py.None())?;
+    }
+    if let Some(value) = &value.response {
+        let converted_846 = inspection_data_response_to_py(py, value)?;
+        result.set_item("response", converted_846)?;
+    } else {
+        result.set_item("response", py.None())?;
+    }
+    if let Some(value) = &value.variables {
+        let converted_847 = (value).as_str().into_py_any(py)?;
+        result.set_item("variables", converted_847)?;
+    } else {
+        result.set_item("variables", py.None())?;
+    }
+    if let Some(value) = &value.error_details {
+        let converted_848 = inspection_error_details_to_py(py, value)?;
+        result.set_item("error_details", converted_848)?;
+    } else {
+        result.set_item("error_details", py.None())?;
+    }
+    if let Some(value) = &value.after_items_path {
+        let converted_849 = (value).as_str().into_py_any(py)?;
+        result.set_item("after_items_path", converted_849)?;
+    } else {
+        result.set_item("after_items_path", py.None())?;
+    }
+    if let Some(value) = &value.after_item_selector {
+        let converted_850 = (value).as_str().into_py_any(py)?;
+        result.set_item("after_item_selector", converted_850)?;
+    } else {
+        result.set_item("after_item_selector", py.None())?;
+    }
+    if let Some(value) = &value.after_item_batcher {
+        let converted_851 = (value).as_str().into_py_any(py)?;
+        result.set_item("after_item_batcher", converted_851)?;
+    } else {
+        result.set_item("after_item_batcher", py.None())?;
+    }
+    if let Some(value) = &value.after_items_pointer {
+        let converted_852 = (value).as_str().into_py_any(py)?;
+        result.set_item("after_items_pointer", converted_852)?;
+    } else {
+        result.set_item("after_items_pointer", py.None())?;
+    }
+    if let Some(value) = &value.tolerated_failure_count {
+        let converted_853 = (value).to_owned().into_py_any(py)?;
+        result.set_item("tolerated_failure_count", converted_853)?;
+    } else {
+        result.set_item("tolerated_failure_count", py.None())?;
+    }
+    if let Some(value) = &value.tolerated_failure_percentage {
+        let converted_854 = (value).to_owned().into_py_any(py)?;
+        result.set_item("tolerated_failure_percentage", converted_854)?;
+    } else {
+        result.set_item("tolerated_failure_percentage", py.None())?;
+    }
+    if let Some(value) = &value.max_concurrency {
+        let converted_855 = (value).to_owned().into_py_any(py)?;
+        result.set_item("max_concurrency", converted_855)?;
+    } else {
+        result.set_item("max_concurrency", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+#[pyclass(name = "InspectionData", module = "rboto_sfn._native", frozen)]
+struct PyInspectionData {
+    inner: Arc<SharedInspectionData>,
+}
+
+#[pymethods]
+impl PyInspectionData {
+    #[getter]
+    fn input(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.input {
+            let converted_820 = (value).as_str().into_py_any(py)?;
+            Ok(converted_820)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn after_arguments(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.after_arguments {
+            let converted_821 = (value).as_str().into_py_any(py)?;
+            Ok(converted_821)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn after_input_path(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.after_input_path {
+            let converted_822 = (value).as_str().into_py_any(py)?;
+            Ok(converted_822)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn after_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.after_parameters {
+            let converted_823 = (value).as_str().into_py_any(py)?;
+            Ok(converted_823)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.result {
+            let converted_824 = (value).as_str().into_py_any(py)?;
+            Ok(converted_824)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn after_result_selector(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.after_result_selector {
+            let converted_825 = (value).as_str().into_py_any(py)?;
+            Ok(converted_825)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn after_result_path(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.after_result_path {
+            let converted_826 = (value).as_str().into_py_any(py)?;
+            Ok(converted_826)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn request(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request {
+            let converted_827 = Py::new(
+                py,
+                PyInspectionDataRequest {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_827)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn response(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.response {
+            let converted_828 = Py::new(
+                py,
+                PyInspectionDataResponse {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_828)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn variables(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.variables {
+            let converted_829 = (value).as_str().into_py_any(py)?;
+            Ok(converted_829)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn error_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.error_details {
+            let converted_830 = Py::new(
+                py,
+                PyInspectionErrorDetails {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_830)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
     fn after_items_path(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.after_items_path {
-            let converted_776 = (value).as_str().into_py_any(py)?;
-            Ok(converted_776)
+            let converted_831 = (value).as_str().into_py_any(py)?;
+            Ok(converted_831)
         } else {
             Ok(py.None())
         }
@@ -4930,8 +5692,8 @@ impl PyInspectionData {
     #[getter]
     fn after_item_selector(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.after_item_selector {
-            let converted_777 = (value).as_str().into_py_any(py)?;
-            Ok(converted_777)
+            let converted_832 = (value).as_str().into_py_any(py)?;
+            Ok(converted_832)
         } else {
             Ok(py.None())
         }
@@ -4940,8 +5702,8 @@ impl PyInspectionData {
     #[getter]
     fn after_item_batcher(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.after_item_batcher {
-            let converted_778 = (value).as_str().into_py_any(py)?;
-            Ok(converted_778)
+            let converted_833 = (value).as_str().into_py_any(py)?;
+            Ok(converted_833)
         } else {
             Ok(py.None())
         }
@@ -4950,8 +5712,8 @@ impl PyInspectionData {
     #[getter]
     fn after_items_pointer(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.after_items_pointer {
-            let converted_779 = (value).as_str().into_py_any(py)?;
-            Ok(converted_779)
+            let converted_834 = (value).as_str().into_py_any(py)?;
+            Ok(converted_834)
         } else {
             Ok(py.None())
         }
@@ -4960,8 +5722,8 @@ impl PyInspectionData {
     #[getter]
     fn tolerated_failure_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tolerated_failure_count {
-            let converted_780 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_780)
+            let converted_835 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_835)
         } else {
             Ok(py.None())
         }
@@ -4970,8 +5732,8 @@ impl PyInspectionData {
     #[getter]
     fn tolerated_failure_percentage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tolerated_failure_percentage {
-            let converted_781 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_781)
+            let converted_836 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_836)
         } else {
             Ok(py.None())
         }
@@ -4980,21 +5742,21 @@ impl PyInspectionData {
     #[getter]
     fn max_concurrency(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.max_concurrency {
-            let converted_782 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_782)
+            let converted_837 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_837)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        inspection_data_to_py(py, &self.inner)
+        inspection_data_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "InspectionDataRequest", module = "rboto_sfn._native", frozen)]
 struct PyInspectionDataRequest {
-    inner: aws_sdk_sfn::types::InspectionDataRequest,
+    inner: Arc<aws_sdk_sfn::types::InspectionDataRequest>,
 }
 
 #[pymethods]
@@ -5002,8 +5764,8 @@ impl PyInspectionDataRequest {
     #[getter]
     fn protocol(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.protocol {
-            let converted_783 = (value).as_str().into_py_any(py)?;
-            Ok(converted_783)
+            let converted_856 = (value).as_str().into_py_any(py)?;
+            Ok(converted_856)
         } else {
             Ok(py.None())
         }
@@ -5012,8 +5774,8 @@ impl PyInspectionDataRequest {
     #[getter]
     fn method(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.method {
-            let converted_784 = (value).as_str().into_py_any(py)?;
-            Ok(converted_784)
+            let converted_857 = (value).as_str().into_py_any(py)?;
+            Ok(converted_857)
         } else {
             Ok(py.None())
         }
@@ -5022,8 +5784,8 @@ impl PyInspectionDataRequest {
     #[getter]
     fn url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.url {
-            let converted_785 = (value).as_str().into_py_any(py)?;
-            Ok(converted_785)
+            let converted_858 = (value).as_str().into_py_any(py)?;
+            Ok(converted_858)
         } else {
             Ok(py.None())
         }
@@ -5032,8 +5794,8 @@ impl PyInspectionDataRequest {
     #[getter]
     fn headers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.headers {
-            let converted_786 = (value).as_str().into_py_any(py)?;
-            Ok(converted_786)
+            let converted_859 = (value).as_str().into_py_any(py)?;
+            Ok(converted_859)
         } else {
             Ok(py.None())
         }
@@ -5042,8 +5804,8 @@ impl PyInspectionDataRequest {
     #[getter]
     fn body(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.body {
-            let converted_787 = (value).as_str().into_py_any(py)?;
-            Ok(converted_787)
+            let converted_860 = (value).as_str().into_py_any(py)?;
+            Ok(converted_860)
         } else {
             Ok(py.None())
         }
@@ -5056,7 +5818,7 @@ impl PyInspectionDataRequest {
 
 #[pyclass(name = "InspectionDataResponse", module = "rboto_sfn._native", frozen)]
 struct PyInspectionDataResponse {
-    inner: aws_sdk_sfn::types::InspectionDataResponse,
+    inner: Arc<aws_sdk_sfn::types::InspectionDataResponse>,
 }
 
 #[pymethods]
@@ -5064,8 +5826,8 @@ impl PyInspectionDataResponse {
     #[getter]
     fn protocol(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.protocol {
-            let converted_788 = (value).as_str().into_py_any(py)?;
-            Ok(converted_788)
+            let converted_861 = (value).as_str().into_py_any(py)?;
+            Ok(converted_861)
         } else {
             Ok(py.None())
         }
@@ -5074,8 +5836,8 @@ impl PyInspectionDataResponse {
     #[getter]
     fn status_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status_code {
-            let converted_789 = (value).as_str().into_py_any(py)?;
-            Ok(converted_789)
+            let converted_862 = (value).as_str().into_py_any(py)?;
+            Ok(converted_862)
         } else {
             Ok(py.None())
         }
@@ -5084,8 +5846,8 @@ impl PyInspectionDataResponse {
     #[getter]
     fn status_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status_message {
-            let converted_790 = (value).as_str().into_py_any(py)?;
-            Ok(converted_790)
+            let converted_863 = (value).as_str().into_py_any(py)?;
+            Ok(converted_863)
         } else {
             Ok(py.None())
         }
@@ -5094,8 +5856,8 @@ impl PyInspectionDataResponse {
     #[getter]
     fn headers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.headers {
-            let converted_791 = (value).as_str().into_py_any(py)?;
-            Ok(converted_791)
+            let converted_864 = (value).as_str().into_py_any(py)?;
+            Ok(converted_864)
         } else {
             Ok(py.None())
         }
@@ -5104,8 +5866,8 @@ impl PyInspectionDataResponse {
     #[getter]
     fn body(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.body {
-            let converted_792 = (value).as_str().into_py_any(py)?;
-            Ok(converted_792)
+            let converted_865 = (value).as_str().into_py_any(py)?;
+            Ok(converted_865)
         } else {
             Ok(py.None())
         }
@@ -5118,7 +5880,7 @@ impl PyInspectionDataResponse {
 
 #[pyclass(name = "InspectionErrorDetails", module = "rboto_sfn._native", frozen)]
 struct PyInspectionErrorDetails {
-    inner: aws_sdk_sfn::types::InspectionErrorDetails,
+    inner: Arc<aws_sdk_sfn::types::InspectionErrorDetails>,
 }
 
 #[pymethods]
@@ -5126,8 +5888,8 @@ impl PyInspectionErrorDetails {
     #[getter]
     fn catch_index(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.catch_index {
-            let converted_793 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_793)
+            let converted_866 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_866)
         } else {
             Ok(py.None())
         }
@@ -5136,8 +5898,8 @@ impl PyInspectionErrorDetails {
     #[getter]
     fn retry_index(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.retry_index {
-            let converted_794 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_794)
+            let converted_867 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_867)
         } else {
             Ok(py.None())
         }
@@ -5146,8 +5908,8 @@ impl PyInspectionErrorDetails {
     #[getter]
     fn retry_backoff_interval_seconds(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.retry_backoff_interval_seconds {
-            let converted_795 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_795)
+            let converted_868 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_868)
         } else {
             Ok(py.None())
         }
@@ -5164,7 +5926,7 @@ impl PyInspectionErrorDetails {
     frozen
 )]
 struct PyLambdaFunctionFailedEventDetails {
-    inner: aws_sdk_sfn::types::LambdaFunctionFailedEventDetails,
+    inner: Arc<aws_sdk_sfn::types::LambdaFunctionFailedEventDetails>,
 }
 
 #[pymethods]
@@ -5172,8 +5934,8 @@ impl PyLambdaFunctionFailedEventDetails {
     #[getter]
     fn error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error {
-            let converted_796 = (value).as_str().into_py_any(py)?;
-            Ok(converted_796)
+            let converted_869 = (value).as_str().into_py_any(py)?;
+            Ok(converted_869)
         } else {
             Ok(py.None())
         }
@@ -5182,8 +5944,8 @@ impl PyLambdaFunctionFailedEventDetails {
     #[getter]
     fn cause(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cause {
-            let converted_797 = (value).as_str().into_py_any(py)?;
-            Ok(converted_797)
+            let converted_870 = (value).as_str().into_py_any(py)?;
+            Ok(converted_870)
         } else {
             Ok(py.None())
         }
@@ -5200,7 +5962,7 @@ impl PyLambdaFunctionFailedEventDetails {
     frozen
 )]
 struct PyLambdaFunctionScheduleFailedEventDetails {
-    inner: aws_sdk_sfn::types::LambdaFunctionScheduleFailedEventDetails,
+    inner: Arc<aws_sdk_sfn::types::LambdaFunctionScheduleFailedEventDetails>,
 }
 
 #[pymethods]
@@ -5208,8 +5970,8 @@ impl PyLambdaFunctionScheduleFailedEventDetails {
     #[getter]
     fn error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error {
-            let converted_798 = (value).as_str().into_py_any(py)?;
-            Ok(converted_798)
+            let converted_871 = (value).as_str().into_py_any(py)?;
+            Ok(converted_871)
         } else {
             Ok(py.None())
         }
@@ -5218,8 +5980,8 @@ impl PyLambdaFunctionScheduleFailedEventDetails {
     #[getter]
     fn cause(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cause {
-            let converted_799 = (value).as_str().into_py_any(py)?;
-            Ok(converted_799)
+            let converted_872 = (value).as_str().into_py_any(py)?;
+            Ok(converted_872)
         } else {
             Ok(py.None())
         }
@@ -5230,28 +5992,85 @@ impl PyLambdaFunctionScheduleFailedEventDetails {
     }
 }
 
+struct SharedLambdaFunctionScheduledEventDetails {
+    resource: ::std::string::String,
+    input: Option<::std::string::String>,
+    input_details: Option<Arc<aws_sdk_sfn::types::HistoryEventExecutionDataDetails>>,
+    timeout_in_seconds: Option<i64>,
+    task_credentials: Option<Arc<aws_sdk_sfn::types::TaskCredentials>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::types::LambdaFunctionScheduledEventDetails>
+    for SharedLambdaFunctionScheduledEventDetails
+{
+    fn from(value: aws_sdk_sfn::types::LambdaFunctionScheduledEventDetails) -> Self {
+        Self {
+            resource: value.resource,
+            input: value.input,
+            input_details: value.input_details.map(|item| Arc::new(item)),
+            timeout_in_seconds: value.timeout_in_seconds,
+            task_credentials: value.task_credentials.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn lambda_function_scheduled_event_details_shared_to_py(
+    py: Python<'_>,
+    value: &SharedLambdaFunctionScheduledEventDetails,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_878 = (&value.resource).as_str().into_py_any(py)?;
+    result.set_item("resource", converted_878)?;
+    if let Some(value) = &value.input {
+        let converted_879 = (value).as_str().into_py_any(py)?;
+        result.set_item("input", converted_879)?;
+    } else {
+        result.set_item("input", py.None())?;
+    }
+    if let Some(value) = &value.input_details {
+        let converted_880 = history_event_execution_data_details_to_py(py, value)?;
+        result.set_item("input_details", converted_880)?;
+    } else {
+        result.set_item("input_details", py.None())?;
+    }
+    if let Some(value) = &value.timeout_in_seconds {
+        let converted_881 = (value).to_owned().into_py_any(py)?;
+        result.set_item("timeout_in_seconds", converted_881)?;
+    } else {
+        result.set_item("timeout_in_seconds", py.None())?;
+    }
+    if let Some(value) = &value.task_credentials {
+        let converted_882 = task_credentials_to_py(py, value)?;
+        result.set_item("task_credentials", converted_882)?;
+    } else {
+        result.set_item("task_credentials", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "LambdaFunctionScheduledEventDetails",
     module = "rboto_sfn._native",
     frozen
 )]
 struct PyLambdaFunctionScheduledEventDetails {
-    inner: aws_sdk_sfn::types::LambdaFunctionScheduledEventDetails,
+    inner: Arc<SharedLambdaFunctionScheduledEventDetails>,
 }
 
 #[pymethods]
 impl PyLambdaFunctionScheduledEventDetails {
     #[getter]
     fn resource(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_800 = (&self.inner.resource).as_str().into_py_any(py)?;
-        Ok(converted_800)
+        let converted_873 = (&self.inner.resource).as_str().into_py_any(py)?;
+        Ok(converted_873)
     }
 
     #[getter]
     fn input(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input {
-            let converted_801 = (value).as_str().into_py_any(py)?;
-            Ok(converted_801)
+            let converted_874 = (value).as_str().into_py_any(py)?;
+            Ok(converted_874)
         } else {
             Ok(py.None())
         }
@@ -5260,14 +6079,14 @@ impl PyLambdaFunctionScheduledEventDetails {
     #[getter]
     fn input_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_details {
-            let converted_802 = Py::new(
+            let converted_875 = Py::new(
                 py,
                 PyHistoryEventExecutionDataDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_802)
+            Ok(converted_875)
         } else {
             Ok(py.None())
         }
@@ -5276,8 +6095,8 @@ impl PyLambdaFunctionScheduledEventDetails {
     #[getter]
     fn timeout_in_seconds(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.timeout_in_seconds {
-            let converted_803 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_803)
+            let converted_876 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_876)
         } else {
             Ok(py.None())
         }
@@ -5286,21 +6105,21 @@ impl PyLambdaFunctionScheduledEventDetails {
     #[getter]
     fn task_credentials(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.task_credentials {
-            let converted_804 = Py::new(
+            let converted_877 = Py::new(
                 py,
                 PyTaskCredentials {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_804)
+            Ok(converted_877)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        lambda_function_scheduled_event_details_to_py(py, &self.inner)
+        lambda_function_scheduled_event_details_shared_to_py(py, &self.inner)
     }
 }
 
@@ -5310,7 +6129,7 @@ impl PyLambdaFunctionScheduledEventDetails {
     frozen
 )]
 struct PyLambdaFunctionStartFailedEventDetails {
-    inner: aws_sdk_sfn::types::LambdaFunctionStartFailedEventDetails,
+    inner: Arc<aws_sdk_sfn::types::LambdaFunctionStartFailedEventDetails>,
 }
 
 #[pymethods]
@@ -5318,8 +6137,8 @@ impl PyLambdaFunctionStartFailedEventDetails {
     #[getter]
     fn error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error {
-            let converted_805 = (value).as_str().into_py_any(py)?;
-            Ok(converted_805)
+            let converted_883 = (value).as_str().into_py_any(py)?;
+            Ok(converted_883)
         } else {
             Ok(py.None())
         }
@@ -5328,8 +6147,8 @@ impl PyLambdaFunctionStartFailedEventDetails {
     #[getter]
     fn cause(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cause {
-            let converted_806 = (value).as_str().into_py_any(py)?;
-            Ok(converted_806)
+            let converted_884 = (value).as_str().into_py_any(py)?;
+            Ok(converted_884)
         } else {
             Ok(py.None())
         }
@@ -5340,13 +6159,50 @@ impl PyLambdaFunctionStartFailedEventDetails {
     }
 }
 
+struct SharedLambdaFunctionSucceededEventDetails {
+    output: Option<::std::string::String>,
+    output_details: Option<Arc<aws_sdk_sfn::types::HistoryEventExecutionDataDetails>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::types::LambdaFunctionSucceededEventDetails>
+    for SharedLambdaFunctionSucceededEventDetails
+{
+    fn from(value: aws_sdk_sfn::types::LambdaFunctionSucceededEventDetails) -> Self {
+        Self {
+            output: value.output,
+            output_details: value.output_details.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn lambda_function_succeeded_event_details_shared_to_py(
+    py: Python<'_>,
+    value: &SharedLambdaFunctionSucceededEventDetails,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.output {
+        let converted_887 = (value).as_str().into_py_any(py)?;
+        result.set_item("output", converted_887)?;
+    } else {
+        result.set_item("output", py.None())?;
+    }
+    if let Some(value) = &value.output_details {
+        let converted_888 = history_event_execution_data_details_to_py(py, value)?;
+        result.set_item("output_details", converted_888)?;
+    } else {
+        result.set_item("output_details", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "LambdaFunctionSucceededEventDetails",
     module = "rboto_sfn._native",
     frozen
 )]
 struct PyLambdaFunctionSucceededEventDetails {
-    inner: aws_sdk_sfn::types::LambdaFunctionSucceededEventDetails,
+    inner: Arc<SharedLambdaFunctionSucceededEventDetails>,
 }
 
 #[pymethods]
@@ -5354,8 +6210,8 @@ impl PyLambdaFunctionSucceededEventDetails {
     #[getter]
     fn output(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output {
-            let converted_807 = (value).as_str().into_py_any(py)?;
-            Ok(converted_807)
+            let converted_885 = (value).as_str().into_py_any(py)?;
+            Ok(converted_885)
         } else {
             Ok(py.None())
         }
@@ -5364,21 +6220,21 @@ impl PyLambdaFunctionSucceededEventDetails {
     #[getter]
     fn output_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_details {
-            let converted_808 = Py::new(
+            let converted_886 = Py::new(
                 py,
                 PyHistoryEventExecutionDataDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_808)
+            Ok(converted_886)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        lambda_function_succeeded_event_details_to_py(py, &self.inner)
+        lambda_function_succeeded_event_details_shared_to_py(py, &self.inner)
     }
 }
 
@@ -5388,7 +6244,7 @@ impl PyLambdaFunctionSucceededEventDetails {
     frozen
 )]
 struct PyLambdaFunctionTimedOutEventDetails {
-    inner: aws_sdk_sfn::types::LambdaFunctionTimedOutEventDetails,
+    inner: Arc<aws_sdk_sfn::types::LambdaFunctionTimedOutEventDetails>,
 }
 
 #[pymethods]
@@ -5396,8 +6252,8 @@ impl PyLambdaFunctionTimedOutEventDetails {
     #[getter]
     fn error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error {
-            let converted_809 = (value).as_str().into_py_any(py)?;
-            Ok(converted_809)
+            let converted_889 = (value).as_str().into_py_any(py)?;
+            Ok(converted_889)
         } else {
             Ok(py.None())
         }
@@ -5406,8 +6262,8 @@ impl PyLambdaFunctionTimedOutEventDetails {
     #[getter]
     fn cause(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cause {
-            let converted_810 = (value).as_str().into_py_any(py)?;
-            Ok(converted_810)
+            let converted_890 = (value).as_str().into_py_any(py)?;
+            Ok(converted_890)
         } else {
             Ok(py.None())
         }
@@ -5418,9 +6274,36 @@ impl PyLambdaFunctionTimedOutEventDetails {
     }
 }
 
+struct SharedLogDestination {
+    cloud_watch_logs_log_group: Option<Arc<aws_sdk_sfn::types::CloudWatchLogsLogGroup>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::types::LogDestination> for SharedLogDestination {
+    fn from(value: aws_sdk_sfn::types::LogDestination) -> Self {
+        Self {
+            cloud_watch_logs_log_group: value.cloud_watch_logs_log_group.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn log_destination_shared_to_py(
+    py: Python<'_>,
+    value: &SharedLogDestination,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.cloud_watch_logs_log_group {
+        let converted_892 = cloud_watch_logs_log_group_to_py(py, value)?;
+        result.set_item("cloud_watch_logs_log_group", converted_892)?;
+    } else {
+        result.set_item("cloud_watch_logs_log_group", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "LogDestination", module = "rboto_sfn._native", frozen)]
 struct PyLogDestination {
-    inner: aws_sdk_sfn::types::LogDestination,
+    inner: Arc<SharedLogDestination>,
 }
 
 #[pymethods]
@@ -5428,27 +6311,76 @@ impl PyLogDestination {
     #[getter]
     fn cloud_watch_logs_log_group(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cloud_watch_logs_log_group {
-            let converted_811 = Py::new(
+            let converted_891 = Py::new(
                 py,
                 PyCloudWatchLogsLogGroup {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_811)
+            Ok(converted_891)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        log_destination_to_py(py, &self.inner)
+        log_destination_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedLoggingConfiguration {
+    level: Option<aws_sdk_sfn::types::LogLevel>,
+    include_execution_data: bool,
+    destinations: Option<::std::vec::Vec<Arc<SharedLogDestination>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::types::LoggingConfiguration> for SharedLoggingConfiguration {
+    fn from(value: aws_sdk_sfn::types::LoggingConfiguration) -> Self {
+        Self {
+            level: value.level,
+            include_execution_data: value.include_execution_data,
+            destinations: value.destinations.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_898| Arc::new(SharedLogDestination::from(owned_898)))
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn logging_configuration_shared_to_py(
+    py: Python<'_>,
+    value: &SharedLoggingConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.level {
+        let converted_899 = (value).as_str().into_py_any(py)?;
+        result.set_item("level", converted_899)?;
+    } else {
+        result.set_item("level", py.None())?;
+    }
+    let converted_900 = (&value.include_execution_data).to_owned().into_py_any(py)?;
+    result.set_item("include_execution_data", converted_900)?;
+    if let Some(value) = &value.destinations {
+        let converted_901_list = PyList::empty(py);
+        for item_902 in value {
+            let converted_item_903 = log_destination_shared_to_py(py, item_902)?;
+            converted_901_list.append(converted_item_903)?;
+        }
+        let converted_901 = converted_901_list.into_any().unbind();
+        result.set_item("destinations", converted_901)?;
+    } else {
+        result.set_item("destinations", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(name = "LoggingConfiguration", module = "rboto_sfn._native", frozen)]
 struct PyLoggingConfiguration {
-    inner: aws_sdk_sfn::types::LoggingConfiguration,
+    inner: Arc<SharedLoggingConfiguration>,
 }
 
 #[pymethods]
@@ -5456,8 +6388,8 @@ impl PyLoggingConfiguration {
     #[getter]
     fn level(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.level {
-            let converted_812 = (value).as_str().into_py_any(py)?;
-            Ok(converted_812)
+            let converted_893 = (value).as_str().into_py_any(py)?;
+            Ok(converted_893)
         } else {
             Ok(py.None())
         }
@@ -5465,35 +6397,35 @@ impl PyLoggingConfiguration {
 
     #[getter]
     fn include_execution_data(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_813 = (&self.inner.include_execution_data)
+        let converted_894 = (&self.inner.include_execution_data)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_813)
+        Ok(converted_894)
     }
 
     #[getter]
     fn destinations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.destinations {
-            let converted_814_list = PyList::empty(py);
-            for item_815 in value {
-                let converted_item_816 = Py::new(
+            let converted_895_list = PyList::empty(py);
+            for item_896 in value {
+                let converted_item_897 = Py::new(
                     py,
                     PyLogDestination {
-                        inner: (item_815).to_owned(),
+                        inner: Arc::clone(item_896),
                     },
                 )?
                 .into_any();
-                converted_814_list.append(converted_item_816)?;
+                converted_895_list.append(converted_item_897)?;
             }
-            let converted_814 = converted_814_list.into_any().unbind();
-            Ok(converted_814)
+            let converted_895 = converted_895_list.into_any().unbind();
+            Ok(converted_895)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        logging_configuration_to_py(py, &self.inner)
+        logging_configuration_shared_to_py(py, &self.inner)
     }
 }
 
@@ -5503,7 +6435,7 @@ impl PyLoggingConfiguration {
     frozen
 )]
 struct PyMapIterationEventDetails {
-    inner: aws_sdk_sfn::types::MapIterationEventDetails,
+    inner: Arc<aws_sdk_sfn::types::MapIterationEventDetails>,
 }
 
 #[pymethods]
@@ -5511,8 +6443,8 @@ impl PyMapIterationEventDetails {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_817 = (value).as_str().into_py_any(py)?;
-            Ok(converted_817)
+            let converted_904 = (value).as_str().into_py_any(py)?;
+            Ok(converted_904)
         } else {
             Ok(py.None())
         }
@@ -5520,8 +6452,8 @@ impl PyMapIterationEventDetails {
 
     #[getter]
     fn index(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_818 = (&self.inner.index).to_owned().into_py_any(py)?;
-        Ok(converted_818)
+        let converted_905 = (&self.inner.index).to_owned().into_py_any(py)?;
+        Ok(converted_905)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -5531,64 +6463,64 @@ impl PyMapIterationEventDetails {
 
 #[pyclass(name = "MapRunExecutionCounts", module = "rboto_sfn._native", frozen)]
 struct PyMapRunExecutionCounts {
-    inner: aws_sdk_sfn::types::MapRunExecutionCounts,
+    inner: Arc<aws_sdk_sfn::types::MapRunExecutionCounts>,
 }
 
 #[pymethods]
 impl PyMapRunExecutionCounts {
     #[getter]
     fn pending(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_819 = (&self.inner.pending).to_owned().into_py_any(py)?;
-        Ok(converted_819)
+        let converted_906 = (&self.inner.pending).to_owned().into_py_any(py)?;
+        Ok(converted_906)
     }
 
     #[getter]
     fn running(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_820 = (&self.inner.running).to_owned().into_py_any(py)?;
-        Ok(converted_820)
+        let converted_907 = (&self.inner.running).to_owned().into_py_any(py)?;
+        Ok(converted_907)
     }
 
     #[getter]
     fn succeeded(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_821 = (&self.inner.succeeded).to_owned().into_py_any(py)?;
-        Ok(converted_821)
+        let converted_908 = (&self.inner.succeeded).to_owned().into_py_any(py)?;
+        Ok(converted_908)
     }
 
     #[getter]
     fn failed(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_822 = (&self.inner.failed).to_owned().into_py_any(py)?;
-        Ok(converted_822)
+        let converted_909 = (&self.inner.failed).to_owned().into_py_any(py)?;
+        Ok(converted_909)
     }
 
     #[getter]
     fn timed_out(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_823 = (&self.inner.timed_out).to_owned().into_py_any(py)?;
-        Ok(converted_823)
+        let converted_910 = (&self.inner.timed_out).to_owned().into_py_any(py)?;
+        Ok(converted_910)
     }
 
     #[getter]
     fn aborted(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_824 = (&self.inner.aborted).to_owned().into_py_any(py)?;
-        Ok(converted_824)
+        let converted_911 = (&self.inner.aborted).to_owned().into_py_any(py)?;
+        Ok(converted_911)
     }
 
     #[getter]
     fn total(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_825 = (&self.inner.total).to_owned().into_py_any(py)?;
-        Ok(converted_825)
+        let converted_912 = (&self.inner.total).to_owned().into_py_any(py)?;
+        Ok(converted_912)
     }
 
     #[getter]
     fn results_written(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_826 = (&self.inner.results_written).to_owned().into_py_any(py)?;
-        Ok(converted_826)
+        let converted_913 = (&self.inner.results_written).to_owned().into_py_any(py)?;
+        Ok(converted_913)
     }
 
     #[getter]
     fn failures_not_redrivable(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failures_not_redrivable {
-            let converted_827 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_827)
+            let converted_914 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_914)
         } else {
             Ok(py.None())
         }
@@ -5597,8 +6529,8 @@ impl PyMapRunExecutionCounts {
     #[getter]
     fn pending_redrive(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.pending_redrive {
-            let converted_828 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_828)
+            let converted_915 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_915)
         } else {
             Ok(py.None())
         }
@@ -5615,7 +6547,7 @@ impl PyMapRunExecutionCounts {
     frozen
 )]
 struct PyMapRunFailedEventDetails {
-    inner: aws_sdk_sfn::types::MapRunFailedEventDetails,
+    inner: Arc<aws_sdk_sfn::types::MapRunFailedEventDetails>,
 }
 
 #[pymethods]
@@ -5623,8 +6555,8 @@ impl PyMapRunFailedEventDetails {
     #[getter]
     fn error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error {
-            let converted_829 = (value).as_str().into_py_any(py)?;
-            Ok(converted_829)
+            let converted_916 = (value).as_str().into_py_any(py)?;
+            Ok(converted_916)
         } else {
             Ok(py.None())
         }
@@ -5633,8 +6565,8 @@ impl PyMapRunFailedEventDetails {
     #[getter]
     fn cause(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cause {
-            let converted_830 = (value).as_str().into_py_any(py)?;
-            Ok(converted_830)
+            let converted_917 = (value).as_str().into_py_any(py)?;
+            Ok(converted_917)
         } else {
             Ok(py.None())
         }
@@ -5647,64 +6579,64 @@ impl PyMapRunFailedEventDetails {
 
 #[pyclass(name = "MapRunItemCounts", module = "rboto_sfn._native", frozen)]
 struct PyMapRunItemCounts {
-    inner: aws_sdk_sfn::types::MapRunItemCounts,
+    inner: Arc<aws_sdk_sfn::types::MapRunItemCounts>,
 }
 
 #[pymethods]
 impl PyMapRunItemCounts {
     #[getter]
     fn pending(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_831 = (&self.inner.pending).to_owned().into_py_any(py)?;
-        Ok(converted_831)
+        let converted_918 = (&self.inner.pending).to_owned().into_py_any(py)?;
+        Ok(converted_918)
     }
 
     #[getter]
     fn running(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_832 = (&self.inner.running).to_owned().into_py_any(py)?;
-        Ok(converted_832)
+        let converted_919 = (&self.inner.running).to_owned().into_py_any(py)?;
+        Ok(converted_919)
     }
 
     #[getter]
     fn succeeded(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_833 = (&self.inner.succeeded).to_owned().into_py_any(py)?;
-        Ok(converted_833)
+        let converted_920 = (&self.inner.succeeded).to_owned().into_py_any(py)?;
+        Ok(converted_920)
     }
 
     #[getter]
     fn failed(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_834 = (&self.inner.failed).to_owned().into_py_any(py)?;
-        Ok(converted_834)
+        let converted_921 = (&self.inner.failed).to_owned().into_py_any(py)?;
+        Ok(converted_921)
     }
 
     #[getter]
     fn timed_out(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_835 = (&self.inner.timed_out).to_owned().into_py_any(py)?;
-        Ok(converted_835)
+        let converted_922 = (&self.inner.timed_out).to_owned().into_py_any(py)?;
+        Ok(converted_922)
     }
 
     #[getter]
     fn aborted(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_836 = (&self.inner.aborted).to_owned().into_py_any(py)?;
-        Ok(converted_836)
+        let converted_923 = (&self.inner.aborted).to_owned().into_py_any(py)?;
+        Ok(converted_923)
     }
 
     #[getter]
     fn total(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_837 = (&self.inner.total).to_owned().into_py_any(py)?;
-        Ok(converted_837)
+        let converted_924 = (&self.inner.total).to_owned().into_py_any(py)?;
+        Ok(converted_924)
     }
 
     #[getter]
     fn results_written(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_838 = (&self.inner.results_written).to_owned().into_py_any(py)?;
-        Ok(converted_838)
+        let converted_925 = (&self.inner.results_written).to_owned().into_py_any(py)?;
+        Ok(converted_925)
     }
 
     #[getter]
     fn failures_not_redrivable(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failures_not_redrivable {
-            let converted_839 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_839)
+            let converted_926 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_926)
         } else {
             Ok(py.None())
         }
@@ -5713,8 +6645,8 @@ impl PyMapRunItemCounts {
     #[getter]
     fn pending_redrive(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.pending_redrive {
-            let converted_840 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_840)
+            let converted_927 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_927)
         } else {
             Ok(py.None())
         }
@@ -5727,40 +6659,40 @@ impl PyMapRunItemCounts {
 
 #[pyclass(name = "MapRunListItem", module = "rboto_sfn._native", frozen)]
 struct PyMapRunListItem {
-    inner: aws_sdk_sfn::types::MapRunListItem,
+    inner: Arc<aws_sdk_sfn::types::MapRunListItem>,
 }
 
 #[pymethods]
 impl PyMapRunListItem {
     #[getter]
     fn execution_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_841 = (&self.inner.execution_arn).as_str().into_py_any(py)?;
-        Ok(converted_841)
+        let converted_928 = (&self.inner.execution_arn).as_str().into_py_any(py)?;
+        Ok(converted_928)
     }
 
     #[getter]
     fn map_run_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_842 = (&self.inner.map_run_arn).as_str().into_py_any(py)?;
-        Ok(converted_842)
+        let converted_929 = (&self.inner.map_run_arn).as_str().into_py_any(py)?;
+        Ok(converted_929)
     }
 
     #[getter]
     fn state_machine_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_843 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
-        Ok(converted_843)
+        let converted_930 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
+        Ok(converted_930)
     }
 
     #[getter]
     fn start_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_844 = (&self.inner.start_date).to_string().into_py_any(py)?;
-        Ok(converted_844)
+        let converted_931 = (&self.inner.start_date).to_string().into_py_any(py)?;
+        Ok(converted_931)
     }
 
     #[getter]
     fn stop_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stop_date {
-            let converted_845 = (value).to_string().into_py_any(py)?;
-            Ok(converted_845)
+            let converted_932 = (value).to_string().into_py_any(py)?;
+            Ok(converted_932)
         } else {
             Ok(py.None())
         }
@@ -5777,7 +6709,7 @@ impl PyMapRunListItem {
     frozen
 )]
 struct PyMapRunRedrivenEventDetails {
-    inner: aws_sdk_sfn::types::MapRunRedrivenEventDetails,
+    inner: Arc<aws_sdk_sfn::types::MapRunRedrivenEventDetails>,
 }
 
 #[pymethods]
@@ -5785,8 +6717,8 @@ impl PyMapRunRedrivenEventDetails {
     #[getter]
     fn map_run_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.map_run_arn {
-            let converted_846 = (value).as_str().into_py_any(py)?;
-            Ok(converted_846)
+            let converted_933 = (value).as_str().into_py_any(py)?;
+            Ok(converted_933)
         } else {
             Ok(py.None())
         }
@@ -5795,8 +6727,8 @@ impl PyMapRunRedrivenEventDetails {
     #[getter]
     fn redrive_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.redrive_count {
-            let converted_847 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_847)
+            let converted_934 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_934)
         } else {
             Ok(py.None())
         }
@@ -5813,7 +6745,7 @@ impl PyMapRunRedrivenEventDetails {
     frozen
 )]
 struct PyMapRunStartedEventDetails {
-    inner: aws_sdk_sfn::types::MapRunStartedEventDetails,
+    inner: Arc<aws_sdk_sfn::types::MapRunStartedEventDetails>,
 }
 
 #[pymethods]
@@ -5821,8 +6753,8 @@ impl PyMapRunStartedEventDetails {
     #[getter]
     fn map_run_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.map_run_arn {
-            let converted_848 = (value).as_str().into_py_any(py)?;
-            Ok(converted_848)
+            let converted_935 = (value).as_str().into_py_any(py)?;
+            Ok(converted_935)
         } else {
             Ok(py.None())
         }
@@ -5839,15 +6771,15 @@ impl PyMapRunStartedEventDetails {
     frozen
 )]
 struct PyMapStateStartedEventDetails {
-    inner: aws_sdk_sfn::types::MapStateStartedEventDetails,
+    inner: Arc<aws_sdk_sfn::types::MapStateStartedEventDetails>,
 }
 
 #[pymethods]
 impl PyMapStateStartedEventDetails {
     #[getter]
     fn length(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_849 = (&self.inner.length).to_owned().into_py_any(py)?;
-        Ok(converted_849)
+        let converted_936 = (&self.inner.length).to_owned().into_py_any(py)?;
+        Ok(converted_936)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -5861,28 +6793,67 @@ impl PyMapStateStartedEventDetails {
     frozen
 )]
 struct PyRoutingConfigurationListItem {
-    inner: aws_sdk_sfn::types::RoutingConfigurationListItem,
+    inner: Arc<aws_sdk_sfn::types::RoutingConfigurationListItem>,
 }
 
 #[pymethods]
 impl PyRoutingConfigurationListItem {
     #[getter]
     fn state_machine_version_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_850 = (&self.inner.state_machine_version_arn)
+        let converted_937 = (&self.inner.state_machine_version_arn)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_850)
+        Ok(converted_937)
     }
 
     #[getter]
     fn weight(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_851 = (&self.inner.weight).to_owned().into_py_any(py)?;
-        Ok(converted_851)
+        let converted_938 = (&self.inner.weight).to_owned().into_py_any(py)?;
+        Ok(converted_938)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         routing_configuration_list_item_to_py(py, &self.inner)
     }
+}
+
+struct SharedStateEnteredEventDetails {
+    name: ::std::string::String,
+    input: Option<::std::string::String>,
+    input_details: Option<Arc<aws_sdk_sfn::types::HistoryEventExecutionDataDetails>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::types::StateEnteredEventDetails> for SharedStateEnteredEventDetails {
+    fn from(value: aws_sdk_sfn::types::StateEnteredEventDetails) -> Self {
+        Self {
+            name: value.name,
+            input: value.input,
+            input_details: value.input_details.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn state_entered_event_details_shared_to_py(
+    py: Python<'_>,
+    value: &SharedStateEnteredEventDetails,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_942 = (&value.name).as_str().into_py_any(py)?;
+    result.set_item("name", converted_942)?;
+    if let Some(value) = &value.input {
+        let converted_943 = (value).as_str().into_py_any(py)?;
+        result.set_item("input", converted_943)?;
+    } else {
+        result.set_item("input", py.None())?;
+    }
+    if let Some(value) = &value.input_details {
+        let converted_944 = history_event_execution_data_details_to_py(py, value)?;
+        result.set_item("input_details", converted_944)?;
+    } else {
+        result.set_item("input_details", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -5891,22 +6862,22 @@ impl PyRoutingConfigurationListItem {
     frozen
 )]
 struct PyStateEnteredEventDetails {
-    inner: aws_sdk_sfn::types::StateEnteredEventDetails,
+    inner: Arc<SharedStateEnteredEventDetails>,
 }
 
 #[pymethods]
 impl PyStateEnteredEventDetails {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_852 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_852)
+        let converted_939 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_939)
     }
 
     #[getter]
     fn input(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input {
-            let converted_853 = (value).as_str().into_py_any(py)?;
-            Ok(converted_853)
+            let converted_940 = (value).as_str().into_py_any(py)?;
+            Ok(converted_940)
         } else {
             Ok(py.None())
         }
@@ -5915,42 +6886,104 @@ impl PyStateEnteredEventDetails {
     #[getter]
     fn input_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_details {
-            let converted_854 = Py::new(
+            let converted_941 = Py::new(
                 py,
                 PyHistoryEventExecutionDataDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_854)
+            Ok(converted_941)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        state_entered_event_details_to_py(py, &self.inner)
+        state_entered_event_details_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedStateExitedEventDetails {
+    name: ::std::string::String,
+    output: Option<::std::string::String>,
+    output_details: Option<Arc<aws_sdk_sfn::types::HistoryEventExecutionDataDetails>>,
+    assigned_variables:
+        Option<::std::collections::HashMap<::std::string::String, ::std::string::String>>,
+    assigned_variables_details: Option<Arc<aws_sdk_sfn::types::AssignedVariablesDetails>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::types::StateExitedEventDetails> for SharedStateExitedEventDetails {
+    fn from(value: aws_sdk_sfn::types::StateExitedEventDetails) -> Self {
+        Self {
+            name: value.name,
+            output: value.output,
+            output_details: value.output_details.map(|item| Arc::new(item)),
+            assigned_variables: value.assigned_variables,
+            assigned_variables_details: value.assigned_variables_details.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn state_exited_event_details_shared_to_py(
+    py: Python<'_>,
+    value: &SharedStateExitedEventDetails,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_954 = (&value.name).as_str().into_py_any(py)?;
+    result.set_item("name", converted_954)?;
+    if let Some(value) = &value.output {
+        let converted_955 = (value).as_str().into_py_any(py)?;
+        result.set_item("output", converted_955)?;
+    } else {
+        result.set_item("output", py.None())?;
+    }
+    if let Some(value) = &value.output_details {
+        let converted_956 = history_event_execution_data_details_to_py(py, value)?;
+        result.set_item("output_details", converted_956)?;
+    } else {
+        result.set_item("output_details", py.None())?;
+    }
+    if let Some(value) = &value.assigned_variables {
+        let converted_957_dict = PyDict::new(py);
+        for (key_958, value_959) in value {
+            let converted_key_960 = (key_958).as_str().into_py_any(py)?;
+            let converted_value_961 = (value_959).as_str().into_py_any(py)?;
+            converted_957_dict.set_item(converted_key_960, converted_value_961)?;
+        }
+        let converted_957 = converted_957_dict.into_any().unbind();
+        result.set_item("assigned_variables", converted_957)?;
+    } else {
+        result.set_item("assigned_variables", py.None())?;
+    }
+    if let Some(value) = &value.assigned_variables_details {
+        let converted_962 = assigned_variables_details_to_py(py, value)?;
+        result.set_item("assigned_variables_details", converted_962)?;
+    } else {
+        result.set_item("assigned_variables_details", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(name = "StateExitedEventDetails", module = "rboto_sfn._native", frozen)]
 struct PyStateExitedEventDetails {
-    inner: aws_sdk_sfn::types::StateExitedEventDetails,
+    inner: Arc<SharedStateExitedEventDetails>,
 }
 
 #[pymethods]
 impl PyStateExitedEventDetails {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_855 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_855)
+        let converted_945 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_945)
     }
 
     #[getter]
     fn output(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output {
-            let converted_856 = (value).as_str().into_py_any(py)?;
-            Ok(converted_856)
+            let converted_946 = (value).as_str().into_py_any(py)?;
+            Ok(converted_946)
         } else {
             Ok(py.None())
         }
@@ -5959,14 +6992,14 @@ impl PyStateExitedEventDetails {
     #[getter]
     fn output_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_details {
-            let converted_857 = Py::new(
+            let converted_947 = Py::new(
                 py,
                 PyHistoryEventExecutionDataDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_857)
+            Ok(converted_947)
         } else {
             Ok(py.None())
         }
@@ -5975,14 +7008,14 @@ impl PyStateExitedEventDetails {
     #[getter]
     fn assigned_variables(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.assigned_variables {
-            let converted_858_dict = PyDict::new(py);
-            for (key_859, value_860) in value {
-                let converted_key_861 = (key_859).as_str().into_py_any(py)?;
-                let converted_value_862 = (value_860).as_str().into_py_any(py)?;
-                converted_858_dict.set_item(converted_key_861, converted_value_862)?;
+            let converted_948_dict = PyDict::new(py);
+            for (key_949, value_950) in value {
+                let converted_key_951 = (key_949).as_str().into_py_any(py)?;
+                let converted_value_952 = (value_950).as_str().into_py_any(py)?;
+                converted_948_dict.set_item(converted_key_951, converted_value_952)?;
             }
-            let converted_858 = converted_858_dict.into_any().unbind();
-            Ok(converted_858)
+            let converted_948 = converted_948_dict.into_any().unbind();
+            Ok(converted_948)
         } else {
             Ok(py.None())
         }
@@ -5991,21 +7024,21 @@ impl PyStateExitedEventDetails {
     #[getter]
     fn assigned_variables_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.assigned_variables_details {
-            let converted_863 = Py::new(
+            let converted_953 = Py::new(
                 py,
                 PyAssignedVariablesDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_863)
+            Ok(converted_953)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        state_exited_event_details_to_py(py, &self.inner)
+        state_exited_event_details_shared_to_py(py, &self.inner)
     }
 }
 
@@ -6015,23 +7048,23 @@ impl PyStateExitedEventDetails {
     frozen
 )]
 struct PyStateMachineAliasListItem {
-    inner: aws_sdk_sfn::types::StateMachineAliasListItem,
+    inner: Arc<aws_sdk_sfn::types::StateMachineAliasListItem>,
 }
 
 #[pymethods]
 impl PyStateMachineAliasListItem {
     #[getter]
     fn state_machine_alias_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_864 = (&self.inner.state_machine_alias_arn)
+        let converted_963 = (&self.inner.state_machine_alias_arn)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_864)
+        Ok(converted_963)
     }
 
     #[getter]
     fn creation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_865 = (&self.inner.creation_date).to_string().into_py_any(py)?;
-        Ok(converted_865)
+        let converted_964 = (&self.inner.creation_date).to_string().into_py_any(py)?;
+        Ok(converted_964)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -6041,33 +7074,33 @@ impl PyStateMachineAliasListItem {
 
 #[pyclass(name = "StateMachineListItem", module = "rboto_sfn._native", frozen)]
 struct PyStateMachineListItem {
-    inner: aws_sdk_sfn::types::StateMachineListItem,
+    inner: Arc<aws_sdk_sfn::types::StateMachineListItem>,
 }
 
 #[pymethods]
 impl PyStateMachineListItem {
     #[getter]
     fn state_machine_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_866 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
-        Ok(converted_866)
+        let converted_965 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
+        Ok(converted_965)
     }
 
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_867 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_867)
+        let converted_966 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_966)
     }
 
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_868 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_868)
+        let converted_967 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_967)
     }
 
     #[getter]
     fn creation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_869 = (&self.inner.creation_date).to_string().into_py_any(py)?;
-        Ok(converted_869)
+        let converted_968 = (&self.inner.creation_date).to_string().into_py_any(py)?;
+        Ok(converted_968)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -6081,23 +7114,23 @@ impl PyStateMachineListItem {
     frozen
 )]
 struct PyStateMachineVersionListItem {
-    inner: aws_sdk_sfn::types::StateMachineVersionListItem,
+    inner: Arc<aws_sdk_sfn::types::StateMachineVersionListItem>,
 }
 
 #[pymethods]
 impl PyStateMachineVersionListItem {
     #[getter]
     fn state_machine_version_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_870 = (&self.inner.state_machine_version_arn)
+        let converted_969 = (&self.inner.state_machine_version_arn)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_870)
+        Ok(converted_969)
     }
 
     #[getter]
     fn creation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_871 = (&self.inner.creation_date).to_string().into_py_any(py)?;
-        Ok(converted_871)
+        let converted_970 = (&self.inner.creation_date).to_string().into_py_any(py)?;
+        Ok(converted_970)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -6107,7 +7140,7 @@ impl PyStateMachineVersionListItem {
 
 #[pyclass(name = "Tag", module = "rboto_sfn._native", frozen)]
 struct PyTag {
-    inner: aws_sdk_sfn::types::Tag,
+    inner: Arc<aws_sdk_sfn::types::Tag>,
 }
 
 #[pymethods]
@@ -6115,8 +7148,8 @@ impl PyTag {
     #[getter]
     fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key {
-            let converted_872 = (value).as_str().into_py_any(py)?;
-            Ok(converted_872)
+            let converted_971 = (value).as_str().into_py_any(py)?;
+            Ok(converted_971)
         } else {
             Ok(py.None())
         }
@@ -6125,8 +7158,8 @@ impl PyTag {
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.value {
-            let converted_873 = (value).as_str().into_py_any(py)?;
-            Ok(converted_873)
+            let converted_972 = (value).as_str().into_py_any(py)?;
+            Ok(converted_972)
         } else {
             Ok(py.None())
         }
@@ -6139,7 +7172,7 @@ impl PyTag {
 
 #[pyclass(name = "TaskCredentials", module = "rboto_sfn._native", frozen)]
 struct PyTaskCredentials {
-    inner: aws_sdk_sfn::types::TaskCredentials,
+    inner: Arc<aws_sdk_sfn::types::TaskCredentials>,
 }
 
 #[pymethods]
@@ -6147,8 +7180,8 @@ impl PyTaskCredentials {
     #[getter]
     fn role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.role_arn {
-            let converted_874 = (value).as_str().into_py_any(py)?;
-            Ok(converted_874)
+            let converted_973 = (value).as_str().into_py_any(py)?;
+            Ok(converted_973)
         } else {
             Ok(py.None())
         }
@@ -6161,28 +7194,28 @@ impl PyTaskCredentials {
 
 #[pyclass(name = "TaskFailedEventDetails", module = "rboto_sfn._native", frozen)]
 struct PyTaskFailedEventDetails {
-    inner: aws_sdk_sfn::types::TaskFailedEventDetails,
+    inner: Arc<aws_sdk_sfn::types::TaskFailedEventDetails>,
 }
 
 #[pymethods]
 impl PyTaskFailedEventDetails {
     #[getter]
     fn resource_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_875 = (&self.inner.resource_type).as_str().into_py_any(py)?;
-        Ok(converted_875)
+        let converted_974 = (&self.inner.resource_type).as_str().into_py_any(py)?;
+        Ok(converted_974)
     }
 
     #[getter]
     fn resource(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_876 = (&self.inner.resource).as_str().into_py_any(py)?;
-        Ok(converted_876)
+        let converted_975 = (&self.inner.resource).as_str().into_py_any(py)?;
+        Ok(converted_975)
     }
 
     #[getter]
     fn error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error {
-            let converted_877 = (value).as_str().into_py_any(py)?;
-            Ok(converted_877)
+            let converted_976 = (value).as_str().into_py_any(py)?;
+            Ok(converted_976)
         } else {
             Ok(py.None())
         }
@@ -6191,8 +7224,8 @@ impl PyTaskFailedEventDetails {
     #[getter]
     fn cause(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cause {
-            let converted_878 = (value).as_str().into_py_any(py)?;
-            Ok(converted_878)
+            let converted_977 = (value).as_str().into_py_any(py)?;
+            Ok(converted_977)
         } else {
             Ok(py.None())
         }
@@ -6203,46 +7236,105 @@ impl PyTaskFailedEventDetails {
     }
 }
 
+struct SharedTaskScheduledEventDetails {
+    resource_type: ::std::string::String,
+    resource: ::std::string::String,
+    region: ::std::string::String,
+    parameters: ::std::string::String,
+    timeout_in_seconds: Option<i64>,
+    heartbeat_in_seconds: Option<i64>,
+    task_credentials: Option<Arc<aws_sdk_sfn::types::TaskCredentials>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::types::TaskScheduledEventDetails> for SharedTaskScheduledEventDetails {
+    fn from(value: aws_sdk_sfn::types::TaskScheduledEventDetails) -> Self {
+        Self {
+            resource_type: value.resource_type,
+            resource: value.resource,
+            region: value.region,
+            parameters: value.parameters,
+            timeout_in_seconds: value.timeout_in_seconds,
+            heartbeat_in_seconds: value.heartbeat_in_seconds,
+            task_credentials: value.task_credentials.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn task_scheduled_event_details_shared_to_py(
+    py: Python<'_>,
+    value: &SharedTaskScheduledEventDetails,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_985 = (&value.resource_type).as_str().into_py_any(py)?;
+    result.set_item("resource_type", converted_985)?;
+    let converted_986 = (&value.resource).as_str().into_py_any(py)?;
+    result.set_item("resource", converted_986)?;
+    let converted_987 = (&value.region).as_str().into_py_any(py)?;
+    result.set_item("region", converted_987)?;
+    let converted_988 = (&value.parameters).as_str().into_py_any(py)?;
+    result.set_item("parameters", converted_988)?;
+    if let Some(value) = &value.timeout_in_seconds {
+        let converted_989 = (value).to_owned().into_py_any(py)?;
+        result.set_item("timeout_in_seconds", converted_989)?;
+    } else {
+        result.set_item("timeout_in_seconds", py.None())?;
+    }
+    if let Some(value) = &value.heartbeat_in_seconds {
+        let converted_990 = (value).to_owned().into_py_any(py)?;
+        result.set_item("heartbeat_in_seconds", converted_990)?;
+    } else {
+        result.set_item("heartbeat_in_seconds", py.None())?;
+    }
+    if let Some(value) = &value.task_credentials {
+        let converted_991 = task_credentials_to_py(py, value)?;
+        result.set_item("task_credentials", converted_991)?;
+    } else {
+        result.set_item("task_credentials", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "TaskScheduledEventDetails",
     module = "rboto_sfn._native",
     frozen
 )]
 struct PyTaskScheduledEventDetails {
-    inner: aws_sdk_sfn::types::TaskScheduledEventDetails,
+    inner: Arc<SharedTaskScheduledEventDetails>,
 }
 
 #[pymethods]
 impl PyTaskScheduledEventDetails {
     #[getter]
     fn resource_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_879 = (&self.inner.resource_type).as_str().into_py_any(py)?;
-        Ok(converted_879)
+        let converted_978 = (&self.inner.resource_type).as_str().into_py_any(py)?;
+        Ok(converted_978)
     }
 
     #[getter]
     fn resource(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_880 = (&self.inner.resource).as_str().into_py_any(py)?;
-        Ok(converted_880)
+        let converted_979 = (&self.inner.resource).as_str().into_py_any(py)?;
+        Ok(converted_979)
     }
 
     #[getter]
     fn region(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_881 = (&self.inner.region).as_str().into_py_any(py)?;
-        Ok(converted_881)
+        let converted_980 = (&self.inner.region).as_str().into_py_any(py)?;
+        Ok(converted_980)
     }
 
     #[getter]
     fn parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_882 = (&self.inner.parameters).as_str().into_py_any(py)?;
-        Ok(converted_882)
+        let converted_981 = (&self.inner.parameters).as_str().into_py_any(py)?;
+        Ok(converted_981)
     }
 
     #[getter]
     fn timeout_in_seconds(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.timeout_in_seconds {
-            let converted_883 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_883)
+            let converted_982 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_982)
         } else {
             Ok(py.None())
         }
@@ -6251,8 +7343,8 @@ impl PyTaskScheduledEventDetails {
     #[getter]
     fn heartbeat_in_seconds(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.heartbeat_in_seconds {
-            let converted_884 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_884)
+            let converted_983 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_983)
         } else {
             Ok(py.None())
         }
@@ -6261,21 +7353,21 @@ impl PyTaskScheduledEventDetails {
     #[getter]
     fn task_credentials(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.task_credentials {
-            let converted_885 = Py::new(
+            let converted_984 = Py::new(
                 py,
                 PyTaskCredentials {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_885)
+            Ok(converted_984)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        task_scheduled_event_details_to_py(py, &self.inner)
+        task_scheduled_event_details_shared_to_py(py, &self.inner)
     }
 }
 
@@ -6285,28 +7377,28 @@ impl PyTaskScheduledEventDetails {
     frozen
 )]
 struct PyTaskStartFailedEventDetails {
-    inner: aws_sdk_sfn::types::TaskStartFailedEventDetails,
+    inner: Arc<aws_sdk_sfn::types::TaskStartFailedEventDetails>,
 }
 
 #[pymethods]
 impl PyTaskStartFailedEventDetails {
     #[getter]
     fn resource_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_886 = (&self.inner.resource_type).as_str().into_py_any(py)?;
-        Ok(converted_886)
+        let converted_992 = (&self.inner.resource_type).as_str().into_py_any(py)?;
+        Ok(converted_992)
     }
 
     #[getter]
     fn resource(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_887 = (&self.inner.resource).as_str().into_py_any(py)?;
-        Ok(converted_887)
+        let converted_993 = (&self.inner.resource).as_str().into_py_any(py)?;
+        Ok(converted_993)
     }
 
     #[getter]
     fn error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error {
-            let converted_888 = (value).as_str().into_py_any(py)?;
-            Ok(converted_888)
+            let converted_994 = (value).as_str().into_py_any(py)?;
+            Ok(converted_994)
         } else {
             Ok(py.None())
         }
@@ -6315,8 +7407,8 @@ impl PyTaskStartFailedEventDetails {
     #[getter]
     fn cause(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cause {
-            let converted_889 = (value).as_str().into_py_any(py)?;
-            Ok(converted_889)
+            let converted_995 = (value).as_str().into_py_any(py)?;
+            Ok(converted_995)
         } else {
             Ok(py.None())
         }
@@ -6329,21 +7421,21 @@ impl PyTaskStartFailedEventDetails {
 
 #[pyclass(name = "TaskStartedEventDetails", module = "rboto_sfn._native", frozen)]
 struct PyTaskStartedEventDetails {
-    inner: aws_sdk_sfn::types::TaskStartedEventDetails,
+    inner: Arc<aws_sdk_sfn::types::TaskStartedEventDetails>,
 }
 
 #[pymethods]
 impl PyTaskStartedEventDetails {
     #[getter]
     fn resource_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_890 = (&self.inner.resource_type).as_str().into_py_any(py)?;
-        Ok(converted_890)
+        let converted_996 = (&self.inner.resource_type).as_str().into_py_any(py)?;
+        Ok(converted_996)
     }
 
     #[getter]
     fn resource(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_891 = (&self.inner.resource).as_str().into_py_any(py)?;
-        Ok(converted_891)
+        let converted_997 = (&self.inner.resource).as_str().into_py_any(py)?;
+        Ok(converted_997)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -6357,28 +7449,28 @@ impl PyTaskStartedEventDetails {
     frozen
 )]
 struct PyTaskSubmitFailedEventDetails {
-    inner: aws_sdk_sfn::types::TaskSubmitFailedEventDetails,
+    inner: Arc<aws_sdk_sfn::types::TaskSubmitFailedEventDetails>,
 }
 
 #[pymethods]
 impl PyTaskSubmitFailedEventDetails {
     #[getter]
     fn resource_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_892 = (&self.inner.resource_type).as_str().into_py_any(py)?;
-        Ok(converted_892)
+        let converted_998 = (&self.inner.resource_type).as_str().into_py_any(py)?;
+        Ok(converted_998)
     }
 
     #[getter]
     fn resource(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_893 = (&self.inner.resource).as_str().into_py_any(py)?;
-        Ok(converted_893)
+        let converted_999 = (&self.inner.resource).as_str().into_py_any(py)?;
+        Ok(converted_999)
     }
 
     #[getter]
     fn error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error {
-            let converted_894 = (value).as_str().into_py_any(py)?;
-            Ok(converted_894)
+            let converted_1000 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1000)
         } else {
             Ok(py.None())
         }
@@ -6387,8 +7479,8 @@ impl PyTaskSubmitFailedEventDetails {
     #[getter]
     fn cause(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cause {
-            let converted_895 = (value).as_str().into_py_any(py)?;
-            Ok(converted_895)
+            let converted_1001 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1001)
         } else {
             Ok(py.None())
         }
@@ -6399,34 +7491,77 @@ impl PyTaskSubmitFailedEventDetails {
     }
 }
 
+struct SharedTaskSubmittedEventDetails {
+    resource_type: ::std::string::String,
+    resource: ::std::string::String,
+    output: Option<::std::string::String>,
+    output_details: Option<Arc<aws_sdk_sfn::types::HistoryEventExecutionDataDetails>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::types::TaskSubmittedEventDetails> for SharedTaskSubmittedEventDetails {
+    fn from(value: aws_sdk_sfn::types::TaskSubmittedEventDetails) -> Self {
+        Self {
+            resource_type: value.resource_type,
+            resource: value.resource,
+            output: value.output,
+            output_details: value.output_details.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn task_submitted_event_details_shared_to_py(
+    py: Python<'_>,
+    value: &SharedTaskSubmittedEventDetails,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_1006 = (&value.resource_type).as_str().into_py_any(py)?;
+    result.set_item("resource_type", converted_1006)?;
+    let converted_1007 = (&value.resource).as_str().into_py_any(py)?;
+    result.set_item("resource", converted_1007)?;
+    if let Some(value) = &value.output {
+        let converted_1008 = (value).as_str().into_py_any(py)?;
+        result.set_item("output", converted_1008)?;
+    } else {
+        result.set_item("output", py.None())?;
+    }
+    if let Some(value) = &value.output_details {
+        let converted_1009 = history_event_execution_data_details_to_py(py, value)?;
+        result.set_item("output_details", converted_1009)?;
+    } else {
+        result.set_item("output_details", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "TaskSubmittedEventDetails",
     module = "rboto_sfn._native",
     frozen
 )]
 struct PyTaskSubmittedEventDetails {
-    inner: aws_sdk_sfn::types::TaskSubmittedEventDetails,
+    inner: Arc<SharedTaskSubmittedEventDetails>,
 }
 
 #[pymethods]
 impl PyTaskSubmittedEventDetails {
     #[getter]
     fn resource_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_896 = (&self.inner.resource_type).as_str().into_py_any(py)?;
-        Ok(converted_896)
+        let converted_1002 = (&self.inner.resource_type).as_str().into_py_any(py)?;
+        Ok(converted_1002)
     }
 
     #[getter]
     fn resource(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_897 = (&self.inner.resource).as_str().into_py_any(py)?;
-        Ok(converted_897)
+        let converted_1003 = (&self.inner.resource).as_str().into_py_any(py)?;
+        Ok(converted_1003)
     }
 
     #[getter]
     fn output(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output {
-            let converted_898 = (value).as_str().into_py_any(py)?;
-            Ok(converted_898)
+            let converted_1004 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1004)
         } else {
             Ok(py.None())
         }
@@ -6435,22 +7570,65 @@ impl PyTaskSubmittedEventDetails {
     #[getter]
     fn output_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_details {
-            let converted_899 = Py::new(
+            let converted_1005 = Py::new(
                 py,
                 PyHistoryEventExecutionDataDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_899)
+            Ok(converted_1005)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        task_submitted_event_details_to_py(py, &self.inner)
+        task_submitted_event_details_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedTaskSucceededEventDetails {
+    resource_type: ::std::string::String,
+    resource: ::std::string::String,
+    output: Option<::std::string::String>,
+    output_details: Option<Arc<aws_sdk_sfn::types::HistoryEventExecutionDataDetails>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::types::TaskSucceededEventDetails> for SharedTaskSucceededEventDetails {
+    fn from(value: aws_sdk_sfn::types::TaskSucceededEventDetails) -> Self {
+        Self {
+            resource_type: value.resource_type,
+            resource: value.resource,
+            output: value.output,
+            output_details: value.output_details.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn task_succeeded_event_details_shared_to_py(
+    py: Python<'_>,
+    value: &SharedTaskSucceededEventDetails,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_1014 = (&value.resource_type).as_str().into_py_any(py)?;
+    result.set_item("resource_type", converted_1014)?;
+    let converted_1015 = (&value.resource).as_str().into_py_any(py)?;
+    result.set_item("resource", converted_1015)?;
+    if let Some(value) = &value.output {
+        let converted_1016 = (value).as_str().into_py_any(py)?;
+        result.set_item("output", converted_1016)?;
+    } else {
+        result.set_item("output", py.None())?;
+    }
+    if let Some(value) = &value.output_details {
+        let converted_1017 = history_event_execution_data_details_to_py(py, value)?;
+        result.set_item("output_details", converted_1017)?;
+    } else {
+        result.set_item("output_details", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -6459,28 +7637,28 @@ impl PyTaskSubmittedEventDetails {
     frozen
 )]
 struct PyTaskSucceededEventDetails {
-    inner: aws_sdk_sfn::types::TaskSucceededEventDetails,
+    inner: Arc<SharedTaskSucceededEventDetails>,
 }
 
 #[pymethods]
 impl PyTaskSucceededEventDetails {
     #[getter]
     fn resource_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_900 = (&self.inner.resource_type).as_str().into_py_any(py)?;
-        Ok(converted_900)
+        let converted_1010 = (&self.inner.resource_type).as_str().into_py_any(py)?;
+        Ok(converted_1010)
     }
 
     #[getter]
     fn resource(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_901 = (&self.inner.resource).as_str().into_py_any(py)?;
-        Ok(converted_901)
+        let converted_1011 = (&self.inner.resource).as_str().into_py_any(py)?;
+        Ok(converted_1011)
     }
 
     #[getter]
     fn output(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output {
-            let converted_902 = (value).as_str().into_py_any(py)?;
-            Ok(converted_902)
+            let converted_1012 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1012)
         } else {
             Ok(py.None())
         }
@@ -6489,21 +7667,21 @@ impl PyTaskSucceededEventDetails {
     #[getter]
     fn output_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_details {
-            let converted_903 = Py::new(
+            let converted_1013 = Py::new(
                 py,
                 PyHistoryEventExecutionDataDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_903)
+            Ok(converted_1013)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        task_succeeded_event_details_to_py(py, &self.inner)
+        task_succeeded_event_details_shared_to_py(py, &self.inner)
     }
 }
 
@@ -6513,28 +7691,28 @@ impl PyTaskSucceededEventDetails {
     frozen
 )]
 struct PyTaskTimedOutEventDetails {
-    inner: aws_sdk_sfn::types::TaskTimedOutEventDetails,
+    inner: Arc<aws_sdk_sfn::types::TaskTimedOutEventDetails>,
 }
 
 #[pymethods]
 impl PyTaskTimedOutEventDetails {
     #[getter]
     fn resource_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_904 = (&self.inner.resource_type).as_str().into_py_any(py)?;
-        Ok(converted_904)
+        let converted_1018 = (&self.inner.resource_type).as_str().into_py_any(py)?;
+        Ok(converted_1018)
     }
 
     #[getter]
     fn resource(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_905 = (&self.inner.resource).as_str().into_py_any(py)?;
-        Ok(converted_905)
+        let converted_1019 = (&self.inner.resource).as_str().into_py_any(py)?;
+        Ok(converted_1019)
     }
 
     #[getter]
     fn error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error {
-            let converted_906 = (value).as_str().into_py_any(py)?;
-            Ok(converted_906)
+            let converted_1020 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1020)
         } else {
             Ok(py.None())
         }
@@ -6543,8 +7721,8 @@ impl PyTaskTimedOutEventDetails {
     #[getter]
     fn cause(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cause {
-            let converted_907 = (value).as_str().into_py_any(py)?;
-            Ok(converted_907)
+            let converted_1021 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1021)
         } else {
             Ok(py.None())
         }
@@ -6557,15 +7735,15 @@ impl PyTaskTimedOutEventDetails {
 
 #[pyclass(name = "TracingConfiguration", module = "rboto_sfn._native", frozen)]
 struct PyTracingConfiguration {
-    inner: aws_sdk_sfn::types::TracingConfiguration,
+    inner: Arc<aws_sdk_sfn::types::TracingConfiguration>,
 }
 
 #[pymethods]
 impl PyTracingConfiguration {
     #[getter]
     fn enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_908 = (&self.inner.enabled).to_owned().into_py_any(py)?;
-        Ok(converted_908)
+        let converted_1022 = (&self.inner.enabled).to_owned().into_py_any(py)?;
+        Ok(converted_1022)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -6579,34 +7757,34 @@ impl PyTracingConfiguration {
     frozen
 )]
 struct PyValidateStateMachineDefinitionDiagnostic {
-    inner: aws_sdk_sfn::types::ValidateStateMachineDefinitionDiagnostic,
+    inner: Arc<aws_sdk_sfn::types::ValidateStateMachineDefinitionDiagnostic>,
 }
 
 #[pymethods]
 impl PyValidateStateMachineDefinitionDiagnostic {
     #[getter]
     fn severity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_909 = (&self.inner.severity).as_str().into_py_any(py)?;
-        Ok(converted_909)
+        let converted_1023 = (&self.inner.severity).as_str().into_py_any(py)?;
+        Ok(converted_1023)
     }
 
     #[getter]
     fn code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_910 = (&self.inner.code).as_str().into_py_any(py)?;
-        Ok(converted_910)
+        let converted_1024 = (&self.inner.code).as_str().into_py_any(py)?;
+        Ok(converted_1024)
     }
 
     #[getter]
     fn message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_911 = (&self.inner.message).as_str().into_py_any(py)?;
-        Ok(converted_911)
+        let converted_1025 = (&self.inner.message).as_str().into_py_any(py)?;
+        Ok(converted_1025)
     }
 
     #[getter]
     fn location(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.location {
-            let converted_912 = (value).as_str().into_py_any(py)?;
-            Ok(converted_912)
+            let converted_1026 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1026)
         } else {
             Ok(py.None())
         }
@@ -6626,22 +7804,22 @@ struct PyOperationCreateActivityOutput {
 impl PyOperationCreateActivityOutput {
     #[getter]
     fn activity_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_913 = (&self.inner.activity_arn).as_str().into_py_any(py)?;
-        Ok(converted_913)
+        let converted_1027 = (&self.inner.activity_arn).as_str().into_py_any(py)?;
+        Ok(converted_1027)
     }
 
     #[getter]
     fn creation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_914 = (&self.inner.creation_date).to_string().into_py_any(py)?;
-        Ok(converted_914)
+        let converted_1028 = (&self.inner.creation_date).to_string().into_py_any(py)?;
+        Ok(converted_1028)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_915 = (&self.inner.activity_arn).as_str().into_py_any(py)?;
-        result.set_item("activity_arn", converted_915)?;
-        let converted_916 = (&self.inner.creation_date).to_string().into_py_any(py)?;
-        result.set_item("creation_date", converted_916)?;
+        let converted_1029 = (&self.inner.activity_arn).as_str().into_py_any(py)?;
+        result.set_item("activity_arn", converted_1029)?;
+        let converted_1030 = (&self.inner.creation_date).to_string().into_py_any(py)?;
+        result.set_item("creation_date", converted_1030)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -6659,21 +7837,21 @@ struct PyOperationCreateStateMachineOutput {
 impl PyOperationCreateStateMachineOutput {
     #[getter]
     fn state_machine_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_917 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
-        Ok(converted_917)
+        let converted_1031 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
+        Ok(converted_1031)
     }
 
     #[getter]
     fn creation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_918 = (&self.inner.creation_date).to_string().into_py_any(py)?;
-        Ok(converted_918)
+        let converted_1032 = (&self.inner.creation_date).to_string().into_py_any(py)?;
+        Ok(converted_1032)
     }
 
     #[getter]
     fn state_machine_version_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state_machine_version_arn {
-            let converted_919 = (value).as_str().into_py_any(py)?;
-            Ok(converted_919)
+            let converted_1033 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1033)
         } else {
             Ok(py.None())
         }
@@ -6681,13 +7859,13 @@ impl PyOperationCreateStateMachineOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_920 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
-        result.set_item("state_machine_arn", converted_920)?;
-        let converted_921 = (&self.inner.creation_date).to_string().into_py_any(py)?;
-        result.set_item("creation_date", converted_921)?;
+        let converted_1034 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
+        result.set_item("state_machine_arn", converted_1034)?;
+        let converted_1035 = (&self.inner.creation_date).to_string().into_py_any(py)?;
+        result.set_item("creation_date", converted_1035)?;
         if let Some(value) = &self.inner.state_machine_version_arn {
-            let converted_922 = (value).as_str().into_py_any(py)?;
-            result.set_item("state_machine_version_arn", converted_922)?;
+            let converted_1036 = (value).as_str().into_py_any(py)?;
+            result.set_item("state_machine_version_arn", converted_1036)?;
         } else {
             result.set_item("state_machine_version_arn", py.None())?;
         }
@@ -6708,26 +7886,26 @@ struct PyOperationCreateStateMachineAliasOutput {
 impl PyOperationCreateStateMachineAliasOutput {
     #[getter]
     fn state_machine_alias_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_923 = (&self.inner.state_machine_alias_arn)
+        let converted_1037 = (&self.inner.state_machine_alias_arn)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_923)
+        Ok(converted_1037)
     }
 
     #[getter]
     fn creation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_924 = (&self.inner.creation_date).to_string().into_py_any(py)?;
-        Ok(converted_924)
+        let converted_1038 = (&self.inner.creation_date).to_string().into_py_any(py)?;
+        Ok(converted_1038)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_925 = (&self.inner.state_machine_alias_arn)
+        let converted_1039 = (&self.inner.state_machine_alias_arn)
             .as_str()
             .into_py_any(py)?;
-        result.set_item("state_machine_alias_arn", converted_925)?;
-        let converted_926 = (&self.inner.creation_date).to_string().into_py_any(py)?;
-        result.set_item("creation_date", converted_926)?;
+        result.set_item("state_machine_alias_arn", converted_1039)?;
+        let converted_1040 = (&self.inner.creation_date).to_string().into_py_any(py)?;
+        result.set_item("creation_date", converted_1040)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -6796,42 +7974,63 @@ impl PyOperationDeleteStateMachineVersionOutput {
     }
 }
 
+struct SharedPyOperationDescribeActivityOutput {
+    activity_arn: ::std::string::String,
+    name: ::std::string::String,
+    creation_date: ::aws_smithy_types::DateTime,
+    encryption_configuration: Option<Arc<aws_sdk_sfn::types::EncryptionConfiguration>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::operation::describe_activity::DescribeActivityOutput>
+    for SharedPyOperationDescribeActivityOutput
+{
+    fn from(value: aws_sdk_sfn::operation::describe_activity::DescribeActivityOutput) -> Self {
+        Self {
+            activity_arn: value.activity_arn,
+            name: value.name,
+            creation_date: value.creation_date,
+            encryption_configuration: value.encryption_configuration.map(|item| Arc::new(item)),
+        }
+    }
+}
+
 #[pyclass(name = "DescribeActivityOutput", module = "rboto_sfn._native", frozen)]
 struct PyOperationDescribeActivityOutput {
-    inner: aws_sdk_sfn::operation::describe_activity::DescribeActivityOutput,
+    inner: SharedPyOperationDescribeActivityOutput,
 }
 
 #[pymethods]
 impl PyOperationDescribeActivityOutput {
     #[getter]
     fn activity_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_927 = (&self.inner.activity_arn).as_str().into_py_any(py)?;
-        Ok(converted_927)
+        let converted_1041 = (&self.inner.activity_arn).as_str().into_py_any(py)?;
+        Ok(converted_1041)
     }
 
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_928 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_928)
+        let converted_1042 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_1042)
     }
 
     #[getter]
     fn creation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_929 = (&self.inner.creation_date).to_string().into_py_any(py)?;
-        Ok(converted_929)
+        let converted_1043 = (&self.inner.creation_date).to_string().into_py_any(py)?;
+        Ok(converted_1043)
     }
 
     #[getter]
     fn encryption_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_configuration {
-            let converted_930 = Py::new(
+            let converted_1044 = Py::new(
                 py,
                 PyEncryptionConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_930)
+            Ok(converted_1044)
         } else {
             Ok(py.None())
         }
@@ -6839,15 +8038,15 @@ impl PyOperationDescribeActivityOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_931 = (&self.inner.activity_arn).as_str().into_py_any(py)?;
-        result.set_item("activity_arn", converted_931)?;
-        let converted_932 = (&self.inner.name).as_str().into_py_any(py)?;
-        result.set_item("name", converted_932)?;
-        let converted_933 = (&self.inner.creation_date).to_string().into_py_any(py)?;
-        result.set_item("creation_date", converted_933)?;
+        let converted_1045 = (&self.inner.activity_arn).as_str().into_py_any(py)?;
+        result.set_item("activity_arn", converted_1045)?;
+        let converted_1046 = (&self.inner.name).as_str().into_py_any(py)?;
+        result.set_item("name", converted_1046)?;
+        let converted_1047 = (&self.inner.creation_date).to_string().into_py_any(py)?;
+        result.set_item("creation_date", converted_1047)?;
         if let Some(value) = &self.inner.encryption_configuration {
-            let converted_934 = encryption_configuration_to_py(py, value)?;
-            result.set_item("encryption_configuration", converted_934)?;
+            let converted_1048 = encryption_configuration_to_py(py, value)?;
+            result.set_item("encryption_configuration", converted_1048)?;
         } else {
             result.set_item("encryption_configuration", py.None())?;
         }
@@ -6855,30 +8054,83 @@ impl PyOperationDescribeActivityOutput {
     }
 }
 
+struct SharedPyOperationDescribeExecutionOutput {
+    execution_arn: ::std::string::String,
+    state_machine_arn: ::std::string::String,
+    name: Option<::std::string::String>,
+    status: aws_sdk_sfn::types::ExecutionStatus,
+    start_date: ::aws_smithy_types::DateTime,
+    stop_date: Option<::aws_smithy_types::DateTime>,
+    input: Option<::std::string::String>,
+    input_details: Option<Arc<aws_sdk_sfn::types::CloudWatchEventsExecutionDataDetails>>,
+    output: Option<::std::string::String>,
+    output_details: Option<Arc<aws_sdk_sfn::types::CloudWatchEventsExecutionDataDetails>>,
+    trace_header: Option<::std::string::String>,
+    map_run_arn: Option<::std::string::String>,
+    error: Option<::std::string::String>,
+    cause: Option<::std::string::String>,
+    state_machine_version_arn: Option<::std::string::String>,
+    state_machine_alias_arn: Option<::std::string::String>,
+    redrive_count: Option<i32>,
+    redrive_date: Option<::aws_smithy_types::DateTime>,
+    redrive_status: Option<aws_sdk_sfn::types::ExecutionRedriveStatus>,
+    redrive_status_reason: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::operation::describe_execution::DescribeExecutionOutput>
+    for SharedPyOperationDescribeExecutionOutput
+{
+    fn from(value: aws_sdk_sfn::operation::describe_execution::DescribeExecutionOutput) -> Self {
+        Self {
+            execution_arn: value.execution_arn,
+            state_machine_arn: value.state_machine_arn,
+            name: value.name,
+            status: value.status,
+            start_date: value.start_date,
+            stop_date: value.stop_date,
+            input: value.input,
+            input_details: value.input_details.map(|item| Arc::new(item)),
+            output: value.output,
+            output_details: value.output_details.map(|item| Arc::new(item)),
+            trace_header: value.trace_header,
+            map_run_arn: value.map_run_arn,
+            error: value.error,
+            cause: value.cause,
+            state_machine_version_arn: value.state_machine_version_arn,
+            state_machine_alias_arn: value.state_machine_alias_arn,
+            redrive_count: value.redrive_count,
+            redrive_date: value.redrive_date,
+            redrive_status: value.redrive_status,
+            redrive_status_reason: value.redrive_status_reason,
+        }
+    }
+}
+
 #[pyclass(name = "DescribeExecutionOutput", module = "rboto_sfn._native", frozen)]
 struct PyOperationDescribeExecutionOutput {
-    inner: aws_sdk_sfn::operation::describe_execution::DescribeExecutionOutput,
+    inner: SharedPyOperationDescribeExecutionOutput,
 }
 
 #[pymethods]
 impl PyOperationDescribeExecutionOutput {
     #[getter]
     fn execution_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_935 = (&self.inner.execution_arn).as_str().into_py_any(py)?;
-        Ok(converted_935)
+        let converted_1049 = (&self.inner.execution_arn).as_str().into_py_any(py)?;
+        Ok(converted_1049)
     }
 
     #[getter]
     fn state_machine_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_936 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
-        Ok(converted_936)
+        let converted_1050 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
+        Ok(converted_1050)
     }
 
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_937 = (value).as_str().into_py_any(py)?;
-            Ok(converted_937)
+            let converted_1051 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1051)
         } else {
             Ok(py.None())
         }
@@ -6886,21 +8138,21 @@ impl PyOperationDescribeExecutionOutput {
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_938 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_938)
+        let converted_1052 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_1052)
     }
 
     #[getter]
     fn start_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_939 = (&self.inner.start_date).to_string().into_py_any(py)?;
-        Ok(converted_939)
+        let converted_1053 = (&self.inner.start_date).to_string().into_py_any(py)?;
+        Ok(converted_1053)
     }
 
     #[getter]
     fn stop_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stop_date {
-            let converted_940 = (value).to_string().into_py_any(py)?;
-            Ok(converted_940)
+            let converted_1054 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1054)
         } else {
             Ok(py.None())
         }
@@ -6909,8 +8161,8 @@ impl PyOperationDescribeExecutionOutput {
     #[getter]
     fn input(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input {
-            let converted_941 = (value).as_str().into_py_any(py)?;
-            Ok(converted_941)
+            let converted_1055 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1055)
         } else {
             Ok(py.None())
         }
@@ -6919,14 +8171,14 @@ impl PyOperationDescribeExecutionOutput {
     #[getter]
     fn input_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_details {
-            let converted_942 = Py::new(
+            let converted_1056 = Py::new(
                 py,
                 PyCloudWatchEventsExecutionDataDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_942)
+            Ok(converted_1056)
         } else {
             Ok(py.None())
         }
@@ -6935,8 +8187,8 @@ impl PyOperationDescribeExecutionOutput {
     #[getter]
     fn output(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output {
-            let converted_943 = (value).as_str().into_py_any(py)?;
-            Ok(converted_943)
+            let converted_1057 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1057)
         } else {
             Ok(py.None())
         }
@@ -6945,14 +8197,14 @@ impl PyOperationDescribeExecutionOutput {
     #[getter]
     fn output_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_details {
-            let converted_944 = Py::new(
+            let converted_1058 = Py::new(
                 py,
                 PyCloudWatchEventsExecutionDataDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_944)
+            Ok(converted_1058)
         } else {
             Ok(py.None())
         }
@@ -6961,8 +8213,8 @@ impl PyOperationDescribeExecutionOutput {
     #[getter]
     fn trace_header(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trace_header {
-            let converted_945 = (value).as_str().into_py_any(py)?;
-            Ok(converted_945)
+            let converted_1059 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1059)
         } else {
             Ok(py.None())
         }
@@ -6971,8 +8223,8 @@ impl PyOperationDescribeExecutionOutput {
     #[getter]
     fn map_run_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.map_run_arn {
-            let converted_946 = (value).as_str().into_py_any(py)?;
-            Ok(converted_946)
+            let converted_1060 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1060)
         } else {
             Ok(py.None())
         }
@@ -6981,8 +8233,8 @@ impl PyOperationDescribeExecutionOutput {
     #[getter]
     fn error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error {
-            let converted_947 = (value).as_str().into_py_any(py)?;
-            Ok(converted_947)
+            let converted_1061 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1061)
         } else {
             Ok(py.None())
         }
@@ -6991,8 +8243,8 @@ impl PyOperationDescribeExecutionOutput {
     #[getter]
     fn cause(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cause {
-            let converted_948 = (value).as_str().into_py_any(py)?;
-            Ok(converted_948)
+            let converted_1062 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1062)
         } else {
             Ok(py.None())
         }
@@ -7001,8 +8253,8 @@ impl PyOperationDescribeExecutionOutput {
     #[getter]
     fn state_machine_version_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state_machine_version_arn {
-            let converted_949 = (value).as_str().into_py_any(py)?;
-            Ok(converted_949)
+            let converted_1063 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1063)
         } else {
             Ok(py.None())
         }
@@ -7011,8 +8263,8 @@ impl PyOperationDescribeExecutionOutput {
     #[getter]
     fn state_machine_alias_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state_machine_alias_arn {
-            let converted_950 = (value).as_str().into_py_any(py)?;
-            Ok(converted_950)
+            let converted_1064 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1064)
         } else {
             Ok(py.None())
         }
@@ -7021,8 +8273,8 @@ impl PyOperationDescribeExecutionOutput {
     #[getter]
     fn redrive_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.redrive_count {
-            let converted_951 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_951)
+            let converted_1065 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1065)
         } else {
             Ok(py.None())
         }
@@ -7031,8 +8283,8 @@ impl PyOperationDescribeExecutionOutput {
     #[getter]
     fn redrive_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.redrive_date {
-            let converted_952 = (value).to_string().into_py_any(py)?;
-            Ok(converted_952)
+            let converted_1066 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1066)
         } else {
             Ok(py.None())
         }
@@ -7041,8 +8293,8 @@ impl PyOperationDescribeExecutionOutput {
     #[getter]
     fn redrive_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.redrive_status {
-            let converted_953 = (value).as_str().into_py_any(py)?;
-            Ok(converted_953)
+            let converted_1067 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1067)
         } else {
             Ok(py.None())
         }
@@ -7051,8 +8303,8 @@ impl PyOperationDescribeExecutionOutput {
     #[getter]
     fn redrive_status_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.redrive_status_reason {
-            let converted_954 = (value).as_str().into_py_any(py)?;
-            Ok(converted_954)
+            let converted_1068 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1068)
         } else {
             Ok(py.None())
         }
@@ -7060,107 +8312,107 @@ impl PyOperationDescribeExecutionOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_955 = (&self.inner.execution_arn).as_str().into_py_any(py)?;
-        result.set_item("execution_arn", converted_955)?;
-        let converted_956 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
-        result.set_item("state_machine_arn", converted_956)?;
+        let converted_1069 = (&self.inner.execution_arn).as_str().into_py_any(py)?;
+        result.set_item("execution_arn", converted_1069)?;
+        let converted_1070 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
+        result.set_item("state_machine_arn", converted_1070)?;
         if let Some(value) = &self.inner.name {
-            let converted_957 = (value).as_str().into_py_any(py)?;
-            result.set_item("name", converted_957)?;
+            let converted_1071 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_1071)?;
         } else {
             result.set_item("name", py.None())?;
         }
-        let converted_958 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_958)?;
-        let converted_959 = (&self.inner.start_date).to_string().into_py_any(py)?;
-        result.set_item("start_date", converted_959)?;
+        let converted_1072 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_1072)?;
+        let converted_1073 = (&self.inner.start_date).to_string().into_py_any(py)?;
+        result.set_item("start_date", converted_1073)?;
         if let Some(value) = &self.inner.stop_date {
-            let converted_960 = (value).to_string().into_py_any(py)?;
-            result.set_item("stop_date", converted_960)?;
+            let converted_1074 = (value).to_string().into_py_any(py)?;
+            result.set_item("stop_date", converted_1074)?;
         } else {
             result.set_item("stop_date", py.None())?;
         }
         if let Some(value) = &self.inner.input {
-            let converted_961 = (value).as_str().into_py_any(py)?;
-            result.set_item("input", converted_961)?;
+            let converted_1075 = (value).as_str().into_py_any(py)?;
+            result.set_item("input", converted_1075)?;
         } else {
             result.set_item("input", py.None())?;
         }
         if let Some(value) = &self.inner.input_details {
-            let converted_962 = cloud_watch_events_execution_data_details_to_py(py, value)?;
-            result.set_item("input_details", converted_962)?;
+            let converted_1076 = cloud_watch_events_execution_data_details_to_py(py, value)?;
+            result.set_item("input_details", converted_1076)?;
         } else {
             result.set_item("input_details", py.None())?;
         }
         if let Some(value) = &self.inner.output {
-            let converted_963 = (value).as_str().into_py_any(py)?;
-            result.set_item("output", converted_963)?;
+            let converted_1077 = (value).as_str().into_py_any(py)?;
+            result.set_item("output", converted_1077)?;
         } else {
             result.set_item("output", py.None())?;
         }
         if let Some(value) = &self.inner.output_details {
-            let converted_964 = cloud_watch_events_execution_data_details_to_py(py, value)?;
-            result.set_item("output_details", converted_964)?;
+            let converted_1078 = cloud_watch_events_execution_data_details_to_py(py, value)?;
+            result.set_item("output_details", converted_1078)?;
         } else {
             result.set_item("output_details", py.None())?;
         }
         if let Some(value) = &self.inner.trace_header {
-            let converted_965 = (value).as_str().into_py_any(py)?;
-            result.set_item("trace_header", converted_965)?;
+            let converted_1079 = (value).as_str().into_py_any(py)?;
+            result.set_item("trace_header", converted_1079)?;
         } else {
             result.set_item("trace_header", py.None())?;
         }
         if let Some(value) = &self.inner.map_run_arn {
-            let converted_966 = (value).as_str().into_py_any(py)?;
-            result.set_item("map_run_arn", converted_966)?;
+            let converted_1080 = (value).as_str().into_py_any(py)?;
+            result.set_item("map_run_arn", converted_1080)?;
         } else {
             result.set_item("map_run_arn", py.None())?;
         }
         if let Some(value) = &self.inner.error {
-            let converted_967 = (value).as_str().into_py_any(py)?;
-            result.set_item("error", converted_967)?;
+            let converted_1081 = (value).as_str().into_py_any(py)?;
+            result.set_item("error", converted_1081)?;
         } else {
             result.set_item("error", py.None())?;
         }
         if let Some(value) = &self.inner.cause {
-            let converted_968 = (value).as_str().into_py_any(py)?;
-            result.set_item("cause", converted_968)?;
+            let converted_1082 = (value).as_str().into_py_any(py)?;
+            result.set_item("cause", converted_1082)?;
         } else {
             result.set_item("cause", py.None())?;
         }
         if let Some(value) = &self.inner.state_machine_version_arn {
-            let converted_969 = (value).as_str().into_py_any(py)?;
-            result.set_item("state_machine_version_arn", converted_969)?;
+            let converted_1083 = (value).as_str().into_py_any(py)?;
+            result.set_item("state_machine_version_arn", converted_1083)?;
         } else {
             result.set_item("state_machine_version_arn", py.None())?;
         }
         if let Some(value) = &self.inner.state_machine_alias_arn {
-            let converted_970 = (value).as_str().into_py_any(py)?;
-            result.set_item("state_machine_alias_arn", converted_970)?;
+            let converted_1084 = (value).as_str().into_py_any(py)?;
+            result.set_item("state_machine_alias_arn", converted_1084)?;
         } else {
             result.set_item("state_machine_alias_arn", py.None())?;
         }
         if let Some(value) = &self.inner.redrive_count {
-            let converted_971 = (value).to_owned().into_py_any(py)?;
-            result.set_item("redrive_count", converted_971)?;
+            let converted_1085 = (value).to_owned().into_py_any(py)?;
+            result.set_item("redrive_count", converted_1085)?;
         } else {
             result.set_item("redrive_count", py.None())?;
         }
         if let Some(value) = &self.inner.redrive_date {
-            let converted_972 = (value).to_string().into_py_any(py)?;
-            result.set_item("redrive_date", converted_972)?;
+            let converted_1086 = (value).to_string().into_py_any(py)?;
+            result.set_item("redrive_date", converted_1086)?;
         } else {
             result.set_item("redrive_date", py.None())?;
         }
         if let Some(value) = &self.inner.redrive_status {
-            let converted_973 = (value).as_str().into_py_any(py)?;
-            result.set_item("redrive_status", converted_973)?;
+            let converted_1087 = (value).as_str().into_py_any(py)?;
+            result.set_item("redrive_status", converted_1087)?;
         } else {
             result.set_item("redrive_status", py.None())?;
         }
         if let Some(value) = &self.inner.redrive_status_reason {
-            let converted_974 = (value).as_str().into_py_any(py)?;
-            result.set_item("redrive_status_reason", converted_974)?;
+            let converted_1088 = (value).as_str().into_py_any(py)?;
+            result.set_item("redrive_status_reason", converted_1088)?;
         } else {
             result.set_item("redrive_status_reason", py.None())?;
         }
@@ -7168,42 +8420,79 @@ impl PyOperationDescribeExecutionOutput {
     }
 }
 
+struct SharedPyOperationDescribeMapRunOutput {
+    map_run_arn: ::std::string::String,
+    execution_arn: ::std::string::String,
+    status: aws_sdk_sfn::types::MapRunStatus,
+    start_date: ::aws_smithy_types::DateTime,
+    stop_date: Option<::aws_smithy_types::DateTime>,
+    max_concurrency: i32,
+    tolerated_failure_percentage: f32,
+    tolerated_failure_count: i64,
+    item_counts: Option<Arc<aws_sdk_sfn::types::MapRunItemCounts>>,
+    execution_counts: Option<Arc<aws_sdk_sfn::types::MapRunExecutionCounts>>,
+    redrive_count: Option<i32>,
+    redrive_date: Option<::aws_smithy_types::DateTime>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::operation::describe_map_run::DescribeMapRunOutput>
+    for SharedPyOperationDescribeMapRunOutput
+{
+    fn from(value: aws_sdk_sfn::operation::describe_map_run::DescribeMapRunOutput) -> Self {
+        Self {
+            map_run_arn: value.map_run_arn,
+            execution_arn: value.execution_arn,
+            status: value.status,
+            start_date: value.start_date,
+            stop_date: value.stop_date,
+            max_concurrency: value.max_concurrency,
+            tolerated_failure_percentage: value.tolerated_failure_percentage,
+            tolerated_failure_count: value.tolerated_failure_count,
+            item_counts: value.item_counts.map(|item| Arc::new(item)),
+            execution_counts: value.execution_counts.map(|item| Arc::new(item)),
+            redrive_count: value.redrive_count,
+            redrive_date: value.redrive_date,
+        }
+    }
+}
+
 #[pyclass(name = "DescribeMapRunOutput", module = "rboto_sfn._native", frozen)]
 struct PyOperationDescribeMapRunOutput {
-    inner: aws_sdk_sfn::operation::describe_map_run::DescribeMapRunOutput,
+    inner: SharedPyOperationDescribeMapRunOutput,
 }
 
 #[pymethods]
 impl PyOperationDescribeMapRunOutput {
     #[getter]
     fn map_run_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_975 = (&self.inner.map_run_arn).as_str().into_py_any(py)?;
-        Ok(converted_975)
+        let converted_1089 = (&self.inner.map_run_arn).as_str().into_py_any(py)?;
+        Ok(converted_1089)
     }
 
     #[getter]
     fn execution_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_976 = (&self.inner.execution_arn).as_str().into_py_any(py)?;
-        Ok(converted_976)
+        let converted_1090 = (&self.inner.execution_arn).as_str().into_py_any(py)?;
+        Ok(converted_1090)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_977 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_977)
+        let converted_1091 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_1091)
     }
 
     #[getter]
     fn start_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_978 = (&self.inner.start_date).to_string().into_py_any(py)?;
-        Ok(converted_978)
+        let converted_1092 = (&self.inner.start_date).to_string().into_py_any(py)?;
+        Ok(converted_1092)
     }
 
     #[getter]
     fn stop_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stop_date {
-            let converted_979 = (value).to_string().into_py_any(py)?;
-            Ok(converted_979)
+            let converted_1093 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1093)
         } else {
             Ok(py.None())
         }
@@ -7211,37 +8500,37 @@ impl PyOperationDescribeMapRunOutput {
 
     #[getter]
     fn max_concurrency(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_980 = (&self.inner.max_concurrency).to_owned().into_py_any(py)?;
-        Ok(converted_980)
+        let converted_1094 = (&self.inner.max_concurrency).to_owned().into_py_any(py)?;
+        Ok(converted_1094)
     }
 
     #[getter]
     fn tolerated_failure_percentage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_981 = (&self.inner.tolerated_failure_percentage)
+        let converted_1095 = (&self.inner.tolerated_failure_percentage)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_981)
+        Ok(converted_1095)
     }
 
     #[getter]
     fn tolerated_failure_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_982 = (&self.inner.tolerated_failure_count)
+        let converted_1096 = (&self.inner.tolerated_failure_count)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_982)
+        Ok(converted_1096)
     }
 
     #[getter]
     fn item_counts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.item_counts {
-            let converted_983 = Py::new(
+            let converted_1097 = Py::new(
                 py,
                 PyMapRunItemCounts {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_983)
+            Ok(converted_1097)
         } else {
             Ok(py.None())
         }
@@ -7250,14 +8539,14 @@ impl PyOperationDescribeMapRunOutput {
     #[getter]
     fn execution_counts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.execution_counts {
-            let converted_984 = Py::new(
+            let converted_1098 = Py::new(
                 py,
                 PyMapRunExecutionCounts {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_984)
+            Ok(converted_1098)
         } else {
             Ok(py.None())
         }
@@ -7266,8 +8555,8 @@ impl PyOperationDescribeMapRunOutput {
     #[getter]
     fn redrive_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.redrive_count {
-            let converted_985 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_985)
+            let converted_1099 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1099)
         } else {
             Ok(py.None())
         }
@@ -7276,8 +8565,8 @@ impl PyOperationDescribeMapRunOutput {
     #[getter]
     fn redrive_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.redrive_date {
-            let converted_986 = (value).to_string().into_py_any(py)?;
-            Ok(converted_986)
+            let converted_1100 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1100)
         } else {
             Ok(py.None())
         }
@@ -7285,55 +8574,102 @@ impl PyOperationDescribeMapRunOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_987 = (&self.inner.map_run_arn).as_str().into_py_any(py)?;
-        result.set_item("map_run_arn", converted_987)?;
-        let converted_988 = (&self.inner.execution_arn).as_str().into_py_any(py)?;
-        result.set_item("execution_arn", converted_988)?;
-        let converted_989 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_989)?;
-        let converted_990 = (&self.inner.start_date).to_string().into_py_any(py)?;
-        result.set_item("start_date", converted_990)?;
+        let converted_1101 = (&self.inner.map_run_arn).as_str().into_py_any(py)?;
+        result.set_item("map_run_arn", converted_1101)?;
+        let converted_1102 = (&self.inner.execution_arn).as_str().into_py_any(py)?;
+        result.set_item("execution_arn", converted_1102)?;
+        let converted_1103 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_1103)?;
+        let converted_1104 = (&self.inner.start_date).to_string().into_py_any(py)?;
+        result.set_item("start_date", converted_1104)?;
         if let Some(value) = &self.inner.stop_date {
-            let converted_991 = (value).to_string().into_py_any(py)?;
-            result.set_item("stop_date", converted_991)?;
+            let converted_1105 = (value).to_string().into_py_any(py)?;
+            result.set_item("stop_date", converted_1105)?;
         } else {
             result.set_item("stop_date", py.None())?;
         }
-        let converted_992 = (&self.inner.max_concurrency).to_owned().into_py_any(py)?;
-        result.set_item("max_concurrency", converted_992)?;
-        let converted_993 = (&self.inner.tolerated_failure_percentage)
+        let converted_1106 = (&self.inner.max_concurrency).to_owned().into_py_any(py)?;
+        result.set_item("max_concurrency", converted_1106)?;
+        let converted_1107 = (&self.inner.tolerated_failure_percentage)
             .to_owned()
             .into_py_any(py)?;
-        result.set_item("tolerated_failure_percentage", converted_993)?;
-        let converted_994 = (&self.inner.tolerated_failure_count)
+        result.set_item("tolerated_failure_percentage", converted_1107)?;
+        let converted_1108 = (&self.inner.tolerated_failure_count)
             .to_owned()
             .into_py_any(py)?;
-        result.set_item("tolerated_failure_count", converted_994)?;
+        result.set_item("tolerated_failure_count", converted_1108)?;
         if let Some(value) = &self.inner.item_counts {
-            let converted_995 = map_run_item_counts_to_py(py, value)?;
-            result.set_item("item_counts", converted_995)?;
+            let converted_1109 = map_run_item_counts_to_py(py, value)?;
+            result.set_item("item_counts", converted_1109)?;
         } else {
             result.set_item("item_counts", py.None())?;
         }
         if let Some(value) = &self.inner.execution_counts {
-            let converted_996 = map_run_execution_counts_to_py(py, value)?;
-            result.set_item("execution_counts", converted_996)?;
+            let converted_1110 = map_run_execution_counts_to_py(py, value)?;
+            result.set_item("execution_counts", converted_1110)?;
         } else {
             result.set_item("execution_counts", py.None())?;
         }
         if let Some(value) = &self.inner.redrive_count {
-            let converted_997 = (value).to_owned().into_py_any(py)?;
-            result.set_item("redrive_count", converted_997)?;
+            let converted_1111 = (value).to_owned().into_py_any(py)?;
+            result.set_item("redrive_count", converted_1111)?;
         } else {
             result.set_item("redrive_count", py.None())?;
         }
         if let Some(value) = &self.inner.redrive_date {
-            let converted_998 = (value).to_string().into_py_any(py)?;
-            result.set_item("redrive_date", converted_998)?;
+            let converted_1112 = (value).to_string().into_py_any(py)?;
+            result.set_item("redrive_date", converted_1112)?;
         } else {
             result.set_item("redrive_date", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationDescribeStateMachineOutput {
+    state_machine_arn: ::std::string::String,
+    name: ::std::string::String,
+    status: Option<aws_sdk_sfn::types::StateMachineStatus>,
+    definition: ::std::string::String,
+    role_arn: ::std::string::String,
+    r#type: aws_sdk_sfn::types::StateMachineType,
+    creation_date: ::aws_smithy_types::DateTime,
+    logging_configuration: Option<Arc<SharedLoggingConfiguration>>,
+    tracing_configuration: Option<Arc<aws_sdk_sfn::types::TracingConfiguration>>,
+    label: Option<::std::string::String>,
+    revision_id: Option<::std::string::String>,
+    description: Option<::std::string::String>,
+    encryption_configuration: Option<Arc<aws_sdk_sfn::types::EncryptionConfiguration>>,
+    variable_references: Option<
+        ::std::collections::HashMap<::std::string::String, ::std::vec::Vec<::std::string::String>>,
+    >,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::operation::describe_state_machine::DescribeStateMachineOutput>
+    for SharedPyOperationDescribeStateMachineOutput
+{
+    fn from(
+        value: aws_sdk_sfn::operation::describe_state_machine::DescribeStateMachineOutput,
+    ) -> Self {
+        Self {
+            state_machine_arn: value.state_machine_arn,
+            name: value.name,
+            status: value.status,
+            definition: value.definition,
+            role_arn: value.role_arn,
+            r#type: value.r#type,
+            creation_date: value.creation_date,
+            logging_configuration: value
+                .logging_configuration
+                .map(|item| Arc::new(SharedLoggingConfiguration::from(item))),
+            tracing_configuration: value.tracing_configuration.map(|item| Arc::new(item)),
+            label: value.label,
+            revision_id: value.revision_id,
+            description: value.description,
+            encryption_configuration: value.encryption_configuration.map(|item| Arc::new(item)),
+            variable_references: value.variable_references,
+        }
     }
 }
 
@@ -7343,28 +8679,28 @@ impl PyOperationDescribeMapRunOutput {
     frozen
 )]
 struct PyOperationDescribeStateMachineOutput {
-    inner: aws_sdk_sfn::operation::describe_state_machine::DescribeStateMachineOutput,
+    inner: SharedPyOperationDescribeStateMachineOutput,
 }
 
 #[pymethods]
 impl PyOperationDescribeStateMachineOutput {
     #[getter]
     fn state_machine_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_999 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
-        Ok(converted_999)
+        let converted_1113 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
+        Ok(converted_1113)
     }
 
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1000 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_1000)
+        let converted_1114 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_1114)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_1001 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1001)
+            let converted_1115 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1115)
         } else {
             Ok(py.None())
         }
@@ -7372,39 +8708,39 @@ impl PyOperationDescribeStateMachineOutput {
 
     #[getter]
     fn definition(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1002 = (&self.inner.definition).as_str().into_py_any(py)?;
-        Ok(converted_1002)
+        let converted_1116 = (&self.inner.definition).as_str().into_py_any(py)?;
+        Ok(converted_1116)
     }
 
     #[getter]
     fn role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1003 = (&self.inner.role_arn).as_str().into_py_any(py)?;
-        Ok(converted_1003)
+        let converted_1117 = (&self.inner.role_arn).as_str().into_py_any(py)?;
+        Ok(converted_1117)
     }
 
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1004 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_1004)
+        let converted_1118 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_1118)
     }
 
     #[getter]
     fn creation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1005 = (&self.inner.creation_date).to_string().into_py_any(py)?;
-        Ok(converted_1005)
+        let converted_1119 = (&self.inner.creation_date).to_string().into_py_any(py)?;
+        Ok(converted_1119)
     }
 
     #[getter]
     fn logging_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.logging_configuration {
-            let converted_1006 = Py::new(
+            let converted_1120 = Py::new(
                 py,
                 PyLoggingConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1006)
+            Ok(converted_1120)
         } else {
             Ok(py.None())
         }
@@ -7413,14 +8749,14 @@ impl PyOperationDescribeStateMachineOutput {
     #[getter]
     fn tracing_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tracing_configuration {
-            let converted_1007 = Py::new(
+            let converted_1121 = Py::new(
                 py,
                 PyTracingConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1007)
+            Ok(converted_1121)
         } else {
             Ok(py.None())
         }
@@ -7429,8 +8765,8 @@ impl PyOperationDescribeStateMachineOutput {
     #[getter]
     fn label(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.label {
-            let converted_1008 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1008)
+            let converted_1122 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1122)
         } else {
             Ok(py.None())
         }
@@ -7439,8 +8775,8 @@ impl PyOperationDescribeStateMachineOutput {
     #[getter]
     fn revision_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.revision_id {
-            let converted_1009 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1009)
+            let converted_1123 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1123)
         } else {
             Ok(py.None())
         }
@@ -7449,8 +8785,8 @@ impl PyOperationDescribeStateMachineOutput {
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_1010 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1010)
+            let converted_1124 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1124)
         } else {
             Ok(py.None())
         }
@@ -7459,14 +8795,14 @@ impl PyOperationDescribeStateMachineOutput {
     #[getter]
     fn encryption_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_configuration {
-            let converted_1011 = Py::new(
+            let converted_1125 = Py::new(
                 py,
                 PyEncryptionConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1011)
+            Ok(converted_1125)
         } else {
             Ok(py.None())
         }
@@ -7475,19 +8811,19 @@ impl PyOperationDescribeStateMachineOutput {
     #[getter]
     fn variable_references(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.variable_references {
-            let converted_1012_dict = PyDict::new(py);
-            for (key_1013, value_1014) in value {
-                let converted_key_1015 = (key_1013).as_str().into_py_any(py)?;
-                let converted_value_1016_list = PyList::empty(py);
-                for item_1017 in value_1014 {
-                    let converted_item_1018 = (item_1017).as_str().into_py_any(py)?;
-                    converted_value_1016_list.append(converted_item_1018)?;
+            let converted_1126_dict = PyDict::new(py);
+            for (key_1127, value_1128) in value {
+                let converted_key_1129 = (key_1127).as_str().into_py_any(py)?;
+                let converted_value_1130_list = PyList::empty(py);
+                for item_1131 in value_1128 {
+                    let converted_item_1132 = (item_1131).as_str().into_py_any(py)?;
+                    converted_value_1130_list.append(converted_item_1132)?;
                 }
-                let converted_value_1016 = converted_value_1016_list.into_any().unbind();
-                converted_1012_dict.set_item(converted_key_1015, converted_value_1016)?;
+                let converted_value_1130 = converted_value_1130_list.into_any().unbind();
+                converted_1126_dict.set_item(converted_key_1129, converted_value_1130)?;
             }
-            let converted_1012 = converted_1012_dict.into_any().unbind();
-            Ok(converted_1012)
+            let converted_1126 = converted_1126_dict.into_any().unbind();
+            Ok(converted_1126)
         } else {
             Ok(py.None())
         }
@@ -7495,78 +8831,111 @@ impl PyOperationDescribeStateMachineOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1019 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
-        result.set_item("state_machine_arn", converted_1019)?;
-        let converted_1020 = (&self.inner.name).as_str().into_py_any(py)?;
-        result.set_item("name", converted_1020)?;
+        let converted_1133 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
+        result.set_item("state_machine_arn", converted_1133)?;
+        let converted_1134 = (&self.inner.name).as_str().into_py_any(py)?;
+        result.set_item("name", converted_1134)?;
         if let Some(value) = &self.inner.status {
-            let converted_1021 = (value).as_str().into_py_any(py)?;
-            result.set_item("status", converted_1021)?;
+            let converted_1135 = (value).as_str().into_py_any(py)?;
+            result.set_item("status", converted_1135)?;
         } else {
             result.set_item("status", py.None())?;
         }
-        let converted_1022 = (&self.inner.definition).as_str().into_py_any(py)?;
-        result.set_item("definition", converted_1022)?;
-        let converted_1023 = (&self.inner.role_arn).as_str().into_py_any(py)?;
-        result.set_item("role_arn", converted_1023)?;
-        let converted_1024 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        result.set_item("type", converted_1024)?;
-        let converted_1025 = (&self.inner.creation_date).to_string().into_py_any(py)?;
-        result.set_item("creation_date", converted_1025)?;
+        let converted_1136 = (&self.inner.definition).as_str().into_py_any(py)?;
+        result.set_item("definition", converted_1136)?;
+        let converted_1137 = (&self.inner.role_arn).as_str().into_py_any(py)?;
+        result.set_item("role_arn", converted_1137)?;
+        let converted_1138 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        result.set_item("type", converted_1138)?;
+        let converted_1139 = (&self.inner.creation_date).to_string().into_py_any(py)?;
+        result.set_item("creation_date", converted_1139)?;
         if let Some(value) = &self.inner.logging_configuration {
-            let converted_1026 = logging_configuration_to_py(py, value)?;
-            result.set_item("logging_configuration", converted_1026)?;
+            let converted_1140 = logging_configuration_shared_to_py(py, value)?;
+            result.set_item("logging_configuration", converted_1140)?;
         } else {
             result.set_item("logging_configuration", py.None())?;
         }
         if let Some(value) = &self.inner.tracing_configuration {
-            let converted_1027 = tracing_configuration_to_py(py, value)?;
-            result.set_item("tracing_configuration", converted_1027)?;
+            let converted_1141 = tracing_configuration_to_py(py, value)?;
+            result.set_item("tracing_configuration", converted_1141)?;
         } else {
             result.set_item("tracing_configuration", py.None())?;
         }
         if let Some(value) = &self.inner.label {
-            let converted_1028 = (value).as_str().into_py_any(py)?;
-            result.set_item("label", converted_1028)?;
+            let converted_1142 = (value).as_str().into_py_any(py)?;
+            result.set_item("label", converted_1142)?;
         } else {
             result.set_item("label", py.None())?;
         }
         if let Some(value) = &self.inner.revision_id {
-            let converted_1029 = (value).as_str().into_py_any(py)?;
-            result.set_item("revision_id", converted_1029)?;
+            let converted_1143 = (value).as_str().into_py_any(py)?;
+            result.set_item("revision_id", converted_1143)?;
         } else {
             result.set_item("revision_id", py.None())?;
         }
         if let Some(value) = &self.inner.description {
-            let converted_1030 = (value).as_str().into_py_any(py)?;
-            result.set_item("description", converted_1030)?;
+            let converted_1144 = (value).as_str().into_py_any(py)?;
+            result.set_item("description", converted_1144)?;
         } else {
             result.set_item("description", py.None())?;
         }
         if let Some(value) = &self.inner.encryption_configuration {
-            let converted_1031 = encryption_configuration_to_py(py, value)?;
-            result.set_item("encryption_configuration", converted_1031)?;
+            let converted_1145 = encryption_configuration_to_py(py, value)?;
+            result.set_item("encryption_configuration", converted_1145)?;
         } else {
             result.set_item("encryption_configuration", py.None())?;
         }
         if let Some(value) = &self.inner.variable_references {
-            let converted_1032_dict = PyDict::new(py);
-            for (key_1033, value_1034) in value {
-                let converted_key_1035 = (key_1033).as_str().into_py_any(py)?;
-                let converted_value_1036_list = PyList::empty(py);
-                for item_1037 in value_1034 {
-                    let converted_item_1038 = (item_1037).as_str().into_py_any(py)?;
-                    converted_value_1036_list.append(converted_item_1038)?;
+            let converted_1146_dict = PyDict::new(py);
+            for (key_1147, value_1148) in value {
+                let converted_key_1149 = (key_1147).as_str().into_py_any(py)?;
+                let converted_value_1150_list = PyList::empty(py);
+                for item_1151 in value_1148 {
+                    let converted_item_1152 = (item_1151).as_str().into_py_any(py)?;
+                    converted_value_1150_list.append(converted_item_1152)?;
                 }
-                let converted_value_1036 = converted_value_1036_list.into_any().unbind();
-                converted_1032_dict.set_item(converted_key_1035, converted_value_1036)?;
+                let converted_value_1150 = converted_value_1150_list.into_any().unbind();
+                converted_1146_dict.set_item(converted_key_1149, converted_value_1150)?;
             }
-            let converted_1032 = converted_1032_dict.into_any().unbind();
-            result.set_item("variable_references", converted_1032)?;
+            let converted_1146 = converted_1146_dict.into_any().unbind();
+            result.set_item("variable_references", converted_1146)?;
         } else {
             result.set_item("variable_references", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationDescribeStateMachineAliasOutput {
+    state_machine_alias_arn: Option<::std::string::String>,
+    name: Option<::std::string::String>,
+    description: Option<::std::string::String>,
+    routing_configuration:
+        Option<::std::vec::Vec<Arc<aws_sdk_sfn::types::RoutingConfigurationListItem>>>,
+    creation_date: Option<::aws_smithy_types::DateTime>,
+    update_date: Option<::aws_smithy_types::DateTime>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::operation::describe_state_machine_alias::DescribeStateMachineAliasOutput>
+    for SharedPyOperationDescribeStateMachineAliasOutput
+{
+    fn from(
+        value: aws_sdk_sfn::operation::describe_state_machine_alias::DescribeStateMachineAliasOutput,
+    ) -> Self {
+        Self {
+            state_machine_alias_arn: value.state_machine_alias_arn,
+            name: value.name,
+            description: value.description,
+            routing_configuration: value.routing_configuration.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_1161| Arc::new(owned_1161))
+                    .collect()
+            }),
+            creation_date: value.creation_date,
+            update_date: value.update_date,
+        }
     }
 }
 
@@ -7576,7 +8945,7 @@ impl PyOperationDescribeStateMachineOutput {
     frozen
 )]
 struct PyOperationDescribeStateMachineAliasOutput {
-    inner: aws_sdk_sfn::operation::describe_state_machine_alias::DescribeStateMachineAliasOutput,
+    inner: SharedPyOperationDescribeStateMachineAliasOutput,
 }
 
 #[pymethods]
@@ -7584,8 +8953,8 @@ impl PyOperationDescribeStateMachineAliasOutput {
     #[getter]
     fn state_machine_alias_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state_machine_alias_arn {
-            let converted_1039 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1039)
+            let converted_1153 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1153)
         } else {
             Ok(py.None())
         }
@@ -7594,8 +8963,8 @@ impl PyOperationDescribeStateMachineAliasOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1040 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1040)
+            let converted_1154 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1154)
         } else {
             Ok(py.None())
         }
@@ -7604,8 +8973,8 @@ impl PyOperationDescribeStateMachineAliasOutput {
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_1041 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1041)
+            let converted_1155 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1155)
         } else {
             Ok(py.None())
         }
@@ -7614,19 +8983,19 @@ impl PyOperationDescribeStateMachineAliasOutput {
     #[getter]
     fn routing_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.routing_configuration {
-            let converted_1042_list = PyList::empty(py);
-            for item_1043 in value {
-                let converted_item_1044 = Py::new(
+            let converted_1156_list = PyList::empty(py);
+            for item_1157 in value {
+                let converted_item_1158 = Py::new(
                     py,
                     PyRoutingConfigurationListItem {
-                        inner: (item_1043).to_owned(),
+                        inner: Arc::clone(item_1157),
                     },
                 )?
                 .into_any();
-                converted_1042_list.append(converted_item_1044)?;
+                converted_1156_list.append(converted_item_1158)?;
             }
-            let converted_1042 = converted_1042_list.into_any().unbind();
-            Ok(converted_1042)
+            let converted_1156 = converted_1156_list.into_any().unbind();
+            Ok(converted_1156)
         } else {
             Ok(py.None())
         }
@@ -7635,8 +9004,8 @@ impl PyOperationDescribeStateMachineAliasOutput {
     #[getter]
     fn creation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_date {
-            let converted_1045 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1045)
+            let converted_1159 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1159)
         } else {
             Ok(py.None())
         }
@@ -7645,8 +9014,8 @@ impl PyOperationDescribeStateMachineAliasOutput {
     #[getter]
     fn update_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.update_date {
-            let converted_1046 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1046)
+            let converted_1160 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1160)
         } else {
             Ok(py.None())
         }
@@ -7655,47 +9024,84 @@ impl PyOperationDescribeStateMachineAliasOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.state_machine_alias_arn {
-            let converted_1047 = (value).as_str().into_py_any(py)?;
-            result.set_item("state_machine_alias_arn", converted_1047)?;
+            let converted_1162 = (value).as_str().into_py_any(py)?;
+            result.set_item("state_machine_alias_arn", converted_1162)?;
         } else {
             result.set_item("state_machine_alias_arn", py.None())?;
         }
         if let Some(value) = &self.inner.name {
-            let converted_1048 = (value).as_str().into_py_any(py)?;
-            result.set_item("name", converted_1048)?;
+            let converted_1163 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_1163)?;
         } else {
             result.set_item("name", py.None())?;
         }
         if let Some(value) = &self.inner.description {
-            let converted_1049 = (value).as_str().into_py_any(py)?;
-            result.set_item("description", converted_1049)?;
+            let converted_1164 = (value).as_str().into_py_any(py)?;
+            result.set_item("description", converted_1164)?;
         } else {
             result.set_item("description", py.None())?;
         }
         if let Some(value) = &self.inner.routing_configuration {
-            let converted_1050_list = PyList::empty(py);
-            for item_1051 in value {
-                let converted_item_1052 = routing_configuration_list_item_to_py(py, item_1051)?;
-                converted_1050_list.append(converted_item_1052)?;
+            let converted_1165_list = PyList::empty(py);
+            for item_1166 in value {
+                let converted_item_1167 = routing_configuration_list_item_to_py(py, item_1166)?;
+                converted_1165_list.append(converted_item_1167)?;
             }
-            let converted_1050 = converted_1050_list.into_any().unbind();
-            result.set_item("routing_configuration", converted_1050)?;
+            let converted_1165 = converted_1165_list.into_any().unbind();
+            result.set_item("routing_configuration", converted_1165)?;
         } else {
             result.set_item("routing_configuration", py.None())?;
         }
         if let Some(value) = &self.inner.creation_date {
-            let converted_1053 = (value).to_string().into_py_any(py)?;
-            result.set_item("creation_date", converted_1053)?;
+            let converted_1168 = (value).to_string().into_py_any(py)?;
+            result.set_item("creation_date", converted_1168)?;
         } else {
             result.set_item("creation_date", py.None())?;
         }
         if let Some(value) = &self.inner.update_date {
-            let converted_1054 = (value).to_string().into_py_any(py)?;
-            result.set_item("update_date", converted_1054)?;
+            let converted_1169 = (value).to_string().into_py_any(py)?;
+            result.set_item("update_date", converted_1169)?;
         } else {
             result.set_item("update_date", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationDescribeStateMachineForExecutionOutput {
+    state_machine_arn: ::std::string::String,
+    name: ::std::string::String,
+    definition: ::std::string::String,
+    role_arn: ::std::string::String,
+    update_date: ::aws_smithy_types::DateTime,
+    logging_configuration: Option<Arc<SharedLoggingConfiguration>>,
+    tracing_configuration: Option<Arc<aws_sdk_sfn::types::TracingConfiguration>>,
+    map_run_arn: Option<::std::string::String>,
+    label: Option<::std::string::String>,
+    revision_id: Option<::std::string::String>,
+    encryption_configuration: Option<Arc<aws_sdk_sfn::types::EncryptionConfiguration>>,
+    variable_references: Option<
+        ::std::collections::HashMap<::std::string::String, ::std::vec::Vec<::std::string::String>>,
+    >,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::operation::describe_state_machine_for_execution::DescribeStateMachineForExecutionOutput> for SharedPyOperationDescribeStateMachineForExecutionOutput {
+    fn from(value: aws_sdk_sfn::operation::describe_state_machine_for_execution::DescribeStateMachineForExecutionOutput) -> Self {
+        Self {
+            state_machine_arn: value.state_machine_arn,
+            name: value.name,
+            definition: value.definition,
+            role_arn: value.role_arn,
+            update_date: value.update_date,
+            logging_configuration: value.logging_configuration.map(|item| Arc::new(SharedLoggingConfiguration::from(item))),
+            tracing_configuration: value.tracing_configuration.map(|item| Arc::new(item)),
+            map_run_arn: value.map_run_arn,
+            label: value.label,
+            revision_id: value.revision_id,
+            encryption_configuration: value.encryption_configuration.map(|item| Arc::new(item)),
+            variable_references: value.variable_references,
+        }
     }
 }
 
@@ -7705,52 +9111,52 @@ impl PyOperationDescribeStateMachineAliasOutput {
     frozen
 )]
 struct PyOperationDescribeStateMachineForExecutionOutput {
-    inner: aws_sdk_sfn::operation::describe_state_machine_for_execution::DescribeStateMachineForExecutionOutput,
+    inner: SharedPyOperationDescribeStateMachineForExecutionOutput,
 }
 
 #[pymethods]
 impl PyOperationDescribeStateMachineForExecutionOutput {
     #[getter]
     fn state_machine_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1055 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
-        Ok(converted_1055)
+        let converted_1170 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
+        Ok(converted_1170)
     }
 
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1056 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_1056)
+        let converted_1171 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_1171)
     }
 
     #[getter]
     fn definition(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1057 = (&self.inner.definition).as_str().into_py_any(py)?;
-        Ok(converted_1057)
+        let converted_1172 = (&self.inner.definition).as_str().into_py_any(py)?;
+        Ok(converted_1172)
     }
 
     #[getter]
     fn role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1058 = (&self.inner.role_arn).as_str().into_py_any(py)?;
-        Ok(converted_1058)
+        let converted_1173 = (&self.inner.role_arn).as_str().into_py_any(py)?;
+        Ok(converted_1173)
     }
 
     #[getter]
     fn update_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1059 = (&self.inner.update_date).to_string().into_py_any(py)?;
-        Ok(converted_1059)
+        let converted_1174 = (&self.inner.update_date).to_string().into_py_any(py)?;
+        Ok(converted_1174)
     }
 
     #[getter]
     fn logging_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.logging_configuration {
-            let converted_1060 = Py::new(
+            let converted_1175 = Py::new(
                 py,
                 PyLoggingConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1060)
+            Ok(converted_1175)
         } else {
             Ok(py.None())
         }
@@ -7759,14 +9165,14 @@ impl PyOperationDescribeStateMachineForExecutionOutput {
     #[getter]
     fn tracing_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tracing_configuration {
-            let converted_1061 = Py::new(
+            let converted_1176 = Py::new(
                 py,
                 PyTracingConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1061)
+            Ok(converted_1176)
         } else {
             Ok(py.None())
         }
@@ -7775,8 +9181,8 @@ impl PyOperationDescribeStateMachineForExecutionOutput {
     #[getter]
     fn map_run_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.map_run_arn {
-            let converted_1062 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1062)
+            let converted_1177 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1177)
         } else {
             Ok(py.None())
         }
@@ -7785,8 +9191,8 @@ impl PyOperationDescribeStateMachineForExecutionOutput {
     #[getter]
     fn label(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.label {
-            let converted_1063 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1063)
+            let converted_1178 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1178)
         } else {
             Ok(py.None())
         }
@@ -7795,8 +9201,8 @@ impl PyOperationDescribeStateMachineForExecutionOutput {
     #[getter]
     fn revision_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.revision_id {
-            let converted_1064 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1064)
+            let converted_1179 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1179)
         } else {
             Ok(py.None())
         }
@@ -7805,14 +9211,14 @@ impl PyOperationDescribeStateMachineForExecutionOutput {
     #[getter]
     fn encryption_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_configuration {
-            let converted_1065 = Py::new(
+            let converted_1180 = Py::new(
                 py,
                 PyEncryptionConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1065)
+            Ok(converted_1180)
         } else {
             Ok(py.None())
         }
@@ -7821,19 +9227,19 @@ impl PyOperationDescribeStateMachineForExecutionOutput {
     #[getter]
     fn variable_references(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.variable_references {
-            let converted_1066_dict = PyDict::new(py);
-            for (key_1067, value_1068) in value {
-                let converted_key_1069 = (key_1067).as_str().into_py_any(py)?;
-                let converted_value_1070_list = PyList::empty(py);
-                for item_1071 in value_1068 {
-                    let converted_item_1072 = (item_1071).as_str().into_py_any(py)?;
-                    converted_value_1070_list.append(converted_item_1072)?;
+            let converted_1181_dict = PyDict::new(py);
+            for (key_1182, value_1183) in value {
+                let converted_key_1184 = (key_1182).as_str().into_py_any(py)?;
+                let converted_value_1185_list = PyList::empty(py);
+                for item_1186 in value_1183 {
+                    let converted_item_1187 = (item_1186).as_str().into_py_any(py)?;
+                    converted_value_1185_list.append(converted_item_1187)?;
                 }
-                let converted_value_1070 = converted_value_1070_list.into_any().unbind();
-                converted_1066_dict.set_item(converted_key_1069, converted_value_1070)?;
+                let converted_value_1185 = converted_value_1185_list.into_any().unbind();
+                converted_1181_dict.set_item(converted_key_1184, converted_value_1185)?;
             }
-            let converted_1066 = converted_1066_dict.into_any().unbind();
-            Ok(converted_1066)
+            let converted_1181 = converted_1181_dict.into_any().unbind();
+            Ok(converted_1181)
         } else {
             Ok(py.None())
         }
@@ -7841,66 +9247,66 @@ impl PyOperationDescribeStateMachineForExecutionOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1073 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
-        result.set_item("state_machine_arn", converted_1073)?;
-        let converted_1074 = (&self.inner.name).as_str().into_py_any(py)?;
-        result.set_item("name", converted_1074)?;
-        let converted_1075 = (&self.inner.definition).as_str().into_py_any(py)?;
-        result.set_item("definition", converted_1075)?;
-        let converted_1076 = (&self.inner.role_arn).as_str().into_py_any(py)?;
-        result.set_item("role_arn", converted_1076)?;
-        let converted_1077 = (&self.inner.update_date).to_string().into_py_any(py)?;
-        result.set_item("update_date", converted_1077)?;
+        let converted_1188 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
+        result.set_item("state_machine_arn", converted_1188)?;
+        let converted_1189 = (&self.inner.name).as_str().into_py_any(py)?;
+        result.set_item("name", converted_1189)?;
+        let converted_1190 = (&self.inner.definition).as_str().into_py_any(py)?;
+        result.set_item("definition", converted_1190)?;
+        let converted_1191 = (&self.inner.role_arn).as_str().into_py_any(py)?;
+        result.set_item("role_arn", converted_1191)?;
+        let converted_1192 = (&self.inner.update_date).to_string().into_py_any(py)?;
+        result.set_item("update_date", converted_1192)?;
         if let Some(value) = &self.inner.logging_configuration {
-            let converted_1078 = logging_configuration_to_py(py, value)?;
-            result.set_item("logging_configuration", converted_1078)?;
+            let converted_1193 = logging_configuration_shared_to_py(py, value)?;
+            result.set_item("logging_configuration", converted_1193)?;
         } else {
             result.set_item("logging_configuration", py.None())?;
         }
         if let Some(value) = &self.inner.tracing_configuration {
-            let converted_1079 = tracing_configuration_to_py(py, value)?;
-            result.set_item("tracing_configuration", converted_1079)?;
+            let converted_1194 = tracing_configuration_to_py(py, value)?;
+            result.set_item("tracing_configuration", converted_1194)?;
         } else {
             result.set_item("tracing_configuration", py.None())?;
         }
         if let Some(value) = &self.inner.map_run_arn {
-            let converted_1080 = (value).as_str().into_py_any(py)?;
-            result.set_item("map_run_arn", converted_1080)?;
+            let converted_1195 = (value).as_str().into_py_any(py)?;
+            result.set_item("map_run_arn", converted_1195)?;
         } else {
             result.set_item("map_run_arn", py.None())?;
         }
         if let Some(value) = &self.inner.label {
-            let converted_1081 = (value).as_str().into_py_any(py)?;
-            result.set_item("label", converted_1081)?;
+            let converted_1196 = (value).as_str().into_py_any(py)?;
+            result.set_item("label", converted_1196)?;
         } else {
             result.set_item("label", py.None())?;
         }
         if let Some(value) = &self.inner.revision_id {
-            let converted_1082 = (value).as_str().into_py_any(py)?;
-            result.set_item("revision_id", converted_1082)?;
+            let converted_1197 = (value).as_str().into_py_any(py)?;
+            result.set_item("revision_id", converted_1197)?;
         } else {
             result.set_item("revision_id", py.None())?;
         }
         if let Some(value) = &self.inner.encryption_configuration {
-            let converted_1083 = encryption_configuration_to_py(py, value)?;
-            result.set_item("encryption_configuration", converted_1083)?;
+            let converted_1198 = encryption_configuration_to_py(py, value)?;
+            result.set_item("encryption_configuration", converted_1198)?;
         } else {
             result.set_item("encryption_configuration", py.None())?;
         }
         if let Some(value) = &self.inner.variable_references {
-            let converted_1084_dict = PyDict::new(py);
-            for (key_1085, value_1086) in value {
-                let converted_key_1087 = (key_1085).as_str().into_py_any(py)?;
-                let converted_value_1088_list = PyList::empty(py);
-                for item_1089 in value_1086 {
-                    let converted_item_1090 = (item_1089).as_str().into_py_any(py)?;
-                    converted_value_1088_list.append(converted_item_1090)?;
+            let converted_1199_dict = PyDict::new(py);
+            for (key_1200, value_1201) in value {
+                let converted_key_1202 = (key_1200).as_str().into_py_any(py)?;
+                let converted_value_1203_list = PyList::empty(py);
+                for item_1204 in value_1201 {
+                    let converted_item_1205 = (item_1204).as_str().into_py_any(py)?;
+                    converted_value_1203_list.append(converted_item_1205)?;
                 }
-                let converted_value_1088 = converted_value_1088_list.into_any().unbind();
-                converted_1084_dict.set_item(converted_key_1087, converted_value_1088)?;
+                let converted_value_1203 = converted_value_1203_list.into_any().unbind();
+                converted_1199_dict.set_item(converted_key_1202, converted_value_1203)?;
             }
-            let converted_1084 = converted_1084_dict.into_any().unbind();
-            result.set_item("variable_references", converted_1084)?;
+            let converted_1199 = converted_1199_dict.into_any().unbind();
+            result.set_item("variable_references", converted_1199)?;
         } else {
             result.set_item("variable_references", py.None())?;
         }
@@ -7918,8 +9324,8 @@ impl PyOperationGetActivityTaskOutput {
     #[getter]
     fn task_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.task_token {
-            let converted_1091 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1091)
+            let converted_1206 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1206)
         } else {
             Ok(py.None())
         }
@@ -7928,8 +9334,8 @@ impl PyOperationGetActivityTaskOutput {
     #[getter]
     fn input(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input {
-            let converted_1092 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1092)
+            let converted_1207 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1207)
         } else {
             Ok(py.None())
         }
@@ -7938,18 +9344,40 @@ impl PyOperationGetActivityTaskOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.task_token {
-            let converted_1093 = (value).as_str().into_py_any(py)?;
-            result.set_item("task_token", converted_1093)?;
+            let converted_1208 = (value).as_str().into_py_any(py)?;
+            result.set_item("task_token", converted_1208)?;
         } else {
             result.set_item("task_token", py.None())?;
         }
         if let Some(value) = &self.inner.input {
-            let converted_1094 = (value).as_str().into_py_any(py)?;
-            result.set_item("input", converted_1094)?;
+            let converted_1209 = (value).as_str().into_py_any(py)?;
+            result.set_item("input", converted_1209)?;
         } else {
             result.set_item("input", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetExecutionHistoryOutput {
+    events: ::std::vec::Vec<Arc<SharedHistoryEvent>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::operation::get_execution_history::GetExecutionHistoryOutput>
+    for SharedPyOperationGetExecutionHistoryOutput
+{
+    fn from(
+        value: aws_sdk_sfn::operation::get_execution_history::GetExecutionHistoryOutput,
+    ) -> Self {
+        Self {
+            events: (value.events)
+                .into_iter()
+                .map(|owned_1214| Arc::new(SharedHistoryEvent::from(owned_1214)))
+                .collect(),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -7959,33 +9387,33 @@ impl PyOperationGetActivityTaskOutput {
     frozen
 )]
 struct PyOperationGetExecutionHistoryOutput {
-    inner: aws_sdk_sfn::operation::get_execution_history::GetExecutionHistoryOutput,
+    inner: SharedPyOperationGetExecutionHistoryOutput,
 }
 
 #[pymethods]
 impl PyOperationGetExecutionHistoryOutput {
     #[getter]
     fn events(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1095_list = PyList::empty(py);
-        for item_1096 in &self.inner.events {
-            let converted_item_1097 = Py::new(
+        let converted_1210_list = PyList::empty(py);
+        for item_1211 in &self.inner.events {
+            let converted_item_1212 = Py::new(
                 py,
                 PyHistoryEvent {
-                    inner: (item_1096).to_owned(),
+                    inner: Arc::clone(item_1211),
                 },
             )?
             .into_any();
-            converted_1095_list.append(converted_item_1097)?;
+            converted_1210_list.append(converted_item_1212)?;
         }
-        let converted_1095 = converted_1095_list.into_any().unbind();
-        Ok(converted_1095)
+        let converted_1210 = converted_1210_list.into_any().unbind();
+        Ok(converted_1210)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1098 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1098)
+            let converted_1213 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1213)
         } else {
             Ok(py.None())
         }
@@ -7993,16 +9421,16 @@ impl PyOperationGetExecutionHistoryOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1099_list = PyList::empty(py);
-        for item_1100 in &self.inner.events {
-            let converted_item_1101 = history_event_to_py(py, item_1100)?;
-            converted_1099_list.append(converted_item_1101)?;
+        let converted_1215_list = PyList::empty(py);
+        for item_1216 in &self.inner.events {
+            let converted_item_1217 = history_event_shared_to_py(py, item_1216)?;
+            converted_1215_list.append(converted_item_1217)?;
         }
-        let converted_1099 = converted_1099_list.into_any().unbind();
-        result.set_item("events", converted_1099)?;
+        let converted_1215 = converted_1215_list.into_any().unbind();
+        result.set_item("events", converted_1215)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_1102 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1102)?;
+            let converted_1218 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1218)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -8010,35 +9438,55 @@ impl PyOperationGetExecutionHistoryOutput {
     }
 }
 
+struct SharedPyOperationListActivitiesOutput {
+    activities: ::std::vec::Vec<Arc<aws_sdk_sfn::types::ActivityListItem>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::operation::list_activities::ListActivitiesOutput>
+    for SharedPyOperationListActivitiesOutput
+{
+    fn from(value: aws_sdk_sfn::operation::list_activities::ListActivitiesOutput) -> Self {
+        Self {
+            activities: (value.activities)
+                .into_iter()
+                .map(|owned_1223| Arc::new(owned_1223))
+                .collect(),
+            next_token: value.next_token,
+        }
+    }
+}
+
 #[pyclass(name = "ListActivitiesOutput", module = "rboto_sfn._native", frozen)]
 struct PyOperationListActivitiesOutput {
-    inner: aws_sdk_sfn::operation::list_activities::ListActivitiesOutput,
+    inner: SharedPyOperationListActivitiesOutput,
 }
 
 #[pymethods]
 impl PyOperationListActivitiesOutput {
     #[getter]
     fn activities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1103_list = PyList::empty(py);
-        for item_1104 in &self.inner.activities {
-            let converted_item_1105 = Py::new(
+        let converted_1219_list = PyList::empty(py);
+        for item_1220 in &self.inner.activities {
+            let converted_item_1221 = Py::new(
                 py,
                 PyActivityListItem {
-                    inner: (item_1104).to_owned(),
+                    inner: Arc::clone(item_1220),
                 },
             )?
             .into_any();
-            converted_1103_list.append(converted_item_1105)?;
+            converted_1219_list.append(converted_item_1221)?;
         }
-        let converted_1103 = converted_1103_list.into_any().unbind();
-        Ok(converted_1103)
+        let converted_1219 = converted_1219_list.into_any().unbind();
+        Ok(converted_1219)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1106 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1106)
+            let converted_1222 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1222)
         } else {
             Ok(py.None())
         }
@@ -8046,16 +9494,16 @@ impl PyOperationListActivitiesOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1107_list = PyList::empty(py);
-        for item_1108 in &self.inner.activities {
-            let converted_item_1109 = activity_list_item_to_py(py, item_1108)?;
-            converted_1107_list.append(converted_item_1109)?;
+        let converted_1224_list = PyList::empty(py);
+        for item_1225 in &self.inner.activities {
+            let converted_item_1226 = activity_list_item_to_py(py, item_1225)?;
+            converted_1224_list.append(converted_item_1226)?;
         }
-        let converted_1107 = converted_1107_list.into_any().unbind();
-        result.set_item("activities", converted_1107)?;
+        let converted_1224 = converted_1224_list.into_any().unbind();
+        result.set_item("activities", converted_1224)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_1110 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1110)?;
+            let converted_1227 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1227)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -8063,35 +9511,55 @@ impl PyOperationListActivitiesOutput {
     }
 }
 
+struct SharedPyOperationListExecutionsOutput {
+    executions: ::std::vec::Vec<Arc<aws_sdk_sfn::types::ExecutionListItem>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::operation::list_executions::ListExecutionsOutput>
+    for SharedPyOperationListExecutionsOutput
+{
+    fn from(value: aws_sdk_sfn::operation::list_executions::ListExecutionsOutput) -> Self {
+        Self {
+            executions: (value.executions)
+                .into_iter()
+                .map(|owned_1232| Arc::new(owned_1232))
+                .collect(),
+            next_token: value.next_token,
+        }
+    }
+}
+
 #[pyclass(name = "ListExecutionsOutput", module = "rboto_sfn._native", frozen)]
 struct PyOperationListExecutionsOutput {
-    inner: aws_sdk_sfn::operation::list_executions::ListExecutionsOutput,
+    inner: SharedPyOperationListExecutionsOutput,
 }
 
 #[pymethods]
 impl PyOperationListExecutionsOutput {
     #[getter]
     fn executions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1111_list = PyList::empty(py);
-        for item_1112 in &self.inner.executions {
-            let converted_item_1113 = Py::new(
+        let converted_1228_list = PyList::empty(py);
+        for item_1229 in &self.inner.executions {
+            let converted_item_1230 = Py::new(
                 py,
                 PyExecutionListItem {
-                    inner: (item_1112).to_owned(),
+                    inner: Arc::clone(item_1229),
                 },
             )?
             .into_any();
-            converted_1111_list.append(converted_item_1113)?;
+            converted_1228_list.append(converted_item_1230)?;
         }
-        let converted_1111 = converted_1111_list.into_any().unbind();
-        Ok(converted_1111)
+        let converted_1228 = converted_1228_list.into_any().unbind();
+        Ok(converted_1228)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1114 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1114)
+            let converted_1231 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1231)
         } else {
             Ok(py.None())
         }
@@ -8099,16 +9567,16 @@ impl PyOperationListExecutionsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1115_list = PyList::empty(py);
-        for item_1116 in &self.inner.executions {
-            let converted_item_1117 = execution_list_item_to_py(py, item_1116)?;
-            converted_1115_list.append(converted_item_1117)?;
+        let converted_1233_list = PyList::empty(py);
+        for item_1234 in &self.inner.executions {
+            let converted_item_1235 = execution_list_item_to_py(py, item_1234)?;
+            converted_1233_list.append(converted_item_1235)?;
         }
-        let converted_1115 = converted_1115_list.into_any().unbind();
-        result.set_item("executions", converted_1115)?;
+        let converted_1233 = converted_1233_list.into_any().unbind();
+        result.set_item("executions", converted_1233)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_1118 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1118)?;
+            let converted_1236 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1236)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -8116,35 +9584,55 @@ impl PyOperationListExecutionsOutput {
     }
 }
 
+struct SharedPyOperationListMapRunsOutput {
+    map_runs: ::std::vec::Vec<Arc<aws_sdk_sfn::types::MapRunListItem>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::operation::list_map_runs::ListMapRunsOutput>
+    for SharedPyOperationListMapRunsOutput
+{
+    fn from(value: aws_sdk_sfn::operation::list_map_runs::ListMapRunsOutput) -> Self {
+        Self {
+            map_runs: (value.map_runs)
+                .into_iter()
+                .map(|owned_1241| Arc::new(owned_1241))
+                .collect(),
+            next_token: value.next_token,
+        }
+    }
+}
+
 #[pyclass(name = "ListMapRunsOutput", module = "rboto_sfn._native", frozen)]
 struct PyOperationListMapRunsOutput {
-    inner: aws_sdk_sfn::operation::list_map_runs::ListMapRunsOutput,
+    inner: SharedPyOperationListMapRunsOutput,
 }
 
 #[pymethods]
 impl PyOperationListMapRunsOutput {
     #[getter]
     fn map_runs(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1119_list = PyList::empty(py);
-        for item_1120 in &self.inner.map_runs {
-            let converted_item_1121 = Py::new(
+        let converted_1237_list = PyList::empty(py);
+        for item_1238 in &self.inner.map_runs {
+            let converted_item_1239 = Py::new(
                 py,
                 PyMapRunListItem {
-                    inner: (item_1120).to_owned(),
+                    inner: Arc::clone(item_1238),
                 },
             )?
             .into_any();
-            converted_1119_list.append(converted_item_1121)?;
+            converted_1237_list.append(converted_item_1239)?;
         }
-        let converted_1119 = converted_1119_list.into_any().unbind();
-        Ok(converted_1119)
+        let converted_1237 = converted_1237_list.into_any().unbind();
+        Ok(converted_1237)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1122 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1122)
+            let converted_1240 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1240)
         } else {
             Ok(py.None())
         }
@@ -8152,20 +9640,42 @@ impl PyOperationListMapRunsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1123_list = PyList::empty(py);
-        for item_1124 in &self.inner.map_runs {
-            let converted_item_1125 = map_run_list_item_to_py(py, item_1124)?;
-            converted_1123_list.append(converted_item_1125)?;
+        let converted_1242_list = PyList::empty(py);
+        for item_1243 in &self.inner.map_runs {
+            let converted_item_1244 = map_run_list_item_to_py(py, item_1243)?;
+            converted_1242_list.append(converted_item_1244)?;
         }
-        let converted_1123 = converted_1123_list.into_any().unbind();
-        result.set_item("map_runs", converted_1123)?;
+        let converted_1242 = converted_1242_list.into_any().unbind();
+        result.set_item("map_runs", converted_1242)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_1126 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1126)?;
+            let converted_1245 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1245)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListStateMachineAliasesOutput {
+    state_machine_aliases: ::std::vec::Vec<Arc<aws_sdk_sfn::types::StateMachineAliasListItem>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::operation::list_state_machine_aliases::ListStateMachineAliasesOutput>
+    for SharedPyOperationListStateMachineAliasesOutput
+{
+    fn from(
+        value: aws_sdk_sfn::operation::list_state_machine_aliases::ListStateMachineAliasesOutput,
+    ) -> Self {
+        Self {
+            state_machine_aliases: (value.state_machine_aliases)
+                .into_iter()
+                .map(|owned_1250| Arc::new(owned_1250))
+                .collect(),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -8175,33 +9685,33 @@ impl PyOperationListMapRunsOutput {
     frozen
 )]
 struct PyOperationListStateMachineAliasesOutput {
-    inner: aws_sdk_sfn::operation::list_state_machine_aliases::ListStateMachineAliasesOutput,
+    inner: SharedPyOperationListStateMachineAliasesOutput,
 }
 
 #[pymethods]
 impl PyOperationListStateMachineAliasesOutput {
     #[getter]
     fn state_machine_aliases(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1127_list = PyList::empty(py);
-        for item_1128 in &self.inner.state_machine_aliases {
-            let converted_item_1129 = Py::new(
+        let converted_1246_list = PyList::empty(py);
+        for item_1247 in &self.inner.state_machine_aliases {
+            let converted_item_1248 = Py::new(
                 py,
                 PyStateMachineAliasListItem {
-                    inner: (item_1128).to_owned(),
+                    inner: Arc::clone(item_1247),
                 },
             )?
             .into_any();
-            converted_1127_list.append(converted_item_1129)?;
+            converted_1246_list.append(converted_item_1248)?;
         }
-        let converted_1127 = converted_1127_list.into_any().unbind();
-        Ok(converted_1127)
+        let converted_1246 = converted_1246_list.into_any().unbind();
+        Ok(converted_1246)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1130 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1130)
+            let converted_1249 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1249)
         } else {
             Ok(py.None())
         }
@@ -8209,20 +9719,42 @@ impl PyOperationListStateMachineAliasesOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1131_list = PyList::empty(py);
-        for item_1132 in &self.inner.state_machine_aliases {
-            let converted_item_1133 = state_machine_alias_list_item_to_py(py, item_1132)?;
-            converted_1131_list.append(converted_item_1133)?;
+        let converted_1251_list = PyList::empty(py);
+        for item_1252 in &self.inner.state_machine_aliases {
+            let converted_item_1253 = state_machine_alias_list_item_to_py(py, item_1252)?;
+            converted_1251_list.append(converted_item_1253)?;
         }
-        let converted_1131 = converted_1131_list.into_any().unbind();
-        result.set_item("state_machine_aliases", converted_1131)?;
+        let converted_1251 = converted_1251_list.into_any().unbind();
+        result.set_item("state_machine_aliases", converted_1251)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_1134 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1134)?;
+            let converted_1254 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1254)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListStateMachineVersionsOutput {
+    state_machine_versions: ::std::vec::Vec<Arc<aws_sdk_sfn::types::StateMachineVersionListItem>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::operation::list_state_machine_versions::ListStateMachineVersionsOutput>
+    for SharedPyOperationListStateMachineVersionsOutput
+{
+    fn from(
+        value: aws_sdk_sfn::operation::list_state_machine_versions::ListStateMachineVersionsOutput,
+    ) -> Self {
+        Self {
+            state_machine_versions: (value.state_machine_versions)
+                .into_iter()
+                .map(|owned_1259| Arc::new(owned_1259))
+                .collect(),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -8232,33 +9764,33 @@ impl PyOperationListStateMachineAliasesOutput {
     frozen
 )]
 struct PyOperationListStateMachineVersionsOutput {
-    inner: aws_sdk_sfn::operation::list_state_machine_versions::ListStateMachineVersionsOutput,
+    inner: SharedPyOperationListStateMachineVersionsOutput,
 }
 
 #[pymethods]
 impl PyOperationListStateMachineVersionsOutput {
     #[getter]
     fn state_machine_versions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1135_list = PyList::empty(py);
-        for item_1136 in &self.inner.state_machine_versions {
-            let converted_item_1137 = Py::new(
+        let converted_1255_list = PyList::empty(py);
+        for item_1256 in &self.inner.state_machine_versions {
+            let converted_item_1257 = Py::new(
                 py,
                 PyStateMachineVersionListItem {
-                    inner: (item_1136).to_owned(),
+                    inner: Arc::clone(item_1256),
                 },
             )?
             .into_any();
-            converted_1135_list.append(converted_item_1137)?;
+            converted_1255_list.append(converted_item_1257)?;
         }
-        let converted_1135 = converted_1135_list.into_any().unbind();
-        Ok(converted_1135)
+        let converted_1255 = converted_1255_list.into_any().unbind();
+        Ok(converted_1255)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1138 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1138)
+            let converted_1258 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1258)
         } else {
             Ok(py.None())
         }
@@ -8266,16 +9798,16 @@ impl PyOperationListStateMachineVersionsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1139_list = PyList::empty(py);
-        for item_1140 in &self.inner.state_machine_versions {
-            let converted_item_1141 = state_machine_version_list_item_to_py(py, item_1140)?;
-            converted_1139_list.append(converted_item_1141)?;
+        let converted_1260_list = PyList::empty(py);
+        for item_1261 in &self.inner.state_machine_versions {
+            let converted_item_1262 = state_machine_version_list_item_to_py(py, item_1261)?;
+            converted_1260_list.append(converted_item_1262)?;
         }
-        let converted_1139 = converted_1139_list.into_any().unbind();
-        result.set_item("state_machine_versions", converted_1139)?;
+        let converted_1260 = converted_1260_list.into_any().unbind();
+        result.set_item("state_machine_versions", converted_1260)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_1142 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1142)?;
+            let converted_1263 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1263)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -8283,35 +9815,55 @@ impl PyOperationListStateMachineVersionsOutput {
     }
 }
 
+struct SharedPyOperationListStateMachinesOutput {
+    state_machines: ::std::vec::Vec<Arc<aws_sdk_sfn::types::StateMachineListItem>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::operation::list_state_machines::ListStateMachinesOutput>
+    for SharedPyOperationListStateMachinesOutput
+{
+    fn from(value: aws_sdk_sfn::operation::list_state_machines::ListStateMachinesOutput) -> Self {
+        Self {
+            state_machines: (value.state_machines)
+                .into_iter()
+                .map(|owned_1268| Arc::new(owned_1268))
+                .collect(),
+            next_token: value.next_token,
+        }
+    }
+}
+
 #[pyclass(name = "ListStateMachinesOutput", module = "rboto_sfn._native", frozen)]
 struct PyOperationListStateMachinesOutput {
-    inner: aws_sdk_sfn::operation::list_state_machines::ListStateMachinesOutput,
+    inner: SharedPyOperationListStateMachinesOutput,
 }
 
 #[pymethods]
 impl PyOperationListStateMachinesOutput {
     #[getter]
     fn state_machines(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1143_list = PyList::empty(py);
-        for item_1144 in &self.inner.state_machines {
-            let converted_item_1145 = Py::new(
+        let converted_1264_list = PyList::empty(py);
+        for item_1265 in &self.inner.state_machines {
+            let converted_item_1266 = Py::new(
                 py,
                 PyStateMachineListItem {
-                    inner: (item_1144).to_owned(),
+                    inner: Arc::clone(item_1265),
                 },
             )?
             .into_any();
-            converted_1143_list.append(converted_item_1145)?;
+            converted_1264_list.append(converted_item_1266)?;
         }
-        let converted_1143 = converted_1143_list.into_any().unbind();
-        Ok(converted_1143)
+        let converted_1264 = converted_1264_list.into_any().unbind();
+        Ok(converted_1264)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1146 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1146)
+            let converted_1267 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1267)
         } else {
             Ok(py.None())
         }
@@ -8319,20 +9871,42 @@ impl PyOperationListStateMachinesOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1147_list = PyList::empty(py);
-        for item_1148 in &self.inner.state_machines {
-            let converted_item_1149 = state_machine_list_item_to_py(py, item_1148)?;
-            converted_1147_list.append(converted_item_1149)?;
+        let converted_1269_list = PyList::empty(py);
+        for item_1270 in &self.inner.state_machines {
+            let converted_item_1271 = state_machine_list_item_to_py(py, item_1270)?;
+            converted_1269_list.append(converted_item_1271)?;
         }
-        let converted_1147 = converted_1147_list.into_any().unbind();
-        result.set_item("state_machines", converted_1147)?;
+        let converted_1269 = converted_1269_list.into_any().unbind();
+        result.set_item("state_machines", converted_1269)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_1150 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1150)?;
+            let converted_1272 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1272)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListTagsForResourceOutput {
+    tags: Option<::std::vec::Vec<Arc<aws_sdk_sfn::types::Tag>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::operation::list_tags_for_resource::ListTagsForResourceOutput>
+    for SharedPyOperationListTagsForResourceOutput
+{
+    fn from(
+        value: aws_sdk_sfn::operation::list_tags_for_resource::ListTagsForResourceOutput,
+    ) -> Self {
+        Self {
+            tags: value.tags.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_1276| Arc::new(owned_1276))
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -8342,7 +9916,7 @@ impl PyOperationListStateMachinesOutput {
     frozen
 )]
 struct PyOperationListTagsForResourceOutput {
-    inner: aws_sdk_sfn::operation::list_tags_for_resource::ListTagsForResourceOutput,
+    inner: SharedPyOperationListTagsForResourceOutput,
 }
 
 #[pymethods]
@@ -8350,19 +9924,19 @@ impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_1151_list = PyList::empty(py);
-            for item_1152 in value {
-                let converted_item_1153 = Py::new(
+            let converted_1273_list = PyList::empty(py);
+            for item_1274 in value {
+                let converted_item_1275 = Py::new(
                     py,
                     PyTag {
-                        inner: (item_1152).to_owned(),
+                        inner: Arc::clone(item_1274),
                     },
                 )?
                 .into_any();
-                converted_1151_list.append(converted_item_1153)?;
+                converted_1273_list.append(converted_item_1275)?;
             }
-            let converted_1151 = converted_1151_list.into_any().unbind();
-            Ok(converted_1151)
+            let converted_1273 = converted_1273_list.into_any().unbind();
+            Ok(converted_1273)
         } else {
             Ok(py.None())
         }
@@ -8371,13 +9945,13 @@ impl PyOperationListTagsForResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.tags {
-            let converted_1154_list = PyList::empty(py);
-            for item_1155 in value {
-                let converted_item_1156 = tag_to_py(py, item_1155)?;
-                converted_1154_list.append(converted_item_1156)?;
+            let converted_1277_list = PyList::empty(py);
+            for item_1278 in value {
+                let converted_item_1279 = tag_to_py(py, item_1278)?;
+                converted_1277_list.append(converted_item_1279)?;
             }
-            let converted_1154 = converted_1154_list.into_any().unbind();
-            result.set_item("tags", converted_1154)?;
+            let converted_1277 = converted_1277_list.into_any().unbind();
+            result.set_item("tags", converted_1277)?;
         } else {
             result.set_item("tags", py.None())?;
         }
@@ -8398,26 +9972,26 @@ struct PyOperationPublishStateMachineVersionOutput {
 impl PyOperationPublishStateMachineVersionOutput {
     #[getter]
     fn creation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1157 = (&self.inner.creation_date).to_string().into_py_any(py)?;
-        Ok(converted_1157)
+        let converted_1280 = (&self.inner.creation_date).to_string().into_py_any(py)?;
+        Ok(converted_1280)
     }
 
     #[getter]
     fn state_machine_version_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1158 = (&self.inner.state_machine_version_arn)
+        let converted_1281 = (&self.inner.state_machine_version_arn)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_1158)
+        Ok(converted_1281)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1159 = (&self.inner.creation_date).to_string().into_py_any(py)?;
-        result.set_item("creation_date", converted_1159)?;
-        let converted_1160 = (&self.inner.state_machine_version_arn)
+        let converted_1282 = (&self.inner.creation_date).to_string().into_py_any(py)?;
+        result.set_item("creation_date", converted_1282)?;
+        let converted_1283 = (&self.inner.state_machine_version_arn)
             .as_str()
             .into_py_any(py)?;
-        result.set_item("state_machine_version_arn", converted_1160)?;
+        result.set_item("state_machine_version_arn", converted_1283)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -8431,14 +10005,14 @@ struct PyOperationRedriveExecutionOutput {
 impl PyOperationRedriveExecutionOutput {
     #[getter]
     fn redrive_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1161 = (&self.inner.redrive_date).to_string().into_py_any(py)?;
-        Ok(converted_1161)
+        let converted_1284 = (&self.inner.redrive_date).to_string().into_py_any(py)?;
+        Ok(converted_1284)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1162 = (&self.inner.redrive_date).to_string().into_py_any(py)?;
-        result.set_item("redrive_date", converted_1162)?;
+        let converted_1285 = (&self.inner.redrive_date).to_string().into_py_any(py)?;
+        result.set_item("redrive_date", converted_1285)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -8491,23 +10065,64 @@ struct PyOperationStartExecutionOutput {
 impl PyOperationStartExecutionOutput {
     #[getter]
     fn execution_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1163 = (&self.inner.execution_arn).as_str().into_py_any(py)?;
-        Ok(converted_1163)
+        let converted_1286 = (&self.inner.execution_arn).as_str().into_py_any(py)?;
+        Ok(converted_1286)
     }
 
     #[getter]
     fn start_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1164 = (&self.inner.start_date).to_string().into_py_any(py)?;
-        Ok(converted_1164)
+        let converted_1287 = (&self.inner.start_date).to_string().into_py_any(py)?;
+        Ok(converted_1287)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1165 = (&self.inner.execution_arn).as_str().into_py_any(py)?;
-        result.set_item("execution_arn", converted_1165)?;
-        let converted_1166 = (&self.inner.start_date).to_string().into_py_any(py)?;
-        result.set_item("start_date", converted_1166)?;
+        let converted_1288 = (&self.inner.execution_arn).as_str().into_py_any(py)?;
+        result.set_item("execution_arn", converted_1288)?;
+        let converted_1289 = (&self.inner.start_date).to_string().into_py_any(py)?;
+        result.set_item("start_date", converted_1289)?;
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationStartSyncExecutionOutput {
+    execution_arn: ::std::string::String,
+    state_machine_arn: Option<::std::string::String>,
+    name: Option<::std::string::String>,
+    start_date: ::aws_smithy_types::DateTime,
+    stop_date: ::aws_smithy_types::DateTime,
+    status: aws_sdk_sfn::types::SyncExecutionStatus,
+    error: Option<::std::string::String>,
+    cause: Option<::std::string::String>,
+    input: Option<::std::string::String>,
+    input_details: Option<Arc<aws_sdk_sfn::types::CloudWatchEventsExecutionDataDetails>>,
+    output: Option<::std::string::String>,
+    output_details: Option<Arc<aws_sdk_sfn::types::CloudWatchEventsExecutionDataDetails>>,
+    trace_header: Option<::std::string::String>,
+    billing_details: Option<Arc<aws_sdk_sfn::types::BillingDetails>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::operation::start_sync_execution::StartSyncExecutionOutput>
+    for SharedPyOperationStartSyncExecutionOutput
+{
+    fn from(value: aws_sdk_sfn::operation::start_sync_execution::StartSyncExecutionOutput) -> Self {
+        Self {
+            execution_arn: value.execution_arn,
+            state_machine_arn: value.state_machine_arn,
+            name: value.name,
+            start_date: value.start_date,
+            stop_date: value.stop_date,
+            status: value.status,
+            error: value.error,
+            cause: value.cause,
+            input: value.input,
+            input_details: value.input_details.map(|item| Arc::new(item)),
+            output: value.output,
+            output_details: value.output_details.map(|item| Arc::new(item)),
+            trace_header: value.trace_header,
+            billing_details: value.billing_details.map(|item| Arc::new(item)),
+        }
     }
 }
 
@@ -8517,22 +10132,22 @@ impl PyOperationStartExecutionOutput {
     frozen
 )]
 struct PyOperationStartSyncExecutionOutput {
-    inner: aws_sdk_sfn::operation::start_sync_execution::StartSyncExecutionOutput,
+    inner: SharedPyOperationStartSyncExecutionOutput,
 }
 
 #[pymethods]
 impl PyOperationStartSyncExecutionOutput {
     #[getter]
     fn execution_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1167 = (&self.inner.execution_arn).as_str().into_py_any(py)?;
-        Ok(converted_1167)
+        let converted_1290 = (&self.inner.execution_arn).as_str().into_py_any(py)?;
+        Ok(converted_1290)
     }
 
     #[getter]
     fn state_machine_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state_machine_arn {
-            let converted_1168 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1168)
+            let converted_1291 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1291)
         } else {
             Ok(py.None())
         }
@@ -8541,8 +10156,8 @@ impl PyOperationStartSyncExecutionOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1169 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1169)
+            let converted_1292 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1292)
         } else {
             Ok(py.None())
         }
@@ -8550,27 +10165,27 @@ impl PyOperationStartSyncExecutionOutput {
 
     #[getter]
     fn start_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1170 = (&self.inner.start_date).to_string().into_py_any(py)?;
-        Ok(converted_1170)
+        let converted_1293 = (&self.inner.start_date).to_string().into_py_any(py)?;
+        Ok(converted_1293)
     }
 
     #[getter]
     fn stop_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1171 = (&self.inner.stop_date).to_string().into_py_any(py)?;
-        Ok(converted_1171)
+        let converted_1294 = (&self.inner.stop_date).to_string().into_py_any(py)?;
+        Ok(converted_1294)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1172 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_1172)
+        let converted_1295 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_1295)
     }
 
     #[getter]
     fn error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error {
-            let converted_1173 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1173)
+            let converted_1296 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1296)
         } else {
             Ok(py.None())
         }
@@ -8579,8 +10194,8 @@ impl PyOperationStartSyncExecutionOutput {
     #[getter]
     fn cause(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cause {
-            let converted_1174 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1174)
+            let converted_1297 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1297)
         } else {
             Ok(py.None())
         }
@@ -8589,8 +10204,8 @@ impl PyOperationStartSyncExecutionOutput {
     #[getter]
     fn input(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input {
-            let converted_1175 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1175)
+            let converted_1298 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1298)
         } else {
             Ok(py.None())
         }
@@ -8599,14 +10214,14 @@ impl PyOperationStartSyncExecutionOutput {
     #[getter]
     fn input_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_details {
-            let converted_1176 = Py::new(
+            let converted_1299 = Py::new(
                 py,
                 PyCloudWatchEventsExecutionDataDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1176)
+            Ok(converted_1299)
         } else {
             Ok(py.None())
         }
@@ -8615,8 +10230,8 @@ impl PyOperationStartSyncExecutionOutput {
     #[getter]
     fn output(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output {
-            let converted_1177 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1177)
+            let converted_1300 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1300)
         } else {
             Ok(py.None())
         }
@@ -8625,14 +10240,14 @@ impl PyOperationStartSyncExecutionOutput {
     #[getter]
     fn output_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_details {
-            let converted_1178 = Py::new(
+            let converted_1301 = Py::new(
                 py,
                 PyCloudWatchEventsExecutionDataDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1178)
+            Ok(converted_1301)
         } else {
             Ok(py.None())
         }
@@ -8641,8 +10256,8 @@ impl PyOperationStartSyncExecutionOutput {
     #[getter]
     fn trace_header(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trace_header {
-            let converted_1179 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1179)
+            let converted_1302 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1302)
         } else {
             Ok(py.None())
         }
@@ -8651,14 +10266,14 @@ impl PyOperationStartSyncExecutionOutput {
     #[getter]
     fn billing_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.billing_details {
-            let converted_1180 = Py::new(
+            let converted_1303 = Py::new(
                 py,
                 PyBillingDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1180)
+            Ok(converted_1303)
         } else {
             Ok(py.None())
         }
@@ -8666,71 +10281,71 @@ impl PyOperationStartSyncExecutionOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1181 = (&self.inner.execution_arn).as_str().into_py_any(py)?;
-        result.set_item("execution_arn", converted_1181)?;
+        let converted_1304 = (&self.inner.execution_arn).as_str().into_py_any(py)?;
+        result.set_item("execution_arn", converted_1304)?;
         if let Some(value) = &self.inner.state_machine_arn {
-            let converted_1182 = (value).as_str().into_py_any(py)?;
-            result.set_item("state_machine_arn", converted_1182)?;
+            let converted_1305 = (value).as_str().into_py_any(py)?;
+            result.set_item("state_machine_arn", converted_1305)?;
         } else {
             result.set_item("state_machine_arn", py.None())?;
         }
         if let Some(value) = &self.inner.name {
-            let converted_1183 = (value).as_str().into_py_any(py)?;
-            result.set_item("name", converted_1183)?;
+            let converted_1306 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_1306)?;
         } else {
             result.set_item("name", py.None())?;
         }
-        let converted_1184 = (&self.inner.start_date).to_string().into_py_any(py)?;
-        result.set_item("start_date", converted_1184)?;
-        let converted_1185 = (&self.inner.stop_date).to_string().into_py_any(py)?;
-        result.set_item("stop_date", converted_1185)?;
-        let converted_1186 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_1186)?;
+        let converted_1307 = (&self.inner.start_date).to_string().into_py_any(py)?;
+        result.set_item("start_date", converted_1307)?;
+        let converted_1308 = (&self.inner.stop_date).to_string().into_py_any(py)?;
+        result.set_item("stop_date", converted_1308)?;
+        let converted_1309 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_1309)?;
         if let Some(value) = &self.inner.error {
-            let converted_1187 = (value).as_str().into_py_any(py)?;
-            result.set_item("error", converted_1187)?;
+            let converted_1310 = (value).as_str().into_py_any(py)?;
+            result.set_item("error", converted_1310)?;
         } else {
             result.set_item("error", py.None())?;
         }
         if let Some(value) = &self.inner.cause {
-            let converted_1188 = (value).as_str().into_py_any(py)?;
-            result.set_item("cause", converted_1188)?;
+            let converted_1311 = (value).as_str().into_py_any(py)?;
+            result.set_item("cause", converted_1311)?;
         } else {
             result.set_item("cause", py.None())?;
         }
         if let Some(value) = &self.inner.input {
-            let converted_1189 = (value).as_str().into_py_any(py)?;
-            result.set_item("input", converted_1189)?;
+            let converted_1312 = (value).as_str().into_py_any(py)?;
+            result.set_item("input", converted_1312)?;
         } else {
             result.set_item("input", py.None())?;
         }
         if let Some(value) = &self.inner.input_details {
-            let converted_1190 = cloud_watch_events_execution_data_details_to_py(py, value)?;
-            result.set_item("input_details", converted_1190)?;
+            let converted_1313 = cloud_watch_events_execution_data_details_to_py(py, value)?;
+            result.set_item("input_details", converted_1313)?;
         } else {
             result.set_item("input_details", py.None())?;
         }
         if let Some(value) = &self.inner.output {
-            let converted_1191 = (value).as_str().into_py_any(py)?;
-            result.set_item("output", converted_1191)?;
+            let converted_1314 = (value).as_str().into_py_any(py)?;
+            result.set_item("output", converted_1314)?;
         } else {
             result.set_item("output", py.None())?;
         }
         if let Some(value) = &self.inner.output_details {
-            let converted_1192 = cloud_watch_events_execution_data_details_to_py(py, value)?;
-            result.set_item("output_details", converted_1192)?;
+            let converted_1315 = cloud_watch_events_execution_data_details_to_py(py, value)?;
+            result.set_item("output_details", converted_1315)?;
         } else {
             result.set_item("output_details", py.None())?;
         }
         if let Some(value) = &self.inner.trace_header {
-            let converted_1193 = (value).as_str().into_py_any(py)?;
-            result.set_item("trace_header", converted_1193)?;
+            let converted_1316 = (value).as_str().into_py_any(py)?;
+            result.set_item("trace_header", converted_1316)?;
         } else {
             result.set_item("trace_header", py.None())?;
         }
         if let Some(value) = &self.inner.billing_details {
-            let converted_1194 = billing_details_to_py(py, value)?;
-            result.set_item("billing_details", converted_1194)?;
+            let converted_1317 = billing_details_to_py(py, value)?;
+            result.set_item("billing_details", converted_1317)?;
         } else {
             result.set_item("billing_details", py.None())?;
         }
@@ -8747,14 +10362,14 @@ struct PyOperationStopExecutionOutput {
 impl PyOperationStopExecutionOutput {
     #[getter]
     fn stop_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1195 = (&self.inner.stop_date).to_string().into_py_any(py)?;
-        Ok(converted_1195)
+        let converted_1318 = (&self.inner.stop_date).to_string().into_py_any(py)?;
+        Ok(converted_1318)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1196 = (&self.inner.stop_date).to_string().into_py_any(py)?;
-        result.set_item("stop_date", converted_1196)?;
+        let converted_1319 = (&self.inner.stop_date).to_string().into_py_any(py)?;
+        result.set_item("stop_date", converted_1319)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -8772,9 +10387,36 @@ impl PyOperationTagResourceOutput {
     }
 }
 
+struct SharedPyOperationTestStateOutput {
+    output: Option<::std::string::String>,
+    error: Option<::std::string::String>,
+    cause: Option<::std::string::String>,
+    inspection_data: Option<Arc<SharedInspectionData>>,
+    next_state: Option<::std::string::String>,
+    status: Option<aws_sdk_sfn::types::TestExecutionStatus>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::operation::test_state::TestStateOutput>
+    for SharedPyOperationTestStateOutput
+{
+    fn from(value: aws_sdk_sfn::operation::test_state::TestStateOutput) -> Self {
+        Self {
+            output: value.output,
+            error: value.error,
+            cause: value.cause,
+            inspection_data: value
+                .inspection_data
+                .map(|item| Arc::new(SharedInspectionData::from(item))),
+            next_state: value.next_state,
+            status: value.status,
+        }
+    }
+}
+
 #[pyclass(name = "TestStateOutput", module = "rboto_sfn._native", frozen)]
 struct PyOperationTestStateOutput {
-    inner: aws_sdk_sfn::operation::test_state::TestStateOutput,
+    inner: SharedPyOperationTestStateOutput,
 }
 
 #[pymethods]
@@ -8782,8 +10424,8 @@ impl PyOperationTestStateOutput {
     #[getter]
     fn output(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output {
-            let converted_1197 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1197)
+            let converted_1320 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1320)
         } else {
             Ok(py.None())
         }
@@ -8792,8 +10434,8 @@ impl PyOperationTestStateOutput {
     #[getter]
     fn error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error {
-            let converted_1198 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1198)
+            let converted_1321 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1321)
         } else {
             Ok(py.None())
         }
@@ -8802,8 +10444,8 @@ impl PyOperationTestStateOutput {
     #[getter]
     fn cause(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cause {
-            let converted_1199 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1199)
+            let converted_1322 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1322)
         } else {
             Ok(py.None())
         }
@@ -8812,14 +10454,14 @@ impl PyOperationTestStateOutput {
     #[getter]
     fn inspection_data(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.inspection_data {
-            let converted_1200 = Py::new(
+            let converted_1323 = Py::new(
                 py,
                 PyInspectionData {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1200)
+            Ok(converted_1323)
         } else {
             Ok(py.None())
         }
@@ -8828,8 +10470,8 @@ impl PyOperationTestStateOutput {
     #[getter]
     fn next_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_state {
-            let converted_1201 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1201)
+            let converted_1324 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1324)
         } else {
             Ok(py.None())
         }
@@ -8838,8 +10480,8 @@ impl PyOperationTestStateOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_1202 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1202)
+            let converted_1325 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1325)
         } else {
             Ok(py.None())
         }
@@ -8848,38 +10490,38 @@ impl PyOperationTestStateOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.output {
-            let converted_1203 = (value).as_str().into_py_any(py)?;
-            result.set_item("output", converted_1203)?;
+            let converted_1326 = (value).as_str().into_py_any(py)?;
+            result.set_item("output", converted_1326)?;
         } else {
             result.set_item("output", py.None())?;
         }
         if let Some(value) = &self.inner.error {
-            let converted_1204 = (value).as_str().into_py_any(py)?;
-            result.set_item("error", converted_1204)?;
+            let converted_1327 = (value).as_str().into_py_any(py)?;
+            result.set_item("error", converted_1327)?;
         } else {
             result.set_item("error", py.None())?;
         }
         if let Some(value) = &self.inner.cause {
-            let converted_1205 = (value).as_str().into_py_any(py)?;
-            result.set_item("cause", converted_1205)?;
+            let converted_1328 = (value).as_str().into_py_any(py)?;
+            result.set_item("cause", converted_1328)?;
         } else {
             result.set_item("cause", py.None())?;
         }
         if let Some(value) = &self.inner.inspection_data {
-            let converted_1206 = inspection_data_to_py(py, value)?;
-            result.set_item("inspection_data", converted_1206)?;
+            let converted_1329 = inspection_data_shared_to_py(py, value)?;
+            result.set_item("inspection_data", converted_1329)?;
         } else {
             result.set_item("inspection_data", py.None())?;
         }
         if let Some(value) = &self.inner.next_state {
-            let converted_1207 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_state", converted_1207)?;
+            let converted_1330 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_state", converted_1330)?;
         } else {
             result.set_item("next_state", py.None())?;
         }
         if let Some(value) = &self.inner.status {
-            let converted_1208 = (value).as_str().into_py_any(py)?;
-            result.set_item("status", converted_1208)?;
+            let converted_1331 = (value).as_str().into_py_any(py)?;
+            result.set_item("status", converted_1331)?;
         } else {
             result.set_item("status", py.None())?;
         }
@@ -8926,15 +10568,15 @@ struct PyOperationUpdateStateMachineOutput {
 impl PyOperationUpdateStateMachineOutput {
     #[getter]
     fn update_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1209 = (&self.inner.update_date).to_string().into_py_any(py)?;
-        Ok(converted_1209)
+        let converted_1332 = (&self.inner.update_date).to_string().into_py_any(py)?;
+        Ok(converted_1332)
     }
 
     #[getter]
     fn revision_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.revision_id {
-            let converted_1210 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1210)
+            let converted_1333 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1333)
         } else {
             Ok(py.None())
         }
@@ -8943,8 +10585,8 @@ impl PyOperationUpdateStateMachineOutput {
     #[getter]
     fn state_machine_version_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state_machine_version_arn {
-            let converted_1211 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1211)
+            let converted_1334 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1334)
         } else {
             Ok(py.None())
         }
@@ -8952,17 +10594,17 @@ impl PyOperationUpdateStateMachineOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1212 = (&self.inner.update_date).to_string().into_py_any(py)?;
-        result.set_item("update_date", converted_1212)?;
+        let converted_1335 = (&self.inner.update_date).to_string().into_py_any(py)?;
+        result.set_item("update_date", converted_1335)?;
         if let Some(value) = &self.inner.revision_id {
-            let converted_1213 = (value).as_str().into_py_any(py)?;
-            result.set_item("revision_id", converted_1213)?;
+            let converted_1336 = (value).as_str().into_py_any(py)?;
+            result.set_item("revision_id", converted_1336)?;
         } else {
             result.set_item("revision_id", py.None())?;
         }
         if let Some(value) = &self.inner.state_machine_version_arn {
-            let converted_1214 = (value).as_str().into_py_any(py)?;
-            result.set_item("state_machine_version_arn", converted_1214)?;
+            let converted_1337 = (value).as_str().into_py_any(py)?;
+            result.set_item("state_machine_version_arn", converted_1337)?;
         } else {
             result.set_item("state_machine_version_arn", py.None())?;
         }
@@ -8983,15 +10625,32 @@ struct PyOperationUpdateStateMachineAliasOutput {
 impl PyOperationUpdateStateMachineAliasOutput {
     #[getter]
     fn update_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1215 = (&self.inner.update_date).to_string().into_py_any(py)?;
-        Ok(converted_1215)
+        let converted_1338 = (&self.inner.update_date).to_string().into_py_any(py)?;
+        Ok(converted_1338)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1216 = (&self.inner.update_date).to_string().into_py_any(py)?;
-        result.set_item("update_date", converted_1216)?;
+        let converted_1339 = (&self.inner.update_date).to_string().into_py_any(py)?;
+        result.set_item("update_date", converted_1339)?;
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationValidateStateMachineDefinitionOutput {
+    result: aws_sdk_sfn::types::ValidateStateMachineDefinitionResultCode,
+    diagnostics: ::std::vec::Vec<Arc<aws_sdk_sfn::types::ValidateStateMachineDefinitionDiagnostic>>,
+    truncated: Option<bool>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_sfn::operation::validate_state_machine_definition::ValidateStateMachineDefinitionOutput> for SharedPyOperationValidateStateMachineDefinitionOutput {
+    fn from(value: aws_sdk_sfn::operation::validate_state_machine_definition::ValidateStateMachineDefinitionOutput) -> Self {
+        Self {
+            result: value.result,
+            diagnostics: (value.diagnostics).into_iter().map(|owned_1345| Arc::new(owned_1345)).collect(),
+            truncated: value.truncated,
+        }
     }
 }
 
@@ -9001,39 +10660,39 @@ impl PyOperationUpdateStateMachineAliasOutput {
     frozen
 )]
 struct PyOperationValidateStateMachineDefinitionOutput {
-    inner: aws_sdk_sfn::operation::validate_state_machine_definition::ValidateStateMachineDefinitionOutput,
+    inner: SharedPyOperationValidateStateMachineDefinitionOutput,
 }
 
 #[pymethods]
 impl PyOperationValidateStateMachineDefinitionOutput {
     #[getter]
     fn result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1217 = (&self.inner.result).as_str().into_py_any(py)?;
-        Ok(converted_1217)
+        let converted_1340 = (&self.inner.result).as_str().into_py_any(py)?;
+        Ok(converted_1340)
     }
 
     #[getter]
     fn diagnostics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1218_list = PyList::empty(py);
-        for item_1219 in &self.inner.diagnostics {
-            let converted_item_1220 = Py::new(
+        let converted_1341_list = PyList::empty(py);
+        for item_1342 in &self.inner.diagnostics {
+            let converted_item_1343 = Py::new(
                 py,
                 PyValidateStateMachineDefinitionDiagnostic {
-                    inner: (item_1219).to_owned(),
+                    inner: Arc::clone(item_1342),
                 },
             )?
             .into_any();
-            converted_1218_list.append(converted_item_1220)?;
+            converted_1341_list.append(converted_item_1343)?;
         }
-        let converted_1218 = converted_1218_list.into_any().unbind();
-        Ok(converted_1218)
+        let converted_1341 = converted_1341_list.into_any().unbind();
+        Ok(converted_1341)
     }
 
     #[getter]
     fn truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.truncated {
-            let converted_1221 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1221)
+            let converted_1344 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1344)
         } else {
             Ok(py.None())
         }
@@ -9041,19 +10700,19 @@ impl PyOperationValidateStateMachineDefinitionOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1222 = (&self.inner.result).as_str().into_py_any(py)?;
-        result.set_item("result", converted_1222)?;
-        let converted_1223_list = PyList::empty(py);
-        for item_1224 in &self.inner.diagnostics {
-            let converted_item_1225 =
-                validate_state_machine_definition_diagnostic_to_py(py, item_1224)?;
-            converted_1223_list.append(converted_item_1225)?;
+        let converted_1346 = (&self.inner.result).as_str().into_py_any(py)?;
+        result.set_item("result", converted_1346)?;
+        let converted_1347_list = PyList::empty(py);
+        for item_1348 in &self.inner.diagnostics {
+            let converted_item_1349 =
+                validate_state_machine_definition_diagnostic_to_py(py, item_1348)?;
+            converted_1347_list.append(converted_item_1349)?;
         }
-        let converted_1223 = converted_1223_list.into_any().unbind();
-        result.set_item("diagnostics", converted_1223)?;
+        let converted_1347 = converted_1347_list.into_any().unbind();
+        result.set_item("diagnostics", converted_1347)?;
         if let Some(value) = &self.inner.truncated {
-            let converted_1226 = (value).to_owned().into_py_any(py)?;
-            result.set_item("truncated", converted_1226)?;
+            let converted_1350 = (value).to_owned().into_py_any(py)?;
+            result.set_item("truncated", converted_1350)?;
         } else {
             result.set_item("truncated", py.None())?;
         }
@@ -9610,7 +11269,9 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeActivity"))
             })?;
-            Ok(PyOperationDescribeActivityOutput { inner: output })
+            Ok(PyOperationDescribeActivityOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -9656,7 +11317,9 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeExecution"))
             })?;
-            Ok(PyOperationDescribeExecutionOutput { inner: output })
+            Ok(PyOperationDescribeExecutionOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -9692,7 +11355,9 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeMapRun"))
             })?;
-            Ok(PyOperationDescribeMapRunOutput { inner: output })
+            Ok(PyOperationDescribeMapRunOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -9739,7 +11404,9 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeStateMachine"))
             })?;
-            Ok(PyOperationDescribeStateMachineOutput { inner: output })
+            Ok(PyOperationDescribeStateMachineOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -9778,7 +11445,9 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeStateMachineAlias"))
             })?;
-            Ok(PyOperationDescribeStateMachineAliasOutput { inner: output })
+            Ok(PyOperationDescribeStateMachineAliasOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -9824,7 +11493,9 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeStateMachineForExecution"))
             })?;
-            Ok(PyOperationDescribeStateMachineForExecutionOutput { inner: output })
+            Ok(PyOperationDescribeStateMachineForExecutionOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -9936,7 +11607,9 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetExecutionHistory"))
             })?;
-            Ok(PyOperationGetExecutionHistoryOutput { inner: output })
+            Ok(PyOperationGetExecutionHistoryOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -9981,7 +11654,9 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListActivities"))
             })?;
-            Ok(PyOperationListActivitiesOutput { inner: output })
+            Ok(PyOperationListActivitiesOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -10058,7 +11733,9 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListExecutions"))
             })?;
-            Ok(PyOperationListExecutionsOutput { inner: output })
+            Ok(PyOperationListExecutionsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -10109,7 +11786,9 @@ impl SFNClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListMapRuns")))?;
-            Ok(PyOperationListMapRunsOutput { inner: output })
+            Ok(PyOperationListMapRunsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -10162,7 +11841,9 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListStateMachineAliases"))
             })?;
-            Ok(PyOperationListStateMachineAliasesOutput { inner: output })
+            Ok(PyOperationListStateMachineAliasesOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -10215,7 +11896,9 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListStateMachineVersions"))
             })?;
-            Ok(PyOperationListStateMachineVersionsOutput { inner: output })
+            Ok(PyOperationListStateMachineVersionsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -10260,7 +11943,9 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListStateMachines"))
             })?;
-            Ok(PyOperationListStateMachinesOutput { inner: output })
+            Ok(PyOperationListStateMachinesOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -10298,7 +11983,9 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Ok(PyOperationListTagsForResourceOutput { inner: output })
+            Ok(PyOperationListTagsForResourceOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -10659,7 +12346,9 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartSyncExecution"))
             })?;
-            Ok(PyOperationStartSyncExecutionOutput { inner: output })
+            Ok(PyOperationStartSyncExecutionOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -10863,7 +12552,9 @@ impl SFNClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TestState")))?;
-            Ok(PyOperationTestStateOutput { inner: output })
+            Ok(PyOperationTestStateOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -11190,7 +12881,9 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ValidateStateMachineDefinition"))
             })?;
-            Ok(PyOperationValidateStateMachineDefinitionOutput { inner: output })
+            Ok(PyOperationValidateStateMachineDefinitionOutput {
+                inner: output.into(),
+            })
         })
     }
 }

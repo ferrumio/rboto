@@ -170,3 +170,13 @@ HTTP peer. It records throughput, latency, CPU, thread counts, sampled RSS and
 event-loop gaps. No account access is required.
 
 See [worker sizing results and methodology](runtime_workers.md).
+
+## Shared output access
+
+`output_access.py` separates native entry, property access, dictionary conversion,
+streaming, logging and request timings using release wheels and a separate local
+peer. `output_access_aws.py` confirms SQS content and output lifetimes in a
+temporary queue.
+
+See [measurements and tradeoffs](output_access.md), including the cost of preparing
+large collections that the caller never reads.

@@ -8206,7 +8206,7 @@ fn write_request_to_py(
 
 #[pyclass(name = "ArchivalSummary", module = "rboto_dynamodb._native", frozen)]
 struct PyArchivalSummary {
-    inner: aws_sdk_dynamodb::types::ArchivalSummary,
+    inner: Arc<aws_sdk_dynamodb::types::ArchivalSummary>,
 }
 
 #[pymethods]
@@ -8252,7 +8252,7 @@ impl PyArchivalSummary {
     frozen
 )]
 struct PyAttributeDefinition {
-    inner: aws_sdk_dynamodb::types::AttributeDefinition,
+    inner: Arc<aws_sdk_dynamodb::types::AttributeDefinition>,
 }
 
 #[pymethods]
@@ -8274,13 +8274,60 @@ impl PyAttributeDefinition {
     }
 }
 
+struct SharedAutoScalingPolicyDescription {
+    policy_name: Option<::std::string::String>,
+    target_tracking_scaling_policy_configuration: Option<
+        Arc<
+            aws_sdk_dynamodb::types::AutoScalingTargetTrackingScalingPolicyConfigurationDescription,
+        >,
+    >,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::AutoScalingPolicyDescription>
+    for SharedAutoScalingPolicyDescription
+{
+    fn from(value: aws_sdk_dynamodb::types::AutoScalingPolicyDescription) -> Self {
+        Self {
+            policy_name: value.policy_name,
+            target_tracking_scaling_policy_configuration: value
+                .target_tracking_scaling_policy_configuration
+                .map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn auto_scaling_policy_description_shared_to_py(
+    py: Python<'_>,
+    value: &SharedAutoScalingPolicyDescription,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.policy_name {
+        let converted_2224 = (value).as_str().into_py_any(py)?;
+        result.set_item("policy_name", converted_2224)?;
+    } else {
+        result.set_item("policy_name", py.None())?;
+    }
+    if let Some(value) = &value.target_tracking_scaling_policy_configuration {
+        let converted_2225 =
+            auto_scaling_target_tracking_scaling_policy_configuration_description_to_py(py, value)?;
+        result.set_item(
+            "target_tracking_scaling_policy_configuration",
+            converted_2225,
+        )?;
+    } else {
+        result.set_item("target_tracking_scaling_policy_configuration", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "AutoScalingPolicyDescription",
     module = "rboto_dynamodb._native",
     frozen
 )]
 struct PyAutoScalingPolicyDescription {
-    inner: aws_sdk_dynamodb::types::AutoScalingPolicyDescription,
+    inner: Arc<SharedAutoScalingPolicyDescription>,
 }
 
 #[pymethods]
@@ -8301,7 +8348,7 @@ impl PyAutoScalingPolicyDescription {
             let converted_2223 = Py::new(
                 py,
                 PyAutoScalingTargetTrackingScalingPolicyConfigurationDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -8312,8 +8359,81 @@ impl PyAutoScalingPolicyDescription {
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        auto_scaling_policy_description_to_py(py, &self.inner)
+        auto_scaling_policy_description_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedAutoScalingSettingsDescription {
+    minimum_units: Option<i64>,
+    maximum_units: Option<i64>,
+    auto_scaling_disabled: Option<bool>,
+    auto_scaling_role_arn: Option<::std::string::String>,
+    scaling_policies: Option<::std::vec::Vec<Arc<SharedAutoScalingPolicyDescription>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::AutoScalingSettingsDescription>
+    for SharedAutoScalingSettingsDescription
+{
+    fn from(value: aws_sdk_dynamodb::types::AutoScalingSettingsDescription) -> Self {
+        Self {
+            minimum_units: value.minimum_units,
+            maximum_units: value.maximum_units,
+            auto_scaling_disabled: value.auto_scaling_disabled,
+            auto_scaling_role_arn: value.auto_scaling_role_arn,
+            scaling_policies: value.scaling_policies.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_2233| {
+                        Arc::new(SharedAutoScalingPolicyDescription::from(owned_2233))
+                    })
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn auto_scaling_settings_description_shared_to_py(
+    py: Python<'_>,
+    value: &SharedAutoScalingSettingsDescription,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.minimum_units {
+        let converted_2234 = (value).to_owned().into_py_any(py)?;
+        result.set_item("minimum_units", converted_2234)?;
+    } else {
+        result.set_item("minimum_units", py.None())?;
+    }
+    if let Some(value) = &value.maximum_units {
+        let converted_2235 = (value).to_owned().into_py_any(py)?;
+        result.set_item("maximum_units", converted_2235)?;
+    } else {
+        result.set_item("maximum_units", py.None())?;
+    }
+    if let Some(value) = &value.auto_scaling_disabled {
+        let converted_2236 = (value).to_owned().into_py_any(py)?;
+        result.set_item("auto_scaling_disabled", converted_2236)?;
+    } else {
+        result.set_item("auto_scaling_disabled", py.None())?;
+    }
+    if let Some(value) = &value.auto_scaling_role_arn {
+        let converted_2237 = (value).as_str().into_py_any(py)?;
+        result.set_item("auto_scaling_role_arn", converted_2237)?;
+    } else {
+        result.set_item("auto_scaling_role_arn", py.None())?;
+    }
+    if let Some(value) = &value.scaling_policies {
+        let converted_2238_list = PyList::empty(py);
+        for item_2239 in value {
+            let converted_item_2240 = auto_scaling_policy_description_shared_to_py(py, item_2239)?;
+            converted_2238_list.append(converted_item_2240)?;
+        }
+        let converted_2238 = converted_2238_list.into_any().unbind();
+        result.set_item("scaling_policies", converted_2238)?;
+    } else {
+        result.set_item("scaling_policies", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -8322,7 +8442,7 @@ impl PyAutoScalingPolicyDescription {
     frozen
 )]
 struct PyAutoScalingSettingsDescription {
-    inner: aws_sdk_dynamodb::types::AutoScalingSettingsDescription,
+    inner: Arc<SharedAutoScalingSettingsDescription>,
 }
 
 #[pymethods]
@@ -8330,26 +8450,6 @@ impl PyAutoScalingSettingsDescription {
     #[getter]
     fn minimum_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.minimum_units {
-            let converted_2224 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2224)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn maximum_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.maximum_units {
-            let converted_2225 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2225)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn auto_scaling_disabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.auto_scaling_disabled {
             let converted_2226 = (value).to_owned().into_py_any(py)?;
             Ok(converted_2226)
         } else {
@@ -8358,10 +8458,30 @@ impl PyAutoScalingSettingsDescription {
     }
 
     #[getter]
+    fn maximum_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.maximum_units {
+            let converted_2227 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2227)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn auto_scaling_disabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.auto_scaling_disabled {
+            let converted_2228 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2228)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
     fn auto_scaling_role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.auto_scaling_role_arn {
-            let converted_2227 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2227)
+            let converted_2229 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2229)
         } else {
             Ok(py.None())
         }
@@ -8370,26 +8490,26 @@ impl PyAutoScalingSettingsDescription {
     #[getter]
     fn scaling_policies(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.scaling_policies {
-            let converted_2228_list = PyList::empty(py);
-            for item_2229 in value {
-                let converted_item_2230 = Py::new(
+            let converted_2230_list = PyList::empty(py);
+            for item_2231 in value {
+                let converted_item_2232 = Py::new(
                     py,
                     PyAutoScalingPolicyDescription {
-                        inner: (item_2229).to_owned(),
+                        inner: Arc::clone(item_2231),
                     },
                 )?
                 .into_any();
-                converted_2228_list.append(converted_item_2230)?;
+                converted_2230_list.append(converted_item_2232)?;
             }
-            let converted_2228 = converted_2228_list.into_any().unbind();
-            Ok(converted_2228)
+            let converted_2230 = converted_2230_list.into_any().unbind();
+            Ok(converted_2230)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        auto_scaling_settings_description_to_py(py, &self.inner)
+        auto_scaling_settings_description_shared_to_py(py, &self.inner)
     }
 }
 
@@ -8399,7 +8519,9 @@ impl PyAutoScalingSettingsDescription {
     frozen
 )]
 struct PyAutoScalingTargetTrackingScalingPolicyConfigurationDescription {
-    inner: aws_sdk_dynamodb::types::AutoScalingTargetTrackingScalingPolicyConfigurationDescription,
+    inner: Arc<
+        aws_sdk_dynamodb::types::AutoScalingTargetTrackingScalingPolicyConfigurationDescription,
+    >,
 }
 
 #[pymethods]
@@ -8407,8 +8529,8 @@ impl PyAutoScalingTargetTrackingScalingPolicyConfigurationDescription {
     #[getter]
     fn disable_scale_in(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.disable_scale_in {
-            let converted_2231 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2231)
+            let converted_2241 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2241)
         } else {
             Ok(py.None())
         }
@@ -8417,8 +8539,8 @@ impl PyAutoScalingTargetTrackingScalingPolicyConfigurationDescription {
     #[getter]
     fn scale_in_cooldown(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.scale_in_cooldown {
-            let converted_2232 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2232)
+            let converted_2242 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2242)
         } else {
             Ok(py.None())
         }
@@ -8427,8 +8549,8 @@ impl PyAutoScalingTargetTrackingScalingPolicyConfigurationDescription {
     #[getter]
     fn scale_out_cooldown(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.scale_out_cooldown {
-            let converted_2233 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2233)
+            let converted_2243 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2243)
         } else {
             Ok(py.None())
         }
@@ -8436,8 +8558,8 @@ impl PyAutoScalingTargetTrackingScalingPolicyConfigurationDescription {
 
     #[getter]
     fn target_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2234 = (&self.inner.target_value).to_owned().into_py_any(py)?;
-        Ok(converted_2234)
+        let converted_2244 = (&self.inner.target_value).to_owned().into_py_any(py)?;
+        Ok(converted_2244)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -8445,9 +8567,56 @@ impl PyAutoScalingTargetTrackingScalingPolicyConfigurationDescription {
     }
 }
 
+struct SharedBackupDescription {
+    backup_details: Option<Arc<aws_sdk_dynamodb::types::BackupDetails>>,
+    source_table_details: Option<Arc<SharedSourceTableDetails>>,
+    source_table_feature_details: Option<Arc<SharedSourceTableFeatureDetails>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::BackupDescription> for SharedBackupDescription {
+    fn from(value: aws_sdk_dynamodb::types::BackupDescription) -> Self {
+        Self {
+            backup_details: value.backup_details.map(|item| Arc::new(item)),
+            source_table_details: value
+                .source_table_details
+                .map(|item| Arc::new(SharedSourceTableDetails::from(item))),
+            source_table_feature_details: value
+                .source_table_feature_details
+                .map(|item| Arc::new(SharedSourceTableFeatureDetails::from(item))),
+        }
+    }
+}
+
+fn backup_description_shared_to_py(
+    py: Python<'_>,
+    value: &SharedBackupDescription,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.backup_details {
+        let converted_2248 = backup_details_to_py(py, value)?;
+        result.set_item("backup_details", converted_2248)?;
+    } else {
+        result.set_item("backup_details", py.None())?;
+    }
+    if let Some(value) = &value.source_table_details {
+        let converted_2249 = source_table_details_shared_to_py(py, value)?;
+        result.set_item("source_table_details", converted_2249)?;
+    } else {
+        result.set_item("source_table_details", py.None())?;
+    }
+    if let Some(value) = &value.source_table_feature_details {
+        let converted_2250 = source_table_feature_details_shared_to_py(py, value)?;
+        result.set_item("source_table_feature_details", converted_2250)?;
+    } else {
+        result.set_item("source_table_feature_details", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "BackupDescription", module = "rboto_dynamodb._native", frozen)]
 struct PyBackupDescription {
-    inner: aws_sdk_dynamodb::types::BackupDescription,
+    inner: Arc<SharedBackupDescription>,
 }
 
 #[pymethods]
@@ -8455,14 +8624,14 @@ impl PyBackupDescription {
     #[getter]
     fn backup_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.backup_details {
-            let converted_2235 = Py::new(
+            let converted_2245 = Py::new(
                 py,
                 PyBackupDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2235)
+            Ok(converted_2245)
         } else {
             Ok(py.None())
         }
@@ -8471,14 +8640,14 @@ impl PyBackupDescription {
     #[getter]
     fn source_table_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.source_table_details {
-            let converted_2236 = Py::new(
+            let converted_2246 = Py::new(
                 py,
                 PySourceTableDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2236)
+            Ok(converted_2246)
         } else {
             Ok(py.None())
         }
@@ -8487,48 +8656,48 @@ impl PyBackupDescription {
     #[getter]
     fn source_table_feature_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.source_table_feature_details {
-            let converted_2237 = Py::new(
+            let converted_2247 = Py::new(
                 py,
                 PySourceTableFeatureDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2237)
+            Ok(converted_2247)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        backup_description_to_py(py, &self.inner)
+        backup_description_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "BackupDetails", module = "rboto_dynamodb._native", frozen)]
 struct PyBackupDetails {
-    inner: aws_sdk_dynamodb::types::BackupDetails,
+    inner: Arc<aws_sdk_dynamodb::types::BackupDetails>,
 }
 
 #[pymethods]
 impl PyBackupDetails {
     #[getter]
     fn backup_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2238 = (&self.inner.backup_arn).as_str().into_py_any(py)?;
-        Ok(converted_2238)
+        let converted_2251 = (&self.inner.backup_arn).as_str().into_py_any(py)?;
+        Ok(converted_2251)
     }
 
     #[getter]
     fn backup_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2239 = (&self.inner.backup_name).as_str().into_py_any(py)?;
-        Ok(converted_2239)
+        let converted_2252 = (&self.inner.backup_name).as_str().into_py_any(py)?;
+        Ok(converted_2252)
     }
 
     #[getter]
     fn backup_size_bytes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.backup_size_bytes {
-            let converted_2240 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2240)
+            let converted_2253 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2253)
         } else {
             Ok(py.None())
         }
@@ -8536,29 +8705,29 @@ impl PyBackupDetails {
 
     #[getter]
     fn backup_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2241 = (&self.inner.backup_status).as_str().into_py_any(py)?;
-        Ok(converted_2241)
+        let converted_2254 = (&self.inner.backup_status).as_str().into_py_any(py)?;
+        Ok(converted_2254)
     }
 
     #[getter]
     fn backup_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2242 = (&self.inner.backup_type).as_str().into_py_any(py)?;
-        Ok(converted_2242)
+        let converted_2255 = (&self.inner.backup_type).as_str().into_py_any(py)?;
+        Ok(converted_2255)
     }
 
     #[getter]
     fn backup_creation_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2243 = (&self.inner.backup_creation_date_time)
+        let converted_2256 = (&self.inner.backup_creation_date_time)
             .to_string()
             .into_py_any(py)?;
-        Ok(converted_2243)
+        Ok(converted_2256)
     }
 
     #[getter]
     fn backup_expiry_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.backup_expiry_date_time {
-            let converted_2244 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2244)
+            let converted_2257 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2257)
         } else {
             Ok(py.None())
         }
@@ -8571,7 +8740,7 @@ impl PyBackupDetails {
 
 #[pyclass(name = "BackupSummary", module = "rboto_dynamodb._native", frozen)]
 struct PyBackupSummary {
-    inner: aws_sdk_dynamodb::types::BackupSummary,
+    inner: Arc<aws_sdk_dynamodb::types::BackupSummary>,
 }
 
 #[pymethods]
@@ -8579,8 +8748,8 @@ impl PyBackupSummary {
     #[getter]
     fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_name {
-            let converted_2245 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2245)
+            let converted_2258 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2258)
         } else {
             Ok(py.None())
         }
@@ -8589,8 +8758,8 @@ impl PyBackupSummary {
     #[getter]
     fn table_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_id {
-            let converted_2246 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2246)
+            let converted_2259 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2259)
         } else {
             Ok(py.None())
         }
@@ -8599,8 +8768,8 @@ impl PyBackupSummary {
     #[getter]
     fn table_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_arn {
-            let converted_2247 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2247)
+            let converted_2260 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2260)
         } else {
             Ok(py.None())
         }
@@ -8609,8 +8778,8 @@ impl PyBackupSummary {
     #[getter]
     fn backup_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.backup_arn {
-            let converted_2248 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2248)
+            let converted_2261 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2261)
         } else {
             Ok(py.None())
         }
@@ -8619,8 +8788,8 @@ impl PyBackupSummary {
     #[getter]
     fn backup_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.backup_name {
-            let converted_2249 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2249)
+            let converted_2262 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2262)
         } else {
             Ok(py.None())
         }
@@ -8629,8 +8798,8 @@ impl PyBackupSummary {
     #[getter]
     fn backup_creation_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.backup_creation_date_time {
-            let converted_2250 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2250)
+            let converted_2263 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2263)
         } else {
             Ok(py.None())
         }
@@ -8639,8 +8808,8 @@ impl PyBackupSummary {
     #[getter]
     fn backup_expiry_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.backup_expiry_date_time {
-            let converted_2251 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2251)
+            let converted_2264 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2264)
         } else {
             Ok(py.None())
         }
@@ -8649,8 +8818,8 @@ impl PyBackupSummary {
     #[getter]
     fn backup_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.backup_status {
-            let converted_2252 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2252)
+            let converted_2265 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2265)
         } else {
             Ok(py.None())
         }
@@ -8659,8 +8828,8 @@ impl PyBackupSummary {
     #[getter]
     fn backup_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.backup_type {
-            let converted_2253 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2253)
+            let converted_2266 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2266)
         } else {
             Ok(py.None())
         }
@@ -8669,8 +8838,8 @@ impl PyBackupSummary {
     #[getter]
     fn backup_size_bytes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.backup_size_bytes {
-            let converted_2254 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2254)
+            let converted_2267 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2267)
         } else {
             Ok(py.None())
         }
@@ -8687,7 +8856,7 @@ impl PyBackupSummary {
     frozen
 )]
 struct PyBatchStatementError {
-    inner: aws_sdk_dynamodb::types::BatchStatementError,
+    inner: Arc<aws_sdk_dynamodb::types::BatchStatementError>,
 }
 
 #[pymethods]
@@ -8695,8 +8864,8 @@ impl PyBatchStatementError {
     #[getter]
     fn code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.code {
-            let converted_2255 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2255)
+            let converted_2268 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2268)
         } else {
             Ok(py.None())
         }
@@ -8705,8 +8874,8 @@ impl PyBatchStatementError {
     #[getter]
     fn message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.message {
-            let converted_2256 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2256)
+            let converted_2269 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2269)
         } else {
             Ok(py.None())
         }
@@ -8715,14 +8884,14 @@ impl PyBatchStatementError {
     #[getter]
     fn item(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.item {
-            let converted_2257_dict = PyDict::new(py);
-            for (key_2258, value_2259) in value {
-                let converted_key_2260 = (key_2258).as_str().into_py_any(py)?;
-                let converted_value_2261 = attribute_value_to_py(py, value_2259)?;
-                converted_2257_dict.set_item(converted_key_2260, converted_value_2261)?;
+            let converted_2270_dict = PyDict::new(py);
+            for (key_2271, value_2272) in value {
+                let converted_key_2273 = (key_2271).as_str().into_py_any(py)?;
+                let converted_value_2274 = attribute_value_to_py(py, value_2272)?;
+                converted_2270_dict.set_item(converted_key_2273, converted_value_2274)?;
             }
-            let converted_2257 = converted_2257_dict.into_any().unbind();
-            Ok(converted_2257)
+            let converted_2270 = converted_2270_dict.into_any().unbind();
+            Ok(converted_2270)
         } else {
             Ok(py.None())
         }
@@ -8733,13 +8902,64 @@ impl PyBatchStatementError {
     }
 }
 
+struct SharedBatchStatementResponse {
+    error: Option<Arc<aws_sdk_dynamodb::types::BatchStatementError>>,
+    table_name: Option<::std::string::String>,
+    item: Option<
+        ::std::collections::HashMap<::std::string::String, aws_sdk_dynamodb::types::AttributeValue>,
+    >,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::BatchStatementResponse> for SharedBatchStatementResponse {
+    fn from(value: aws_sdk_dynamodb::types::BatchStatementResponse) -> Self {
+        Self {
+            error: value.error.map(|item| Arc::new(item)),
+            table_name: value.table_name,
+            item: value.item,
+        }
+    }
+}
+
+fn batch_statement_response_shared_to_py(
+    py: Python<'_>,
+    value: &SharedBatchStatementResponse,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.error {
+        let converted_2282 = batch_statement_error_to_py(py, value)?;
+        result.set_item("error", converted_2282)?;
+    } else {
+        result.set_item("error", py.None())?;
+    }
+    if let Some(value) = &value.table_name {
+        let converted_2283 = (value).as_str().into_py_any(py)?;
+        result.set_item("table_name", converted_2283)?;
+    } else {
+        result.set_item("table_name", py.None())?;
+    }
+    if let Some(value) = &value.item {
+        let converted_2284_dict = PyDict::new(py);
+        for (key_2285, value_2286) in value {
+            let converted_key_2287 = (key_2285).as_str().into_py_any(py)?;
+            let converted_value_2288 = attribute_value_to_py(py, value_2286)?;
+            converted_2284_dict.set_item(converted_key_2287, converted_value_2288)?;
+        }
+        let converted_2284 = converted_2284_dict.into_any().unbind();
+        result.set_item("item", converted_2284)?;
+    } else {
+        result.set_item("item", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "BatchStatementResponse",
     module = "rboto_dynamodb._native",
     frozen
 )]
 struct PyBatchStatementResponse {
-    inner: aws_sdk_dynamodb::types::BatchStatementResponse,
+    inner: Arc<SharedBatchStatementResponse>,
 }
 
 #[pymethods]
@@ -8747,14 +8967,14 @@ impl PyBatchStatementResponse {
     #[getter]
     fn error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error {
-            let converted_2262 = Py::new(
+            let converted_2275 = Py::new(
                 py,
                 PyBatchStatementError {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2262)
+            Ok(converted_2275)
         } else {
             Ok(py.None())
         }
@@ -8763,8 +8983,8 @@ impl PyBatchStatementResponse {
     #[getter]
     fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_name {
-            let converted_2263 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2263)
+            let converted_2276 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2276)
         } else {
             Ok(py.None())
         }
@@ -8773,27 +8993,27 @@ impl PyBatchStatementResponse {
     #[getter]
     fn item(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.item {
-            let converted_2264_dict = PyDict::new(py);
-            for (key_2265, value_2266) in value {
-                let converted_key_2267 = (key_2265).as_str().into_py_any(py)?;
-                let converted_value_2268 = attribute_value_to_py(py, value_2266)?;
-                converted_2264_dict.set_item(converted_key_2267, converted_value_2268)?;
+            let converted_2277_dict = PyDict::new(py);
+            for (key_2278, value_2279) in value {
+                let converted_key_2280 = (key_2278).as_str().into_py_any(py)?;
+                let converted_value_2281 = attribute_value_to_py(py, value_2279)?;
+                converted_2277_dict.set_item(converted_key_2280, converted_value_2281)?;
             }
-            let converted_2264 = converted_2264_dict.into_any().unbind();
-            Ok(converted_2264)
+            let converted_2277 = converted_2277_dict.into_any().unbind();
+            Ok(converted_2277)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        batch_statement_response_to_py(py, &self.inner)
+        batch_statement_response_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "BillingModeSummary", module = "rboto_dynamodb._native", frozen)]
 struct PyBillingModeSummary {
-    inner: aws_sdk_dynamodb::types::BillingModeSummary,
+    inner: Arc<aws_sdk_dynamodb::types::BillingModeSummary>,
 }
 
 #[pymethods]
@@ -8801,8 +9021,8 @@ impl PyBillingModeSummary {
     #[getter]
     fn billing_mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.billing_mode {
-            let converted_2269 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2269)
+            let converted_2289 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2289)
         } else {
             Ok(py.None())
         }
@@ -8811,8 +9031,8 @@ impl PyBillingModeSummary {
     #[getter]
     fn last_update_to_pay_per_request_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_update_to_pay_per_request_date_time {
-            let converted_2270 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2270)
+            let converted_2290 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2290)
         } else {
             Ok(py.None())
         }
@@ -8825,7 +9045,7 @@ impl PyBillingModeSummary {
 
 #[pyclass(name = "Capacity", module = "rboto_dynamodb._native", frozen)]
 struct PyCapacity {
-    inner: aws_sdk_dynamodb::types::Capacity,
+    inner: Arc<aws_sdk_dynamodb::types::Capacity>,
 }
 
 #[pymethods]
@@ -8833,8 +9053,8 @@ impl PyCapacity {
     #[getter]
     fn read_capacity_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.read_capacity_units {
-            let converted_2271 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2271)
+            let converted_2291 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2291)
         } else {
             Ok(py.None())
         }
@@ -8843,8 +9063,8 @@ impl PyCapacity {
     #[getter]
     fn write_capacity_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.write_capacity_units {
-            let converted_2272 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2272)
+            let converted_2292 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2292)
         } else {
             Ok(py.None())
         }
@@ -8853,8 +9073,8 @@ impl PyCapacity {
     #[getter]
     fn capacity_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.capacity_units {
-            let converted_2273 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2273)
+            let converted_2293 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2293)
         } else {
             Ok(py.None())
         }
@@ -8865,9 +9085,134 @@ impl PyCapacity {
     }
 }
 
+struct SharedConsumedCapacity {
+    table_name: Option<::std::string::String>,
+    capacity_units: Option<f64>,
+    read_capacity_units: Option<f64>,
+    write_capacity_units: Option<f64>,
+    table: Option<Arc<aws_sdk_dynamodb::types::Capacity>>,
+    local_secondary_indexes: Option<
+        ::std::collections::HashMap<::std::string::String, Arc<aws_sdk_dynamodb::types::Capacity>>,
+    >,
+    global_secondary_indexes: Option<
+        ::std::collections::HashMap<::std::string::String, Arc<aws_sdk_dynamodb::types::Capacity>>,
+    >,
+    vector_indexes: Option<
+        ::std::collections::HashMap<
+            ::std::string::String,
+            Arc<aws_sdk_dynamodb::types::VectorCapacity>,
+        >,
+    >,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::ConsumedCapacity> for SharedConsumedCapacity {
+    fn from(value: aws_sdk_dynamodb::types::ConsumedCapacity) -> Self {
+        Self {
+            table_name: value.table_name,
+            capacity_units: value.capacity_units,
+            read_capacity_units: value.read_capacity_units,
+            write_capacity_units: value.write_capacity_units,
+            table: value.table.map(|item| Arc::new(item)),
+            local_secondary_indexes: value.local_secondary_indexes.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|(key, owned_2314)| (key, Arc::new(owned_2314)))
+                    .collect()
+            }),
+            global_secondary_indexes: value.global_secondary_indexes.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|(key, owned_2315)| (key, Arc::new(owned_2315)))
+                    .collect()
+            }),
+            vector_indexes: value.vector_indexes.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|(key, owned_2316)| (key, Arc::new(owned_2316)))
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn consumed_capacity_shared_to_py(
+    py: Python<'_>,
+    value: &SharedConsumedCapacity,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.table_name {
+        let converted_2317 = (value).as_str().into_py_any(py)?;
+        result.set_item("table_name", converted_2317)?;
+    } else {
+        result.set_item("table_name", py.None())?;
+    }
+    if let Some(value) = &value.capacity_units {
+        let converted_2318 = (value).to_owned().into_py_any(py)?;
+        result.set_item("capacity_units", converted_2318)?;
+    } else {
+        result.set_item("capacity_units", py.None())?;
+    }
+    if let Some(value) = &value.read_capacity_units {
+        let converted_2319 = (value).to_owned().into_py_any(py)?;
+        result.set_item("read_capacity_units", converted_2319)?;
+    } else {
+        result.set_item("read_capacity_units", py.None())?;
+    }
+    if let Some(value) = &value.write_capacity_units {
+        let converted_2320 = (value).to_owned().into_py_any(py)?;
+        result.set_item("write_capacity_units", converted_2320)?;
+    } else {
+        result.set_item("write_capacity_units", py.None())?;
+    }
+    if let Some(value) = &value.table {
+        let converted_2321 = capacity_to_py(py, value)?;
+        result.set_item("table", converted_2321)?;
+    } else {
+        result.set_item("table", py.None())?;
+    }
+    if let Some(value) = &value.local_secondary_indexes {
+        let converted_2322_dict = PyDict::new(py);
+        for (key_2323, value_2324) in value {
+            let converted_key_2325 = (key_2323).as_str().into_py_any(py)?;
+            let converted_value_2326 = capacity_to_py(py, value_2324)?;
+            converted_2322_dict.set_item(converted_key_2325, converted_value_2326)?;
+        }
+        let converted_2322 = converted_2322_dict.into_any().unbind();
+        result.set_item("local_secondary_indexes", converted_2322)?;
+    } else {
+        result.set_item("local_secondary_indexes", py.None())?;
+    }
+    if let Some(value) = &value.global_secondary_indexes {
+        let converted_2327_dict = PyDict::new(py);
+        for (key_2328, value_2329) in value {
+            let converted_key_2330 = (key_2328).as_str().into_py_any(py)?;
+            let converted_value_2331 = capacity_to_py(py, value_2329)?;
+            converted_2327_dict.set_item(converted_key_2330, converted_value_2331)?;
+        }
+        let converted_2327 = converted_2327_dict.into_any().unbind();
+        result.set_item("global_secondary_indexes", converted_2327)?;
+    } else {
+        result.set_item("global_secondary_indexes", py.None())?;
+    }
+    if let Some(value) = &value.vector_indexes {
+        let converted_2332_dict = PyDict::new(py);
+        for (key_2333, value_2334) in value {
+            let converted_key_2335 = (key_2333).as_str().into_py_any(py)?;
+            let converted_value_2336 = vector_capacity_to_py(py, value_2334)?;
+            converted_2332_dict.set_item(converted_key_2335, converted_value_2336)?;
+        }
+        let converted_2332 = converted_2332_dict.into_any().unbind();
+        result.set_item("vector_indexes", converted_2332)?;
+    } else {
+        result.set_item("vector_indexes", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "ConsumedCapacity", module = "rboto_dynamodb._native", frozen)]
 struct PyConsumedCapacity {
-    inner: aws_sdk_dynamodb::types::ConsumedCapacity,
+    inner: Arc<SharedConsumedCapacity>,
 }
 
 #[pymethods]
@@ -8875,8 +9220,8 @@ impl PyConsumedCapacity {
     #[getter]
     fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_name {
-            let converted_2274 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2274)
+            let converted_2294 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2294)
         } else {
             Ok(py.None())
         }
@@ -8885,8 +9230,8 @@ impl PyConsumedCapacity {
     #[getter]
     fn capacity_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.capacity_units {
-            let converted_2275 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2275)
+            let converted_2295 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2295)
         } else {
             Ok(py.None())
         }
@@ -8895,8 +9240,8 @@ impl PyConsumedCapacity {
     #[getter]
     fn read_capacity_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.read_capacity_units {
-            let converted_2276 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2276)
+            let converted_2296 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2296)
         } else {
             Ok(py.None())
         }
@@ -8905,8 +9250,8 @@ impl PyConsumedCapacity {
     #[getter]
     fn write_capacity_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.write_capacity_units {
-            let converted_2277 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2277)
+            let converted_2297 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2297)
         } else {
             Ok(py.None())
         }
@@ -8915,14 +9260,14 @@ impl PyConsumedCapacity {
     #[getter]
     fn table(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table {
-            let converted_2278 = Py::new(
+            let converted_2298 = Py::new(
                 py,
                 PyCapacity {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2278)
+            Ok(converted_2298)
         } else {
             Ok(py.None())
         }
@@ -8931,20 +9276,20 @@ impl PyConsumedCapacity {
     #[getter]
     fn local_secondary_indexes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.local_secondary_indexes {
-            let converted_2279_dict = PyDict::new(py);
-            for (key_2280, value_2281) in value {
-                let converted_key_2282 = (key_2280).as_str().into_py_any(py)?;
-                let converted_value_2283 = Py::new(
+            let converted_2299_dict = PyDict::new(py);
+            for (key_2300, value_2301) in value {
+                let converted_key_2302 = (key_2300).as_str().into_py_any(py)?;
+                let converted_value_2303 = Py::new(
                     py,
                     PyCapacity {
-                        inner: (value_2281).to_owned(),
+                        inner: Arc::clone(value_2301),
                     },
                 )?
                 .into_any();
-                converted_2279_dict.set_item(converted_key_2282, converted_value_2283)?;
+                converted_2299_dict.set_item(converted_key_2302, converted_value_2303)?;
             }
-            let converted_2279 = converted_2279_dict.into_any().unbind();
-            Ok(converted_2279)
+            let converted_2299 = converted_2299_dict.into_any().unbind();
+            Ok(converted_2299)
         } else {
             Ok(py.None())
         }
@@ -8953,20 +9298,20 @@ impl PyConsumedCapacity {
     #[getter]
     fn global_secondary_indexes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.global_secondary_indexes {
-            let converted_2284_dict = PyDict::new(py);
-            for (key_2285, value_2286) in value {
-                let converted_key_2287 = (key_2285).as_str().into_py_any(py)?;
-                let converted_value_2288 = Py::new(
+            let converted_2304_dict = PyDict::new(py);
+            for (key_2305, value_2306) in value {
+                let converted_key_2307 = (key_2305).as_str().into_py_any(py)?;
+                let converted_value_2308 = Py::new(
                     py,
                     PyCapacity {
-                        inner: (value_2286).to_owned(),
+                        inner: Arc::clone(value_2306),
                     },
                 )?
                 .into_any();
-                converted_2284_dict.set_item(converted_key_2287, converted_value_2288)?;
+                converted_2304_dict.set_item(converted_key_2307, converted_value_2308)?;
             }
-            let converted_2284 = converted_2284_dict.into_any().unbind();
-            Ok(converted_2284)
+            let converted_2304 = converted_2304_dict.into_any().unbind();
+            Ok(converted_2304)
         } else {
             Ok(py.None())
         }
@@ -8975,28 +9320,66 @@ impl PyConsumedCapacity {
     #[getter]
     fn vector_indexes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.vector_indexes {
-            let converted_2289_dict = PyDict::new(py);
-            for (key_2290, value_2291) in value {
-                let converted_key_2292 = (key_2290).as_str().into_py_any(py)?;
-                let converted_value_2293 = Py::new(
+            let converted_2309_dict = PyDict::new(py);
+            for (key_2310, value_2311) in value {
+                let converted_key_2312 = (key_2310).as_str().into_py_any(py)?;
+                let converted_value_2313 = Py::new(
                     py,
                     PyVectorCapacity {
-                        inner: (value_2291).to_owned(),
+                        inner: Arc::clone(value_2311),
                     },
                 )?
                 .into_any();
-                converted_2289_dict.set_item(converted_key_2292, converted_value_2293)?;
+                converted_2309_dict.set_item(converted_key_2312, converted_value_2313)?;
             }
-            let converted_2289 = converted_2289_dict.into_any().unbind();
-            Ok(converted_2289)
+            let converted_2309 = converted_2309_dict.into_any().unbind();
+            Ok(converted_2309)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        consumed_capacity_to_py(py, &self.inner)
+        consumed_capacity_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedContinuousBackupsDescription {
+    continuous_backups_status: aws_sdk_dynamodb::types::ContinuousBackupsStatus,
+    point_in_time_recovery_description:
+        Option<Arc<aws_sdk_dynamodb::types::PointInTimeRecoveryDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::ContinuousBackupsDescription>
+    for SharedContinuousBackupsDescription
+{
+    fn from(value: aws_sdk_dynamodb::types::ContinuousBackupsDescription) -> Self {
+        Self {
+            continuous_backups_status: value.continuous_backups_status,
+            point_in_time_recovery_description: value
+                .point_in_time_recovery_description
+                .map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn continuous_backups_description_shared_to_py(
+    py: Python<'_>,
+    value: &SharedContinuousBackupsDescription,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_2339 = (&value.continuous_backups_status)
+        .as_str()
+        .into_py_any(py)?;
+    result.set_item("continuous_backups_status", converted_2339)?;
+    if let Some(value) = &value.point_in_time_recovery_description {
+        let converted_2340 = point_in_time_recovery_description_to_py(py, value)?;
+        result.set_item("point_in_time_recovery_description", converted_2340)?;
+    } else {
+        result.set_item("point_in_time_recovery_description", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -9005,37 +9388,37 @@ impl PyConsumedCapacity {
     frozen
 )]
 struct PyContinuousBackupsDescription {
-    inner: aws_sdk_dynamodb::types::ContinuousBackupsDescription,
+    inner: Arc<SharedContinuousBackupsDescription>,
 }
 
 #[pymethods]
 impl PyContinuousBackupsDescription {
     #[getter]
     fn continuous_backups_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2294 = (&self.inner.continuous_backups_status)
+        let converted_2337 = (&self.inner.continuous_backups_status)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_2294)
+        Ok(converted_2337)
     }
 
     #[getter]
     fn point_in_time_recovery_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.point_in_time_recovery_description {
-            let converted_2295 = Py::new(
+            let converted_2338 = Py::new(
                 py,
                 PyPointInTimeRecoveryDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2295)
+            Ok(converted_2338)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        continuous_backups_description_to_py(py, &self.inner)
+        continuous_backups_description_shared_to_py(py, &self.inner)
     }
 }
 
@@ -9045,7 +9428,7 @@ impl PyContinuousBackupsDescription {
     frozen
 )]
 struct PyContributorInsightsSummary {
-    inner: aws_sdk_dynamodb::types::ContributorInsightsSummary,
+    inner: Arc<aws_sdk_dynamodb::types::ContributorInsightsSummary>,
 }
 
 #[pymethods]
@@ -9053,8 +9436,8 @@ impl PyContributorInsightsSummary {
     #[getter]
     fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_name {
-            let converted_2296 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2296)
+            let converted_2341 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2341)
         } else {
             Ok(py.None())
         }
@@ -9063,8 +9446,8 @@ impl PyContributorInsightsSummary {
     #[getter]
     fn index_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.index_name {
-            let converted_2297 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2297)
+            let converted_2342 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2342)
         } else {
             Ok(py.None())
         }
@@ -9073,8 +9456,8 @@ impl PyContributorInsightsSummary {
     #[getter]
     fn contributor_insights_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.contributor_insights_status {
-            let converted_2298 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2298)
+            let converted_2343 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2343)
         } else {
             Ok(py.None())
         }
@@ -9083,8 +9466,8 @@ impl PyContributorInsightsSummary {
     #[getter]
     fn contributor_insights_mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.contributor_insights_mode {
-            let converted_2299 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2299)
+            let converted_2344 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2344)
         } else {
             Ok(py.None())
         }
@@ -9097,7 +9480,7 @@ impl PyContributorInsightsSummary {
 
 #[pyclass(name = "CsvOptions", module = "rboto_dynamodb._native", frozen)]
 struct PyCsvOptions {
-    inner: aws_sdk_dynamodb::types::CsvOptions,
+    inner: Arc<aws_sdk_dynamodb::types::CsvOptions>,
 }
 
 #[pymethods]
@@ -9105,8 +9488,8 @@ impl PyCsvOptions {
     #[getter]
     fn delimiter(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.delimiter {
-            let converted_2300 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2300)
+            let converted_2345 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2345)
         } else {
             Ok(py.None())
         }
@@ -9115,13 +9498,13 @@ impl PyCsvOptions {
     #[getter]
     fn header_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.header_list {
-            let converted_2301_list = PyList::empty(py);
-            for item_2302 in value {
-                let converted_item_2303 = (item_2302).as_str().into_py_any(py)?;
-                converted_2301_list.append(converted_item_2303)?;
+            let converted_2346_list = PyList::empty(py);
+            for item_2347 in value {
+                let converted_item_2348 = (item_2347).as_str().into_py_any(py)?;
+                converted_2346_list.append(converted_item_2348)?;
             }
-            let converted_2301 = converted_2301_list.into_any().unbind();
-            Ok(converted_2301)
+            let converted_2346 = converted_2346_list.into_any().unbind();
+            Ok(converted_2346)
         } else {
             Ok(py.None())
         }
@@ -9134,21 +9517,21 @@ impl PyCsvOptions {
 
 #[pyclass(name = "DeleteRequest", module = "rboto_dynamodb._native", frozen)]
 struct PyDeleteRequest {
-    inner: aws_sdk_dynamodb::types::DeleteRequest,
+    inner: Arc<aws_sdk_dynamodb::types::DeleteRequest>,
 }
 
 #[pymethods]
 impl PyDeleteRequest {
     #[getter]
     fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2304_dict = PyDict::new(py);
-        for (key_2305, value_2306) in &self.inner.key {
-            let converted_key_2307 = (key_2305).as_str().into_py_any(py)?;
-            let converted_value_2308 = attribute_value_to_py(py, value_2306)?;
-            converted_2304_dict.set_item(converted_key_2307, converted_value_2308)?;
+        let converted_2349_dict = PyDict::new(py);
+        for (key_2350, value_2351) in &self.inner.key {
+            let converted_key_2352 = (key_2350).as_str().into_py_any(py)?;
+            let converted_value_2353 = attribute_value_to_py(py, value_2351)?;
+            converted_2349_dict.set_item(converted_key_2352, converted_value_2353)?;
         }
-        let converted_2304 = converted_2304_dict.into_any().unbind();
-        Ok(converted_2304)
+        let converted_2349 = converted_2349_dict.into_any().unbind();
+        Ok(converted_2349)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -9162,7 +9545,7 @@ impl PyDeleteRequest {
     frozen
 )]
 struct PyEnableKinesisStreamingConfiguration {
-    inner: aws_sdk_dynamodb::types::EnableKinesisStreamingConfiguration,
+    inner: Arc<aws_sdk_dynamodb::types::EnableKinesisStreamingConfiguration>,
 }
 
 #[pymethods]
@@ -9170,8 +9553,8 @@ impl PyEnableKinesisStreamingConfiguration {
     #[getter]
     fn approximate_creation_date_time_precision(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.approximate_creation_date_time_precision {
-            let converted_2309 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2309)
+            let converted_2354 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2354)
         } else {
             Ok(py.None())
         }
@@ -9184,23 +9567,23 @@ impl PyEnableKinesisStreamingConfiguration {
 
 #[pyclass(name = "Endpoint", module = "rboto_dynamodb._native", frozen)]
 struct PyEndpoint {
-    inner: aws_sdk_dynamodb::types::Endpoint,
+    inner: Arc<aws_sdk_dynamodb::types::Endpoint>,
 }
 
 #[pymethods]
 impl PyEndpoint {
     #[getter]
     fn address(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2310 = (&self.inner.address).as_str().into_py_any(py)?;
-        Ok(converted_2310)
+        let converted_2355 = (&self.inner.address).as_str().into_py_any(py)?;
+        Ok(converted_2355)
     }
 
     #[getter]
     fn cache_period_in_minutes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2311 = (&self.inner.cache_period_in_minutes)
+        let converted_2356 = (&self.inner.cache_period_in_minutes)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_2311)
+        Ok(converted_2356)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -9208,9 +9591,207 @@ impl PyEndpoint {
     }
 }
 
+struct SharedExportDescription {
+    export_arn: Option<::std::string::String>,
+    export_status: Option<aws_sdk_dynamodb::types::ExportStatus>,
+    start_time: Option<::aws_smithy_types::DateTime>,
+    end_time: Option<::aws_smithy_types::DateTime>,
+    export_manifest: Option<::std::string::String>,
+    table_arn: Option<::std::string::String>,
+    table_id: Option<::std::string::String>,
+    export_time: Option<::aws_smithy_types::DateTime>,
+    client_token: Option<::std::string::String>,
+    s3_bucket: Option<::std::string::String>,
+    s3_bucket_owner: Option<::std::string::String>,
+    s3_prefix: Option<::std::string::String>,
+    s3_sse_algorithm: Option<aws_sdk_dynamodb::types::S3SseAlgorithm>,
+    s3_sse_kms_key_id: Option<::std::string::String>,
+    failure_code: Option<::std::string::String>,
+    failure_message: Option<::std::string::String>,
+    export_format: Option<aws_sdk_dynamodb::types::ExportFormat>,
+    billed_size_bytes: Option<i64>,
+    item_count: Option<i64>,
+    export_type: Option<aws_sdk_dynamodb::types::ExportType>,
+    incremental_export_specification:
+        Option<Arc<aws_sdk_dynamodb::types::IncrementalExportSpecification>>,
+    filter_specification: Option<Arc<aws_sdk_dynamodb::types::FilterSpecification>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::ExportDescription> for SharedExportDescription {
+    fn from(value: aws_sdk_dynamodb::types::ExportDescription) -> Self {
+        Self {
+            export_arn: value.export_arn,
+            export_status: value.export_status,
+            start_time: value.start_time,
+            end_time: value.end_time,
+            export_manifest: value.export_manifest,
+            table_arn: value.table_arn,
+            table_id: value.table_id,
+            export_time: value.export_time,
+            client_token: value.client_token,
+            s3_bucket: value.s3_bucket,
+            s3_bucket_owner: value.s3_bucket_owner,
+            s3_prefix: value.s3_prefix,
+            s3_sse_algorithm: value.s3_sse_algorithm,
+            s3_sse_kms_key_id: value.s3_sse_kms_key_id,
+            failure_code: value.failure_code,
+            failure_message: value.failure_message,
+            export_format: value.export_format,
+            billed_size_bytes: value.billed_size_bytes,
+            item_count: value.item_count,
+            export_type: value.export_type,
+            incremental_export_specification: value
+                .incremental_export_specification
+                .map(|item| Arc::new(item)),
+            filter_specification: value.filter_specification.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn export_description_shared_to_py(
+    py: Python<'_>,
+    value: &SharedExportDescription,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.export_arn {
+        let converted_2379 = (value).as_str().into_py_any(py)?;
+        result.set_item("export_arn", converted_2379)?;
+    } else {
+        result.set_item("export_arn", py.None())?;
+    }
+    if let Some(value) = &value.export_status {
+        let converted_2380 = (value).as_str().into_py_any(py)?;
+        result.set_item("export_status", converted_2380)?;
+    } else {
+        result.set_item("export_status", py.None())?;
+    }
+    if let Some(value) = &value.start_time {
+        let converted_2381 = (value).to_string().into_py_any(py)?;
+        result.set_item("start_time", converted_2381)?;
+    } else {
+        result.set_item("start_time", py.None())?;
+    }
+    if let Some(value) = &value.end_time {
+        let converted_2382 = (value).to_string().into_py_any(py)?;
+        result.set_item("end_time", converted_2382)?;
+    } else {
+        result.set_item("end_time", py.None())?;
+    }
+    if let Some(value) = &value.export_manifest {
+        let converted_2383 = (value).as_str().into_py_any(py)?;
+        result.set_item("export_manifest", converted_2383)?;
+    } else {
+        result.set_item("export_manifest", py.None())?;
+    }
+    if let Some(value) = &value.table_arn {
+        let converted_2384 = (value).as_str().into_py_any(py)?;
+        result.set_item("table_arn", converted_2384)?;
+    } else {
+        result.set_item("table_arn", py.None())?;
+    }
+    if let Some(value) = &value.table_id {
+        let converted_2385 = (value).as_str().into_py_any(py)?;
+        result.set_item("table_id", converted_2385)?;
+    } else {
+        result.set_item("table_id", py.None())?;
+    }
+    if let Some(value) = &value.export_time {
+        let converted_2386 = (value).to_string().into_py_any(py)?;
+        result.set_item("export_time", converted_2386)?;
+    } else {
+        result.set_item("export_time", py.None())?;
+    }
+    if let Some(value) = &value.client_token {
+        let converted_2387 = (value).as_str().into_py_any(py)?;
+        result.set_item("client_token", converted_2387)?;
+    } else {
+        result.set_item("client_token", py.None())?;
+    }
+    if let Some(value) = &value.s3_bucket {
+        let converted_2388 = (value).as_str().into_py_any(py)?;
+        result.set_item("s3_bucket", converted_2388)?;
+    } else {
+        result.set_item("s3_bucket", py.None())?;
+    }
+    if let Some(value) = &value.s3_bucket_owner {
+        let converted_2389 = (value).as_str().into_py_any(py)?;
+        result.set_item("s3_bucket_owner", converted_2389)?;
+    } else {
+        result.set_item("s3_bucket_owner", py.None())?;
+    }
+    if let Some(value) = &value.s3_prefix {
+        let converted_2390 = (value).as_str().into_py_any(py)?;
+        result.set_item("s3_prefix", converted_2390)?;
+    } else {
+        result.set_item("s3_prefix", py.None())?;
+    }
+    if let Some(value) = &value.s3_sse_algorithm {
+        let converted_2391 = (value).as_str().into_py_any(py)?;
+        result.set_item("s3_sse_algorithm", converted_2391)?;
+    } else {
+        result.set_item("s3_sse_algorithm", py.None())?;
+    }
+    if let Some(value) = &value.s3_sse_kms_key_id {
+        let converted_2392 = (value).as_str().into_py_any(py)?;
+        result.set_item("s3_sse_kms_key_id", converted_2392)?;
+    } else {
+        result.set_item("s3_sse_kms_key_id", py.None())?;
+    }
+    if let Some(value) = &value.failure_code {
+        let converted_2393 = (value).as_str().into_py_any(py)?;
+        result.set_item("failure_code", converted_2393)?;
+    } else {
+        result.set_item("failure_code", py.None())?;
+    }
+    if let Some(value) = &value.failure_message {
+        let converted_2394 = (value).as_str().into_py_any(py)?;
+        result.set_item("failure_message", converted_2394)?;
+    } else {
+        result.set_item("failure_message", py.None())?;
+    }
+    if let Some(value) = &value.export_format {
+        let converted_2395 = (value).as_str().into_py_any(py)?;
+        result.set_item("export_format", converted_2395)?;
+    } else {
+        result.set_item("export_format", py.None())?;
+    }
+    if let Some(value) = &value.billed_size_bytes {
+        let converted_2396 = (value).to_owned().into_py_any(py)?;
+        result.set_item("billed_size_bytes", converted_2396)?;
+    } else {
+        result.set_item("billed_size_bytes", py.None())?;
+    }
+    if let Some(value) = &value.item_count {
+        let converted_2397 = (value).to_owned().into_py_any(py)?;
+        result.set_item("item_count", converted_2397)?;
+    } else {
+        result.set_item("item_count", py.None())?;
+    }
+    if let Some(value) = &value.export_type {
+        let converted_2398 = (value).as_str().into_py_any(py)?;
+        result.set_item("export_type", converted_2398)?;
+    } else {
+        result.set_item("export_type", py.None())?;
+    }
+    if let Some(value) = &value.incremental_export_specification {
+        let converted_2399 = incremental_export_specification_to_py(py, value)?;
+        result.set_item("incremental_export_specification", converted_2399)?;
+    } else {
+        result.set_item("incremental_export_specification", py.None())?;
+    }
+    if let Some(value) = &value.filter_specification {
+        let converted_2400 = filter_specification_to_py(py, value)?;
+        result.set_item("filter_specification", converted_2400)?;
+    } else {
+        result.set_item("filter_specification", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "ExportDescription", module = "rboto_dynamodb._native", frozen)]
 struct PyExportDescription {
-    inner: aws_sdk_dynamodb::types::ExportDescription,
+    inner: Arc<SharedExportDescription>,
 }
 
 #[pymethods]
@@ -9218,8 +9799,8 @@ impl PyExportDescription {
     #[getter]
     fn export_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.export_arn {
-            let converted_2312 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2312)
+            let converted_2357 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2357)
         } else {
             Ok(py.None())
         }
@@ -9228,8 +9809,8 @@ impl PyExportDescription {
     #[getter]
     fn export_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.export_status {
-            let converted_2313 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2313)
+            let converted_2358 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2358)
         } else {
             Ok(py.None())
         }
@@ -9238,8 +9819,8 @@ impl PyExportDescription {
     #[getter]
     fn start_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.start_time {
-            let converted_2314 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2314)
+            let converted_2359 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2359)
         } else {
             Ok(py.None())
         }
@@ -9248,8 +9829,8 @@ impl PyExportDescription {
     #[getter]
     fn end_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.end_time {
-            let converted_2315 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2315)
+            let converted_2360 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2360)
         } else {
             Ok(py.None())
         }
@@ -9258,8 +9839,8 @@ impl PyExportDescription {
     #[getter]
     fn export_manifest(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.export_manifest {
-            let converted_2316 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2316)
+            let converted_2361 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2361)
         } else {
             Ok(py.None())
         }
@@ -9268,8 +9849,8 @@ impl PyExportDescription {
     #[getter]
     fn table_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_arn {
-            let converted_2317 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2317)
+            let converted_2362 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2362)
         } else {
             Ok(py.None())
         }
@@ -9278,8 +9859,8 @@ impl PyExportDescription {
     #[getter]
     fn table_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_id {
-            let converted_2318 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2318)
+            let converted_2363 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2363)
         } else {
             Ok(py.None())
         }
@@ -9288,8 +9869,8 @@ impl PyExportDescription {
     #[getter]
     fn export_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.export_time {
-            let converted_2319 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2319)
+            let converted_2364 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2364)
         } else {
             Ok(py.None())
         }
@@ -9298,8 +9879,8 @@ impl PyExportDescription {
     #[getter]
     fn client_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.client_token {
-            let converted_2320 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2320)
+            let converted_2365 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2365)
         } else {
             Ok(py.None())
         }
@@ -9308,8 +9889,8 @@ impl PyExportDescription {
     #[getter]
     fn s3_bucket(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.s3_bucket {
-            let converted_2321 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2321)
+            let converted_2366 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2366)
         } else {
             Ok(py.None())
         }
@@ -9318,8 +9899,8 @@ impl PyExportDescription {
     #[getter]
     fn s3_bucket_owner(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.s3_bucket_owner {
-            let converted_2322 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2322)
+            let converted_2367 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2367)
         } else {
             Ok(py.None())
         }
@@ -9328,8 +9909,8 @@ impl PyExportDescription {
     #[getter]
     fn s3_prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.s3_prefix {
-            let converted_2323 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2323)
+            let converted_2368 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2368)
         } else {
             Ok(py.None())
         }
@@ -9338,8 +9919,8 @@ impl PyExportDescription {
     #[getter]
     fn s3_sse_algorithm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.s3_sse_algorithm {
-            let converted_2324 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2324)
+            let converted_2369 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2369)
         } else {
             Ok(py.None())
         }
@@ -9348,8 +9929,8 @@ impl PyExportDescription {
     #[getter]
     fn s3_sse_kms_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.s3_sse_kms_key_id {
-            let converted_2325 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2325)
+            let converted_2370 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2370)
         } else {
             Ok(py.None())
         }
@@ -9358,8 +9939,8 @@ impl PyExportDescription {
     #[getter]
     fn failure_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failure_code {
-            let converted_2326 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2326)
+            let converted_2371 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2371)
         } else {
             Ok(py.None())
         }
@@ -9368,8 +9949,8 @@ impl PyExportDescription {
     #[getter]
     fn failure_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failure_message {
-            let converted_2327 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2327)
+            let converted_2372 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2372)
         } else {
             Ok(py.None())
         }
@@ -9378,8 +9959,8 @@ impl PyExportDescription {
     #[getter]
     fn export_format(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.export_format {
-            let converted_2328 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2328)
+            let converted_2373 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2373)
         } else {
             Ok(py.None())
         }
@@ -9388,8 +9969,8 @@ impl PyExportDescription {
     #[getter]
     fn billed_size_bytes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.billed_size_bytes {
-            let converted_2329 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2329)
+            let converted_2374 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2374)
         } else {
             Ok(py.None())
         }
@@ -9398,8 +9979,8 @@ impl PyExportDescription {
     #[getter]
     fn item_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.item_count {
-            let converted_2330 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2330)
+            let converted_2375 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2375)
         } else {
             Ok(py.None())
         }
@@ -9408,8 +9989,8 @@ impl PyExportDescription {
     #[getter]
     fn export_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.export_type {
-            let converted_2331 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2331)
+            let converted_2376 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2376)
         } else {
             Ok(py.None())
         }
@@ -9418,14 +9999,14 @@ impl PyExportDescription {
     #[getter]
     fn incremental_export_specification(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.incremental_export_specification {
-            let converted_2332 = Py::new(
+            let converted_2377 = Py::new(
                 py,
                 PyIncrementalExportSpecification {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2332)
+            Ok(converted_2377)
         } else {
             Ok(py.None())
         }
@@ -9434,27 +10015,27 @@ impl PyExportDescription {
     #[getter]
     fn filter_specification(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.filter_specification {
-            let converted_2333 = Py::new(
+            let converted_2378 = Py::new(
                 py,
                 PyFilterSpecification {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2333)
+            Ok(converted_2378)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        export_description_to_py(py, &self.inner)
+        export_description_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "ExportSummary", module = "rboto_dynamodb._native", frozen)]
 struct PyExportSummary {
-    inner: aws_sdk_dynamodb::types::ExportSummary,
+    inner: Arc<aws_sdk_dynamodb::types::ExportSummary>,
 }
 
 #[pymethods]
@@ -9462,8 +10043,8 @@ impl PyExportSummary {
     #[getter]
     fn export_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.export_arn {
-            let converted_2334 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2334)
+            let converted_2401 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2401)
         } else {
             Ok(py.None())
         }
@@ -9472,8 +10053,8 @@ impl PyExportSummary {
     #[getter]
     fn export_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.export_status {
-            let converted_2335 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2335)
+            let converted_2402 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2402)
         } else {
             Ok(py.None())
         }
@@ -9482,8 +10063,8 @@ impl PyExportSummary {
     #[getter]
     fn export_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.export_type {
-            let converted_2336 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2336)
+            let converted_2403 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2403)
         } else {
             Ok(py.None())
         }
@@ -9496,7 +10077,7 @@ impl PyExportSummary {
 
 #[pyclass(name = "FailureException", module = "rboto_dynamodb._native", frozen)]
 struct PyFailureException {
-    inner: aws_sdk_dynamodb::types::FailureException,
+    inner: Arc<aws_sdk_dynamodb::types::FailureException>,
 }
 
 #[pymethods]
@@ -9504,8 +10085,8 @@ impl PyFailureException {
     #[getter]
     fn exception_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.exception_name {
-            let converted_2337 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2337)
+            let converted_2404 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2404)
         } else {
             Ok(py.None())
         }
@@ -9514,8 +10095,8 @@ impl PyFailureException {
     #[getter]
     fn exception_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.exception_description {
-            let converted_2338 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2338)
+            let converted_2405 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2405)
         } else {
             Ok(py.None())
         }
@@ -9532,7 +10113,7 @@ impl PyFailureException {
     frozen
 )]
 struct PyFilterSpecification {
-    inner: aws_sdk_dynamodb::types::FilterSpecification,
+    inner: Arc<aws_sdk_dynamodb::types::FilterSpecification>,
 }
 
 #[pymethods]
@@ -9540,8 +10121,8 @@ impl PyFilterSpecification {
     #[getter]
     fn filter_expression(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.filter_expression {
-            let converted_2339 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2339)
+            let converted_2406 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2406)
         } else {
             Ok(py.None())
         }
@@ -9550,8 +10131,8 @@ impl PyFilterSpecification {
     #[getter]
     fn projection_expression(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.projection_expression {
-            let converted_2340 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2340)
+            let converted_2407 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2407)
         } else {
             Ok(py.None())
         }
@@ -9560,8 +10141,8 @@ impl PyFilterSpecification {
     #[getter]
     fn key_condition_expression(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_condition_expression {
-            let converted_2341 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2341)
+            let converted_2408 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2408)
         } else {
             Ok(py.None())
         }
@@ -9570,14 +10151,14 @@ impl PyFilterSpecification {
     #[getter]
     fn expression_attribute_names(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.expression_attribute_names {
-            let converted_2342_dict = PyDict::new(py);
-            for (key_2343, value_2344) in value {
-                let converted_key_2345 = (key_2343).as_str().into_py_any(py)?;
-                let converted_value_2346 = (value_2344).as_str().into_py_any(py)?;
-                converted_2342_dict.set_item(converted_key_2345, converted_value_2346)?;
+            let converted_2409_dict = PyDict::new(py);
+            for (key_2410, value_2411) in value {
+                let converted_key_2412 = (key_2410).as_str().into_py_any(py)?;
+                let converted_value_2413 = (value_2411).as_str().into_py_any(py)?;
+                converted_2409_dict.set_item(converted_key_2412, converted_value_2413)?;
             }
-            let converted_2342 = converted_2342_dict.into_any().unbind();
-            Ok(converted_2342)
+            let converted_2409 = converted_2409_dict.into_any().unbind();
+            Ok(converted_2409)
         } else {
             Ok(py.None())
         }
@@ -9586,14 +10167,14 @@ impl PyFilterSpecification {
     #[getter]
     fn expression_attribute_values(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.expression_attribute_values {
-            let converted_2347_dict = PyDict::new(py);
-            for (key_2348, value_2349) in value {
-                let converted_key_2350 = (key_2348).as_str().into_py_any(py)?;
-                let converted_value_2351 = attribute_value_to_py(py, value_2349)?;
-                converted_2347_dict.set_item(converted_key_2350, converted_value_2351)?;
+            let converted_2414_dict = PyDict::new(py);
+            for (key_2415, value_2416) in value {
+                let converted_key_2417 = (key_2415).as_str().into_py_any(py)?;
+                let converted_value_2418 = attribute_value_to_py(py, value_2416)?;
+                converted_2414_dict.set_item(converted_key_2417, converted_value_2418)?;
             }
-            let converted_2347 = converted_2347_dict.into_any().unbind();
-            Ok(converted_2347)
+            let converted_2414 = converted_2414_dict.into_any().unbind();
+            Ok(converted_2414)
         } else {
             Ok(py.None())
         }
@@ -9604,896 +10185,117 @@ impl PyFilterSpecification {
     }
 }
 
+struct SharedGlobalSecondaryIndex {
+    index_name: ::std::string::String,
+    key_schema: ::std::vec::Vec<Arc<aws_sdk_dynamodb::types::KeySchemaElement>>,
+    projection: Option<Arc<aws_sdk_dynamodb::types::Projection>>,
+    provisioned_throughput: Option<Arc<aws_sdk_dynamodb::types::ProvisionedThroughput>>,
+    on_demand_throughput: Option<Arc<aws_sdk_dynamodb::types::OnDemandThroughput>>,
+    warm_throughput: Option<Arc<aws_sdk_dynamodb::types::WarmThroughput>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::GlobalSecondaryIndex> for SharedGlobalSecondaryIndex {
+    fn from(value: aws_sdk_dynamodb::types::GlobalSecondaryIndex) -> Self {
+        Self {
+            index_name: value.index_name,
+            key_schema: (value.key_schema)
+                .into_iter()
+                .map(|owned_2427| Arc::new(owned_2427))
+                .collect(),
+            projection: value.projection.map(|item| Arc::new(item)),
+            provisioned_throughput: value.provisioned_throughput.map(|item| Arc::new(item)),
+            on_demand_throughput: value.on_demand_throughput.map(|item| Arc::new(item)),
+            warm_throughput: value.warm_throughput.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn global_secondary_index_shared_to_py(
+    py: Python<'_>,
+    value: &SharedGlobalSecondaryIndex,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_2428 = (&value.index_name).as_str().into_py_any(py)?;
+    result.set_item("index_name", converted_2428)?;
+    let converted_2429_list = PyList::empty(py);
+    for item_2430 in &value.key_schema {
+        let converted_item_2431 = key_schema_element_to_py(py, item_2430)?;
+        converted_2429_list.append(converted_item_2431)?;
+    }
+    let converted_2429 = converted_2429_list.into_any().unbind();
+    result.set_item("key_schema", converted_2429)?;
+    if let Some(value) = &value.projection {
+        let converted_2432 = projection_to_py(py, value)?;
+        result.set_item("projection", converted_2432)?;
+    } else {
+        result.set_item("projection", py.None())?;
+    }
+    if let Some(value) = &value.provisioned_throughput {
+        let converted_2433 = provisioned_throughput_to_py(py, value)?;
+        result.set_item("provisioned_throughput", converted_2433)?;
+    } else {
+        result.set_item("provisioned_throughput", py.None())?;
+    }
+    if let Some(value) = &value.on_demand_throughput {
+        let converted_2434 = on_demand_throughput_to_py(py, value)?;
+        result.set_item("on_demand_throughput", converted_2434)?;
+    } else {
+        result.set_item("on_demand_throughput", py.None())?;
+    }
+    if let Some(value) = &value.warm_throughput {
+        let converted_2435 = warm_throughput_to_py(py, value)?;
+        result.set_item("warm_throughput", converted_2435)?;
+    } else {
+        result.set_item("warm_throughput", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "GlobalSecondaryIndex",
     module = "rboto_dynamodb._native",
     frozen
 )]
 struct PyGlobalSecondaryIndex {
-    inner: aws_sdk_dynamodb::types::GlobalSecondaryIndex,
+    inner: Arc<SharedGlobalSecondaryIndex>,
 }
 
 #[pymethods]
 impl PyGlobalSecondaryIndex {
     #[getter]
     fn index_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2352 = (&self.inner.index_name).as_str().into_py_any(py)?;
-        Ok(converted_2352)
-    }
-
-    #[getter]
-    fn key_schema(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2353_list = PyList::empty(py);
-        for item_2354 in &self.inner.key_schema {
-            let converted_item_2355 = Py::new(
-                py,
-                PyKeySchemaElement {
-                    inner: (item_2354).to_owned(),
-                },
-            )?
-            .into_any();
-            converted_2353_list.append(converted_item_2355)?;
-        }
-        let converted_2353 = converted_2353_list.into_any().unbind();
-        Ok(converted_2353)
-    }
-
-    #[getter]
-    fn projection(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.projection {
-            let converted_2356 = Py::new(
-                py,
-                PyProjection {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_2356)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn provisioned_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.provisioned_throughput {
-            let converted_2357 = Py::new(
-                py,
-                PyProvisionedThroughput {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_2357)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn on_demand_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.on_demand_throughput {
-            let converted_2358 = Py::new(
-                py,
-                PyOnDemandThroughput {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_2358)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn warm_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.warm_throughput {
-            let converted_2359 = Py::new(
-                py,
-                PyWarmThroughput {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_2359)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        global_secondary_index_to_py(py, &self.inner)
-    }
-}
-
-#[pyclass(
-    name = "GlobalSecondaryIndexDescription",
-    module = "rboto_dynamodb._native",
-    frozen
-)]
-struct PyGlobalSecondaryIndexDescription {
-    inner: aws_sdk_dynamodb::types::GlobalSecondaryIndexDescription,
-}
-
-#[pymethods]
-impl PyGlobalSecondaryIndexDescription {
-    #[getter]
-    fn index_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.index_name {
-            let converted_2360 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2360)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn key_schema(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.key_schema {
-            let converted_2361_list = PyList::empty(py);
-            for item_2362 in value {
-                let converted_item_2363 = Py::new(
-                    py,
-                    PyKeySchemaElement {
-                        inner: (item_2362).to_owned(),
-                    },
-                )?
-                .into_any();
-                converted_2361_list.append(converted_item_2363)?;
-            }
-            let converted_2361 = converted_2361_list.into_any().unbind();
-            Ok(converted_2361)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn projection(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.projection {
-            let converted_2364 = Py::new(
-                py,
-                PyProjection {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_2364)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn index_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.index_status {
-            let converted_2365 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2365)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn backfilling(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.backfilling {
-            let converted_2366 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2366)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn provisioned_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.provisioned_throughput {
-            let converted_2367 = Py::new(
-                py,
-                PyProvisionedThroughputDescription {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_2367)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn index_size_bytes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.index_size_bytes {
-            let converted_2368 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2368)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn item_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.item_count {
-            let converted_2369 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2369)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn index_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.index_arn {
-            let converted_2370 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2370)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn on_demand_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.on_demand_throughput {
-            let converted_2371 = Py::new(
-                py,
-                PyOnDemandThroughput {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_2371)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn warm_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.warm_throughput {
-            let converted_2372 = Py::new(
-                py,
-                PyGlobalSecondaryIndexWarmThroughputDescription {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_2372)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        global_secondary_index_description_to_py(py, &self.inner)
-    }
-}
-
-#[pyclass(
-    name = "GlobalSecondaryIndexInfo",
-    module = "rboto_dynamodb._native",
-    frozen
-)]
-struct PyGlobalSecondaryIndexInfo {
-    inner: aws_sdk_dynamodb::types::GlobalSecondaryIndexInfo,
-}
-
-#[pymethods]
-impl PyGlobalSecondaryIndexInfo {
-    #[getter]
-    fn index_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.index_name {
-            let converted_2373 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2373)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn key_schema(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.key_schema {
-            let converted_2374_list = PyList::empty(py);
-            for item_2375 in value {
-                let converted_item_2376 = Py::new(
-                    py,
-                    PyKeySchemaElement {
-                        inner: (item_2375).to_owned(),
-                    },
-                )?
-                .into_any();
-                converted_2374_list.append(converted_item_2376)?;
-            }
-            let converted_2374 = converted_2374_list.into_any().unbind();
-            Ok(converted_2374)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn projection(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.projection {
-            let converted_2377 = Py::new(
-                py,
-                PyProjection {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_2377)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn provisioned_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.provisioned_throughput {
-            let converted_2378 = Py::new(
-                py,
-                PyProvisionedThroughput {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_2378)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn on_demand_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.on_demand_throughput {
-            let converted_2379 = Py::new(
-                py,
-                PyOnDemandThroughput {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_2379)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        global_secondary_index_info_to_py(py, &self.inner)
-    }
-}
-
-#[pyclass(
-    name = "GlobalSecondaryIndexWarmThroughputDescription",
-    module = "rboto_dynamodb._native",
-    frozen
-)]
-struct PyGlobalSecondaryIndexWarmThroughputDescription {
-    inner: aws_sdk_dynamodb::types::GlobalSecondaryIndexWarmThroughputDescription,
-}
-
-#[pymethods]
-impl PyGlobalSecondaryIndexWarmThroughputDescription {
-    #[getter]
-    fn read_units_per_second(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.read_units_per_second {
-            let converted_2380 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2380)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn write_units_per_second(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.write_units_per_second {
-            let converted_2381 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2381)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.status {
-            let converted_2382 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2382)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        global_secondary_index_warm_throughput_description_to_py(py, &self.inner)
-    }
-}
-
-#[pyclass(name = "GlobalTable", module = "rboto_dynamodb._native", frozen)]
-struct PyGlobalTable {
-    inner: aws_sdk_dynamodb::types::GlobalTable,
-}
-
-#[pymethods]
-impl PyGlobalTable {
-    #[getter]
-    fn global_table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.global_table_name {
-            let converted_2383 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2383)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn replication_group(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.replication_group {
-            let converted_2384_list = PyList::empty(py);
-            for item_2385 in value {
-                let converted_item_2386 = Py::new(
-                    py,
-                    PyReplica {
-                        inner: (item_2385).to_owned(),
-                    },
-                )?
-                .into_any();
-                converted_2384_list.append(converted_item_2386)?;
-            }
-            let converted_2384 = converted_2384_list.into_any().unbind();
-            Ok(converted_2384)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        global_table_to_py(py, &self.inner)
-    }
-}
-
-#[pyclass(
-    name = "GlobalTableDescription",
-    module = "rboto_dynamodb._native",
-    frozen
-)]
-struct PyGlobalTableDescription {
-    inner: aws_sdk_dynamodb::types::GlobalTableDescription,
-}
-
-#[pymethods]
-impl PyGlobalTableDescription {
-    #[getter]
-    fn replication_group(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.replication_group {
-            let converted_2387_list = PyList::empty(py);
-            for item_2388 in value {
-                let converted_item_2389 = Py::new(
-                    py,
-                    PyReplicaDescription {
-                        inner: (item_2388).to_owned(),
-                    },
-                )?
-                .into_any();
-                converted_2387_list.append(converted_item_2389)?;
-            }
-            let converted_2387 = converted_2387_list.into_any().unbind();
-            Ok(converted_2387)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn global_table_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.global_table_arn {
-            let converted_2390 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2390)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn creation_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.creation_date_time {
-            let converted_2391 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2391)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn global_table_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.global_table_status {
-            let converted_2392 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2392)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn global_table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.global_table_name {
-            let converted_2393 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2393)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        global_table_description_to_py(py, &self.inner)
-    }
-}
-
-#[pyclass(
-    name = "GlobalTableWitnessDescription",
-    module = "rboto_dynamodb._native",
-    frozen
-)]
-struct PyGlobalTableWitnessDescription {
-    inner: aws_sdk_dynamodb::types::GlobalTableWitnessDescription,
-}
-
-#[pymethods]
-impl PyGlobalTableWitnessDescription {
-    #[getter]
-    fn region_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.region_name {
-            let converted_2394 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2394)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn witness_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.witness_status {
-            let converted_2395 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2395)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        global_table_witness_description_to_py(py, &self.inner)
-    }
-}
-
-#[pyclass(name = "ImportSummary", module = "rboto_dynamodb._native", frozen)]
-struct PyImportSummary {
-    inner: aws_sdk_dynamodb::types::ImportSummary,
-}
-
-#[pymethods]
-impl PyImportSummary {
-    #[getter]
-    fn import_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.import_arn {
-            let converted_2396 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2396)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn import_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.import_status {
-            let converted_2397 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2397)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn table_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.table_arn {
-            let converted_2398 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2398)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn s3_bucket_source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.s3_bucket_source {
-            let converted_2399 = Py::new(
-                py,
-                PyS3BucketSource {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_2399)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn cloud_watch_log_group_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.cloud_watch_log_group_arn {
-            let converted_2400 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2400)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn input_format(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.input_format {
-            let converted_2401 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2401)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn start_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.start_time {
-            let converted_2402 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2402)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn end_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.end_time {
-            let converted_2403 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2403)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        import_summary_to_py(py, &self.inner)
-    }
-}
-
-#[pyclass(
-    name = "ImportTableDescription",
-    module = "rboto_dynamodb._native",
-    frozen
-)]
-struct PyImportTableDescription {
-    inner: aws_sdk_dynamodb::types::ImportTableDescription,
-}
-
-#[pymethods]
-impl PyImportTableDescription {
-    #[getter]
-    fn import_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.import_arn {
-            let converted_2404 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2404)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn import_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.import_status {
-            let converted_2405 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2405)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn table_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.table_arn {
-            let converted_2406 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2406)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn table_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.table_id {
-            let converted_2407 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2407)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn client_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.client_token {
-            let converted_2408 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2408)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn s3_bucket_source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.s3_bucket_source {
-            let converted_2409 = Py::new(
-                py,
-                PyS3BucketSource {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_2409)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn error_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2410 = (&self.inner.error_count).to_owned().into_py_any(py)?;
-        Ok(converted_2410)
-    }
-
-    #[getter]
-    fn cloud_watch_log_group_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.cloud_watch_log_group_arn {
-            let converted_2411 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2411)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn input_format(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.input_format {
-            let converted_2412 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2412)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn input_format_options(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.input_format_options {
-            let converted_2413 = Py::new(
-                py,
-                PyInputFormatOptions {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_2413)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn input_compression_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.input_compression_type {
-            let converted_2414 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2414)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn table_creation_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.table_creation_parameters {
-            let converted_2415 = Py::new(
-                py,
-                PyTableCreationParameters {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_2415)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn start_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.start_time {
-            let converted_2416 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2416)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn end_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.end_time {
-            let converted_2417 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2417)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn processed_size_bytes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.processed_size_bytes {
-            let converted_2418 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2418)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn processed_item_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2419 = (&self.inner.processed_item_count)
-            .to_owned()
-            .into_py_any(py)?;
+        let converted_2419 = (&self.inner.index_name).as_str().into_py_any(py)?;
         Ok(converted_2419)
     }
 
     #[getter]
-    fn imported_item_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2420 = (&self.inner.imported_item_count)
-            .to_owned()
-            .into_py_any(py)?;
+    fn key_schema(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2420_list = PyList::empty(py);
+        for item_2421 in &self.inner.key_schema {
+            let converted_item_2422 = Py::new(
+                py,
+                PyKeySchemaElement {
+                    inner: Arc::clone(item_2421),
+                },
+            )?
+            .into_any();
+            converted_2420_list.append(converted_item_2422)?;
+        }
+        let converted_2420 = converted_2420_list.into_any().unbind();
         Ok(converted_2420)
     }
 
     #[getter]
-    fn failure_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.failure_code {
-            let converted_2421 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2421)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn failure_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.failure_message {
-            let converted_2422 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2422)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        import_table_description_to_py(py, &self.inner)
-    }
-}
-
-#[pyclass(
-    name = "IncrementalExportSpecification",
-    module = "rboto_dynamodb._native",
-    frozen
-)]
-struct PyIncrementalExportSpecification {
-    inner: aws_sdk_dynamodb::types::IncrementalExportSpecification,
-}
-
-#[pymethods]
-impl PyIncrementalExportSpecification {
-    #[getter]
-    fn export_from_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.export_from_time {
-            let converted_2423 = (value).to_string().into_py_any(py)?;
+    fn projection(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.projection {
+            let converted_2423 = Py::new(
+                py,
+                PyProjection {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
             Ok(converted_2423)
         } else {
             Ok(py.None())
@@ -10501,9 +10303,15 @@ impl PyIncrementalExportSpecification {
     }
 
     #[getter]
-    fn export_to_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.export_to_time {
-            let converted_2424 = (value).to_string().into_py_any(py)?;
+    fn provisioned_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.provisioned_throughput {
+            let converted_2424 = Py::new(
+                py,
+                PyProvisionedThroughput {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
             Ok(converted_2424)
         } else {
             Ok(py.None())
@@ -10511,34 +10319,28 @@ impl PyIncrementalExportSpecification {
     }
 
     #[getter]
-    fn export_view_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.export_view_type {
-            let converted_2425 = (value).as_str().into_py_any(py)?;
+    fn on_demand_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.on_demand_throughput {
+            let converted_2425 = Py::new(
+                py,
+                PyOnDemandThroughput {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
             Ok(converted_2425)
         } else {
             Ok(py.None())
         }
     }
 
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        incremental_export_specification_to_py(py, &self.inner)
-    }
-}
-
-#[pyclass(name = "InputFormatOptions", module = "rboto_dynamodb._native", frozen)]
-struct PyInputFormatOptions {
-    inner: aws_sdk_dynamodb::types::InputFormatOptions,
-}
-
-#[pymethods]
-impl PyInputFormatOptions {
     #[getter]
-    fn csv(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.csv {
+    fn warm_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.warm_throughput {
             let converted_2426 = Py::new(
                 py,
-                PyCsvOptions {
-                    inner: (value).to_owned(),
+                PyWarmThroughput {
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -10549,256 +10351,371 @@ impl PyInputFormatOptions {
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        input_format_options_to_py(py, &self.inner)
+        global_secondary_index_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedGlobalSecondaryIndexDescription {
+    index_name: Option<::std::string::String>,
+    key_schema: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::KeySchemaElement>>>,
+    projection: Option<Arc<aws_sdk_dynamodb::types::Projection>>,
+    index_status: Option<aws_sdk_dynamodb::types::IndexStatus>,
+    backfilling: Option<bool>,
+    provisioned_throughput: Option<Arc<aws_sdk_dynamodb::types::ProvisionedThroughputDescription>>,
+    index_size_bytes: Option<i64>,
+    item_count: Option<i64>,
+    index_arn: Option<::std::string::String>,
+    on_demand_throughput: Option<Arc<aws_sdk_dynamodb::types::OnDemandThroughput>>,
+    warm_throughput:
+        Option<Arc<aws_sdk_dynamodb::types::GlobalSecondaryIndexWarmThroughputDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::GlobalSecondaryIndexDescription>
+    for SharedGlobalSecondaryIndexDescription
+{
+    fn from(value: aws_sdk_dynamodb::types::GlobalSecondaryIndexDescription) -> Self {
+        Self {
+            index_name: value.index_name,
+            key_schema: value.key_schema.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_2449| Arc::new(owned_2449))
+                    .collect()
+            }),
+            projection: value.projection.map(|item| Arc::new(item)),
+            index_status: value.index_status,
+            backfilling: value.backfilling,
+            provisioned_throughput: value.provisioned_throughput.map(|item| Arc::new(item)),
+            index_size_bytes: value.index_size_bytes,
+            item_count: value.item_count,
+            index_arn: value.index_arn,
+            on_demand_throughput: value.on_demand_throughput.map(|item| Arc::new(item)),
+            warm_throughput: value.warm_throughput.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn global_secondary_index_description_shared_to_py(
+    py: Python<'_>,
+    value: &SharedGlobalSecondaryIndexDescription,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.index_name {
+        let converted_2450 = (value).as_str().into_py_any(py)?;
+        result.set_item("index_name", converted_2450)?;
+    } else {
+        result.set_item("index_name", py.None())?;
+    }
+    if let Some(value) = &value.key_schema {
+        let converted_2451_list = PyList::empty(py);
+        for item_2452 in value {
+            let converted_item_2453 = key_schema_element_to_py(py, item_2452)?;
+            converted_2451_list.append(converted_item_2453)?;
+        }
+        let converted_2451 = converted_2451_list.into_any().unbind();
+        result.set_item("key_schema", converted_2451)?;
+    } else {
+        result.set_item("key_schema", py.None())?;
+    }
+    if let Some(value) = &value.projection {
+        let converted_2454 = projection_to_py(py, value)?;
+        result.set_item("projection", converted_2454)?;
+    } else {
+        result.set_item("projection", py.None())?;
+    }
+    if let Some(value) = &value.index_status {
+        let converted_2455 = (value).as_str().into_py_any(py)?;
+        result.set_item("index_status", converted_2455)?;
+    } else {
+        result.set_item("index_status", py.None())?;
+    }
+    if let Some(value) = &value.backfilling {
+        let converted_2456 = (value).to_owned().into_py_any(py)?;
+        result.set_item("backfilling", converted_2456)?;
+    } else {
+        result.set_item("backfilling", py.None())?;
+    }
+    if let Some(value) = &value.provisioned_throughput {
+        let converted_2457 = provisioned_throughput_description_to_py(py, value)?;
+        result.set_item("provisioned_throughput", converted_2457)?;
+    } else {
+        result.set_item("provisioned_throughput", py.None())?;
+    }
+    if let Some(value) = &value.index_size_bytes {
+        let converted_2458 = (value).to_owned().into_py_any(py)?;
+        result.set_item("index_size_bytes", converted_2458)?;
+    } else {
+        result.set_item("index_size_bytes", py.None())?;
+    }
+    if let Some(value) = &value.item_count {
+        let converted_2459 = (value).to_owned().into_py_any(py)?;
+        result.set_item("item_count", converted_2459)?;
+    } else {
+        result.set_item("item_count", py.None())?;
+    }
+    if let Some(value) = &value.index_arn {
+        let converted_2460 = (value).as_str().into_py_any(py)?;
+        result.set_item("index_arn", converted_2460)?;
+    } else {
+        result.set_item("index_arn", py.None())?;
+    }
+    if let Some(value) = &value.on_demand_throughput {
+        let converted_2461 = on_demand_throughput_to_py(py, value)?;
+        result.set_item("on_demand_throughput", converted_2461)?;
+    } else {
+        result.set_item("on_demand_throughput", py.None())?;
+    }
+    if let Some(value) = &value.warm_throughput {
+        let converted_2462 = global_secondary_index_warm_throughput_description_to_py(py, value)?;
+        result.set_item("warm_throughput", converted_2462)?;
+    } else {
+        result.set_item("warm_throughput", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
-    name = "ItemCollectionMetrics",
+    name = "GlobalSecondaryIndexDescription",
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyItemCollectionMetrics {
-    inner: aws_sdk_dynamodb::types::ItemCollectionMetrics,
+struct PyGlobalSecondaryIndexDescription {
+    inner: Arc<SharedGlobalSecondaryIndexDescription>,
 }
 
 #[pymethods]
-impl PyItemCollectionMetrics {
+impl PyGlobalSecondaryIndexDescription {
     #[getter]
-    fn item_collection_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.item_collection_key {
-            let converted_2427_dict = PyDict::new(py);
-            for (key_2428, value_2429) in value {
-                let converted_key_2430 = (key_2428).as_str().into_py_any(py)?;
-                let converted_value_2431 = attribute_value_to_py(py, value_2429)?;
-                converted_2427_dict.set_item(converted_key_2430, converted_value_2431)?;
-            }
-            let converted_2427 = converted_2427_dict.into_any().unbind();
-            Ok(converted_2427)
+    fn index_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.index_name {
+            let converted_2436 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2436)
         } else {
             Ok(py.None())
         }
     }
 
     #[getter]
-    fn size_estimate_range_gb(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.size_estimate_range_gb {
-            let converted_2432_list = PyList::empty(py);
-            for item_2433 in value {
-                let converted_item_2434 = (item_2433).to_owned().into_py_any(py)?;
-                converted_2432_list.append(converted_item_2434)?;
+    fn key_schema(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.key_schema {
+            let converted_2437_list = PyList::empty(py);
+            for item_2438 in value {
+                let converted_item_2439 = Py::new(
+                    py,
+                    PyKeySchemaElement {
+                        inner: Arc::clone(item_2438),
+                    },
+                )?
+                .into_any();
+                converted_2437_list.append(converted_item_2439)?;
             }
-            let converted_2432 = converted_2432_list.into_any().unbind();
-            Ok(converted_2432)
+            let converted_2437 = converted_2437_list.into_any().unbind();
+            Ok(converted_2437)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn projection(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.projection {
+            let converted_2440 = Py::new(
+                py,
+                PyProjection {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_2440)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn index_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.index_status {
+            let converted_2441 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2441)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn backfilling(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.backfilling {
+            let converted_2442 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2442)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn provisioned_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.provisioned_throughput {
+            let converted_2443 = Py::new(
+                py,
+                PyProvisionedThroughputDescription {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_2443)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn index_size_bytes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.index_size_bytes {
+            let converted_2444 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2444)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn item_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.item_count {
+            let converted_2445 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2445)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn index_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.index_arn {
+            let converted_2446 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2446)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn on_demand_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.on_demand_throughput {
+            let converted_2447 = Py::new(
+                py,
+                PyOnDemandThroughput {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_2447)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn warm_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.warm_throughput {
+            let converted_2448 = Py::new(
+                py,
+                PyGlobalSecondaryIndexWarmThroughputDescription {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_2448)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        item_collection_metrics_to_py(py, &self.inner)
+        global_secondary_index_description_shared_to_py(py, &self.inner)
     }
 }
 
-#[pyclass(name = "ItemResponse", module = "rboto_dynamodb._native", frozen)]
-struct PyItemResponse {
-    inner: aws_sdk_dynamodb::types::ItemResponse,
+struct SharedGlobalSecondaryIndexInfo {
+    index_name: Option<::std::string::String>,
+    key_schema: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::KeySchemaElement>>>,
+    projection: Option<Arc<aws_sdk_dynamodb::types::Projection>>,
+    provisioned_throughput: Option<Arc<aws_sdk_dynamodb::types::ProvisionedThroughput>>,
+    on_demand_throughput: Option<Arc<aws_sdk_dynamodb::types::OnDemandThroughput>>,
 }
 
-#[pymethods]
-impl PyItemResponse {
-    #[getter]
-    fn item(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.item {
-            let converted_2435_dict = PyDict::new(py);
-            for (key_2436, value_2437) in value {
-                let converted_key_2438 = (key_2436).as_str().into_py_any(py)?;
-                let converted_value_2439 = attribute_value_to_py(py, value_2437)?;
-                converted_2435_dict.set_item(converted_key_2438, converted_value_2439)?;
-            }
-            let converted_2435 = converted_2435_dict.into_any().unbind();
-            Ok(converted_2435)
-        } else {
-            Ok(py.None())
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::GlobalSecondaryIndexInfo> for SharedGlobalSecondaryIndexInfo {
+    fn from(value: aws_sdk_dynamodb::types::GlobalSecondaryIndexInfo) -> Self {
+        Self {
+            index_name: value.index_name,
+            key_schema: value.key_schema.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_2470| Arc::new(owned_2470))
+                    .collect()
+            }),
+            projection: value.projection.map(|item| Arc::new(item)),
+            provisioned_throughput: value.provisioned_throughput.map(|item| Arc::new(item)),
+            on_demand_throughput: value.on_demand_throughput.map(|item| Arc::new(item)),
         }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        item_response_to_py(py, &self.inner)
-    }
-}
-
-#[pyclass(name = "KeySchemaElement", module = "rboto_dynamodb._native", frozen)]
-struct PyKeySchemaElement {
-    inner: aws_sdk_dynamodb::types::KeySchemaElement,
-}
-
-#[pymethods]
-impl PyKeySchemaElement {
-    #[getter]
-    fn attribute_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2440 = (&self.inner.attribute_name).as_str().into_py_any(py)?;
-        Ok(converted_2440)
-    }
-
-    #[getter]
-    fn key_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2441 = (&self.inner.key_type).as_str().into_py_any(py)?;
-        Ok(converted_2441)
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        key_schema_element_to_py(py, &self.inner)
     }
 }
 
-#[pyclass(name = "KeysAndAttributes", module = "rboto_dynamodb._native", frozen)]
-struct PyKeysAndAttributes {
-    inner: aws_sdk_dynamodb::types::KeysAndAttributes,
-}
-
-#[pymethods]
-impl PyKeysAndAttributes {
-    #[getter]
-    fn keys(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2442_list = PyList::empty(py);
-        for item_2443 in &self.inner.keys {
-            let converted_item_2444_dict = PyDict::new(py);
-            for (key_2445, value_2446) in item_2443 {
-                let converted_key_2447 = (key_2445).as_str().into_py_any(py)?;
-                let converted_value_2448 = attribute_value_to_py(py, value_2446)?;
-                converted_item_2444_dict.set_item(converted_key_2447, converted_value_2448)?;
-            }
-            let converted_item_2444 = converted_item_2444_dict.into_any().unbind();
-            converted_2442_list.append(converted_item_2444)?;
+fn global_secondary_index_info_shared_to_py(
+    py: Python<'_>,
+    value: &SharedGlobalSecondaryIndexInfo,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.index_name {
+        let converted_2471 = (value).as_str().into_py_any(py)?;
+        result.set_item("index_name", converted_2471)?;
+    } else {
+        result.set_item("index_name", py.None())?;
+    }
+    if let Some(value) = &value.key_schema {
+        let converted_2472_list = PyList::empty(py);
+        for item_2473 in value {
+            let converted_item_2474 = key_schema_element_to_py(py, item_2473)?;
+            converted_2472_list.append(converted_item_2474)?;
         }
-        let converted_2442 = converted_2442_list.into_any().unbind();
-        Ok(converted_2442)
+        let converted_2472 = converted_2472_list.into_any().unbind();
+        result.set_item("key_schema", converted_2472)?;
+    } else {
+        result.set_item("key_schema", py.None())?;
     }
-
-    #[getter]
-    fn attributes_to_get(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.attributes_to_get {
-            let converted_2449_list = PyList::empty(py);
-            for item_2450 in value {
-                let converted_item_2451 = (item_2450).as_str().into_py_any(py)?;
-                converted_2449_list.append(converted_item_2451)?;
-            }
-            let converted_2449 = converted_2449_list.into_any().unbind();
-            Ok(converted_2449)
-        } else {
-            Ok(py.None())
-        }
+    if let Some(value) = &value.projection {
+        let converted_2475 = projection_to_py(py, value)?;
+        result.set_item("projection", converted_2475)?;
+    } else {
+        result.set_item("projection", py.None())?;
     }
-
-    #[getter]
-    fn consistent_read(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.consistent_read {
-            let converted_2452 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2452)
-        } else {
-            Ok(py.None())
-        }
+    if let Some(value) = &value.provisioned_throughput {
+        let converted_2476 = provisioned_throughput_to_py(py, value)?;
+        result.set_item("provisioned_throughput", converted_2476)?;
+    } else {
+        result.set_item("provisioned_throughput", py.None())?;
     }
-
-    #[getter]
-    fn projection_expression(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.projection_expression {
-            let converted_2453 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2453)
-        } else {
-            Ok(py.None())
-        }
+    if let Some(value) = &value.on_demand_throughput {
+        let converted_2477 = on_demand_throughput_to_py(py, value)?;
+        result.set_item("on_demand_throughput", converted_2477)?;
+    } else {
+        result.set_item("on_demand_throughput", py.None())?;
     }
-
-    #[getter]
-    fn expression_attribute_names(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.expression_attribute_names {
-            let converted_2454_dict = PyDict::new(py);
-            for (key_2455, value_2456) in value {
-                let converted_key_2457 = (key_2455).as_str().into_py_any(py)?;
-                let converted_value_2458 = (value_2456).as_str().into_py_any(py)?;
-                converted_2454_dict.set_item(converted_key_2457, converted_value_2458)?;
-            }
-            let converted_2454 = converted_2454_dict.into_any().unbind();
-            Ok(converted_2454)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        keys_and_attributes_to_py(py, &self.inner)
-    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
-    name = "KinesisDataStreamDestination",
+    name = "GlobalSecondaryIndexInfo",
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyKinesisDataStreamDestination {
-    inner: aws_sdk_dynamodb::types::KinesisDataStreamDestination,
+struct PyGlobalSecondaryIndexInfo {
+    inner: Arc<SharedGlobalSecondaryIndexInfo>,
 }
 
 #[pymethods]
-impl PyKinesisDataStreamDestination {
-    #[getter]
-    fn stream_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.stream_arn {
-            let converted_2459 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2459)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn destination_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.destination_status {
-            let converted_2460 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2460)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn destination_status_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.destination_status_description {
-            let converted_2461 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2461)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn approximate_creation_date_time_precision(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.approximate_creation_date_time_precision {
-            let converted_2462 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2462)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        kinesis_data_stream_destination_to_py(py, &self.inner)
-    }
-}
-
-#[pyclass(
-    name = "LocalSecondaryIndexDescription",
-    module = "rboto_dynamodb._native",
-    frozen
-)]
-struct PyLocalSecondaryIndexDescription {
-    inner: aws_sdk_dynamodb::types::LocalSecondaryIndexDescription,
-}
-
-#[pymethods]
-impl PyLocalSecondaryIndexDescription {
+impl PyGlobalSecondaryIndexInfo {
     #[getter]
     fn index_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.index_name {
@@ -10817,7 +10734,7 @@ impl PyLocalSecondaryIndexDescription {
                 let converted_item_2466 = Py::new(
                     py,
                     PyKeySchemaElement {
-                        inner: (item_2465).to_owned(),
+                        inner: Arc::clone(item_2465),
                     },
                 )?
                 .into_any();
@@ -10836,7 +10753,7 @@ impl PyLocalSecondaryIndexDescription {
             let converted_2467 = Py::new(
                 py,
                 PyProjection {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -10847,9 +10764,15 @@ impl PyLocalSecondaryIndexDescription {
     }
 
     #[getter]
-    fn index_size_bytes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.index_size_bytes {
-            let converted_2468 = (value).to_owned().into_py_any(py)?;
+    fn provisioned_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.provisioned_throughput {
+            let converted_2468 = Py::new(
+                py,
+                PyProvisionedThroughput {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
             Ok(converted_2468)
         } else {
             Ok(py.None())
@@ -10857,46 +10780,1327 @@ impl PyLocalSecondaryIndexDescription {
     }
 
     #[getter]
-    fn item_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.item_count {
-            let converted_2469 = (value).to_owned().into_py_any(py)?;
+    fn on_demand_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.on_demand_throughput {
+            let converted_2469 = Py::new(
+                py,
+                PyOnDemandThroughput {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
             Ok(converted_2469)
         } else {
             Ok(py.None())
         }
     }
 
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        global_secondary_index_info_shared_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "GlobalSecondaryIndexWarmThroughputDescription",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
+struct PyGlobalSecondaryIndexWarmThroughputDescription {
+    inner: Arc<aws_sdk_dynamodb::types::GlobalSecondaryIndexWarmThroughputDescription>,
+}
+
+#[pymethods]
+impl PyGlobalSecondaryIndexWarmThroughputDescription {
     #[getter]
-    fn index_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.index_arn {
-            let converted_2470 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2470)
+    fn read_units_per_second(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.read_units_per_second {
+            let converted_2478 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2478)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn write_units_per_second(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.write_units_per_second {
+            let converted_2479 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2479)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.status {
+            let converted_2480 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2480)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        local_secondary_index_description_to_py(py, &self.inner)
+        global_secondary_index_warm_throughput_description_to_py(py, &self.inner)
+    }
+}
+
+struct SharedGlobalTable {
+    global_table_name: Option<::std::string::String>,
+    replication_group: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::Replica>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::GlobalTable> for SharedGlobalTable {
+    fn from(value: aws_sdk_dynamodb::types::GlobalTable) -> Self {
+        Self {
+            global_table_name: value.global_table_name,
+            replication_group: value.replication_group.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_2485| Arc::new(owned_2485))
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn global_table_shared_to_py(py: Python<'_>, value: &SharedGlobalTable) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.global_table_name {
+        let converted_2486 = (value).as_str().into_py_any(py)?;
+        result.set_item("global_table_name", converted_2486)?;
+    } else {
+        result.set_item("global_table_name", py.None())?;
+    }
+    if let Some(value) = &value.replication_group {
+        let converted_2487_list = PyList::empty(py);
+        for item_2488 in value {
+            let converted_item_2489 = replica_to_py(py, item_2488)?;
+            converted_2487_list.append(converted_item_2489)?;
+        }
+        let converted_2487 = converted_2487_list.into_any().unbind();
+        result.set_item("replication_group", converted_2487)?;
+    } else {
+        result.set_item("replication_group", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+#[pyclass(name = "GlobalTable", module = "rboto_dynamodb._native", frozen)]
+struct PyGlobalTable {
+    inner: Arc<SharedGlobalTable>,
+}
+
+#[pymethods]
+impl PyGlobalTable {
+    #[getter]
+    fn global_table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.global_table_name {
+            let converted_2481 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2481)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn replication_group(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.replication_group {
+            let converted_2482_list = PyList::empty(py);
+            for item_2483 in value {
+                let converted_item_2484 = Py::new(
+                    py,
+                    PyReplica {
+                        inner: Arc::clone(item_2483),
+                    },
+                )?
+                .into_any();
+                converted_2482_list.append(converted_item_2484)?;
+            }
+            let converted_2482 = converted_2482_list.into_any().unbind();
+            Ok(converted_2482)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        global_table_shared_to_py(py, &self.inner)
+    }
+}
+
+struct SharedGlobalTableDescription {
+    replication_group: Option<::std::vec::Vec<Arc<SharedReplicaDescription>>>,
+    global_table_arn: Option<::std::string::String>,
+    creation_date_time: Option<::aws_smithy_types::DateTime>,
+    global_table_status: Option<aws_sdk_dynamodb::types::GlobalTableStatus>,
+    global_table_name: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::GlobalTableDescription> for SharedGlobalTableDescription {
+    fn from(value: aws_sdk_dynamodb::types::GlobalTableDescription) -> Self {
+        Self {
+            replication_group: value.replication_group.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_2497| Arc::new(SharedReplicaDescription::from(owned_2497)))
+                    .collect()
+            }),
+            global_table_arn: value.global_table_arn,
+            creation_date_time: value.creation_date_time,
+            global_table_status: value.global_table_status,
+            global_table_name: value.global_table_name,
+        }
+    }
+}
+
+fn global_table_description_shared_to_py(
+    py: Python<'_>,
+    value: &SharedGlobalTableDescription,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.replication_group {
+        let converted_2498_list = PyList::empty(py);
+        for item_2499 in value {
+            let converted_item_2500 = replica_description_shared_to_py(py, item_2499)?;
+            converted_2498_list.append(converted_item_2500)?;
+        }
+        let converted_2498 = converted_2498_list.into_any().unbind();
+        result.set_item("replication_group", converted_2498)?;
+    } else {
+        result.set_item("replication_group", py.None())?;
+    }
+    if let Some(value) = &value.global_table_arn {
+        let converted_2501 = (value).as_str().into_py_any(py)?;
+        result.set_item("global_table_arn", converted_2501)?;
+    } else {
+        result.set_item("global_table_arn", py.None())?;
+    }
+    if let Some(value) = &value.creation_date_time {
+        let converted_2502 = (value).to_string().into_py_any(py)?;
+        result.set_item("creation_date_time", converted_2502)?;
+    } else {
+        result.set_item("creation_date_time", py.None())?;
+    }
+    if let Some(value) = &value.global_table_status {
+        let converted_2503 = (value).as_str().into_py_any(py)?;
+        result.set_item("global_table_status", converted_2503)?;
+    } else {
+        result.set_item("global_table_status", py.None())?;
+    }
+    if let Some(value) = &value.global_table_name {
+        let converted_2504 = (value).as_str().into_py_any(py)?;
+        result.set_item("global_table_name", converted_2504)?;
+    } else {
+        result.set_item("global_table_name", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+#[pyclass(
+    name = "GlobalTableDescription",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
+struct PyGlobalTableDescription {
+    inner: Arc<SharedGlobalTableDescription>,
+}
+
+#[pymethods]
+impl PyGlobalTableDescription {
+    #[getter]
+    fn replication_group(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.replication_group {
+            let converted_2490_list = PyList::empty(py);
+            for item_2491 in value {
+                let converted_item_2492 = Py::new(
+                    py,
+                    PyReplicaDescription {
+                        inner: Arc::clone(item_2491),
+                    },
+                )?
+                .into_any();
+                converted_2490_list.append(converted_item_2492)?;
+            }
+            let converted_2490 = converted_2490_list.into_any().unbind();
+            Ok(converted_2490)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn global_table_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.global_table_arn {
+            let converted_2493 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2493)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn creation_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.creation_date_time {
+            let converted_2494 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2494)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn global_table_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.global_table_status {
+            let converted_2495 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2495)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn global_table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.global_table_name {
+            let converted_2496 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2496)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        global_table_description_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(
-    name = "LocalSecondaryIndexInfo",
+    name = "GlobalTableWitnessDescription",
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyLocalSecondaryIndexInfo {
-    inner: aws_sdk_dynamodb::types::LocalSecondaryIndexInfo,
+struct PyGlobalTableWitnessDescription {
+    inner: Arc<aws_sdk_dynamodb::types::GlobalTableWitnessDescription>,
 }
 
 #[pymethods]
-impl PyLocalSecondaryIndexInfo {
+impl PyGlobalTableWitnessDescription {
+    #[getter]
+    fn region_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.region_name {
+            let converted_2505 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2505)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn witness_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.witness_status {
+            let converted_2506 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2506)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        global_table_witness_description_to_py(py, &self.inner)
+    }
+}
+
+struct SharedImportSummary {
+    import_arn: Option<::std::string::String>,
+    import_status: Option<aws_sdk_dynamodb::types::ImportStatus>,
+    table_arn: Option<::std::string::String>,
+    s3_bucket_source: Option<Arc<aws_sdk_dynamodb::types::S3BucketSource>>,
+    cloud_watch_log_group_arn: Option<::std::string::String>,
+    input_format: Option<aws_sdk_dynamodb::types::InputFormat>,
+    start_time: Option<::aws_smithy_types::DateTime>,
+    end_time: Option<::aws_smithy_types::DateTime>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::ImportSummary> for SharedImportSummary {
+    fn from(value: aws_sdk_dynamodb::types::ImportSummary) -> Self {
+        Self {
+            import_arn: value.import_arn,
+            import_status: value.import_status,
+            table_arn: value.table_arn,
+            s3_bucket_source: value.s3_bucket_source.map(|item| Arc::new(item)),
+            cloud_watch_log_group_arn: value.cloud_watch_log_group_arn,
+            input_format: value.input_format,
+            start_time: value.start_time,
+            end_time: value.end_time,
+        }
+    }
+}
+
+fn import_summary_shared_to_py(py: Python<'_>, value: &SharedImportSummary) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.import_arn {
+        let converted_2515 = (value).as_str().into_py_any(py)?;
+        result.set_item("import_arn", converted_2515)?;
+    } else {
+        result.set_item("import_arn", py.None())?;
+    }
+    if let Some(value) = &value.import_status {
+        let converted_2516 = (value).as_str().into_py_any(py)?;
+        result.set_item("import_status", converted_2516)?;
+    } else {
+        result.set_item("import_status", py.None())?;
+    }
+    if let Some(value) = &value.table_arn {
+        let converted_2517 = (value).as_str().into_py_any(py)?;
+        result.set_item("table_arn", converted_2517)?;
+    } else {
+        result.set_item("table_arn", py.None())?;
+    }
+    if let Some(value) = &value.s3_bucket_source {
+        let converted_2518 = s3_bucket_source_to_py(py, value)?;
+        result.set_item("s3_bucket_source", converted_2518)?;
+    } else {
+        result.set_item("s3_bucket_source", py.None())?;
+    }
+    if let Some(value) = &value.cloud_watch_log_group_arn {
+        let converted_2519 = (value).as_str().into_py_any(py)?;
+        result.set_item("cloud_watch_log_group_arn", converted_2519)?;
+    } else {
+        result.set_item("cloud_watch_log_group_arn", py.None())?;
+    }
+    if let Some(value) = &value.input_format {
+        let converted_2520 = (value).as_str().into_py_any(py)?;
+        result.set_item("input_format", converted_2520)?;
+    } else {
+        result.set_item("input_format", py.None())?;
+    }
+    if let Some(value) = &value.start_time {
+        let converted_2521 = (value).to_string().into_py_any(py)?;
+        result.set_item("start_time", converted_2521)?;
+    } else {
+        result.set_item("start_time", py.None())?;
+    }
+    if let Some(value) = &value.end_time {
+        let converted_2522 = (value).to_string().into_py_any(py)?;
+        result.set_item("end_time", converted_2522)?;
+    } else {
+        result.set_item("end_time", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+#[pyclass(name = "ImportSummary", module = "rboto_dynamodb._native", frozen)]
+struct PyImportSummary {
+    inner: Arc<SharedImportSummary>,
+}
+
+#[pymethods]
+impl PyImportSummary {
+    #[getter]
+    fn import_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.import_arn {
+            let converted_2507 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2507)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn import_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.import_status {
+            let converted_2508 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2508)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn table_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.table_arn {
+            let converted_2509 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2509)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn s3_bucket_source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.s3_bucket_source {
+            let converted_2510 = Py::new(
+                py,
+                PyS3BucketSource {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_2510)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn cloud_watch_log_group_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.cloud_watch_log_group_arn {
+            let converted_2511 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2511)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn input_format(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.input_format {
+            let converted_2512 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2512)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn start_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.start_time {
+            let converted_2513 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2513)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn end_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.end_time {
+            let converted_2514 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2514)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        import_summary_shared_to_py(py, &self.inner)
+    }
+}
+
+struct SharedImportTableDescription {
+    import_arn: Option<::std::string::String>,
+    import_status: Option<aws_sdk_dynamodb::types::ImportStatus>,
+    table_arn: Option<::std::string::String>,
+    table_id: Option<::std::string::String>,
+    client_token: Option<::std::string::String>,
+    s3_bucket_source: Option<Arc<aws_sdk_dynamodb::types::S3BucketSource>>,
+    error_count: i64,
+    cloud_watch_log_group_arn: Option<::std::string::String>,
+    input_format: Option<aws_sdk_dynamodb::types::InputFormat>,
+    input_format_options: Option<Arc<SharedInputFormatOptions>>,
+    input_compression_type: Option<aws_sdk_dynamodb::types::InputCompressionType>,
+    table_creation_parameters: Option<Arc<SharedTableCreationParameters>>,
+    start_time: Option<::aws_smithy_types::DateTime>,
+    end_time: Option<::aws_smithy_types::DateTime>,
+    processed_size_bytes: Option<i64>,
+    processed_item_count: i64,
+    imported_item_count: i64,
+    failure_code: Option<::std::string::String>,
+    failure_message: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::ImportTableDescription> for SharedImportTableDescription {
+    fn from(value: aws_sdk_dynamodb::types::ImportTableDescription) -> Self {
+        Self {
+            import_arn: value.import_arn,
+            import_status: value.import_status,
+            table_arn: value.table_arn,
+            table_id: value.table_id,
+            client_token: value.client_token,
+            s3_bucket_source: value.s3_bucket_source.map(|item| Arc::new(item)),
+            error_count: value.error_count,
+            cloud_watch_log_group_arn: value.cloud_watch_log_group_arn,
+            input_format: value.input_format,
+            input_format_options: value
+                .input_format_options
+                .map(|item| Arc::new(SharedInputFormatOptions::from(item))),
+            input_compression_type: value.input_compression_type,
+            table_creation_parameters: value
+                .table_creation_parameters
+                .map(|item| Arc::new(SharedTableCreationParameters::from(item))),
+            start_time: value.start_time,
+            end_time: value.end_time,
+            processed_size_bytes: value.processed_size_bytes,
+            processed_item_count: value.processed_item_count,
+            imported_item_count: value.imported_item_count,
+            failure_code: value.failure_code,
+            failure_message: value.failure_message,
+        }
+    }
+}
+
+fn import_table_description_shared_to_py(
+    py: Python<'_>,
+    value: &SharedImportTableDescription,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.import_arn {
+        let converted_2542 = (value).as_str().into_py_any(py)?;
+        result.set_item("import_arn", converted_2542)?;
+    } else {
+        result.set_item("import_arn", py.None())?;
+    }
+    if let Some(value) = &value.import_status {
+        let converted_2543 = (value).as_str().into_py_any(py)?;
+        result.set_item("import_status", converted_2543)?;
+    } else {
+        result.set_item("import_status", py.None())?;
+    }
+    if let Some(value) = &value.table_arn {
+        let converted_2544 = (value).as_str().into_py_any(py)?;
+        result.set_item("table_arn", converted_2544)?;
+    } else {
+        result.set_item("table_arn", py.None())?;
+    }
+    if let Some(value) = &value.table_id {
+        let converted_2545 = (value).as_str().into_py_any(py)?;
+        result.set_item("table_id", converted_2545)?;
+    } else {
+        result.set_item("table_id", py.None())?;
+    }
+    if let Some(value) = &value.client_token {
+        let converted_2546 = (value).as_str().into_py_any(py)?;
+        result.set_item("client_token", converted_2546)?;
+    } else {
+        result.set_item("client_token", py.None())?;
+    }
+    if let Some(value) = &value.s3_bucket_source {
+        let converted_2547 = s3_bucket_source_to_py(py, value)?;
+        result.set_item("s3_bucket_source", converted_2547)?;
+    } else {
+        result.set_item("s3_bucket_source", py.None())?;
+    }
+    let converted_2548 = (&value.error_count).to_owned().into_py_any(py)?;
+    result.set_item("error_count", converted_2548)?;
+    if let Some(value) = &value.cloud_watch_log_group_arn {
+        let converted_2549 = (value).as_str().into_py_any(py)?;
+        result.set_item("cloud_watch_log_group_arn", converted_2549)?;
+    } else {
+        result.set_item("cloud_watch_log_group_arn", py.None())?;
+    }
+    if let Some(value) = &value.input_format {
+        let converted_2550 = (value).as_str().into_py_any(py)?;
+        result.set_item("input_format", converted_2550)?;
+    } else {
+        result.set_item("input_format", py.None())?;
+    }
+    if let Some(value) = &value.input_format_options {
+        let converted_2551 = input_format_options_shared_to_py(py, value)?;
+        result.set_item("input_format_options", converted_2551)?;
+    } else {
+        result.set_item("input_format_options", py.None())?;
+    }
+    if let Some(value) = &value.input_compression_type {
+        let converted_2552 = (value).as_str().into_py_any(py)?;
+        result.set_item("input_compression_type", converted_2552)?;
+    } else {
+        result.set_item("input_compression_type", py.None())?;
+    }
+    if let Some(value) = &value.table_creation_parameters {
+        let converted_2553 = table_creation_parameters_shared_to_py(py, value)?;
+        result.set_item("table_creation_parameters", converted_2553)?;
+    } else {
+        result.set_item("table_creation_parameters", py.None())?;
+    }
+    if let Some(value) = &value.start_time {
+        let converted_2554 = (value).to_string().into_py_any(py)?;
+        result.set_item("start_time", converted_2554)?;
+    } else {
+        result.set_item("start_time", py.None())?;
+    }
+    if let Some(value) = &value.end_time {
+        let converted_2555 = (value).to_string().into_py_any(py)?;
+        result.set_item("end_time", converted_2555)?;
+    } else {
+        result.set_item("end_time", py.None())?;
+    }
+    if let Some(value) = &value.processed_size_bytes {
+        let converted_2556 = (value).to_owned().into_py_any(py)?;
+        result.set_item("processed_size_bytes", converted_2556)?;
+    } else {
+        result.set_item("processed_size_bytes", py.None())?;
+    }
+    let converted_2557 = (&value.processed_item_count).to_owned().into_py_any(py)?;
+    result.set_item("processed_item_count", converted_2557)?;
+    let converted_2558 = (&value.imported_item_count).to_owned().into_py_any(py)?;
+    result.set_item("imported_item_count", converted_2558)?;
+    if let Some(value) = &value.failure_code {
+        let converted_2559 = (value).as_str().into_py_any(py)?;
+        result.set_item("failure_code", converted_2559)?;
+    } else {
+        result.set_item("failure_code", py.None())?;
+    }
+    if let Some(value) = &value.failure_message {
+        let converted_2560 = (value).as_str().into_py_any(py)?;
+        result.set_item("failure_message", converted_2560)?;
+    } else {
+        result.set_item("failure_message", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+#[pyclass(
+    name = "ImportTableDescription",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
+struct PyImportTableDescription {
+    inner: Arc<SharedImportTableDescription>,
+}
+
+#[pymethods]
+impl PyImportTableDescription {
+    #[getter]
+    fn import_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.import_arn {
+            let converted_2523 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2523)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn import_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.import_status {
+            let converted_2524 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2524)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn table_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.table_arn {
+            let converted_2525 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2525)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn table_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.table_id {
+            let converted_2526 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2526)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn client_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.client_token {
+            let converted_2527 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2527)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn s3_bucket_source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.s3_bucket_source {
+            let converted_2528 = Py::new(
+                py,
+                PyS3BucketSource {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_2528)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn error_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2529 = (&self.inner.error_count).to_owned().into_py_any(py)?;
+        Ok(converted_2529)
+    }
+
+    #[getter]
+    fn cloud_watch_log_group_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.cloud_watch_log_group_arn {
+            let converted_2530 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2530)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn input_format(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.input_format {
+            let converted_2531 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2531)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn input_format_options(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.input_format_options {
+            let converted_2532 = Py::new(
+                py,
+                PyInputFormatOptions {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_2532)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn input_compression_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.input_compression_type {
+            let converted_2533 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2533)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn table_creation_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.table_creation_parameters {
+            let converted_2534 = Py::new(
+                py,
+                PyTableCreationParameters {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_2534)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn start_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.start_time {
+            let converted_2535 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2535)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn end_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.end_time {
+            let converted_2536 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2536)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn processed_size_bytes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.processed_size_bytes {
+            let converted_2537 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2537)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn processed_item_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2538 = (&self.inner.processed_item_count)
+            .to_owned()
+            .into_py_any(py)?;
+        Ok(converted_2538)
+    }
+
+    #[getter]
+    fn imported_item_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2539 = (&self.inner.imported_item_count)
+            .to_owned()
+            .into_py_any(py)?;
+        Ok(converted_2539)
+    }
+
+    #[getter]
+    fn failure_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.failure_code {
+            let converted_2540 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2540)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn failure_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.failure_message {
+            let converted_2541 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2541)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        import_table_description_shared_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "IncrementalExportSpecification",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
+struct PyIncrementalExportSpecification {
+    inner: Arc<aws_sdk_dynamodb::types::IncrementalExportSpecification>,
+}
+
+#[pymethods]
+impl PyIncrementalExportSpecification {
+    #[getter]
+    fn export_from_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.export_from_time {
+            let converted_2561 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2561)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn export_to_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.export_to_time {
+            let converted_2562 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2562)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn export_view_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.export_view_type {
+            let converted_2563 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2563)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        incremental_export_specification_to_py(py, &self.inner)
+    }
+}
+
+struct SharedInputFormatOptions {
+    csv: Option<Arc<aws_sdk_dynamodb::types::CsvOptions>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::InputFormatOptions> for SharedInputFormatOptions {
+    fn from(value: aws_sdk_dynamodb::types::InputFormatOptions) -> Self {
+        Self {
+            csv: value.csv.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn input_format_options_shared_to_py(
+    py: Python<'_>,
+    value: &SharedInputFormatOptions,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.csv {
+        let converted_2565 = csv_options_to_py(py, value)?;
+        result.set_item("csv", converted_2565)?;
+    } else {
+        result.set_item("csv", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+#[pyclass(name = "InputFormatOptions", module = "rboto_dynamodb._native", frozen)]
+struct PyInputFormatOptions {
+    inner: Arc<SharedInputFormatOptions>,
+}
+
+#[pymethods]
+impl PyInputFormatOptions {
+    #[getter]
+    fn csv(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.csv {
+            let converted_2564 = Py::new(
+                py,
+                PyCsvOptions {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_2564)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        input_format_options_shared_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "ItemCollectionMetrics",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
+struct PyItemCollectionMetrics {
+    inner: Arc<aws_sdk_dynamodb::types::ItemCollectionMetrics>,
+}
+
+#[pymethods]
+impl PyItemCollectionMetrics {
+    #[getter]
+    fn item_collection_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.item_collection_key {
+            let converted_2566_dict = PyDict::new(py);
+            for (key_2567, value_2568) in value {
+                let converted_key_2569 = (key_2567).as_str().into_py_any(py)?;
+                let converted_value_2570 = attribute_value_to_py(py, value_2568)?;
+                converted_2566_dict.set_item(converted_key_2569, converted_value_2570)?;
+            }
+            let converted_2566 = converted_2566_dict.into_any().unbind();
+            Ok(converted_2566)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn size_estimate_range_gb(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.size_estimate_range_gb {
+            let converted_2571_list = PyList::empty(py);
+            for item_2572 in value {
+                let converted_item_2573 = (item_2572).to_owned().into_py_any(py)?;
+                converted_2571_list.append(converted_item_2573)?;
+            }
+            let converted_2571 = converted_2571_list.into_any().unbind();
+            Ok(converted_2571)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        item_collection_metrics_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "ItemResponse", module = "rboto_dynamodb._native", frozen)]
+struct PyItemResponse {
+    inner: Arc<aws_sdk_dynamodb::types::ItemResponse>,
+}
+
+#[pymethods]
+impl PyItemResponse {
+    #[getter]
+    fn item(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.item {
+            let converted_2574_dict = PyDict::new(py);
+            for (key_2575, value_2576) in value {
+                let converted_key_2577 = (key_2575).as_str().into_py_any(py)?;
+                let converted_value_2578 = attribute_value_to_py(py, value_2576)?;
+                converted_2574_dict.set_item(converted_key_2577, converted_value_2578)?;
+            }
+            let converted_2574 = converted_2574_dict.into_any().unbind();
+            Ok(converted_2574)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        item_response_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "KeySchemaElement", module = "rboto_dynamodb._native", frozen)]
+struct PyKeySchemaElement {
+    inner: Arc<aws_sdk_dynamodb::types::KeySchemaElement>,
+}
+
+#[pymethods]
+impl PyKeySchemaElement {
+    #[getter]
+    fn attribute_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2579 = (&self.inner.attribute_name).as_str().into_py_any(py)?;
+        Ok(converted_2579)
+    }
+
+    #[getter]
+    fn key_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2580 = (&self.inner.key_type).as_str().into_py_any(py)?;
+        Ok(converted_2580)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        key_schema_element_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "KeysAndAttributes", module = "rboto_dynamodb._native", frozen)]
+struct PyKeysAndAttributes {
+    inner: Arc<aws_sdk_dynamodb::types::KeysAndAttributes>,
+}
+
+#[pymethods]
+impl PyKeysAndAttributes {
+    #[getter]
+    fn keys(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2581_list = PyList::empty(py);
+        for item_2582 in &self.inner.keys {
+            let converted_item_2583_dict = PyDict::new(py);
+            for (key_2584, value_2585) in item_2582 {
+                let converted_key_2586 = (key_2584).as_str().into_py_any(py)?;
+                let converted_value_2587 = attribute_value_to_py(py, value_2585)?;
+                converted_item_2583_dict.set_item(converted_key_2586, converted_value_2587)?;
+            }
+            let converted_item_2583 = converted_item_2583_dict.into_any().unbind();
+            converted_2581_list.append(converted_item_2583)?;
+        }
+        let converted_2581 = converted_2581_list.into_any().unbind();
+        Ok(converted_2581)
+    }
+
+    #[getter]
+    fn attributes_to_get(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.attributes_to_get {
+            let converted_2588_list = PyList::empty(py);
+            for item_2589 in value {
+                let converted_item_2590 = (item_2589).as_str().into_py_any(py)?;
+                converted_2588_list.append(converted_item_2590)?;
+            }
+            let converted_2588 = converted_2588_list.into_any().unbind();
+            Ok(converted_2588)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn consistent_read(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.consistent_read {
+            let converted_2591 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2591)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn projection_expression(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.projection_expression {
+            let converted_2592 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2592)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn expression_attribute_names(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.expression_attribute_names {
+            let converted_2593_dict = PyDict::new(py);
+            for (key_2594, value_2595) in value {
+                let converted_key_2596 = (key_2594).as_str().into_py_any(py)?;
+                let converted_value_2597 = (value_2595).as_str().into_py_any(py)?;
+                converted_2593_dict.set_item(converted_key_2596, converted_value_2597)?;
+            }
+            let converted_2593 = converted_2593_dict.into_any().unbind();
+            Ok(converted_2593)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        keys_and_attributes_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "KinesisDataStreamDestination",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
+struct PyKinesisDataStreamDestination {
+    inner: Arc<aws_sdk_dynamodb::types::KinesisDataStreamDestination>,
+}
+
+#[pymethods]
+impl PyKinesisDataStreamDestination {
+    #[getter]
+    fn stream_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.stream_arn {
+            let converted_2598 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2598)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn destination_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.destination_status {
+            let converted_2599 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2599)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn destination_status_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.destination_status_description {
+            let converted_2600 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2600)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn approximate_creation_date_time_precision(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.approximate_creation_date_time_precision {
+            let converted_2601 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2601)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        kinesis_data_stream_destination_to_py(py, &self.inner)
+    }
+}
+
+struct SharedLocalSecondaryIndexDescription {
+    index_name: Option<::std::string::String>,
+    key_schema: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::KeySchemaElement>>>,
+    projection: Option<Arc<aws_sdk_dynamodb::types::Projection>>,
+    index_size_bytes: Option<i64>,
+    item_count: Option<i64>,
+    index_arn: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::LocalSecondaryIndexDescription>
+    for SharedLocalSecondaryIndexDescription
+{
+    fn from(value: aws_sdk_dynamodb::types::LocalSecondaryIndexDescription) -> Self {
+        Self {
+            index_name: value.index_name,
+            key_schema: value.key_schema.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_2610| Arc::new(owned_2610))
+                    .collect()
+            }),
+            projection: value.projection.map(|item| Arc::new(item)),
+            index_size_bytes: value.index_size_bytes,
+            item_count: value.item_count,
+            index_arn: value.index_arn,
+        }
+    }
+}
+
+fn local_secondary_index_description_shared_to_py(
+    py: Python<'_>,
+    value: &SharedLocalSecondaryIndexDescription,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.index_name {
+        let converted_2611 = (value).as_str().into_py_any(py)?;
+        result.set_item("index_name", converted_2611)?;
+    } else {
+        result.set_item("index_name", py.None())?;
+    }
+    if let Some(value) = &value.key_schema {
+        let converted_2612_list = PyList::empty(py);
+        for item_2613 in value {
+            let converted_item_2614 = key_schema_element_to_py(py, item_2613)?;
+            converted_2612_list.append(converted_item_2614)?;
+        }
+        let converted_2612 = converted_2612_list.into_any().unbind();
+        result.set_item("key_schema", converted_2612)?;
+    } else {
+        result.set_item("key_schema", py.None())?;
+    }
+    if let Some(value) = &value.projection {
+        let converted_2615 = projection_to_py(py, value)?;
+        result.set_item("projection", converted_2615)?;
+    } else {
+        result.set_item("projection", py.None())?;
+    }
+    if let Some(value) = &value.index_size_bytes {
+        let converted_2616 = (value).to_owned().into_py_any(py)?;
+        result.set_item("index_size_bytes", converted_2616)?;
+    } else {
+        result.set_item("index_size_bytes", py.None())?;
+    }
+    if let Some(value) = &value.item_count {
+        let converted_2617 = (value).to_owned().into_py_any(py)?;
+        result.set_item("item_count", converted_2617)?;
+    } else {
+        result.set_item("item_count", py.None())?;
+    }
+    if let Some(value) = &value.index_arn {
+        let converted_2618 = (value).as_str().into_py_any(py)?;
+        result.set_item("index_arn", converted_2618)?;
+    } else {
+        result.set_item("index_arn", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+#[pyclass(
+    name = "LocalSecondaryIndexDescription",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
+struct PyLocalSecondaryIndexDescription {
+    inner: Arc<SharedLocalSecondaryIndexDescription>,
+}
+
+#[pymethods]
+impl PyLocalSecondaryIndexDescription {
     #[getter]
     fn index_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.index_name {
-            let converted_2471 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2471)
+            let converted_2602 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2602)
         } else {
             Ok(py.None())
         }
@@ -10905,19 +12109,19 @@ impl PyLocalSecondaryIndexInfo {
     #[getter]
     fn key_schema(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_schema {
-            let converted_2472_list = PyList::empty(py);
-            for item_2473 in value {
-                let converted_item_2474 = Py::new(
+            let converted_2603_list = PyList::empty(py);
+            for item_2604 in value {
+                let converted_item_2605 = Py::new(
                     py,
                     PyKeySchemaElement {
-                        inner: (item_2473).to_owned(),
+                        inner: Arc::clone(item_2604),
                     },
                 )?
                 .into_any();
-                converted_2472_list.append(converted_item_2474)?;
+                converted_2603_list.append(converted_item_2605)?;
             }
-            let converted_2472 = converted_2472_list.into_any().unbind();
-            Ok(converted_2472)
+            let converted_2603 = converted_2603_list.into_any().unbind();
+            Ok(converted_2603)
         } else {
             Ok(py.None())
         }
@@ -10926,27 +12130,173 @@ impl PyLocalSecondaryIndexInfo {
     #[getter]
     fn projection(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.projection {
-            let converted_2475 = Py::new(
+            let converted_2606 = Py::new(
                 py,
                 PyProjection {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2475)
+            Ok(converted_2606)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn index_size_bytes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.index_size_bytes {
+            let converted_2607 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2607)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn item_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.item_count {
+            let converted_2608 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2608)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn index_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.index_arn {
+            let converted_2609 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2609)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        local_secondary_index_info_to_py(py, &self.inner)
+        local_secondary_index_description_shared_to_py(py, &self.inner)
+    }
+}
+
+struct SharedLocalSecondaryIndexInfo {
+    index_name: Option<::std::string::String>,
+    key_schema: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::KeySchemaElement>>>,
+    projection: Option<Arc<aws_sdk_dynamodb::types::Projection>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::LocalSecondaryIndexInfo> for SharedLocalSecondaryIndexInfo {
+    fn from(value: aws_sdk_dynamodb::types::LocalSecondaryIndexInfo) -> Self {
+        Self {
+            index_name: value.index_name,
+            key_schema: value.key_schema.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_2624| Arc::new(owned_2624))
+                    .collect()
+            }),
+            projection: value.projection.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn local_secondary_index_info_shared_to_py(
+    py: Python<'_>,
+    value: &SharedLocalSecondaryIndexInfo,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.index_name {
+        let converted_2625 = (value).as_str().into_py_any(py)?;
+        result.set_item("index_name", converted_2625)?;
+    } else {
+        result.set_item("index_name", py.None())?;
+    }
+    if let Some(value) = &value.key_schema {
+        let converted_2626_list = PyList::empty(py);
+        for item_2627 in value {
+            let converted_item_2628 = key_schema_element_to_py(py, item_2627)?;
+            converted_2626_list.append(converted_item_2628)?;
+        }
+        let converted_2626 = converted_2626_list.into_any().unbind();
+        result.set_item("key_schema", converted_2626)?;
+    } else {
+        result.set_item("key_schema", py.None())?;
+    }
+    if let Some(value) = &value.projection {
+        let converted_2629 = projection_to_py(py, value)?;
+        result.set_item("projection", converted_2629)?;
+    } else {
+        result.set_item("projection", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+#[pyclass(
+    name = "LocalSecondaryIndexInfo",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
+struct PyLocalSecondaryIndexInfo {
+    inner: Arc<SharedLocalSecondaryIndexInfo>,
+}
+
+#[pymethods]
+impl PyLocalSecondaryIndexInfo {
+    #[getter]
+    fn index_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.index_name {
+            let converted_2619 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2619)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn key_schema(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.key_schema {
+            let converted_2620_list = PyList::empty(py);
+            for item_2621 in value {
+                let converted_item_2622 = Py::new(
+                    py,
+                    PyKeySchemaElement {
+                        inner: Arc::clone(item_2621),
+                    },
+                )?
+                .into_any();
+                converted_2620_list.append(converted_item_2622)?;
+            }
+            let converted_2620 = converted_2620_list.into_any().unbind();
+            Ok(converted_2620)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn projection(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.projection {
+            let converted_2623 = Py::new(
+                py,
+                PyProjection {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_2623)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        local_secondary_index_info_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "OnDemandThroughput", module = "rboto_dynamodb._native", frozen)]
 struct PyOnDemandThroughput {
-    inner: aws_sdk_dynamodb::types::OnDemandThroughput,
+    inner: Arc<aws_sdk_dynamodb::types::OnDemandThroughput>,
 }
 
 #[pymethods]
@@ -10954,8 +12304,8 @@ impl PyOnDemandThroughput {
     #[getter]
     fn max_read_request_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.max_read_request_units {
-            let converted_2476 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2476)
+            let converted_2630 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2630)
         } else {
             Ok(py.None())
         }
@@ -10964,8 +12314,8 @@ impl PyOnDemandThroughput {
     #[getter]
     fn max_write_request_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.max_write_request_units {
-            let converted_2477 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2477)
+            let converted_2631 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2631)
         } else {
             Ok(py.None())
         }
@@ -10982,7 +12332,7 @@ impl PyOnDemandThroughput {
     frozen
 )]
 struct PyOnDemandThroughputOverride {
-    inner: aws_sdk_dynamodb::types::OnDemandThroughputOverride,
+    inner: Arc<aws_sdk_dynamodb::types::OnDemandThroughputOverride>,
 }
 
 #[pymethods]
@@ -10990,8 +12340,8 @@ impl PyOnDemandThroughputOverride {
     #[getter]
     fn max_read_request_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.max_read_request_units {
-            let converted_2478 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2478)
+            let converted_2632 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2632)
         } else {
             Ok(py.None())
         }
@@ -11008,7 +12358,7 @@ impl PyOnDemandThroughputOverride {
     frozen
 )]
 struct PyPointInTimeRecoveryDescription {
-    inner: aws_sdk_dynamodb::types::PointInTimeRecoveryDescription,
+    inner: Arc<aws_sdk_dynamodb::types::PointInTimeRecoveryDescription>,
 }
 
 #[pymethods]
@@ -11016,8 +12366,8 @@ impl PyPointInTimeRecoveryDescription {
     #[getter]
     fn point_in_time_recovery_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.point_in_time_recovery_status {
-            let converted_2479 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2479)
+            let converted_2633 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2633)
         } else {
             Ok(py.None())
         }
@@ -11026,8 +12376,8 @@ impl PyPointInTimeRecoveryDescription {
     #[getter]
     fn recovery_period_in_days(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.recovery_period_in_days {
-            let converted_2480 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2480)
+            let converted_2634 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2634)
         } else {
             Ok(py.None())
         }
@@ -11036,8 +12386,8 @@ impl PyPointInTimeRecoveryDescription {
     #[getter]
     fn earliest_restorable_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.earliest_restorable_date_time {
-            let converted_2481 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2481)
+            let converted_2635 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2635)
         } else {
             Ok(py.None())
         }
@@ -11046,8 +12396,8 @@ impl PyPointInTimeRecoveryDescription {
     #[getter]
     fn latest_restorable_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.latest_restorable_date_time {
-            let converted_2482 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2482)
+            let converted_2636 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2636)
         } else {
             Ok(py.None())
         }
@@ -11060,7 +12410,7 @@ impl PyPointInTimeRecoveryDescription {
 
 #[pyclass(name = "Projection", module = "rboto_dynamodb._native", frozen)]
 struct PyProjection {
-    inner: aws_sdk_dynamodb::types::Projection,
+    inner: Arc<aws_sdk_dynamodb::types::Projection>,
 }
 
 #[pymethods]
@@ -11068,8 +12418,8 @@ impl PyProjection {
     #[getter]
     fn projection_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.projection_type {
-            let converted_2483 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2483)
+            let converted_2637 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2637)
         } else {
             Ok(py.None())
         }
@@ -11078,13 +12428,13 @@ impl PyProjection {
     #[getter]
     fn non_key_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.non_key_attributes {
-            let converted_2484_list = PyList::empty(py);
-            for item_2485 in value {
-                let converted_item_2486 = (item_2485).as_str().into_py_any(py)?;
-                converted_2484_list.append(converted_item_2486)?;
+            let converted_2638_list = PyList::empty(py);
+            for item_2639 in value {
+                let converted_item_2640 = (item_2639).as_str().into_py_any(py)?;
+                converted_2638_list.append(converted_item_2640)?;
             }
-            let converted_2484 = converted_2484_list.into_any().unbind();
-            Ok(converted_2484)
+            let converted_2638 = converted_2638_list.into_any().unbind();
+            Ok(converted_2638)
         } else {
             Ok(py.None())
         }
@@ -11101,25 +12451,25 @@ impl PyProjection {
     frozen
 )]
 struct PyProvisionedThroughput {
-    inner: aws_sdk_dynamodb::types::ProvisionedThroughput,
+    inner: Arc<aws_sdk_dynamodb::types::ProvisionedThroughput>,
 }
 
 #[pymethods]
 impl PyProvisionedThroughput {
     #[getter]
     fn read_capacity_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2487 = (&self.inner.read_capacity_units)
+        let converted_2641 = (&self.inner.read_capacity_units)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_2487)
+        Ok(converted_2641)
     }
 
     #[getter]
     fn write_capacity_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2488 = (&self.inner.write_capacity_units)
+        let converted_2642 = (&self.inner.write_capacity_units)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_2488)
+        Ok(converted_2642)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -11133,7 +12483,7 @@ impl PyProvisionedThroughput {
     frozen
 )]
 struct PyProvisionedThroughputDescription {
-    inner: aws_sdk_dynamodb::types::ProvisionedThroughputDescription,
+    inner: Arc<aws_sdk_dynamodb::types::ProvisionedThroughputDescription>,
 }
 
 #[pymethods]
@@ -11141,8 +12491,8 @@ impl PyProvisionedThroughputDescription {
     #[getter]
     fn last_increase_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_increase_date_time {
-            let converted_2489 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2489)
+            let converted_2643 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2643)
         } else {
             Ok(py.None())
         }
@@ -11151,8 +12501,8 @@ impl PyProvisionedThroughputDescription {
     #[getter]
     fn last_decrease_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_decrease_date_time {
-            let converted_2490 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2490)
+            let converted_2644 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2644)
         } else {
             Ok(py.None())
         }
@@ -11161,8 +12511,8 @@ impl PyProvisionedThroughputDescription {
     #[getter]
     fn number_of_decreases_today(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.number_of_decreases_today {
-            let converted_2491 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2491)
+            let converted_2645 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2645)
         } else {
             Ok(py.None())
         }
@@ -11171,8 +12521,8 @@ impl PyProvisionedThroughputDescription {
     #[getter]
     fn read_capacity_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.read_capacity_units {
-            let converted_2492 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2492)
+            let converted_2646 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2646)
         } else {
             Ok(py.None())
         }
@@ -11181,8 +12531,8 @@ impl PyProvisionedThroughputDescription {
     #[getter]
     fn write_capacity_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.write_capacity_units {
-            let converted_2493 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2493)
+            let converted_2647 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2647)
         } else {
             Ok(py.None())
         }
@@ -11199,7 +12549,7 @@ impl PyProvisionedThroughputDescription {
     frozen
 )]
 struct PyProvisionedThroughputOverride {
-    inner: aws_sdk_dynamodb::types::ProvisionedThroughputOverride,
+    inner: Arc<aws_sdk_dynamodb::types::ProvisionedThroughputOverride>,
 }
 
 #[pymethods]
@@ -11207,8 +12557,8 @@ impl PyProvisionedThroughputOverride {
     #[getter]
     fn read_capacity_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.read_capacity_units {
-            let converted_2494 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2494)
+            let converted_2648 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2648)
         } else {
             Ok(py.None())
         }
@@ -11221,21 +12571,21 @@ impl PyProvisionedThroughputOverride {
 
 #[pyclass(name = "PutRequest", module = "rboto_dynamodb._native", frozen)]
 struct PyPutRequest {
-    inner: aws_sdk_dynamodb::types::PutRequest,
+    inner: Arc<aws_sdk_dynamodb::types::PutRequest>,
 }
 
 #[pymethods]
 impl PyPutRequest {
     #[getter]
     fn item(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2495_dict = PyDict::new(py);
-        for (key_2496, value_2497) in &self.inner.item {
-            let converted_key_2498 = (key_2496).as_str().into_py_any(py)?;
-            let converted_value_2499 = attribute_value_to_py(py, value_2497)?;
-            converted_2495_dict.set_item(converted_key_2498, converted_value_2499)?;
+        let converted_2649_dict = PyDict::new(py);
+        for (key_2650, value_2651) in &self.inner.item {
+            let converted_key_2652 = (key_2650).as_str().into_py_any(py)?;
+            let converted_value_2653 = attribute_value_to_py(py, value_2651)?;
+            converted_2649_dict.set_item(converted_key_2652, converted_value_2653)?;
         }
-        let converted_2495 = converted_2495_dict.into_any().unbind();
-        Ok(converted_2495)
+        let converted_2649 = converted_2649_dict.into_any().unbind();
+        Ok(converted_2649)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -11245,7 +12595,7 @@ impl PyPutRequest {
 
 #[pyclass(name = "Replica", module = "rboto_dynamodb._native", frozen)]
 struct PyReplica {
-    inner: aws_sdk_dynamodb::types::Replica,
+    inner: Arc<aws_sdk_dynamodb::types::Replica>,
 }
 
 #[pymethods]
@@ -11253,8 +12603,8 @@ impl PyReplica {
     #[getter]
     fn region_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.region_name {
-            let converted_2500 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2500)
+            let converted_2654 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2654)
         } else {
             Ok(py.None())
         }
@@ -11265,13 +12615,112 @@ impl PyReplica {
     }
 }
 
+struct SharedReplicaAutoScalingDescription {
+    region_name: Option<::std::string::String>,
+    global_secondary_indexes:
+        Option<::std::vec::Vec<Arc<SharedReplicaGlobalSecondaryIndexAutoScalingDescription>>>,
+    replica_provisioned_read_capacity_auto_scaling_settings:
+        Option<Arc<SharedAutoScalingSettingsDescription>>,
+    replica_provisioned_write_capacity_auto_scaling_settings:
+        Option<Arc<SharedAutoScalingSettingsDescription>>,
+    replica_status: Option<aws_sdk_dynamodb::types::ReplicaStatus>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::ReplicaAutoScalingDescription>
+    for SharedReplicaAutoScalingDescription
+{
+    fn from(value: aws_sdk_dynamodb::types::ReplicaAutoScalingDescription) -> Self {
+        Self {
+            region_name: value.region_name,
+            global_secondary_indexes: value.global_secondary_indexes.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_2662| {
+                        Arc::new(
+                            SharedReplicaGlobalSecondaryIndexAutoScalingDescription::from(
+                                owned_2662,
+                            ),
+                        )
+                    })
+                    .collect()
+            }),
+            replica_provisioned_read_capacity_auto_scaling_settings: value
+                .replica_provisioned_read_capacity_auto_scaling_settings
+                .map(|item| Arc::new(SharedAutoScalingSettingsDescription::from(item))),
+            replica_provisioned_write_capacity_auto_scaling_settings: value
+                .replica_provisioned_write_capacity_auto_scaling_settings
+                .map(|item| Arc::new(SharedAutoScalingSettingsDescription::from(item))),
+            replica_status: value.replica_status,
+        }
+    }
+}
+
+fn replica_auto_scaling_description_shared_to_py(
+    py: Python<'_>,
+    value: &SharedReplicaAutoScalingDescription,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.region_name {
+        let converted_2663 = (value).as_str().into_py_any(py)?;
+        result.set_item("region_name", converted_2663)?;
+    } else {
+        result.set_item("region_name", py.None())?;
+    }
+    if let Some(value) = &value.global_secondary_indexes {
+        let converted_2664_list = PyList::empty(py);
+        for item_2665 in value {
+            let converted_item_2666 =
+                replica_global_secondary_index_auto_scaling_description_shared_to_py(
+                    py, item_2665,
+                )?;
+            converted_2664_list.append(converted_item_2666)?;
+        }
+        let converted_2664 = converted_2664_list.into_any().unbind();
+        result.set_item("global_secondary_indexes", converted_2664)?;
+    } else {
+        result.set_item("global_secondary_indexes", py.None())?;
+    }
+    if let Some(value) = &value.replica_provisioned_read_capacity_auto_scaling_settings {
+        let converted_2667 = auto_scaling_settings_description_shared_to_py(py, value)?;
+        result.set_item(
+            "replica_provisioned_read_capacity_auto_scaling_settings",
+            converted_2667,
+        )?;
+    } else {
+        result.set_item(
+            "replica_provisioned_read_capacity_auto_scaling_settings",
+            py.None(),
+        )?;
+    }
+    if let Some(value) = &value.replica_provisioned_write_capacity_auto_scaling_settings {
+        let converted_2668 = auto_scaling_settings_description_shared_to_py(py, value)?;
+        result.set_item(
+            "replica_provisioned_write_capacity_auto_scaling_settings",
+            converted_2668,
+        )?;
+    } else {
+        result.set_item(
+            "replica_provisioned_write_capacity_auto_scaling_settings",
+            py.None(),
+        )?;
+    }
+    if let Some(value) = &value.replica_status {
+        let converted_2669 = (value).as_str().into_py_any(py)?;
+        result.set_item("replica_status", converted_2669)?;
+    } else {
+        result.set_item("replica_status", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "ReplicaAutoScalingDescription",
     module = "rboto_dynamodb._native",
     frozen
 )]
 struct PyReplicaAutoScalingDescription {
-    inner: aws_sdk_dynamodb::types::ReplicaAutoScalingDescription,
+    inner: Arc<SharedReplicaAutoScalingDescription>,
 }
 
 #[pymethods]
@@ -11279,8 +12728,8 @@ impl PyReplicaAutoScalingDescription {
     #[getter]
     fn region_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.region_name {
-            let converted_2501 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2501)
+            let converted_2655 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2655)
         } else {
             Ok(py.None())
         }
@@ -11289,19 +12738,19 @@ impl PyReplicaAutoScalingDescription {
     #[getter]
     fn global_secondary_indexes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.global_secondary_indexes {
-            let converted_2502_list = PyList::empty(py);
-            for item_2503 in value {
-                let converted_item_2504 = Py::new(
+            let converted_2656_list = PyList::empty(py);
+            for item_2657 in value {
+                let converted_item_2658 = Py::new(
                     py,
                     PyReplicaGlobalSecondaryIndexAutoScalingDescription {
-                        inner: (item_2503).to_owned(),
+                        inner: Arc::clone(item_2657),
                     },
                 )?
                 .into_any();
-                converted_2502_list.append(converted_item_2504)?;
+                converted_2656_list.append(converted_item_2658)?;
             }
-            let converted_2502 = converted_2502_list.into_any().unbind();
-            Ok(converted_2502)
+            let converted_2656 = converted_2656_list.into_any().unbind();
+            Ok(converted_2656)
         } else {
             Ok(py.None())
         }
@@ -11316,14 +12765,14 @@ impl PyReplicaAutoScalingDescription {
             .inner
             .replica_provisioned_read_capacity_auto_scaling_settings
         {
-            let converted_2505 = Py::new(
+            let converted_2659 = Py::new(
                 py,
                 PyAutoScalingSettingsDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2505)
+            Ok(converted_2659)
         } else {
             Ok(py.None())
         }
@@ -11338,14 +12787,14 @@ impl PyReplicaAutoScalingDescription {
             .inner
             .replica_provisioned_write_capacity_auto_scaling_settings
         {
-            let converted_2506 = Py::new(
+            let converted_2660 = Py::new(
                 py,
                 PyAutoScalingSettingsDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2506)
+            Ok(converted_2660)
         } else {
             Ok(py.None())
         }
@@ -11354,21 +12803,168 @@ impl PyReplicaAutoScalingDescription {
     #[getter]
     fn replica_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replica_status {
-            let converted_2507 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2507)
+            let converted_2661 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2661)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        replica_auto_scaling_description_to_py(py, &self.inner)
+        replica_auto_scaling_description_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedReplicaDescription {
+    region_name: Option<::std::string::String>,
+    replica_status: Option<aws_sdk_dynamodb::types::ReplicaStatus>,
+    replica_arn: Option<::std::string::String>,
+    replica_status_description: Option<::std::string::String>,
+    replica_status_percent_progress: Option<::std::string::String>,
+    kms_master_key_id: Option<::std::string::String>,
+    provisioned_throughput_override:
+        Option<Arc<aws_sdk_dynamodb::types::ProvisionedThroughputOverride>>,
+    on_demand_throughput_override: Option<Arc<aws_sdk_dynamodb::types::OnDemandThroughputOverride>>,
+    warm_throughput: Option<Arc<aws_sdk_dynamodb::types::TableWarmThroughputDescription>>,
+    global_secondary_indexes:
+        Option<::std::vec::Vec<Arc<SharedReplicaGlobalSecondaryIndexDescription>>>,
+    replica_inaccessible_date_time: Option<::aws_smithy_types::DateTime>,
+    replica_table_class_summary: Option<Arc<aws_sdk_dynamodb::types::TableClassSummary>>,
+    global_table_settings_replication_mode:
+        Option<aws_sdk_dynamodb::types::GlobalTableSettingsReplicationMode>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::ReplicaDescription> for SharedReplicaDescription {
+    fn from(value: aws_sdk_dynamodb::types::ReplicaDescription) -> Self {
+        Self {
+            region_name: value.region_name,
+            replica_status: value.replica_status,
+            replica_arn: value.replica_arn,
+            replica_status_description: value.replica_status_description,
+            replica_status_percent_progress: value.replica_status_percent_progress,
+            kms_master_key_id: value.kms_master_key_id,
+            provisioned_throughput_override: value
+                .provisioned_throughput_override
+                .map(|item| Arc::new(item)),
+            on_demand_throughput_override: value
+                .on_demand_throughput_override
+                .map(|item| Arc::new(item)),
+            warm_throughput: value.warm_throughput.map(|item| Arc::new(item)),
+            global_secondary_indexes: value.global_secondary_indexes.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_2685| {
+                        Arc::new(SharedReplicaGlobalSecondaryIndexDescription::from(
+                            owned_2685,
+                        ))
+                    })
+                    .collect()
+            }),
+            replica_inaccessible_date_time: value.replica_inaccessible_date_time,
+            replica_table_class_summary: value
+                .replica_table_class_summary
+                .map(|item| Arc::new(item)),
+            global_table_settings_replication_mode: value.global_table_settings_replication_mode,
+        }
+    }
+}
+
+fn replica_description_shared_to_py(
+    py: Python<'_>,
+    value: &SharedReplicaDescription,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.region_name {
+        let converted_2686 = (value).as_str().into_py_any(py)?;
+        result.set_item("region_name", converted_2686)?;
+    } else {
+        result.set_item("region_name", py.None())?;
+    }
+    if let Some(value) = &value.replica_status {
+        let converted_2687 = (value).as_str().into_py_any(py)?;
+        result.set_item("replica_status", converted_2687)?;
+    } else {
+        result.set_item("replica_status", py.None())?;
+    }
+    if let Some(value) = &value.replica_arn {
+        let converted_2688 = (value).as_str().into_py_any(py)?;
+        result.set_item("replica_arn", converted_2688)?;
+    } else {
+        result.set_item("replica_arn", py.None())?;
+    }
+    if let Some(value) = &value.replica_status_description {
+        let converted_2689 = (value).as_str().into_py_any(py)?;
+        result.set_item("replica_status_description", converted_2689)?;
+    } else {
+        result.set_item("replica_status_description", py.None())?;
+    }
+    if let Some(value) = &value.replica_status_percent_progress {
+        let converted_2690 = (value).as_str().into_py_any(py)?;
+        result.set_item("replica_status_percent_progress", converted_2690)?;
+    } else {
+        result.set_item("replica_status_percent_progress", py.None())?;
+    }
+    if let Some(value) = &value.kms_master_key_id {
+        let converted_2691 = (value).as_str().into_py_any(py)?;
+        result.set_item("kms_master_key_id", converted_2691)?;
+    } else {
+        result.set_item("kms_master_key_id", py.None())?;
+    }
+    if let Some(value) = &value.provisioned_throughput_override {
+        let converted_2692 = provisioned_throughput_override_to_py(py, value)?;
+        result.set_item("provisioned_throughput_override", converted_2692)?;
+    } else {
+        result.set_item("provisioned_throughput_override", py.None())?;
+    }
+    if let Some(value) = &value.on_demand_throughput_override {
+        let converted_2693 = on_demand_throughput_override_to_py(py, value)?;
+        result.set_item("on_demand_throughput_override", converted_2693)?;
+    } else {
+        result.set_item("on_demand_throughput_override", py.None())?;
+    }
+    if let Some(value) = &value.warm_throughput {
+        let converted_2694 = table_warm_throughput_description_to_py(py, value)?;
+        result.set_item("warm_throughput", converted_2694)?;
+    } else {
+        result.set_item("warm_throughput", py.None())?;
+    }
+    if let Some(value) = &value.global_secondary_indexes {
+        let converted_2695_list = PyList::empty(py);
+        for item_2696 in value {
+            let converted_item_2697 =
+                replica_global_secondary_index_description_shared_to_py(py, item_2696)?;
+            converted_2695_list.append(converted_item_2697)?;
+        }
+        let converted_2695 = converted_2695_list.into_any().unbind();
+        result.set_item("global_secondary_indexes", converted_2695)?;
+    } else {
+        result.set_item("global_secondary_indexes", py.None())?;
+    }
+    if let Some(value) = &value.replica_inaccessible_date_time {
+        let converted_2698 = (value).to_string().into_py_any(py)?;
+        result.set_item("replica_inaccessible_date_time", converted_2698)?;
+    } else {
+        result.set_item("replica_inaccessible_date_time", py.None())?;
+    }
+    if let Some(value) = &value.replica_table_class_summary {
+        let converted_2699 = table_class_summary_to_py(py, value)?;
+        result.set_item("replica_table_class_summary", converted_2699)?;
+    } else {
+        result.set_item("replica_table_class_summary", py.None())?;
+    }
+    if let Some(value) = &value.global_table_settings_replication_mode {
+        let converted_2700 = (value).as_str().into_py_any(py)?;
+        result.set_item("global_table_settings_replication_mode", converted_2700)?;
+    } else {
+        result.set_item("global_table_settings_replication_mode", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(name = "ReplicaDescription", module = "rboto_dynamodb._native", frozen)]
 struct PyReplicaDescription {
-    inner: aws_sdk_dynamodb::types::ReplicaDescription,
+    inner: Arc<SharedReplicaDescription>,
 }
 
 #[pymethods]
@@ -11376,8 +12972,8 @@ impl PyReplicaDescription {
     #[getter]
     fn region_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.region_name {
-            let converted_2508 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2508)
+            let converted_2670 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2670)
         } else {
             Ok(py.None())
         }
@@ -11386,8 +12982,8 @@ impl PyReplicaDescription {
     #[getter]
     fn replica_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replica_status {
-            let converted_2509 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2509)
+            let converted_2671 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2671)
         } else {
             Ok(py.None())
         }
@@ -11396,8 +12992,8 @@ impl PyReplicaDescription {
     #[getter]
     fn replica_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replica_arn {
-            let converted_2510 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2510)
+            let converted_2672 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2672)
         } else {
             Ok(py.None())
         }
@@ -11406,8 +13002,8 @@ impl PyReplicaDescription {
     #[getter]
     fn replica_status_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replica_status_description {
-            let converted_2511 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2511)
+            let converted_2673 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2673)
         } else {
             Ok(py.None())
         }
@@ -11416,8 +13012,8 @@ impl PyReplicaDescription {
     #[getter]
     fn replica_status_percent_progress(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replica_status_percent_progress {
-            let converted_2512 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2512)
+            let converted_2674 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2674)
         } else {
             Ok(py.None())
         }
@@ -11426,8 +13022,8 @@ impl PyReplicaDescription {
     #[getter]
     fn kms_master_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_master_key_id {
-            let converted_2513 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2513)
+            let converted_2675 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2675)
         } else {
             Ok(py.None())
         }
@@ -11436,14 +13032,14 @@ impl PyReplicaDescription {
     #[getter]
     fn provisioned_throughput_override(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.provisioned_throughput_override {
-            let converted_2514 = Py::new(
+            let converted_2676 = Py::new(
                 py,
                 PyProvisionedThroughputOverride {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2514)
+            Ok(converted_2676)
         } else {
             Ok(py.None())
         }
@@ -11452,14 +13048,14 @@ impl PyReplicaDescription {
     #[getter]
     fn on_demand_throughput_override(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.on_demand_throughput_override {
-            let converted_2515 = Py::new(
+            let converted_2677 = Py::new(
                 py,
                 PyOnDemandThroughputOverride {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2515)
+            Ok(converted_2677)
         } else {
             Ok(py.None())
         }
@@ -11468,14 +13064,14 @@ impl PyReplicaDescription {
     #[getter]
     fn warm_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.warm_throughput {
-            let converted_2516 = Py::new(
+            let converted_2678 = Py::new(
                 py,
                 PyTableWarmThroughputDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2516)
+            Ok(converted_2678)
         } else {
             Ok(py.None())
         }
@@ -11484,19 +13080,19 @@ impl PyReplicaDescription {
     #[getter]
     fn global_secondary_indexes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.global_secondary_indexes {
-            let converted_2517_list = PyList::empty(py);
-            for item_2518 in value {
-                let converted_item_2519 = Py::new(
+            let converted_2679_list = PyList::empty(py);
+            for item_2680 in value {
+                let converted_item_2681 = Py::new(
                     py,
                     PyReplicaGlobalSecondaryIndexDescription {
-                        inner: (item_2518).to_owned(),
+                        inner: Arc::clone(item_2680),
                     },
                 )?
                 .into_any();
-                converted_2517_list.append(converted_item_2519)?;
+                converted_2679_list.append(converted_item_2681)?;
             }
-            let converted_2517 = converted_2517_list.into_any().unbind();
-            Ok(converted_2517)
+            let converted_2679 = converted_2679_list.into_any().unbind();
+            Ok(converted_2679)
         } else {
             Ok(py.None())
         }
@@ -11505,8 +13101,8 @@ impl PyReplicaDescription {
     #[getter]
     fn replica_inaccessible_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replica_inaccessible_date_time {
-            let converted_2520 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2520)
+            let converted_2682 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2682)
         } else {
             Ok(py.None())
         }
@@ -11515,14 +13111,14 @@ impl PyReplicaDescription {
     #[getter]
     fn replica_table_class_summary(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replica_table_class_summary {
-            let converted_2521 = Py::new(
+            let converted_2683 = Py::new(
                 py,
                 PyTableClassSummary {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2521)
+            Ok(converted_2683)
         } else {
             Ok(py.None())
         }
@@ -11531,16 +13127,86 @@ impl PyReplicaDescription {
     #[getter]
     fn global_table_settings_replication_mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.global_table_settings_replication_mode {
-            let converted_2522 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2522)
+            let converted_2684 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2684)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        replica_description_to_py(py, &self.inner)
+        replica_description_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedReplicaGlobalSecondaryIndexAutoScalingDescription {
+    index_name: Option<::std::string::String>,
+    index_status: Option<aws_sdk_dynamodb::types::IndexStatus>,
+    provisioned_read_capacity_auto_scaling_settings:
+        Option<Arc<SharedAutoScalingSettingsDescription>>,
+    provisioned_write_capacity_auto_scaling_settings:
+        Option<Arc<SharedAutoScalingSettingsDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexAutoScalingDescription>
+    for SharedReplicaGlobalSecondaryIndexAutoScalingDescription
+{
+    fn from(
+        value: aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexAutoScalingDescription,
+    ) -> Self {
+        Self {
+            index_name: value.index_name,
+            index_status: value.index_status,
+            provisioned_read_capacity_auto_scaling_settings: value
+                .provisioned_read_capacity_auto_scaling_settings
+                .map(|item| Arc::new(SharedAutoScalingSettingsDescription::from(item))),
+            provisioned_write_capacity_auto_scaling_settings: value
+                .provisioned_write_capacity_auto_scaling_settings
+                .map(|item| Arc::new(SharedAutoScalingSettingsDescription::from(item))),
+        }
+    }
+}
+
+fn replica_global_secondary_index_auto_scaling_description_shared_to_py(
+    py: Python<'_>,
+    value: &SharedReplicaGlobalSecondaryIndexAutoScalingDescription,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.index_name {
+        let converted_2705 = (value).as_str().into_py_any(py)?;
+        result.set_item("index_name", converted_2705)?;
+    } else {
+        result.set_item("index_name", py.None())?;
+    }
+    if let Some(value) = &value.index_status {
+        let converted_2706 = (value).as_str().into_py_any(py)?;
+        result.set_item("index_status", converted_2706)?;
+    } else {
+        result.set_item("index_status", py.None())?;
+    }
+    if let Some(value) = &value.provisioned_read_capacity_auto_scaling_settings {
+        let converted_2707 = auto_scaling_settings_description_shared_to_py(py, value)?;
+        result.set_item(
+            "provisioned_read_capacity_auto_scaling_settings",
+            converted_2707,
+        )?;
+    } else {
+        result.set_item("provisioned_read_capacity_auto_scaling_settings", py.None())?;
+    }
+    if let Some(value) = &value.provisioned_write_capacity_auto_scaling_settings {
+        let converted_2708 = auto_scaling_settings_description_shared_to_py(py, value)?;
+        result.set_item(
+            "provisioned_write_capacity_auto_scaling_settings",
+            converted_2708,
+        )?;
+    } else {
+        result.set_item(
+            "provisioned_write_capacity_auto_scaling_settings",
+            py.None(),
+        )?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -11549,7 +13215,7 @@ impl PyReplicaDescription {
     frozen
 )]
 struct PyReplicaGlobalSecondaryIndexAutoScalingDescription {
-    inner: aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexAutoScalingDescription,
+    inner: Arc<SharedReplicaGlobalSecondaryIndexAutoScalingDescription>,
 }
 
 #[pymethods]
@@ -11557,8 +13223,8 @@ impl PyReplicaGlobalSecondaryIndexAutoScalingDescription {
     #[getter]
     fn index_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.index_name {
-            let converted_2523 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2523)
+            let converted_2701 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2701)
         } else {
             Ok(py.None())
         }
@@ -11567,8 +13233,8 @@ impl PyReplicaGlobalSecondaryIndexAutoScalingDescription {
     #[getter]
     fn index_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.index_status {
-            let converted_2524 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2524)
+            let converted_2702 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2702)
         } else {
             Ok(py.None())
         }
@@ -11580,14 +13246,14 @@ impl PyReplicaGlobalSecondaryIndexAutoScalingDescription {
         py: Python<'_>,
     ) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.provisioned_read_capacity_auto_scaling_settings {
-            let converted_2525 = Py::new(
+            let converted_2703 = Py::new(
                 py,
                 PyAutoScalingSettingsDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2525)
+            Ok(converted_2703)
         } else {
             Ok(py.None())
         }
@@ -11599,22 +13265,81 @@ impl PyReplicaGlobalSecondaryIndexAutoScalingDescription {
         py: Python<'_>,
     ) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.provisioned_write_capacity_auto_scaling_settings {
-            let converted_2526 = Py::new(
+            let converted_2704 = Py::new(
                 py,
                 PyAutoScalingSettingsDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2526)
+            Ok(converted_2704)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        replica_global_secondary_index_auto_scaling_description_to_py(py, &self.inner)
+        replica_global_secondary_index_auto_scaling_description_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedReplicaGlobalSecondaryIndexDescription {
+    index_name: Option<::std::string::String>,
+    provisioned_throughput_override:
+        Option<Arc<aws_sdk_dynamodb::types::ProvisionedThroughputOverride>>,
+    on_demand_throughput_override: Option<Arc<aws_sdk_dynamodb::types::OnDemandThroughputOverride>>,
+    warm_throughput:
+        Option<Arc<aws_sdk_dynamodb::types::GlobalSecondaryIndexWarmThroughputDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexDescription>
+    for SharedReplicaGlobalSecondaryIndexDescription
+{
+    fn from(value: aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexDescription) -> Self {
+        Self {
+            index_name: value.index_name,
+            provisioned_throughput_override: value
+                .provisioned_throughput_override
+                .map(|item| Arc::new(item)),
+            on_demand_throughput_override: value
+                .on_demand_throughput_override
+                .map(|item| Arc::new(item)),
+            warm_throughput: value.warm_throughput.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn replica_global_secondary_index_description_shared_to_py(
+    py: Python<'_>,
+    value: &SharedReplicaGlobalSecondaryIndexDescription,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.index_name {
+        let converted_2713 = (value).as_str().into_py_any(py)?;
+        result.set_item("index_name", converted_2713)?;
+    } else {
+        result.set_item("index_name", py.None())?;
+    }
+    if let Some(value) = &value.provisioned_throughput_override {
+        let converted_2714 = provisioned_throughput_override_to_py(py, value)?;
+        result.set_item("provisioned_throughput_override", converted_2714)?;
+    } else {
+        result.set_item("provisioned_throughput_override", py.None())?;
+    }
+    if let Some(value) = &value.on_demand_throughput_override {
+        let converted_2715 = on_demand_throughput_override_to_py(py, value)?;
+        result.set_item("on_demand_throughput_override", converted_2715)?;
+    } else {
+        result.set_item("on_demand_throughput_override", py.None())?;
+    }
+    if let Some(value) = &value.warm_throughput {
+        let converted_2716 = global_secondary_index_warm_throughput_description_to_py(py, value)?;
+        result.set_item("warm_throughput", converted_2716)?;
+    } else {
+        result.set_item("warm_throughput", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -11623,7 +13348,7 @@ impl PyReplicaGlobalSecondaryIndexAutoScalingDescription {
     frozen
 )]
 struct PyReplicaGlobalSecondaryIndexDescription {
-    inner: aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexDescription,
+    inner: Arc<SharedReplicaGlobalSecondaryIndexDescription>,
 }
 
 #[pymethods]
@@ -11631,8 +13356,8 @@ impl PyReplicaGlobalSecondaryIndexDescription {
     #[getter]
     fn index_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.index_name {
-            let converted_2527 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2527)
+            let converted_2709 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2709)
         } else {
             Ok(py.None())
         }
@@ -11641,14 +13366,14 @@ impl PyReplicaGlobalSecondaryIndexDescription {
     #[getter]
     fn provisioned_throughput_override(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.provisioned_throughput_override {
-            let converted_2528 = Py::new(
+            let converted_2710 = Py::new(
                 py,
                 PyProvisionedThroughputOverride {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2528)
+            Ok(converted_2710)
         } else {
             Ok(py.None())
         }
@@ -11657,14 +13382,14 @@ impl PyReplicaGlobalSecondaryIndexDescription {
     #[getter]
     fn on_demand_throughput_override(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.on_demand_throughput_override {
-            let converted_2529 = Py::new(
+            let converted_2711 = Py::new(
                 py,
                 PyOnDemandThroughputOverride {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2529)
+            Ok(converted_2711)
         } else {
             Ok(py.None())
         }
@@ -11673,22 +13398,104 @@ impl PyReplicaGlobalSecondaryIndexDescription {
     #[getter]
     fn warm_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.warm_throughput {
-            let converted_2530 = Py::new(
+            let converted_2712 = Py::new(
                 py,
                 PyGlobalSecondaryIndexWarmThroughputDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2530)
+            Ok(converted_2712)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        replica_global_secondary_index_description_to_py(py, &self.inner)
+        replica_global_secondary_index_description_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedReplicaGlobalSecondaryIndexSettingsDescription {
+    index_name: ::std::string::String,
+    index_status: Option<aws_sdk_dynamodb::types::IndexStatus>,
+    provisioned_read_capacity_units: Option<i64>,
+    provisioned_read_capacity_auto_scaling_settings:
+        Option<Arc<SharedAutoScalingSettingsDescription>>,
+    provisioned_write_capacity_units: Option<i64>,
+    provisioned_write_capacity_auto_scaling_settings:
+        Option<Arc<SharedAutoScalingSettingsDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexSettingsDescription>
+    for SharedReplicaGlobalSecondaryIndexSettingsDescription
+{
+    fn from(
+        value: aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexSettingsDescription,
+    ) -> Self {
+        Self {
+            index_name: value.index_name,
+            index_status: value.index_status,
+            provisioned_read_capacity_units: value.provisioned_read_capacity_units,
+            provisioned_read_capacity_auto_scaling_settings: value
+                .provisioned_read_capacity_auto_scaling_settings
+                .map(|item| Arc::new(SharedAutoScalingSettingsDescription::from(item))),
+            provisioned_write_capacity_units: value.provisioned_write_capacity_units,
+            provisioned_write_capacity_auto_scaling_settings: value
+                .provisioned_write_capacity_auto_scaling_settings
+                .map(|item| Arc::new(SharedAutoScalingSettingsDescription::from(item))),
+        }
+    }
+}
+
+fn replica_global_secondary_index_settings_description_shared_to_py(
+    py: Python<'_>,
+    value: &SharedReplicaGlobalSecondaryIndexSettingsDescription,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_2723 = (&value.index_name).as_str().into_py_any(py)?;
+    result.set_item("index_name", converted_2723)?;
+    if let Some(value) = &value.index_status {
+        let converted_2724 = (value).as_str().into_py_any(py)?;
+        result.set_item("index_status", converted_2724)?;
+    } else {
+        result.set_item("index_status", py.None())?;
+    }
+    if let Some(value) = &value.provisioned_read_capacity_units {
+        let converted_2725 = (value).to_owned().into_py_any(py)?;
+        result.set_item("provisioned_read_capacity_units", converted_2725)?;
+    } else {
+        result.set_item("provisioned_read_capacity_units", py.None())?;
+    }
+    if let Some(value) = &value.provisioned_read_capacity_auto_scaling_settings {
+        let converted_2726 = auto_scaling_settings_description_shared_to_py(py, value)?;
+        result.set_item(
+            "provisioned_read_capacity_auto_scaling_settings",
+            converted_2726,
+        )?;
+    } else {
+        result.set_item("provisioned_read_capacity_auto_scaling_settings", py.None())?;
+    }
+    if let Some(value) = &value.provisioned_write_capacity_units {
+        let converted_2727 = (value).to_owned().into_py_any(py)?;
+        result.set_item("provisioned_write_capacity_units", converted_2727)?;
+    } else {
+        result.set_item("provisioned_write_capacity_units", py.None())?;
+    }
+    if let Some(value) = &value.provisioned_write_capacity_auto_scaling_settings {
+        let converted_2728 = auto_scaling_settings_description_shared_to_py(py, value)?;
+        result.set_item(
+            "provisioned_write_capacity_auto_scaling_settings",
+            converted_2728,
+        )?;
+    } else {
+        result.set_item(
+            "provisioned_write_capacity_auto_scaling_settings",
+            py.None(),
+        )?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -11697,22 +13504,22 @@ impl PyReplicaGlobalSecondaryIndexDescription {
     frozen
 )]
 struct PyReplicaGlobalSecondaryIndexSettingsDescription {
-    inner: aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexSettingsDescription,
+    inner: Arc<SharedReplicaGlobalSecondaryIndexSettingsDescription>,
 }
 
 #[pymethods]
 impl PyReplicaGlobalSecondaryIndexSettingsDescription {
     #[getter]
     fn index_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2531 = (&self.inner.index_name).as_str().into_py_any(py)?;
-        Ok(converted_2531)
+        let converted_2717 = (&self.inner.index_name).as_str().into_py_any(py)?;
+        Ok(converted_2717)
     }
 
     #[getter]
     fn index_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.index_status {
-            let converted_2532 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2532)
+            let converted_2718 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2718)
         } else {
             Ok(py.None())
         }
@@ -11721,8 +13528,8 @@ impl PyReplicaGlobalSecondaryIndexSettingsDescription {
     #[getter]
     fn provisioned_read_capacity_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.provisioned_read_capacity_units {
-            let converted_2533 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2533)
+            let converted_2719 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2719)
         } else {
             Ok(py.None())
         }
@@ -11734,14 +13541,14 @@ impl PyReplicaGlobalSecondaryIndexSettingsDescription {
         py: Python<'_>,
     ) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.provisioned_read_capacity_auto_scaling_settings {
-            let converted_2534 = Py::new(
+            let converted_2720 = Py::new(
                 py,
                 PyAutoScalingSettingsDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2534)
+            Ok(converted_2720)
         } else {
             Ok(py.None())
         }
@@ -11750,8 +13557,8 @@ impl PyReplicaGlobalSecondaryIndexSettingsDescription {
     #[getter]
     fn provisioned_write_capacity_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.provisioned_write_capacity_units {
-            let converted_2535 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2535)
+            let converted_2721 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2721)
         } else {
             Ok(py.None())
         }
@@ -11763,22 +13570,152 @@ impl PyReplicaGlobalSecondaryIndexSettingsDescription {
         py: Python<'_>,
     ) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.provisioned_write_capacity_auto_scaling_settings {
-            let converted_2536 = Py::new(
+            let converted_2722 = Py::new(
                 py,
                 PyAutoScalingSettingsDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2536)
+            Ok(converted_2722)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        replica_global_secondary_index_settings_description_to_py(py, &self.inner)
+        replica_global_secondary_index_settings_description_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedReplicaSettingsDescription {
+    region_name: ::std::string::String,
+    replica_status: Option<aws_sdk_dynamodb::types::ReplicaStatus>,
+    replica_billing_mode_summary: Option<Arc<aws_sdk_dynamodb::types::BillingModeSummary>>,
+    replica_provisioned_read_capacity_units: Option<i64>,
+    replica_provisioned_read_capacity_auto_scaling_settings:
+        Option<Arc<SharedAutoScalingSettingsDescription>>,
+    replica_provisioned_write_capacity_units: Option<i64>,
+    replica_provisioned_write_capacity_auto_scaling_settings:
+        Option<Arc<SharedAutoScalingSettingsDescription>>,
+    replica_global_secondary_index_settings:
+        Option<::std::vec::Vec<Arc<SharedReplicaGlobalSecondaryIndexSettingsDescription>>>,
+    replica_table_class_summary: Option<Arc<aws_sdk_dynamodb::types::TableClassSummary>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::ReplicaSettingsDescription>
+    for SharedReplicaSettingsDescription
+{
+    fn from(value: aws_sdk_dynamodb::types::ReplicaSettingsDescription) -> Self {
+        Self {
+            region_name: value.region_name,
+            replica_status: value.replica_status,
+            replica_billing_mode_summary: value
+                .replica_billing_mode_summary
+                .map(|item| Arc::new(item)),
+            replica_provisioned_read_capacity_units: value.replica_provisioned_read_capacity_units,
+            replica_provisioned_read_capacity_auto_scaling_settings: value
+                .replica_provisioned_read_capacity_auto_scaling_settings
+                .map(|item| Arc::new(SharedAutoScalingSettingsDescription::from(item))),
+            replica_provisioned_write_capacity_units: value
+                .replica_provisioned_write_capacity_units,
+            replica_provisioned_write_capacity_auto_scaling_settings: value
+                .replica_provisioned_write_capacity_auto_scaling_settings
+                .map(|item| Arc::new(SharedAutoScalingSettingsDescription::from(item))),
+            replica_global_secondary_index_settings: value
+                .replica_global_secondary_index_settings
+                .map(|item| {
+                    (item)
+                        .into_iter()
+                        .map(|owned_2740| {
+                            Arc::new(SharedReplicaGlobalSecondaryIndexSettingsDescription::from(
+                                owned_2740,
+                            ))
+                        })
+                        .collect()
+                }),
+            replica_table_class_summary: value
+                .replica_table_class_summary
+                .map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn replica_settings_description_shared_to_py(
+    py: Python<'_>,
+    value: &SharedReplicaSettingsDescription,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_2741 = (&value.region_name).as_str().into_py_any(py)?;
+    result.set_item("region_name", converted_2741)?;
+    if let Some(value) = &value.replica_status {
+        let converted_2742 = (value).as_str().into_py_any(py)?;
+        result.set_item("replica_status", converted_2742)?;
+    } else {
+        result.set_item("replica_status", py.None())?;
+    }
+    if let Some(value) = &value.replica_billing_mode_summary {
+        let converted_2743 = billing_mode_summary_to_py(py, value)?;
+        result.set_item("replica_billing_mode_summary", converted_2743)?;
+    } else {
+        result.set_item("replica_billing_mode_summary", py.None())?;
+    }
+    if let Some(value) = &value.replica_provisioned_read_capacity_units {
+        let converted_2744 = (value).to_owned().into_py_any(py)?;
+        result.set_item("replica_provisioned_read_capacity_units", converted_2744)?;
+    } else {
+        result.set_item("replica_provisioned_read_capacity_units", py.None())?;
+    }
+    if let Some(value) = &value.replica_provisioned_read_capacity_auto_scaling_settings {
+        let converted_2745 = auto_scaling_settings_description_shared_to_py(py, value)?;
+        result.set_item(
+            "replica_provisioned_read_capacity_auto_scaling_settings",
+            converted_2745,
+        )?;
+    } else {
+        result.set_item(
+            "replica_provisioned_read_capacity_auto_scaling_settings",
+            py.None(),
+        )?;
+    }
+    if let Some(value) = &value.replica_provisioned_write_capacity_units {
+        let converted_2746 = (value).to_owned().into_py_any(py)?;
+        result.set_item("replica_provisioned_write_capacity_units", converted_2746)?;
+    } else {
+        result.set_item("replica_provisioned_write_capacity_units", py.None())?;
+    }
+    if let Some(value) = &value.replica_provisioned_write_capacity_auto_scaling_settings {
+        let converted_2747 = auto_scaling_settings_description_shared_to_py(py, value)?;
+        result.set_item(
+            "replica_provisioned_write_capacity_auto_scaling_settings",
+            converted_2747,
+        )?;
+    } else {
+        result.set_item(
+            "replica_provisioned_write_capacity_auto_scaling_settings",
+            py.None(),
+        )?;
+    }
+    if let Some(value) = &value.replica_global_secondary_index_settings {
+        let converted_2748_list = PyList::empty(py);
+        for item_2749 in value {
+            let converted_item_2750 =
+                replica_global_secondary_index_settings_description_shared_to_py(py, item_2749)?;
+            converted_2748_list.append(converted_item_2750)?;
+        }
+        let converted_2748 = converted_2748_list.into_any().unbind();
+        result.set_item("replica_global_secondary_index_settings", converted_2748)?;
+    } else {
+        result.set_item("replica_global_secondary_index_settings", py.None())?;
+    }
+    if let Some(value) = &value.replica_table_class_summary {
+        let converted_2751 = table_class_summary_to_py(py, value)?;
+        result.set_item("replica_table_class_summary", converted_2751)?;
+    } else {
+        result.set_item("replica_table_class_summary", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -11787,22 +13724,22 @@ impl PyReplicaGlobalSecondaryIndexSettingsDescription {
     frozen
 )]
 struct PyReplicaSettingsDescription {
-    inner: aws_sdk_dynamodb::types::ReplicaSettingsDescription,
+    inner: Arc<SharedReplicaSettingsDescription>,
 }
 
 #[pymethods]
 impl PyReplicaSettingsDescription {
     #[getter]
     fn region_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2537 = (&self.inner.region_name).as_str().into_py_any(py)?;
-        Ok(converted_2537)
+        let converted_2729 = (&self.inner.region_name).as_str().into_py_any(py)?;
+        Ok(converted_2729)
     }
 
     #[getter]
     fn replica_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replica_status {
-            let converted_2538 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2538)
+            let converted_2730 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2730)
         } else {
             Ok(py.None())
         }
@@ -11811,14 +13748,14 @@ impl PyReplicaSettingsDescription {
     #[getter]
     fn replica_billing_mode_summary(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replica_billing_mode_summary {
-            let converted_2539 = Py::new(
+            let converted_2731 = Py::new(
                 py,
                 PyBillingModeSummary {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2539)
+            Ok(converted_2731)
         } else {
             Ok(py.None())
         }
@@ -11827,8 +13764,8 @@ impl PyReplicaSettingsDescription {
     #[getter]
     fn replica_provisioned_read_capacity_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replica_provisioned_read_capacity_units {
-            let converted_2540 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2540)
+            let converted_2732 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2732)
         } else {
             Ok(py.None())
         }
@@ -11843,14 +13780,14 @@ impl PyReplicaSettingsDescription {
             .inner
             .replica_provisioned_read_capacity_auto_scaling_settings
         {
-            let converted_2541 = Py::new(
+            let converted_2733 = Py::new(
                 py,
                 PyAutoScalingSettingsDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2541)
+            Ok(converted_2733)
         } else {
             Ok(py.None())
         }
@@ -11859,8 +13796,8 @@ impl PyReplicaSettingsDescription {
     #[getter]
     fn replica_provisioned_write_capacity_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replica_provisioned_write_capacity_units {
-            let converted_2542 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2542)
+            let converted_2734 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2734)
         } else {
             Ok(py.None())
         }
@@ -11875,14 +13812,14 @@ impl PyReplicaSettingsDescription {
             .inner
             .replica_provisioned_write_capacity_auto_scaling_settings
         {
-            let converted_2543 = Py::new(
+            let converted_2735 = Py::new(
                 py,
                 PyAutoScalingSettingsDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2543)
+            Ok(converted_2735)
         } else {
             Ok(py.None())
         }
@@ -11891,19 +13828,19 @@ impl PyReplicaSettingsDescription {
     #[getter]
     fn replica_global_secondary_index_settings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replica_global_secondary_index_settings {
-            let converted_2544_list = PyList::empty(py);
-            for item_2545 in value {
-                let converted_item_2546 = Py::new(
+            let converted_2736_list = PyList::empty(py);
+            for item_2737 in value {
+                let converted_item_2738 = Py::new(
                     py,
                     PyReplicaGlobalSecondaryIndexSettingsDescription {
-                        inner: (item_2545).to_owned(),
+                        inner: Arc::clone(item_2737),
                     },
                 )?
                 .into_any();
-                converted_2544_list.append(converted_item_2546)?;
+                converted_2736_list.append(converted_item_2738)?;
             }
-            let converted_2544 = converted_2544_list.into_any().unbind();
-            Ok(converted_2544)
+            let converted_2736 = converted_2736_list.into_any().unbind();
+            Ok(converted_2736)
         } else {
             Ok(py.None())
         }
@@ -11912,27 +13849,27 @@ impl PyReplicaSettingsDescription {
     #[getter]
     fn replica_table_class_summary(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replica_table_class_summary {
-            let converted_2547 = Py::new(
+            let converted_2739 = Py::new(
                 py,
                 PyTableClassSummary {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2547)
+            Ok(converted_2739)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        replica_settings_description_to_py(py, &self.inner)
+        replica_settings_description_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "RestoreSummary", module = "rboto_dynamodb._native", frozen)]
 struct PyRestoreSummary {
-    inner: aws_sdk_dynamodb::types::RestoreSummary,
+    inner: Arc<aws_sdk_dynamodb::types::RestoreSummary>,
 }
 
 #[pymethods]
@@ -11940,8 +13877,8 @@ impl PyRestoreSummary {
     #[getter]
     fn source_backup_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.source_backup_arn {
-            let converted_2548 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2548)
+            let converted_2752 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2752)
         } else {
             Ok(py.None())
         }
@@ -11950,8 +13887,8 @@ impl PyRestoreSummary {
     #[getter]
     fn source_table_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.source_table_arn {
-            let converted_2549 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2549)
+            let converted_2753 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2753)
         } else {
             Ok(py.None())
         }
@@ -11959,18 +13896,18 @@ impl PyRestoreSummary {
 
     #[getter]
     fn restore_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2550 = (&self.inner.restore_date_time)
+        let converted_2754 = (&self.inner.restore_date_time)
             .to_string()
             .into_py_any(py)?;
-        Ok(converted_2550)
+        Ok(converted_2754)
     }
 
     #[getter]
     fn restore_in_progress(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2551 = (&self.inner.restore_in_progress)
+        let converted_2755 = (&self.inner.restore_in_progress)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_2551)
+        Ok(converted_2755)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -11980,7 +13917,7 @@ impl PyRestoreSummary {
 
 #[pyclass(name = "S3BucketSource", module = "rboto_dynamodb._native", frozen)]
 struct PyS3BucketSource {
-    inner: aws_sdk_dynamodb::types::S3BucketSource,
+    inner: Arc<aws_sdk_dynamodb::types::S3BucketSource>,
 }
 
 #[pymethods]
@@ -11988,8 +13925,8 @@ impl PyS3BucketSource {
     #[getter]
     fn s3_bucket_owner(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.s3_bucket_owner {
-            let converted_2552 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2552)
+            let converted_2756 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2756)
         } else {
             Ok(py.None())
         }
@@ -11997,15 +13934,15 @@ impl PyS3BucketSource {
 
     #[getter]
     fn s3_bucket(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2553 = (&self.inner.s3_bucket).as_str().into_py_any(py)?;
-        Ok(converted_2553)
+        let converted_2757 = (&self.inner.s3_bucket).as_str().into_py_any(py)?;
+        Ok(converted_2757)
     }
 
     #[getter]
     fn s3_key_prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.s3_key_prefix {
-            let converted_2554 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2554)
+            let converted_2758 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2758)
         } else {
             Ok(py.None())
         }
@@ -12018,7 +13955,7 @@ impl PyS3BucketSource {
 
 #[pyclass(name = "SearchResultItem", module = "rboto_dynamodb._native", frozen)]
 struct PySearchResultItem {
-    inner: aws_sdk_dynamodb::types::SearchResultItem,
+    inner: Arc<aws_sdk_dynamodb::types::SearchResultItem>,
 }
 
 #[pymethods]
@@ -12026,14 +13963,14 @@ impl PySearchResultItem {
     #[getter]
     fn item(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.item {
-            let converted_2555_dict = PyDict::new(py);
-            for (key_2556, value_2557) in value {
-                let converted_key_2558 = (key_2556).as_str().into_py_any(py)?;
-                let converted_value_2559 = attribute_value_to_py(py, value_2557)?;
-                converted_2555_dict.set_item(converted_key_2558, converted_value_2559)?;
+            let converted_2759_dict = PyDict::new(py);
+            for (key_2760, value_2761) in value {
+                let converted_key_2762 = (key_2760).as_str().into_py_any(py)?;
+                let converted_value_2763 = attribute_value_to_py(py, value_2761)?;
+                converted_2759_dict.set_item(converted_key_2762, converted_value_2763)?;
             }
-            let converted_2555 = converted_2555_dict.into_any().unbind();
-            Ok(converted_2555)
+            let converted_2759 = converted_2759_dict.into_any().unbind();
+            Ok(converted_2759)
         } else {
             Ok(py.None())
         }
@@ -12041,8 +13978,8 @@ impl PySearchResultItem {
 
     #[getter]
     fn score(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2560 = (&self.inner.score).to_owned().into_py_any(py)?;
-        Ok(converted_2560)
+        let converted_2764 = (&self.inner.score).to_owned().into_py_any(py)?;
+        Ok(converted_2764)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -12056,23 +13993,23 @@ impl PySearchResultItem {
     frozen
 )]
 struct PySearchSchemaElement {
-    inner: aws_sdk_dynamodb::types::SearchSchemaElement,
+    inner: Arc<aws_sdk_dynamodb::types::SearchSchemaElement>,
 }
 
 #[pymethods]
 impl PySearchSchemaElement {
     #[getter]
     fn attribute_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2561 = (&self.inner.attribute_name).as_str().into_py_any(py)?;
-        Ok(converted_2561)
+        let converted_2765 = (&self.inner.attribute_name).as_str().into_py_any(py)?;
+        Ok(converted_2765)
     }
 
     #[getter]
     fn search_schema_element_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2562 = (&self.inner.search_schema_element_type)
+        let converted_2766 = (&self.inner.search_schema_element_type)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_2562)
+        Ok(converted_2766)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -12080,30 +14017,123 @@ impl PySearchSchemaElement {
     }
 }
 
+struct SharedSourceTableDetails {
+    table_name: ::std::string::String,
+    table_id: ::std::string::String,
+    table_arn: Option<::std::string::String>,
+    table_size_bytes: Option<i64>,
+    key_schema: ::std::vec::Vec<Arc<aws_sdk_dynamodb::types::KeySchemaElement>>,
+    table_creation_date_time: ::aws_smithy_types::DateTime,
+    provisioned_throughput: Option<Arc<aws_sdk_dynamodb::types::ProvisionedThroughput>>,
+    on_demand_throughput: Option<Arc<aws_sdk_dynamodb::types::OnDemandThroughput>>,
+    item_count: Option<i64>,
+    billing_mode: Option<aws_sdk_dynamodb::types::BillingMode>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::SourceTableDetails> for SharedSourceTableDetails {
+    fn from(value: aws_sdk_dynamodb::types::SourceTableDetails) -> Self {
+        Self {
+            table_name: value.table_name,
+            table_id: value.table_id,
+            table_arn: value.table_arn,
+            table_size_bytes: value.table_size_bytes,
+            key_schema: (value.key_schema)
+                .into_iter()
+                .map(|owned_2779| Arc::new(owned_2779))
+                .collect(),
+            table_creation_date_time: value.table_creation_date_time,
+            provisioned_throughput: value.provisioned_throughput.map(|item| Arc::new(item)),
+            on_demand_throughput: value.on_demand_throughput.map(|item| Arc::new(item)),
+            item_count: value.item_count,
+            billing_mode: value.billing_mode,
+        }
+    }
+}
+
+fn source_table_details_shared_to_py(
+    py: Python<'_>,
+    value: &SharedSourceTableDetails,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_2780 = (&value.table_name).as_str().into_py_any(py)?;
+    result.set_item("table_name", converted_2780)?;
+    let converted_2781 = (&value.table_id).as_str().into_py_any(py)?;
+    result.set_item("table_id", converted_2781)?;
+    if let Some(value) = &value.table_arn {
+        let converted_2782 = (value).as_str().into_py_any(py)?;
+        result.set_item("table_arn", converted_2782)?;
+    } else {
+        result.set_item("table_arn", py.None())?;
+    }
+    if let Some(value) = &value.table_size_bytes {
+        let converted_2783 = (value).to_owned().into_py_any(py)?;
+        result.set_item("table_size_bytes", converted_2783)?;
+    } else {
+        result.set_item("table_size_bytes", py.None())?;
+    }
+    let converted_2784_list = PyList::empty(py);
+    for item_2785 in &value.key_schema {
+        let converted_item_2786 = key_schema_element_to_py(py, item_2785)?;
+        converted_2784_list.append(converted_item_2786)?;
+    }
+    let converted_2784 = converted_2784_list.into_any().unbind();
+    result.set_item("key_schema", converted_2784)?;
+    let converted_2787 = (&value.table_creation_date_time)
+        .to_string()
+        .into_py_any(py)?;
+    result.set_item("table_creation_date_time", converted_2787)?;
+    if let Some(value) = &value.provisioned_throughput {
+        let converted_2788 = provisioned_throughput_to_py(py, value)?;
+        result.set_item("provisioned_throughput", converted_2788)?;
+    } else {
+        result.set_item("provisioned_throughput", py.None())?;
+    }
+    if let Some(value) = &value.on_demand_throughput {
+        let converted_2789 = on_demand_throughput_to_py(py, value)?;
+        result.set_item("on_demand_throughput", converted_2789)?;
+    } else {
+        result.set_item("on_demand_throughput", py.None())?;
+    }
+    if let Some(value) = &value.item_count {
+        let converted_2790 = (value).to_owned().into_py_any(py)?;
+        result.set_item("item_count", converted_2790)?;
+    } else {
+        result.set_item("item_count", py.None())?;
+    }
+    if let Some(value) = &value.billing_mode {
+        let converted_2791 = (value).as_str().into_py_any(py)?;
+        result.set_item("billing_mode", converted_2791)?;
+    } else {
+        result.set_item("billing_mode", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "SourceTableDetails", module = "rboto_dynamodb._native", frozen)]
 struct PySourceTableDetails {
-    inner: aws_sdk_dynamodb::types::SourceTableDetails,
+    inner: Arc<SharedSourceTableDetails>,
 }
 
 #[pymethods]
 impl PySourceTableDetails {
     #[getter]
     fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2563 = (&self.inner.table_name).as_str().into_py_any(py)?;
-        Ok(converted_2563)
+        let converted_2767 = (&self.inner.table_name).as_str().into_py_any(py)?;
+        Ok(converted_2767)
     }
 
     #[getter]
     fn table_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2564 = (&self.inner.table_id).as_str().into_py_any(py)?;
-        Ok(converted_2564)
+        let converted_2768 = (&self.inner.table_id).as_str().into_py_any(py)?;
+        Ok(converted_2768)
     }
 
     #[getter]
     fn table_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_arn {
-            let converted_2565 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2565)
+            let converted_2769 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2769)
         } else {
             Ok(py.None())
         }
@@ -12112,8 +14142,8 @@ impl PySourceTableDetails {
     #[getter]
     fn table_size_bytes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_size_bytes {
-            let converted_2566 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2566)
+            let converted_2770 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2770)
         } else {
             Ok(py.None())
         }
@@ -12121,40 +14151,40 @@ impl PySourceTableDetails {
 
     #[getter]
     fn key_schema(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2567_list = PyList::empty(py);
-        for item_2568 in &self.inner.key_schema {
-            let converted_item_2569 = Py::new(
+        let converted_2771_list = PyList::empty(py);
+        for item_2772 in &self.inner.key_schema {
+            let converted_item_2773 = Py::new(
                 py,
                 PyKeySchemaElement {
-                    inner: (item_2568).to_owned(),
+                    inner: Arc::clone(item_2772),
                 },
             )?
             .into_any();
-            converted_2567_list.append(converted_item_2569)?;
+            converted_2771_list.append(converted_item_2773)?;
         }
-        let converted_2567 = converted_2567_list.into_any().unbind();
-        Ok(converted_2567)
+        let converted_2771 = converted_2771_list.into_any().unbind();
+        Ok(converted_2771)
     }
 
     #[getter]
     fn table_creation_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2570 = (&self.inner.table_creation_date_time)
+        let converted_2774 = (&self.inner.table_creation_date_time)
             .to_string()
             .into_py_any(py)?;
-        Ok(converted_2570)
+        Ok(converted_2774)
     }
 
     #[getter]
     fn provisioned_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.provisioned_throughput {
-            let converted_2571 = Py::new(
+            let converted_2775 = Py::new(
                 py,
                 PyProvisionedThroughput {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2571)
+            Ok(converted_2775)
         } else {
             Ok(py.None())
         }
@@ -12163,14 +14193,14 @@ impl PySourceTableDetails {
     #[getter]
     fn on_demand_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.on_demand_throughput {
-            let converted_2572 = Py::new(
+            let converted_2776 = Py::new(
                 py,
                 PyOnDemandThroughput {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2572)
+            Ok(converted_2776)
         } else {
             Ok(py.None())
         }
@@ -12179,8 +14209,8 @@ impl PySourceTableDetails {
     #[getter]
     fn item_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.item_count {
-            let converted_2573 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2573)
+            let converted_2777 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2777)
         } else {
             Ok(py.None())
         }
@@ -12189,16 +14219,113 @@ impl PySourceTableDetails {
     #[getter]
     fn billing_mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.billing_mode {
-            let converted_2574 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2574)
+            let converted_2778 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2778)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        source_table_details_to_py(py, &self.inner)
+        source_table_details_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedSourceTableFeatureDetails {
+    local_secondary_indexes: Option<::std::vec::Vec<Arc<SharedLocalSecondaryIndexInfo>>>,
+    global_secondary_indexes: Option<::std::vec::Vec<Arc<SharedGlobalSecondaryIndexInfo>>>,
+    stream_description: Option<Arc<aws_sdk_dynamodb::types::StreamSpecification>>,
+    time_to_live_description: Option<Arc<aws_sdk_dynamodb::types::TimeToLiveDescription>>,
+    sse_description: Option<Arc<aws_sdk_dynamodb::types::SseDescription>>,
+    vector_indexes: Option<::std::vec::Vec<Arc<SharedVectorIndexInfo>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::SourceTableFeatureDetails> for SharedSourceTableFeatureDetails {
+    fn from(value: aws_sdk_dynamodb::types::SourceTableFeatureDetails) -> Self {
+        Self {
+            local_secondary_indexes: value.local_secondary_indexes.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_2804| Arc::new(SharedLocalSecondaryIndexInfo::from(owned_2804)))
+                    .collect()
+            }),
+            global_secondary_indexes: value.global_secondary_indexes.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_2805| Arc::new(SharedGlobalSecondaryIndexInfo::from(owned_2805)))
+                    .collect()
+            }),
+            stream_description: value.stream_description.map(|item| Arc::new(item)),
+            time_to_live_description: value.time_to_live_description.map(|item| Arc::new(item)),
+            sse_description: value.sse_description.map(|item| Arc::new(item)),
+            vector_indexes: value.vector_indexes.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_2806| Arc::new(SharedVectorIndexInfo::from(owned_2806)))
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn source_table_feature_details_shared_to_py(
+    py: Python<'_>,
+    value: &SharedSourceTableFeatureDetails,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.local_secondary_indexes {
+        let converted_2807_list = PyList::empty(py);
+        for item_2808 in value {
+            let converted_item_2809 = local_secondary_index_info_shared_to_py(py, item_2808)?;
+            converted_2807_list.append(converted_item_2809)?;
+        }
+        let converted_2807 = converted_2807_list.into_any().unbind();
+        result.set_item("local_secondary_indexes", converted_2807)?;
+    } else {
+        result.set_item("local_secondary_indexes", py.None())?;
+    }
+    if let Some(value) = &value.global_secondary_indexes {
+        let converted_2810_list = PyList::empty(py);
+        for item_2811 in value {
+            let converted_item_2812 = global_secondary_index_info_shared_to_py(py, item_2811)?;
+            converted_2810_list.append(converted_item_2812)?;
+        }
+        let converted_2810 = converted_2810_list.into_any().unbind();
+        result.set_item("global_secondary_indexes", converted_2810)?;
+    } else {
+        result.set_item("global_secondary_indexes", py.None())?;
+    }
+    if let Some(value) = &value.stream_description {
+        let converted_2813 = stream_specification_to_py(py, value)?;
+        result.set_item("stream_description", converted_2813)?;
+    } else {
+        result.set_item("stream_description", py.None())?;
+    }
+    if let Some(value) = &value.time_to_live_description {
+        let converted_2814 = time_to_live_description_to_py(py, value)?;
+        result.set_item("time_to_live_description", converted_2814)?;
+    } else {
+        result.set_item("time_to_live_description", py.None())?;
+    }
+    if let Some(value) = &value.sse_description {
+        let converted_2815 = sse_description_to_py(py, value)?;
+        result.set_item("sse_description", converted_2815)?;
+    } else {
+        result.set_item("sse_description", py.None())?;
+    }
+    if let Some(value) = &value.vector_indexes {
+        let converted_2816_list = PyList::empty(py);
+        for item_2817 in value {
+            let converted_item_2818 = vector_index_info_shared_to_py(py, item_2817)?;
+            converted_2816_list.append(converted_item_2818)?;
+        }
+        let converted_2816 = converted_2816_list.into_any().unbind();
+        result.set_item("vector_indexes", converted_2816)?;
+    } else {
+        result.set_item("vector_indexes", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -12207,7 +14334,7 @@ impl PySourceTableDetails {
     frozen
 )]
 struct PySourceTableFeatureDetails {
-    inner: aws_sdk_dynamodb::types::SourceTableFeatureDetails,
+    inner: Arc<SharedSourceTableFeatureDetails>,
 }
 
 #[pymethods]
@@ -12215,19 +14342,19 @@ impl PySourceTableFeatureDetails {
     #[getter]
     fn local_secondary_indexes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.local_secondary_indexes {
-            let converted_2575_list = PyList::empty(py);
-            for item_2576 in value {
-                let converted_item_2577 = Py::new(
+            let converted_2792_list = PyList::empty(py);
+            for item_2793 in value {
+                let converted_item_2794 = Py::new(
                     py,
                     PyLocalSecondaryIndexInfo {
-                        inner: (item_2576).to_owned(),
+                        inner: Arc::clone(item_2793),
                     },
                 )?
                 .into_any();
-                converted_2575_list.append(converted_item_2577)?;
+                converted_2792_list.append(converted_item_2794)?;
             }
-            let converted_2575 = converted_2575_list.into_any().unbind();
-            Ok(converted_2575)
+            let converted_2792 = converted_2792_list.into_any().unbind();
+            Ok(converted_2792)
         } else {
             Ok(py.None())
         }
@@ -12236,19 +14363,19 @@ impl PySourceTableFeatureDetails {
     #[getter]
     fn global_secondary_indexes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.global_secondary_indexes {
-            let converted_2578_list = PyList::empty(py);
-            for item_2579 in value {
-                let converted_item_2580 = Py::new(
+            let converted_2795_list = PyList::empty(py);
+            for item_2796 in value {
+                let converted_item_2797 = Py::new(
                     py,
                     PyGlobalSecondaryIndexInfo {
-                        inner: (item_2579).to_owned(),
+                        inner: Arc::clone(item_2796),
                     },
                 )?
                 .into_any();
-                converted_2578_list.append(converted_item_2580)?;
+                converted_2795_list.append(converted_item_2797)?;
             }
-            let converted_2578 = converted_2578_list.into_any().unbind();
-            Ok(converted_2578)
+            let converted_2795 = converted_2795_list.into_any().unbind();
+            Ok(converted_2795)
         } else {
             Ok(py.None())
         }
@@ -12257,14 +14384,14 @@ impl PySourceTableFeatureDetails {
     #[getter]
     fn stream_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_description {
-            let converted_2581 = Py::new(
+            let converted_2798 = Py::new(
                 py,
                 PyStreamSpecification {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2581)
+            Ok(converted_2798)
         } else {
             Ok(py.None())
         }
@@ -12273,14 +14400,14 @@ impl PySourceTableFeatureDetails {
     #[getter]
     fn time_to_live_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.time_to_live_description {
-            let converted_2582 = Py::new(
+            let converted_2799 = Py::new(
                 py,
                 PyTimeToLiveDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2582)
+            Ok(converted_2799)
         } else {
             Ok(py.None())
         }
@@ -12289,14 +14416,14 @@ impl PySourceTableFeatureDetails {
     #[getter]
     fn sse_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sse_description {
-            let converted_2583 = Py::new(
+            let converted_2800 = Py::new(
                 py,
                 PySseDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2583)
+            Ok(converted_2800)
         } else {
             Ok(py.None())
         }
@@ -12305,32 +14432,32 @@ impl PySourceTableFeatureDetails {
     #[getter]
     fn vector_indexes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.vector_indexes {
-            let converted_2584_list = PyList::empty(py);
-            for item_2585 in value {
-                let converted_item_2586 = Py::new(
+            let converted_2801_list = PyList::empty(py);
+            for item_2802 in value {
+                let converted_item_2803 = Py::new(
                     py,
                     PyVectorIndexInfo {
-                        inner: (item_2585).to_owned(),
+                        inner: Arc::clone(item_2802),
                     },
                 )?
                 .into_any();
-                converted_2584_list.append(converted_item_2586)?;
+                converted_2801_list.append(converted_item_2803)?;
             }
-            let converted_2584 = converted_2584_list.into_any().unbind();
-            Ok(converted_2584)
+            let converted_2801 = converted_2801_list.into_any().unbind();
+            Ok(converted_2801)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        source_table_feature_details_to_py(py, &self.inner)
+        source_table_feature_details_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "SseDescription", module = "rboto_dynamodb._native", frozen)]
 struct PySseDescription {
-    inner: aws_sdk_dynamodb::types::SseDescription,
+    inner: Arc<aws_sdk_dynamodb::types::SseDescription>,
 }
 
 #[pymethods]
@@ -12338,8 +14465,8 @@ impl PySseDescription {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_2587 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2587)
+            let converted_2819 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2819)
         } else {
             Ok(py.None())
         }
@@ -12348,8 +14475,8 @@ impl PySseDescription {
     #[getter]
     fn sse_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sse_type {
-            let converted_2588 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2588)
+            let converted_2820 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2820)
         } else {
             Ok(py.None())
         }
@@ -12358,8 +14485,8 @@ impl PySseDescription {
     #[getter]
     fn kms_master_key_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_master_key_arn {
-            let converted_2589 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2589)
+            let converted_2821 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2821)
         } else {
             Ok(py.None())
         }
@@ -12368,8 +14495,8 @@ impl PySseDescription {
     #[getter]
     fn inaccessible_encryption_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.inaccessible_encryption_date_time {
-            let converted_2590 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2590)
+            let converted_2822 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2822)
         } else {
             Ok(py.None())
         }
@@ -12382,7 +14509,7 @@ impl PySseDescription {
 
 #[pyclass(name = "SseSpecification", module = "rboto_dynamodb._native", frozen)]
 struct PySseSpecification {
-    inner: aws_sdk_dynamodb::types::SseSpecification,
+    inner: Arc<aws_sdk_dynamodb::types::SseSpecification>,
 }
 
 #[pymethods]
@@ -12390,8 +14517,8 @@ impl PySseSpecification {
     #[getter]
     fn enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.enabled {
-            let converted_2591 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2591)
+            let converted_2823 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2823)
         } else {
             Ok(py.None())
         }
@@ -12400,8 +14527,8 @@ impl PySseSpecification {
     #[getter]
     fn sse_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sse_type {
-            let converted_2592 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2592)
+            let converted_2824 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2824)
         } else {
             Ok(py.None())
         }
@@ -12410,8 +14537,8 @@ impl PySseSpecification {
     #[getter]
     fn kms_master_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_master_key_id {
-            let converted_2593 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2593)
+            let converted_2825 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2825)
         } else {
             Ok(py.None())
         }
@@ -12428,22 +14555,22 @@ impl PySseSpecification {
     frozen
 )]
 struct PyStreamSpecification {
-    inner: aws_sdk_dynamodb::types::StreamSpecification,
+    inner: Arc<aws_sdk_dynamodb::types::StreamSpecification>,
 }
 
 #[pymethods]
 impl PyStreamSpecification {
     #[getter]
     fn stream_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2594 = (&self.inner.stream_enabled).to_owned().into_py_any(py)?;
-        Ok(converted_2594)
+        let converted_2826 = (&self.inner.stream_enabled).to_owned().into_py_any(py)?;
+        Ok(converted_2826)
     }
 
     #[getter]
     fn stream_view_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_view_type {
-            let converted_2595 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2595)
+            let converted_2827 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2827)
         } else {
             Ok(py.None())
         }
@@ -12454,13 +14581,70 @@ impl PyStreamSpecification {
     }
 }
 
+struct SharedTableAutoScalingDescription {
+    table_name: Option<::std::string::String>,
+    table_status: Option<aws_sdk_dynamodb::types::TableStatus>,
+    replicas: Option<::std::vec::Vec<Arc<SharedReplicaAutoScalingDescription>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::TableAutoScalingDescription>
+    for SharedTableAutoScalingDescription
+{
+    fn from(value: aws_sdk_dynamodb::types::TableAutoScalingDescription) -> Self {
+        Self {
+            table_name: value.table_name,
+            table_status: value.table_status,
+            replicas: value.replicas.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_2833| {
+                        Arc::new(SharedReplicaAutoScalingDescription::from(owned_2833))
+                    })
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn table_auto_scaling_description_shared_to_py(
+    py: Python<'_>,
+    value: &SharedTableAutoScalingDescription,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.table_name {
+        let converted_2834 = (value).as_str().into_py_any(py)?;
+        result.set_item("table_name", converted_2834)?;
+    } else {
+        result.set_item("table_name", py.None())?;
+    }
+    if let Some(value) = &value.table_status {
+        let converted_2835 = (value).as_str().into_py_any(py)?;
+        result.set_item("table_status", converted_2835)?;
+    } else {
+        result.set_item("table_status", py.None())?;
+    }
+    if let Some(value) = &value.replicas {
+        let converted_2836_list = PyList::empty(py);
+        for item_2837 in value {
+            let converted_item_2838 = replica_auto_scaling_description_shared_to_py(py, item_2837)?;
+            converted_2836_list.append(converted_item_2838)?;
+        }
+        let converted_2836 = converted_2836_list.into_any().unbind();
+        result.set_item("replicas", converted_2836)?;
+    } else {
+        result.set_item("replicas", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "TableAutoScalingDescription",
     module = "rboto_dynamodb._native",
     frozen
 )]
 struct PyTableAutoScalingDescription {
-    inner: aws_sdk_dynamodb::types::TableAutoScalingDescription,
+    inner: Arc<SharedTableAutoScalingDescription>,
 }
 
 #[pymethods]
@@ -12468,8 +14652,8 @@ impl PyTableAutoScalingDescription {
     #[getter]
     fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_name {
-            let converted_2596 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2596)
+            let converted_2828 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2828)
         } else {
             Ok(py.None())
         }
@@ -12478,8 +14662,8 @@ impl PyTableAutoScalingDescription {
     #[getter]
     fn table_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_status {
-            let converted_2597 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2597)
+            let converted_2829 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2829)
         } else {
             Ok(py.None())
         }
@@ -12488,32 +14672,32 @@ impl PyTableAutoScalingDescription {
     #[getter]
     fn replicas(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replicas {
-            let converted_2598_list = PyList::empty(py);
-            for item_2599 in value {
-                let converted_item_2600 = Py::new(
+            let converted_2830_list = PyList::empty(py);
+            for item_2831 in value {
+                let converted_item_2832 = Py::new(
                     py,
                     PyReplicaAutoScalingDescription {
-                        inner: (item_2599).to_owned(),
+                        inner: Arc::clone(item_2831),
                     },
                 )?
                 .into_any();
-                converted_2598_list.append(converted_item_2600)?;
+                converted_2830_list.append(converted_item_2832)?;
             }
-            let converted_2598 = converted_2598_list.into_any().unbind();
-            Ok(converted_2598)
+            let converted_2830 = converted_2830_list.into_any().unbind();
+            Ok(converted_2830)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        table_auto_scaling_description_to_py(py, &self.inner)
+        table_auto_scaling_description_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "TableClassSummary", module = "rboto_dynamodb._native", frozen)]
 struct PyTableClassSummary {
-    inner: aws_sdk_dynamodb::types::TableClassSummary,
+    inner: Arc<aws_sdk_dynamodb::types::TableClassSummary>,
 }
 
 #[pymethods]
@@ -12521,8 +14705,8 @@ impl PyTableClassSummary {
     #[getter]
     fn table_class(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_class {
-            let converted_2601 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2601)
+            let converted_2839 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2839)
         } else {
             Ok(py.None())
         }
@@ -12531,8 +14715,8 @@ impl PyTableClassSummary {
     #[getter]
     fn last_update_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_update_date_time {
-            let converted_2602 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2602)
+            let converted_2840 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2840)
         } else {
             Ok(py.None())
         }
@@ -12543,62 +14727,177 @@ impl PyTableClassSummary {
     }
 }
 
+struct SharedTableCreationParameters {
+    table_name: ::std::string::String,
+    attribute_definitions: ::std::vec::Vec<Arc<aws_sdk_dynamodb::types::AttributeDefinition>>,
+    key_schema: ::std::vec::Vec<Arc<aws_sdk_dynamodb::types::KeySchemaElement>>,
+    billing_mode: Option<aws_sdk_dynamodb::types::BillingMode>,
+    provisioned_throughput: Option<Arc<aws_sdk_dynamodb::types::ProvisionedThroughput>>,
+    on_demand_throughput: Option<Arc<aws_sdk_dynamodb::types::OnDemandThroughput>>,
+    sse_specification: Option<Arc<aws_sdk_dynamodb::types::SseSpecification>>,
+    global_secondary_indexes: Option<::std::vec::Vec<Arc<SharedGlobalSecondaryIndex>>>,
+    vector_indexes: Option<::std::vec::Vec<Arc<SharedVectorIndex>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::TableCreationParameters> for SharedTableCreationParameters {
+    fn from(value: aws_sdk_dynamodb::types::TableCreationParameters) -> Self {
+        Self {
+            table_name: value.table_name,
+            attribute_definitions: (value.attribute_definitions)
+                .into_iter()
+                .map(|owned_2858| Arc::new(owned_2858))
+                .collect(),
+            key_schema: (value.key_schema)
+                .into_iter()
+                .map(|owned_2859| Arc::new(owned_2859))
+                .collect(),
+            billing_mode: value.billing_mode,
+            provisioned_throughput: value.provisioned_throughput.map(|item| Arc::new(item)),
+            on_demand_throughput: value.on_demand_throughput.map(|item| Arc::new(item)),
+            sse_specification: value.sse_specification.map(|item| Arc::new(item)),
+            global_secondary_indexes: value.global_secondary_indexes.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_2860| Arc::new(SharedGlobalSecondaryIndex::from(owned_2860)))
+                    .collect()
+            }),
+            vector_indexes: value.vector_indexes.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_2861| Arc::new(SharedVectorIndex::from(owned_2861)))
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn table_creation_parameters_shared_to_py(
+    py: Python<'_>,
+    value: &SharedTableCreationParameters,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_2862 = (&value.table_name).as_str().into_py_any(py)?;
+    result.set_item("table_name", converted_2862)?;
+    let converted_2863_list = PyList::empty(py);
+    for item_2864 in &value.attribute_definitions {
+        let converted_item_2865 = attribute_definition_to_py(py, item_2864)?;
+        converted_2863_list.append(converted_item_2865)?;
+    }
+    let converted_2863 = converted_2863_list.into_any().unbind();
+    result.set_item("attribute_definitions", converted_2863)?;
+    let converted_2866_list = PyList::empty(py);
+    for item_2867 in &value.key_schema {
+        let converted_item_2868 = key_schema_element_to_py(py, item_2867)?;
+        converted_2866_list.append(converted_item_2868)?;
+    }
+    let converted_2866 = converted_2866_list.into_any().unbind();
+    result.set_item("key_schema", converted_2866)?;
+    if let Some(value) = &value.billing_mode {
+        let converted_2869 = (value).as_str().into_py_any(py)?;
+        result.set_item("billing_mode", converted_2869)?;
+    } else {
+        result.set_item("billing_mode", py.None())?;
+    }
+    if let Some(value) = &value.provisioned_throughput {
+        let converted_2870 = provisioned_throughput_to_py(py, value)?;
+        result.set_item("provisioned_throughput", converted_2870)?;
+    } else {
+        result.set_item("provisioned_throughput", py.None())?;
+    }
+    if let Some(value) = &value.on_demand_throughput {
+        let converted_2871 = on_demand_throughput_to_py(py, value)?;
+        result.set_item("on_demand_throughput", converted_2871)?;
+    } else {
+        result.set_item("on_demand_throughput", py.None())?;
+    }
+    if let Some(value) = &value.sse_specification {
+        let converted_2872 = sse_specification_to_py(py, value)?;
+        result.set_item("sse_specification", converted_2872)?;
+    } else {
+        result.set_item("sse_specification", py.None())?;
+    }
+    if let Some(value) = &value.global_secondary_indexes {
+        let converted_2873_list = PyList::empty(py);
+        for item_2874 in value {
+            let converted_item_2875 = global_secondary_index_shared_to_py(py, item_2874)?;
+            converted_2873_list.append(converted_item_2875)?;
+        }
+        let converted_2873 = converted_2873_list.into_any().unbind();
+        result.set_item("global_secondary_indexes", converted_2873)?;
+    } else {
+        result.set_item("global_secondary_indexes", py.None())?;
+    }
+    if let Some(value) = &value.vector_indexes {
+        let converted_2876_list = PyList::empty(py);
+        for item_2877 in value {
+            let converted_item_2878 = vector_index_shared_to_py(py, item_2877)?;
+            converted_2876_list.append(converted_item_2878)?;
+        }
+        let converted_2876 = converted_2876_list.into_any().unbind();
+        result.set_item("vector_indexes", converted_2876)?;
+    } else {
+        result.set_item("vector_indexes", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "TableCreationParameters",
     module = "rboto_dynamodb._native",
     frozen
 )]
 struct PyTableCreationParameters {
-    inner: aws_sdk_dynamodb::types::TableCreationParameters,
+    inner: Arc<SharedTableCreationParameters>,
 }
 
 #[pymethods]
 impl PyTableCreationParameters {
     #[getter]
     fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2603 = (&self.inner.table_name).as_str().into_py_any(py)?;
-        Ok(converted_2603)
+        let converted_2841 = (&self.inner.table_name).as_str().into_py_any(py)?;
+        Ok(converted_2841)
     }
 
     #[getter]
     fn attribute_definitions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2604_list = PyList::empty(py);
-        for item_2605 in &self.inner.attribute_definitions {
-            let converted_item_2606 = Py::new(
+        let converted_2842_list = PyList::empty(py);
+        for item_2843 in &self.inner.attribute_definitions {
+            let converted_item_2844 = Py::new(
                 py,
                 PyAttributeDefinition {
-                    inner: (item_2605).to_owned(),
+                    inner: Arc::clone(item_2843),
                 },
             )?
             .into_any();
-            converted_2604_list.append(converted_item_2606)?;
+            converted_2842_list.append(converted_item_2844)?;
         }
-        let converted_2604 = converted_2604_list.into_any().unbind();
-        Ok(converted_2604)
+        let converted_2842 = converted_2842_list.into_any().unbind();
+        Ok(converted_2842)
     }
 
     #[getter]
     fn key_schema(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2607_list = PyList::empty(py);
-        for item_2608 in &self.inner.key_schema {
-            let converted_item_2609 = Py::new(
+        let converted_2845_list = PyList::empty(py);
+        for item_2846 in &self.inner.key_schema {
+            let converted_item_2847 = Py::new(
                 py,
                 PyKeySchemaElement {
-                    inner: (item_2608).to_owned(),
+                    inner: Arc::clone(item_2846),
                 },
             )?
             .into_any();
-            converted_2607_list.append(converted_item_2609)?;
+            converted_2845_list.append(converted_item_2847)?;
         }
-        let converted_2607 = converted_2607_list.into_any().unbind();
-        Ok(converted_2607)
+        let converted_2845 = converted_2845_list.into_any().unbind();
+        Ok(converted_2845)
     }
 
     #[getter]
     fn billing_mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.billing_mode {
-            let converted_2610 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2610)
+            let converted_2848 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2848)
         } else {
             Ok(py.None())
         }
@@ -12607,14 +14906,14 @@ impl PyTableCreationParameters {
     #[getter]
     fn provisioned_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.provisioned_throughput {
-            let converted_2611 = Py::new(
+            let converted_2849 = Py::new(
                 py,
                 PyProvisionedThroughput {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2611)
+            Ok(converted_2849)
         } else {
             Ok(py.None())
         }
@@ -12623,14 +14922,14 @@ impl PyTableCreationParameters {
     #[getter]
     fn on_demand_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.on_demand_throughput {
-            let converted_2612 = Py::new(
+            let converted_2850 = Py::new(
                 py,
                 PyOnDemandThroughput {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2612)
+            Ok(converted_2850)
         } else {
             Ok(py.None())
         }
@@ -12639,14 +14938,14 @@ impl PyTableCreationParameters {
     #[getter]
     fn sse_specification(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sse_specification {
-            let converted_2613 = Py::new(
+            let converted_2851 = Py::new(
                 py,
                 PySseSpecification {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2613)
+            Ok(converted_2851)
         } else {
             Ok(py.None())
         }
@@ -12655,19 +14954,19 @@ impl PyTableCreationParameters {
     #[getter]
     fn global_secondary_indexes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.global_secondary_indexes {
-            let converted_2614_list = PyList::empty(py);
-            for item_2615 in value {
-                let converted_item_2616 = Py::new(
+            let converted_2852_list = PyList::empty(py);
+            for item_2853 in value {
+                let converted_item_2854 = Py::new(
                     py,
                     PyGlobalSecondaryIndex {
-                        inner: (item_2615).to_owned(),
+                        inner: Arc::clone(item_2853),
                     },
                 )?
                 .into_any();
-                converted_2614_list.append(converted_item_2616)?;
+                converted_2852_list.append(converted_item_2854)?;
             }
-            let converted_2614 = converted_2614_list.into_any().unbind();
-            Ok(converted_2614)
+            let converted_2852 = converted_2852_list.into_any().unbind();
+            Ok(converted_2852)
         } else {
             Ok(py.None())
         }
@@ -12676,32 +14975,370 @@ impl PyTableCreationParameters {
     #[getter]
     fn vector_indexes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.vector_indexes {
-            let converted_2617_list = PyList::empty(py);
-            for item_2618 in value {
-                let converted_item_2619 = Py::new(
+            let converted_2855_list = PyList::empty(py);
+            for item_2856 in value {
+                let converted_item_2857 = Py::new(
                     py,
                     PyVectorIndex {
-                        inner: (item_2618).to_owned(),
+                        inner: Arc::clone(item_2856),
                     },
                 )?
                 .into_any();
-                converted_2617_list.append(converted_item_2619)?;
+                converted_2855_list.append(converted_item_2857)?;
             }
-            let converted_2617 = converted_2617_list.into_any().unbind();
-            Ok(converted_2617)
+            let converted_2855 = converted_2855_list.into_any().unbind();
+            Ok(converted_2855)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        table_creation_parameters_to_py(py, &self.inner)
+        table_creation_parameters_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedTableDescription {
+    attribute_definitions:
+        Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::AttributeDefinition>>>,
+    table_name: Option<::std::string::String>,
+    key_schema: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::KeySchemaElement>>>,
+    table_status: Option<aws_sdk_dynamodb::types::TableStatus>,
+    creation_date_time: Option<::aws_smithy_types::DateTime>,
+    provisioned_throughput: Option<Arc<aws_sdk_dynamodb::types::ProvisionedThroughputDescription>>,
+    table_size_bytes: Option<i64>,
+    item_count: Option<i64>,
+    table_arn: Option<::std::string::String>,
+    table_id: Option<::std::string::String>,
+    billing_mode_summary: Option<Arc<aws_sdk_dynamodb::types::BillingModeSummary>>,
+    local_secondary_indexes: Option<::std::vec::Vec<Arc<SharedLocalSecondaryIndexDescription>>>,
+    global_secondary_indexes: Option<::std::vec::Vec<Arc<SharedGlobalSecondaryIndexDescription>>>,
+    stream_specification: Option<Arc<aws_sdk_dynamodb::types::StreamSpecification>>,
+    latest_stream_label: Option<::std::string::String>,
+    latest_stream_arn: Option<::std::string::String>,
+    global_table_version: Option<::std::string::String>,
+    replicas: Option<::std::vec::Vec<Arc<SharedReplicaDescription>>>,
+    global_table_witnesses:
+        Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::GlobalTableWitnessDescription>>>,
+    global_table_settings_replication_mode:
+        Option<aws_sdk_dynamodb::types::GlobalTableSettingsReplicationMode>,
+    restore_summary: Option<Arc<aws_sdk_dynamodb::types::RestoreSummary>>,
+    sse_description: Option<Arc<aws_sdk_dynamodb::types::SseDescription>>,
+    archival_summary: Option<Arc<aws_sdk_dynamodb::types::ArchivalSummary>>,
+    table_class_summary: Option<Arc<aws_sdk_dynamodb::types::TableClassSummary>>,
+    deletion_protection_enabled: Option<bool>,
+    disassociation_protection_enabled: Option<bool>,
+    on_demand_throughput: Option<Arc<aws_sdk_dynamodb::types::OnDemandThroughput>>,
+    warm_throughput: Option<Arc<aws_sdk_dynamodb::types::TableWarmThroughputDescription>>,
+    multi_region_consistency: Option<aws_sdk_dynamodb::types::MultiRegionConsistency>,
+    vector_indexes: Option<::std::vec::Vec<Arc<SharedVectorIndexDescription>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::TableDescription> for SharedTableDescription {
+    fn from(value: aws_sdk_dynamodb::types::TableDescription) -> Self {
+        Self {
+            attribute_definitions: value.attribute_definitions.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_2923| Arc::new(owned_2923))
+                    .collect()
+            }),
+            table_name: value.table_name,
+            key_schema: value.key_schema.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_2924| Arc::new(owned_2924))
+                    .collect()
+            }),
+            table_status: value.table_status,
+            creation_date_time: value.creation_date_time,
+            provisioned_throughput: value.provisioned_throughput.map(|item| Arc::new(item)),
+            table_size_bytes: value.table_size_bytes,
+            item_count: value.item_count,
+            table_arn: value.table_arn,
+            table_id: value.table_id,
+            billing_mode_summary: value.billing_mode_summary.map(|item| Arc::new(item)),
+            local_secondary_indexes: value.local_secondary_indexes.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_2925| {
+                        Arc::new(SharedLocalSecondaryIndexDescription::from(owned_2925))
+                    })
+                    .collect()
+            }),
+            global_secondary_indexes: value.global_secondary_indexes.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_2926| {
+                        Arc::new(SharedGlobalSecondaryIndexDescription::from(owned_2926))
+                    })
+                    .collect()
+            }),
+            stream_specification: value.stream_specification.map(|item| Arc::new(item)),
+            latest_stream_label: value.latest_stream_label,
+            latest_stream_arn: value.latest_stream_arn,
+            global_table_version: value.global_table_version,
+            replicas: value.replicas.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_2927| Arc::new(SharedReplicaDescription::from(owned_2927)))
+                    .collect()
+            }),
+            global_table_witnesses: value.global_table_witnesses.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_2928| Arc::new(owned_2928))
+                    .collect()
+            }),
+            global_table_settings_replication_mode: value.global_table_settings_replication_mode,
+            restore_summary: value.restore_summary.map(|item| Arc::new(item)),
+            sse_description: value.sse_description.map(|item| Arc::new(item)),
+            archival_summary: value.archival_summary.map(|item| Arc::new(item)),
+            table_class_summary: value.table_class_summary.map(|item| Arc::new(item)),
+            deletion_protection_enabled: value.deletion_protection_enabled,
+            disassociation_protection_enabled: value.disassociation_protection_enabled,
+            on_demand_throughput: value.on_demand_throughput.map(|item| Arc::new(item)),
+            warm_throughput: value.warm_throughput.map(|item| Arc::new(item)),
+            multi_region_consistency: value.multi_region_consistency,
+            vector_indexes: value.vector_indexes.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_2929| Arc::new(SharedVectorIndexDescription::from(owned_2929)))
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn table_description_shared_to_py(
+    py: Python<'_>,
+    value: &SharedTableDescription,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.attribute_definitions {
+        let converted_2930_list = PyList::empty(py);
+        for item_2931 in value {
+            let converted_item_2932 = attribute_definition_to_py(py, item_2931)?;
+            converted_2930_list.append(converted_item_2932)?;
+        }
+        let converted_2930 = converted_2930_list.into_any().unbind();
+        result.set_item("attribute_definitions", converted_2930)?;
+    } else {
+        result.set_item("attribute_definitions", py.None())?;
+    }
+    if let Some(value) = &value.table_name {
+        let converted_2933 = (value).as_str().into_py_any(py)?;
+        result.set_item("table_name", converted_2933)?;
+    } else {
+        result.set_item("table_name", py.None())?;
+    }
+    if let Some(value) = &value.key_schema {
+        let converted_2934_list = PyList::empty(py);
+        for item_2935 in value {
+            let converted_item_2936 = key_schema_element_to_py(py, item_2935)?;
+            converted_2934_list.append(converted_item_2936)?;
+        }
+        let converted_2934 = converted_2934_list.into_any().unbind();
+        result.set_item("key_schema", converted_2934)?;
+    } else {
+        result.set_item("key_schema", py.None())?;
+    }
+    if let Some(value) = &value.table_status {
+        let converted_2937 = (value).as_str().into_py_any(py)?;
+        result.set_item("table_status", converted_2937)?;
+    } else {
+        result.set_item("table_status", py.None())?;
+    }
+    if let Some(value) = &value.creation_date_time {
+        let converted_2938 = (value).to_string().into_py_any(py)?;
+        result.set_item("creation_date_time", converted_2938)?;
+    } else {
+        result.set_item("creation_date_time", py.None())?;
+    }
+    if let Some(value) = &value.provisioned_throughput {
+        let converted_2939 = provisioned_throughput_description_to_py(py, value)?;
+        result.set_item("provisioned_throughput", converted_2939)?;
+    } else {
+        result.set_item("provisioned_throughput", py.None())?;
+    }
+    if let Some(value) = &value.table_size_bytes {
+        let converted_2940 = (value).to_owned().into_py_any(py)?;
+        result.set_item("table_size_bytes", converted_2940)?;
+    } else {
+        result.set_item("table_size_bytes", py.None())?;
+    }
+    if let Some(value) = &value.item_count {
+        let converted_2941 = (value).to_owned().into_py_any(py)?;
+        result.set_item("item_count", converted_2941)?;
+    } else {
+        result.set_item("item_count", py.None())?;
+    }
+    if let Some(value) = &value.table_arn {
+        let converted_2942 = (value).as_str().into_py_any(py)?;
+        result.set_item("table_arn", converted_2942)?;
+    } else {
+        result.set_item("table_arn", py.None())?;
+    }
+    if let Some(value) = &value.table_id {
+        let converted_2943 = (value).as_str().into_py_any(py)?;
+        result.set_item("table_id", converted_2943)?;
+    } else {
+        result.set_item("table_id", py.None())?;
+    }
+    if let Some(value) = &value.billing_mode_summary {
+        let converted_2944 = billing_mode_summary_to_py(py, value)?;
+        result.set_item("billing_mode_summary", converted_2944)?;
+    } else {
+        result.set_item("billing_mode_summary", py.None())?;
+    }
+    if let Some(value) = &value.local_secondary_indexes {
+        let converted_2945_list = PyList::empty(py);
+        for item_2946 in value {
+            let converted_item_2947 =
+                local_secondary_index_description_shared_to_py(py, item_2946)?;
+            converted_2945_list.append(converted_item_2947)?;
+        }
+        let converted_2945 = converted_2945_list.into_any().unbind();
+        result.set_item("local_secondary_indexes", converted_2945)?;
+    } else {
+        result.set_item("local_secondary_indexes", py.None())?;
+    }
+    if let Some(value) = &value.global_secondary_indexes {
+        let converted_2948_list = PyList::empty(py);
+        for item_2949 in value {
+            let converted_item_2950 =
+                global_secondary_index_description_shared_to_py(py, item_2949)?;
+            converted_2948_list.append(converted_item_2950)?;
+        }
+        let converted_2948 = converted_2948_list.into_any().unbind();
+        result.set_item("global_secondary_indexes", converted_2948)?;
+    } else {
+        result.set_item("global_secondary_indexes", py.None())?;
+    }
+    if let Some(value) = &value.stream_specification {
+        let converted_2951 = stream_specification_to_py(py, value)?;
+        result.set_item("stream_specification", converted_2951)?;
+    } else {
+        result.set_item("stream_specification", py.None())?;
+    }
+    if let Some(value) = &value.latest_stream_label {
+        let converted_2952 = (value).as_str().into_py_any(py)?;
+        result.set_item("latest_stream_label", converted_2952)?;
+    } else {
+        result.set_item("latest_stream_label", py.None())?;
+    }
+    if let Some(value) = &value.latest_stream_arn {
+        let converted_2953 = (value).as_str().into_py_any(py)?;
+        result.set_item("latest_stream_arn", converted_2953)?;
+    } else {
+        result.set_item("latest_stream_arn", py.None())?;
+    }
+    if let Some(value) = &value.global_table_version {
+        let converted_2954 = (value).as_str().into_py_any(py)?;
+        result.set_item("global_table_version", converted_2954)?;
+    } else {
+        result.set_item("global_table_version", py.None())?;
+    }
+    if let Some(value) = &value.replicas {
+        let converted_2955_list = PyList::empty(py);
+        for item_2956 in value {
+            let converted_item_2957 = replica_description_shared_to_py(py, item_2956)?;
+            converted_2955_list.append(converted_item_2957)?;
+        }
+        let converted_2955 = converted_2955_list.into_any().unbind();
+        result.set_item("replicas", converted_2955)?;
+    } else {
+        result.set_item("replicas", py.None())?;
+    }
+    if let Some(value) = &value.global_table_witnesses {
+        let converted_2958_list = PyList::empty(py);
+        for item_2959 in value {
+            let converted_item_2960 = global_table_witness_description_to_py(py, item_2959)?;
+            converted_2958_list.append(converted_item_2960)?;
+        }
+        let converted_2958 = converted_2958_list.into_any().unbind();
+        result.set_item("global_table_witnesses", converted_2958)?;
+    } else {
+        result.set_item("global_table_witnesses", py.None())?;
+    }
+    if let Some(value) = &value.global_table_settings_replication_mode {
+        let converted_2961 = (value).as_str().into_py_any(py)?;
+        result.set_item("global_table_settings_replication_mode", converted_2961)?;
+    } else {
+        result.set_item("global_table_settings_replication_mode", py.None())?;
+    }
+    if let Some(value) = &value.restore_summary {
+        let converted_2962 = restore_summary_to_py(py, value)?;
+        result.set_item("restore_summary", converted_2962)?;
+    } else {
+        result.set_item("restore_summary", py.None())?;
+    }
+    if let Some(value) = &value.sse_description {
+        let converted_2963 = sse_description_to_py(py, value)?;
+        result.set_item("sse_description", converted_2963)?;
+    } else {
+        result.set_item("sse_description", py.None())?;
+    }
+    if let Some(value) = &value.archival_summary {
+        let converted_2964 = archival_summary_to_py(py, value)?;
+        result.set_item("archival_summary", converted_2964)?;
+    } else {
+        result.set_item("archival_summary", py.None())?;
+    }
+    if let Some(value) = &value.table_class_summary {
+        let converted_2965 = table_class_summary_to_py(py, value)?;
+        result.set_item("table_class_summary", converted_2965)?;
+    } else {
+        result.set_item("table_class_summary", py.None())?;
+    }
+    if let Some(value) = &value.deletion_protection_enabled {
+        let converted_2966 = (value).to_owned().into_py_any(py)?;
+        result.set_item("deletion_protection_enabled", converted_2966)?;
+    } else {
+        result.set_item("deletion_protection_enabled", py.None())?;
+    }
+    if let Some(value) = &value.disassociation_protection_enabled {
+        let converted_2967 = (value).to_owned().into_py_any(py)?;
+        result.set_item("disassociation_protection_enabled", converted_2967)?;
+    } else {
+        result.set_item("disassociation_protection_enabled", py.None())?;
+    }
+    if let Some(value) = &value.on_demand_throughput {
+        let converted_2968 = on_demand_throughput_to_py(py, value)?;
+        result.set_item("on_demand_throughput", converted_2968)?;
+    } else {
+        result.set_item("on_demand_throughput", py.None())?;
+    }
+    if let Some(value) = &value.warm_throughput {
+        let converted_2969 = table_warm_throughput_description_to_py(py, value)?;
+        result.set_item("warm_throughput", converted_2969)?;
+    } else {
+        result.set_item("warm_throughput", py.None())?;
+    }
+    if let Some(value) = &value.multi_region_consistency {
+        let converted_2970 = (value).as_str().into_py_any(py)?;
+        result.set_item("multi_region_consistency", converted_2970)?;
+    } else {
+        result.set_item("multi_region_consistency", py.None())?;
+    }
+    if let Some(value) = &value.vector_indexes {
+        let converted_2971_list = PyList::empty(py);
+        for item_2972 in value {
+            let converted_item_2973 = vector_index_description_shared_to_py(py, item_2972)?;
+            converted_2971_list.append(converted_item_2973)?;
+        }
+        let converted_2971 = converted_2971_list.into_any().unbind();
+        result.set_item("vector_indexes", converted_2971)?;
+    } else {
+        result.set_item("vector_indexes", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(name = "TableDescription", module = "rboto_dynamodb._native", frozen)]
 struct PyTableDescription {
-    inner: aws_sdk_dynamodb::types::TableDescription,
+    inner: Arc<SharedTableDescription>,
 }
 
 #[pymethods]
@@ -12709,19 +15346,19 @@ impl PyTableDescription {
     #[getter]
     fn attribute_definitions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attribute_definitions {
-            let converted_2620_list = PyList::empty(py);
-            for item_2621 in value {
-                let converted_item_2622 = Py::new(
+            let converted_2879_list = PyList::empty(py);
+            for item_2880 in value {
+                let converted_item_2881 = Py::new(
                     py,
                     PyAttributeDefinition {
-                        inner: (item_2621).to_owned(),
+                        inner: Arc::clone(item_2880),
                     },
                 )?
                 .into_any();
-                converted_2620_list.append(converted_item_2622)?;
+                converted_2879_list.append(converted_item_2881)?;
             }
-            let converted_2620 = converted_2620_list.into_any().unbind();
-            Ok(converted_2620)
+            let converted_2879 = converted_2879_list.into_any().unbind();
+            Ok(converted_2879)
         } else {
             Ok(py.None())
         }
@@ -12730,8 +15367,8 @@ impl PyTableDescription {
     #[getter]
     fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_name {
-            let converted_2623 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2623)
+            let converted_2882 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2882)
         } else {
             Ok(py.None())
         }
@@ -12740,19 +15377,19 @@ impl PyTableDescription {
     #[getter]
     fn key_schema(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_schema {
-            let converted_2624_list = PyList::empty(py);
-            for item_2625 in value {
-                let converted_item_2626 = Py::new(
+            let converted_2883_list = PyList::empty(py);
+            for item_2884 in value {
+                let converted_item_2885 = Py::new(
                     py,
                     PyKeySchemaElement {
-                        inner: (item_2625).to_owned(),
+                        inner: Arc::clone(item_2884),
                     },
                 )?
                 .into_any();
-                converted_2624_list.append(converted_item_2626)?;
+                converted_2883_list.append(converted_item_2885)?;
             }
-            let converted_2624 = converted_2624_list.into_any().unbind();
-            Ok(converted_2624)
+            let converted_2883 = converted_2883_list.into_any().unbind();
+            Ok(converted_2883)
         } else {
             Ok(py.None())
         }
@@ -12761,8 +15398,8 @@ impl PyTableDescription {
     #[getter]
     fn table_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_status {
-            let converted_2627 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2627)
+            let converted_2886 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2886)
         } else {
             Ok(py.None())
         }
@@ -12771,8 +15408,8 @@ impl PyTableDescription {
     #[getter]
     fn creation_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_date_time {
-            let converted_2628 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2628)
+            let converted_2887 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2887)
         } else {
             Ok(py.None())
         }
@@ -12781,14 +15418,14 @@ impl PyTableDescription {
     #[getter]
     fn provisioned_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.provisioned_throughput {
-            let converted_2629 = Py::new(
+            let converted_2888 = Py::new(
                 py,
                 PyProvisionedThroughputDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2629)
+            Ok(converted_2888)
         } else {
             Ok(py.None())
         }
@@ -12797,8 +15434,8 @@ impl PyTableDescription {
     #[getter]
     fn table_size_bytes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_size_bytes {
-            let converted_2630 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2630)
+            let converted_2889 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2889)
         } else {
             Ok(py.None())
         }
@@ -12807,8 +15444,8 @@ impl PyTableDescription {
     #[getter]
     fn item_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.item_count {
-            let converted_2631 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2631)
+            let converted_2890 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2890)
         } else {
             Ok(py.None())
         }
@@ -12817,8 +15454,8 @@ impl PyTableDescription {
     #[getter]
     fn table_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_arn {
-            let converted_2632 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2632)
+            let converted_2891 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2891)
         } else {
             Ok(py.None())
         }
@@ -12827,8 +15464,8 @@ impl PyTableDescription {
     #[getter]
     fn table_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_id {
-            let converted_2633 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2633)
+            let converted_2892 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2892)
         } else {
             Ok(py.None())
         }
@@ -12837,14 +15474,14 @@ impl PyTableDescription {
     #[getter]
     fn billing_mode_summary(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.billing_mode_summary {
-            let converted_2634 = Py::new(
+            let converted_2893 = Py::new(
                 py,
                 PyBillingModeSummary {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2634)
+            Ok(converted_2893)
         } else {
             Ok(py.None())
         }
@@ -12853,19 +15490,19 @@ impl PyTableDescription {
     #[getter]
     fn local_secondary_indexes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.local_secondary_indexes {
-            let converted_2635_list = PyList::empty(py);
-            for item_2636 in value {
-                let converted_item_2637 = Py::new(
+            let converted_2894_list = PyList::empty(py);
+            for item_2895 in value {
+                let converted_item_2896 = Py::new(
                     py,
                     PyLocalSecondaryIndexDescription {
-                        inner: (item_2636).to_owned(),
+                        inner: Arc::clone(item_2895),
                     },
                 )?
                 .into_any();
-                converted_2635_list.append(converted_item_2637)?;
+                converted_2894_list.append(converted_item_2896)?;
             }
-            let converted_2635 = converted_2635_list.into_any().unbind();
-            Ok(converted_2635)
+            let converted_2894 = converted_2894_list.into_any().unbind();
+            Ok(converted_2894)
         } else {
             Ok(py.None())
         }
@@ -12874,19 +15511,19 @@ impl PyTableDescription {
     #[getter]
     fn global_secondary_indexes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.global_secondary_indexes {
-            let converted_2638_list = PyList::empty(py);
-            for item_2639 in value {
-                let converted_item_2640 = Py::new(
+            let converted_2897_list = PyList::empty(py);
+            for item_2898 in value {
+                let converted_item_2899 = Py::new(
                     py,
                     PyGlobalSecondaryIndexDescription {
-                        inner: (item_2639).to_owned(),
+                        inner: Arc::clone(item_2898),
                     },
                 )?
                 .into_any();
-                converted_2638_list.append(converted_item_2640)?;
+                converted_2897_list.append(converted_item_2899)?;
             }
-            let converted_2638 = converted_2638_list.into_any().unbind();
-            Ok(converted_2638)
+            let converted_2897 = converted_2897_list.into_any().unbind();
+            Ok(converted_2897)
         } else {
             Ok(py.None())
         }
@@ -12895,14 +15532,14 @@ impl PyTableDescription {
     #[getter]
     fn stream_specification(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_specification {
-            let converted_2641 = Py::new(
+            let converted_2900 = Py::new(
                 py,
                 PyStreamSpecification {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2641)
+            Ok(converted_2900)
         } else {
             Ok(py.None())
         }
@@ -12911,8 +15548,8 @@ impl PyTableDescription {
     #[getter]
     fn latest_stream_label(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.latest_stream_label {
-            let converted_2642 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2642)
+            let converted_2901 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2901)
         } else {
             Ok(py.None())
         }
@@ -12921,8 +15558,8 @@ impl PyTableDescription {
     #[getter]
     fn latest_stream_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.latest_stream_arn {
-            let converted_2643 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2643)
+            let converted_2902 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2902)
         } else {
             Ok(py.None())
         }
@@ -12931,8 +15568,8 @@ impl PyTableDescription {
     #[getter]
     fn global_table_version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.global_table_version {
-            let converted_2644 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2644)
+            let converted_2903 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2903)
         } else {
             Ok(py.None())
         }
@@ -12941,19 +15578,19 @@ impl PyTableDescription {
     #[getter]
     fn replicas(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replicas {
-            let converted_2645_list = PyList::empty(py);
-            for item_2646 in value {
-                let converted_item_2647 = Py::new(
+            let converted_2904_list = PyList::empty(py);
+            for item_2905 in value {
+                let converted_item_2906 = Py::new(
                     py,
                     PyReplicaDescription {
-                        inner: (item_2646).to_owned(),
+                        inner: Arc::clone(item_2905),
                     },
                 )?
                 .into_any();
-                converted_2645_list.append(converted_item_2647)?;
+                converted_2904_list.append(converted_item_2906)?;
             }
-            let converted_2645 = converted_2645_list.into_any().unbind();
-            Ok(converted_2645)
+            let converted_2904 = converted_2904_list.into_any().unbind();
+            Ok(converted_2904)
         } else {
             Ok(py.None())
         }
@@ -12962,19 +15599,19 @@ impl PyTableDescription {
     #[getter]
     fn global_table_witnesses(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.global_table_witnesses {
-            let converted_2648_list = PyList::empty(py);
-            for item_2649 in value {
-                let converted_item_2650 = Py::new(
+            let converted_2907_list = PyList::empty(py);
+            for item_2908 in value {
+                let converted_item_2909 = Py::new(
                     py,
                     PyGlobalTableWitnessDescription {
-                        inner: (item_2649).to_owned(),
+                        inner: Arc::clone(item_2908),
                     },
                 )?
                 .into_any();
-                converted_2648_list.append(converted_item_2650)?;
+                converted_2907_list.append(converted_item_2909)?;
             }
-            let converted_2648 = converted_2648_list.into_any().unbind();
-            Ok(converted_2648)
+            let converted_2907 = converted_2907_list.into_any().unbind();
+            Ok(converted_2907)
         } else {
             Ok(py.None())
         }
@@ -12983,8 +15620,8 @@ impl PyTableDescription {
     #[getter]
     fn global_table_settings_replication_mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.global_table_settings_replication_mode {
-            let converted_2651 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2651)
+            let converted_2910 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2910)
         } else {
             Ok(py.None())
         }
@@ -12993,14 +15630,14 @@ impl PyTableDescription {
     #[getter]
     fn restore_summary(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.restore_summary {
-            let converted_2652 = Py::new(
+            let converted_2911 = Py::new(
                 py,
                 PyRestoreSummary {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2652)
+            Ok(converted_2911)
         } else {
             Ok(py.None())
         }
@@ -13009,14 +15646,14 @@ impl PyTableDescription {
     #[getter]
     fn sse_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sse_description {
-            let converted_2653 = Py::new(
+            let converted_2912 = Py::new(
                 py,
                 PySseDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2653)
+            Ok(converted_2912)
         } else {
             Ok(py.None())
         }
@@ -13025,14 +15662,14 @@ impl PyTableDescription {
     #[getter]
     fn archival_summary(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.archival_summary {
-            let converted_2654 = Py::new(
+            let converted_2913 = Py::new(
                 py,
                 PyArchivalSummary {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2654)
+            Ok(converted_2913)
         } else {
             Ok(py.None())
         }
@@ -13041,14 +15678,14 @@ impl PyTableDescription {
     #[getter]
     fn table_class_summary(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_class_summary {
-            let converted_2655 = Py::new(
+            let converted_2914 = Py::new(
                 py,
                 PyTableClassSummary {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2655)
+            Ok(converted_2914)
         } else {
             Ok(py.None())
         }
@@ -13057,8 +15694,8 @@ impl PyTableDescription {
     #[getter]
     fn deletion_protection_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.deletion_protection_enabled {
-            let converted_2656 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2656)
+            let converted_2915 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2915)
         } else {
             Ok(py.None())
         }
@@ -13067,8 +15704,8 @@ impl PyTableDescription {
     #[getter]
     fn disassociation_protection_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.disassociation_protection_enabled {
-            let converted_2657 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2657)
+            let converted_2916 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2916)
         } else {
             Ok(py.None())
         }
@@ -13077,14 +15714,14 @@ impl PyTableDescription {
     #[getter]
     fn on_demand_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.on_demand_throughput {
-            let converted_2658 = Py::new(
+            let converted_2917 = Py::new(
                 py,
                 PyOnDemandThroughput {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2658)
+            Ok(converted_2917)
         } else {
             Ok(py.None())
         }
@@ -13093,14 +15730,14 @@ impl PyTableDescription {
     #[getter]
     fn warm_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.warm_throughput {
-            let converted_2659 = Py::new(
+            let converted_2918 = Py::new(
                 py,
                 PyTableWarmThroughputDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2659)
+            Ok(converted_2918)
         } else {
             Ok(py.None())
         }
@@ -13109,8 +15746,8 @@ impl PyTableDescription {
     #[getter]
     fn multi_region_consistency(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.multi_region_consistency {
-            let converted_2660 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2660)
+            let converted_2919 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2919)
         } else {
             Ok(py.None())
         }
@@ -13119,26 +15756,26 @@ impl PyTableDescription {
     #[getter]
     fn vector_indexes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.vector_indexes {
-            let converted_2661_list = PyList::empty(py);
-            for item_2662 in value {
-                let converted_item_2663 = Py::new(
+            let converted_2920_list = PyList::empty(py);
+            for item_2921 in value {
+                let converted_item_2922 = Py::new(
                     py,
                     PyVectorIndexDescription {
-                        inner: (item_2662).to_owned(),
+                        inner: Arc::clone(item_2921),
                     },
                 )?
                 .into_any();
-                converted_2661_list.append(converted_item_2663)?;
+                converted_2920_list.append(converted_item_2922)?;
             }
-            let converted_2661 = converted_2661_list.into_any().unbind();
-            Ok(converted_2661)
+            let converted_2920 = converted_2920_list.into_any().unbind();
+            Ok(converted_2920)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        table_description_to_py(py, &self.inner)
+        table_description_shared_to_py(py, &self.inner)
     }
 }
 
@@ -13148,7 +15785,7 @@ impl PyTableDescription {
     frozen
 )]
 struct PyTableWarmThroughputDescription {
-    inner: aws_sdk_dynamodb::types::TableWarmThroughputDescription,
+    inner: Arc<aws_sdk_dynamodb::types::TableWarmThroughputDescription>,
 }
 
 #[pymethods]
@@ -13156,8 +15793,8 @@ impl PyTableWarmThroughputDescription {
     #[getter]
     fn read_units_per_second(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.read_units_per_second {
-            let converted_2664 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2664)
+            let converted_2974 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2974)
         } else {
             Ok(py.None())
         }
@@ -13166,8 +15803,8 @@ impl PyTableWarmThroughputDescription {
     #[getter]
     fn write_units_per_second(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.write_units_per_second {
-            let converted_2665 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2665)
+            let converted_2975 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2975)
         } else {
             Ok(py.None())
         }
@@ -13176,8 +15813,8 @@ impl PyTableWarmThroughputDescription {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_2666 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2666)
+            let converted_2976 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2976)
         } else {
             Ok(py.None())
         }
@@ -13190,21 +15827,21 @@ impl PyTableWarmThroughputDescription {
 
 #[pyclass(name = "Tag", module = "rboto_dynamodb._native", frozen)]
 struct PyTag {
-    inner: aws_sdk_dynamodb::types::Tag,
+    inner: Arc<aws_sdk_dynamodb::types::Tag>,
 }
 
 #[pymethods]
 impl PyTag {
     #[getter]
     fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2667 = (&self.inner.key).as_str().into_py_any(py)?;
-        Ok(converted_2667)
+        let converted_2977 = (&self.inner.key).as_str().into_py_any(py)?;
+        Ok(converted_2977)
     }
 
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2668 = (&self.inner.value).as_str().into_py_any(py)?;
-        Ok(converted_2668)
+        let converted_2978 = (&self.inner.value).as_str().into_py_any(py)?;
+        Ok(converted_2978)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -13218,7 +15855,7 @@ impl PyTag {
     frozen
 )]
 struct PyTimeToLiveDescription {
-    inner: aws_sdk_dynamodb::types::TimeToLiveDescription,
+    inner: Arc<aws_sdk_dynamodb::types::TimeToLiveDescription>,
 }
 
 #[pymethods]
@@ -13226,8 +15863,8 @@ impl PyTimeToLiveDescription {
     #[getter]
     fn time_to_live_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.time_to_live_status {
-            let converted_2669 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2669)
+            let converted_2979 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2979)
         } else {
             Ok(py.None())
         }
@@ -13236,8 +15873,8 @@ impl PyTimeToLiveDescription {
     #[getter]
     fn attribute_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attribute_name {
-            let converted_2670 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2670)
+            let converted_2980 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2980)
         } else {
             Ok(py.None())
         }
@@ -13254,21 +15891,21 @@ impl PyTimeToLiveDescription {
     frozen
 )]
 struct PyTimeToLiveSpecification {
-    inner: aws_sdk_dynamodb::types::TimeToLiveSpecification,
+    inner: Arc<aws_sdk_dynamodb::types::TimeToLiveSpecification>,
 }
 
 #[pymethods]
 impl PyTimeToLiveSpecification {
     #[getter]
     fn enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2671 = (&self.inner.enabled).to_owned().into_py_any(py)?;
-        Ok(converted_2671)
+        let converted_2981 = (&self.inner.enabled).to_owned().into_py_any(py)?;
+        Ok(converted_2981)
     }
 
     #[getter]
     fn attribute_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2672 = (&self.inner.attribute_name).as_str().into_py_any(py)?;
-        Ok(converted_2672)
+        let converted_2982 = (&self.inner.attribute_name).as_str().into_py_any(py)?;
+        Ok(converted_2982)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -13282,7 +15919,7 @@ impl PyTimeToLiveSpecification {
     frozen
 )]
 struct PyUpdateKinesisStreamingConfiguration {
-    inner: aws_sdk_dynamodb::types::UpdateKinesisStreamingConfiguration,
+    inner: Arc<aws_sdk_dynamodb::types::UpdateKinesisStreamingConfiguration>,
 }
 
 #[pymethods]
@@ -13290,8 +15927,8 @@ impl PyUpdateKinesisStreamingConfiguration {
     #[getter]
     fn approximate_creation_date_time_precision(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.approximate_creation_date_time_precision {
-            let converted_2673 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2673)
+            let converted_2983 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2983)
         } else {
             Ok(py.None())
         }
@@ -13308,15 +15945,15 @@ impl PyUpdateKinesisStreamingConfiguration {
     frozen
 )]
 struct PyVectorAttributeDefinition {
-    inner: aws_sdk_dynamodb::types::VectorAttributeDefinition,
+    inner: Arc<aws_sdk_dynamodb::types::VectorAttributeDefinition>,
 }
 
 #[pymethods]
 impl PyVectorAttributeDefinition {
     #[getter]
     fn attribute_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2674 = (&self.inner.attribute_name).as_str().into_py_any(py)?;
-        Ok(converted_2674)
+        let converted_2984 = (&self.inner.attribute_name).as_str().into_py_any(py)?;
+        Ok(converted_2984)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -13326,7 +15963,7 @@ impl PyVectorAttributeDefinition {
 
 #[pyclass(name = "VectorCapacity", module = "rboto_dynamodb._native", frozen)]
 struct PyVectorCapacity {
-    inner: aws_sdk_dynamodb::types::VectorCapacity,
+    inner: Arc<aws_sdk_dynamodb::types::VectorCapacity>,
 }
 
 #[pymethods]
@@ -13334,8 +15971,8 @@ impl PyVectorCapacity {
     #[getter]
     fn vector_search_request_bytes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.vector_search_request_bytes {
-            let converted_2675 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2675)
+            let converted_2985 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2985)
         } else {
             Ok(py.None())
         }
@@ -13344,8 +15981,8 @@ impl PyVectorCapacity {
     #[getter]
     fn vector_write_request_bytes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.vector_write_request_bytes {
-            let converted_2676 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2676)
+            let converted_2986 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2986)
         } else {
             Ok(py.None())
         }
@@ -13356,30 +15993,92 @@ impl PyVectorCapacity {
     }
 }
 
+struct SharedVectorIndex {
+    index_name: ::std::string::String,
+    vector_attribute: Option<Arc<aws_sdk_dynamodb::types::VectorAttributeDefinition>>,
+    search_schema: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::SearchSchemaElement>>>,
+    projection: Option<Arc<aws_sdk_dynamodb::types::Projection>>,
+    dimensions: i64,
+    distance_function: aws_sdk_dynamodb::types::VectorDistanceFunction,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::VectorIndex> for SharedVectorIndex {
+    fn from(value: aws_sdk_dynamodb::types::VectorIndex) -> Self {
+        Self {
+            index_name: value.index_name,
+            vector_attribute: value.vector_attribute.map(|item| Arc::new(item)),
+            search_schema: value.search_schema.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_2995| Arc::new(owned_2995))
+                    .collect()
+            }),
+            projection: value.projection.map(|item| Arc::new(item)),
+            dimensions: value.dimensions,
+            distance_function: value.distance_function,
+        }
+    }
+}
+
+fn vector_index_shared_to_py(py: Python<'_>, value: &SharedVectorIndex) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_2996 = (&value.index_name).as_str().into_py_any(py)?;
+    result.set_item("index_name", converted_2996)?;
+    if let Some(value) = &value.vector_attribute {
+        let converted_2997 = vector_attribute_definition_to_py(py, value)?;
+        result.set_item("vector_attribute", converted_2997)?;
+    } else {
+        result.set_item("vector_attribute", py.None())?;
+    }
+    if let Some(value) = &value.search_schema {
+        let converted_2998_list = PyList::empty(py);
+        for item_2999 in value {
+            let converted_item_3000 = search_schema_element_to_py(py, item_2999)?;
+            converted_2998_list.append(converted_item_3000)?;
+        }
+        let converted_2998 = converted_2998_list.into_any().unbind();
+        result.set_item("search_schema", converted_2998)?;
+    } else {
+        result.set_item("search_schema", py.None())?;
+    }
+    if let Some(value) = &value.projection {
+        let converted_3001 = projection_to_py(py, value)?;
+        result.set_item("projection", converted_3001)?;
+    } else {
+        result.set_item("projection", py.None())?;
+    }
+    let converted_3002 = (&value.dimensions).to_owned().into_py_any(py)?;
+    result.set_item("dimensions", converted_3002)?;
+    let converted_3003 = (&value.distance_function).as_str().into_py_any(py)?;
+    result.set_item("distance_function", converted_3003)?;
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "VectorIndex", module = "rboto_dynamodb._native", frozen)]
 struct PyVectorIndex {
-    inner: aws_sdk_dynamodb::types::VectorIndex,
+    inner: Arc<SharedVectorIndex>,
 }
 
 #[pymethods]
 impl PyVectorIndex {
     #[getter]
     fn index_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2677 = (&self.inner.index_name).as_str().into_py_any(py)?;
-        Ok(converted_2677)
+        let converted_2987 = (&self.inner.index_name).as_str().into_py_any(py)?;
+        Ok(converted_2987)
     }
 
     #[getter]
     fn vector_attribute(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.vector_attribute {
-            let converted_2678 = Py::new(
+            let converted_2988 = Py::new(
                 py,
                 PyVectorAttributeDefinition {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2678)
+            Ok(converted_2988)
         } else {
             Ok(py.None())
         }
@@ -13388,19 +16087,19 @@ impl PyVectorIndex {
     #[getter]
     fn search_schema(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.search_schema {
-            let converted_2679_list = PyList::empty(py);
-            for item_2680 in value {
-                let converted_item_2681 = Py::new(
+            let converted_2989_list = PyList::empty(py);
+            for item_2990 in value {
+                let converted_item_2991 = Py::new(
                     py,
                     PySearchSchemaElement {
-                        inner: (item_2680).to_owned(),
+                        inner: Arc::clone(item_2990),
                     },
                 )?
                 .into_any();
-                converted_2679_list.append(converted_item_2681)?;
+                converted_2989_list.append(converted_item_2991)?;
             }
-            let converted_2679 = converted_2679_list.into_any().unbind();
-            Ok(converted_2679)
+            let converted_2989 = converted_2989_list.into_any().unbind();
+            Ok(converted_2989)
         } else {
             Ok(py.None())
         }
@@ -13409,14 +16108,14 @@ impl PyVectorIndex {
     #[getter]
     fn projection(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.projection {
-            let converted_2682 = Py::new(
+            let converted_2992 = Py::new(
                 py,
                 PyProjection {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2682)
+            Ok(converted_2992)
         } else {
             Ok(py.None())
         }
@@ -13424,19 +16123,136 @@ impl PyVectorIndex {
 
     #[getter]
     fn dimensions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2683 = (&self.inner.dimensions).to_owned().into_py_any(py)?;
-        Ok(converted_2683)
+        let converted_2993 = (&self.inner.dimensions).to_owned().into_py_any(py)?;
+        Ok(converted_2993)
     }
 
     #[getter]
     fn distance_function(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2684 = (&self.inner.distance_function).as_str().into_py_any(py)?;
-        Ok(converted_2684)
+        let converted_2994 = (&self.inner.distance_function).as_str().into_py_any(py)?;
+        Ok(converted_2994)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        vector_index_to_py(py, &self.inner)
+        vector_index_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedVectorIndexDescription {
+    index_name: Option<::std::string::String>,
+    search_schema: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::SearchSchemaElement>>>,
+    projection: Option<Arc<aws_sdk_dynamodb::types::Projection>>,
+    vector_attribute: Option<Arc<aws_sdk_dynamodb::types::VectorAttributeDefinition>>,
+    dimensions: Option<i64>,
+    distance_function: Option<aws_sdk_dynamodb::types::VectorDistanceFunction>,
+    index_status: Option<aws_sdk_dynamodb::types::IndexStatus>,
+    backfilling: Option<bool>,
+    index_size_bytes: Option<i64>,
+    item_count: Option<i64>,
+    index_arn: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::VectorIndexDescription> for SharedVectorIndexDescription {
+    fn from(value: aws_sdk_dynamodb::types::VectorIndexDescription) -> Self {
+        Self {
+            index_name: value.index_name,
+            search_schema: value.search_schema.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3017| Arc::new(owned_3017))
+                    .collect()
+            }),
+            projection: value.projection.map(|item| Arc::new(item)),
+            vector_attribute: value.vector_attribute.map(|item| Arc::new(item)),
+            dimensions: value.dimensions,
+            distance_function: value.distance_function,
+            index_status: value.index_status,
+            backfilling: value.backfilling,
+            index_size_bytes: value.index_size_bytes,
+            item_count: value.item_count,
+            index_arn: value.index_arn,
+        }
+    }
+}
+
+fn vector_index_description_shared_to_py(
+    py: Python<'_>,
+    value: &SharedVectorIndexDescription,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.index_name {
+        let converted_3018 = (value).as_str().into_py_any(py)?;
+        result.set_item("index_name", converted_3018)?;
+    } else {
+        result.set_item("index_name", py.None())?;
+    }
+    if let Some(value) = &value.search_schema {
+        let converted_3019_list = PyList::empty(py);
+        for item_3020 in value {
+            let converted_item_3021 = search_schema_element_to_py(py, item_3020)?;
+            converted_3019_list.append(converted_item_3021)?;
+        }
+        let converted_3019 = converted_3019_list.into_any().unbind();
+        result.set_item("search_schema", converted_3019)?;
+    } else {
+        result.set_item("search_schema", py.None())?;
+    }
+    if let Some(value) = &value.projection {
+        let converted_3022 = projection_to_py(py, value)?;
+        result.set_item("projection", converted_3022)?;
+    } else {
+        result.set_item("projection", py.None())?;
+    }
+    if let Some(value) = &value.vector_attribute {
+        let converted_3023 = vector_attribute_definition_to_py(py, value)?;
+        result.set_item("vector_attribute", converted_3023)?;
+    } else {
+        result.set_item("vector_attribute", py.None())?;
+    }
+    if let Some(value) = &value.dimensions {
+        let converted_3024 = (value).to_owned().into_py_any(py)?;
+        result.set_item("dimensions", converted_3024)?;
+    } else {
+        result.set_item("dimensions", py.None())?;
+    }
+    if let Some(value) = &value.distance_function {
+        let converted_3025 = (value).as_str().into_py_any(py)?;
+        result.set_item("distance_function", converted_3025)?;
+    } else {
+        result.set_item("distance_function", py.None())?;
+    }
+    if let Some(value) = &value.index_status {
+        let converted_3026 = (value).as_str().into_py_any(py)?;
+        result.set_item("index_status", converted_3026)?;
+    } else {
+        result.set_item("index_status", py.None())?;
+    }
+    if let Some(value) = &value.backfilling {
+        let converted_3027 = (value).to_owned().into_py_any(py)?;
+        result.set_item("backfilling", converted_3027)?;
+    } else {
+        result.set_item("backfilling", py.None())?;
+    }
+    if let Some(value) = &value.index_size_bytes {
+        let converted_3028 = (value).to_owned().into_py_any(py)?;
+        result.set_item("index_size_bytes", converted_3028)?;
+    } else {
+        result.set_item("index_size_bytes", py.None())?;
+    }
+    if let Some(value) = &value.item_count {
+        let converted_3029 = (value).to_owned().into_py_any(py)?;
+        result.set_item("item_count", converted_3029)?;
+    } else {
+        result.set_item("item_count", py.None())?;
+    }
+    if let Some(value) = &value.index_arn {
+        let converted_3030 = (value).as_str().into_py_any(py)?;
+        result.set_item("index_arn", converted_3030)?;
+    } else {
+        result.set_item("index_arn", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -13445,7 +16261,7 @@ impl PyVectorIndex {
     frozen
 )]
 struct PyVectorIndexDescription {
-    inner: aws_sdk_dynamodb::types::VectorIndexDescription,
+    inner: Arc<SharedVectorIndexDescription>,
 }
 
 #[pymethods]
@@ -13453,8 +16269,8 @@ impl PyVectorIndexDescription {
     #[getter]
     fn index_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.index_name {
-            let converted_2685 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2685)
+            let converted_3004 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3004)
         } else {
             Ok(py.None())
         }
@@ -13463,19 +16279,19 @@ impl PyVectorIndexDescription {
     #[getter]
     fn search_schema(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.search_schema {
-            let converted_2686_list = PyList::empty(py);
-            for item_2687 in value {
-                let converted_item_2688 = Py::new(
+            let converted_3005_list = PyList::empty(py);
+            for item_3006 in value {
+                let converted_item_3007 = Py::new(
                     py,
                     PySearchSchemaElement {
-                        inner: (item_2687).to_owned(),
+                        inner: Arc::clone(item_3006),
                     },
                 )?
                 .into_any();
-                converted_2686_list.append(converted_item_2688)?;
+                converted_3005_list.append(converted_item_3007)?;
             }
-            let converted_2686 = converted_2686_list.into_any().unbind();
-            Ok(converted_2686)
+            let converted_3005 = converted_3005_list.into_any().unbind();
+            Ok(converted_3005)
         } else {
             Ok(py.None())
         }
@@ -13484,14 +16300,14 @@ impl PyVectorIndexDescription {
     #[getter]
     fn projection(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.projection {
-            let converted_2689 = Py::new(
+            let converted_3008 = Py::new(
                 py,
                 PyProjection {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2689)
+            Ok(converted_3008)
         } else {
             Ok(py.None())
         }
@@ -13500,14 +16316,14 @@ impl PyVectorIndexDescription {
     #[getter]
     fn vector_attribute(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.vector_attribute {
-            let converted_2690 = Py::new(
+            let converted_3009 = Py::new(
                 py,
                 PyVectorAttributeDefinition {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2690)
+            Ok(converted_3009)
         } else {
             Ok(py.None())
         }
@@ -13516,8 +16332,8 @@ impl PyVectorIndexDescription {
     #[getter]
     fn dimensions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dimensions {
-            let converted_2691 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2691)
+            let converted_3010 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3010)
         } else {
             Ok(py.None())
         }
@@ -13526,8 +16342,8 @@ impl PyVectorIndexDescription {
     #[getter]
     fn distance_function(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.distance_function {
-            let converted_2692 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2692)
+            let converted_3011 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3011)
         } else {
             Ok(py.None())
         }
@@ -13536,8 +16352,8 @@ impl PyVectorIndexDescription {
     #[getter]
     fn index_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.index_status {
-            let converted_2693 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2693)
+            let converted_3012 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3012)
         } else {
             Ok(py.None())
         }
@@ -13546,8 +16362,8 @@ impl PyVectorIndexDescription {
     #[getter]
     fn backfilling(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.backfilling {
-            let converted_2694 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2694)
+            let converted_3013 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3013)
         } else {
             Ok(py.None())
         }
@@ -13556,8 +16372,8 @@ impl PyVectorIndexDescription {
     #[getter]
     fn index_size_bytes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.index_size_bytes {
-            let converted_2695 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2695)
+            let converted_3014 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3014)
         } else {
             Ok(py.None())
         }
@@ -13566,8 +16382,8 @@ impl PyVectorIndexDescription {
     #[getter]
     fn item_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.item_count {
-            let converted_2696 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2696)
+            let converted_3015 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3015)
         } else {
             Ok(py.None())
         }
@@ -13576,21 +16392,98 @@ impl PyVectorIndexDescription {
     #[getter]
     fn index_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.index_arn {
-            let converted_2697 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2697)
+            let converted_3016 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3016)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        vector_index_description_to_py(py, &self.inner)
+        vector_index_description_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedVectorIndexInfo {
+    index_name: Option<::std::string::String>,
+    vector_attribute: Option<Arc<aws_sdk_dynamodb::types::VectorAttributeDefinition>>,
+    search_schema: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::SearchSchemaElement>>>,
+    projection: Option<Arc<aws_sdk_dynamodb::types::Projection>>,
+    dimensions: Option<i64>,
+    distance_function: Option<aws_sdk_dynamodb::types::VectorDistanceFunction>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::VectorIndexInfo> for SharedVectorIndexInfo {
+    fn from(value: aws_sdk_dynamodb::types::VectorIndexInfo) -> Self {
+        Self {
+            index_name: value.index_name,
+            vector_attribute: value.vector_attribute.map(|item| Arc::new(item)),
+            search_schema: value.search_schema.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3039| Arc::new(owned_3039))
+                    .collect()
+            }),
+            projection: value.projection.map(|item| Arc::new(item)),
+            dimensions: value.dimensions,
+            distance_function: value.distance_function,
+        }
+    }
+}
+
+fn vector_index_info_shared_to_py(
+    py: Python<'_>,
+    value: &SharedVectorIndexInfo,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.index_name {
+        let converted_3040 = (value).as_str().into_py_any(py)?;
+        result.set_item("index_name", converted_3040)?;
+    } else {
+        result.set_item("index_name", py.None())?;
+    }
+    if let Some(value) = &value.vector_attribute {
+        let converted_3041 = vector_attribute_definition_to_py(py, value)?;
+        result.set_item("vector_attribute", converted_3041)?;
+    } else {
+        result.set_item("vector_attribute", py.None())?;
+    }
+    if let Some(value) = &value.search_schema {
+        let converted_3042_list = PyList::empty(py);
+        for item_3043 in value {
+            let converted_item_3044 = search_schema_element_to_py(py, item_3043)?;
+            converted_3042_list.append(converted_item_3044)?;
+        }
+        let converted_3042 = converted_3042_list.into_any().unbind();
+        result.set_item("search_schema", converted_3042)?;
+    } else {
+        result.set_item("search_schema", py.None())?;
+    }
+    if let Some(value) = &value.projection {
+        let converted_3045 = projection_to_py(py, value)?;
+        result.set_item("projection", converted_3045)?;
+    } else {
+        result.set_item("projection", py.None())?;
+    }
+    if let Some(value) = &value.dimensions {
+        let converted_3046 = (value).to_owned().into_py_any(py)?;
+        result.set_item("dimensions", converted_3046)?;
+    } else {
+        result.set_item("dimensions", py.None())?;
+    }
+    if let Some(value) = &value.distance_function {
+        let converted_3047 = (value).as_str().into_py_any(py)?;
+        result.set_item("distance_function", converted_3047)?;
+    } else {
+        result.set_item("distance_function", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(name = "VectorIndexInfo", module = "rboto_dynamodb._native", frozen)]
 struct PyVectorIndexInfo {
-    inner: aws_sdk_dynamodb::types::VectorIndexInfo,
+    inner: Arc<SharedVectorIndexInfo>,
 }
 
 #[pymethods]
@@ -13598,8 +16491,8 @@ impl PyVectorIndexInfo {
     #[getter]
     fn index_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.index_name {
-            let converted_2698 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2698)
+            let converted_3031 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3031)
         } else {
             Ok(py.None())
         }
@@ -13608,14 +16501,14 @@ impl PyVectorIndexInfo {
     #[getter]
     fn vector_attribute(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.vector_attribute {
-            let converted_2699 = Py::new(
+            let converted_3032 = Py::new(
                 py,
                 PyVectorAttributeDefinition {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2699)
+            Ok(converted_3032)
         } else {
             Ok(py.None())
         }
@@ -13624,19 +16517,19 @@ impl PyVectorIndexInfo {
     #[getter]
     fn search_schema(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.search_schema {
-            let converted_2700_list = PyList::empty(py);
-            for item_2701 in value {
-                let converted_item_2702 = Py::new(
+            let converted_3033_list = PyList::empty(py);
+            for item_3034 in value {
+                let converted_item_3035 = Py::new(
                     py,
                     PySearchSchemaElement {
-                        inner: (item_2701).to_owned(),
+                        inner: Arc::clone(item_3034),
                     },
                 )?
                 .into_any();
-                converted_2700_list.append(converted_item_2702)?;
+                converted_3033_list.append(converted_item_3035)?;
             }
-            let converted_2700 = converted_2700_list.into_any().unbind();
-            Ok(converted_2700)
+            let converted_3033 = converted_3033_list.into_any().unbind();
+            Ok(converted_3033)
         } else {
             Ok(py.None())
         }
@@ -13645,14 +16538,14 @@ impl PyVectorIndexInfo {
     #[getter]
     fn projection(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.projection {
-            let converted_2703 = Py::new(
+            let converted_3036 = Py::new(
                 py,
                 PyProjection {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2703)
+            Ok(converted_3036)
         } else {
             Ok(py.None())
         }
@@ -13661,8 +16554,8 @@ impl PyVectorIndexInfo {
     #[getter]
     fn dimensions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dimensions {
-            let converted_2704 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2704)
+            let converted_3037 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3037)
         } else {
             Ok(py.None())
         }
@@ -13671,21 +16564,21 @@ impl PyVectorIndexInfo {
     #[getter]
     fn distance_function(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.distance_function {
-            let converted_2705 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2705)
+            let converted_3038 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3038)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        vector_index_info_to_py(py, &self.inner)
+        vector_index_info_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "WarmThroughput", module = "rboto_dynamodb._native", frozen)]
 struct PyWarmThroughput {
-    inner: aws_sdk_dynamodb::types::WarmThroughput,
+    inner: Arc<aws_sdk_dynamodb::types::WarmThroughput>,
 }
 
 #[pymethods]
@@ -13693,8 +16586,8 @@ impl PyWarmThroughput {
     #[getter]
     fn read_units_per_second(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.read_units_per_second {
-            let converted_2706 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2706)
+            let converted_3048 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3048)
         } else {
             Ok(py.None())
         }
@@ -13703,8 +16596,8 @@ impl PyWarmThroughput {
     #[getter]
     fn write_units_per_second(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.write_units_per_second {
-            let converted_2707 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2707)
+            let converted_3049 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3049)
         } else {
             Ok(py.None())
         }
@@ -13715,9 +16608,41 @@ impl PyWarmThroughput {
     }
 }
 
+struct SharedWriteRequest {
+    put_request: Option<Arc<aws_sdk_dynamodb::types::PutRequest>>,
+    delete_request: Option<Arc<aws_sdk_dynamodb::types::DeleteRequest>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::types::WriteRequest> for SharedWriteRequest {
+    fn from(value: aws_sdk_dynamodb::types::WriteRequest) -> Self {
+        Self {
+            put_request: value.put_request.map(|item| Arc::new(item)),
+            delete_request: value.delete_request.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn write_request_shared_to_py(py: Python<'_>, value: &SharedWriteRequest) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.put_request {
+        let converted_3052 = put_request_to_py(py, value)?;
+        result.set_item("put_request", converted_3052)?;
+    } else {
+        result.set_item("put_request", py.None())?;
+    }
+    if let Some(value) = &value.delete_request {
+        let converted_3053 = delete_request_to_py(py, value)?;
+        result.set_item("delete_request", converted_3053)?;
+    } else {
+        result.set_item("delete_request", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "WriteRequest", module = "rboto_dynamodb._native", frozen)]
 struct PyWriteRequest {
-    inner: aws_sdk_dynamodb::types::WriteRequest,
+    inner: Arc<SharedWriteRequest>,
 }
 
 #[pymethods]
@@ -13725,14 +16650,14 @@ impl PyWriteRequest {
     #[getter]
     fn put_request(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.put_request {
-            let converted_2708 = Py::new(
+            let converted_3050 = Py::new(
                 py,
                 PyPutRequest {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2708)
+            Ok(converted_3050)
         } else {
             Ok(py.None())
         }
@@ -13741,21 +16666,50 @@ impl PyWriteRequest {
     #[getter]
     fn delete_request(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.delete_request {
-            let converted_2709 = Py::new(
+            let converted_3051 = Py::new(
                 py,
                 PyDeleteRequest {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2709)
+            Ok(converted_3051)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        write_request_to_py(py, &self.inner)
+        write_request_shared_to_py(py, &self.inner)
+    }
+}
+
+struct SharedPyOperationBatchExecuteStatementOutput {
+    responses: Option<::std::vec::Vec<Arc<SharedBatchStatementResponse>>>,
+    consumed_capacity: Option<::std::vec::Vec<Arc<SharedConsumedCapacity>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::batch_execute_statement::BatchExecuteStatementOutput>
+    for SharedPyOperationBatchExecuteStatementOutput
+{
+    fn from(
+        value: aws_sdk_dynamodb::operation::batch_execute_statement::BatchExecuteStatementOutput,
+    ) -> Self {
+        Self {
+            responses: value.responses.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3060| Arc::new(SharedBatchStatementResponse::from(owned_3060)))
+                    .collect()
+            }),
+            consumed_capacity: value.consumed_capacity.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3061| Arc::new(SharedConsumedCapacity::from(owned_3061)))
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -13765,7 +16719,7 @@ impl PyWriteRequest {
     frozen
 )]
 struct PyOperationBatchExecuteStatementOutput {
-    inner: aws_sdk_dynamodb::operation::batch_execute_statement::BatchExecuteStatementOutput,
+    inner: SharedPyOperationBatchExecuteStatementOutput,
 }
 
 #[pymethods]
@@ -13773,19 +16727,19 @@ impl PyOperationBatchExecuteStatementOutput {
     #[getter]
     fn responses(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.responses {
-            let converted_2710_list = PyList::empty(py);
-            for item_2711 in value {
-                let converted_item_2712 = Py::new(
+            let converted_3054_list = PyList::empty(py);
+            for item_3055 in value {
+                let converted_item_3056 = Py::new(
                     py,
                     PyBatchStatementResponse {
-                        inner: (item_2711).to_owned(),
+                        inner: Arc::clone(item_3055),
                     },
                 )?
                 .into_any();
-                converted_2710_list.append(converted_item_2712)?;
+                converted_3054_list.append(converted_item_3056)?;
             }
-            let converted_2710 = converted_2710_list.into_any().unbind();
-            Ok(converted_2710)
+            let converted_3054 = converted_3054_list.into_any().unbind();
+            Ok(converted_3054)
         } else {
             Ok(py.None())
         }
@@ -13794,19 +16748,19 @@ impl PyOperationBatchExecuteStatementOutput {
     #[getter]
     fn consumed_capacity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_2713_list = PyList::empty(py);
-            for item_2714 in value {
-                let converted_item_2715 = Py::new(
+            let converted_3057_list = PyList::empty(py);
+            for item_3058 in value {
+                let converted_item_3059 = Py::new(
                     py,
                     PyConsumedCapacity {
-                        inner: (item_2714).to_owned(),
+                        inner: Arc::clone(item_3058),
                     },
                 )?
                 .into_any();
-                converted_2713_list.append(converted_item_2715)?;
+                converted_3057_list.append(converted_item_3059)?;
             }
-            let converted_2713 = converted_2713_list.into_any().unbind();
-            Ok(converted_2713)
+            let converted_3057 = converted_3057_list.into_any().unbind();
+            Ok(converted_3057)
         } else {
             Ok(py.None())
         }
@@ -13815,24 +16769,24 @@ impl PyOperationBatchExecuteStatementOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.responses {
-            let converted_2716_list = PyList::empty(py);
-            for item_2717 in value {
-                let converted_item_2718 = batch_statement_response_to_py(py, item_2717)?;
-                converted_2716_list.append(converted_item_2718)?;
+            let converted_3062_list = PyList::empty(py);
+            for item_3063 in value {
+                let converted_item_3064 = batch_statement_response_shared_to_py(py, item_3063)?;
+                converted_3062_list.append(converted_item_3064)?;
             }
-            let converted_2716 = converted_2716_list.into_any().unbind();
-            result.set_item("responses", converted_2716)?;
+            let converted_3062 = converted_3062_list.into_any().unbind();
+            result.set_item("responses", converted_3062)?;
         } else {
             result.set_item("responses", py.None())?;
         }
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_2719_list = PyList::empty(py);
-            for item_2720 in value {
-                let converted_item_2721 = consumed_capacity_to_py(py, item_2720)?;
-                converted_2719_list.append(converted_item_2721)?;
+            let converted_3065_list = PyList::empty(py);
+            for item_3066 in value {
+                let converted_item_3067 = consumed_capacity_shared_to_py(py, item_3066)?;
+                converted_3065_list.append(converted_item_3067)?;
             }
-            let converted_2719 = converted_2719_list.into_any().unbind();
-            result.set_item("consumed_capacity", converted_2719)?;
+            let converted_3065 = converted_3065_list.into_any().unbind();
+            result.set_item("consumed_capacity", converted_3065)?;
         } else {
             result.set_item("consumed_capacity", py.None())?;
         }
@@ -13840,9 +16794,53 @@ impl PyOperationBatchExecuteStatementOutput {
     }
 }
 
+struct SharedPyOperationBatchGetItemOutput {
+    responses: Option<
+        ::std::collections::HashMap<
+            ::std::string::String,
+            ::std::vec::Vec<
+                ::std::collections::HashMap<
+                    ::std::string::String,
+                    aws_sdk_dynamodb::types::AttributeValue,
+                >,
+            >,
+        >,
+    >,
+    unprocessed_keys: Option<
+        ::std::collections::HashMap<
+            ::std::string::String,
+            Arc<aws_sdk_dynamodb::types::KeysAndAttributes>,
+        >,
+    >,
+    consumed_capacity: Option<::std::vec::Vec<Arc<SharedConsumedCapacity>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::batch_get_item::BatchGetItemOutput>
+    for SharedPyOperationBatchGetItemOutput
+{
+    fn from(value: aws_sdk_dynamodb::operation::batch_get_item::BatchGetItemOutput) -> Self {
+        Self {
+            responses: value.responses,
+            unprocessed_keys: value.unprocessed_keys.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|(key, owned_3087)| (key, Arc::new(owned_3087)))
+                    .collect()
+            }),
+            consumed_capacity: value.consumed_capacity.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3088| Arc::new(SharedConsumedCapacity::from(owned_3088)))
+                    .collect()
+            }),
+        }
+    }
+}
+
 #[pyclass(name = "BatchGetItemOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyOperationBatchGetItemOutput {
-    inner: aws_sdk_dynamodb::operation::batch_get_item::BatchGetItemOutput,
+    inner: SharedPyOperationBatchGetItemOutput,
 }
 
 #[pymethods]
@@ -13850,26 +16848,26 @@ impl PyOperationBatchGetItemOutput {
     #[getter]
     fn responses(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.responses {
-            let converted_2722_dict = PyDict::new(py);
-            for (key_2723, value_2724) in value {
-                let converted_key_2725 = (key_2723).as_str().into_py_any(py)?;
-                let converted_value_2726_list = PyList::empty(py);
-                for item_2727 in value_2724 {
-                    let converted_item_2728_dict = PyDict::new(py);
-                    for (key_2729, value_2730) in item_2727 {
-                        let converted_key_2731 = (key_2729).as_str().into_py_any(py)?;
-                        let converted_value_2732 = attribute_value_to_py(py, value_2730)?;
-                        converted_item_2728_dict
-                            .set_item(converted_key_2731, converted_value_2732)?;
+            let converted_3068_dict = PyDict::new(py);
+            for (key_3069, value_3070) in value {
+                let converted_key_3071 = (key_3069).as_str().into_py_any(py)?;
+                let converted_value_3072_list = PyList::empty(py);
+                for item_3073 in value_3070 {
+                    let converted_item_3074_dict = PyDict::new(py);
+                    for (key_3075, value_3076) in item_3073 {
+                        let converted_key_3077 = (key_3075).as_str().into_py_any(py)?;
+                        let converted_value_3078 = attribute_value_to_py(py, value_3076)?;
+                        converted_item_3074_dict
+                            .set_item(converted_key_3077, converted_value_3078)?;
                     }
-                    let converted_item_2728 = converted_item_2728_dict.into_any().unbind();
-                    converted_value_2726_list.append(converted_item_2728)?;
+                    let converted_item_3074 = converted_item_3074_dict.into_any().unbind();
+                    converted_value_3072_list.append(converted_item_3074)?;
                 }
-                let converted_value_2726 = converted_value_2726_list.into_any().unbind();
-                converted_2722_dict.set_item(converted_key_2725, converted_value_2726)?;
+                let converted_value_3072 = converted_value_3072_list.into_any().unbind();
+                converted_3068_dict.set_item(converted_key_3071, converted_value_3072)?;
             }
-            let converted_2722 = converted_2722_dict.into_any().unbind();
-            Ok(converted_2722)
+            let converted_3068 = converted_3068_dict.into_any().unbind();
+            Ok(converted_3068)
         } else {
             Ok(py.None())
         }
@@ -13878,20 +16876,20 @@ impl PyOperationBatchGetItemOutput {
     #[getter]
     fn unprocessed_keys(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.unprocessed_keys {
-            let converted_2733_dict = PyDict::new(py);
-            for (key_2734, value_2735) in value {
-                let converted_key_2736 = (key_2734).as_str().into_py_any(py)?;
-                let converted_value_2737 = Py::new(
+            let converted_3079_dict = PyDict::new(py);
+            for (key_3080, value_3081) in value {
+                let converted_key_3082 = (key_3080).as_str().into_py_any(py)?;
+                let converted_value_3083 = Py::new(
                     py,
                     PyKeysAndAttributes {
-                        inner: (value_2735).to_owned(),
+                        inner: Arc::clone(value_3081),
                     },
                 )?
                 .into_any();
-                converted_2733_dict.set_item(converted_key_2736, converted_value_2737)?;
+                converted_3079_dict.set_item(converted_key_3082, converted_value_3083)?;
             }
-            let converted_2733 = converted_2733_dict.into_any().unbind();
-            Ok(converted_2733)
+            let converted_3079 = converted_3079_dict.into_any().unbind();
+            Ok(converted_3079)
         } else {
             Ok(py.None())
         }
@@ -13900,19 +16898,19 @@ impl PyOperationBatchGetItemOutput {
     #[getter]
     fn consumed_capacity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_2738_list = PyList::empty(py);
-            for item_2739 in value {
-                let converted_item_2740 = Py::new(
+            let converted_3084_list = PyList::empty(py);
+            for item_3085 in value {
+                let converted_item_3086 = Py::new(
                     py,
                     PyConsumedCapacity {
-                        inner: (item_2739).to_owned(),
+                        inner: Arc::clone(item_3085),
                     },
                 )?
                 .into_any();
-                converted_2738_list.append(converted_item_2740)?;
+                converted_3084_list.append(converted_item_3086)?;
             }
-            let converted_2738 = converted_2738_list.into_any().unbind();
-            Ok(converted_2738)
+            let converted_3084 = converted_3084_list.into_any().unbind();
+            Ok(converted_3084)
         } else {
             Ok(py.None())
         }
@@ -13921,53 +16919,113 @@ impl PyOperationBatchGetItemOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.responses {
-            let converted_2741_dict = PyDict::new(py);
-            for (key_2742, value_2743) in value {
-                let converted_key_2744 = (key_2742).as_str().into_py_any(py)?;
-                let converted_value_2745_list = PyList::empty(py);
-                for item_2746 in value_2743 {
-                    let converted_item_2747_dict = PyDict::new(py);
-                    for (key_2748, value_2749) in item_2746 {
-                        let converted_key_2750 = (key_2748).as_str().into_py_any(py)?;
-                        let converted_value_2751 = attribute_value_to_py(py, value_2749)?;
-                        converted_item_2747_dict
-                            .set_item(converted_key_2750, converted_value_2751)?;
+            let converted_3089_dict = PyDict::new(py);
+            for (key_3090, value_3091) in value {
+                let converted_key_3092 = (key_3090).as_str().into_py_any(py)?;
+                let converted_value_3093_list = PyList::empty(py);
+                for item_3094 in value_3091 {
+                    let converted_item_3095_dict = PyDict::new(py);
+                    for (key_3096, value_3097) in item_3094 {
+                        let converted_key_3098 = (key_3096).as_str().into_py_any(py)?;
+                        let converted_value_3099 = attribute_value_to_py(py, value_3097)?;
+                        converted_item_3095_dict
+                            .set_item(converted_key_3098, converted_value_3099)?;
                     }
-                    let converted_item_2747 = converted_item_2747_dict.into_any().unbind();
-                    converted_value_2745_list.append(converted_item_2747)?;
+                    let converted_item_3095 = converted_item_3095_dict.into_any().unbind();
+                    converted_value_3093_list.append(converted_item_3095)?;
                 }
-                let converted_value_2745 = converted_value_2745_list.into_any().unbind();
-                converted_2741_dict.set_item(converted_key_2744, converted_value_2745)?;
+                let converted_value_3093 = converted_value_3093_list.into_any().unbind();
+                converted_3089_dict.set_item(converted_key_3092, converted_value_3093)?;
             }
-            let converted_2741 = converted_2741_dict.into_any().unbind();
-            result.set_item("responses", converted_2741)?;
+            let converted_3089 = converted_3089_dict.into_any().unbind();
+            result.set_item("responses", converted_3089)?;
         } else {
             result.set_item("responses", py.None())?;
         }
         if let Some(value) = &self.inner.unprocessed_keys {
-            let converted_2752_dict = PyDict::new(py);
-            for (key_2753, value_2754) in value {
-                let converted_key_2755 = (key_2753).as_str().into_py_any(py)?;
-                let converted_value_2756 = keys_and_attributes_to_py(py, value_2754)?;
-                converted_2752_dict.set_item(converted_key_2755, converted_value_2756)?;
+            let converted_3100_dict = PyDict::new(py);
+            for (key_3101, value_3102) in value {
+                let converted_key_3103 = (key_3101).as_str().into_py_any(py)?;
+                let converted_value_3104 = keys_and_attributes_to_py(py, value_3102)?;
+                converted_3100_dict.set_item(converted_key_3103, converted_value_3104)?;
             }
-            let converted_2752 = converted_2752_dict.into_any().unbind();
-            result.set_item("unprocessed_keys", converted_2752)?;
+            let converted_3100 = converted_3100_dict.into_any().unbind();
+            result.set_item("unprocessed_keys", converted_3100)?;
         } else {
             result.set_item("unprocessed_keys", py.None())?;
         }
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_2757_list = PyList::empty(py);
-            for item_2758 in value {
-                let converted_item_2759 = consumed_capacity_to_py(py, item_2758)?;
-                converted_2757_list.append(converted_item_2759)?;
+            let converted_3105_list = PyList::empty(py);
+            for item_3106 in value {
+                let converted_item_3107 = consumed_capacity_shared_to_py(py, item_3106)?;
+                converted_3105_list.append(converted_item_3107)?;
             }
-            let converted_2757 = converted_2757_list.into_any().unbind();
-            result.set_item("consumed_capacity", converted_2757)?;
+            let converted_3105 = converted_3105_list.into_any().unbind();
+            result.set_item("consumed_capacity", converted_3105)?;
         } else {
             result.set_item("consumed_capacity", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationBatchWriteItemOutput {
+    unprocessed_items: Option<
+        ::std::collections::HashMap<
+            ::std::string::String,
+            ::std::vec::Vec<Arc<SharedWriteRequest>>,
+        >,
+    >,
+    item_collection_metrics: Option<
+        ::std::collections::HashMap<
+            ::std::string::String,
+            ::std::vec::Vec<Arc<aws_sdk_dynamodb::types::ItemCollectionMetrics>>,
+        >,
+    >,
+    consumed_capacity: Option<::std::vec::Vec<Arc<SharedConsumedCapacity>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::batch_write_item::BatchWriteItemOutput>
+    for SharedPyOperationBatchWriteItemOutput
+{
+    fn from(value: aws_sdk_dynamodb::operation::batch_write_item::BatchWriteItemOutput) -> Self {
+        Self {
+            unprocessed_items: value.unprocessed_items.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|(key, owned_3125)| {
+                        (
+                            key,
+                            (owned_3125)
+                                .into_iter()
+                                .map(|owned_3126| Arc::new(SharedWriteRequest::from(owned_3126)))
+                                .collect(),
+                        )
+                    })
+                    .collect()
+            }),
+            item_collection_metrics: value.item_collection_metrics.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|(key, owned_3127)| {
+                        (
+                            key,
+                            (owned_3127)
+                                .into_iter()
+                                .map(|owned_3128| Arc::new(owned_3128))
+                                .collect(),
+                        )
+                    })
+                    .collect()
+            }),
+            consumed_capacity: value.consumed_capacity.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3129| Arc::new(SharedConsumedCapacity::from(owned_3129)))
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -13977,7 +17035,7 @@ impl PyOperationBatchGetItemOutput {
     frozen
 )]
 struct PyOperationBatchWriteItemOutput {
-    inner: aws_sdk_dynamodb::operation::batch_write_item::BatchWriteItemOutput,
+    inner: SharedPyOperationBatchWriteItemOutput,
 }
 
 #[pymethods]
@@ -13985,25 +17043,25 @@ impl PyOperationBatchWriteItemOutput {
     #[getter]
     fn unprocessed_items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.unprocessed_items {
-            let converted_2760_dict = PyDict::new(py);
-            for (key_2761, value_2762) in value {
-                let converted_key_2763 = (key_2761).as_str().into_py_any(py)?;
-                let converted_value_2764_list = PyList::empty(py);
-                for item_2765 in value_2762 {
-                    let converted_item_2766 = Py::new(
+            let converted_3108_dict = PyDict::new(py);
+            for (key_3109, value_3110) in value {
+                let converted_key_3111 = (key_3109).as_str().into_py_any(py)?;
+                let converted_value_3112_list = PyList::empty(py);
+                for item_3113 in value_3110 {
+                    let converted_item_3114 = Py::new(
                         py,
                         PyWriteRequest {
-                            inner: (item_2765).to_owned(),
+                            inner: Arc::clone(item_3113),
                         },
                     )?
                     .into_any();
-                    converted_value_2764_list.append(converted_item_2766)?;
+                    converted_value_3112_list.append(converted_item_3114)?;
                 }
-                let converted_value_2764 = converted_value_2764_list.into_any().unbind();
-                converted_2760_dict.set_item(converted_key_2763, converted_value_2764)?;
+                let converted_value_3112 = converted_value_3112_list.into_any().unbind();
+                converted_3108_dict.set_item(converted_key_3111, converted_value_3112)?;
             }
-            let converted_2760 = converted_2760_dict.into_any().unbind();
-            Ok(converted_2760)
+            let converted_3108 = converted_3108_dict.into_any().unbind();
+            Ok(converted_3108)
         } else {
             Ok(py.None())
         }
@@ -14012,25 +17070,25 @@ impl PyOperationBatchWriteItemOutput {
     #[getter]
     fn item_collection_metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.item_collection_metrics {
-            let converted_2767_dict = PyDict::new(py);
-            for (key_2768, value_2769) in value {
-                let converted_key_2770 = (key_2768).as_str().into_py_any(py)?;
-                let converted_value_2771_list = PyList::empty(py);
-                for item_2772 in value_2769 {
-                    let converted_item_2773 = Py::new(
+            let converted_3115_dict = PyDict::new(py);
+            for (key_3116, value_3117) in value {
+                let converted_key_3118 = (key_3116).as_str().into_py_any(py)?;
+                let converted_value_3119_list = PyList::empty(py);
+                for item_3120 in value_3117 {
+                    let converted_item_3121 = Py::new(
                         py,
                         PyItemCollectionMetrics {
-                            inner: (item_2772).to_owned(),
+                            inner: Arc::clone(item_3120),
                         },
                     )?
                     .into_any();
-                    converted_value_2771_list.append(converted_item_2773)?;
+                    converted_value_3119_list.append(converted_item_3121)?;
                 }
-                let converted_value_2771 = converted_value_2771_list.into_any().unbind();
-                converted_2767_dict.set_item(converted_key_2770, converted_value_2771)?;
+                let converted_value_3119 = converted_value_3119_list.into_any().unbind();
+                converted_3115_dict.set_item(converted_key_3118, converted_value_3119)?;
             }
-            let converted_2767 = converted_2767_dict.into_any().unbind();
-            Ok(converted_2767)
+            let converted_3115 = converted_3115_dict.into_any().unbind();
+            Ok(converted_3115)
         } else {
             Ok(py.None())
         }
@@ -14039,19 +17097,19 @@ impl PyOperationBatchWriteItemOutput {
     #[getter]
     fn consumed_capacity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_2774_list = PyList::empty(py);
-            for item_2775 in value {
-                let converted_item_2776 = Py::new(
+            let converted_3122_list = PyList::empty(py);
+            for item_3123 in value {
+                let converted_item_3124 = Py::new(
                     py,
                     PyConsumedCapacity {
-                        inner: (item_2775).to_owned(),
+                        inner: Arc::clone(item_3123),
                     },
                 )?
                 .into_any();
-                converted_2774_list.append(converted_item_2776)?;
+                converted_3122_list.append(converted_item_3124)?;
             }
-            let converted_2774 = converted_2774_list.into_any().unbind();
-            Ok(converted_2774)
+            let converted_3122 = converted_3122_list.into_any().unbind();
+            Ok(converted_3122)
         } else {
             Ok(py.None())
         }
@@ -14060,47 +17118,47 @@ impl PyOperationBatchWriteItemOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.unprocessed_items {
-            let converted_2777_dict = PyDict::new(py);
-            for (key_2778, value_2779) in value {
-                let converted_key_2780 = (key_2778).as_str().into_py_any(py)?;
-                let converted_value_2781_list = PyList::empty(py);
-                for item_2782 in value_2779 {
-                    let converted_item_2783 = write_request_to_py(py, item_2782)?;
-                    converted_value_2781_list.append(converted_item_2783)?;
+            let converted_3130_dict = PyDict::new(py);
+            for (key_3131, value_3132) in value {
+                let converted_key_3133 = (key_3131).as_str().into_py_any(py)?;
+                let converted_value_3134_list = PyList::empty(py);
+                for item_3135 in value_3132 {
+                    let converted_item_3136 = write_request_shared_to_py(py, item_3135)?;
+                    converted_value_3134_list.append(converted_item_3136)?;
                 }
-                let converted_value_2781 = converted_value_2781_list.into_any().unbind();
-                converted_2777_dict.set_item(converted_key_2780, converted_value_2781)?;
+                let converted_value_3134 = converted_value_3134_list.into_any().unbind();
+                converted_3130_dict.set_item(converted_key_3133, converted_value_3134)?;
             }
-            let converted_2777 = converted_2777_dict.into_any().unbind();
-            result.set_item("unprocessed_items", converted_2777)?;
+            let converted_3130 = converted_3130_dict.into_any().unbind();
+            result.set_item("unprocessed_items", converted_3130)?;
         } else {
             result.set_item("unprocessed_items", py.None())?;
         }
         if let Some(value) = &self.inner.item_collection_metrics {
-            let converted_2784_dict = PyDict::new(py);
-            for (key_2785, value_2786) in value {
-                let converted_key_2787 = (key_2785).as_str().into_py_any(py)?;
-                let converted_value_2788_list = PyList::empty(py);
-                for item_2789 in value_2786 {
-                    let converted_item_2790 = item_collection_metrics_to_py(py, item_2789)?;
-                    converted_value_2788_list.append(converted_item_2790)?;
+            let converted_3137_dict = PyDict::new(py);
+            for (key_3138, value_3139) in value {
+                let converted_key_3140 = (key_3138).as_str().into_py_any(py)?;
+                let converted_value_3141_list = PyList::empty(py);
+                for item_3142 in value_3139 {
+                    let converted_item_3143 = item_collection_metrics_to_py(py, item_3142)?;
+                    converted_value_3141_list.append(converted_item_3143)?;
                 }
-                let converted_value_2788 = converted_value_2788_list.into_any().unbind();
-                converted_2784_dict.set_item(converted_key_2787, converted_value_2788)?;
+                let converted_value_3141 = converted_value_3141_list.into_any().unbind();
+                converted_3137_dict.set_item(converted_key_3140, converted_value_3141)?;
             }
-            let converted_2784 = converted_2784_dict.into_any().unbind();
-            result.set_item("item_collection_metrics", converted_2784)?;
+            let converted_3137 = converted_3137_dict.into_any().unbind();
+            result.set_item("item_collection_metrics", converted_3137)?;
         } else {
             result.set_item("item_collection_metrics", py.None())?;
         }
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_2791_list = PyList::empty(py);
-            for item_2792 in value {
-                let converted_item_2793 = consumed_capacity_to_py(py, item_2792)?;
-                converted_2791_list.append(converted_item_2793)?;
+            let converted_3144_list = PyList::empty(py);
+            for item_3145 in value {
+                let converted_item_3146 = consumed_capacity_shared_to_py(py, item_3145)?;
+                converted_3144_list.append(converted_item_3146)?;
             }
-            let converted_2791 = converted_2791_list.into_any().unbind();
-            result.set_item("consumed_capacity", converted_2791)?;
+            let converted_3144 = converted_3144_list.into_any().unbind();
+            result.set_item("consumed_capacity", converted_3144)?;
         } else {
             result.set_item("consumed_capacity", py.None())?;
         }
@@ -14108,9 +17166,24 @@ impl PyOperationBatchWriteItemOutput {
     }
 }
 
+struct SharedPyOperationCreateBackupOutput {
+    backup_details: Option<Arc<aws_sdk_dynamodb::types::BackupDetails>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::create_backup::CreateBackupOutput>
+    for SharedPyOperationCreateBackupOutput
+{
+    fn from(value: aws_sdk_dynamodb::operation::create_backup::CreateBackupOutput) -> Self {
+        Self {
+            backup_details: value.backup_details.map(|item| Arc::new(item)),
+        }
+    }
+}
+
 #[pyclass(name = "CreateBackupOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyOperationCreateBackupOutput {
-    inner: aws_sdk_dynamodb::operation::create_backup::CreateBackupOutput,
+    inner: SharedPyOperationCreateBackupOutput,
 }
 
 #[pymethods]
@@ -14118,14 +17191,14 @@ impl PyOperationCreateBackupOutput {
     #[getter]
     fn backup_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.backup_details {
-            let converted_2794 = Py::new(
+            let converted_3147 = Py::new(
                 py,
                 PyBackupDetails {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2794)
+            Ok(converted_3147)
         } else {
             Ok(py.None())
         }
@@ -14134,12 +17207,31 @@ impl PyOperationCreateBackupOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.backup_details {
-            let converted_2795 = backup_details_to_py(py, value)?;
-            result.set_item("backup_details", converted_2795)?;
+            let converted_3148 = backup_details_to_py(py, value)?;
+            result.set_item("backup_details", converted_3148)?;
         } else {
             result.set_item("backup_details", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationCreateGlobalTableOutput {
+    global_table_description: Option<Arc<SharedGlobalTableDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::create_global_table::CreateGlobalTableOutput>
+    for SharedPyOperationCreateGlobalTableOutput
+{
+    fn from(
+        value: aws_sdk_dynamodb::operation::create_global_table::CreateGlobalTableOutput,
+    ) -> Self {
+        Self {
+            global_table_description: value
+                .global_table_description
+                .map(|item| Arc::new(SharedGlobalTableDescription::from(item))),
+        }
     }
 }
 
@@ -14149,7 +17241,7 @@ impl PyOperationCreateBackupOutput {
     frozen
 )]
 struct PyOperationCreateGlobalTableOutput {
-    inner: aws_sdk_dynamodb::operation::create_global_table::CreateGlobalTableOutput,
+    inner: SharedPyOperationCreateGlobalTableOutput,
 }
 
 #[pymethods]
@@ -14157,14 +17249,14 @@ impl PyOperationCreateGlobalTableOutput {
     #[getter]
     fn global_table_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.global_table_description {
-            let converted_2796 = Py::new(
+            let converted_3149 = Py::new(
                 py,
                 PyGlobalTableDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2796)
+            Ok(converted_3149)
         } else {
             Ok(py.None())
         }
@@ -14173,8 +17265,8 @@ impl PyOperationCreateGlobalTableOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.global_table_description {
-            let converted_2797 = global_table_description_to_py(py, value)?;
-            result.set_item("global_table_description", converted_2797)?;
+            let converted_3150 = global_table_description_shared_to_py(py, value)?;
+            result.set_item("global_table_description", converted_3150)?;
         } else {
             result.set_item("global_table_description", py.None())?;
         }
@@ -14182,9 +17274,26 @@ impl PyOperationCreateGlobalTableOutput {
     }
 }
 
+struct SharedPyOperationCreateTableOutput {
+    table_description: Option<Arc<SharedTableDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::create_table::CreateTableOutput>
+    for SharedPyOperationCreateTableOutput
+{
+    fn from(value: aws_sdk_dynamodb::operation::create_table::CreateTableOutput) -> Self {
+        Self {
+            table_description: value
+                .table_description
+                .map(|item| Arc::new(SharedTableDescription::from(item))),
+        }
+    }
+}
+
 #[pyclass(name = "CreateTableOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyOperationCreateTableOutput {
-    inner: aws_sdk_dynamodb::operation::create_table::CreateTableOutput,
+    inner: SharedPyOperationCreateTableOutput,
 }
 
 #[pymethods]
@@ -14192,14 +17301,14 @@ impl PyOperationCreateTableOutput {
     #[getter]
     fn table_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_description {
-            let converted_2798 = Py::new(
+            let converted_3151 = Py::new(
                 py,
                 PyTableDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2798)
+            Ok(converted_3151)
         } else {
             Ok(py.None())
         }
@@ -14208,8 +17317,8 @@ impl PyOperationCreateTableOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.table_description {
-            let converted_2799 = table_description_to_py(py, value)?;
-            result.set_item("table_description", converted_2799)?;
+            let converted_3152 = table_description_shared_to_py(py, value)?;
+            result.set_item("table_description", converted_3152)?;
         } else {
             result.set_item("table_description", py.None())?;
         }
@@ -14217,9 +17326,26 @@ impl PyOperationCreateTableOutput {
     }
 }
 
+struct SharedPyOperationDeleteBackupOutput {
+    backup_description: Option<Arc<SharedBackupDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::delete_backup::DeleteBackupOutput>
+    for SharedPyOperationDeleteBackupOutput
+{
+    fn from(value: aws_sdk_dynamodb::operation::delete_backup::DeleteBackupOutput) -> Self {
+        Self {
+            backup_description: value
+                .backup_description
+                .map(|item| Arc::new(SharedBackupDescription::from(item))),
+        }
+    }
+}
+
 #[pyclass(name = "DeleteBackupOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyOperationDeleteBackupOutput {
-    inner: aws_sdk_dynamodb::operation::delete_backup::DeleteBackupOutput,
+    inner: SharedPyOperationDeleteBackupOutput,
 }
 
 #[pymethods]
@@ -14227,14 +17353,14 @@ impl PyOperationDeleteBackupOutput {
     #[getter]
     fn backup_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.backup_description {
-            let converted_2800 = Py::new(
+            let converted_3153 = Py::new(
                 py,
                 PyBackupDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2800)
+            Ok(converted_3153)
         } else {
             Ok(py.None())
         }
@@ -14243,8 +17369,8 @@ impl PyOperationDeleteBackupOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.backup_description {
-            let converted_2801 = backup_description_to_py(py, value)?;
-            result.set_item("backup_description", converted_2801)?;
+            let converted_3154 = backup_description_shared_to_py(py, value)?;
+            result.set_item("backup_description", converted_3154)?;
         } else {
             result.set_item("backup_description", py.None())?;
         }
@@ -14252,9 +17378,32 @@ impl PyOperationDeleteBackupOutput {
     }
 }
 
+struct SharedPyOperationDeleteItemOutput {
+    attributes: Option<
+        ::std::collections::HashMap<::std::string::String, aws_sdk_dynamodb::types::AttributeValue>,
+    >,
+    consumed_capacity: Option<Arc<SharedConsumedCapacity>>,
+    item_collection_metrics: Option<Arc<aws_sdk_dynamodb::types::ItemCollectionMetrics>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::delete_item::DeleteItemOutput>
+    for SharedPyOperationDeleteItemOutput
+{
+    fn from(value: aws_sdk_dynamodb::operation::delete_item::DeleteItemOutput) -> Self {
+        Self {
+            attributes: value.attributes,
+            consumed_capacity: value
+                .consumed_capacity
+                .map(|item| Arc::new(SharedConsumedCapacity::from(item))),
+            item_collection_metrics: value.item_collection_metrics.map(|item| Arc::new(item)),
+        }
+    }
+}
+
 #[pyclass(name = "DeleteItemOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyOperationDeleteItemOutput {
-    inner: aws_sdk_dynamodb::operation::delete_item::DeleteItemOutput,
+    inner: SharedPyOperationDeleteItemOutput,
 }
 
 #[pymethods]
@@ -14262,14 +17411,14 @@ impl PyOperationDeleteItemOutput {
     #[getter]
     fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attributes {
-            let converted_2802_dict = PyDict::new(py);
-            for (key_2803, value_2804) in value {
-                let converted_key_2805 = (key_2803).as_str().into_py_any(py)?;
-                let converted_value_2806 = attribute_value_to_py(py, value_2804)?;
-                converted_2802_dict.set_item(converted_key_2805, converted_value_2806)?;
+            let converted_3155_dict = PyDict::new(py);
+            for (key_3156, value_3157) in value {
+                let converted_key_3158 = (key_3156).as_str().into_py_any(py)?;
+                let converted_value_3159 = attribute_value_to_py(py, value_3157)?;
+                converted_3155_dict.set_item(converted_key_3158, converted_value_3159)?;
             }
-            let converted_2802 = converted_2802_dict.into_any().unbind();
-            Ok(converted_2802)
+            let converted_3155 = converted_3155_dict.into_any().unbind();
+            Ok(converted_3155)
         } else {
             Ok(py.None())
         }
@@ -14278,14 +17427,14 @@ impl PyOperationDeleteItemOutput {
     #[getter]
     fn consumed_capacity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_2807 = Py::new(
+            let converted_3160 = Py::new(
                 py,
                 PyConsumedCapacity {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2807)
+            Ok(converted_3160)
         } else {
             Ok(py.None())
         }
@@ -14294,14 +17443,14 @@ impl PyOperationDeleteItemOutput {
     #[getter]
     fn item_collection_metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.item_collection_metrics {
-            let converted_2808 = Py::new(
+            let converted_3161 = Py::new(
                 py,
                 PyItemCollectionMetrics {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2808)
+            Ok(converted_3161)
         } else {
             Ok(py.None())
         }
@@ -14310,26 +17459,26 @@ impl PyOperationDeleteItemOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.attributes {
-            let converted_2809_dict = PyDict::new(py);
-            for (key_2810, value_2811) in value {
-                let converted_key_2812 = (key_2810).as_str().into_py_any(py)?;
-                let converted_value_2813 = attribute_value_to_py(py, value_2811)?;
-                converted_2809_dict.set_item(converted_key_2812, converted_value_2813)?;
+            let converted_3162_dict = PyDict::new(py);
+            for (key_3163, value_3164) in value {
+                let converted_key_3165 = (key_3163).as_str().into_py_any(py)?;
+                let converted_value_3166 = attribute_value_to_py(py, value_3164)?;
+                converted_3162_dict.set_item(converted_key_3165, converted_value_3166)?;
             }
-            let converted_2809 = converted_2809_dict.into_any().unbind();
-            result.set_item("attributes", converted_2809)?;
+            let converted_3162 = converted_3162_dict.into_any().unbind();
+            result.set_item("attributes", converted_3162)?;
         } else {
             result.set_item("attributes", py.None())?;
         }
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_2814 = consumed_capacity_to_py(py, value)?;
-            result.set_item("consumed_capacity", converted_2814)?;
+            let converted_3167 = consumed_capacity_shared_to_py(py, value)?;
+            result.set_item("consumed_capacity", converted_3167)?;
         } else {
             result.set_item("consumed_capacity", py.None())?;
         }
         if let Some(value) = &self.inner.item_collection_metrics {
-            let converted_2815 = item_collection_metrics_to_py(py, value)?;
-            result.set_item("item_collection_metrics", converted_2815)?;
+            let converted_3168 = item_collection_metrics_to_py(py, value)?;
+            result.set_item("item_collection_metrics", converted_3168)?;
         } else {
             result.set_item("item_collection_metrics", py.None())?;
         }
@@ -14351,8 +17500,8 @@ impl PyOperationDeleteResourcePolicyOutput {
     #[getter]
     fn revision_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.revision_id {
-            let converted_2816 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2816)
+            let converted_3169 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3169)
         } else {
             Ok(py.None())
         }
@@ -14361,8 +17510,8 @@ impl PyOperationDeleteResourcePolicyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.revision_id {
-            let converted_2817 = (value).as_str().into_py_any(py)?;
-            result.set_item("revision_id", converted_2817)?;
+            let converted_3170 = (value).as_str().into_py_any(py)?;
+            result.set_item("revision_id", converted_3170)?;
         } else {
             result.set_item("revision_id", py.None())?;
         }
@@ -14370,9 +17519,26 @@ impl PyOperationDeleteResourcePolicyOutput {
     }
 }
 
+struct SharedPyOperationDeleteTableOutput {
+    table_description: Option<Arc<SharedTableDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::delete_table::DeleteTableOutput>
+    for SharedPyOperationDeleteTableOutput
+{
+    fn from(value: aws_sdk_dynamodb::operation::delete_table::DeleteTableOutput) -> Self {
+        Self {
+            table_description: value
+                .table_description
+                .map(|item| Arc::new(SharedTableDescription::from(item))),
+        }
+    }
+}
+
 #[pyclass(name = "DeleteTableOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyOperationDeleteTableOutput {
-    inner: aws_sdk_dynamodb::operation::delete_table::DeleteTableOutput,
+    inner: SharedPyOperationDeleteTableOutput,
 }
 
 #[pymethods]
@@ -14380,14 +17546,14 @@ impl PyOperationDeleteTableOutput {
     #[getter]
     fn table_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_description {
-            let converted_2818 = Py::new(
+            let converted_3171 = Py::new(
                 py,
                 PyTableDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2818)
+            Ok(converted_3171)
         } else {
             Ok(py.None())
         }
@@ -14396,12 +17562,29 @@ impl PyOperationDeleteTableOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.table_description {
-            let converted_2819 = table_description_to_py(py, value)?;
-            result.set_item("table_description", converted_2819)?;
+            let converted_3172 = table_description_shared_to_py(py, value)?;
+            result.set_item("table_description", converted_3172)?;
         } else {
             result.set_item("table_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationDescribeBackupOutput {
+    backup_description: Option<Arc<SharedBackupDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::describe_backup::DescribeBackupOutput>
+    for SharedPyOperationDescribeBackupOutput
+{
+    fn from(value: aws_sdk_dynamodb::operation::describe_backup::DescribeBackupOutput) -> Self {
+        Self {
+            backup_description: value
+                .backup_description
+                .map(|item| Arc::new(SharedBackupDescription::from(item))),
+        }
     }
 }
 
@@ -14411,7 +17594,7 @@ impl PyOperationDeleteTableOutput {
     frozen
 )]
 struct PyOperationDescribeBackupOutput {
-    inner: aws_sdk_dynamodb::operation::describe_backup::DescribeBackupOutput,
+    inner: SharedPyOperationDescribeBackupOutput,
 }
 
 #[pymethods]
@@ -14419,14 +17602,14 @@ impl PyOperationDescribeBackupOutput {
     #[getter]
     fn backup_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.backup_description {
-            let converted_2820 = Py::new(
+            let converted_3173 = Py::new(
                 py,
                 PyBackupDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2820)
+            Ok(converted_3173)
         } else {
             Ok(py.None())
         }
@@ -14435,12 +17618,31 @@ impl PyOperationDescribeBackupOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.backup_description {
-            let converted_2821 = backup_description_to_py(py, value)?;
-            result.set_item("backup_description", converted_2821)?;
+            let converted_3174 = backup_description_shared_to_py(py, value)?;
+            result.set_item("backup_description", converted_3174)?;
         } else {
             result.set_item("backup_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationDescribeContinuousBackupsOutput {
+    continuous_backups_description: Option<Arc<SharedContinuousBackupsDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::describe_continuous_backups::DescribeContinuousBackupsOutput>
+    for SharedPyOperationDescribeContinuousBackupsOutput
+{
+    fn from(
+        value: aws_sdk_dynamodb::operation::describe_continuous_backups::DescribeContinuousBackupsOutput,
+    ) -> Self {
+        Self {
+            continuous_backups_description: value
+                .continuous_backups_description
+                .map(|item| Arc::new(SharedContinuousBackupsDescription::from(item))),
+        }
     }
 }
 
@@ -14450,8 +17652,7 @@ impl PyOperationDescribeBackupOutput {
     frozen
 )]
 struct PyOperationDescribeContinuousBackupsOutput {
-    inner:
-        aws_sdk_dynamodb::operation::describe_continuous_backups::DescribeContinuousBackupsOutput,
+    inner: SharedPyOperationDescribeContinuousBackupsOutput,
 }
 
 #[pymethods]
@@ -14459,14 +17660,14 @@ impl PyOperationDescribeContinuousBackupsOutput {
     #[getter]
     fn continuous_backups_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.continuous_backups_description {
-            let converted_2822 = Py::new(
+            let converted_3175 = Py::new(
                 py,
                 PyContinuousBackupsDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2822)
+            Ok(converted_3175)
         } else {
             Ok(py.None())
         }
@@ -14475,12 +17676,37 @@ impl PyOperationDescribeContinuousBackupsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.continuous_backups_description {
-            let converted_2823 = continuous_backups_description_to_py(py, value)?;
-            result.set_item("continuous_backups_description", converted_2823)?;
+            let converted_3176 = continuous_backups_description_shared_to_py(py, value)?;
+            result.set_item("continuous_backups_description", converted_3176)?;
         } else {
             result.set_item("continuous_backups_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationDescribeContributorInsightsOutput {
+    table_name: Option<::std::string::String>,
+    index_name: Option<::std::string::String>,
+    contributor_insights_rule_list: Option<::std::vec::Vec<::std::string::String>>,
+    contributor_insights_status: Option<aws_sdk_dynamodb::types::ContributorInsightsStatus>,
+    last_update_date_time: Option<::aws_smithy_types::DateTime>,
+    failure_exception: Option<Arc<aws_sdk_dynamodb::types::FailureException>>,
+    contributor_insights_mode: Option<aws_sdk_dynamodb::types::ContributorInsightsMode>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::describe_contributor_insights::DescribeContributorInsightsOutput> for SharedPyOperationDescribeContributorInsightsOutput {
+    fn from(value: aws_sdk_dynamodb::operation::describe_contributor_insights::DescribeContributorInsightsOutput) -> Self {
+        Self {
+            table_name: value.table_name,
+            index_name: value.index_name,
+            contributor_insights_rule_list: value.contributor_insights_rule_list,
+            contributor_insights_status: value.contributor_insights_status,
+            last_update_date_time: value.last_update_date_time,
+            failure_exception: value.failure_exception.map(|item| Arc::new(item)),
+            contributor_insights_mode: value.contributor_insights_mode,
+        }
     }
 }
 
@@ -14490,7 +17716,7 @@ impl PyOperationDescribeContinuousBackupsOutput {
     frozen
 )]
 struct PyOperationDescribeContributorInsightsOutput {
-    inner: aws_sdk_dynamodb::operation::describe_contributor_insights::DescribeContributorInsightsOutput,
+    inner: SharedPyOperationDescribeContributorInsightsOutput,
 }
 
 #[pymethods]
@@ -14498,8 +17724,8 @@ impl PyOperationDescribeContributorInsightsOutput {
     #[getter]
     fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_name {
-            let converted_2824 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2824)
+            let converted_3177 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3177)
         } else {
             Ok(py.None())
         }
@@ -14508,8 +17734,8 @@ impl PyOperationDescribeContributorInsightsOutput {
     #[getter]
     fn index_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.index_name {
-            let converted_2825 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2825)
+            let converted_3178 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3178)
         } else {
             Ok(py.None())
         }
@@ -14518,13 +17744,13 @@ impl PyOperationDescribeContributorInsightsOutput {
     #[getter]
     fn contributor_insights_rule_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.contributor_insights_rule_list {
-            let converted_2826_list = PyList::empty(py);
-            for item_2827 in value {
-                let converted_item_2828 = (item_2827).as_str().into_py_any(py)?;
-                converted_2826_list.append(converted_item_2828)?;
+            let converted_3179_list = PyList::empty(py);
+            for item_3180 in value {
+                let converted_item_3181 = (item_3180).as_str().into_py_any(py)?;
+                converted_3179_list.append(converted_item_3181)?;
             }
-            let converted_2826 = converted_2826_list.into_any().unbind();
-            Ok(converted_2826)
+            let converted_3179 = converted_3179_list.into_any().unbind();
+            Ok(converted_3179)
         } else {
             Ok(py.None())
         }
@@ -14533,8 +17759,8 @@ impl PyOperationDescribeContributorInsightsOutput {
     #[getter]
     fn contributor_insights_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.contributor_insights_status {
-            let converted_2829 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2829)
+            let converted_3182 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3182)
         } else {
             Ok(py.None())
         }
@@ -14543,8 +17769,8 @@ impl PyOperationDescribeContributorInsightsOutput {
     #[getter]
     fn last_update_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_update_date_time {
-            let converted_2830 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2830)
+            let converted_3183 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3183)
         } else {
             Ok(py.None())
         }
@@ -14553,14 +17779,14 @@ impl PyOperationDescribeContributorInsightsOutput {
     #[getter]
     fn failure_exception(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failure_exception {
-            let converted_2831 = Py::new(
+            let converted_3184 = Py::new(
                 py,
                 PyFailureException {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2831)
+            Ok(converted_3184)
         } else {
             Ok(py.None())
         }
@@ -14569,8 +17795,8 @@ impl PyOperationDescribeContributorInsightsOutput {
     #[getter]
     fn contributor_insights_mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.contributor_insights_mode {
-            let converted_2832 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2832)
+            let converted_3185 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3185)
         } else {
             Ok(py.None())
         }
@@ -14579,53 +17805,73 @@ impl PyOperationDescribeContributorInsightsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.table_name {
-            let converted_2833 = (value).as_str().into_py_any(py)?;
-            result.set_item("table_name", converted_2833)?;
+            let converted_3186 = (value).as_str().into_py_any(py)?;
+            result.set_item("table_name", converted_3186)?;
         } else {
             result.set_item("table_name", py.None())?;
         }
         if let Some(value) = &self.inner.index_name {
-            let converted_2834 = (value).as_str().into_py_any(py)?;
-            result.set_item("index_name", converted_2834)?;
+            let converted_3187 = (value).as_str().into_py_any(py)?;
+            result.set_item("index_name", converted_3187)?;
         } else {
             result.set_item("index_name", py.None())?;
         }
         if let Some(value) = &self.inner.contributor_insights_rule_list {
-            let converted_2835_list = PyList::empty(py);
-            for item_2836 in value {
-                let converted_item_2837 = (item_2836).as_str().into_py_any(py)?;
-                converted_2835_list.append(converted_item_2837)?;
+            let converted_3188_list = PyList::empty(py);
+            for item_3189 in value {
+                let converted_item_3190 = (item_3189).as_str().into_py_any(py)?;
+                converted_3188_list.append(converted_item_3190)?;
             }
-            let converted_2835 = converted_2835_list.into_any().unbind();
-            result.set_item("contributor_insights_rule_list", converted_2835)?;
+            let converted_3188 = converted_3188_list.into_any().unbind();
+            result.set_item("contributor_insights_rule_list", converted_3188)?;
         } else {
             result.set_item("contributor_insights_rule_list", py.None())?;
         }
         if let Some(value) = &self.inner.contributor_insights_status {
-            let converted_2838 = (value).as_str().into_py_any(py)?;
-            result.set_item("contributor_insights_status", converted_2838)?;
+            let converted_3191 = (value).as_str().into_py_any(py)?;
+            result.set_item("contributor_insights_status", converted_3191)?;
         } else {
             result.set_item("contributor_insights_status", py.None())?;
         }
         if let Some(value) = &self.inner.last_update_date_time {
-            let converted_2839 = (value).to_string().into_py_any(py)?;
-            result.set_item("last_update_date_time", converted_2839)?;
+            let converted_3192 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_update_date_time", converted_3192)?;
         } else {
             result.set_item("last_update_date_time", py.None())?;
         }
         if let Some(value) = &self.inner.failure_exception {
-            let converted_2840 = failure_exception_to_py(py, value)?;
-            result.set_item("failure_exception", converted_2840)?;
+            let converted_3193 = failure_exception_to_py(py, value)?;
+            result.set_item("failure_exception", converted_3193)?;
         } else {
             result.set_item("failure_exception", py.None())?;
         }
         if let Some(value) = &self.inner.contributor_insights_mode {
-            let converted_2841 = (value).as_str().into_py_any(py)?;
-            result.set_item("contributor_insights_mode", converted_2841)?;
+            let converted_3194 = (value).as_str().into_py_any(py)?;
+            result.set_item("contributor_insights_mode", converted_3194)?;
         } else {
             result.set_item("contributor_insights_mode", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationDescribeEndpointsOutput {
+    endpoints: ::std::vec::Vec<Arc<aws_sdk_dynamodb::types::Endpoint>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::describe_endpoints::DescribeEndpointsOutput>
+    for SharedPyOperationDescribeEndpointsOutput
+{
+    fn from(
+        value: aws_sdk_dynamodb::operation::describe_endpoints::DescribeEndpointsOutput,
+    ) -> Self {
+        Self {
+            endpoints: (value.endpoints)
+                .into_iter()
+                .map(|owned_3198| Arc::new(owned_3198))
+                .collect(),
+        }
     }
 }
 
@@ -14635,38 +17881,55 @@ impl PyOperationDescribeContributorInsightsOutput {
     frozen
 )]
 struct PyOperationDescribeEndpointsOutput {
-    inner: aws_sdk_dynamodb::operation::describe_endpoints::DescribeEndpointsOutput,
+    inner: SharedPyOperationDescribeEndpointsOutput,
 }
 
 #[pymethods]
 impl PyOperationDescribeEndpointsOutput {
     #[getter]
     fn endpoints(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_2842_list = PyList::empty(py);
-        for item_2843 in &self.inner.endpoints {
-            let converted_item_2844 = Py::new(
+        let converted_3195_list = PyList::empty(py);
+        for item_3196 in &self.inner.endpoints {
+            let converted_item_3197 = Py::new(
                 py,
                 PyEndpoint {
-                    inner: (item_2843).to_owned(),
+                    inner: Arc::clone(item_3196),
                 },
             )?
             .into_any();
-            converted_2842_list.append(converted_item_2844)?;
+            converted_3195_list.append(converted_item_3197)?;
         }
-        let converted_2842 = converted_2842_list.into_any().unbind();
-        Ok(converted_2842)
+        let converted_3195 = converted_3195_list.into_any().unbind();
+        Ok(converted_3195)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_2845_list = PyList::empty(py);
-        for item_2846 in &self.inner.endpoints {
-            let converted_item_2847 = endpoint_to_py(py, item_2846)?;
-            converted_2845_list.append(converted_item_2847)?;
+        let converted_3199_list = PyList::empty(py);
+        for item_3200 in &self.inner.endpoints {
+            let converted_item_3201 = endpoint_to_py(py, item_3200)?;
+            converted_3199_list.append(converted_item_3201)?;
         }
-        let converted_2845 = converted_2845_list.into_any().unbind();
-        result.set_item("endpoints", converted_2845)?;
+        let converted_3199 = converted_3199_list.into_any().unbind();
+        result.set_item("endpoints", converted_3199)?;
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationDescribeExportOutput {
+    export_description: Option<Arc<SharedExportDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::describe_export::DescribeExportOutput>
+    for SharedPyOperationDescribeExportOutput
+{
+    fn from(value: aws_sdk_dynamodb::operation::describe_export::DescribeExportOutput) -> Self {
+        Self {
+            export_description: value
+                .export_description
+                .map(|item| Arc::new(SharedExportDescription::from(item))),
+        }
     }
 }
 
@@ -14676,7 +17939,7 @@ impl PyOperationDescribeEndpointsOutput {
     frozen
 )]
 struct PyOperationDescribeExportOutput {
-    inner: aws_sdk_dynamodb::operation::describe_export::DescribeExportOutput,
+    inner: SharedPyOperationDescribeExportOutput,
 }
 
 #[pymethods]
@@ -14684,14 +17947,14 @@ impl PyOperationDescribeExportOutput {
     #[getter]
     fn export_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.export_description {
-            let converted_2848 = Py::new(
+            let converted_3202 = Py::new(
                 py,
                 PyExportDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2848)
+            Ok(converted_3202)
         } else {
             Ok(py.None())
         }
@@ -14700,12 +17963,31 @@ impl PyOperationDescribeExportOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.export_description {
-            let converted_2849 = export_description_to_py(py, value)?;
-            result.set_item("export_description", converted_2849)?;
+            let converted_3203 = export_description_shared_to_py(py, value)?;
+            result.set_item("export_description", converted_3203)?;
         } else {
             result.set_item("export_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationDescribeGlobalTableOutput {
+    global_table_description: Option<Arc<SharedGlobalTableDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::describe_global_table::DescribeGlobalTableOutput>
+    for SharedPyOperationDescribeGlobalTableOutput
+{
+    fn from(
+        value: aws_sdk_dynamodb::operation::describe_global_table::DescribeGlobalTableOutput,
+    ) -> Self {
+        Self {
+            global_table_description: value
+                .global_table_description
+                .map(|item| Arc::new(SharedGlobalTableDescription::from(item))),
+        }
     }
 }
 
@@ -14715,7 +17997,7 @@ impl PyOperationDescribeExportOutput {
     frozen
 )]
 struct PyOperationDescribeGlobalTableOutput {
-    inner: aws_sdk_dynamodb::operation::describe_global_table::DescribeGlobalTableOutput,
+    inner: SharedPyOperationDescribeGlobalTableOutput,
 }
 
 #[pymethods]
@@ -14723,14 +18005,14 @@ impl PyOperationDescribeGlobalTableOutput {
     #[getter]
     fn global_table_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.global_table_description {
-            let converted_2850 = Py::new(
+            let converted_3204 = Py::new(
                 py,
                 PyGlobalTableDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2850)
+            Ok(converted_3204)
         } else {
             Ok(py.None())
         }
@@ -14739,12 +18021,27 @@ impl PyOperationDescribeGlobalTableOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.global_table_description {
-            let converted_2851 = global_table_description_to_py(py, value)?;
-            result.set_item("global_table_description", converted_2851)?;
+            let converted_3205 = global_table_description_shared_to_py(py, value)?;
+            result.set_item("global_table_description", converted_3205)?;
         } else {
             result.set_item("global_table_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationDescribeGlobalTableSettingsOutput {
+    global_table_name: Option<::std::string::String>,
+    replica_settings: Option<::std::vec::Vec<Arc<SharedReplicaSettingsDescription>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::describe_global_table_settings::DescribeGlobalTableSettingsOutput> for SharedPyOperationDescribeGlobalTableSettingsOutput {
+    fn from(value: aws_sdk_dynamodb::operation::describe_global_table_settings::DescribeGlobalTableSettingsOutput) -> Self {
+        Self {
+            global_table_name: value.global_table_name,
+            replica_settings: value.replica_settings.map(|item| (item).into_iter().map(|owned_3210| Arc::new(SharedReplicaSettingsDescription::from(owned_3210))).collect()),
+        }
     }
 }
 
@@ -14754,7 +18051,7 @@ impl PyOperationDescribeGlobalTableOutput {
     frozen
 )]
 struct PyOperationDescribeGlobalTableSettingsOutput {
-    inner: aws_sdk_dynamodb::operation::describe_global_table_settings::DescribeGlobalTableSettingsOutput,
+    inner: SharedPyOperationDescribeGlobalTableSettingsOutput,
 }
 
 #[pymethods]
@@ -14762,8 +18059,8 @@ impl PyOperationDescribeGlobalTableSettingsOutput {
     #[getter]
     fn global_table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.global_table_name {
-            let converted_2852 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2852)
+            let converted_3206 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3206)
         } else {
             Ok(py.None())
         }
@@ -14772,19 +18069,19 @@ impl PyOperationDescribeGlobalTableSettingsOutput {
     #[getter]
     fn replica_settings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replica_settings {
-            let converted_2853_list = PyList::empty(py);
-            for item_2854 in value {
-                let converted_item_2855 = Py::new(
+            let converted_3207_list = PyList::empty(py);
+            for item_3208 in value {
+                let converted_item_3209 = Py::new(
                     py,
                     PyReplicaSettingsDescription {
-                        inner: (item_2854).to_owned(),
+                        inner: Arc::clone(item_3208),
                     },
                 )?
                 .into_any();
-                converted_2853_list.append(converted_item_2855)?;
+                converted_3207_list.append(converted_item_3209)?;
             }
-            let converted_2853 = converted_2853_list.into_any().unbind();
-            Ok(converted_2853)
+            let converted_3207 = converted_3207_list.into_any().unbind();
+            Ok(converted_3207)
         } else {
             Ok(py.None())
         }
@@ -14793,23 +18090,40 @@ impl PyOperationDescribeGlobalTableSettingsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.global_table_name {
-            let converted_2856 = (value).as_str().into_py_any(py)?;
-            result.set_item("global_table_name", converted_2856)?;
+            let converted_3211 = (value).as_str().into_py_any(py)?;
+            result.set_item("global_table_name", converted_3211)?;
         } else {
             result.set_item("global_table_name", py.None())?;
         }
         if let Some(value) = &self.inner.replica_settings {
-            let converted_2857_list = PyList::empty(py);
-            for item_2858 in value {
-                let converted_item_2859 = replica_settings_description_to_py(py, item_2858)?;
-                converted_2857_list.append(converted_item_2859)?;
+            let converted_3212_list = PyList::empty(py);
+            for item_3213 in value {
+                let converted_item_3214 = replica_settings_description_shared_to_py(py, item_3213)?;
+                converted_3212_list.append(converted_item_3214)?;
             }
-            let converted_2857 = converted_2857_list.into_any().unbind();
-            result.set_item("replica_settings", converted_2857)?;
+            let converted_3212 = converted_3212_list.into_any().unbind();
+            result.set_item("replica_settings", converted_3212)?;
         } else {
             result.set_item("replica_settings", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationDescribeImportOutput {
+    import_table_description: Option<Arc<SharedImportTableDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::describe_import::DescribeImportOutput>
+    for SharedPyOperationDescribeImportOutput
+{
+    fn from(value: aws_sdk_dynamodb::operation::describe_import::DescribeImportOutput) -> Self {
+        Self {
+            import_table_description: value
+                .import_table_description
+                .map(|item| Arc::new(SharedImportTableDescription::from(item))),
+        }
     }
 }
 
@@ -14819,7 +18133,7 @@ impl PyOperationDescribeGlobalTableSettingsOutput {
     frozen
 )]
 struct PyOperationDescribeImportOutput {
-    inner: aws_sdk_dynamodb::operation::describe_import::DescribeImportOutput,
+    inner: SharedPyOperationDescribeImportOutput,
 }
 
 #[pymethods]
@@ -14827,14 +18141,14 @@ impl PyOperationDescribeImportOutput {
     #[getter]
     fn import_table_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_table_description {
-            let converted_2860 = Py::new(
+            let converted_3215 = Py::new(
                 py,
                 PyImportTableDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2860)
+            Ok(converted_3215)
         } else {
             Ok(py.None())
         }
@@ -14843,12 +18157,28 @@ impl PyOperationDescribeImportOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.import_table_description {
-            let converted_2861 = import_table_description_to_py(py, value)?;
-            result.set_item("import_table_description", converted_2861)?;
+            let converted_3216 = import_table_description_shared_to_py(py, value)?;
+            result.set_item("import_table_description", converted_3216)?;
         } else {
             result.set_item("import_table_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationDescribeKinesisStreamingDestinationOutput {
+    table_name: Option<::std::string::String>,
+    kinesis_data_stream_destinations:
+        Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::KinesisDataStreamDestination>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::describe_kinesis_streaming_destination::DescribeKinesisStreamingDestinationOutput> for SharedPyOperationDescribeKinesisStreamingDestinationOutput {
+    fn from(value: aws_sdk_dynamodb::operation::describe_kinesis_streaming_destination::DescribeKinesisStreamingDestinationOutput) -> Self {
+        Self {
+            table_name: value.table_name,
+            kinesis_data_stream_destinations: value.kinesis_data_stream_destinations.map(|item| (item).into_iter().map(|owned_3221| Arc::new(owned_3221)).collect()),
+        }
     }
 }
 
@@ -14858,7 +18188,7 @@ impl PyOperationDescribeImportOutput {
     frozen
 )]
 struct PyOperationDescribeKinesisStreamingDestinationOutput {
-    inner: aws_sdk_dynamodb::operation::describe_kinesis_streaming_destination::DescribeKinesisStreamingDestinationOutput,
+    inner: SharedPyOperationDescribeKinesisStreamingDestinationOutput,
 }
 
 #[pymethods]
@@ -14866,8 +18196,8 @@ impl PyOperationDescribeKinesisStreamingDestinationOutput {
     #[getter]
     fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_name {
-            let converted_2862 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2862)
+            let converted_3217 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3217)
         } else {
             Ok(py.None())
         }
@@ -14876,19 +18206,19 @@ impl PyOperationDescribeKinesisStreamingDestinationOutput {
     #[getter]
     fn kinesis_data_stream_destinations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kinesis_data_stream_destinations {
-            let converted_2863_list = PyList::empty(py);
-            for item_2864 in value {
-                let converted_item_2865 = Py::new(
+            let converted_3218_list = PyList::empty(py);
+            for item_3219 in value {
+                let converted_item_3220 = Py::new(
                     py,
                     PyKinesisDataStreamDestination {
-                        inner: (item_2864).to_owned(),
+                        inner: Arc::clone(item_3219),
                     },
                 )?
                 .into_any();
-                converted_2863_list.append(converted_item_2865)?;
+                converted_3218_list.append(converted_item_3220)?;
             }
-            let converted_2863 = converted_2863_list.into_any().unbind();
-            Ok(converted_2863)
+            let converted_3218 = converted_3218_list.into_any().unbind();
+            Ok(converted_3218)
         } else {
             Ok(py.None())
         }
@@ -14897,19 +18227,19 @@ impl PyOperationDescribeKinesisStreamingDestinationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.table_name {
-            let converted_2866 = (value).as_str().into_py_any(py)?;
-            result.set_item("table_name", converted_2866)?;
+            let converted_3222 = (value).as_str().into_py_any(py)?;
+            result.set_item("table_name", converted_3222)?;
         } else {
             result.set_item("table_name", py.None())?;
         }
         if let Some(value) = &self.inner.kinesis_data_stream_destinations {
-            let converted_2867_list = PyList::empty(py);
-            for item_2868 in value {
-                let converted_item_2869 = kinesis_data_stream_destination_to_py(py, item_2868)?;
-                converted_2867_list.append(converted_item_2869)?;
+            let converted_3223_list = PyList::empty(py);
+            for item_3224 in value {
+                let converted_item_3225 = kinesis_data_stream_destination_to_py(py, item_3224)?;
+                converted_3223_list.append(converted_item_3225)?;
             }
-            let converted_2867 = converted_2867_list.into_any().unbind();
-            result.set_item("kinesis_data_stream_destinations", converted_2867)?;
+            let converted_3223 = converted_3223_list.into_any().unbind();
+            result.set_item("kinesis_data_stream_destinations", converted_3223)?;
         } else {
             result.set_item("kinesis_data_stream_destinations", py.None())?;
         }
@@ -14931,8 +18261,8 @@ impl PyOperationDescribeLimitsOutput {
     #[getter]
     fn account_max_read_capacity_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.account_max_read_capacity_units {
-            let converted_2870 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2870)
+            let converted_3226 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3226)
         } else {
             Ok(py.None())
         }
@@ -14941,8 +18271,8 @@ impl PyOperationDescribeLimitsOutput {
     #[getter]
     fn account_max_write_capacity_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.account_max_write_capacity_units {
-            let converted_2871 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2871)
+            let converted_3227 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3227)
         } else {
             Ok(py.None())
         }
@@ -14951,8 +18281,8 @@ impl PyOperationDescribeLimitsOutput {
     #[getter]
     fn table_max_read_capacity_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_max_read_capacity_units {
-            let converted_2872 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2872)
+            let converted_3228 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3228)
         } else {
             Ok(py.None())
         }
@@ -14961,8 +18291,8 @@ impl PyOperationDescribeLimitsOutput {
     #[getter]
     fn table_max_write_capacity_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_max_write_capacity_units {
-            let converted_2873 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2873)
+            let converted_3229 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3229)
         } else {
             Ok(py.None())
         }
@@ -14971,30 +18301,47 @@ impl PyOperationDescribeLimitsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.account_max_read_capacity_units {
-            let converted_2874 = (value).to_owned().into_py_any(py)?;
-            result.set_item("account_max_read_capacity_units", converted_2874)?;
+            let converted_3230 = (value).to_owned().into_py_any(py)?;
+            result.set_item("account_max_read_capacity_units", converted_3230)?;
         } else {
             result.set_item("account_max_read_capacity_units", py.None())?;
         }
         if let Some(value) = &self.inner.account_max_write_capacity_units {
-            let converted_2875 = (value).to_owned().into_py_any(py)?;
-            result.set_item("account_max_write_capacity_units", converted_2875)?;
+            let converted_3231 = (value).to_owned().into_py_any(py)?;
+            result.set_item("account_max_write_capacity_units", converted_3231)?;
         } else {
             result.set_item("account_max_write_capacity_units", py.None())?;
         }
         if let Some(value) = &self.inner.table_max_read_capacity_units {
-            let converted_2876 = (value).to_owned().into_py_any(py)?;
-            result.set_item("table_max_read_capacity_units", converted_2876)?;
+            let converted_3232 = (value).to_owned().into_py_any(py)?;
+            result.set_item("table_max_read_capacity_units", converted_3232)?;
         } else {
             result.set_item("table_max_read_capacity_units", py.None())?;
         }
         if let Some(value) = &self.inner.table_max_write_capacity_units {
-            let converted_2877 = (value).to_owned().into_py_any(py)?;
-            result.set_item("table_max_write_capacity_units", converted_2877)?;
+            let converted_3233 = (value).to_owned().into_py_any(py)?;
+            result.set_item("table_max_write_capacity_units", converted_3233)?;
         } else {
             result.set_item("table_max_write_capacity_units", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationDescribeTableOutput {
+    table: Option<Arc<SharedTableDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::describe_table::DescribeTableOutput>
+    for SharedPyOperationDescribeTableOutput
+{
+    fn from(value: aws_sdk_dynamodb::operation::describe_table::DescribeTableOutput) -> Self {
+        Self {
+            table: value
+                .table
+                .map(|item| Arc::new(SharedTableDescription::from(item))),
+        }
     }
 }
 
@@ -15004,7 +18351,7 @@ impl PyOperationDescribeLimitsOutput {
     frozen
 )]
 struct PyOperationDescribeTableOutput {
-    inner: aws_sdk_dynamodb::operation::describe_table::DescribeTableOutput,
+    inner: SharedPyOperationDescribeTableOutput,
 }
 
 #[pymethods]
@@ -15012,14 +18359,14 @@ impl PyOperationDescribeTableOutput {
     #[getter]
     fn table(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table {
-            let converted_2878 = Py::new(
+            let converted_3234 = Py::new(
                 py,
                 PyTableDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2878)
+            Ok(converted_3234)
         } else {
             Ok(py.None())
         }
@@ -15028,12 +18375,25 @@ impl PyOperationDescribeTableOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.table {
-            let converted_2879 = table_description_to_py(py, value)?;
-            result.set_item("table", converted_2879)?;
+            let converted_3235 = table_description_shared_to_py(py, value)?;
+            result.set_item("table", converted_3235)?;
         } else {
             result.set_item("table", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationDescribeTableReplicaAutoScalingOutput {
+    table_auto_scaling_description: Option<Arc<SharedTableAutoScalingDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::describe_table_replica_auto_scaling::DescribeTableReplicaAutoScalingOutput> for SharedPyOperationDescribeTableReplicaAutoScalingOutput {
+    fn from(value: aws_sdk_dynamodb::operation::describe_table_replica_auto_scaling::DescribeTableReplicaAutoScalingOutput) -> Self {
+        Self {
+            table_auto_scaling_description: value.table_auto_scaling_description.map(|item| Arc::new(SharedTableAutoScalingDescription::from(item))),
+        }
     }
 }
 
@@ -15043,7 +18403,7 @@ impl PyOperationDescribeTableOutput {
     frozen
 )]
 struct PyOperationDescribeTableReplicaAutoScalingOutput {
-    inner: aws_sdk_dynamodb::operation::describe_table_replica_auto_scaling::DescribeTableReplicaAutoScalingOutput,
+    inner: SharedPyOperationDescribeTableReplicaAutoScalingOutput,
 }
 
 #[pymethods]
@@ -15051,14 +18411,14 @@ impl PyOperationDescribeTableReplicaAutoScalingOutput {
     #[getter]
     fn table_auto_scaling_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_auto_scaling_description {
-            let converted_2880 = Py::new(
+            let converted_3236 = Py::new(
                 py,
                 PyTableAutoScalingDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2880)
+            Ok(converted_3236)
         } else {
             Ok(py.None())
         }
@@ -15067,12 +18427,29 @@ impl PyOperationDescribeTableReplicaAutoScalingOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.table_auto_scaling_description {
-            let converted_2881 = table_auto_scaling_description_to_py(py, value)?;
-            result.set_item("table_auto_scaling_description", converted_2881)?;
+            let converted_3237 = table_auto_scaling_description_shared_to_py(py, value)?;
+            result.set_item("table_auto_scaling_description", converted_3237)?;
         } else {
             result.set_item("table_auto_scaling_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationDescribeTimeToLiveOutput {
+    time_to_live_description: Option<Arc<aws_sdk_dynamodb::types::TimeToLiveDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::describe_time_to_live::DescribeTimeToLiveOutput>
+    for SharedPyOperationDescribeTimeToLiveOutput
+{
+    fn from(
+        value: aws_sdk_dynamodb::operation::describe_time_to_live::DescribeTimeToLiveOutput,
+    ) -> Self {
+        Self {
+            time_to_live_description: value.time_to_live_description.map(|item| Arc::new(item)),
+        }
     }
 }
 
@@ -15082,7 +18459,7 @@ impl PyOperationDescribeTableReplicaAutoScalingOutput {
     frozen
 )]
 struct PyOperationDescribeTimeToLiveOutput {
-    inner: aws_sdk_dynamodb::operation::describe_time_to_live::DescribeTimeToLiveOutput,
+    inner: SharedPyOperationDescribeTimeToLiveOutput,
 }
 
 #[pymethods]
@@ -15090,14 +18467,14 @@ impl PyOperationDescribeTimeToLiveOutput {
     #[getter]
     fn time_to_live_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.time_to_live_description {
-            let converted_2882 = Py::new(
+            let converted_3238 = Py::new(
                 py,
                 PyTimeToLiveDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2882)
+            Ok(converted_3238)
         } else {
             Ok(py.None())
         }
@@ -15106,12 +18483,32 @@ impl PyOperationDescribeTimeToLiveOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.time_to_live_description {
-            let converted_2883 = time_to_live_description_to_py(py, value)?;
-            result.set_item("time_to_live_description", converted_2883)?;
+            let converted_3239 = time_to_live_description_to_py(py, value)?;
+            result.set_item("time_to_live_description", converted_3239)?;
         } else {
             result.set_item("time_to_live_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationDisableKinesisStreamingDestinationOutput {
+    table_name: Option<::std::string::String>,
+    stream_arn: Option<::std::string::String>,
+    destination_status: Option<aws_sdk_dynamodb::types::DestinationStatus>,
+    enable_kinesis_streaming_configuration:
+        Option<Arc<aws_sdk_dynamodb::types::EnableKinesisStreamingConfiguration>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::disable_kinesis_streaming_destination::DisableKinesisStreamingDestinationOutput> for SharedPyOperationDisableKinesisStreamingDestinationOutput {
+    fn from(value: aws_sdk_dynamodb::operation::disable_kinesis_streaming_destination::DisableKinesisStreamingDestinationOutput) -> Self {
+        Self {
+            table_name: value.table_name,
+            stream_arn: value.stream_arn,
+            destination_status: value.destination_status,
+            enable_kinesis_streaming_configuration: value.enable_kinesis_streaming_configuration.map(|item| Arc::new(item)),
+        }
     }
 }
 
@@ -15121,7 +18518,7 @@ impl PyOperationDescribeTimeToLiveOutput {
     frozen
 )]
 struct PyOperationDisableKinesisStreamingDestinationOutput {
-    inner: aws_sdk_dynamodb::operation::disable_kinesis_streaming_destination::DisableKinesisStreamingDestinationOutput,
+    inner: SharedPyOperationDisableKinesisStreamingDestinationOutput,
 }
 
 #[pymethods]
@@ -15129,8 +18526,8 @@ impl PyOperationDisableKinesisStreamingDestinationOutput {
     #[getter]
     fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_name {
-            let converted_2884 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2884)
+            let converted_3240 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3240)
         } else {
             Ok(py.None())
         }
@@ -15139,8 +18536,8 @@ impl PyOperationDisableKinesisStreamingDestinationOutput {
     #[getter]
     fn stream_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_arn {
-            let converted_2885 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2885)
+            let converted_3241 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3241)
         } else {
             Ok(py.None())
         }
@@ -15149,8 +18546,8 @@ impl PyOperationDisableKinesisStreamingDestinationOutput {
     #[getter]
     fn destination_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.destination_status {
-            let converted_2886 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2886)
+            let converted_3242 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3242)
         } else {
             Ok(py.None())
         }
@@ -15159,14 +18556,14 @@ impl PyOperationDisableKinesisStreamingDestinationOutput {
     #[getter]
     fn enable_kinesis_streaming_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.enable_kinesis_streaming_configuration {
-            let converted_2887 = Py::new(
+            let converted_3243 = Py::new(
                 py,
                 PyEnableKinesisStreamingConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2887)
+            Ok(converted_3243)
         } else {
             Ok(py.None())
         }
@@ -15175,30 +18572,50 @@ impl PyOperationDisableKinesisStreamingDestinationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.table_name {
-            let converted_2888 = (value).as_str().into_py_any(py)?;
-            result.set_item("table_name", converted_2888)?;
+            let converted_3244 = (value).as_str().into_py_any(py)?;
+            result.set_item("table_name", converted_3244)?;
         } else {
             result.set_item("table_name", py.None())?;
         }
         if let Some(value) = &self.inner.stream_arn {
-            let converted_2889 = (value).as_str().into_py_any(py)?;
-            result.set_item("stream_arn", converted_2889)?;
+            let converted_3245 = (value).as_str().into_py_any(py)?;
+            result.set_item("stream_arn", converted_3245)?;
         } else {
             result.set_item("stream_arn", py.None())?;
         }
         if let Some(value) = &self.inner.destination_status {
-            let converted_2890 = (value).as_str().into_py_any(py)?;
-            result.set_item("destination_status", converted_2890)?;
+            let converted_3246 = (value).as_str().into_py_any(py)?;
+            result.set_item("destination_status", converted_3246)?;
         } else {
             result.set_item("destination_status", py.None())?;
         }
         if let Some(value) = &self.inner.enable_kinesis_streaming_configuration {
-            let converted_2891 = enable_kinesis_streaming_configuration_to_py(py, value)?;
-            result.set_item("enable_kinesis_streaming_configuration", converted_2891)?;
+            let converted_3247 = enable_kinesis_streaming_configuration_to_py(py, value)?;
+            result.set_item("enable_kinesis_streaming_configuration", converted_3247)?;
         } else {
             result.set_item("enable_kinesis_streaming_configuration", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationEnableKinesisStreamingDestinationOutput {
+    table_name: Option<::std::string::String>,
+    stream_arn: Option<::std::string::String>,
+    destination_status: Option<aws_sdk_dynamodb::types::DestinationStatus>,
+    enable_kinesis_streaming_configuration:
+        Option<Arc<aws_sdk_dynamodb::types::EnableKinesisStreamingConfiguration>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::enable_kinesis_streaming_destination::EnableKinesisStreamingDestinationOutput> for SharedPyOperationEnableKinesisStreamingDestinationOutput {
+    fn from(value: aws_sdk_dynamodb::operation::enable_kinesis_streaming_destination::EnableKinesisStreamingDestinationOutput) -> Self {
+        Self {
+            table_name: value.table_name,
+            stream_arn: value.stream_arn,
+            destination_status: value.destination_status,
+            enable_kinesis_streaming_configuration: value.enable_kinesis_streaming_configuration.map(|item| Arc::new(item)),
+        }
     }
 }
 
@@ -15208,7 +18625,7 @@ impl PyOperationDisableKinesisStreamingDestinationOutput {
     frozen
 )]
 struct PyOperationEnableKinesisStreamingDestinationOutput {
-    inner: aws_sdk_dynamodb::operation::enable_kinesis_streaming_destination::EnableKinesisStreamingDestinationOutput,
+    inner: SharedPyOperationEnableKinesisStreamingDestinationOutput,
 }
 
 #[pymethods]
@@ -15216,8 +18633,8 @@ impl PyOperationEnableKinesisStreamingDestinationOutput {
     #[getter]
     fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_name {
-            let converted_2892 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2892)
+            let converted_3248 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3248)
         } else {
             Ok(py.None())
         }
@@ -15226,8 +18643,8 @@ impl PyOperationEnableKinesisStreamingDestinationOutput {
     #[getter]
     fn stream_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_arn {
-            let converted_2893 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2893)
+            let converted_3249 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3249)
         } else {
             Ok(py.None())
         }
@@ -15236,8 +18653,8 @@ impl PyOperationEnableKinesisStreamingDestinationOutput {
     #[getter]
     fn destination_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.destination_status {
-            let converted_2894 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2894)
+            let converted_3250 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3250)
         } else {
             Ok(py.None())
         }
@@ -15246,14 +18663,14 @@ impl PyOperationEnableKinesisStreamingDestinationOutput {
     #[getter]
     fn enable_kinesis_streaming_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.enable_kinesis_streaming_configuration {
-            let converted_2895 = Py::new(
+            let converted_3251 = Py::new(
                 py,
                 PyEnableKinesisStreamingConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2895)
+            Ok(converted_3251)
         } else {
             Ok(py.None())
         }
@@ -15262,30 +18679,62 @@ impl PyOperationEnableKinesisStreamingDestinationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.table_name {
-            let converted_2896 = (value).as_str().into_py_any(py)?;
-            result.set_item("table_name", converted_2896)?;
+            let converted_3252 = (value).as_str().into_py_any(py)?;
+            result.set_item("table_name", converted_3252)?;
         } else {
             result.set_item("table_name", py.None())?;
         }
         if let Some(value) = &self.inner.stream_arn {
-            let converted_2897 = (value).as_str().into_py_any(py)?;
-            result.set_item("stream_arn", converted_2897)?;
+            let converted_3253 = (value).as_str().into_py_any(py)?;
+            result.set_item("stream_arn", converted_3253)?;
         } else {
             result.set_item("stream_arn", py.None())?;
         }
         if let Some(value) = &self.inner.destination_status {
-            let converted_2898 = (value).as_str().into_py_any(py)?;
-            result.set_item("destination_status", converted_2898)?;
+            let converted_3254 = (value).as_str().into_py_any(py)?;
+            result.set_item("destination_status", converted_3254)?;
         } else {
             result.set_item("destination_status", py.None())?;
         }
         if let Some(value) = &self.inner.enable_kinesis_streaming_configuration {
-            let converted_2899 = enable_kinesis_streaming_configuration_to_py(py, value)?;
-            result.set_item("enable_kinesis_streaming_configuration", converted_2899)?;
+            let converted_3255 = enable_kinesis_streaming_configuration_to_py(py, value)?;
+            result.set_item("enable_kinesis_streaming_configuration", converted_3255)?;
         } else {
             result.set_item("enable_kinesis_streaming_configuration", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationExecuteStatementOutput {
+    items: Option<
+        ::std::vec::Vec<
+            ::std::collections::HashMap<
+                ::std::string::String,
+                aws_sdk_dynamodb::types::AttributeValue,
+            >,
+        >,
+    >,
+    next_token: Option<::std::string::String>,
+    consumed_capacity: Option<Arc<SharedConsumedCapacity>>,
+    last_evaluated_key: Option<
+        ::std::collections::HashMap<::std::string::String, aws_sdk_dynamodb::types::AttributeValue>,
+    >,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::execute_statement::ExecuteStatementOutput>
+    for SharedPyOperationExecuteStatementOutput
+{
+    fn from(value: aws_sdk_dynamodb::operation::execute_statement::ExecuteStatementOutput) -> Self {
+        Self {
+            items: value.items,
+            next_token: value.next_token,
+            consumed_capacity: value
+                .consumed_capacity
+                .map(|item| Arc::new(SharedConsumedCapacity::from(item))),
+            last_evaluated_key: value.last_evaluated_key,
+        }
     }
 }
 
@@ -15295,7 +18744,7 @@ impl PyOperationEnableKinesisStreamingDestinationOutput {
     frozen
 )]
 struct PyOperationExecuteStatementOutput {
-    inner: aws_sdk_dynamodb::operation::execute_statement::ExecuteStatementOutput,
+    inner: SharedPyOperationExecuteStatementOutput,
 }
 
 #[pymethods]
@@ -15303,19 +18752,19 @@ impl PyOperationExecuteStatementOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.items {
-            let converted_2900_list = PyList::empty(py);
-            for item_2901 in value {
-                let converted_item_2902_dict = PyDict::new(py);
-                for (key_2903, value_2904) in item_2901 {
-                    let converted_key_2905 = (key_2903).as_str().into_py_any(py)?;
-                    let converted_value_2906 = attribute_value_to_py(py, value_2904)?;
-                    converted_item_2902_dict.set_item(converted_key_2905, converted_value_2906)?;
+            let converted_3256_list = PyList::empty(py);
+            for item_3257 in value {
+                let converted_item_3258_dict = PyDict::new(py);
+                for (key_3259, value_3260) in item_3257 {
+                    let converted_key_3261 = (key_3259).as_str().into_py_any(py)?;
+                    let converted_value_3262 = attribute_value_to_py(py, value_3260)?;
+                    converted_item_3258_dict.set_item(converted_key_3261, converted_value_3262)?;
                 }
-                let converted_item_2902 = converted_item_2902_dict.into_any().unbind();
-                converted_2900_list.append(converted_item_2902)?;
+                let converted_item_3258 = converted_item_3258_dict.into_any().unbind();
+                converted_3256_list.append(converted_item_3258)?;
             }
-            let converted_2900 = converted_2900_list.into_any().unbind();
-            Ok(converted_2900)
+            let converted_3256 = converted_3256_list.into_any().unbind();
+            Ok(converted_3256)
         } else {
             Ok(py.None())
         }
@@ -15324,8 +18773,8 @@ impl PyOperationExecuteStatementOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_2907 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2907)
+            let converted_3263 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3263)
         } else {
             Ok(py.None())
         }
@@ -15334,14 +18783,14 @@ impl PyOperationExecuteStatementOutput {
     #[getter]
     fn consumed_capacity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_2908 = Py::new(
+            let converted_3264 = Py::new(
                 py,
                 PyConsumedCapacity {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2908)
+            Ok(converted_3264)
         } else {
             Ok(py.None())
         }
@@ -15350,14 +18799,14 @@ impl PyOperationExecuteStatementOutput {
     #[getter]
     fn last_evaluated_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_evaluated_key {
-            let converted_2909_dict = PyDict::new(py);
-            for (key_2910, value_2911) in value {
-                let converted_key_2912 = (key_2910).as_str().into_py_any(py)?;
-                let converted_value_2913 = attribute_value_to_py(py, value_2911)?;
-                converted_2909_dict.set_item(converted_key_2912, converted_value_2913)?;
+            let converted_3265_dict = PyDict::new(py);
+            for (key_3266, value_3267) in value {
+                let converted_key_3268 = (key_3266).as_str().into_py_any(py)?;
+                let converted_value_3269 = attribute_value_to_py(py, value_3267)?;
+                converted_3265_dict.set_item(converted_key_3268, converted_value_3269)?;
             }
-            let converted_2909 = converted_2909_dict.into_any().unbind();
-            Ok(converted_2909)
+            let converted_3265 = converted_3265_dict.into_any().unbind();
+            Ok(converted_3265)
         } else {
             Ok(py.None())
         }
@@ -15366,47 +18815,76 @@ impl PyOperationExecuteStatementOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.items {
-            let converted_2914_list = PyList::empty(py);
-            for item_2915 in value {
-                let converted_item_2916_dict = PyDict::new(py);
-                for (key_2917, value_2918) in item_2915 {
-                    let converted_key_2919 = (key_2917).as_str().into_py_any(py)?;
-                    let converted_value_2920 = attribute_value_to_py(py, value_2918)?;
-                    converted_item_2916_dict.set_item(converted_key_2919, converted_value_2920)?;
+            let converted_3270_list = PyList::empty(py);
+            for item_3271 in value {
+                let converted_item_3272_dict = PyDict::new(py);
+                for (key_3273, value_3274) in item_3271 {
+                    let converted_key_3275 = (key_3273).as_str().into_py_any(py)?;
+                    let converted_value_3276 = attribute_value_to_py(py, value_3274)?;
+                    converted_item_3272_dict.set_item(converted_key_3275, converted_value_3276)?;
                 }
-                let converted_item_2916 = converted_item_2916_dict.into_any().unbind();
-                converted_2914_list.append(converted_item_2916)?;
+                let converted_item_3272 = converted_item_3272_dict.into_any().unbind();
+                converted_3270_list.append(converted_item_3272)?;
             }
-            let converted_2914 = converted_2914_list.into_any().unbind();
-            result.set_item("items", converted_2914)?;
+            let converted_3270 = converted_3270_list.into_any().unbind();
+            result.set_item("items", converted_3270)?;
         } else {
             result.set_item("items", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_2921 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_2921)?;
+            let converted_3277 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_3277)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_2922 = consumed_capacity_to_py(py, value)?;
-            result.set_item("consumed_capacity", converted_2922)?;
+            let converted_3278 = consumed_capacity_shared_to_py(py, value)?;
+            result.set_item("consumed_capacity", converted_3278)?;
         } else {
             result.set_item("consumed_capacity", py.None())?;
         }
         if let Some(value) = &self.inner.last_evaluated_key {
-            let converted_2923_dict = PyDict::new(py);
-            for (key_2924, value_2925) in value {
-                let converted_key_2926 = (key_2924).as_str().into_py_any(py)?;
-                let converted_value_2927 = attribute_value_to_py(py, value_2925)?;
-                converted_2923_dict.set_item(converted_key_2926, converted_value_2927)?;
+            let converted_3279_dict = PyDict::new(py);
+            for (key_3280, value_3281) in value {
+                let converted_key_3282 = (key_3280).as_str().into_py_any(py)?;
+                let converted_value_3283 = attribute_value_to_py(py, value_3281)?;
+                converted_3279_dict.set_item(converted_key_3282, converted_value_3283)?;
             }
-            let converted_2923 = converted_2923_dict.into_any().unbind();
-            result.set_item("last_evaluated_key", converted_2923)?;
+            let converted_3279 = converted_3279_dict.into_any().unbind();
+            result.set_item("last_evaluated_key", converted_3279)?;
         } else {
             result.set_item("last_evaluated_key", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationExecuteTransactionOutput {
+    responses: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::ItemResponse>>>,
+    consumed_capacity: Option<::std::vec::Vec<Arc<SharedConsumedCapacity>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::execute_transaction::ExecuteTransactionOutput>
+    for SharedPyOperationExecuteTransactionOutput
+{
+    fn from(
+        value: aws_sdk_dynamodb::operation::execute_transaction::ExecuteTransactionOutput,
+    ) -> Self {
+        Self {
+            responses: value.responses.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3290| Arc::new(owned_3290))
+                    .collect()
+            }),
+            consumed_capacity: value.consumed_capacity.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3291| Arc::new(SharedConsumedCapacity::from(owned_3291)))
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -15416,7 +18894,7 @@ impl PyOperationExecuteStatementOutput {
     frozen
 )]
 struct PyOperationExecuteTransactionOutput {
-    inner: aws_sdk_dynamodb::operation::execute_transaction::ExecuteTransactionOutput,
+    inner: SharedPyOperationExecuteTransactionOutput,
 }
 
 #[pymethods]
@@ -15424,19 +18902,19 @@ impl PyOperationExecuteTransactionOutput {
     #[getter]
     fn responses(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.responses {
-            let converted_2928_list = PyList::empty(py);
-            for item_2929 in value {
-                let converted_item_2930 = Py::new(
+            let converted_3284_list = PyList::empty(py);
+            for item_3285 in value {
+                let converted_item_3286 = Py::new(
                     py,
                     PyItemResponse {
-                        inner: (item_2929).to_owned(),
+                        inner: Arc::clone(item_3285),
                     },
                 )?
                 .into_any();
-                converted_2928_list.append(converted_item_2930)?;
+                converted_3284_list.append(converted_item_3286)?;
             }
-            let converted_2928 = converted_2928_list.into_any().unbind();
-            Ok(converted_2928)
+            let converted_3284 = converted_3284_list.into_any().unbind();
+            Ok(converted_3284)
         } else {
             Ok(py.None())
         }
@@ -15445,19 +18923,19 @@ impl PyOperationExecuteTransactionOutput {
     #[getter]
     fn consumed_capacity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_2931_list = PyList::empty(py);
-            for item_2932 in value {
-                let converted_item_2933 = Py::new(
+            let converted_3287_list = PyList::empty(py);
+            for item_3288 in value {
+                let converted_item_3289 = Py::new(
                     py,
                     PyConsumedCapacity {
-                        inner: (item_2932).to_owned(),
+                        inner: Arc::clone(item_3288),
                     },
                 )?
                 .into_any();
-                converted_2931_list.append(converted_item_2933)?;
+                converted_3287_list.append(converted_item_3289)?;
             }
-            let converted_2931 = converted_2931_list.into_any().unbind();
-            Ok(converted_2931)
+            let converted_3287 = converted_3287_list.into_any().unbind();
+            Ok(converted_3287)
         } else {
             Ok(py.None())
         }
@@ -15466,28 +18944,48 @@ impl PyOperationExecuteTransactionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.responses {
-            let converted_2934_list = PyList::empty(py);
-            for item_2935 in value {
-                let converted_item_2936 = item_response_to_py(py, item_2935)?;
-                converted_2934_list.append(converted_item_2936)?;
+            let converted_3292_list = PyList::empty(py);
+            for item_3293 in value {
+                let converted_item_3294 = item_response_to_py(py, item_3293)?;
+                converted_3292_list.append(converted_item_3294)?;
             }
-            let converted_2934 = converted_2934_list.into_any().unbind();
-            result.set_item("responses", converted_2934)?;
+            let converted_3292 = converted_3292_list.into_any().unbind();
+            result.set_item("responses", converted_3292)?;
         } else {
             result.set_item("responses", py.None())?;
         }
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_2937_list = PyList::empty(py);
-            for item_2938 in value {
-                let converted_item_2939 = consumed_capacity_to_py(py, item_2938)?;
-                converted_2937_list.append(converted_item_2939)?;
+            let converted_3295_list = PyList::empty(py);
+            for item_3296 in value {
+                let converted_item_3297 = consumed_capacity_shared_to_py(py, item_3296)?;
+                converted_3295_list.append(converted_item_3297)?;
             }
-            let converted_2937 = converted_2937_list.into_any().unbind();
-            result.set_item("consumed_capacity", converted_2937)?;
+            let converted_3295 = converted_3295_list.into_any().unbind();
+            result.set_item("consumed_capacity", converted_3295)?;
         } else {
             result.set_item("consumed_capacity", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationExportTableToPointInTimeOutput {
+    export_description: Option<Arc<SharedExportDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl
+    From<aws_sdk_dynamodb::operation::export_table_to_point_in_time::ExportTableToPointInTimeOutput>
+    for SharedPyOperationExportTableToPointInTimeOutput
+{
+    fn from(
+        value: aws_sdk_dynamodb::operation::export_table_to_point_in_time::ExportTableToPointInTimeOutput,
+    ) -> Self {
+        Self {
+            export_description: value
+                .export_description
+                .map(|item| Arc::new(SharedExportDescription::from(item))),
+        }
     }
 }
 
@@ -15497,8 +18995,7 @@ impl PyOperationExecuteTransactionOutput {
     frozen
 )]
 struct PyOperationExportTableToPointInTimeOutput {
-    inner:
-        aws_sdk_dynamodb::operation::export_table_to_point_in_time::ExportTableToPointInTimeOutput,
+    inner: SharedPyOperationExportTableToPointInTimeOutput,
 }
 
 #[pymethods]
@@ -15506,14 +19003,14 @@ impl PyOperationExportTableToPointInTimeOutput {
     #[getter]
     fn export_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.export_description {
-            let converted_2940 = Py::new(
+            let converted_3298 = Py::new(
                 py,
                 PyExportDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2940)
+            Ok(converted_3298)
         } else {
             Ok(py.None())
         }
@@ -15522,8 +19019,8 @@ impl PyOperationExportTableToPointInTimeOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.export_description {
-            let converted_2941 = export_description_to_py(py, value)?;
-            result.set_item("export_description", converted_2941)?;
+            let converted_3299 = export_description_shared_to_py(py, value)?;
+            result.set_item("export_description", converted_3299)?;
         } else {
             result.set_item("export_description", py.None())?;
         }
@@ -15531,9 +19028,28 @@ impl PyOperationExportTableToPointInTimeOutput {
     }
 }
 
+struct SharedPyOperationGetItemOutput {
+    item: Option<
+        ::std::collections::HashMap<::std::string::String, aws_sdk_dynamodb::types::AttributeValue>,
+    >,
+    consumed_capacity: Option<Arc<SharedConsumedCapacity>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::get_item::GetItemOutput> for SharedPyOperationGetItemOutput {
+    fn from(value: aws_sdk_dynamodb::operation::get_item::GetItemOutput) -> Self {
+        Self {
+            item: value.item,
+            consumed_capacity: value
+                .consumed_capacity
+                .map(|item| Arc::new(SharedConsumedCapacity::from(item))),
+        }
+    }
+}
+
 #[pyclass(name = "GetItemOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyOperationGetItemOutput {
-    inner: aws_sdk_dynamodb::operation::get_item::GetItemOutput,
+    inner: SharedPyOperationGetItemOutput,
 }
 
 #[pymethods]
@@ -15541,14 +19057,14 @@ impl PyOperationGetItemOutput {
     #[getter]
     fn item(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.item {
-            let converted_2942_dict = PyDict::new(py);
-            for (key_2943, value_2944) in value {
-                let converted_key_2945 = (key_2943).as_str().into_py_any(py)?;
-                let converted_value_2946 = attribute_value_to_py(py, value_2944)?;
-                converted_2942_dict.set_item(converted_key_2945, converted_value_2946)?;
+            let converted_3300_dict = PyDict::new(py);
+            for (key_3301, value_3302) in value {
+                let converted_key_3303 = (key_3301).as_str().into_py_any(py)?;
+                let converted_value_3304 = attribute_value_to_py(py, value_3302)?;
+                converted_3300_dict.set_item(converted_key_3303, converted_value_3304)?;
             }
-            let converted_2942 = converted_2942_dict.into_any().unbind();
-            Ok(converted_2942)
+            let converted_3300 = converted_3300_dict.into_any().unbind();
+            Ok(converted_3300)
         } else {
             Ok(py.None())
         }
@@ -15557,14 +19073,14 @@ impl PyOperationGetItemOutput {
     #[getter]
     fn consumed_capacity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_2947 = Py::new(
+            let converted_3305 = Py::new(
                 py,
                 PyConsumedCapacity {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2947)
+            Ok(converted_3305)
         } else {
             Ok(py.None())
         }
@@ -15573,20 +19089,20 @@ impl PyOperationGetItemOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.item {
-            let converted_2948_dict = PyDict::new(py);
-            for (key_2949, value_2950) in value {
-                let converted_key_2951 = (key_2949).as_str().into_py_any(py)?;
-                let converted_value_2952 = attribute_value_to_py(py, value_2950)?;
-                converted_2948_dict.set_item(converted_key_2951, converted_value_2952)?;
+            let converted_3306_dict = PyDict::new(py);
+            for (key_3307, value_3308) in value {
+                let converted_key_3309 = (key_3307).as_str().into_py_any(py)?;
+                let converted_value_3310 = attribute_value_to_py(py, value_3308)?;
+                converted_3306_dict.set_item(converted_key_3309, converted_value_3310)?;
             }
-            let converted_2948 = converted_2948_dict.into_any().unbind();
-            result.set_item("item", converted_2948)?;
+            let converted_3306 = converted_3306_dict.into_any().unbind();
+            result.set_item("item", converted_3306)?;
         } else {
             result.set_item("item", py.None())?;
         }
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_2953 = consumed_capacity_to_py(py, value)?;
-            result.set_item("consumed_capacity", converted_2953)?;
+            let converted_3311 = consumed_capacity_shared_to_py(py, value)?;
+            result.set_item("consumed_capacity", converted_3311)?;
         } else {
             result.set_item("consumed_capacity", py.None())?;
         }
@@ -15608,8 +19124,8 @@ impl PyOperationGetResourcePolicyOutput {
     #[getter]
     fn policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.policy {
-            let converted_2954 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2954)
+            let converted_3312 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3312)
         } else {
             Ok(py.None())
         }
@@ -15618,8 +19134,8 @@ impl PyOperationGetResourcePolicyOutput {
     #[getter]
     fn revision_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.revision_id {
-            let converted_2955 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2955)
+            let converted_3313 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3313)
         } else {
             Ok(py.None())
         }
@@ -15628,14 +19144,14 @@ impl PyOperationGetResourcePolicyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.policy {
-            let converted_2956 = (value).as_str().into_py_any(py)?;
-            result.set_item("policy", converted_2956)?;
+            let converted_3314 = (value).as_str().into_py_any(py)?;
+            result.set_item("policy", converted_3314)?;
         } else {
             result.set_item("policy", py.None())?;
         }
         if let Some(value) = &self.inner.revision_id {
-            let converted_2957 = (value).as_str().into_py_any(py)?;
-            result.set_item("revision_id", converted_2957)?;
+            let converted_3315 = (value).as_str().into_py_any(py)?;
+            result.set_item("revision_id", converted_3315)?;
         } else {
             result.set_item("revision_id", py.None())?;
         }
@@ -15643,9 +19159,26 @@ impl PyOperationGetResourcePolicyOutput {
     }
 }
 
+struct SharedPyOperationImportTableOutput {
+    import_table_description: Option<Arc<SharedImportTableDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::import_table::ImportTableOutput>
+    for SharedPyOperationImportTableOutput
+{
+    fn from(value: aws_sdk_dynamodb::operation::import_table::ImportTableOutput) -> Self {
+        Self {
+            import_table_description: value
+                .import_table_description
+                .map(|item| Arc::new(SharedImportTableDescription::from(item))),
+        }
+    }
+}
+
 #[pyclass(name = "ImportTableOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyOperationImportTableOutput {
-    inner: aws_sdk_dynamodb::operation::import_table::ImportTableOutput,
+    inner: SharedPyOperationImportTableOutput,
 }
 
 #[pymethods]
@@ -15653,14 +19186,14 @@ impl PyOperationImportTableOutput {
     #[getter]
     fn import_table_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_table_description {
-            let converted_2958 = Py::new(
+            let converted_3316 = Py::new(
                 py,
                 PyImportTableDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2958)
+            Ok(converted_3316)
         } else {
             Ok(py.None())
         }
@@ -15669,8 +19202,8 @@ impl PyOperationImportTableOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.import_table_description {
-            let converted_2959 = import_table_description_to_py(py, value)?;
-            result.set_item("import_table_description", converted_2959)?;
+            let converted_3317 = import_table_description_shared_to_py(py, value)?;
+            result.set_item("import_table_description", converted_3317)?;
         } else {
             result.set_item("import_table_description", py.None())?;
         }
@@ -15678,9 +19211,31 @@ impl PyOperationImportTableOutput {
     }
 }
 
+struct SharedPyOperationListBackupsOutput {
+    backup_summaries: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::BackupSummary>>>,
+    last_evaluated_backup_arn: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::list_backups::ListBackupsOutput>
+    for SharedPyOperationListBackupsOutput
+{
+    fn from(value: aws_sdk_dynamodb::operation::list_backups::ListBackupsOutput) -> Self {
+        Self {
+            backup_summaries: value.backup_summaries.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3322| Arc::new(owned_3322))
+                    .collect()
+            }),
+            last_evaluated_backup_arn: value.last_evaluated_backup_arn,
+        }
+    }
+}
+
 #[pyclass(name = "ListBackupsOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyOperationListBackupsOutput {
-    inner: aws_sdk_dynamodb::operation::list_backups::ListBackupsOutput,
+    inner: SharedPyOperationListBackupsOutput,
 }
 
 #[pymethods]
@@ -15688,19 +19243,19 @@ impl PyOperationListBackupsOutput {
     #[getter]
     fn backup_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.backup_summaries {
-            let converted_2960_list = PyList::empty(py);
-            for item_2961 in value {
-                let converted_item_2962 = Py::new(
+            let converted_3318_list = PyList::empty(py);
+            for item_3319 in value {
+                let converted_item_3320 = Py::new(
                     py,
                     PyBackupSummary {
-                        inner: (item_2961).to_owned(),
+                        inner: Arc::clone(item_3319),
                     },
                 )?
                 .into_any();
-                converted_2960_list.append(converted_item_2962)?;
+                converted_3318_list.append(converted_item_3320)?;
             }
-            let converted_2960 = converted_2960_list.into_any().unbind();
-            Ok(converted_2960)
+            let converted_3318 = converted_3318_list.into_any().unbind();
+            Ok(converted_3318)
         } else {
             Ok(py.None())
         }
@@ -15709,8 +19264,8 @@ impl PyOperationListBackupsOutput {
     #[getter]
     fn last_evaluated_backup_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_evaluated_backup_arn {
-            let converted_2963 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2963)
+            let converted_3321 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3321)
         } else {
             Ok(py.None())
         }
@@ -15719,23 +19274,48 @@ impl PyOperationListBackupsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.backup_summaries {
-            let converted_2964_list = PyList::empty(py);
-            for item_2965 in value {
-                let converted_item_2966 = backup_summary_to_py(py, item_2965)?;
-                converted_2964_list.append(converted_item_2966)?;
+            let converted_3323_list = PyList::empty(py);
+            for item_3324 in value {
+                let converted_item_3325 = backup_summary_to_py(py, item_3324)?;
+                converted_3323_list.append(converted_item_3325)?;
             }
-            let converted_2964 = converted_2964_list.into_any().unbind();
-            result.set_item("backup_summaries", converted_2964)?;
+            let converted_3323 = converted_3323_list.into_any().unbind();
+            result.set_item("backup_summaries", converted_3323)?;
         } else {
             result.set_item("backup_summaries", py.None())?;
         }
         if let Some(value) = &self.inner.last_evaluated_backup_arn {
-            let converted_2967 = (value).as_str().into_py_any(py)?;
-            result.set_item("last_evaluated_backup_arn", converted_2967)?;
+            let converted_3326 = (value).as_str().into_py_any(py)?;
+            result.set_item("last_evaluated_backup_arn", converted_3326)?;
         } else {
             result.set_item("last_evaluated_backup_arn", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListContributorInsightsOutput {
+    contributor_insights_summaries:
+        Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::ContributorInsightsSummary>>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::list_contributor_insights::ListContributorInsightsOutput>
+    for SharedPyOperationListContributorInsightsOutput
+{
+    fn from(
+        value: aws_sdk_dynamodb::operation::list_contributor_insights::ListContributorInsightsOutput,
+    ) -> Self {
+        Self {
+            contributor_insights_summaries: value.contributor_insights_summaries.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3331| Arc::new(owned_3331))
+                    .collect()
+            }),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -15745,7 +19325,7 @@ impl PyOperationListBackupsOutput {
     frozen
 )]
 struct PyOperationListContributorInsightsOutput {
-    inner: aws_sdk_dynamodb::operation::list_contributor_insights::ListContributorInsightsOutput,
+    inner: SharedPyOperationListContributorInsightsOutput,
 }
 
 #[pymethods]
@@ -15753,19 +19333,19 @@ impl PyOperationListContributorInsightsOutput {
     #[getter]
     fn contributor_insights_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.contributor_insights_summaries {
-            let converted_2968_list = PyList::empty(py);
-            for item_2969 in value {
-                let converted_item_2970 = Py::new(
+            let converted_3327_list = PyList::empty(py);
+            for item_3328 in value {
+                let converted_item_3329 = Py::new(
                     py,
                     PyContributorInsightsSummary {
-                        inner: (item_2969).to_owned(),
+                        inner: Arc::clone(item_3328),
                     },
                 )?
                 .into_any();
-                converted_2968_list.append(converted_item_2970)?;
+                converted_3327_list.append(converted_item_3329)?;
             }
-            let converted_2968 = converted_2968_list.into_any().unbind();
-            Ok(converted_2968)
+            let converted_3327 = converted_3327_list.into_any().unbind();
+            Ok(converted_3327)
         } else {
             Ok(py.None())
         }
@@ -15774,8 +19354,8 @@ impl PyOperationListContributorInsightsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_2971 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2971)
+            let converted_3330 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3330)
         } else {
             Ok(py.None())
         }
@@ -15784,19 +19364,19 @@ impl PyOperationListContributorInsightsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.contributor_insights_summaries {
-            let converted_2972_list = PyList::empty(py);
-            for item_2973 in value {
-                let converted_item_2974 = contributor_insights_summary_to_py(py, item_2973)?;
-                converted_2972_list.append(converted_item_2974)?;
+            let converted_3332_list = PyList::empty(py);
+            for item_3333 in value {
+                let converted_item_3334 = contributor_insights_summary_to_py(py, item_3333)?;
+                converted_3332_list.append(converted_item_3334)?;
             }
-            let converted_2972 = converted_2972_list.into_any().unbind();
-            result.set_item("contributor_insights_summaries", converted_2972)?;
+            let converted_3332 = converted_3332_list.into_any().unbind();
+            result.set_item("contributor_insights_summaries", converted_3332)?;
         } else {
             result.set_item("contributor_insights_summaries", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_2975 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_2975)?;
+            let converted_3335 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_3335)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -15804,9 +19384,31 @@ impl PyOperationListContributorInsightsOutput {
     }
 }
 
+struct SharedPyOperationListExportsOutput {
+    export_summaries: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::ExportSummary>>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::list_exports::ListExportsOutput>
+    for SharedPyOperationListExportsOutput
+{
+    fn from(value: aws_sdk_dynamodb::operation::list_exports::ListExportsOutput) -> Self {
+        Self {
+            export_summaries: value.export_summaries.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3340| Arc::new(owned_3340))
+                    .collect()
+            }),
+            next_token: value.next_token,
+        }
+    }
+}
+
 #[pyclass(name = "ListExportsOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyOperationListExportsOutput {
-    inner: aws_sdk_dynamodb::operation::list_exports::ListExportsOutput,
+    inner: SharedPyOperationListExportsOutput,
 }
 
 #[pymethods]
@@ -15814,19 +19416,19 @@ impl PyOperationListExportsOutput {
     #[getter]
     fn export_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.export_summaries {
-            let converted_2976_list = PyList::empty(py);
-            for item_2977 in value {
-                let converted_item_2978 = Py::new(
+            let converted_3336_list = PyList::empty(py);
+            for item_3337 in value {
+                let converted_item_3338 = Py::new(
                     py,
                     PyExportSummary {
-                        inner: (item_2977).to_owned(),
+                        inner: Arc::clone(item_3337),
                     },
                 )?
                 .into_any();
-                converted_2976_list.append(converted_item_2978)?;
+                converted_3336_list.append(converted_item_3338)?;
             }
-            let converted_2976 = converted_2976_list.into_any().unbind();
-            Ok(converted_2976)
+            let converted_3336 = converted_3336_list.into_any().unbind();
+            Ok(converted_3336)
         } else {
             Ok(py.None())
         }
@@ -15835,8 +19437,8 @@ impl PyOperationListExportsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_2979 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2979)
+            let converted_3339 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3339)
         } else {
             Ok(py.None())
         }
@@ -15845,23 +19447,47 @@ impl PyOperationListExportsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.export_summaries {
-            let converted_2980_list = PyList::empty(py);
-            for item_2981 in value {
-                let converted_item_2982 = export_summary_to_py(py, item_2981)?;
-                converted_2980_list.append(converted_item_2982)?;
+            let converted_3341_list = PyList::empty(py);
+            for item_3342 in value {
+                let converted_item_3343 = export_summary_to_py(py, item_3342)?;
+                converted_3341_list.append(converted_item_3343)?;
             }
-            let converted_2980 = converted_2980_list.into_any().unbind();
-            result.set_item("export_summaries", converted_2980)?;
+            let converted_3341 = converted_3341_list.into_any().unbind();
+            result.set_item("export_summaries", converted_3341)?;
         } else {
             result.set_item("export_summaries", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_2983 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_2983)?;
+            let converted_3344 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_3344)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListGlobalTablesOutput {
+    global_tables: Option<::std::vec::Vec<Arc<SharedGlobalTable>>>,
+    last_evaluated_global_table_name: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::list_global_tables::ListGlobalTablesOutput>
+    for SharedPyOperationListGlobalTablesOutput
+{
+    fn from(
+        value: aws_sdk_dynamodb::operation::list_global_tables::ListGlobalTablesOutput,
+    ) -> Self {
+        Self {
+            global_tables: value.global_tables.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3349| Arc::new(SharedGlobalTable::from(owned_3349)))
+                    .collect()
+            }),
+            last_evaluated_global_table_name: value.last_evaluated_global_table_name,
+        }
     }
 }
 
@@ -15871,7 +19497,7 @@ impl PyOperationListExportsOutput {
     frozen
 )]
 struct PyOperationListGlobalTablesOutput {
-    inner: aws_sdk_dynamodb::operation::list_global_tables::ListGlobalTablesOutput,
+    inner: SharedPyOperationListGlobalTablesOutput,
 }
 
 #[pymethods]
@@ -15879,19 +19505,19 @@ impl PyOperationListGlobalTablesOutput {
     #[getter]
     fn global_tables(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.global_tables {
-            let converted_2984_list = PyList::empty(py);
-            for item_2985 in value {
-                let converted_item_2986 = Py::new(
+            let converted_3345_list = PyList::empty(py);
+            for item_3346 in value {
+                let converted_item_3347 = Py::new(
                     py,
                     PyGlobalTable {
-                        inner: (item_2985).to_owned(),
+                        inner: Arc::clone(item_3346),
                     },
                 )?
                 .into_any();
-                converted_2984_list.append(converted_item_2986)?;
+                converted_3345_list.append(converted_item_3347)?;
             }
-            let converted_2984 = converted_2984_list.into_any().unbind();
-            Ok(converted_2984)
+            let converted_3345 = converted_3345_list.into_any().unbind();
+            Ok(converted_3345)
         } else {
             Ok(py.None())
         }
@@ -15900,8 +19526,8 @@ impl PyOperationListGlobalTablesOutput {
     #[getter]
     fn last_evaluated_global_table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_evaluated_global_table_name {
-            let converted_2987 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2987)
+            let converted_3348 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3348)
         } else {
             Ok(py.None())
         }
@@ -15910,19 +19536,19 @@ impl PyOperationListGlobalTablesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.global_tables {
-            let converted_2988_list = PyList::empty(py);
-            for item_2989 in value {
-                let converted_item_2990 = global_table_to_py(py, item_2989)?;
-                converted_2988_list.append(converted_item_2990)?;
+            let converted_3350_list = PyList::empty(py);
+            for item_3351 in value {
+                let converted_item_3352 = global_table_shared_to_py(py, item_3351)?;
+                converted_3350_list.append(converted_item_3352)?;
             }
-            let converted_2988 = converted_2988_list.into_any().unbind();
-            result.set_item("global_tables", converted_2988)?;
+            let converted_3350 = converted_3350_list.into_any().unbind();
+            result.set_item("global_tables", converted_3350)?;
         } else {
             result.set_item("global_tables", py.None())?;
         }
         if let Some(value) = &self.inner.last_evaluated_global_table_name {
-            let converted_2991 = (value).as_str().into_py_any(py)?;
-            result.set_item("last_evaluated_global_table_name", converted_2991)?;
+            let converted_3353 = (value).as_str().into_py_any(py)?;
+            result.set_item("last_evaluated_global_table_name", converted_3353)?;
         } else {
             result.set_item("last_evaluated_global_table_name", py.None())?;
         }
@@ -15930,9 +19556,31 @@ impl PyOperationListGlobalTablesOutput {
     }
 }
 
+struct SharedPyOperationListImportsOutput {
+    import_summary_list: Option<::std::vec::Vec<Arc<SharedImportSummary>>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::list_imports::ListImportsOutput>
+    for SharedPyOperationListImportsOutput
+{
+    fn from(value: aws_sdk_dynamodb::operation::list_imports::ListImportsOutput) -> Self {
+        Self {
+            import_summary_list: value.import_summary_list.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3358| Arc::new(SharedImportSummary::from(owned_3358)))
+                    .collect()
+            }),
+            next_token: value.next_token,
+        }
+    }
+}
+
 #[pyclass(name = "ListImportsOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyOperationListImportsOutput {
-    inner: aws_sdk_dynamodb::operation::list_imports::ListImportsOutput,
+    inner: SharedPyOperationListImportsOutput,
 }
 
 #[pymethods]
@@ -15940,19 +19588,19 @@ impl PyOperationListImportsOutput {
     #[getter]
     fn import_summary_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_summary_list {
-            let converted_2992_list = PyList::empty(py);
-            for item_2993 in value {
-                let converted_item_2994 = Py::new(
+            let converted_3354_list = PyList::empty(py);
+            for item_3355 in value {
+                let converted_item_3356 = Py::new(
                     py,
                     PyImportSummary {
-                        inner: (item_2993).to_owned(),
+                        inner: Arc::clone(item_3355),
                     },
                 )?
                 .into_any();
-                converted_2992_list.append(converted_item_2994)?;
+                converted_3354_list.append(converted_item_3356)?;
             }
-            let converted_2992 = converted_2992_list.into_any().unbind();
-            Ok(converted_2992)
+            let converted_3354 = converted_3354_list.into_any().unbind();
+            Ok(converted_3354)
         } else {
             Ok(py.None())
         }
@@ -15961,8 +19609,8 @@ impl PyOperationListImportsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_2995 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2995)
+            let converted_3357 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3357)
         } else {
             Ok(py.None())
         }
@@ -15971,19 +19619,19 @@ impl PyOperationListImportsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.import_summary_list {
-            let converted_2996_list = PyList::empty(py);
-            for item_2997 in value {
-                let converted_item_2998 = import_summary_to_py(py, item_2997)?;
-                converted_2996_list.append(converted_item_2998)?;
+            let converted_3359_list = PyList::empty(py);
+            for item_3360 in value {
+                let converted_item_3361 = import_summary_shared_to_py(py, item_3360)?;
+                converted_3359_list.append(converted_item_3361)?;
             }
-            let converted_2996 = converted_2996_list.into_any().unbind();
-            result.set_item("import_summary_list", converted_2996)?;
+            let converted_3359 = converted_3359_list.into_any().unbind();
+            result.set_item("import_summary_list", converted_3359)?;
         } else {
             result.set_item("import_summary_list", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_2999 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_2999)?;
+            let converted_3362 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_3362)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -16001,13 +19649,13 @@ impl PyOperationListTablesOutput {
     #[getter]
     fn table_names(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_names {
-            let converted_3000_list = PyList::empty(py);
-            for item_3001 in value {
-                let converted_item_3002 = (item_3001).as_str().into_py_any(py)?;
-                converted_3000_list.append(converted_item_3002)?;
+            let converted_3363_list = PyList::empty(py);
+            for item_3364 in value {
+                let converted_item_3365 = (item_3364).as_str().into_py_any(py)?;
+                converted_3363_list.append(converted_item_3365)?;
             }
-            let converted_3000 = converted_3000_list.into_any().unbind();
-            Ok(converted_3000)
+            let converted_3363 = converted_3363_list.into_any().unbind();
+            Ok(converted_3363)
         } else {
             Ok(py.None())
         }
@@ -16016,8 +19664,8 @@ impl PyOperationListTablesOutput {
     #[getter]
     fn last_evaluated_table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_evaluated_table_name {
-            let converted_3003 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3003)
+            let converted_3366 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3366)
         } else {
             Ok(py.None())
         }
@@ -16026,23 +19674,47 @@ impl PyOperationListTablesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.table_names {
-            let converted_3004_list = PyList::empty(py);
-            for item_3005 in value {
-                let converted_item_3006 = (item_3005).as_str().into_py_any(py)?;
-                converted_3004_list.append(converted_item_3006)?;
+            let converted_3367_list = PyList::empty(py);
+            for item_3368 in value {
+                let converted_item_3369 = (item_3368).as_str().into_py_any(py)?;
+                converted_3367_list.append(converted_item_3369)?;
             }
-            let converted_3004 = converted_3004_list.into_any().unbind();
-            result.set_item("table_names", converted_3004)?;
+            let converted_3367 = converted_3367_list.into_any().unbind();
+            result.set_item("table_names", converted_3367)?;
         } else {
             result.set_item("table_names", py.None())?;
         }
         if let Some(value) = &self.inner.last_evaluated_table_name {
-            let converted_3007 = (value).as_str().into_py_any(py)?;
-            result.set_item("last_evaluated_table_name", converted_3007)?;
+            let converted_3370 = (value).as_str().into_py_any(py)?;
+            result.set_item("last_evaluated_table_name", converted_3370)?;
         } else {
             result.set_item("last_evaluated_table_name", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationListTagsOfResourceOutput {
+    tags: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::Tag>>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::list_tags_of_resource::ListTagsOfResourceOutput>
+    for SharedPyOperationListTagsOfResourceOutput
+{
+    fn from(
+        value: aws_sdk_dynamodb::operation::list_tags_of_resource::ListTagsOfResourceOutput,
+    ) -> Self {
+        Self {
+            tags: value.tags.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3375| Arc::new(owned_3375))
+                    .collect()
+            }),
+            next_token: value.next_token,
+        }
     }
 }
 
@@ -16052,7 +19724,7 @@ impl PyOperationListTablesOutput {
     frozen
 )]
 struct PyOperationListTagsOfResourceOutput {
-    inner: aws_sdk_dynamodb::operation::list_tags_of_resource::ListTagsOfResourceOutput,
+    inner: SharedPyOperationListTagsOfResourceOutput,
 }
 
 #[pymethods]
@@ -16060,19 +19732,19 @@ impl PyOperationListTagsOfResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_3008_list = PyList::empty(py);
-            for item_3009 in value {
-                let converted_item_3010 = Py::new(
+            let converted_3371_list = PyList::empty(py);
+            for item_3372 in value {
+                let converted_item_3373 = Py::new(
                     py,
                     PyTag {
-                        inner: (item_3009).to_owned(),
+                        inner: Arc::clone(item_3372),
                     },
                 )?
                 .into_any();
-                converted_3008_list.append(converted_item_3010)?;
+                converted_3371_list.append(converted_item_3373)?;
             }
-            let converted_3008 = converted_3008_list.into_any().unbind();
-            Ok(converted_3008)
+            let converted_3371 = converted_3371_list.into_any().unbind();
+            Ok(converted_3371)
         } else {
             Ok(py.None())
         }
@@ -16081,8 +19753,8 @@ impl PyOperationListTagsOfResourceOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_3011 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3011)
+            let converted_3374 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3374)
         } else {
             Ok(py.None())
         }
@@ -16091,19 +19763,19 @@ impl PyOperationListTagsOfResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.tags {
-            let converted_3012_list = PyList::empty(py);
-            for item_3013 in value {
-                let converted_item_3014 = tag_to_py(py, item_3013)?;
-                converted_3012_list.append(converted_item_3014)?;
+            let converted_3376_list = PyList::empty(py);
+            for item_3377 in value {
+                let converted_item_3378 = tag_to_py(py, item_3377)?;
+                converted_3376_list.append(converted_item_3378)?;
             }
-            let converted_3012 = converted_3012_list.into_any().unbind();
-            result.set_item("tags", converted_3012)?;
+            let converted_3376 = converted_3376_list.into_any().unbind();
+            result.set_item("tags", converted_3376)?;
         } else {
             result.set_item("tags", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_3015 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_3015)?;
+            let converted_3379 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_3379)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -16111,9 +19783,30 @@ impl PyOperationListTagsOfResourceOutput {
     }
 }
 
+struct SharedPyOperationPutItemOutput {
+    attributes: Option<
+        ::std::collections::HashMap<::std::string::String, aws_sdk_dynamodb::types::AttributeValue>,
+    >,
+    consumed_capacity: Option<Arc<SharedConsumedCapacity>>,
+    item_collection_metrics: Option<Arc<aws_sdk_dynamodb::types::ItemCollectionMetrics>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::put_item::PutItemOutput> for SharedPyOperationPutItemOutput {
+    fn from(value: aws_sdk_dynamodb::operation::put_item::PutItemOutput) -> Self {
+        Self {
+            attributes: value.attributes,
+            consumed_capacity: value
+                .consumed_capacity
+                .map(|item| Arc::new(SharedConsumedCapacity::from(item))),
+            item_collection_metrics: value.item_collection_metrics.map(|item| Arc::new(item)),
+        }
+    }
+}
+
 #[pyclass(name = "PutItemOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyOperationPutItemOutput {
-    inner: aws_sdk_dynamodb::operation::put_item::PutItemOutput,
+    inner: SharedPyOperationPutItemOutput,
 }
 
 #[pymethods]
@@ -16121,14 +19814,14 @@ impl PyOperationPutItemOutput {
     #[getter]
     fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attributes {
-            let converted_3016_dict = PyDict::new(py);
-            for (key_3017, value_3018) in value {
-                let converted_key_3019 = (key_3017).as_str().into_py_any(py)?;
-                let converted_value_3020 = attribute_value_to_py(py, value_3018)?;
-                converted_3016_dict.set_item(converted_key_3019, converted_value_3020)?;
+            let converted_3380_dict = PyDict::new(py);
+            for (key_3381, value_3382) in value {
+                let converted_key_3383 = (key_3381).as_str().into_py_any(py)?;
+                let converted_value_3384 = attribute_value_to_py(py, value_3382)?;
+                converted_3380_dict.set_item(converted_key_3383, converted_value_3384)?;
             }
-            let converted_3016 = converted_3016_dict.into_any().unbind();
-            Ok(converted_3016)
+            let converted_3380 = converted_3380_dict.into_any().unbind();
+            Ok(converted_3380)
         } else {
             Ok(py.None())
         }
@@ -16137,14 +19830,14 @@ impl PyOperationPutItemOutput {
     #[getter]
     fn consumed_capacity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_3021 = Py::new(
+            let converted_3385 = Py::new(
                 py,
                 PyConsumedCapacity {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3021)
+            Ok(converted_3385)
         } else {
             Ok(py.None())
         }
@@ -16153,14 +19846,14 @@ impl PyOperationPutItemOutput {
     #[getter]
     fn item_collection_metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.item_collection_metrics {
-            let converted_3022 = Py::new(
+            let converted_3386 = Py::new(
                 py,
                 PyItemCollectionMetrics {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3022)
+            Ok(converted_3386)
         } else {
             Ok(py.None())
         }
@@ -16169,26 +19862,26 @@ impl PyOperationPutItemOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.attributes {
-            let converted_3023_dict = PyDict::new(py);
-            for (key_3024, value_3025) in value {
-                let converted_key_3026 = (key_3024).as_str().into_py_any(py)?;
-                let converted_value_3027 = attribute_value_to_py(py, value_3025)?;
-                converted_3023_dict.set_item(converted_key_3026, converted_value_3027)?;
+            let converted_3387_dict = PyDict::new(py);
+            for (key_3388, value_3389) in value {
+                let converted_key_3390 = (key_3388).as_str().into_py_any(py)?;
+                let converted_value_3391 = attribute_value_to_py(py, value_3389)?;
+                converted_3387_dict.set_item(converted_key_3390, converted_value_3391)?;
             }
-            let converted_3023 = converted_3023_dict.into_any().unbind();
-            result.set_item("attributes", converted_3023)?;
+            let converted_3387 = converted_3387_dict.into_any().unbind();
+            result.set_item("attributes", converted_3387)?;
         } else {
             result.set_item("attributes", py.None())?;
         }
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_3028 = consumed_capacity_to_py(py, value)?;
-            result.set_item("consumed_capacity", converted_3028)?;
+            let converted_3392 = consumed_capacity_shared_to_py(py, value)?;
+            result.set_item("consumed_capacity", converted_3392)?;
         } else {
             result.set_item("consumed_capacity", py.None())?;
         }
         if let Some(value) = &self.inner.item_collection_metrics {
-            let converted_3029 = item_collection_metrics_to_py(py, value)?;
-            result.set_item("item_collection_metrics", converted_3029)?;
+            let converted_3393 = item_collection_metrics_to_py(py, value)?;
+            result.set_item("item_collection_metrics", converted_3393)?;
         } else {
             result.set_item("item_collection_metrics", py.None())?;
         }
@@ -16210,8 +19903,8 @@ impl PyOperationPutResourcePolicyOutput {
     #[getter]
     fn revision_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.revision_id {
-            let converted_3030 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3030)
+            let converted_3394 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3394)
         } else {
             Ok(py.None())
         }
@@ -16220,8 +19913,8 @@ impl PyOperationPutResourcePolicyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.revision_id {
-            let converted_3031 = (value).as_str().into_py_any(py)?;
-            result.set_item("revision_id", converted_3031)?;
+            let converted_3395 = (value).as_str().into_py_any(py)?;
+            result.set_item("revision_id", converted_3395)?;
         } else {
             result.set_item("revision_id", py.None())?;
         }
@@ -16229,9 +19922,41 @@ impl PyOperationPutResourcePolicyOutput {
     }
 }
 
+struct SharedPyOperationQueryOutput {
+    items: Option<
+        ::std::vec::Vec<
+            ::std::collections::HashMap<
+                ::std::string::String,
+                aws_sdk_dynamodb::types::AttributeValue,
+            >,
+        >,
+    >,
+    count: i32,
+    scanned_count: i32,
+    last_evaluated_key: Option<
+        ::std::collections::HashMap<::std::string::String, aws_sdk_dynamodb::types::AttributeValue>,
+    >,
+    consumed_capacity: Option<Arc<SharedConsumedCapacity>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::query::QueryOutput> for SharedPyOperationQueryOutput {
+    fn from(value: aws_sdk_dynamodb::operation::query::QueryOutput) -> Self {
+        Self {
+            items: value.items,
+            count: value.count,
+            scanned_count: value.scanned_count,
+            last_evaluated_key: value.last_evaluated_key,
+            consumed_capacity: value
+                .consumed_capacity
+                .map(|item| Arc::new(SharedConsumedCapacity::from(item))),
+        }
+    }
+}
+
 #[pyclass(name = "QueryOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyOperationQueryOutput {
-    inner: aws_sdk_dynamodb::operation::query::QueryOutput,
+    inner: SharedPyOperationQueryOutput,
 }
 
 #[pymethods]
@@ -16239,19 +19964,19 @@ impl PyOperationQueryOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.items {
-            let converted_3032_list = PyList::empty(py);
-            for item_3033 in value {
-                let converted_item_3034_dict = PyDict::new(py);
-                for (key_3035, value_3036) in item_3033 {
-                    let converted_key_3037 = (key_3035).as_str().into_py_any(py)?;
-                    let converted_value_3038 = attribute_value_to_py(py, value_3036)?;
-                    converted_item_3034_dict.set_item(converted_key_3037, converted_value_3038)?;
+            let converted_3396_list = PyList::empty(py);
+            for item_3397 in value {
+                let converted_item_3398_dict = PyDict::new(py);
+                for (key_3399, value_3400) in item_3397 {
+                    let converted_key_3401 = (key_3399).as_str().into_py_any(py)?;
+                    let converted_value_3402 = attribute_value_to_py(py, value_3400)?;
+                    converted_item_3398_dict.set_item(converted_key_3401, converted_value_3402)?;
                 }
-                let converted_item_3034 = converted_item_3034_dict.into_any().unbind();
-                converted_3032_list.append(converted_item_3034)?;
+                let converted_item_3398 = converted_item_3398_dict.into_any().unbind();
+                converted_3396_list.append(converted_item_3398)?;
             }
-            let converted_3032 = converted_3032_list.into_any().unbind();
-            Ok(converted_3032)
+            let converted_3396 = converted_3396_list.into_any().unbind();
+            Ok(converted_3396)
         } else {
             Ok(py.None())
         }
@@ -16259,27 +19984,27 @@ impl PyOperationQueryOutput {
 
     #[getter]
     fn count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3039 = (&self.inner.count).to_owned().into_py_any(py)?;
-        Ok(converted_3039)
+        let converted_3403 = (&self.inner.count).to_owned().into_py_any(py)?;
+        Ok(converted_3403)
     }
 
     #[getter]
     fn scanned_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3040 = (&self.inner.scanned_count).to_owned().into_py_any(py)?;
-        Ok(converted_3040)
+        let converted_3404 = (&self.inner.scanned_count).to_owned().into_py_any(py)?;
+        Ok(converted_3404)
     }
 
     #[getter]
     fn last_evaluated_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_evaluated_key {
-            let converted_3041_dict = PyDict::new(py);
-            for (key_3042, value_3043) in value {
-                let converted_key_3044 = (key_3042).as_str().into_py_any(py)?;
-                let converted_value_3045 = attribute_value_to_py(py, value_3043)?;
-                converted_3041_dict.set_item(converted_key_3044, converted_value_3045)?;
+            let converted_3405_dict = PyDict::new(py);
+            for (key_3406, value_3407) in value {
+                let converted_key_3408 = (key_3406).as_str().into_py_any(py)?;
+                let converted_value_3409 = attribute_value_to_py(py, value_3407)?;
+                converted_3405_dict.set_item(converted_key_3408, converted_value_3409)?;
             }
-            let converted_3041 = converted_3041_dict.into_any().unbind();
-            Ok(converted_3041)
+            let converted_3405 = converted_3405_dict.into_any().unbind();
+            Ok(converted_3405)
         } else {
             Ok(py.None())
         }
@@ -16288,14 +20013,14 @@ impl PyOperationQueryOutput {
     #[getter]
     fn consumed_capacity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_3046 = Py::new(
+            let converted_3410 = Py::new(
                 py,
                 PyConsumedCapacity {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3046)
+            Ok(converted_3410)
         } else {
             Ok(py.None())
         }
@@ -16304,45 +20029,64 @@ impl PyOperationQueryOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.items {
-            let converted_3047_list = PyList::empty(py);
-            for item_3048 in value {
-                let converted_item_3049_dict = PyDict::new(py);
-                for (key_3050, value_3051) in item_3048 {
-                    let converted_key_3052 = (key_3050).as_str().into_py_any(py)?;
-                    let converted_value_3053 = attribute_value_to_py(py, value_3051)?;
-                    converted_item_3049_dict.set_item(converted_key_3052, converted_value_3053)?;
+            let converted_3411_list = PyList::empty(py);
+            for item_3412 in value {
+                let converted_item_3413_dict = PyDict::new(py);
+                for (key_3414, value_3415) in item_3412 {
+                    let converted_key_3416 = (key_3414).as_str().into_py_any(py)?;
+                    let converted_value_3417 = attribute_value_to_py(py, value_3415)?;
+                    converted_item_3413_dict.set_item(converted_key_3416, converted_value_3417)?;
                 }
-                let converted_item_3049 = converted_item_3049_dict.into_any().unbind();
-                converted_3047_list.append(converted_item_3049)?;
+                let converted_item_3413 = converted_item_3413_dict.into_any().unbind();
+                converted_3411_list.append(converted_item_3413)?;
             }
-            let converted_3047 = converted_3047_list.into_any().unbind();
-            result.set_item("items", converted_3047)?;
+            let converted_3411 = converted_3411_list.into_any().unbind();
+            result.set_item("items", converted_3411)?;
         } else {
             result.set_item("items", py.None())?;
         }
-        let converted_3054 = (&self.inner.count).to_owned().into_py_any(py)?;
-        result.set_item("count", converted_3054)?;
-        let converted_3055 = (&self.inner.scanned_count).to_owned().into_py_any(py)?;
-        result.set_item("scanned_count", converted_3055)?;
+        let converted_3418 = (&self.inner.count).to_owned().into_py_any(py)?;
+        result.set_item("count", converted_3418)?;
+        let converted_3419 = (&self.inner.scanned_count).to_owned().into_py_any(py)?;
+        result.set_item("scanned_count", converted_3419)?;
         if let Some(value) = &self.inner.last_evaluated_key {
-            let converted_3056_dict = PyDict::new(py);
-            for (key_3057, value_3058) in value {
-                let converted_key_3059 = (key_3057).as_str().into_py_any(py)?;
-                let converted_value_3060 = attribute_value_to_py(py, value_3058)?;
-                converted_3056_dict.set_item(converted_key_3059, converted_value_3060)?;
+            let converted_3420_dict = PyDict::new(py);
+            for (key_3421, value_3422) in value {
+                let converted_key_3423 = (key_3421).as_str().into_py_any(py)?;
+                let converted_value_3424 = attribute_value_to_py(py, value_3422)?;
+                converted_3420_dict.set_item(converted_key_3423, converted_value_3424)?;
             }
-            let converted_3056 = converted_3056_dict.into_any().unbind();
-            result.set_item("last_evaluated_key", converted_3056)?;
+            let converted_3420 = converted_3420_dict.into_any().unbind();
+            result.set_item("last_evaluated_key", converted_3420)?;
         } else {
             result.set_item("last_evaluated_key", py.None())?;
         }
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_3061 = consumed_capacity_to_py(py, value)?;
-            result.set_item("consumed_capacity", converted_3061)?;
+            let converted_3425 = consumed_capacity_shared_to_py(py, value)?;
+            result.set_item("consumed_capacity", converted_3425)?;
         } else {
             result.set_item("consumed_capacity", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationRestoreTableFromBackupOutput {
+    table_description: Option<Arc<SharedTableDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::restore_table_from_backup::RestoreTableFromBackupOutput>
+    for SharedPyOperationRestoreTableFromBackupOutput
+{
+    fn from(
+        value: aws_sdk_dynamodb::operation::restore_table_from_backup::RestoreTableFromBackupOutput,
+    ) -> Self {
+        Self {
+            table_description: value
+                .table_description
+                .map(|item| Arc::new(SharedTableDescription::from(item))),
+        }
     }
 }
 
@@ -16352,7 +20096,7 @@ impl PyOperationQueryOutput {
     frozen
 )]
 struct PyOperationRestoreTableFromBackupOutput {
-    inner: aws_sdk_dynamodb::operation::restore_table_from_backup::RestoreTableFromBackupOutput,
+    inner: SharedPyOperationRestoreTableFromBackupOutput,
 }
 
 #[pymethods]
@@ -16360,14 +20104,14 @@ impl PyOperationRestoreTableFromBackupOutput {
     #[getter]
     fn table_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_description {
-            let converted_3062 = Py::new(
+            let converted_3426 = Py::new(
                 py,
                 PyTableDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3062)
+            Ok(converted_3426)
         } else {
             Ok(py.None())
         }
@@ -16376,12 +20120,25 @@ impl PyOperationRestoreTableFromBackupOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.table_description {
-            let converted_3063 = table_description_to_py(py, value)?;
-            result.set_item("table_description", converted_3063)?;
+            let converted_3427 = table_description_shared_to_py(py, value)?;
+            result.set_item("table_description", converted_3427)?;
         } else {
             result.set_item("table_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationRestoreTableToPointInTimeOutput {
+    table_description: Option<Arc<SharedTableDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::restore_table_to_point_in_time::RestoreTableToPointInTimeOutput> for SharedPyOperationRestoreTableToPointInTimeOutput {
+    fn from(value: aws_sdk_dynamodb::operation::restore_table_to_point_in_time::RestoreTableToPointInTimeOutput) -> Self {
+        Self {
+            table_description: value.table_description.map(|item| Arc::new(SharedTableDescription::from(item))),
+        }
     }
 }
 
@@ -16391,7 +20148,7 @@ impl PyOperationRestoreTableFromBackupOutput {
     frozen
 )]
 struct PyOperationRestoreTableToPointInTimeOutput {
-    inner: aws_sdk_dynamodb::operation::restore_table_to_point_in_time::RestoreTableToPointInTimeOutput,
+    inner: SharedPyOperationRestoreTableToPointInTimeOutput,
 }
 
 #[pymethods]
@@ -16399,14 +20156,14 @@ impl PyOperationRestoreTableToPointInTimeOutput {
     #[getter]
     fn table_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_description {
-            let converted_3064 = Py::new(
+            let converted_3428 = Py::new(
                 py,
                 PyTableDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3064)
+            Ok(converted_3428)
         } else {
             Ok(py.None())
         }
@@ -16415,8 +20172,8 @@ impl PyOperationRestoreTableToPointInTimeOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.table_description {
-            let converted_3065 = table_description_to_py(py, value)?;
-            result.set_item("table_description", converted_3065)?;
+            let converted_3429 = table_description_shared_to_py(py, value)?;
+            result.set_item("table_description", converted_3429)?;
         } else {
             result.set_item("table_description", py.None())?;
         }
@@ -16424,9 +20181,41 @@ impl PyOperationRestoreTableToPointInTimeOutput {
     }
 }
 
+struct SharedPyOperationScanOutput {
+    items: Option<
+        ::std::vec::Vec<
+            ::std::collections::HashMap<
+                ::std::string::String,
+                aws_sdk_dynamodb::types::AttributeValue,
+            >,
+        >,
+    >,
+    count: i32,
+    scanned_count: i32,
+    last_evaluated_key: Option<
+        ::std::collections::HashMap<::std::string::String, aws_sdk_dynamodb::types::AttributeValue>,
+    >,
+    consumed_capacity: Option<Arc<SharedConsumedCapacity>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::scan::ScanOutput> for SharedPyOperationScanOutput {
+    fn from(value: aws_sdk_dynamodb::operation::scan::ScanOutput) -> Self {
+        Self {
+            items: value.items,
+            count: value.count,
+            scanned_count: value.scanned_count,
+            last_evaluated_key: value.last_evaluated_key,
+            consumed_capacity: value
+                .consumed_capacity
+                .map(|item| Arc::new(SharedConsumedCapacity::from(item))),
+        }
+    }
+}
+
 #[pyclass(name = "ScanOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyOperationScanOutput {
-    inner: aws_sdk_dynamodb::operation::scan::ScanOutput,
+    inner: SharedPyOperationScanOutput,
 }
 
 #[pymethods]
@@ -16434,19 +20223,19 @@ impl PyOperationScanOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.items {
-            let converted_3066_list = PyList::empty(py);
-            for item_3067 in value {
-                let converted_item_3068_dict = PyDict::new(py);
-                for (key_3069, value_3070) in item_3067 {
-                    let converted_key_3071 = (key_3069).as_str().into_py_any(py)?;
-                    let converted_value_3072 = attribute_value_to_py(py, value_3070)?;
-                    converted_item_3068_dict.set_item(converted_key_3071, converted_value_3072)?;
+            let converted_3430_list = PyList::empty(py);
+            for item_3431 in value {
+                let converted_item_3432_dict = PyDict::new(py);
+                for (key_3433, value_3434) in item_3431 {
+                    let converted_key_3435 = (key_3433).as_str().into_py_any(py)?;
+                    let converted_value_3436 = attribute_value_to_py(py, value_3434)?;
+                    converted_item_3432_dict.set_item(converted_key_3435, converted_value_3436)?;
                 }
-                let converted_item_3068 = converted_item_3068_dict.into_any().unbind();
-                converted_3066_list.append(converted_item_3068)?;
+                let converted_item_3432 = converted_item_3432_dict.into_any().unbind();
+                converted_3430_list.append(converted_item_3432)?;
             }
-            let converted_3066 = converted_3066_list.into_any().unbind();
-            Ok(converted_3066)
+            let converted_3430 = converted_3430_list.into_any().unbind();
+            Ok(converted_3430)
         } else {
             Ok(py.None())
         }
@@ -16454,27 +20243,27 @@ impl PyOperationScanOutput {
 
     #[getter]
     fn count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3073 = (&self.inner.count).to_owned().into_py_any(py)?;
-        Ok(converted_3073)
+        let converted_3437 = (&self.inner.count).to_owned().into_py_any(py)?;
+        Ok(converted_3437)
     }
 
     #[getter]
     fn scanned_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3074 = (&self.inner.scanned_count).to_owned().into_py_any(py)?;
-        Ok(converted_3074)
+        let converted_3438 = (&self.inner.scanned_count).to_owned().into_py_any(py)?;
+        Ok(converted_3438)
     }
 
     #[getter]
     fn last_evaluated_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_evaluated_key {
-            let converted_3075_dict = PyDict::new(py);
-            for (key_3076, value_3077) in value {
-                let converted_key_3078 = (key_3076).as_str().into_py_any(py)?;
-                let converted_value_3079 = attribute_value_to_py(py, value_3077)?;
-                converted_3075_dict.set_item(converted_key_3078, converted_value_3079)?;
+            let converted_3439_dict = PyDict::new(py);
+            for (key_3440, value_3441) in value {
+                let converted_key_3442 = (key_3440).as_str().into_py_any(py)?;
+                let converted_value_3443 = attribute_value_to_py(py, value_3441)?;
+                converted_3439_dict.set_item(converted_key_3442, converted_value_3443)?;
             }
-            let converted_3075 = converted_3075_dict.into_any().unbind();
-            Ok(converted_3075)
+            let converted_3439 = converted_3439_dict.into_any().unbind();
+            Ok(converted_3439)
         } else {
             Ok(py.None())
         }
@@ -16483,14 +20272,14 @@ impl PyOperationScanOutput {
     #[getter]
     fn consumed_capacity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_3080 = Py::new(
+            let converted_3444 = Py::new(
                 py,
                 PyConsumedCapacity {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3080)
+            Ok(converted_3444)
         } else {
             Ok(py.None())
         }
@@ -16499,45 +20288,67 @@ impl PyOperationScanOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.items {
-            let converted_3081_list = PyList::empty(py);
-            for item_3082 in value {
-                let converted_item_3083_dict = PyDict::new(py);
-                for (key_3084, value_3085) in item_3082 {
-                    let converted_key_3086 = (key_3084).as_str().into_py_any(py)?;
-                    let converted_value_3087 = attribute_value_to_py(py, value_3085)?;
-                    converted_item_3083_dict.set_item(converted_key_3086, converted_value_3087)?;
+            let converted_3445_list = PyList::empty(py);
+            for item_3446 in value {
+                let converted_item_3447_dict = PyDict::new(py);
+                for (key_3448, value_3449) in item_3446 {
+                    let converted_key_3450 = (key_3448).as_str().into_py_any(py)?;
+                    let converted_value_3451 = attribute_value_to_py(py, value_3449)?;
+                    converted_item_3447_dict.set_item(converted_key_3450, converted_value_3451)?;
                 }
-                let converted_item_3083 = converted_item_3083_dict.into_any().unbind();
-                converted_3081_list.append(converted_item_3083)?;
+                let converted_item_3447 = converted_item_3447_dict.into_any().unbind();
+                converted_3445_list.append(converted_item_3447)?;
             }
-            let converted_3081 = converted_3081_list.into_any().unbind();
-            result.set_item("items", converted_3081)?;
+            let converted_3445 = converted_3445_list.into_any().unbind();
+            result.set_item("items", converted_3445)?;
         } else {
             result.set_item("items", py.None())?;
         }
-        let converted_3088 = (&self.inner.count).to_owned().into_py_any(py)?;
-        result.set_item("count", converted_3088)?;
-        let converted_3089 = (&self.inner.scanned_count).to_owned().into_py_any(py)?;
-        result.set_item("scanned_count", converted_3089)?;
+        let converted_3452 = (&self.inner.count).to_owned().into_py_any(py)?;
+        result.set_item("count", converted_3452)?;
+        let converted_3453 = (&self.inner.scanned_count).to_owned().into_py_any(py)?;
+        result.set_item("scanned_count", converted_3453)?;
         if let Some(value) = &self.inner.last_evaluated_key {
-            let converted_3090_dict = PyDict::new(py);
-            for (key_3091, value_3092) in value {
-                let converted_key_3093 = (key_3091).as_str().into_py_any(py)?;
-                let converted_value_3094 = attribute_value_to_py(py, value_3092)?;
-                converted_3090_dict.set_item(converted_key_3093, converted_value_3094)?;
+            let converted_3454_dict = PyDict::new(py);
+            for (key_3455, value_3456) in value {
+                let converted_key_3457 = (key_3455).as_str().into_py_any(py)?;
+                let converted_value_3458 = attribute_value_to_py(py, value_3456)?;
+                converted_3454_dict.set_item(converted_key_3457, converted_value_3458)?;
             }
-            let converted_3090 = converted_3090_dict.into_any().unbind();
-            result.set_item("last_evaluated_key", converted_3090)?;
+            let converted_3454 = converted_3454_dict.into_any().unbind();
+            result.set_item("last_evaluated_key", converted_3454)?;
         } else {
             result.set_item("last_evaluated_key", py.None())?;
         }
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_3095 = consumed_capacity_to_py(py, value)?;
-            result.set_item("consumed_capacity", converted_3095)?;
+            let converted_3459 = consumed_capacity_shared_to_py(py, value)?;
+            result.set_item("consumed_capacity", converted_3459)?;
         } else {
             result.set_item("consumed_capacity", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationSearchVectorsOutput {
+    consumed_capacity: Option<Arc<aws_sdk_dynamodb::types::VectorCapacity>>,
+    search_results: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::SearchResultItem>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::search_vectors::SearchVectorsOutput>
+    for SharedPyOperationSearchVectorsOutput
+{
+    fn from(value: aws_sdk_dynamodb::operation::search_vectors::SearchVectorsOutput) -> Self {
+        Self {
+            consumed_capacity: value.consumed_capacity.map(|item| Arc::new(item)),
+            search_results: value.search_results.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3464| Arc::new(owned_3464))
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -16547,7 +20358,7 @@ impl PyOperationScanOutput {
     frozen
 )]
 struct PyOperationSearchVectorsOutput {
-    inner: aws_sdk_dynamodb::operation::search_vectors::SearchVectorsOutput,
+    inner: SharedPyOperationSearchVectorsOutput,
 }
 
 #[pymethods]
@@ -16555,14 +20366,14 @@ impl PyOperationSearchVectorsOutput {
     #[getter]
     fn consumed_capacity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_3096 = Py::new(
+            let converted_3460 = Py::new(
                 py,
                 PyVectorCapacity {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3096)
+            Ok(converted_3460)
         } else {
             Ok(py.None())
         }
@@ -16571,19 +20382,19 @@ impl PyOperationSearchVectorsOutput {
     #[getter]
     fn search_results(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.search_results {
-            let converted_3097_list = PyList::empty(py);
-            for item_3098 in value {
-                let converted_item_3099 = Py::new(
+            let converted_3461_list = PyList::empty(py);
+            for item_3462 in value {
+                let converted_item_3463 = Py::new(
                     py,
                     PySearchResultItem {
-                        inner: (item_3098).to_owned(),
+                        inner: Arc::clone(item_3462),
                     },
                 )?
                 .into_any();
-                converted_3097_list.append(converted_item_3099)?;
+                converted_3461_list.append(converted_item_3463)?;
             }
-            let converted_3097 = converted_3097_list.into_any().unbind();
-            Ok(converted_3097)
+            let converted_3461 = converted_3461_list.into_any().unbind();
+            Ok(converted_3461)
         } else {
             Ok(py.None())
         }
@@ -16592,23 +20403,52 @@ impl PyOperationSearchVectorsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_3100 = vector_capacity_to_py(py, value)?;
-            result.set_item("consumed_capacity", converted_3100)?;
+            let converted_3465 = vector_capacity_to_py(py, value)?;
+            result.set_item("consumed_capacity", converted_3465)?;
         } else {
             result.set_item("consumed_capacity", py.None())?;
         }
         if let Some(value) = &self.inner.search_results {
-            let converted_3101_list = PyList::empty(py);
-            for item_3102 in value {
-                let converted_item_3103 = search_result_item_to_py(py, item_3102)?;
-                converted_3101_list.append(converted_item_3103)?;
+            let converted_3466_list = PyList::empty(py);
+            for item_3467 in value {
+                let converted_item_3468 = search_result_item_to_py(py, item_3467)?;
+                converted_3466_list.append(converted_item_3468)?;
             }
-            let converted_3101 = converted_3101_list.into_any().unbind();
-            result.set_item("search_results", converted_3101)?;
+            let converted_3466 = converted_3466_list.into_any().unbind();
+            result.set_item("search_results", converted_3466)?;
         } else {
             result.set_item("search_results", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationTransactGetItemsOutput {
+    consumed_capacity: Option<::std::vec::Vec<Arc<SharedConsumedCapacity>>>,
+    responses: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::ItemResponse>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::transact_get_items::TransactGetItemsOutput>
+    for SharedPyOperationTransactGetItemsOutput
+{
+    fn from(
+        value: aws_sdk_dynamodb::operation::transact_get_items::TransactGetItemsOutput,
+    ) -> Self {
+        Self {
+            consumed_capacity: value.consumed_capacity.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3475| Arc::new(SharedConsumedCapacity::from(owned_3475)))
+                    .collect()
+            }),
+            responses: value.responses.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3476| Arc::new(owned_3476))
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -16618,7 +20458,7 @@ impl PyOperationSearchVectorsOutput {
     frozen
 )]
 struct PyOperationTransactGetItemsOutput {
-    inner: aws_sdk_dynamodb::operation::transact_get_items::TransactGetItemsOutput,
+    inner: SharedPyOperationTransactGetItemsOutput,
 }
 
 #[pymethods]
@@ -16626,19 +20466,19 @@ impl PyOperationTransactGetItemsOutput {
     #[getter]
     fn consumed_capacity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_3104_list = PyList::empty(py);
-            for item_3105 in value {
-                let converted_item_3106 = Py::new(
+            let converted_3469_list = PyList::empty(py);
+            for item_3470 in value {
+                let converted_item_3471 = Py::new(
                     py,
                     PyConsumedCapacity {
-                        inner: (item_3105).to_owned(),
+                        inner: Arc::clone(item_3470),
                     },
                 )?
                 .into_any();
-                converted_3104_list.append(converted_item_3106)?;
+                converted_3469_list.append(converted_item_3471)?;
             }
-            let converted_3104 = converted_3104_list.into_any().unbind();
-            Ok(converted_3104)
+            let converted_3469 = converted_3469_list.into_any().unbind();
+            Ok(converted_3469)
         } else {
             Ok(py.None())
         }
@@ -16647,19 +20487,19 @@ impl PyOperationTransactGetItemsOutput {
     #[getter]
     fn responses(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.responses {
-            let converted_3107_list = PyList::empty(py);
-            for item_3108 in value {
-                let converted_item_3109 = Py::new(
+            let converted_3472_list = PyList::empty(py);
+            for item_3473 in value {
+                let converted_item_3474 = Py::new(
                     py,
                     PyItemResponse {
-                        inner: (item_3108).to_owned(),
+                        inner: Arc::clone(item_3473),
                     },
                 )?
                 .into_any();
-                converted_3107_list.append(converted_item_3109)?;
+                converted_3472_list.append(converted_item_3474)?;
             }
-            let converted_3107 = converted_3107_list.into_any().unbind();
-            Ok(converted_3107)
+            let converted_3472 = converted_3472_list.into_any().unbind();
+            Ok(converted_3472)
         } else {
             Ok(py.None())
         }
@@ -16668,28 +20508,70 @@ impl PyOperationTransactGetItemsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_3110_list = PyList::empty(py);
-            for item_3111 in value {
-                let converted_item_3112 = consumed_capacity_to_py(py, item_3111)?;
-                converted_3110_list.append(converted_item_3112)?;
+            let converted_3477_list = PyList::empty(py);
+            for item_3478 in value {
+                let converted_item_3479 = consumed_capacity_shared_to_py(py, item_3478)?;
+                converted_3477_list.append(converted_item_3479)?;
             }
-            let converted_3110 = converted_3110_list.into_any().unbind();
-            result.set_item("consumed_capacity", converted_3110)?;
+            let converted_3477 = converted_3477_list.into_any().unbind();
+            result.set_item("consumed_capacity", converted_3477)?;
         } else {
             result.set_item("consumed_capacity", py.None())?;
         }
         if let Some(value) = &self.inner.responses {
-            let converted_3113_list = PyList::empty(py);
-            for item_3114 in value {
-                let converted_item_3115 = item_response_to_py(py, item_3114)?;
-                converted_3113_list.append(converted_item_3115)?;
+            let converted_3480_list = PyList::empty(py);
+            for item_3481 in value {
+                let converted_item_3482 = item_response_to_py(py, item_3481)?;
+                converted_3480_list.append(converted_item_3482)?;
             }
-            let converted_3113 = converted_3113_list.into_any().unbind();
-            result.set_item("responses", converted_3113)?;
+            let converted_3480 = converted_3480_list.into_any().unbind();
+            result.set_item("responses", converted_3480)?;
         } else {
             result.set_item("responses", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationTransactWriteItemsOutput {
+    consumed_capacity: Option<::std::vec::Vec<Arc<SharedConsumedCapacity>>>,
+    item_collection_metrics: Option<
+        ::std::collections::HashMap<
+            ::std::string::String,
+            ::std::vec::Vec<Arc<aws_sdk_dynamodb::types::ItemCollectionMetrics>>,
+        >,
+    >,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::transact_write_items::TransactWriteItemsOutput>
+    for SharedPyOperationTransactWriteItemsOutput
+{
+    fn from(
+        value: aws_sdk_dynamodb::operation::transact_write_items::TransactWriteItemsOutput,
+    ) -> Self {
+        Self {
+            consumed_capacity: value.consumed_capacity.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3493| Arc::new(SharedConsumedCapacity::from(owned_3493)))
+                    .collect()
+            }),
+            item_collection_metrics: value.item_collection_metrics.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|(key, owned_3494)| {
+                        (
+                            key,
+                            (owned_3494)
+                                .into_iter()
+                                .map(|owned_3495| Arc::new(owned_3495))
+                                .collect(),
+                        )
+                    })
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -16699,7 +20581,7 @@ impl PyOperationTransactGetItemsOutput {
     frozen
 )]
 struct PyOperationTransactWriteItemsOutput {
-    inner: aws_sdk_dynamodb::operation::transact_write_items::TransactWriteItemsOutput,
+    inner: SharedPyOperationTransactWriteItemsOutput,
 }
 
 #[pymethods]
@@ -16707,19 +20589,19 @@ impl PyOperationTransactWriteItemsOutput {
     #[getter]
     fn consumed_capacity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_3116_list = PyList::empty(py);
-            for item_3117 in value {
-                let converted_item_3118 = Py::new(
+            let converted_3483_list = PyList::empty(py);
+            for item_3484 in value {
+                let converted_item_3485 = Py::new(
                     py,
                     PyConsumedCapacity {
-                        inner: (item_3117).to_owned(),
+                        inner: Arc::clone(item_3484),
                     },
                 )?
                 .into_any();
-                converted_3116_list.append(converted_item_3118)?;
+                converted_3483_list.append(converted_item_3485)?;
             }
-            let converted_3116 = converted_3116_list.into_any().unbind();
-            Ok(converted_3116)
+            let converted_3483 = converted_3483_list.into_any().unbind();
+            Ok(converted_3483)
         } else {
             Ok(py.None())
         }
@@ -16728,25 +20610,25 @@ impl PyOperationTransactWriteItemsOutput {
     #[getter]
     fn item_collection_metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.item_collection_metrics {
-            let converted_3119_dict = PyDict::new(py);
-            for (key_3120, value_3121) in value {
-                let converted_key_3122 = (key_3120).as_str().into_py_any(py)?;
-                let converted_value_3123_list = PyList::empty(py);
-                for item_3124 in value_3121 {
-                    let converted_item_3125 = Py::new(
+            let converted_3486_dict = PyDict::new(py);
+            for (key_3487, value_3488) in value {
+                let converted_key_3489 = (key_3487).as_str().into_py_any(py)?;
+                let converted_value_3490_list = PyList::empty(py);
+                for item_3491 in value_3488 {
+                    let converted_item_3492 = Py::new(
                         py,
                         PyItemCollectionMetrics {
-                            inner: (item_3124).to_owned(),
+                            inner: Arc::clone(item_3491),
                         },
                     )?
                     .into_any();
-                    converted_value_3123_list.append(converted_item_3125)?;
+                    converted_value_3490_list.append(converted_item_3492)?;
                 }
-                let converted_value_3123 = converted_value_3123_list.into_any().unbind();
-                converted_3119_dict.set_item(converted_key_3122, converted_value_3123)?;
+                let converted_value_3490 = converted_value_3490_list.into_any().unbind();
+                converted_3486_dict.set_item(converted_key_3489, converted_value_3490)?;
             }
-            let converted_3119 = converted_3119_dict.into_any().unbind();
-            Ok(converted_3119)
+            let converted_3486 = converted_3486_dict.into_any().unbind();
+            Ok(converted_3486)
         } else {
             Ok(py.None())
         }
@@ -16755,34 +20637,53 @@ impl PyOperationTransactWriteItemsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_3126_list = PyList::empty(py);
-            for item_3127 in value {
-                let converted_item_3128 = consumed_capacity_to_py(py, item_3127)?;
-                converted_3126_list.append(converted_item_3128)?;
+            let converted_3496_list = PyList::empty(py);
+            for item_3497 in value {
+                let converted_item_3498 = consumed_capacity_shared_to_py(py, item_3497)?;
+                converted_3496_list.append(converted_item_3498)?;
             }
-            let converted_3126 = converted_3126_list.into_any().unbind();
-            result.set_item("consumed_capacity", converted_3126)?;
+            let converted_3496 = converted_3496_list.into_any().unbind();
+            result.set_item("consumed_capacity", converted_3496)?;
         } else {
             result.set_item("consumed_capacity", py.None())?;
         }
         if let Some(value) = &self.inner.item_collection_metrics {
-            let converted_3129_dict = PyDict::new(py);
-            for (key_3130, value_3131) in value {
-                let converted_key_3132 = (key_3130).as_str().into_py_any(py)?;
-                let converted_value_3133_list = PyList::empty(py);
-                for item_3134 in value_3131 {
-                    let converted_item_3135 = item_collection_metrics_to_py(py, item_3134)?;
-                    converted_value_3133_list.append(converted_item_3135)?;
+            let converted_3499_dict = PyDict::new(py);
+            for (key_3500, value_3501) in value {
+                let converted_key_3502 = (key_3500).as_str().into_py_any(py)?;
+                let converted_value_3503_list = PyList::empty(py);
+                for item_3504 in value_3501 {
+                    let converted_item_3505 = item_collection_metrics_to_py(py, item_3504)?;
+                    converted_value_3503_list.append(converted_item_3505)?;
                 }
-                let converted_value_3133 = converted_value_3133_list.into_any().unbind();
-                converted_3129_dict.set_item(converted_key_3132, converted_value_3133)?;
+                let converted_value_3503 = converted_value_3503_list.into_any().unbind();
+                converted_3499_dict.set_item(converted_key_3502, converted_value_3503)?;
             }
-            let converted_3129 = converted_3129_dict.into_any().unbind();
-            result.set_item("item_collection_metrics", converted_3129)?;
+            let converted_3499 = converted_3499_dict.into_any().unbind();
+            result.set_item("item_collection_metrics", converted_3499)?;
         } else {
             result.set_item("item_collection_metrics", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationUpdateContinuousBackupsOutput {
+    continuous_backups_description: Option<Arc<SharedContinuousBackupsDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::update_continuous_backups::UpdateContinuousBackupsOutput>
+    for SharedPyOperationUpdateContinuousBackupsOutput
+{
+    fn from(
+        value: aws_sdk_dynamodb::operation::update_continuous_backups::UpdateContinuousBackupsOutput,
+    ) -> Self {
+        Self {
+            continuous_backups_description: value
+                .continuous_backups_description
+                .map(|item| Arc::new(SharedContinuousBackupsDescription::from(item))),
+        }
     }
 }
 
@@ -16792,7 +20693,7 @@ impl PyOperationTransactWriteItemsOutput {
     frozen
 )]
 struct PyOperationUpdateContinuousBackupsOutput {
-    inner: aws_sdk_dynamodb::operation::update_continuous_backups::UpdateContinuousBackupsOutput,
+    inner: SharedPyOperationUpdateContinuousBackupsOutput,
 }
 
 #[pymethods]
@@ -16800,14 +20701,14 @@ impl PyOperationUpdateContinuousBackupsOutput {
     #[getter]
     fn continuous_backups_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.continuous_backups_description {
-            let converted_3136 = Py::new(
+            let converted_3506 = Py::new(
                 py,
                 PyContinuousBackupsDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3136)
+            Ok(converted_3506)
         } else {
             Ok(py.None())
         }
@@ -16816,8 +20717,8 @@ impl PyOperationUpdateContinuousBackupsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.continuous_backups_description {
-            let converted_3137 = continuous_backups_description_to_py(py, value)?;
-            result.set_item("continuous_backups_description", converted_3137)?;
+            let converted_3507 = continuous_backups_description_shared_to_py(py, value)?;
+            result.set_item("continuous_backups_description", converted_3507)?;
         } else {
             result.set_item("continuous_backups_description", py.None())?;
         }
@@ -16840,8 +20741,8 @@ impl PyOperationUpdateContributorInsightsOutput {
     #[getter]
     fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_name {
-            let converted_3138 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3138)
+            let converted_3508 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3508)
         } else {
             Ok(py.None())
         }
@@ -16850,8 +20751,8 @@ impl PyOperationUpdateContributorInsightsOutput {
     #[getter]
     fn index_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.index_name {
-            let converted_3139 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3139)
+            let converted_3509 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3509)
         } else {
             Ok(py.None())
         }
@@ -16860,8 +20761,8 @@ impl PyOperationUpdateContributorInsightsOutput {
     #[getter]
     fn contributor_insights_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.contributor_insights_status {
-            let converted_3140 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3140)
+            let converted_3510 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3510)
         } else {
             Ok(py.None())
         }
@@ -16870,8 +20771,8 @@ impl PyOperationUpdateContributorInsightsOutput {
     #[getter]
     fn contributor_insights_mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.contributor_insights_mode {
-            let converted_3141 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3141)
+            let converted_3511 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3511)
         } else {
             Ok(py.None())
         }
@@ -16880,30 +20781,49 @@ impl PyOperationUpdateContributorInsightsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.table_name {
-            let converted_3142 = (value).as_str().into_py_any(py)?;
-            result.set_item("table_name", converted_3142)?;
+            let converted_3512 = (value).as_str().into_py_any(py)?;
+            result.set_item("table_name", converted_3512)?;
         } else {
             result.set_item("table_name", py.None())?;
         }
         if let Some(value) = &self.inner.index_name {
-            let converted_3143 = (value).as_str().into_py_any(py)?;
-            result.set_item("index_name", converted_3143)?;
+            let converted_3513 = (value).as_str().into_py_any(py)?;
+            result.set_item("index_name", converted_3513)?;
         } else {
             result.set_item("index_name", py.None())?;
         }
         if let Some(value) = &self.inner.contributor_insights_status {
-            let converted_3144 = (value).as_str().into_py_any(py)?;
-            result.set_item("contributor_insights_status", converted_3144)?;
+            let converted_3514 = (value).as_str().into_py_any(py)?;
+            result.set_item("contributor_insights_status", converted_3514)?;
         } else {
             result.set_item("contributor_insights_status", py.None())?;
         }
         if let Some(value) = &self.inner.contributor_insights_mode {
-            let converted_3145 = (value).as_str().into_py_any(py)?;
-            result.set_item("contributor_insights_mode", converted_3145)?;
+            let converted_3515 = (value).as_str().into_py_any(py)?;
+            result.set_item("contributor_insights_mode", converted_3515)?;
         } else {
             result.set_item("contributor_insights_mode", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationUpdateGlobalTableOutput {
+    global_table_description: Option<Arc<SharedGlobalTableDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::update_global_table::UpdateGlobalTableOutput>
+    for SharedPyOperationUpdateGlobalTableOutput
+{
+    fn from(
+        value: aws_sdk_dynamodb::operation::update_global_table::UpdateGlobalTableOutput,
+    ) -> Self {
+        Self {
+            global_table_description: value
+                .global_table_description
+                .map(|item| Arc::new(SharedGlobalTableDescription::from(item))),
+        }
     }
 }
 
@@ -16913,7 +20833,7 @@ impl PyOperationUpdateContributorInsightsOutput {
     frozen
 )]
 struct PyOperationUpdateGlobalTableOutput {
-    inner: aws_sdk_dynamodb::operation::update_global_table::UpdateGlobalTableOutput,
+    inner: SharedPyOperationUpdateGlobalTableOutput,
 }
 
 #[pymethods]
@@ -16921,14 +20841,14 @@ impl PyOperationUpdateGlobalTableOutput {
     #[getter]
     fn global_table_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.global_table_description {
-            let converted_3146 = Py::new(
+            let converted_3516 = Py::new(
                 py,
                 PyGlobalTableDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3146)
+            Ok(converted_3516)
         } else {
             Ok(py.None())
         }
@@ -16937,12 +20857,37 @@ impl PyOperationUpdateGlobalTableOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.global_table_description {
-            let converted_3147 = global_table_description_to_py(py, value)?;
-            result.set_item("global_table_description", converted_3147)?;
+            let converted_3517 = global_table_description_shared_to_py(py, value)?;
+            result.set_item("global_table_description", converted_3517)?;
         } else {
             result.set_item("global_table_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationUpdateGlobalTableSettingsOutput {
+    global_table_name: Option<::std::string::String>,
+    replica_settings: Option<::std::vec::Vec<Arc<SharedReplicaSettingsDescription>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl
+    From<aws_sdk_dynamodb::operation::update_global_table_settings::UpdateGlobalTableSettingsOutput>
+    for SharedPyOperationUpdateGlobalTableSettingsOutput
+{
+    fn from(
+        value: aws_sdk_dynamodb::operation::update_global_table_settings::UpdateGlobalTableSettingsOutput,
+    ) -> Self {
+        Self {
+            global_table_name: value.global_table_name,
+            replica_settings: value.replica_settings.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_3522| Arc::new(SharedReplicaSettingsDescription::from(owned_3522)))
+                    .collect()
+            }),
+        }
     }
 }
 
@@ -16952,8 +20897,7 @@ impl PyOperationUpdateGlobalTableOutput {
     frozen
 )]
 struct PyOperationUpdateGlobalTableSettingsOutput {
-    inner:
-        aws_sdk_dynamodb::operation::update_global_table_settings::UpdateGlobalTableSettingsOutput,
+    inner: SharedPyOperationUpdateGlobalTableSettingsOutput,
 }
 
 #[pymethods]
@@ -16961,8 +20905,8 @@ impl PyOperationUpdateGlobalTableSettingsOutput {
     #[getter]
     fn global_table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.global_table_name {
-            let converted_3148 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3148)
+            let converted_3518 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3518)
         } else {
             Ok(py.None())
         }
@@ -16971,19 +20915,19 @@ impl PyOperationUpdateGlobalTableSettingsOutput {
     #[getter]
     fn replica_settings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replica_settings {
-            let converted_3149_list = PyList::empty(py);
-            for item_3150 in value {
-                let converted_item_3151 = Py::new(
+            let converted_3519_list = PyList::empty(py);
+            for item_3520 in value {
+                let converted_item_3521 = Py::new(
                     py,
                     PyReplicaSettingsDescription {
-                        inner: (item_3150).to_owned(),
+                        inner: Arc::clone(item_3520),
                     },
                 )?
                 .into_any();
-                converted_3149_list.append(converted_item_3151)?;
+                converted_3519_list.append(converted_item_3521)?;
             }
-            let converted_3149 = converted_3149_list.into_any().unbind();
-            Ok(converted_3149)
+            let converted_3519 = converted_3519_list.into_any().unbind();
+            Ok(converted_3519)
         } else {
             Ok(py.None())
         }
@@ -16992,19 +20936,19 @@ impl PyOperationUpdateGlobalTableSettingsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.global_table_name {
-            let converted_3152 = (value).as_str().into_py_any(py)?;
-            result.set_item("global_table_name", converted_3152)?;
+            let converted_3523 = (value).as_str().into_py_any(py)?;
+            result.set_item("global_table_name", converted_3523)?;
         } else {
             result.set_item("global_table_name", py.None())?;
         }
         if let Some(value) = &self.inner.replica_settings {
-            let converted_3153_list = PyList::empty(py);
-            for item_3154 in value {
-                let converted_item_3155 = replica_settings_description_to_py(py, item_3154)?;
-                converted_3153_list.append(converted_item_3155)?;
+            let converted_3524_list = PyList::empty(py);
+            for item_3525 in value {
+                let converted_item_3526 = replica_settings_description_shared_to_py(py, item_3525)?;
+                converted_3524_list.append(converted_item_3526)?;
             }
-            let converted_3153 = converted_3153_list.into_any().unbind();
-            result.set_item("replica_settings", converted_3153)?;
+            let converted_3524 = converted_3524_list.into_any().unbind();
+            result.set_item("replica_settings", converted_3524)?;
         } else {
             result.set_item("replica_settings", py.None())?;
         }
@@ -17012,9 +20956,32 @@ impl PyOperationUpdateGlobalTableSettingsOutput {
     }
 }
 
+struct SharedPyOperationUpdateItemOutput {
+    attributes: Option<
+        ::std::collections::HashMap<::std::string::String, aws_sdk_dynamodb::types::AttributeValue>,
+    >,
+    consumed_capacity: Option<Arc<SharedConsumedCapacity>>,
+    item_collection_metrics: Option<Arc<aws_sdk_dynamodb::types::ItemCollectionMetrics>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::update_item::UpdateItemOutput>
+    for SharedPyOperationUpdateItemOutput
+{
+    fn from(value: aws_sdk_dynamodb::operation::update_item::UpdateItemOutput) -> Self {
+        Self {
+            attributes: value.attributes,
+            consumed_capacity: value
+                .consumed_capacity
+                .map(|item| Arc::new(SharedConsumedCapacity::from(item))),
+            item_collection_metrics: value.item_collection_metrics.map(|item| Arc::new(item)),
+        }
+    }
+}
+
 #[pyclass(name = "UpdateItemOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyOperationUpdateItemOutput {
-    inner: aws_sdk_dynamodb::operation::update_item::UpdateItemOutput,
+    inner: SharedPyOperationUpdateItemOutput,
 }
 
 #[pymethods]
@@ -17022,14 +20989,14 @@ impl PyOperationUpdateItemOutput {
     #[getter]
     fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attributes {
-            let converted_3156_dict = PyDict::new(py);
-            for (key_3157, value_3158) in value {
-                let converted_key_3159 = (key_3157).as_str().into_py_any(py)?;
-                let converted_value_3160 = attribute_value_to_py(py, value_3158)?;
-                converted_3156_dict.set_item(converted_key_3159, converted_value_3160)?;
+            let converted_3527_dict = PyDict::new(py);
+            for (key_3528, value_3529) in value {
+                let converted_key_3530 = (key_3528).as_str().into_py_any(py)?;
+                let converted_value_3531 = attribute_value_to_py(py, value_3529)?;
+                converted_3527_dict.set_item(converted_key_3530, converted_value_3531)?;
             }
-            let converted_3156 = converted_3156_dict.into_any().unbind();
-            Ok(converted_3156)
+            let converted_3527 = converted_3527_dict.into_any().unbind();
+            Ok(converted_3527)
         } else {
             Ok(py.None())
         }
@@ -17038,14 +21005,14 @@ impl PyOperationUpdateItemOutput {
     #[getter]
     fn consumed_capacity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_3161 = Py::new(
+            let converted_3532 = Py::new(
                 py,
                 PyConsumedCapacity {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3161)
+            Ok(converted_3532)
         } else {
             Ok(py.None())
         }
@@ -17054,14 +21021,14 @@ impl PyOperationUpdateItemOutput {
     #[getter]
     fn item_collection_metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.item_collection_metrics {
-            let converted_3162 = Py::new(
+            let converted_3533 = Py::new(
                 py,
                 PyItemCollectionMetrics {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3162)
+            Ok(converted_3533)
         } else {
             Ok(py.None())
         }
@@ -17070,30 +21037,50 @@ impl PyOperationUpdateItemOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.attributes {
-            let converted_3163_dict = PyDict::new(py);
-            for (key_3164, value_3165) in value {
-                let converted_key_3166 = (key_3164).as_str().into_py_any(py)?;
-                let converted_value_3167 = attribute_value_to_py(py, value_3165)?;
-                converted_3163_dict.set_item(converted_key_3166, converted_value_3167)?;
+            let converted_3534_dict = PyDict::new(py);
+            for (key_3535, value_3536) in value {
+                let converted_key_3537 = (key_3535).as_str().into_py_any(py)?;
+                let converted_value_3538 = attribute_value_to_py(py, value_3536)?;
+                converted_3534_dict.set_item(converted_key_3537, converted_value_3538)?;
             }
-            let converted_3163 = converted_3163_dict.into_any().unbind();
-            result.set_item("attributes", converted_3163)?;
+            let converted_3534 = converted_3534_dict.into_any().unbind();
+            result.set_item("attributes", converted_3534)?;
         } else {
             result.set_item("attributes", py.None())?;
         }
         if let Some(value) = &self.inner.consumed_capacity {
-            let converted_3168 = consumed_capacity_to_py(py, value)?;
-            result.set_item("consumed_capacity", converted_3168)?;
+            let converted_3539 = consumed_capacity_shared_to_py(py, value)?;
+            result.set_item("consumed_capacity", converted_3539)?;
         } else {
             result.set_item("consumed_capacity", py.None())?;
         }
         if let Some(value) = &self.inner.item_collection_metrics {
-            let converted_3169 = item_collection_metrics_to_py(py, value)?;
-            result.set_item("item_collection_metrics", converted_3169)?;
+            let converted_3540 = item_collection_metrics_to_py(py, value)?;
+            result.set_item("item_collection_metrics", converted_3540)?;
         } else {
             result.set_item("item_collection_metrics", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationUpdateKinesisStreamingDestinationOutput {
+    table_name: Option<::std::string::String>,
+    stream_arn: Option<::std::string::String>,
+    destination_status: Option<aws_sdk_dynamodb::types::DestinationStatus>,
+    update_kinesis_streaming_configuration:
+        Option<Arc<aws_sdk_dynamodb::types::UpdateKinesisStreamingConfiguration>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::update_kinesis_streaming_destination::UpdateKinesisStreamingDestinationOutput> for SharedPyOperationUpdateKinesisStreamingDestinationOutput {
+    fn from(value: aws_sdk_dynamodb::operation::update_kinesis_streaming_destination::UpdateKinesisStreamingDestinationOutput) -> Self {
+        Self {
+            table_name: value.table_name,
+            stream_arn: value.stream_arn,
+            destination_status: value.destination_status,
+            update_kinesis_streaming_configuration: value.update_kinesis_streaming_configuration.map(|item| Arc::new(item)),
+        }
     }
 }
 
@@ -17103,7 +21090,7 @@ impl PyOperationUpdateItemOutput {
     frozen
 )]
 struct PyOperationUpdateKinesisStreamingDestinationOutput {
-    inner: aws_sdk_dynamodb::operation::update_kinesis_streaming_destination::UpdateKinesisStreamingDestinationOutput,
+    inner: SharedPyOperationUpdateKinesisStreamingDestinationOutput,
 }
 
 #[pymethods]
@@ -17111,8 +21098,8 @@ impl PyOperationUpdateKinesisStreamingDestinationOutput {
     #[getter]
     fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_name {
-            let converted_3170 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3170)
+            let converted_3541 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3541)
         } else {
             Ok(py.None())
         }
@@ -17121,8 +21108,8 @@ impl PyOperationUpdateKinesisStreamingDestinationOutput {
     #[getter]
     fn stream_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_arn {
-            let converted_3171 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3171)
+            let converted_3542 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3542)
         } else {
             Ok(py.None())
         }
@@ -17131,8 +21118,8 @@ impl PyOperationUpdateKinesisStreamingDestinationOutput {
     #[getter]
     fn destination_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.destination_status {
-            let converted_3172 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3172)
+            let converted_3543 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3543)
         } else {
             Ok(py.None())
         }
@@ -17141,14 +21128,14 @@ impl PyOperationUpdateKinesisStreamingDestinationOutput {
     #[getter]
     fn update_kinesis_streaming_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.update_kinesis_streaming_configuration {
-            let converted_3173 = Py::new(
+            let converted_3544 = Py::new(
                 py,
                 PyUpdateKinesisStreamingConfiguration {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3173)
+            Ok(converted_3544)
         } else {
             Ok(py.None())
         }
@@ -17157,26 +21144,26 @@ impl PyOperationUpdateKinesisStreamingDestinationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.table_name {
-            let converted_3174 = (value).as_str().into_py_any(py)?;
-            result.set_item("table_name", converted_3174)?;
+            let converted_3545 = (value).as_str().into_py_any(py)?;
+            result.set_item("table_name", converted_3545)?;
         } else {
             result.set_item("table_name", py.None())?;
         }
         if let Some(value) = &self.inner.stream_arn {
-            let converted_3175 = (value).as_str().into_py_any(py)?;
-            result.set_item("stream_arn", converted_3175)?;
+            let converted_3546 = (value).as_str().into_py_any(py)?;
+            result.set_item("stream_arn", converted_3546)?;
         } else {
             result.set_item("stream_arn", py.None())?;
         }
         if let Some(value) = &self.inner.destination_status {
-            let converted_3176 = (value).as_str().into_py_any(py)?;
-            result.set_item("destination_status", converted_3176)?;
+            let converted_3547 = (value).as_str().into_py_any(py)?;
+            result.set_item("destination_status", converted_3547)?;
         } else {
             result.set_item("destination_status", py.None())?;
         }
         if let Some(value) = &self.inner.update_kinesis_streaming_configuration {
-            let converted_3177 = update_kinesis_streaming_configuration_to_py(py, value)?;
-            result.set_item("update_kinesis_streaming_configuration", converted_3177)?;
+            let converted_3548 = update_kinesis_streaming_configuration_to_py(py, value)?;
+            result.set_item("update_kinesis_streaming_configuration", converted_3548)?;
         } else {
             result.set_item("update_kinesis_streaming_configuration", py.None())?;
         }
@@ -17184,9 +21171,26 @@ impl PyOperationUpdateKinesisStreamingDestinationOutput {
     }
 }
 
+struct SharedPyOperationUpdateTableOutput {
+    table_description: Option<Arc<SharedTableDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::update_table::UpdateTableOutput>
+    for SharedPyOperationUpdateTableOutput
+{
+    fn from(value: aws_sdk_dynamodb::operation::update_table::UpdateTableOutput) -> Self {
+        Self {
+            table_description: value
+                .table_description
+                .map(|item| Arc::new(SharedTableDescription::from(item))),
+        }
+    }
+}
+
 #[pyclass(name = "UpdateTableOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyOperationUpdateTableOutput {
-    inner: aws_sdk_dynamodb::operation::update_table::UpdateTableOutput,
+    inner: SharedPyOperationUpdateTableOutput,
 }
 
 #[pymethods]
@@ -17194,14 +21198,14 @@ impl PyOperationUpdateTableOutput {
     #[getter]
     fn table_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_description {
-            let converted_3178 = Py::new(
+            let converted_3549 = Py::new(
                 py,
                 PyTableDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3178)
+            Ok(converted_3549)
         } else {
             Ok(py.None())
         }
@@ -17210,12 +21214,25 @@ impl PyOperationUpdateTableOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.table_description {
-            let converted_3179 = table_description_to_py(py, value)?;
-            result.set_item("table_description", converted_3179)?;
+            let converted_3550 = table_description_shared_to_py(py, value)?;
+            result.set_item("table_description", converted_3550)?;
         } else {
             result.set_item("table_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationUpdateTableReplicaAutoScalingOutput {
+    table_auto_scaling_description: Option<Arc<SharedTableAutoScalingDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::update_table_replica_auto_scaling::UpdateTableReplicaAutoScalingOutput> for SharedPyOperationUpdateTableReplicaAutoScalingOutput {
+    fn from(value: aws_sdk_dynamodb::operation::update_table_replica_auto_scaling::UpdateTableReplicaAutoScalingOutput) -> Self {
+        Self {
+            table_auto_scaling_description: value.table_auto_scaling_description.map(|item| Arc::new(SharedTableAutoScalingDescription::from(item))),
+        }
     }
 }
 
@@ -17225,7 +21242,7 @@ impl PyOperationUpdateTableOutput {
     frozen
 )]
 struct PyOperationUpdateTableReplicaAutoScalingOutput {
-    inner: aws_sdk_dynamodb::operation::update_table_replica_auto_scaling::UpdateTableReplicaAutoScalingOutput,
+    inner: SharedPyOperationUpdateTableReplicaAutoScalingOutput,
 }
 
 #[pymethods]
@@ -17233,14 +21250,14 @@ impl PyOperationUpdateTableReplicaAutoScalingOutput {
     #[getter]
     fn table_auto_scaling_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_auto_scaling_description {
-            let converted_3180 = Py::new(
+            let converted_3551 = Py::new(
                 py,
                 PyTableAutoScalingDescription {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3180)
+            Ok(converted_3551)
         } else {
             Ok(py.None())
         }
@@ -17249,12 +21266,29 @@ impl PyOperationUpdateTableReplicaAutoScalingOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.table_auto_scaling_description {
-            let converted_3181 = table_auto_scaling_description_to_py(py, value)?;
-            result.set_item("table_auto_scaling_description", converted_3181)?;
+            let converted_3552 = table_auto_scaling_description_shared_to_py(py, value)?;
+            result.set_item("table_auto_scaling_description", converted_3552)?;
         } else {
             result.set_item("table_auto_scaling_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationUpdateTimeToLiveOutput {
+    time_to_live_specification: Option<Arc<aws_sdk_dynamodb::types::TimeToLiveSpecification>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_dynamodb::operation::update_time_to_live::UpdateTimeToLiveOutput>
+    for SharedPyOperationUpdateTimeToLiveOutput
+{
+    fn from(
+        value: aws_sdk_dynamodb::operation::update_time_to_live::UpdateTimeToLiveOutput,
+    ) -> Self {
+        Self {
+            time_to_live_specification: value.time_to_live_specification.map(|item| Arc::new(item)),
+        }
     }
 }
 
@@ -17264,7 +21298,7 @@ impl PyOperationUpdateTableReplicaAutoScalingOutput {
     frozen
 )]
 struct PyOperationUpdateTimeToLiveOutput {
-    inner: aws_sdk_dynamodb::operation::update_time_to_live::UpdateTimeToLiveOutput,
+    inner: SharedPyOperationUpdateTimeToLiveOutput,
 }
 
 #[pymethods]
@@ -17272,14 +21306,14 @@ impl PyOperationUpdateTimeToLiveOutput {
     #[getter]
     fn time_to_live_specification(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.time_to_live_specification {
-            let converted_3182 = Py::new(
+            let converted_3553 = Py::new(
                 py,
                 PyTimeToLiveSpecification {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3182)
+            Ok(converted_3553)
         } else {
             Ok(py.None())
         }
@@ -17288,8 +21322,8 @@ impl PyOperationUpdateTimeToLiveOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.time_to_live_specification {
-            let converted_3183 = time_to_live_specification_to_py(py, value)?;
-            result.set_item("time_to_live_specification", converted_3183)?;
+            let converted_3554 = time_to_live_specification_to_py(py, value)?;
+            result.set_item("time_to_live_specification", converted_3554)?;
         } else {
             result.set_item("time_to_live_specification", py.None())?;
         }
@@ -17517,7 +21551,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchExecuteStatement"))
             })?;
-            Ok(PyOperationBatchExecuteStatementOutput { inner: output })
+            Ok(PyOperationBatchExecuteStatementOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -17571,7 +21607,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchGetItem"))
             })?;
-            Ok(PyOperationBatchGetItemOutput { inner: output })
+            Ok(PyOperationBatchGetItemOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -17642,7 +21680,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchWriteItem"))
             })?;
-            Ok(PyOperationBatchWriteItemOutput { inner: output })
+            Ok(PyOperationBatchWriteItemOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -17687,7 +21727,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateBackup"))
             })?;
-            Ok(PyOperationCreateBackupOutput { inner: output })
+            Ok(PyOperationCreateBackupOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -17740,7 +21782,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateGlobalTable"))
             })?;
-            Ok(PyOperationCreateGlobalTableOutput { inner: output })
+            Ok(PyOperationCreateGlobalTableOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -17952,7 +21996,9 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateTable")))?;
-            Ok(PyOperationCreateTableOutput { inner: output })
+            Ok(PyOperationCreateTableOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -17988,7 +22034,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBackup"))
             })?;
-            Ok(PyOperationDeleteBackupOutput { inner: output })
+            Ok(PyOperationDeleteBackupOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -18141,7 +22189,9 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteItem")))?;
-            Ok(PyOperationDeleteItemOutput { inner: output })
+            Ok(PyOperationDeleteItemOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -18222,7 +22272,9 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteTable")))?;
-            Ok(PyOperationDeleteTableOutput { inner: output })
+            Ok(PyOperationDeleteTableOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -18258,7 +22310,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeBackup"))
             })?;
-            Ok(PyOperationDescribeBackupOutput { inner: output })
+            Ok(PyOperationDescribeBackupOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -18296,7 +22350,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeContinuousBackups"))
             })?;
-            Ok(PyOperationDescribeContinuousBackupsOutput { inner: output })
+            Ok(PyOperationDescribeContinuousBackupsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -18341,7 +22397,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeContributorInsights"))
             })?;
-            Ok(PyOperationDescribeContributorInsightsOutput { inner: output })
+            Ok(PyOperationDescribeContributorInsightsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -18371,7 +22429,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeEndpoints"))
             })?;
-            Ok(PyOperationDescribeEndpointsOutput { inner: output })
+            Ok(PyOperationDescribeEndpointsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -18407,7 +22467,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeExport"))
             })?;
-            Ok(PyOperationDescribeExportOutput { inner: output })
+            Ok(PyOperationDescribeExportOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -18446,7 +22508,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeGlobalTable"))
             })?;
-            Ok(PyOperationDescribeGlobalTableOutput { inner: output })
+            Ok(PyOperationDescribeGlobalTableOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -18485,7 +22549,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeGlobalTableSettings"))
             })?;
-            Ok(PyOperationDescribeGlobalTableSettingsOutput { inner: output })
+            Ok(PyOperationDescribeGlobalTableSettingsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -18521,7 +22587,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeImport"))
             })?;
-            Ok(PyOperationDescribeImportOutput { inner: output })
+            Ok(PyOperationDescribeImportOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -18561,7 +22629,9 @@ impl DynamoDBClient {
                     sdk_error_to_py(py, &error, "DescribeKinesisStreamingDestination")
                 })
             })?;
-            Ok(PyOperationDescribeKinesisStreamingDestinationOutput { inner: output })
+            Ok(PyOperationDescribeKinesisStreamingDestinationOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -18627,7 +22697,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeTable"))
             })?;
-            Ok(PyOperationDescribeTableOutput { inner: output })
+            Ok(PyOperationDescribeTableOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -18665,7 +22737,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeTableReplicaAutoScaling"))
             })?;
-            Ok(PyOperationDescribeTableReplicaAutoScalingOutput { inner: output })
+            Ok(PyOperationDescribeTableReplicaAutoScalingOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -18703,7 +22777,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeTimeToLive"))
             })?;
-            Ok(PyOperationDescribeTimeToLiveOutput { inner: output })
+            Ok(PyOperationDescribeTimeToLiveOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -18760,7 +22836,9 @@ impl DynamoDBClient {
                     sdk_error_to_py(py, &error, "DisableKinesisStreamingDestination")
                 })
             })?;
-            Ok(PyOperationDisableKinesisStreamingDestinationOutput { inner: output })
+            Ok(PyOperationDisableKinesisStreamingDestinationOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -18817,7 +22895,9 @@ impl DynamoDBClient {
                     sdk_error_to_py(py, &error, "EnableKinesisStreamingDestination")
                 })
             })?;
-            Ok(PyOperationEnableKinesisStreamingDestinationOutput { inner: output })
+            Ok(PyOperationEnableKinesisStreamingDestinationOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -18913,7 +22993,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ExecuteStatement"))
             })?;
-            Ok(PyOperationExecuteStatementOutput { inner: output })
+            Ok(PyOperationExecuteStatementOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -18976,7 +23058,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ExecuteTransaction"))
             })?;
-            Ok(PyOperationExecuteTransactionOutput { inner: output })
+            Ok(PyOperationExecuteTransactionOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -19105,7 +23189,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ExportTableToPointInTime"))
             })?;
-            Ok(PyOperationExportTableToPointInTimeOutput { inner: output })
+            Ok(PyOperationExportTableToPointInTimeOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -19208,7 +23294,9 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetItem")))?;
-            Ok(PyOperationGetItemOutput { inner: output })
+            Ok(PyOperationGetItemOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -19325,7 +23413,9 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ImportTable")))?;
-            Ok(PyOperationImportTableOutput { inner: output })
+            Ok(PyOperationImportTableOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -19412,7 +23502,9 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListBackups")))?;
-            Ok(PyOperationListBackupsOutput { inner: output })
+            Ok(PyOperationListBackupsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -19464,7 +23556,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListContributorInsights"))
             })?;
-            Ok(PyOperationListContributorInsightsOutput { inner: output })
+            Ok(PyOperationListContributorInsightsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -19515,7 +23609,9 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListExports")))?;
-            Ok(PyOperationListExportsOutput { inner: output })
+            Ok(PyOperationListExportsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -19568,7 +23664,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListGlobalTables"))
             })?;
-            Ok(PyOperationListGlobalTablesOutput { inner: output })
+            Ok(PyOperationListGlobalTablesOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -19619,7 +23717,9 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListImports")))?;
-            Ok(PyOperationListImportsOutput { inner: output })
+            Ok(PyOperationListImportsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -19709,7 +23809,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsOfResource"))
             })?;
-            Ok(PyOperationListTagsOfResourceOutput { inner: output })
+            Ok(PyOperationListTagsOfResourceOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -19862,7 +23964,9 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutItem")))?;
-            Ok(PyOperationPutItemOutput { inner: output })
+            Ok(PyOperationPutItemOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -20123,7 +24227,9 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Query")))?;
-            Ok(PyOperationQueryOutput { inner: output })
+            Ok(PyOperationQueryOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -20245,7 +24351,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RestoreTableFromBackup"))
             })?;
-            Ok(PyOperationRestoreTableFromBackupOutput { inner: output })
+            Ok(PyOperationRestoreTableFromBackupOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -20396,7 +24504,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RestoreTableToPointInTime"))
             })?;
-            Ok(PyOperationRestoreTableToPointInTimeOutput { inner: output })
+            Ok(PyOperationRestoreTableToPointInTimeOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -20581,7 +24691,9 @@ impl DynamoDBClient {
             };
             let output =
                 result.map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Scan")))?;
-            Ok(PyOperationScanOutput { inner: output })
+            Ok(PyOperationScanOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -20700,7 +24812,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SearchVectors"))
             })?;
-            Ok(PyOperationSearchVectorsOutput { inner: output })
+            Ok(PyOperationSearchVectorsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -20804,7 +24918,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "TransactGetItems"))
             })?;
-            Ok(PyOperationTransactGetItemsOutput { inner: output })
+            Ok(PyOperationTransactGetItemsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -20877,7 +24993,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "TransactWriteItems"))
             })?;
-            Ok(PyOperationTransactWriteItemsOutput { inner: output })
+            Ok(PyOperationTransactWriteItemsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -20976,7 +25094,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateContinuousBackups"))
             })?;
-            Ok(PyOperationUpdateContinuousBackupsOutput { inner: output })
+            Ok(PyOperationUpdateContinuousBackupsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -21095,7 +25215,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateGlobalTable"))
             })?;
-            Ok(PyOperationUpdateGlobalTableOutput { inner: output })
+            Ok(PyOperationUpdateGlobalTableOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -21202,7 +25324,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateGlobalTableSettings"))
             })?;
-            Ok(PyOperationUpdateGlobalTableSettingsOutput { inner: output })
+            Ok(PyOperationUpdateGlobalTableSettingsOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -21377,7 +25501,9 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateItem")))?;
-            Ok(PyOperationUpdateItemOutput { inner: output })
+            Ok(PyOperationUpdateItemOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -21434,7 +25560,9 @@ impl DynamoDBClient {
                     sdk_error_to_py(py, &error, "UpdateKinesisStreamingDestination")
                 })
             })?;
-            Ok(PyOperationUpdateKinesisStreamingDestinationOutput { inner: output })
+            Ok(PyOperationUpdateKinesisStreamingDestinationOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -21638,7 +25766,9 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateTable")))?;
-            Ok(PyOperationUpdateTableOutput { inner: output })
+            Ok(PyOperationUpdateTableOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -21715,7 +25845,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateTableReplicaAutoScaling"))
             })?;
-            Ok(PyOperationUpdateTableReplicaAutoScalingOutput { inner: output })
+            Ok(PyOperationUpdateTableReplicaAutoScalingOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -21761,7 +25893,9 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateTimeToLive"))
             })?;
-            Ok(PyOperationUpdateTimeToLiveOutput { inner: output })
+            Ok(PyOperationUpdateTimeToLiveOutput {
+                inner: output.into(),
+            })
         })
     }
 }

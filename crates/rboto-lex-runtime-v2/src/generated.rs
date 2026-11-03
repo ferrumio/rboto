@@ -1741,13 +1741,51 @@ fn value_to_py(py: Python<'_>, value: &aws_sdk_lexruntimev2::types::Value) -> Py
     Ok(result.into_any().unbind())
 }
 
+struct SharedActiveContext {
+    name: ::std::string::String,
+    time_to_live: Option<Arc<aws_sdk_lexruntimev2::types::ActiveContextTimeToLive>>,
+    context_attributes: ::std::collections::HashMap<::std::string::String, ::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_lexruntimev2::types::ActiveContext> for SharedActiveContext {
+    fn from(value: aws_sdk_lexruntimev2::types::ActiveContext) -> Self {
+        Self {
+            name: value.name,
+            time_to_live: value.time_to_live.map(|item| Arc::new(item)),
+            context_attributes: value.context_attributes,
+        }
+    }
+}
+
+fn active_context_shared_to_py(py: Python<'_>, value: &SharedActiveContext) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_405 = (&value.name).as_str().into_py_any(py)?;
+    result.set_item("name", converted_405)?;
+    if let Some(value) = &value.time_to_live {
+        let converted_406 = active_context_time_to_live_to_py(py, value)?;
+        result.set_item("time_to_live", converted_406)?;
+    } else {
+        result.set_item("time_to_live", py.None())?;
+    }
+    let converted_407_dict = PyDict::new(py);
+    for (key_408, value_409) in &value.context_attributes {
+        let converted_key_410 = (key_408).as_str().into_py_any(py)?;
+        let converted_value_411 = (value_409).as_str().into_py_any(py)?;
+        converted_407_dict.set_item(converted_key_410, converted_value_411)?;
+    }
+    let converted_407 = converted_407_dict.into_any().unbind();
+    result.set_item("context_attributes", converted_407)?;
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "ActiveContext",
     module = "rboto_lex_runtime_v2._native",
     frozen
 )]
 struct PyActiveContext {
-    inner: aws_sdk_lexruntimev2::types::ActiveContext,
+    inner: Arc<SharedActiveContext>,
 }
 
 #[pymethods]
@@ -1764,7 +1802,7 @@ impl PyActiveContext {
             let converted_399 = Py::new(
                 py,
                 PyActiveContextTimeToLive {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -1787,7 +1825,7 @@ impl PyActiveContext {
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        active_context_to_py(py, &self.inner)
+        active_context_shared_to_py(py, &self.inner)
     }
 }
 
@@ -1797,23 +1835,23 @@ impl PyActiveContext {
     frozen
 )]
 struct PyActiveContextTimeToLive {
-    inner: aws_sdk_lexruntimev2::types::ActiveContextTimeToLive,
+    inner: Arc<aws_sdk_lexruntimev2::types::ActiveContextTimeToLive>,
 }
 
 #[pymethods]
 impl PyActiveContextTimeToLive {
     #[getter]
     fn time_to_live_in_seconds(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_405 = (&self.inner.time_to_live_in_seconds)
+        let converted_412 = (&self.inner.time_to_live_in_seconds)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_405)
+        Ok(converted_412)
     }
 
     #[getter]
     fn turns_to_live(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_406 = (&self.inner.turns_to_live).to_owned().into_py_any(py)?;
-        Ok(converted_406)
+        let converted_413 = (&self.inner.turns_to_live).to_owned().into_py_any(py)?;
+        Ok(converted_413)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -1823,21 +1861,21 @@ impl PyActiveContextTimeToLive {
 
 #[pyclass(name = "Button", module = "rboto_lex_runtime_v2._native", frozen)]
 struct PyButton {
-    inner: aws_sdk_lexruntimev2::types::Button,
+    inner: Arc<aws_sdk_lexruntimev2::types::Button>,
 }
 
 #[pymethods]
 impl PyButton {
     #[getter]
     fn text(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_407 = (&self.inner.text).as_str().into_py_any(py)?;
-        Ok(converted_407)
+        let converted_414 = (&self.inner.text).as_str().into_py_any(py)?;
+        Ok(converted_414)
     }
 
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_408 = (&self.inner.value).as_str().into_py_any(py)?;
-        Ok(converted_408)
+        let converted_415 = (&self.inner.value).as_str().into_py_any(py)?;
+        Ok(converted_415)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -1851,15 +1889,15 @@ impl PyButton {
     frozen
 )]
 struct PyConfidenceScore {
-    inner: aws_sdk_lexruntimev2::types::ConfidenceScore,
+    inner: Arc<aws_sdk_lexruntimev2::types::ConfidenceScore>,
 }
 
 #[pymethods]
 impl PyConfidenceScore {
     #[getter]
     fn score(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_409 = (&self.inner.score).to_owned().into_py_any(py)?;
-        Ok(converted_409)
+        let converted_416 = (&self.inner.score).to_owned().into_py_any(py)?;
+        Ok(converted_416)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -1867,128 +1905,68 @@ impl PyConfidenceScore {
     }
 }
 
+struct SharedDialogAction {
+    r#type: aws_sdk_lexruntimev2::types::DialogActionType,
+    slot_to_elicit: Option<::std::string::String>,
+    slot_elicitation_style: Option<aws_sdk_lexruntimev2::types::StyleType>,
+    sub_slot_to_elicit: Option<Arc<SharedElicitSubSlot>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_lexruntimev2::types::DialogAction> for SharedDialogAction {
+    fn from(value: aws_sdk_lexruntimev2::types::DialogAction) -> Self {
+        Self {
+            r#type: value.r#type,
+            slot_to_elicit: value.slot_to_elicit,
+            slot_elicitation_style: value.slot_elicitation_style,
+            sub_slot_to_elicit: value
+                .sub_slot_to_elicit
+                .map(|item| Arc::new(SharedElicitSubSlot::from(item))),
+        }
+    }
+}
+
+fn dialog_action_shared_to_py(py: Python<'_>, value: &SharedDialogAction) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_421 = (&value.r#type).as_str().into_py_any(py)?;
+    result.set_item("type", converted_421)?;
+    if let Some(value) = &value.slot_to_elicit {
+        let converted_422 = (value).as_str().into_py_any(py)?;
+        result.set_item("slot_to_elicit", converted_422)?;
+    } else {
+        result.set_item("slot_to_elicit", py.None())?;
+    }
+    if let Some(value) = &value.slot_elicitation_style {
+        let converted_423 = (value).as_str().into_py_any(py)?;
+        result.set_item("slot_elicitation_style", converted_423)?;
+    } else {
+        result.set_item("slot_elicitation_style", py.None())?;
+    }
+    if let Some(value) = &value.sub_slot_to_elicit {
+        let converted_424 = elicit_sub_slot_shared_to_py(py, value)?;
+        result.set_item("sub_slot_to_elicit", converted_424)?;
+    } else {
+        result.set_item("sub_slot_to_elicit", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "DialogAction", module = "rboto_lex_runtime_v2._native", frozen)]
 struct PyDialogAction {
-    inner: aws_sdk_lexruntimev2::types::DialogAction,
+    inner: Arc<SharedDialogAction>,
 }
 
 #[pymethods]
 impl PyDialogAction {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_410 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_410)
+        let converted_417 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_417)
     }
 
     #[getter]
     fn slot_to_elicit(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.slot_to_elicit {
-            let converted_411 = (value).as_str().into_py_any(py)?;
-            Ok(converted_411)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn slot_elicitation_style(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.slot_elicitation_style {
-            let converted_412 = (value).as_str().into_py_any(py)?;
-            Ok(converted_412)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn sub_slot_to_elicit(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.sub_slot_to_elicit {
-            let converted_413 = Py::new(
-                py,
-                PyElicitSubSlot {
-                    inner: (value).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_413)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        dialog_action_to_py(py, &self.inner)
-    }
-}
-
-#[pyclass(
-    name = "ElicitSubSlot",
-    module = "rboto_lex_runtime_v2._native",
-    frozen
-)]
-struct PyElicitSubSlot {
-    inner: aws_sdk_lexruntimev2::types::ElicitSubSlot,
-}
-
-#[pymethods]
-impl PyElicitSubSlot {
-    #[getter]
-    fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_414 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_414)
-    }
-
-    #[getter]
-    fn sub_slot_to_elicit(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.sub_slot_to_elicit {
-            let converted_415 = Py::new(
-                py,
-                PyElicitSubSlot {
-                    inner: ((value).as_ref()).to_owned(),
-                },
-            )?
-            .into_any();
-            Ok(converted_415)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        elicit_sub_slot_to_py(py, &self.inner)
-    }
-}
-
-#[pyclass(
-    name = "ImageResponseCard",
-    module = "rboto_lex_runtime_v2._native",
-    frozen
-)]
-struct PyImageResponseCard {
-    inner: aws_sdk_lexruntimev2::types::ImageResponseCard,
-}
-
-#[pymethods]
-impl PyImageResponseCard {
-    #[getter]
-    fn title(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_416 = (&self.inner.title).as_str().into_py_any(py)?;
-        Ok(converted_416)
-    }
-
-    #[getter]
-    fn subtitle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.subtitle {
-            let converted_417 = (value).as_str().into_py_any(py)?;
-            Ok(converted_417)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn image_url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.image_url {
             let converted_418 = (value).as_str().into_py_any(py)?;
             Ok(converted_418)
         } else {
@@ -1997,61 +1975,312 @@ impl PyImageResponseCard {
     }
 
     #[getter]
-    fn buttons(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.buttons {
-            let converted_419_list = PyList::empty(py);
-            for item_420 in value {
-                let converted_item_421 = Py::new(
-                    py,
-                    PyButton {
-                        inner: (item_420).to_owned(),
-                    },
-                )?
-                .into_any();
-                converted_419_list.append(converted_item_421)?;
-            }
-            let converted_419 = converted_419_list.into_any().unbind();
+    fn slot_elicitation_style(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.slot_elicitation_style {
+            let converted_419 = (value).as_str().into_py_any(py)?;
             Ok(converted_419)
         } else {
             Ok(py.None())
         }
     }
 
-    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        image_response_card_to_py(py, &self.inner)
+    #[getter]
+    fn sub_slot_to_elicit(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.sub_slot_to_elicit {
+            let converted_420 = Py::new(
+                py,
+                PyElicitSubSlot {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_420)
+        } else {
+            Ok(py.None())
+        }
     }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        dialog_action_shared_to_py(py, &self.inner)
+    }
+}
+
+struct SharedElicitSubSlot {
+    name: ::std::string::String,
+    sub_slot_to_elicit: Option<::std::boxed::Box<Arc<SharedElicitSubSlot>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_lexruntimev2::types::ElicitSubSlot> for SharedElicitSubSlot {
+    fn from(value: aws_sdk_lexruntimev2::types::ElicitSubSlot) -> Self {
+        Self {
+            name: value.name,
+            sub_slot_to_elicit: value
+                .sub_slot_to_elicit
+                .map(|item| Box::new(Arc::new(SharedElicitSubSlot::from(*(item))))),
+        }
+    }
+}
+
+fn elicit_sub_slot_shared_to_py(
+    py: Python<'_>,
+    value: &SharedElicitSubSlot,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_427 = (&value.name).as_str().into_py_any(py)?;
+    result.set_item("name", converted_427)?;
+    if let Some(value) = &value.sub_slot_to_elicit {
+        let converted_428 = elicit_sub_slot_shared_to_py(py, (value).as_ref())?;
+        result.set_item("sub_slot_to_elicit", converted_428)?;
+    } else {
+        result.set_item("sub_slot_to_elicit", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+#[pyclass(
+    name = "ElicitSubSlot",
+    module = "rboto_lex_runtime_v2._native",
+    frozen
+)]
+struct PyElicitSubSlot {
+    inner: Arc<SharedElicitSubSlot>,
+}
+
+#[pymethods]
+impl PyElicitSubSlot {
+    #[getter]
+    fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_425 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_425)
+    }
+
+    #[getter]
+    fn sub_slot_to_elicit(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.sub_slot_to_elicit {
+            let converted_426 = Py::new(
+                py,
+                PyElicitSubSlot {
+                    inner: Arc::clone((value).as_ref()),
+                },
+            )?
+            .into_any();
+            Ok(converted_426)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        elicit_sub_slot_shared_to_py(py, &self.inner)
+    }
+}
+
+struct SharedImageResponseCard {
+    title: ::std::string::String,
+    subtitle: Option<::std::string::String>,
+    image_url: Option<::std::string::String>,
+    buttons: Option<::std::vec::Vec<Arc<aws_sdk_lexruntimev2::types::Button>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_lexruntimev2::types::ImageResponseCard> for SharedImageResponseCard {
+    fn from(value: aws_sdk_lexruntimev2::types::ImageResponseCard) -> Self {
+        Self {
+            title: value.title,
+            subtitle: value.subtitle,
+            image_url: value.image_url,
+            buttons: value.buttons.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_435| Arc::new(owned_435))
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn image_response_card_shared_to_py(
+    py: Python<'_>,
+    value: &SharedImageResponseCard,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_436 = (&value.title).as_str().into_py_any(py)?;
+    result.set_item("title", converted_436)?;
+    if let Some(value) = &value.subtitle {
+        let converted_437 = (value).as_str().into_py_any(py)?;
+        result.set_item("subtitle", converted_437)?;
+    } else {
+        result.set_item("subtitle", py.None())?;
+    }
+    if let Some(value) = &value.image_url {
+        let converted_438 = (value).as_str().into_py_any(py)?;
+        result.set_item("image_url", converted_438)?;
+    } else {
+        result.set_item("image_url", py.None())?;
+    }
+    if let Some(value) = &value.buttons {
+        let converted_439_list = PyList::empty(py);
+        for item_440 in value {
+            let converted_item_441 = button_to_py(py, item_440)?;
+            converted_439_list.append(converted_item_441)?;
+        }
+        let converted_439 = converted_439_list.into_any().unbind();
+        result.set_item("buttons", converted_439)?;
+    } else {
+        result.set_item("buttons", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+#[pyclass(
+    name = "ImageResponseCard",
+    module = "rboto_lex_runtime_v2._native",
+    frozen
+)]
+struct PyImageResponseCard {
+    inner: Arc<SharedImageResponseCard>,
+}
+
+#[pymethods]
+impl PyImageResponseCard {
+    #[getter]
+    fn title(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_429 = (&self.inner.title).as_str().into_py_any(py)?;
+        Ok(converted_429)
+    }
+
+    #[getter]
+    fn subtitle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.subtitle {
+            let converted_430 = (value).as_str().into_py_any(py)?;
+            Ok(converted_430)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn image_url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.image_url {
+            let converted_431 = (value).as_str().into_py_any(py)?;
+            Ok(converted_431)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn buttons(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.buttons {
+            let converted_432_list = PyList::empty(py);
+            for item_433 in value {
+                let converted_item_434 = Py::new(
+                    py,
+                    PyButton {
+                        inner: Arc::clone(item_433),
+                    },
+                )?
+                .into_any();
+                converted_432_list.append(converted_item_434)?;
+            }
+            let converted_432 = converted_432_list.into_any().unbind();
+            Ok(converted_432)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        image_response_card_shared_to_py(py, &self.inner)
+    }
+}
+
+struct SharedIntent {
+    name: ::std::string::String,
+    slots: Option<::std::collections::HashMap<::std::string::String, Arc<SharedSlot>>>,
+    state: Option<aws_sdk_lexruntimev2::types::IntentState>,
+    confirmation_state: Option<aws_sdk_lexruntimev2::types::ConfirmationState>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_lexruntimev2::types::Intent> for SharedIntent {
+    fn from(value: aws_sdk_lexruntimev2::types::Intent) -> Self {
+        Self {
+            name: value.name,
+            slots: value.slots.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|(key, owned_450)| (key, Arc::new(SharedSlot::from(owned_450))))
+                    .collect()
+            }),
+            state: value.state,
+            confirmation_state: value.confirmation_state,
+        }
+    }
+}
+
+fn intent_shared_to_py(py: Python<'_>, value: &SharedIntent) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_451 = (&value.name).as_str().into_py_any(py)?;
+    result.set_item("name", converted_451)?;
+    if let Some(value) = &value.slots {
+        let converted_452_dict = PyDict::new(py);
+        for (key_453, value_454) in value {
+            let converted_key_455 = (key_453).as_str().into_py_any(py)?;
+            let converted_value_456 = slot_shared_to_py(py, value_454)?;
+            converted_452_dict.set_item(converted_key_455, converted_value_456)?;
+        }
+        let converted_452 = converted_452_dict.into_any().unbind();
+        result.set_item("slots", converted_452)?;
+    } else {
+        result.set_item("slots", py.None())?;
+    }
+    if let Some(value) = &value.state {
+        let converted_457 = (value).as_str().into_py_any(py)?;
+        result.set_item("state", converted_457)?;
+    } else {
+        result.set_item("state", py.None())?;
+    }
+    if let Some(value) = &value.confirmation_state {
+        let converted_458 = (value).as_str().into_py_any(py)?;
+        result.set_item("confirmation_state", converted_458)?;
+    } else {
+        result.set_item("confirmation_state", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(name = "Intent", module = "rboto_lex_runtime_v2._native", frozen)]
 struct PyIntent {
-    inner: aws_sdk_lexruntimev2::types::Intent,
+    inner: Arc<SharedIntent>,
 }
 
 #[pymethods]
 impl PyIntent {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_422 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_422)
+        let converted_442 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_442)
     }
 
     #[getter]
     fn slots(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.slots {
-            let converted_423_dict = PyDict::new(py);
-            for (key_424, value_425) in value {
-                let converted_key_426 = (key_424).as_str().into_py_any(py)?;
-                let converted_value_427 = Py::new(
+            let converted_443_dict = PyDict::new(py);
+            for (key_444, value_445) in value {
+                let converted_key_446 = (key_444).as_str().into_py_any(py)?;
+                let converted_value_447 = Py::new(
                     py,
                     PySlot {
-                        inner: (value_425).to_owned(),
+                        inner: Arc::clone(value_445),
                     },
                 )?
                 .into_any();
-                converted_423_dict.set_item(converted_key_426, converted_value_427)?;
+                converted_443_dict.set_item(converted_key_446, converted_value_447)?;
             }
-            let converted_423 = converted_423_dict.into_any().unbind();
-            Ok(converted_423)
+            let converted_443 = converted_443_dict.into_any().unbind();
+            Ok(converted_443)
         } else {
             Ok(py.None())
         }
@@ -2060,8 +2289,8 @@ impl PyIntent {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state {
-            let converted_428 = (value).as_str().into_py_any(py)?;
-            Ok(converted_428)
+            let converted_448 = (value).as_str().into_py_any(py)?;
+            Ok(converted_448)
         } else {
             Ok(py.None())
         }
@@ -2070,16 +2299,69 @@ impl PyIntent {
     #[getter]
     fn confirmation_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.confirmation_state {
-            let converted_429 = (value).as_str().into_py_any(py)?;
-            Ok(converted_429)
+            let converted_449 = (value).as_str().into_py_any(py)?;
+            Ok(converted_449)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        intent_to_py(py, &self.inner)
+        intent_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedInterpretation {
+    nlu_confidence: Option<Arc<aws_sdk_lexruntimev2::types::ConfidenceScore>>,
+    sentiment_response: Option<Arc<SharedSentimentResponse>>,
+    intent: Option<Arc<SharedIntent>>,
+    interpretation_source: Option<aws_sdk_lexruntimev2::types::InterpretationSource>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_lexruntimev2::types::Interpretation> for SharedInterpretation {
+    fn from(value: aws_sdk_lexruntimev2::types::Interpretation) -> Self {
+        Self {
+            nlu_confidence: value.nlu_confidence.map(|item| Arc::new(item)),
+            sentiment_response: value
+                .sentiment_response
+                .map(|item| Arc::new(SharedSentimentResponse::from(item))),
+            intent: value.intent.map(|item| Arc::new(SharedIntent::from(item))),
+            interpretation_source: value.interpretation_source,
+        }
+    }
+}
+
+fn interpretation_shared_to_py(
+    py: Python<'_>,
+    value: &SharedInterpretation,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.nlu_confidence {
+        let converted_463 = confidence_score_to_py(py, value)?;
+        result.set_item("nlu_confidence", converted_463)?;
+    } else {
+        result.set_item("nlu_confidence", py.None())?;
+    }
+    if let Some(value) = &value.sentiment_response {
+        let converted_464 = sentiment_response_shared_to_py(py, value)?;
+        result.set_item("sentiment_response", converted_464)?;
+    } else {
+        result.set_item("sentiment_response", py.None())?;
+    }
+    if let Some(value) = &value.intent {
+        let converted_465 = intent_shared_to_py(py, value)?;
+        result.set_item("intent", converted_465)?;
+    } else {
+        result.set_item("intent", py.None())?;
+    }
+    if let Some(value) = &value.interpretation_source {
+        let converted_466 = (value).as_str().into_py_any(py)?;
+        result.set_item("interpretation_source", converted_466)?;
+    } else {
+        result.set_item("interpretation_source", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -2088,7 +2370,7 @@ impl PyIntent {
     frozen
 )]
 struct PyInterpretation {
-    inner: aws_sdk_lexruntimev2::types::Interpretation,
+    inner: Arc<SharedInterpretation>,
 }
 
 #[pymethods]
@@ -2096,14 +2378,14 @@ impl PyInterpretation {
     #[getter]
     fn nlu_confidence(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.nlu_confidence {
-            let converted_430 = Py::new(
+            let converted_459 = Py::new(
                 py,
                 PyConfidenceScore {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_430)
+            Ok(converted_459)
         } else {
             Ok(py.None())
         }
@@ -2112,14 +2394,14 @@ impl PyInterpretation {
     #[getter]
     fn sentiment_response(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sentiment_response {
-            let converted_431 = Py::new(
+            let converted_460 = Py::new(
                 py,
                 PySentimentResponse {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_431)
+            Ok(converted_460)
         } else {
             Ok(py.None())
         }
@@ -2128,14 +2410,14 @@ impl PyInterpretation {
     #[getter]
     fn intent(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.intent {
-            let converted_432 = Py::new(
+            let converted_461 = Py::new(
                 py,
                 PyIntent {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_432)
+            Ok(converted_461)
         } else {
             Ok(py.None())
         }
@@ -2144,21 +2426,59 @@ impl PyInterpretation {
     #[getter]
     fn interpretation_source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.interpretation_source {
-            let converted_433 = (value).as_str().into_py_any(py)?;
-            Ok(converted_433)
+            let converted_462 = (value).as_str().into_py_any(py)?;
+            Ok(converted_462)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        interpretation_to_py(py, &self.inner)
+        interpretation_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedMessage {
+    content: Option<::std::string::String>,
+    content_type: aws_sdk_lexruntimev2::types::MessageContentType,
+    image_response_card: Option<Arc<SharedImageResponseCard>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_lexruntimev2::types::Message> for SharedMessage {
+    fn from(value: aws_sdk_lexruntimev2::types::Message) -> Self {
+        Self {
+            content: value.content,
+            content_type: value.content_type,
+            image_response_card: value
+                .image_response_card
+                .map(|item| Arc::new(SharedImageResponseCard::from(item))),
+        }
+    }
+}
+
+fn message_shared_to_py(py: Python<'_>, value: &SharedMessage) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.content {
+        let converted_470 = (value).as_str().into_py_any(py)?;
+        result.set_item("content", converted_470)?;
+    } else {
+        result.set_item("content", py.None())?;
+    }
+    let converted_471 = (&value.content_type).as_str().into_py_any(py)?;
+    result.set_item("content_type", converted_471)?;
+    if let Some(value) = &value.image_response_card {
+        let converted_472 = image_response_card_shared_to_py(py, value)?;
+        result.set_item("image_response_card", converted_472)?;
+    } else {
+        result.set_item("image_response_card", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(name = "Message", module = "rboto_lex_runtime_v2._native", frozen)]
 struct PyMessage {
-    inner: aws_sdk_lexruntimev2::types::Message,
+    inner: Arc<SharedMessage>,
 }
 
 #[pymethods]
@@ -2166,8 +2486,8 @@ impl PyMessage {
     #[getter]
     fn content(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.content {
-            let converted_434 = (value).as_str().into_py_any(py)?;
-            Ok(converted_434)
+            let converted_467 = (value).as_str().into_py_any(py)?;
+            Ok(converted_467)
         } else {
             Ok(py.None())
         }
@@ -2175,28 +2495,28 @@ impl PyMessage {
 
     #[getter]
     fn content_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_435 = (&self.inner.content_type).as_str().into_py_any(py)?;
-        Ok(converted_435)
+        let converted_468 = (&self.inner.content_type).as_str().into_py_any(py)?;
+        Ok(converted_468)
     }
 
     #[getter]
     fn image_response_card(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.image_response_card {
-            let converted_436 = Py::new(
+            let converted_469 = Py::new(
                 py,
                 PyImageResponseCard {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_436)
+            Ok(converted_469)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        message_to_py(py, &self.inner)
+        message_shared_to_py(py, &self.inner)
     }
 }
 
@@ -2206,22 +2526,22 @@ impl PyMessage {
     frozen
 )]
 struct PyRecognizedBotMember {
-    inner: aws_sdk_lexruntimev2::types::RecognizedBotMember,
+    inner: Arc<aws_sdk_lexruntimev2::types::RecognizedBotMember>,
 }
 
 #[pymethods]
 impl PyRecognizedBotMember {
     #[getter]
     fn bot_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_437 = (&self.inner.bot_id).as_str().into_py_any(py)?;
-        Ok(converted_437)
+        let converted_473 = (&self.inner.bot_id).as_str().into_py_any(py)?;
+        Ok(converted_473)
     }
 
     #[getter]
     fn bot_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.bot_name {
-            let converted_438 = (value).as_str().into_py_any(py)?;
-            Ok(converted_438)
+            let converted_474 = (value).as_str().into_py_any(py)?;
+            Ok(converted_474)
         } else {
             Ok(py.None())
         }
@@ -2232,13 +2552,73 @@ impl PyRecognizedBotMember {
     }
 }
 
+struct SharedRuntimeHintDetails {
+    runtime_hint_values:
+        Option<::std::vec::Vec<Arc<aws_sdk_lexruntimev2::types::RuntimeHintValue>>>,
+    sub_slot_hints:
+        Option<::std::collections::HashMap<::std::string::String, Arc<SharedRuntimeHintDetails>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_lexruntimev2::types::RuntimeHintDetails> for SharedRuntimeHintDetails {
+    fn from(value: aws_sdk_lexruntimev2::types::RuntimeHintDetails) -> Self {
+        Self {
+            runtime_hint_values: value.runtime_hint_values.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_483| Arc::new(owned_483))
+                    .collect()
+            }),
+            sub_slot_hints: value.sub_slot_hints.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|(key, owned_484)| {
+                        (key, Arc::new(SharedRuntimeHintDetails::from(owned_484)))
+                    })
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn runtime_hint_details_shared_to_py(
+    py: Python<'_>,
+    value: &SharedRuntimeHintDetails,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.runtime_hint_values {
+        let converted_485_list = PyList::empty(py);
+        for item_486 in value {
+            let converted_item_487 = runtime_hint_value_to_py(py, item_486)?;
+            converted_485_list.append(converted_item_487)?;
+        }
+        let converted_485 = converted_485_list.into_any().unbind();
+        result.set_item("runtime_hint_values", converted_485)?;
+    } else {
+        result.set_item("runtime_hint_values", py.None())?;
+    }
+    if let Some(value) = &value.sub_slot_hints {
+        let converted_488_dict = PyDict::new(py);
+        for (key_489, value_490) in value {
+            let converted_key_491 = (key_489).as_str().into_py_any(py)?;
+            let converted_value_492 = runtime_hint_details_shared_to_py(py, value_490)?;
+            converted_488_dict.set_item(converted_key_491, converted_value_492)?;
+        }
+        let converted_488 = converted_488_dict.into_any().unbind();
+        result.set_item("sub_slot_hints", converted_488)?;
+    } else {
+        result.set_item("sub_slot_hints", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(
     name = "RuntimeHintDetails",
     module = "rboto_lex_runtime_v2._native",
     frozen
 )]
 struct PyRuntimeHintDetails {
-    inner: aws_sdk_lexruntimev2::types::RuntimeHintDetails,
+    inner: Arc<SharedRuntimeHintDetails>,
 }
 
 #[pymethods]
@@ -2246,19 +2626,19 @@ impl PyRuntimeHintDetails {
     #[getter]
     fn runtime_hint_values(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.runtime_hint_values {
-            let converted_439_list = PyList::empty(py);
-            for item_440 in value {
-                let converted_item_441 = Py::new(
+            let converted_475_list = PyList::empty(py);
+            for item_476 in value {
+                let converted_item_477 = Py::new(
                     py,
                     PyRuntimeHintValue {
-                        inner: (item_440).to_owned(),
+                        inner: Arc::clone(item_476),
                     },
                 )?
                 .into_any();
-                converted_439_list.append(converted_item_441)?;
+                converted_475_list.append(converted_item_477)?;
             }
-            let converted_439 = converted_439_list.into_any().unbind();
-            Ok(converted_439)
+            let converted_475 = converted_475_list.into_any().unbind();
+            Ok(converted_475)
         } else {
             Ok(py.None())
         }
@@ -2267,27 +2647,27 @@ impl PyRuntimeHintDetails {
     #[getter]
     fn sub_slot_hints(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sub_slot_hints {
-            let converted_442_dict = PyDict::new(py);
-            for (key_443, value_444) in value {
-                let converted_key_445 = (key_443).as_str().into_py_any(py)?;
-                let converted_value_446 = Py::new(
+            let converted_478_dict = PyDict::new(py);
+            for (key_479, value_480) in value {
+                let converted_key_481 = (key_479).as_str().into_py_any(py)?;
+                let converted_value_482 = Py::new(
                     py,
                     PyRuntimeHintDetails {
-                        inner: (value_444).to_owned(),
+                        inner: Arc::clone(value_480),
                     },
                 )?
                 .into_any();
-                converted_442_dict.set_item(converted_key_445, converted_value_446)?;
+                converted_478_dict.set_item(converted_key_481, converted_value_482)?;
             }
-            let converted_442 = converted_442_dict.into_any().unbind();
-            Ok(converted_442)
+            let converted_478 = converted_478_dict.into_any().unbind();
+            Ok(converted_478)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        runtime_hint_details_to_py(py, &self.inner)
+        runtime_hint_details_shared_to_py(py, &self.inner)
     }
 }
 
@@ -2297,15 +2677,15 @@ impl PyRuntimeHintDetails {
     frozen
 )]
 struct PyRuntimeHintValue {
-    inner: aws_sdk_lexruntimev2::types::RuntimeHintValue,
+    inner: Arc<aws_sdk_lexruntimev2::types::RuntimeHintValue>,
 }
 
 #[pymethods]
 impl PyRuntimeHintValue {
     #[getter]
     fn phrase(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_447 = (&self.inner.phrase).as_str().into_py_any(py)?;
-        Ok(converted_447)
+        let converted_493 = (&self.inner.phrase).as_str().into_py_any(py)?;
+        Ok(converted_493)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -2313,9 +2693,65 @@ impl PyRuntimeHintValue {
     }
 }
 
+struct SharedRuntimeHints {
+    slot_hints: Option<
+        ::std::collections::HashMap<
+            ::std::string::String,
+            ::std::collections::HashMap<::std::string::String, Arc<SharedRuntimeHintDetails>>,
+        >,
+    >,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_lexruntimev2::types::RuntimeHints> for SharedRuntimeHints {
+    fn from(value: aws_sdk_lexruntimev2::types::RuntimeHints) -> Self {
+        Self {
+            slot_hints: value.slot_hints.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|(key, owned_503)| {
+                        (
+                            key,
+                            (owned_503)
+                                .into_iter()
+                                .map(|(key, owned_504)| {
+                                    (key, Arc::new(SharedRuntimeHintDetails::from(owned_504)))
+                                })
+                                .collect(),
+                        )
+                    })
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn runtime_hints_shared_to_py(py: Python<'_>, value: &SharedRuntimeHints) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.slot_hints {
+        let converted_505_dict = PyDict::new(py);
+        for (key_506, value_507) in value {
+            let converted_key_508 = (key_506).as_str().into_py_any(py)?;
+            let converted_value_509_dict = PyDict::new(py);
+            for (key_510, value_511) in value_507 {
+                let converted_key_512 = (key_510).as_str().into_py_any(py)?;
+                let converted_value_513 = runtime_hint_details_shared_to_py(py, value_511)?;
+                converted_value_509_dict.set_item(converted_key_512, converted_value_513)?;
+            }
+            let converted_value_509 = converted_value_509_dict.into_any().unbind();
+            converted_505_dict.set_item(converted_key_508, converted_value_509)?;
+        }
+        let converted_505 = converted_505_dict.into_any().unbind();
+        result.set_item("slot_hints", converted_505)?;
+    } else {
+        result.set_item("slot_hints", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "RuntimeHints", module = "rboto_lex_runtime_v2._native", frozen)]
 struct PyRuntimeHints {
-    inner: aws_sdk_lexruntimev2::types::RuntimeHints,
+    inner: Arc<SharedRuntimeHints>,
 }
 
 #[pymethods]
@@ -2323,34 +2759,69 @@ impl PyRuntimeHints {
     #[getter]
     fn slot_hints(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.slot_hints {
-            let converted_448_dict = PyDict::new(py);
-            for (key_449, value_450) in value {
-                let converted_key_451 = (key_449).as_str().into_py_any(py)?;
-                let converted_value_452_dict = PyDict::new(py);
-                for (key_453, value_454) in value_450 {
-                    let converted_key_455 = (key_453).as_str().into_py_any(py)?;
-                    let converted_value_456 = Py::new(
+            let converted_494_dict = PyDict::new(py);
+            for (key_495, value_496) in value {
+                let converted_key_497 = (key_495).as_str().into_py_any(py)?;
+                let converted_value_498_dict = PyDict::new(py);
+                for (key_499, value_500) in value_496 {
+                    let converted_key_501 = (key_499).as_str().into_py_any(py)?;
+                    let converted_value_502 = Py::new(
                         py,
                         PyRuntimeHintDetails {
-                            inner: (value_454).to_owned(),
+                            inner: Arc::clone(value_500),
                         },
                     )?
                     .into_any();
-                    converted_value_452_dict.set_item(converted_key_455, converted_value_456)?;
+                    converted_value_498_dict.set_item(converted_key_501, converted_value_502)?;
                 }
-                let converted_value_452 = converted_value_452_dict.into_any().unbind();
-                converted_448_dict.set_item(converted_key_451, converted_value_452)?;
+                let converted_value_498 = converted_value_498_dict.into_any().unbind();
+                converted_494_dict.set_item(converted_key_497, converted_value_498)?;
             }
-            let converted_448 = converted_448_dict.into_any().unbind();
-            Ok(converted_448)
+            let converted_494 = converted_494_dict.into_any().unbind();
+            Ok(converted_494)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        runtime_hints_to_py(py, &self.inner)
+        runtime_hints_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedSentimentResponse {
+    sentiment: Option<aws_sdk_lexruntimev2::types::SentimentType>,
+    sentiment_score: Option<Arc<aws_sdk_lexruntimev2::types::SentimentScore>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_lexruntimev2::types::SentimentResponse> for SharedSentimentResponse {
+    fn from(value: aws_sdk_lexruntimev2::types::SentimentResponse) -> Self {
+        Self {
+            sentiment: value.sentiment,
+            sentiment_score: value.sentiment_score.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn sentiment_response_shared_to_py(
+    py: Python<'_>,
+    value: &SharedSentimentResponse,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.sentiment {
+        let converted_516 = (value).as_str().into_py_any(py)?;
+        result.set_item("sentiment", converted_516)?;
+    } else {
+        result.set_item("sentiment", py.None())?;
+    }
+    if let Some(value) = &value.sentiment_score {
+        let converted_517 = sentiment_score_to_py(py, value)?;
+        result.set_item("sentiment_score", converted_517)?;
+    } else {
+        result.set_item("sentiment_score", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(
@@ -2359,7 +2830,7 @@ impl PyRuntimeHints {
     frozen
 )]
 struct PySentimentResponse {
-    inner: aws_sdk_lexruntimev2::types::SentimentResponse,
+    inner: Arc<SharedSentimentResponse>,
 }
 
 #[pymethods]
@@ -2367,8 +2838,8 @@ impl PySentimentResponse {
     #[getter]
     fn sentiment(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sentiment {
-            let converted_457 = (value).as_str().into_py_any(py)?;
-            Ok(converted_457)
+            let converted_514 = (value).as_str().into_py_any(py)?;
+            Ok(converted_514)
         } else {
             Ok(py.None())
         }
@@ -2377,21 +2848,21 @@ impl PySentimentResponse {
     #[getter]
     fn sentiment_score(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sentiment_score {
-            let converted_458 = Py::new(
+            let converted_515 = Py::new(
                 py,
                 PySentimentScore {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_458)
+            Ok(converted_515)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        sentiment_response_to_py(py, &self.inner)
+        sentiment_response_shared_to_py(py, &self.inner)
     }
 }
 
@@ -2401,33 +2872,33 @@ impl PySentimentResponse {
     frozen
 )]
 struct PySentimentScore {
-    inner: aws_sdk_lexruntimev2::types::SentimentScore,
+    inner: Arc<aws_sdk_lexruntimev2::types::SentimentScore>,
 }
 
 #[pymethods]
 impl PySentimentScore {
     #[getter]
     fn positive(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_459 = (&self.inner.positive).to_owned().into_py_any(py)?;
-        Ok(converted_459)
+        let converted_518 = (&self.inner.positive).to_owned().into_py_any(py)?;
+        Ok(converted_518)
     }
 
     #[getter]
     fn negative(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_460 = (&self.inner.negative).to_owned().into_py_any(py)?;
-        Ok(converted_460)
+        let converted_519 = (&self.inner.negative).to_owned().into_py_any(py)?;
+        Ok(converted_519)
     }
 
     #[getter]
     fn neutral(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_461 = (&self.inner.neutral).to_owned().into_py_any(py)?;
-        Ok(converted_461)
+        let converted_520 = (&self.inner.neutral).to_owned().into_py_any(py)?;
+        Ok(converted_520)
     }
 
     #[getter]
     fn mixed(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_462 = (&self.inner.mixed).to_owned().into_py_any(py)?;
-        Ok(converted_462)
+        let converted_521 = (&self.inner.mixed).to_owned().into_py_any(py)?;
+        Ok(converted_521)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -2435,9 +2906,94 @@ impl PySentimentScore {
     }
 }
 
+struct SharedSessionState {
+    dialog_action: Option<Arc<SharedDialogAction>>,
+    intent: Option<Arc<SharedIntent>>,
+    active_contexts: Option<::std::vec::Vec<Arc<SharedActiveContext>>>,
+    session_attributes:
+        Option<::std::collections::HashMap<::std::string::String, ::std::string::String>>,
+    originating_request_id: Option<::std::string::String>,
+    runtime_hints: Option<Arc<SharedRuntimeHints>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_lexruntimev2::types::SessionState> for SharedSessionState {
+    fn from(value: aws_sdk_lexruntimev2::types::SessionState) -> Self {
+        Self {
+            dialog_action: value
+                .dialog_action
+                .map(|item| Arc::new(SharedDialogAction::from(item))),
+            intent: value.intent.map(|item| Arc::new(SharedIntent::from(item))),
+            active_contexts: value.active_contexts.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_534| Arc::new(SharedActiveContext::from(owned_534)))
+                    .collect()
+            }),
+            session_attributes: value.session_attributes,
+            originating_request_id: value.originating_request_id,
+            runtime_hints: value
+                .runtime_hints
+                .map(|item| Arc::new(SharedRuntimeHints::from(item))),
+        }
+    }
+}
+
+fn session_state_shared_to_py(py: Python<'_>, value: &SharedSessionState) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.dialog_action {
+        let converted_535 = dialog_action_shared_to_py(py, value)?;
+        result.set_item("dialog_action", converted_535)?;
+    } else {
+        result.set_item("dialog_action", py.None())?;
+    }
+    if let Some(value) = &value.intent {
+        let converted_536 = intent_shared_to_py(py, value)?;
+        result.set_item("intent", converted_536)?;
+    } else {
+        result.set_item("intent", py.None())?;
+    }
+    if let Some(value) = &value.active_contexts {
+        let converted_537_list = PyList::empty(py);
+        for item_538 in value {
+            let converted_item_539 = active_context_shared_to_py(py, item_538)?;
+            converted_537_list.append(converted_item_539)?;
+        }
+        let converted_537 = converted_537_list.into_any().unbind();
+        result.set_item("active_contexts", converted_537)?;
+    } else {
+        result.set_item("active_contexts", py.None())?;
+    }
+    if let Some(value) = &value.session_attributes {
+        let converted_540_dict = PyDict::new(py);
+        for (key_541, value_542) in value {
+            let converted_key_543 = (key_541).as_str().into_py_any(py)?;
+            let converted_value_544 = (value_542).as_str().into_py_any(py)?;
+            converted_540_dict.set_item(converted_key_543, converted_value_544)?;
+        }
+        let converted_540 = converted_540_dict.into_any().unbind();
+        result.set_item("session_attributes", converted_540)?;
+    } else {
+        result.set_item("session_attributes", py.None())?;
+    }
+    if let Some(value) = &value.originating_request_id {
+        let converted_545 = (value).as_str().into_py_any(py)?;
+        result.set_item("originating_request_id", converted_545)?;
+    } else {
+        result.set_item("originating_request_id", py.None())?;
+    }
+    if let Some(value) = &value.runtime_hints {
+        let converted_546 = runtime_hints_shared_to_py(py, value)?;
+        result.set_item("runtime_hints", converted_546)?;
+    } else {
+        result.set_item("runtime_hints", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 #[pyclass(name = "SessionState", module = "rboto_lex_runtime_v2._native", frozen)]
 struct PySessionState {
-    inner: aws_sdk_lexruntimev2::types::SessionState,
+    inner: Arc<SharedSessionState>,
 }
 
 #[pymethods]
@@ -2445,14 +3001,14 @@ impl PySessionState {
     #[getter]
     fn dialog_action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dialog_action {
-            let converted_463 = Py::new(
+            let converted_522 = Py::new(
                 py,
                 PyDialogAction {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_463)
+            Ok(converted_522)
         } else {
             Ok(py.None())
         }
@@ -2461,14 +3017,14 @@ impl PySessionState {
     #[getter]
     fn intent(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.intent {
-            let converted_464 = Py::new(
+            let converted_523 = Py::new(
                 py,
                 PyIntent {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_464)
+            Ok(converted_523)
         } else {
             Ok(py.None())
         }
@@ -2477,19 +3033,19 @@ impl PySessionState {
     #[getter]
     fn active_contexts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.active_contexts {
-            let converted_465_list = PyList::empty(py);
-            for item_466 in value {
-                let converted_item_467 = Py::new(
+            let converted_524_list = PyList::empty(py);
+            for item_525 in value {
+                let converted_item_526 = Py::new(
                     py,
                     PyActiveContext {
-                        inner: (item_466).to_owned(),
+                        inner: Arc::clone(item_525),
                     },
                 )?
                 .into_any();
-                converted_465_list.append(converted_item_467)?;
+                converted_524_list.append(converted_item_526)?;
             }
-            let converted_465 = converted_465_list.into_any().unbind();
-            Ok(converted_465)
+            let converted_524 = converted_524_list.into_any().unbind();
+            Ok(converted_524)
         } else {
             Ok(py.None())
         }
@@ -2498,14 +3054,14 @@ impl PySessionState {
     #[getter]
     fn session_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_attributes {
-            let converted_468_dict = PyDict::new(py);
-            for (key_469, value_470) in value {
-                let converted_key_471 = (key_469).as_str().into_py_any(py)?;
-                let converted_value_472 = (value_470).as_str().into_py_any(py)?;
-                converted_468_dict.set_item(converted_key_471, converted_value_472)?;
+            let converted_527_dict = PyDict::new(py);
+            for (key_528, value_529) in value {
+                let converted_key_530 = (key_528).as_str().into_py_any(py)?;
+                let converted_value_531 = (value_529).as_str().into_py_any(py)?;
+                converted_527_dict.set_item(converted_key_530, converted_value_531)?;
             }
-            let converted_468 = converted_468_dict.into_any().unbind();
-            Ok(converted_468)
+            let converted_527 = converted_527_dict.into_any().unbind();
+            Ok(converted_527)
         } else {
             Ok(py.None())
         }
@@ -2514,8 +3070,8 @@ impl PySessionState {
     #[getter]
     fn originating_request_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.originating_request_id {
-            let converted_473 = (value).as_str().into_py_any(py)?;
-            Ok(converted_473)
+            let converted_532 = (value).as_str().into_py_any(py)?;
+            Ok(converted_532)
         } else {
             Ok(py.None())
         }
@@ -2524,27 +3080,96 @@ impl PySessionState {
     #[getter]
     fn runtime_hints(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.runtime_hints {
-            let converted_474 = Py::new(
+            let converted_533 = Py::new(
                 py,
                 PyRuntimeHints {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_474)
+            Ok(converted_533)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        session_state_to_py(py, &self.inner)
+        session_state_shared_to_py(py, &self.inner)
     }
+}
+
+struct SharedSlot {
+    value: Option<Arc<aws_sdk_lexruntimev2::types::Value>>,
+    shape: Option<aws_sdk_lexruntimev2::types::Shape>,
+    values: Option<::std::vec::Vec<Arc<SharedSlot>>>,
+    sub_slots: Option<::std::collections::HashMap<::std::string::String, Arc<SharedSlot>>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_lexruntimev2::types::Slot> for SharedSlot {
+    fn from(value: aws_sdk_lexruntimev2::types::Slot) -> Self {
+        Self {
+            value: value.value.map(|item| Arc::new(item)),
+            shape: value.shape,
+            values: value.values.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_557| Arc::new(SharedSlot::from(owned_557)))
+                    .collect()
+            }),
+            sub_slots: value.sub_slots.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|(key, owned_558)| (key, Arc::new(SharedSlot::from(owned_558))))
+                    .collect()
+            }),
+        }
+    }
+}
+
+fn slot_shared_to_py(py: Python<'_>, value: &SharedSlot) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.value {
+        let converted_559 = value_to_py(py, value)?;
+        result.set_item("value", converted_559)?;
+    } else {
+        result.set_item("value", py.None())?;
+    }
+    if let Some(value) = &value.shape {
+        let converted_560 = (value).as_str().into_py_any(py)?;
+        result.set_item("shape", converted_560)?;
+    } else {
+        result.set_item("shape", py.None())?;
+    }
+    if let Some(value) = &value.values {
+        let converted_561_list = PyList::empty(py);
+        for item_562 in value {
+            let converted_item_563 = slot_shared_to_py(py, item_562)?;
+            converted_561_list.append(converted_item_563)?;
+        }
+        let converted_561 = converted_561_list.into_any().unbind();
+        result.set_item("values", converted_561)?;
+    } else {
+        result.set_item("values", py.None())?;
+    }
+    if let Some(value) = &value.sub_slots {
+        let converted_564_dict = PyDict::new(py);
+        for (key_565, value_566) in value {
+            let converted_key_567 = (key_565).as_str().into_py_any(py)?;
+            let converted_value_568 = slot_shared_to_py(py, value_566)?;
+            converted_564_dict.set_item(converted_key_567, converted_value_568)?;
+        }
+        let converted_564 = converted_564_dict.into_any().unbind();
+        result.set_item("sub_slots", converted_564)?;
+    } else {
+        result.set_item("sub_slots", py.None())?;
+    }
+    Ok(result.into_any().unbind())
 }
 
 #[pyclass(name = "Slot", module = "rboto_lex_runtime_v2._native", frozen)]
 struct PySlot {
-    inner: aws_sdk_lexruntimev2::types::Slot,
+    inner: Arc<SharedSlot>,
 }
 
 #[pymethods]
@@ -2552,14 +3177,14 @@ impl PySlot {
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.value {
-            let converted_475 = Py::new(
+            let converted_547 = Py::new(
                 py,
                 PyValue {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_475)
+            Ok(converted_547)
         } else {
             Ok(py.None())
         }
@@ -2568,8 +3193,8 @@ impl PySlot {
     #[getter]
     fn shape(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.shape {
-            let converted_476 = (value).as_str().into_py_any(py)?;
-            Ok(converted_476)
+            let converted_548 = (value).as_str().into_py_any(py)?;
+            Ok(converted_548)
         } else {
             Ok(py.None())
         }
@@ -2578,19 +3203,19 @@ impl PySlot {
     #[getter]
     fn values(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.values {
-            let converted_477_list = PyList::empty(py);
-            for item_478 in value {
-                let converted_item_479 = Py::new(
+            let converted_549_list = PyList::empty(py);
+            for item_550 in value {
+                let converted_item_551 = Py::new(
                     py,
                     PySlot {
-                        inner: (item_478).to_owned(),
+                        inner: Arc::clone(item_550),
                     },
                 )?
                 .into_any();
-                converted_477_list.append(converted_item_479)?;
+                converted_549_list.append(converted_item_551)?;
             }
-            let converted_477 = converted_477_list.into_any().unbind();
-            Ok(converted_477)
+            let converted_549 = converted_549_list.into_any().unbind();
+            Ok(converted_549)
         } else {
             Ok(py.None())
         }
@@ -2599,33 +3224,33 @@ impl PySlot {
     #[getter]
     fn sub_slots(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sub_slots {
-            let converted_480_dict = PyDict::new(py);
-            for (key_481, value_482) in value {
-                let converted_key_483 = (key_481).as_str().into_py_any(py)?;
-                let converted_value_484 = Py::new(
+            let converted_552_dict = PyDict::new(py);
+            for (key_553, value_554) in value {
+                let converted_key_555 = (key_553).as_str().into_py_any(py)?;
+                let converted_value_556 = Py::new(
                     py,
                     PySlot {
-                        inner: (value_482).to_owned(),
+                        inner: Arc::clone(value_554),
                     },
                 )?
                 .into_any();
-                converted_480_dict.set_item(converted_key_483, converted_value_484)?;
+                converted_552_dict.set_item(converted_key_555, converted_value_556)?;
             }
-            let converted_480 = converted_480_dict.into_any().unbind();
-            Ok(converted_480)
+            let converted_552 = converted_552_dict.into_any().unbind();
+            Ok(converted_552)
         } else {
             Ok(py.None())
         }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        slot_to_py(py, &self.inner)
+        slot_shared_to_py(py, &self.inner)
     }
 }
 
 #[pyclass(name = "Value", module = "rboto_lex_runtime_v2._native", frozen)]
 struct PyValue {
-    inner: aws_sdk_lexruntimev2::types::Value,
+    inner: Arc<aws_sdk_lexruntimev2::types::Value>,
 }
 
 #[pymethods]
@@ -2633,8 +3258,8 @@ impl PyValue {
     #[getter]
     fn original_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.original_value {
-            let converted_485 = (value).as_str().into_py_any(py)?;
-            Ok(converted_485)
+            let converted_569 = (value).as_str().into_py_any(py)?;
+            Ok(converted_569)
         } else {
             Ok(py.None())
         }
@@ -2642,20 +3267,20 @@ impl PyValue {
 
     #[getter]
     fn interpreted_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_486 = (&self.inner.interpreted_value).as_str().into_py_any(py)?;
-        Ok(converted_486)
+        let converted_570 = (&self.inner.interpreted_value).as_str().into_py_any(py)?;
+        Ok(converted_570)
     }
 
     #[getter]
     fn resolved_values(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resolved_values {
-            let converted_487_list = PyList::empty(py);
-            for item_488 in value {
-                let converted_item_489 = (item_488).as_str().into_py_any(py)?;
-                converted_487_list.append(converted_item_489)?;
+            let converted_571_list = PyList::empty(py);
+            for item_572 in value {
+                let converted_item_573 = (item_572).as_str().into_py_any(py)?;
+                converted_571_list.append(converted_item_573)?;
             }
-            let converted_487 = converted_487_list.into_any().unbind();
-            Ok(converted_487)
+            let converted_571 = converted_571_list.into_any().unbind();
+            Ok(converted_571)
         } else {
             Ok(py.None())
         }
@@ -2680,8 +3305,8 @@ impl PyOperationDeleteSessionOutput {
     #[getter]
     fn bot_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.bot_id {
-            let converted_490 = (value).as_str().into_py_any(py)?;
-            Ok(converted_490)
+            let converted_574 = (value).as_str().into_py_any(py)?;
+            Ok(converted_574)
         } else {
             Ok(py.None())
         }
@@ -2690,8 +3315,8 @@ impl PyOperationDeleteSessionOutput {
     #[getter]
     fn bot_alias_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.bot_alias_id {
-            let converted_491 = (value).as_str().into_py_any(py)?;
-            Ok(converted_491)
+            let converted_575 = (value).as_str().into_py_any(py)?;
+            Ok(converted_575)
         } else {
             Ok(py.None())
         }
@@ -2700,8 +3325,8 @@ impl PyOperationDeleteSessionOutput {
     #[getter]
     fn locale_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.locale_id {
-            let converted_492 = (value).as_str().into_py_any(py)?;
-            Ok(converted_492)
+            let converted_576 = (value).as_str().into_py_any(py)?;
+            Ok(converted_576)
         } else {
             Ok(py.None())
         }
@@ -2710,8 +3335,8 @@ impl PyOperationDeleteSessionOutput {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_id {
-            let converted_493 = (value).as_str().into_py_any(py)?;
-            Ok(converted_493)
+            let converted_577 = (value).as_str().into_py_any(py)?;
+            Ok(converted_577)
         } else {
             Ok(py.None())
         }
@@ -2720,30 +3345,63 @@ impl PyOperationDeleteSessionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.bot_id {
-            let converted_494 = (value).as_str().into_py_any(py)?;
-            result.set_item("bot_id", converted_494)?;
+            let converted_578 = (value).as_str().into_py_any(py)?;
+            result.set_item("bot_id", converted_578)?;
         } else {
             result.set_item("bot_id", py.None())?;
         }
         if let Some(value) = &self.inner.bot_alias_id {
-            let converted_495 = (value).as_str().into_py_any(py)?;
-            result.set_item("bot_alias_id", converted_495)?;
+            let converted_579 = (value).as_str().into_py_any(py)?;
+            result.set_item("bot_alias_id", converted_579)?;
         } else {
             result.set_item("bot_alias_id", py.None())?;
         }
         if let Some(value) = &self.inner.locale_id {
-            let converted_496 = (value).as_str().into_py_any(py)?;
-            result.set_item("locale_id", converted_496)?;
+            let converted_580 = (value).as_str().into_py_any(py)?;
+            result.set_item("locale_id", converted_580)?;
         } else {
             result.set_item("locale_id", py.None())?;
         }
         if let Some(value) = &self.inner.session_id {
-            let converted_497 = (value).as_str().into_py_any(py)?;
-            result.set_item("session_id", converted_497)?;
+            let converted_581 = (value).as_str().into_py_any(py)?;
+            result.set_item("session_id", converted_581)?;
         } else {
             result.set_item("session_id", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationGetSessionOutput {
+    session_id: Option<::std::string::String>,
+    messages: Option<::std::vec::Vec<Arc<SharedMessage>>>,
+    interpretations: Option<::std::vec::Vec<Arc<SharedInterpretation>>>,
+    session_state: Option<Arc<SharedSessionState>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_lexruntimev2::operation::get_session::GetSessionOutput>
+    for SharedPyOperationGetSessionOutput
+{
+    fn from(value: aws_sdk_lexruntimev2::operation::get_session::GetSessionOutput) -> Self {
+        Self {
+            session_id: value.session_id,
+            messages: value.messages.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_590| Arc::new(SharedMessage::from(owned_590)))
+                    .collect()
+            }),
+            interpretations: value.interpretations.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_591| Arc::new(SharedInterpretation::from(owned_591)))
+                    .collect()
+            }),
+            session_state: value
+                .session_state
+                .map(|item| Arc::new(SharedSessionState::from(item))),
+        }
     }
 }
 
@@ -2753,7 +3411,7 @@ impl PyOperationDeleteSessionOutput {
     frozen
 )]
 struct PyOperationGetSessionOutput {
-    inner: aws_sdk_lexruntimev2::operation::get_session::GetSessionOutput,
+    inner: SharedPyOperationGetSessionOutput,
 }
 
 #[pymethods]
@@ -2761,8 +3419,8 @@ impl PyOperationGetSessionOutput {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_id {
-            let converted_498 = (value).as_str().into_py_any(py)?;
-            Ok(converted_498)
+            let converted_582 = (value).as_str().into_py_any(py)?;
+            Ok(converted_582)
         } else {
             Ok(py.None())
         }
@@ -2771,19 +3429,19 @@ impl PyOperationGetSessionOutput {
     #[getter]
     fn messages(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.messages {
-            let converted_499_list = PyList::empty(py);
-            for item_500 in value {
-                let converted_item_501 = Py::new(
+            let converted_583_list = PyList::empty(py);
+            for item_584 in value {
+                let converted_item_585 = Py::new(
                     py,
                     PyMessage {
-                        inner: (item_500).to_owned(),
+                        inner: Arc::clone(item_584),
                     },
                 )?
                 .into_any();
-                converted_499_list.append(converted_item_501)?;
+                converted_583_list.append(converted_item_585)?;
             }
-            let converted_499 = converted_499_list.into_any().unbind();
-            Ok(converted_499)
+            let converted_583 = converted_583_list.into_any().unbind();
+            Ok(converted_583)
         } else {
             Ok(py.None())
         }
@@ -2792,19 +3450,19 @@ impl PyOperationGetSessionOutput {
     #[getter]
     fn interpretations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.interpretations {
-            let converted_502_list = PyList::empty(py);
-            for item_503 in value {
-                let converted_item_504 = Py::new(
+            let converted_586_list = PyList::empty(py);
+            for item_587 in value {
+                let converted_item_588 = Py::new(
                     py,
                     PyInterpretation {
-                        inner: (item_503).to_owned(),
+                        inner: Arc::clone(item_587),
                     },
                 )?
                 .into_any();
-                converted_502_list.append(converted_item_504)?;
+                converted_586_list.append(converted_item_588)?;
             }
-            let converted_502 = converted_502_list.into_any().unbind();
-            Ok(converted_502)
+            let converted_586 = converted_586_list.into_any().unbind();
+            Ok(converted_586)
         } else {
             Ok(py.None())
         }
@@ -2813,14 +3471,14 @@ impl PyOperationGetSessionOutput {
     #[getter]
     fn session_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_state {
-            let converted_505 = Py::new(
+            let converted_589 = Py::new(
                 py,
                 PySessionState {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_505)
+            Ok(converted_589)
         } else {
             Ok(py.None())
         }
@@ -2829,36 +3487,36 @@ impl PyOperationGetSessionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.session_id {
-            let converted_506 = (value).as_str().into_py_any(py)?;
-            result.set_item("session_id", converted_506)?;
+            let converted_592 = (value).as_str().into_py_any(py)?;
+            result.set_item("session_id", converted_592)?;
         } else {
             result.set_item("session_id", py.None())?;
         }
         if let Some(value) = &self.inner.messages {
-            let converted_507_list = PyList::empty(py);
-            for item_508 in value {
-                let converted_item_509 = message_to_py(py, item_508)?;
-                converted_507_list.append(converted_item_509)?;
+            let converted_593_list = PyList::empty(py);
+            for item_594 in value {
+                let converted_item_595 = message_shared_to_py(py, item_594)?;
+                converted_593_list.append(converted_item_595)?;
             }
-            let converted_507 = converted_507_list.into_any().unbind();
-            result.set_item("messages", converted_507)?;
+            let converted_593 = converted_593_list.into_any().unbind();
+            result.set_item("messages", converted_593)?;
         } else {
             result.set_item("messages", py.None())?;
         }
         if let Some(value) = &self.inner.interpretations {
-            let converted_510_list = PyList::empty(py);
-            for item_511 in value {
-                let converted_item_512 = interpretation_to_py(py, item_511)?;
-                converted_510_list.append(converted_item_512)?;
+            let converted_596_list = PyList::empty(py);
+            for item_597 in value {
+                let converted_item_598 = interpretation_shared_to_py(py, item_597)?;
+                converted_596_list.append(converted_item_598)?;
             }
-            let converted_510 = converted_510_list.into_any().unbind();
-            result.set_item("interpretations", converted_510)?;
+            let converted_596 = converted_596_list.into_any().unbind();
+            result.set_item("interpretations", converted_596)?;
         } else {
             result.set_item("interpretations", py.None())?;
         }
         if let Some(value) = &self.inner.session_state {
-            let converted_513 = session_state_to_py(py, value)?;
-            result.set_item("session_state", converted_513)?;
+            let converted_599 = session_state_shared_to_py(py, value)?;
+            result.set_item("session_state", converted_599)?;
         } else {
             result.set_item("session_state", py.None())?;
         }
@@ -2881,8 +3539,8 @@ impl PyOperationPutSessionOutput {
     #[getter]
     fn content_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.content_type {
-            let converted_514 = (value).as_str().into_py_any(py)?;
-            Ok(converted_514)
+            let converted_600 = (value).as_str().into_py_any(py)?;
+            Ok(converted_600)
         } else {
             Ok(py.None())
         }
@@ -2891,8 +3549,8 @@ impl PyOperationPutSessionOutput {
     #[getter]
     fn messages(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.messages {
-            let converted_515 = (value).as_str().into_py_any(py)?;
-            Ok(converted_515)
+            let converted_601 = (value).as_str().into_py_any(py)?;
+            Ok(converted_601)
         } else {
             Ok(py.None())
         }
@@ -2901,8 +3559,8 @@ impl PyOperationPutSessionOutput {
     #[getter]
     fn session_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_state {
-            let converted_516 = (value).as_str().into_py_any(py)?;
-            Ok(converted_516)
+            let converted_602 = (value).as_str().into_py_any(py)?;
+            Ok(converted_602)
         } else {
             Ok(py.None())
         }
@@ -2911,8 +3569,8 @@ impl PyOperationPutSessionOutput {
     #[getter]
     fn request_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.request_attributes {
-            let converted_517 = (value).as_str().into_py_any(py)?;
-            Ok(converted_517)
+            let converted_603 = (value).as_str().into_py_any(py)?;
+            Ok(converted_603)
         } else {
             Ok(py.None())
         }
@@ -2921,8 +3579,8 @@ impl PyOperationPutSessionOutput {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_id {
-            let converted_518 = (value).as_str().into_py_any(py)?;
-            Ok(converted_518)
+            let converted_604 = (value).as_str().into_py_any(py)?;
+            Ok(converted_604)
         } else {
             Ok(py.None())
         }
@@ -2936,37 +3594,75 @@ impl PyOperationPutSessionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.content_type {
-            let converted_519 = (value).as_str().into_py_any(py)?;
-            result.set_item("content_type", converted_519)?;
+            let converted_605 = (value).as_str().into_py_any(py)?;
+            result.set_item("content_type", converted_605)?;
         } else {
             result.set_item("content_type", py.None())?;
         }
         if let Some(value) = &self.inner.messages {
-            let converted_520 = (value).as_str().into_py_any(py)?;
-            result.set_item("messages", converted_520)?;
+            let converted_606 = (value).as_str().into_py_any(py)?;
+            result.set_item("messages", converted_606)?;
         } else {
             result.set_item("messages", py.None())?;
         }
         if let Some(value) = &self.inner.session_state {
-            let converted_521 = (value).as_str().into_py_any(py)?;
-            result.set_item("session_state", converted_521)?;
+            let converted_607 = (value).as_str().into_py_any(py)?;
+            result.set_item("session_state", converted_607)?;
         } else {
             result.set_item("session_state", py.None())?;
         }
         if let Some(value) = &self.inner.request_attributes {
-            let converted_522 = (value).as_str().into_py_any(py)?;
-            result.set_item("request_attributes", converted_522)?;
+            let converted_608 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_attributes", converted_608)?;
         } else {
             result.set_item("request_attributes", py.None())?;
         }
         if let Some(value) = &self.inner.session_id {
-            let converted_523 = (value).as_str().into_py_any(py)?;
-            result.set_item("session_id", converted_523)?;
+            let converted_609 = (value).as_str().into_py_any(py)?;
+            result.set_item("session_id", converted_609)?;
         } else {
             result.set_item("session_id", py.None())?;
         }
         result.set_item("audio_stream", self.audio_stream.clone_ref(py))?;
         Ok(result.into_any().unbind())
+    }
+}
+
+struct SharedPyOperationRecognizeTextOutput {
+    messages: Option<::std::vec::Vec<Arc<SharedMessage>>>,
+    session_state: Option<Arc<SharedSessionState>>,
+    interpretations: Option<::std::vec::Vec<Arc<SharedInterpretation>>>,
+    request_attributes:
+        Option<::std::collections::HashMap<::std::string::String, ::std::string::String>>,
+    session_id: Option<::std::string::String>,
+    recognized_bot_member: Option<Arc<aws_sdk_lexruntimev2::types::RecognizedBotMember>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_lexruntimev2::operation::recognize_text::RecognizeTextOutput>
+    for SharedPyOperationRecognizeTextOutput
+{
+    fn from(value: aws_sdk_lexruntimev2::operation::recognize_text::RecognizeTextOutput) -> Self {
+        Self {
+            messages: value.messages.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_624| Arc::new(SharedMessage::from(owned_624)))
+                    .collect()
+            }),
+            session_state: value
+                .session_state
+                .map(|item| Arc::new(SharedSessionState::from(item))),
+            interpretations: value.interpretations.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_625| Arc::new(SharedInterpretation::from(owned_625)))
+                    .collect()
+            }),
+            request_attributes: value.request_attributes,
+            session_id: value.session_id,
+            recognized_bot_member: value.recognized_bot_member.map(|item| Arc::new(item)),
+        }
     }
 }
 
@@ -2976,7 +3672,7 @@ impl PyOperationPutSessionOutput {
     frozen
 )]
 struct PyOperationRecognizeTextOutput {
-    inner: aws_sdk_lexruntimev2::operation::recognize_text::RecognizeTextOutput,
+    inner: SharedPyOperationRecognizeTextOutput,
 }
 
 #[pymethods]
@@ -2984,19 +3680,19 @@ impl PyOperationRecognizeTextOutput {
     #[getter]
     fn messages(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.messages {
-            let converted_524_list = PyList::empty(py);
-            for item_525 in value {
-                let converted_item_526 = Py::new(
+            let converted_610_list = PyList::empty(py);
+            for item_611 in value {
+                let converted_item_612 = Py::new(
                     py,
                     PyMessage {
-                        inner: (item_525).to_owned(),
+                        inner: Arc::clone(item_611),
                     },
                 )?
                 .into_any();
-                converted_524_list.append(converted_item_526)?;
+                converted_610_list.append(converted_item_612)?;
             }
-            let converted_524 = converted_524_list.into_any().unbind();
-            Ok(converted_524)
+            let converted_610 = converted_610_list.into_any().unbind();
+            Ok(converted_610)
         } else {
             Ok(py.None())
         }
@@ -3005,14 +3701,14 @@ impl PyOperationRecognizeTextOutput {
     #[getter]
     fn session_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_state {
-            let converted_527 = Py::new(
+            let converted_613 = Py::new(
                 py,
                 PySessionState {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_527)
+            Ok(converted_613)
         } else {
             Ok(py.None())
         }
@@ -3021,19 +3717,19 @@ impl PyOperationRecognizeTextOutput {
     #[getter]
     fn interpretations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.interpretations {
-            let converted_528_list = PyList::empty(py);
-            for item_529 in value {
-                let converted_item_530 = Py::new(
+            let converted_614_list = PyList::empty(py);
+            for item_615 in value {
+                let converted_item_616 = Py::new(
                     py,
                     PyInterpretation {
-                        inner: (item_529).to_owned(),
+                        inner: Arc::clone(item_615),
                     },
                 )?
                 .into_any();
-                converted_528_list.append(converted_item_530)?;
+                converted_614_list.append(converted_item_616)?;
             }
-            let converted_528 = converted_528_list.into_any().unbind();
-            Ok(converted_528)
+            let converted_614 = converted_614_list.into_any().unbind();
+            Ok(converted_614)
         } else {
             Ok(py.None())
         }
@@ -3042,14 +3738,14 @@ impl PyOperationRecognizeTextOutput {
     #[getter]
     fn request_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.request_attributes {
-            let converted_531_dict = PyDict::new(py);
-            for (key_532, value_533) in value {
-                let converted_key_534 = (key_532).as_str().into_py_any(py)?;
-                let converted_value_535 = (value_533).as_str().into_py_any(py)?;
-                converted_531_dict.set_item(converted_key_534, converted_value_535)?;
+            let converted_617_dict = PyDict::new(py);
+            for (key_618, value_619) in value {
+                let converted_key_620 = (key_618).as_str().into_py_any(py)?;
+                let converted_value_621 = (value_619).as_str().into_py_any(py)?;
+                converted_617_dict.set_item(converted_key_620, converted_value_621)?;
             }
-            let converted_531 = converted_531_dict.into_any().unbind();
-            Ok(converted_531)
+            let converted_617 = converted_617_dict.into_any().unbind();
+            Ok(converted_617)
         } else {
             Ok(py.None())
         }
@@ -3058,8 +3754,8 @@ impl PyOperationRecognizeTextOutput {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_id {
-            let converted_536 = (value).as_str().into_py_any(py)?;
-            Ok(converted_536)
+            let converted_622 = (value).as_str().into_py_any(py)?;
+            Ok(converted_622)
         } else {
             Ok(py.None())
         }
@@ -3068,14 +3764,14 @@ impl PyOperationRecognizeTextOutput {
     #[getter]
     fn recognized_bot_member(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.recognized_bot_member {
-            let converted_537 = Py::new(
+            let converted_623 = Py::new(
                 py,
                 PyRecognizedBotMember {
-                    inner: (value).to_owned(),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_537)
+            Ok(converted_623)
         } else {
             Ok(py.None())
         }
@@ -3084,54 +3780,54 @@ impl PyOperationRecognizeTextOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.messages {
-            let converted_538_list = PyList::empty(py);
-            for item_539 in value {
-                let converted_item_540 = message_to_py(py, item_539)?;
-                converted_538_list.append(converted_item_540)?;
+            let converted_626_list = PyList::empty(py);
+            for item_627 in value {
+                let converted_item_628 = message_shared_to_py(py, item_627)?;
+                converted_626_list.append(converted_item_628)?;
             }
-            let converted_538 = converted_538_list.into_any().unbind();
-            result.set_item("messages", converted_538)?;
+            let converted_626 = converted_626_list.into_any().unbind();
+            result.set_item("messages", converted_626)?;
         } else {
             result.set_item("messages", py.None())?;
         }
         if let Some(value) = &self.inner.session_state {
-            let converted_541 = session_state_to_py(py, value)?;
-            result.set_item("session_state", converted_541)?;
+            let converted_629 = session_state_shared_to_py(py, value)?;
+            result.set_item("session_state", converted_629)?;
         } else {
             result.set_item("session_state", py.None())?;
         }
         if let Some(value) = &self.inner.interpretations {
-            let converted_542_list = PyList::empty(py);
-            for item_543 in value {
-                let converted_item_544 = interpretation_to_py(py, item_543)?;
-                converted_542_list.append(converted_item_544)?;
+            let converted_630_list = PyList::empty(py);
+            for item_631 in value {
+                let converted_item_632 = interpretation_shared_to_py(py, item_631)?;
+                converted_630_list.append(converted_item_632)?;
             }
-            let converted_542 = converted_542_list.into_any().unbind();
-            result.set_item("interpretations", converted_542)?;
+            let converted_630 = converted_630_list.into_any().unbind();
+            result.set_item("interpretations", converted_630)?;
         } else {
             result.set_item("interpretations", py.None())?;
         }
         if let Some(value) = &self.inner.request_attributes {
-            let converted_545_dict = PyDict::new(py);
-            for (key_546, value_547) in value {
-                let converted_key_548 = (key_546).as_str().into_py_any(py)?;
-                let converted_value_549 = (value_547).as_str().into_py_any(py)?;
-                converted_545_dict.set_item(converted_key_548, converted_value_549)?;
+            let converted_633_dict = PyDict::new(py);
+            for (key_634, value_635) in value {
+                let converted_key_636 = (key_634).as_str().into_py_any(py)?;
+                let converted_value_637 = (value_635).as_str().into_py_any(py)?;
+                converted_633_dict.set_item(converted_key_636, converted_value_637)?;
             }
-            let converted_545 = converted_545_dict.into_any().unbind();
-            result.set_item("request_attributes", converted_545)?;
+            let converted_633 = converted_633_dict.into_any().unbind();
+            result.set_item("request_attributes", converted_633)?;
         } else {
             result.set_item("request_attributes", py.None())?;
         }
         if let Some(value) = &self.inner.session_id {
-            let converted_550 = (value).as_str().into_py_any(py)?;
-            result.set_item("session_id", converted_550)?;
+            let converted_638 = (value).as_str().into_py_any(py)?;
+            result.set_item("session_id", converted_638)?;
         } else {
             result.set_item("session_id", py.None())?;
         }
         if let Some(value) = &self.inner.recognized_bot_member {
-            let converted_551 = recognized_bot_member_to_py(py, value)?;
-            result.set_item("recognized_bot_member", converted_551)?;
+            let converted_639 = recognized_bot_member_to_py(py, value)?;
+            result.set_item("recognized_bot_member", converted_639)?;
         } else {
             result.set_item("recognized_bot_member", py.None())?;
         }
@@ -3154,8 +3850,8 @@ impl PyOperationRecognizeUtteranceOutput {
     #[getter]
     fn input_mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_mode {
-            let converted_552 = (value).as_str().into_py_any(py)?;
-            Ok(converted_552)
+            let converted_640 = (value).as_str().into_py_any(py)?;
+            Ok(converted_640)
         } else {
             Ok(py.None())
         }
@@ -3164,8 +3860,8 @@ impl PyOperationRecognizeUtteranceOutput {
     #[getter]
     fn content_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.content_type {
-            let converted_553 = (value).as_str().into_py_any(py)?;
-            Ok(converted_553)
+            let converted_641 = (value).as_str().into_py_any(py)?;
+            Ok(converted_641)
         } else {
             Ok(py.None())
         }
@@ -3174,8 +3870,8 @@ impl PyOperationRecognizeUtteranceOutput {
     #[getter]
     fn messages(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.messages {
-            let converted_554 = (value).as_str().into_py_any(py)?;
-            Ok(converted_554)
+            let converted_642 = (value).as_str().into_py_any(py)?;
+            Ok(converted_642)
         } else {
             Ok(py.None())
         }
@@ -3184,8 +3880,8 @@ impl PyOperationRecognizeUtteranceOutput {
     #[getter]
     fn interpretations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.interpretations {
-            let converted_555 = (value).as_str().into_py_any(py)?;
-            Ok(converted_555)
+            let converted_643 = (value).as_str().into_py_any(py)?;
+            Ok(converted_643)
         } else {
             Ok(py.None())
         }
@@ -3194,8 +3890,8 @@ impl PyOperationRecognizeUtteranceOutput {
     #[getter]
     fn session_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_state {
-            let converted_556 = (value).as_str().into_py_any(py)?;
-            Ok(converted_556)
+            let converted_644 = (value).as_str().into_py_any(py)?;
+            Ok(converted_644)
         } else {
             Ok(py.None())
         }
@@ -3204,8 +3900,8 @@ impl PyOperationRecognizeUtteranceOutput {
     #[getter]
     fn request_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.request_attributes {
-            let converted_557 = (value).as_str().into_py_any(py)?;
-            Ok(converted_557)
+            let converted_645 = (value).as_str().into_py_any(py)?;
+            Ok(converted_645)
         } else {
             Ok(py.None())
         }
@@ -3214,8 +3910,8 @@ impl PyOperationRecognizeUtteranceOutput {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_id {
-            let converted_558 = (value).as_str().into_py_any(py)?;
-            Ok(converted_558)
+            let converted_646 = (value).as_str().into_py_any(py)?;
+            Ok(converted_646)
         } else {
             Ok(py.None())
         }
@@ -3224,8 +3920,8 @@ impl PyOperationRecognizeUtteranceOutput {
     #[getter]
     fn input_transcript(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_transcript {
-            let converted_559 = (value).as_str().into_py_any(py)?;
-            Ok(converted_559)
+            let converted_647 = (value).as_str().into_py_any(py)?;
+            Ok(converted_647)
         } else {
             Ok(py.None())
         }
@@ -3239,8 +3935,8 @@ impl PyOperationRecognizeUtteranceOutput {
     #[getter]
     fn recognized_bot_member(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.recognized_bot_member {
-            let converted_560 = (value).as_str().into_py_any(py)?;
-            Ok(converted_560)
+            let converted_648 = (value).as_str().into_py_any(py)?;
+            Ok(converted_648)
         } else {
             Ok(py.None())
         }
@@ -3249,57 +3945,57 @@ impl PyOperationRecognizeUtteranceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.input_mode {
-            let converted_561 = (value).as_str().into_py_any(py)?;
-            result.set_item("input_mode", converted_561)?;
+            let converted_649 = (value).as_str().into_py_any(py)?;
+            result.set_item("input_mode", converted_649)?;
         } else {
             result.set_item("input_mode", py.None())?;
         }
         if let Some(value) = &self.inner.content_type {
-            let converted_562 = (value).as_str().into_py_any(py)?;
-            result.set_item("content_type", converted_562)?;
+            let converted_650 = (value).as_str().into_py_any(py)?;
+            result.set_item("content_type", converted_650)?;
         } else {
             result.set_item("content_type", py.None())?;
         }
         if let Some(value) = &self.inner.messages {
-            let converted_563 = (value).as_str().into_py_any(py)?;
-            result.set_item("messages", converted_563)?;
+            let converted_651 = (value).as_str().into_py_any(py)?;
+            result.set_item("messages", converted_651)?;
         } else {
             result.set_item("messages", py.None())?;
         }
         if let Some(value) = &self.inner.interpretations {
-            let converted_564 = (value).as_str().into_py_any(py)?;
-            result.set_item("interpretations", converted_564)?;
+            let converted_652 = (value).as_str().into_py_any(py)?;
+            result.set_item("interpretations", converted_652)?;
         } else {
             result.set_item("interpretations", py.None())?;
         }
         if let Some(value) = &self.inner.session_state {
-            let converted_565 = (value).as_str().into_py_any(py)?;
-            result.set_item("session_state", converted_565)?;
+            let converted_653 = (value).as_str().into_py_any(py)?;
+            result.set_item("session_state", converted_653)?;
         } else {
             result.set_item("session_state", py.None())?;
         }
         if let Some(value) = &self.inner.request_attributes {
-            let converted_566 = (value).as_str().into_py_any(py)?;
-            result.set_item("request_attributes", converted_566)?;
+            let converted_654 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_attributes", converted_654)?;
         } else {
             result.set_item("request_attributes", py.None())?;
         }
         if let Some(value) = &self.inner.session_id {
-            let converted_567 = (value).as_str().into_py_any(py)?;
-            result.set_item("session_id", converted_567)?;
+            let converted_655 = (value).as_str().into_py_any(py)?;
+            result.set_item("session_id", converted_655)?;
         } else {
             result.set_item("session_id", py.None())?;
         }
         if let Some(value) = &self.inner.input_transcript {
-            let converted_568 = (value).as_str().into_py_any(py)?;
-            result.set_item("input_transcript", converted_568)?;
+            let converted_656 = (value).as_str().into_py_any(py)?;
+            result.set_item("input_transcript", converted_656)?;
         } else {
             result.set_item("input_transcript", py.None())?;
         }
         result.set_item("audio_stream", self.audio_stream.clone_ref(py))?;
         if let Some(value) = &self.inner.recognized_bot_member {
-            let converted_569 = (value).as_str().into_py_any(py)?;
-            result.set_item("recognized_bot_member", converted_569)?;
+            let converted_657 = (value).as_str().into_py_any(py)?;
+            result.set_item("recognized_bot_member", converted_657)?;
         } else {
             result.set_item("recognized_bot_member", py.None())?;
         }
@@ -3556,7 +4252,9 @@ impl LexRuntimeV2Client {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetSession")))?;
-            Ok(PyOperationGetSessionOutput { inner: output })
+            Ok(PyOperationGetSessionOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -3656,8 +4354,8 @@ impl LexRuntimeV2Client {
             };
             let mut output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutSession")))?;
+            let audio_stream = std::mem::take(&mut output.audio_stream);
             Python::attach(|py| {
-                let audio_stream = std::mem::take(&mut output.audio_stream);
                 let py_audio_stream = Py::new(py, PyByteStream::new(audio_stream))?;
                 Py::new(
                     py,
@@ -3753,7 +4451,9 @@ impl LexRuntimeV2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RecognizeText"))
             })?;
-            Ok(PyOperationRecognizeTextOutput { inner: output })
+            Ok(PyOperationRecognizeTextOutput {
+                inner: output.into(),
+            })
         })
     }
 
@@ -3851,8 +4551,8 @@ impl LexRuntimeV2Client {
             let mut output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RecognizeUtterance"))
             })?;
+            let audio_stream = std::mem::take(&mut output.audio_stream);
             Python::attach(|py| {
-                let audio_stream = std::mem::take(&mut output.audio_stream);
                 let py_audio_stream = Py::new(py, PyByteStream::new(audio_stream))?;
                 Py::new(
                     py,
