@@ -22,6 +22,22 @@ class SignInClient:
 
     logger_name = "rboto.signin"
 
+    @staticmethod
+    def _stub_operations() -> dict[str, str]:
+        return {
+            "create_o_auth2_token": "CreateOAuth2Token",
+            "create_o_auth2_token_with_iam": "CreateOAuth2TokenWithIAM",
+            "delete_console_authorization_configuration": "DeleteConsoleAuthorizationConfiguration",
+            "delete_resource_permission_statement": "DeleteResourcePermissionStatement",
+            "get_console_authorization_configuration": "GetConsoleAuthorizationConfiguration",
+            "get_resource_policy": "GetResourcePolicy",
+            "introspect_o_auth2_token_with_iam": "IntrospectOAuth2TokenWithIAM",
+            "list_resource_permission_statements": "ListResourcePermissionStatements",
+            "put_console_authorization_configuration": "PutConsoleAuthorizationConfiguration",
+            "put_resource_permission_statement": "PutResourcePermissionStatement",
+            "revoke_o_auth2_token_with_iam": "RevokeOAuth2TokenWithIAM",
+        }
+
     def __init__(
         self,
         *,

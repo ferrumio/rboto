@@ -25,6 +25,53 @@ class SNSClient:
 
     logger_name = "rboto.sns"
 
+    @staticmethod
+    def _stub_operations() -> dict[str, str]:
+        return {
+            "add_permission": "AddPermission",
+            "check_if_phone_number_is_opted_out": "CheckIfPhoneNumberIsOptedOut",
+            "confirm_subscription": "ConfirmSubscription",
+            "create_platform_application": "CreatePlatformApplication",
+            "create_platform_endpoint": "CreatePlatformEndpoint",
+            "create_sms_sandbox_phone_number": "CreateSMSSandboxPhoneNumber",
+            "create_topic": "CreateTopic",
+            "delete_endpoint": "DeleteEndpoint",
+            "delete_platform_application": "DeletePlatformApplication",
+            "delete_sms_sandbox_phone_number": "DeleteSMSSandboxPhoneNumber",
+            "delete_topic": "DeleteTopic",
+            "get_data_protection_policy": "GetDataProtectionPolicy",
+            "get_endpoint_attributes": "GetEndpointAttributes",
+            "get_platform_application_attributes": "GetPlatformApplicationAttributes",
+            "get_sms_attributes": "GetSMSAttributes",
+            "get_sms_sandbox_account_status": "GetSMSSandboxAccountStatus",
+            "get_subscription_attributes": "GetSubscriptionAttributes",
+            "get_topic_attributes": "GetTopicAttributes",
+            "list_endpoints_by_platform_application": "ListEndpointsByPlatformApplication",
+            "list_origination_numbers": "ListOriginationNumbers",
+            "list_phone_numbers_opted_out": "ListPhoneNumbersOptedOut",
+            "list_platform_applications": "ListPlatformApplications",
+            "list_sms_sandbox_phone_numbers": "ListSMSSandboxPhoneNumbers",
+            "list_subscriptions": "ListSubscriptions",
+            "list_subscriptions_by_topic": "ListSubscriptionsByTopic",
+            "list_tags_for_resource": "ListTagsForResource",
+            "list_topics": "ListTopics",
+            "opt_in_phone_number": "OptInPhoneNumber",
+            "publish": "Publish",
+            "publish_batch": "PublishBatch",
+            "put_data_protection_policy": "PutDataProtectionPolicy",
+            "remove_permission": "RemovePermission",
+            "set_endpoint_attributes": "SetEndpointAttributes",
+            "set_platform_application_attributes": "SetPlatformApplicationAttributes",
+            "set_sms_attributes": "SetSMSAttributes",
+            "set_subscription_attributes": "SetSubscriptionAttributes",
+            "set_topic_attributes": "SetTopicAttributes",
+            "subscribe": "Subscribe",
+            "tag_resource": "TagResource",
+            "unsubscribe": "Unsubscribe",
+            "untag_resource": "UntagResource",
+            "verify_sms_sandbox_phone_number": "VerifySMSSandboxPhoneNumber",
+        }
+
     def __init__(
         self,
         *,

@@ -699,6 +699,8 @@ class Target:
 @final
 class CancelReplayOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CancelReplayOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CancelReplayOutput: ...
     @property
     def replay_arn(self) -> str | None: ...
     @property
@@ -710,6 +712,8 @@ class CancelReplayOutput:
 @final
 class CreateApiDestinationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CreateApiDestinationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateApiDestinationOutput: ...
     @property
     def api_destination_arn(self) -> str | None: ...
     @property
@@ -723,6 +727,8 @@ class CreateApiDestinationOutput:
 @final
 class CreateArchiveOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CreateArchiveOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateArchiveOutput: ...
     @property
     def archive_arn(self) -> str | None: ...
     @property
@@ -736,6 +742,8 @@ class CreateArchiveOutput:
 @final
 class CreateConnectionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CreateConnectionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateConnectionOutput: ...
     @property
     def connection_arn(self) -> str | None: ...
     @property
@@ -749,6 +757,8 @@ class CreateConnectionOutput:
 @final
 class CreateEndpointOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CreateEndpointOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateEndpointOutput: ...
     @property
     def name(self) -> str | None: ...
     @property
@@ -768,6 +778,8 @@ class CreateEndpointOutput:
 @final
 class CreateEventBusOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CreateEventBusOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateEventBusOutput: ...
     @property
     def event_bus_arn(self) -> str | None: ...
     @property
@@ -783,6 +795,8 @@ class CreateEventBusOutput:
 @final
 class CreatePartnerEventSourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CreatePartnerEventSourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreatePartnerEventSourceOutput: ...
     @property
     def event_source_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -790,6 +804,8 @@ class CreatePartnerEventSourceOutput:
 @final
 class DeauthorizeConnectionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DeauthorizeConnectionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeauthorizeConnectionOutput: ...
     @property
     def connection_arn(self) -> str | None: ...
     @property
@@ -805,16 +821,22 @@ class DeauthorizeConnectionOutput:
 @final
 class DeleteApiDestinationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DeleteApiDestinationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteApiDestinationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteArchiveOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DeleteArchiveOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteArchiveOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteConnectionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DeleteConnectionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteConnectionOutput: ...
     @property
     def connection_arn(self) -> str | None: ...
     @property
@@ -830,11 +852,15 @@ class DeleteConnectionOutput:
 @final
 class DeleteEndpointOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DeleteEndpointOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteEndpointOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DescribeApiDestinationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeApiDestinationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeApiDestinationOutput: ...
     @property
     def api_destination_arn(self) -> str | None: ...
     @property
@@ -860,6 +886,8 @@ class DescribeApiDestinationOutput:
 @final
 class DescribeArchiveOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeArchiveOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeArchiveOutput: ...
     @property
     def archive_arn(self) -> str | None: ...
     @property
@@ -889,6 +917,8 @@ class DescribeArchiveOutput:
 @final
 class DescribeConnectionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeConnectionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeConnectionOutput: ...
     @property
     def connection_arn(self) -> str | None: ...
     @property
@@ -920,6 +950,8 @@ class DescribeConnectionOutput:
 @final
 class DescribeEndpointOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeEndpointOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeEndpointOutput: ...
     @property
     def name(self) -> str | None: ...
     @property
@@ -951,6 +983,8 @@ class DescribeEndpointOutput:
 @final
 class DescribeEventBusOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeEventBusOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeEventBusOutput: ...
     @property
     def name(self) -> str | None: ...
     @property
@@ -976,6 +1010,8 @@ class DescribeEventBusOutput:
 @final
 class DescribeEventSourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeEventSourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeEventSourceOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -993,6 +1029,8 @@ class DescribeEventSourceOutput:
 @final
 class DescribePartnerEventSourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribePartnerEventSourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribePartnerEventSourceOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -1002,6 +1040,8 @@ class DescribePartnerEventSourceOutput:
 @final
 class DescribeReplayOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeReplayOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeReplayOutput: ...
     @property
     def replay_name(self) -> str | None: ...
     @property
@@ -1031,6 +1071,8 @@ class DescribeReplayOutput:
 @final
 class DescribeRuleOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeRuleOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeRuleOutput: ...
     @property
     def name(self) -> str | None: ...
     @property
@@ -1056,6 +1098,8 @@ class DescribeRuleOutput:
 @final
 class ListApiDestinationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListApiDestinationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListApiDestinationsOutput: ...
     @property
     def api_destinations(self) -> list[ApiDestination] | None: ...
     @property
@@ -1065,6 +1109,8 @@ class ListApiDestinationsOutput:
 @final
 class ListArchivesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListArchivesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListArchivesOutput: ...
     @property
     def archives(self) -> list[Archive] | None: ...
     @property
@@ -1074,6 +1120,8 @@ class ListArchivesOutput:
 @final
 class ListConnectionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListConnectionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListConnectionsOutput: ...
     @property
     def connections(self) -> list[Connection] | None: ...
     @property
@@ -1083,6 +1131,8 @@ class ListConnectionsOutput:
 @final
 class ListEndpointsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListEndpointsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListEndpointsOutput: ...
     @property
     def endpoints(self) -> list[Endpoint] | None: ...
     @property
@@ -1092,6 +1142,8 @@ class ListEndpointsOutput:
 @final
 class ListEventBusesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListEventBusesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListEventBusesOutput: ...
     @property
     def event_buses(self) -> list[EventBus] | None: ...
     @property
@@ -1101,6 +1153,8 @@ class ListEventBusesOutput:
 @final
 class ListEventSourcesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListEventSourcesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListEventSourcesOutput: ...
     @property
     def event_sources(self) -> list[EventSource] | None: ...
     @property
@@ -1110,6 +1164,8 @@ class ListEventSourcesOutput:
 @final
 class ListPartnerEventSourceAccountsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListPartnerEventSourceAccountsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListPartnerEventSourceAccountsOutput: ...
     @property
     def partner_event_source_accounts(self) -> list[PartnerEventSourceAccount] | None: ...
     @property
@@ -1119,6 +1175,8 @@ class ListPartnerEventSourceAccountsOutput:
 @final
 class ListPartnerEventSourcesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListPartnerEventSourcesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListPartnerEventSourcesOutput: ...
     @property
     def partner_event_sources(self) -> list[PartnerEventSource] | None: ...
     @property
@@ -1128,6 +1186,8 @@ class ListPartnerEventSourcesOutput:
 @final
 class ListReplaysOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListReplaysOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListReplaysOutput: ...
     @property
     def replays(self) -> list[Replay] | None: ...
     @property
@@ -1137,6 +1197,8 @@ class ListReplaysOutput:
 @final
 class ListRuleNamesByTargetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListRuleNamesByTargetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListRuleNamesByTargetOutput: ...
     @property
     def rule_names(self) -> list[str] | None: ...
     @property
@@ -1146,6 +1208,8 @@ class ListRuleNamesByTargetOutput:
 @final
 class ListRulesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListRulesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListRulesOutput: ...
     @property
     def rules(self) -> list[Rule] | None: ...
     @property
@@ -1155,6 +1219,8 @@ class ListRulesOutput:
 @final
 class ListTagsForResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListTagsForResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTagsForResourceOutput: ...
     @property
     def tags(self) -> list[Tag] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1162,6 +1228,8 @@ class ListTagsForResourceOutput:
 @final
 class ListTargetsByRuleOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListTargetsByRuleOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTargetsByRuleOutput: ...
     @property
     def targets(self) -> list[Target] | None: ...
     @property
@@ -1171,6 +1239,8 @@ class ListTargetsByRuleOutput:
 @final
 class PutEventsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PutEventsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutEventsOutput: ...
     @property
     def failed_entry_count(self) -> int: ...
     @property
@@ -1180,6 +1250,8 @@ class PutEventsOutput:
 @final
 class PutPartnerEventsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PutPartnerEventsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutPartnerEventsOutput: ...
     @property
     def failed_entry_count(self) -> int: ...
     @property
@@ -1189,6 +1261,8 @@ class PutPartnerEventsOutput:
 @final
 class PutRuleOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PutRuleOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutRuleOutput: ...
     @property
     def rule_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1196,6 +1270,8 @@ class PutRuleOutput:
 @final
 class PutTargetsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PutTargetsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutTargetsOutput: ...
     @property
     def failed_entry_count(self) -> int: ...
     @property
@@ -1205,6 +1281,8 @@ class PutTargetsOutput:
 @final
 class RemoveTargetsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/RemoveTargetsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> RemoveTargetsOutput: ...
     @property
     def failed_entry_count(self) -> int: ...
     @property
@@ -1214,6 +1292,8 @@ class RemoveTargetsOutput:
 @final
 class StartReplayOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/StartReplayOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StartReplayOutput: ...
     @property
     def replay_arn(self) -> str | None: ...
     @property
@@ -1227,11 +1307,15 @@ class StartReplayOutput:
 @final
 class TagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/TagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> TagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TestEventPatternOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/TestEventPatternOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> TestEventPatternOutput: ...
     @property
     def result(self) -> bool: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1239,11 +1323,15 @@ class TestEventPatternOutput:
 @final
 class UntagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/UntagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UntagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateApiDestinationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/UpdateApiDestinationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateApiDestinationOutput: ...
     @property
     def api_destination_arn(self) -> str | None: ...
     @property
@@ -1257,6 +1345,8 @@ class UpdateApiDestinationOutput:
 @final
 class UpdateArchiveOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/UpdateArchiveOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateArchiveOutput: ...
     @property
     def archive_arn(self) -> str | None: ...
     @property
@@ -1270,6 +1360,8 @@ class UpdateArchiveOutput:
 @final
 class UpdateConnectionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/UpdateConnectionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateConnectionOutput: ...
     @property
     def connection_arn(self) -> str | None: ...
     @property
@@ -1285,6 +1377,8 @@ class UpdateConnectionOutput:
 @final
 class UpdateEndpointOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/UpdateEndpointOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateEndpointOutput: ...
     @property
     def name(self) -> str | None: ...
     @property
@@ -1308,6 +1402,8 @@ class UpdateEndpointOutput:
 @final
 class UpdateEventBusOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/UpdateEventBusOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateEventBusOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property

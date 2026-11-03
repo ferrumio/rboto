@@ -2426,11 +2426,15 @@ class ValidationFindingScope:
 @final
 class AddTagsToResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AddTagsToResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> AddTagsToResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AssociateOpsItemRelatedItemOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociateOpsItemRelatedItemOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> AssociateOpsItemRelatedItemOutput: ...
     @property
     def association_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2438,11 +2442,15 @@ class AssociateOpsItemRelatedItemOutput:
 @final
 class CancelCommandOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CancelCommandOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CancelCommandOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CancelMaintenanceWindowExecutionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CancelMaintenanceWindowExecutionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CancelMaintenanceWindowExecutionOutput: ...
     @property
     def window_execution_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2450,6 +2458,8 @@ class CancelMaintenanceWindowExecutionOutput:
 @final
 class CreateActivationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateActivationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateActivationOutput: ...
     @property
     def activation_id(self) -> str | None: ...
     @property
@@ -2459,6 +2469,8 @@ class CreateActivationOutput:
 @final
 class CreateAssociationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateAssociationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateAssociationOutput: ...
     @property
     def association_description(self) -> AssociationDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2466,6 +2478,8 @@ class CreateAssociationOutput:
 @final
 class CreateAssociationBatchOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateAssociationBatchOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateAssociationBatchOutput: ...
     @property
     def successful(self) -> list[AssociationDescription] | None: ...
     @property
@@ -2475,6 +2489,8 @@ class CreateAssociationBatchOutput:
 @final
 class CreateCloudConnectorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateCloudConnectorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateCloudConnectorOutput: ...
     @property
     def cloud_connector_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2482,6 +2498,8 @@ class CreateCloudConnectorOutput:
 @final
 class CreateDocumentOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateDocumentOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateDocumentOutput: ...
     @property
     def document_description(self) -> DocumentDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2489,6 +2507,8 @@ class CreateDocumentOutput:
 @final
 class CreateMaintenanceWindowOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateMaintenanceWindowOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateMaintenanceWindowOutput: ...
     @property
     def window_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2496,6 +2516,8 @@ class CreateMaintenanceWindowOutput:
 @final
 class CreateOpsItemOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateOpsItemOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateOpsItemOutput: ...
     @property
     def ops_item_id(self) -> str | None: ...
     @property
@@ -2505,6 +2527,8 @@ class CreateOpsItemOutput:
 @final
 class CreateOpsMetadataOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateOpsMetadataOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateOpsMetadataOutput: ...
     @property
     def ops_metadata_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2512,6 +2536,8 @@ class CreateOpsMetadataOutput:
 @final
 class CreatePatchBaselineOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreatePatchBaselineOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreatePatchBaselineOutput: ...
     @property
     def baseline_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2519,21 +2545,29 @@ class CreatePatchBaselineOutput:
 @final
 class CreateResourceDataSyncOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateResourceDataSyncOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateResourceDataSyncOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteActivationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteActivationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteActivationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteAssociationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteAssociationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteAssociationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteCloudConnectorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteCloudConnectorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteCloudConnectorOutput: ...
     @property
     def cloud_connector_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2541,11 +2575,15 @@ class DeleteCloudConnectorOutput:
 @final
 class DeleteDocumentOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteDocumentOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteDocumentOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteInventoryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteInventoryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteInventoryOutput: ...
     @property
     def deletion_id(self) -> str | None: ...
     @property
@@ -2557,6 +2595,8 @@ class DeleteInventoryOutput:
 @final
 class DeleteMaintenanceWindowOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteMaintenanceWindowOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteMaintenanceWindowOutput: ...
     @property
     def window_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2564,21 +2604,29 @@ class DeleteMaintenanceWindowOutput:
 @final
 class DeleteOpsItemOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteOpsItemOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteOpsItemOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteOpsMetadataOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteOpsMetadataOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteOpsMetadataOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteParameterOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteParameterOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteParameterOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteParametersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteParametersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteParametersOutput: ...
     @property
     def deleted_parameters(self) -> list[str] | None: ...
     @property
@@ -2588,6 +2636,8 @@ class DeleteParametersOutput:
 @final
 class DeletePatchBaselineOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeletePatchBaselineOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeletePatchBaselineOutput: ...
     @property
     def baseline_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2595,21 +2645,29 @@ class DeletePatchBaselineOutput:
 @final
 class DeleteResourceDataSyncOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteResourceDataSyncOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteResourceDataSyncOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteResourcePolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteResourcePolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteResourcePolicyOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeregisterManagedInstanceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeregisterManagedInstanceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeregisterManagedInstanceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeregisterPatchBaselineForPatchGroupOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeregisterPatchBaselineForPatchGroupOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeregisterPatchBaselineForPatchGroupOutput: ...
     @property
     def baseline_id(self) -> str | None: ...
     @property
@@ -2619,6 +2677,8 @@ class DeregisterPatchBaselineForPatchGroupOutput:
 @final
 class DeregisterTargetFromMaintenanceWindowOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeregisterTargetFromMaintenanceWindowOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeregisterTargetFromMaintenanceWindowOutput: ...
     @property
     def window_id(self) -> str | None: ...
     @property
@@ -2628,6 +2688,8 @@ class DeregisterTargetFromMaintenanceWindowOutput:
 @final
 class DeregisterTaskFromMaintenanceWindowOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeregisterTaskFromMaintenanceWindowOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeregisterTaskFromMaintenanceWindowOutput: ...
     @property
     def window_id(self) -> str | None: ...
     @property
@@ -2637,6 +2699,8 @@ class DeregisterTaskFromMaintenanceWindowOutput:
 @final
 class DescribeActivationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeActivationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeActivationsOutput: ...
     @property
     def activation_list(self) -> list[Activation] | None: ...
     @property
@@ -2646,6 +2710,8 @@ class DescribeActivationsOutput:
 @final
 class DescribeAssociationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeAssociationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeAssociationOutput: ...
     @property
     def association_description(self) -> AssociationDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2653,6 +2719,8 @@ class DescribeAssociationOutput:
 @final
 class DescribeAssociationExecutionTargetsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeAssociationExecutionTargetsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeAssociationExecutionTargetsOutput: ...
     @property
     def association_execution_targets(self) -> list[AssociationExecutionTarget] | None: ...
     @property
@@ -2662,6 +2730,8 @@ class DescribeAssociationExecutionTargetsOutput:
 @final
 class DescribeAssociationExecutionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeAssociationExecutionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeAssociationExecutionsOutput: ...
     @property
     def association_executions(self) -> list[AssociationExecution] | None: ...
     @property
@@ -2671,6 +2741,8 @@ class DescribeAssociationExecutionsOutput:
 @final
 class DescribeAutomationExecutionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeAutomationExecutionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeAutomationExecutionsOutput: ...
     @property
     def automation_execution_metadata_list(self) -> list[AutomationExecutionMetadata] | None: ...
     @property
@@ -2680,6 +2752,8 @@ class DescribeAutomationExecutionsOutput:
 @final
 class DescribeAutomationStepExecutionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeAutomationStepExecutionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeAutomationStepExecutionsOutput: ...
     @property
     def step_executions(self) -> list[StepExecution] | None: ...
     @property
@@ -2689,6 +2763,8 @@ class DescribeAutomationStepExecutionsOutput:
 @final
 class DescribeAvailablePatchesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeAvailablePatchesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeAvailablePatchesOutput: ...
     @property
     def patches(self) -> list[Patch] | None: ...
     @property
@@ -2698,6 +2774,8 @@ class DescribeAvailablePatchesOutput:
 @final
 class DescribeDocumentOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeDocumentOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeDocumentOutput: ...
     @property
     def document(self) -> DocumentDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2705,6 +2783,8 @@ class DescribeDocumentOutput:
 @final
 class DescribeDocumentPermissionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeDocumentPermissionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeDocumentPermissionOutput: ...
     @property
     def account_ids(self) -> list[str] | None: ...
     @property
@@ -2716,6 +2796,8 @@ class DescribeDocumentPermissionOutput:
 @final
 class DescribeEffectiveInstanceAssociationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeEffectiveInstanceAssociationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeEffectiveInstanceAssociationsOutput: ...
     @property
     def associations(self) -> list[InstanceAssociation] | None: ...
     @property
@@ -2725,6 +2807,8 @@ class DescribeEffectiveInstanceAssociationsOutput:
 @final
 class DescribeEffectivePatchesForPatchBaselineOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeEffectivePatchesForPatchBaselineOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeEffectivePatchesForPatchBaselineOutput: ...
     @property
     def effective_patches(self) -> list[EffectivePatch] | None: ...
     @property
@@ -2734,6 +2818,8 @@ class DescribeEffectivePatchesForPatchBaselineOutput:
 @final
 class DescribeInstanceAssociationsStatusOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInstanceAssociationsStatusOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeInstanceAssociationsStatusOutput: ...
     @property
     def instance_association_status_infos(self) -> list[InstanceAssociationStatusInfo] | None: ...
     @property
@@ -2743,6 +2829,8 @@ class DescribeInstanceAssociationsStatusOutput:
 @final
 class DescribeInstanceInformationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInstanceInformationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeInstanceInformationOutput: ...
     @property
     def instance_information_list(self) -> list[InstanceInformation] | None: ...
     @property
@@ -2752,6 +2840,8 @@ class DescribeInstanceInformationOutput:
 @final
 class DescribeInstancePatchStatesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInstancePatchStatesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeInstancePatchStatesOutput: ...
     @property
     def instance_patch_states(self) -> list[InstancePatchState] | None: ...
     @property
@@ -2761,6 +2851,8 @@ class DescribeInstancePatchStatesOutput:
 @final
 class DescribeInstancePatchStatesForPatchGroupOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInstancePatchStatesForPatchGroupOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeInstancePatchStatesForPatchGroupOutput: ...
     @property
     def instance_patch_states(self) -> list[InstancePatchState] | None: ...
     @property
@@ -2770,6 +2862,8 @@ class DescribeInstancePatchStatesForPatchGroupOutput:
 @final
 class DescribeInstancePatchesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInstancePatchesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeInstancePatchesOutput: ...
     @property
     def patches(self) -> list[PatchComplianceData] | None: ...
     @property
@@ -2779,6 +2873,8 @@ class DescribeInstancePatchesOutput:
 @final
 class DescribeInstancePropertiesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInstancePropertiesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeInstancePropertiesOutput: ...
     @property
     def instance_properties(self) -> list[InstanceProperty] | None: ...
     @property
@@ -2788,6 +2884,8 @@ class DescribeInstancePropertiesOutput:
 @final
 class DescribeInventoryDeletionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInventoryDeletionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeInventoryDeletionsOutput: ...
     @property
     def inventory_deletions(self) -> list[InventoryDeletionStatusItem] | None: ...
     @property
@@ -2797,6 +2895,8 @@ class DescribeInventoryDeletionsOutput:
 @final
 class DescribeMaintenanceWindowExecutionTaskInvocationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowExecutionTaskInvocationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeMaintenanceWindowExecutionTaskInvocationsOutput: ...
     @property
     def window_execution_task_invocation_identities(self) -> list[MaintenanceWindowExecutionTaskInvocationIdentity] | None: ...
     @property
@@ -2806,6 +2906,8 @@ class DescribeMaintenanceWindowExecutionTaskInvocationsOutput:
 @final
 class DescribeMaintenanceWindowExecutionTasksOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowExecutionTasksOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeMaintenanceWindowExecutionTasksOutput: ...
     @property
     def window_execution_task_identities(self) -> list[MaintenanceWindowExecutionTaskIdentity] | None: ...
     @property
@@ -2815,6 +2917,8 @@ class DescribeMaintenanceWindowExecutionTasksOutput:
 @final
 class DescribeMaintenanceWindowExecutionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowExecutionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeMaintenanceWindowExecutionsOutput: ...
     @property
     def window_executions(self) -> list[MaintenanceWindowExecution] | None: ...
     @property
@@ -2824,6 +2928,8 @@ class DescribeMaintenanceWindowExecutionsOutput:
 @final
 class DescribeMaintenanceWindowScheduleOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowScheduleOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeMaintenanceWindowScheduleOutput: ...
     @property
     def scheduled_window_executions(self) -> list[ScheduledWindowExecution] | None: ...
     @property
@@ -2833,6 +2939,8 @@ class DescribeMaintenanceWindowScheduleOutput:
 @final
 class DescribeMaintenanceWindowTargetsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowTargetsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeMaintenanceWindowTargetsOutput: ...
     @property
     def targets(self) -> list[MaintenanceWindowTarget] | None: ...
     @property
@@ -2842,6 +2950,8 @@ class DescribeMaintenanceWindowTargetsOutput:
 @final
 class DescribeMaintenanceWindowTasksOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowTasksOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeMaintenanceWindowTasksOutput: ...
     @property
     def tasks(self) -> list[MaintenanceWindowTask] | None: ...
     @property
@@ -2851,6 +2961,8 @@ class DescribeMaintenanceWindowTasksOutput:
 @final
 class DescribeMaintenanceWindowsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeMaintenanceWindowsOutput: ...
     @property
     def window_identities(self) -> list[MaintenanceWindowIdentity] | None: ...
     @property
@@ -2860,6 +2972,8 @@ class DescribeMaintenanceWindowsOutput:
 @final
 class DescribeMaintenanceWindowsForTargetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowsForTargetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeMaintenanceWindowsForTargetOutput: ...
     @property
     def window_identities(self) -> list[MaintenanceWindowIdentityForTarget] | None: ...
     @property
@@ -2869,6 +2983,8 @@ class DescribeMaintenanceWindowsForTargetOutput:
 @final
 class DescribeOpsItemsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeOpsItemsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeOpsItemsOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -2878,6 +2994,8 @@ class DescribeOpsItemsOutput:
 @final
 class DescribeParametersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeParametersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeParametersOutput: ...
     @property
     def parameters(self) -> list[ParameterMetadata] | None: ...
     @property
@@ -2887,6 +3005,8 @@ class DescribeParametersOutput:
 @final
 class DescribePatchBaselinesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribePatchBaselinesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribePatchBaselinesOutput: ...
     @property
     def baseline_identities(self) -> list[PatchBaselineIdentity] | None: ...
     @property
@@ -2896,6 +3016,8 @@ class DescribePatchBaselinesOutput:
 @final
 class DescribePatchGroupStateOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribePatchGroupStateOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribePatchGroupStateOutput: ...
     @property
     def instances(self) -> int: ...
     @property
@@ -2927,6 +3049,8 @@ class DescribePatchGroupStateOutput:
 @final
 class DescribePatchGroupsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribePatchGroupsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribePatchGroupsOutput: ...
     @property
     def mappings(self) -> list[PatchGroupPatchBaselineMapping] | None: ...
     @property
@@ -2936,6 +3060,8 @@ class DescribePatchGroupsOutput:
 @final
 class DescribePatchPropertiesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribePatchPropertiesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribePatchPropertiesOutput: ...
     @property
     def properties(self) -> list[dict[str, str]] | None: ...
     @property
@@ -2945,6 +3071,8 @@ class DescribePatchPropertiesOutput:
 @final
 class DescribeSessionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeSessionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeSessionsOutput: ...
     @property
     def sessions(self) -> list[Session] | None: ...
     @property
@@ -2954,11 +3082,15 @@ class DescribeSessionsOutput:
 @final
 class DisassociateOpsItemRelatedItemOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DisassociateOpsItemRelatedItemOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DisassociateOpsItemRelatedItemOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetAccessTokenOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetAccessTokenOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAccessTokenOutput: ...
     @property
     def credentials(self) -> Credentials | None: ...
     @property
@@ -2968,6 +3100,8 @@ class GetAccessTokenOutput:
 @final
 class GetAutomationExecutionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetAutomationExecutionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAutomationExecutionOutput: ...
     @property
     def automation_execution(self) -> AutomationExecution | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2975,6 +3109,8 @@ class GetAutomationExecutionOutput:
 @final
 class GetCalendarStateOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetCalendarStateOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetCalendarStateOutput: ...
     @property
     def state(self) -> _types.CalendarStateOutput | None: ...
     @property
@@ -2986,6 +3122,8 @@ class GetCalendarStateOutput:
 @final
 class GetCloudConnectorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetCloudConnectorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetCloudConnectorOutput: ...
     @property
     def cloud_connector_arn(self) -> str | None: ...
     @property
@@ -3007,6 +3145,8 @@ class GetCloudConnectorOutput:
 @final
 class GetCommandInvocationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetCommandInvocationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetCommandInvocationOutput: ...
     @property
     def command_id(self) -> str | None: ...
     @property
@@ -3046,6 +3186,8 @@ class GetCommandInvocationOutput:
 @final
 class GetConnectionStatusOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetConnectionStatusOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetConnectionStatusOutput: ...
     @property
     def target(self) -> str | None: ...
     @property
@@ -3055,6 +3197,8 @@ class GetConnectionStatusOutput:
 @final
 class GetDefaultPatchBaselineOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetDefaultPatchBaselineOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDefaultPatchBaselineOutput: ...
     @property
     def baseline_id(self) -> str | None: ...
     @property
@@ -3064,6 +3208,8 @@ class GetDefaultPatchBaselineOutput:
 @final
 class GetDeployablePatchSnapshotForInstanceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetDeployablePatchSnapshotForInstanceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDeployablePatchSnapshotForInstanceOutput: ...
     @property
     def instance_id(self) -> str | None: ...
     @property
@@ -3077,6 +3223,8 @@ class GetDeployablePatchSnapshotForInstanceOutput:
 @final
 class GetDocumentOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetDocumentOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDocumentOutput: ...
     @property
     def name(self) -> str | None: ...
     @property
@@ -3108,6 +3256,8 @@ class GetDocumentOutput:
 @final
 class GetExecutionPreviewOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetExecutionPreviewOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetExecutionPreviewOutput: ...
     @property
     def execution_preview_id(self) -> str | None: ...
     @property
@@ -3123,6 +3273,8 @@ class GetExecutionPreviewOutput:
 @final
 class GetInventoryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetInventoryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetInventoryOutput: ...
     @property
     def entities(self) -> list[InventoryResultEntity] | None: ...
     @property
@@ -3132,6 +3284,8 @@ class GetInventoryOutput:
 @final
 class GetInventorySchemaOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetInventorySchemaOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetInventorySchemaOutput: ...
     @property
     def schemas(self) -> list[InventoryItemSchema] | None: ...
     @property
@@ -3141,6 +3295,8 @@ class GetInventorySchemaOutput:
 @final
 class GetMaintenanceWindowOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetMaintenanceWindowOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetMaintenanceWindowOutput: ...
     @property
     def window_id(self) -> str | None: ...
     @property
@@ -3176,6 +3332,8 @@ class GetMaintenanceWindowOutput:
 @final
 class GetMaintenanceWindowExecutionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetMaintenanceWindowExecutionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetMaintenanceWindowExecutionOutput: ...
     @property
     def window_execution_id(self) -> str | None: ...
     @property
@@ -3193,6 +3351,8 @@ class GetMaintenanceWindowExecutionOutput:
 @final
 class GetMaintenanceWindowExecutionTaskOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetMaintenanceWindowExecutionTaskOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetMaintenanceWindowExecutionTaskOutput: ...
     @property
     def window_execution_id(self) -> str | None: ...
     @property
@@ -3228,6 +3388,8 @@ class GetMaintenanceWindowExecutionTaskOutput:
 @final
 class GetMaintenanceWindowExecutionTaskInvocationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetMaintenanceWindowExecutionTaskInvocationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetMaintenanceWindowExecutionTaskInvocationOutput: ...
     @property
     def window_execution_id(self) -> str | None: ...
     @property
@@ -3257,6 +3419,8 @@ class GetMaintenanceWindowExecutionTaskInvocationOutput:
 @final
 class GetMaintenanceWindowTaskOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetMaintenanceWindowTaskOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetMaintenanceWindowTaskOutput: ...
     @property
     def window_id(self) -> str | None: ...
     @property
@@ -3294,6 +3458,8 @@ class GetMaintenanceWindowTaskOutput:
 @final
 class GetOpsItemOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetOpsItemOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetOpsItemOutput: ...
     @property
     def ops_item(self) -> OpsItem | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3301,6 +3467,8 @@ class GetOpsItemOutput:
 @final
 class GetOpsMetadataOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetOpsMetadataOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetOpsMetadataOutput: ...
     @property
     def resource_id(self) -> str | None: ...
     @property
@@ -3312,6 +3480,8 @@ class GetOpsMetadataOutput:
 @final
 class GetOpsSummaryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetOpsSummaryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetOpsSummaryOutput: ...
     @property
     def entities(self) -> list[OpsEntity] | None: ...
     @property
@@ -3321,6 +3491,8 @@ class GetOpsSummaryOutput:
 @final
 class GetParameterOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetParameterOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetParameterOutput: ...
     @property
     def parameter(self) -> Parameter | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3328,6 +3500,8 @@ class GetParameterOutput:
 @final
 class GetParameterHistoryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetParameterHistoryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetParameterHistoryOutput: ...
     @property
     def parameters(self) -> list[ParameterHistory] | None: ...
     @property
@@ -3337,6 +3511,8 @@ class GetParameterHistoryOutput:
 @final
 class GetParametersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetParametersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetParametersOutput: ...
     @property
     def parameters(self) -> list[Parameter] | None: ...
     @property
@@ -3346,6 +3522,8 @@ class GetParametersOutput:
 @final
 class GetParametersByPathOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetParametersByPathOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetParametersByPathOutput: ...
     @property
     def parameters(self) -> list[Parameter] | None: ...
     @property
@@ -3355,6 +3533,8 @@ class GetParametersByPathOutput:
 @final
 class GetPatchBaselineOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetPatchBaselineOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetPatchBaselineOutput: ...
     @property
     def baseline_id(self) -> str | None: ...
     @property
@@ -3392,6 +3572,8 @@ class GetPatchBaselineOutput:
 @final
 class GetPatchBaselineForPatchGroupOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetPatchBaselineForPatchGroupOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetPatchBaselineForPatchGroupOutput: ...
     @property
     def baseline_id(self) -> str | None: ...
     @property
@@ -3403,6 +3585,8 @@ class GetPatchBaselineForPatchGroupOutput:
 @final
 class GetResourcePoliciesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetResourcePoliciesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetResourcePoliciesOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -3412,6 +3596,8 @@ class GetResourcePoliciesOutput:
 @final
 class GetServiceSettingOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetServiceSettingOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetServiceSettingOutput: ...
     @property
     def service_setting(self) -> ServiceSetting | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3419,6 +3605,8 @@ class GetServiceSettingOutput:
 @final
 class LabelParameterVersionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/LabelParameterVersionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> LabelParameterVersionOutput: ...
     @property
     def invalid_labels(self) -> list[str] | None: ...
     @property
@@ -3428,6 +3616,8 @@ class LabelParameterVersionOutput:
 @final
 class ListAssociationVersionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListAssociationVersionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListAssociationVersionsOutput: ...
     @property
     def association_versions(self) -> list[AssociationVersionInfo] | None: ...
     @property
@@ -3437,6 +3627,8 @@ class ListAssociationVersionsOutput:
 @final
 class ListAssociationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListAssociationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListAssociationsOutput: ...
     @property
     def associations(self) -> list[Association] | None: ...
     @property
@@ -3446,6 +3638,8 @@ class ListAssociationsOutput:
 @final
 class ListCloudConnectorsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListCloudConnectorsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListCloudConnectorsOutput: ...
     @property
     def cloud_connectors(self) -> list[CloudConnectorSummary] | None: ...
     @property
@@ -3455,6 +3649,8 @@ class ListCloudConnectorsOutput:
 @final
 class ListCommandInvocationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListCommandInvocationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListCommandInvocationsOutput: ...
     @property
     def command_invocations(self) -> list[CommandInvocation] | None: ...
     @property
@@ -3464,6 +3660,8 @@ class ListCommandInvocationsOutput:
 @final
 class ListCommandsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListCommandsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListCommandsOutput: ...
     @property
     def commands(self) -> list[Command] | None: ...
     @property
@@ -3473,6 +3671,8 @@ class ListCommandsOutput:
 @final
 class ListComplianceItemsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListComplianceItemsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListComplianceItemsOutput: ...
     @property
     def compliance_items(self) -> list[ComplianceItem] | None: ...
     @property
@@ -3482,6 +3682,8 @@ class ListComplianceItemsOutput:
 @final
 class ListComplianceSummariesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListComplianceSummariesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListComplianceSummariesOutput: ...
     @property
     def compliance_summary_items(self) -> list[ComplianceSummaryItem] | None: ...
     @property
@@ -3491,6 +3693,8 @@ class ListComplianceSummariesOutput:
 @final
 class ListDocumentMetadataHistoryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListDocumentMetadataHistoryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListDocumentMetadataHistoryOutput: ...
     @property
     def name(self) -> str | None: ...
     @property
@@ -3506,6 +3710,8 @@ class ListDocumentMetadataHistoryOutput:
 @final
 class ListDocumentVersionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListDocumentVersionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListDocumentVersionsOutput: ...
     @property
     def document_versions(self) -> list[DocumentVersionInfo] | None: ...
     @property
@@ -3515,6 +3721,8 @@ class ListDocumentVersionsOutput:
 @final
 class ListDocumentsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListDocumentsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListDocumentsOutput: ...
     @property
     def document_identifiers(self) -> list[DocumentIdentifier] | None: ...
     @property
@@ -3524,6 +3732,8 @@ class ListDocumentsOutput:
 @final
 class ListInventoryEntriesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListInventoryEntriesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListInventoryEntriesOutput: ...
     @property
     def type_name(self) -> str | None: ...
     @property
@@ -3541,6 +3751,8 @@ class ListInventoryEntriesOutput:
 @final
 class ListNodesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListNodesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListNodesOutput: ...
     @property
     def nodes(self) -> list[Node] | None: ...
     @property
@@ -3550,6 +3762,8 @@ class ListNodesOutput:
 @final
 class ListNodesSummaryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListNodesSummaryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListNodesSummaryOutput: ...
     @property
     def summary(self) -> list[dict[str, str]] | None: ...
     @property
@@ -3559,6 +3773,8 @@ class ListNodesSummaryOutput:
 @final
 class ListOpsItemEventsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListOpsItemEventsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListOpsItemEventsOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -3568,6 +3784,8 @@ class ListOpsItemEventsOutput:
 @final
 class ListOpsItemRelatedItemsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListOpsItemRelatedItemsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListOpsItemRelatedItemsOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -3577,6 +3795,8 @@ class ListOpsItemRelatedItemsOutput:
 @final
 class ListOpsMetadataOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListOpsMetadataOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListOpsMetadataOutput: ...
     @property
     def ops_metadata_list(self) -> list[OpsMetadata] | None: ...
     @property
@@ -3586,6 +3806,8 @@ class ListOpsMetadataOutput:
 @final
 class ListResourceComplianceSummariesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListResourceComplianceSummariesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListResourceComplianceSummariesOutput: ...
     @property
     def resource_compliance_summary_items(self) -> list[ResourceComplianceSummaryItem] | None: ...
     @property
@@ -3595,6 +3817,8 @@ class ListResourceComplianceSummariesOutput:
 @final
 class ListResourceDataSyncOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListResourceDataSyncOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListResourceDataSyncOutput: ...
     @property
     def resource_data_sync_items(self) -> list[ResourceDataSyncItem] | None: ...
     @property
@@ -3604,6 +3828,8 @@ class ListResourceDataSyncOutput:
 @final
 class ListTagsForResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListTagsForResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTagsForResourceOutput: ...
     @property
     def tag_list(self) -> list[Tag] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3611,16 +3837,22 @@ class ListTagsForResourceOutput:
 @final
 class ModifyDocumentPermissionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ModifyDocumentPermissionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ModifyDocumentPermissionOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutComplianceItemsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PutComplianceItemsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutComplianceItemsOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutInventoryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PutInventoryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutInventoryOutput: ...
     @property
     def message(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3628,6 +3860,8 @@ class PutInventoryOutput:
 @final
 class PutParameterOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PutParameterOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutParameterOutput: ...
     @property
     def version(self) -> int: ...
     @property
@@ -3637,6 +3871,8 @@ class PutParameterOutput:
 @final
 class PutResourcePolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PutResourcePolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutResourcePolicyOutput: ...
     @property
     def policy_id(self) -> str | None: ...
     @property
@@ -3646,6 +3882,8 @@ class PutResourcePolicyOutput:
 @final
 class RegisterDefaultPatchBaselineOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RegisterDefaultPatchBaselineOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> RegisterDefaultPatchBaselineOutput: ...
     @property
     def baseline_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3653,6 +3891,8 @@ class RegisterDefaultPatchBaselineOutput:
 @final
 class RegisterPatchBaselineForPatchGroupOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RegisterPatchBaselineForPatchGroupOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> RegisterPatchBaselineForPatchGroupOutput: ...
     @property
     def baseline_id(self) -> str | None: ...
     @property
@@ -3662,6 +3902,8 @@ class RegisterPatchBaselineForPatchGroupOutput:
 @final
 class RegisterTargetWithMaintenanceWindowOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RegisterTargetWithMaintenanceWindowOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> RegisterTargetWithMaintenanceWindowOutput: ...
     @property
     def window_target_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3669,6 +3911,8 @@ class RegisterTargetWithMaintenanceWindowOutput:
 @final
 class RegisterTaskWithMaintenanceWindowOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RegisterTaskWithMaintenanceWindowOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> RegisterTaskWithMaintenanceWindowOutput: ...
     @property
     def window_task_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3676,11 +3920,15 @@ class RegisterTaskWithMaintenanceWindowOutput:
 @final
 class RemoveTagsFromResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RemoveTagsFromResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> RemoveTagsFromResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ResetServiceSettingOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResetServiceSettingOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ResetServiceSettingOutput: ...
     @property
     def service_setting(self) -> ServiceSetting | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3688,6 +3936,8 @@ class ResetServiceSettingOutput:
 @final
 class ResumeSessionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResumeSessionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ResumeSessionOutput: ...
     @property
     def session_id(self) -> str | None: ...
     @property
@@ -3699,11 +3949,15 @@ class ResumeSessionOutput:
 @final
 class SendAutomationSignalOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SendAutomationSignalOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> SendAutomationSignalOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SendCommandOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SendCommandOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> SendCommandOutput: ...
     @property
     def command(self) -> Command | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3711,6 +3965,8 @@ class SendCommandOutput:
 @final
 class StartAccessRequestOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StartAccessRequestOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StartAccessRequestOutput: ...
     @property
     def access_request_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3718,11 +3974,15 @@ class StartAccessRequestOutput:
 @final
 class StartAssociationsOnceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StartAssociationsOnceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StartAssociationsOnceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StartAutomationExecutionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StartAutomationExecutionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StartAutomationExecutionOutput: ...
     @property
     def automation_execution_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3730,6 +3990,8 @@ class StartAutomationExecutionOutput:
 @final
 class StartChangeRequestExecutionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StartChangeRequestExecutionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StartChangeRequestExecutionOutput: ...
     @property
     def automation_execution_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3737,6 +3999,8 @@ class StartChangeRequestExecutionOutput:
 @final
 class StartExecutionPreviewOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StartExecutionPreviewOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StartExecutionPreviewOutput: ...
     @property
     def execution_preview_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3744,6 +4008,8 @@ class StartExecutionPreviewOutput:
 @final
 class StartSessionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StartSessionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StartSessionOutput: ...
     @property
     def session_id(self) -> str | None: ...
     @property
@@ -3755,11 +4021,15 @@ class StartSessionOutput:
 @final
 class StopAutomationExecutionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StopAutomationExecutionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StopAutomationExecutionOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TerminateSessionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/TerminateSessionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> TerminateSessionOutput: ...
     @property
     def session_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3767,6 +4037,8 @@ class TerminateSessionOutput:
 @final
 class UnlabelParameterVersionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UnlabelParameterVersionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UnlabelParameterVersionOutput: ...
     @property
     def removed_labels(self) -> list[str] | None: ...
     @property
@@ -3776,6 +4048,8 @@ class UnlabelParameterVersionOutput:
 @final
 class UpdateAssociationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateAssociationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateAssociationOutput: ...
     @property
     def association_description(self) -> AssociationDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3783,6 +4057,8 @@ class UpdateAssociationOutput:
 @final
 class UpdateAssociationStatusOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateAssociationStatusOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateAssociationStatusOutput: ...
     @property
     def association_description(self) -> AssociationDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3790,6 +4066,8 @@ class UpdateAssociationStatusOutput:
 @final
 class UpdateCloudConnectorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateCloudConnectorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateCloudConnectorOutput: ...
     @property
     def cloud_connector_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3797,6 +4075,8 @@ class UpdateCloudConnectorOutput:
 @final
 class UpdateDocumentOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateDocumentOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateDocumentOutput: ...
     @property
     def document_description(self) -> DocumentDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3804,6 +4084,8 @@ class UpdateDocumentOutput:
 @final
 class UpdateDocumentDefaultVersionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateDocumentDefaultVersionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateDocumentDefaultVersionOutput: ...
     @property
     def description(self) -> DocumentDefaultVersionDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3811,11 +4093,15 @@ class UpdateDocumentDefaultVersionOutput:
 @final
 class UpdateDocumentMetadataOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateDocumentMetadataOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateDocumentMetadataOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateMaintenanceWindowOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateMaintenanceWindowOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateMaintenanceWindowOutput: ...
     @property
     def window_id(self) -> str | None: ...
     @property
@@ -3845,6 +4131,8 @@ class UpdateMaintenanceWindowOutput:
 @final
 class UpdateMaintenanceWindowTargetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateMaintenanceWindowTargetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateMaintenanceWindowTargetOutput: ...
     @property
     def window_id(self) -> str | None: ...
     @property
@@ -3862,6 +4150,8 @@ class UpdateMaintenanceWindowTargetOutput:
 @final
 class UpdateMaintenanceWindowTaskOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateMaintenanceWindowTaskOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateMaintenanceWindowTaskOutput: ...
     @property
     def window_id(self) -> str | None: ...
     @property
@@ -3897,16 +4187,22 @@ class UpdateMaintenanceWindowTaskOutput:
 @final
 class UpdateManagedInstanceRoleOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateManagedInstanceRoleOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateManagedInstanceRoleOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateOpsItemOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateOpsItemOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateOpsItemOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateOpsMetadataOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateOpsMetadataOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateOpsMetadataOutput: ...
     @property
     def ops_metadata_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3914,6 +4210,8 @@ class UpdateOpsMetadataOutput:
 @final
 class UpdatePatchBaselineOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdatePatchBaselineOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdatePatchBaselineOutput: ...
     @property
     def baseline_id(self) -> str | None: ...
     @property
@@ -3949,16 +4247,22 @@ class UpdatePatchBaselineOutput:
 @final
 class UpdateResourceDataSyncOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateResourceDataSyncOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateResourceDataSyncOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateServiceSettingOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateServiceSettingOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateServiceSettingOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ValidateCloudConnectorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ValidateCloudConnectorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ValidateCloudConnectorOutput: ...
     @property
     def validation_findings(self) -> list[ValidationFinding] | None: ...
     @property

@@ -799,6 +799,8 @@ class ValidateStateMachineDefinitionDiagnostic:
 @final
 class CreateActivityOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/CreateActivityOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateActivityOutput: ...
     @property
     def activity_arn(self) -> str: ...
     @property
@@ -808,6 +810,8 @@ class CreateActivityOutput:
 @final
 class CreateStateMachineOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/CreateStateMachineOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateStateMachineOutput: ...
     @property
     def state_machine_arn(self) -> str: ...
     @property
@@ -819,6 +823,8 @@ class CreateStateMachineOutput:
 @final
 class CreateStateMachineAliasOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/CreateStateMachineAliasOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateStateMachineAliasOutput: ...
     @property
     def state_machine_alias_arn(self) -> str: ...
     @property
@@ -828,26 +834,36 @@ class CreateStateMachineAliasOutput:
 @final
 class DeleteActivityOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DeleteActivityOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteActivityOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteStateMachineOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DeleteStateMachineOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteStateMachineOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteStateMachineAliasOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DeleteStateMachineAliasOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteStateMachineAliasOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteStateMachineVersionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DeleteStateMachineVersionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteStateMachineVersionOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DescribeActivityOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DescribeActivityOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeActivityOutput: ...
     @property
     def activity_arn(self) -> str: ...
     @property
@@ -861,6 +877,8 @@ class DescribeActivityOutput:
 @final
 class DescribeExecutionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DescribeExecutionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeExecutionOutput: ...
     @property
     def execution_arn(self) -> str: ...
     @property
@@ -906,6 +924,8 @@ class DescribeExecutionOutput:
 @final
 class DescribeMapRunOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DescribeMapRunOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeMapRunOutput: ...
     @property
     def map_run_arn(self) -> str: ...
     @property
@@ -935,6 +955,8 @@ class DescribeMapRunOutput:
 @final
 class DescribeStateMachineOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DescribeStateMachineOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeStateMachineOutput: ...
     @property
     def state_machine_arn(self) -> str: ...
     @property
@@ -968,6 +990,8 @@ class DescribeStateMachineOutput:
 @final
 class DescribeStateMachineAliasOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DescribeStateMachineAliasOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeStateMachineAliasOutput: ...
     @property
     def state_machine_alias_arn(self) -> str | None: ...
     @property
@@ -985,6 +1009,8 @@ class DescribeStateMachineAliasOutput:
 @final
 class DescribeStateMachineForExecutionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DescribeStateMachineForExecutionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeStateMachineForExecutionOutput: ...
     @property
     def state_machine_arn(self) -> str: ...
     @property
@@ -1014,6 +1040,8 @@ class DescribeStateMachineForExecutionOutput:
 @final
 class GetActivityTaskOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/GetActivityTaskOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetActivityTaskOutput: ...
     @property
     def task_token(self) -> str | None: ...
     @property
@@ -1023,6 +1051,8 @@ class GetActivityTaskOutput:
 @final
 class GetExecutionHistoryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/GetExecutionHistoryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetExecutionHistoryOutput: ...
     @property
     def events(self) -> list[HistoryEvent]: ...
     @property
@@ -1032,6 +1062,8 @@ class GetExecutionHistoryOutput:
 @final
 class ListActivitiesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListActivitiesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListActivitiesOutput: ...
     @property
     def activities(self) -> list[ActivityListItem]: ...
     @property
@@ -1041,6 +1073,8 @@ class ListActivitiesOutput:
 @final
 class ListExecutionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListExecutionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListExecutionsOutput: ...
     @property
     def executions(self) -> list[ExecutionListItem]: ...
     @property
@@ -1050,6 +1084,8 @@ class ListExecutionsOutput:
 @final
 class ListMapRunsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListMapRunsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListMapRunsOutput: ...
     @property
     def map_runs(self) -> list[MapRunListItem]: ...
     @property
@@ -1059,6 +1095,8 @@ class ListMapRunsOutput:
 @final
 class ListStateMachineAliasesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListStateMachineAliasesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListStateMachineAliasesOutput: ...
     @property
     def state_machine_aliases(self) -> list[StateMachineAliasListItem]: ...
     @property
@@ -1068,6 +1106,8 @@ class ListStateMachineAliasesOutput:
 @final
 class ListStateMachineVersionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListStateMachineVersionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListStateMachineVersionsOutput: ...
     @property
     def state_machine_versions(self) -> list[StateMachineVersionListItem]: ...
     @property
@@ -1077,6 +1117,8 @@ class ListStateMachineVersionsOutput:
 @final
 class ListStateMachinesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListStateMachinesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListStateMachinesOutput: ...
     @property
     def state_machines(self) -> list[StateMachineListItem]: ...
     @property
@@ -1086,6 +1128,8 @@ class ListStateMachinesOutput:
 @final
 class ListTagsForResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListTagsForResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTagsForResourceOutput: ...
     @property
     def tags(self) -> list[Tag] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1093,6 +1137,8 @@ class ListTagsForResourceOutput:
 @final
 class PublishStateMachineVersionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/PublishStateMachineVersionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PublishStateMachineVersionOutput: ...
     @property
     def creation_date(self) -> str: ...
     @property
@@ -1102,6 +1148,8 @@ class PublishStateMachineVersionOutput:
 @final
 class RedriveExecutionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/RedriveExecutionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> RedriveExecutionOutput: ...
     @property
     def redrive_date(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1109,21 +1157,29 @@ class RedriveExecutionOutput:
 @final
 class SendTaskFailureOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/SendTaskFailureOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> SendTaskFailureOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SendTaskHeartbeatOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/SendTaskHeartbeatOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> SendTaskHeartbeatOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SendTaskSuccessOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/SendTaskSuccessOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> SendTaskSuccessOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StartExecutionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StartExecutionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StartExecutionOutput: ...
     @property
     def execution_arn(self) -> str: ...
     @property
@@ -1133,6 +1189,8 @@ class StartExecutionOutput:
 @final
 class StartSyncExecutionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StartSyncExecutionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StartSyncExecutionOutput: ...
     @property
     def execution_arn(self) -> str: ...
     @property
@@ -1166,6 +1224,8 @@ class StartSyncExecutionOutput:
 @final
 class StopExecutionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StopExecutionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StopExecutionOutput: ...
     @property
     def stop_date(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1173,11 +1233,15 @@ class StopExecutionOutput:
 @final
 class TagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> TagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TestStateOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TestStateOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> TestStateOutput: ...
     @property
     def output(self) -> str | None: ...
     @property
@@ -1195,16 +1259,22 @@ class TestStateOutput:
 @final
 class UntagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/UntagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UntagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateMapRunOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/UpdateMapRunOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateMapRunOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateStateMachineOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/UpdateStateMachineOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateStateMachineOutput: ...
     @property
     def update_date(self) -> str: ...
     @property
@@ -1216,6 +1286,8 @@ class UpdateStateMachineOutput:
 @final
 class UpdateStateMachineAliasOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/UpdateStateMachineAliasOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateStateMachineAliasOutput: ...
     @property
     def update_date(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1223,6 +1295,8 @@ class UpdateStateMachineAliasOutput:
 @final
 class ValidateStateMachineDefinitionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ValidateStateMachineDefinitionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ValidateStateMachineDefinitionOutput: ...
     @property
     def result(self) -> _types.ValidateStateMachineDefinitionResultCodeOutput: ...
     @property

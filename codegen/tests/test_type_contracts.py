@@ -24,6 +24,40 @@ def check_consumer(path: Path, source: str) -> subprocess.CompletedProcess[str]:
     )
 
 
+def test_stubber_preserves_bound_operation_arguments_and_output_types(tmp_path: Path) -> None:
+    result = check_consumer(tmp_path / "stubber_valid.py", """
+from typing import assert_type
+from rboto import DynamoDBClient
+from rboto.testing import Stubber
+from rboto_dynamodb.types import GetItemOutput
+from rboto_dynamodb.exceptions import ResourceNotFoundError
+
+async def test(client: DynamoDBClient) -> None:
+    with Stubber(client) as stub:
+        stub.add_response(client.get_item, {}, table_name="items", key={"pk": {"s": "one"}})
+        result = await client.get_item(table_name="items", key={"pk": {"s": "one"}})
+        assert_type(result, GetItemOutput)
+        stub.add_error(client.describe_table, ResourceNotFoundError("missing"), table_name="x")
+""")
+    assert result.returncode == 0, result.stdout + result.stderr
+    result = check_consumer(tmp_path / "stubber_invalid.py", """
+from rboto import DynamoDBClient
+from rboto.testing import Stubber
+from rboto.exceptions import ClientError
+
+def invalid(client: DynamoDBClient) -> None:
+    stub = Stubber(client)
+    stub.add_response(client.get_item, {})
+    stub.add_response(client.get_item, {}, table_name=1, key={})
+    stub.add_response(client.list_tables, {}, limti=1)
+    stub.add_response(client.put_item, {}, table_name="x", item={"pk": {"unknown": True}})
+    stub.add_error(client.describe_table, ClientError("missing"), table_name=12)
+""")
+    assert result.returncode == 1, result.stdout + result.stderr
+    errors = [line for line in result.stdout.splitlines() if ": error:" in line]
+    assert len(errors) == 6, result.stdout
+
+
 def test_valid_response_and_sequence_usage(tmp_path: Path) -> None:
     result = check_consumer(tmp_path / "valid.py", """
 from typing import assert_type

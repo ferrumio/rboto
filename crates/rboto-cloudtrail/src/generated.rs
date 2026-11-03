@@ -2141,6 +2141,1374 @@ fn widget_to_py(py: Python<'_>, value: &aws_sdk_cloudtrail::types::Widget) -> Py
     Ok(result.into_any().unbind())
 }
 
+fn advanced_event_selector_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::AdvancedEventSelector> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["name", "field_selectors"], &["field_selectors"])?;
+    let mut builder = aws_sdk_cloudtrail::types::AdvancedEventSelector::builder();
+    if let Some(value) = dict_value(values, "name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1662: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_1662));
+    }
+    if let Some(value) = values.get_item("field_selectors")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1663 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1664 in value.try_iter()? {
+            let item_1665 = item_result_1664?;
+            rboto_core::fixture_scalar(&item_1665, "struct")?;
+            let converted_item_1666 = advanced_field_selector_fixture_from_py(&item_1665)?;
+            fixture_1663.push(converted_item_1666);
+        }
+        builder = builder.set_field_selectors(Some(fixture_1663));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn advanced_field_selector_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::AdvancedFieldSelector> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "field",
+            "equals",
+            "starts_with",
+            "ends_with",
+            "not_equals",
+            "not_starts_with",
+            "not_ends_with",
+        ],
+        &["field"],
+    )?;
+    let mut builder = aws_sdk_cloudtrail::types::AdvancedFieldSelector::builder();
+    if let Some(value) = values.get_item("field")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1667: String = value.extract()?;
+        builder = builder.set_field(Some(fixture_1667));
+    }
+    if let Some(value) = dict_value(values, "equals")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1668 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1669 in value.try_iter()? {
+            let item_1670 = item_result_1669?;
+            rboto_core::fixture_scalar(&item_1670, "string")?;
+            let converted_item_1671: String = item_1670.extract()?;
+            fixture_1668.push(converted_item_1671);
+        }
+        builder = builder.set_equals(Some(fixture_1668));
+    }
+    if let Some(value) = dict_value(values, "starts_with")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1672 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1673 in value.try_iter()? {
+            let item_1674 = item_result_1673?;
+            rboto_core::fixture_scalar(&item_1674, "string")?;
+            let converted_item_1675: String = item_1674.extract()?;
+            fixture_1672.push(converted_item_1675);
+        }
+        builder = builder.set_starts_with(Some(fixture_1672));
+    }
+    if let Some(value) = dict_value(values, "ends_with")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1676 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1677 in value.try_iter()? {
+            let item_1678 = item_result_1677?;
+            rboto_core::fixture_scalar(&item_1678, "string")?;
+            let converted_item_1679: String = item_1678.extract()?;
+            fixture_1676.push(converted_item_1679);
+        }
+        builder = builder.set_ends_with(Some(fixture_1676));
+    }
+    if let Some(value) = dict_value(values, "not_equals")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1680 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1681 in value.try_iter()? {
+            let item_1682 = item_result_1681?;
+            rboto_core::fixture_scalar(&item_1682, "string")?;
+            let converted_item_1683: String = item_1682.extract()?;
+            fixture_1680.push(converted_item_1683);
+        }
+        builder = builder.set_not_equals(Some(fixture_1680));
+    }
+    if let Some(value) = dict_value(values, "not_starts_with")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1684 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1685 in value.try_iter()? {
+            let item_1686 = item_result_1685?;
+            rboto_core::fixture_scalar(&item_1686, "string")?;
+            let converted_item_1687: String = item_1686.extract()?;
+            fixture_1684.push(converted_item_1687);
+        }
+        builder = builder.set_not_starts_with(Some(fixture_1684));
+    }
+    if let Some(value) = dict_value(values, "not_ends_with")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1688 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1689 in value.try_iter()? {
+            let item_1690 = item_result_1689?;
+            rboto_core::fixture_scalar(&item_1690, "string")?;
+            let converted_item_1691: String = item_1690.extract()?;
+            fixture_1688.push(converted_item_1691);
+        }
+        builder = builder.set_not_ends_with(Some(fixture_1688));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn aggregation_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::AggregationConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["templates", "event_category"],
+        &["templates", "event_category"],
+    )?;
+    let mut builder = aws_sdk_cloudtrail::types::AggregationConfiguration::builder();
+    if let Some(value) = values.get_item("templates")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1692 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1693 in value.try_iter()? {
+            let item_1694 = item_result_1693?;
+            rboto_core::fixture_scalar(&item_1694, "enum")?;
+            let enum_value_1696: String = item_1694.extract()?;
+            let converted_item_1695 =
+                aws_sdk_cloudtrail::types::Template::from(enum_value_1696.as_str());
+            fixture_1692.push(converted_item_1695);
+        }
+        builder = builder.set_templates(Some(fixture_1692));
+    }
+    if let Some(value) = values.get_item("event_category")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1698: String = value.extract()?;
+        let fixture_1697 =
+            aws_sdk_cloudtrail::types::EventCategoryAggregation::from(enum_value_1698.as_str());
+        builder = builder.set_event_category(Some(fixture_1697));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn channel_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::Channel> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["channel_arn", "name"], &[])?;
+    let mut builder = aws_sdk_cloudtrail::types::Channel::builder();
+    if let Some(value) = dict_value(values, "channel_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1699: String = value.extract()?;
+        builder = builder.set_channel_arn(Some(fixture_1699));
+    }
+    if let Some(value) = dict_value(values, "name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1700: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_1700));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn context_key_selector_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::ContextKeySelector> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["type", "equals"], &["type", "equals"])?;
+    let mut builder = aws_sdk_cloudtrail::types::ContextKeySelector::builder();
+    if let Some(value) = values.get_item("type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1702: String = value.extract()?;
+        let fixture_1701 = aws_sdk_cloudtrail::types::Type::from(enum_value_1702.as_str());
+        builder = builder.set_type(Some(fixture_1701));
+    }
+    if let Some(value) = values.get_item("equals")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1703 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1704 in value.try_iter()? {
+            let item_1705 = item_result_1704?;
+            rboto_core::fixture_scalar(&item_1705, "string")?;
+            let converted_item_1706: String = item_1705.extract()?;
+            fixture_1703.push(converted_item_1706);
+        }
+        builder = builder.set_equals(Some(fixture_1703));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn dashboard_detail_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::DashboardDetail> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["dashboard_arn", "type"], &[])?;
+    let mut builder = aws_sdk_cloudtrail::types::DashboardDetail::builder();
+    if let Some(value) = dict_value(values, "dashboard_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1707: String = value.extract()?;
+        builder = builder.set_dashboard_arn(Some(fixture_1707));
+    }
+    if let Some(value) = dict_value(values, "type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1709: String = value.extract()?;
+        let fixture_1708 = aws_sdk_cloudtrail::types::DashboardType::from(enum_value_1709.as_str());
+        builder = builder.set_type(Some(fixture_1708));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn data_resource_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::DataResource> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["type", "values"], &[])?;
+    let mut builder = aws_sdk_cloudtrail::types::DataResource::builder();
+    if let Some(value) = dict_value(values, "type")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1710: String = value.extract()?;
+        builder = builder.set_type(Some(fixture_1710));
+    }
+    if let Some(value) = dict_value(values, "values")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1711 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1712 in value.try_iter()? {
+            let item_1713 = item_result_1712?;
+            rboto_core::fixture_scalar(&item_1713, "string")?;
+            let converted_item_1714: String = item_1713.extract()?;
+            fixture_1711.push(converted_item_1714);
+        }
+        builder = builder.set_values(Some(fixture_1711));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn destination_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::Destination> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["type", "location"], &["type", "location"])?;
+    let mut builder = aws_sdk_cloudtrail::types::Destination::builder();
+    if let Some(value) = values.get_item("type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1716: String = value.extract()?;
+        let fixture_1715 =
+            aws_sdk_cloudtrail::types::DestinationType::from(enum_value_1716.as_str());
+        builder = builder.set_type(Some(fixture_1715));
+    }
+    if let Some(value) = values.get_item("location")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1717: String = value.extract()?;
+        builder = builder.set_location(Some(fixture_1717));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn event_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::types::Event> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "event_id",
+            "event_name",
+            "read_only",
+            "access_key_id",
+            "event_time",
+            "event_source",
+            "username",
+            "resources",
+            "cloud_trail_event",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudtrail::types::Event::builder();
+    if let Some(value) = dict_value(values, "event_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1718: String = value.extract()?;
+        builder = builder.set_event_id(Some(fixture_1718));
+    }
+    if let Some(value) = dict_value(values, "event_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1719: String = value.extract()?;
+        builder = builder.set_event_name(Some(fixture_1719));
+    }
+    if let Some(value) = dict_value(values, "read_only")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1720: String = value.extract()?;
+        builder = builder.set_read_only(Some(fixture_1720));
+    }
+    if let Some(value) = dict_value(values, "access_key_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1721: String = value.extract()?;
+        builder = builder.set_access_key_id(Some(fixture_1721));
+    }
+    if let Some(value) = dict_value(values, "event_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1723: String = value.extract()?;
+        let fixture_1722 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1723,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_event_time(Some(fixture_1722));
+    }
+    if let Some(value) = dict_value(values, "event_source")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1724: String = value.extract()?;
+        builder = builder.set_event_source(Some(fixture_1724));
+    }
+    if let Some(value) = dict_value(values, "username")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1725: String = value.extract()?;
+        builder = builder.set_username(Some(fixture_1725));
+    }
+    if let Some(value) = dict_value(values, "resources")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1726 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1727 in value.try_iter()? {
+            let item_1728 = item_result_1727?;
+            rboto_core::fixture_scalar(&item_1728, "struct")?;
+            let converted_item_1729 = resource_fixture_from_py(&item_1728)?;
+            fixture_1726.push(converted_item_1729);
+        }
+        builder = builder.set_resources(Some(fixture_1726));
+    }
+    if let Some(value) = dict_value(values, "cloud_trail_event")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1730: String = value.extract()?;
+        builder = builder.set_cloud_trail_event(Some(fixture_1730));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn event_data_store_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::EventDataStore> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "event_data_store_arn",
+            "name",
+            "termination_protection_enabled",
+            "status",
+            "advanced_event_selectors",
+            "multi_region_enabled",
+            "organization_enabled",
+            "retention_period",
+            "created_timestamp",
+            "updated_timestamp",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudtrail::types::EventDataStore::builder();
+    if let Some(value) = dict_value(values, "event_data_store_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1731: String = value.extract()?;
+        builder = builder.set_event_data_store_arn(Some(fixture_1731));
+    }
+    if let Some(value) = dict_value(values, "name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1732: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_1732));
+    }
+    if let Some(value) = dict_value(values, "termination_protection_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_1733: bool = value.extract()?;
+        builder = builder.set_termination_protection_enabled(Some(fixture_1733));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1735: String = value.extract()?;
+        let fixture_1734 =
+            aws_sdk_cloudtrail::types::EventDataStoreStatus::from(enum_value_1735.as_str());
+        builder = builder.set_status(Some(fixture_1734));
+    }
+    if let Some(value) = dict_value(values, "advanced_event_selectors")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1736 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1737 in value.try_iter()? {
+            let item_1738 = item_result_1737?;
+            rboto_core::fixture_scalar(&item_1738, "struct")?;
+            let converted_item_1739 = advanced_event_selector_fixture_from_py(&item_1738)?;
+            fixture_1736.push(converted_item_1739);
+        }
+        builder = builder.set_advanced_event_selectors(Some(fixture_1736));
+    }
+    if let Some(value) = dict_value(values, "multi_region_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_1740: bool = value.extract()?;
+        builder = builder.set_multi_region_enabled(Some(fixture_1740));
+    }
+    if let Some(value) = dict_value(values, "organization_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_1741: bool = value.extract()?;
+        builder = builder.set_organization_enabled(Some(fixture_1741));
+    }
+    if let Some(value) = dict_value(values, "retention_period")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_1742: i32 = value.extract()?;
+        builder = builder.set_retention_period(Some(fixture_1742));
+    }
+    if let Some(value) = dict_value(values, "created_timestamp")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1744: String = value.extract()?;
+        let fixture_1743 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1744,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_created_timestamp(Some(fixture_1743));
+    }
+    if let Some(value) = dict_value(values, "updated_timestamp")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1746: String = value.extract()?;
+        let fixture_1745 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1746,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_updated_timestamp(Some(fixture_1745));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn event_selector_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::EventSelector> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "read_write_type",
+            "include_management_events",
+            "data_resources",
+            "exclude_management_event_sources",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudtrail::types::EventSelector::builder();
+    if let Some(value) = dict_value(values, "read_write_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1748: String = value.extract()?;
+        let fixture_1747 = aws_sdk_cloudtrail::types::ReadWriteType::from(enum_value_1748.as_str());
+        builder = builder.set_read_write_type(Some(fixture_1747));
+    }
+    if let Some(value) = dict_value(values, "include_management_events")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_1749: bool = value.extract()?;
+        builder = builder.set_include_management_events(Some(fixture_1749));
+    }
+    if let Some(value) = dict_value(values, "data_resources")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1750 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1751 in value.try_iter()? {
+            let item_1752 = item_result_1751?;
+            rboto_core::fixture_scalar(&item_1752, "struct")?;
+            let converted_item_1753 = data_resource_fixture_from_py(&item_1752)?;
+            fixture_1750.push(converted_item_1753);
+        }
+        builder = builder.set_data_resources(Some(fixture_1750));
+    }
+    if let Some(value) = dict_value(values, "exclude_management_event_sources")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1754 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1755 in value.try_iter()? {
+            let item_1756 = item_result_1755?;
+            rboto_core::fixture_scalar(&item_1756, "string")?;
+            let converted_item_1757: String = item_1756.extract()?;
+            fixture_1754.push(converted_item_1757);
+        }
+        builder = builder.set_exclude_management_event_sources(Some(fixture_1754));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn import_failure_list_item_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::ImportFailureListItem> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "location",
+            "status",
+            "error_type",
+            "error_message",
+            "last_updated_time",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudtrail::types::ImportFailureListItem::builder();
+    if let Some(value) = dict_value(values, "location")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1758: String = value.extract()?;
+        builder = builder.set_location(Some(fixture_1758));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1760: String = value.extract()?;
+        let fixture_1759 =
+            aws_sdk_cloudtrail::types::ImportFailureStatus::from(enum_value_1760.as_str());
+        builder = builder.set_status(Some(fixture_1759));
+    }
+    if let Some(value) = dict_value(values, "error_type")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1761: String = value.extract()?;
+        builder = builder.set_error_type(Some(fixture_1761));
+    }
+    if let Some(value) = dict_value(values, "error_message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1762: String = value.extract()?;
+        builder = builder.set_error_message(Some(fixture_1762));
+    }
+    if let Some(value) = dict_value(values, "last_updated_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1764: String = value.extract()?;
+        let fixture_1763 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1764,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_updated_time(Some(fixture_1763));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn import_source_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::ImportSource> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["s3"], &[])?;
+    let mut builder = aws_sdk_cloudtrail::types::ImportSource::builder();
+    if let Some(value) = dict_value(values, "s3")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1765 = s3_import_source_fixture_from_py(&value)?;
+        builder = builder.set_s3(Some(fixture_1765));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn import_statistics_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::ImportStatistics> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "prefixes_found",
+            "prefixes_completed",
+            "files_completed",
+            "events_completed",
+            "failed_entries",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudtrail::types::ImportStatistics::builder();
+    if let Some(value) = dict_value(values, "prefixes_found")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_1766: i64 = value.extract()?;
+        builder = builder.set_prefixes_found(Some(fixture_1766));
+    }
+    if let Some(value) = dict_value(values, "prefixes_completed")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_1767: i64 = value.extract()?;
+        builder = builder.set_prefixes_completed(Some(fixture_1767));
+    }
+    if let Some(value) = dict_value(values, "files_completed")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_1768: i64 = value.extract()?;
+        builder = builder.set_files_completed(Some(fixture_1768));
+    }
+    if let Some(value) = dict_value(values, "events_completed")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_1769: i64 = value.extract()?;
+        builder = builder.set_events_completed(Some(fixture_1769));
+    }
+    if let Some(value) = dict_value(values, "failed_entries")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_1770: i64 = value.extract()?;
+        builder = builder.set_failed_entries(Some(fixture_1770));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn imports_list_item_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::ImportsListItem> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "import_id",
+            "import_status",
+            "destinations",
+            "created_timestamp",
+            "updated_timestamp",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudtrail::types::ImportsListItem::builder();
+    if let Some(value) = dict_value(values, "import_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1771: String = value.extract()?;
+        builder = builder.set_import_id(Some(fixture_1771));
+    }
+    if let Some(value) = dict_value(values, "import_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1773: String = value.extract()?;
+        let fixture_1772 = aws_sdk_cloudtrail::types::ImportStatus::from(enum_value_1773.as_str());
+        builder = builder.set_import_status(Some(fixture_1772));
+    }
+    if let Some(value) = dict_value(values, "destinations")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1774 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1775 in value.try_iter()? {
+            let item_1776 = item_result_1775?;
+            rboto_core::fixture_scalar(&item_1776, "string")?;
+            let converted_item_1777: String = item_1776.extract()?;
+            fixture_1774.push(converted_item_1777);
+        }
+        builder = builder.set_destinations(Some(fixture_1774));
+    }
+    if let Some(value) = dict_value(values, "created_timestamp")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1779: String = value.extract()?;
+        let fixture_1778 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1779,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_created_timestamp(Some(fixture_1778));
+    }
+    if let Some(value) = dict_value(values, "updated_timestamp")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1781: String = value.extract()?;
+        let fixture_1780 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1781,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_updated_timestamp(Some(fixture_1780));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn ingestion_status_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::IngestionStatus> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "latest_ingestion_success_time",
+            "latest_ingestion_success_event_id",
+            "latest_ingestion_error_code",
+            "latest_ingestion_attempt_time",
+            "latest_ingestion_attempt_event_id",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudtrail::types::IngestionStatus::builder();
+    if let Some(value) = dict_value(values, "latest_ingestion_success_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1783: String = value.extract()?;
+        let fixture_1782 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1783,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_latest_ingestion_success_time(Some(fixture_1782));
+    }
+    if let Some(value) = dict_value(values, "latest_ingestion_success_event_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1784: String = value.extract()?;
+        builder = builder.set_latest_ingestion_success_event_id(Some(fixture_1784));
+    }
+    if let Some(value) = dict_value(values, "latest_ingestion_error_code")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1785: String = value.extract()?;
+        builder = builder.set_latest_ingestion_error_code(Some(fixture_1785));
+    }
+    if let Some(value) = dict_value(values, "latest_ingestion_attempt_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1787: String = value.extract()?;
+        let fixture_1786 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1787,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_latest_ingestion_attempt_time(Some(fixture_1786));
+    }
+    if let Some(value) = dict_value(values, "latest_ingestion_attempt_event_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1788: String = value.extract()?;
+        builder = builder.set_latest_ingestion_attempt_event_id(Some(fixture_1788));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn insight_selector_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::InsightSelector> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["insight_type", "event_categories"], &[])?;
+    let mut builder = aws_sdk_cloudtrail::types::InsightSelector::builder();
+    if let Some(value) = dict_value(values, "insight_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1790: String = value.extract()?;
+        let fixture_1789 = aws_sdk_cloudtrail::types::InsightType::from(enum_value_1790.as_str());
+        builder = builder.set_insight_type(Some(fixture_1789));
+    }
+    if let Some(value) = dict_value(values, "event_categories")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1791 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1792 in value.try_iter()? {
+            let item_1793 = item_result_1792?;
+            rboto_core::fixture_scalar(&item_1793, "enum")?;
+            let enum_value_1795: String = item_1793.extract()?;
+            let converted_item_1794 =
+                aws_sdk_cloudtrail::types::SourceEventCategory::from(enum_value_1795.as_str());
+            fixture_1791.push(converted_item_1794);
+        }
+        builder = builder.set_event_categories(Some(fixture_1791));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn partition_key_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::PartitionKey> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["name", "type"], &["name", "type"])?;
+    let mut builder = aws_sdk_cloudtrail::types::PartitionKey::builder();
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1796: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_1796));
+    }
+    if let Some(value) = values.get_item("type")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1797: String = value.extract()?;
+        builder = builder.set_type(Some(fixture_1797));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn public_key_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::PublicKey> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "value",
+            "validity_start_time",
+            "validity_end_time",
+            "fingerprint",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudtrail::types::PublicKey::builder();
+    if let Some(value) = dict_value(values, "value")? {
+        rboto_core::fixture_scalar(&value, "blob")?;
+        let bytes_1799: Vec<u8> = value.extract()?;
+        let fixture_1798 = ::aws_smithy_types::Blob::new(bytes_1799);
+        builder = builder.set_value(Some(fixture_1798));
+    }
+    if let Some(value) = dict_value(values, "validity_start_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1801: String = value.extract()?;
+        let fixture_1800 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1801,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_validity_start_time(Some(fixture_1800));
+    }
+    if let Some(value) = dict_value(values, "validity_end_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1803: String = value.extract()?;
+        let fixture_1802 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1803,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_validity_end_time(Some(fixture_1802));
+    }
+    if let Some(value) = dict_value(values, "fingerprint")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1804: String = value.extract()?;
+        builder = builder.set_fingerprint(Some(fixture_1804));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn query_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::types::Query> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["query_id", "query_status", "creation_time"], &[])?;
+    let mut builder = aws_sdk_cloudtrail::types::Query::builder();
+    if let Some(value) = dict_value(values, "query_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1805: String = value.extract()?;
+        builder = builder.set_query_id(Some(fixture_1805));
+    }
+    if let Some(value) = dict_value(values, "query_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1807: String = value.extract()?;
+        let fixture_1806 = aws_sdk_cloudtrail::types::QueryStatus::from(enum_value_1807.as_str());
+        builder = builder.set_query_status(Some(fixture_1806));
+    }
+    if let Some(value) = dict_value(values, "creation_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1809: String = value.extract()?;
+        let fixture_1808 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1809,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_time(Some(fixture_1808));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn query_statistics_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::QueryStatistics> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["results_count", "total_results_count", "bytes_scanned"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudtrail::types::QueryStatistics::builder();
+    if let Some(value) = dict_value(values, "results_count")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_1810: i32 = value.extract()?;
+        builder = builder.set_results_count(Some(fixture_1810));
+    }
+    if let Some(value) = dict_value(values, "total_results_count")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_1811: i32 = value.extract()?;
+        builder = builder.set_total_results_count(Some(fixture_1811));
+    }
+    if let Some(value) = dict_value(values, "bytes_scanned")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_1812: i64 = value.extract()?;
+        builder = builder.set_bytes_scanned(Some(fixture_1812));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn query_statistics_for_describe_query_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::QueryStatisticsForDescribeQuery> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "events_matched",
+            "events_scanned",
+            "bytes_scanned",
+            "execution_time_in_millis",
+            "creation_time",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudtrail::types::QueryStatisticsForDescribeQuery::builder();
+    if let Some(value) = dict_value(values, "events_matched")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_1813: i64 = value.extract()?;
+        builder = builder.set_events_matched(Some(fixture_1813));
+    }
+    if let Some(value) = dict_value(values, "events_scanned")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_1814: i64 = value.extract()?;
+        builder = builder.set_events_scanned(Some(fixture_1814));
+    }
+    if let Some(value) = dict_value(values, "bytes_scanned")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_1815: i64 = value.extract()?;
+        builder = builder.set_bytes_scanned(Some(fixture_1815));
+    }
+    if let Some(value) = dict_value(values, "execution_time_in_millis")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_1816: i32 = value.extract()?;
+        builder = builder.set_execution_time_in_millis(Some(fixture_1816));
+    }
+    if let Some(value) = dict_value(values, "creation_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1818: String = value.extract()?;
+        let fixture_1817 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1818,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_time(Some(fixture_1817));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn refresh_schedule_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::RefreshSchedule> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["frequency", "status", "time_of_day"], &[])?;
+    let mut builder = aws_sdk_cloudtrail::types::RefreshSchedule::builder();
+    if let Some(value) = dict_value(values, "frequency")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1819 = refresh_schedule_frequency_fixture_from_py(&value)?;
+        builder = builder.set_frequency(Some(fixture_1819));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1821: String = value.extract()?;
+        let fixture_1820 =
+            aws_sdk_cloudtrail::types::RefreshScheduleStatus::from(enum_value_1821.as_str());
+        builder = builder.set_status(Some(fixture_1820));
+    }
+    if let Some(value) = dict_value(values, "time_of_day")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1822: String = value.extract()?;
+        builder = builder.set_time_of_day(Some(fixture_1822));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn refresh_schedule_frequency_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::RefreshScheduleFrequency> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["unit", "value"], &[])?;
+    let mut builder = aws_sdk_cloudtrail::types::RefreshScheduleFrequency::builder();
+    if let Some(value) = dict_value(values, "unit")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1824: String = value.extract()?;
+        let fixture_1823 =
+            aws_sdk_cloudtrail::types::RefreshScheduleFrequencyUnit::from(enum_value_1824.as_str());
+        builder = builder.set_unit(Some(fixture_1823));
+    }
+    if let Some(value) = dict_value(values, "value")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_1825: i32 = value.extract()?;
+        builder = builder.set_value(Some(fixture_1825));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn resource_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::Resource> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["resource_type", "resource_name"], &[])?;
+    let mut builder = aws_sdk_cloudtrail::types::Resource::builder();
+    if let Some(value) = dict_value(values, "resource_type")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1826: String = value.extract()?;
+        builder = builder.set_resource_type(Some(fixture_1826));
+    }
+    if let Some(value) = dict_value(values, "resource_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1827: String = value.extract()?;
+        builder = builder.set_resource_name(Some(fixture_1827));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn resource_tag_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::ResourceTag> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["resource_id", "tags_list"], &[])?;
+    let mut builder = aws_sdk_cloudtrail::types::ResourceTag::builder();
+    if let Some(value) = dict_value(values, "resource_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1828: String = value.extract()?;
+        builder = builder.set_resource_id(Some(fixture_1828));
+    }
+    if let Some(value) = dict_value(values, "tags_list")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1829 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1830 in value.try_iter()? {
+            let item_1831 = item_result_1830?;
+            rboto_core::fixture_scalar(&item_1831, "struct")?;
+            let converted_item_1832 = tag_fixture_from_py(&item_1831)?;
+            fixture_1829.push(converted_item_1832);
+        }
+        builder = builder.set_tags_list(Some(fixture_1829));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn s3_import_source_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::S3ImportSource> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "s3_location_uri",
+            "s3_bucket_region",
+            "s3_bucket_access_role_arn",
+        ],
+        &[
+            "s3_location_uri",
+            "s3_bucket_region",
+            "s3_bucket_access_role_arn",
+        ],
+    )?;
+    let mut builder = aws_sdk_cloudtrail::types::S3ImportSource::builder();
+    if let Some(value) = values.get_item("s3_location_uri")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1833: String = value.extract()?;
+        builder = builder.set_s3_location_uri(Some(fixture_1833));
+    }
+    if let Some(value) = values.get_item("s3_bucket_region")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1834: String = value.extract()?;
+        builder = builder.set_s3_bucket_region(Some(fixture_1834));
+    }
+    if let Some(value) = values.get_item("s3_bucket_access_role_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1835: String = value.extract()?;
+        builder = builder.set_s3_bucket_access_role_arn(Some(fixture_1835));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn search_sample_queries_search_result_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::SearchSampleQueriesSearchResult> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["name", "description", "sql", "relevance"],
+        &["relevance"],
+    )?;
+    let mut builder = aws_sdk_cloudtrail::types::SearchSampleQueriesSearchResult::builder();
+    if let Some(value) = dict_value(values, "name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1836: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_1836));
+    }
+    if let Some(value) = dict_value(values, "description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1837: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_1837));
+    }
+    if let Some(value) = dict_value(values, "sql")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1838: String = value.extract()?;
+        builder = builder.set_sql(Some(fixture_1838));
+    }
+    if let Some(value) = values.get_item("relevance")? {
+        rboto_core::fixture_scalar(&value, "f32")?;
+        let fixture_1839: f32 = value.extract()?;
+        builder = builder.set_relevance(Some(fixture_1839));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn source_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::SourceConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["apply_to_all_regions", "advanced_event_selectors"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudtrail::types::SourceConfig::builder();
+    if let Some(value) = dict_value(values, "apply_to_all_regions")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_1840: bool = value.extract()?;
+        builder = builder.set_apply_to_all_regions(Some(fixture_1840));
+    }
+    if let Some(value) = dict_value(values, "advanced_event_selectors")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1841 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1842 in value.try_iter()? {
+            let item_1843 = item_result_1842?;
+            rboto_core::fixture_scalar(&item_1843, "struct")?;
+            let converted_item_1844 = advanced_event_selector_fixture_from_py(&item_1843)?;
+            fixture_1841.push(converted_item_1844);
+        }
+        builder = builder.set_advanced_event_selectors(Some(fixture_1841));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn tag_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::types::Tag> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["key", "value"], &["key"])?;
+    let mut builder = aws_sdk_cloudtrail::types::Tag::builder();
+    if let Some(value) = values.get_item("key")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1845: String = value.extract()?;
+        builder = builder.set_key(Some(fixture_1845));
+    }
+    if let Some(value) = dict_value(values, "value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1846: String = value.extract()?;
+        builder = builder.set_value(Some(fixture_1846));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn trail_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::types::Trail> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "name",
+            "s3_bucket_name",
+            "s3_key_prefix",
+            "sns_topic_name",
+            "sns_topic_arn",
+            "include_global_service_events",
+            "is_multi_region_trail",
+            "home_region",
+            "trail_arn",
+            "log_file_validation_enabled",
+            "cloud_watch_logs_log_group_arn",
+            "cloud_watch_logs_role_arn",
+            "kms_key_id",
+            "has_custom_event_selectors",
+            "has_insight_selectors",
+            "is_organization_trail",
+            "recursive_logging",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudtrail::types::Trail::builder();
+    if let Some(value) = dict_value(values, "name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1847: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_1847));
+    }
+    if let Some(value) = dict_value(values, "s3_bucket_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1848: String = value.extract()?;
+        builder = builder.set_s3_bucket_name(Some(fixture_1848));
+    }
+    if let Some(value) = dict_value(values, "s3_key_prefix")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1849: String = value.extract()?;
+        builder = builder.set_s3_key_prefix(Some(fixture_1849));
+    }
+    if let Some(value) = dict_value(values, "sns_topic_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1850: String = value.extract()?;
+        builder = builder.set_sns_topic_name(Some(fixture_1850));
+    }
+    if let Some(value) = dict_value(values, "sns_topic_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1851: String = value.extract()?;
+        builder = builder.set_sns_topic_arn(Some(fixture_1851));
+    }
+    if let Some(value) = dict_value(values, "include_global_service_events")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_1852: bool = value.extract()?;
+        builder = builder.set_include_global_service_events(Some(fixture_1852));
+    }
+    if let Some(value) = dict_value(values, "is_multi_region_trail")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_1853: bool = value.extract()?;
+        builder = builder.set_is_multi_region_trail(Some(fixture_1853));
+    }
+    if let Some(value) = dict_value(values, "home_region")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1854: String = value.extract()?;
+        builder = builder.set_home_region(Some(fixture_1854));
+    }
+    if let Some(value) = dict_value(values, "trail_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1855: String = value.extract()?;
+        builder = builder.set_trail_arn(Some(fixture_1855));
+    }
+    if let Some(value) = dict_value(values, "log_file_validation_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_1856: bool = value.extract()?;
+        builder = builder.set_log_file_validation_enabled(Some(fixture_1856));
+    }
+    if let Some(value) = dict_value(values, "cloud_watch_logs_log_group_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1857: String = value.extract()?;
+        builder = builder.set_cloud_watch_logs_log_group_arn(Some(fixture_1857));
+    }
+    if let Some(value) = dict_value(values, "cloud_watch_logs_role_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1858: String = value.extract()?;
+        builder = builder.set_cloud_watch_logs_role_arn(Some(fixture_1858));
+    }
+    if let Some(value) = dict_value(values, "kms_key_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1859: String = value.extract()?;
+        builder = builder.set_kms_key_id(Some(fixture_1859));
+    }
+    if let Some(value) = dict_value(values, "has_custom_event_selectors")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_1860: bool = value.extract()?;
+        builder = builder.set_has_custom_event_selectors(Some(fixture_1860));
+    }
+    if let Some(value) = dict_value(values, "has_insight_selectors")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_1861: bool = value.extract()?;
+        builder = builder.set_has_insight_selectors(Some(fixture_1861));
+    }
+    if let Some(value) = dict_value(values, "is_organization_trail")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_1862: bool = value.extract()?;
+        builder = builder.set_is_organization_trail(Some(fixture_1862));
+    }
+    if let Some(value) = dict_value(values, "recursive_logging")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_1863: bool = value.extract()?;
+        builder = builder.set_recursive_logging(Some(fixture_1863));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn trail_info_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudtrail::types::TrailInfo> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["trail_arn", "name", "home_region"], &[])?;
+    let mut builder = aws_sdk_cloudtrail::types::TrailInfo::builder();
+    if let Some(value) = dict_value(values, "trail_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1864: String = value.extract()?;
+        builder = builder.set_trail_arn(Some(fixture_1864));
+    }
+    if let Some(value) = dict_value(values, "name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1865: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_1865));
+    }
+    if let Some(value) = dict_value(values, "home_region")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1866: String = value.extract()?;
+        builder = builder.set_home_region(Some(fixture_1866));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn widget_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::types::Widget> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "query_alias",
+            "query_statement",
+            "query_parameters",
+            "view_properties",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudtrail::types::Widget::builder();
+    if let Some(value) = dict_value(values, "query_alias")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1867: String = value.extract()?;
+        builder = builder.set_query_alias(Some(fixture_1867));
+    }
+    if let Some(value) = dict_value(values, "query_statement")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1868: String = value.extract()?;
+        builder = builder.set_query_statement(Some(fixture_1868));
+    }
+    if let Some(value) = dict_value(values, "query_parameters")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1869 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1870 in value.try_iter()? {
+            let item_1871 = item_result_1870?;
+            rboto_core::fixture_scalar(&item_1871, "string")?;
+            let converted_item_1872: String = item_1871.extract()?;
+            fixture_1869.push(converted_item_1872);
+        }
+        builder = builder.set_query_parameters(Some(fixture_1869));
+    }
+    if let Some(value) = dict_value(values, "view_properties")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_1874 = value.cast::<PyDict>()?;
+        let mut fixture_1873 = HashMap::with_capacity(mapping_1874.len());
+        for (key_1875, value_1876) in mapping_1874.iter() {
+            rboto_core::fixture_scalar(&key_1875, "string")?;
+            let converted_key_1877: String = key_1875.extract()?;
+            rboto_core::fixture_scalar(&value_1876, "string")?;
+            let converted_value_1878: String = value_1876.extract()?;
+            fixture_1873.insert(converted_key_1877, converted_value_1878);
+        }
+        builder = builder.set_view_properties(Some(fixture_1873));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
 #[allow(clippy::type_complexity)]
 struct SharedAdvancedEventSelector {
     name: Option<::std::string::String>,
@@ -4419,6 +5787,15 @@ impl PyOperationAddTagsOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_cloudtrail::operation::add_tags::AddTagsOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -4467,6 +5844,41 @@ impl PyOperationCancelQueryOutput {
             result.set_item("event_data_store_owner_account_id", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "query_id",
+                "query_status",
+                "event_data_store_owner_account_id",
+            ],
+            &["query_id", "query_status"],
+        )?;
+        let mut builder = aws_sdk_cloudtrail::operation::cancel_query::CancelQueryOutput::builder();
+        if let Some(value) = values.get_item("query_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_933: String = value.extract()?;
+            builder = builder.set_query_id(Some(fixture_933));
+        }
+        if let Some(value) = values.get_item("query_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_935: String = value.extract()?;
+            let fixture_934 = aws_sdk_cloudtrail::types::QueryStatus::from(enum_value_935.as_str());
+            builder = builder.set_query_status(Some(fixture_934));
+        }
+        if let Some(value) = dict_value(values, "event_data_store_owner_account_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_936: String = value.extract()?;
+            builder = builder.set_event_data_store_owner_account_id(Some(fixture_936));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 
@@ -4630,6 +6042,61 @@ impl PyOperationCreateChannelOutput {
             result.set_item("tags", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["channel_arn", "name", "source", "destinations", "tags"],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::create_channel::CreateChannelOutput::builder();
+        if let Some(value) = dict_value(values, "channel_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_953: String = value.extract()?;
+            builder = builder.set_channel_arn(Some(fixture_953));
+        }
+        if let Some(value) = dict_value(values, "name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_954: String = value.extract()?;
+            builder = builder.set_name(Some(fixture_954));
+        }
+        if let Some(value) = dict_value(values, "source")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_955: String = value.extract()?;
+            builder = builder.set_source(Some(fixture_955));
+        }
+        if let Some(value) = dict_value(values, "destinations")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_956 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_957 in value.try_iter()? {
+                let item_958 = item_result_957?;
+                rboto_core::fixture_scalar(&item_958, "struct")?;
+                let converted_item_959 = destination_fixture_from_py(&item_958)?;
+                fixture_956.push(converted_item_959);
+            }
+            builder = builder.set_destinations(Some(fixture_956));
+        }
+        if let Some(value) = dict_value(values, "tags")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_960 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_961 in value.try_iter()? {
+                let item_962 = item_result_961?;
+                rboto_core::fixture_scalar(&item_962, "struct")?;
+                let converted_item_963 = tag_fixture_from_py(&item_962)?;
+                fixture_960.push(converted_item_963);
+            }
+            builder = builder.set_tags(Some(fixture_960));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -4837,6 +6304,81 @@ impl PyOperationCreateDashboardOutput {
             result.set_item("termination_protection_enabled", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "dashboard_arn",
+                "name",
+                "type",
+                "widgets",
+                "tags_list",
+                "refresh_schedule",
+                "termination_protection_enabled",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::create_dashboard::CreateDashboardOutput::builder();
+        if let Some(value) = dict_value(values, "dashboard_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_977: String = value.extract()?;
+            builder = builder.set_dashboard_arn(Some(fixture_977));
+        }
+        if let Some(value) = dict_value(values, "name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_978: String = value.extract()?;
+            builder = builder.set_name(Some(fixture_978));
+        }
+        if let Some(value) = dict_value(values, "type")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_980: String = value.extract()?;
+            let fixture_979 =
+                aws_sdk_cloudtrail::types::DashboardType::from(enum_value_980.as_str());
+            builder = builder.set_type(Some(fixture_979));
+        }
+        if let Some(value) = dict_value(values, "widgets")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_981 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_982 in value.try_iter()? {
+                let item_983 = item_result_982?;
+                rboto_core::fixture_scalar(&item_983, "struct")?;
+                let converted_item_984 = widget_fixture_from_py(&item_983)?;
+                fixture_981.push(converted_item_984);
+            }
+            builder = builder.set_widgets(Some(fixture_981));
+        }
+        if let Some(value) = dict_value(values, "tags_list")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_985 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_986 in value.try_iter()? {
+                let item_987 = item_result_986?;
+                rboto_core::fixture_scalar(&item_987, "struct")?;
+                let converted_item_988 = tag_fixture_from_py(&item_987)?;
+                fixture_985.push(converted_item_988);
+            }
+            builder = builder.set_tags_list(Some(fixture_985));
+        }
+        if let Some(value) = dict_value(values, "refresh_schedule")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_989 = refresh_schedule_fixture_from_py(&value)?;
+            builder = builder.set_refresh_schedule(Some(fixture_989));
+        }
+        if let Some(value) = dict_value(values, "termination_protection_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_990: bool = value.extract()?;
+            builder = builder.set_termination_protection_enabled(Some(fixture_990));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -5147,6 +6689,128 @@ impl PyOperationCreateEventDataStoreOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "event_data_store_arn",
+                "name",
+                "status",
+                "advanced_event_selectors",
+                "multi_region_enabled",
+                "organization_enabled",
+                "retention_period",
+                "termination_protection_enabled",
+                "tags_list",
+                "created_timestamp",
+                "updated_timestamp",
+                "kms_key_id",
+                "billing_mode",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cloudtrail::operation::create_event_data_store::CreateEventDataStoreOutput::builder();
+        if let Some(value) = dict_value(values, "event_data_store_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1013: String = value.extract()?;
+            builder = builder.set_event_data_store_arn(Some(fixture_1013));
+        }
+        if let Some(value) = dict_value(values, "name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1014: String = value.extract()?;
+            builder = builder.set_name(Some(fixture_1014));
+        }
+        if let Some(value) = dict_value(values, "status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1016: String = value.extract()?;
+            let fixture_1015 =
+                aws_sdk_cloudtrail::types::EventDataStoreStatus::from(enum_value_1016.as_str());
+            builder = builder.set_status(Some(fixture_1015));
+        }
+        if let Some(value) = dict_value(values, "advanced_event_selectors")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1017 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1018 in value.try_iter()? {
+                let item_1019 = item_result_1018?;
+                rboto_core::fixture_scalar(&item_1019, "struct")?;
+                let converted_item_1020 = advanced_event_selector_fixture_from_py(&item_1019)?;
+                fixture_1017.push(converted_item_1020);
+            }
+            builder = builder.set_advanced_event_selectors(Some(fixture_1017));
+        }
+        if let Some(value) = dict_value(values, "multi_region_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1021: bool = value.extract()?;
+            builder = builder.set_multi_region_enabled(Some(fixture_1021));
+        }
+        if let Some(value) = dict_value(values, "organization_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1022: bool = value.extract()?;
+            builder = builder.set_organization_enabled(Some(fixture_1022));
+        }
+        if let Some(value) = dict_value(values, "retention_period")? {
+            rboto_core::fixture_scalar(&value, "i32")?;
+            let fixture_1023: i32 = value.extract()?;
+            builder = builder.set_retention_period(Some(fixture_1023));
+        }
+        if let Some(value) = dict_value(values, "termination_protection_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1024: bool = value.extract()?;
+            builder = builder.set_termination_protection_enabled(Some(fixture_1024));
+        }
+        if let Some(value) = dict_value(values, "tags_list")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1025 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1026 in value.try_iter()? {
+                let item_1027 = item_result_1026?;
+                rboto_core::fixture_scalar(&item_1027, "struct")?;
+                let converted_item_1028 = tag_fixture_from_py(&item_1027)?;
+                fixture_1025.push(converted_item_1028);
+            }
+            builder = builder.set_tags_list(Some(fixture_1025));
+        }
+        if let Some(value) = dict_value(values, "created_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1030: String = value.extract()?;
+            let fixture_1029 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1030,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_timestamp(Some(fixture_1029));
+        }
+        if let Some(value) = dict_value(values, "updated_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1032: String = value.extract()?;
+            let fixture_1031 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1032,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_updated_timestamp(Some(fixture_1031));
+        }
+        if let Some(value) = dict_value(values, "kms_key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1033: String = value.extract()?;
+            builder = builder.set_kms_key_id(Some(fixture_1033));
+        }
+        if let Some(value) = dict_value(values, "billing_mode")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1035: String = value.extract()?;
+            let fixture_1034 =
+                aws_sdk_cloudtrail::types::BillingMode::from(enum_value_1035.as_str());
+            builder = builder.set_billing_mode(Some(fixture_1034));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -5388,6 +7052,104 @@ impl PyOperationCreateTrailOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "name",
+                "s3_bucket_name",
+                "s3_key_prefix",
+                "sns_topic_name",
+                "sns_topic_arn",
+                "include_global_service_events",
+                "is_multi_region_trail",
+                "trail_arn",
+                "log_file_validation_enabled",
+                "cloud_watch_logs_log_group_arn",
+                "cloud_watch_logs_role_arn",
+                "kms_key_id",
+                "is_organization_trail",
+                "recursive_logging",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cloudtrail::operation::create_trail::CreateTrailOutput::builder();
+        if let Some(value) = dict_value(values, "name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1041: String = value.extract()?;
+            builder = builder.set_name(Some(fixture_1041));
+        }
+        if let Some(value) = dict_value(values, "s3_bucket_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1042: String = value.extract()?;
+            builder = builder.set_s3_bucket_name(Some(fixture_1042));
+        }
+        if let Some(value) = dict_value(values, "s3_key_prefix")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1043: String = value.extract()?;
+            builder = builder.set_s3_key_prefix(Some(fixture_1043));
+        }
+        if let Some(value) = dict_value(values, "sns_topic_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1044: String = value.extract()?;
+            builder = builder.set_sns_topic_name(Some(fixture_1044));
+        }
+        if let Some(value) = dict_value(values, "sns_topic_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1045: String = value.extract()?;
+            builder = builder.set_sns_topic_arn(Some(fixture_1045));
+        }
+        if let Some(value) = dict_value(values, "include_global_service_events")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1046: bool = value.extract()?;
+            builder = builder.set_include_global_service_events(Some(fixture_1046));
+        }
+        if let Some(value) = dict_value(values, "is_multi_region_trail")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1047: bool = value.extract()?;
+            builder = builder.set_is_multi_region_trail(Some(fixture_1047));
+        }
+        if let Some(value) = dict_value(values, "trail_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1048: String = value.extract()?;
+            builder = builder.set_trail_arn(Some(fixture_1048));
+        }
+        if let Some(value) = dict_value(values, "log_file_validation_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1049: bool = value.extract()?;
+            builder = builder.set_log_file_validation_enabled(Some(fixture_1049));
+        }
+        if let Some(value) = dict_value(values, "cloud_watch_logs_log_group_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1050: String = value.extract()?;
+            builder = builder.set_cloud_watch_logs_log_group_arn(Some(fixture_1050));
+        }
+        if let Some(value) = dict_value(values, "cloud_watch_logs_role_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1051: String = value.extract()?;
+            builder = builder.set_cloud_watch_logs_role_arn(Some(fixture_1051));
+        }
+        if let Some(value) = dict_value(values, "kms_key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1052: String = value.extract()?;
+            builder = builder.set_kms_key_id(Some(fixture_1052));
+        }
+        if let Some(value) = dict_value(values, "is_organization_trail")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1053: bool = value.extract()?;
+            builder = builder.set_is_organization_trail(Some(fixture_1053));
+        }
+        if let Some(value) = dict_value(values, "recursive_logging")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1054: bool = value.extract()?;
+            builder = builder.set_recursive_logging(Some(fixture_1054));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -5404,6 +7166,16 @@ impl PyOperationDeleteChannelOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::delete_channel::DeleteChannelOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -5422,6 +7194,16 @@ impl PyOperationDeleteDashboardOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::delete_dashboard::DeleteDashboardOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -5438,6 +7220,15 @@ impl PyOperationDeleteEventDataStoreOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_cloudtrail::operation::delete_event_data_store::DeleteEventDataStoreOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -5456,6 +7247,15 @@ impl PyOperationDeleteResourcePolicyOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_cloudtrail::operation::delete_resource_policy::DeleteResourcePolicyOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -5473,6 +7273,15 @@ impl PyOperationDeleteTrailOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_cloudtrail::operation::delete_trail::DeleteTrailOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -5489,6 +7298,15 @@ impl PyOperationDeregisterOrganizationDelegatedAdminOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_cloudtrail::operation::deregister_organization_delegated_admin::DeregisterOrganizationDelegatedAdminOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -5689,6 +7507,81 @@ impl PyOperationDescribeQueryOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "query_id",
+                "query_string",
+                "query_status",
+                "query_statistics",
+                "error_message",
+                "delivery_s3_uri",
+                "delivery_status",
+                "prompt",
+                "event_data_store_owner_account_id",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::describe_query::DescribeQueryOutput::builder();
+        if let Some(value) = dict_value(values, "query_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1059: String = value.extract()?;
+            builder = builder.set_query_id(Some(fixture_1059));
+        }
+        if let Some(value) = dict_value(values, "query_string")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1060: String = value.extract()?;
+            builder = builder.set_query_string(Some(fixture_1060));
+        }
+        if let Some(value) = dict_value(values, "query_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1062: String = value.extract()?;
+            let fixture_1061 =
+                aws_sdk_cloudtrail::types::QueryStatus::from(enum_value_1062.as_str());
+            builder = builder.set_query_status(Some(fixture_1061));
+        }
+        if let Some(value) = dict_value(values, "query_statistics")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_1063 = query_statistics_for_describe_query_fixture_from_py(&value)?;
+            builder = builder.set_query_statistics(Some(fixture_1063));
+        }
+        if let Some(value) = dict_value(values, "error_message")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1064: String = value.extract()?;
+            builder = builder.set_error_message(Some(fixture_1064));
+        }
+        if let Some(value) = dict_value(values, "delivery_s3_uri")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1065: String = value.extract()?;
+            builder = builder.set_delivery_s3_uri(Some(fixture_1065));
+        }
+        if let Some(value) = dict_value(values, "delivery_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1067: String = value.extract()?;
+            let fixture_1066 =
+                aws_sdk_cloudtrail::types::DeliveryStatus::from(enum_value_1067.as_str());
+            builder = builder.set_delivery_status(Some(fixture_1066));
+        }
+        if let Some(value) = dict_value(values, "prompt")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1068: String = value.extract()?;
+            builder = builder.set_prompt(Some(fixture_1068));
+        }
+        if let Some(value) = dict_value(values, "event_data_store_owner_account_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1069: String = value.extract()?;
+            builder = builder.set_event_data_store_owner_account_id(Some(fixture_1069));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -5759,6 +7652,30 @@ impl PyOperationDescribeTrailsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["trail_list"], &[])?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::describe_trails::DescribeTrailsOutput::builder();
+        if let Some(value) = dict_value(values, "trail_list")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1066 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1067 in value.try_iter()? {
+                let item_1068 = item_result_1067?;
+                rboto_core::fixture_scalar(&item_1068, "struct")?;
+                let converted_item_1069 = trail_fixture_from_py(&item_1068)?;
+                fixture_1066.push(converted_item_1069);
+            }
+            builder = builder.set_trail_list(Some(fixture_1066));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -5807,6 +7724,28 @@ impl PyOperationDisableFederationOutput {
             result.set_item("federation_status", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["event_data_store_arn", "federation_status"], &[])?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::disable_federation::DisableFederationOutput::builder();
+        if let Some(value) = dict_value(values, "event_data_store_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1070: String = value.extract()?;
+            builder = builder.set_event_data_store_arn(Some(fixture_1070));
+        }
+        if let Some(value) = dict_value(values, "federation_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1072: String = value.extract()?;
+            let fixture_1071 =
+                aws_sdk_cloudtrail::types::FederationStatus::from(enum_value_1072.as_str());
+            builder = builder.set_federation_status(Some(fixture_1071));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -5873,6 +7812,41 @@ impl PyOperationEnableFederationOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "event_data_store_arn",
+                "federation_status",
+                "federation_role_arn",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::enable_federation::EnableFederationOutput::builder();
+        if let Some(value) = dict_value(values, "event_data_store_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1076: String = value.extract()?;
+            builder = builder.set_event_data_store_arn(Some(fixture_1076));
+        }
+        if let Some(value) = dict_value(values, "federation_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1078: String = value.extract()?;
+            let fixture_1077 =
+                aws_sdk_cloudtrail::types::FederationStatus::from(enum_value_1078.as_str());
+            builder = builder.set_federation_status(Some(fixture_1077));
+        }
+        if let Some(value) = dict_value(values, "federation_role_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1079: String = value.extract()?;
+            builder = builder.set_federation_role_arn(Some(fixture_1079));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -5937,6 +7911,39 @@ impl PyOperationGenerateQueryOutput {
             result.set_item("event_data_store_owner_account_id", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "query_statement",
+                "query_alias",
+                "event_data_store_owner_account_id",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::generate_query::GenerateQueryOutput::builder();
+        if let Some(value) = dict_value(values, "query_statement")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1082: String = value.extract()?;
+            builder = builder.set_query_statement(Some(fixture_1082));
+        }
+        if let Some(value) = dict_value(values, "query_alias")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1083: String = value.extract()?;
+            builder = builder.set_query_alias(Some(fixture_1083));
+        }
+        if let Some(value) = dict_value(values, "event_data_store_owner_account_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1084: String = value.extract()?;
+            builder = builder.set_event_data_store_owner_account_id(Some(fixture_1084));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -6107,6 +8114,65 @@ impl PyOperationGetChannelOutput {
             result.set_item("ingestion_status", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "channel_arn",
+                "name",
+                "source",
+                "source_config",
+                "destinations",
+                "ingestion_status",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cloudtrail::operation::get_channel::GetChannelOutput::builder();
+        if let Some(value) = dict_value(values, "channel_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1099: String = value.extract()?;
+            builder = builder.set_channel_arn(Some(fixture_1099));
+        }
+        if let Some(value) = dict_value(values, "name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1100: String = value.extract()?;
+            builder = builder.set_name(Some(fixture_1100));
+        }
+        if let Some(value) = dict_value(values, "source")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1101: String = value.extract()?;
+            builder = builder.set_source(Some(fixture_1101));
+        }
+        if let Some(value) = dict_value(values, "source_config")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_1102 = source_config_fixture_from_py(&value)?;
+            builder = builder.set_source_config(Some(fixture_1102));
+        }
+        if let Some(value) = dict_value(values, "destinations")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1103 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1104 in value.try_iter()? {
+                let item_1105 = item_result_1104?;
+                rboto_core::fixture_scalar(&item_1105, "struct")?;
+                let converted_item_1106 = destination_fixture_from_py(&item_1105)?;
+                fixture_1103.push(converted_item_1106);
+            }
+            builder = builder.set_destinations(Some(fixture_1103));
+        }
+        if let Some(value) = dict_value(values, "ingestion_status")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_1107 = ingestion_status_fixture_from_py(&value)?;
+            builder = builder.set_ingestion_status(Some(fixture_1107));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -6348,6 +8414,104 @@ impl PyOperationGetDashboardOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "dashboard_arn",
+                "type",
+                "status",
+                "widgets",
+                "refresh_schedule",
+                "created_timestamp",
+                "updated_timestamp",
+                "last_refresh_id",
+                "last_refresh_failure_reason",
+                "termination_protection_enabled",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::get_dashboard::GetDashboardOutput::builder();
+        if let Some(value) = dict_value(values, "dashboard_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1124: String = value.extract()?;
+            builder = builder.set_dashboard_arn(Some(fixture_1124));
+        }
+        if let Some(value) = dict_value(values, "type")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1126: String = value.extract()?;
+            let fixture_1125 =
+                aws_sdk_cloudtrail::types::DashboardType::from(enum_value_1126.as_str());
+            builder = builder.set_type(Some(fixture_1125));
+        }
+        if let Some(value) = dict_value(values, "status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1128: String = value.extract()?;
+            let fixture_1127 =
+                aws_sdk_cloudtrail::types::DashboardStatus::from(enum_value_1128.as_str());
+            builder = builder.set_status(Some(fixture_1127));
+        }
+        if let Some(value) = dict_value(values, "widgets")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1129 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1130 in value.try_iter()? {
+                let item_1131 = item_result_1130?;
+                rboto_core::fixture_scalar(&item_1131, "struct")?;
+                let converted_item_1132 = widget_fixture_from_py(&item_1131)?;
+                fixture_1129.push(converted_item_1132);
+            }
+            builder = builder.set_widgets(Some(fixture_1129));
+        }
+        if let Some(value) = dict_value(values, "refresh_schedule")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_1133 = refresh_schedule_fixture_from_py(&value)?;
+            builder = builder.set_refresh_schedule(Some(fixture_1133));
+        }
+        if let Some(value) = dict_value(values, "created_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1135: String = value.extract()?;
+            let fixture_1134 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1135,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_timestamp(Some(fixture_1134));
+        }
+        if let Some(value) = dict_value(values, "updated_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1137: String = value.extract()?;
+            let fixture_1136 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1137,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_updated_timestamp(Some(fixture_1136));
+        }
+        if let Some(value) = dict_value(values, "last_refresh_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1138: String = value.extract()?;
+            builder = builder.set_last_refresh_id(Some(fixture_1138));
+        }
+        if let Some(value) = dict_value(values, "last_refresh_failure_reason")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1139: String = value.extract()?;
+            builder = builder.set_last_refresh_failure_reason(Some(fixture_1139));
+        }
+        if let Some(value) = dict_value(values, "termination_protection_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1140: bool = value.extract()?;
+            builder = builder.set_termination_protection_enabled(Some(fixture_1140));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -6514,6 +8678,68 @@ impl PyOperationGetEventConfigurationOutput {
             result.set_item("aggregation_configurations", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "trail_arn",
+                "event_data_store_arn",
+                "max_event_size",
+                "context_key_selectors",
+                "aggregation_configurations",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cloudtrail::operation::get_event_configuration::GetEventConfigurationOutput::builder();
+        if let Some(value) = dict_value(values, "trail_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1144: String = value.extract()?;
+            builder = builder.set_trail_arn(Some(fixture_1144));
+        }
+        if let Some(value) = dict_value(values, "event_data_store_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1145: String = value.extract()?;
+            builder = builder.set_event_data_store_arn(Some(fixture_1145));
+        }
+        if let Some(value) = dict_value(values, "max_event_size")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1147: String = value.extract()?;
+            let fixture_1146 =
+                aws_sdk_cloudtrail::types::MaxEventSize::from(enum_value_1147.as_str());
+            builder = builder.set_max_event_size(Some(fixture_1146));
+        }
+        if let Some(value) = dict_value(values, "context_key_selectors")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1148 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1149 in value.try_iter()? {
+                let item_1150 = item_result_1149?;
+                rboto_core::fixture_scalar(&item_1150, "struct")?;
+                let converted_item_1151 = context_key_selector_fixture_from_py(&item_1150)?;
+                fixture_1148.push(converted_item_1151);
+            }
+            builder = builder.set_context_key_selectors(Some(fixture_1148));
+        }
+        if let Some(value) = dict_value(values, "aggregation_configurations")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1152 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1153 in value.try_iter()? {
+                let item_1154 = item_result_1153?;
+                rboto_core::fixture_scalar(&item_1154, "struct")?;
+                let converted_item_1155 = aggregation_configuration_fixture_from_py(&item_1154)?;
+                fixture_1152.push(converted_item_1155);
+            }
+            builder = builder.set_aggregation_configurations(Some(fixture_1152));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -6860,6 +9086,143 @@ impl PyOperationGetEventDataStoreOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "event_data_store_arn",
+                "name",
+                "status",
+                "advanced_event_selectors",
+                "multi_region_enabled",
+                "organization_enabled",
+                "retention_period",
+                "termination_protection_enabled",
+                "created_timestamp",
+                "updated_timestamp",
+                "kms_key_id",
+                "billing_mode",
+                "federation_status",
+                "federation_role_arn",
+                "partition_keys",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::get_event_data_store::GetEventDataStoreOutput::builder();
+        if let Some(value) = dict_value(values, "event_data_store_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1184: String = value.extract()?;
+            builder = builder.set_event_data_store_arn(Some(fixture_1184));
+        }
+        if let Some(value) = dict_value(values, "name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1185: String = value.extract()?;
+            builder = builder.set_name(Some(fixture_1185));
+        }
+        if let Some(value) = dict_value(values, "status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1187: String = value.extract()?;
+            let fixture_1186 =
+                aws_sdk_cloudtrail::types::EventDataStoreStatus::from(enum_value_1187.as_str());
+            builder = builder.set_status(Some(fixture_1186));
+        }
+        if let Some(value) = dict_value(values, "advanced_event_selectors")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1188 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1189 in value.try_iter()? {
+                let item_1190 = item_result_1189?;
+                rboto_core::fixture_scalar(&item_1190, "struct")?;
+                let converted_item_1191 = advanced_event_selector_fixture_from_py(&item_1190)?;
+                fixture_1188.push(converted_item_1191);
+            }
+            builder = builder.set_advanced_event_selectors(Some(fixture_1188));
+        }
+        if let Some(value) = dict_value(values, "multi_region_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1192: bool = value.extract()?;
+            builder = builder.set_multi_region_enabled(Some(fixture_1192));
+        }
+        if let Some(value) = dict_value(values, "organization_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1193: bool = value.extract()?;
+            builder = builder.set_organization_enabled(Some(fixture_1193));
+        }
+        if let Some(value) = dict_value(values, "retention_period")? {
+            rboto_core::fixture_scalar(&value, "i32")?;
+            let fixture_1194: i32 = value.extract()?;
+            builder = builder.set_retention_period(Some(fixture_1194));
+        }
+        if let Some(value) = dict_value(values, "termination_protection_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1195: bool = value.extract()?;
+            builder = builder.set_termination_protection_enabled(Some(fixture_1195));
+        }
+        if let Some(value) = dict_value(values, "created_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1197: String = value.extract()?;
+            let fixture_1196 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1197,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_timestamp(Some(fixture_1196));
+        }
+        if let Some(value) = dict_value(values, "updated_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1199: String = value.extract()?;
+            let fixture_1198 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1199,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_updated_timestamp(Some(fixture_1198));
+        }
+        if let Some(value) = dict_value(values, "kms_key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1200: String = value.extract()?;
+            builder = builder.set_kms_key_id(Some(fixture_1200));
+        }
+        if let Some(value) = dict_value(values, "billing_mode")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1202: String = value.extract()?;
+            let fixture_1201 =
+                aws_sdk_cloudtrail::types::BillingMode::from(enum_value_1202.as_str());
+            builder = builder.set_billing_mode(Some(fixture_1201));
+        }
+        if let Some(value) = dict_value(values, "federation_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1204: String = value.extract()?;
+            let fixture_1203 =
+                aws_sdk_cloudtrail::types::FederationStatus::from(enum_value_1204.as_str());
+            builder = builder.set_federation_status(Some(fixture_1203));
+        }
+        if let Some(value) = dict_value(values, "federation_role_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1205: String = value.extract()?;
+            builder = builder.set_federation_role_arn(Some(fixture_1205));
+        }
+        if let Some(value) = dict_value(values, "partition_keys")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1206 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1207 in value.try_iter()? {
+                let item_1208 = item_result_1207?;
+                rboto_core::fixture_scalar(&item_1208, "struct")?;
+                let converted_item_1209 = partition_key_fixture_from_py(&item_1208)?;
+                fixture_1206.push(converted_item_1209);
+            }
+            builder = builder.set_partition_keys(Some(fixture_1206));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -6988,6 +9351,51 @@ impl PyOperationGetEventSelectorsOutput {
             result.set_item("advanced_event_selectors", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["trail_arn", "event_selectors", "advanced_event_selectors"],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::get_event_selectors::GetEventSelectorsOutput::builder();
+        if let Some(value) = dict_value(values, "trail_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1200: String = value.extract()?;
+            builder = builder.set_trail_arn(Some(fixture_1200));
+        }
+        if let Some(value) = dict_value(values, "event_selectors")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1201 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1202 in value.try_iter()? {
+                let item_1203 = item_result_1202?;
+                rboto_core::fixture_scalar(&item_1203, "struct")?;
+                let converted_item_1204 = event_selector_fixture_from_py(&item_1203)?;
+                fixture_1201.push(converted_item_1204);
+            }
+            builder = builder.set_event_selectors(Some(fixture_1201));
+        }
+        if let Some(value) = dict_value(values, "advanced_event_selectors")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1205 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1206 in value.try_iter()? {
+                let item_1207 = item_result_1206?;
+                rboto_core::fixture_scalar(&item_1207, "struct")?;
+                let converted_item_1208 = advanced_event_selector_fixture_from_py(&item_1207)?;
+                fixture_1205.push(converted_item_1208);
+            }
+            builder = builder.set_advanced_event_selectors(Some(fixture_1205));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -7202,6 +9610,105 @@ impl PyOperationGetImportOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "import_id",
+                "destinations",
+                "import_source",
+                "start_event_time",
+                "end_event_time",
+                "import_status",
+                "created_timestamp",
+                "updated_timestamp",
+                "import_statistics",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cloudtrail::operation::get_import::GetImportOutput::builder();
+        if let Some(value) = dict_value(values, "import_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1222: String = value.extract()?;
+            builder = builder.set_import_id(Some(fixture_1222));
+        }
+        if let Some(value) = dict_value(values, "destinations")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1223 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1224 in value.try_iter()? {
+                let item_1225 = item_result_1224?;
+                rboto_core::fixture_scalar(&item_1225, "string")?;
+                let converted_item_1226: String = item_1225.extract()?;
+                fixture_1223.push(converted_item_1226);
+            }
+            builder = builder.set_destinations(Some(fixture_1223));
+        }
+        if let Some(value) = dict_value(values, "import_source")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_1227 = import_source_fixture_from_py(&value)?;
+            builder = builder.set_import_source(Some(fixture_1227));
+        }
+        if let Some(value) = dict_value(values, "start_event_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1229: String = value.extract()?;
+            let fixture_1228 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1229,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_start_event_time(Some(fixture_1228));
+        }
+        if let Some(value) = dict_value(values, "end_event_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1231: String = value.extract()?;
+            let fixture_1230 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1231,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_end_event_time(Some(fixture_1230));
+        }
+        if let Some(value) = dict_value(values, "import_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1233: String = value.extract()?;
+            let fixture_1232 =
+                aws_sdk_cloudtrail::types::ImportStatus::from(enum_value_1233.as_str());
+            builder = builder.set_import_status(Some(fixture_1232));
+        }
+        if let Some(value) = dict_value(values, "created_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1235: String = value.extract()?;
+            let fixture_1234 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1235,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_timestamp(Some(fixture_1234));
+        }
+        if let Some(value) = dict_value(values, "updated_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1237: String = value.extract()?;
+            let fixture_1236 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1237,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_updated_timestamp(Some(fixture_1236));
+        }
+        if let Some(value) = dict_value(values, "import_statistics")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_1238 = import_statistics_fixture_from_py(&value)?;
+            builder = builder.set_import_statistics(Some(fixture_1238));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -7327,6 +9834,53 @@ impl PyOperationGetInsightSelectorsOutput {
             result.set_item("insights_destination", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "trail_arn",
+                "insight_selectors",
+                "event_data_store_arn",
+                "insights_destination",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cloudtrail::operation::get_insight_selectors::GetInsightSelectorsOutput::builder();
+        if let Some(value) = dict_value(values, "trail_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1235: String = value.extract()?;
+            builder = builder.set_trail_arn(Some(fixture_1235));
+        }
+        if let Some(value) = dict_value(values, "insight_selectors")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1236 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1237 in value.try_iter()? {
+                let item_1238 = item_result_1237?;
+                rboto_core::fixture_scalar(&item_1238, "struct")?;
+                let converted_item_1239 = insight_selector_fixture_from_py(&item_1238)?;
+                fixture_1236.push(converted_item_1239);
+            }
+            builder = builder.set_insight_selectors(Some(fixture_1236));
+        }
+        if let Some(value) = dict_value(values, "event_data_store_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1240: String = value.extract()?;
+            builder = builder.set_event_data_store_arn(Some(fixture_1240));
+        }
+        if let Some(value) = dict_value(values, "insights_destination")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1241: String = value.extract()?;
+            builder = builder.set_insights_destination(Some(fixture_1241));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -7497,6 +10051,77 @@ impl PyOperationGetQueryResultsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "query_status",
+                "query_statistics",
+                "query_result_rows",
+                "next_token",
+                "error_message",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::get_query_results::GetQueryResultsOutput::builder();
+        if let Some(value) = dict_value(values, "query_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1262: String = value.extract()?;
+            let fixture_1261 =
+                aws_sdk_cloudtrail::types::QueryStatus::from(enum_value_1262.as_str());
+            builder = builder.set_query_status(Some(fixture_1261));
+        }
+        if let Some(value) = dict_value(values, "query_statistics")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_1263 = query_statistics_fixture_from_py(&value)?;
+            builder = builder.set_query_statistics(Some(fixture_1263));
+        }
+        if let Some(value) = dict_value(values, "query_result_rows")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1264 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1265 in value.try_iter()? {
+                let item_1266 = item_result_1265?;
+                rboto_core::fixture_scalar(&item_1266, "vec")?;
+                let mut converted_item_1267 =
+                    Vec::with_capacity(item_1266.cast::<PyList>().map_or(0, |items| items.len()));
+                for item_result_1268 in item_1266.try_iter()? {
+                    let item_1269 = item_result_1268?;
+                    rboto_core::fixture_scalar(&item_1269, "map")?;
+                    let mapping_1271 = item_1269.cast::<PyDict>()?;
+                    let mut converted_item_1270 = HashMap::with_capacity(mapping_1271.len());
+                    for (key_1272, value_1273) in mapping_1271.iter() {
+                        rboto_core::fixture_scalar(&key_1272, "string")?;
+                        let converted_key_1274: String = key_1272.extract()?;
+                        rboto_core::fixture_scalar(&value_1273, "string")?;
+                        let converted_value_1275: String = value_1273.extract()?;
+                        converted_item_1270.insert(converted_key_1274, converted_value_1275);
+                    }
+                    converted_item_1267.push(converted_item_1270);
+                }
+                fixture_1264.push(converted_item_1267);
+            }
+            builder = builder.set_query_result_rows(Some(fixture_1264));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1276: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_1276));
+        }
+        if let Some(value) = dict_value(values, "error_message")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1277: String = value.extract()?;
+            builder = builder.set_error_message(Some(fixture_1277));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -7562,6 +10187,39 @@ impl PyOperationGetResourcePolicyOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "resource_arn",
+                "resource_policy",
+                "delegated_admin_resource_policy",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::get_resource_policy::GetResourcePolicyOutput::builder();
+        if let Some(value) = dict_value(values, "resource_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1267: String = value.extract()?;
+            builder = builder.set_resource_arn(Some(fixture_1267));
+        }
+        if let Some(value) = dict_value(values, "resource_policy")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1268: String = value.extract()?;
+            builder = builder.set_resource_policy(Some(fixture_1268));
+        }
+        if let Some(value) = dict_value(values, "delegated_admin_resource_policy")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1269: String = value.extract()?;
+            builder = builder.set_delegated_admin_resource_policy(Some(fixture_1269));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -7612,6 +10270,22 @@ impl PyOperationGetTrailOutput {
             result.set_item("trail", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["trail"], &[])?;
+        let mut builder = aws_sdk_cloudtrail::operation::get_trail::GetTrailOutput::builder();
+        if let Some(value) = dict_value(values, "trail")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_1269 = trail_fixture_from_py(&value)?;
+            builder = builder.set_trail(Some(fixture_1269));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -7902,6 +10576,153 @@ impl PyOperationGetTrailStatusOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "is_logging",
+                "latest_delivery_error",
+                "latest_notification_error",
+                "latest_delivery_time",
+                "latest_notification_time",
+                "start_logging_time",
+                "stop_logging_time",
+                "latest_cloud_watch_logs_delivery_error",
+                "latest_cloud_watch_logs_delivery_time",
+                "latest_digest_delivery_time",
+                "latest_digest_delivery_error",
+                "latest_delivery_attempt_time",
+                "latest_notification_attempt_time",
+                "latest_notification_attempt_succeeded",
+                "latest_delivery_attempt_succeeded",
+                "time_logging_started",
+                "time_logging_stopped",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::get_trail_status::GetTrailStatusOutput::builder();
+        if let Some(value) = dict_value(values, "is_logging")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1303: bool = value.extract()?;
+            builder = builder.set_is_logging(Some(fixture_1303));
+        }
+        if let Some(value) = dict_value(values, "latest_delivery_error")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1304: String = value.extract()?;
+            builder = builder.set_latest_delivery_error(Some(fixture_1304));
+        }
+        if let Some(value) = dict_value(values, "latest_notification_error")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1305: String = value.extract()?;
+            builder = builder.set_latest_notification_error(Some(fixture_1305));
+        }
+        if let Some(value) = dict_value(values, "latest_delivery_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1307: String = value.extract()?;
+            let fixture_1306 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1307,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_latest_delivery_time(Some(fixture_1306));
+        }
+        if let Some(value) = dict_value(values, "latest_notification_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1309: String = value.extract()?;
+            let fixture_1308 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1309,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_latest_notification_time(Some(fixture_1308));
+        }
+        if let Some(value) = dict_value(values, "start_logging_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1311: String = value.extract()?;
+            let fixture_1310 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1311,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_start_logging_time(Some(fixture_1310));
+        }
+        if let Some(value) = dict_value(values, "stop_logging_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1313: String = value.extract()?;
+            let fixture_1312 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1313,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_stop_logging_time(Some(fixture_1312));
+        }
+        if let Some(value) = dict_value(values, "latest_cloud_watch_logs_delivery_error")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1314: String = value.extract()?;
+            builder = builder.set_latest_cloud_watch_logs_delivery_error(Some(fixture_1314));
+        }
+        if let Some(value) = dict_value(values, "latest_cloud_watch_logs_delivery_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1316: String = value.extract()?;
+            let fixture_1315 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1316,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_latest_cloud_watch_logs_delivery_time(Some(fixture_1315));
+        }
+        if let Some(value) = dict_value(values, "latest_digest_delivery_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1318: String = value.extract()?;
+            let fixture_1317 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1318,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_latest_digest_delivery_time(Some(fixture_1317));
+        }
+        if let Some(value) = dict_value(values, "latest_digest_delivery_error")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1319: String = value.extract()?;
+            builder = builder.set_latest_digest_delivery_error(Some(fixture_1319));
+        }
+        if let Some(value) = dict_value(values, "latest_delivery_attempt_time")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1320: String = value.extract()?;
+            builder = builder.set_latest_delivery_attempt_time(Some(fixture_1320));
+        }
+        if let Some(value) = dict_value(values, "latest_notification_attempt_time")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1321: String = value.extract()?;
+            builder = builder.set_latest_notification_attempt_time(Some(fixture_1321));
+        }
+        if let Some(value) = dict_value(values, "latest_notification_attempt_succeeded")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1322: String = value.extract()?;
+            builder = builder.set_latest_notification_attempt_succeeded(Some(fixture_1322));
+        }
+        if let Some(value) = dict_value(values, "latest_delivery_attempt_succeeded")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1323: String = value.extract()?;
+            builder = builder.set_latest_delivery_attempt_succeeded(Some(fixture_1323));
+        }
+        if let Some(value) = dict_value(values, "time_logging_started")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1324: String = value.extract()?;
+            builder = builder.set_time_logging_started(Some(fixture_1324));
+        }
+        if let Some(value) = dict_value(values, "time_logging_stopped")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1325: String = value.extract()?;
+            builder = builder.set_time_logging_stopped(Some(fixture_1325));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -7990,6 +10811,35 @@ impl PyOperationListChannelsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["channels", "next_token"], &[])?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::list_channels::ListChannelsOutput::builder();
+        if let Some(value) = dict_value(values, "channels")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1312 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1313 in value.try_iter()? {
+                let item_1314 = item_result_1313?;
+                rboto_core::fixture_scalar(&item_1314, "struct")?;
+                let converted_item_1315 = channel_fixture_from_py(&item_1314)?;
+                fixture_1312.push(converted_item_1315);
+            }
+            builder = builder.set_channels(Some(fixture_1312));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1316: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_1316));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -8077,6 +10927,35 @@ impl PyOperationListDashboardsOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["dashboards", "next_token"], &[])?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::list_dashboards::ListDashboardsOutput::builder();
+        if let Some(value) = dict_value(values, "dashboards")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1321 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1322 in value.try_iter()? {
+                let item_1323 = item_result_1322?;
+                rboto_core::fixture_scalar(&item_1323, "struct")?;
+                let converted_item_1324 = dashboard_detail_fixture_from_py(&item_1323)?;
+                fixture_1321.push(converted_item_1324);
+            }
+            builder = builder.set_dashboards(Some(fixture_1321));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1325: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_1325));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -8168,6 +11047,34 @@ impl PyOperationListEventDataStoresOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["event_data_stores", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudtrail::operation::list_event_data_stores::ListEventDataStoresOutput::builder();
+        if let Some(value) = dict_value(values, "event_data_stores")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1330 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1331 in value.try_iter()? {
+                let item_1332 = item_result_1331?;
+                rboto_core::fixture_scalar(&item_1332, "struct")?;
+                let converted_item_1333 = event_data_store_fixture_from_py(&item_1332)?;
+                fixture_1330.push(converted_item_1333);
+            }
+            builder = builder.set_event_data_stores(Some(fixture_1330));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1334: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_1334));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -8258,6 +11165,36 @@ impl PyOperationListImportFailuresOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["failures", "next_token"], &[])?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::list_import_failures::ListImportFailuresOutput::builder(
+            );
+        if let Some(value) = dict_value(values, "failures")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1339 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1340 in value.try_iter()? {
+                let item_1341 = item_result_1340?;
+                rboto_core::fixture_scalar(&item_1341, "struct")?;
+                let converted_item_1342 = import_failure_list_item_fixture_from_py(&item_1341)?;
+                fixture_1339.push(converted_item_1342);
+            }
+            builder = builder.set_failures(Some(fixture_1339));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1343: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_1343));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -8345,6 +11282,34 @@ impl PyOperationListImportsOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["imports", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudtrail::operation::list_imports::ListImportsOutput::builder();
+        if let Some(value) = dict_value(values, "imports")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1348 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1349 in value.try_iter()? {
+                let item_1350 = item_result_1349?;
+                rboto_core::fixture_scalar(&item_1350, "struct")?;
+                let converted_item_1351 = imports_list_item_fixture_from_py(&item_1350)?;
+                fixture_1348.push(converted_item_1351);
+            }
+            builder = builder.set_imports(Some(fixture_1348));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1352: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_1352));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -8435,6 +11400,35 @@ impl PyOperationListInsightsDataOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["events", "next_token"], &[])?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::list_insights_data::ListInsightsDataOutput::builder();
+        if let Some(value) = dict_value(values, "events")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1357 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1358 in value.try_iter()? {
+                let item_1359 = item_result_1358?;
+                rboto_core::fixture_scalar(&item_1359, "struct")?;
+                let converted_item_1360 = event_fixture_from_py(&item_1359)?;
+                fixture_1357.push(converted_item_1360);
+            }
+            builder = builder.set_events(Some(fixture_1357));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1361: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_1361));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -8601,6 +11595,89 @@ impl PyOperationListInsightsMetricDataOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "trail_arn",
+                "event_source",
+                "event_name",
+                "insight_type",
+                "error_code",
+                "timestamps",
+                "values",
+                "next_token",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cloudtrail::operation::list_insights_metric_data::ListInsightsMetricDataOutput::builder();
+        if let Some(value) = dict_value(values, "trail_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1381: String = value.extract()?;
+            builder = builder.set_trail_arn(Some(fixture_1381));
+        }
+        if let Some(value) = dict_value(values, "event_source")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1382: String = value.extract()?;
+            builder = builder.set_event_source(Some(fixture_1382));
+        }
+        if let Some(value) = dict_value(values, "event_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1383: String = value.extract()?;
+            builder = builder.set_event_name(Some(fixture_1383));
+        }
+        if let Some(value) = dict_value(values, "insight_type")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1385: String = value.extract()?;
+            let fixture_1384 =
+                aws_sdk_cloudtrail::types::InsightType::from(enum_value_1385.as_str());
+            builder = builder.set_insight_type(Some(fixture_1384));
+        }
+        if let Some(value) = dict_value(values, "error_code")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1386: String = value.extract()?;
+            builder = builder.set_error_code(Some(fixture_1386));
+        }
+        if let Some(value) = dict_value(values, "timestamps")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1387 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1388 in value.try_iter()? {
+                let item_1389 = item_result_1388?;
+                rboto_core::fixture_scalar(&item_1389, "datetime")?;
+                let timestamp_1391: String = item_1389.extract()?;
+                let converted_item_1390 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_1391,
+                    ::aws_smithy_types::date_time::Format::DateTime,
+                )
+                .map_err(|error| PyValueError::new_err(error.to_string()))?;
+                fixture_1387.push(converted_item_1390);
+            }
+            builder = builder.set_timestamps(Some(fixture_1387));
+        }
+        if let Some(value) = dict_value(values, "values")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1392 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1393 in value.try_iter()? {
+                let item_1394 = item_result_1393?;
+                rboto_core::fixture_scalar(&item_1394, "f64")?;
+                let converted_item_1395: f64 = item_1394.extract()?;
+                fixture_1392.push(converted_item_1395);
+            }
+            builder = builder.set_values(Some(fixture_1392));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1396: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_1396));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -8688,6 +11765,35 @@ impl PyOperationListPublicKeysOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["public_key_list", "next_token"], &[])?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::list_public_keys::ListPublicKeysOutput::builder();
+        if let Some(value) = dict_value(values, "public_key_list")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1390 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1391 in value.try_iter()? {
+                let item_1392 = item_result_1391?;
+                rboto_core::fixture_scalar(&item_1392, "struct")?;
+                let converted_item_1393 = public_key_fixture_from_py(&item_1392)?;
+                fixture_1390.push(converted_item_1393);
+            }
+            builder = builder.set_public_key_list(Some(fixture_1390));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1394: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_1394));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -8777,6 +11883,34 @@ impl PyOperationListQueriesOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["queries", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudtrail::operation::list_queries::ListQueriesOutput::builder();
+        if let Some(value) = dict_value(values, "queries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1399 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1400 in value.try_iter()? {
+                let item_1401 = item_result_1400?;
+                rboto_core::fixture_scalar(&item_1401, "struct")?;
+                let converted_item_1402 = query_fixture_from_py(&item_1401)?;
+                fixture_1399.push(converted_item_1402);
+            }
+            builder = builder.set_queries(Some(fixture_1399));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1403: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_1403));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -8861,6 +11995,34 @@ impl PyOperationListTagsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["resource_tag_list", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudtrail::operation::list_tags::ListTagsOutput::builder();
+        if let Some(value) = dict_value(values, "resource_tag_list")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1408 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1409 in value.try_iter()? {
+                let item_1410 = item_result_1409?;
+                rboto_core::fixture_scalar(&item_1410, "struct")?;
+                let converted_item_1411 = resource_tag_fixture_from_py(&item_1410)?;
+                fixture_1408.push(converted_item_1411);
+            }
+            builder = builder.set_resource_tag_list(Some(fixture_1408));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1412: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_1412));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -8944,6 +12106,34 @@ impl PyOperationListTrailsOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["trails", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudtrail::operation::list_trails::ListTrailsOutput::builder();
+        if let Some(value) = dict_value(values, "trails")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1417 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1418 in value.try_iter()? {
+                let item_1419 = item_result_1418?;
+                rboto_core::fixture_scalar(&item_1419, "struct")?;
+                let converted_item_1420 = trail_info_fixture_from_py(&item_1419)?;
+                fixture_1417.push(converted_item_1420);
+            }
+            builder = builder.set_trails(Some(fixture_1417));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1421: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_1421));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -9032,6 +12222,35 @@ impl PyOperationLookupEventsOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["events", "next_token"], &[])?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::lookup_events::LookupEventsOutput::builder();
+        if let Some(value) = dict_value(values, "events")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1426 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1427 in value.try_iter()? {
+                let item_1428 = item_result_1427?;
+                rboto_core::fixture_scalar(&item_1428, "struct")?;
+                let converted_item_1429 = event_fixture_from_py(&item_1428)?;
+                fixture_1426.push(converted_item_1429);
+            }
+            builder = builder.set_events(Some(fixture_1426));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1430: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_1430));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -9200,6 +12419,68 @@ impl PyOperationPutEventConfigurationOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "trail_arn",
+                "event_data_store_arn",
+                "max_event_size",
+                "context_key_selectors",
+                "aggregation_configurations",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cloudtrail::operation::put_event_configuration::PutEventConfigurationOutput::builder();
+        if let Some(value) = dict_value(values, "trail_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1446: String = value.extract()?;
+            builder = builder.set_trail_arn(Some(fixture_1446));
+        }
+        if let Some(value) = dict_value(values, "event_data_store_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1447: String = value.extract()?;
+            builder = builder.set_event_data_store_arn(Some(fixture_1447));
+        }
+        if let Some(value) = dict_value(values, "max_event_size")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1449: String = value.extract()?;
+            let fixture_1448 =
+                aws_sdk_cloudtrail::types::MaxEventSize::from(enum_value_1449.as_str());
+            builder = builder.set_max_event_size(Some(fixture_1448));
+        }
+        if let Some(value) = dict_value(values, "context_key_selectors")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1450 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1451 in value.try_iter()? {
+                let item_1452 = item_result_1451?;
+                rboto_core::fixture_scalar(&item_1452, "struct")?;
+                let converted_item_1453 = context_key_selector_fixture_from_py(&item_1452)?;
+                fixture_1450.push(converted_item_1453);
+            }
+            builder = builder.set_context_key_selectors(Some(fixture_1450));
+        }
+        if let Some(value) = dict_value(values, "aggregation_configurations")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1454 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1455 in value.try_iter()? {
+                let item_1456 = item_result_1455?;
+                rboto_core::fixture_scalar(&item_1456, "struct")?;
+                let converted_item_1457 = aggregation_configuration_fixture_from_py(&item_1456)?;
+                fixture_1454.push(converted_item_1457);
+            }
+            builder = builder.set_aggregation_configurations(Some(fixture_1454));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -9329,6 +12610,51 @@ impl PyOperationPutEventSelectorsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["trail_arn", "event_selectors", "advanced_event_selectors"],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::put_event_selectors::PutEventSelectorsOutput::builder();
+        if let Some(value) = dict_value(values, "trail_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1462: String = value.extract()?;
+            builder = builder.set_trail_arn(Some(fixture_1462));
+        }
+        if let Some(value) = dict_value(values, "event_selectors")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1463 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1464 in value.try_iter()? {
+                let item_1465 = item_result_1464?;
+                rboto_core::fixture_scalar(&item_1465, "struct")?;
+                let converted_item_1466 = event_selector_fixture_from_py(&item_1465)?;
+                fixture_1463.push(converted_item_1466);
+            }
+            builder = builder.set_event_selectors(Some(fixture_1463));
+        }
+        if let Some(value) = dict_value(values, "advanced_event_selectors")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1467 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1468 in value.try_iter()? {
+                let item_1469 = item_result_1468?;
+                rboto_core::fixture_scalar(&item_1469, "struct")?;
+                let converted_item_1470 = advanced_event_selector_fixture_from_py(&item_1469)?;
+                fixture_1467.push(converted_item_1470);
+            }
+            builder = builder.set_advanced_event_selectors(Some(fixture_1467));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -9455,6 +12781,53 @@ impl PyOperationPutInsightSelectorsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "trail_arn",
+                "insight_selectors",
+                "event_data_store_arn",
+                "insights_destination",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cloudtrail::operation::put_insight_selectors::PutInsightSelectorsOutput::builder();
+        if let Some(value) = dict_value(values, "trail_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1475: String = value.extract()?;
+            builder = builder.set_trail_arn(Some(fixture_1475));
+        }
+        if let Some(value) = dict_value(values, "insight_selectors")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1476 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1477 in value.try_iter()? {
+                let item_1478 = item_result_1477?;
+                rboto_core::fixture_scalar(&item_1478, "struct")?;
+                let converted_item_1479 = insight_selector_fixture_from_py(&item_1478)?;
+                fixture_1476.push(converted_item_1479);
+            }
+            builder = builder.set_insight_selectors(Some(fixture_1476));
+        }
+        if let Some(value) = dict_value(values, "event_data_store_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1480: String = value.extract()?;
+            builder = builder.set_event_data_store_arn(Some(fixture_1480));
+        }
+        if let Some(value) = dict_value(values, "insights_destination")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1481: String = value.extract()?;
+            builder = builder.set_insights_destination(Some(fixture_1481));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -9520,6 +12893,39 @@ impl PyOperationPutResourcePolicyOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "resource_arn",
+                "resource_policy",
+                "delegated_admin_resource_policy",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::put_resource_policy::PutResourcePolicyOutput::builder();
+        if let Some(value) = dict_value(values, "resource_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1481: String = value.extract()?;
+            builder = builder.set_resource_arn(Some(fixture_1481));
+        }
+        if let Some(value) = dict_value(values, "resource_policy")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1482: String = value.extract()?;
+            builder = builder.set_resource_policy(Some(fixture_1482));
+        }
+        if let Some(value) = dict_value(values, "delegated_admin_resource_policy")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1483: String = value.extract()?;
+            builder = builder.set_delegated_admin_resource_policy(Some(fixture_1483));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -9537,6 +12943,15 @@ impl PyOperationRegisterOrganizationDelegatedAdminOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_cloudtrail::operation::register_organization_delegated_admin::RegisterOrganizationDelegatedAdminOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(name = "RemoveTagsOutput", module = "rboto_cloudtrail._native", frozen)]
@@ -9549,6 +12964,15 @@ impl PyOperationRemoveTagsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_cloudtrail::operation::remove_tags::RemoveTagsOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -9820,6 +13244,115 @@ impl PyOperationRestoreEventDataStoreOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "event_data_store_arn",
+                "name",
+                "status",
+                "advanced_event_selectors",
+                "multi_region_enabled",
+                "organization_enabled",
+                "retention_period",
+                "termination_protection_enabled",
+                "created_timestamp",
+                "updated_timestamp",
+                "kms_key_id",
+                "billing_mode",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cloudtrail::operation::restore_event_data_store::RestoreEventDataStoreOutput::builder();
+        if let Some(value) = dict_value(values, "event_data_store_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1510: String = value.extract()?;
+            builder = builder.set_event_data_store_arn(Some(fixture_1510));
+        }
+        if let Some(value) = dict_value(values, "name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1511: String = value.extract()?;
+            builder = builder.set_name(Some(fixture_1511));
+        }
+        if let Some(value) = dict_value(values, "status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1513: String = value.extract()?;
+            let fixture_1512 =
+                aws_sdk_cloudtrail::types::EventDataStoreStatus::from(enum_value_1513.as_str());
+            builder = builder.set_status(Some(fixture_1512));
+        }
+        if let Some(value) = dict_value(values, "advanced_event_selectors")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1514 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1515 in value.try_iter()? {
+                let item_1516 = item_result_1515?;
+                rboto_core::fixture_scalar(&item_1516, "struct")?;
+                let converted_item_1517 = advanced_event_selector_fixture_from_py(&item_1516)?;
+                fixture_1514.push(converted_item_1517);
+            }
+            builder = builder.set_advanced_event_selectors(Some(fixture_1514));
+        }
+        if let Some(value) = dict_value(values, "multi_region_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1518: bool = value.extract()?;
+            builder = builder.set_multi_region_enabled(Some(fixture_1518));
+        }
+        if let Some(value) = dict_value(values, "organization_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1519: bool = value.extract()?;
+            builder = builder.set_organization_enabled(Some(fixture_1519));
+        }
+        if let Some(value) = dict_value(values, "retention_period")? {
+            rboto_core::fixture_scalar(&value, "i32")?;
+            let fixture_1520: i32 = value.extract()?;
+            builder = builder.set_retention_period(Some(fixture_1520));
+        }
+        if let Some(value) = dict_value(values, "termination_protection_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1521: bool = value.extract()?;
+            builder = builder.set_termination_protection_enabled(Some(fixture_1521));
+        }
+        if let Some(value) = dict_value(values, "created_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1523: String = value.extract()?;
+            let fixture_1522 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1523,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_timestamp(Some(fixture_1522));
+        }
+        if let Some(value) = dict_value(values, "updated_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1525: String = value.extract()?;
+            let fixture_1524 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1525,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_updated_timestamp(Some(fixture_1524));
+        }
+        if let Some(value) = dict_value(values, "kms_key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1526: String = value.extract()?;
+            builder = builder.set_kms_key_id(Some(fixture_1526));
+        }
+        if let Some(value) = dict_value(values, "billing_mode")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1528: String = value.extract()?;
+            let fixture_1527 =
+                aws_sdk_cloudtrail::types::BillingMode::from(enum_value_1528.as_str());
+            builder = builder.set_billing_mode(Some(fixture_1527));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -9911,6 +13444,35 @@ impl PyOperationSearchSampleQueriesOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["search_results", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudtrail::operation::search_sample_queries::SearchSampleQueriesOutput::builder();
+        if let Some(value) = dict_value(values, "search_results")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1519 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1520 in value.try_iter()? {
+                let item_1521 = item_result_1520?;
+                rboto_core::fixture_scalar(&item_1521, "struct")?;
+                let converted_item_1522 =
+                    search_sample_queries_search_result_fixture_from_py(&item_1521)?;
+                fixture_1519.push(converted_item_1522);
+            }
+            builder = builder.set_search_results(Some(fixture_1519));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1523: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_1523));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -9944,6 +13506,20 @@ impl PyOperationStartDashboardRefreshOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["refresh_id"], &[])?;
+        let mut builder = aws_sdk_cloudtrail::operation::start_dashboard_refresh::StartDashboardRefreshOutput::builder();
+        if let Some(value) = dict_value(values, "refresh_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1521: String = value.extract()?;
+            builder = builder.set_refresh_id(Some(fixture_1521));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -9960,6 +13536,15 @@ impl PyOperationStartEventDataStoreIngestionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_cloudtrail::operation::start_event_data_store_ingestion::StartEventDataStoreIngestionOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -10154,6 +13739,99 @@ impl PyOperationStartImportOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "import_id",
+                "destinations",
+                "import_source",
+                "start_event_time",
+                "end_event_time",
+                "import_status",
+                "created_timestamp",
+                "updated_timestamp",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cloudtrail::operation::start_import::StartImportOutput::builder();
+        if let Some(value) = dict_value(values, "import_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1541: String = value.extract()?;
+            builder = builder.set_import_id(Some(fixture_1541));
+        }
+        if let Some(value) = dict_value(values, "destinations")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1542 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1543 in value.try_iter()? {
+                let item_1544 = item_result_1543?;
+                rboto_core::fixture_scalar(&item_1544, "string")?;
+                let converted_item_1545: String = item_1544.extract()?;
+                fixture_1542.push(converted_item_1545);
+            }
+            builder = builder.set_destinations(Some(fixture_1542));
+        }
+        if let Some(value) = dict_value(values, "import_source")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_1546 = import_source_fixture_from_py(&value)?;
+            builder = builder.set_import_source(Some(fixture_1546));
+        }
+        if let Some(value) = dict_value(values, "start_event_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1548: String = value.extract()?;
+            let fixture_1547 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1548,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_start_event_time(Some(fixture_1547));
+        }
+        if let Some(value) = dict_value(values, "end_event_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1550: String = value.extract()?;
+            let fixture_1549 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1550,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_end_event_time(Some(fixture_1549));
+        }
+        if let Some(value) = dict_value(values, "import_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1552: String = value.extract()?;
+            let fixture_1551 =
+                aws_sdk_cloudtrail::types::ImportStatus::from(enum_value_1552.as_str());
+            builder = builder.set_import_status(Some(fixture_1551));
+        }
+        if let Some(value) = dict_value(values, "created_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1554: String = value.extract()?;
+            let fixture_1553 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1554,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_timestamp(Some(fixture_1553));
+        }
+        if let Some(value) = dict_value(values, "updated_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1556: String = value.extract()?;
+            let fixture_1555 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1556,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_updated_timestamp(Some(fixture_1555));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -10170,6 +13848,16 @@ impl PyOperationStartLoggingOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::start_logging::StartLoggingOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -10216,6 +13904,29 @@ impl PyOperationStartQueryOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["query_id", "event_data_store_owner_account_id"],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cloudtrail::operation::start_query::StartQueryOutput::builder();
+        if let Some(value) = dict_value(values, "query_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1545: String = value.extract()?;
+            builder = builder.set_query_id(Some(fixture_1545));
+        }
+        if let Some(value) = dict_value(values, "event_data_store_owner_account_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1546: String = value.extract()?;
+            builder = builder.set_event_data_store_owner_account_id(Some(fixture_1546));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -10232,6 +13943,15 @@ impl PyOperationStopEventDataStoreIngestionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_cloudtrail::operation::stop_event_data_store_ingestion::StopEventDataStoreIngestionOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -10446,6 +14166,105 @@ impl PyOperationStopImportOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "import_id",
+                "import_source",
+                "destinations",
+                "import_status",
+                "created_timestamp",
+                "updated_timestamp",
+                "start_event_time",
+                "end_event_time",
+                "import_statistics",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cloudtrail::operation::stop_import::StopImportOutput::builder();
+        if let Some(value) = dict_value(values, "import_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1567: String = value.extract()?;
+            builder = builder.set_import_id(Some(fixture_1567));
+        }
+        if let Some(value) = dict_value(values, "import_source")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_1568 = import_source_fixture_from_py(&value)?;
+            builder = builder.set_import_source(Some(fixture_1568));
+        }
+        if let Some(value) = dict_value(values, "destinations")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1569 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1570 in value.try_iter()? {
+                let item_1571 = item_result_1570?;
+                rboto_core::fixture_scalar(&item_1571, "string")?;
+                let converted_item_1572: String = item_1571.extract()?;
+                fixture_1569.push(converted_item_1572);
+            }
+            builder = builder.set_destinations(Some(fixture_1569));
+        }
+        if let Some(value) = dict_value(values, "import_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1574: String = value.extract()?;
+            let fixture_1573 =
+                aws_sdk_cloudtrail::types::ImportStatus::from(enum_value_1574.as_str());
+            builder = builder.set_import_status(Some(fixture_1573));
+        }
+        if let Some(value) = dict_value(values, "created_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1576: String = value.extract()?;
+            let fixture_1575 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1576,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_timestamp(Some(fixture_1575));
+        }
+        if let Some(value) = dict_value(values, "updated_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1578: String = value.extract()?;
+            let fixture_1577 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1578,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_updated_timestamp(Some(fixture_1577));
+        }
+        if let Some(value) = dict_value(values, "start_event_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1580: String = value.extract()?;
+            let fixture_1579 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1580,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_start_event_time(Some(fixture_1579));
+        }
+        if let Some(value) = dict_value(values, "end_event_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1582: String = value.extract()?;
+            let fixture_1581 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1582,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_end_event_time(Some(fixture_1581));
+        }
+        if let Some(value) = dict_value(values, "import_statistics")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_1583 = import_statistics_fixture_from_py(&value)?;
+            builder = builder.set_import_statistics(Some(fixture_1583));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -10462,6 +14281,15 @@ impl PyOperationStopLoggingOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_cloudtrail::operation::stop_logging::StopLoggingOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -10586,6 +14414,49 @@ impl PyOperationUpdateChannelOutput {
             result.set_item("destinations", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["channel_arn", "name", "source", "destinations"],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::update_channel::UpdateChannelOutput::builder();
+        if let Some(value) = dict_value(values, "channel_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1580: String = value.extract()?;
+            builder = builder.set_channel_arn(Some(fixture_1580));
+        }
+        if let Some(value) = dict_value(values, "name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1581: String = value.extract()?;
+            builder = builder.set_name(Some(fixture_1581));
+        }
+        if let Some(value) = dict_value(values, "source")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1582: String = value.extract()?;
+            builder = builder.set_source(Some(fixture_1582));
+        }
+        if let Some(value) = dict_value(values, "destinations")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1583 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1584 in value.try_iter()? {
+                let item_1585 = item_result_1584?;
+                rboto_core::fixture_scalar(&item_1585, "struct")?;
+                let converted_item_1586 = destination_fixture_from_py(&item_1585)?;
+                fixture_1583.push(converted_item_1586);
+            }
+            builder = builder.set_destinations(Some(fixture_1583));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -10790,6 +14661,90 @@ impl PyOperationUpdateDashboardOutput {
             result.set_item("updated_timestamp", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "dashboard_arn",
+                "name",
+                "type",
+                "widgets",
+                "refresh_schedule",
+                "termination_protection_enabled",
+                "created_timestamp",
+                "updated_timestamp",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cloudtrail::operation::update_dashboard::UpdateDashboardOutput::builder();
+        if let Some(value) = dict_value(values, "dashboard_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1601: String = value.extract()?;
+            builder = builder.set_dashboard_arn(Some(fixture_1601));
+        }
+        if let Some(value) = dict_value(values, "name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1602: String = value.extract()?;
+            builder = builder.set_name(Some(fixture_1602));
+        }
+        if let Some(value) = dict_value(values, "type")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1604: String = value.extract()?;
+            let fixture_1603 =
+                aws_sdk_cloudtrail::types::DashboardType::from(enum_value_1604.as_str());
+            builder = builder.set_type(Some(fixture_1603));
+        }
+        if let Some(value) = dict_value(values, "widgets")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1605 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1606 in value.try_iter()? {
+                let item_1607 = item_result_1606?;
+                rboto_core::fixture_scalar(&item_1607, "struct")?;
+                let converted_item_1608 = widget_fixture_from_py(&item_1607)?;
+                fixture_1605.push(converted_item_1608);
+            }
+            builder = builder.set_widgets(Some(fixture_1605));
+        }
+        if let Some(value) = dict_value(values, "refresh_schedule")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_1609 = refresh_schedule_fixture_from_py(&value)?;
+            builder = builder.set_refresh_schedule(Some(fixture_1609));
+        }
+        if let Some(value) = dict_value(values, "termination_protection_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1610: bool = value.extract()?;
+            builder = builder.set_termination_protection_enabled(Some(fixture_1610));
+        }
+        if let Some(value) = dict_value(values, "created_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1612: String = value.extract()?;
+            let fixture_1611 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1612,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_timestamp(Some(fixture_1611));
+        }
+        if let Some(value) = dict_value(values, "updated_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1614: String = value.extract()?;
+            let fixture_1613 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1614,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_updated_timestamp(Some(fixture_1613));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -11097,6 +15052,129 @@ impl PyOperationUpdateEventDataStoreOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "event_data_store_arn",
+                "name",
+                "status",
+                "advanced_event_selectors",
+                "multi_region_enabled",
+                "organization_enabled",
+                "retention_period",
+                "termination_protection_enabled",
+                "created_timestamp",
+                "updated_timestamp",
+                "kms_key_id",
+                "billing_mode",
+                "federation_status",
+                "federation_role_arn",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cloudtrail::operation::update_event_data_store::UpdateEventDataStoreOutput::builder();
+        if let Some(value) = dict_value(values, "event_data_store_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1634: String = value.extract()?;
+            builder = builder.set_event_data_store_arn(Some(fixture_1634));
+        }
+        if let Some(value) = dict_value(values, "name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1635: String = value.extract()?;
+            builder = builder.set_name(Some(fixture_1635));
+        }
+        if let Some(value) = dict_value(values, "status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1637: String = value.extract()?;
+            let fixture_1636 =
+                aws_sdk_cloudtrail::types::EventDataStoreStatus::from(enum_value_1637.as_str());
+            builder = builder.set_status(Some(fixture_1636));
+        }
+        if let Some(value) = dict_value(values, "advanced_event_selectors")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1638 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1639 in value.try_iter()? {
+                let item_1640 = item_result_1639?;
+                rboto_core::fixture_scalar(&item_1640, "struct")?;
+                let converted_item_1641 = advanced_event_selector_fixture_from_py(&item_1640)?;
+                fixture_1638.push(converted_item_1641);
+            }
+            builder = builder.set_advanced_event_selectors(Some(fixture_1638));
+        }
+        if let Some(value) = dict_value(values, "multi_region_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1642: bool = value.extract()?;
+            builder = builder.set_multi_region_enabled(Some(fixture_1642));
+        }
+        if let Some(value) = dict_value(values, "organization_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1643: bool = value.extract()?;
+            builder = builder.set_organization_enabled(Some(fixture_1643));
+        }
+        if let Some(value) = dict_value(values, "retention_period")? {
+            rboto_core::fixture_scalar(&value, "i32")?;
+            let fixture_1644: i32 = value.extract()?;
+            builder = builder.set_retention_period(Some(fixture_1644));
+        }
+        if let Some(value) = dict_value(values, "termination_protection_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1645: bool = value.extract()?;
+            builder = builder.set_termination_protection_enabled(Some(fixture_1645));
+        }
+        if let Some(value) = dict_value(values, "created_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1647: String = value.extract()?;
+            let fixture_1646 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1647,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_timestamp(Some(fixture_1646));
+        }
+        if let Some(value) = dict_value(values, "updated_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1649: String = value.extract()?;
+            let fixture_1648 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1649,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_updated_timestamp(Some(fixture_1648));
+        }
+        if let Some(value) = dict_value(values, "kms_key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1650: String = value.extract()?;
+            builder = builder.set_kms_key_id(Some(fixture_1650));
+        }
+        if let Some(value) = dict_value(values, "billing_mode")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1652: String = value.extract()?;
+            let fixture_1651 =
+                aws_sdk_cloudtrail::types::BillingMode::from(enum_value_1652.as_str());
+            builder = builder.set_billing_mode(Some(fixture_1651));
+        }
+        if let Some(value) = dict_value(values, "federation_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1654: String = value.extract()?;
+            let fixture_1653 =
+                aws_sdk_cloudtrail::types::FederationStatus::from(enum_value_1654.as_str());
+            builder = builder.set_federation_status(Some(fixture_1653));
+        }
+        if let Some(value) = dict_value(values, "federation_role_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1655: String = value.extract()?;
+            builder = builder.set_federation_role_arn(Some(fixture_1655));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -11337,6 +15415,104 @@ impl PyOperationUpdateTrailOutput {
             result.set_item("recursive_logging", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "name",
+                "s3_bucket_name",
+                "s3_key_prefix",
+                "sns_topic_name",
+                "sns_topic_arn",
+                "include_global_service_events",
+                "is_multi_region_trail",
+                "trail_arn",
+                "log_file_validation_enabled",
+                "cloud_watch_logs_log_group_arn",
+                "cloud_watch_logs_role_arn",
+                "kms_key_id",
+                "is_organization_trail",
+                "recursive_logging",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cloudtrail::operation::update_trail::UpdateTrailOutput::builder();
+        if let Some(value) = dict_value(values, "name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1662: String = value.extract()?;
+            builder = builder.set_name(Some(fixture_1662));
+        }
+        if let Some(value) = dict_value(values, "s3_bucket_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1663: String = value.extract()?;
+            builder = builder.set_s3_bucket_name(Some(fixture_1663));
+        }
+        if let Some(value) = dict_value(values, "s3_key_prefix")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1664: String = value.extract()?;
+            builder = builder.set_s3_key_prefix(Some(fixture_1664));
+        }
+        if let Some(value) = dict_value(values, "sns_topic_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1665: String = value.extract()?;
+            builder = builder.set_sns_topic_name(Some(fixture_1665));
+        }
+        if let Some(value) = dict_value(values, "sns_topic_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1666: String = value.extract()?;
+            builder = builder.set_sns_topic_arn(Some(fixture_1666));
+        }
+        if let Some(value) = dict_value(values, "include_global_service_events")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1667: bool = value.extract()?;
+            builder = builder.set_include_global_service_events(Some(fixture_1667));
+        }
+        if let Some(value) = dict_value(values, "is_multi_region_trail")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1668: bool = value.extract()?;
+            builder = builder.set_is_multi_region_trail(Some(fixture_1668));
+        }
+        if let Some(value) = dict_value(values, "trail_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1669: String = value.extract()?;
+            builder = builder.set_trail_arn(Some(fixture_1669));
+        }
+        if let Some(value) = dict_value(values, "log_file_validation_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1670: bool = value.extract()?;
+            builder = builder.set_log_file_validation_enabled(Some(fixture_1670));
+        }
+        if let Some(value) = dict_value(values, "cloud_watch_logs_log_group_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1671: String = value.extract()?;
+            builder = builder.set_cloud_watch_logs_log_group_arn(Some(fixture_1671));
+        }
+        if let Some(value) = dict_value(values, "cloud_watch_logs_role_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1672: String = value.extract()?;
+            builder = builder.set_cloud_watch_logs_role_arn(Some(fixture_1672));
+        }
+        if let Some(value) = dict_value(values, "kms_key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1673: String = value.extract()?;
+            builder = builder.set_kms_key_id(Some(fixture_1673));
+        }
+        if let Some(value) = dict_value(values, "is_organization_trail")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1674: bool = value.extract()?;
+            builder = builder.set_is_organization_trail(Some(fixture_1674));
+        }
+        if let Some(value) = dict_value(values, "recursive_logging")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1675: bool = value.extract()?;
+            builder = builder.set_recursive_logging(Some(fixture_1675));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 

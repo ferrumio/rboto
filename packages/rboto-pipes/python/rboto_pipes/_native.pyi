@@ -719,6 +719,8 @@ class Tag:
 @final
 class CreatePipeOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/CreatePipeOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreatePipeOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -736,6 +738,8 @@ class CreatePipeOutput:
 @final
 class DeletePipeOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/DeletePipeOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeletePipeOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -753,6 +757,8 @@ class DeletePipeOutput:
 @final
 class DescribePipeOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/DescribePipeOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribePipeOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -794,6 +800,8 @@ class DescribePipeOutput:
 @final
 class ListPipesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/ListPipesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListPipesOutput: ...
     @property
     def pipes(self) -> list[Pipe] | None: ...
     @property
@@ -803,6 +811,8 @@ class ListPipesOutput:
 @final
 class ListTagsForResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/ListTagsForResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTagsForResourceOutput: ...
     @property
     def tags(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -810,6 +820,8 @@ class ListTagsForResourceOutput:
 @final
 class StartPipeOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/StartPipeOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StartPipeOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -827,6 +839,8 @@ class StartPipeOutput:
 @final
 class StopPipeOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/StopPipeOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StopPipeOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -844,16 +858,22 @@ class StopPipeOutput:
 @final
 class TagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/TagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> TagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UntagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/UntagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UntagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdatePipeOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/UpdatePipeOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdatePipeOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property

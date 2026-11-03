@@ -1297,6 +1297,8 @@ class UpperCaseString:
 @final
 class AssociateSourceToS3TableIntegrationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/AssociateSourceToS3TableIntegrationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> AssociateSourceToS3TableIntegrationOutput: ...
     @property
     def identifier(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1304,6 +1306,8 @@ class AssociateSourceToS3TableIntegrationOutput:
 @final
 class CancelImportTaskOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CancelImportTaskOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CancelImportTaskOutput: ...
     @property
     def import_id(self) -> str | None: ...
     @property
@@ -1319,6 +1323,8 @@ class CancelImportTaskOutput:
 @final
 class CreateDeliveryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CreateDeliveryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateDeliveryOutput: ...
     @property
     def delivery(self) -> Delivery | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1326,6 +1332,8 @@ class CreateDeliveryOutput:
 @final
 class CreateExportTaskOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CreateExportTaskOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateExportTaskOutput: ...
     @property
     def task_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1333,6 +1341,8 @@ class CreateExportTaskOutput:
 @final
 class CreateImportTaskOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CreateImportTaskOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateImportTaskOutput: ...
     @property
     def import_id(self) -> str | None: ...
     @property
@@ -1344,6 +1354,8 @@ class CreateImportTaskOutput:
 @final
 class CreateLogAnomalyDetectorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CreateLogAnomalyDetectorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateLogAnomalyDetectorOutput: ...
     @property
     def anomaly_detector_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1351,6 +1363,8 @@ class CreateLogAnomalyDetectorOutput:
 @final
 class CreateLookupTableOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CreateLookupTableOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateLookupTableOutput: ...
     @property
     def lookup_table_arn(self) -> str | None: ...
     @property
@@ -1360,6 +1374,8 @@ class CreateLookupTableOutput:
 @final
 class CreateScheduledQueryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CreateScheduledQueryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateScheduledQueryOutput: ...
     @property
     def scheduled_query_arn(self) -> str | None: ...
     @property
@@ -1369,16 +1385,22 @@ class CreateScheduledQueryOutput:
 @final
 class DeleteIndexPolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteIndexPolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteIndexPolicyOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteIntegrationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteIntegrationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteIntegrationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteQueryDefinitionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteQueryDefinitionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteQueryDefinitionOutput: ...
     @property
     def success(self) -> bool: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1386,11 +1408,15 @@ class DeleteQueryDefinitionOutput:
 @final
 class DeleteScheduledQueryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteScheduledQueryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteScheduledQueryOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DescribeAccountPoliciesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeAccountPoliciesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeAccountPoliciesOutput: ...
     @property
     def account_policies(self) -> list[AccountPolicy] | None: ...
     @property
@@ -1400,6 +1426,8 @@ class DescribeAccountPoliciesOutput:
 @final
 class DescribeConfigurationTemplatesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeConfigurationTemplatesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeConfigurationTemplatesOutput: ...
     @property
     def configuration_templates(self) -> list[ConfigurationTemplate] | None: ...
     @property
@@ -1409,6 +1437,8 @@ class DescribeConfigurationTemplatesOutput:
 @final
 class DescribeDeliveriesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeDeliveriesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeDeliveriesOutput: ...
     @property
     def deliveries(self) -> list[Delivery] | None: ...
     @property
@@ -1418,6 +1448,8 @@ class DescribeDeliveriesOutput:
 @final
 class DescribeDeliveryDestinationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeDeliveryDestinationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeDeliveryDestinationsOutput: ...
     @property
     def delivery_destinations(self) -> list[DeliveryDestination] | None: ...
     @property
@@ -1427,6 +1459,8 @@ class DescribeDeliveryDestinationsOutput:
 @final
 class DescribeDeliverySourcesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeDeliverySourcesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeDeliverySourcesOutput: ...
     @property
     def delivery_sources(self) -> list[DeliverySource] | None: ...
     @property
@@ -1436,6 +1470,8 @@ class DescribeDeliverySourcesOutput:
 @final
 class DescribeDestinationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeDestinationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeDestinationsOutput: ...
     @property
     def destinations(self) -> list[Destination] | None: ...
     @property
@@ -1445,6 +1481,8 @@ class DescribeDestinationsOutput:
 @final
 class DescribeExportTasksOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeExportTasksOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeExportTasksOutput: ...
     @property
     def export_tasks(self) -> list[ExportTask] | None: ...
     @property
@@ -1454,6 +1492,8 @@ class DescribeExportTasksOutput:
 @final
 class DescribeFieldIndexesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeFieldIndexesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeFieldIndexesOutput: ...
     @property
     def field_indexes(self) -> list[FieldIndex] | None: ...
     @property
@@ -1463,6 +1503,8 @@ class DescribeFieldIndexesOutput:
 @final
 class DescribeImportTaskBatchesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeImportTaskBatchesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeImportTaskBatchesOutput: ...
     @property
     def import_source_arn(self) -> str | None: ...
     @property
@@ -1476,6 +1518,8 @@ class DescribeImportTaskBatchesOutput:
 @final
 class DescribeImportTasksOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeImportTasksOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeImportTasksOutput: ...
     @property
     def imports(self) -> list[Import] | None: ...
     @property
@@ -1485,6 +1529,8 @@ class DescribeImportTasksOutput:
 @final
 class DescribeIndexPoliciesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeIndexPoliciesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeIndexPoliciesOutput: ...
     @property
     def index_policies(self) -> list[IndexPolicy] | None: ...
     @property
@@ -1494,6 +1540,8 @@ class DescribeIndexPoliciesOutput:
 @final
 class DescribeLogGroupsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeLogGroupsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeLogGroupsOutput: ...
     @property
     def log_groups(self) -> list[LogGroup] | None: ...
     @property
@@ -1503,6 +1551,8 @@ class DescribeLogGroupsOutput:
 @final
 class DescribeLogStreamsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeLogStreamsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeLogStreamsOutput: ...
     @property
     def log_streams(self) -> list[LogStream] | None: ...
     @property
@@ -1512,6 +1562,8 @@ class DescribeLogStreamsOutput:
 @final
 class DescribeLookupTablesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeLookupTablesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeLookupTablesOutput: ...
     @property
     def lookup_tables(self) -> list[LookupTable] | None: ...
     @property
@@ -1521,6 +1573,8 @@ class DescribeLookupTablesOutput:
 @final
 class DescribeMetricFiltersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeMetricFiltersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeMetricFiltersOutput: ...
     @property
     def metric_filters(self) -> list[MetricFilter] | None: ...
     @property
@@ -1530,6 +1584,8 @@ class DescribeMetricFiltersOutput:
 @final
 class DescribeQueriesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeQueriesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeQueriesOutput: ...
     @property
     def queries(self) -> list[QueryInfo] | None: ...
     @property
@@ -1539,6 +1595,8 @@ class DescribeQueriesOutput:
 @final
 class DescribeQueryDefinitionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeQueryDefinitionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeQueryDefinitionsOutput: ...
     @property
     def query_definitions(self) -> list[QueryDefinition] | None: ...
     @property
@@ -1548,6 +1606,8 @@ class DescribeQueryDefinitionsOutput:
 @final
 class DescribeResourcePoliciesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeResourcePoliciesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeResourcePoliciesOutput: ...
     @property
     def resource_policies(self) -> list[ResourcePolicy] | None: ...
     @property
@@ -1557,6 +1617,8 @@ class DescribeResourcePoliciesOutput:
 @final
 class DescribeSubscriptionFiltersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeSubscriptionFiltersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeSubscriptionFiltersOutput: ...
     @property
     def subscription_filters(self) -> list[SubscriptionFilter] | None: ...
     @property
@@ -1566,6 +1628,8 @@ class DescribeSubscriptionFiltersOutput:
 @final
 class DisassociateSourceFromS3TableIntegrationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DisassociateSourceFromS3TableIntegrationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DisassociateSourceFromS3TableIntegrationOutput: ...
     @property
     def identifier(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1573,6 +1637,8 @@ class DisassociateSourceFromS3TableIntegrationOutput:
 @final
 class FilterLogEventsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/FilterLogEventsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> FilterLogEventsOutput: ...
     @property
     def events(self) -> list[FilteredLogEvent] | None: ...
     @property
@@ -1584,6 +1650,8 @@ class FilterLogEventsOutput:
 @final
 class GetDataProtectionPolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetDataProtectionPolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDataProtectionPolicyOutput: ...
     @property
     def log_group_identifier(self) -> str | None: ...
     @property
@@ -1595,6 +1663,8 @@ class GetDataProtectionPolicyOutput:
 @final
 class GetDeliveryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetDeliveryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDeliveryOutput: ...
     @property
     def delivery(self) -> Delivery | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1602,6 +1672,8 @@ class GetDeliveryOutput:
 @final
 class GetDeliveryDestinationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetDeliveryDestinationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDeliveryDestinationOutput: ...
     @property
     def delivery_destination(self) -> DeliveryDestination | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1609,6 +1681,8 @@ class GetDeliveryDestinationOutput:
 @final
 class GetDeliveryDestinationPolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetDeliveryDestinationPolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDeliveryDestinationPolicyOutput: ...
     @property
     def policy(self) -> Policy | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1616,6 +1690,8 @@ class GetDeliveryDestinationPolicyOutput:
 @final
 class GetDeliverySourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetDeliverySourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDeliverySourceOutput: ...
     @property
     def delivery_source(self) -> DeliverySource | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1623,6 +1699,8 @@ class GetDeliverySourceOutput:
 @final
 class GetIntegrationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetIntegrationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetIntegrationOutput: ...
     @property
     def integration_name(self) -> str | None: ...
     @property
@@ -1636,6 +1714,8 @@ class GetIntegrationOutput:
 @final
 class GetLogAnomalyDetectorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogAnomalyDetectorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetLogAnomalyDetectorOutput: ...
     @property
     def detector_name(self) -> str | None: ...
     @property
@@ -1659,6 +1739,8 @@ class GetLogAnomalyDetectorOutput:
 @final
 class GetLogEventsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogEventsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetLogEventsOutput: ...
     @property
     def events(self) -> list[OutputLogEvent] | None: ...
     @property
@@ -1670,6 +1752,8 @@ class GetLogEventsOutput:
 @final
 class GetLogFieldsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogFieldsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetLogFieldsOutput: ...
     @property
     def log_fields(self) -> list[LogFieldsListItem] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1677,6 +1761,8 @@ class GetLogFieldsOutput:
 @final
 class GetLogGroupFieldsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogGroupFieldsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetLogGroupFieldsOutput: ...
     @property
     def log_group_fields(self) -> list[LogGroupField] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1684,6 +1770,8 @@ class GetLogGroupFieldsOutput:
 @final
 class GetLogRecordOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogRecordOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetLogRecordOutput: ...
     @property
     def log_record(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1691,6 +1779,8 @@ class GetLogRecordOutput:
 @final
 class GetLookupTableOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLookupTableOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetLookupTableOutput: ...
     @property
     def lookup_table_arn(self) -> str | None: ...
     @property
@@ -1710,6 +1800,8 @@ class GetLookupTableOutput:
 @final
 class GetQueryResultsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetQueryResultsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetQueryResultsOutput: ...
     @property
     def query_language(self) -> _types.QueryLanguageOutput | None: ...
     @property
@@ -1727,6 +1819,8 @@ class GetQueryResultsOutput:
 @final
 class GetScheduledQueryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetScheduledQueryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetScheduledQueryOutput: ...
     @property
     def scheduled_query_arn(self) -> str | None: ...
     @property
@@ -1772,6 +1866,8 @@ class GetScheduledQueryOutput:
 @final
 class GetScheduledQueryHistoryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetScheduledQueryHistoryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetScheduledQueryHistoryOutput: ...
     @property
     def name(self) -> str | None: ...
     @property
@@ -1785,6 +1881,8 @@ class GetScheduledQueryHistoryOutput:
 @final
 class GetStorageTierPolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetStorageTierPolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetStorageTierPolicyOutput: ...
     @property
     def storage_tier(self) -> _types.StorageTierOutput | None: ...
     @property
@@ -1794,6 +1892,8 @@ class GetStorageTierPolicyOutput:
 @final
 class GetTransformerOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetTransformerOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetTransformerOutput: ...
     @property
     def log_group_identifier(self) -> str | None: ...
     @property
@@ -1807,6 +1907,8 @@ class GetTransformerOutput:
 @final
 class ListAggregateLogGroupSummariesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListAggregateLogGroupSummariesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListAggregateLogGroupSummariesOutput: ...
     @property
     def aggregate_log_group_summaries(self) -> list[AggregateLogGroupSummary] | None: ...
     @property
@@ -1816,6 +1918,8 @@ class ListAggregateLogGroupSummariesOutput:
 @final
 class ListAnomaliesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListAnomaliesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListAnomaliesOutput: ...
     @property
     def anomalies(self) -> list[Anomaly] | None: ...
     @property
@@ -1825,6 +1929,8 @@ class ListAnomaliesOutput:
 @final
 class ListIntegrationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListIntegrationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListIntegrationsOutput: ...
     @property
     def integration_summaries(self) -> list[IntegrationSummary] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1832,6 +1938,8 @@ class ListIntegrationsOutput:
 @final
 class ListLogAnomalyDetectorsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListLogAnomalyDetectorsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListLogAnomalyDetectorsOutput: ...
     @property
     def anomaly_detectors(self) -> list[AnomalyDetector] | None: ...
     @property
@@ -1841,6 +1949,8 @@ class ListLogAnomalyDetectorsOutput:
 @final
 class ListLogGroupsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListLogGroupsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListLogGroupsOutput: ...
     @property
     def log_groups(self) -> list[LogGroupSummary] | None: ...
     @property
@@ -1850,6 +1960,8 @@ class ListLogGroupsOutput:
 @final
 class ListLogGroupsForQueryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListLogGroupsForQueryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListLogGroupsForQueryOutput: ...
     @property
     def log_group_identifiers(self) -> list[str] | None: ...
     @property
@@ -1859,6 +1971,8 @@ class ListLogGroupsForQueryOutput:
 @final
 class ListScheduledQueriesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListScheduledQueriesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListScheduledQueriesOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -1868,6 +1982,8 @@ class ListScheduledQueriesOutput:
 @final
 class ListSourcesForS3TableIntegrationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListSourcesForS3TableIntegrationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListSourcesForS3TableIntegrationOutput: ...
     @property
     def sources(self) -> list[S3TableIntegrationSource] | None: ...
     @property
@@ -1877,6 +1993,8 @@ class ListSourcesForS3TableIntegrationOutput:
 @final
 class ListSyslogConfigurationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListSyslogConfigurationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListSyslogConfigurationsOutput: ...
     @property
     def syslog_configurations(self) -> list[SyslogConfiguration] | None: ...
     @property
@@ -1886,6 +2004,8 @@ class ListSyslogConfigurationsOutput:
 @final
 class ListTagsForResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListTagsForResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTagsForResourceOutput: ...
     @property
     def tags(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1893,6 +2013,8 @@ class ListTagsForResourceOutput:
 @final
 class ListTagsLogGroupOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListTagsLogGroupOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTagsLogGroupOutput: ...
     @property
     def tags(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1900,6 +2022,8 @@ class ListTagsLogGroupOutput:
 @final
 class PutAccountPolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutAccountPolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutAccountPolicyOutput: ...
     @property
     def account_policy(self) -> AccountPolicy | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1907,6 +2031,8 @@ class PutAccountPolicyOutput:
 @final
 class PutDataProtectionPolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutDataProtectionPolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutDataProtectionPolicyOutput: ...
     @property
     def log_group_identifier(self) -> str | None: ...
     @property
@@ -1918,6 +2044,8 @@ class PutDataProtectionPolicyOutput:
 @final
 class PutDeliveryDestinationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutDeliveryDestinationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutDeliveryDestinationOutput: ...
     @property
     def delivery_destination(self) -> DeliveryDestination | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1925,6 +2053,8 @@ class PutDeliveryDestinationOutput:
 @final
 class PutDeliveryDestinationPolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutDeliveryDestinationPolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutDeliveryDestinationPolicyOutput: ...
     @property
     def policy(self) -> Policy | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1932,6 +2062,8 @@ class PutDeliveryDestinationPolicyOutput:
 @final
 class PutDeliverySourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutDeliverySourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutDeliverySourceOutput: ...
     @property
     def delivery_source(self) -> DeliverySource | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1939,6 +2071,8 @@ class PutDeliverySourceOutput:
 @final
 class PutDestinationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutDestinationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutDestinationOutput: ...
     @property
     def destination(self) -> Destination | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1946,6 +2080,8 @@ class PutDestinationOutput:
 @final
 class PutIndexPolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutIndexPolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutIndexPolicyOutput: ...
     @property
     def index_policy(self) -> IndexPolicy | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1953,6 +2089,8 @@ class PutIndexPolicyOutput:
 @final
 class PutIntegrationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutIntegrationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutIntegrationOutput: ...
     @property
     def integration_name(self) -> str | None: ...
     @property
@@ -1962,6 +2100,8 @@ class PutIntegrationOutput:
 @final
 class PutLogEventsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutLogEventsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutLogEventsOutput: ...
     @property
     def next_sequence_token(self) -> str | None: ...
     @property
@@ -1973,6 +2113,8 @@ class PutLogEventsOutput:
 @final
 class PutQueryDefinitionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutQueryDefinitionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutQueryDefinitionOutput: ...
     @property
     def query_definition_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1980,6 +2122,8 @@ class PutQueryDefinitionOutput:
 @final
 class PutResourcePolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutResourcePolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutResourcePolicyOutput: ...
     @property
     def resource_policy(self) -> ResourcePolicy | None: ...
     @property
@@ -1989,6 +2133,8 @@ class PutResourcePolicyOutput:
 @final
 class PutStorageTierPolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutStorageTierPolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutStorageTierPolicyOutput: ...
     @property
     def storage_tier(self) -> _types.StorageTierOutput | None: ...
     @property
@@ -1998,6 +2144,8 @@ class PutStorageTierPolicyOutput:
 @final
 class StartQueryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/StartQueryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StartQueryOutput: ...
     @property
     def query_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2005,6 +2153,8 @@ class StartQueryOutput:
 @final
 class StopQueryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/StopQueryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StopQueryOutput: ...
     @property
     def success(self) -> bool: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2012,6 +2162,8 @@ class StopQueryOutput:
 @final
 class TestMetricFilterOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/TestMetricFilterOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> TestMetricFilterOutput: ...
     @property
     def matches(self) -> list[MetricFilterMatchRecord] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2019,6 +2171,8 @@ class TestMetricFilterOutput:
 @final
 class TestTransformerOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/TestTransformerOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> TestTransformerOutput: ...
     @property
     def transformed_logs(self) -> list[TransformedLogRecord] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2026,11 +2180,15 @@ class TestTransformerOutput:
 @final
 class UpdateDeliveryConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/UpdateDeliveryConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateDeliveryConfigurationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateLookupTableOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/UpdateLookupTableOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateLookupTableOutput: ...
     @property
     def lookup_table_arn(self) -> str | None: ...
     @property
@@ -2040,6 +2198,8 @@ class UpdateLookupTableOutput:
 @final
 class UpdateScheduledQueryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/UpdateScheduledQueryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateScheduledQueryOutput: ...
     @property
     def scheduled_query_arn(self) -> str | None: ...
     @property

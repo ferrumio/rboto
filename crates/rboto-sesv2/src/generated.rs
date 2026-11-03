@@ -6032,6 +6032,3458 @@ fn volume_statistics_to_py(
     Ok(result.into_any().unbind())
 }
 
+fn account_details_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::AccountDetails> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "mail_type",
+            "website_url",
+            "contact_language",
+            "use_case_description",
+            "additional_contact_email_addresses",
+            "review_details",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::AccountDetails::builder();
+    if let Some(value) = dict_value(values, "mail_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2590: String = value.extract()?;
+        let fixture_2589 = aws_sdk_sesv2::types::MailType::from(enum_value_2590.as_str());
+        builder = builder.set_mail_type(Some(fixture_2589));
+    }
+    if let Some(value) = dict_value(values, "website_url")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2591: String = value.extract()?;
+        builder = builder.set_website_url(Some(fixture_2591));
+    }
+    if let Some(value) = dict_value(values, "contact_language")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2593: String = value.extract()?;
+        let fixture_2592 = aws_sdk_sesv2::types::ContactLanguage::from(enum_value_2593.as_str());
+        builder = builder.set_contact_language(Some(fixture_2592));
+    }
+    if let Some(value) = dict_value(values, "use_case_description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2594: String = value.extract()?;
+        builder = builder.set_use_case_description(Some(fixture_2594));
+    }
+    if let Some(value) = dict_value(values, "additional_contact_email_addresses")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_2595 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_2596 in value.try_iter()? {
+            let item_2597 = item_result_2596?;
+            rboto_core::fixture_scalar(&item_2597, "string")?;
+            let converted_item_2598: String = item_2597.extract()?;
+            fixture_2595.push(converted_item_2598);
+        }
+        builder = builder.set_additional_contact_email_addresses(Some(fixture_2595));
+    }
+    if let Some(value) = dict_value(values, "review_details")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2599 = review_details_fixture_from_py(&value)?;
+        builder = builder.set_review_details(Some(fixture_2599));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn archiving_options_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::ArchivingOptions> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["archive_arn"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::ArchivingOptions::builder();
+    if let Some(value) = dict_value(values, "archive_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2600: String = value.extract()?;
+        builder = builder.set_archive_arn(Some(fixture_2600));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn blacklist_entry_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::BlacklistEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["rbl_name", "listing_time", "description"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::BlacklistEntry::builder();
+    if let Some(value) = dict_value(values, "rbl_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2601: String = value.extract()?;
+        builder = builder.set_rbl_name(Some(fixture_2601));
+    }
+    if let Some(value) = dict_value(values, "listing_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2603: String = value.extract()?;
+        let fixture_2602 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2603,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_listing_time(Some(fixture_2602));
+    }
+    if let Some(value) = dict_value(values, "description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2604: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_2604));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn bounce_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::Bounce> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["bounce_type", "bounce_sub_type", "diagnostic_code"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::Bounce::builder();
+    if let Some(value) = dict_value(values, "bounce_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2606: String = value.extract()?;
+        let fixture_2605 = aws_sdk_sesv2::types::BounceType::from(enum_value_2606.as_str());
+        builder = builder.set_bounce_type(Some(fixture_2605));
+    }
+    if let Some(value) = dict_value(values, "bounce_sub_type")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2607: String = value.extract()?;
+        builder = builder.set_bounce_sub_type(Some(fixture_2607));
+    }
+    if let Some(value) = dict_value(values, "diagnostic_code")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2608: String = value.extract()?;
+        builder = builder.set_diagnostic_code(Some(fixture_2608));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn bulk_email_entry_result_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::BulkEmailEntryResult> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["status", "error", "message_id"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::BulkEmailEntryResult::builder();
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2610: String = value.extract()?;
+        let fixture_2609 = aws_sdk_sesv2::types::BulkEmailStatus::from(enum_value_2610.as_str());
+        builder = builder.set_status(Some(fixture_2609));
+    }
+    if let Some(value) = dict_value(values, "error")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2611: String = value.extract()?;
+        builder = builder.set_error(Some(fixture_2611));
+    }
+    if let Some(value) = dict_value(values, "message_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2612: String = value.extract()?;
+        builder = builder.set_message_id(Some(fixture_2612));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn cloud_watch_destination_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::CloudWatchDestination> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["dimension_configurations"],
+        &["dimension_configurations"],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::CloudWatchDestination::builder();
+    if let Some(value) = values.get_item("dimension_configurations")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_2613 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_2614 in value.try_iter()? {
+            let item_2615 = item_result_2614?;
+            rboto_core::fixture_scalar(&item_2615, "struct")?;
+            let converted_item_2616 =
+                cloud_watch_dimension_configuration_fixture_from_py(&item_2615)?;
+            fixture_2613.push(converted_item_2616);
+        }
+        builder = builder.set_dimension_configurations(Some(fixture_2613));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn cloud_watch_dimension_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::CloudWatchDimensionConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "dimension_name",
+            "dimension_value_source",
+            "default_dimension_value",
+        ],
+        &[
+            "dimension_name",
+            "dimension_value_source",
+            "default_dimension_value",
+        ],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::CloudWatchDimensionConfiguration::builder();
+    if let Some(value) = values.get_item("dimension_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2617: String = value.extract()?;
+        builder = builder.set_dimension_name(Some(fixture_2617));
+    }
+    if let Some(value) = values.get_item("dimension_value_source")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2619: String = value.extract()?;
+        let fixture_2618 =
+            aws_sdk_sesv2::types::DimensionValueSource::from(enum_value_2619.as_str());
+        builder = builder.set_dimension_value_source(Some(fixture_2618));
+    }
+    if let Some(value) = values.get_item("default_dimension_value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2620: String = value.extract()?;
+        builder = builder.set_default_dimension_value(Some(fixture_2620));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn complaint_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::Complaint> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["complaint_sub_type", "complaint_feedback_type"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::Complaint::builder();
+    if let Some(value) = dict_value(values, "complaint_sub_type")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2621: String = value.extract()?;
+        builder = builder.set_complaint_sub_type(Some(fixture_2621));
+    }
+    if let Some(value) = dict_value(values, "complaint_feedback_type")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2622: String = value.extract()?;
+        builder = builder.set_complaint_feedback_type(Some(fixture_2622));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn contact_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::Contact> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "email_address",
+            "topic_preferences",
+            "topic_default_preferences",
+            "unsubscribe_all",
+            "last_updated_timestamp",
+        ],
+        &["unsubscribe_all"],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::Contact::builder();
+    if let Some(value) = dict_value(values, "email_address")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2623: String = value.extract()?;
+        builder = builder.set_email_address(Some(fixture_2623));
+    }
+    if let Some(value) = dict_value(values, "topic_preferences")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_2624 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_2625 in value.try_iter()? {
+            let item_2626 = item_result_2625?;
+            rboto_core::fixture_scalar(&item_2626, "struct")?;
+            let converted_item_2627 = topic_preference_fixture_from_py(&item_2626)?;
+            fixture_2624.push(converted_item_2627);
+        }
+        builder = builder.set_topic_preferences(Some(fixture_2624));
+    }
+    if let Some(value) = dict_value(values, "topic_default_preferences")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_2628 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_2629 in value.try_iter()? {
+            let item_2630 = item_result_2629?;
+            rboto_core::fixture_scalar(&item_2630, "struct")?;
+            let converted_item_2631 = topic_preference_fixture_from_py(&item_2630)?;
+            fixture_2628.push(converted_item_2631);
+        }
+        builder = builder.set_topic_default_preferences(Some(fixture_2628));
+    }
+    if let Some(value) = values.get_item("unsubscribe_all")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_2632: bool = value.extract()?;
+        builder = builder.set_unsubscribe_all(Some(fixture_2632));
+    }
+    if let Some(value) = dict_value(values, "last_updated_timestamp")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2634: String = value.extract()?;
+        let fixture_2633 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2634,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_updated_timestamp(Some(fixture_2633));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn contact_list_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::ContactList> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["contact_list_name", "last_updated_timestamp"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::ContactList::builder();
+    if let Some(value) = dict_value(values, "contact_list_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2635: String = value.extract()?;
+        builder = builder.set_contact_list_name(Some(fixture_2635));
+    }
+    if let Some(value) = dict_value(values, "last_updated_timestamp")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2637: String = value.extract()?;
+        let fixture_2636 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2637,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_updated_timestamp(Some(fixture_2636));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn contact_list_destination_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::ContactListDestination> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["contact_list_name", "contact_list_import_action"],
+        &["contact_list_name", "contact_list_import_action"],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::ContactListDestination::builder();
+    if let Some(value) = values.get_item("contact_list_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2638: String = value.extract()?;
+        builder = builder.set_contact_list_name(Some(fixture_2638));
+    }
+    if let Some(value) = values.get_item("contact_list_import_action")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2640: String = value.extract()?;
+        let fixture_2639 =
+            aws_sdk_sesv2::types::ContactListImportAction::from(enum_value_2640.as_str());
+        builder = builder.set_contact_list_import_action(Some(fixture_2639));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn custom_verification_email_template_metadata_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::CustomVerificationEmailTemplateMetadata> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "template_name",
+            "from_email_address",
+            "template_subject",
+            "success_redirection_url",
+            "failure_redirection_url",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::CustomVerificationEmailTemplateMetadata::builder();
+    if let Some(value) = dict_value(values, "template_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2641: String = value.extract()?;
+        builder = builder.set_template_name(Some(fixture_2641));
+    }
+    if let Some(value) = dict_value(values, "from_email_address")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2642: String = value.extract()?;
+        builder = builder.set_from_email_address(Some(fixture_2642));
+    }
+    if let Some(value) = dict_value(values, "template_subject")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2643: String = value.extract()?;
+        builder = builder.set_template_subject(Some(fixture_2643));
+    }
+    if let Some(value) = dict_value(values, "success_redirection_url")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2644: String = value.extract()?;
+        builder = builder.set_success_redirection_url(Some(fixture_2644));
+    }
+    if let Some(value) = dict_value(values, "failure_redirection_url")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2645: String = value.extract()?;
+        builder = builder.set_failure_redirection_url(Some(fixture_2645));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn daily_volume_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::DailyVolume> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["start_date", "volume_statistics", "domain_isp_placements"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::DailyVolume::builder();
+    if let Some(value) = dict_value(values, "start_date")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2647: String = value.extract()?;
+        let fixture_2646 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2647,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_start_date(Some(fixture_2646));
+    }
+    if let Some(value) = dict_value(values, "volume_statistics")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2648 = volume_statistics_fixture_from_py(&value)?;
+        builder = builder.set_volume_statistics(Some(fixture_2648));
+    }
+    if let Some(value) = dict_value(values, "domain_isp_placements")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_2649 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_2650 in value.try_iter()? {
+            let item_2651 = item_result_2650?;
+            rboto_core::fixture_scalar(&item_2651, "struct")?;
+            let converted_item_2652 = domain_isp_placement_fixture_from_py(&item_2651)?;
+            fixture_2649.push(converted_item_2652);
+        }
+        builder = builder.set_domain_isp_placements(Some(fixture_2649));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn dashboard_attributes_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::DashboardAttributes> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["engagement_metrics"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::DashboardAttributes::builder();
+    if let Some(value) = dict_value(values, "engagement_metrics")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2654: String = value.extract()?;
+        let fixture_2653 = aws_sdk_sesv2::types::FeatureStatus::from(enum_value_2654.as_str());
+        builder = builder.set_engagement_metrics(Some(fixture_2653));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn dashboard_options_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::DashboardOptions> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["engagement_metrics"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::DashboardOptions::builder();
+    if let Some(value) = dict_value(values, "engagement_metrics")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2656: String = value.extract()?;
+        let fixture_2655 = aws_sdk_sesv2::types::FeatureStatus::from(enum_value_2656.as_str());
+        builder = builder.set_engagement_metrics(Some(fixture_2655));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn dedicated_ip_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::DedicatedIp> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["ip", "warmup_status", "warmup_percentage", "pool_name"],
+        &["ip", "warmup_status", "warmup_percentage"],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::DedicatedIp::builder();
+    if let Some(value) = values.get_item("ip")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2657: String = value.extract()?;
+        builder = builder.set_ip(Some(fixture_2657));
+    }
+    if let Some(value) = values.get_item("warmup_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2659: String = value.extract()?;
+        let fixture_2658 = aws_sdk_sesv2::types::WarmupStatus::from(enum_value_2659.as_str());
+        builder = builder.set_warmup_status(Some(fixture_2658));
+    }
+    if let Some(value) = values.get_item("warmup_percentage")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_2660: i32 = value.extract()?;
+        builder = builder.set_warmup_percentage(Some(fixture_2660));
+    }
+    if let Some(value) = dict_value(values, "pool_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2661: String = value.extract()?;
+        builder = builder.set_pool_name(Some(fixture_2661));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn dedicated_ip_pool_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::DedicatedIpPool> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["pool_name", "scaling_mode"],
+        &["pool_name", "scaling_mode"],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::DedicatedIpPool::builder();
+    if let Some(value) = values.get_item("pool_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2662: String = value.extract()?;
+        builder = builder.set_pool_name(Some(fixture_2662));
+    }
+    if let Some(value) = values.get_item("scaling_mode")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2664: String = value.extract()?;
+        let fixture_2663 = aws_sdk_sesv2::types::ScalingMode::from(enum_value_2664.as_str());
+        builder = builder.set_scaling_mode(Some(fixture_2663));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn default_signing_scheme_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::DefaultSigningScheme> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &[], &[])?;
+    let mut builder = aws_sdk_sesv2::types::DefaultSigningScheme::builder();
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn deliverability_test_report_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::DeliverabilityTestReport> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "report_id",
+            "report_name",
+            "subject",
+            "from_email_address",
+            "create_date",
+            "deliverability_test_status",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::DeliverabilityTestReport::builder();
+    if let Some(value) = dict_value(values, "report_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2665: String = value.extract()?;
+        builder = builder.set_report_id(Some(fixture_2665));
+    }
+    if let Some(value) = dict_value(values, "report_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2666: String = value.extract()?;
+        builder = builder.set_report_name(Some(fixture_2666));
+    }
+    if let Some(value) = dict_value(values, "subject")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2667: String = value.extract()?;
+        builder = builder.set_subject(Some(fixture_2667));
+    }
+    if let Some(value) = dict_value(values, "from_email_address")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2668: String = value.extract()?;
+        builder = builder.set_from_email_address(Some(fixture_2668));
+    }
+    if let Some(value) = dict_value(values, "create_date")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2670: String = value.extract()?;
+        let fixture_2669 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2670,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_create_date(Some(fixture_2669));
+    }
+    if let Some(value) = dict_value(values, "deliverability_test_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2672: String = value.extract()?;
+        let fixture_2671 =
+            aws_sdk_sesv2::types::DeliverabilityTestStatus::from(enum_value_2672.as_str());
+        builder = builder.set_deliverability_test_status(Some(fixture_2671));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn delivery_options_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::DeliveryOptions> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["tls_policy", "sending_pool_name", "max_delivery_seconds"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::DeliveryOptions::builder();
+    if let Some(value) = dict_value(values, "tls_policy")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2674: String = value.extract()?;
+        let fixture_2673 = aws_sdk_sesv2::types::TlsPolicy::from(enum_value_2674.as_str());
+        builder = builder.set_tls_policy(Some(fixture_2673));
+    }
+    if let Some(value) = dict_value(values, "sending_pool_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2675: String = value.extract()?;
+        builder = builder.set_sending_pool_name(Some(fixture_2675));
+    }
+    if let Some(value) = dict_value(values, "max_delivery_seconds")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_2676: i64 = value.extract()?;
+        builder = builder.set_max_delivery_seconds(Some(fixture_2676));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn dkim_attributes_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::DkimAttributes> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "signing_enabled",
+            "status",
+            "tokens",
+            "signing_hosted_zone",
+            "signing_attributes_origin",
+            "next_signing_key_length",
+            "current_signing_key_length",
+            "last_key_generation_timestamp",
+        ],
+        &["signing_enabled"],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::DkimAttributes::builder();
+    if let Some(value) = values.get_item("signing_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_2677: bool = value.extract()?;
+        builder = builder.set_signing_enabled(Some(fixture_2677));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2679: String = value.extract()?;
+        let fixture_2678 = aws_sdk_sesv2::types::DkimStatus::from(enum_value_2679.as_str());
+        builder = builder.set_status(Some(fixture_2678));
+    }
+    if let Some(value) = dict_value(values, "tokens")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_2680 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_2681 in value.try_iter()? {
+            let item_2682 = item_result_2681?;
+            rboto_core::fixture_scalar(&item_2682, "string")?;
+            let converted_item_2683: String = item_2682.extract()?;
+            fixture_2680.push(converted_item_2683);
+        }
+        builder = builder.set_tokens(Some(fixture_2680));
+    }
+    if let Some(value) = dict_value(values, "signing_hosted_zone")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2684: String = value.extract()?;
+        builder = builder.set_signing_hosted_zone(Some(fixture_2684));
+    }
+    if let Some(value) = dict_value(values, "signing_attributes_origin")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2686: String = value.extract()?;
+        let fixture_2685 =
+            aws_sdk_sesv2::types::DkimSigningAttributesOrigin::from(enum_value_2686.as_str());
+        builder = builder.set_signing_attributes_origin(Some(fixture_2685));
+    }
+    if let Some(value) = dict_value(values, "next_signing_key_length")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2688: String = value.extract()?;
+        let fixture_2687 =
+            aws_sdk_sesv2::types::DkimSigningKeyLength::from(enum_value_2688.as_str());
+        builder = builder.set_next_signing_key_length(Some(fixture_2687));
+    }
+    if let Some(value) = dict_value(values, "current_signing_key_length")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2690: String = value.extract()?;
+        let fixture_2689 =
+            aws_sdk_sesv2::types::DkimSigningKeyLength::from(enum_value_2690.as_str());
+        builder = builder.set_current_signing_key_length(Some(fixture_2689));
+    }
+    if let Some(value) = dict_value(values, "last_key_generation_timestamp")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2692: String = value.extract()?;
+        let fixture_2691 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2692,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_key_generation_timestamp(Some(fixture_2691));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn domain_deliverability_campaign_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::DomainDeliverabilityCampaign> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "campaign_id",
+            "image_url",
+            "subject",
+            "from_address",
+            "sending_ips",
+            "first_seen_date_time",
+            "last_seen_date_time",
+            "inbox_count",
+            "spam_count",
+            "read_rate",
+            "delete_rate",
+            "read_delete_rate",
+            "projected_volume",
+            "esps",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::DomainDeliverabilityCampaign::builder();
+    if let Some(value) = dict_value(values, "campaign_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2693: String = value.extract()?;
+        builder = builder.set_campaign_id(Some(fixture_2693));
+    }
+    if let Some(value) = dict_value(values, "image_url")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2694: String = value.extract()?;
+        builder = builder.set_image_url(Some(fixture_2694));
+    }
+    if let Some(value) = dict_value(values, "subject")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2695: String = value.extract()?;
+        builder = builder.set_subject(Some(fixture_2695));
+    }
+    if let Some(value) = dict_value(values, "from_address")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2696: String = value.extract()?;
+        builder = builder.set_from_address(Some(fixture_2696));
+    }
+    if let Some(value) = dict_value(values, "sending_ips")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_2697 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_2698 in value.try_iter()? {
+            let item_2699 = item_result_2698?;
+            rboto_core::fixture_scalar(&item_2699, "string")?;
+            let converted_item_2700: String = item_2699.extract()?;
+            fixture_2697.push(converted_item_2700);
+        }
+        builder = builder.set_sending_ips(Some(fixture_2697));
+    }
+    if let Some(value) = dict_value(values, "first_seen_date_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2702: String = value.extract()?;
+        let fixture_2701 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2702,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_first_seen_date_time(Some(fixture_2701));
+    }
+    if let Some(value) = dict_value(values, "last_seen_date_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2704: String = value.extract()?;
+        let fixture_2703 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2704,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_seen_date_time(Some(fixture_2703));
+    }
+    if let Some(value) = dict_value(values, "inbox_count")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_2705: i64 = value.extract()?;
+        builder = builder.set_inbox_count(Some(fixture_2705));
+    }
+    if let Some(value) = dict_value(values, "spam_count")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_2706: i64 = value.extract()?;
+        builder = builder.set_spam_count(Some(fixture_2706));
+    }
+    if let Some(value) = dict_value(values, "read_rate")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_2707: f64 = value.extract()?;
+        builder = builder.set_read_rate(Some(fixture_2707));
+    }
+    if let Some(value) = dict_value(values, "delete_rate")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_2708: f64 = value.extract()?;
+        builder = builder.set_delete_rate(Some(fixture_2708));
+    }
+    if let Some(value) = dict_value(values, "read_delete_rate")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_2709: f64 = value.extract()?;
+        builder = builder.set_read_delete_rate(Some(fixture_2709));
+    }
+    if let Some(value) = dict_value(values, "projected_volume")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_2710: i64 = value.extract()?;
+        builder = builder.set_projected_volume(Some(fixture_2710));
+    }
+    if let Some(value) = dict_value(values, "esps")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_2711 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_2712 in value.try_iter()? {
+            let item_2713 = item_result_2712?;
+            rboto_core::fixture_scalar(&item_2713, "string")?;
+            let converted_item_2714: String = item_2713.extract()?;
+            fixture_2711.push(converted_item_2714);
+        }
+        builder = builder.set_esps(Some(fixture_2711));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn domain_deliverability_tracking_option_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::DomainDeliverabilityTrackingOption> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "domain",
+            "subscription_start_date",
+            "inbox_placement_tracking_option",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::DomainDeliverabilityTrackingOption::builder();
+    if let Some(value) = dict_value(values, "domain")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2715: String = value.extract()?;
+        builder = builder.set_domain(Some(fixture_2715));
+    }
+    if let Some(value) = dict_value(values, "subscription_start_date")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2717: String = value.extract()?;
+        let fixture_2716 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2717,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_subscription_start_date(Some(fixture_2716));
+    }
+    if let Some(value) = dict_value(values, "inbox_placement_tracking_option")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2718 = inbox_placement_tracking_option_fixture_from_py(&value)?;
+        builder = builder.set_inbox_placement_tracking_option(Some(fixture_2718));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn domain_isp_placement_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::DomainIspPlacement> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "isp_name",
+            "inbox_raw_count",
+            "spam_raw_count",
+            "inbox_percentage",
+            "spam_percentage",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::DomainIspPlacement::builder();
+    if let Some(value) = dict_value(values, "isp_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2719: String = value.extract()?;
+        builder = builder.set_isp_name(Some(fixture_2719));
+    }
+    if let Some(value) = dict_value(values, "inbox_raw_count")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_2720: i64 = value.extract()?;
+        builder = builder.set_inbox_raw_count(Some(fixture_2720));
+    }
+    if let Some(value) = dict_value(values, "spam_raw_count")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_2721: i64 = value.extract()?;
+        builder = builder.set_spam_raw_count(Some(fixture_2721));
+    }
+    if let Some(value) = dict_value(values, "inbox_percentage")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_2722: f64 = value.extract()?;
+        builder = builder.set_inbox_percentage(Some(fixture_2722));
+    }
+    if let Some(value) = dict_value(values, "spam_percentage")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_2723: f64 = value.extract()?;
+        builder = builder.set_spam_percentage(Some(fixture_2723));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn email_address_insights_mailbox_evaluations_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::EmailAddressInsightsMailboxEvaluations> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "has_valid_syntax",
+            "has_valid_dns_records",
+            "mailbox_exists",
+            "is_role_address",
+            "is_disposable",
+            "is_random_input",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::EmailAddressInsightsMailboxEvaluations::builder();
+    if let Some(value) = dict_value(values, "has_valid_syntax")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2724 = email_address_insights_verdict_fixture_from_py(&value)?;
+        builder = builder.set_has_valid_syntax(Some(fixture_2724));
+    }
+    if let Some(value) = dict_value(values, "has_valid_dns_records")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2725 = email_address_insights_verdict_fixture_from_py(&value)?;
+        builder = builder.set_has_valid_dns_records(Some(fixture_2725));
+    }
+    if let Some(value) = dict_value(values, "mailbox_exists")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2726 = email_address_insights_verdict_fixture_from_py(&value)?;
+        builder = builder.set_mailbox_exists(Some(fixture_2726));
+    }
+    if let Some(value) = dict_value(values, "is_role_address")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2727 = email_address_insights_verdict_fixture_from_py(&value)?;
+        builder = builder.set_is_role_address(Some(fixture_2727));
+    }
+    if let Some(value) = dict_value(values, "is_disposable")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2728 = email_address_insights_verdict_fixture_from_py(&value)?;
+        builder = builder.set_is_disposable(Some(fixture_2728));
+    }
+    if let Some(value) = dict_value(values, "is_random_input")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2729 = email_address_insights_verdict_fixture_from_py(&value)?;
+        builder = builder.set_is_random_input(Some(fixture_2729));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn email_address_insights_verdict_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::EmailAddressInsightsVerdict> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["confidence_verdict"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::EmailAddressInsightsVerdict::builder();
+    if let Some(value) = dict_value(values, "confidence_verdict")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2731: String = value.extract()?;
+        let fixture_2730 = aws_sdk_sesv2::types::EmailAddressInsightsConfidenceVerdict::from(
+            enum_value_2731.as_str(),
+        );
+        builder = builder.set_confidence_verdict(Some(fixture_2730));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn email_insights_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::EmailInsights> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["destination", "isp", "events"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::EmailInsights::builder();
+    if let Some(value) = dict_value(values, "destination")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2732: String = value.extract()?;
+        builder = builder.set_destination(Some(fixture_2732));
+    }
+    if let Some(value) = dict_value(values, "isp")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2733: String = value.extract()?;
+        builder = builder.set_isp(Some(fixture_2733));
+    }
+    if let Some(value) = dict_value(values, "events")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_2734 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_2735 in value.try_iter()? {
+            let item_2736 = item_result_2735?;
+            rboto_core::fixture_scalar(&item_2736, "struct")?;
+            let converted_item_2737 = insights_event_fixture_from_py(&item_2736)?;
+            fixture_2734.push(converted_item_2737);
+        }
+        builder = builder.set_events(Some(fixture_2734));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn email_template_content_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::EmailTemplateContent> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["subject", "text", "html"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::EmailTemplateContent::builder();
+    if let Some(value) = dict_value(values, "subject")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2738: String = value.extract()?;
+        builder = builder.set_subject(Some(fixture_2738));
+    }
+    if let Some(value) = dict_value(values, "text")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2739: String = value.extract()?;
+        builder = builder.set_text(Some(fixture_2739));
+    }
+    if let Some(value) = dict_value(values, "html")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2740: String = value.extract()?;
+        builder = builder.set_html(Some(fixture_2740));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn email_template_metadata_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::EmailTemplateMetadata> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["template_name", "created_timestamp"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::EmailTemplateMetadata::builder();
+    if let Some(value) = dict_value(values, "template_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2741: String = value.extract()?;
+        builder = builder.set_template_name(Some(fixture_2741));
+    }
+    if let Some(value) = dict_value(values, "created_timestamp")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2743: String = value.extract()?;
+        let fixture_2742 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2743,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_created_timestamp(Some(fixture_2742));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn event_bridge_destination_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::EventBridgeDestination> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["event_bus_arn"], &["event_bus_arn"])?;
+    let mut builder = aws_sdk_sesv2::types::EventBridgeDestination::builder();
+    if let Some(value) = values.get_item("event_bus_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2744: String = value.extract()?;
+        builder = builder.set_event_bus_arn(Some(fixture_2744));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn event_destination_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::EventDestination> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "name",
+            "enabled",
+            "matching_event_types",
+            "kinesis_firehose_destination",
+            "cloud_watch_destination",
+            "sns_destination",
+            "event_bridge_destination",
+            "pinpoint_destination",
+        ],
+        &["name", "enabled", "matching_event_types"],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::EventDestination::builder();
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2745: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_2745));
+    }
+    if let Some(value) = values.get_item("enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_2746: bool = value.extract()?;
+        builder = builder.set_enabled(Some(fixture_2746));
+    }
+    if let Some(value) = values.get_item("matching_event_types")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_2747 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_2748 in value.try_iter()? {
+            let item_2749 = item_result_2748?;
+            rboto_core::fixture_scalar(&item_2749, "enum")?;
+            let enum_value_2751: String = item_2749.extract()?;
+            let converted_item_2750 =
+                aws_sdk_sesv2::types::EventType::from(enum_value_2751.as_str());
+            fixture_2747.push(converted_item_2750);
+        }
+        builder = builder.set_matching_event_types(Some(fixture_2747));
+    }
+    if let Some(value) = dict_value(values, "kinesis_firehose_destination")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2752 = kinesis_firehose_destination_fixture_from_py(&value)?;
+        builder = builder.set_kinesis_firehose_destination(Some(fixture_2752));
+    }
+    if let Some(value) = dict_value(values, "cloud_watch_destination")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2753 = cloud_watch_destination_fixture_from_py(&value)?;
+        builder = builder.set_cloud_watch_destination(Some(fixture_2753));
+    }
+    if let Some(value) = dict_value(values, "sns_destination")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2754 = sns_destination_fixture_from_py(&value)?;
+        builder = builder.set_sns_destination(Some(fixture_2754));
+    }
+    if let Some(value) = dict_value(values, "event_bridge_destination")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2755 = event_bridge_destination_fixture_from_py(&value)?;
+        builder = builder.set_event_bridge_destination(Some(fixture_2755));
+    }
+    if let Some(value) = dict_value(values, "pinpoint_destination")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2756 = pinpoint_destination_fixture_from_py(&value)?;
+        builder = builder.set_pinpoint_destination(Some(fixture_2756));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn event_details_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::EventDetails> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["bounce", "complaint"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::EventDetails::builder();
+    if let Some(value) = dict_value(values, "bounce")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2757 = bounce_fixture_from_py(&value)?;
+        builder = builder.set_bounce(Some(fixture_2757));
+    }
+    if let Some(value) = dict_value(values, "complaint")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2758 = complaint_fixture_from_py(&value)?;
+        builder = builder.set_complaint(Some(fixture_2758));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn export_data_source_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::ExportDataSource> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["metrics_data_source", "message_insights_data_source"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::ExportDataSource::builder();
+    if let Some(value) = dict_value(values, "metrics_data_source")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2759 = metrics_data_source_fixture_from_py(&value)?;
+        builder = builder.set_metrics_data_source(Some(fixture_2759));
+    }
+    if let Some(value) = dict_value(values, "message_insights_data_source")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2760 = message_insights_data_source_fixture_from_py(&value)?;
+        builder = builder.set_message_insights_data_source(Some(fixture_2760));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn export_destination_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::ExportDestination> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["data_format", "s3_url"], &["data_format"])?;
+    let mut builder = aws_sdk_sesv2::types::ExportDestination::builder();
+    if let Some(value) = values.get_item("data_format")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2762: String = value.extract()?;
+        let fixture_2761 = aws_sdk_sesv2::types::DataFormat::from(enum_value_2762.as_str());
+        builder = builder.set_data_format(Some(fixture_2761));
+    }
+    if let Some(value) = dict_value(values, "s3_url")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2763: String = value.extract()?;
+        builder = builder.set_s3_url(Some(fixture_2763));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn export_job_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::ExportJobSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "job_id",
+            "export_source_type",
+            "job_status",
+            "created_timestamp",
+            "completed_timestamp",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::ExportJobSummary::builder();
+    if let Some(value) = dict_value(values, "job_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2764: String = value.extract()?;
+        builder = builder.set_job_id(Some(fixture_2764));
+    }
+    if let Some(value) = dict_value(values, "export_source_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2766: String = value.extract()?;
+        let fixture_2765 = aws_sdk_sesv2::types::ExportSourceType::from(enum_value_2766.as_str());
+        builder = builder.set_export_source_type(Some(fixture_2765));
+    }
+    if let Some(value) = dict_value(values, "job_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2768: String = value.extract()?;
+        let fixture_2767 = aws_sdk_sesv2::types::JobStatus::from(enum_value_2768.as_str());
+        builder = builder.set_job_status(Some(fixture_2767));
+    }
+    if let Some(value) = dict_value(values, "created_timestamp")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2770: String = value.extract()?;
+        let fixture_2769 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2770,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_created_timestamp(Some(fixture_2769));
+    }
+    if let Some(value) = dict_value(values, "completed_timestamp")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2772: String = value.extract()?;
+        let fixture_2771 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2772,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_completed_timestamp(Some(fixture_2771));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn export_metric_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::ExportMetric> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["name", "aggregation"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::ExportMetric::builder();
+    if let Some(value) = dict_value(values, "name")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2774: String = value.extract()?;
+        let fixture_2773 = aws_sdk_sesv2::types::Metric::from(enum_value_2774.as_str());
+        builder = builder.set_name(Some(fixture_2773));
+    }
+    if let Some(value) = dict_value(values, "aggregation")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2776: String = value.extract()?;
+        let fixture_2775 = aws_sdk_sesv2::types::MetricAggregation::from(enum_value_2776.as_str());
+        builder = builder.set_aggregation(Some(fixture_2775));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn export_statistics_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::ExportStatistics> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["processed_records_count", "exported_records_count"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::ExportStatistics::builder();
+    if let Some(value) = dict_value(values, "processed_records_count")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_2777: i32 = value.extract()?;
+        builder = builder.set_processed_records_count(Some(fixture_2777));
+    }
+    if let Some(value) = dict_value(values, "exported_records_count")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_2778: i32 = value.extract()?;
+        builder = builder.set_exported_records_count(Some(fixture_2778));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn failure_info_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::FailureInfo> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["failed_records_s3_url", "error_message"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::FailureInfo::builder();
+    if let Some(value) = dict_value(values, "failed_records_s3_url")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2779: String = value.extract()?;
+        builder = builder.set_failed_records_s3_url(Some(fixture_2779));
+    }
+    if let Some(value) = dict_value(values, "error_message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2780: String = value.extract()?;
+        builder = builder.set_error_message(Some(fixture_2780));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn guardian_attributes_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::GuardianAttributes> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["optimized_shared_delivery"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::GuardianAttributes::builder();
+    if let Some(value) = dict_value(values, "optimized_shared_delivery")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2782: String = value.extract()?;
+        let fixture_2781 = aws_sdk_sesv2::types::FeatureStatus::from(enum_value_2782.as_str());
+        builder = builder.set_optimized_shared_delivery(Some(fixture_2781));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn guardian_options_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::GuardianOptions> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["optimized_shared_delivery"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::GuardianOptions::builder();
+    if let Some(value) = dict_value(values, "optimized_shared_delivery")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2784: String = value.extract()?;
+        let fixture_2783 = aws_sdk_sesv2::types::FeatureStatus::from(enum_value_2784.as_str());
+        builder = builder.set_optimized_shared_delivery(Some(fixture_2783));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn identity_certificate_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::IdentityCertificate> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "from_address",
+            "status",
+            "certificate_arn",
+            "certificate_expiry_time",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::IdentityCertificate::builder();
+    if let Some(value) = dict_value(values, "from_address")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2785: String = value.extract()?;
+        builder = builder.set_from_address(Some(fixture_2785));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2787: String = value.extract()?;
+        let fixture_2786 =
+            aws_sdk_sesv2::types::IdentityCertificateStatus::from(enum_value_2787.as_str());
+        builder = builder.set_status(Some(fixture_2786));
+    }
+    if let Some(value) = dict_value(values, "certificate_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2788: String = value.extract()?;
+        builder = builder.set_certificate_arn(Some(fixture_2788));
+    }
+    if let Some(value) = dict_value(values, "certificate_expiry_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2790: String = value.extract()?;
+        let fixture_2789 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2790,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_certificate_expiry_time(Some(fixture_2789));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn identity_info_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::IdentityInfo> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "identity_type",
+            "identity_name",
+            "sending_enabled",
+            "verification_status",
+        ],
+        &["sending_enabled"],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::IdentityInfo::builder();
+    if let Some(value) = dict_value(values, "identity_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2792: String = value.extract()?;
+        let fixture_2791 = aws_sdk_sesv2::types::IdentityType::from(enum_value_2792.as_str());
+        builder = builder.set_identity_type(Some(fixture_2791));
+    }
+    if let Some(value) = dict_value(values, "identity_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2793: String = value.extract()?;
+        builder = builder.set_identity_name(Some(fixture_2793));
+    }
+    if let Some(value) = values.get_item("sending_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_2794: bool = value.extract()?;
+        builder = builder.set_sending_enabled(Some(fixture_2794));
+    }
+    if let Some(value) = dict_value(values, "verification_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2796: String = value.extract()?;
+        let fixture_2795 = aws_sdk_sesv2::types::VerificationStatus::from(enum_value_2796.as_str());
+        builder = builder.set_verification_status(Some(fixture_2795));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn import_data_source_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::ImportDataSource> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["s3_url", "data_format"],
+        &["s3_url", "data_format"],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::ImportDataSource::builder();
+    if let Some(value) = values.get_item("s3_url")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2797: String = value.extract()?;
+        builder = builder.set_s3_url(Some(fixture_2797));
+    }
+    if let Some(value) = values.get_item("data_format")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2799: String = value.extract()?;
+        let fixture_2798 = aws_sdk_sesv2::types::DataFormat::from(enum_value_2799.as_str());
+        builder = builder.set_data_format(Some(fixture_2798));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn import_destination_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::ImportDestination> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["suppression_list_destination", "contact_list_destination"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::ImportDestination::builder();
+    if let Some(value) = dict_value(values, "suppression_list_destination")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2800 = suppression_list_destination_fixture_from_py(&value)?;
+        builder = builder.set_suppression_list_destination(Some(fixture_2800));
+    }
+    if let Some(value) = dict_value(values, "contact_list_destination")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2801 = contact_list_destination_fixture_from_py(&value)?;
+        builder = builder.set_contact_list_destination(Some(fixture_2801));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn import_job_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::ImportJobSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "job_id",
+            "import_destination",
+            "job_status",
+            "created_timestamp",
+            "processed_records_count",
+            "failed_records_count",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::ImportJobSummary::builder();
+    if let Some(value) = dict_value(values, "job_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2802: String = value.extract()?;
+        builder = builder.set_job_id(Some(fixture_2802));
+    }
+    if let Some(value) = dict_value(values, "import_destination")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2803 = import_destination_fixture_from_py(&value)?;
+        builder = builder.set_import_destination(Some(fixture_2803));
+    }
+    if let Some(value) = dict_value(values, "job_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2805: String = value.extract()?;
+        let fixture_2804 = aws_sdk_sesv2::types::JobStatus::from(enum_value_2805.as_str());
+        builder = builder.set_job_status(Some(fixture_2804));
+    }
+    if let Some(value) = dict_value(values, "created_timestamp")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2807: String = value.extract()?;
+        let fixture_2806 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2807,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_created_timestamp(Some(fixture_2806));
+    }
+    if let Some(value) = dict_value(values, "processed_records_count")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_2808: i32 = value.extract()?;
+        builder = builder.set_processed_records_count(Some(fixture_2808));
+    }
+    if let Some(value) = dict_value(values, "failed_records_count")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_2809: i32 = value.extract()?;
+        builder = builder.set_failed_records_count(Some(fixture_2809));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn inbox_placement_tracking_option_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::InboxPlacementTrackingOption> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["global", "tracked_isps"], &["global"])?;
+    let mut builder = aws_sdk_sesv2::types::InboxPlacementTrackingOption::builder();
+    if let Some(value) = values.get_item("global")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_2810: bool = value.extract()?;
+        builder = builder.set_global(Some(fixture_2810));
+    }
+    if let Some(value) = dict_value(values, "tracked_isps")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_2811 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_2812 in value.try_iter()? {
+            let item_2813 = item_result_2812?;
+            rboto_core::fixture_scalar(&item_2813, "string")?;
+            let converted_item_2814: String = item_2813.extract()?;
+            fixture_2811.push(converted_item_2814);
+        }
+        builder = builder.set_tracked_isps(Some(fixture_2811));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn insights_event_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::InsightsEvent> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["timestamp", "type", "details"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::InsightsEvent::builder();
+    if let Some(value) = dict_value(values, "timestamp")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2816: String = value.extract()?;
+        let fixture_2815 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2816,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_timestamp(Some(fixture_2815));
+    }
+    if let Some(value) = dict_value(values, "type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2818: String = value.extract()?;
+        let fixture_2817 = aws_sdk_sesv2::types::EventType::from(enum_value_2818.as_str());
+        builder = builder.set_type(Some(fixture_2817));
+    }
+    if let Some(value) = dict_value(values, "details")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2819 = event_details_fixture_from_py(&value)?;
+        builder = builder.set_details(Some(fixture_2819));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn isp_placement_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::IspPlacement> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["isp_name", "placement_statistics"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::IspPlacement::builder();
+    if let Some(value) = dict_value(values, "isp_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2820: String = value.extract()?;
+        builder = builder.set_isp_name(Some(fixture_2820));
+    }
+    if let Some(value) = dict_value(values, "placement_statistics")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2821 = placement_statistics_fixture_from_py(&value)?;
+        builder = builder.set_placement_statistics(Some(fixture_2821));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn kinesis_firehose_destination_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::KinesisFirehoseDestination> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["iam_role_arn", "delivery_stream_arn"],
+        &["iam_role_arn", "delivery_stream_arn"],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::KinesisFirehoseDestination::builder();
+    if let Some(value) = values.get_item("iam_role_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2822: String = value.extract()?;
+        builder = builder.set_iam_role_arn(Some(fixture_2822));
+    }
+    if let Some(value) = values.get_item("delivery_stream_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2823: String = value.extract()?;
+        builder = builder.set_delivery_stream_arn(Some(fixture_2823));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn mail_from_attributes_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::MailFromAttributes> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "mail_from_domain",
+            "mail_from_domain_status",
+            "behavior_on_mx_failure",
+        ],
+        &[
+            "mail_from_domain",
+            "mail_from_domain_status",
+            "behavior_on_mx_failure",
+        ],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::MailFromAttributes::builder();
+    if let Some(value) = values.get_item("mail_from_domain")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2824: String = value.extract()?;
+        builder = builder.set_mail_from_domain(Some(fixture_2824));
+    }
+    if let Some(value) = values.get_item("mail_from_domain_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2826: String = value.extract()?;
+        let fixture_2825 =
+            aws_sdk_sesv2::types::MailFromDomainStatus::from(enum_value_2826.as_str());
+        builder = builder.set_mail_from_domain_status(Some(fixture_2825));
+    }
+    if let Some(value) = values.get_item("behavior_on_mx_failure")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2828: String = value.extract()?;
+        let fixture_2827 =
+            aws_sdk_sesv2::types::BehaviorOnMxFailure::from(enum_value_2828.as_str());
+        builder = builder.set_behavior_on_mx_failure(Some(fixture_2827));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn mailbox_validation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::MailboxValidation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["is_valid", "evaluations"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::MailboxValidation::builder();
+    if let Some(value) = dict_value(values, "is_valid")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2829 = email_address_insights_verdict_fixture_from_py(&value)?;
+        builder = builder.set_is_valid(Some(fixture_2829));
+    }
+    if let Some(value) = dict_value(values, "evaluations")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2830 = email_address_insights_mailbox_evaluations_fixture_from_py(&value)?;
+        builder = builder.set_evaluations(Some(fixture_2830));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn message_insights_data_source_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::MessageInsightsDataSource> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "start_date",
+            "end_date",
+            "include",
+            "exclude",
+            "max_results",
+        ],
+        &["start_date", "end_date"],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::MessageInsightsDataSource::builder();
+    if let Some(value) = values.get_item("start_date")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2832: String = value.extract()?;
+        let fixture_2831 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2832,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_start_date(Some(fixture_2831));
+    }
+    if let Some(value) = values.get_item("end_date")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2834: String = value.extract()?;
+        let fixture_2833 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2834,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_end_date(Some(fixture_2833));
+    }
+    if let Some(value) = dict_value(values, "include")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2835 = message_insights_filters_fixture_from_py(&value)?;
+        builder = builder.set_include(Some(fixture_2835));
+    }
+    if let Some(value) = dict_value(values, "exclude")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2836 = message_insights_filters_fixture_from_py(&value)?;
+        builder = builder.set_exclude(Some(fixture_2836));
+    }
+    if let Some(value) = dict_value(values, "max_results")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_2837: i32 = value.extract()?;
+        builder = builder.set_max_results(Some(fixture_2837));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn message_insights_filters_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::MessageInsightsFilters> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "from_email_address",
+            "destination",
+            "subject",
+            "isp",
+            "tenant_name",
+            "last_delivery_event",
+            "last_engagement_event",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::MessageInsightsFilters::builder();
+    if let Some(value) = dict_value(values, "from_email_address")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_2838 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_2839 in value.try_iter()? {
+            let item_2840 = item_result_2839?;
+            rboto_core::fixture_scalar(&item_2840, "string")?;
+            let converted_item_2841: String = item_2840.extract()?;
+            fixture_2838.push(converted_item_2841);
+        }
+        builder = builder.set_from_email_address(Some(fixture_2838));
+    }
+    if let Some(value) = dict_value(values, "destination")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_2842 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_2843 in value.try_iter()? {
+            let item_2844 = item_result_2843?;
+            rboto_core::fixture_scalar(&item_2844, "string")?;
+            let converted_item_2845: String = item_2844.extract()?;
+            fixture_2842.push(converted_item_2845);
+        }
+        builder = builder.set_destination(Some(fixture_2842));
+    }
+    if let Some(value) = dict_value(values, "subject")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_2846 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_2847 in value.try_iter()? {
+            let item_2848 = item_result_2847?;
+            rboto_core::fixture_scalar(&item_2848, "string")?;
+            let converted_item_2849: String = item_2848.extract()?;
+            fixture_2846.push(converted_item_2849);
+        }
+        builder = builder.set_subject(Some(fixture_2846));
+    }
+    if let Some(value) = dict_value(values, "isp")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_2850 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_2851 in value.try_iter()? {
+            let item_2852 = item_result_2851?;
+            rboto_core::fixture_scalar(&item_2852, "string")?;
+            let converted_item_2853: String = item_2852.extract()?;
+            fixture_2850.push(converted_item_2853);
+        }
+        builder = builder.set_isp(Some(fixture_2850));
+    }
+    if let Some(value) = dict_value(values, "tenant_name")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_2854 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_2855 in value.try_iter()? {
+            let item_2856 = item_result_2855?;
+            rboto_core::fixture_scalar(&item_2856, "string")?;
+            let converted_item_2857: String = item_2856.extract()?;
+            fixture_2854.push(converted_item_2857);
+        }
+        builder = builder.set_tenant_name(Some(fixture_2854));
+    }
+    if let Some(value) = dict_value(values, "last_delivery_event")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_2858 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_2859 in value.try_iter()? {
+            let item_2860 = item_result_2859?;
+            rboto_core::fixture_scalar(&item_2860, "enum")?;
+            let enum_value_2862: String = item_2860.extract()?;
+            let converted_item_2861 =
+                aws_sdk_sesv2::types::DeliveryEventType::from(enum_value_2862.as_str());
+            fixture_2858.push(converted_item_2861);
+        }
+        builder = builder.set_last_delivery_event(Some(fixture_2858));
+    }
+    if let Some(value) = dict_value(values, "last_engagement_event")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_2863 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_2864 in value.try_iter()? {
+            let item_2865 = item_result_2864?;
+            rboto_core::fixture_scalar(&item_2865, "enum")?;
+            let enum_value_2867: String = item_2865.extract()?;
+            let converted_item_2866 =
+                aws_sdk_sesv2::types::EngagementEventType::from(enum_value_2867.as_str());
+            fixture_2863.push(converted_item_2866);
+        }
+        builder = builder.set_last_engagement_event(Some(fixture_2863));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn message_security_options_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::MessageSecurityOptions> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["signing_scheme"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::MessageSecurityOptions::builder();
+    if let Some(value) = dict_value(values, "signing_scheme")? {
+        rboto_core::fixture_scalar(&value, "union")?;
+        let fixture_2868 = signing_scheme_fixture_from_py(&value)?;
+        builder = builder.set_signing_scheme(Some(fixture_2868));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn message_tag_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::MessageTag> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["name", "value"], &["name", "value"])?;
+    let mut builder = aws_sdk_sesv2::types::MessageTag::builder();
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2869: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_2869));
+    }
+    if let Some(value) = values.get_item("value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2870: String = value.extract()?;
+        builder = builder.set_value(Some(fixture_2870));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn metric_data_error_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::MetricDataError> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["id", "code", "message"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::MetricDataError::builder();
+    if let Some(value) = dict_value(values, "id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2871: String = value.extract()?;
+        builder = builder.set_id(Some(fixture_2871));
+    }
+    if let Some(value) = dict_value(values, "code")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2873: String = value.extract()?;
+        let fixture_2872 = aws_sdk_sesv2::types::QueryErrorCode::from(enum_value_2873.as_str());
+        builder = builder.set_code(Some(fixture_2872));
+    }
+    if let Some(value) = dict_value(values, "message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2874: String = value.extract()?;
+        builder = builder.set_message(Some(fixture_2874));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn metric_data_result_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::MetricDataResult> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["id", "timestamps", "values"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::MetricDataResult::builder();
+    if let Some(value) = dict_value(values, "id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2875: String = value.extract()?;
+        builder = builder.set_id(Some(fixture_2875));
+    }
+    if let Some(value) = dict_value(values, "timestamps")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_2876 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_2877 in value.try_iter()? {
+            let item_2878 = item_result_2877?;
+            rboto_core::fixture_scalar(&item_2878, "datetime")?;
+            let timestamp_2880: String = item_2878.extract()?;
+            let converted_item_2879 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_2880,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            fixture_2876.push(converted_item_2879);
+        }
+        builder = builder.set_timestamps(Some(fixture_2876));
+    }
+    if let Some(value) = dict_value(values, "values")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_2881 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_2882 in value.try_iter()? {
+            let item_2883 = item_result_2882?;
+            rboto_core::fixture_scalar(&item_2883, "i64")?;
+            let converted_item_2884: i64 = item_2883.extract()?;
+            fixture_2881.push(converted_item_2884);
+        }
+        builder = builder.set_values(Some(fixture_2881));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn metrics_data_source_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::MetricsDataSource> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "dimensions",
+            "namespace",
+            "metrics",
+            "start_date",
+            "end_date",
+        ],
+        &[
+            "dimensions",
+            "namespace",
+            "metrics",
+            "start_date",
+            "end_date",
+        ],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::MetricsDataSource::builder();
+    if let Some(value) = values.get_item("dimensions")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_2886 = value.cast::<PyDict>()?;
+        let mut fixture_2885 = HashMap::with_capacity(mapping_2886.len());
+        for (key_2887, value_2888) in mapping_2886.iter() {
+            rboto_core::fixture_scalar(&key_2887, "enum")?;
+            let enum_value_2891: String = key_2887.extract()?;
+            let converted_key_2889 =
+                aws_sdk_sesv2::types::MetricDimensionName::from(enum_value_2891.as_str());
+            rboto_core::fixture_scalar(&value_2888, "vec")?;
+            let mut converted_value_2890 =
+                Vec::with_capacity(value_2888.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2892 in value_2888.try_iter()? {
+                let item_2893 = item_result_2892?;
+                rboto_core::fixture_scalar(&item_2893, "string")?;
+                let converted_item_2894: String = item_2893.extract()?;
+                converted_value_2890.push(converted_item_2894);
+            }
+            fixture_2885.insert(converted_key_2889, converted_value_2890);
+        }
+        builder = builder.set_dimensions(Some(fixture_2885));
+    }
+    if let Some(value) = values.get_item("namespace")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2896: String = value.extract()?;
+        let fixture_2895 = aws_sdk_sesv2::types::MetricNamespace::from(enum_value_2896.as_str());
+        builder = builder.set_namespace(Some(fixture_2895));
+    }
+    if let Some(value) = values.get_item("metrics")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_2897 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_2898 in value.try_iter()? {
+            let item_2899 = item_result_2898?;
+            rboto_core::fixture_scalar(&item_2899, "struct")?;
+            let converted_item_2900 = export_metric_fixture_from_py(&item_2899)?;
+            fixture_2897.push(converted_item_2900);
+        }
+        builder = builder.set_metrics(Some(fixture_2897));
+    }
+    if let Some(value) = values.get_item("start_date")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2902: String = value.extract()?;
+        let fixture_2901 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2902,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_start_date(Some(fixture_2901));
+    }
+    if let Some(value) = values.get_item("end_date")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2904: String = value.extract()?;
+        let fixture_2903 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2904,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_end_date(Some(fixture_2903));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn multi_region_endpoint_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::MultiRegionEndpoint> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "endpoint_name",
+            "status",
+            "endpoint_id",
+            "regions",
+            "created_timestamp",
+            "last_updated_timestamp",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::MultiRegionEndpoint::builder();
+    if let Some(value) = dict_value(values, "endpoint_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2905: String = value.extract()?;
+        builder = builder.set_endpoint_name(Some(fixture_2905));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2907: String = value.extract()?;
+        let fixture_2906 = aws_sdk_sesv2::types::Status::from(enum_value_2907.as_str());
+        builder = builder.set_status(Some(fixture_2906));
+    }
+    if let Some(value) = dict_value(values, "endpoint_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2908: String = value.extract()?;
+        builder = builder.set_endpoint_id(Some(fixture_2908));
+    }
+    if let Some(value) = dict_value(values, "regions")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_2909 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_2910 in value.try_iter()? {
+            let item_2911 = item_result_2910?;
+            rboto_core::fixture_scalar(&item_2911, "string")?;
+            let converted_item_2912: String = item_2911.extract()?;
+            fixture_2909.push(converted_item_2912);
+        }
+        builder = builder.set_regions(Some(fixture_2909));
+    }
+    if let Some(value) = dict_value(values, "created_timestamp")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2914: String = value.extract()?;
+        let fixture_2913 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2914,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_created_timestamp(Some(fixture_2913));
+    }
+    if let Some(value) = dict_value(values, "last_updated_timestamp")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2916: String = value.extract()?;
+        let fixture_2915 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2916,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_updated_timestamp(Some(fixture_2915));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn overall_volume_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::OverallVolume> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "volume_statistics",
+            "read_rate_percent",
+            "domain_isp_placements",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::OverallVolume::builder();
+    if let Some(value) = dict_value(values, "volume_statistics")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2917 = volume_statistics_fixture_from_py(&value)?;
+        builder = builder.set_volume_statistics(Some(fixture_2917));
+    }
+    if let Some(value) = dict_value(values, "read_rate_percent")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_2918: f64 = value.extract()?;
+        builder = builder.set_read_rate_percent(Some(fixture_2918));
+    }
+    if let Some(value) = dict_value(values, "domain_isp_placements")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_2919 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_2920 in value.try_iter()? {
+            let item_2921 = item_result_2920?;
+            rboto_core::fixture_scalar(&item_2921, "struct")?;
+            let converted_item_2922 = domain_isp_placement_fixture_from_py(&item_2921)?;
+            fixture_2919.push(converted_item_2922);
+        }
+        builder = builder.set_domain_isp_placements(Some(fixture_2919));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn pinpoint_destination_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::PinpointDestination> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["application_arn"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::PinpointDestination::builder();
+    if let Some(value) = dict_value(values, "application_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2923: String = value.extract()?;
+        builder = builder.set_application_arn(Some(fixture_2923));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn placement_statistics_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::PlacementStatistics> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "inbox_percentage",
+            "spam_percentage",
+            "missing_percentage",
+            "spf_percentage",
+            "dkim_percentage",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::PlacementStatistics::builder();
+    if let Some(value) = dict_value(values, "inbox_percentage")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_2924: f64 = value.extract()?;
+        builder = builder.set_inbox_percentage(Some(fixture_2924));
+    }
+    if let Some(value) = dict_value(values, "spam_percentage")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_2925: f64 = value.extract()?;
+        builder = builder.set_spam_percentage(Some(fixture_2925));
+    }
+    if let Some(value) = dict_value(values, "missing_percentage")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_2926: f64 = value.extract()?;
+        builder = builder.set_missing_percentage(Some(fixture_2926));
+    }
+    if let Some(value) = dict_value(values, "spf_percentage")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_2927: f64 = value.extract()?;
+        builder = builder.set_spf_percentage(Some(fixture_2927));
+    }
+    if let Some(value) = dict_value(values, "dkim_percentage")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_2928: f64 = value.extract()?;
+        builder = builder.set_dkim_percentage(Some(fixture_2928));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn pricing_attributes_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::PricingAttributes> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["current_plan", "next_plan"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::PricingAttributes::builder();
+    if let Some(value) = dict_value(values, "current_plan")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2930: String = value.extract()?;
+        let fixture_2929 = aws_sdk_sesv2::types::PricingPlan::from(enum_value_2930.as_str());
+        builder = builder.set_current_plan(Some(fixture_2929));
+    }
+    if let Some(value) = dict_value(values, "next_plan")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2932: String = value.extract()?;
+        let fixture_2931 = aws_sdk_sesv2::types::PricingPlan::from(enum_value_2932.as_str());
+        builder = builder.set_next_plan(Some(fixture_2931));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn recommendation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::Recommendation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "resource_arn",
+            "type",
+            "description",
+            "status",
+            "created_timestamp",
+            "last_updated_timestamp",
+            "impact",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::Recommendation::builder();
+    if let Some(value) = dict_value(values, "resource_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2933: String = value.extract()?;
+        builder = builder.set_resource_arn(Some(fixture_2933));
+    }
+    if let Some(value) = dict_value(values, "type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2935: String = value.extract()?;
+        let fixture_2934 = aws_sdk_sesv2::types::RecommendationType::from(enum_value_2935.as_str());
+        builder = builder.set_type(Some(fixture_2934));
+    }
+    if let Some(value) = dict_value(values, "description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2936: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_2936));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2938: String = value.extract()?;
+        let fixture_2937 =
+            aws_sdk_sesv2::types::RecommendationStatus::from(enum_value_2938.as_str());
+        builder = builder.set_status(Some(fixture_2937));
+    }
+    if let Some(value) = dict_value(values, "created_timestamp")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2940: String = value.extract()?;
+        let fixture_2939 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2940,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_created_timestamp(Some(fixture_2939));
+    }
+    if let Some(value) = dict_value(values, "last_updated_timestamp")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2942: String = value.extract()?;
+        let fixture_2941 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2942,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_updated_timestamp(Some(fixture_2941));
+    }
+    if let Some(value) = dict_value(values, "impact")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2944: String = value.extract()?;
+        let fixture_2943 =
+            aws_sdk_sesv2::types::RecommendationImpact::from(enum_value_2944.as_str());
+        builder = builder.set_impact(Some(fixture_2943));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn reputation_entity_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::ReputationEntity> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "reputation_entity_reference",
+            "reputation_entity_type",
+            "reputation_management_policy",
+            "customer_managed_status",
+            "aws_ses_managed_status",
+            "sending_status_aggregate",
+            "reputation_impact",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::ReputationEntity::builder();
+    if let Some(value) = dict_value(values, "reputation_entity_reference")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2945: String = value.extract()?;
+        builder = builder.set_reputation_entity_reference(Some(fixture_2945));
+    }
+    if let Some(value) = dict_value(values, "reputation_entity_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2947: String = value.extract()?;
+        let fixture_2946 =
+            aws_sdk_sesv2::types::ReputationEntityType::from(enum_value_2947.as_str());
+        builder = builder.set_reputation_entity_type(Some(fixture_2946));
+    }
+    if let Some(value) = dict_value(values, "reputation_management_policy")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2948: String = value.extract()?;
+        builder = builder.set_reputation_management_policy(Some(fixture_2948));
+    }
+    if let Some(value) = dict_value(values, "customer_managed_status")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2949 = status_record_fixture_from_py(&value)?;
+        builder = builder.set_customer_managed_status(Some(fixture_2949));
+    }
+    if let Some(value) = dict_value(values, "aws_ses_managed_status")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2950 = status_record_fixture_from_py(&value)?;
+        builder = builder.set_aws_ses_managed_status(Some(fixture_2950));
+    }
+    if let Some(value) = dict_value(values, "sending_status_aggregate")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2952: String = value.extract()?;
+        let fixture_2951 = aws_sdk_sesv2::types::SendingStatus::from(enum_value_2952.as_str());
+        builder = builder.set_sending_status_aggregate(Some(fixture_2951));
+    }
+    if let Some(value) = dict_value(values, "reputation_impact")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2954: String = value.extract()?;
+        let fixture_2953 =
+            aws_sdk_sesv2::types::RecommendationImpact::from(enum_value_2954.as_str());
+        builder = builder.set_reputation_impact(Some(fixture_2953));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn reputation_options_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::ReputationOptions> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["reputation_metrics_enabled", "last_fresh_start"],
+        &["reputation_metrics_enabled"],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::ReputationOptions::builder();
+    if let Some(value) = values.get_item("reputation_metrics_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_2955: bool = value.extract()?;
+        builder = builder.set_reputation_metrics_enabled(Some(fixture_2955));
+    }
+    if let Some(value) = dict_value(values, "last_fresh_start")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2957: String = value.extract()?;
+        let fixture_2956 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2957,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_fresh_start(Some(fixture_2956));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn resource_tenant_metadata_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::ResourceTenantMetadata> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "tenant_name",
+            "tenant_id",
+            "resource_arn",
+            "associated_timestamp",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::ResourceTenantMetadata::builder();
+    if let Some(value) = dict_value(values, "tenant_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2958: String = value.extract()?;
+        builder = builder.set_tenant_name(Some(fixture_2958));
+    }
+    if let Some(value) = dict_value(values, "tenant_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2959: String = value.extract()?;
+        builder = builder.set_tenant_id(Some(fixture_2959));
+    }
+    if let Some(value) = dict_value(values, "resource_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2960: String = value.extract()?;
+        builder = builder.set_resource_arn(Some(fixture_2960));
+    }
+    if let Some(value) = dict_value(values, "associated_timestamp")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2962: String = value.extract()?;
+        let fixture_2961 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2962,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_associated_timestamp(Some(fixture_2961));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn review_details_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::ReviewDetails> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["status", "case_id"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::ReviewDetails::builder();
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2964: String = value.extract()?;
+        let fixture_2963 = aws_sdk_sesv2::types::ReviewStatus::from(enum_value_2964.as_str());
+        builder = builder.set_status(Some(fixture_2963));
+    }
+    if let Some(value) = dict_value(values, "case_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2965: String = value.extract()?;
+        builder = builder.set_case_id(Some(fixture_2965));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn route_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::Route> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["region"], &["region"])?;
+    let mut builder = aws_sdk_sesv2::types::Route::builder();
+    if let Some(value) = values.get_item("region")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2966: String = value.extract()?;
+        builder = builder.set_region(Some(fixture_2966));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn send_quota_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::SendQuota> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["max24_hour_send", "max_send_rate", "sent_last24_hours"],
+        &["max24_hour_send", "max_send_rate", "sent_last24_hours"],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::SendQuota::builder();
+    if let Some(value) = values.get_item("max24_hour_send")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_2967: f64 = value.extract()?;
+        builder = builder.set_max24_hour_send(Some(fixture_2967));
+    }
+    if let Some(value) = values.get_item("max_send_rate")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_2968: f64 = value.extract()?;
+        builder = builder.set_max_send_rate(Some(fixture_2968));
+    }
+    if let Some(value) = values.get_item("sent_last24_hours")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_2969: f64 = value.extract()?;
+        builder = builder.set_sent_last24_hours(Some(fixture_2969));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn sending_options_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::SendingOptions> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["sending_enabled"], &["sending_enabled"])?;
+    let mut builder = aws_sdk_sesv2::types::SendingOptions::builder();
+    if let Some(value) = values.get_item("sending_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_2970: bool = value.extract()?;
+        builder = builder.set_sending_enabled(Some(fixture_2970));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn signing_scheme_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::SigningScheme> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("default_scheme")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_2971 = default_signing_scheme_fixture_from_py(&value)?;
+        return Ok(aws_sdk_sesv2::types::SigningScheme::DefaultScheme(
+            converted_2971,
+        ));
+    }
+    if let Some(value) = values.get_item("smime_scheme")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_2972 = smime_signing_scheme_fixture_from_py(&value)?;
+        return Ok(aws_sdk_sesv2::types::SigningScheme::SmimeScheme(
+            converted_2972,
+        ));
+    }
+    Err(PyValueError::new_err(
+        "SigningScheme requires exactly one known variant",
+    ))
+}
+
+fn smime_signing_scheme_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::SmimeSigningScheme> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["signature_format"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::SmimeSigningScheme::builder();
+    if let Some(value) = dict_value(values, "signature_format")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2974: String = value.extract()?;
+        let fixture_2973 = aws_sdk_sesv2::types::SignatureFormat::from(enum_value_2974.as_str());
+        builder = builder.set_signature_format(Some(fixture_2973));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn sns_destination_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::SnsDestination> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["topic_arn"], &["topic_arn"])?;
+    let mut builder = aws_sdk_sesv2::types::SnsDestination::builder();
+    if let Some(value) = values.get_item("topic_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2975: String = value.extract()?;
+        builder = builder.set_topic_arn(Some(fixture_2975));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn soa_record_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::SoaRecord> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["primary_name_server", "admin_email", "serial_number"],
+        &["serial_number"],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::SoaRecord::builder();
+    if let Some(value) = dict_value(values, "primary_name_server")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2976: String = value.extract()?;
+        builder = builder.set_primary_name_server(Some(fixture_2976));
+    }
+    if let Some(value) = dict_value(values, "admin_email")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2977: String = value.extract()?;
+        builder = builder.set_admin_email(Some(fixture_2977));
+    }
+    if let Some(value) = values.get_item("serial_number")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_2978: i64 = value.extract()?;
+        builder = builder.set_serial_number(Some(fixture_2978));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn status_record_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::StatusRecord> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["status", "cause", "last_updated_timestamp"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::StatusRecord::builder();
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2980: String = value.extract()?;
+        let fixture_2979 = aws_sdk_sesv2::types::SendingStatus::from(enum_value_2980.as_str());
+        builder = builder.set_status(Some(fixture_2979));
+    }
+    if let Some(value) = dict_value(values, "cause")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2981: String = value.extract()?;
+        builder = builder.set_cause(Some(fixture_2981));
+    }
+    if let Some(value) = dict_value(values, "last_updated_timestamp")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2983: String = value.extract()?;
+        let fixture_2982 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2983,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_updated_timestamp(Some(fixture_2982));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn suppressed_destination_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::SuppressedDestination> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "email_address",
+            "reason",
+            "last_update_time",
+            "attributes",
+            "tenant_name",
+        ],
+        &["email_address", "reason", "last_update_time"],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::SuppressedDestination::builder();
+    if let Some(value) = values.get_item("email_address")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2984: String = value.extract()?;
+        builder = builder.set_email_address(Some(fixture_2984));
+    }
+    if let Some(value) = values.get_item("reason")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2986: String = value.extract()?;
+        let fixture_2985 =
+            aws_sdk_sesv2::types::SuppressionListReason::from(enum_value_2986.as_str());
+        builder = builder.set_reason(Some(fixture_2985));
+    }
+    if let Some(value) = values.get_item("last_update_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2988: String = value.extract()?;
+        let fixture_2987 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2988,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_update_time(Some(fixture_2987));
+    }
+    if let Some(value) = dict_value(values, "attributes")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_2989 = suppressed_destination_attributes_fixture_from_py(&value)?;
+        builder = builder.set_attributes(Some(fixture_2989));
+    }
+    if let Some(value) = dict_value(values, "tenant_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2990: String = value.extract()?;
+        builder = builder.set_tenant_name(Some(fixture_2990));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn suppressed_destination_attributes_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::SuppressedDestinationAttributes> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["message_id", "feedback_id"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::SuppressedDestinationAttributes::builder();
+    if let Some(value) = dict_value(values, "message_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2991: String = value.extract()?;
+        builder = builder.set_message_id(Some(fixture_2991));
+    }
+    if let Some(value) = dict_value(values, "feedback_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2992: String = value.extract()?;
+        builder = builder.set_feedback_id(Some(fixture_2992));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn suppressed_destination_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::SuppressedDestinationSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["email_address", "reason", "last_update_time"],
+        &["email_address", "reason", "last_update_time"],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::SuppressedDestinationSummary::builder();
+    if let Some(value) = values.get_item("email_address")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_2993: String = value.extract()?;
+        builder = builder.set_email_address(Some(fixture_2993));
+    }
+    if let Some(value) = values.get_item("reason")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_2995: String = value.extract()?;
+        let fixture_2994 =
+            aws_sdk_sesv2::types::SuppressionListReason::from(enum_value_2995.as_str());
+        builder = builder.set_reason(Some(fixture_2994));
+    }
+    if let Some(value) = values.get_item("last_update_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_2997: String = value.extract()?;
+        let fixture_2996 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_2997,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_update_time(Some(fixture_2996));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn suppression_attributes_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::SuppressionAttributes> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["suppressed_reasons", "validation_attributes"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::SuppressionAttributes::builder();
+    if let Some(value) = dict_value(values, "suppressed_reasons")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_2998 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_2999 in value.try_iter()? {
+            let item_3000 = item_result_2999?;
+            rboto_core::fixture_scalar(&item_3000, "enum")?;
+            let enum_value_3002: String = item_3000.extract()?;
+            let converted_item_3001 =
+                aws_sdk_sesv2::types::SuppressionListReason::from(enum_value_3002.as_str());
+            fixture_2998.push(converted_item_3001);
+        }
+        builder = builder.set_suppressed_reasons(Some(fixture_2998));
+    }
+    if let Some(value) = dict_value(values, "validation_attributes")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3003 = suppression_validation_attributes_fixture_from_py(&value)?;
+        builder = builder.set_validation_attributes(Some(fixture_3003));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn suppression_condition_threshold_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::SuppressionConditionThreshold> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "condition_threshold_enabled",
+            "overall_confidence_threshold",
+        ],
+        &["condition_threshold_enabled"],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::SuppressionConditionThreshold::builder();
+    if let Some(value) = values.get_item("condition_threshold_enabled")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3005: String = value.extract()?;
+        let fixture_3004 = aws_sdk_sesv2::types::FeatureStatus::from(enum_value_3005.as_str());
+        builder = builder.set_condition_threshold_enabled(Some(fixture_3004));
+    }
+    if let Some(value) = dict_value(values, "overall_confidence_threshold")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3006 = suppression_confidence_threshold_fixture_from_py(&value)?;
+        builder = builder.set_overall_confidence_threshold(Some(fixture_3006));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn suppression_confidence_threshold_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::SuppressionConfidenceThreshold> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["confidence_verdict_threshold"],
+        &["confidence_verdict_threshold"],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::SuppressionConfidenceThreshold::builder();
+    if let Some(value) = values.get_item("confidence_verdict_threshold")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3008: String = value.extract()?;
+        let fixture_3007 = aws_sdk_sesv2::types::SuppressionConfidenceVerdictThreshold::from(
+            enum_value_3008.as_str(),
+        );
+        builder = builder.set_confidence_verdict_threshold(Some(fixture_3007));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn suppression_list_destination_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::SuppressionListDestination> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["suppression_list_import_action"],
+        &["suppression_list_import_action"],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::SuppressionListDestination::builder();
+    if let Some(value) = values.get_item("suppression_list_import_action")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3010: String = value.extract()?;
+        let fixture_3009 =
+            aws_sdk_sesv2::types::SuppressionListImportAction::from(enum_value_3010.as_str());
+        builder = builder.set_suppression_list_import_action(Some(fixture_3009));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn suppression_options_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::SuppressionOptions> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "suppressed_reasons",
+            "suppression_scope",
+            "validation_options",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::SuppressionOptions::builder();
+    if let Some(value) = dict_value(values, "suppressed_reasons")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3011 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3012 in value.try_iter()? {
+            let item_3013 = item_result_3012?;
+            rboto_core::fixture_scalar(&item_3013, "enum")?;
+            let enum_value_3015: String = item_3013.extract()?;
+            let converted_item_3014 =
+                aws_sdk_sesv2::types::SuppressionListReason::from(enum_value_3015.as_str());
+            fixture_3011.push(converted_item_3014);
+        }
+        builder = builder.set_suppressed_reasons(Some(fixture_3011));
+    }
+    if let Some(value) = dict_value(values, "suppression_scope")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3017: String = value.extract()?;
+        let fixture_3016 =
+            aws_sdk_sesv2::types::SuppressionListScope::from(enum_value_3017.as_str());
+        builder = builder.set_suppression_scope(Some(fixture_3016));
+    }
+    if let Some(value) = dict_value(values, "validation_options")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3018 = suppression_validation_options_fixture_from_py(&value)?;
+        builder = builder.set_validation_options(Some(fixture_3018));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn suppression_validation_attributes_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::SuppressionValidationAttributes> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["condition_threshold"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::SuppressionValidationAttributes::builder();
+    if let Some(value) = dict_value(values, "condition_threshold")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3019 = suppression_condition_threshold_fixture_from_py(&value)?;
+        builder = builder.set_condition_threshold(Some(fixture_3019));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn suppression_validation_options_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::SuppressionValidationOptions> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["condition_threshold"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::SuppressionValidationOptions::builder();
+    if let Some(value) = dict_value(values, "condition_threshold")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3020 = suppression_condition_threshold_fixture_from_py(&value)?;
+        builder = builder.set_condition_threshold(Some(fixture_3020));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn tag_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::Tag> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["key", "value"], &["key", "value"])?;
+    let mut builder = aws_sdk_sesv2::types::Tag::builder();
+    if let Some(value) = values.get_item("key")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3021: String = value.extract()?;
+        builder = builder.set_key(Some(fixture_3021));
+    }
+    if let Some(value) = values.get_item("value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3022: String = value.extract()?;
+        builder = builder.set_value(Some(fixture_3022));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn tenant_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::Tenant> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "tenant_name",
+            "tenant_id",
+            "tenant_arn",
+            "created_timestamp",
+            "tags",
+            "sending_status",
+            "suppression_attributes",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::Tenant::builder();
+    if let Some(value) = dict_value(values, "tenant_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3023: String = value.extract()?;
+        builder = builder.set_tenant_name(Some(fixture_3023));
+    }
+    if let Some(value) = dict_value(values, "tenant_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3024: String = value.extract()?;
+        builder = builder.set_tenant_id(Some(fixture_3024));
+    }
+    if let Some(value) = dict_value(values, "tenant_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3025: String = value.extract()?;
+        builder = builder.set_tenant_arn(Some(fixture_3025));
+    }
+    if let Some(value) = dict_value(values, "created_timestamp")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3027: String = value.extract()?;
+        let fixture_3026 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3027,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_created_timestamp(Some(fixture_3026));
+    }
+    if let Some(value) = dict_value(values, "tags")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3028 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3029 in value.try_iter()? {
+            let item_3030 = item_result_3029?;
+            rboto_core::fixture_scalar(&item_3030, "struct")?;
+            let converted_item_3031 = tag_fixture_from_py(&item_3030)?;
+            fixture_3028.push(converted_item_3031);
+        }
+        builder = builder.set_tags(Some(fixture_3028));
+    }
+    if let Some(value) = dict_value(values, "sending_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3033: String = value.extract()?;
+        let fixture_3032 = aws_sdk_sesv2::types::SendingStatus::from(enum_value_3033.as_str());
+        builder = builder.set_sending_status(Some(fixture_3032));
+    }
+    if let Some(value) = dict_value(values, "suppression_attributes")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3034 = tenant_suppression_attributes_fixture_from_py(&value)?;
+        builder = builder.set_suppression_attributes(Some(fixture_3034));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn tenant_info_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::TenantInfo> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "tenant_name",
+            "tenant_id",
+            "tenant_arn",
+            "created_timestamp",
+            "sending_status",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::TenantInfo::builder();
+    if let Some(value) = dict_value(values, "tenant_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3035: String = value.extract()?;
+        builder = builder.set_tenant_name(Some(fixture_3035));
+    }
+    if let Some(value) = dict_value(values, "tenant_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3036: String = value.extract()?;
+        builder = builder.set_tenant_id(Some(fixture_3036));
+    }
+    if let Some(value) = dict_value(values, "tenant_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3037: String = value.extract()?;
+        builder = builder.set_tenant_arn(Some(fixture_3037));
+    }
+    if let Some(value) = dict_value(values, "created_timestamp")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3039: String = value.extract()?;
+        let fixture_3038 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3039,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_created_timestamp(Some(fixture_3038));
+    }
+    if let Some(value) = dict_value(values, "sending_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3041: String = value.extract()?;
+        let fixture_3040 = aws_sdk_sesv2::types::SendingStatus::from(enum_value_3041.as_str());
+        builder = builder.set_sending_status(Some(fixture_3040));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn tenant_resource_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::TenantResource> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["resource_type", "resource_arn"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::TenantResource::builder();
+    if let Some(value) = dict_value(values, "resource_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3043: String = value.extract()?;
+        let fixture_3042 = aws_sdk_sesv2::types::ResourceType::from(enum_value_3043.as_str());
+        builder = builder.set_resource_type(Some(fixture_3042));
+    }
+    if let Some(value) = dict_value(values, "resource_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3044: String = value.extract()?;
+        builder = builder.set_resource_arn(Some(fixture_3044));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn tenant_suppression_attributes_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::TenantSuppressionAttributes> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["suppressed_reasons", "suppression_scope"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::TenantSuppressionAttributes::builder();
+    if let Some(value) = dict_value(values, "suppressed_reasons")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3045 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3046 in value.try_iter()? {
+            let item_3047 = item_result_3046?;
+            rboto_core::fixture_scalar(&item_3047, "enum")?;
+            let enum_value_3049: String = item_3047.extract()?;
+            let converted_item_3048 =
+                aws_sdk_sesv2::types::SuppressionListReason::from(enum_value_3049.as_str());
+            fixture_3045.push(converted_item_3048);
+        }
+        builder = builder.set_suppressed_reasons(Some(fixture_3045));
+    }
+    if let Some(value) = dict_value(values, "suppression_scope")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3051: String = value.extract()?;
+        let fixture_3050 =
+            aws_sdk_sesv2::types::SuppressionListScope::from(enum_value_3051.as_str());
+        builder = builder.set_suppression_scope(Some(fixture_3050));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn topic_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::Topic> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "topic_name",
+            "display_name",
+            "description",
+            "default_subscription_status",
+        ],
+        &["topic_name", "display_name", "default_subscription_status"],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::Topic::builder();
+    if let Some(value) = values.get_item("topic_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3052: String = value.extract()?;
+        builder = builder.set_topic_name(Some(fixture_3052));
+    }
+    if let Some(value) = values.get_item("display_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3053: String = value.extract()?;
+        builder = builder.set_display_name(Some(fixture_3053));
+    }
+    if let Some(value) = dict_value(values, "description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3054: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_3054));
+    }
+    if let Some(value) = values.get_item("default_subscription_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3056: String = value.extract()?;
+        let fixture_3055 = aws_sdk_sesv2::types::SubscriptionStatus::from(enum_value_3056.as_str());
+        builder = builder.set_default_subscription_status(Some(fixture_3055));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn topic_preference_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::TopicPreference> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["topic_name", "subscription_status"],
+        &["topic_name", "subscription_status"],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::TopicPreference::builder();
+    if let Some(value) = values.get_item("topic_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3057: String = value.extract()?;
+        builder = builder.set_topic_name(Some(fixture_3057));
+    }
+    if let Some(value) = values.get_item("subscription_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3059: String = value.extract()?;
+        let fixture_3058 = aws_sdk_sesv2::types::SubscriptionStatus::from(enum_value_3059.as_str());
+        builder = builder.set_subscription_status(Some(fixture_3058));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn tracking_options_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::TrackingOptions> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["custom_redirect_domain", "https_policy"],
+        &["custom_redirect_domain"],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::TrackingOptions::builder();
+    if let Some(value) = values.get_item("custom_redirect_domain")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3060: String = value.extract()?;
+        builder = builder.set_custom_redirect_domain(Some(fixture_3060));
+    }
+    if let Some(value) = dict_value(values, "https_policy")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3062: String = value.extract()?;
+        let fixture_3061 = aws_sdk_sesv2::types::HttpsPolicy::from(enum_value_3062.as_str());
+        builder = builder.set_https_policy(Some(fixture_3061));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn vdm_attributes_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::VdmAttributes> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["vdm_enabled", "dashboard_attributes", "guardian_attributes"],
+        &["vdm_enabled"],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::VdmAttributes::builder();
+    if let Some(value) = values.get_item("vdm_enabled")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3064: String = value.extract()?;
+        let fixture_3063 = aws_sdk_sesv2::types::FeatureStatus::from(enum_value_3064.as_str());
+        builder = builder.set_vdm_enabled(Some(fixture_3063));
+    }
+    if let Some(value) = dict_value(values, "dashboard_attributes")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3065 = dashboard_attributes_fixture_from_py(&value)?;
+        builder = builder.set_dashboard_attributes(Some(fixture_3065));
+    }
+    if let Some(value) = dict_value(values, "guardian_attributes")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3066 = guardian_attributes_fixture_from_py(&value)?;
+        builder = builder.set_guardian_attributes(Some(fixture_3066));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn vdm_options_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::VdmOptions> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["dashboard_options", "guardian_options"], &[])?;
+    let mut builder = aws_sdk_sesv2::types::VdmOptions::builder();
+    if let Some(value) = dict_value(values, "dashboard_options")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3067 = dashboard_options_fixture_from_py(&value)?;
+        builder = builder.set_dashboard_options(Some(fixture_3067));
+    }
+    if let Some(value) = dict_value(values, "guardian_options")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3068 = guardian_options_fixture_from_py(&value)?;
+        builder = builder.set_guardian_options(Some(fixture_3068));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn verification_info_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::VerificationInfo> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "last_checked_timestamp",
+            "last_success_timestamp",
+            "error_type",
+            "soa_record",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::VerificationInfo::builder();
+    if let Some(value) = dict_value(values, "last_checked_timestamp")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3070: String = value.extract()?;
+        let fixture_3069 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3070,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_checked_timestamp(Some(fixture_3069));
+    }
+    if let Some(value) = dict_value(values, "last_success_timestamp")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3072: String = value.extract()?;
+        let fixture_3071 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3072,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_success_timestamp(Some(fixture_3071));
+    }
+    if let Some(value) = dict_value(values, "error_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3074: String = value.extract()?;
+        let fixture_3073 = aws_sdk_sesv2::types::VerificationError::from(enum_value_3074.as_str());
+        builder = builder.set_error_type(Some(fixture_3073));
+    }
+    if let Some(value) = dict_value(values, "soa_record")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3075 = soa_record_fixture_from_py(&value)?;
+        builder = builder.set_soa_record(Some(fixture_3075));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn volume_statistics_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sesv2::types::VolumeStatistics> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "inbox_raw_count",
+            "spam_raw_count",
+            "projected_inbox",
+            "projected_spam",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sesv2::types::VolumeStatistics::builder();
+    if let Some(value) = dict_value(values, "inbox_raw_count")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3076: i64 = value.extract()?;
+        builder = builder.set_inbox_raw_count(Some(fixture_3076));
+    }
+    if let Some(value) = dict_value(values, "spam_raw_count")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3077: i64 = value.extract()?;
+        builder = builder.set_spam_raw_count(Some(fixture_3077));
+    }
+    if let Some(value) = dict_value(values, "projected_inbox")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3078: i64 = value.extract()?;
+        builder = builder.set_projected_inbox(Some(fixture_3078));
+    }
+    if let Some(value) = dict_value(values, "projected_spam")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3079: i64 = value.extract()?;
+        builder = builder.set_projected_spam(Some(fixture_3079));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
 #[allow(clippy::type_complexity)]
 struct SharedAccountDetails {
     mail_type: Option<aws_sdk_sesv2::types::MailType>,
@@ -11950,6 +15402,15 @@ impl PyOperationAssociateEmailIdentityCertificateOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::associate_email_identity_certificate::AssociateEmailIdentityCertificateOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -12061,6 +15522,42 @@ impl PyOperationBatchGetMetricDataOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["results", "errors"], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::batch_get_metric_data::BatchGetMetricDataOutput::builder();
+        if let Some(value) = dict_value(values, "results")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2019 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2020 in value.try_iter()? {
+                let item_2021 = item_result_2020?;
+                rboto_core::fixture_scalar(&item_2021, "struct")?;
+                let converted_item_2022 = metric_data_result_fixture_from_py(&item_2021)?;
+                fixture_2019.push(converted_item_2022);
+            }
+            builder = builder.set_results(Some(fixture_2019));
+        }
+        if let Some(value) = dict_value(values, "errors")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2023 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2024 in value.try_iter()? {
+                let item_2025 = item_result_2024?;
+                rboto_core::fixture_scalar(&item_2025, "struct")?;
+                let converted_item_2026 = metric_data_error_fixture_from_py(&item_2025)?;
+                fixture_2023.push(converted_item_2026);
+            }
+            builder = builder.set_errors(Some(fixture_2023));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(name = "CancelExportJobOutput", module = "rboto_sesv2._native", frozen)]
@@ -12073,6 +15570,16 @@ impl PyOperationCancelExportJobOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::cancel_export_job::CancelExportJobOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -12091,6 +15598,15 @@ impl PyOperationCreateConfigurationSetOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::create_configuration_set::CreateConfigurationSetOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -12108,6 +15624,15 @@ impl PyOperationCreateConfigurationSetEventDestinationOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::create_configuration_set_event_destination::CreateConfigurationSetEventDestinationOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(name = "CreateContactOutput", module = "rboto_sesv2._native", frozen)]
@@ -12120,6 +15645,15 @@ impl PyOperationCreateContactOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::create_contact::CreateContactOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -12138,6 +15672,16 @@ impl PyOperationCreateContactListOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::create_contact_list::CreateContactListOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -12155,6 +15699,15 @@ impl PyOperationCreateCustomVerificationEmailTemplateOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::create_custom_verification_email_template::CreateCustomVerificationEmailTemplateOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -12171,6 +15724,15 @@ impl PyOperationCreateDedicatedIpPoolOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::create_dedicated_ip_pool::CreateDedicatedIpPoolOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -12208,6 +15770,33 @@ impl PyOperationCreateDeliverabilityTestReportOutput {
             .into_py_any(py)?;
         result.set_item("deliverability_test_status", converted_2022)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["report_id", "deliverability_test_status"],
+            &["report_id", "deliverability_test_status"],
+        )?;
+        let mut builder = aws_sdk_sesv2::operation::create_deliverability_test_report::CreateDeliverabilityTestReportOutput::builder();
+        if let Some(value) = values.get_item("report_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2023: String = value.extract()?;
+            builder = builder.set_report_id(Some(fixture_2023));
+        }
+        if let Some(value) = values.get_item("deliverability_test_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_2025: String = value.extract()?;
+            let fixture_2024 =
+                aws_sdk_sesv2::types::DeliverabilityTestStatus::from(enum_value_2025.as_str());
+            builder = builder.set_deliverability_test_status(Some(fixture_2024));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 
@@ -12298,6 +15887,42 @@ impl PyOperationCreateEmailIdentityOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "identity_type",
+                "verified_for_sending_status",
+                "dkim_attributes",
+            ],
+            &["verified_for_sending_status"],
+        )?;
+        let mut builder =
+            aws_sdk_sesv2::operation::create_email_identity::CreateEmailIdentityOutput::builder();
+        if let Some(value) = dict_value(values, "identity_type")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_2030: String = value.extract()?;
+            let fixture_2029 = aws_sdk_sesv2::types::IdentityType::from(enum_value_2030.as_str());
+            builder = builder.set_identity_type(Some(fixture_2029));
+        }
+        if let Some(value) = values.get_item("verified_for_sending_status")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_2031: bool = value.extract()?;
+            builder = builder.set_verified_for_sending_status(Some(fixture_2031));
+        }
+        if let Some(value) = dict_value(values, "dkim_attributes")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2032 = dkim_attributes_fixture_from_py(&value)?;
+            builder = builder.set_dkim_attributes(Some(fixture_2032));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -12315,6 +15940,15 @@ impl PyOperationCreateEmailIdentityPolicyOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::create_email_identity_policy::CreateEmailIdentityPolicyOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -12331,6 +15965,16 @@ impl PyOperationCreateEmailTemplateOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::create_email_template::CreateEmailTemplateOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -12361,6 +16005,21 @@ impl PyOperationCreateExportJobOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["job_id"], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::create_export_job::CreateExportJobOutput::builder();
+        if let Some(value) = dict_value(values, "job_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2031: String = value.extract()?;
+            builder = builder.set_job_id(Some(fixture_2031));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(name = "CreateImportJobOutput", module = "rboto_sesv2._native", frozen)]
@@ -12389,6 +16048,21 @@ impl PyOperationCreateImportJobOutput {
             result.set_item("job_id", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["job_id"], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::create_import_job::CreateImportJobOutput::builder();
+        if let Some(value) = dict_value(values, "job_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2033: String = value.extract()?;
+            builder = builder.set_job_id(Some(fixture_2033));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -12438,6 +16112,26 @@ impl PyOperationCreateMultiRegionEndpointOutput {
             result.set_item("endpoint_id", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["status", "endpoint_id"], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::create_multi_region_endpoint::CreateMultiRegionEndpointOutput::builder();
+        if let Some(value) = dict_value(values, "status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_2038: String = value.extract()?;
+            let fixture_2037 = aws_sdk_sesv2::types::Status::from(enum_value_2038.as_str());
+            builder = builder.set_status(Some(fixture_2037));
+        }
+        if let Some(value) = dict_value(values, "endpoint_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2039: String = value.extract()?;
+            builder = builder.set_endpoint_id(Some(fixture_2039));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -12619,6 +16313,77 @@ impl PyOperationCreateTenantOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "tenant_name",
+                "tenant_id",
+                "tenant_arn",
+                "created_timestamp",
+                "tags",
+                "sending_status",
+                "suppression_attributes",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_sesv2::operation::create_tenant::CreateTenantOutput::builder();
+        if let Some(value) = dict_value(values, "tenant_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2056: String = value.extract()?;
+            builder = builder.set_tenant_name(Some(fixture_2056));
+        }
+        if let Some(value) = dict_value(values, "tenant_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2057: String = value.extract()?;
+            builder = builder.set_tenant_id(Some(fixture_2057));
+        }
+        if let Some(value) = dict_value(values, "tenant_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2058: String = value.extract()?;
+            builder = builder.set_tenant_arn(Some(fixture_2058));
+        }
+        if let Some(value) = dict_value(values, "created_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_2060: String = value.extract()?;
+            let fixture_2059 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_2060,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_timestamp(Some(fixture_2059));
+        }
+        if let Some(value) = dict_value(values, "tags")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2061 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2062 in value.try_iter()? {
+                let item_2063 = item_result_2062?;
+                rboto_core::fixture_scalar(&item_2063, "struct")?;
+                let converted_item_2064 = tag_fixture_from_py(&item_2063)?;
+                fixture_2061.push(converted_item_2064);
+            }
+            builder = builder.set_tags(Some(fixture_2061));
+        }
+        if let Some(value) = dict_value(values, "sending_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_2066: String = value.extract()?;
+            let fixture_2065 = aws_sdk_sesv2::types::SendingStatus::from(enum_value_2066.as_str());
+            builder = builder.set_sending_status(Some(fixture_2065));
+        }
+        if let Some(value) = dict_value(values, "suppression_attributes")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2067 = tenant_suppression_attributes_fixture_from_py(&value)?;
+            builder = builder.set_suppression_attributes(Some(fixture_2067));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -12635,6 +16400,15 @@ impl PyOperationCreateTenantResourceAssociationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::create_tenant_resource_association::CreateTenantResourceAssociationOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -12653,6 +16427,15 @@ impl PyOperationDeleteConfigurationSetOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::delete_configuration_set::DeleteConfigurationSetOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -12670,6 +16453,15 @@ impl PyOperationDeleteConfigurationSetEventDestinationOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::delete_configuration_set_event_destination::DeleteConfigurationSetEventDestinationOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(name = "DeleteContactOutput", module = "rboto_sesv2._native", frozen)]
@@ -12682,6 +16474,15 @@ impl PyOperationDeleteContactOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::delete_contact::DeleteContactOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -12700,6 +16501,16 @@ impl PyOperationDeleteContactListOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::delete_contact_list::DeleteContactListOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -12716,6 +16527,15 @@ impl PyOperationDeleteCustomVerificationEmailTemplateOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::delete_custom_verification_email_template::DeleteCustomVerificationEmailTemplateOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -12734,6 +16554,15 @@ impl PyOperationDeleteDedicatedIpPoolOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::delete_dedicated_ip_pool::DeleteDedicatedIpPoolOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -12750,6 +16579,16 @@ impl PyOperationDeleteEmailIdentityOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::delete_email_identity::DeleteEmailIdentityOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -12768,6 +16607,15 @@ impl PyOperationDeleteEmailIdentityPolicyOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::delete_email_identity_policy::DeleteEmailIdentityPolicyOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -12784,6 +16632,16 @@ impl PyOperationDeleteEmailTemplateOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::delete_email_template::DeleteEmailTemplateOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -12818,6 +16676,21 @@ impl PyOperationDeleteMultiRegionEndpointOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["status"], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::delete_multi_region_endpoint::DeleteMultiRegionEndpointOutput::builder();
+        if let Some(value) = dict_value(values, "status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_2059: String = value.extract()?;
+            let fixture_2058 = aws_sdk_sesv2::types::Status::from(enum_value_2059.as_str());
+            builder = builder.set_status(Some(fixture_2058));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -12836,6 +16709,15 @@ impl PyOperationDeleteSuppressedDestinationOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::delete_suppressed_destination::DeleteSuppressedDestinationOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(name = "DeleteTenantOutput", module = "rboto_sesv2._native", frozen)]
@@ -12848,6 +16730,15 @@ impl PyOperationDeleteTenantOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::delete_tenant::DeleteTenantOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -12866,6 +16757,15 @@ impl PyOperationDeleteTenantResourceAssociationOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::delete_tenant_resource_association::DeleteTenantResourceAssociationOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -12882,6 +16782,15 @@ impl PyOperationDisassociateEmailIdentityCertificateOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::disassociate_email_identity_certificate::DisassociateEmailIdentityCertificateOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -13092,6 +17001,80 @@ impl PyOperationGetAccountOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "dedicated_ip_auto_warmup_enabled",
+                "enforcement_status",
+                "production_access_enabled",
+                "send_quota",
+                "sending_enabled",
+                "suppression_attributes",
+                "details",
+                "vdm_attributes",
+                "pricing_attributes",
+            ],
+            &[
+                "dedicated_ip_auto_warmup_enabled",
+                "production_access_enabled",
+                "sending_enabled",
+            ],
+        )?;
+        let mut builder = aws_sdk_sesv2::operation::get_account::GetAccountOutput::builder();
+        if let Some(value) = values.get_item("dedicated_ip_auto_warmup_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_2076: bool = value.extract()?;
+            builder = builder.set_dedicated_ip_auto_warmup_enabled(Some(fixture_2076));
+        }
+        if let Some(value) = dict_value(values, "enforcement_status")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2077: String = value.extract()?;
+            builder = builder.set_enforcement_status(Some(fixture_2077));
+        }
+        if let Some(value) = values.get_item("production_access_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_2078: bool = value.extract()?;
+            builder = builder.set_production_access_enabled(Some(fixture_2078));
+        }
+        if let Some(value) = dict_value(values, "send_quota")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2079 = send_quota_fixture_from_py(&value)?;
+            builder = builder.set_send_quota(Some(fixture_2079));
+        }
+        if let Some(value) = values.get_item("sending_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_2080: bool = value.extract()?;
+            builder = builder.set_sending_enabled(Some(fixture_2080));
+        }
+        if let Some(value) = dict_value(values, "suppression_attributes")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2081 = suppression_attributes_fixture_from_py(&value)?;
+            builder = builder.set_suppression_attributes(Some(fixture_2081));
+        }
+        if let Some(value) = dict_value(values, "details")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2082 = account_details_fixture_from_py(&value)?;
+            builder = builder.set_details(Some(fixture_2082));
+        }
+        if let Some(value) = dict_value(values, "vdm_attributes")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2083 = vdm_attributes_fixture_from_py(&value)?;
+            builder = builder.set_vdm_attributes(Some(fixture_2083));
+        }
+        if let Some(value) = dict_value(values, "pricing_attributes")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2084 = pricing_attributes_fixture_from_py(&value)?;
+            builder = builder.set_pricing_attributes(Some(fixture_2084));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -13176,6 +17159,40 @@ impl PyOperationGetBlacklistReportsOutput {
         let converted_2085 = converted_2085_dict.into_any().unbind();
         result.set_item("blacklist_report", converted_2085)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["blacklist_report"], &["blacklist_report"])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::get_blacklist_reports::GetBlacklistReportsOutput::builder();
+        if let Some(value) = values.get_item("blacklist_report")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_2093 = value.cast::<PyDict>()?;
+            let mut fixture_2092 = HashMap::with_capacity(mapping_2093.len());
+            for (key_2094, value_2095) in mapping_2093.iter() {
+                rboto_core::fixture_scalar(&key_2094, "string")?;
+                let converted_key_2096: String = key_2094.extract()?;
+                rboto_core::fixture_scalar(&value_2095, "vec")?;
+                let mut converted_value_2097 =
+                    Vec::with_capacity(value_2095.cast::<PyList>().map_or(0, |items| items.len()));
+                for item_result_2098 in value_2095.try_iter()? {
+                    let item_2099 = item_result_2098?;
+                    rboto_core::fixture_scalar(&item_2099, "struct")?;
+                    let converted_item_2100 = blacklist_entry_fixture_from_py(&item_2099)?;
+                    converted_value_2097.push(converted_item_2100);
+                }
+                fixture_2092.insert(converted_key_2096, converted_value_2097);
+            }
+            builder = builder.set_blacklist_report(Some(fixture_2092));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -13463,6 +17480,90 @@ impl PyOperationGetConfigurationSetOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "configuration_set_name",
+                "tracking_options",
+                "delivery_options",
+                "reputation_options",
+                "sending_options",
+                "tags",
+                "suppression_options",
+                "vdm_options",
+                "archiving_options",
+                "message_security_options",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_sesv2::operation::get_configuration_set::GetConfigurationSetOutput::builder();
+        if let Some(value) = dict_value(values, "configuration_set_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2117: String = value.extract()?;
+            builder = builder.set_configuration_set_name(Some(fixture_2117));
+        }
+        if let Some(value) = dict_value(values, "tracking_options")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2118 = tracking_options_fixture_from_py(&value)?;
+            builder = builder.set_tracking_options(Some(fixture_2118));
+        }
+        if let Some(value) = dict_value(values, "delivery_options")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2119 = delivery_options_fixture_from_py(&value)?;
+            builder = builder.set_delivery_options(Some(fixture_2119));
+        }
+        if let Some(value) = dict_value(values, "reputation_options")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2120 = reputation_options_fixture_from_py(&value)?;
+            builder = builder.set_reputation_options(Some(fixture_2120));
+        }
+        if let Some(value) = dict_value(values, "sending_options")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2121 = sending_options_fixture_from_py(&value)?;
+            builder = builder.set_sending_options(Some(fixture_2121));
+        }
+        if let Some(value) = dict_value(values, "tags")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2122 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2123 in value.try_iter()? {
+                let item_2124 = item_result_2123?;
+                rboto_core::fixture_scalar(&item_2124, "struct")?;
+                let converted_item_2125 = tag_fixture_from_py(&item_2124)?;
+                fixture_2122.push(converted_item_2125);
+            }
+            builder = builder.set_tags(Some(fixture_2122));
+        }
+        if let Some(value) = dict_value(values, "suppression_options")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2126 = suppression_options_fixture_from_py(&value)?;
+            builder = builder.set_suppression_options(Some(fixture_2126));
+        }
+        if let Some(value) = dict_value(values, "vdm_options")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2127 = vdm_options_fixture_from_py(&value)?;
+            builder = builder.set_vdm_options(Some(fixture_2127));
+        }
+        if let Some(value) = dict_value(values, "archiving_options")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2128 = archiving_options_fixture_from_py(&value)?;
+            builder = builder.set_archiving_options(Some(fixture_2128));
+        }
+        if let Some(value) = dict_value(values, "message_security_options")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2129 = message_security_options_fixture_from_py(&value)?;
+            builder = builder.set_message_security_options(Some(fixture_2129));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -13525,6 +17626,29 @@ impl PyOperationGetConfigurationSetEventDestinationsOutput {
             result.set_item("event_destinations", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["event_destinations"], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::get_configuration_set_event_destinations::GetConfigurationSetEventDestinationsOutput::builder();
+        if let Some(value) = dict_value(values, "event_destinations")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2124 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2125 in value.try_iter()? {
+                let item_2126 = item_result_2125?;
+                rboto_core::fixture_scalar(&item_2126, "struct")?;
+                let converted_item_2127 = event_destination_fixture_from_py(&item_2126)?;
+                fixture_2124.push(converted_item_2127);
+            }
+            builder = builder.set_event_destinations(Some(fixture_2124));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -13731,6 +17855,94 @@ impl PyOperationGetContactOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "contact_list_name",
+                "email_address",
+                "topic_preferences",
+                "topic_default_preferences",
+                "unsubscribe_all",
+                "attributes_data",
+                "created_timestamp",
+                "last_updated_timestamp",
+            ],
+            &["unsubscribe_all"],
+        )?;
+        let mut builder = aws_sdk_sesv2::operation::get_contact::GetContactOutput::builder();
+        if let Some(value) = dict_value(values, "contact_list_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2150: String = value.extract()?;
+            builder = builder.set_contact_list_name(Some(fixture_2150));
+        }
+        if let Some(value) = dict_value(values, "email_address")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2151: String = value.extract()?;
+            builder = builder.set_email_address(Some(fixture_2151));
+        }
+        if let Some(value) = dict_value(values, "topic_preferences")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2152 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2153 in value.try_iter()? {
+                let item_2154 = item_result_2153?;
+                rboto_core::fixture_scalar(&item_2154, "struct")?;
+                let converted_item_2155 = topic_preference_fixture_from_py(&item_2154)?;
+                fixture_2152.push(converted_item_2155);
+            }
+            builder = builder.set_topic_preferences(Some(fixture_2152));
+        }
+        if let Some(value) = dict_value(values, "topic_default_preferences")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2156 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2157 in value.try_iter()? {
+                let item_2158 = item_result_2157?;
+                rboto_core::fixture_scalar(&item_2158, "struct")?;
+                let converted_item_2159 = topic_preference_fixture_from_py(&item_2158)?;
+                fixture_2156.push(converted_item_2159);
+            }
+            builder = builder.set_topic_default_preferences(Some(fixture_2156));
+        }
+        if let Some(value) = values.get_item("unsubscribe_all")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_2160: bool = value.extract()?;
+            builder = builder.set_unsubscribe_all(Some(fixture_2160));
+        }
+        if let Some(value) = dict_value(values, "attributes_data")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2161: String = value.extract()?;
+            builder = builder.set_attributes_data(Some(fixture_2161));
+        }
+        if let Some(value) = dict_value(values, "created_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_2163: String = value.extract()?;
+            let fixture_2162 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_2163,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_timestamp(Some(fixture_2162));
+        }
+        if let Some(value) = dict_value(values, "last_updated_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_2165: String = value.extract()?;
+            let fixture_2164 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_2165,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_last_updated_timestamp(Some(fixture_2164));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -13908,6 +18120,83 @@ impl PyOperationGetContactListOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "contact_list_name",
+                "topics",
+                "description",
+                "created_timestamp",
+                "last_updated_timestamp",
+                "tags",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_sesv2::operation::get_contact_list::GetContactListOutput::builder();
+        if let Some(value) = dict_value(values, "contact_list_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2172: String = value.extract()?;
+            builder = builder.set_contact_list_name(Some(fixture_2172));
+        }
+        if let Some(value) = dict_value(values, "topics")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2173 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2174 in value.try_iter()? {
+                let item_2175 = item_result_2174?;
+                rboto_core::fixture_scalar(&item_2175, "struct")?;
+                let converted_item_2176 = topic_fixture_from_py(&item_2175)?;
+                fixture_2173.push(converted_item_2176);
+            }
+            builder = builder.set_topics(Some(fixture_2173));
+        }
+        if let Some(value) = dict_value(values, "description")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2177: String = value.extract()?;
+            builder = builder.set_description(Some(fixture_2177));
+        }
+        if let Some(value) = dict_value(values, "created_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_2179: String = value.extract()?;
+            let fixture_2178 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_2179,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_timestamp(Some(fixture_2178));
+        }
+        if let Some(value) = dict_value(values, "last_updated_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_2181: String = value.extract()?;
+            let fixture_2180 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_2181,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_last_updated_timestamp(Some(fixture_2180));
+        }
+        if let Some(value) = dict_value(values, "tags")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2182 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2183 in value.try_iter()? {
+                let item_2184 = item_result_2183?;
+                rboto_core::fixture_scalar(&item_2184, "struct")?;
+                let converted_item_2185 = tag_fixture_from_py(&item_2184)?;
+                fixture_2182.push(converted_item_2185);
+            }
+            builder = builder.set_tags(Some(fixture_2182));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -14080,6 +18369,71 @@ impl PyOperationGetCustomVerificationEmailTemplateOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "template_name",
+                "from_email_address",
+                "template_subject",
+                "template_content",
+                "tags",
+                "success_redirection_url",
+                "failure_redirection_url",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_sesv2::operation::get_custom_verification_email_template::GetCustomVerificationEmailTemplateOutput::builder();
+        if let Some(value) = dict_value(values, "template_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2191: String = value.extract()?;
+            builder = builder.set_template_name(Some(fixture_2191));
+        }
+        if let Some(value) = dict_value(values, "from_email_address")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2192: String = value.extract()?;
+            builder = builder.set_from_email_address(Some(fixture_2192));
+        }
+        if let Some(value) = dict_value(values, "template_subject")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2193: String = value.extract()?;
+            builder = builder.set_template_subject(Some(fixture_2193));
+        }
+        if let Some(value) = dict_value(values, "template_content")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2194: String = value.extract()?;
+            builder = builder.set_template_content(Some(fixture_2194));
+        }
+        if let Some(value) = dict_value(values, "tags")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2195 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2196 in value.try_iter()? {
+                let item_2197 = item_result_2196?;
+                rboto_core::fixture_scalar(&item_2197, "struct")?;
+                let converted_item_2198 = tag_fixture_from_py(&item_2197)?;
+                fixture_2195.push(converted_item_2198);
+            }
+            builder = builder.set_tags(Some(fixture_2195));
+        }
+        if let Some(value) = dict_value(values, "success_redirection_url")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2199: String = value.extract()?;
+            builder = builder.set_success_redirection_url(Some(fixture_2199));
+        }
+        if let Some(value) = dict_value(values, "failure_redirection_url")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2200: String = value.extract()?;
+            builder = builder.set_failure_redirection_url(Some(fixture_2200));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -14130,6 +18484,23 @@ impl PyOperationGetDedicatedIpOutput {
             result.set_item("dedicated_ip", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["dedicated_ip"], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::get_dedicated_ip::GetDedicatedIpOutput::builder();
+        if let Some(value) = dict_value(values, "dedicated_ip")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2193 = dedicated_ip_fixture_from_py(&value)?;
+            builder = builder.set_dedicated_ip(Some(fixture_2193));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -14187,6 +18558,23 @@ impl PyOperationGetDedicatedIpPoolOutput {
             result.set_item("dedicated_ip_pool", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["dedicated_ip_pool"], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::get_dedicated_ip_pool::GetDedicatedIpPoolOutput::builder();
+        if let Some(value) = dict_value(values, "dedicated_ip_pool")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2195 = dedicated_ip_pool_fixture_from_py(&value)?;
+            builder = builder.set_dedicated_ip_pool(Some(fixture_2195));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -14271,6 +18659,35 @@ impl PyOperationGetDedicatedIpsOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["dedicated_ips", "next_token"], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::get_dedicated_ips::GetDedicatedIpsOutput::builder();
+        if let Some(value) = dict_value(values, "dedicated_ips")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2204 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2205 in value.try_iter()? {
+                let item_2206 = item_result_2205?;
+                rboto_core::fixture_scalar(&item_2206, "struct")?;
+                let converted_item_2207 = dedicated_ip_fixture_from_py(&item_2206)?;
+                fixture_2204.push(converted_item_2207);
+            }
+            builder = builder.set_dedicated_ips(Some(fixture_2204));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2208: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2208));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -14418,6 +18835,76 @@ impl PyOperationGetDeliverabilityDashboardOptionsOutput {
             result.set_item("pending_expiration_subscribed_domains", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "dashboard_enabled",
+                "subscription_expiry_date",
+                "account_status",
+                "active_subscribed_domains",
+                "pending_expiration_subscribed_domains",
+            ],
+            &["dashboard_enabled"],
+        )?;
+        let mut builder = aws_sdk_sesv2::operation::get_deliverability_dashboard_options::GetDeliverabilityDashboardOptionsOutput::builder();
+        if let Some(value) = values.get_item("dashboard_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_2224: bool = value.extract()?;
+            builder = builder.set_dashboard_enabled(Some(fixture_2224));
+        }
+        if let Some(value) = dict_value(values, "subscription_expiry_date")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_2226: String = value.extract()?;
+            let fixture_2225 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_2226,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_subscription_expiry_date(Some(fixture_2225));
+        }
+        if let Some(value) = dict_value(values, "account_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_2228: String = value.extract()?;
+            let fixture_2227 = aws_sdk_sesv2::types::DeliverabilityDashboardAccountStatus::from(
+                enum_value_2228.as_str(),
+            );
+            builder = builder.set_account_status(Some(fixture_2227));
+        }
+        if let Some(value) = dict_value(values, "active_subscribed_domains")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2229 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2230 in value.try_iter()? {
+                let item_2231 = item_result_2230?;
+                rboto_core::fixture_scalar(&item_2231, "struct")?;
+                let converted_item_2232 =
+                    domain_deliverability_tracking_option_fixture_from_py(&item_2231)?;
+                fixture_2229.push(converted_item_2232);
+            }
+            builder = builder.set_active_subscribed_domains(Some(fixture_2229));
+        }
+        if let Some(value) = dict_value(values, "pending_expiration_subscribed_domains")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2233 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2234 in value.try_iter()? {
+                let item_2235 = item_result_2234?;
+                rboto_core::fixture_scalar(&item_2235, "struct")?;
+                let converted_item_2236 =
+                    domain_deliverability_tracking_option_fixture_from_py(&item_2235)?;
+                fixture_2233.push(converted_item_2236);
+            }
+            builder = builder.set_pending_expiration_subscribed_domains(Some(fixture_2233));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -14588,6 +19075,68 @@ impl PyOperationGetDeliverabilityTestReportOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "deliverability_test_report",
+                "overall_placement",
+                "isp_placements",
+                "message",
+                "tags",
+            ],
+            &["isp_placements"],
+        )?;
+        let mut builder = aws_sdk_sesv2::operation::get_deliverability_test_report::GetDeliverabilityTestReportOutput::builder();
+        if let Some(value) = dict_value(values, "deliverability_test_report")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2244 = deliverability_test_report_fixture_from_py(&value)?;
+            builder = builder.set_deliverability_test_report(Some(fixture_2244));
+        }
+        if let Some(value) = dict_value(values, "overall_placement")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2245 = placement_statistics_fixture_from_py(&value)?;
+            builder = builder.set_overall_placement(Some(fixture_2245));
+        }
+        if let Some(value) = values.get_item("isp_placements")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2246 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2247 in value.try_iter()? {
+                let item_2248 = item_result_2247?;
+                rboto_core::fixture_scalar(&item_2248, "struct")?;
+                let converted_item_2249 = isp_placement_fixture_from_py(&item_2248)?;
+                fixture_2246.push(converted_item_2249);
+            }
+            builder = builder.set_isp_placements(Some(fixture_2246));
+        }
+        if let Some(value) = dict_value(values, "message")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2250: String = value.extract()?;
+            builder = builder.set_message(Some(fixture_2250));
+        }
+        if let Some(value) = dict_value(values, "tags")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2251 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2252 in value.try_iter()? {
+                let item_2253 = item_result_2252?;
+                rboto_core::fixture_scalar(&item_2253, "struct")?;
+                let converted_item_2254 = tag_fixture_from_py(&item_2253)?;
+                fixture_2251.push(converted_item_2254);
+            }
+            builder = builder.set_tags(Some(fixture_2251));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -14640,6 +19189,22 @@ impl PyOperationGetDomainDeliverabilityCampaignOutput {
             result.set_item("domain_deliverability_campaign", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["domain_deliverability_campaign"], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::get_domain_deliverability_campaign::GetDomainDeliverabilityCampaignOutput::builder();
+        if let Some(value) = dict_value(values, "domain_deliverability_campaign")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2246 = domain_deliverability_campaign_fixture_from_py(&value)?;
+            builder = builder.set_domain_deliverability_campaign(Some(fixture_2246));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -14729,6 +19294,40 @@ impl PyOperationGetDomainStatisticsReportOutput {
         result.set_item("daily_volumes", converted_2252)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["overall_volume", "daily_volumes"],
+            &["daily_volumes"],
+        )?;
+        let mut builder = aws_sdk_sesv2::operation::get_domain_statistics_report::GetDomainStatisticsReportOutput::builder();
+        if let Some(value) = dict_value(values, "overall_volume")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2255 = overall_volume_fixture_from_py(&value)?;
+            builder = builder.set_overall_volume(Some(fixture_2255));
+        }
+        if let Some(value) = values.get_item("daily_volumes")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2256 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2257 in value.try_iter()? {
+                let item_2258 = item_result_2257?;
+                rboto_core::fixture_scalar(&item_2258, "struct")?;
+                let converted_item_2259 = daily_volume_fixture_from_py(&item_2258)?;
+                fixture_2256.push(converted_item_2259);
+            }
+            builder = builder.set_daily_volumes(Some(fixture_2256));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -14787,6 +19386,22 @@ impl PyOperationGetEmailAddressInsightsOutput {
             result.set_item("mailbox_validation", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["mailbox_validation"], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::get_email_address_insights::GetEmailAddressInsightsOutput::builder();
+        if let Some(value) = dict_value(values, "mailbox_validation")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2257 = mailbox_validation_fixture_from_py(&value)?;
+            builder = builder.set_mailbox_validation(Some(fixture_2257));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -15044,6 +19659,101 @@ impl PyOperationGetEmailIdentityOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "identity_type",
+                "feedback_forwarding_status",
+                "verified_for_sending_status",
+                "dkim_attributes",
+                "mail_from_attributes",
+                "policies",
+                "tags",
+                "configuration_set_name",
+                "verification_status",
+                "verification_info",
+            ],
+            &["feedback_forwarding_status", "verified_for_sending_status"],
+        )?;
+        let mut builder =
+            aws_sdk_sesv2::operation::get_email_identity::GetEmailIdentityOutput::builder();
+        if let Some(value) = dict_value(values, "identity_type")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_2291: String = value.extract()?;
+            let fixture_2290 = aws_sdk_sesv2::types::IdentityType::from(enum_value_2291.as_str());
+            builder = builder.set_identity_type(Some(fixture_2290));
+        }
+        if let Some(value) = values.get_item("feedback_forwarding_status")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_2292: bool = value.extract()?;
+            builder = builder.set_feedback_forwarding_status(Some(fixture_2292));
+        }
+        if let Some(value) = values.get_item("verified_for_sending_status")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_2293: bool = value.extract()?;
+            builder = builder.set_verified_for_sending_status(Some(fixture_2293));
+        }
+        if let Some(value) = dict_value(values, "dkim_attributes")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2294 = dkim_attributes_fixture_from_py(&value)?;
+            builder = builder.set_dkim_attributes(Some(fixture_2294));
+        }
+        if let Some(value) = dict_value(values, "mail_from_attributes")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2295 = mail_from_attributes_fixture_from_py(&value)?;
+            builder = builder.set_mail_from_attributes(Some(fixture_2295));
+        }
+        if let Some(value) = dict_value(values, "policies")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_2297 = value.cast::<PyDict>()?;
+            let mut fixture_2296 = HashMap::with_capacity(mapping_2297.len());
+            for (key_2298, value_2299) in mapping_2297.iter() {
+                rboto_core::fixture_scalar(&key_2298, "string")?;
+                let converted_key_2300: String = key_2298.extract()?;
+                rboto_core::fixture_scalar(&value_2299, "string")?;
+                let converted_value_2301: String = value_2299.extract()?;
+                fixture_2296.insert(converted_key_2300, converted_value_2301);
+            }
+            builder = builder.set_policies(Some(fixture_2296));
+        }
+        if let Some(value) = dict_value(values, "tags")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2302 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2303 in value.try_iter()? {
+                let item_2304 = item_result_2303?;
+                rboto_core::fixture_scalar(&item_2304, "struct")?;
+                let converted_item_2305 = tag_fixture_from_py(&item_2304)?;
+                fixture_2302.push(converted_item_2305);
+            }
+            builder = builder.set_tags(Some(fixture_2302));
+        }
+        if let Some(value) = dict_value(values, "configuration_set_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2306: String = value.extract()?;
+            builder = builder.set_configuration_set_name(Some(fixture_2306));
+        }
+        if let Some(value) = dict_value(values, "verification_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_2308: String = value.extract()?;
+            let fixture_2307 =
+                aws_sdk_sesv2::types::VerificationStatus::from(enum_value_2308.as_str());
+            builder = builder.set_verification_status(Some(fixture_2307));
+        }
+        if let Some(value) = dict_value(values, "verification_info")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2309 = verification_info_fixture_from_py(&value)?;
+            builder = builder.set_verification_info(Some(fixture_2309));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -15088,6 +19798,28 @@ impl PyOperationGetEmailIdentityPoliciesOutput {
             result.set_item("policies", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["policies"], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::get_email_identity_policies::GetEmailIdentityPoliciesOutput::builder();
+        if let Some(value) = dict_value(values, "policies")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_2301 = value.cast::<PyDict>()?;
+            let mut fixture_2300 = HashMap::with_capacity(mapping_2301.len());
+            for (key_2302, value_2303) in mapping_2301.iter() {
+                rboto_core::fixture_scalar(&key_2302, "string")?;
+                let converted_key_2304: String = key_2302.extract()?;
+                rboto_core::fixture_scalar(&value_2303, "string")?;
+                let converted_value_2305: String = value_2303.extract()?;
+                fixture_2300.insert(converted_key_2304, converted_value_2305);
+            }
+            builder = builder.set_policies(Some(fixture_2300));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -15192,6 +19924,46 @@ impl PyOperationGetEmailTemplateOutput {
             result.set_item("tags", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["template_name", "template_content", "tags"],
+            &["template_name"],
+        )?;
+        let mut builder =
+            aws_sdk_sesv2::operation::get_email_template::GetEmailTemplateOutput::builder();
+        if let Some(value) = values.get_item("template_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2311: String = value.extract()?;
+            builder = builder.set_template_name(Some(fixture_2311));
+        }
+        if let Some(value) = dict_value(values, "template_content")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2312 = email_template_content_fixture_from_py(&value)?;
+            builder = builder.set_template_content(Some(fixture_2312));
+        }
+        if let Some(value) = dict_value(values, "tags")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2313 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2314 in value.try_iter()? {
+                let item_2315 = item_result_2314?;
+                rboto_core::fixture_scalar(&item_2315, "struct")?;
+                let converted_item_2316 = tag_fixture_from_py(&item_2315)?;
+                fixture_2313.push(converted_item_2316);
+            }
+            builder = builder.set_tags(Some(fixture_2313));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -15408,6 +20180,89 @@ impl PyOperationGetExportJobOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "job_id",
+                "export_source_type",
+                "job_status",
+                "export_destination",
+                "export_data_source",
+                "created_timestamp",
+                "completed_timestamp",
+                "failure_info",
+                "statistics",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_sesv2::operation::get_export_job::GetExportJobOutput::builder();
+        if let Some(value) = dict_value(values, "job_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2329: String = value.extract()?;
+            builder = builder.set_job_id(Some(fixture_2329));
+        }
+        if let Some(value) = dict_value(values, "export_source_type")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_2331: String = value.extract()?;
+            let fixture_2330 =
+                aws_sdk_sesv2::types::ExportSourceType::from(enum_value_2331.as_str());
+            builder = builder.set_export_source_type(Some(fixture_2330));
+        }
+        if let Some(value) = dict_value(values, "job_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_2333: String = value.extract()?;
+            let fixture_2332 = aws_sdk_sesv2::types::JobStatus::from(enum_value_2333.as_str());
+            builder = builder.set_job_status(Some(fixture_2332));
+        }
+        if let Some(value) = dict_value(values, "export_destination")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2334 = export_destination_fixture_from_py(&value)?;
+            builder = builder.set_export_destination(Some(fixture_2334));
+        }
+        if let Some(value) = dict_value(values, "export_data_source")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2335 = export_data_source_fixture_from_py(&value)?;
+            builder = builder.set_export_data_source(Some(fixture_2335));
+        }
+        if let Some(value) = dict_value(values, "created_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_2337: String = value.extract()?;
+            let fixture_2336 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_2337,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_timestamp(Some(fixture_2336));
+        }
+        if let Some(value) = dict_value(values, "completed_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_2339: String = value.extract()?;
+            let fixture_2338 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_2339,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_completed_timestamp(Some(fixture_2338));
+        }
+        if let Some(value) = dict_value(values, "failure_info")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2340 = failure_info_fixture_from_py(&value)?;
+            builder = builder.set_failure_info(Some(fixture_2340));
+        }
+        if let Some(value) = dict_value(values, "statistics")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2341 = export_statistics_fixture_from_py(&value)?;
+            builder = builder.set_statistics(Some(fixture_2341));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -15617,6 +20472,87 @@ impl PyOperationGetImportJobOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "job_id",
+                "import_destination",
+                "import_data_source",
+                "failure_info",
+                "job_status",
+                "created_timestamp",
+                "completed_timestamp",
+                "processed_records_count",
+                "failed_records_count",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_sesv2::operation::get_import_job::GetImportJobOutput::builder();
+        if let Some(value) = dict_value(values, "job_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2347: String = value.extract()?;
+            builder = builder.set_job_id(Some(fixture_2347));
+        }
+        if let Some(value) = dict_value(values, "import_destination")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2348 = import_destination_fixture_from_py(&value)?;
+            builder = builder.set_import_destination(Some(fixture_2348));
+        }
+        if let Some(value) = dict_value(values, "import_data_source")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2349 = import_data_source_fixture_from_py(&value)?;
+            builder = builder.set_import_data_source(Some(fixture_2349));
+        }
+        if let Some(value) = dict_value(values, "failure_info")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2350 = failure_info_fixture_from_py(&value)?;
+            builder = builder.set_failure_info(Some(fixture_2350));
+        }
+        if let Some(value) = dict_value(values, "job_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_2352: String = value.extract()?;
+            let fixture_2351 = aws_sdk_sesv2::types::JobStatus::from(enum_value_2352.as_str());
+            builder = builder.set_job_status(Some(fixture_2351));
+        }
+        if let Some(value) = dict_value(values, "created_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_2354: String = value.extract()?;
+            let fixture_2353 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_2354,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_timestamp(Some(fixture_2353));
+        }
+        if let Some(value) = dict_value(values, "completed_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_2356: String = value.extract()?;
+            let fixture_2355 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_2356,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_completed_timestamp(Some(fixture_2355));
+        }
+        if let Some(value) = dict_value(values, "processed_records_count")? {
+            rboto_core::fixture_scalar(&value, "i32")?;
+            let fixture_2357: i32 = value.extract()?;
+            builder = builder.set_processed_records_count(Some(fixture_2357));
+        }
+        if let Some(value) = dict_value(values, "failed_records_count")? {
+            rboto_core::fixture_scalar(&value, "i32")?;
+            let fixture_2358: i32 = value.extract()?;
+            builder = builder.set_failed_records_count(Some(fixture_2358));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -15783,6 +20719,67 @@ impl PyOperationGetMessageInsightsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "message_id",
+                "from_email_address",
+                "subject",
+                "email_tags",
+                "insights",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_sesv2::operation::get_message_insights::GetMessageInsightsOutput::builder();
+        if let Some(value) = dict_value(values, "message_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2367: String = value.extract()?;
+            builder = builder.set_message_id(Some(fixture_2367));
+        }
+        if let Some(value) = dict_value(values, "from_email_address")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2368: String = value.extract()?;
+            builder = builder.set_from_email_address(Some(fixture_2368));
+        }
+        if let Some(value) = dict_value(values, "subject")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2369: String = value.extract()?;
+            builder = builder.set_subject(Some(fixture_2369));
+        }
+        if let Some(value) = dict_value(values, "email_tags")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2370 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2371 in value.try_iter()? {
+                let item_2372 = item_result_2371?;
+                rboto_core::fixture_scalar(&item_2372, "struct")?;
+                let converted_item_2373 = message_tag_fixture_from_py(&item_2372)?;
+                fixture_2370.push(converted_item_2373);
+            }
+            builder = builder.set_email_tags(Some(fixture_2370));
+        }
+        if let Some(value) = dict_value(values, "insights")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2374 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2375 in value.try_iter()? {
+                let item_2376 = item_result_2375?;
+                rboto_core::fixture_scalar(&item_2376, "struct")?;
+                let converted_item_2377 = email_insights_fixture_from_py(&item_2376)?;
+                fixture_2374.push(converted_item_2377);
+            }
+            builder = builder.set_insights(Some(fixture_2374));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -15945,6 +20942,76 @@ impl PyOperationGetMultiRegionEndpointOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "endpoint_name",
+                "endpoint_id",
+                "routes",
+                "status",
+                "created_timestamp",
+                "last_updated_timestamp",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_sesv2::operation::get_multi_region_endpoint::GetMultiRegionEndpointOutput::builder();
+        if let Some(value) = dict_value(values, "endpoint_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2384: String = value.extract()?;
+            builder = builder.set_endpoint_name(Some(fixture_2384));
+        }
+        if let Some(value) = dict_value(values, "endpoint_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2385: String = value.extract()?;
+            builder = builder.set_endpoint_id(Some(fixture_2385));
+        }
+        if let Some(value) = dict_value(values, "routes")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2386 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2387 in value.try_iter()? {
+                let item_2388 = item_result_2387?;
+                rboto_core::fixture_scalar(&item_2388, "struct")?;
+                let converted_item_2389 = route_fixture_from_py(&item_2388)?;
+                fixture_2386.push(converted_item_2389);
+            }
+            builder = builder.set_routes(Some(fixture_2386));
+        }
+        if let Some(value) = dict_value(values, "status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_2391: String = value.extract()?;
+            let fixture_2390 = aws_sdk_sesv2::types::Status::from(enum_value_2391.as_str());
+            builder = builder.set_status(Some(fixture_2390));
+        }
+        if let Some(value) = dict_value(values, "created_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_2393: String = value.extract()?;
+            let fixture_2392 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_2393,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_timestamp(Some(fixture_2392));
+        }
+        if let Some(value) = dict_value(values, "last_updated_timestamp")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_2395: String = value.extract()?;
+            let fixture_2394 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_2395,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_last_updated_timestamp(Some(fixture_2394));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -16003,6 +21070,23 @@ impl PyOperationGetReputationEntityOutput {
             result.set_item("reputation_entity", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["reputation_entity"], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::get_reputation_entity::GetReputationEntityOutput::builder();
+        if let Some(value) = dict_value(values, "reputation_entity")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2386 = reputation_entity_fixture_from_py(&value)?;
+            builder = builder.set_reputation_entity(Some(fixture_2386));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -16063,6 +21147,22 @@ impl PyOperationGetSuppressedDestinationOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["suppressed_destination"], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::get_suppressed_destination::GetSuppressedDestinationOutput::builder();
+        if let Some(value) = dict_value(values, "suppressed_destination")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2388 = suppressed_destination_fixture_from_py(&value)?;
+            builder = builder.set_suppressed_destination(Some(fixture_2388));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -16113,6 +21213,22 @@ impl PyOperationGetTenantOutput {
             result.set_item("tenant", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["tenant"], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::get_tenant::GetTenantOutput::builder();
+        if let Some(value) = dict_value(values, "tenant")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2390 = tenant_fixture_from_py(&value)?;
+            builder = builder.set_tenant(Some(fixture_2390));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -16172,6 +21288,34 @@ impl PyOperationListConfigurationSetsOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["configuration_sets", "next_token"], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::list_configuration_sets::ListConfigurationSetsOutput::builder(
+            );
+        if let Some(value) = dict_value(values, "configuration_sets")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2398 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2399 in value.try_iter()? {
+                let item_2400 = item_result_2399?;
+                rboto_core::fixture_scalar(&item_2400, "string")?;
+                let converted_item_2401: String = item_2400.extract()?;
+                fixture_2398.push(converted_item_2401);
+            }
+            builder = builder.set_configuration_sets(Some(fixture_2398));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2402: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2402));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -16261,6 +21405,35 @@ impl PyOperationListContactListsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["contact_lists", "next_token"], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::list_contact_lists::ListContactListsOutput::builder();
+        if let Some(value) = dict_value(values, "contact_lists")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2407 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2408 in value.try_iter()? {
+                let item_2409 = item_result_2408?;
+                rboto_core::fixture_scalar(&item_2409, "struct")?;
+                let converted_item_2410 = contact_list_fixture_from_py(&item_2409)?;
+                fixture_2407.push(converted_item_2410);
+            }
+            builder = builder.set_contact_lists(Some(fixture_2407));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2411: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2411));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -16345,6 +21518,34 @@ impl PyOperationListContactsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["contacts", "next_token"], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::list_contacts::ListContactsOutput::builder();
+        if let Some(value) = dict_value(values, "contacts")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2416 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2417 in value.try_iter()? {
+                let item_2418 = item_result_2417?;
+                rboto_core::fixture_scalar(&item_2418, "struct")?;
+                let converted_item_2419 = contact_fixture_from_py(&item_2418)?;
+                fixture_2416.push(converted_item_2419);
+            }
+            builder = builder.set_contacts(Some(fixture_2416));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2420: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2420));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -16428,6 +21629,39 @@ impl PyOperationListCustomVerificationEmailTemplatesOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["custom_verification_email_templates", "next_token"],
+            &[],
+        )?;
+        let mut builder = aws_sdk_sesv2::operation::list_custom_verification_email_templates::ListCustomVerificationEmailTemplatesOutput::builder();
+        if let Some(value) = dict_value(values, "custom_verification_email_templates")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2425 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2426 in value.try_iter()? {
+                let item_2427 = item_result_2426?;
+                rboto_core::fixture_scalar(&item_2427, "struct")?;
+                let converted_item_2428 =
+                    custom_verification_email_template_metadata_fixture_from_py(&item_2427)?;
+                fixture_2425.push(converted_item_2428);
+            }
+            builder = builder.set_custom_verification_email_templates(Some(fixture_2425));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2429: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2429));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -16486,6 +21720,34 @@ impl PyOperationListDedicatedIpPoolsOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["dedicated_ip_pools", "next_token"], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::list_dedicated_ip_pools::ListDedicatedIpPoolsOutput::builder(
+            );
+        if let Some(value) = dict_value(values, "dedicated_ip_pools")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2433 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2434 in value.try_iter()? {
+                let item_2435 = item_result_2434?;
+                rboto_core::fixture_scalar(&item_2435, "string")?;
+                let converted_item_2436: String = item_2435.extract()?;
+                fixture_2433.push(converted_item_2436);
+            }
+            builder = builder.set_dedicated_ip_pools(Some(fixture_2433));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2437: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2437));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -16561,6 +21823,40 @@ impl PyOperationListDeliverabilityTestReportsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["deliverability_test_reports", "next_token"],
+            &["deliverability_test_reports"],
+        )?;
+        let mut builder = aws_sdk_sesv2::operation::list_deliverability_test_reports::ListDeliverabilityTestReportsOutput::builder();
+        if let Some(value) = values.get_item("deliverability_test_reports")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2442 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2443 in value.try_iter()? {
+                let item_2444 = item_result_2443?;
+                rboto_core::fixture_scalar(&item_2444, "struct")?;
+                let converted_item_2445 = deliverability_test_report_fixture_from_py(&item_2444)?;
+                fixture_2442.push(converted_item_2445);
+            }
+            builder = builder.set_deliverability_test_reports(Some(fixture_2442));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2446: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2446));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -16634,6 +21930,41 @@ impl PyOperationListDomainDeliverabilityCampaignsOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["domain_deliverability_campaigns", "next_token"],
+            &["domain_deliverability_campaigns"],
+        )?;
+        let mut builder = aws_sdk_sesv2::operation::list_domain_deliverability_campaigns::ListDomainDeliverabilityCampaignsOutput::builder();
+        if let Some(value) = values.get_item("domain_deliverability_campaigns")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2451 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2452 in value.try_iter()? {
+                let item_2453 = item_result_2452?;
+                rboto_core::fixture_scalar(&item_2453, "struct")?;
+                let converted_item_2454 =
+                    domain_deliverability_campaign_fixture_from_py(&item_2453)?;
+                fixture_2451.push(converted_item_2454);
+            }
+            builder = builder.set_domain_deliverability_campaigns(Some(fixture_2451));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2455: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2455));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -16725,6 +22056,35 @@ impl PyOperationListEmailIdentitiesOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["email_identities", "next_token"], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::list_email_identities::ListEmailIdentitiesOutput::builder();
+        if let Some(value) = dict_value(values, "email_identities")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2460 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2461 in value.try_iter()? {
+                let item_2462 = item_result_2461?;
+                rboto_core::fixture_scalar(&item_2462, "struct")?;
+                let converted_item_2463 = identity_info_fixture_from_py(&item_2462)?;
+                fixture_2460.push(converted_item_2463);
+            }
+            builder = builder.set_email_identities(Some(fixture_2460));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2464: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2464));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -16805,6 +22165,34 @@ impl PyOperationListEmailIdentityCertificatesOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["certificates", "next_token"], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::list_email_identity_certificates::ListEmailIdentityCertificatesOutput::builder();
+        if let Some(value) = dict_value(values, "certificates")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2469 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2470 in value.try_iter()? {
+                let item_2471 = item_result_2470?;
+                rboto_core::fixture_scalar(&item_2471, "struct")?;
+                let converted_item_2472 = identity_certificate_fixture_from_py(&item_2471)?;
+                fixture_2469.push(converted_item_2472);
+            }
+            builder = builder.set_certificates(Some(fixture_2469));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2473: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2473));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -16896,6 +22284,35 @@ impl PyOperationListEmailTemplatesOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["templates_metadata", "next_token"], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::list_email_templates::ListEmailTemplatesOutput::builder();
+        if let Some(value) = dict_value(values, "templates_metadata")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2478 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2479 in value.try_iter()? {
+                let item_2480 = item_result_2479?;
+                rboto_core::fixture_scalar(&item_2480, "struct")?;
+                let converted_item_2481 = email_template_metadata_fixture_from_py(&item_2480)?;
+                fixture_2478.push(converted_item_2481);
+            }
+            builder = builder.set_templates_metadata(Some(fixture_2478));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2482: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2482));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -16980,6 +22397,35 @@ impl PyOperationListExportJobsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["export_jobs", "next_token"], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::list_export_jobs::ListExportJobsOutput::builder();
+        if let Some(value) = dict_value(values, "export_jobs")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2487 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2488 in value.try_iter()? {
+                let item_2489 = item_result_2488?;
+                rboto_core::fixture_scalar(&item_2489, "struct")?;
+                let converted_item_2490 = export_job_summary_fixture_from_py(&item_2489)?;
+                fixture_2487.push(converted_item_2490);
+            }
+            builder = builder.set_export_jobs(Some(fixture_2487));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2491: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2491));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -17063,6 +22509,35 @@ impl PyOperationListImportJobsOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["import_jobs", "next_token"], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::list_import_jobs::ListImportJobsOutput::builder();
+        if let Some(value) = dict_value(values, "import_jobs")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2496 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2497 in value.try_iter()? {
+                let item_2498 = item_result_2497?;
+                rboto_core::fixture_scalar(&item_2498, "struct")?;
+                let converted_item_2499 = import_job_summary_fixture_from_py(&item_2498)?;
+                fixture_2496.push(converted_item_2499);
+            }
+            builder = builder.set_import_jobs(Some(fixture_2496));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2500: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2500));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -17154,6 +22629,34 @@ impl PyOperationListMultiRegionEndpointsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["multi_region_endpoints", "next_token"], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::list_multi_region_endpoints::ListMultiRegionEndpointsOutput::builder();
+        if let Some(value) = dict_value(values, "multi_region_endpoints")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2505 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2506 in value.try_iter()? {
+                let item_2507 = item_result_2506?;
+                rboto_core::fixture_scalar(&item_2507, "struct")?;
+                let converted_item_2508 = multi_region_endpoint_fixture_from_py(&item_2507)?;
+                fixture_2505.push(converted_item_2508);
+            }
+            builder = builder.set_multi_region_endpoints(Some(fixture_2505));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2509: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2509));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -17243,6 +22746,35 @@ impl PyOperationListRecommendationsOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["recommendations", "next_token"], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::list_recommendations::ListRecommendationsOutput::builder();
+        if let Some(value) = dict_value(values, "recommendations")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2514 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2515 in value.try_iter()? {
+                let item_2516 = item_result_2515?;
+                rboto_core::fixture_scalar(&item_2516, "struct")?;
+                let converted_item_2517 = recommendation_fixture_from_py(&item_2516)?;
+                fixture_2514.push(converted_item_2517);
+            }
+            builder = builder.set_recommendations(Some(fixture_2514));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2518: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2518));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -17334,6 +22866,34 @@ impl PyOperationListReputationEntitiesOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["reputation_entities", "next_token"], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::list_reputation_entities::ListReputationEntitiesOutput::builder();
+        if let Some(value) = dict_value(values, "reputation_entities")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2523 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2524 in value.try_iter()? {
+                let item_2525 = item_result_2524?;
+                rboto_core::fixture_scalar(&item_2525, "struct")?;
+                let converted_item_2526 = reputation_entity_fixture_from_py(&item_2525)?;
+                fixture_2523.push(converted_item_2526);
+            }
+            builder = builder.set_reputation_entities(Some(fixture_2523));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2527: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2527));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -17423,6 +22983,35 @@ impl PyOperationListResourceTenantsOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["resource_tenants", "next_token"], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::list_resource_tenants::ListResourceTenantsOutput::builder();
+        if let Some(value) = dict_value(values, "resource_tenants")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2532 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2533 in value.try_iter()? {
+                let item_2534 = item_result_2533?;
+                rboto_core::fixture_scalar(&item_2534, "struct")?;
+                let converted_item_2535 = resource_tenant_metadata_fixture_from_py(&item_2534)?;
+                fixture_2532.push(converted_item_2535);
+            }
+            builder = builder.set_resource_tenants(Some(fixture_2532));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2536: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2536));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -17515,6 +23104,39 @@ impl PyOperationListSuppressedDestinationsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["suppressed_destination_summaries", "next_token"],
+            &[],
+        )?;
+        let mut builder = aws_sdk_sesv2::operation::list_suppressed_destinations::ListSuppressedDestinationsOutput::builder();
+        if let Some(value) = dict_value(values, "suppressed_destination_summaries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2541 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2542 in value.try_iter()? {
+                let item_2543 = item_result_2542?;
+                rboto_core::fixture_scalar(&item_2543, "struct")?;
+                let converted_item_2544 =
+                    suppressed_destination_summary_fixture_from_py(&item_2543)?;
+                fixture_2541.push(converted_item_2544);
+            }
+            builder = builder.set_suppressed_destination_summaries(Some(fixture_2541));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2545: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2545));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -17576,6 +23198,32 @@ impl PyOperationListTagsForResourceOutput {
         let converted_2545 = converted_2545_list.into_any().unbind();
         result.set_item("tags", converted_2545)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["tags"], &["tags"])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::list_tags_for_resource::ListTagsForResourceOutput::builder();
+        if let Some(value) = values.get_item("tags")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2548 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2549 in value.try_iter()? {
+                let item_2550 = item_result_2549?;
+                rboto_core::fixture_scalar(&item_2550, "struct")?;
+                let converted_item_2551 = tag_fixture_from_py(&item_2550)?;
+                fixture_2548.push(converted_item_2551);
+            }
+            builder = builder.set_tags(Some(fixture_2548));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -17667,6 +23315,35 @@ impl PyOperationListTenantResourcesOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["tenant_resources", "next_token"], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::list_tenant_resources::ListTenantResourcesOutput::builder();
+        if let Some(value) = dict_value(values, "tenant_resources")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2557 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2558 in value.try_iter()? {
+                let item_2559 = item_result_2558?;
+                rboto_core::fixture_scalar(&item_2559, "struct")?;
+                let converted_item_2560 = tenant_resource_fixture_from_py(&item_2559)?;
+                fixture_2557.push(converted_item_2560);
+            }
+            builder = builder.set_tenant_resources(Some(fixture_2557));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2561: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2561));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -17751,6 +23428,34 @@ impl PyOperationListTenantsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["tenants", "next_token"], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::list_tenants::ListTenantsOutput::builder();
+        if let Some(value) = dict_value(values, "tenants")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2566 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2567 in value.try_iter()? {
+                let item_2568 = item_result_2567?;
+                rboto_core::fixture_scalar(&item_2568, "struct")?;
+                let converted_item_2569 = tenant_info_fixture_from_py(&item_2568)?;
+                fixture_2566.push(converted_item_2569);
+            }
+            builder = builder.set_tenants(Some(fixture_2566));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2570: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2570));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -17768,6 +23473,15 @@ impl PyOperationPutAccountDedicatedIpWarmupAttributesOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::put_account_dedicated_ip_warmup_attributes::PutAccountDedicatedIpWarmupAttributesOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -17784,6 +23498,16 @@ impl PyOperationPutAccountDetailsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::put_account_details::PutAccountDetailsOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -17803,6 +23527,15 @@ impl PyOperationPutAccountPricingAttributesOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::put_account_pricing_attributes::PutAccountPricingAttributesOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -17821,6 +23554,15 @@ impl PyOperationPutAccountSendingAttributesOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::put_account_sending_attributes::PutAccountSendingAttributesOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -17837,6 +23579,15 @@ impl PyOperationPutAccountSuppressionAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::put_account_suppression_attributes::PutAccountSuppressionAttributesOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -17855,6 +23606,15 @@ impl PyOperationPutAccountVdmAttributesOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::put_account_vdm_attributes::PutAccountVdmAttributesOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -17871,6 +23631,15 @@ impl PyOperationPutConfigurationSetArchivingOptionsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::put_configuration_set_archiving_options::PutConfigurationSetArchivingOptionsOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -17889,6 +23658,15 @@ impl PyOperationPutConfigurationSetDeliveryOptionsOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::put_configuration_set_delivery_options::PutConfigurationSetDeliveryOptionsOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -17905,6 +23683,15 @@ impl PyOperationPutConfigurationSetReputationOptionsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::put_configuration_set_reputation_options::PutConfigurationSetReputationOptionsOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -17923,6 +23710,15 @@ impl PyOperationPutConfigurationSetSendingOptionsOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::put_configuration_set_sending_options::PutConfigurationSetSendingOptionsOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -17939,6 +23735,15 @@ impl PyOperationPutConfigurationSetSuppressionOptionsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::put_configuration_set_suppression_options::PutConfigurationSetSuppressionOptionsOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -17957,6 +23762,15 @@ impl PyOperationPutConfigurationSetTrackingOptionsOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::put_configuration_set_tracking_options::PutConfigurationSetTrackingOptionsOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -17973,6 +23787,15 @@ impl PyOperationPutConfigurationSetVdmOptionsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::put_configuration_set_vdm_options::PutConfigurationSetVdmOptionsOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -17991,6 +23814,17 @@ impl PyOperationPutDedicatedIpInPoolOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::put_dedicated_ip_in_pool::PutDedicatedIpInPoolOutput::builder(
+            );
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -18007,6 +23841,15 @@ impl PyOperationPutDedicatedIpPoolScalingAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::put_dedicated_ip_pool_scaling_attributes::PutDedicatedIpPoolScalingAttributesOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -18025,6 +23868,15 @@ impl PyOperationPutDedicatedIpWarmupAttributesOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::put_dedicated_ip_warmup_attributes::PutDedicatedIpWarmupAttributesOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -18041,6 +23893,15 @@ impl PyOperationPutDeliverabilityDashboardOptionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::put_deliverability_dashboard_option::PutDeliverabilityDashboardOptionOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -18059,6 +23920,15 @@ impl PyOperationPutEmailIdentityConfigurationSetAttributesOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::put_email_identity_configuration_set_attributes::PutEmailIdentityConfigurationSetAttributesOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -18075,6 +23945,15 @@ impl PyOperationPutEmailIdentityDkimAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::put_email_identity_dkim_attributes::PutEmailIdentityDkimAttributesOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -18151,6 +24030,42 @@ impl PyOperationPutEmailIdentityDkimSigningAttributesOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["dkim_status", "dkim_tokens", "signing_hosted_zone"],
+            &[],
+        )?;
+        let mut builder = aws_sdk_sesv2::operation::put_email_identity_dkim_signing_attributes::PutEmailIdentityDkimSigningAttributesOutput::builder();
+        if let Some(value) = dict_value(values, "dkim_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_2577: String = value.extract()?;
+            let fixture_2576 = aws_sdk_sesv2::types::DkimStatus::from(enum_value_2577.as_str());
+            builder = builder.set_dkim_status(Some(fixture_2576));
+        }
+        if let Some(value) = dict_value(values, "dkim_tokens")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2578 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2579 in value.try_iter()? {
+                let item_2580 = item_result_2579?;
+                rboto_core::fixture_scalar(&item_2580, "string")?;
+                let converted_item_2581: String = item_2580.extract()?;
+                fixture_2578.push(converted_item_2581);
+            }
+            builder = builder.set_dkim_tokens(Some(fixture_2578));
+        }
+        if let Some(value) = dict_value(values, "signing_hosted_zone")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2582: String = value.extract()?;
+            builder = builder.set_signing_hosted_zone(Some(fixture_2582));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -18167,6 +24082,15 @@ impl PyOperationPutEmailIdentityFeedbackAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::put_email_identity_feedback_attributes::PutEmailIdentityFeedbackAttributesOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -18185,6 +24109,15 @@ impl PyOperationPutEmailIdentityMailFromAttributesOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::put_email_identity_mail_from_attributes::PutEmailIdentityMailFromAttributesOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -18202,6 +24135,15 @@ impl PyOperationPutSuppressedDestinationOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::put_suppressed_destination::PutSuppressedDestinationOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -18218,6 +24160,15 @@ impl PyOperationPutTenantSuppressionAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::put_tenant_suppression_attributes::PutTenantSuppressionAttributesOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -18275,6 +24226,35 @@ impl PyOperationSendBulkEmailOutput {
         result.set_item("bulk_email_entry_results", converted_2580)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["bulk_email_entry_results"],
+            &["bulk_email_entry_results"],
+        )?;
+        let mut builder = aws_sdk_sesv2::operation::send_bulk_email::SendBulkEmailOutput::builder();
+        if let Some(value) = values.get_item("bulk_email_entry_results")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2583 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2584 in value.try_iter()? {
+                let item_2585 = item_result_2584?;
+                rboto_core::fixture_scalar(&item_2585, "struct")?;
+                let converted_item_2586 = bulk_email_entry_result_fixture_from_py(&item_2585)?;
+                fixture_2583.push(converted_item_2586);
+            }
+            builder = builder.set_bulk_email_entry_results(Some(fixture_2583));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -18309,6 +24289,20 @@ impl PyOperationSendCustomVerificationEmailOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["message_id"], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::send_custom_verification_email::SendCustomVerificationEmailOutput::builder();
+        if let Some(value) = dict_value(values, "message_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2585: String = value.extract()?;
+            builder = builder.set_message_id(Some(fixture_2585));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(name = "SendEmailOutput", module = "rboto_sesv2._native", frozen)]
@@ -18338,6 +24332,20 @@ impl PyOperationSendEmailOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["message_id"], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::send_email::SendEmailOutput::builder();
+        if let Some(value) = dict_value(values, "message_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2587: String = value.extract()?;
+            builder = builder.set_message_id(Some(fixture_2587));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(name = "TagResourceOutput", module = "rboto_sesv2._native", frozen)]
@@ -18350,6 +24358,15 @@ impl PyOperationTagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::tag_resource::TagResourceOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -18376,6 +24393,22 @@ impl PyOperationTestRenderEmailTemplateOutput {
         result.set_item("rendered_template", converted_2588)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["rendered_template"], &["rendered_template"])?;
+        let mut builder = aws_sdk_sesv2::operation::test_render_email_template::TestRenderEmailTemplateOutput::builder();
+        if let Some(value) = values.get_item("rendered_template")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2589: String = value.extract()?;
+            builder = builder.set_rendered_template(Some(fixture_2589));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(name = "UntagResourceOutput", module = "rboto_sesv2._native", frozen)]
@@ -18388,6 +24421,15 @@ impl PyOperationUntagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::untag_resource::UntagResourceOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -18406,6 +24448,15 @@ impl PyOperationUpdateConfigurationSetOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::update_configuration_set::UpdateConfigurationSetOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -18423,6 +24474,15 @@ impl PyOperationUpdateConfigurationSetEventDestinationOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::update_configuration_set_event_destination::UpdateConfigurationSetEventDestinationOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(name = "UpdateContactOutput", module = "rboto_sesv2._native", frozen)]
@@ -18435,6 +24495,15 @@ impl PyOperationUpdateContactOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::update_contact::UpdateContactOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -18453,6 +24522,16 @@ impl PyOperationUpdateContactListOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::update_contact_list::UpdateContactListOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -18469,6 +24548,15 @@ impl PyOperationUpdateCustomVerificationEmailTemplateOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::update_custom_verification_email_template::UpdateCustomVerificationEmailTemplateOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -18487,6 +24575,15 @@ impl PyOperationUpdateEmailIdentityPolicyOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::update_email_identity_policy::UpdateEmailIdentityPolicyOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -18503,6 +24600,16 @@ impl PyOperationUpdateEmailTemplateOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_sesv2::operation::update_email_template::UpdateEmailTemplateOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -18521,6 +24628,15 @@ impl PyOperationUpdateReputationEntityCustomerManagedStatusOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::update_reputation_entity_customer_managed_status::UpdateReputationEntityCustomerManagedStatusOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -18537,6 +24653,15 @@ impl PyOperationUpdateReputationEntityPolicyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_sesv2::operation::update_reputation_entity_policy::UpdateReputationEntityPolicyOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 

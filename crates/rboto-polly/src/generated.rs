@@ -745,6 +745,308 @@ fn voice_to_py(py: Python<'_>, value: &aws_sdk_polly::types::Voice) -> PyResult<
     Ok(result.into_any().unbind())
 }
 
+fn lexicon_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_polly::types::Lexicon> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["content", "name"], &[])?;
+    let mut builder = aws_sdk_polly::types::Lexicon::builder();
+    if let Some(value) = dict_value(values, "content")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_286: String = value.extract()?;
+        builder = builder.set_content(Some(fixture_286));
+    }
+    if let Some(value) = dict_value(values, "name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_287: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_287));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn lexicon_attributes_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_polly::types::LexiconAttributes> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "alphabet",
+            "language_code",
+            "last_modified",
+            "lexicon_arn",
+            "lexemes_count",
+            "size",
+        ],
+        &["lexemes_count", "size"],
+    )?;
+    let mut builder = aws_sdk_polly::types::LexiconAttributes::builder();
+    if let Some(value) = dict_value(values, "alphabet")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_288: String = value.extract()?;
+        builder = builder.set_alphabet(Some(fixture_288));
+    }
+    if let Some(value) = dict_value(values, "language_code")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_290: String = value.extract()?;
+        let fixture_289 = aws_sdk_polly::types::LanguageCode::from(enum_value_290.as_str());
+        builder = builder.set_language_code(Some(fixture_289));
+    }
+    if let Some(value) = dict_value(values, "last_modified")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_292: String = value.extract()?;
+        let fixture_291 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_292,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_modified(Some(fixture_291));
+    }
+    if let Some(value) = dict_value(values, "lexicon_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_293: String = value.extract()?;
+        builder = builder.set_lexicon_arn(Some(fixture_293));
+    }
+    if let Some(value) = values.get_item("lexemes_count")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_294: i32 = value.extract()?;
+        builder = builder.set_lexemes_count(Some(fixture_294));
+    }
+    if let Some(value) = values.get_item("size")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_295: i32 = value.extract()?;
+        builder = builder.set_size(Some(fixture_295));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn lexicon_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_polly::types::LexiconDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["name", "attributes"], &[])?;
+    let mut builder = aws_sdk_polly::types::LexiconDescription::builder();
+    if let Some(value) = dict_value(values, "name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_296: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_296));
+    }
+    if let Some(value) = dict_value(values, "attributes")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_297 = lexicon_attributes_fixture_from_py(&value)?;
+        builder = builder.set_attributes(Some(fixture_297));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn synthesis_task_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_polly::types::SynthesisTask> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "engine",
+            "task_id",
+            "task_status",
+            "task_status_reason",
+            "output_uri",
+            "creation_time",
+            "request_characters",
+            "sns_topic_arn",
+            "lexicon_names",
+            "output_format",
+            "sample_rate",
+            "speech_mark_types",
+            "text_type",
+            "voice_id",
+            "language_code",
+        ],
+        &["request_characters"],
+    )?;
+    let mut builder = aws_sdk_polly::types::SynthesisTask::builder();
+    if let Some(value) = dict_value(values, "engine")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_299: String = value.extract()?;
+        let fixture_298 = aws_sdk_polly::types::Engine::from(enum_value_299.as_str());
+        builder = builder.set_engine(Some(fixture_298));
+    }
+    if let Some(value) = dict_value(values, "task_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_300: String = value.extract()?;
+        builder = builder.set_task_id(Some(fixture_300));
+    }
+    if let Some(value) = dict_value(values, "task_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_302: String = value.extract()?;
+        let fixture_301 = aws_sdk_polly::types::TaskStatus::from(enum_value_302.as_str());
+        builder = builder.set_task_status(Some(fixture_301));
+    }
+    if let Some(value) = dict_value(values, "task_status_reason")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_303: String = value.extract()?;
+        builder = builder.set_task_status_reason(Some(fixture_303));
+    }
+    if let Some(value) = dict_value(values, "output_uri")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_304: String = value.extract()?;
+        builder = builder.set_output_uri(Some(fixture_304));
+    }
+    if let Some(value) = dict_value(values, "creation_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_306: String = value.extract()?;
+        let fixture_305 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_306,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_time(Some(fixture_305));
+    }
+    if let Some(value) = values.get_item("request_characters")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_307: i32 = value.extract()?;
+        builder = builder.set_request_characters(Some(fixture_307));
+    }
+    if let Some(value) = dict_value(values, "sns_topic_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_308: String = value.extract()?;
+        builder = builder.set_sns_topic_arn(Some(fixture_308));
+    }
+    if let Some(value) = dict_value(values, "lexicon_names")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_309 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_310 in value.try_iter()? {
+            let item_311 = item_result_310?;
+            rboto_core::fixture_scalar(&item_311, "string")?;
+            let converted_item_312: String = item_311.extract()?;
+            fixture_309.push(converted_item_312);
+        }
+        builder = builder.set_lexicon_names(Some(fixture_309));
+    }
+    if let Some(value) = dict_value(values, "output_format")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_314: String = value.extract()?;
+        let fixture_313 = aws_sdk_polly::types::OutputFormat::from(enum_value_314.as_str());
+        builder = builder.set_output_format(Some(fixture_313));
+    }
+    if let Some(value) = dict_value(values, "sample_rate")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_315: String = value.extract()?;
+        builder = builder.set_sample_rate(Some(fixture_315));
+    }
+    if let Some(value) = dict_value(values, "speech_mark_types")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_316 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_317 in value.try_iter()? {
+            let item_318 = item_result_317?;
+            rboto_core::fixture_scalar(&item_318, "enum")?;
+            let enum_value_320: String = item_318.extract()?;
+            let converted_item_319 =
+                aws_sdk_polly::types::SpeechMarkType::from(enum_value_320.as_str());
+            fixture_316.push(converted_item_319);
+        }
+        builder = builder.set_speech_mark_types(Some(fixture_316));
+    }
+    if let Some(value) = dict_value(values, "text_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_322: String = value.extract()?;
+        let fixture_321 = aws_sdk_polly::types::TextType::from(enum_value_322.as_str());
+        builder = builder.set_text_type(Some(fixture_321));
+    }
+    if let Some(value) = dict_value(values, "voice_id")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_324: String = value.extract()?;
+        let fixture_323 = aws_sdk_polly::types::VoiceId::from(enum_value_324.as_str());
+        builder = builder.set_voice_id(Some(fixture_323));
+    }
+    if let Some(value) = dict_value(values, "language_code")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_326: String = value.extract()?;
+        let fixture_325 = aws_sdk_polly::types::LanguageCode::from(enum_value_326.as_str());
+        builder = builder.set_language_code(Some(fixture_325));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn voice_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_polly::types::Voice> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "gender",
+            "id",
+            "language_code",
+            "language_name",
+            "name",
+            "additional_language_codes",
+            "supported_engines",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_polly::types::Voice::builder();
+    if let Some(value) = dict_value(values, "gender")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_328: String = value.extract()?;
+        let fixture_327 = aws_sdk_polly::types::Gender::from(enum_value_328.as_str());
+        builder = builder.set_gender(Some(fixture_327));
+    }
+    if let Some(value) = dict_value(values, "id")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_330: String = value.extract()?;
+        let fixture_329 = aws_sdk_polly::types::VoiceId::from(enum_value_330.as_str());
+        builder = builder.set_id(Some(fixture_329));
+    }
+    if let Some(value) = dict_value(values, "language_code")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_332: String = value.extract()?;
+        let fixture_331 = aws_sdk_polly::types::LanguageCode::from(enum_value_332.as_str());
+        builder = builder.set_language_code(Some(fixture_331));
+    }
+    if let Some(value) = dict_value(values, "language_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_333: String = value.extract()?;
+        builder = builder.set_language_name(Some(fixture_333));
+    }
+    if let Some(value) = dict_value(values, "name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_334: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_334));
+    }
+    if let Some(value) = dict_value(values, "additional_language_codes")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_335 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_336 in value.try_iter()? {
+            let item_337 = item_result_336?;
+            rboto_core::fixture_scalar(&item_337, "enum")?;
+            let enum_value_339: String = item_337.extract()?;
+            let converted_item_338 =
+                aws_sdk_polly::types::LanguageCode::from(enum_value_339.as_str());
+            fixture_335.push(converted_item_338);
+        }
+        builder = builder.set_additional_language_codes(Some(fixture_335));
+    }
+    if let Some(value) = dict_value(values, "supported_engines")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_340 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_341 in value.try_iter()? {
+            let item_342 = item_result_341?;
+            rboto_core::fixture_scalar(&item_342, "enum")?;
+            let enum_value_344: String = item_342.extract()?;
+            let converted_item_343 = aws_sdk_polly::types::Engine::from(enum_value_344.as_str());
+            fixture_340.push(converted_item_343);
+        }
+        builder = builder.set_supported_engines(Some(fixture_340));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
 #[pyclass(name = "Lexicon", module = "rboto_polly._native", frozen)]
 struct PyLexicon {
     inner: Arc<aws_sdk_polly::types::Lexicon>,
@@ -1188,6 +1490,15 @@ impl PyOperationDeleteLexiconOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_polly::operation::delete_lexicon::DeleteLexiconOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -1272,6 +1583,35 @@ impl PyOperationDescribeVoicesOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["voices", "next_token"], &[])?;
+        let mut builder =
+            aws_sdk_polly::operation::describe_voices::DescribeVoicesOutput::builder();
+        if let Some(value) = dict_value(values, "voices")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_256 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_257 in value.try_iter()? {
+                let item_258 = item_result_257?;
+                rboto_core::fixture_scalar(&item_258, "struct")?;
+                let converted_item_259 = voice_fixture_from_py(&item_258)?;
+                fixture_256.push(converted_item_259);
+            }
+            builder = builder.set_voices(Some(fixture_256));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_260: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_260));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -1347,6 +1687,27 @@ impl PyOperationGetLexiconOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["lexicon", "lexicon_attributes"], &[])?;
+        let mut builder = aws_sdk_polly::operation::get_lexicon::GetLexiconOutput::builder();
+        if let Some(value) = dict_value(values, "lexicon")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_260 = lexicon_fixture_from_py(&value)?;
+            builder = builder.set_lexicon(Some(fixture_260));
+        }
+        if let Some(value) = dict_value(values, "lexicon_attributes")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_261 = lexicon_attributes_fixture_from_py(&value)?;
+            builder = builder.set_lexicon_attributes(Some(fixture_261));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -1403,6 +1764,22 @@ impl PyOperationGetSpeechSynthesisTaskOutput {
             result.set_item("synthesis_task", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["synthesis_task"], &[])?;
+        let mut builder = aws_sdk_polly::operation::get_speech_synthesis_task::GetSpeechSynthesisTaskOutput::builder();
+        if let Some(value) = dict_value(values, "synthesis_task")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_262 = synthesis_task_fixture_from_py(&value)?;
+            builder = builder.set_synthesis_task(Some(fixture_262));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -1487,6 +1864,34 @@ impl PyOperationListLexiconsOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["lexicons", "next_token"], &[])?;
+        let mut builder = aws_sdk_polly::operation::list_lexicons::ListLexiconsOutput::builder();
+        if let Some(value) = dict_value(values, "lexicons")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_271 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_272 in value.try_iter()? {
+                let item_273 = item_result_272?;
+                rboto_core::fixture_scalar(&item_273, "struct")?;
+                let converted_item_274 = lexicon_description_fixture_from_py(&item_273)?;
+                fixture_271.push(converted_item_274);
+            }
+            builder = builder.set_lexicons(Some(fixture_271));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_275: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_275));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -1578,6 +1983,34 @@ impl PyOperationListSpeechSynthesisTasksOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["next_token", "synthesis_tasks"], &[])?;
+        let mut builder = aws_sdk_polly::operation::list_speech_synthesis_tasks::ListSpeechSynthesisTasksOutput::builder();
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_280: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_280));
+        }
+        if let Some(value) = dict_value(values, "synthesis_tasks")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_281 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_282 in value.try_iter()? {
+                let item_283 = item_result_282?;
+                rboto_core::fixture_scalar(&item_283, "struct")?;
+                let converted_item_284 = synthesis_task_fixture_from_py(&item_283)?;
+                fixture_281.push(converted_item_284);
+            }
+            builder = builder.set_synthesis_tasks(Some(fixture_281));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(name = "PutLexiconOutput", module = "rboto_polly._native", frozen)]
@@ -1590,6 +2023,15 @@ impl PyOperationPutLexiconOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_polly::operation::put_lexicon::PutLexiconOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -1648,6 +2090,22 @@ impl PyOperationStartSpeechSynthesisTaskOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["synthesis_task"], &[])?;
+        let mut builder = aws_sdk_polly::operation::start_speech_synthesis_task::StartSpeechSynthesisTaskOutput::builder();
+        if let Some(value) = dict_value(values, "synthesis_task")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_282 = synthesis_task_fixture_from_py(&value)?;
+            builder = builder.set_synthesis_task(Some(fixture_282));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -1699,6 +2157,41 @@ impl PyOperationSynthesizeSpeechOutput {
             .into_py_any(py)?;
         result.set_item("request_characters", converted_285)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["audio_stream", "content_type", "request_characters"],
+            &["audio_stream", "request_characters"],
+        )?;
+        let mut builder =
+            aws_sdk_polly::operation::synthesize_speech::SynthesizeSpeechOutput::builder();
+        if let Some(value) = values.get_item("audio_stream")? {
+            rboto_core::fixture_scalar(&value, "byte_stream")?;
+            let bytes_287: Vec<u8> = value.extract()?;
+            let fixture_286 = AwsByteStream::from(bytes_287);
+            builder = builder.set_audio_stream(Some(fixture_286));
+        }
+        if let Some(value) = dict_value(values, "content_type")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_288: String = value.extract()?;
+            builder = builder.set_content_type(Some(fixture_288));
+        }
+        if let Some(value) = values.get_item("request_characters")? {
+            rboto_core::fixture_scalar(&value, "i32")?;
+            let fixture_289: i32 = value.extract()?;
+            builder = builder.set_request_characters(Some(fixture_289));
+        }
+        let mut output = builder.build();
+        let stream = std::mem::take(&mut output.audio_stream);
+        let audio_stream = Py::new(py, PyByteStream::new(stream))?;
+        Ok(Self {
+            inner: output,
+            audio_stream,
+        })
     }
 }
 

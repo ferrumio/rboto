@@ -30,6 +30,21 @@ class PollyClient:
 
     logger_name = "rboto.polly"
 
+    @staticmethod
+    def _stub_operations() -> dict[str, str]:
+        return {
+            "delete_lexicon": "DeleteLexicon",
+            "describe_voices": "DescribeVoices",
+            "get_lexicon": "GetLexicon",
+            "get_speech_synthesis_task": "GetSpeechSynthesisTask",
+            "list_lexicons": "ListLexicons",
+            "list_speech_synthesis_tasks": "ListSpeechSynthesisTasks",
+            "put_lexicon": "PutLexicon",
+            "start_speech_synthesis_stream": "StartSpeechSynthesisStream",
+            "start_speech_synthesis_task": "StartSpeechSynthesisTask",
+            "synthesize_speech": "SynthesizeSpeech",
+        }
+
     def __init__(
         self,
         *,

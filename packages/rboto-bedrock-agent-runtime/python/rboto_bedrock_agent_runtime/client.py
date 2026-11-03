@@ -67,6 +67,46 @@ class BedrockAgentRuntimeClient:
 
     logger_name = "rboto.bedrock-agent-runtime"
 
+    @staticmethod
+    def _stub_operations() -> dict[str, str]:
+        return {
+            "agentic_retrieve_stream": "AgenticRetrieveStream",
+            "check_ingested_document_acl": "CheckIngestedDocumentAcl",
+            "create_invocation": "CreateInvocation",
+            "create_session": "CreateSession",
+            "delete_agent_memory": "DeleteAgentMemory",
+            "delete_session": "DeleteSession",
+            "end_session": "EndSession",
+            "generate_query": "GenerateQuery",
+            "get_agent_memory": "GetAgentMemory",
+            "get_document_content": "GetDocumentContent",
+            "get_execution_flow_snapshot": "GetExecutionFlowSnapshot",
+            "get_flow_execution": "GetFlowExecution",
+            "get_ingested_document_acl": "GetIngestedDocumentAcl",
+            "get_invocation_step": "GetInvocationStep",
+            "get_session": "GetSession",
+            "invoke_agent": "InvokeAgent",
+            "invoke_flow": "InvokeFlow",
+            "invoke_inline_agent": "InvokeInlineAgent",
+            "list_flow_execution_events": "ListFlowExecutionEvents",
+            "list_flow_executions": "ListFlowExecutions",
+            "list_invocation_steps": "ListInvocationSteps",
+            "list_invocations": "ListInvocations",
+            "list_sessions": "ListSessions",
+            "list_tags_for_resource": "ListTagsForResource",
+            "optimize_prompt": "OptimizePrompt",
+            "put_invocation_step": "PutInvocationStep",
+            "rerank": "Rerank",
+            "retrieve": "Retrieve",
+            "retrieve_and_generate": "RetrieveAndGenerate",
+            "retrieve_and_generate_stream": "RetrieveAndGenerateStream",
+            "start_flow_execution": "StartFlowExecution",
+            "stop_flow_execution": "StopFlowExecution",
+            "tag_resource": "TagResource",
+            "untag_resource": "UntagResource",
+            "update_session": "UpdateSession",
+        }
+
     def __init__(
         self,
         *,

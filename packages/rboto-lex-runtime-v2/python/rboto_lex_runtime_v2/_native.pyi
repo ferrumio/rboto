@@ -231,6 +231,8 @@ class Value:
 @final
 class DeleteSessionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/DeleteSessionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteSessionOutput: ...
     @property
     def bot_id(self) -> str | None: ...
     @property
@@ -244,6 +246,8 @@ class DeleteSessionOutput:
 @final
 class GetSessionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/GetSessionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetSessionOutput: ...
     @property
     def session_id(self) -> str | None: ...
     @property
@@ -257,6 +261,8 @@ class GetSessionOutput:
 @final
 class PutSessionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/PutSessionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutSessionOutput: ...
     @property
     def content_type(self) -> str | None: ...
     @property
@@ -274,6 +280,8 @@ class PutSessionOutput:
 @final
 class RecognizeTextOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/RecognizeTextOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> RecognizeTextOutput: ...
     @property
     def messages(self) -> list[Message] | None: ...
     @property
@@ -291,6 +299,8 @@ class RecognizeTextOutput:
 @final
 class RecognizeUtteranceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/RecognizeUtteranceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> RecognizeUtteranceOutput: ...
     @property
     def input_mode(self) -> str | None: ...
     @property

@@ -1628,6 +1628,748 @@ fn web_app_configuration_to_py(
     Ok(result.into_any().unbind())
 }
 
+fn artifact_details_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::ArtifactDetails> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["output_location", "status", "failure_reason"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_connecthealth::types::ArtifactDetails::builder();
+    if let Some(value) = dict_value(values, "output_location")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_527: String = value.extract()?;
+        builder = builder.set_output_location(Some(fixture_527));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_529: String = value.extract()?;
+        let fixture_528 = aws_sdk_connecthealth::types::PostStreamArtifactGenerationStatus::from(
+            enum_value_529.as_str(),
+        );
+        builder = builder.set_status(Some(fixture_528));
+    }
+    if let Some(value) = dict_value(values, "failure_reason")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_530: String = value.extract()?;
+        builder = builder.set_failure_reason(Some(fixture_530));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn clinical_note_generation_result_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::ClinicalNoteGenerationResult> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "note_result",
+            "transcript_result",
+            "after_visit_summary_result",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_connecthealth::types::ClinicalNoteGenerationResult::builder();
+    if let Some(value) = dict_value(values, "note_result")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_531 = artifact_details_fixture_from_py(&value)?;
+        builder = builder.set_note_result(Some(fixture_531));
+    }
+    if let Some(value) = dict_value(values, "transcript_result")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_532 = artifact_details_fixture_from_py(&value)?;
+        builder = builder.set_transcript_result(Some(fixture_532));
+    }
+    if let Some(value) = dict_value(values, "after_visit_summary_result")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_533 = artifact_details_fixture_from_py(&value)?;
+        builder = builder.set_after_visit_summary_result(Some(fixture_533));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn clinical_note_generation_settings_response_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::ClinicalNoteGenerationSettingsResponse> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["note_template_settings"], &[])?;
+    let mut builder =
+        aws_sdk_connecthealth::types::ClinicalNoteGenerationSettingsResponse::builder();
+    if let Some(value) = dict_value(values, "note_template_settings")? {
+        rboto_core::fixture_scalar(&value, "union")?;
+        let fixture_534 = note_template_settings_response_fixture_from_py(&value)?;
+        builder = builder.set_note_template_settings(Some(fixture_534));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn custom_template_response_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::CustomTemplateResponse> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["template_type"], &[])?;
+    let mut builder = aws_sdk_connecthealth::types::CustomTemplateResponse::builder();
+    if let Some(value) = dict_value(values, "template_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_536: String = value.extract()?;
+        let fixture_535 =
+            aws_sdk_connecthealth::types::CustomTemplateBase::from(enum_value_536.as_str());
+        builder = builder.set_template_type(Some(fixture_535));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn domain_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::DomainSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["domain_id", "arn", "name", "status", "created_at"],
+        &["domain_id", "arn", "name", "status", "created_at"],
+    )?;
+    let mut builder = aws_sdk_connecthealth::types::DomainSummary::builder();
+    if let Some(value) = values.get_item("domain_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_537: String = value.extract()?;
+        builder = builder.set_domain_id(Some(fixture_537));
+    }
+    if let Some(value) = values.get_item("arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_538: String = value.extract()?;
+        builder = builder.set_arn(Some(fixture_538));
+    }
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_539: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_539));
+    }
+    if let Some(value) = values.get_item("status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_541: String = value.extract()?;
+        let fixture_540 = aws_sdk_connecthealth::types::DomainStatus::from(enum_value_541.as_str());
+        builder = builder.set_status(Some(fixture_540));
+    }
+    if let Some(value) = values.get_item("created_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_543: String = value.extract()?;
+        let fixture_542 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_543,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_created_at(Some(fixture_542));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn encryption_context_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::EncryptionContext> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["encryption_type", "kms_key_arn"],
+        &["encryption_type"],
+    )?;
+    let mut builder = aws_sdk_connecthealth::types::EncryptionContext::builder();
+    if let Some(value) = values.get_item("encryption_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_545: String = value.extract()?;
+        let fixture_544 =
+            aws_sdk_connecthealth::types::EncryptionType::from(enum_value_545.as_str());
+        builder = builder.set_encryption_type(Some(fixture_544));
+    }
+    if let Some(value) = dict_value(values, "kms_key_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_546: String = value.extract()?;
+        builder = builder.set_kms_key_arn(Some(fixture_546));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn fhir_server_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::FhirServer> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["fhir_endpoint", "oauth_token"],
+        &["fhir_endpoint"],
+    )?;
+    let mut builder = aws_sdk_connecthealth::types::FhirServer::builder();
+    if let Some(value) = values.get_item("fhir_endpoint")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_547: String = value.extract()?;
+        builder = builder.set_fhir_endpoint(Some(fixture_547));
+    }
+    if let Some(value) = dict_value(values, "oauth_token")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_548: String = value.extract()?;
+        builder = builder.set_oauth_token(Some(fixture_548));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn input_data_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::InputDataConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["fhir_server", "s3_sources"], &[])?;
+    let mut builder = aws_sdk_connecthealth::types::InputDataConfig::builder();
+    if let Some(value) = dict_value(values, "fhir_server")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_549 = fhir_server_fixture_from_py(&value)?;
+        builder = builder.set_fhir_server(Some(fixture_549));
+    }
+    if let Some(value) = dict_value(values, "s3_sources")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_550 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_551 in value.try_iter()? {
+            let item_552 = item_result_551?;
+            rboto_core::fixture_scalar(&item_552, "struct")?;
+            let converted_item_553 = s3_source_fixture_from_py(&item_552)?;
+            fixture_550.push(converted_item_553);
+        }
+        builder = builder.set_s3_sources(Some(fixture_550));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn insights_context_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::InsightsContext> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["insights_type"], &["insights_type"])?;
+    let mut builder = aws_sdk_connecthealth::types::InsightsContext::builder();
+    if let Some(value) = values.get_item("insights_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_555: String = value.extract()?;
+        let fixture_554 = aws_sdk_connecthealth::types::InsightsType::from(enum_value_555.as_str());
+        builder = builder.set_insights_type(Some(fixture_554));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn insights_output_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::InsightsOutput> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["uri"], &["uri"])?;
+    let mut builder = aws_sdk_connecthealth::types::InsightsOutput::builder();
+    if let Some(value) = values.get_item("uri")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_556: String = value.extract()?;
+        builder = builder.set_uri(Some(fixture_556));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn managed_template_response_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::ManagedTemplateResponse> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["template_type"], &[])?;
+    let mut builder = aws_sdk_connecthealth::types::ManagedTemplateResponse::builder();
+    if let Some(value) = dict_value(values, "template_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_558: String = value.extract()?;
+        let fixture_557 =
+            aws_sdk_connecthealth::types::ManagedNoteTemplate::from(enum_value_558.as_str());
+        builder = builder.set_template_type(Some(fixture_557));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn medical_scribe_channel_definition_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::MedicalScribeChannelDefinition> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["channel_id", "participant_role"],
+        &["channel_id", "participant_role"],
+    )?;
+    let mut builder = aws_sdk_connecthealth::types::MedicalScribeChannelDefinition::builder();
+    if let Some(value) = values.get_item("channel_id")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_559: i32 = value.extract()?;
+        builder = builder.set_channel_id(Some(fixture_559));
+    }
+    if let Some(value) = values.get_item("participant_role")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_561: String = value.extract()?;
+        let fixture_560 = aws_sdk_connecthealth::types::MedicalScribeParticipantRole::from(
+            enum_value_561.as_str(),
+        );
+        builder = builder.set_participant_role(Some(fixture_560));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn medical_scribe_listening_session_details_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::MedicalScribeListeningSessionDetails> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "session_id",
+            "domain_id",
+            "subscription_id",
+            "language_code",
+            "media_sample_rate_hertz",
+            "media_encoding",
+            "channel_definitions",
+            "post_stream_action_settings",
+            "post_stream_action_result",
+            "encounter_context_provided",
+            "stream_status",
+            "stream_creation_time",
+            "stream_end_time",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_connecthealth::types::MedicalScribeListeningSessionDetails::builder();
+    if let Some(value) = dict_value(values, "session_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_562: String = value.extract()?;
+        builder = builder.set_session_id(Some(fixture_562));
+    }
+    if let Some(value) = dict_value(values, "domain_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_563: String = value.extract()?;
+        builder = builder.set_domain_id(Some(fixture_563));
+    }
+    if let Some(value) = dict_value(values, "subscription_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_564: String = value.extract()?;
+        builder = builder.set_subscription_id(Some(fixture_564));
+    }
+    if let Some(value) = dict_value(values, "language_code")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_566: String = value.extract()?;
+        let fixture_565 =
+            aws_sdk_connecthealth::types::MedicalScribeLanguageCode::from(enum_value_566.as_str());
+        builder = builder.set_language_code(Some(fixture_565));
+    }
+    if let Some(value) = dict_value(values, "media_sample_rate_hertz")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_567: i32 = value.extract()?;
+        builder = builder.set_media_sample_rate_hertz(Some(fixture_567));
+    }
+    if let Some(value) = dict_value(values, "media_encoding")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_569: String = value.extract()?;
+        let fixture_568 =
+            aws_sdk_connecthealth::types::MedicalScribeMediaEncoding::from(enum_value_569.as_str());
+        builder = builder.set_media_encoding(Some(fixture_568));
+    }
+    if let Some(value) = dict_value(values, "channel_definitions")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_570 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_571 in value.try_iter()? {
+            let item_572 = item_result_571?;
+            rboto_core::fixture_scalar(&item_572, "struct")?;
+            let converted_item_573 = medical_scribe_channel_definition_fixture_from_py(&item_572)?;
+            fixture_570.push(converted_item_573);
+        }
+        builder = builder.set_channel_definitions(Some(fixture_570));
+    }
+    if let Some(value) = dict_value(values, "post_stream_action_settings")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_574 =
+            medical_scribe_post_stream_action_settings_response_fixture_from_py(&value)?;
+        builder = builder.set_post_stream_action_settings(Some(fixture_574));
+    }
+    if let Some(value) = dict_value(values, "post_stream_action_result")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_575 = medical_scribe_post_stream_actions_result_fixture_from_py(&value)?;
+        builder = builder.set_post_stream_action_result(Some(fixture_575));
+    }
+    if let Some(value) = dict_value(values, "encounter_context_provided")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_576: bool = value.extract()?;
+        builder = builder.set_encounter_context_provided(Some(fixture_576));
+    }
+    if let Some(value) = dict_value(values, "stream_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_578: String = value.extract()?;
+        let fixture_577 =
+            aws_sdk_connecthealth::types::MedicalScribeStreamStatus::from(enum_value_578.as_str());
+        builder = builder.set_stream_status(Some(fixture_577));
+    }
+    if let Some(value) = dict_value(values, "stream_creation_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_580: String = value.extract()?;
+        let fixture_579 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_580,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_stream_creation_time(Some(fixture_579));
+    }
+    if let Some(value) = dict_value(values, "stream_end_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_582: String = value.extract()?;
+        let fixture_581 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_582,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_stream_end_time(Some(fixture_581));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn medical_scribe_post_stream_action_settings_response_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::MedicalScribePostStreamActionSettingsResponse> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["output_s3_uri", "clinical_note_generation_settings"],
+        &["output_s3_uri"],
+    )?;
+    let mut builder =
+        aws_sdk_connecthealth::types::MedicalScribePostStreamActionSettingsResponse::builder();
+    if let Some(value) = values.get_item("output_s3_uri")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_583: String = value.extract()?;
+        builder = builder.set_output_s3_uri(Some(fixture_583));
+    }
+    if let Some(value) = dict_value(values, "clinical_note_generation_settings")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_584 = clinical_note_generation_settings_response_fixture_from_py(&value)?;
+        builder = builder.set_clinical_note_generation_settings(Some(fixture_584));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn medical_scribe_post_stream_actions_result_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::MedicalScribePostStreamActionsResult> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["clinical_note_generation_result"], &[])?;
+    let mut builder = aws_sdk_connecthealth::types::MedicalScribePostStreamActionsResult::builder();
+    if let Some(value) = dict_value(values, "clinical_note_generation_result")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_585 = clinical_note_generation_result_fixture_from_py(&value)?;
+        builder = builder.set_clinical_note_generation_result(Some(fixture_585));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn note_template_settings_response_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::NoteTemplateSettingsResponse> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("managed_template")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_586 = managed_template_response_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_connecthealth::types::NoteTemplateSettingsResponse::ManagedTemplate(
+                converted_586,
+            ),
+        );
+    }
+    if let Some(value) = values.get_item("custom_template")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_587 = custom_template_response_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_connecthealth::types::NoteTemplateSettingsResponse::CustomTemplate(
+                converted_587,
+            ),
+        );
+    }
+    Err(PyValueError::new_err(
+        "NoteTemplateSettingsResponse requires exactly one known variant",
+    ))
+}
+
+fn output_data_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::OutputDataConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["s3_output_path"], &["s3_output_path"])?;
+    let mut builder = aws_sdk_connecthealth::types::OutputDataConfig::builder();
+    if let Some(value) = values.get_item("s3_output_path")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_588: String = value.extract()?;
+        builder = builder.set_s3_output_path(Some(fixture_588));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn patient_insights_encounter_context_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::PatientInsightsEncounterContext> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["encounter_reason"], &["encounter_reason"])?;
+    let mut builder = aws_sdk_connecthealth::types::PatientInsightsEncounterContext::builder();
+    if let Some(value) = values.get_item("encounter_reason")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_589: String = value.extract()?;
+        builder = builder.set_encounter_reason(Some(fixture_589));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn patient_insights_patient_context_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::PatientInsightsPatientContext> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["patient_id", "date_of_birth", "pronouns"],
+        &["patient_id"],
+    )?;
+    let mut builder = aws_sdk_connecthealth::types::PatientInsightsPatientContext::builder();
+    if let Some(value) = values.get_item("patient_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_590: String = value.extract()?;
+        builder = builder.set_patient_id(Some(fixture_590));
+    }
+    if let Some(value) = dict_value(values, "date_of_birth")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_591: String = value.extract()?;
+        builder = builder.set_date_of_birth(Some(fixture_591));
+    }
+    if let Some(value) = dict_value(values, "pronouns")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_593: String = value.extract()?;
+        let fixture_592 = aws_sdk_connecthealth::types::Pronouns::from(enum_value_593.as_str());
+        builder = builder.set_pronouns(Some(fixture_592));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn s3_source_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::S3Source> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["uri"], &["uri"])?;
+    let mut builder = aws_sdk_connecthealth::types::S3Source::builder();
+    if let Some(value) = values.get_item("uri")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_594: String = value.extract()?;
+        builder = builder.set_uri(Some(fixture_594));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn subscription_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::SubscriptionDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "domain_id",
+            "subscription_id",
+            "arn",
+            "status",
+            "created_at",
+            "last_updated_at",
+            "activated_at",
+            "deactivated_at",
+        ],
+        &[
+            "domain_id",
+            "subscription_id",
+            "arn",
+            "status",
+            "created_at",
+            "last_updated_at",
+        ],
+    )?;
+    let mut builder = aws_sdk_connecthealth::types::SubscriptionDescription::builder();
+    if let Some(value) = values.get_item("domain_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_595: String = value.extract()?;
+        builder = builder.set_domain_id(Some(fixture_595));
+    }
+    if let Some(value) = values.get_item("subscription_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_596: String = value.extract()?;
+        builder = builder.set_subscription_id(Some(fixture_596));
+    }
+    if let Some(value) = values.get_item("arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_597: String = value.extract()?;
+        builder = builder.set_arn(Some(fixture_597));
+    }
+    if let Some(value) = values.get_item("status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_599: String = value.extract()?;
+        let fixture_598 =
+            aws_sdk_connecthealth::types::SubscriptionStatus::from(enum_value_599.as_str());
+        builder = builder.set_status(Some(fixture_598));
+    }
+    if let Some(value) = values.get_item("created_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_601: String = value.extract()?;
+        let fixture_600 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_601,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_created_at(Some(fixture_600));
+    }
+    if let Some(value) = values.get_item("last_updated_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_603: String = value.extract()?;
+        let fixture_602 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_603,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_updated_at(Some(fixture_602));
+    }
+    if let Some(value) = dict_value(values, "activated_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_605: String = value.extract()?;
+        let fixture_604 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_605,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_activated_at(Some(fixture_604));
+    }
+    if let Some(value) = dict_value(values, "deactivated_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_607: String = value.extract()?;
+        let fixture_606 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_607,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_deactivated_at(Some(fixture_606));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn user_context_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::UserContext> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["role", "user_id", "specialty"],
+        &["role", "user_id"],
+    )?;
+    let mut builder = aws_sdk_connecthealth::types::UserContext::builder();
+    if let Some(value) = values.get_item("role")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_609: String = value.extract()?;
+        let fixture_608 = aws_sdk_connecthealth::types::ProviderRole::from(enum_value_609.as_str());
+        builder = builder.set_role(Some(fixture_608));
+    }
+    if let Some(value) = values.get_item("user_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_610: String = value.extract()?;
+        builder = builder.set_user_id(Some(fixture_610));
+    }
+    if let Some(value) = dict_value(values, "specialty")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_612: String = value.extract()?;
+        let fixture_611 = aws_sdk_connecthealth::types::Specialty::from(enum_value_612.as_str());
+        builder = builder.set_specialty(Some(fixture_611));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn web_app_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::WebAppConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["ehr_role", "idc_application_id", "idc_region"],
+        &["ehr_role", "idc_application_id", "idc_region"],
+    )?;
+    let mut builder = aws_sdk_connecthealth::types::WebAppConfiguration::builder();
+    if let Some(value) = values.get_item("ehr_role")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_613: String = value.extract()?;
+        builder = builder.set_ehr_role(Some(fixture_613));
+    }
+    if let Some(value) = values.get_item("idc_application_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_614: String = value.extract()?;
+        builder = builder.set_idc_application_id(Some(fixture_614));
+    }
+    if let Some(value) = values.get_item("idc_region")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_615: String = value.extract()?;
+        builder = builder.set_idc_region(Some(fixture_615));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
 #[pyclass(
     name = "ArtifactDetails",
     module = "rboto_connecthealth._native",
@@ -2836,6 +3578,22 @@ impl PyOperationActivateSubscriptionOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["subscription"], &[])?;
+        let mut builder = aws_sdk_connecthealth::operation::activate_subscription::ActivateSubscriptionOutput::builder();
+        if let Some(value) = dict_value(values, "subscription")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_393 = subscription_description_fixture_from_py(&value)?;
+            builder = builder.set_subscription(Some(fixture_393));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -3001,6 +3759,86 @@ impl PyOperationCreateDomainOutput {
         result.set_item("created_at", converted_410)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "domain_id",
+                "arn",
+                "name",
+                "kms_key_arn",
+                "encryption_context",
+                "status",
+                "web_app_url",
+                "web_app_configuration",
+                "created_at",
+            ],
+            &["domain_id", "arn", "name", "status", "created_at"],
+        )?;
+        let mut builder =
+            aws_sdk_connecthealth::operation::create_domain::CreateDomainOutput::builder();
+        if let Some(value) = values.get_item("domain_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_411: String = value.extract()?;
+            builder = builder.set_domain_id(Some(fixture_411));
+        }
+        if let Some(value) = values.get_item("arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_412: String = value.extract()?;
+            builder = builder.set_arn(Some(fixture_412));
+        }
+        if let Some(value) = values.get_item("name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_413: String = value.extract()?;
+            builder = builder.set_name(Some(fixture_413));
+        }
+        if let Some(value) = dict_value(values, "kms_key_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_414: String = value.extract()?;
+            builder = builder.set_kms_key_arn(Some(fixture_414));
+        }
+        if let Some(value) = dict_value(values, "encryption_context")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_415 = encryption_context_fixture_from_py(&value)?;
+            builder = builder.set_encryption_context(Some(fixture_415));
+        }
+        if let Some(value) = values.get_item("status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_417: String = value.extract()?;
+            let fixture_416 =
+                aws_sdk_connecthealth::types::DomainStatus::from(enum_value_417.as_str());
+            builder = builder.set_status(Some(fixture_416));
+        }
+        if let Some(value) = dict_value(values, "web_app_url")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_418: String = value.extract()?;
+            builder = builder.set_web_app_url(Some(fixture_418));
+        }
+        if let Some(value) = dict_value(values, "web_app_configuration")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_419 = web_app_configuration_fixture_from_py(&value)?;
+            builder = builder.set_web_app_configuration(Some(fixture_419));
+        }
+        if let Some(value) = values.get_item("created_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_421: String = value.extract()?;
+            let fixture_420 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_421,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_at(Some(fixture_420));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -3098,6 +3936,99 @@ impl PyOperationCreateSubscriptionOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "domain_id",
+                "subscription_id",
+                "arn",
+                "status",
+                "created_at",
+                "last_updated_at",
+                "activated_at",
+                "deactivated_at",
+            ],
+            &[
+                "domain_id",
+                "subscription_id",
+                "arn",
+                "status",
+                "created_at",
+                "last_updated_at",
+            ],
+        )?;
+        let mut builder = aws_sdk_connecthealth::operation::create_subscription::CreateSubscriptionOutput::builder();
+        if let Some(value) = values.get_item("domain_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_427: String = value.extract()?;
+            builder = builder.set_domain_id(Some(fixture_427));
+        }
+        if let Some(value) = values.get_item("subscription_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_428: String = value.extract()?;
+            builder = builder.set_subscription_id(Some(fixture_428));
+        }
+        if let Some(value) = values.get_item("arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_429: String = value.extract()?;
+            builder = builder.set_arn(Some(fixture_429));
+        }
+        if let Some(value) = values.get_item("status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_431: String = value.extract()?;
+            let fixture_430 =
+                aws_sdk_connecthealth::types::SubscriptionStatus::from(enum_value_431.as_str());
+            builder = builder.set_status(Some(fixture_430));
+        }
+        if let Some(value) = values.get_item("created_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_433: String = value.extract()?;
+            let fixture_432 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_433,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_at(Some(fixture_432));
+        }
+        if let Some(value) = values.get_item("last_updated_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_435: String = value.extract()?;
+            let fixture_434 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_435,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_last_updated_at(Some(fixture_434));
+        }
+        if let Some(value) = dict_value(values, "activated_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_437: String = value.extract()?;
+            let fixture_436 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_437,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_activated_at(Some(fixture_436));
+        }
+        if let Some(value) = dict_value(values, "deactivated_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_439: String = value.extract()?;
+            let fixture_438 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_439,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_deactivated_at(Some(fixture_438));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -3155,6 +4086,22 @@ impl PyOperationDeactivateSubscriptionOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["subscription"], &[])?;
+        let mut builder = aws_sdk_connecthealth::operation::deactivate_subscription::DeactivateSubscriptionOutput::builder();
+        if let Some(value) = dict_value(values, "subscription")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_429 = subscription_description_fixture_from_py(&value)?;
+            builder = builder.set_subscription(Some(fixture_429));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -3195,6 +4142,39 @@ impl PyOperationDeleteDomainOutput {
         let converted_434 = (&self.inner.status).as_str().into_py_any(py)?;
         result.set_item("status", converted_434)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["domain_id", "arn", "status"],
+            &["domain_id", "arn", "status"],
+        )?;
+        let mut builder =
+            aws_sdk_connecthealth::operation::delete_domain::DeleteDomainOutput::builder();
+        if let Some(value) = values.get_item("domain_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_435: String = value.extract()?;
+            builder = builder.set_domain_id(Some(fixture_435));
+        }
+        if let Some(value) = values.get_item("arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_436: String = value.extract()?;
+            builder = builder.set_arn(Some(fixture_436));
+        }
+        if let Some(value) = values.get_item("status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_438: String = value.extract()?;
+            let fixture_437 =
+                aws_sdk_connecthealth::types::DomainStatus::from(enum_value_438.as_str());
+            builder = builder.set_status(Some(fixture_437));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 
@@ -3391,6 +4371,99 @@ impl PyOperationGetDomainOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "domain_id",
+                "arn",
+                "name",
+                "kms_key_arn",
+                "encryption_context",
+                "status",
+                "web_app_url",
+                "web_app_configuration",
+                "created_at",
+                "tags",
+            ],
+            &["domain_id", "arn", "name", "status", "created_at"],
+        )?;
+        let mut builder = aws_sdk_connecthealth::operation::get_domain::GetDomainOutput::builder();
+        if let Some(value) = values.get_item("domain_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_463: String = value.extract()?;
+            builder = builder.set_domain_id(Some(fixture_463));
+        }
+        if let Some(value) = values.get_item("arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_464: String = value.extract()?;
+            builder = builder.set_arn(Some(fixture_464));
+        }
+        if let Some(value) = values.get_item("name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_465: String = value.extract()?;
+            builder = builder.set_name(Some(fixture_465));
+        }
+        if let Some(value) = dict_value(values, "kms_key_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_466: String = value.extract()?;
+            builder = builder.set_kms_key_arn(Some(fixture_466));
+        }
+        if let Some(value) = dict_value(values, "encryption_context")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_467 = encryption_context_fixture_from_py(&value)?;
+            builder = builder.set_encryption_context(Some(fixture_467));
+        }
+        if let Some(value) = values.get_item("status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_469: String = value.extract()?;
+            let fixture_468 =
+                aws_sdk_connecthealth::types::DomainStatus::from(enum_value_469.as_str());
+            builder = builder.set_status(Some(fixture_468));
+        }
+        if let Some(value) = dict_value(values, "web_app_url")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_470: String = value.extract()?;
+            builder = builder.set_web_app_url(Some(fixture_470));
+        }
+        if let Some(value) = dict_value(values, "web_app_configuration")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_471 = web_app_configuration_fixture_from_py(&value)?;
+            builder = builder.set_web_app_configuration(Some(fixture_471));
+        }
+        if let Some(value) = values.get_item("created_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_473: String = value.extract()?;
+            let fixture_472 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_473,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_at(Some(fixture_472));
+        }
+        if let Some(value) = dict_value(values, "tags")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_475 = value.cast::<PyDict>()?;
+            let mut fixture_474 = HashMap::with_capacity(mapping_475.len());
+            for (key_476, value_477) in mapping_475.iter() {
+                rboto_core::fixture_scalar(&key_476, "string")?;
+                let converted_key_478: String = key_476.extract()?;
+                rboto_core::fixture_scalar(&value_477, "string")?;
+                let converted_value_479: String = value_477.extract()?;
+                fixture_474.insert(converted_key_478, converted_value_479);
+            }
+            builder = builder.set_tags(Some(fixture_474));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -3444,6 +4517,22 @@ impl PyOperationGetMedicalScribeListeningSessionOutput {
             result.set_item("medical_scribe_listening_session_details", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["medical_scribe_listening_session_details"], &[])?;
+        let mut builder = aws_sdk_connecthealth::operation::get_medical_scribe_listening_session::GetMedicalScribeListeningSessionOutput::builder();
+        if let Some(value) = dict_value(values, "medical_scribe_listening_session_details")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_465 = medical_scribe_listening_session_details_fixture_from_py(&value)?;
+            builder = builder.set_medical_scribe_listening_session_details(Some(fixture_465));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -3732,6 +4821,114 @@ impl PyOperationGetPatientInsightsJobOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "job_id",
+                "job_arn",
+                "job_status",
+                "creation_time",
+                "updated_time",
+                "insights_output",
+                "status_details",
+                "patient_context",
+                "insights_context",
+                "encounter_context",
+                "user_context",
+                "input_data_config",
+                "output_data_config",
+            ],
+            &["job_id", "job_arn", "job_status"],
+        )?;
+        let mut builder = aws_sdk_connecthealth::operation::get_patient_insights_job::GetPatientInsightsJobOutput::builder();
+        if let Some(value) = values.get_item("job_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_491: String = value.extract()?;
+            builder = builder.set_job_id(Some(fixture_491));
+        }
+        if let Some(value) = values.get_item("job_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_492: String = value.extract()?;
+            builder = builder.set_job_arn(Some(fixture_492));
+        }
+        if let Some(value) = values.get_item("job_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_494: String = value.extract()?;
+            let fixture_493 =
+                aws_sdk_connecthealth::types::JobStatus::from(enum_value_494.as_str());
+            builder = builder.set_job_status(Some(fixture_493));
+        }
+        if let Some(value) = dict_value(values, "creation_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_496: String = value.extract()?;
+            let fixture_495 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_496,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_creation_time(Some(fixture_495));
+        }
+        if let Some(value) = dict_value(values, "updated_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_498: String = value.extract()?;
+            let fixture_497 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_498,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_updated_time(Some(fixture_497));
+        }
+        if let Some(value) = dict_value(values, "insights_output")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_499 = insights_output_fixture_from_py(&value)?;
+            builder = builder.set_insights_output(Some(fixture_499));
+        }
+        if let Some(value) = dict_value(values, "status_details")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_500: String = value.extract()?;
+            builder = builder.set_status_details(Some(fixture_500));
+        }
+        if let Some(value) = dict_value(values, "patient_context")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_501 = patient_insights_patient_context_fixture_from_py(&value)?;
+            builder = builder.set_patient_context(Some(fixture_501));
+        }
+        if let Some(value) = dict_value(values, "insights_context")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_502 = insights_context_fixture_from_py(&value)?;
+            builder = builder.set_insights_context(Some(fixture_502));
+        }
+        if let Some(value) = dict_value(values, "encounter_context")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_503 = patient_insights_encounter_context_fixture_from_py(&value)?;
+            builder = builder.set_encounter_context(Some(fixture_503));
+        }
+        if let Some(value) = dict_value(values, "user_context")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_504 = user_context_fixture_from_py(&value)?;
+            builder = builder.set_user_context(Some(fixture_504));
+        }
+        if let Some(value) = dict_value(values, "input_data_config")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_505 = input_data_config_fixture_from_py(&value)?;
+            builder = builder.set_input_data_config(Some(fixture_505));
+        }
+        if let Some(value) = dict_value(values, "output_data_config")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_506 = output_data_config_fixture_from_py(&value)?;
+            builder = builder.set_output_data_config(Some(fixture_506));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -3788,6 +4985,23 @@ impl PyOperationGetSubscriptionOutput {
             result.set_item("subscription", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["subscription"], &[])?;
+        let mut builder =
+            aws_sdk_connecthealth::operation::get_subscription::GetSubscriptionOutput::builder();
+        if let Some(value) = dict_value(values, "subscription")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_493 = subscription_description_fixture_from_py(&value)?;
+            builder = builder.set_subscription(Some(fixture_493));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -3866,6 +5080,37 @@ impl PyOperationListDomainsOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["domains", "next_token"], &["domains"])?;
+        let mut builder =
+            aws_sdk_connecthealth::operation::list_domains::ListDomainsOutput::builder();
+        if let Some(value) = values.get_item("domains")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_502 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_503 in value.try_iter()? {
+                let item_504 = item_result_503?;
+                rboto_core::fixture_scalar(&item_504, "struct")?;
+                let converted_item_505 = domain_summary_fixture_from_py(&item_504)?;
+                fixture_502.push(converted_item_505);
+            }
+            builder = builder.set_domains(Some(fixture_502));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_506: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_506));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -3947,6 +5192,38 @@ impl PyOperationListSubscriptionsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["subscriptions", "next_token"], &["subscriptions"])?;
+        let mut builder =
+            aws_sdk_connecthealth::operation::list_subscriptions::ListSubscriptionsOutput::builder(
+            );
+        if let Some(value) = values.get_item("subscriptions")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_511 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_512 in value.try_iter()? {
+                let item_513 = item_result_512?;
+                rboto_core::fixture_scalar(&item_513, "struct")?;
+                let converted_item_514 = subscription_description_fixture_from_py(&item_513)?;
+                fixture_511.push(converted_item_514);
+            }
+            builder = builder.set_subscriptions(Some(fixture_511));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_515: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_515));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -3991,6 +5268,28 @@ impl PyOperationListTagsForResourceOutput {
             result.set_item("tags", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["tags"], &[])?;
+        let mut builder = aws_sdk_connecthealth::operation::list_tags_for_resource::ListTagsForResourceOutput::builder();
+        if let Some(value) = dict_value(values, "tags")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_522 = value.cast::<PyDict>()?;
+            let mut fixture_521 = HashMap::with_capacity(mapping_522.len());
+            for (key_523, value_524) in mapping_522.iter() {
+                rboto_core::fixture_scalar(&key_523, "string")?;
+                let converted_key_525: String = key_523.extract()?;
+                rboto_core::fixture_scalar(&value_524, "string")?;
+                let converted_value_526: String = value_524.extract()?;
+                fixture_521.insert(converted_key_525, converted_value_526);
+            }
+            builder = builder.set_tags(Some(fixture_521));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -4041,6 +5340,41 @@ impl PyOperationStartPatientInsightsJobOutput {
             result.set_item("creation_time", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["job_arn", "job_id", "creation_time"],
+            &["job_arn", "job_id"],
+        )?;
+        let mut builder = aws_sdk_connecthealth::operation::start_patient_insights_job::StartPatientInsightsJobOutput::builder();
+        if let Some(value) = values.get_item("job_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_527: String = value.extract()?;
+            builder = builder.set_job_arn(Some(fixture_527));
+        }
+        if let Some(value) = values.get_item("job_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_528: String = value.extract()?;
+            builder = builder.set_job_id(Some(fixture_528));
+        }
+        if let Some(value) = dict_value(values, "creation_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_530: String = value.extract()?;
+            let fixture_529 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_530,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_creation_time(Some(fixture_529));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 

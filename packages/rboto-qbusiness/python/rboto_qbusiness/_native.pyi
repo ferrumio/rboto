@@ -977,6 +977,8 @@ class WebExperience:
 @final
 class AssociatePermissionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/AssociatePermissionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> AssociatePermissionOutput: ...
     @property
     def statement(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -984,6 +986,8 @@ class AssociatePermissionOutput:
 @final
 class BatchDeleteDocumentOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/BatchDeleteDocumentOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> BatchDeleteDocumentOutput: ...
     @property
     def failed_documents(self) -> list[FailedDocument] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -991,6 +995,8 @@ class BatchDeleteDocumentOutput:
 @final
 class BatchPutDocumentOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/BatchPutDocumentOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> BatchPutDocumentOutput: ...
     @property
     def failed_documents(self) -> list[FailedDocument] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -998,6 +1004,8 @@ class BatchPutDocumentOutput:
 @final
 class CancelSubscriptionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CancelSubscriptionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CancelSubscriptionOutput: ...
     @property
     def subscription_arn(self) -> str | None: ...
     @property
@@ -1009,6 +1017,8 @@ class CancelSubscriptionOutput:
 @final
 class ChatSyncOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ChatSyncOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ChatSyncOutput: ...
     @property
     def conversation_id(self) -> str | None: ...
     @property
@@ -1030,6 +1040,8 @@ class ChatSyncOutput:
 @final
 class CheckDocumentAccessOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CheckDocumentAccessOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CheckDocumentAccessOutput: ...
     @property
     def user_groups(self) -> list[AssociatedGroup] | None: ...
     @property
@@ -1043,6 +1055,8 @@ class CheckDocumentAccessOutput:
 @final
 class CreateAnonymousWebExperienceUrlOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CreateAnonymousWebExperienceUrlOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateAnonymousWebExperienceUrlOutput: ...
     @property
     def anonymous_url(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1050,6 +1064,8 @@ class CreateAnonymousWebExperienceUrlOutput:
 @final
 class CreateApplicationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CreateApplicationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateApplicationOutput: ...
     @property
     def application_id(self) -> str | None: ...
     @property
@@ -1059,6 +1075,8 @@ class CreateApplicationOutput:
 @final
 class CreateChatResponseConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CreateChatResponseConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateChatResponseConfigurationOutput: ...
     @property
     def chat_response_configuration_id(self) -> str: ...
     @property
@@ -1068,6 +1086,8 @@ class CreateChatResponseConfigurationOutput:
 @final
 class CreateDataAccessorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CreateDataAccessorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateDataAccessorOutput: ...
     @property
     def data_accessor_id(self) -> str: ...
     @property
@@ -1079,6 +1099,8 @@ class CreateDataAccessorOutput:
 @final
 class CreateDataSourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CreateDataSourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateDataSourceOutput: ...
     @property
     def data_source_id(self) -> str | None: ...
     @property
@@ -1088,6 +1110,8 @@ class CreateDataSourceOutput:
 @final
 class CreateIndexOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CreateIndexOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateIndexOutput: ...
     @property
     def index_id(self) -> str | None: ...
     @property
@@ -1097,6 +1121,8 @@ class CreateIndexOutput:
 @final
 class CreatePluginOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CreatePluginOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreatePluginOutput: ...
     @property
     def plugin_id(self) -> str | None: ...
     @property
@@ -1108,6 +1134,8 @@ class CreatePluginOutput:
 @final
 class CreateRetrieverOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CreateRetrieverOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateRetrieverOutput: ...
     @property
     def retriever_id(self) -> str | None: ...
     @property
@@ -1117,6 +1145,8 @@ class CreateRetrieverOutput:
 @final
 class CreateSubscriptionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CreateSubscriptionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateSubscriptionOutput: ...
     @property
     def subscription_id(self) -> str | None: ...
     @property
@@ -1130,11 +1160,15 @@ class CreateSubscriptionOutput:
 @final
 class CreateUserOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CreateUserOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateUserOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateWebExperienceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CreateWebExperienceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateWebExperienceOutput: ...
     @property
     def web_experience_id(self) -> str | None: ...
     @property
@@ -1144,76 +1178,106 @@ class CreateWebExperienceOutput:
 @final
 class DeleteApplicationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeleteApplicationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteApplicationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteAttachmentOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeleteAttachmentOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteAttachmentOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteChatControlsConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeleteChatControlsConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteChatControlsConfigurationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteChatResponseConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeleteChatResponseConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteChatResponseConfigurationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteConversationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeleteConversationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteConversationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteDataAccessorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeleteDataAccessorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteDataAccessorOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteDataSourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeleteDataSourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteDataSourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteGroupOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeleteGroupOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteGroupOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteIndexOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeleteIndexOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteIndexOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeletePluginOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeletePluginOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeletePluginOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteRetrieverOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeleteRetrieverOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteRetrieverOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteUserOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeleteUserOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteUserOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteWebExperienceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeleteWebExperienceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteWebExperienceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DisassociatePermissionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DisassociatePermissionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DisassociatePermissionOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetApplicationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetApplicationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetApplicationOutput: ...
     @property
     def display_name(self) -> str | None: ...
     @property
@@ -1257,6 +1321,8 @@ class GetApplicationOutput:
 @final
 class GetChatControlsConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetChatControlsConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetChatControlsConfigurationOutput: ...
     @property
     def response_scope(self) -> _types.ResponseScopeOutput | None: ...
     @property
@@ -1276,6 +1342,8 @@ class GetChatControlsConfigurationOutput:
 @final
 class GetChatResponseConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetChatResponseConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetChatResponseConfigurationOutput: ...
     @property
     def chat_response_configuration_id(self) -> str | None: ...
     @property
@@ -1293,6 +1361,8 @@ class GetChatResponseConfigurationOutput:
 @final
 class GetDataAccessorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetDataAccessorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDataAccessorOutput: ...
     @property
     def display_name(self) -> str | None: ...
     @property
@@ -1318,6 +1388,8 @@ class GetDataAccessorOutput:
 @final
 class GetDataSourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetDataSourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDataSourceOutput: ...
     @property
     def application_id(self) -> str | None: ...
     @property
@@ -1357,6 +1429,8 @@ class GetDataSourceOutput:
 @final
 class GetDocumentContentOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetDocumentContentOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDocumentContentOutput: ...
     @property
     def presigned_url(self) -> str: ...
     @property
@@ -1366,6 +1440,8 @@ class GetDocumentContentOutput:
 @final
 class GetGroupOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetGroupOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetGroupOutput: ...
     @property
     def status(self) -> GroupStatusDetail | None: ...
     @property
@@ -1375,6 +1451,8 @@ class GetGroupOutput:
 @final
 class GetIndexOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetIndexOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetIndexOutput: ...
     @property
     def application_id(self) -> str | None: ...
     @property
@@ -1406,6 +1484,8 @@ class GetIndexOutput:
 @final
 class GetMediaOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetMediaOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetMediaOutput: ...
     @property
     def media_bytes(self) -> bytes | None: ...
     @property
@@ -1415,6 +1495,8 @@ class GetMediaOutput:
 @final
 class GetPluginOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetPluginOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetPluginOutput: ...
     @property
     def application_id(self) -> str | None: ...
     @property
@@ -1444,6 +1526,8 @@ class GetPluginOutput:
 @final
 class GetPolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetPolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetPolicyOutput: ...
     @property
     def policy(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1451,6 +1535,8 @@ class GetPolicyOutput:
 @final
 class GetRetrieverOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetRetrieverOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetRetrieverOutput: ...
     @property
     def application_id(self) -> str | None: ...
     @property
@@ -1476,6 +1562,8 @@ class GetRetrieverOutput:
 @final
 class GetUserOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetUserOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetUserOutput: ...
     @property
     def user_aliases(self) -> list[UserAlias] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1483,6 +1571,8 @@ class GetUserOutput:
 @final
 class GetWebExperienceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetWebExperienceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetWebExperienceOutput: ...
     @property
     def application_id(self) -> str | None: ...
     @property
@@ -1524,6 +1614,8 @@ class GetWebExperienceOutput:
 @final
 class ListApplicationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListApplicationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListApplicationsOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -1533,6 +1625,8 @@ class ListApplicationsOutput:
 @final
 class ListAttachmentsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListAttachmentsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListAttachmentsOutput: ...
     @property
     def attachments(self) -> list[Attachment] | None: ...
     @property
@@ -1542,6 +1636,8 @@ class ListAttachmentsOutput:
 @final
 class ListChatResponseConfigurationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListChatResponseConfigurationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListChatResponseConfigurationsOutput: ...
     @property
     def chat_response_configurations(self) -> list[ChatResponseConfiguration] | None: ...
     @property
@@ -1551,6 +1647,8 @@ class ListChatResponseConfigurationsOutput:
 @final
 class ListConversationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListConversationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListConversationsOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -1560,6 +1658,8 @@ class ListConversationsOutput:
 @final
 class ListDataAccessorsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListDataAccessorsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListDataAccessorsOutput: ...
     @property
     def data_accessors(self) -> list[DataAccessor] | None: ...
     @property
@@ -1569,6 +1669,8 @@ class ListDataAccessorsOutput:
 @final
 class ListDataSourceSyncJobsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListDataSourceSyncJobsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListDataSourceSyncJobsOutput: ...
     @property
     def history(self) -> list[DataSourceSyncJob] | None: ...
     @property
@@ -1578,6 +1680,8 @@ class ListDataSourceSyncJobsOutput:
 @final
 class ListDataSourcesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListDataSourcesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListDataSourcesOutput: ...
     @property
     def data_sources(self) -> list[DataSource] | None: ...
     @property
@@ -1587,6 +1691,8 @@ class ListDataSourcesOutput:
 @final
 class ListDocumentsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListDocumentsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListDocumentsOutput: ...
     @property
     def document_detail_list(self) -> list[DocumentDetails] | None: ...
     @property
@@ -1596,6 +1702,8 @@ class ListDocumentsOutput:
 @final
 class ListGroupsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListGroupsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListGroupsOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -1605,6 +1713,8 @@ class ListGroupsOutput:
 @final
 class ListIndicesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListIndicesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListIndicesOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -1614,6 +1724,8 @@ class ListIndicesOutput:
 @final
 class ListMessagesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListMessagesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListMessagesOutput: ...
     @property
     def messages(self) -> list[Message] | None: ...
     @property
@@ -1623,6 +1735,8 @@ class ListMessagesOutput:
 @final
 class ListPluginActionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListPluginActionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListPluginActionsOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -1632,6 +1746,8 @@ class ListPluginActionsOutput:
 @final
 class ListPluginTypeActionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListPluginTypeActionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListPluginTypeActionsOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -1641,6 +1757,8 @@ class ListPluginTypeActionsOutput:
 @final
 class ListPluginTypeMetadataOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListPluginTypeMetadataOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListPluginTypeMetadataOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -1650,6 +1768,8 @@ class ListPluginTypeMetadataOutput:
 @final
 class ListPluginsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListPluginsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListPluginsOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -1659,6 +1779,8 @@ class ListPluginsOutput:
 @final
 class ListRetrieversOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListRetrieversOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListRetrieversOutput: ...
     @property
     def retrievers(self) -> list[Retriever] | None: ...
     @property
@@ -1668,6 +1790,8 @@ class ListRetrieversOutput:
 @final
 class ListSubscriptionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListSubscriptionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListSubscriptionsOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -1677,6 +1801,8 @@ class ListSubscriptionsOutput:
 @final
 class ListTagsForResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListTagsForResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTagsForResourceOutput: ...
     @property
     def tags(self) -> list[Tag] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1684,6 +1810,8 @@ class ListTagsForResourceOutput:
 @final
 class ListWebExperiencesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListWebExperiencesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListWebExperiencesOutput: ...
     @property
     def web_experiences(self) -> list[WebExperience] | None: ...
     @property
@@ -1693,11 +1821,15 @@ class ListWebExperiencesOutput:
 @final
 class PutGroupOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/PutGroupOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutGroupOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SearchRelevantContentOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/SearchRelevantContentOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> SearchRelevantContentOutput: ...
     @property
     def relevant_content(self) -> list[RelevantContent] | None: ...
     @property
@@ -1707,6 +1839,8 @@ class SearchRelevantContentOutput:
 @final
 class StartDataSourceSyncJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/StartDataSourceSyncJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StartDataSourceSyncJobOutput: ...
     @property
     def execution_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1714,61 +1848,85 @@ class StartDataSourceSyncJobOutput:
 @final
 class StopDataSourceSyncJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/StopDataSourceSyncJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StopDataSourceSyncJobOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/TagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> TagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UntagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UntagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UntagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateApplicationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UpdateApplicationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateApplicationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateChatControlsConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UpdateChatControlsConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateChatControlsConfigurationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateChatResponseConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UpdateChatResponseConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateChatResponseConfigurationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateDataAccessorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UpdateDataAccessorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateDataAccessorOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateDataSourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UpdateDataSourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateDataSourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateIndexOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UpdateIndexOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateIndexOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdatePluginOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UpdatePluginOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdatePluginOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateRetrieverOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UpdateRetrieverOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateRetrieverOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateSubscriptionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UpdateSubscriptionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateSubscriptionOutput: ...
     @property
     def subscription_arn(self) -> str | None: ...
     @property
@@ -1780,6 +1938,8 @@ class UpdateSubscriptionOutput:
 @final
 class UpdateUserOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UpdateUserOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateUserOutput: ...
     @property
     def user_aliases_added(self) -> list[UserAlias] | None: ...
     @property
@@ -1791,6 +1951,8 @@ class UpdateUserOutput:
 @final
 class UpdateWebExperienceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UpdateWebExperienceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateWebExperienceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 

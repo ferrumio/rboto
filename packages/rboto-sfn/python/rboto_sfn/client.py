@@ -34,6 +34,48 @@ class StepFunctionsClient:
 
     logger_name = "rboto.sfn"
 
+    @staticmethod
+    def _stub_operations() -> dict[str, str]:
+        return {
+            "create_activity": "CreateActivity",
+            "create_state_machine": "CreateStateMachine",
+            "create_state_machine_alias": "CreateStateMachineAlias",
+            "delete_activity": "DeleteActivity",
+            "delete_state_machine": "DeleteStateMachine",
+            "delete_state_machine_alias": "DeleteStateMachineAlias",
+            "delete_state_machine_version": "DeleteStateMachineVersion",
+            "describe_activity": "DescribeActivity",
+            "describe_execution": "DescribeExecution",
+            "describe_map_run": "DescribeMapRun",
+            "describe_state_machine": "DescribeStateMachine",
+            "describe_state_machine_alias": "DescribeStateMachineAlias",
+            "describe_state_machine_for_execution": "DescribeStateMachineForExecution",
+            "get_activity_task": "GetActivityTask",
+            "get_execution_history": "GetExecutionHistory",
+            "list_activities": "ListActivities",
+            "list_executions": "ListExecutions",
+            "list_map_runs": "ListMapRuns",
+            "list_state_machine_aliases": "ListStateMachineAliases",
+            "list_state_machine_versions": "ListStateMachineVersions",
+            "list_state_machines": "ListStateMachines",
+            "list_tags_for_resource": "ListTagsForResource",
+            "publish_state_machine_version": "PublishStateMachineVersion",
+            "redrive_execution": "RedriveExecution",
+            "send_task_failure": "SendTaskFailure",
+            "send_task_heartbeat": "SendTaskHeartbeat",
+            "send_task_success": "SendTaskSuccess",
+            "start_execution": "StartExecution",
+            "start_sync_execution": "StartSyncExecution",
+            "stop_execution": "StopExecution",
+            "tag_resource": "TagResource",
+            "test_state": "TestState",
+            "untag_resource": "UntagResource",
+            "update_map_run": "UpdateMapRun",
+            "update_state_machine": "UpdateStateMachine",
+            "update_state_machine_alias": "UpdateStateMachineAlias",
+            "validate_state_machine_definition": "ValidateStateMachineDefinition",
+        }
+
     def __init__(
         self,
         *,

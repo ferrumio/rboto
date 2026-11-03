@@ -8204,6 +8204,3956 @@ fn write_request_to_py(
     Ok(result.into_any().unbind())
 }
 
+fn archival_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::ArchivalSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "archival_date_time",
+            "archival_reason",
+            "archival_backup_arn",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::ArchivalSummary::builder();
+    if let Some(value) = dict_value(values, "archival_date_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3556: String = value.extract()?;
+        let fixture_3555 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3556,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_archival_date_time(Some(fixture_3555));
+    }
+    if let Some(value) = dict_value(values, "archival_reason")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3557: String = value.extract()?;
+        builder = builder.set_archival_reason(Some(fixture_3557));
+    }
+    if let Some(value) = dict_value(values, "archival_backup_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3558: String = value.extract()?;
+        builder = builder.set_archival_backup_arn(Some(fixture_3558));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn attribute_definition_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::AttributeDefinition> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["attribute_name", "attribute_type"],
+        &["attribute_name", "attribute_type"],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::AttributeDefinition::builder();
+    if let Some(value) = values.get_item("attribute_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3559: String = value.extract()?;
+        builder = builder.set_attribute_name(Some(fixture_3559));
+    }
+    if let Some(value) = values.get_item("attribute_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3561: String = value.extract()?;
+        let fixture_3560 =
+            aws_sdk_dynamodb::types::ScalarAttributeType::from(enum_value_3561.as_str());
+        builder = builder.set_attribute_type(Some(fixture_3560));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn attribute_value_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::AttributeValue> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("s")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let converted_3562: String = value.extract()?;
+        return Ok(aws_sdk_dynamodb::types::AttributeValue::S(converted_3562));
+    }
+    if let Some(value) = values.get_item("n")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let converted_3563: String = value.extract()?;
+        return Ok(aws_sdk_dynamodb::types::AttributeValue::N(converted_3563));
+    }
+    if let Some(value) = values.get_item("b")? {
+        rboto_core::fixture_scalar(&value, "blob")?;
+        let bytes_3565: Vec<u8> = value.extract()?;
+        let converted_3564 = ::aws_smithy_types::Blob::new(bytes_3565);
+        return Ok(aws_sdk_dynamodb::types::AttributeValue::B(converted_3564));
+    }
+    if let Some(value) = values.get_item("ss")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut converted_3566 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3567 in value.try_iter()? {
+            let item_3568 = item_result_3567?;
+            rboto_core::fixture_scalar(&item_3568, "string")?;
+            let converted_item_3569: String = item_3568.extract()?;
+            converted_3566.push(converted_item_3569);
+        }
+        return Ok(aws_sdk_dynamodb::types::AttributeValue::Ss(converted_3566));
+    }
+    if let Some(value) = values.get_item("ns")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut converted_3570 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3571 in value.try_iter()? {
+            let item_3572 = item_result_3571?;
+            rboto_core::fixture_scalar(&item_3572, "string")?;
+            let converted_item_3573: String = item_3572.extract()?;
+            converted_3570.push(converted_item_3573);
+        }
+        return Ok(aws_sdk_dynamodb::types::AttributeValue::Ns(converted_3570));
+    }
+    if let Some(value) = values.get_item("bs")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut converted_3574 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3575 in value.try_iter()? {
+            let item_3576 = item_result_3575?;
+            rboto_core::fixture_scalar(&item_3576, "blob")?;
+            let bytes_3578: Vec<u8> = item_3576.extract()?;
+            let converted_item_3577 = ::aws_smithy_types::Blob::new(bytes_3578);
+            converted_3574.push(converted_item_3577);
+        }
+        return Ok(aws_sdk_dynamodb::types::AttributeValue::Bs(converted_3574));
+    }
+    if let Some(value) = values.get_item("m")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_3580 = value.cast::<PyDict>()?;
+        let mut converted_3579 = HashMap::with_capacity(mapping_3580.len());
+        for (key_3581, value_3582) in mapping_3580.iter() {
+            rboto_core::fixture_scalar(&key_3581, "string")?;
+            let converted_key_3583: String = key_3581.extract()?;
+            rboto_core::fixture_scalar(&value_3582, "union")?;
+            let converted_value_3584 = attribute_value_fixture_from_py(&value_3582)?;
+            converted_3579.insert(converted_key_3583, converted_value_3584);
+        }
+        return Ok(aws_sdk_dynamodb::types::AttributeValue::M(converted_3579));
+    }
+    if let Some(value) = values.get_item("l")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut converted_3585 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3586 in value.try_iter()? {
+            let item_3587 = item_result_3586?;
+            rboto_core::fixture_scalar(&item_3587, "union")?;
+            let converted_item_3588 = attribute_value_fixture_from_py(&item_3587)?;
+            converted_3585.push(converted_item_3588);
+        }
+        return Ok(aws_sdk_dynamodb::types::AttributeValue::L(converted_3585));
+    }
+    if let Some(value) = values.get_item("null")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let converted_3589: bool = value.extract()?;
+        return Ok(aws_sdk_dynamodb::types::AttributeValue::Null(
+            converted_3589,
+        ));
+    }
+    if let Some(value) = values.get_item("bool")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let converted_3590: bool = value.extract()?;
+        return Ok(aws_sdk_dynamodb::types::AttributeValue::Bool(
+            converted_3590,
+        ));
+    }
+    Err(PyValueError::new_err(
+        "AttributeValue requires exactly one known variant",
+    ))
+}
+
+fn auto_scaling_policy_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::AutoScalingPolicyDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "policy_name",
+            "target_tracking_scaling_policy_configuration",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::AutoScalingPolicyDescription::builder();
+    if let Some(value) = dict_value(values, "policy_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3591: String = value.extract()?;
+        builder = builder.set_policy_name(Some(fixture_3591));
+    }
+    if let Some(value) = dict_value(values, "target_tracking_scaling_policy_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3592 =
+            auto_scaling_target_tracking_scaling_policy_configuration_description_fixture_from_py(
+                &value,
+            )?;
+        builder = builder.set_target_tracking_scaling_policy_configuration(Some(fixture_3592));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn auto_scaling_settings_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::AutoScalingSettingsDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "minimum_units",
+            "maximum_units",
+            "auto_scaling_disabled",
+            "auto_scaling_role_arn",
+            "scaling_policies",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::AutoScalingSettingsDescription::builder();
+    if let Some(value) = dict_value(values, "minimum_units")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3593: i64 = value.extract()?;
+        builder = builder.set_minimum_units(Some(fixture_3593));
+    }
+    if let Some(value) = dict_value(values, "maximum_units")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3594: i64 = value.extract()?;
+        builder = builder.set_maximum_units(Some(fixture_3594));
+    }
+    if let Some(value) = dict_value(values, "auto_scaling_disabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_3595: bool = value.extract()?;
+        builder = builder.set_auto_scaling_disabled(Some(fixture_3595));
+    }
+    if let Some(value) = dict_value(values, "auto_scaling_role_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3596: String = value.extract()?;
+        builder = builder.set_auto_scaling_role_arn(Some(fixture_3596));
+    }
+    if let Some(value) = dict_value(values, "scaling_policies")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3597 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3598 in value.try_iter()? {
+            let item_3599 = item_result_3598?;
+            rboto_core::fixture_scalar(&item_3599, "struct")?;
+            let converted_item_3600 = auto_scaling_policy_description_fixture_from_py(&item_3599)?;
+            fixture_3597.push(converted_item_3600);
+        }
+        builder = builder.set_scaling_policies(Some(fixture_3597));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn auto_scaling_target_tracking_scaling_policy_configuration_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::AutoScalingTargetTrackingScalingPolicyConfigurationDescription>
+{
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "disable_scale_in",
+            "scale_in_cooldown",
+            "scale_out_cooldown",
+            "target_value",
+        ],
+        &["target_value"],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::AutoScalingTargetTrackingScalingPolicyConfigurationDescription::builder();
+    if let Some(value) = dict_value(values, "disable_scale_in")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_3601: bool = value.extract()?;
+        builder = builder.set_disable_scale_in(Some(fixture_3601));
+    }
+    if let Some(value) = dict_value(values, "scale_in_cooldown")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_3602: i32 = value.extract()?;
+        builder = builder.set_scale_in_cooldown(Some(fixture_3602));
+    }
+    if let Some(value) = dict_value(values, "scale_out_cooldown")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_3603: i32 = value.extract()?;
+        builder = builder.set_scale_out_cooldown(Some(fixture_3603));
+    }
+    if let Some(value) = values.get_item("target_value")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_3604: f64 = value.extract()?;
+        builder = builder.set_target_value(Some(fixture_3604));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn backup_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::BackupDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "backup_details",
+            "source_table_details",
+            "source_table_feature_details",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::BackupDescription::builder();
+    if let Some(value) = dict_value(values, "backup_details")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3605 = backup_details_fixture_from_py(&value)?;
+        builder = builder.set_backup_details(Some(fixture_3605));
+    }
+    if let Some(value) = dict_value(values, "source_table_details")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3606 = source_table_details_fixture_from_py(&value)?;
+        builder = builder.set_source_table_details(Some(fixture_3606));
+    }
+    if let Some(value) = dict_value(values, "source_table_feature_details")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3607 = source_table_feature_details_fixture_from_py(&value)?;
+        builder = builder.set_source_table_feature_details(Some(fixture_3607));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn backup_details_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::BackupDetails> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "backup_arn",
+            "backup_name",
+            "backup_size_bytes",
+            "backup_status",
+            "backup_type",
+            "backup_creation_date_time",
+            "backup_expiry_date_time",
+        ],
+        &[
+            "backup_arn",
+            "backup_name",
+            "backup_status",
+            "backup_type",
+            "backup_creation_date_time",
+        ],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::BackupDetails::builder();
+    if let Some(value) = values.get_item("backup_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3608: String = value.extract()?;
+        builder = builder.set_backup_arn(Some(fixture_3608));
+    }
+    if let Some(value) = values.get_item("backup_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3609: String = value.extract()?;
+        builder = builder.set_backup_name(Some(fixture_3609));
+    }
+    if let Some(value) = dict_value(values, "backup_size_bytes")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3610: i64 = value.extract()?;
+        builder = builder.set_backup_size_bytes(Some(fixture_3610));
+    }
+    if let Some(value) = values.get_item("backup_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3612: String = value.extract()?;
+        let fixture_3611 = aws_sdk_dynamodb::types::BackupStatus::from(enum_value_3612.as_str());
+        builder = builder.set_backup_status(Some(fixture_3611));
+    }
+    if let Some(value) = values.get_item("backup_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3614: String = value.extract()?;
+        let fixture_3613 = aws_sdk_dynamodb::types::BackupType::from(enum_value_3614.as_str());
+        builder = builder.set_backup_type(Some(fixture_3613));
+    }
+    if let Some(value) = values.get_item("backup_creation_date_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3616: String = value.extract()?;
+        let fixture_3615 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3616,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_backup_creation_date_time(Some(fixture_3615));
+    }
+    if let Some(value) = dict_value(values, "backup_expiry_date_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3618: String = value.extract()?;
+        let fixture_3617 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3618,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_backup_expiry_date_time(Some(fixture_3617));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn backup_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::BackupSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "table_name",
+            "table_id",
+            "table_arn",
+            "backup_arn",
+            "backup_name",
+            "backup_creation_date_time",
+            "backup_expiry_date_time",
+            "backup_status",
+            "backup_type",
+            "backup_size_bytes",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::BackupSummary::builder();
+    if let Some(value) = dict_value(values, "table_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3619: String = value.extract()?;
+        builder = builder.set_table_name(Some(fixture_3619));
+    }
+    if let Some(value) = dict_value(values, "table_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3620: String = value.extract()?;
+        builder = builder.set_table_id(Some(fixture_3620));
+    }
+    if let Some(value) = dict_value(values, "table_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3621: String = value.extract()?;
+        builder = builder.set_table_arn(Some(fixture_3621));
+    }
+    if let Some(value) = dict_value(values, "backup_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3622: String = value.extract()?;
+        builder = builder.set_backup_arn(Some(fixture_3622));
+    }
+    if let Some(value) = dict_value(values, "backup_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3623: String = value.extract()?;
+        builder = builder.set_backup_name(Some(fixture_3623));
+    }
+    if let Some(value) = dict_value(values, "backup_creation_date_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3625: String = value.extract()?;
+        let fixture_3624 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3625,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_backup_creation_date_time(Some(fixture_3624));
+    }
+    if let Some(value) = dict_value(values, "backup_expiry_date_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3627: String = value.extract()?;
+        let fixture_3626 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3627,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_backup_expiry_date_time(Some(fixture_3626));
+    }
+    if let Some(value) = dict_value(values, "backup_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3629: String = value.extract()?;
+        let fixture_3628 = aws_sdk_dynamodb::types::BackupStatus::from(enum_value_3629.as_str());
+        builder = builder.set_backup_status(Some(fixture_3628));
+    }
+    if let Some(value) = dict_value(values, "backup_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3631: String = value.extract()?;
+        let fixture_3630 = aws_sdk_dynamodb::types::BackupType::from(enum_value_3631.as_str());
+        builder = builder.set_backup_type(Some(fixture_3630));
+    }
+    if let Some(value) = dict_value(values, "backup_size_bytes")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3632: i64 = value.extract()?;
+        builder = builder.set_backup_size_bytes(Some(fixture_3632));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn batch_statement_error_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::BatchStatementError> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["code", "message", "item"], &[])?;
+    let mut builder = aws_sdk_dynamodb::types::BatchStatementError::builder();
+    if let Some(value) = dict_value(values, "code")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3634: String = value.extract()?;
+        let fixture_3633 =
+            aws_sdk_dynamodb::types::BatchStatementErrorCodeEnum::from(enum_value_3634.as_str());
+        builder = builder.set_code(Some(fixture_3633));
+    }
+    if let Some(value) = dict_value(values, "message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3635: String = value.extract()?;
+        builder = builder.set_message(Some(fixture_3635));
+    }
+    if let Some(value) = dict_value(values, "item")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_3637 = value.cast::<PyDict>()?;
+        let mut fixture_3636 = HashMap::with_capacity(mapping_3637.len());
+        for (key_3638, value_3639) in mapping_3637.iter() {
+            rboto_core::fixture_scalar(&key_3638, "string")?;
+            let converted_key_3640: String = key_3638.extract()?;
+            rboto_core::fixture_scalar(&value_3639, "union")?;
+            let converted_value_3641 = attribute_value_fixture_from_py(&value_3639)?;
+            fixture_3636.insert(converted_key_3640, converted_value_3641);
+        }
+        builder = builder.set_item(Some(fixture_3636));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn batch_statement_response_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::BatchStatementResponse> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["error", "table_name", "item"], &[])?;
+    let mut builder = aws_sdk_dynamodb::types::BatchStatementResponse::builder();
+    if let Some(value) = dict_value(values, "error")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3642 = batch_statement_error_fixture_from_py(&value)?;
+        builder = builder.set_error(Some(fixture_3642));
+    }
+    if let Some(value) = dict_value(values, "table_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3643: String = value.extract()?;
+        builder = builder.set_table_name(Some(fixture_3643));
+    }
+    if let Some(value) = dict_value(values, "item")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_3645 = value.cast::<PyDict>()?;
+        let mut fixture_3644 = HashMap::with_capacity(mapping_3645.len());
+        for (key_3646, value_3647) in mapping_3645.iter() {
+            rboto_core::fixture_scalar(&key_3646, "string")?;
+            let converted_key_3648: String = key_3646.extract()?;
+            rboto_core::fixture_scalar(&value_3647, "union")?;
+            let converted_value_3649 = attribute_value_fixture_from_py(&value_3647)?;
+            fixture_3644.insert(converted_key_3648, converted_value_3649);
+        }
+        builder = builder.set_item(Some(fixture_3644));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn billing_mode_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::BillingModeSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["billing_mode", "last_update_to_pay_per_request_date_time"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::BillingModeSummary::builder();
+    if let Some(value) = dict_value(values, "billing_mode")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3651: String = value.extract()?;
+        let fixture_3650 = aws_sdk_dynamodb::types::BillingMode::from(enum_value_3651.as_str());
+        builder = builder.set_billing_mode(Some(fixture_3650));
+    }
+    if let Some(value) = dict_value(values, "last_update_to_pay_per_request_date_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3653: String = value.extract()?;
+        let fixture_3652 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3653,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_update_to_pay_per_request_date_time(Some(fixture_3652));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn capacity_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::Capacity> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "read_capacity_units",
+            "write_capacity_units",
+            "capacity_units",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::Capacity::builder();
+    if let Some(value) = dict_value(values, "read_capacity_units")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_3654: f64 = value.extract()?;
+        builder = builder.set_read_capacity_units(Some(fixture_3654));
+    }
+    if let Some(value) = dict_value(values, "write_capacity_units")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_3655: f64 = value.extract()?;
+        builder = builder.set_write_capacity_units(Some(fixture_3655));
+    }
+    if let Some(value) = dict_value(values, "capacity_units")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_3656: f64 = value.extract()?;
+        builder = builder.set_capacity_units(Some(fixture_3656));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn consumed_capacity_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::ConsumedCapacity> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "table_name",
+            "capacity_units",
+            "read_capacity_units",
+            "write_capacity_units",
+            "table",
+            "local_secondary_indexes",
+            "global_secondary_indexes",
+            "vector_indexes",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::ConsumedCapacity::builder();
+    if let Some(value) = dict_value(values, "table_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3657: String = value.extract()?;
+        builder = builder.set_table_name(Some(fixture_3657));
+    }
+    if let Some(value) = dict_value(values, "capacity_units")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_3658: f64 = value.extract()?;
+        builder = builder.set_capacity_units(Some(fixture_3658));
+    }
+    if let Some(value) = dict_value(values, "read_capacity_units")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_3659: f64 = value.extract()?;
+        builder = builder.set_read_capacity_units(Some(fixture_3659));
+    }
+    if let Some(value) = dict_value(values, "write_capacity_units")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_3660: f64 = value.extract()?;
+        builder = builder.set_write_capacity_units(Some(fixture_3660));
+    }
+    if let Some(value) = dict_value(values, "table")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3661 = capacity_fixture_from_py(&value)?;
+        builder = builder.set_table(Some(fixture_3661));
+    }
+    if let Some(value) = dict_value(values, "local_secondary_indexes")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_3663 = value.cast::<PyDict>()?;
+        let mut fixture_3662 = HashMap::with_capacity(mapping_3663.len());
+        for (key_3664, value_3665) in mapping_3663.iter() {
+            rboto_core::fixture_scalar(&key_3664, "string")?;
+            let converted_key_3666: String = key_3664.extract()?;
+            rboto_core::fixture_scalar(&value_3665, "struct")?;
+            let converted_value_3667 = capacity_fixture_from_py(&value_3665)?;
+            fixture_3662.insert(converted_key_3666, converted_value_3667);
+        }
+        builder = builder.set_local_secondary_indexes(Some(fixture_3662));
+    }
+    if let Some(value) = dict_value(values, "global_secondary_indexes")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_3669 = value.cast::<PyDict>()?;
+        let mut fixture_3668 = HashMap::with_capacity(mapping_3669.len());
+        for (key_3670, value_3671) in mapping_3669.iter() {
+            rboto_core::fixture_scalar(&key_3670, "string")?;
+            let converted_key_3672: String = key_3670.extract()?;
+            rboto_core::fixture_scalar(&value_3671, "struct")?;
+            let converted_value_3673 = capacity_fixture_from_py(&value_3671)?;
+            fixture_3668.insert(converted_key_3672, converted_value_3673);
+        }
+        builder = builder.set_global_secondary_indexes(Some(fixture_3668));
+    }
+    if let Some(value) = dict_value(values, "vector_indexes")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_3675 = value.cast::<PyDict>()?;
+        let mut fixture_3674 = HashMap::with_capacity(mapping_3675.len());
+        for (key_3676, value_3677) in mapping_3675.iter() {
+            rboto_core::fixture_scalar(&key_3676, "string")?;
+            let converted_key_3678: String = key_3676.extract()?;
+            rboto_core::fixture_scalar(&value_3677, "struct")?;
+            let converted_value_3679 = vector_capacity_fixture_from_py(&value_3677)?;
+            fixture_3674.insert(converted_key_3678, converted_value_3679);
+        }
+        builder = builder.set_vector_indexes(Some(fixture_3674));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn continuous_backups_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::ContinuousBackupsDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "continuous_backups_status",
+            "point_in_time_recovery_description",
+        ],
+        &["continuous_backups_status"],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::ContinuousBackupsDescription::builder();
+    if let Some(value) = values.get_item("continuous_backups_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3681: String = value.extract()?;
+        let fixture_3680 =
+            aws_sdk_dynamodb::types::ContinuousBackupsStatus::from(enum_value_3681.as_str());
+        builder = builder.set_continuous_backups_status(Some(fixture_3680));
+    }
+    if let Some(value) = dict_value(values, "point_in_time_recovery_description")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3682 = point_in_time_recovery_description_fixture_from_py(&value)?;
+        builder = builder.set_point_in_time_recovery_description(Some(fixture_3682));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn contributor_insights_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::ContributorInsightsSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "table_name",
+            "index_name",
+            "contributor_insights_status",
+            "contributor_insights_mode",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::ContributorInsightsSummary::builder();
+    if let Some(value) = dict_value(values, "table_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3683: String = value.extract()?;
+        builder = builder.set_table_name(Some(fixture_3683));
+    }
+    if let Some(value) = dict_value(values, "index_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3684: String = value.extract()?;
+        builder = builder.set_index_name(Some(fixture_3684));
+    }
+    if let Some(value) = dict_value(values, "contributor_insights_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3686: String = value.extract()?;
+        let fixture_3685 =
+            aws_sdk_dynamodb::types::ContributorInsightsStatus::from(enum_value_3686.as_str());
+        builder = builder.set_contributor_insights_status(Some(fixture_3685));
+    }
+    if let Some(value) = dict_value(values, "contributor_insights_mode")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3688: String = value.extract()?;
+        let fixture_3687 =
+            aws_sdk_dynamodb::types::ContributorInsightsMode::from(enum_value_3688.as_str());
+        builder = builder.set_contributor_insights_mode(Some(fixture_3687));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn csv_options_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::CsvOptions> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["delimiter", "header_list"], &[])?;
+    let mut builder = aws_sdk_dynamodb::types::CsvOptions::builder();
+    if let Some(value) = dict_value(values, "delimiter")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3689: String = value.extract()?;
+        builder = builder.set_delimiter(Some(fixture_3689));
+    }
+    if let Some(value) = dict_value(values, "header_list")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3690 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3691 in value.try_iter()? {
+            let item_3692 = item_result_3691?;
+            rboto_core::fixture_scalar(&item_3692, "string")?;
+            let converted_item_3693: String = item_3692.extract()?;
+            fixture_3690.push(converted_item_3693);
+        }
+        builder = builder.set_header_list(Some(fixture_3690));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn delete_request_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::DeleteRequest> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["key"], &["key"])?;
+    let mut builder = aws_sdk_dynamodb::types::DeleteRequest::builder();
+    if let Some(value) = values.get_item("key")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_3695 = value.cast::<PyDict>()?;
+        let mut fixture_3694 = HashMap::with_capacity(mapping_3695.len());
+        for (key_3696, value_3697) in mapping_3695.iter() {
+            rboto_core::fixture_scalar(&key_3696, "string")?;
+            let converted_key_3698: String = key_3696.extract()?;
+            rboto_core::fixture_scalar(&value_3697, "union")?;
+            let converted_value_3699 = attribute_value_fixture_from_py(&value_3697)?;
+            fixture_3694.insert(converted_key_3698, converted_value_3699);
+        }
+        builder = builder.set_key(Some(fixture_3694));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn enable_kinesis_streaming_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::EnableKinesisStreamingConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["approximate_creation_date_time_precision"], &[])?;
+    let mut builder = aws_sdk_dynamodb::types::EnableKinesisStreamingConfiguration::builder();
+    if let Some(value) = dict_value(values, "approximate_creation_date_time_precision")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3701: String = value.extract()?;
+        let fixture_3700 = aws_sdk_dynamodb::types::ApproximateCreationDateTimePrecision::from(
+            enum_value_3701.as_str(),
+        );
+        builder = builder.set_approximate_creation_date_time_precision(Some(fixture_3700));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn endpoint_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::Endpoint> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["address", "cache_period_in_minutes"],
+        &["address", "cache_period_in_minutes"],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::Endpoint::builder();
+    if let Some(value) = values.get_item("address")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3702: String = value.extract()?;
+        builder = builder.set_address(Some(fixture_3702));
+    }
+    if let Some(value) = values.get_item("cache_period_in_minutes")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3703: i64 = value.extract()?;
+        builder = builder.set_cache_period_in_minutes(Some(fixture_3703));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn export_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::ExportDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "export_arn",
+            "export_status",
+            "start_time",
+            "end_time",
+            "export_manifest",
+            "table_arn",
+            "table_id",
+            "export_time",
+            "client_token",
+            "s3_bucket",
+            "s3_bucket_owner",
+            "s3_prefix",
+            "s3_sse_algorithm",
+            "s3_sse_kms_key_id",
+            "failure_code",
+            "failure_message",
+            "export_format",
+            "billed_size_bytes",
+            "item_count",
+            "export_type",
+            "incremental_export_specification",
+            "filter_specification",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::ExportDescription::builder();
+    if let Some(value) = dict_value(values, "export_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3704: String = value.extract()?;
+        builder = builder.set_export_arn(Some(fixture_3704));
+    }
+    if let Some(value) = dict_value(values, "export_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3706: String = value.extract()?;
+        let fixture_3705 = aws_sdk_dynamodb::types::ExportStatus::from(enum_value_3706.as_str());
+        builder = builder.set_export_status(Some(fixture_3705));
+    }
+    if let Some(value) = dict_value(values, "start_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3708: String = value.extract()?;
+        let fixture_3707 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3708,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_start_time(Some(fixture_3707));
+    }
+    if let Some(value) = dict_value(values, "end_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3710: String = value.extract()?;
+        let fixture_3709 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3710,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_end_time(Some(fixture_3709));
+    }
+    if let Some(value) = dict_value(values, "export_manifest")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3711: String = value.extract()?;
+        builder = builder.set_export_manifest(Some(fixture_3711));
+    }
+    if let Some(value) = dict_value(values, "table_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3712: String = value.extract()?;
+        builder = builder.set_table_arn(Some(fixture_3712));
+    }
+    if let Some(value) = dict_value(values, "table_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3713: String = value.extract()?;
+        builder = builder.set_table_id(Some(fixture_3713));
+    }
+    if let Some(value) = dict_value(values, "export_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3715: String = value.extract()?;
+        let fixture_3714 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3715,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_export_time(Some(fixture_3714));
+    }
+    if let Some(value) = dict_value(values, "client_token")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3716: String = value.extract()?;
+        builder = builder.set_client_token(Some(fixture_3716));
+    }
+    if let Some(value) = dict_value(values, "s3_bucket")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3717: String = value.extract()?;
+        builder = builder.set_s3_bucket(Some(fixture_3717));
+    }
+    if let Some(value) = dict_value(values, "s3_bucket_owner")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3718: String = value.extract()?;
+        builder = builder.set_s3_bucket_owner(Some(fixture_3718));
+    }
+    if let Some(value) = dict_value(values, "s3_prefix")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3719: String = value.extract()?;
+        builder = builder.set_s3_prefix(Some(fixture_3719));
+    }
+    if let Some(value) = dict_value(values, "s3_sse_algorithm")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3721: String = value.extract()?;
+        let fixture_3720 = aws_sdk_dynamodb::types::S3SseAlgorithm::from(enum_value_3721.as_str());
+        builder = builder.set_s3_sse_algorithm(Some(fixture_3720));
+    }
+    if let Some(value) = dict_value(values, "s3_sse_kms_key_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3722: String = value.extract()?;
+        builder = builder.set_s3_sse_kms_key_id(Some(fixture_3722));
+    }
+    if let Some(value) = dict_value(values, "failure_code")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3723: String = value.extract()?;
+        builder = builder.set_failure_code(Some(fixture_3723));
+    }
+    if let Some(value) = dict_value(values, "failure_message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3724: String = value.extract()?;
+        builder = builder.set_failure_message(Some(fixture_3724));
+    }
+    if let Some(value) = dict_value(values, "export_format")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3726: String = value.extract()?;
+        let fixture_3725 = aws_sdk_dynamodb::types::ExportFormat::from(enum_value_3726.as_str());
+        builder = builder.set_export_format(Some(fixture_3725));
+    }
+    if let Some(value) = dict_value(values, "billed_size_bytes")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3727: i64 = value.extract()?;
+        builder = builder.set_billed_size_bytes(Some(fixture_3727));
+    }
+    if let Some(value) = dict_value(values, "item_count")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3728: i64 = value.extract()?;
+        builder = builder.set_item_count(Some(fixture_3728));
+    }
+    if let Some(value) = dict_value(values, "export_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3730: String = value.extract()?;
+        let fixture_3729 = aws_sdk_dynamodb::types::ExportType::from(enum_value_3730.as_str());
+        builder = builder.set_export_type(Some(fixture_3729));
+    }
+    if let Some(value) = dict_value(values, "incremental_export_specification")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3731 = incremental_export_specification_fixture_from_py(&value)?;
+        builder = builder.set_incremental_export_specification(Some(fixture_3731));
+    }
+    if let Some(value) = dict_value(values, "filter_specification")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3732 = filter_specification_fixture_from_py(&value)?;
+        builder = builder.set_filter_specification(Some(fixture_3732));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn export_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::ExportSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["export_arn", "export_status", "export_type"], &[])?;
+    let mut builder = aws_sdk_dynamodb::types::ExportSummary::builder();
+    if let Some(value) = dict_value(values, "export_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3733: String = value.extract()?;
+        builder = builder.set_export_arn(Some(fixture_3733));
+    }
+    if let Some(value) = dict_value(values, "export_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3735: String = value.extract()?;
+        let fixture_3734 = aws_sdk_dynamodb::types::ExportStatus::from(enum_value_3735.as_str());
+        builder = builder.set_export_status(Some(fixture_3734));
+    }
+    if let Some(value) = dict_value(values, "export_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3737: String = value.extract()?;
+        let fixture_3736 = aws_sdk_dynamodb::types::ExportType::from(enum_value_3737.as_str());
+        builder = builder.set_export_type(Some(fixture_3736));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn failure_exception_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::FailureException> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["exception_name", "exception_description"], &[])?;
+    let mut builder = aws_sdk_dynamodb::types::FailureException::builder();
+    if let Some(value) = dict_value(values, "exception_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3738: String = value.extract()?;
+        builder = builder.set_exception_name(Some(fixture_3738));
+    }
+    if let Some(value) = dict_value(values, "exception_description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3739: String = value.extract()?;
+        builder = builder.set_exception_description(Some(fixture_3739));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn filter_specification_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::FilterSpecification> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "filter_expression",
+            "projection_expression",
+            "key_condition_expression",
+            "expression_attribute_names",
+            "expression_attribute_values",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::FilterSpecification::builder();
+    if let Some(value) = dict_value(values, "filter_expression")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3740: String = value.extract()?;
+        builder = builder.set_filter_expression(Some(fixture_3740));
+    }
+    if let Some(value) = dict_value(values, "projection_expression")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3741: String = value.extract()?;
+        builder = builder.set_projection_expression(Some(fixture_3741));
+    }
+    if let Some(value) = dict_value(values, "key_condition_expression")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3742: String = value.extract()?;
+        builder = builder.set_key_condition_expression(Some(fixture_3742));
+    }
+    if let Some(value) = dict_value(values, "expression_attribute_names")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_3744 = value.cast::<PyDict>()?;
+        let mut fixture_3743 = HashMap::with_capacity(mapping_3744.len());
+        for (key_3745, value_3746) in mapping_3744.iter() {
+            rboto_core::fixture_scalar(&key_3745, "string")?;
+            let converted_key_3747: String = key_3745.extract()?;
+            rboto_core::fixture_scalar(&value_3746, "string")?;
+            let converted_value_3748: String = value_3746.extract()?;
+            fixture_3743.insert(converted_key_3747, converted_value_3748);
+        }
+        builder = builder.set_expression_attribute_names(Some(fixture_3743));
+    }
+    if let Some(value) = dict_value(values, "expression_attribute_values")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_3750 = value.cast::<PyDict>()?;
+        let mut fixture_3749 = HashMap::with_capacity(mapping_3750.len());
+        for (key_3751, value_3752) in mapping_3750.iter() {
+            rboto_core::fixture_scalar(&key_3751, "string")?;
+            let converted_key_3753: String = key_3751.extract()?;
+            rboto_core::fixture_scalar(&value_3752, "union")?;
+            let converted_value_3754 = attribute_value_fixture_from_py(&value_3752)?;
+            fixture_3749.insert(converted_key_3753, converted_value_3754);
+        }
+        builder = builder.set_expression_attribute_values(Some(fixture_3749));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn global_secondary_index_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::GlobalSecondaryIndex> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "index_name",
+            "key_schema",
+            "projection",
+            "provisioned_throughput",
+            "on_demand_throughput",
+            "warm_throughput",
+        ],
+        &["index_name", "key_schema"],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::GlobalSecondaryIndex::builder();
+    if let Some(value) = values.get_item("index_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3755: String = value.extract()?;
+        builder = builder.set_index_name(Some(fixture_3755));
+    }
+    if let Some(value) = values.get_item("key_schema")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3756 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3757 in value.try_iter()? {
+            let item_3758 = item_result_3757?;
+            rboto_core::fixture_scalar(&item_3758, "struct")?;
+            let converted_item_3759 = key_schema_element_fixture_from_py(&item_3758)?;
+            fixture_3756.push(converted_item_3759);
+        }
+        builder = builder.set_key_schema(Some(fixture_3756));
+    }
+    if let Some(value) = dict_value(values, "projection")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3760 = projection_fixture_from_py(&value)?;
+        builder = builder.set_projection(Some(fixture_3760));
+    }
+    if let Some(value) = dict_value(values, "provisioned_throughput")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3761 = provisioned_throughput_fixture_from_py(&value)?;
+        builder = builder.set_provisioned_throughput(Some(fixture_3761));
+    }
+    if let Some(value) = dict_value(values, "on_demand_throughput")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3762 = on_demand_throughput_fixture_from_py(&value)?;
+        builder = builder.set_on_demand_throughput(Some(fixture_3762));
+    }
+    if let Some(value) = dict_value(values, "warm_throughput")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3763 = warm_throughput_fixture_from_py(&value)?;
+        builder = builder.set_warm_throughput(Some(fixture_3763));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn global_secondary_index_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::GlobalSecondaryIndexDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "index_name",
+            "key_schema",
+            "projection",
+            "index_status",
+            "backfilling",
+            "provisioned_throughput",
+            "index_size_bytes",
+            "item_count",
+            "index_arn",
+            "on_demand_throughput",
+            "warm_throughput",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::GlobalSecondaryIndexDescription::builder();
+    if let Some(value) = dict_value(values, "index_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3764: String = value.extract()?;
+        builder = builder.set_index_name(Some(fixture_3764));
+    }
+    if let Some(value) = dict_value(values, "key_schema")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3765 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3766 in value.try_iter()? {
+            let item_3767 = item_result_3766?;
+            rboto_core::fixture_scalar(&item_3767, "struct")?;
+            let converted_item_3768 = key_schema_element_fixture_from_py(&item_3767)?;
+            fixture_3765.push(converted_item_3768);
+        }
+        builder = builder.set_key_schema(Some(fixture_3765));
+    }
+    if let Some(value) = dict_value(values, "projection")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3769 = projection_fixture_from_py(&value)?;
+        builder = builder.set_projection(Some(fixture_3769));
+    }
+    if let Some(value) = dict_value(values, "index_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3771: String = value.extract()?;
+        let fixture_3770 = aws_sdk_dynamodb::types::IndexStatus::from(enum_value_3771.as_str());
+        builder = builder.set_index_status(Some(fixture_3770));
+    }
+    if let Some(value) = dict_value(values, "backfilling")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_3772: bool = value.extract()?;
+        builder = builder.set_backfilling(Some(fixture_3772));
+    }
+    if let Some(value) = dict_value(values, "provisioned_throughput")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3773 = provisioned_throughput_description_fixture_from_py(&value)?;
+        builder = builder.set_provisioned_throughput(Some(fixture_3773));
+    }
+    if let Some(value) = dict_value(values, "index_size_bytes")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3774: i64 = value.extract()?;
+        builder = builder.set_index_size_bytes(Some(fixture_3774));
+    }
+    if let Some(value) = dict_value(values, "item_count")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3775: i64 = value.extract()?;
+        builder = builder.set_item_count(Some(fixture_3775));
+    }
+    if let Some(value) = dict_value(values, "index_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3776: String = value.extract()?;
+        builder = builder.set_index_arn(Some(fixture_3776));
+    }
+    if let Some(value) = dict_value(values, "on_demand_throughput")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3777 = on_demand_throughput_fixture_from_py(&value)?;
+        builder = builder.set_on_demand_throughput(Some(fixture_3777));
+    }
+    if let Some(value) = dict_value(values, "warm_throughput")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3778 =
+            global_secondary_index_warm_throughput_description_fixture_from_py(&value)?;
+        builder = builder.set_warm_throughput(Some(fixture_3778));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn global_secondary_index_info_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::GlobalSecondaryIndexInfo> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "index_name",
+            "key_schema",
+            "projection",
+            "provisioned_throughput",
+            "on_demand_throughput",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::GlobalSecondaryIndexInfo::builder();
+    if let Some(value) = dict_value(values, "index_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3779: String = value.extract()?;
+        builder = builder.set_index_name(Some(fixture_3779));
+    }
+    if let Some(value) = dict_value(values, "key_schema")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3780 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3781 in value.try_iter()? {
+            let item_3782 = item_result_3781?;
+            rboto_core::fixture_scalar(&item_3782, "struct")?;
+            let converted_item_3783 = key_schema_element_fixture_from_py(&item_3782)?;
+            fixture_3780.push(converted_item_3783);
+        }
+        builder = builder.set_key_schema(Some(fixture_3780));
+    }
+    if let Some(value) = dict_value(values, "projection")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3784 = projection_fixture_from_py(&value)?;
+        builder = builder.set_projection(Some(fixture_3784));
+    }
+    if let Some(value) = dict_value(values, "provisioned_throughput")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3785 = provisioned_throughput_fixture_from_py(&value)?;
+        builder = builder.set_provisioned_throughput(Some(fixture_3785));
+    }
+    if let Some(value) = dict_value(values, "on_demand_throughput")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3786 = on_demand_throughput_fixture_from_py(&value)?;
+        builder = builder.set_on_demand_throughput(Some(fixture_3786));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn global_secondary_index_warm_throughput_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::GlobalSecondaryIndexWarmThroughputDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["read_units_per_second", "write_units_per_second", "status"],
+        &[],
+    )?;
+    let mut builder =
+        aws_sdk_dynamodb::types::GlobalSecondaryIndexWarmThroughputDescription::builder();
+    if let Some(value) = dict_value(values, "read_units_per_second")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3787: i64 = value.extract()?;
+        builder = builder.set_read_units_per_second(Some(fixture_3787));
+    }
+    if let Some(value) = dict_value(values, "write_units_per_second")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3788: i64 = value.extract()?;
+        builder = builder.set_write_units_per_second(Some(fixture_3788));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3790: String = value.extract()?;
+        let fixture_3789 = aws_sdk_dynamodb::types::IndexStatus::from(enum_value_3790.as_str());
+        builder = builder.set_status(Some(fixture_3789));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn global_table_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::GlobalTable> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["global_table_name", "replication_group"], &[])?;
+    let mut builder = aws_sdk_dynamodb::types::GlobalTable::builder();
+    if let Some(value) = dict_value(values, "global_table_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3791: String = value.extract()?;
+        builder = builder.set_global_table_name(Some(fixture_3791));
+    }
+    if let Some(value) = dict_value(values, "replication_group")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3792 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3793 in value.try_iter()? {
+            let item_3794 = item_result_3793?;
+            rboto_core::fixture_scalar(&item_3794, "struct")?;
+            let converted_item_3795 = replica_fixture_from_py(&item_3794)?;
+            fixture_3792.push(converted_item_3795);
+        }
+        builder = builder.set_replication_group(Some(fixture_3792));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn global_table_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::GlobalTableDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "replication_group",
+            "global_table_arn",
+            "creation_date_time",
+            "global_table_status",
+            "global_table_name",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::GlobalTableDescription::builder();
+    if let Some(value) = dict_value(values, "replication_group")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3796 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3797 in value.try_iter()? {
+            let item_3798 = item_result_3797?;
+            rboto_core::fixture_scalar(&item_3798, "struct")?;
+            let converted_item_3799 = replica_description_fixture_from_py(&item_3798)?;
+            fixture_3796.push(converted_item_3799);
+        }
+        builder = builder.set_replication_group(Some(fixture_3796));
+    }
+    if let Some(value) = dict_value(values, "global_table_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3800: String = value.extract()?;
+        builder = builder.set_global_table_arn(Some(fixture_3800));
+    }
+    if let Some(value) = dict_value(values, "creation_date_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3802: String = value.extract()?;
+        let fixture_3801 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3802,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_date_time(Some(fixture_3801));
+    }
+    if let Some(value) = dict_value(values, "global_table_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3804: String = value.extract()?;
+        let fixture_3803 =
+            aws_sdk_dynamodb::types::GlobalTableStatus::from(enum_value_3804.as_str());
+        builder = builder.set_global_table_status(Some(fixture_3803));
+    }
+    if let Some(value) = dict_value(values, "global_table_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3805: String = value.extract()?;
+        builder = builder.set_global_table_name(Some(fixture_3805));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn global_table_witness_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::GlobalTableWitnessDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["region_name", "witness_status"], &[])?;
+    let mut builder = aws_sdk_dynamodb::types::GlobalTableWitnessDescription::builder();
+    if let Some(value) = dict_value(values, "region_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3806: String = value.extract()?;
+        builder = builder.set_region_name(Some(fixture_3806));
+    }
+    if let Some(value) = dict_value(values, "witness_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3808: String = value.extract()?;
+        let fixture_3807 = aws_sdk_dynamodb::types::WitnessStatus::from(enum_value_3808.as_str());
+        builder = builder.set_witness_status(Some(fixture_3807));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn import_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::ImportSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "import_arn",
+            "import_status",
+            "table_arn",
+            "s3_bucket_source",
+            "cloud_watch_log_group_arn",
+            "input_format",
+            "start_time",
+            "end_time",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::ImportSummary::builder();
+    if let Some(value) = dict_value(values, "import_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3809: String = value.extract()?;
+        builder = builder.set_import_arn(Some(fixture_3809));
+    }
+    if let Some(value) = dict_value(values, "import_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3811: String = value.extract()?;
+        let fixture_3810 = aws_sdk_dynamodb::types::ImportStatus::from(enum_value_3811.as_str());
+        builder = builder.set_import_status(Some(fixture_3810));
+    }
+    if let Some(value) = dict_value(values, "table_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3812: String = value.extract()?;
+        builder = builder.set_table_arn(Some(fixture_3812));
+    }
+    if let Some(value) = dict_value(values, "s3_bucket_source")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3813 = s3_bucket_source_fixture_from_py(&value)?;
+        builder = builder.set_s3_bucket_source(Some(fixture_3813));
+    }
+    if let Some(value) = dict_value(values, "cloud_watch_log_group_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3814: String = value.extract()?;
+        builder = builder.set_cloud_watch_log_group_arn(Some(fixture_3814));
+    }
+    if let Some(value) = dict_value(values, "input_format")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3816: String = value.extract()?;
+        let fixture_3815 = aws_sdk_dynamodb::types::InputFormat::from(enum_value_3816.as_str());
+        builder = builder.set_input_format(Some(fixture_3815));
+    }
+    if let Some(value) = dict_value(values, "start_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3818: String = value.extract()?;
+        let fixture_3817 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3818,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_start_time(Some(fixture_3817));
+    }
+    if let Some(value) = dict_value(values, "end_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3820: String = value.extract()?;
+        let fixture_3819 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3820,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_end_time(Some(fixture_3819));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn import_table_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::ImportTableDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "import_arn",
+            "import_status",
+            "table_arn",
+            "table_id",
+            "client_token",
+            "s3_bucket_source",
+            "error_count",
+            "cloud_watch_log_group_arn",
+            "input_format",
+            "input_format_options",
+            "input_compression_type",
+            "table_creation_parameters",
+            "start_time",
+            "end_time",
+            "processed_size_bytes",
+            "processed_item_count",
+            "imported_item_count",
+            "failure_code",
+            "failure_message",
+        ],
+        &["error_count", "processed_item_count", "imported_item_count"],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::ImportTableDescription::builder();
+    if let Some(value) = dict_value(values, "import_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3821: String = value.extract()?;
+        builder = builder.set_import_arn(Some(fixture_3821));
+    }
+    if let Some(value) = dict_value(values, "import_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3823: String = value.extract()?;
+        let fixture_3822 = aws_sdk_dynamodb::types::ImportStatus::from(enum_value_3823.as_str());
+        builder = builder.set_import_status(Some(fixture_3822));
+    }
+    if let Some(value) = dict_value(values, "table_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3824: String = value.extract()?;
+        builder = builder.set_table_arn(Some(fixture_3824));
+    }
+    if let Some(value) = dict_value(values, "table_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3825: String = value.extract()?;
+        builder = builder.set_table_id(Some(fixture_3825));
+    }
+    if let Some(value) = dict_value(values, "client_token")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3826: String = value.extract()?;
+        builder = builder.set_client_token(Some(fixture_3826));
+    }
+    if let Some(value) = dict_value(values, "s3_bucket_source")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3827 = s3_bucket_source_fixture_from_py(&value)?;
+        builder = builder.set_s3_bucket_source(Some(fixture_3827));
+    }
+    if let Some(value) = values.get_item("error_count")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3828: i64 = value.extract()?;
+        builder = builder.set_error_count(Some(fixture_3828));
+    }
+    if let Some(value) = dict_value(values, "cloud_watch_log_group_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3829: String = value.extract()?;
+        builder = builder.set_cloud_watch_log_group_arn(Some(fixture_3829));
+    }
+    if let Some(value) = dict_value(values, "input_format")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3831: String = value.extract()?;
+        let fixture_3830 = aws_sdk_dynamodb::types::InputFormat::from(enum_value_3831.as_str());
+        builder = builder.set_input_format(Some(fixture_3830));
+    }
+    if let Some(value) = dict_value(values, "input_format_options")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3832 = input_format_options_fixture_from_py(&value)?;
+        builder = builder.set_input_format_options(Some(fixture_3832));
+    }
+    if let Some(value) = dict_value(values, "input_compression_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3834: String = value.extract()?;
+        let fixture_3833 =
+            aws_sdk_dynamodb::types::InputCompressionType::from(enum_value_3834.as_str());
+        builder = builder.set_input_compression_type(Some(fixture_3833));
+    }
+    if let Some(value) = dict_value(values, "table_creation_parameters")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3835 = table_creation_parameters_fixture_from_py(&value)?;
+        builder = builder.set_table_creation_parameters(Some(fixture_3835));
+    }
+    if let Some(value) = dict_value(values, "start_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3837: String = value.extract()?;
+        let fixture_3836 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3837,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_start_time(Some(fixture_3836));
+    }
+    if let Some(value) = dict_value(values, "end_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3839: String = value.extract()?;
+        let fixture_3838 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3839,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_end_time(Some(fixture_3838));
+    }
+    if let Some(value) = dict_value(values, "processed_size_bytes")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3840: i64 = value.extract()?;
+        builder = builder.set_processed_size_bytes(Some(fixture_3840));
+    }
+    if let Some(value) = values.get_item("processed_item_count")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3841: i64 = value.extract()?;
+        builder = builder.set_processed_item_count(Some(fixture_3841));
+    }
+    if let Some(value) = values.get_item("imported_item_count")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3842: i64 = value.extract()?;
+        builder = builder.set_imported_item_count(Some(fixture_3842));
+    }
+    if let Some(value) = dict_value(values, "failure_code")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3843: String = value.extract()?;
+        builder = builder.set_failure_code(Some(fixture_3843));
+    }
+    if let Some(value) = dict_value(values, "failure_message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3844: String = value.extract()?;
+        builder = builder.set_failure_message(Some(fixture_3844));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn incremental_export_specification_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::IncrementalExportSpecification> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["export_from_time", "export_to_time", "export_view_type"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::IncrementalExportSpecification::builder();
+    if let Some(value) = dict_value(values, "export_from_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3846: String = value.extract()?;
+        let fixture_3845 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3846,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_export_from_time(Some(fixture_3845));
+    }
+    if let Some(value) = dict_value(values, "export_to_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3848: String = value.extract()?;
+        let fixture_3847 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3848,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_export_to_time(Some(fixture_3847));
+    }
+    if let Some(value) = dict_value(values, "export_view_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3850: String = value.extract()?;
+        let fixture_3849 = aws_sdk_dynamodb::types::ExportViewType::from(enum_value_3850.as_str());
+        builder = builder.set_export_view_type(Some(fixture_3849));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn input_format_options_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::InputFormatOptions> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["csv"], &[])?;
+    let mut builder = aws_sdk_dynamodb::types::InputFormatOptions::builder();
+    if let Some(value) = dict_value(values, "csv")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3851 = csv_options_fixture_from_py(&value)?;
+        builder = builder.set_csv(Some(fixture_3851));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn item_collection_metrics_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::ItemCollectionMetrics> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["item_collection_key", "size_estimate_range_gb"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::ItemCollectionMetrics::builder();
+    if let Some(value) = dict_value(values, "item_collection_key")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_3853 = value.cast::<PyDict>()?;
+        let mut fixture_3852 = HashMap::with_capacity(mapping_3853.len());
+        for (key_3854, value_3855) in mapping_3853.iter() {
+            rboto_core::fixture_scalar(&key_3854, "string")?;
+            let converted_key_3856: String = key_3854.extract()?;
+            rboto_core::fixture_scalar(&value_3855, "union")?;
+            let converted_value_3857 = attribute_value_fixture_from_py(&value_3855)?;
+            fixture_3852.insert(converted_key_3856, converted_value_3857);
+        }
+        builder = builder.set_item_collection_key(Some(fixture_3852));
+    }
+    if let Some(value) = dict_value(values, "size_estimate_range_gb")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3858 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3859 in value.try_iter()? {
+            let item_3860 = item_result_3859?;
+            rboto_core::fixture_scalar(&item_3860, "f64")?;
+            let converted_item_3861: f64 = item_3860.extract()?;
+            fixture_3858.push(converted_item_3861);
+        }
+        builder = builder.set_size_estimate_range_gb(Some(fixture_3858));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn item_response_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::ItemResponse> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["item"], &[])?;
+    let mut builder = aws_sdk_dynamodb::types::ItemResponse::builder();
+    if let Some(value) = dict_value(values, "item")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_3863 = value.cast::<PyDict>()?;
+        let mut fixture_3862 = HashMap::with_capacity(mapping_3863.len());
+        for (key_3864, value_3865) in mapping_3863.iter() {
+            rboto_core::fixture_scalar(&key_3864, "string")?;
+            let converted_key_3866: String = key_3864.extract()?;
+            rboto_core::fixture_scalar(&value_3865, "union")?;
+            let converted_value_3867 = attribute_value_fixture_from_py(&value_3865)?;
+            fixture_3862.insert(converted_key_3866, converted_value_3867);
+        }
+        builder = builder.set_item(Some(fixture_3862));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn key_schema_element_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::KeySchemaElement> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["attribute_name", "key_type"],
+        &["attribute_name", "key_type"],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::KeySchemaElement::builder();
+    if let Some(value) = values.get_item("attribute_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3868: String = value.extract()?;
+        builder = builder.set_attribute_name(Some(fixture_3868));
+    }
+    if let Some(value) = values.get_item("key_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3870: String = value.extract()?;
+        let fixture_3869 = aws_sdk_dynamodb::types::KeyType::from(enum_value_3870.as_str());
+        builder = builder.set_key_type(Some(fixture_3869));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn keys_and_attributes_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::KeysAndAttributes> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "keys",
+            "attributes_to_get",
+            "consistent_read",
+            "projection_expression",
+            "expression_attribute_names",
+        ],
+        &["keys"],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::KeysAndAttributes::builder();
+    if let Some(value) = values.get_item("keys")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3871 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3872 in value.try_iter()? {
+            let item_3873 = item_result_3872?;
+            rboto_core::fixture_scalar(&item_3873, "map")?;
+            let mapping_3875 = item_3873.cast::<PyDict>()?;
+            let mut converted_item_3874 = HashMap::with_capacity(mapping_3875.len());
+            for (key_3876, value_3877) in mapping_3875.iter() {
+                rboto_core::fixture_scalar(&key_3876, "string")?;
+                let converted_key_3878: String = key_3876.extract()?;
+                rboto_core::fixture_scalar(&value_3877, "union")?;
+                let converted_value_3879 = attribute_value_fixture_from_py(&value_3877)?;
+                converted_item_3874.insert(converted_key_3878, converted_value_3879);
+            }
+            fixture_3871.push(converted_item_3874);
+        }
+        builder = builder.set_keys(Some(fixture_3871));
+    }
+    if let Some(value) = dict_value(values, "attributes_to_get")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3880 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3881 in value.try_iter()? {
+            let item_3882 = item_result_3881?;
+            rboto_core::fixture_scalar(&item_3882, "string")?;
+            let converted_item_3883: String = item_3882.extract()?;
+            fixture_3880.push(converted_item_3883);
+        }
+        builder = builder.set_attributes_to_get(Some(fixture_3880));
+    }
+    if let Some(value) = dict_value(values, "consistent_read")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_3884: bool = value.extract()?;
+        builder = builder.set_consistent_read(Some(fixture_3884));
+    }
+    if let Some(value) = dict_value(values, "projection_expression")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3885: String = value.extract()?;
+        builder = builder.set_projection_expression(Some(fixture_3885));
+    }
+    if let Some(value) = dict_value(values, "expression_attribute_names")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_3887 = value.cast::<PyDict>()?;
+        let mut fixture_3886 = HashMap::with_capacity(mapping_3887.len());
+        for (key_3888, value_3889) in mapping_3887.iter() {
+            rboto_core::fixture_scalar(&key_3888, "string")?;
+            let converted_key_3890: String = key_3888.extract()?;
+            rboto_core::fixture_scalar(&value_3889, "string")?;
+            let converted_value_3891: String = value_3889.extract()?;
+            fixture_3886.insert(converted_key_3890, converted_value_3891);
+        }
+        builder = builder.set_expression_attribute_names(Some(fixture_3886));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn kinesis_data_stream_destination_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::KinesisDataStreamDestination> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "stream_arn",
+            "destination_status",
+            "destination_status_description",
+            "approximate_creation_date_time_precision",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::KinesisDataStreamDestination::builder();
+    if let Some(value) = dict_value(values, "stream_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3892: String = value.extract()?;
+        builder = builder.set_stream_arn(Some(fixture_3892));
+    }
+    if let Some(value) = dict_value(values, "destination_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3894: String = value.extract()?;
+        let fixture_3893 =
+            aws_sdk_dynamodb::types::DestinationStatus::from(enum_value_3894.as_str());
+        builder = builder.set_destination_status(Some(fixture_3893));
+    }
+    if let Some(value) = dict_value(values, "destination_status_description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3895: String = value.extract()?;
+        builder = builder.set_destination_status_description(Some(fixture_3895));
+    }
+    if let Some(value) = dict_value(values, "approximate_creation_date_time_precision")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3897: String = value.extract()?;
+        let fixture_3896 = aws_sdk_dynamodb::types::ApproximateCreationDateTimePrecision::from(
+            enum_value_3897.as_str(),
+        );
+        builder = builder.set_approximate_creation_date_time_precision(Some(fixture_3896));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn local_secondary_index_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::LocalSecondaryIndexDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "index_name",
+            "key_schema",
+            "projection",
+            "index_size_bytes",
+            "item_count",
+            "index_arn",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::LocalSecondaryIndexDescription::builder();
+    if let Some(value) = dict_value(values, "index_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3898: String = value.extract()?;
+        builder = builder.set_index_name(Some(fixture_3898));
+    }
+    if let Some(value) = dict_value(values, "key_schema")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3899 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3900 in value.try_iter()? {
+            let item_3901 = item_result_3900?;
+            rboto_core::fixture_scalar(&item_3901, "struct")?;
+            let converted_item_3902 = key_schema_element_fixture_from_py(&item_3901)?;
+            fixture_3899.push(converted_item_3902);
+        }
+        builder = builder.set_key_schema(Some(fixture_3899));
+    }
+    if let Some(value) = dict_value(values, "projection")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3903 = projection_fixture_from_py(&value)?;
+        builder = builder.set_projection(Some(fixture_3903));
+    }
+    if let Some(value) = dict_value(values, "index_size_bytes")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3904: i64 = value.extract()?;
+        builder = builder.set_index_size_bytes(Some(fixture_3904));
+    }
+    if let Some(value) = dict_value(values, "item_count")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3905: i64 = value.extract()?;
+        builder = builder.set_item_count(Some(fixture_3905));
+    }
+    if let Some(value) = dict_value(values, "index_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3906: String = value.extract()?;
+        builder = builder.set_index_arn(Some(fixture_3906));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn local_secondary_index_info_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::LocalSecondaryIndexInfo> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["index_name", "key_schema", "projection"], &[])?;
+    let mut builder = aws_sdk_dynamodb::types::LocalSecondaryIndexInfo::builder();
+    if let Some(value) = dict_value(values, "index_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3907: String = value.extract()?;
+        builder = builder.set_index_name(Some(fixture_3907));
+    }
+    if let Some(value) = dict_value(values, "key_schema")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3908 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3909 in value.try_iter()? {
+            let item_3910 = item_result_3909?;
+            rboto_core::fixture_scalar(&item_3910, "struct")?;
+            let converted_item_3911 = key_schema_element_fixture_from_py(&item_3910)?;
+            fixture_3908.push(converted_item_3911);
+        }
+        builder = builder.set_key_schema(Some(fixture_3908));
+    }
+    if let Some(value) = dict_value(values, "projection")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3912 = projection_fixture_from_py(&value)?;
+        builder = builder.set_projection(Some(fixture_3912));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn on_demand_throughput_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::OnDemandThroughput> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["max_read_request_units", "max_write_request_units"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::OnDemandThroughput::builder();
+    if let Some(value) = dict_value(values, "max_read_request_units")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3913: i64 = value.extract()?;
+        builder = builder.set_max_read_request_units(Some(fixture_3913));
+    }
+    if let Some(value) = dict_value(values, "max_write_request_units")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3914: i64 = value.extract()?;
+        builder = builder.set_max_write_request_units(Some(fixture_3914));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn on_demand_throughput_override_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::OnDemandThroughputOverride> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["max_read_request_units"], &[])?;
+    let mut builder = aws_sdk_dynamodb::types::OnDemandThroughputOverride::builder();
+    if let Some(value) = dict_value(values, "max_read_request_units")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3915: i64 = value.extract()?;
+        builder = builder.set_max_read_request_units(Some(fixture_3915));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn point_in_time_recovery_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::PointInTimeRecoveryDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "point_in_time_recovery_status",
+            "recovery_period_in_days",
+            "earliest_restorable_date_time",
+            "latest_restorable_date_time",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::PointInTimeRecoveryDescription::builder();
+    if let Some(value) = dict_value(values, "point_in_time_recovery_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3917: String = value.extract()?;
+        let fixture_3916 =
+            aws_sdk_dynamodb::types::PointInTimeRecoveryStatus::from(enum_value_3917.as_str());
+        builder = builder.set_point_in_time_recovery_status(Some(fixture_3916));
+    }
+    if let Some(value) = dict_value(values, "recovery_period_in_days")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_3918: i32 = value.extract()?;
+        builder = builder.set_recovery_period_in_days(Some(fixture_3918));
+    }
+    if let Some(value) = dict_value(values, "earliest_restorable_date_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3920: String = value.extract()?;
+        let fixture_3919 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3920,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_earliest_restorable_date_time(Some(fixture_3919));
+    }
+    if let Some(value) = dict_value(values, "latest_restorable_date_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3922: String = value.extract()?;
+        let fixture_3921 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3922,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_latest_restorable_date_time(Some(fixture_3921));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn projection_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::Projection> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["projection_type", "non_key_attributes"], &[])?;
+    let mut builder = aws_sdk_dynamodb::types::Projection::builder();
+    if let Some(value) = dict_value(values, "projection_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3924: String = value.extract()?;
+        let fixture_3923 = aws_sdk_dynamodb::types::ProjectionType::from(enum_value_3924.as_str());
+        builder = builder.set_projection_type(Some(fixture_3923));
+    }
+    if let Some(value) = dict_value(values, "non_key_attributes")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3925 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3926 in value.try_iter()? {
+            let item_3927 = item_result_3926?;
+            rboto_core::fixture_scalar(&item_3927, "string")?;
+            let converted_item_3928: String = item_3927.extract()?;
+            fixture_3925.push(converted_item_3928);
+        }
+        builder = builder.set_non_key_attributes(Some(fixture_3925));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn provisioned_throughput_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::ProvisionedThroughput> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["read_capacity_units", "write_capacity_units"],
+        &["read_capacity_units", "write_capacity_units"],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::ProvisionedThroughput::builder();
+    if let Some(value) = values.get_item("read_capacity_units")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3929: i64 = value.extract()?;
+        builder = builder.set_read_capacity_units(Some(fixture_3929));
+    }
+    if let Some(value) = values.get_item("write_capacity_units")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3930: i64 = value.extract()?;
+        builder = builder.set_write_capacity_units(Some(fixture_3930));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn provisioned_throughput_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::ProvisionedThroughputDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "last_increase_date_time",
+            "last_decrease_date_time",
+            "number_of_decreases_today",
+            "read_capacity_units",
+            "write_capacity_units",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::ProvisionedThroughputDescription::builder();
+    if let Some(value) = dict_value(values, "last_increase_date_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3932: String = value.extract()?;
+        let fixture_3931 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3932,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_increase_date_time(Some(fixture_3931));
+    }
+    if let Some(value) = dict_value(values, "last_decrease_date_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3934: String = value.extract()?;
+        let fixture_3933 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3934,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_decrease_date_time(Some(fixture_3933));
+    }
+    if let Some(value) = dict_value(values, "number_of_decreases_today")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3935: i64 = value.extract()?;
+        builder = builder.set_number_of_decreases_today(Some(fixture_3935));
+    }
+    if let Some(value) = dict_value(values, "read_capacity_units")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3936: i64 = value.extract()?;
+        builder = builder.set_read_capacity_units(Some(fixture_3936));
+    }
+    if let Some(value) = dict_value(values, "write_capacity_units")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3937: i64 = value.extract()?;
+        builder = builder.set_write_capacity_units(Some(fixture_3937));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn provisioned_throughput_override_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::ProvisionedThroughputOverride> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["read_capacity_units"], &[])?;
+    let mut builder = aws_sdk_dynamodb::types::ProvisionedThroughputOverride::builder();
+    if let Some(value) = dict_value(values, "read_capacity_units")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3938: i64 = value.extract()?;
+        builder = builder.set_read_capacity_units(Some(fixture_3938));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn put_request_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::PutRequest> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["item"], &["item"])?;
+    let mut builder = aws_sdk_dynamodb::types::PutRequest::builder();
+    if let Some(value) = values.get_item("item")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_3940 = value.cast::<PyDict>()?;
+        let mut fixture_3939 = HashMap::with_capacity(mapping_3940.len());
+        for (key_3941, value_3942) in mapping_3940.iter() {
+            rboto_core::fixture_scalar(&key_3941, "string")?;
+            let converted_key_3943: String = key_3941.extract()?;
+            rboto_core::fixture_scalar(&value_3942, "union")?;
+            let converted_value_3944 = attribute_value_fixture_from_py(&value_3942)?;
+            fixture_3939.insert(converted_key_3943, converted_value_3944);
+        }
+        builder = builder.set_item(Some(fixture_3939));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn replica_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types::Replica> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["region_name"], &[])?;
+    let mut builder = aws_sdk_dynamodb::types::Replica::builder();
+    if let Some(value) = dict_value(values, "region_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3945: String = value.extract()?;
+        builder = builder.set_region_name(Some(fixture_3945));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn replica_auto_scaling_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::ReplicaAutoScalingDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "region_name",
+            "global_secondary_indexes",
+            "replica_provisioned_read_capacity_auto_scaling_settings",
+            "replica_provisioned_write_capacity_auto_scaling_settings",
+            "replica_status",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::ReplicaAutoScalingDescription::builder();
+    if let Some(value) = dict_value(values, "region_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3946: String = value.extract()?;
+        builder = builder.set_region_name(Some(fixture_3946));
+    }
+    if let Some(value) = dict_value(values, "global_secondary_indexes")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3947 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3948 in value.try_iter()? {
+            let item_3949 = item_result_3948?;
+            rboto_core::fixture_scalar(&item_3949, "struct")?;
+            let converted_item_3950 =
+                replica_global_secondary_index_auto_scaling_description_fixture_from_py(
+                    &item_3949,
+                )?;
+            fixture_3947.push(converted_item_3950);
+        }
+        builder = builder.set_global_secondary_indexes(Some(fixture_3947));
+    }
+    if let Some(value) = dict_value(
+        values,
+        "replica_provisioned_read_capacity_auto_scaling_settings",
+    )? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3951 = auto_scaling_settings_description_fixture_from_py(&value)?;
+        builder =
+            builder.set_replica_provisioned_read_capacity_auto_scaling_settings(Some(fixture_3951));
+    }
+    if let Some(value) = dict_value(
+        values,
+        "replica_provisioned_write_capacity_auto_scaling_settings",
+    )? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3952 = auto_scaling_settings_description_fixture_from_py(&value)?;
+        builder = builder
+            .set_replica_provisioned_write_capacity_auto_scaling_settings(Some(fixture_3952));
+    }
+    if let Some(value) = dict_value(values, "replica_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3954: String = value.extract()?;
+        let fixture_3953 = aws_sdk_dynamodb::types::ReplicaStatus::from(enum_value_3954.as_str());
+        builder = builder.set_replica_status(Some(fixture_3953));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn replica_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::ReplicaDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "region_name",
+            "replica_status",
+            "replica_arn",
+            "replica_status_description",
+            "replica_status_percent_progress",
+            "kms_master_key_id",
+            "provisioned_throughput_override",
+            "on_demand_throughput_override",
+            "warm_throughput",
+            "global_secondary_indexes",
+            "replica_inaccessible_date_time",
+            "replica_table_class_summary",
+            "global_table_settings_replication_mode",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::ReplicaDescription::builder();
+    if let Some(value) = dict_value(values, "region_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3955: String = value.extract()?;
+        builder = builder.set_region_name(Some(fixture_3955));
+    }
+    if let Some(value) = dict_value(values, "replica_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3957: String = value.extract()?;
+        let fixture_3956 = aws_sdk_dynamodb::types::ReplicaStatus::from(enum_value_3957.as_str());
+        builder = builder.set_replica_status(Some(fixture_3956));
+    }
+    if let Some(value) = dict_value(values, "replica_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3958: String = value.extract()?;
+        builder = builder.set_replica_arn(Some(fixture_3958));
+    }
+    if let Some(value) = dict_value(values, "replica_status_description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3959: String = value.extract()?;
+        builder = builder.set_replica_status_description(Some(fixture_3959));
+    }
+    if let Some(value) = dict_value(values, "replica_status_percent_progress")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3960: String = value.extract()?;
+        builder = builder.set_replica_status_percent_progress(Some(fixture_3960));
+    }
+    if let Some(value) = dict_value(values, "kms_master_key_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3961: String = value.extract()?;
+        builder = builder.set_kms_master_key_id(Some(fixture_3961));
+    }
+    if let Some(value) = dict_value(values, "provisioned_throughput_override")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3962 = provisioned_throughput_override_fixture_from_py(&value)?;
+        builder = builder.set_provisioned_throughput_override(Some(fixture_3962));
+    }
+    if let Some(value) = dict_value(values, "on_demand_throughput_override")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3963 = on_demand_throughput_override_fixture_from_py(&value)?;
+        builder = builder.set_on_demand_throughput_override(Some(fixture_3963));
+    }
+    if let Some(value) = dict_value(values, "warm_throughput")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3964 = table_warm_throughput_description_fixture_from_py(&value)?;
+        builder = builder.set_warm_throughput(Some(fixture_3964));
+    }
+    if let Some(value) = dict_value(values, "global_secondary_indexes")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3965 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3966 in value.try_iter()? {
+            let item_3967 = item_result_3966?;
+            rboto_core::fixture_scalar(&item_3967, "struct")?;
+            let converted_item_3968 =
+                replica_global_secondary_index_description_fixture_from_py(&item_3967)?;
+            fixture_3965.push(converted_item_3968);
+        }
+        builder = builder.set_global_secondary_indexes(Some(fixture_3965));
+    }
+    if let Some(value) = dict_value(values, "replica_inaccessible_date_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_3970: String = value.extract()?;
+        let fixture_3969 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_3970,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_replica_inaccessible_date_time(Some(fixture_3969));
+    }
+    if let Some(value) = dict_value(values, "replica_table_class_summary")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3971 = table_class_summary_fixture_from_py(&value)?;
+        builder = builder.set_replica_table_class_summary(Some(fixture_3971));
+    }
+    if let Some(value) = dict_value(values, "global_table_settings_replication_mode")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3973: String = value.extract()?;
+        let fixture_3972 = aws_sdk_dynamodb::types::GlobalTableSettingsReplicationMode::from(
+            enum_value_3973.as_str(),
+        );
+        builder = builder.set_global_table_settings_replication_mode(Some(fixture_3972));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn replica_global_secondary_index_auto_scaling_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexAutoScalingDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "index_name",
+            "index_status",
+            "provisioned_read_capacity_auto_scaling_settings",
+            "provisioned_write_capacity_auto_scaling_settings",
+        ],
+        &[],
+    )?;
+    let mut builder =
+        aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexAutoScalingDescription::builder();
+    if let Some(value) = dict_value(values, "index_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3974: String = value.extract()?;
+        builder = builder.set_index_name(Some(fixture_3974));
+    }
+    if let Some(value) = dict_value(values, "index_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3976: String = value.extract()?;
+        let fixture_3975 = aws_sdk_dynamodb::types::IndexStatus::from(enum_value_3976.as_str());
+        builder = builder.set_index_status(Some(fixture_3975));
+    }
+    if let Some(value) = dict_value(values, "provisioned_read_capacity_auto_scaling_settings")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3977 = auto_scaling_settings_description_fixture_from_py(&value)?;
+        builder = builder.set_provisioned_read_capacity_auto_scaling_settings(Some(fixture_3977));
+    }
+    if let Some(value) = dict_value(values, "provisioned_write_capacity_auto_scaling_settings")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3978 = auto_scaling_settings_description_fixture_from_py(&value)?;
+        builder = builder.set_provisioned_write_capacity_auto_scaling_settings(Some(fixture_3978));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn replica_global_secondary_index_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "index_name",
+            "provisioned_throughput_override",
+            "on_demand_throughput_override",
+            "warm_throughput",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexDescription::builder();
+    if let Some(value) = dict_value(values, "index_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3979: String = value.extract()?;
+        builder = builder.set_index_name(Some(fixture_3979));
+    }
+    if let Some(value) = dict_value(values, "provisioned_throughput_override")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3980 = provisioned_throughput_override_fixture_from_py(&value)?;
+        builder = builder.set_provisioned_throughput_override(Some(fixture_3980));
+    }
+    if let Some(value) = dict_value(values, "on_demand_throughput_override")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3981 = on_demand_throughput_override_fixture_from_py(&value)?;
+        builder = builder.set_on_demand_throughput_override(Some(fixture_3981));
+    }
+    if let Some(value) = dict_value(values, "warm_throughput")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3982 =
+            global_secondary_index_warm_throughput_description_fixture_from_py(&value)?;
+        builder = builder.set_warm_throughput(Some(fixture_3982));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn replica_global_secondary_index_settings_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexSettingsDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "index_name",
+            "index_status",
+            "provisioned_read_capacity_units",
+            "provisioned_read_capacity_auto_scaling_settings",
+            "provisioned_write_capacity_units",
+            "provisioned_write_capacity_auto_scaling_settings",
+        ],
+        &["index_name"],
+    )?;
+    let mut builder =
+        aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexSettingsDescription::builder();
+    if let Some(value) = values.get_item("index_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3983: String = value.extract()?;
+        builder = builder.set_index_name(Some(fixture_3983));
+    }
+    if let Some(value) = dict_value(values, "index_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3985: String = value.extract()?;
+        let fixture_3984 = aws_sdk_dynamodb::types::IndexStatus::from(enum_value_3985.as_str());
+        builder = builder.set_index_status(Some(fixture_3984));
+    }
+    if let Some(value) = dict_value(values, "provisioned_read_capacity_units")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3986: i64 = value.extract()?;
+        builder = builder.set_provisioned_read_capacity_units(Some(fixture_3986));
+    }
+    if let Some(value) = dict_value(values, "provisioned_read_capacity_auto_scaling_settings")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3987 = auto_scaling_settings_description_fixture_from_py(&value)?;
+        builder = builder.set_provisioned_read_capacity_auto_scaling_settings(Some(fixture_3987));
+    }
+    if let Some(value) = dict_value(values, "provisioned_write_capacity_units")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3988: i64 = value.extract()?;
+        builder = builder.set_provisioned_write_capacity_units(Some(fixture_3988));
+    }
+    if let Some(value) = dict_value(values, "provisioned_write_capacity_auto_scaling_settings")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3989 = auto_scaling_settings_description_fixture_from_py(&value)?;
+        builder = builder.set_provisioned_write_capacity_auto_scaling_settings(Some(fixture_3989));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn replica_settings_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::ReplicaSettingsDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "region_name",
+            "replica_status",
+            "replica_billing_mode_summary",
+            "replica_provisioned_read_capacity_units",
+            "replica_provisioned_read_capacity_auto_scaling_settings",
+            "replica_provisioned_write_capacity_units",
+            "replica_provisioned_write_capacity_auto_scaling_settings",
+            "replica_global_secondary_index_settings",
+            "replica_table_class_summary",
+        ],
+        &["region_name"],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::ReplicaSettingsDescription::builder();
+    if let Some(value) = values.get_item("region_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3990: String = value.extract()?;
+        builder = builder.set_region_name(Some(fixture_3990));
+    }
+    if let Some(value) = dict_value(values, "replica_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3992: String = value.extract()?;
+        let fixture_3991 = aws_sdk_dynamodb::types::ReplicaStatus::from(enum_value_3992.as_str());
+        builder = builder.set_replica_status(Some(fixture_3991));
+    }
+    if let Some(value) = dict_value(values, "replica_billing_mode_summary")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3993 = billing_mode_summary_fixture_from_py(&value)?;
+        builder = builder.set_replica_billing_mode_summary(Some(fixture_3993));
+    }
+    if let Some(value) = dict_value(values, "replica_provisioned_read_capacity_units")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3994: i64 = value.extract()?;
+        builder = builder.set_replica_provisioned_read_capacity_units(Some(fixture_3994));
+    }
+    if let Some(value) = dict_value(
+        values,
+        "replica_provisioned_read_capacity_auto_scaling_settings",
+    )? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3995 = auto_scaling_settings_description_fixture_from_py(&value)?;
+        builder =
+            builder.set_replica_provisioned_read_capacity_auto_scaling_settings(Some(fixture_3995));
+    }
+    if let Some(value) = dict_value(values, "replica_provisioned_write_capacity_units")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3996: i64 = value.extract()?;
+        builder = builder.set_replica_provisioned_write_capacity_units(Some(fixture_3996));
+    }
+    if let Some(value) = dict_value(
+        values,
+        "replica_provisioned_write_capacity_auto_scaling_settings",
+    )? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3997 = auto_scaling_settings_description_fixture_from_py(&value)?;
+        builder = builder
+            .set_replica_provisioned_write_capacity_auto_scaling_settings(Some(fixture_3997));
+    }
+    if let Some(value) = dict_value(values, "replica_global_secondary_index_settings")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3998 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3999 in value.try_iter()? {
+            let item_4000 = item_result_3999?;
+            rboto_core::fixture_scalar(&item_4000, "struct")?;
+            let converted_item_4001 =
+                replica_global_secondary_index_settings_description_fixture_from_py(&item_4000)?;
+            fixture_3998.push(converted_item_4001);
+        }
+        builder = builder.set_replica_global_secondary_index_settings(Some(fixture_3998));
+    }
+    if let Some(value) = dict_value(values, "replica_table_class_summary")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4002 = table_class_summary_fixture_from_py(&value)?;
+        builder = builder.set_replica_table_class_summary(Some(fixture_4002));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn restore_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::RestoreSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "source_backup_arn",
+            "source_table_arn",
+            "restore_date_time",
+            "restore_in_progress",
+        ],
+        &["restore_date_time", "restore_in_progress"],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::RestoreSummary::builder();
+    if let Some(value) = dict_value(values, "source_backup_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4003: String = value.extract()?;
+        builder = builder.set_source_backup_arn(Some(fixture_4003));
+    }
+    if let Some(value) = dict_value(values, "source_table_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4004: String = value.extract()?;
+        builder = builder.set_source_table_arn(Some(fixture_4004));
+    }
+    if let Some(value) = values.get_item("restore_date_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_4006: String = value.extract()?;
+        let fixture_4005 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_4006,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_restore_date_time(Some(fixture_4005));
+    }
+    if let Some(value) = values.get_item("restore_in_progress")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_4007: bool = value.extract()?;
+        builder = builder.set_restore_in_progress(Some(fixture_4007));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn s3_bucket_source_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::S3BucketSource> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["s3_bucket_owner", "s3_bucket", "s3_key_prefix"],
+        &["s3_bucket"],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::S3BucketSource::builder();
+    if let Some(value) = dict_value(values, "s3_bucket_owner")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4008: String = value.extract()?;
+        builder = builder.set_s3_bucket_owner(Some(fixture_4008));
+    }
+    if let Some(value) = values.get_item("s3_bucket")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4009: String = value.extract()?;
+        builder = builder.set_s3_bucket(Some(fixture_4009));
+    }
+    if let Some(value) = dict_value(values, "s3_key_prefix")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4010: String = value.extract()?;
+        builder = builder.set_s3_key_prefix(Some(fixture_4010));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn search_result_item_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::SearchResultItem> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["item", "score"], &["score"])?;
+    let mut builder = aws_sdk_dynamodb::types::SearchResultItem::builder();
+    if let Some(value) = dict_value(values, "item")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_4012 = value.cast::<PyDict>()?;
+        let mut fixture_4011 = HashMap::with_capacity(mapping_4012.len());
+        for (key_4013, value_4014) in mapping_4012.iter() {
+            rboto_core::fixture_scalar(&key_4013, "string")?;
+            let converted_key_4015: String = key_4013.extract()?;
+            rboto_core::fixture_scalar(&value_4014, "union")?;
+            let converted_value_4016 = attribute_value_fixture_from_py(&value_4014)?;
+            fixture_4011.insert(converted_key_4015, converted_value_4016);
+        }
+        builder = builder.set_item(Some(fixture_4011));
+    }
+    if let Some(value) = values.get_item("score")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_4017: f64 = value.extract()?;
+        builder = builder.set_score(Some(fixture_4017));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn search_schema_element_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::SearchSchemaElement> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["attribute_name", "search_schema_element_type"],
+        &["attribute_name", "search_schema_element_type"],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::SearchSchemaElement::builder();
+    if let Some(value) = values.get_item("attribute_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4018: String = value.extract()?;
+        builder = builder.set_attribute_name(Some(fixture_4018));
+    }
+    if let Some(value) = values.get_item("search_schema_element_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4020: String = value.extract()?;
+        let fixture_4019 =
+            aws_sdk_dynamodb::types::SearchSchemaElementType::from(enum_value_4020.as_str());
+        builder = builder.set_search_schema_element_type(Some(fixture_4019));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn source_table_details_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::SourceTableDetails> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "table_name",
+            "table_id",
+            "table_arn",
+            "table_size_bytes",
+            "key_schema",
+            "table_creation_date_time",
+            "provisioned_throughput",
+            "on_demand_throughput",
+            "item_count",
+            "billing_mode",
+        ],
+        &[
+            "table_name",
+            "table_id",
+            "key_schema",
+            "table_creation_date_time",
+        ],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::SourceTableDetails::builder();
+    if let Some(value) = values.get_item("table_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4021: String = value.extract()?;
+        builder = builder.set_table_name(Some(fixture_4021));
+    }
+    if let Some(value) = values.get_item("table_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4022: String = value.extract()?;
+        builder = builder.set_table_id(Some(fixture_4022));
+    }
+    if let Some(value) = dict_value(values, "table_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4023: String = value.extract()?;
+        builder = builder.set_table_arn(Some(fixture_4023));
+    }
+    if let Some(value) = dict_value(values, "table_size_bytes")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_4024: i64 = value.extract()?;
+        builder = builder.set_table_size_bytes(Some(fixture_4024));
+    }
+    if let Some(value) = values.get_item("key_schema")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4025 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4026 in value.try_iter()? {
+            let item_4027 = item_result_4026?;
+            rboto_core::fixture_scalar(&item_4027, "struct")?;
+            let converted_item_4028 = key_schema_element_fixture_from_py(&item_4027)?;
+            fixture_4025.push(converted_item_4028);
+        }
+        builder = builder.set_key_schema(Some(fixture_4025));
+    }
+    if let Some(value) = values.get_item("table_creation_date_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_4030: String = value.extract()?;
+        let fixture_4029 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_4030,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_table_creation_date_time(Some(fixture_4029));
+    }
+    if let Some(value) = dict_value(values, "provisioned_throughput")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4031 = provisioned_throughput_fixture_from_py(&value)?;
+        builder = builder.set_provisioned_throughput(Some(fixture_4031));
+    }
+    if let Some(value) = dict_value(values, "on_demand_throughput")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4032 = on_demand_throughput_fixture_from_py(&value)?;
+        builder = builder.set_on_demand_throughput(Some(fixture_4032));
+    }
+    if let Some(value) = dict_value(values, "item_count")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_4033: i64 = value.extract()?;
+        builder = builder.set_item_count(Some(fixture_4033));
+    }
+    if let Some(value) = dict_value(values, "billing_mode")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4035: String = value.extract()?;
+        let fixture_4034 = aws_sdk_dynamodb::types::BillingMode::from(enum_value_4035.as_str());
+        builder = builder.set_billing_mode(Some(fixture_4034));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn source_table_feature_details_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::SourceTableFeatureDetails> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "local_secondary_indexes",
+            "global_secondary_indexes",
+            "stream_description",
+            "time_to_live_description",
+            "sse_description",
+            "vector_indexes",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::SourceTableFeatureDetails::builder();
+    if let Some(value) = dict_value(values, "local_secondary_indexes")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4036 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4037 in value.try_iter()? {
+            let item_4038 = item_result_4037?;
+            rboto_core::fixture_scalar(&item_4038, "struct")?;
+            let converted_item_4039 = local_secondary_index_info_fixture_from_py(&item_4038)?;
+            fixture_4036.push(converted_item_4039);
+        }
+        builder = builder.set_local_secondary_indexes(Some(fixture_4036));
+    }
+    if let Some(value) = dict_value(values, "global_secondary_indexes")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4040 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4041 in value.try_iter()? {
+            let item_4042 = item_result_4041?;
+            rboto_core::fixture_scalar(&item_4042, "struct")?;
+            let converted_item_4043 = global_secondary_index_info_fixture_from_py(&item_4042)?;
+            fixture_4040.push(converted_item_4043);
+        }
+        builder = builder.set_global_secondary_indexes(Some(fixture_4040));
+    }
+    if let Some(value) = dict_value(values, "stream_description")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4044 = stream_specification_fixture_from_py(&value)?;
+        builder = builder.set_stream_description(Some(fixture_4044));
+    }
+    if let Some(value) = dict_value(values, "time_to_live_description")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4045 = time_to_live_description_fixture_from_py(&value)?;
+        builder = builder.set_time_to_live_description(Some(fixture_4045));
+    }
+    if let Some(value) = dict_value(values, "sse_description")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4046 = sse_description_fixture_from_py(&value)?;
+        builder = builder.set_sse_description(Some(fixture_4046));
+    }
+    if let Some(value) = dict_value(values, "vector_indexes")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4047 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4048 in value.try_iter()? {
+            let item_4049 = item_result_4048?;
+            rboto_core::fixture_scalar(&item_4049, "struct")?;
+            let converted_item_4050 = vector_index_info_fixture_from_py(&item_4049)?;
+            fixture_4047.push(converted_item_4050);
+        }
+        builder = builder.set_vector_indexes(Some(fixture_4047));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn sse_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::SseDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "status",
+            "sse_type",
+            "kms_master_key_arn",
+            "inaccessible_encryption_date_time",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::SseDescription::builder();
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4052: String = value.extract()?;
+        let fixture_4051 = aws_sdk_dynamodb::types::SseStatus::from(enum_value_4052.as_str());
+        builder = builder.set_status(Some(fixture_4051));
+    }
+    if let Some(value) = dict_value(values, "sse_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4054: String = value.extract()?;
+        let fixture_4053 = aws_sdk_dynamodb::types::SseType::from(enum_value_4054.as_str());
+        builder = builder.set_sse_type(Some(fixture_4053));
+    }
+    if let Some(value) = dict_value(values, "kms_master_key_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4055: String = value.extract()?;
+        builder = builder.set_kms_master_key_arn(Some(fixture_4055));
+    }
+    if let Some(value) = dict_value(values, "inaccessible_encryption_date_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_4057: String = value.extract()?;
+        let fixture_4056 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_4057,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_inaccessible_encryption_date_time(Some(fixture_4056));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn sse_specification_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::SseSpecification> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["enabled", "sse_type", "kms_master_key_id"], &[])?;
+    let mut builder = aws_sdk_dynamodb::types::SseSpecification::builder();
+    if let Some(value) = dict_value(values, "enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_4058: bool = value.extract()?;
+        builder = builder.set_enabled(Some(fixture_4058));
+    }
+    if let Some(value) = dict_value(values, "sse_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4060: String = value.extract()?;
+        let fixture_4059 = aws_sdk_dynamodb::types::SseType::from(enum_value_4060.as_str());
+        builder = builder.set_sse_type(Some(fixture_4059));
+    }
+    if let Some(value) = dict_value(values, "kms_master_key_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4061: String = value.extract()?;
+        builder = builder.set_kms_master_key_id(Some(fixture_4061));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn stream_specification_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::StreamSpecification> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["stream_enabled", "stream_view_type"],
+        &["stream_enabled"],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::StreamSpecification::builder();
+    if let Some(value) = values.get_item("stream_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_4062: bool = value.extract()?;
+        builder = builder.set_stream_enabled(Some(fixture_4062));
+    }
+    if let Some(value) = dict_value(values, "stream_view_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4064: String = value.extract()?;
+        let fixture_4063 = aws_sdk_dynamodb::types::StreamViewType::from(enum_value_4064.as_str());
+        builder = builder.set_stream_view_type(Some(fixture_4063));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn table_auto_scaling_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::TableAutoScalingDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["table_name", "table_status", "replicas"], &[])?;
+    let mut builder = aws_sdk_dynamodb::types::TableAutoScalingDescription::builder();
+    if let Some(value) = dict_value(values, "table_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4065: String = value.extract()?;
+        builder = builder.set_table_name(Some(fixture_4065));
+    }
+    if let Some(value) = dict_value(values, "table_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4067: String = value.extract()?;
+        let fixture_4066 = aws_sdk_dynamodb::types::TableStatus::from(enum_value_4067.as_str());
+        builder = builder.set_table_status(Some(fixture_4066));
+    }
+    if let Some(value) = dict_value(values, "replicas")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4068 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4069 in value.try_iter()? {
+            let item_4070 = item_result_4069?;
+            rboto_core::fixture_scalar(&item_4070, "struct")?;
+            let converted_item_4071 = replica_auto_scaling_description_fixture_from_py(&item_4070)?;
+            fixture_4068.push(converted_item_4071);
+        }
+        builder = builder.set_replicas(Some(fixture_4068));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn table_class_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::TableClassSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["table_class", "last_update_date_time"], &[])?;
+    let mut builder = aws_sdk_dynamodb::types::TableClassSummary::builder();
+    if let Some(value) = dict_value(values, "table_class")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4073: String = value.extract()?;
+        let fixture_4072 = aws_sdk_dynamodb::types::TableClass::from(enum_value_4073.as_str());
+        builder = builder.set_table_class(Some(fixture_4072));
+    }
+    if let Some(value) = dict_value(values, "last_update_date_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_4075: String = value.extract()?;
+        let fixture_4074 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_4075,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_update_date_time(Some(fixture_4074));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn table_creation_parameters_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::TableCreationParameters> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "table_name",
+            "attribute_definitions",
+            "key_schema",
+            "billing_mode",
+            "provisioned_throughput",
+            "on_demand_throughput",
+            "sse_specification",
+            "global_secondary_indexes",
+            "vector_indexes",
+        ],
+        &["table_name", "attribute_definitions", "key_schema"],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::TableCreationParameters::builder();
+    if let Some(value) = values.get_item("table_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4076: String = value.extract()?;
+        builder = builder.set_table_name(Some(fixture_4076));
+    }
+    if let Some(value) = values.get_item("attribute_definitions")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4077 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4078 in value.try_iter()? {
+            let item_4079 = item_result_4078?;
+            rboto_core::fixture_scalar(&item_4079, "struct")?;
+            let converted_item_4080 = attribute_definition_fixture_from_py(&item_4079)?;
+            fixture_4077.push(converted_item_4080);
+        }
+        builder = builder.set_attribute_definitions(Some(fixture_4077));
+    }
+    if let Some(value) = values.get_item("key_schema")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4081 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4082 in value.try_iter()? {
+            let item_4083 = item_result_4082?;
+            rboto_core::fixture_scalar(&item_4083, "struct")?;
+            let converted_item_4084 = key_schema_element_fixture_from_py(&item_4083)?;
+            fixture_4081.push(converted_item_4084);
+        }
+        builder = builder.set_key_schema(Some(fixture_4081));
+    }
+    if let Some(value) = dict_value(values, "billing_mode")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4086: String = value.extract()?;
+        let fixture_4085 = aws_sdk_dynamodb::types::BillingMode::from(enum_value_4086.as_str());
+        builder = builder.set_billing_mode(Some(fixture_4085));
+    }
+    if let Some(value) = dict_value(values, "provisioned_throughput")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4087 = provisioned_throughput_fixture_from_py(&value)?;
+        builder = builder.set_provisioned_throughput(Some(fixture_4087));
+    }
+    if let Some(value) = dict_value(values, "on_demand_throughput")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4088 = on_demand_throughput_fixture_from_py(&value)?;
+        builder = builder.set_on_demand_throughput(Some(fixture_4088));
+    }
+    if let Some(value) = dict_value(values, "sse_specification")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4089 = sse_specification_fixture_from_py(&value)?;
+        builder = builder.set_sse_specification(Some(fixture_4089));
+    }
+    if let Some(value) = dict_value(values, "global_secondary_indexes")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4090 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4091 in value.try_iter()? {
+            let item_4092 = item_result_4091?;
+            rboto_core::fixture_scalar(&item_4092, "struct")?;
+            let converted_item_4093 = global_secondary_index_fixture_from_py(&item_4092)?;
+            fixture_4090.push(converted_item_4093);
+        }
+        builder = builder.set_global_secondary_indexes(Some(fixture_4090));
+    }
+    if let Some(value) = dict_value(values, "vector_indexes")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4094 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4095 in value.try_iter()? {
+            let item_4096 = item_result_4095?;
+            rboto_core::fixture_scalar(&item_4096, "struct")?;
+            let converted_item_4097 = vector_index_fixture_from_py(&item_4096)?;
+            fixture_4094.push(converted_item_4097);
+        }
+        builder = builder.set_vector_indexes(Some(fixture_4094));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn table_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::TableDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "attribute_definitions",
+            "table_name",
+            "key_schema",
+            "table_status",
+            "creation_date_time",
+            "provisioned_throughput",
+            "table_size_bytes",
+            "item_count",
+            "table_arn",
+            "table_id",
+            "billing_mode_summary",
+            "local_secondary_indexes",
+            "global_secondary_indexes",
+            "stream_specification",
+            "latest_stream_label",
+            "latest_stream_arn",
+            "global_table_version",
+            "replicas",
+            "global_table_witnesses",
+            "global_table_settings_replication_mode",
+            "restore_summary",
+            "sse_description",
+            "archival_summary",
+            "table_class_summary",
+            "deletion_protection_enabled",
+            "disassociation_protection_enabled",
+            "on_demand_throughput",
+            "warm_throughput",
+            "multi_region_consistency",
+            "vector_indexes",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::TableDescription::builder();
+    if let Some(value) = dict_value(values, "attribute_definitions")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4098 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4099 in value.try_iter()? {
+            let item_4100 = item_result_4099?;
+            rboto_core::fixture_scalar(&item_4100, "struct")?;
+            let converted_item_4101 = attribute_definition_fixture_from_py(&item_4100)?;
+            fixture_4098.push(converted_item_4101);
+        }
+        builder = builder.set_attribute_definitions(Some(fixture_4098));
+    }
+    if let Some(value) = dict_value(values, "table_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4102: String = value.extract()?;
+        builder = builder.set_table_name(Some(fixture_4102));
+    }
+    if let Some(value) = dict_value(values, "key_schema")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4103 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4104 in value.try_iter()? {
+            let item_4105 = item_result_4104?;
+            rboto_core::fixture_scalar(&item_4105, "struct")?;
+            let converted_item_4106 = key_schema_element_fixture_from_py(&item_4105)?;
+            fixture_4103.push(converted_item_4106);
+        }
+        builder = builder.set_key_schema(Some(fixture_4103));
+    }
+    if let Some(value) = dict_value(values, "table_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4108: String = value.extract()?;
+        let fixture_4107 = aws_sdk_dynamodb::types::TableStatus::from(enum_value_4108.as_str());
+        builder = builder.set_table_status(Some(fixture_4107));
+    }
+    if let Some(value) = dict_value(values, "creation_date_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_4110: String = value.extract()?;
+        let fixture_4109 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_4110,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_date_time(Some(fixture_4109));
+    }
+    if let Some(value) = dict_value(values, "provisioned_throughput")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4111 = provisioned_throughput_description_fixture_from_py(&value)?;
+        builder = builder.set_provisioned_throughput(Some(fixture_4111));
+    }
+    if let Some(value) = dict_value(values, "table_size_bytes")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_4112: i64 = value.extract()?;
+        builder = builder.set_table_size_bytes(Some(fixture_4112));
+    }
+    if let Some(value) = dict_value(values, "item_count")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_4113: i64 = value.extract()?;
+        builder = builder.set_item_count(Some(fixture_4113));
+    }
+    if let Some(value) = dict_value(values, "table_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4114: String = value.extract()?;
+        builder = builder.set_table_arn(Some(fixture_4114));
+    }
+    if let Some(value) = dict_value(values, "table_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4115: String = value.extract()?;
+        builder = builder.set_table_id(Some(fixture_4115));
+    }
+    if let Some(value) = dict_value(values, "billing_mode_summary")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4116 = billing_mode_summary_fixture_from_py(&value)?;
+        builder = builder.set_billing_mode_summary(Some(fixture_4116));
+    }
+    if let Some(value) = dict_value(values, "local_secondary_indexes")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4117 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4118 in value.try_iter()? {
+            let item_4119 = item_result_4118?;
+            rboto_core::fixture_scalar(&item_4119, "struct")?;
+            let converted_item_4120 =
+                local_secondary_index_description_fixture_from_py(&item_4119)?;
+            fixture_4117.push(converted_item_4120);
+        }
+        builder = builder.set_local_secondary_indexes(Some(fixture_4117));
+    }
+    if let Some(value) = dict_value(values, "global_secondary_indexes")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4121 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4122 in value.try_iter()? {
+            let item_4123 = item_result_4122?;
+            rboto_core::fixture_scalar(&item_4123, "struct")?;
+            let converted_item_4124 =
+                global_secondary_index_description_fixture_from_py(&item_4123)?;
+            fixture_4121.push(converted_item_4124);
+        }
+        builder = builder.set_global_secondary_indexes(Some(fixture_4121));
+    }
+    if let Some(value) = dict_value(values, "stream_specification")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4125 = stream_specification_fixture_from_py(&value)?;
+        builder = builder.set_stream_specification(Some(fixture_4125));
+    }
+    if let Some(value) = dict_value(values, "latest_stream_label")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4126: String = value.extract()?;
+        builder = builder.set_latest_stream_label(Some(fixture_4126));
+    }
+    if let Some(value) = dict_value(values, "latest_stream_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4127: String = value.extract()?;
+        builder = builder.set_latest_stream_arn(Some(fixture_4127));
+    }
+    if let Some(value) = dict_value(values, "global_table_version")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4128: String = value.extract()?;
+        builder = builder.set_global_table_version(Some(fixture_4128));
+    }
+    if let Some(value) = dict_value(values, "replicas")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4129 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4130 in value.try_iter()? {
+            let item_4131 = item_result_4130?;
+            rboto_core::fixture_scalar(&item_4131, "struct")?;
+            let converted_item_4132 = replica_description_fixture_from_py(&item_4131)?;
+            fixture_4129.push(converted_item_4132);
+        }
+        builder = builder.set_replicas(Some(fixture_4129));
+    }
+    if let Some(value) = dict_value(values, "global_table_witnesses")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4133 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4134 in value.try_iter()? {
+            let item_4135 = item_result_4134?;
+            rboto_core::fixture_scalar(&item_4135, "struct")?;
+            let converted_item_4136 = global_table_witness_description_fixture_from_py(&item_4135)?;
+            fixture_4133.push(converted_item_4136);
+        }
+        builder = builder.set_global_table_witnesses(Some(fixture_4133));
+    }
+    if let Some(value) = dict_value(values, "global_table_settings_replication_mode")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4138: String = value.extract()?;
+        let fixture_4137 = aws_sdk_dynamodb::types::GlobalTableSettingsReplicationMode::from(
+            enum_value_4138.as_str(),
+        );
+        builder = builder.set_global_table_settings_replication_mode(Some(fixture_4137));
+    }
+    if let Some(value) = dict_value(values, "restore_summary")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4139 = restore_summary_fixture_from_py(&value)?;
+        builder = builder.set_restore_summary(Some(fixture_4139));
+    }
+    if let Some(value) = dict_value(values, "sse_description")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4140 = sse_description_fixture_from_py(&value)?;
+        builder = builder.set_sse_description(Some(fixture_4140));
+    }
+    if let Some(value) = dict_value(values, "archival_summary")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4141 = archival_summary_fixture_from_py(&value)?;
+        builder = builder.set_archival_summary(Some(fixture_4141));
+    }
+    if let Some(value) = dict_value(values, "table_class_summary")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4142 = table_class_summary_fixture_from_py(&value)?;
+        builder = builder.set_table_class_summary(Some(fixture_4142));
+    }
+    if let Some(value) = dict_value(values, "deletion_protection_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_4143: bool = value.extract()?;
+        builder = builder.set_deletion_protection_enabled(Some(fixture_4143));
+    }
+    if let Some(value) = dict_value(values, "disassociation_protection_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_4144: bool = value.extract()?;
+        builder = builder.set_disassociation_protection_enabled(Some(fixture_4144));
+    }
+    if let Some(value) = dict_value(values, "on_demand_throughput")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4145 = on_demand_throughput_fixture_from_py(&value)?;
+        builder = builder.set_on_demand_throughput(Some(fixture_4145));
+    }
+    if let Some(value) = dict_value(values, "warm_throughput")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4146 = table_warm_throughput_description_fixture_from_py(&value)?;
+        builder = builder.set_warm_throughput(Some(fixture_4146));
+    }
+    if let Some(value) = dict_value(values, "multi_region_consistency")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4148: String = value.extract()?;
+        let fixture_4147 =
+            aws_sdk_dynamodb::types::MultiRegionConsistency::from(enum_value_4148.as_str());
+        builder = builder.set_multi_region_consistency(Some(fixture_4147));
+    }
+    if let Some(value) = dict_value(values, "vector_indexes")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4149 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4150 in value.try_iter()? {
+            let item_4151 = item_result_4150?;
+            rboto_core::fixture_scalar(&item_4151, "struct")?;
+            let converted_item_4152 = vector_index_description_fixture_from_py(&item_4151)?;
+            fixture_4149.push(converted_item_4152);
+        }
+        builder = builder.set_vector_indexes(Some(fixture_4149));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn table_warm_throughput_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::TableWarmThroughputDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["read_units_per_second", "write_units_per_second", "status"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::TableWarmThroughputDescription::builder();
+    if let Some(value) = dict_value(values, "read_units_per_second")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_4153: i64 = value.extract()?;
+        builder = builder.set_read_units_per_second(Some(fixture_4153));
+    }
+    if let Some(value) = dict_value(values, "write_units_per_second")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_4154: i64 = value.extract()?;
+        builder = builder.set_write_units_per_second(Some(fixture_4154));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4156: String = value.extract()?;
+        let fixture_4155 = aws_sdk_dynamodb::types::TableStatus::from(enum_value_4156.as_str());
+        builder = builder.set_status(Some(fixture_4155));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn tag_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types::Tag> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["key", "value"], &["key", "value"])?;
+    let mut builder = aws_sdk_dynamodb::types::Tag::builder();
+    if let Some(value) = values.get_item("key")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4157: String = value.extract()?;
+        builder = builder.set_key(Some(fixture_4157));
+    }
+    if let Some(value) = values.get_item("value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4158: String = value.extract()?;
+        builder = builder.set_value(Some(fixture_4158));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn time_to_live_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::TimeToLiveDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["time_to_live_status", "attribute_name"], &[])?;
+    let mut builder = aws_sdk_dynamodb::types::TimeToLiveDescription::builder();
+    if let Some(value) = dict_value(values, "time_to_live_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4160: String = value.extract()?;
+        let fixture_4159 =
+            aws_sdk_dynamodb::types::TimeToLiveStatus::from(enum_value_4160.as_str());
+        builder = builder.set_time_to_live_status(Some(fixture_4159));
+    }
+    if let Some(value) = dict_value(values, "attribute_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4161: String = value.extract()?;
+        builder = builder.set_attribute_name(Some(fixture_4161));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn time_to_live_specification_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::TimeToLiveSpecification> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["enabled", "attribute_name"],
+        &["enabled", "attribute_name"],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::TimeToLiveSpecification::builder();
+    if let Some(value) = values.get_item("enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_4162: bool = value.extract()?;
+        builder = builder.set_enabled(Some(fixture_4162));
+    }
+    if let Some(value) = values.get_item("attribute_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4163: String = value.extract()?;
+        builder = builder.set_attribute_name(Some(fixture_4163));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn update_kinesis_streaming_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::UpdateKinesisStreamingConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["approximate_creation_date_time_precision"], &[])?;
+    let mut builder = aws_sdk_dynamodb::types::UpdateKinesisStreamingConfiguration::builder();
+    if let Some(value) = dict_value(values, "approximate_creation_date_time_precision")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4165: String = value.extract()?;
+        let fixture_4164 = aws_sdk_dynamodb::types::ApproximateCreationDateTimePrecision::from(
+            enum_value_4165.as_str(),
+        );
+        builder = builder.set_approximate_creation_date_time_precision(Some(fixture_4164));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn vector_attribute_definition_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::VectorAttributeDefinition> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["attribute_name"], &["attribute_name"])?;
+    let mut builder = aws_sdk_dynamodb::types::VectorAttributeDefinition::builder();
+    if let Some(value) = values.get_item("attribute_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4166: String = value.extract()?;
+        builder = builder.set_attribute_name(Some(fixture_4166));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn vector_capacity_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::VectorCapacity> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["vector_search_request_bytes", "vector_write_request_bytes"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::VectorCapacity::builder();
+    if let Some(value) = dict_value(values, "vector_search_request_bytes")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_4167: f64 = value.extract()?;
+        builder = builder.set_vector_search_request_bytes(Some(fixture_4167));
+    }
+    if let Some(value) = dict_value(values, "vector_write_request_bytes")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_4168: f64 = value.extract()?;
+        builder = builder.set_vector_write_request_bytes(Some(fixture_4168));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn vector_index_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::VectorIndex> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "index_name",
+            "vector_attribute",
+            "search_schema",
+            "projection",
+            "dimensions",
+            "distance_function",
+        ],
+        &["index_name", "dimensions", "distance_function"],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::VectorIndex::builder();
+    if let Some(value) = values.get_item("index_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4169: String = value.extract()?;
+        builder = builder.set_index_name(Some(fixture_4169));
+    }
+    if let Some(value) = dict_value(values, "vector_attribute")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4170 = vector_attribute_definition_fixture_from_py(&value)?;
+        builder = builder.set_vector_attribute(Some(fixture_4170));
+    }
+    if let Some(value) = dict_value(values, "search_schema")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4171 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4172 in value.try_iter()? {
+            let item_4173 = item_result_4172?;
+            rboto_core::fixture_scalar(&item_4173, "struct")?;
+            let converted_item_4174 = search_schema_element_fixture_from_py(&item_4173)?;
+            fixture_4171.push(converted_item_4174);
+        }
+        builder = builder.set_search_schema(Some(fixture_4171));
+    }
+    if let Some(value) = dict_value(values, "projection")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4175 = projection_fixture_from_py(&value)?;
+        builder = builder.set_projection(Some(fixture_4175));
+    }
+    if let Some(value) = values.get_item("dimensions")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_4176: i64 = value.extract()?;
+        builder = builder.set_dimensions(Some(fixture_4176));
+    }
+    if let Some(value) = values.get_item("distance_function")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4178: String = value.extract()?;
+        let fixture_4177 =
+            aws_sdk_dynamodb::types::VectorDistanceFunction::from(enum_value_4178.as_str());
+        builder = builder.set_distance_function(Some(fixture_4177));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn vector_index_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::VectorIndexDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "index_name",
+            "search_schema",
+            "projection",
+            "vector_attribute",
+            "dimensions",
+            "distance_function",
+            "index_status",
+            "backfilling",
+            "index_size_bytes",
+            "item_count",
+            "index_arn",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::VectorIndexDescription::builder();
+    if let Some(value) = dict_value(values, "index_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4179: String = value.extract()?;
+        builder = builder.set_index_name(Some(fixture_4179));
+    }
+    if let Some(value) = dict_value(values, "search_schema")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4180 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4181 in value.try_iter()? {
+            let item_4182 = item_result_4181?;
+            rboto_core::fixture_scalar(&item_4182, "struct")?;
+            let converted_item_4183 = search_schema_element_fixture_from_py(&item_4182)?;
+            fixture_4180.push(converted_item_4183);
+        }
+        builder = builder.set_search_schema(Some(fixture_4180));
+    }
+    if let Some(value) = dict_value(values, "projection")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4184 = projection_fixture_from_py(&value)?;
+        builder = builder.set_projection(Some(fixture_4184));
+    }
+    if let Some(value) = dict_value(values, "vector_attribute")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4185 = vector_attribute_definition_fixture_from_py(&value)?;
+        builder = builder.set_vector_attribute(Some(fixture_4185));
+    }
+    if let Some(value) = dict_value(values, "dimensions")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_4186: i64 = value.extract()?;
+        builder = builder.set_dimensions(Some(fixture_4186));
+    }
+    if let Some(value) = dict_value(values, "distance_function")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4188: String = value.extract()?;
+        let fixture_4187 =
+            aws_sdk_dynamodb::types::VectorDistanceFunction::from(enum_value_4188.as_str());
+        builder = builder.set_distance_function(Some(fixture_4187));
+    }
+    if let Some(value) = dict_value(values, "index_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4190: String = value.extract()?;
+        let fixture_4189 = aws_sdk_dynamodb::types::IndexStatus::from(enum_value_4190.as_str());
+        builder = builder.set_index_status(Some(fixture_4189));
+    }
+    if let Some(value) = dict_value(values, "backfilling")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_4191: bool = value.extract()?;
+        builder = builder.set_backfilling(Some(fixture_4191));
+    }
+    if let Some(value) = dict_value(values, "index_size_bytes")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_4192: i64 = value.extract()?;
+        builder = builder.set_index_size_bytes(Some(fixture_4192));
+    }
+    if let Some(value) = dict_value(values, "item_count")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_4193: i64 = value.extract()?;
+        builder = builder.set_item_count(Some(fixture_4193));
+    }
+    if let Some(value) = dict_value(values, "index_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4194: String = value.extract()?;
+        builder = builder.set_index_arn(Some(fixture_4194));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn vector_index_info_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::VectorIndexInfo> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "index_name",
+            "vector_attribute",
+            "search_schema",
+            "projection",
+            "dimensions",
+            "distance_function",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::VectorIndexInfo::builder();
+    if let Some(value) = dict_value(values, "index_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4195: String = value.extract()?;
+        builder = builder.set_index_name(Some(fixture_4195));
+    }
+    if let Some(value) = dict_value(values, "vector_attribute")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4196 = vector_attribute_definition_fixture_from_py(&value)?;
+        builder = builder.set_vector_attribute(Some(fixture_4196));
+    }
+    if let Some(value) = dict_value(values, "search_schema")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4197 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4198 in value.try_iter()? {
+            let item_4199 = item_result_4198?;
+            rboto_core::fixture_scalar(&item_4199, "struct")?;
+            let converted_item_4200 = search_schema_element_fixture_from_py(&item_4199)?;
+            fixture_4197.push(converted_item_4200);
+        }
+        builder = builder.set_search_schema(Some(fixture_4197));
+    }
+    if let Some(value) = dict_value(values, "projection")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4201 = projection_fixture_from_py(&value)?;
+        builder = builder.set_projection(Some(fixture_4201));
+    }
+    if let Some(value) = dict_value(values, "dimensions")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_4202: i64 = value.extract()?;
+        builder = builder.set_dimensions(Some(fixture_4202));
+    }
+    if let Some(value) = dict_value(values, "distance_function")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4204: String = value.extract()?;
+        let fixture_4203 =
+            aws_sdk_dynamodb::types::VectorDistanceFunction::from(enum_value_4204.as_str());
+        builder = builder.set_distance_function(Some(fixture_4203));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn warm_throughput_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::WarmThroughput> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["read_units_per_second", "write_units_per_second"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_dynamodb::types::WarmThroughput::builder();
+    if let Some(value) = dict_value(values, "read_units_per_second")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_4205: i64 = value.extract()?;
+        builder = builder.set_read_units_per_second(Some(fixture_4205));
+    }
+    if let Some(value) = dict_value(values, "write_units_per_second")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_4206: i64 = value.extract()?;
+        builder = builder.set_write_units_per_second(Some(fixture_4206));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn write_request_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_dynamodb::types::WriteRequest> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["put_request", "delete_request"], &[])?;
+    let mut builder = aws_sdk_dynamodb::types::WriteRequest::builder();
+    if let Some(value) = dict_value(values, "put_request")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4207 = put_request_fixture_from_py(&value)?;
+        builder = builder.set_put_request(Some(fixture_4207));
+    }
+    if let Some(value) = dict_value(values, "delete_request")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4208 = delete_request_fixture_from_py(&value)?;
+        builder = builder.set_delete_request(Some(fixture_4208));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
 #[pyclass(name = "ArchivalSummary", module = "rboto_dynamodb._native", frozen)]
 struct PyArchivalSummary {
     inner: Arc<aws_sdk_dynamodb::types::ArchivalSummary>,
@@ -16825,6 +20775,41 @@ impl PyOperationBatchExecuteStatementOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["responses", "consumed_capacity"], &[])?;
+        let mut builder = aws_sdk_dynamodb::operation::batch_execute_statement::BatchExecuteStatementOutput::builder();
+        if let Some(value) = dict_value(values, "responses")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3068 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3069 in value.try_iter()? {
+                let item_3070 = item_result_3069?;
+                rboto_core::fixture_scalar(&item_3070, "struct")?;
+                let converted_item_3071 = batch_statement_response_fixture_from_py(&item_3070)?;
+                fixture_3068.push(converted_item_3071);
+            }
+            builder = builder.set_responses(Some(fixture_3068));
+        }
+        if let Some(value) = dict_value(values, "consumed_capacity")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3072 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3073 in value.try_iter()? {
+                let item_3074 = item_result_3073?;
+                rboto_core::fixture_scalar(&item_3074, "struct")?;
+                let converted_item_3075 = consumed_capacity_fixture_from_py(&item_3074)?;
+                fixture_3072.push(converted_item_3075);
+            }
+            builder = builder.set_consumed_capacity(Some(fixture_3072));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -17000,6 +20985,75 @@ impl PyOperationBatchGetItemOutput {
             result.set_item("consumed_capacity", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["responses", "unprocessed_keys", "consumed_capacity"],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_dynamodb::operation::batch_get_item::BatchGetItemOutput::builder();
+        if let Some(value) = dict_value(values, "responses")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_3109 = value.cast::<PyDict>()?;
+            let mut fixture_3108 = HashMap::with_capacity(mapping_3109.len());
+            for (key_3110, value_3111) in mapping_3109.iter() {
+                rboto_core::fixture_scalar(&key_3110, "string")?;
+                let converted_key_3112: String = key_3110.extract()?;
+                rboto_core::fixture_scalar(&value_3111, "vec")?;
+                let mut converted_value_3113 =
+                    Vec::with_capacity(value_3111.cast::<PyList>().map_or(0, |items| items.len()));
+                for item_result_3114 in value_3111.try_iter()? {
+                    let item_3115 = item_result_3114?;
+                    rboto_core::fixture_scalar(&item_3115, "map")?;
+                    let mapping_3117 = item_3115.cast::<PyDict>()?;
+                    let mut converted_item_3116 = HashMap::with_capacity(mapping_3117.len());
+                    for (key_3118, value_3119) in mapping_3117.iter() {
+                        rboto_core::fixture_scalar(&key_3118, "string")?;
+                        let converted_key_3120: String = key_3118.extract()?;
+                        rboto_core::fixture_scalar(&value_3119, "union")?;
+                        let converted_value_3121 = attribute_value_fixture_from_py(&value_3119)?;
+                        converted_item_3116.insert(converted_key_3120, converted_value_3121);
+                    }
+                    converted_value_3113.push(converted_item_3116);
+                }
+                fixture_3108.insert(converted_key_3112, converted_value_3113);
+            }
+            builder = builder.set_responses(Some(fixture_3108));
+        }
+        if let Some(value) = dict_value(values, "unprocessed_keys")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_3123 = value.cast::<PyDict>()?;
+            let mut fixture_3122 = HashMap::with_capacity(mapping_3123.len());
+            for (key_3124, value_3125) in mapping_3123.iter() {
+                rboto_core::fixture_scalar(&key_3124, "string")?;
+                let converted_key_3126: String = key_3124.extract()?;
+                rboto_core::fixture_scalar(&value_3125, "struct")?;
+                let converted_value_3127 = keys_and_attributes_fixture_from_py(&value_3125)?;
+                fixture_3122.insert(converted_key_3126, converted_value_3127);
+            }
+            builder = builder.set_unprocessed_keys(Some(fixture_3122));
+        }
+        if let Some(value) = dict_value(values, "consumed_capacity")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3128 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3129 in value.try_iter()? {
+                let item_3130 = item_result_3129?;
+                rboto_core::fixture_scalar(&item_3130, "struct")?;
+                let converted_item_3131 = consumed_capacity_fixture_from_py(&item_3130)?;
+                fixture_3128.push(converted_item_3131);
+            }
+            builder = builder.set_consumed_capacity(Some(fixture_3128));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -17199,6 +21253,78 @@ impl PyOperationBatchWriteItemOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "unprocessed_items",
+                "item_collection_metrics",
+                "consumed_capacity",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_dynamodb::operation::batch_write_item::BatchWriteItemOutput::builder();
+        if let Some(value) = dict_value(values, "unprocessed_items")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_3148 = value.cast::<PyDict>()?;
+            let mut fixture_3147 = HashMap::with_capacity(mapping_3148.len());
+            for (key_3149, value_3150) in mapping_3148.iter() {
+                rboto_core::fixture_scalar(&key_3149, "string")?;
+                let converted_key_3151: String = key_3149.extract()?;
+                rboto_core::fixture_scalar(&value_3150, "vec")?;
+                let mut converted_value_3152 =
+                    Vec::with_capacity(value_3150.cast::<PyList>().map_or(0, |items| items.len()));
+                for item_result_3153 in value_3150.try_iter()? {
+                    let item_3154 = item_result_3153?;
+                    rboto_core::fixture_scalar(&item_3154, "struct")?;
+                    let converted_item_3155 = write_request_fixture_from_py(&item_3154)?;
+                    converted_value_3152.push(converted_item_3155);
+                }
+                fixture_3147.insert(converted_key_3151, converted_value_3152);
+            }
+            builder = builder.set_unprocessed_items(Some(fixture_3147));
+        }
+        if let Some(value) = dict_value(values, "item_collection_metrics")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_3157 = value.cast::<PyDict>()?;
+            let mut fixture_3156 = HashMap::with_capacity(mapping_3157.len());
+            for (key_3158, value_3159) in mapping_3157.iter() {
+                rboto_core::fixture_scalar(&key_3158, "string")?;
+                let converted_key_3160: String = key_3158.extract()?;
+                rboto_core::fixture_scalar(&value_3159, "vec")?;
+                let mut converted_value_3161 =
+                    Vec::with_capacity(value_3159.cast::<PyList>().map_or(0, |items| items.len()));
+                for item_result_3162 in value_3159.try_iter()? {
+                    let item_3163 = item_result_3162?;
+                    rboto_core::fixture_scalar(&item_3163, "struct")?;
+                    let converted_item_3164 = item_collection_metrics_fixture_from_py(&item_3163)?;
+                    converted_value_3161.push(converted_item_3164);
+                }
+                fixture_3156.insert(converted_key_3160, converted_value_3161);
+            }
+            builder = builder.set_item_collection_metrics(Some(fixture_3156));
+        }
+        if let Some(value) = dict_value(values, "consumed_capacity")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3165 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3166 in value.try_iter()? {
+                let item_3167 = item_result_3166?;
+                rboto_core::fixture_scalar(&item_3167, "struct")?;
+                let converted_item_3168 = consumed_capacity_fixture_from_py(&item_3167)?;
+                fixture_3165.push(converted_item_3168);
+            }
+            builder = builder.set_consumed_capacity(Some(fixture_3165));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -17249,6 +21375,22 @@ impl PyOperationCreateBackupOutput {
             result.set_item("backup_details", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["backup_details"], &[])?;
+        let mut builder = aws_sdk_dynamodb::operation::create_backup::CreateBackupOutput::builder();
+        if let Some(value) = dict_value(values, "backup_details")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3149 = backup_details_fixture_from_py(&value)?;
+            builder = builder.set_backup_details(Some(fixture_3149));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -17309,6 +21451,23 @@ impl PyOperationCreateGlobalTableOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["global_table_description"], &[])?;
+        let mut builder =
+            aws_sdk_dynamodb::operation::create_global_table::CreateGlobalTableOutput::builder();
+        if let Some(value) = dict_value(values, "global_table_description")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3151 = global_table_description_fixture_from_py(&value)?;
+            builder = builder.set_global_table_description(Some(fixture_3151));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -17362,6 +21521,22 @@ impl PyOperationCreateTableOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["table_description"], &[])?;
+        let mut builder = aws_sdk_dynamodb::operation::create_table::CreateTableOutput::builder();
+        if let Some(value) = dict_value(values, "table_description")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3153 = table_description_fixture_from_py(&value)?;
+            builder = builder.set_table_description(Some(fixture_3153));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -17414,6 +21589,22 @@ impl PyOperationDeleteBackupOutput {
             result.set_item("backup_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["backup_description"], &[])?;
+        let mut builder = aws_sdk_dynamodb::operation::delete_backup::DeleteBackupOutput::builder();
+        if let Some(value) = dict_value(values, "backup_description")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3155 = backup_description_fixture_from_py(&value)?;
+            builder = builder.set_backup_description(Some(fixture_3155));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -17524,6 +21715,44 @@ impl PyOperationDeleteItemOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["attributes", "consumed_capacity", "item_collection_metrics"],
+            &[],
+        )?;
+        let mut builder = aws_sdk_dynamodb::operation::delete_item::DeleteItemOutput::builder();
+        if let Some(value) = dict_value(values, "attributes")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_3170 = value.cast::<PyDict>()?;
+            let mut fixture_3169 = HashMap::with_capacity(mapping_3170.len());
+            for (key_3171, value_3172) in mapping_3170.iter() {
+                rboto_core::fixture_scalar(&key_3171, "string")?;
+                let converted_key_3173: String = key_3171.extract()?;
+                rboto_core::fixture_scalar(&value_3172, "union")?;
+                let converted_value_3174 = attribute_value_fixture_from_py(&value_3172)?;
+                fixture_3169.insert(converted_key_3173, converted_value_3174);
+            }
+            builder = builder.set_attributes(Some(fixture_3169));
+        }
+        if let Some(value) = dict_value(values, "consumed_capacity")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3175 = consumed_capacity_fixture_from_py(&value)?;
+            builder = builder.set_consumed_capacity(Some(fixture_3175));
+        }
+        if let Some(value) = dict_value(values, "item_collection_metrics")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3176 = item_collection_metrics_fixture_from_py(&value)?;
+            builder = builder.set_item_collection_metrics(Some(fixture_3176));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -17556,6 +21785,20 @@ impl PyOperationDeleteResourcePolicyOutput {
             result.set_item("revision_id", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["revision_id"], &[])?;
+        let mut builder = aws_sdk_dynamodb::operation::delete_resource_policy::DeleteResourcePolicyOutput::builder();
+        if let Some(value) = dict_value(values, "revision_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3171: String = value.extract()?;
+            builder = builder.set_revision_id(Some(fixture_3171));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -17609,6 +21852,22 @@ impl PyOperationDeleteTableOutput {
             result.set_item("table_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["table_description"], &[])?;
+        let mut builder = aws_sdk_dynamodb::operation::delete_table::DeleteTableOutput::builder();
+        if let Some(value) = dict_value(values, "table_description")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3173 = table_description_fixture_from_py(&value)?;
+            builder = builder.set_table_description(Some(fixture_3173));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -17666,6 +21925,23 @@ impl PyOperationDescribeBackupOutput {
             result.set_item("backup_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["backup_description"], &[])?;
+        let mut builder =
+            aws_sdk_dynamodb::operation::describe_backup::DescribeBackupOutput::builder();
+        if let Some(value) = dict_value(values, "backup_description")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3175 = backup_description_fixture_from_py(&value)?;
+            builder = builder.set_backup_description(Some(fixture_3175));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -17725,6 +22001,22 @@ impl PyOperationDescribeContinuousBackupsOutput {
             result.set_item("continuous_backups_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["continuous_backups_description"], &[])?;
+        let mut builder = aws_sdk_dynamodb::operation::describe_continuous_backups::DescribeContinuousBackupsOutput::builder();
+        if let Some(value) = dict_value(values, "continuous_backups_description")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3177 = continuous_backups_description_fixture_from_py(&value)?;
+            builder = builder.set_continuous_backups_description(Some(fixture_3177));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -17897,6 +22189,80 @@ impl PyOperationDescribeContributorInsightsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "table_name",
+                "index_name",
+                "contributor_insights_rule_list",
+                "contributor_insights_status",
+                "last_update_date_time",
+                "failure_exception",
+                "contributor_insights_mode",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_dynamodb::operation::describe_contributor_insights::DescribeContributorInsightsOutput::builder();
+        if let Some(value) = dict_value(values, "table_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3195: String = value.extract()?;
+            builder = builder.set_table_name(Some(fixture_3195));
+        }
+        if let Some(value) = dict_value(values, "index_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3196: String = value.extract()?;
+            builder = builder.set_index_name(Some(fixture_3196));
+        }
+        if let Some(value) = dict_value(values, "contributor_insights_rule_list")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3197 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3198 in value.try_iter()? {
+                let item_3199 = item_result_3198?;
+                rboto_core::fixture_scalar(&item_3199, "string")?;
+                let converted_item_3200: String = item_3199.extract()?;
+                fixture_3197.push(converted_item_3200);
+            }
+            builder = builder.set_contributor_insights_rule_list(Some(fixture_3197));
+        }
+        if let Some(value) = dict_value(values, "contributor_insights_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3202: String = value.extract()?;
+            let fixture_3201 =
+                aws_sdk_dynamodb::types::ContributorInsightsStatus::from(enum_value_3202.as_str());
+            builder = builder.set_contributor_insights_status(Some(fixture_3201));
+        }
+        if let Some(value) = dict_value(values, "last_update_date_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_3204: String = value.extract()?;
+            let fixture_3203 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_3204,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_last_update_date_time(Some(fixture_3203));
+        }
+        if let Some(value) = dict_value(values, "failure_exception")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3205 = failure_exception_fixture_from_py(&value)?;
+            builder = builder.set_failure_exception(Some(fixture_3205));
+        }
+        if let Some(value) = dict_value(values, "contributor_insights_mode")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3207: String = value.extract()?;
+            let fixture_3206 =
+                aws_sdk_dynamodb::types::ContributorInsightsMode::from(enum_value_3207.as_str());
+            builder = builder.set_contributor_insights_mode(Some(fixture_3206));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -17959,6 +22325,32 @@ impl PyOperationDescribeEndpointsOutput {
         result.set_item("endpoints", converted_3199)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["endpoints"], &["endpoints"])?;
+        let mut builder =
+            aws_sdk_dynamodb::operation::describe_endpoints::DescribeEndpointsOutput::builder();
+        if let Some(value) = values.get_item("endpoints")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3202 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3203 in value.try_iter()? {
+                let item_3204 = item_result_3203?;
+                rboto_core::fixture_scalar(&item_3204, "struct")?;
+                let converted_item_3205 = endpoint_fixture_from_py(&item_3204)?;
+                fixture_3202.push(converted_item_3205);
+            }
+            builder = builder.set_endpoints(Some(fixture_3202));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -18015,6 +22407,23 @@ impl PyOperationDescribeExportOutput {
             result.set_item("export_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["export_description"], &[])?;
+        let mut builder =
+            aws_sdk_dynamodb::operation::describe_export::DescribeExportOutput::builder();
+        if let Some(value) = dict_value(values, "export_description")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3204 = export_description_fixture_from_py(&value)?;
+            builder = builder.set_export_description(Some(fixture_3204));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -18074,6 +22483,24 @@ impl PyOperationDescribeGlobalTableOutput {
             result.set_item("global_table_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["global_table_description"], &[])?;
+        let mut builder =
+            aws_sdk_dynamodb::operation::describe_global_table::DescribeGlobalTableOutput::builder(
+            );
+        if let Some(value) = dict_value(values, "global_table_description")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3206 = global_table_description_fixture_from_py(&value)?;
+            builder = builder.set_global_table_description(Some(fixture_3206));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -18156,6 +22583,34 @@ impl PyOperationDescribeGlobalTableSettingsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["global_table_name", "replica_settings"], &[])?;
+        let mut builder = aws_sdk_dynamodb::operation::describe_global_table_settings::DescribeGlobalTableSettingsOutput::builder();
+        if let Some(value) = dict_value(values, "global_table_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3215: String = value.extract()?;
+            builder = builder.set_global_table_name(Some(fixture_3215));
+        }
+        if let Some(value) = dict_value(values, "replica_settings")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3216 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3217 in value.try_iter()? {
+                let item_3218 = item_result_3217?;
+                rboto_core::fixture_scalar(&item_3218, "struct")?;
+                let converted_item_3219 = replica_settings_description_fixture_from_py(&item_3218)?;
+                fixture_3216.push(converted_item_3219);
+            }
+            builder = builder.set_replica_settings(Some(fixture_3216));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -18212,6 +22667,23 @@ impl PyOperationDescribeImportOutput {
             result.set_item("import_table_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["import_table_description"], &[])?;
+        let mut builder =
+            aws_sdk_dynamodb::operation::describe_import::DescribeImportOutput::builder();
+        if let Some(value) = dict_value(values, "import_table_description")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3217 = import_table_description_fixture_from_py(&value)?;
+            builder = builder.set_import_table_description(Some(fixture_3217));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -18295,6 +22767,39 @@ impl PyOperationDescribeKinesisStreamingDestinationOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["table_name", "kinesis_data_stream_destinations"],
+            &[],
+        )?;
+        let mut builder = aws_sdk_dynamodb::operation::describe_kinesis_streaming_destination::DescribeKinesisStreamingDestinationOutput::builder();
+        if let Some(value) = dict_value(values, "table_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3226: String = value.extract()?;
+            builder = builder.set_table_name(Some(fixture_3226));
+        }
+        if let Some(value) = dict_value(values, "kinesis_data_stream_destinations")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3227 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3228 in value.try_iter()? {
+                let item_3229 = item_result_3228?;
+                rboto_core::fixture_scalar(&item_3229, "struct")?;
+                let converted_item_3230 =
+                    kinesis_data_stream_destination_fixture_from_py(&item_3229)?;
+                fixture_3227.push(converted_item_3230);
+            }
+            builder = builder.set_kinesis_data_stream_destinations(Some(fixture_3227));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -18376,6 +22881,45 @@ impl PyOperationDescribeLimitsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "account_max_read_capacity_units",
+                "account_max_write_capacity_units",
+                "table_max_read_capacity_units",
+                "table_max_write_capacity_units",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_dynamodb::operation::describe_limits::DescribeLimitsOutput::builder();
+        if let Some(value) = dict_value(values, "account_max_read_capacity_units")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_3234: i64 = value.extract()?;
+            builder = builder.set_account_max_read_capacity_units(Some(fixture_3234));
+        }
+        if let Some(value) = dict_value(values, "account_max_write_capacity_units")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_3235: i64 = value.extract()?;
+            builder = builder.set_account_max_write_capacity_units(Some(fixture_3235));
+        }
+        if let Some(value) = dict_value(values, "table_max_read_capacity_units")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_3236: i64 = value.extract()?;
+            builder = builder.set_table_max_read_capacity_units(Some(fixture_3236));
+        }
+        if let Some(value) = dict_value(values, "table_max_write_capacity_units")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_3237: i64 = value.extract()?;
+            builder = builder.set_table_max_write_capacity_units(Some(fixture_3237));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -18433,6 +22977,23 @@ impl PyOperationDescribeTableOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["table"], &[])?;
+        let mut builder =
+            aws_sdk_dynamodb::operation::describe_table::DescribeTableOutput::builder();
+        if let Some(value) = dict_value(values, "table")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3236 = table_description_fixture_from_py(&value)?;
+            builder = builder.set_table(Some(fixture_3236));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -18485,6 +23046,22 @@ impl PyOperationDescribeTableReplicaAutoScalingOutput {
             result.set_item("table_auto_scaling_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["table_auto_scaling_description"], &[])?;
+        let mut builder = aws_sdk_dynamodb::operation::describe_table_replica_auto_scaling::DescribeTableReplicaAutoScalingOutput::builder();
+        if let Some(value) = dict_value(values, "table_auto_scaling_description")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3238 = table_auto_scaling_description_fixture_from_py(&value)?;
+            builder = builder.set_table_auto_scaling_description(Some(fixture_3238));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -18542,6 +23119,23 @@ impl PyOperationDescribeTimeToLiveOutput {
             result.set_item("time_to_live_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["time_to_live_description"], &[])?;
+        let mut builder =
+            aws_sdk_dynamodb::operation::describe_time_to_live::DescribeTimeToLiveOutput::builder();
+        if let Some(value) = dict_value(values, "time_to_live_description")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3240 = time_to_live_description_fixture_from_py(&value)?;
+            builder = builder.set_time_to_live_description(Some(fixture_3240));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -18651,6 +23245,48 @@ impl PyOperationDisableKinesisStreamingDestinationOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "table_name",
+                "stream_arn",
+                "destination_status",
+                "enable_kinesis_streaming_configuration",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_dynamodb::operation::disable_kinesis_streaming_destination::DisableKinesisStreamingDestinationOutput::builder();
+        if let Some(value) = dict_value(values, "table_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3248: String = value.extract()?;
+            builder = builder.set_table_name(Some(fixture_3248));
+        }
+        if let Some(value) = dict_value(values, "stream_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3249: String = value.extract()?;
+            builder = builder.set_stream_arn(Some(fixture_3249));
+        }
+        if let Some(value) = dict_value(values, "destination_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3251: String = value.extract()?;
+            let fixture_3250 =
+                aws_sdk_dynamodb::types::DestinationStatus::from(enum_value_3251.as_str());
+            builder = builder.set_destination_status(Some(fixture_3250));
+        }
+        if let Some(value) = dict_value(values, "enable_kinesis_streaming_configuration")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3252 = enable_kinesis_streaming_configuration_fixture_from_py(&value)?;
+            builder = builder.set_enable_kinesis_streaming_configuration(Some(fixture_3252));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -18758,6 +23394,48 @@ impl PyOperationEnableKinesisStreamingDestinationOutput {
             result.set_item("enable_kinesis_streaming_configuration", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "table_name",
+                "stream_arn",
+                "destination_status",
+                "enable_kinesis_streaming_configuration",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_dynamodb::operation::enable_kinesis_streaming_destination::EnableKinesisStreamingDestinationOutput::builder();
+        if let Some(value) = dict_value(values, "table_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3256: String = value.extract()?;
+            builder = builder.set_table_name(Some(fixture_3256));
+        }
+        if let Some(value) = dict_value(values, "stream_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3257: String = value.extract()?;
+            builder = builder.set_stream_arn(Some(fixture_3257));
+        }
+        if let Some(value) = dict_value(values, "destination_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3259: String = value.extract()?;
+            let fixture_3258 =
+                aws_sdk_dynamodb::types::DestinationStatus::from(enum_value_3259.as_str());
+            builder = builder.set_destination_status(Some(fixture_3258));
+        }
+        if let Some(value) = dict_value(values, "enable_kinesis_streaming_configuration")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3260 = enable_kinesis_streaming_configuration_fixture_from_py(&value)?;
+            builder = builder.set_enable_kinesis_streaming_configuration(Some(fixture_3260));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -18913,6 +23591,70 @@ impl PyOperationExecuteStatementOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "items",
+                "next_token",
+                "consumed_capacity",
+                "last_evaluated_key",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_dynamodb::operation::execute_statement::ExecuteStatementOutput::builder();
+        if let Some(value) = dict_value(values, "items")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3284 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3285 in value.try_iter()? {
+                let item_3286 = item_result_3285?;
+                rboto_core::fixture_scalar(&item_3286, "map")?;
+                let mapping_3288 = item_3286.cast::<PyDict>()?;
+                let mut converted_item_3287 = HashMap::with_capacity(mapping_3288.len());
+                for (key_3289, value_3290) in mapping_3288.iter() {
+                    rboto_core::fixture_scalar(&key_3289, "string")?;
+                    let converted_key_3291: String = key_3289.extract()?;
+                    rboto_core::fixture_scalar(&value_3290, "union")?;
+                    let converted_value_3292 = attribute_value_fixture_from_py(&value_3290)?;
+                    converted_item_3287.insert(converted_key_3291, converted_value_3292);
+                }
+                fixture_3284.push(converted_item_3287);
+            }
+            builder = builder.set_items(Some(fixture_3284));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3293: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_3293));
+        }
+        if let Some(value) = dict_value(values, "consumed_capacity")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3294 = consumed_capacity_fixture_from_py(&value)?;
+            builder = builder.set_consumed_capacity(Some(fixture_3294));
+        }
+        if let Some(value) = dict_value(values, "last_evaluated_key")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_3296 = value.cast::<PyDict>()?;
+            let mut fixture_3295 = HashMap::with_capacity(mapping_3296.len());
+            for (key_3297, value_3298) in mapping_3296.iter() {
+                rboto_core::fixture_scalar(&key_3297, "string")?;
+                let converted_key_3299: String = key_3297.extract()?;
+                rboto_core::fixture_scalar(&value_3298, "union")?;
+                let converted_value_3300 = attribute_value_fixture_from_py(&value_3298)?;
+                fixture_3295.insert(converted_key_3299, converted_value_3300);
+            }
+            builder = builder.set_last_evaluated_key(Some(fixture_3295));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -19024,6 +23766,42 @@ impl PyOperationExecuteTransactionOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["responses", "consumed_capacity"], &[])?;
+        let mut builder =
+            aws_sdk_dynamodb::operation::execute_transaction::ExecuteTransactionOutput::builder();
+        if let Some(value) = dict_value(values, "responses")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3298 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3299 in value.try_iter()? {
+                let item_3300 = item_result_3299?;
+                rboto_core::fixture_scalar(&item_3300, "struct")?;
+                let converted_item_3301 = item_response_fixture_from_py(&item_3300)?;
+                fixture_3298.push(converted_item_3301);
+            }
+            builder = builder.set_responses(Some(fixture_3298));
+        }
+        if let Some(value) = dict_value(values, "consumed_capacity")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3302 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3303 in value.try_iter()? {
+                let item_3304 = item_result_3303?;
+                rboto_core::fixture_scalar(&item_3304, "struct")?;
+                let converted_item_3305 = consumed_capacity_fixture_from_py(&item_3304)?;
+                fixture_3302.push(converted_item_3305);
+            }
+            builder = builder.set_consumed_capacity(Some(fixture_3302));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -19083,6 +23861,22 @@ impl PyOperationExportTableToPointInTimeOutput {
             result.set_item("export_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["export_description"], &[])?;
+        let mut builder = aws_sdk_dynamodb::operation::export_table_to_point_in_time::ExportTableToPointInTimeOutput::builder();
+        if let Some(value) = dict_value(values, "export_description")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3300 = export_description_fixture_from_py(&value)?;
+            builder = builder.set_export_description(Some(fixture_3300));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -19167,6 +23961,35 @@ impl PyOperationGetItemOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["item", "consumed_capacity"], &[])?;
+        let mut builder = aws_sdk_dynamodb::operation::get_item::GetItemOutput::builder();
+        if let Some(value) = dict_value(values, "item")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_3313 = value.cast::<PyDict>()?;
+            let mut fixture_3312 = HashMap::with_capacity(mapping_3313.len());
+            for (key_3314, value_3315) in mapping_3313.iter() {
+                rboto_core::fixture_scalar(&key_3314, "string")?;
+                let converted_key_3316: String = key_3314.extract()?;
+                rboto_core::fixture_scalar(&value_3315, "union")?;
+                let converted_value_3317 = attribute_value_fixture_from_py(&value_3315)?;
+                fixture_3312.insert(converted_key_3316, converted_value_3317);
+            }
+            builder = builder.set_item(Some(fixture_3312));
+        }
+        if let Some(value) = dict_value(values, "consumed_capacity")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3318 = consumed_capacity_fixture_from_py(&value)?;
+            builder = builder.set_consumed_capacity(Some(fixture_3318));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -19215,6 +24038,26 @@ impl PyOperationGetResourcePolicyOutput {
             result.set_item("revision_id", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["policy", "revision_id"], &[])?;
+        let mut builder =
+            aws_sdk_dynamodb::operation::get_resource_policy::GetResourcePolicyOutput::builder();
+        if let Some(value) = dict_value(values, "policy")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3316: String = value.extract()?;
+            builder = builder.set_policy(Some(fixture_3316));
+        }
+        if let Some(value) = dict_value(values, "revision_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3317: String = value.extract()?;
+            builder = builder.set_revision_id(Some(fixture_3317));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -19268,6 +24111,22 @@ impl PyOperationImportTableOutput {
             result.set_item("import_table_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["import_table_description"], &[])?;
+        let mut builder = aws_sdk_dynamodb::operation::import_table::ImportTableOutput::builder();
+        if let Some(value) = dict_value(values, "import_table_description")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3318 = import_table_description_fixture_from_py(&value)?;
+            builder = builder.set_import_table_description(Some(fixture_3318));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -19352,6 +24211,38 @@ impl PyOperationListBackupsOutput {
             result.set_item("last_evaluated_backup_arn", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["backup_summaries", "last_evaluated_backup_arn"],
+            &[],
+        )?;
+        let mut builder = aws_sdk_dynamodb::operation::list_backups::ListBackupsOutput::builder();
+        if let Some(value) = dict_value(values, "backup_summaries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3327 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3328 in value.try_iter()? {
+                let item_3329 = item_result_3328?;
+                rboto_core::fixture_scalar(&item_3329, "struct")?;
+                let converted_item_3330 = backup_summary_fixture_from_py(&item_3329)?;
+                fixture_3327.push(converted_item_3330);
+            }
+            builder = builder.set_backup_summaries(Some(fixture_3327));
+        }
+        if let Some(value) = dict_value(values, "last_evaluated_backup_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3331: String = value.extract()?;
+            builder = builder.set_last_evaluated_backup_arn(Some(fixture_3331));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -19444,6 +24335,38 @@ impl PyOperationListContributorInsightsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["contributor_insights_summaries", "next_token"],
+            &[],
+        )?;
+        let mut builder = aws_sdk_dynamodb::operation::list_contributor_insights::ListContributorInsightsOutput::builder();
+        if let Some(value) = dict_value(values, "contributor_insights_summaries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3336 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3337 in value.try_iter()? {
+                let item_3338 = item_result_3337?;
+                rboto_core::fixture_scalar(&item_3338, "struct")?;
+                let converted_item_3339 = contributor_insights_summary_fixture_from_py(&item_3338)?;
+                fixture_3336.push(converted_item_3339);
+            }
+            builder = builder.set_contributor_insights_summaries(Some(fixture_3336));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3340: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_3340));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -19527,6 +24450,34 @@ impl PyOperationListExportsOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["export_summaries", "next_token"], &[])?;
+        let mut builder = aws_sdk_dynamodb::operation::list_exports::ListExportsOutput::builder();
+        if let Some(value) = dict_value(values, "export_summaries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3345 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3346 in value.try_iter()? {
+                let item_3347 = item_result_3346?;
+                rboto_core::fixture_scalar(&item_3347, "struct")?;
+                let converted_item_3348 = export_summary_fixture_from_py(&item_3347)?;
+                fixture_3345.push(converted_item_3348);
+            }
+            builder = builder.set_export_summaries(Some(fixture_3345));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3349: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_3349));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -19618,6 +24569,39 @@ impl PyOperationListGlobalTablesOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["global_tables", "last_evaluated_global_table_name"],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_dynamodb::operation::list_global_tables::ListGlobalTablesOutput::builder();
+        if let Some(value) = dict_value(values, "global_tables")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3354 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3355 in value.try_iter()? {
+                let item_3356 = item_result_3355?;
+                rboto_core::fixture_scalar(&item_3356, "struct")?;
+                let converted_item_3357 = global_table_fixture_from_py(&item_3356)?;
+                fixture_3354.push(converted_item_3357);
+            }
+            builder = builder.set_global_tables(Some(fixture_3354));
+        }
+        if let Some(value) = dict_value(values, "last_evaluated_global_table_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3358: String = value.extract()?;
+            builder = builder.set_last_evaluated_global_table_name(Some(fixture_3358));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -19702,6 +24686,34 @@ impl PyOperationListImportsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["import_summary_list", "next_token"], &[])?;
+        let mut builder = aws_sdk_dynamodb::operation::list_imports::ListImportsOutput::builder();
+        if let Some(value) = dict_value(values, "import_summary_list")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3363 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3364 in value.try_iter()? {
+                let item_3365 = item_result_3364?;
+                rboto_core::fixture_scalar(&item_3365, "struct")?;
+                let converted_item_3366 = import_summary_fixture_from_py(&item_3365)?;
+                fixture_3363.push(converted_item_3366);
+            }
+            builder = builder.set_import_summary_list(Some(fixture_3363));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3367: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_3367));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(name = "ListTablesOutput", module = "rboto_dynamodb._native", frozen)]
@@ -19756,6 +24768,32 @@ impl PyOperationListTablesOutput {
             result.set_item("last_evaluated_table_name", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["table_names", "last_evaluated_table_name"], &[])?;
+        let mut builder = aws_sdk_dynamodb::operation::list_tables::ListTablesOutput::builder();
+        if let Some(value) = dict_value(values, "table_names")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3371 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3372 in value.try_iter()? {
+                let item_3373 = item_result_3372?;
+                rboto_core::fixture_scalar(&item_3373, "string")?;
+                let converted_item_3374: String = item_3373.extract()?;
+                fixture_3371.push(converted_item_3374);
+            }
+            builder = builder.set_table_names(Some(fixture_3371));
+        }
+        if let Some(value) = dict_value(values, "last_evaluated_table_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3375: String = value.extract()?;
+            builder = builder.set_last_evaluated_table_name(Some(fixture_3375));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -19846,6 +24884,35 @@ impl PyOperationListTagsOfResourceOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["tags", "next_token"], &[])?;
+        let mut builder =
+            aws_sdk_dynamodb::operation::list_tags_of_resource::ListTagsOfResourceOutput::builder();
+        if let Some(value) = dict_value(values, "tags")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3380 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3381 in value.try_iter()? {
+                let item_3382 = item_result_3381?;
+                rboto_core::fixture_scalar(&item_3382, "struct")?;
+                let converted_item_3383 = tag_fixture_from_py(&item_3382)?;
+                fixture_3380.push(converted_item_3383);
+            }
+            builder = builder.set_tags(Some(fixture_3380));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3384: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_3384));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -19954,6 +25021,44 @@ impl PyOperationPutItemOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["attributes", "consumed_capacity", "item_collection_metrics"],
+            &[],
+        )?;
+        let mut builder = aws_sdk_dynamodb::operation::put_item::PutItemOutput::builder();
+        if let Some(value) = dict_value(values, "attributes")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_3395 = value.cast::<PyDict>()?;
+            let mut fixture_3394 = HashMap::with_capacity(mapping_3395.len());
+            for (key_3396, value_3397) in mapping_3395.iter() {
+                rboto_core::fixture_scalar(&key_3396, "string")?;
+                let converted_key_3398: String = key_3396.extract()?;
+                rboto_core::fixture_scalar(&value_3397, "union")?;
+                let converted_value_3399 = attribute_value_fixture_from_py(&value_3397)?;
+                fixture_3394.insert(converted_key_3398, converted_value_3399);
+            }
+            builder = builder.set_attributes(Some(fixture_3394));
+        }
+        if let Some(value) = dict_value(values, "consumed_capacity")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3400 = consumed_capacity_fixture_from_py(&value)?;
+            builder = builder.set_consumed_capacity(Some(fixture_3400));
+        }
+        if let Some(value) = dict_value(values, "item_collection_metrics")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3401 = item_collection_metrics_fixture_from_py(&value)?;
+            builder = builder.set_item_collection_metrics(Some(fixture_3401));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -19986,6 +25091,21 @@ impl PyOperationPutResourcePolicyOutput {
             result.set_item("revision_id", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["revision_id"], &[])?;
+        let mut builder =
+            aws_sdk_dynamodb::operation::put_resource_policy::PutResourcePolicyOutput::builder();
+        if let Some(value) = dict_value(values, "revision_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3396: String = value.extract()?;
+            builder = builder.set_revision_id(Some(fixture_3396));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -20137,6 +25257,75 @@ impl PyOperationQueryOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "items",
+                "count",
+                "scanned_count",
+                "last_evaluated_key",
+                "consumed_capacity",
+            ],
+            &["count", "scanned_count"],
+        )?;
+        let mut builder = aws_sdk_dynamodb::operation::query::QueryOutput::builder();
+        if let Some(value) = dict_value(values, "items")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3426 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3427 in value.try_iter()? {
+                let item_3428 = item_result_3427?;
+                rboto_core::fixture_scalar(&item_3428, "map")?;
+                let mapping_3430 = item_3428.cast::<PyDict>()?;
+                let mut converted_item_3429 = HashMap::with_capacity(mapping_3430.len());
+                for (key_3431, value_3432) in mapping_3430.iter() {
+                    rboto_core::fixture_scalar(&key_3431, "string")?;
+                    let converted_key_3433: String = key_3431.extract()?;
+                    rboto_core::fixture_scalar(&value_3432, "union")?;
+                    let converted_value_3434 = attribute_value_fixture_from_py(&value_3432)?;
+                    converted_item_3429.insert(converted_key_3433, converted_value_3434);
+                }
+                fixture_3426.push(converted_item_3429);
+            }
+            builder = builder.set_items(Some(fixture_3426));
+        }
+        if let Some(value) = values.get_item("count")? {
+            rboto_core::fixture_scalar(&value, "i32")?;
+            let fixture_3435: i32 = value.extract()?;
+            builder = builder.set_count(Some(fixture_3435));
+        }
+        if let Some(value) = values.get_item("scanned_count")? {
+            rboto_core::fixture_scalar(&value, "i32")?;
+            let fixture_3436: i32 = value.extract()?;
+            builder = builder.set_scanned_count(Some(fixture_3436));
+        }
+        if let Some(value) = dict_value(values, "last_evaluated_key")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_3438 = value.cast::<PyDict>()?;
+            let mut fixture_3437 = HashMap::with_capacity(mapping_3438.len());
+            for (key_3439, value_3440) in mapping_3438.iter() {
+                rboto_core::fixture_scalar(&key_3439, "string")?;
+                let converted_key_3441: String = key_3439.extract()?;
+                rboto_core::fixture_scalar(&value_3440, "union")?;
+                let converted_value_3442 = attribute_value_fixture_from_py(&value_3440)?;
+                fixture_3437.insert(converted_key_3441, converted_value_3442);
+            }
+            builder = builder.set_last_evaluated_key(Some(fixture_3437));
+        }
+        if let Some(value) = dict_value(values, "consumed_capacity")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3443 = consumed_capacity_fixture_from_py(&value)?;
+            builder = builder.set_consumed_capacity(Some(fixture_3443));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -20196,6 +25385,22 @@ impl PyOperationRestoreTableFromBackupOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["table_description"], &[])?;
+        let mut builder = aws_sdk_dynamodb::operation::restore_table_from_backup::RestoreTableFromBackupOutput::builder();
+        if let Some(value) = dict_value(values, "table_description")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3428 = table_description_fixture_from_py(&value)?;
+            builder = builder.set_table_description(Some(fixture_3428));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -20248,6 +25453,22 @@ impl PyOperationRestoreTableToPointInTimeOutput {
             result.set_item("table_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["table_description"], &[])?;
+        let mut builder = aws_sdk_dynamodb::operation::restore_table_to_point_in_time::RestoreTableToPointInTimeOutput::builder();
+        if let Some(value) = dict_value(values, "table_description")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3430 = table_description_fixture_from_py(&value)?;
+            builder = builder.set_table_description(Some(fixture_3430));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -20399,6 +25620,75 @@ impl PyOperationScanOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "items",
+                "count",
+                "scanned_count",
+                "last_evaluated_key",
+                "consumed_capacity",
+            ],
+            &["count", "scanned_count"],
+        )?;
+        let mut builder = aws_sdk_dynamodb::operation::scan::ScanOutput::builder();
+        if let Some(value) = dict_value(values, "items")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3460 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3461 in value.try_iter()? {
+                let item_3462 = item_result_3461?;
+                rboto_core::fixture_scalar(&item_3462, "map")?;
+                let mapping_3464 = item_3462.cast::<PyDict>()?;
+                let mut converted_item_3463 = HashMap::with_capacity(mapping_3464.len());
+                for (key_3465, value_3466) in mapping_3464.iter() {
+                    rboto_core::fixture_scalar(&key_3465, "string")?;
+                    let converted_key_3467: String = key_3465.extract()?;
+                    rboto_core::fixture_scalar(&value_3466, "union")?;
+                    let converted_value_3468 = attribute_value_fixture_from_py(&value_3466)?;
+                    converted_item_3463.insert(converted_key_3467, converted_value_3468);
+                }
+                fixture_3460.push(converted_item_3463);
+            }
+            builder = builder.set_items(Some(fixture_3460));
+        }
+        if let Some(value) = values.get_item("count")? {
+            rboto_core::fixture_scalar(&value, "i32")?;
+            let fixture_3469: i32 = value.extract()?;
+            builder = builder.set_count(Some(fixture_3469));
+        }
+        if let Some(value) = values.get_item("scanned_count")? {
+            rboto_core::fixture_scalar(&value, "i32")?;
+            let fixture_3470: i32 = value.extract()?;
+            builder = builder.set_scanned_count(Some(fixture_3470));
+        }
+        if let Some(value) = dict_value(values, "last_evaluated_key")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_3472 = value.cast::<PyDict>()?;
+            let mut fixture_3471 = HashMap::with_capacity(mapping_3472.len());
+            for (key_3473, value_3474) in mapping_3472.iter() {
+                rboto_core::fixture_scalar(&key_3473, "string")?;
+                let converted_key_3475: String = key_3473.extract()?;
+                rboto_core::fixture_scalar(&value_3474, "union")?;
+                let converted_value_3476 = attribute_value_fixture_from_py(&value_3474)?;
+                fixture_3471.insert(converted_key_3475, converted_value_3476);
+            }
+            builder = builder.set_last_evaluated_key(Some(fixture_3471));
+        }
+        if let Some(value) = dict_value(values, "consumed_capacity")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3477 = consumed_capacity_fixture_from_py(&value)?;
+            builder = builder.set_consumed_capacity(Some(fixture_3477));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -20492,6 +25782,35 @@ impl PyOperationSearchVectorsOutput {
             result.set_item("search_results", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["consumed_capacity", "search_results"], &[])?;
+        let mut builder =
+            aws_sdk_dynamodb::operation::search_vectors::SearchVectorsOutput::builder();
+        if let Some(value) = dict_value(values, "consumed_capacity")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3469 = vector_capacity_fixture_from_py(&value)?;
+            builder = builder.set_consumed_capacity(Some(fixture_3469));
+        }
+        if let Some(value) = dict_value(values, "search_results")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3470 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3471 in value.try_iter()? {
+                let item_3472 = item_result_3471?;
+                rboto_core::fixture_scalar(&item_3472, "struct")?;
+                let converted_item_3473 = search_result_item_fixture_from_py(&item_3472)?;
+                fixture_3470.push(converted_item_3473);
+            }
+            builder = builder.set_search_results(Some(fixture_3470));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -20603,6 +25922,42 @@ impl PyOperationTransactGetItemsOutput {
             result.set_item("responses", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["consumed_capacity", "responses"], &[])?;
+        let mut builder =
+            aws_sdk_dynamodb::operation::transact_get_items::TransactGetItemsOutput::builder();
+        if let Some(value) = dict_value(values, "consumed_capacity")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3483 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3484 in value.try_iter()? {
+                let item_3485 = item_result_3484?;
+                rboto_core::fixture_scalar(&item_3485, "struct")?;
+                let converted_item_3486 = consumed_capacity_fixture_from_py(&item_3485)?;
+                fixture_3483.push(converted_item_3486);
+            }
+            builder = builder.set_consumed_capacity(Some(fixture_3483));
+        }
+        if let Some(value) = dict_value(values, "responses")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3487 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3488 in value.try_iter()? {
+                let item_3489 = item_result_3488?;
+                rboto_core::fixture_scalar(&item_3489, "struct")?;
+                let converted_item_3490 = item_response_fixture_from_py(&item_3489)?;
+                fixture_3487.push(converted_item_3490);
+            }
+            builder = builder.set_responses(Some(fixture_3487));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -20740,6 +26095,54 @@ impl PyOperationTransactWriteItemsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["consumed_capacity", "item_collection_metrics"],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_dynamodb::operation::transact_write_items::TransactWriteItemsOutput::builder();
+        if let Some(value) = dict_value(values, "consumed_capacity")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3506 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3507 in value.try_iter()? {
+                let item_3508 = item_result_3507?;
+                rboto_core::fixture_scalar(&item_3508, "struct")?;
+                let converted_item_3509 = consumed_capacity_fixture_from_py(&item_3508)?;
+                fixture_3506.push(converted_item_3509);
+            }
+            builder = builder.set_consumed_capacity(Some(fixture_3506));
+        }
+        if let Some(value) = dict_value(values, "item_collection_metrics")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_3511 = value.cast::<PyDict>()?;
+            let mut fixture_3510 = HashMap::with_capacity(mapping_3511.len());
+            for (key_3512, value_3513) in mapping_3511.iter() {
+                rboto_core::fixture_scalar(&key_3512, "string")?;
+                let converted_key_3514: String = key_3512.extract()?;
+                rboto_core::fixture_scalar(&value_3513, "vec")?;
+                let mut converted_value_3515 =
+                    Vec::with_capacity(value_3513.cast::<PyList>().map_or(0, |items| items.len()));
+                for item_result_3516 in value_3513.try_iter()? {
+                    let item_3517 = item_result_3516?;
+                    rboto_core::fixture_scalar(&item_3517, "struct")?;
+                    let converted_item_3518 = item_collection_metrics_fixture_from_py(&item_3517)?;
+                    converted_value_3515.push(converted_item_3518);
+                }
+                fixture_3510.insert(converted_key_3514, converted_value_3515);
+            }
+            builder = builder.set_item_collection_metrics(Some(fixture_3510));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -20798,6 +26201,22 @@ impl PyOperationUpdateContinuousBackupsOutput {
             result.set_item("continuous_backups_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["continuous_backups_description"], &[])?;
+        let mut builder = aws_sdk_dynamodb::operation::update_continuous_backups::UpdateContinuousBackupsOutput::builder();
+        if let Some(value) = dict_value(values, "continuous_backups_description")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3508 = continuous_backups_description_fixture_from_py(&value)?;
+            builder = builder.set_continuous_backups_description(Some(fixture_3508));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -20881,6 +26300,48 @@ impl PyOperationUpdateContributorInsightsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "table_name",
+                "index_name",
+                "contributor_insights_status",
+                "contributor_insights_mode",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_dynamodb::operation::update_contributor_insights::UpdateContributorInsightsOutput::builder();
+        if let Some(value) = dict_value(values, "table_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3516: String = value.extract()?;
+            builder = builder.set_table_name(Some(fixture_3516));
+        }
+        if let Some(value) = dict_value(values, "index_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3517: String = value.extract()?;
+            builder = builder.set_index_name(Some(fixture_3517));
+        }
+        if let Some(value) = dict_value(values, "contributor_insights_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3519: String = value.extract()?;
+            let fixture_3518 =
+                aws_sdk_dynamodb::types::ContributorInsightsStatus::from(enum_value_3519.as_str());
+            builder = builder.set_contributor_insights_status(Some(fixture_3518));
+        }
+        if let Some(value) = dict_value(values, "contributor_insights_mode")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3521: String = value.extract()?;
+            let fixture_3520 =
+                aws_sdk_dynamodb::types::ContributorInsightsMode::from(enum_value_3521.as_str());
+            builder = builder.set_contributor_insights_mode(Some(fixture_3520));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -20939,6 +26400,23 @@ impl PyOperationUpdateGlobalTableOutput {
             result.set_item("global_table_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["global_table_description"], &[])?;
+        let mut builder =
+            aws_sdk_dynamodb::operation::update_global_table::UpdateGlobalTableOutput::builder();
+        if let Some(value) = dict_value(values, "global_table_description")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3518 = global_table_description_fixture_from_py(&value)?;
+            builder = builder.set_global_table_description(Some(fixture_3518));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -21030,6 +26508,34 @@ impl PyOperationUpdateGlobalTableSettingsOutput {
             result.set_item("replica_settings", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["global_table_name", "replica_settings"], &[])?;
+        let mut builder = aws_sdk_dynamodb::operation::update_global_table_settings::UpdateGlobalTableSettingsOutput::builder();
+        if let Some(value) = dict_value(values, "global_table_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3527: String = value.extract()?;
+            builder = builder.set_global_table_name(Some(fixture_3527));
+        }
+        if let Some(value) = dict_value(values, "replica_settings")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3528 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3529 in value.try_iter()? {
+                let item_3530 = item_result_3529?;
+                rboto_core::fixture_scalar(&item_3530, "struct")?;
+                let converted_item_3531 = replica_settings_description_fixture_from_py(&item_3530)?;
+                fixture_3528.push(converted_item_3531);
+            }
+            builder = builder.set_replica_settings(Some(fixture_3528));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -21140,6 +26646,44 @@ impl PyOperationUpdateItemOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["attributes", "consumed_capacity", "item_collection_metrics"],
+            &[],
+        )?;
+        let mut builder = aws_sdk_dynamodb::operation::update_item::UpdateItemOutput::builder();
+        if let Some(value) = dict_value(values, "attributes")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_3542 = value.cast::<PyDict>()?;
+            let mut fixture_3541 = HashMap::with_capacity(mapping_3542.len());
+            for (key_3543, value_3544) in mapping_3542.iter() {
+                rboto_core::fixture_scalar(&key_3543, "string")?;
+                let converted_key_3545: String = key_3543.extract()?;
+                rboto_core::fixture_scalar(&value_3544, "union")?;
+                let converted_value_3546 = attribute_value_fixture_from_py(&value_3544)?;
+                fixture_3541.insert(converted_key_3545, converted_value_3546);
+            }
+            builder = builder.set_attributes(Some(fixture_3541));
+        }
+        if let Some(value) = dict_value(values, "consumed_capacity")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3547 = consumed_capacity_fixture_from_py(&value)?;
+            builder = builder.set_consumed_capacity(Some(fixture_3547));
+        }
+        if let Some(value) = dict_value(values, "item_collection_metrics")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3548 = item_collection_metrics_fixture_from_py(&value)?;
+            builder = builder.set_item_collection_metrics(Some(fixture_3548));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -21248,6 +26792,48 @@ impl PyOperationUpdateKinesisStreamingDestinationOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "table_name",
+                "stream_arn",
+                "destination_status",
+                "update_kinesis_streaming_configuration",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_dynamodb::operation::update_kinesis_streaming_destination::UpdateKinesisStreamingDestinationOutput::builder();
+        if let Some(value) = dict_value(values, "table_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3549: String = value.extract()?;
+            builder = builder.set_table_name(Some(fixture_3549));
+        }
+        if let Some(value) = dict_value(values, "stream_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3550: String = value.extract()?;
+            builder = builder.set_stream_arn(Some(fixture_3550));
+        }
+        if let Some(value) = dict_value(values, "destination_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3552: String = value.extract()?;
+            let fixture_3551 =
+                aws_sdk_dynamodb::types::DestinationStatus::from(enum_value_3552.as_str());
+            builder = builder.set_destination_status(Some(fixture_3551));
+        }
+        if let Some(value) = dict_value(values, "update_kinesis_streaming_configuration")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3553 = update_kinesis_streaming_configuration_fixture_from_py(&value)?;
+            builder = builder.set_update_kinesis_streaming_configuration(Some(fixture_3553));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -21301,6 +26887,22 @@ impl PyOperationUpdateTableOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["table_description"], &[])?;
+        let mut builder = aws_sdk_dynamodb::operation::update_table::UpdateTableOutput::builder();
+        if let Some(value) = dict_value(values, "table_description")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3551 = table_description_fixture_from_py(&value)?;
+            builder = builder.set_table_description(Some(fixture_3551));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -21353,6 +26955,22 @@ impl PyOperationUpdateTableReplicaAutoScalingOutput {
             result.set_item("table_auto_scaling_description", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["table_auto_scaling_description"], &[])?;
+        let mut builder = aws_sdk_dynamodb::operation::update_table_replica_auto_scaling::UpdateTableReplicaAutoScalingOutput::builder();
+        if let Some(value) = dict_value(values, "table_auto_scaling_description")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3553 = table_auto_scaling_description_fixture_from_py(&value)?;
+            builder = builder.set_table_auto_scaling_description(Some(fixture_3553));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -21410,6 +27028,23 @@ impl PyOperationUpdateTimeToLiveOutput {
             result.set_item("time_to_live_specification", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["time_to_live_specification"], &[])?;
+        let mut builder =
+            aws_sdk_dynamodb::operation::update_time_to_live::UpdateTimeToLiveOutput::builder();
+        if let Some(value) = dict_value(values, "time_to_live_specification")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3555 = time_to_live_specification_fixture_from_py(&value)?;
+            builder = builder.set_time_to_live_specification(Some(fixture_3555));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 

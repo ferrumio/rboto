@@ -29,6 +29,34 @@ class SQSClient:
 
     logger_name = "rboto.sqs"
 
+    @staticmethod
+    def _stub_operations() -> dict[str, str]:
+        return {
+            "add_permission": "AddPermission",
+            "cancel_message_move_task": "CancelMessageMoveTask",
+            "change_message_visibility": "ChangeMessageVisibility",
+            "change_message_visibility_batch": "ChangeMessageVisibilityBatch",
+            "create_queue": "CreateQueue",
+            "delete_message": "DeleteMessage",
+            "delete_message_batch": "DeleteMessageBatch",
+            "delete_queue": "DeleteQueue",
+            "get_queue_attributes": "GetQueueAttributes",
+            "get_queue_url": "GetQueueUrl",
+            "list_dead_letter_source_queues": "ListDeadLetterSourceQueues",
+            "list_message_move_tasks": "ListMessageMoveTasks",
+            "list_queue_tags": "ListQueueTags",
+            "list_queues": "ListQueues",
+            "purge_queue": "PurgeQueue",
+            "receive_message": "ReceiveMessage",
+            "remove_permission": "RemovePermission",
+            "send_message": "SendMessage",
+            "send_message_batch": "SendMessageBatch",
+            "set_queue_attributes": "SetQueueAttributes",
+            "start_message_move_task": "StartMessageMoveTask",
+            "tag_queue": "TagQueue",
+            "untag_queue": "UntagQueue",
+        }
+
     def __init__(
         self,
         *,

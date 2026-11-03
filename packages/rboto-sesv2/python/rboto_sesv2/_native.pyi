@@ -1092,11 +1092,15 @@ class VolumeStatistics:
 @final
 class AssociateEmailIdentityCertificateOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/AssociateEmailIdentityCertificateOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> AssociateEmailIdentityCertificateOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class BatchGetMetricDataOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/BatchGetMetricDataOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> BatchGetMetricDataOutput: ...
     @property
     def results(self) -> list[MetricDataResult] | None: ...
     @property
@@ -1106,41 +1110,57 @@ class BatchGetMetricDataOutput:
 @final
 class CancelExportJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CancelExportJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CancelExportJobOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateConfigurationSetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateConfigurationSetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateConfigurationSetOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateConfigurationSetEventDestinationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateConfigurationSetEventDestinationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateConfigurationSetEventDestinationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateContactOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateContactOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateContactOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateContactListOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateContactListOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateContactListOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateCustomVerificationEmailTemplateOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateCustomVerificationEmailTemplateOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateCustomVerificationEmailTemplateOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateDedicatedIpPoolOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateDedicatedIpPoolOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateDedicatedIpPoolOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateDeliverabilityTestReportOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateDeliverabilityTestReportOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateDeliverabilityTestReportOutput: ...
     @property
     def report_id(self) -> str: ...
     @property
@@ -1150,6 +1170,8 @@ class CreateDeliverabilityTestReportOutput:
 @final
 class CreateEmailIdentityOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateEmailIdentityOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateEmailIdentityOutput: ...
     @property
     def identity_type(self) -> _types.IdentityTypeOutput | None: ...
     @property
@@ -1161,16 +1183,22 @@ class CreateEmailIdentityOutput:
 @final
 class CreateEmailIdentityPolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateEmailIdentityPolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateEmailIdentityPolicyOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateEmailTemplateOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateEmailTemplateOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateEmailTemplateOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateExportJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateExportJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateExportJobOutput: ...
     @property
     def job_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1178,6 +1206,8 @@ class CreateExportJobOutput:
 @final
 class CreateImportJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateImportJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateImportJobOutput: ...
     @property
     def job_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1185,6 +1215,8 @@ class CreateImportJobOutput:
 @final
 class CreateMultiRegionEndpointOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateMultiRegionEndpointOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateMultiRegionEndpointOutput: ...
     @property
     def status(self) -> _types.StatusOutput | None: ...
     @property
@@ -1194,6 +1226,8 @@ class CreateMultiRegionEndpointOutput:
 @final
 class CreateTenantOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateTenantOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateTenantOutput: ...
     @property
     def tenant_name(self) -> str | None: ...
     @property
@@ -1213,56 +1247,78 @@ class CreateTenantOutput:
 @final
 class CreateTenantResourceAssociationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateTenantResourceAssociationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateTenantResourceAssociationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteConfigurationSetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteConfigurationSetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteConfigurationSetOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteConfigurationSetEventDestinationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteConfigurationSetEventDestinationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteConfigurationSetEventDestinationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteContactOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteContactOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteContactOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteContactListOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteContactListOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteContactListOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteCustomVerificationEmailTemplateOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteCustomVerificationEmailTemplateOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteCustomVerificationEmailTemplateOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteDedicatedIpPoolOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteDedicatedIpPoolOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteDedicatedIpPoolOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteEmailIdentityOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteEmailIdentityOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteEmailIdentityOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteEmailIdentityPolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteEmailIdentityPolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteEmailIdentityPolicyOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteEmailTemplateOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteEmailTemplateOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteEmailTemplateOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteMultiRegionEndpointOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteMultiRegionEndpointOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteMultiRegionEndpointOutput: ...
     @property
     def status(self) -> _types.StatusOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1270,26 +1326,36 @@ class DeleteMultiRegionEndpointOutput:
 @final
 class DeleteSuppressedDestinationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteSuppressedDestinationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteSuppressedDestinationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteTenantOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteTenantOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteTenantOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteTenantResourceAssociationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteTenantResourceAssociationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteTenantResourceAssociationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DisassociateEmailIdentityCertificateOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DisassociateEmailIdentityCertificateOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DisassociateEmailIdentityCertificateOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetAccountOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetAccountOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAccountOutput: ...
     @property
     def dedicated_ip_auto_warmup_enabled(self) -> bool: ...
     @property
@@ -1313,6 +1379,8 @@ class GetAccountOutput:
 @final
 class GetBlacklistReportsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetBlacklistReportsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetBlacklistReportsOutput: ...
     @property
     def blacklist_report(self) -> dict[str, list[BlacklistEntry]]: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1320,6 +1388,8 @@ class GetBlacklistReportsOutput:
 @final
 class GetConfigurationSetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetConfigurationSetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetConfigurationSetOutput: ...
     @property
     def configuration_set_name(self) -> str | None: ...
     @property
@@ -1345,6 +1415,8 @@ class GetConfigurationSetOutput:
 @final
 class GetConfigurationSetEventDestinationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetConfigurationSetEventDestinationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetConfigurationSetEventDestinationsOutput: ...
     @property
     def event_destinations(self) -> list[EventDestination] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1352,6 +1424,8 @@ class GetConfigurationSetEventDestinationsOutput:
 @final
 class GetContactOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetContactOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetContactOutput: ...
     @property
     def contact_list_name(self) -> str | None: ...
     @property
@@ -1373,6 +1447,8 @@ class GetContactOutput:
 @final
 class GetContactListOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetContactListOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetContactListOutput: ...
     @property
     def contact_list_name(self) -> str | None: ...
     @property
@@ -1390,6 +1466,8 @@ class GetContactListOutput:
 @final
 class GetCustomVerificationEmailTemplateOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetCustomVerificationEmailTemplateOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetCustomVerificationEmailTemplateOutput: ...
     @property
     def template_name(self) -> str | None: ...
     @property
@@ -1409,6 +1487,8 @@ class GetCustomVerificationEmailTemplateOutput:
 @final
 class GetDedicatedIpOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDedicatedIpOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDedicatedIpOutput: ...
     @property
     def dedicated_ip(self) -> DedicatedIp | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1416,6 +1496,8 @@ class GetDedicatedIpOutput:
 @final
 class GetDedicatedIpPoolOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDedicatedIpPoolOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDedicatedIpPoolOutput: ...
     @property
     def dedicated_ip_pool(self) -> DedicatedIpPool | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1423,6 +1505,8 @@ class GetDedicatedIpPoolOutput:
 @final
 class GetDedicatedIpsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDedicatedIpsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDedicatedIpsOutput: ...
     @property
     def dedicated_ips(self) -> list[DedicatedIp] | None: ...
     @property
@@ -1432,6 +1516,8 @@ class GetDedicatedIpsOutput:
 @final
 class GetDeliverabilityDashboardOptionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDeliverabilityDashboardOptionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDeliverabilityDashboardOptionsOutput: ...
     @property
     def dashboard_enabled(self) -> bool: ...
     @property
@@ -1447,6 +1533,8 @@ class GetDeliverabilityDashboardOptionsOutput:
 @final
 class GetDeliverabilityTestReportOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDeliverabilityTestReportOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDeliverabilityTestReportOutput: ...
     @property
     def deliverability_test_report(self) -> DeliverabilityTestReport | None: ...
     @property
@@ -1462,6 +1550,8 @@ class GetDeliverabilityTestReportOutput:
 @final
 class GetDomainDeliverabilityCampaignOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDomainDeliverabilityCampaignOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDomainDeliverabilityCampaignOutput: ...
     @property
     def domain_deliverability_campaign(self) -> DomainDeliverabilityCampaign | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1469,6 +1559,8 @@ class GetDomainDeliverabilityCampaignOutput:
 @final
 class GetDomainStatisticsReportOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDomainStatisticsReportOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDomainStatisticsReportOutput: ...
     @property
     def overall_volume(self) -> OverallVolume | None: ...
     @property
@@ -1478,6 +1570,8 @@ class GetDomainStatisticsReportOutput:
 @final
 class GetEmailAddressInsightsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetEmailAddressInsightsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetEmailAddressInsightsOutput: ...
     @property
     def mailbox_validation(self) -> MailboxValidation | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1485,6 +1579,8 @@ class GetEmailAddressInsightsOutput:
 @final
 class GetEmailIdentityOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetEmailIdentityOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetEmailIdentityOutput: ...
     @property
     def identity_type(self) -> _types.IdentityTypeOutput | None: ...
     @property
@@ -1510,6 +1606,8 @@ class GetEmailIdentityOutput:
 @final
 class GetEmailIdentityPoliciesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetEmailIdentityPoliciesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetEmailIdentityPoliciesOutput: ...
     @property
     def policies(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1517,6 +1615,8 @@ class GetEmailIdentityPoliciesOutput:
 @final
 class GetEmailTemplateOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetEmailTemplateOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetEmailTemplateOutput: ...
     @property
     def template_name(self) -> str: ...
     @property
@@ -1528,6 +1628,8 @@ class GetEmailTemplateOutput:
 @final
 class GetExportJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetExportJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetExportJobOutput: ...
     @property
     def job_id(self) -> str | None: ...
     @property
@@ -1551,6 +1653,8 @@ class GetExportJobOutput:
 @final
 class GetImportJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetImportJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetImportJobOutput: ...
     @property
     def job_id(self) -> str | None: ...
     @property
@@ -1574,6 +1678,8 @@ class GetImportJobOutput:
 @final
 class GetMessageInsightsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetMessageInsightsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetMessageInsightsOutput: ...
     @property
     def message_id(self) -> str | None: ...
     @property
@@ -1589,6 +1695,8 @@ class GetMessageInsightsOutput:
 @final
 class GetMultiRegionEndpointOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetMultiRegionEndpointOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetMultiRegionEndpointOutput: ...
     @property
     def endpoint_name(self) -> str | None: ...
     @property
@@ -1606,6 +1714,8 @@ class GetMultiRegionEndpointOutput:
 @final
 class GetReputationEntityOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetReputationEntityOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetReputationEntityOutput: ...
     @property
     def reputation_entity(self) -> ReputationEntity | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1613,6 +1723,8 @@ class GetReputationEntityOutput:
 @final
 class GetSuppressedDestinationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetSuppressedDestinationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetSuppressedDestinationOutput: ...
     @property
     def suppressed_destination(self) -> SuppressedDestination | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1620,6 +1732,8 @@ class GetSuppressedDestinationOutput:
 @final
 class GetTenantOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetTenantOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetTenantOutput: ...
     @property
     def tenant(self) -> Tenant | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1627,6 +1741,8 @@ class GetTenantOutput:
 @final
 class ListConfigurationSetsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListConfigurationSetsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListConfigurationSetsOutput: ...
     @property
     def configuration_sets(self) -> list[str] | None: ...
     @property
@@ -1636,6 +1752,8 @@ class ListConfigurationSetsOutput:
 @final
 class ListContactListsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListContactListsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListContactListsOutput: ...
     @property
     def contact_lists(self) -> list[ContactList] | None: ...
     @property
@@ -1645,6 +1763,8 @@ class ListContactListsOutput:
 @final
 class ListContactsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListContactsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListContactsOutput: ...
     @property
     def contacts(self) -> list[Contact] | None: ...
     @property
@@ -1654,6 +1774,8 @@ class ListContactsOutput:
 @final
 class ListCustomVerificationEmailTemplatesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListCustomVerificationEmailTemplatesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListCustomVerificationEmailTemplatesOutput: ...
     @property
     def custom_verification_email_templates(self) -> list[CustomVerificationEmailTemplateMetadata] | None: ...
     @property
@@ -1663,6 +1785,8 @@ class ListCustomVerificationEmailTemplatesOutput:
 @final
 class ListDedicatedIpPoolsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListDedicatedIpPoolsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListDedicatedIpPoolsOutput: ...
     @property
     def dedicated_ip_pools(self) -> list[str] | None: ...
     @property
@@ -1672,6 +1796,8 @@ class ListDedicatedIpPoolsOutput:
 @final
 class ListDeliverabilityTestReportsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListDeliverabilityTestReportsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListDeliverabilityTestReportsOutput: ...
     @property
     def deliverability_test_reports(self) -> list[DeliverabilityTestReport]: ...
     @property
@@ -1681,6 +1807,8 @@ class ListDeliverabilityTestReportsOutput:
 @final
 class ListDomainDeliverabilityCampaignsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListDomainDeliverabilityCampaignsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListDomainDeliverabilityCampaignsOutput: ...
     @property
     def domain_deliverability_campaigns(self) -> list[DomainDeliverabilityCampaign]: ...
     @property
@@ -1690,6 +1818,8 @@ class ListDomainDeliverabilityCampaignsOutput:
 @final
 class ListEmailIdentitiesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListEmailIdentitiesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListEmailIdentitiesOutput: ...
     @property
     def email_identities(self) -> list[IdentityInfo] | None: ...
     @property
@@ -1699,6 +1829,8 @@ class ListEmailIdentitiesOutput:
 @final
 class ListEmailIdentityCertificatesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListEmailIdentityCertificatesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListEmailIdentityCertificatesOutput: ...
     @property
     def certificates(self) -> list[IdentityCertificate] | None: ...
     @property
@@ -1708,6 +1840,8 @@ class ListEmailIdentityCertificatesOutput:
 @final
 class ListEmailTemplatesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListEmailTemplatesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListEmailTemplatesOutput: ...
     @property
     def templates_metadata(self) -> list[EmailTemplateMetadata] | None: ...
     @property
@@ -1717,6 +1851,8 @@ class ListEmailTemplatesOutput:
 @final
 class ListExportJobsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListExportJobsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListExportJobsOutput: ...
     @property
     def export_jobs(self) -> list[ExportJobSummary] | None: ...
     @property
@@ -1726,6 +1862,8 @@ class ListExportJobsOutput:
 @final
 class ListImportJobsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListImportJobsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListImportJobsOutput: ...
     @property
     def import_jobs(self) -> list[ImportJobSummary] | None: ...
     @property
@@ -1735,6 +1873,8 @@ class ListImportJobsOutput:
 @final
 class ListMultiRegionEndpointsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListMultiRegionEndpointsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListMultiRegionEndpointsOutput: ...
     @property
     def multi_region_endpoints(self) -> list[MultiRegionEndpoint] | None: ...
     @property
@@ -1744,6 +1884,8 @@ class ListMultiRegionEndpointsOutput:
 @final
 class ListRecommendationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListRecommendationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListRecommendationsOutput: ...
     @property
     def recommendations(self) -> list[Recommendation] | None: ...
     @property
@@ -1753,6 +1895,8 @@ class ListRecommendationsOutput:
 @final
 class ListReputationEntitiesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListReputationEntitiesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListReputationEntitiesOutput: ...
     @property
     def reputation_entities(self) -> list[ReputationEntity] | None: ...
     @property
@@ -1762,6 +1906,8 @@ class ListReputationEntitiesOutput:
 @final
 class ListResourceTenantsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListResourceTenantsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListResourceTenantsOutput: ...
     @property
     def resource_tenants(self) -> list[ResourceTenantMetadata] | None: ...
     @property
@@ -1771,6 +1917,8 @@ class ListResourceTenantsOutput:
 @final
 class ListSuppressedDestinationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListSuppressedDestinationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListSuppressedDestinationsOutput: ...
     @property
     def suppressed_destination_summaries(self) -> list[SuppressedDestinationSummary] | None: ...
     @property
@@ -1780,6 +1928,8 @@ class ListSuppressedDestinationsOutput:
 @final
 class ListTagsForResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListTagsForResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTagsForResourceOutput: ...
     @property
     def tags(self) -> list[Tag]: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1787,6 +1937,8 @@ class ListTagsForResourceOutput:
 @final
 class ListTenantResourcesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListTenantResourcesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTenantResourcesOutput: ...
     @property
     def tenant_resources(self) -> list[TenantResource] | None: ...
     @property
@@ -1796,6 +1948,8 @@ class ListTenantResourcesOutput:
 @final
 class ListTenantsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListTenantsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTenantsOutput: ...
     @property
     def tenants(self) -> list[TenantInfo] | None: ...
     @property
@@ -1805,101 +1959,141 @@ class ListTenantsOutput:
 @final
 class PutAccountDedicatedIpWarmupAttributesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountDedicatedIpWarmupAttributesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutAccountDedicatedIpWarmupAttributesOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutAccountDetailsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountDetailsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutAccountDetailsOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutAccountPricingAttributesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountPricingAttributesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutAccountPricingAttributesOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutAccountSendingAttributesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountSendingAttributesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutAccountSendingAttributesOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutAccountSuppressionAttributesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountSuppressionAttributesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutAccountSuppressionAttributesOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutAccountVdmAttributesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountVdmAttributesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutAccountVdmAttributesOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutConfigurationSetArchivingOptionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetArchivingOptionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutConfigurationSetArchivingOptionsOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutConfigurationSetDeliveryOptionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetDeliveryOptionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutConfigurationSetDeliveryOptionsOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutConfigurationSetReputationOptionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetReputationOptionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutConfigurationSetReputationOptionsOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutConfigurationSetSendingOptionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetSendingOptionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutConfigurationSetSendingOptionsOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutConfigurationSetSuppressionOptionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetSuppressionOptionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutConfigurationSetSuppressionOptionsOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutConfigurationSetTrackingOptionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetTrackingOptionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutConfigurationSetTrackingOptionsOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutConfigurationSetVdmOptionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetVdmOptionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutConfigurationSetVdmOptionsOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutDedicatedIpInPoolOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutDedicatedIpInPoolOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutDedicatedIpInPoolOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutDedicatedIpPoolScalingAttributesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutDedicatedIpPoolScalingAttributesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutDedicatedIpPoolScalingAttributesOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutDedicatedIpWarmupAttributesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutDedicatedIpWarmupAttributesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutDedicatedIpWarmupAttributesOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutDeliverabilityDashboardOptionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutDeliverabilityDashboardOptionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutDeliverabilityDashboardOptionOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutEmailIdentityConfigurationSetAttributesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutEmailIdentityConfigurationSetAttributesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutEmailIdentityConfigurationSetAttributesOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutEmailIdentityDkimAttributesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutEmailIdentityDkimAttributesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutEmailIdentityDkimAttributesOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutEmailIdentityDkimSigningAttributesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutEmailIdentityDkimSigningAttributesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutEmailIdentityDkimSigningAttributesOutput: ...
     @property
     def dkim_status(self) -> _types.DkimStatusOutput | None: ...
     @property
@@ -1911,26 +2105,36 @@ class PutEmailIdentityDkimSigningAttributesOutput:
 @final
 class PutEmailIdentityFeedbackAttributesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutEmailIdentityFeedbackAttributesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutEmailIdentityFeedbackAttributesOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutEmailIdentityMailFromAttributesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutEmailIdentityMailFromAttributesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutEmailIdentityMailFromAttributesOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutSuppressedDestinationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutSuppressedDestinationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutSuppressedDestinationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutTenantSuppressionAttributesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutTenantSuppressionAttributesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutTenantSuppressionAttributesOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SendBulkEmailOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SendBulkEmailOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> SendBulkEmailOutput: ...
     @property
     def bulk_email_entry_results(self) -> list[BulkEmailEntryResult]: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1938,6 +2142,8 @@ class SendBulkEmailOutput:
 @final
 class SendCustomVerificationEmailOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SendCustomVerificationEmailOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> SendCustomVerificationEmailOutput: ...
     @property
     def message_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1945,6 +2151,8 @@ class SendCustomVerificationEmailOutput:
 @final
 class SendEmailOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SendEmailOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> SendEmailOutput: ...
     @property
     def message_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1952,11 +2160,15 @@ class SendEmailOutput:
 @final
 class TagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> TagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TestRenderEmailTemplateOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TestRenderEmailTemplateOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> TestRenderEmailTemplateOutput: ...
     @property
     def rendered_template(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1964,51 +2176,71 @@ class TestRenderEmailTemplateOutput:
 @final
 class UntagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UntagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UntagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateConfigurationSetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateConfigurationSetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateConfigurationSetOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateConfigurationSetEventDestinationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateConfigurationSetEventDestinationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateConfigurationSetEventDestinationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateContactOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateContactOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateContactOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateContactListOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateContactListOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateContactListOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateCustomVerificationEmailTemplateOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateCustomVerificationEmailTemplateOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateCustomVerificationEmailTemplateOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateEmailIdentityPolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateEmailIdentityPolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateEmailIdentityPolicyOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateEmailTemplateOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateEmailTemplateOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateEmailTemplateOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateReputationEntityCustomerManagedStatusOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateReputationEntityCustomerManagedStatusOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateReputationEntityCustomerManagedStatusOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateReputationEntityPolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateReputationEntityPolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateReputationEntityPolicyOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 

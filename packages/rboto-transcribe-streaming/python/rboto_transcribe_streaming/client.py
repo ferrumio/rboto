@@ -38,6 +38,16 @@ class TranscribeStreamingClient:
 
     logger_name = "rboto.transcribe-streaming"
 
+    @staticmethod
+    def _stub_operations() -> dict[str, str]:
+        return {
+            "get_medical_scribe_stream": "GetMedicalScribeStream",
+            "start_call_analytics_stream_transcription": "StartCallAnalyticsStreamTranscription",
+            "start_medical_scribe_stream": "StartMedicalScribeStream",
+            "start_medical_stream_transcription": "StartMedicalStreamTranscription",
+            "start_stream_transcription": "StartStreamTranscription",
+        }
+
     def __init__(
         self,
         *,

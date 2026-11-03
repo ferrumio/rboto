@@ -22,6 +22,22 @@ class STSClient:
 
     logger_name = "rboto.sts"
 
+    @staticmethod
+    def _stub_operations() -> dict[str, str]:
+        return {
+            "assume_role": "AssumeRole",
+            "assume_role_with_saml": "AssumeRoleWithSAML",
+            "assume_role_with_web_identity": "AssumeRoleWithWebIdentity",
+            "assume_root": "AssumeRoot",
+            "decode_authorization_message": "DecodeAuthorizationMessage",
+            "get_access_key_info": "GetAccessKeyInfo",
+            "get_caller_identity": "GetCallerIdentity",
+            "get_delegated_access_token": "GetDelegatedAccessToken",
+            "get_federation_token": "GetFederationToken",
+            "get_session_token": "GetSessionToken",
+            "get_web_identity_token": "GetWebIdentityToken",
+        }
+
     def __init__(
         self,
         *,

@@ -240,6 +240,8 @@ class TargetSummary:
 @final
 class CreateScheduleOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/CreateScheduleOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateScheduleOutput: ...
     @property
     def schedule_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -247,6 +249,8 @@ class CreateScheduleOutput:
 @final
 class CreateScheduleGroupOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/CreateScheduleGroupOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateScheduleGroupOutput: ...
     @property
     def schedule_group_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -254,16 +258,22 @@ class CreateScheduleGroupOutput:
 @final
 class DeleteScheduleOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/DeleteScheduleOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteScheduleOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteScheduleGroupOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/DeleteScheduleGroupOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteScheduleGroupOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetScheduleOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/GetScheduleOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetScheduleOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -299,6 +309,8 @@ class GetScheduleOutput:
 @final
 class GetScheduleGroupOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/GetScheduleGroupOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetScheduleGroupOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -314,6 +326,8 @@ class GetScheduleGroupOutput:
 @final
 class ListScheduleGroupsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ListScheduleGroupsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListScheduleGroupsOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -323,6 +337,8 @@ class ListScheduleGroupsOutput:
 @final
 class ListSchedulesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ListSchedulesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListSchedulesOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -332,6 +348,8 @@ class ListSchedulesOutput:
 @final
 class ListTagsForResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ListTagsForResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTagsForResourceOutput: ...
     @property
     def tags(self) -> list[Tag] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -339,16 +357,22 @@ class ListTagsForResourceOutput:
 @final
 class TagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/TagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> TagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UntagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/UntagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UntagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateScheduleOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/UpdateScheduleOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateScheduleOutput: ...
     @property
     def schedule_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...

@@ -48,6 +48,8 @@ class Tag:
 @final
 class GetDataAutomationStatusOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/GetDataAutomationStatusOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDataAutomationStatusOutput: ...
     @property
     def status(self) -> _types.AutomationJobStatusOutput | None: ...
     @property
@@ -67,6 +69,8 @@ class GetDataAutomationStatusOutput:
 @final
 class InvokeDataAutomationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/InvokeDataAutomationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> InvokeDataAutomationOutput: ...
     @property
     def output_configuration(self) -> OutputConfiguration | None: ...
     @property
@@ -78,6 +82,8 @@ class InvokeDataAutomationOutput:
 @final
 class InvokeDataAutomationAsyncOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/InvokeDataAutomationAsyncOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> InvokeDataAutomationAsyncOutput: ...
     @property
     def invocation_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -85,6 +91,8 @@ class InvokeDataAutomationAsyncOutput:
 @final
 class ListTagsForResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/ListTagsForResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTagsForResourceOutput: ...
     @property
     def tags(self) -> list[Tag] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -92,11 +100,15 @@ class ListTagsForResourceOutput:
 @final
 class TagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/TagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> TagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UntagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/UntagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UntagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 

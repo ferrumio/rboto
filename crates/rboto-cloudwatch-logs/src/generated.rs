@@ -7036,6 +7036,4285 @@ fn upper_case_string_to_py(
     Ok(result.into_any().unbind())
 }
 
+fn account_policy_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::AccountPolicy> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "policy_name",
+            "policy_document",
+            "last_updated_time",
+            "policy_type",
+            "scope",
+            "selection_criteria",
+            "account_id",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::AccountPolicy::builder();
+    if let Some(value) = dict_value(values, "policy_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3266: String = value.extract()?;
+        builder = builder.set_policy_name(Some(fixture_3266));
+    }
+    if let Some(value) = dict_value(values, "policy_document")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3267: String = value.extract()?;
+        builder = builder.set_policy_document(Some(fixture_3267));
+    }
+    if let Some(value) = dict_value(values, "last_updated_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3268: i64 = value.extract()?;
+        builder = builder.set_last_updated_time(Some(fixture_3268));
+    }
+    if let Some(value) = dict_value(values, "policy_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3270: String = value.extract()?;
+        let fixture_3269 =
+            aws_sdk_cloudwatchlogs::types::PolicyType::from(enum_value_3270.as_str());
+        builder = builder.set_policy_type(Some(fixture_3269));
+    }
+    if let Some(value) = dict_value(values, "scope")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3272: String = value.extract()?;
+        let fixture_3271 = aws_sdk_cloudwatchlogs::types::Scope::from(enum_value_3272.as_str());
+        builder = builder.set_scope(Some(fixture_3271));
+    }
+    if let Some(value) = dict_value(values, "selection_criteria")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3273: String = value.extract()?;
+        builder = builder.set_selection_criteria(Some(fixture_3273));
+    }
+    if let Some(value) = dict_value(values, "account_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3274: String = value.extract()?;
+        builder = builder.set_account_id(Some(fixture_3274));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn add_key_entry_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::AddKeyEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["key", "value", "overwrite_if_exists"],
+        &["key", "value", "overwrite_if_exists"],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::AddKeyEntry::builder();
+    if let Some(value) = values.get_item("key")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3275: String = value.extract()?;
+        builder = builder.set_key(Some(fixture_3275));
+    }
+    if let Some(value) = values.get_item("value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3276: String = value.extract()?;
+        builder = builder.set_value(Some(fixture_3276));
+    }
+    if let Some(value) = values.get_item("overwrite_if_exists")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_3277: bool = value.extract()?;
+        builder = builder.set_overwrite_if_exists(Some(fixture_3277));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn add_keys_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::AddKeys> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["entries"], &["entries"])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::AddKeys::builder();
+    if let Some(value) = values.get_item("entries")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3278 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3279 in value.try_iter()? {
+            let item_3280 = item_result_3279?;
+            rboto_core::fixture_scalar(&item_3280, "struct")?;
+            let converted_item_3281 = add_key_entry_fixture_from_py(&item_3280)?;
+            fixture_3278.push(converted_item_3281);
+        }
+        builder = builder.set_entries(Some(fixture_3278));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn aggregate_log_group_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::AggregateLogGroupSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["log_group_count", "grouping_identifiers"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::AggregateLogGroupSummary::builder();
+    if let Some(value) = dict_value(values, "log_group_count")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_3282: i32 = value.extract()?;
+        builder = builder.set_log_group_count(Some(fixture_3282));
+    }
+    if let Some(value) = dict_value(values, "grouping_identifiers")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3283 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3284 in value.try_iter()? {
+            let item_3285 = item_result_3284?;
+            rboto_core::fixture_scalar(&item_3285, "struct")?;
+            let converted_item_3286 = grouping_identifier_fixture_from_py(&item_3285)?;
+            fixture_3283.push(converted_item_3286);
+        }
+        builder = builder.set_grouping_identifiers(Some(fixture_3283));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn anomaly_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::Anomaly> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "anomaly_id",
+            "pattern_id",
+            "anomaly_detector_arn",
+            "pattern_string",
+            "pattern_regex",
+            "priority",
+            "first_seen",
+            "last_seen",
+            "description",
+            "active",
+            "state",
+            "histogram",
+            "log_samples",
+            "pattern_tokens",
+            "log_group_arn_list",
+            "suppressed",
+            "suppressed_date",
+            "suppressed_until",
+            "is_pattern_level_suppression",
+        ],
+        &[
+            "anomaly_id",
+            "pattern_id",
+            "anomaly_detector_arn",
+            "pattern_string",
+            "first_seen",
+            "last_seen",
+            "description",
+            "active",
+            "state",
+            "histogram",
+            "log_samples",
+            "pattern_tokens",
+            "log_group_arn_list",
+            "suppressed_date",
+            "suppressed_until",
+        ],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::Anomaly::builder();
+    if let Some(value) = values.get_item("anomaly_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3287: String = value.extract()?;
+        builder = builder.set_anomaly_id(Some(fixture_3287));
+    }
+    if let Some(value) = values.get_item("pattern_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3288: String = value.extract()?;
+        builder = builder.set_pattern_id(Some(fixture_3288));
+    }
+    if let Some(value) = values.get_item("anomaly_detector_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3289: String = value.extract()?;
+        builder = builder.set_anomaly_detector_arn(Some(fixture_3289));
+    }
+    if let Some(value) = values.get_item("pattern_string")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3290: String = value.extract()?;
+        builder = builder.set_pattern_string(Some(fixture_3290));
+    }
+    if let Some(value) = dict_value(values, "pattern_regex")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3291: String = value.extract()?;
+        builder = builder.set_pattern_regex(Some(fixture_3291));
+    }
+    if let Some(value) = dict_value(values, "priority")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3292: String = value.extract()?;
+        builder = builder.set_priority(Some(fixture_3292));
+    }
+    if let Some(value) = values.get_item("first_seen")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3293: i64 = value.extract()?;
+        builder = builder.set_first_seen(Some(fixture_3293));
+    }
+    if let Some(value) = values.get_item("last_seen")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3294: i64 = value.extract()?;
+        builder = builder.set_last_seen(Some(fixture_3294));
+    }
+    if let Some(value) = values.get_item("description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3295: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_3295));
+    }
+    if let Some(value) = values.get_item("active")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_3296: bool = value.extract()?;
+        builder = builder.set_active(Some(fixture_3296));
+    }
+    if let Some(value) = values.get_item("state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3298: String = value.extract()?;
+        let fixture_3297 = aws_sdk_cloudwatchlogs::types::State::from(enum_value_3298.as_str());
+        builder = builder.set_state(Some(fixture_3297));
+    }
+    if let Some(value) = values.get_item("histogram")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_3300 = value.cast::<PyDict>()?;
+        let mut fixture_3299 = HashMap::with_capacity(mapping_3300.len());
+        for (key_3301, value_3302) in mapping_3300.iter() {
+            rboto_core::fixture_scalar(&key_3301, "string")?;
+            let converted_key_3303: String = key_3301.extract()?;
+            rboto_core::fixture_scalar(&value_3302, "i64")?;
+            let converted_value_3304: i64 = value_3302.extract()?;
+            fixture_3299.insert(converted_key_3303, converted_value_3304);
+        }
+        builder = builder.set_histogram(Some(fixture_3299));
+    }
+    if let Some(value) = values.get_item("log_samples")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3305 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3306 in value.try_iter()? {
+            let item_3307 = item_result_3306?;
+            rboto_core::fixture_scalar(&item_3307, "struct")?;
+            let converted_item_3308 = log_event_fixture_from_py(&item_3307)?;
+            fixture_3305.push(converted_item_3308);
+        }
+        builder = builder.set_log_samples(Some(fixture_3305));
+    }
+    if let Some(value) = values.get_item("pattern_tokens")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3309 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3310 in value.try_iter()? {
+            let item_3311 = item_result_3310?;
+            rboto_core::fixture_scalar(&item_3311, "struct")?;
+            let converted_item_3312 = pattern_token_fixture_from_py(&item_3311)?;
+            fixture_3309.push(converted_item_3312);
+        }
+        builder = builder.set_pattern_tokens(Some(fixture_3309));
+    }
+    if let Some(value) = values.get_item("log_group_arn_list")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3313 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3314 in value.try_iter()? {
+            let item_3315 = item_result_3314?;
+            rboto_core::fixture_scalar(&item_3315, "string")?;
+            let converted_item_3316: String = item_3315.extract()?;
+            fixture_3313.push(converted_item_3316);
+        }
+        builder = builder.set_log_group_arn_list(Some(fixture_3313));
+    }
+    if let Some(value) = dict_value(values, "suppressed")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_3317: bool = value.extract()?;
+        builder = builder.set_suppressed(Some(fixture_3317));
+    }
+    if let Some(value) = values.get_item("suppressed_date")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3318: i64 = value.extract()?;
+        builder = builder.set_suppressed_date(Some(fixture_3318));
+    }
+    if let Some(value) = values.get_item("suppressed_until")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3319: i64 = value.extract()?;
+        builder = builder.set_suppressed_until(Some(fixture_3319));
+    }
+    if let Some(value) = dict_value(values, "is_pattern_level_suppression")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_3320: bool = value.extract()?;
+        builder = builder.set_is_pattern_level_suppression(Some(fixture_3320));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn anomaly_detector_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::AnomalyDetector> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "anomaly_detector_arn",
+            "detector_name",
+            "log_group_arn_list",
+            "evaluation_frequency",
+            "filter_pattern",
+            "anomaly_detector_status",
+            "kms_key_id",
+            "creation_time_stamp",
+            "last_modified_time_stamp",
+            "anomaly_visibility_time",
+        ],
+        &["creation_time_stamp", "last_modified_time_stamp"],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::AnomalyDetector::builder();
+    if let Some(value) = dict_value(values, "anomaly_detector_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3321: String = value.extract()?;
+        builder = builder.set_anomaly_detector_arn(Some(fixture_3321));
+    }
+    if let Some(value) = dict_value(values, "detector_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3322: String = value.extract()?;
+        builder = builder.set_detector_name(Some(fixture_3322));
+    }
+    if let Some(value) = dict_value(values, "log_group_arn_list")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3323 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3324 in value.try_iter()? {
+            let item_3325 = item_result_3324?;
+            rboto_core::fixture_scalar(&item_3325, "string")?;
+            let converted_item_3326: String = item_3325.extract()?;
+            fixture_3323.push(converted_item_3326);
+        }
+        builder = builder.set_log_group_arn_list(Some(fixture_3323));
+    }
+    if let Some(value) = dict_value(values, "evaluation_frequency")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3328: String = value.extract()?;
+        let fixture_3327 =
+            aws_sdk_cloudwatchlogs::types::EvaluationFrequency::from(enum_value_3328.as_str());
+        builder = builder.set_evaluation_frequency(Some(fixture_3327));
+    }
+    if let Some(value) = dict_value(values, "filter_pattern")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3329: String = value.extract()?;
+        builder = builder.set_filter_pattern(Some(fixture_3329));
+    }
+    if let Some(value) = dict_value(values, "anomaly_detector_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3331: String = value.extract()?;
+        let fixture_3330 =
+            aws_sdk_cloudwatchlogs::types::AnomalyDetectorStatus::from(enum_value_3331.as_str());
+        builder = builder.set_anomaly_detector_status(Some(fixture_3330));
+    }
+    if let Some(value) = dict_value(values, "kms_key_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3332: String = value.extract()?;
+        builder = builder.set_kms_key_id(Some(fixture_3332));
+    }
+    if let Some(value) = values.get_item("creation_time_stamp")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3333: i64 = value.extract()?;
+        builder = builder.set_creation_time_stamp(Some(fixture_3333));
+    }
+    if let Some(value) = values.get_item("last_modified_time_stamp")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3334: i64 = value.extract()?;
+        builder = builder.set_last_modified_time_stamp(Some(fixture_3334));
+    }
+    if let Some(value) = dict_value(values, "anomaly_visibility_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3335: i64 = value.extract()?;
+        builder = builder.set_anomaly_visibility_time(Some(fixture_3335));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn configuration_template_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::ConfigurationTemplate> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "service",
+            "log_type",
+            "resource_type",
+            "delivery_destination_type",
+            "default_delivery_config_values",
+            "allowed_fields",
+            "allowed_output_formats",
+            "allowed_action_for_allow_vended_logs_delivery_for_resource",
+            "allowed_field_delimiters",
+            "allowed_suffix_path_fields",
+            "delivery_source_configuration",
+            "s3_tables_integration",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::ConfigurationTemplate::builder();
+    if let Some(value) = dict_value(values, "service")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3336: String = value.extract()?;
+        builder = builder.set_service(Some(fixture_3336));
+    }
+    if let Some(value) = dict_value(values, "log_type")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3337: String = value.extract()?;
+        builder = builder.set_log_type(Some(fixture_3337));
+    }
+    if let Some(value) = dict_value(values, "resource_type")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3338: String = value.extract()?;
+        builder = builder.set_resource_type(Some(fixture_3338));
+    }
+    if let Some(value) = dict_value(values, "delivery_destination_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3340: String = value.extract()?;
+        let fixture_3339 =
+            aws_sdk_cloudwatchlogs::types::DeliveryDestinationType::from(enum_value_3340.as_str());
+        builder = builder.set_delivery_destination_type(Some(fixture_3339));
+    }
+    if let Some(value) = dict_value(values, "default_delivery_config_values")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3341 = configuration_template_delivery_config_values_fixture_from_py(&value)?;
+        builder = builder.set_default_delivery_config_values(Some(fixture_3341));
+    }
+    if let Some(value) = dict_value(values, "allowed_fields")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3342 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3343 in value.try_iter()? {
+            let item_3344 = item_result_3343?;
+            rboto_core::fixture_scalar(&item_3344, "struct")?;
+            let converted_item_3345 = record_field_fixture_from_py(&item_3344)?;
+            fixture_3342.push(converted_item_3345);
+        }
+        builder = builder.set_allowed_fields(Some(fixture_3342));
+    }
+    if let Some(value) = dict_value(values, "allowed_output_formats")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3346 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3347 in value.try_iter()? {
+            let item_3348 = item_result_3347?;
+            rboto_core::fixture_scalar(&item_3348, "enum")?;
+            let enum_value_3350: String = item_3348.extract()?;
+            let converted_item_3349 =
+                aws_sdk_cloudwatchlogs::types::OutputFormat::from(enum_value_3350.as_str());
+            fixture_3346.push(converted_item_3349);
+        }
+        builder = builder.set_allowed_output_formats(Some(fixture_3346));
+    }
+    if let Some(value) = dict_value(
+        values,
+        "allowed_action_for_allow_vended_logs_delivery_for_resource",
+    )? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3351: String = value.extract()?;
+        builder = builder
+            .set_allowed_action_for_allow_vended_logs_delivery_for_resource(Some(fixture_3351));
+    }
+    if let Some(value) = dict_value(values, "allowed_field_delimiters")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3352 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3353 in value.try_iter()? {
+            let item_3354 = item_result_3353?;
+            rboto_core::fixture_scalar(&item_3354, "string")?;
+            let converted_item_3355: String = item_3354.extract()?;
+            fixture_3352.push(converted_item_3355);
+        }
+        builder = builder.set_allowed_field_delimiters(Some(fixture_3352));
+    }
+    if let Some(value) = dict_value(values, "allowed_suffix_path_fields")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3356 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3357 in value.try_iter()? {
+            let item_3358 = item_result_3357?;
+            rboto_core::fixture_scalar(&item_3358, "string")?;
+            let converted_item_3359: String = item_3358.extract()?;
+            fixture_3356.push(converted_item_3359);
+        }
+        builder = builder.set_allowed_suffix_path_fields(Some(fixture_3356));
+    }
+    if let Some(value) = dict_value(values, "delivery_source_configuration")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3360 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3361 in value.try_iter()? {
+            let item_3362 = item_result_3361?;
+            rboto_core::fixture_scalar(&item_3362, "struct")?;
+            let converted_item_3363 =
+                delivery_source_configuration_schema_fixture_from_py(&item_3362)?;
+            fixture_3360.push(converted_item_3363);
+        }
+        builder = builder.set_delivery_source_configuration(Some(fixture_3360));
+    }
+    if let Some(value) = dict_value(values, "s3_tables_integration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3364 = s3_tables_integration_fixture_from_py(&value)?;
+        builder = builder.set_s3_tables_integration(Some(fixture_3364));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn configuration_template_delivery_config_values_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::ConfigurationTemplateDeliveryConfigValues> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "record_fields",
+            "field_delimiter",
+            "s3_delivery_configuration",
+        ],
+        &[],
+    )?;
+    let mut builder =
+        aws_sdk_cloudwatchlogs::types::ConfigurationTemplateDeliveryConfigValues::builder();
+    if let Some(value) = dict_value(values, "record_fields")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3365 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3366 in value.try_iter()? {
+            let item_3367 = item_result_3366?;
+            rboto_core::fixture_scalar(&item_3367, "string")?;
+            let converted_item_3368: String = item_3367.extract()?;
+            fixture_3365.push(converted_item_3368);
+        }
+        builder = builder.set_record_fields(Some(fixture_3365));
+    }
+    if let Some(value) = dict_value(values, "field_delimiter")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3369: String = value.extract()?;
+        builder = builder.set_field_delimiter(Some(fixture_3369));
+    }
+    if let Some(value) = dict_value(values, "s3_delivery_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3370 = s3_delivery_configuration_fixture_from_py(&value)?;
+        builder = builder.set_s3_delivery_configuration(Some(fixture_3370));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn copy_value_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::CopyValue> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["entries"], &["entries"])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::CopyValue::builder();
+    if let Some(value) = values.get_item("entries")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3371 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3372 in value.try_iter()? {
+            let item_3373 = item_result_3372?;
+            rboto_core::fixture_scalar(&item_3373, "struct")?;
+            let converted_item_3374 = copy_value_entry_fixture_from_py(&item_3373)?;
+            fixture_3371.push(converted_item_3374);
+        }
+        builder = builder.set_entries(Some(fixture_3371));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn copy_value_entry_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::CopyValueEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["source", "target", "overwrite_if_exists"],
+        &["source", "target", "overwrite_if_exists"],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::CopyValueEntry::builder();
+    if let Some(value) = values.get_item("source")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3375: String = value.extract()?;
+        builder = builder.set_source(Some(fixture_3375));
+    }
+    if let Some(value) = values.get_item("target")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3376: String = value.extract()?;
+        builder = builder.set_target(Some(fixture_3376));
+    }
+    if let Some(value) = values.get_item("overwrite_if_exists")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_3377: bool = value.extract()?;
+        builder = builder.set_overwrite_if_exists(Some(fixture_3377));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn csv_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatchlogs::types::Csv> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "quote_character",
+            "delimiter",
+            "columns",
+            "source",
+            "destination",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::Csv::builder();
+    if let Some(value) = dict_value(values, "quote_character")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3378: String = value.extract()?;
+        builder = builder.set_quote_character(Some(fixture_3378));
+    }
+    if let Some(value) = dict_value(values, "delimiter")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3379: String = value.extract()?;
+        builder = builder.set_delimiter(Some(fixture_3379));
+    }
+    if let Some(value) = dict_value(values, "columns")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3380 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3381 in value.try_iter()? {
+            let item_3382 = item_result_3381?;
+            rboto_core::fixture_scalar(&item_3382, "string")?;
+            let converted_item_3383: String = item_3382.extract()?;
+            fixture_3380.push(converted_item_3383);
+        }
+        builder = builder.set_columns(Some(fixture_3380));
+    }
+    if let Some(value) = dict_value(values, "source")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3384: String = value.extract()?;
+        builder = builder.set_source(Some(fixture_3384));
+    }
+    if let Some(value) = dict_value(values, "destination")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3385: String = value.extract()?;
+        builder = builder.set_destination(Some(fixture_3385));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn data_source_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::DataSource> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["name", "type"], &["name"])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::DataSource::builder();
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3386: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_3386));
+    }
+    if let Some(value) = dict_value(values, "type")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3387: String = value.extract()?;
+        builder = builder.set_type(Some(fixture_3387));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn date_time_converter_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::DateTimeConverter> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "source",
+            "target",
+            "target_format",
+            "match_patterns",
+            "source_timezone",
+            "target_timezone",
+            "locale",
+        ],
+        &["source", "target", "match_patterns"],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::DateTimeConverter::builder();
+    if let Some(value) = values.get_item("source")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3388: String = value.extract()?;
+        builder = builder.set_source(Some(fixture_3388));
+    }
+    if let Some(value) = values.get_item("target")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3389: String = value.extract()?;
+        builder = builder.set_target(Some(fixture_3389));
+    }
+    if let Some(value) = dict_value(values, "target_format")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3390: String = value.extract()?;
+        builder = builder.set_target_format(Some(fixture_3390));
+    }
+    if let Some(value) = values.get_item("match_patterns")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3391 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3392 in value.try_iter()? {
+            let item_3393 = item_result_3392?;
+            rboto_core::fixture_scalar(&item_3393, "string")?;
+            let converted_item_3394: String = item_3393.extract()?;
+            fixture_3391.push(converted_item_3394);
+        }
+        builder = builder.set_match_patterns(Some(fixture_3391));
+    }
+    if let Some(value) = dict_value(values, "source_timezone")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3395: String = value.extract()?;
+        builder = builder.set_source_timezone(Some(fixture_3395));
+    }
+    if let Some(value) = dict_value(values, "target_timezone")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3396: String = value.extract()?;
+        builder = builder.set_target_timezone(Some(fixture_3396));
+    }
+    if let Some(value) = dict_value(values, "locale")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3397: String = value.extract()?;
+        builder = builder.set_locale(Some(fixture_3397));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn delete_keys_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::DeleteKeys> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["with_keys"], &["with_keys"])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::DeleteKeys::builder();
+    if let Some(value) = values.get_item("with_keys")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3398 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3399 in value.try_iter()? {
+            let item_3400 = item_result_3399?;
+            rboto_core::fixture_scalar(&item_3400, "string")?;
+            let converted_item_3401: String = item_3400.extract()?;
+            fixture_3398.push(converted_item_3401);
+        }
+        builder = builder.set_with_keys(Some(fixture_3398));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn delivery_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::Delivery> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "id",
+            "arn",
+            "delivery_source_name",
+            "delivery_destination_arn",
+            "delivery_destination_type",
+            "record_fields",
+            "field_delimiter",
+            "s3_delivery_configuration",
+            "tags",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::Delivery::builder();
+    if let Some(value) = dict_value(values, "id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3402: String = value.extract()?;
+        builder = builder.set_id(Some(fixture_3402));
+    }
+    if let Some(value) = dict_value(values, "arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3403: String = value.extract()?;
+        builder = builder.set_arn(Some(fixture_3403));
+    }
+    if let Some(value) = dict_value(values, "delivery_source_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3404: String = value.extract()?;
+        builder = builder.set_delivery_source_name(Some(fixture_3404));
+    }
+    if let Some(value) = dict_value(values, "delivery_destination_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3405: String = value.extract()?;
+        builder = builder.set_delivery_destination_arn(Some(fixture_3405));
+    }
+    if let Some(value) = dict_value(values, "delivery_destination_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3407: String = value.extract()?;
+        let fixture_3406 =
+            aws_sdk_cloudwatchlogs::types::DeliveryDestinationType::from(enum_value_3407.as_str());
+        builder = builder.set_delivery_destination_type(Some(fixture_3406));
+    }
+    if let Some(value) = dict_value(values, "record_fields")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3408 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3409 in value.try_iter()? {
+            let item_3410 = item_result_3409?;
+            rboto_core::fixture_scalar(&item_3410, "string")?;
+            let converted_item_3411: String = item_3410.extract()?;
+            fixture_3408.push(converted_item_3411);
+        }
+        builder = builder.set_record_fields(Some(fixture_3408));
+    }
+    if let Some(value) = dict_value(values, "field_delimiter")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3412: String = value.extract()?;
+        builder = builder.set_field_delimiter(Some(fixture_3412));
+    }
+    if let Some(value) = dict_value(values, "s3_delivery_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3413 = s3_delivery_configuration_fixture_from_py(&value)?;
+        builder = builder.set_s3_delivery_configuration(Some(fixture_3413));
+    }
+    if let Some(value) = dict_value(values, "tags")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_3415 = value.cast::<PyDict>()?;
+        let mut fixture_3414 = HashMap::with_capacity(mapping_3415.len());
+        for (key_3416, value_3417) in mapping_3415.iter() {
+            rboto_core::fixture_scalar(&key_3416, "string")?;
+            let converted_key_3418: String = key_3416.extract()?;
+            rboto_core::fixture_scalar(&value_3417, "string")?;
+            let converted_value_3419: String = value_3417.extract()?;
+            fixture_3414.insert(converted_key_3418, converted_value_3419);
+        }
+        builder = builder.set_tags(Some(fixture_3414));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn delivery_destination_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::DeliveryDestination> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "name",
+            "arn",
+            "delivery_destination_type",
+            "output_format",
+            "delivery_destination_configuration",
+            "role_arn",
+            "tags",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::DeliveryDestination::builder();
+    if let Some(value) = dict_value(values, "name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3420: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_3420));
+    }
+    if let Some(value) = dict_value(values, "arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3421: String = value.extract()?;
+        builder = builder.set_arn(Some(fixture_3421));
+    }
+    if let Some(value) = dict_value(values, "delivery_destination_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3423: String = value.extract()?;
+        let fixture_3422 =
+            aws_sdk_cloudwatchlogs::types::DeliveryDestinationType::from(enum_value_3423.as_str());
+        builder = builder.set_delivery_destination_type(Some(fixture_3422));
+    }
+    if let Some(value) = dict_value(values, "output_format")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3425: String = value.extract()?;
+        let fixture_3424 =
+            aws_sdk_cloudwatchlogs::types::OutputFormat::from(enum_value_3425.as_str());
+        builder = builder.set_output_format(Some(fixture_3424));
+    }
+    if let Some(value) = dict_value(values, "delivery_destination_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3426 = delivery_destination_configuration_fixture_from_py(&value)?;
+        builder = builder.set_delivery_destination_configuration(Some(fixture_3426));
+    }
+    if let Some(value) = dict_value(values, "role_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3427: String = value.extract()?;
+        builder = builder.set_role_arn(Some(fixture_3427));
+    }
+    if let Some(value) = dict_value(values, "tags")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_3429 = value.cast::<PyDict>()?;
+        let mut fixture_3428 = HashMap::with_capacity(mapping_3429.len());
+        for (key_3430, value_3431) in mapping_3429.iter() {
+            rboto_core::fixture_scalar(&key_3430, "string")?;
+            let converted_key_3432: String = key_3430.extract()?;
+            rboto_core::fixture_scalar(&value_3431, "string")?;
+            let converted_value_3433: String = value_3431.extract()?;
+            fixture_3428.insert(converted_key_3432, converted_value_3433);
+        }
+        builder = builder.set_tags(Some(fixture_3428));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn delivery_destination_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::DeliveryDestinationConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["destination_resource_arn"],
+        &["destination_resource_arn"],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::DeliveryDestinationConfiguration::builder();
+    if let Some(value) = values.get_item("destination_resource_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3434: String = value.extract()?;
+        builder = builder.set_destination_resource_arn(Some(fixture_3434));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn delivery_source_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::DeliverySource> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "name",
+            "arn",
+            "resource_arns",
+            "service",
+            "log_type",
+            "tags",
+            "delivery_source_configuration",
+            "status",
+            "status_reason",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::DeliverySource::builder();
+    if let Some(value) = dict_value(values, "name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3435: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_3435));
+    }
+    if let Some(value) = dict_value(values, "arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3436: String = value.extract()?;
+        builder = builder.set_arn(Some(fixture_3436));
+    }
+    if let Some(value) = dict_value(values, "resource_arns")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3437 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3438 in value.try_iter()? {
+            let item_3439 = item_result_3438?;
+            rboto_core::fixture_scalar(&item_3439, "string")?;
+            let converted_item_3440: String = item_3439.extract()?;
+            fixture_3437.push(converted_item_3440);
+        }
+        builder = builder.set_resource_arns(Some(fixture_3437));
+    }
+    if let Some(value) = dict_value(values, "service")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3441: String = value.extract()?;
+        builder = builder.set_service(Some(fixture_3441));
+    }
+    if let Some(value) = dict_value(values, "log_type")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3442: String = value.extract()?;
+        builder = builder.set_log_type(Some(fixture_3442));
+    }
+    if let Some(value) = dict_value(values, "tags")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_3444 = value.cast::<PyDict>()?;
+        let mut fixture_3443 = HashMap::with_capacity(mapping_3444.len());
+        for (key_3445, value_3446) in mapping_3444.iter() {
+            rboto_core::fixture_scalar(&key_3445, "string")?;
+            let converted_key_3447: String = key_3445.extract()?;
+            rboto_core::fixture_scalar(&value_3446, "string")?;
+            let converted_value_3448: String = value_3446.extract()?;
+            fixture_3443.insert(converted_key_3447, converted_value_3448);
+        }
+        builder = builder.set_tags(Some(fixture_3443));
+    }
+    if let Some(value) = dict_value(values, "delivery_source_configuration")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_3450 = value.cast::<PyDict>()?;
+        let mut fixture_3449 = HashMap::with_capacity(mapping_3450.len());
+        for (key_3451, value_3452) in mapping_3450.iter() {
+            rboto_core::fixture_scalar(&key_3451, "string")?;
+            let converted_key_3453: String = key_3451.extract()?;
+            rboto_core::fixture_scalar(&value_3452, "string")?;
+            let converted_value_3454: String = value_3452.extract()?;
+            fixture_3449.insert(converted_key_3453, converted_value_3454);
+        }
+        builder = builder.set_delivery_source_configuration(Some(fixture_3449));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3456: String = value.extract()?;
+        let fixture_3455 =
+            aws_sdk_cloudwatchlogs::types::DeliverySourceStatus::from(enum_value_3456.as_str());
+        builder = builder.set_status(Some(fixture_3455));
+    }
+    if let Some(value) = dict_value(values, "status_reason")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3458: String = value.extract()?;
+        let fixture_3457 = aws_sdk_cloudwatchlogs::types::DeliverySourceStatusReason::from(
+            enum_value_3458.as_str(),
+        );
+        builder = builder.set_status_reason(Some(fixture_3457));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn delivery_source_configuration_schema_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::DeliverySourceConfigurationSchema> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "key_name",
+            "value_type",
+            "default_value",
+            "supported_values",
+            "min_value",
+            "max_value",
+        ],
+        &["key_name", "value_type", "default_value"],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::DeliverySourceConfigurationSchema::builder();
+    if let Some(value) = values.get_item("key_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3459: String = value.extract()?;
+        builder = builder.set_key_name(Some(fixture_3459));
+    }
+    if let Some(value) = values.get_item("value_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3461: String = value.extract()?;
+        let fixture_3460 =
+            aws_sdk_cloudwatchlogs::types::DeliverySourceConfigurationSchemaValueType::from(
+                enum_value_3461.as_str(),
+            );
+        builder = builder.set_value_type(Some(fixture_3460));
+    }
+    if let Some(value) = values.get_item("default_value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3462: String = value.extract()?;
+        builder = builder.set_default_value(Some(fixture_3462));
+    }
+    if let Some(value) = dict_value(values, "supported_values")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3463 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3464 in value.try_iter()? {
+            let item_3465 = item_result_3464?;
+            rboto_core::fixture_scalar(&item_3465, "string")?;
+            let converted_item_3466: String = item_3465.extract()?;
+            fixture_3463.push(converted_item_3466);
+        }
+        builder = builder.set_supported_values(Some(fixture_3463));
+    }
+    if let Some(value) = dict_value(values, "min_value")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_3467: f64 = value.extract()?;
+        builder = builder.set_min_value(Some(fixture_3467));
+    }
+    if let Some(value) = dict_value(values, "max_value")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_3468: f64 = value.extract()?;
+        builder = builder.set_max_value(Some(fixture_3468));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn destination_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::Destination> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "destination_name",
+            "target_arn",
+            "role_arn",
+            "access_policy",
+            "arn",
+            "creation_time",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::Destination::builder();
+    if let Some(value) = dict_value(values, "destination_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3469: String = value.extract()?;
+        builder = builder.set_destination_name(Some(fixture_3469));
+    }
+    if let Some(value) = dict_value(values, "target_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3470: String = value.extract()?;
+        builder = builder.set_target_arn(Some(fixture_3470));
+    }
+    if let Some(value) = dict_value(values, "role_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3471: String = value.extract()?;
+        builder = builder.set_role_arn(Some(fixture_3471));
+    }
+    if let Some(value) = dict_value(values, "access_policy")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3472: String = value.extract()?;
+        builder = builder.set_access_policy(Some(fixture_3472));
+    }
+    if let Some(value) = dict_value(values, "arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3473: String = value.extract()?;
+        builder = builder.set_arn(Some(fixture_3473));
+    }
+    if let Some(value) = dict_value(values, "creation_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3474: i64 = value.extract()?;
+        builder = builder.set_creation_time(Some(fixture_3474));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn destination_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::DestinationConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["s3_configuration", "lookup_table_configuration"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::DestinationConfiguration::builder();
+    if let Some(value) = dict_value(values, "s3_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3475 = s3_configuration_fixture_from_py(&value)?;
+        builder = builder.set_s3_configuration(Some(fixture_3475));
+    }
+    if let Some(value) = dict_value(values, "lookup_table_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3476 = lookup_table_configuration_fixture_from_py(&value)?;
+        builder = builder.set_lookup_table_configuration(Some(fixture_3476));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn export_task_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::ExportTask> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "task_id",
+            "task_name",
+            "log_group_name",
+            "from",
+            "to",
+            "destination",
+            "destination_prefix",
+            "status",
+            "execution_info",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::ExportTask::builder();
+    if let Some(value) = dict_value(values, "task_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3477: String = value.extract()?;
+        builder = builder.set_task_id(Some(fixture_3477));
+    }
+    if let Some(value) = dict_value(values, "task_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3478: String = value.extract()?;
+        builder = builder.set_task_name(Some(fixture_3478));
+    }
+    if let Some(value) = dict_value(values, "log_group_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3479: String = value.extract()?;
+        builder = builder.set_log_group_name(Some(fixture_3479));
+    }
+    if let Some(value) = dict_value(values, "from")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3480: i64 = value.extract()?;
+        builder = builder.set_from(Some(fixture_3480));
+    }
+    if let Some(value) = dict_value(values, "to")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3481: i64 = value.extract()?;
+        builder = builder.set_to(Some(fixture_3481));
+    }
+    if let Some(value) = dict_value(values, "destination")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3482: String = value.extract()?;
+        builder = builder.set_destination(Some(fixture_3482));
+    }
+    if let Some(value) = dict_value(values, "destination_prefix")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3483: String = value.extract()?;
+        builder = builder.set_destination_prefix(Some(fixture_3483));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3484 = export_task_status_fixture_from_py(&value)?;
+        builder = builder.set_status(Some(fixture_3484));
+    }
+    if let Some(value) = dict_value(values, "execution_info")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3485 = export_task_execution_info_fixture_from_py(&value)?;
+        builder = builder.set_execution_info(Some(fixture_3485));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn export_task_execution_info_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::ExportTaskExecutionInfo> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["creation_time", "completion_time"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::ExportTaskExecutionInfo::builder();
+    if let Some(value) = dict_value(values, "creation_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3486: i64 = value.extract()?;
+        builder = builder.set_creation_time(Some(fixture_3486));
+    }
+    if let Some(value) = dict_value(values, "completion_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3487: i64 = value.extract()?;
+        builder = builder.set_completion_time(Some(fixture_3487));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn export_task_status_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::ExportTaskStatus> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["code", "message"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::ExportTaskStatus::builder();
+    if let Some(value) = dict_value(values, "code")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3489: String = value.extract()?;
+        let fixture_3488 =
+            aws_sdk_cloudwatchlogs::types::ExportTaskStatusCode::from(enum_value_3489.as_str());
+        builder = builder.set_code(Some(fixture_3488));
+    }
+    if let Some(value) = dict_value(values, "message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3490: String = value.extract()?;
+        builder = builder.set_message(Some(fixture_3490));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn field_index_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::FieldIndex> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "log_group_identifier",
+            "field_index_name",
+            "last_scan_time",
+            "first_event_time",
+            "last_event_time",
+            "type",
+            "index_category",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::FieldIndex::builder();
+    if let Some(value) = dict_value(values, "log_group_identifier")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3491: String = value.extract()?;
+        builder = builder.set_log_group_identifier(Some(fixture_3491));
+    }
+    if let Some(value) = dict_value(values, "field_index_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3492: String = value.extract()?;
+        builder = builder.set_field_index_name(Some(fixture_3492));
+    }
+    if let Some(value) = dict_value(values, "last_scan_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3493: i64 = value.extract()?;
+        builder = builder.set_last_scan_time(Some(fixture_3493));
+    }
+    if let Some(value) = dict_value(values, "first_event_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3494: i64 = value.extract()?;
+        builder = builder.set_first_event_time(Some(fixture_3494));
+    }
+    if let Some(value) = dict_value(values, "last_event_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3495: i64 = value.extract()?;
+        builder = builder.set_last_event_time(Some(fixture_3495));
+    }
+    if let Some(value) = dict_value(values, "type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3497: String = value.extract()?;
+        let fixture_3496 = aws_sdk_cloudwatchlogs::types::IndexType::from(enum_value_3497.as_str());
+        builder = builder.set_type(Some(fixture_3496));
+    }
+    if let Some(value) = dict_value(values, "index_category")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3499: String = value.extract()?;
+        let fixture_3498 =
+            aws_sdk_cloudwatchlogs::types::IndexCategory::from(enum_value_3499.as_str());
+        builder = builder.set_index_category(Some(fixture_3498));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn filtered_log_event_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::FilteredLogEvent> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "log_stream_name",
+            "timestamp",
+            "message",
+            "ingestion_time",
+            "event_id",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::FilteredLogEvent::builder();
+    if let Some(value) = dict_value(values, "log_stream_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3500: String = value.extract()?;
+        builder = builder.set_log_stream_name(Some(fixture_3500));
+    }
+    if let Some(value) = dict_value(values, "timestamp")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3501: i64 = value.extract()?;
+        builder = builder.set_timestamp(Some(fixture_3501));
+    }
+    if let Some(value) = dict_value(values, "message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3502: String = value.extract()?;
+        builder = builder.set_message(Some(fixture_3502));
+    }
+    if let Some(value) = dict_value(values, "ingestion_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3503: i64 = value.extract()?;
+        builder = builder.set_ingestion_time(Some(fixture_3503));
+    }
+    if let Some(value) = dict_value(values, "event_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3504: String = value.extract()?;
+        builder = builder.set_event_id(Some(fixture_3504));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn grok_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatchlogs::types::Grok> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["source", "match"], &["match"])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::Grok::builder();
+    if let Some(value) = dict_value(values, "source")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3505: String = value.extract()?;
+        builder = builder.set_source(Some(fixture_3505));
+    }
+    if let Some(value) = values.get_item("match")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3506: String = value.extract()?;
+        builder = builder.set_match(Some(fixture_3506));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn grouping_identifier_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::GroupingIdentifier> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["key", "value"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::GroupingIdentifier::builder();
+    if let Some(value) = dict_value(values, "key")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3507: String = value.extract()?;
+        builder = builder.set_key(Some(fixture_3507));
+    }
+    if let Some(value) = dict_value(values, "value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3508: String = value.extract()?;
+        builder = builder.set_value(Some(fixture_3508));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn import_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::Import> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "import_id",
+            "import_source_arn",
+            "import_status",
+            "import_destination_arn",
+            "import_statistics",
+            "import_filter",
+            "creation_time",
+            "last_updated_time",
+            "error_message",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::Import::builder();
+    if let Some(value) = dict_value(values, "import_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3509: String = value.extract()?;
+        builder = builder.set_import_id(Some(fixture_3509));
+    }
+    if let Some(value) = dict_value(values, "import_source_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3510: String = value.extract()?;
+        builder = builder.set_import_source_arn(Some(fixture_3510));
+    }
+    if let Some(value) = dict_value(values, "import_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3512: String = value.extract()?;
+        let fixture_3511 =
+            aws_sdk_cloudwatchlogs::types::ImportStatus::from(enum_value_3512.as_str());
+        builder = builder.set_import_status(Some(fixture_3511));
+    }
+    if let Some(value) = dict_value(values, "import_destination_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3513: String = value.extract()?;
+        builder = builder.set_import_destination_arn(Some(fixture_3513));
+    }
+    if let Some(value) = dict_value(values, "import_statistics")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3514 = import_statistics_fixture_from_py(&value)?;
+        builder = builder.set_import_statistics(Some(fixture_3514));
+    }
+    if let Some(value) = dict_value(values, "import_filter")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3515 = import_filter_fixture_from_py(&value)?;
+        builder = builder.set_import_filter(Some(fixture_3515));
+    }
+    if let Some(value) = dict_value(values, "creation_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3516: i64 = value.extract()?;
+        builder = builder.set_creation_time(Some(fixture_3516));
+    }
+    if let Some(value) = dict_value(values, "last_updated_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3517: i64 = value.extract()?;
+        builder = builder.set_last_updated_time(Some(fixture_3517));
+    }
+    if let Some(value) = dict_value(values, "error_message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3518: String = value.extract()?;
+        builder = builder.set_error_message(Some(fixture_3518));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn import_batch_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::ImportBatch> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["batch_id", "status", "error_message"],
+        &["batch_id", "status"],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::ImportBatch::builder();
+    if let Some(value) = values.get_item("batch_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3519: String = value.extract()?;
+        builder = builder.set_batch_id(Some(fixture_3519));
+    }
+    if let Some(value) = values.get_item("status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3521: String = value.extract()?;
+        let fixture_3520 =
+            aws_sdk_cloudwatchlogs::types::ImportStatus::from(enum_value_3521.as_str());
+        builder = builder.set_status(Some(fixture_3520));
+    }
+    if let Some(value) = dict_value(values, "error_message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3522: String = value.extract()?;
+        builder = builder.set_error_message(Some(fixture_3522));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn import_filter_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::ImportFilter> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["start_event_time", "end_event_time"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::ImportFilter::builder();
+    if let Some(value) = dict_value(values, "start_event_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3523: i64 = value.extract()?;
+        builder = builder.set_start_event_time(Some(fixture_3523));
+    }
+    if let Some(value) = dict_value(values, "end_event_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3524: i64 = value.extract()?;
+        builder = builder.set_end_event_time(Some(fixture_3524));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn import_statistics_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::ImportStatistics> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["bytes_imported"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::ImportStatistics::builder();
+    if let Some(value) = dict_value(values, "bytes_imported")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3525: i64 = value.extract()?;
+        builder = builder.set_bytes_imported(Some(fixture_3525));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn index_policy_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::IndexPolicy> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "log_group_identifier",
+            "last_update_time",
+            "policy_document",
+            "policy_name",
+            "source",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::IndexPolicy::builder();
+    if let Some(value) = dict_value(values, "log_group_identifier")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3526: String = value.extract()?;
+        builder = builder.set_log_group_identifier(Some(fixture_3526));
+    }
+    if let Some(value) = dict_value(values, "last_update_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3527: i64 = value.extract()?;
+        builder = builder.set_last_update_time(Some(fixture_3527));
+    }
+    if let Some(value) = dict_value(values, "policy_document")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3528: String = value.extract()?;
+        builder = builder.set_policy_document(Some(fixture_3528));
+    }
+    if let Some(value) = dict_value(values, "policy_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3529: String = value.extract()?;
+        builder = builder.set_policy_name(Some(fixture_3529));
+    }
+    if let Some(value) = dict_value(values, "source")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3531: String = value.extract()?;
+        let fixture_3530 =
+            aws_sdk_cloudwatchlogs::types::IndexSource::from(enum_value_3531.as_str());
+        builder = builder.set_source(Some(fixture_3530));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn integration_details_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::IntegrationDetails> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("open_search_integration_details")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_3532 = open_search_integration_details_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_cloudwatchlogs::types::IntegrationDetails::OpenSearchIntegrationDetails(
+                converted_3532,
+            ),
+        );
+    }
+    Err(PyValueError::new_err(
+        "IntegrationDetails requires exactly one known variant",
+    ))
+}
+
+fn integration_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::IntegrationSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["integration_name", "integration_type", "integration_status"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::IntegrationSummary::builder();
+    if let Some(value) = dict_value(values, "integration_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3533: String = value.extract()?;
+        builder = builder.set_integration_name(Some(fixture_3533));
+    }
+    if let Some(value) = dict_value(values, "integration_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3535: String = value.extract()?;
+        let fixture_3534 =
+            aws_sdk_cloudwatchlogs::types::IntegrationType::from(enum_value_3535.as_str());
+        builder = builder.set_integration_type(Some(fixture_3534));
+    }
+    if let Some(value) = dict_value(values, "integration_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3537: String = value.extract()?;
+        let fixture_3536 =
+            aws_sdk_cloudwatchlogs::types::IntegrationStatus::from(enum_value_3537.as_str());
+        builder = builder.set_integration_status(Some(fixture_3536));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn list_to_map_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::ListToMap> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "source",
+            "key",
+            "value_key",
+            "target",
+            "flatten",
+            "flattened_element",
+        ],
+        &["source", "key", "flatten"],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::ListToMap::builder();
+    if let Some(value) = values.get_item("source")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3538: String = value.extract()?;
+        builder = builder.set_source(Some(fixture_3538));
+    }
+    if let Some(value) = values.get_item("key")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3539: String = value.extract()?;
+        builder = builder.set_key(Some(fixture_3539));
+    }
+    if let Some(value) = dict_value(values, "value_key")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3540: String = value.extract()?;
+        builder = builder.set_value_key(Some(fixture_3540));
+    }
+    if let Some(value) = dict_value(values, "target")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3541: String = value.extract()?;
+        builder = builder.set_target(Some(fixture_3541));
+    }
+    if let Some(value) = values.get_item("flatten")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_3542: bool = value.extract()?;
+        builder = builder.set_flatten(Some(fixture_3542));
+    }
+    if let Some(value) = dict_value(values, "flattened_element")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3544: String = value.extract()?;
+        let fixture_3543 =
+            aws_sdk_cloudwatchlogs::types::FlattenedElement::from(enum_value_3544.as_str());
+        builder = builder.set_flattened_element(Some(fixture_3543));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn log_event_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::LogEvent> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["timestamp", "message"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::LogEvent::builder();
+    if let Some(value) = dict_value(values, "timestamp")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3545: i64 = value.extract()?;
+        builder = builder.set_timestamp(Some(fixture_3545));
+    }
+    if let Some(value) = dict_value(values, "message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3546: String = value.extract()?;
+        builder = builder.set_message(Some(fixture_3546));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn log_field_type_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::LogFieldType> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["type", "element", "fields"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::LogFieldType::builder();
+    if let Some(value) = dict_value(values, "type")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3547: String = value.extract()?;
+        builder = builder.set_type(Some(fixture_3547));
+    }
+    if let Some(value) = dict_value(values, "element")? {
+        rboto_core::fixture_scalar(&value, "box")?;
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let inner_3549 = log_field_type_fixture_from_py(&value)?;
+        let fixture_3548 = Box::new(inner_3549);
+        builder = builder.set_element(Some(fixture_3548));
+    }
+    if let Some(value) = dict_value(values, "fields")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3550 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3551 in value.try_iter()? {
+            let item_3552 = item_result_3551?;
+            rboto_core::fixture_scalar(&item_3552, "struct")?;
+            let converted_item_3553 = log_fields_list_item_fixture_from_py(&item_3552)?;
+            fixture_3550.push(converted_item_3553);
+        }
+        builder = builder.set_fields(Some(fixture_3550));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn log_fields_list_item_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::LogFieldsListItem> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["log_field_name", "log_field_type"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::LogFieldsListItem::builder();
+    if let Some(value) = dict_value(values, "log_field_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3554: String = value.extract()?;
+        builder = builder.set_log_field_name(Some(fixture_3554));
+    }
+    if let Some(value) = dict_value(values, "log_field_type")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3555 = log_field_type_fixture_from_py(&value)?;
+        builder = builder.set_log_field_type(Some(fixture_3555));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn log_group_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::LogGroup> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "log_group_name",
+            "creation_time",
+            "retention_in_days",
+            "metric_filter_count",
+            "arn",
+            "stored_bytes",
+            "kms_key_id",
+            "data_protection_status",
+            "inherited_properties",
+            "log_group_class",
+            "log_group_arn",
+            "deletion_protection_enabled",
+            "bearer_token_authentication_enabled",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::LogGroup::builder();
+    if let Some(value) = dict_value(values, "log_group_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3556: String = value.extract()?;
+        builder = builder.set_log_group_name(Some(fixture_3556));
+    }
+    if let Some(value) = dict_value(values, "creation_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3557: i64 = value.extract()?;
+        builder = builder.set_creation_time(Some(fixture_3557));
+    }
+    if let Some(value) = dict_value(values, "retention_in_days")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_3558: i32 = value.extract()?;
+        builder = builder.set_retention_in_days(Some(fixture_3558));
+    }
+    if let Some(value) = dict_value(values, "metric_filter_count")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_3559: i32 = value.extract()?;
+        builder = builder.set_metric_filter_count(Some(fixture_3559));
+    }
+    if let Some(value) = dict_value(values, "arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3560: String = value.extract()?;
+        builder = builder.set_arn(Some(fixture_3560));
+    }
+    if let Some(value) = dict_value(values, "stored_bytes")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3561: i64 = value.extract()?;
+        builder = builder.set_stored_bytes(Some(fixture_3561));
+    }
+    if let Some(value) = dict_value(values, "kms_key_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3562: String = value.extract()?;
+        builder = builder.set_kms_key_id(Some(fixture_3562));
+    }
+    if let Some(value) = dict_value(values, "data_protection_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3564: String = value.extract()?;
+        let fixture_3563 =
+            aws_sdk_cloudwatchlogs::types::DataProtectionStatus::from(enum_value_3564.as_str());
+        builder = builder.set_data_protection_status(Some(fixture_3563));
+    }
+    if let Some(value) = dict_value(values, "inherited_properties")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3565 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3566 in value.try_iter()? {
+            let item_3567 = item_result_3566?;
+            rboto_core::fixture_scalar(&item_3567, "enum")?;
+            let enum_value_3569: String = item_3567.extract()?;
+            let converted_item_3568 =
+                aws_sdk_cloudwatchlogs::types::InheritedProperty::from(enum_value_3569.as_str());
+            fixture_3565.push(converted_item_3568);
+        }
+        builder = builder.set_inherited_properties(Some(fixture_3565));
+    }
+    if let Some(value) = dict_value(values, "log_group_class")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3571: String = value.extract()?;
+        let fixture_3570 =
+            aws_sdk_cloudwatchlogs::types::LogGroupClass::from(enum_value_3571.as_str());
+        builder = builder.set_log_group_class(Some(fixture_3570));
+    }
+    if let Some(value) = dict_value(values, "log_group_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3572: String = value.extract()?;
+        builder = builder.set_log_group_arn(Some(fixture_3572));
+    }
+    if let Some(value) = dict_value(values, "deletion_protection_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_3573: bool = value.extract()?;
+        builder = builder.set_deletion_protection_enabled(Some(fixture_3573));
+    }
+    if let Some(value) = dict_value(values, "bearer_token_authentication_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_3574: bool = value.extract()?;
+        builder = builder.set_bearer_token_authentication_enabled(Some(fixture_3574));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn log_group_field_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::LogGroupField> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["name", "percent"], &["percent"])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::LogGroupField::builder();
+    if let Some(value) = dict_value(values, "name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3575: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_3575));
+    }
+    if let Some(value) = values.get_item("percent")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_3576: i32 = value.extract()?;
+        builder = builder.set_percent(Some(fixture_3576));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn log_group_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::LogGroupSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["log_group_name", "log_group_arn", "log_group_class"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::LogGroupSummary::builder();
+    if let Some(value) = dict_value(values, "log_group_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3577: String = value.extract()?;
+        builder = builder.set_log_group_name(Some(fixture_3577));
+    }
+    if let Some(value) = dict_value(values, "log_group_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3578: String = value.extract()?;
+        builder = builder.set_log_group_arn(Some(fixture_3578));
+    }
+    if let Some(value) = dict_value(values, "log_group_class")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3580: String = value.extract()?;
+        let fixture_3579 =
+            aws_sdk_cloudwatchlogs::types::LogGroupClass::from(enum_value_3580.as_str());
+        builder = builder.set_log_group_class(Some(fixture_3579));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn log_stream_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::LogStream> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "log_stream_name",
+            "creation_time",
+            "first_event_timestamp",
+            "last_event_timestamp",
+            "last_ingestion_time",
+            "upload_sequence_token",
+            "arn",
+            "stored_bytes",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::LogStream::builder();
+    if let Some(value) = dict_value(values, "log_stream_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3581: String = value.extract()?;
+        builder = builder.set_log_stream_name(Some(fixture_3581));
+    }
+    if let Some(value) = dict_value(values, "creation_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3582: i64 = value.extract()?;
+        builder = builder.set_creation_time(Some(fixture_3582));
+    }
+    if let Some(value) = dict_value(values, "first_event_timestamp")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3583: i64 = value.extract()?;
+        builder = builder.set_first_event_timestamp(Some(fixture_3583));
+    }
+    if let Some(value) = dict_value(values, "last_event_timestamp")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3584: i64 = value.extract()?;
+        builder = builder.set_last_event_timestamp(Some(fixture_3584));
+    }
+    if let Some(value) = dict_value(values, "last_ingestion_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3585: i64 = value.extract()?;
+        builder = builder.set_last_ingestion_time(Some(fixture_3585));
+    }
+    if let Some(value) = dict_value(values, "upload_sequence_token")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3586: String = value.extract()?;
+        builder = builder.set_upload_sequence_token(Some(fixture_3586));
+    }
+    if let Some(value) = dict_value(values, "arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3587: String = value.extract()?;
+        builder = builder.set_arn(Some(fixture_3587));
+    }
+    if let Some(value) = dict_value(values, "stored_bytes")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3588: i64 = value.extract()?;
+        builder = builder.set_stored_bytes(Some(fixture_3588));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn lookup_table_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::LookupTable> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "lookup_table_arn",
+            "lookup_table_name",
+            "description",
+            "table_fields",
+            "records_count",
+            "size_bytes",
+            "last_updated_time",
+            "kms_key_id",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::LookupTable::builder();
+    if let Some(value) = dict_value(values, "lookup_table_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3589: String = value.extract()?;
+        builder = builder.set_lookup_table_arn(Some(fixture_3589));
+    }
+    if let Some(value) = dict_value(values, "lookup_table_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3590: String = value.extract()?;
+        builder = builder.set_lookup_table_name(Some(fixture_3590));
+    }
+    if let Some(value) = dict_value(values, "description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3591: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_3591));
+    }
+    if let Some(value) = dict_value(values, "table_fields")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3592 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3593 in value.try_iter()? {
+            let item_3594 = item_result_3593?;
+            rboto_core::fixture_scalar(&item_3594, "string")?;
+            let converted_item_3595: String = item_3594.extract()?;
+            fixture_3592.push(converted_item_3595);
+        }
+        builder = builder.set_table_fields(Some(fixture_3592));
+    }
+    if let Some(value) = dict_value(values, "records_count")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3596: i64 = value.extract()?;
+        builder = builder.set_records_count(Some(fixture_3596));
+    }
+    if let Some(value) = dict_value(values, "size_bytes")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3597: i64 = value.extract()?;
+        builder = builder.set_size_bytes(Some(fixture_3597));
+    }
+    if let Some(value) = dict_value(values, "last_updated_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3598: i64 = value.extract()?;
+        builder = builder.set_last_updated_time(Some(fixture_3598));
+    }
+    if let Some(value) = dict_value(values, "kms_key_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3599: String = value.extract()?;
+        builder = builder.set_kms_key_id(Some(fixture_3599));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn lookup_table_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::LookupTableConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "table_name",
+            "role_arn",
+            "description",
+            "kms_key_id",
+            "tags",
+        ],
+        &["table_name", "role_arn"],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::LookupTableConfiguration::builder();
+    if let Some(value) = values.get_item("table_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3600: String = value.extract()?;
+        builder = builder.set_table_name(Some(fixture_3600));
+    }
+    if let Some(value) = values.get_item("role_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3601: String = value.extract()?;
+        builder = builder.set_role_arn(Some(fixture_3601));
+    }
+    if let Some(value) = dict_value(values, "description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3602: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_3602));
+    }
+    if let Some(value) = dict_value(values, "kms_key_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3603: String = value.extract()?;
+        builder = builder.set_kms_key_id(Some(fixture_3603));
+    }
+    if let Some(value) = dict_value(values, "tags")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_3605 = value.cast::<PyDict>()?;
+        let mut fixture_3604 = HashMap::with_capacity(mapping_3605.len());
+        for (key_3606, value_3607) in mapping_3605.iter() {
+            rboto_core::fixture_scalar(&key_3606, "string")?;
+            let converted_key_3608: String = key_3606.extract()?;
+            rboto_core::fixture_scalar(&value_3607, "string")?;
+            let converted_value_3609: String = value_3607.extract()?;
+            fixture_3604.insert(converted_key_3608, converted_value_3609);
+        }
+        builder = builder.set_tags(Some(fixture_3604));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn lower_case_string_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::LowerCaseString> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["with_keys"], &["with_keys"])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::LowerCaseString::builder();
+    if let Some(value) = values.get_item("with_keys")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3610 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3611 in value.try_iter()? {
+            let item_3612 = item_result_3611?;
+            rboto_core::fixture_scalar(&item_3612, "string")?;
+            let converted_item_3613: String = item_3612.extract()?;
+            fixture_3610.push(converted_item_3613);
+        }
+        builder = builder.set_with_keys(Some(fixture_3610));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn metric_filter_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::MetricFilter> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "filter_name",
+            "filter_pattern",
+            "metric_transformations",
+            "creation_time",
+            "log_group_name",
+            "apply_on_transformed_logs",
+            "field_selection_criteria",
+            "emit_system_field_dimensions",
+        ],
+        &["apply_on_transformed_logs"],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::MetricFilter::builder();
+    if let Some(value) = dict_value(values, "filter_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3614: String = value.extract()?;
+        builder = builder.set_filter_name(Some(fixture_3614));
+    }
+    if let Some(value) = dict_value(values, "filter_pattern")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3615: String = value.extract()?;
+        builder = builder.set_filter_pattern(Some(fixture_3615));
+    }
+    if let Some(value) = dict_value(values, "metric_transformations")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3616 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3617 in value.try_iter()? {
+            let item_3618 = item_result_3617?;
+            rboto_core::fixture_scalar(&item_3618, "struct")?;
+            let converted_item_3619 = metric_transformation_fixture_from_py(&item_3618)?;
+            fixture_3616.push(converted_item_3619);
+        }
+        builder = builder.set_metric_transformations(Some(fixture_3616));
+    }
+    if let Some(value) = dict_value(values, "creation_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3620: i64 = value.extract()?;
+        builder = builder.set_creation_time(Some(fixture_3620));
+    }
+    if let Some(value) = dict_value(values, "log_group_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3621: String = value.extract()?;
+        builder = builder.set_log_group_name(Some(fixture_3621));
+    }
+    if let Some(value) = values.get_item("apply_on_transformed_logs")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_3622: bool = value.extract()?;
+        builder = builder.set_apply_on_transformed_logs(Some(fixture_3622));
+    }
+    if let Some(value) = dict_value(values, "field_selection_criteria")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3623: String = value.extract()?;
+        builder = builder.set_field_selection_criteria(Some(fixture_3623));
+    }
+    if let Some(value) = dict_value(values, "emit_system_field_dimensions")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3624 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3625 in value.try_iter()? {
+            let item_3626 = item_result_3625?;
+            rboto_core::fixture_scalar(&item_3626, "string")?;
+            let converted_item_3627: String = item_3626.extract()?;
+            fixture_3624.push(converted_item_3627);
+        }
+        builder = builder.set_emit_system_field_dimensions(Some(fixture_3624));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn metric_filter_match_record_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::MetricFilterMatchRecord> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["event_number", "event_message", "extracted_values"],
+        &["event_number"],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::MetricFilterMatchRecord::builder();
+    if let Some(value) = values.get_item("event_number")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3628: i64 = value.extract()?;
+        builder = builder.set_event_number(Some(fixture_3628));
+    }
+    if let Some(value) = dict_value(values, "event_message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3629: String = value.extract()?;
+        builder = builder.set_event_message(Some(fixture_3629));
+    }
+    if let Some(value) = dict_value(values, "extracted_values")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_3631 = value.cast::<PyDict>()?;
+        let mut fixture_3630 = HashMap::with_capacity(mapping_3631.len());
+        for (key_3632, value_3633) in mapping_3631.iter() {
+            rboto_core::fixture_scalar(&key_3632, "string")?;
+            let converted_key_3634: String = key_3632.extract()?;
+            rboto_core::fixture_scalar(&value_3633, "string")?;
+            let converted_value_3635: String = value_3633.extract()?;
+            fixture_3630.insert(converted_key_3634, converted_value_3635);
+        }
+        builder = builder.set_extracted_values(Some(fixture_3630));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn metric_transformation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::MetricTransformation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "metric_name",
+            "metric_namespace",
+            "metric_value",
+            "default_value",
+            "dimensions",
+            "unit",
+        ],
+        &["metric_name", "metric_namespace", "metric_value"],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::MetricTransformation::builder();
+    if let Some(value) = values.get_item("metric_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3636: String = value.extract()?;
+        builder = builder.set_metric_name(Some(fixture_3636));
+    }
+    if let Some(value) = values.get_item("metric_namespace")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3637: String = value.extract()?;
+        builder = builder.set_metric_namespace(Some(fixture_3637));
+    }
+    if let Some(value) = values.get_item("metric_value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3638: String = value.extract()?;
+        builder = builder.set_metric_value(Some(fixture_3638));
+    }
+    if let Some(value) = dict_value(values, "default_value")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_3639: f64 = value.extract()?;
+        builder = builder.set_default_value(Some(fixture_3639));
+    }
+    if let Some(value) = dict_value(values, "dimensions")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_3641 = value.cast::<PyDict>()?;
+        let mut fixture_3640 = HashMap::with_capacity(mapping_3641.len());
+        for (key_3642, value_3643) in mapping_3641.iter() {
+            rboto_core::fixture_scalar(&key_3642, "string")?;
+            let converted_key_3644: String = key_3642.extract()?;
+            rboto_core::fixture_scalar(&value_3643, "string")?;
+            let converted_value_3645: String = value_3643.extract()?;
+            fixture_3640.insert(converted_key_3644, converted_value_3645);
+        }
+        builder = builder.set_dimensions(Some(fixture_3640));
+    }
+    if let Some(value) = dict_value(values, "unit")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3647: String = value.extract()?;
+        let fixture_3646 =
+            aws_sdk_cloudwatchlogs::types::StandardUnit::from(enum_value_3647.as_str());
+        builder = builder.set_unit(Some(fixture_3646));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn move_key_entry_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::MoveKeyEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["source", "target", "overwrite_if_exists"],
+        &["source", "target", "overwrite_if_exists"],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::MoveKeyEntry::builder();
+    if let Some(value) = values.get_item("source")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3648: String = value.extract()?;
+        builder = builder.set_source(Some(fixture_3648));
+    }
+    if let Some(value) = values.get_item("target")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3649: String = value.extract()?;
+        builder = builder.set_target(Some(fixture_3649));
+    }
+    if let Some(value) = values.get_item("overwrite_if_exists")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_3650: bool = value.extract()?;
+        builder = builder.set_overwrite_if_exists(Some(fixture_3650));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn move_keys_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::MoveKeys> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["entries"], &["entries"])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::MoveKeys::builder();
+    if let Some(value) = values.get_item("entries")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3651 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3652 in value.try_iter()? {
+            let item_3653 = item_result_3652?;
+            rboto_core::fixture_scalar(&item_3653, "struct")?;
+            let converted_item_3654 = move_key_entry_fixture_from_py(&item_3653)?;
+            fixture_3651.push(converted_item_3654);
+        }
+        builder = builder.set_entries(Some(fixture_3651));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn open_search_application_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::OpenSearchApplication> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "application_endpoint",
+            "application_arn",
+            "application_id",
+            "status",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::OpenSearchApplication::builder();
+    if let Some(value) = dict_value(values, "application_endpoint")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3655: String = value.extract()?;
+        builder = builder.set_application_endpoint(Some(fixture_3655));
+    }
+    if let Some(value) = dict_value(values, "application_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3656: String = value.extract()?;
+        builder = builder.set_application_arn(Some(fixture_3656));
+    }
+    if let Some(value) = dict_value(values, "application_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3657: String = value.extract()?;
+        builder = builder.set_application_id(Some(fixture_3657));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3658 = open_search_resource_status_fixture_from_py(&value)?;
+        builder = builder.set_status(Some(fixture_3658));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn open_search_collection_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::OpenSearchCollection> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["collection_endpoint", "collection_arn", "status"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::OpenSearchCollection::builder();
+    if let Some(value) = dict_value(values, "collection_endpoint")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3659: String = value.extract()?;
+        builder = builder.set_collection_endpoint(Some(fixture_3659));
+    }
+    if let Some(value) = dict_value(values, "collection_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3660: String = value.extract()?;
+        builder = builder.set_collection_arn(Some(fixture_3660));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3661 = open_search_resource_status_fixture_from_py(&value)?;
+        builder = builder.set_status(Some(fixture_3661));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn open_search_data_access_policy_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::OpenSearchDataAccessPolicy> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["policy_name", "status"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::OpenSearchDataAccessPolicy::builder();
+    if let Some(value) = dict_value(values, "policy_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3662: String = value.extract()?;
+        builder = builder.set_policy_name(Some(fixture_3662));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3663 = open_search_resource_status_fixture_from_py(&value)?;
+        builder = builder.set_status(Some(fixture_3663));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn open_search_data_source_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::OpenSearchDataSource> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["data_source_name", "status"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::OpenSearchDataSource::builder();
+    if let Some(value) = dict_value(values, "data_source_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3664: String = value.extract()?;
+        builder = builder.set_data_source_name(Some(fixture_3664));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3665 = open_search_resource_status_fixture_from_py(&value)?;
+        builder = builder.set_status(Some(fixture_3665));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn open_search_encryption_policy_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::OpenSearchEncryptionPolicy> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["policy_name", "status"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::OpenSearchEncryptionPolicy::builder();
+    if let Some(value) = dict_value(values, "policy_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3666: String = value.extract()?;
+        builder = builder.set_policy_name(Some(fixture_3666));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3667 = open_search_resource_status_fixture_from_py(&value)?;
+        builder = builder.set_status(Some(fixture_3667));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn open_search_integration_details_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::OpenSearchIntegrationDetails> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "data_source",
+            "application",
+            "collection",
+            "workspace",
+            "encryption_policy",
+            "network_policy",
+            "access_policy",
+            "lifecycle_policy",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::OpenSearchIntegrationDetails::builder();
+    if let Some(value) = dict_value(values, "data_source")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3668 = open_search_data_source_fixture_from_py(&value)?;
+        builder = builder.set_data_source(Some(fixture_3668));
+    }
+    if let Some(value) = dict_value(values, "application")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3669 = open_search_application_fixture_from_py(&value)?;
+        builder = builder.set_application(Some(fixture_3669));
+    }
+    if let Some(value) = dict_value(values, "collection")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3670 = open_search_collection_fixture_from_py(&value)?;
+        builder = builder.set_collection(Some(fixture_3670));
+    }
+    if let Some(value) = dict_value(values, "workspace")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3671 = open_search_workspace_fixture_from_py(&value)?;
+        builder = builder.set_workspace(Some(fixture_3671));
+    }
+    if let Some(value) = dict_value(values, "encryption_policy")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3672 = open_search_encryption_policy_fixture_from_py(&value)?;
+        builder = builder.set_encryption_policy(Some(fixture_3672));
+    }
+    if let Some(value) = dict_value(values, "network_policy")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3673 = open_search_network_policy_fixture_from_py(&value)?;
+        builder = builder.set_network_policy(Some(fixture_3673));
+    }
+    if let Some(value) = dict_value(values, "access_policy")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3674 = open_search_data_access_policy_fixture_from_py(&value)?;
+        builder = builder.set_access_policy(Some(fixture_3674));
+    }
+    if let Some(value) = dict_value(values, "lifecycle_policy")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3675 = open_search_lifecycle_policy_fixture_from_py(&value)?;
+        builder = builder.set_lifecycle_policy(Some(fixture_3675));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn open_search_lifecycle_policy_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::OpenSearchLifecyclePolicy> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["policy_name", "status"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::OpenSearchLifecyclePolicy::builder();
+    if let Some(value) = dict_value(values, "policy_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3676: String = value.extract()?;
+        builder = builder.set_policy_name(Some(fixture_3676));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3677 = open_search_resource_status_fixture_from_py(&value)?;
+        builder = builder.set_status(Some(fixture_3677));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn open_search_network_policy_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::OpenSearchNetworkPolicy> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["policy_name", "status"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::OpenSearchNetworkPolicy::builder();
+    if let Some(value) = dict_value(values, "policy_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3678: String = value.extract()?;
+        builder = builder.set_policy_name(Some(fixture_3678));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3679 = open_search_resource_status_fixture_from_py(&value)?;
+        builder = builder.set_status(Some(fixture_3679));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn open_search_resource_status_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::OpenSearchResourceStatus> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["status", "status_message"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::OpenSearchResourceStatus::builder();
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3681: String = value.extract()?;
+        let fixture_3680 = aws_sdk_cloudwatchlogs::types::OpenSearchResourceStatusType::from(
+            enum_value_3681.as_str(),
+        );
+        builder = builder.set_status(Some(fixture_3680));
+    }
+    if let Some(value) = dict_value(values, "status_message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3682: String = value.extract()?;
+        builder = builder.set_status_message(Some(fixture_3682));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn open_search_workspace_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::OpenSearchWorkspace> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["workspace_id", "status"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::OpenSearchWorkspace::builder();
+    if let Some(value) = dict_value(values, "workspace_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3683: String = value.extract()?;
+        builder = builder.set_workspace_id(Some(fixture_3683));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3684 = open_search_resource_status_fixture_from_py(&value)?;
+        builder = builder.set_status(Some(fixture_3684));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn output_log_event_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::OutputLogEvent> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["timestamp", "message", "ingestion_time"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::OutputLogEvent::builder();
+    if let Some(value) = dict_value(values, "timestamp")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3685: i64 = value.extract()?;
+        builder = builder.set_timestamp(Some(fixture_3685));
+    }
+    if let Some(value) = dict_value(values, "message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3686: String = value.extract()?;
+        builder = builder.set_message(Some(fixture_3686));
+    }
+    if let Some(value) = dict_value(values, "ingestion_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3687: i64 = value.extract()?;
+        builder = builder.set_ingestion_time(Some(fixture_3687));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn parse_cloudfront_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::ParseCloudfront> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["source"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::ParseCloudfront::builder();
+    if let Some(value) = dict_value(values, "source")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3688: String = value.extract()?;
+        builder = builder.set_source(Some(fixture_3688));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn parse_json_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::ParseJson> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["source", "destination"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::ParseJson::builder();
+    if let Some(value) = dict_value(values, "source")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3689: String = value.extract()?;
+        builder = builder.set_source(Some(fixture_3689));
+    }
+    if let Some(value) = dict_value(values, "destination")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3690: String = value.extract()?;
+        builder = builder.set_destination(Some(fixture_3690));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn parse_key_value_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::ParseKeyValue> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "source",
+            "destination",
+            "field_delimiter",
+            "key_value_delimiter",
+            "key_prefix",
+            "non_match_value",
+            "overwrite_if_exists",
+        ],
+        &["overwrite_if_exists"],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::ParseKeyValue::builder();
+    if let Some(value) = dict_value(values, "source")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3691: String = value.extract()?;
+        builder = builder.set_source(Some(fixture_3691));
+    }
+    if let Some(value) = dict_value(values, "destination")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3692: String = value.extract()?;
+        builder = builder.set_destination(Some(fixture_3692));
+    }
+    if let Some(value) = dict_value(values, "field_delimiter")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3693: String = value.extract()?;
+        builder = builder.set_field_delimiter(Some(fixture_3693));
+    }
+    if let Some(value) = dict_value(values, "key_value_delimiter")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3694: String = value.extract()?;
+        builder = builder.set_key_value_delimiter(Some(fixture_3694));
+    }
+    if let Some(value) = dict_value(values, "key_prefix")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3695: String = value.extract()?;
+        builder = builder.set_key_prefix(Some(fixture_3695));
+    }
+    if let Some(value) = dict_value(values, "non_match_value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3696: String = value.extract()?;
+        builder = builder.set_non_match_value(Some(fixture_3696));
+    }
+    if let Some(value) = values.get_item("overwrite_if_exists")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_3697: bool = value.extract()?;
+        builder = builder.set_overwrite_if_exists(Some(fixture_3697));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn parse_postgres_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::ParsePostgres> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["source"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::ParsePostgres::builder();
+    if let Some(value) = dict_value(values, "source")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3698: String = value.extract()?;
+        builder = builder.set_source(Some(fixture_3698));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn parse_route53_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::ParseRoute53> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["source"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::ParseRoute53::builder();
+    if let Some(value) = dict_value(values, "source")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3699: String = value.extract()?;
+        builder = builder.set_source(Some(fixture_3699));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn parse_to_ocsf_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::ParseToOcsf> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["source", "event_source", "ocsf_version", "mapping_version"],
+        &["event_source", "ocsf_version"],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::ParseToOcsf::builder();
+    if let Some(value) = dict_value(values, "source")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3700: String = value.extract()?;
+        builder = builder.set_source(Some(fixture_3700));
+    }
+    if let Some(value) = values.get_item("event_source")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3702: String = value.extract()?;
+        let fixture_3701 =
+            aws_sdk_cloudwatchlogs::types::EventSource::from(enum_value_3702.as_str());
+        builder = builder.set_event_source(Some(fixture_3701));
+    }
+    if let Some(value) = values.get_item("ocsf_version")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3704: String = value.extract()?;
+        let fixture_3703 =
+            aws_sdk_cloudwatchlogs::types::OcsfVersion::from(enum_value_3704.as_str());
+        builder = builder.set_ocsf_version(Some(fixture_3703));
+    }
+    if let Some(value) = dict_value(values, "mapping_version")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3705: String = value.extract()?;
+        builder = builder.set_mapping_version(Some(fixture_3705));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn parse_vpc_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::ParseVpc> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["source"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::ParseVpc::builder();
+    if let Some(value) = dict_value(values, "source")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3706: String = value.extract()?;
+        builder = builder.set_source(Some(fixture_3706));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn parse_waf_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::ParseWaf> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["source"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::ParseWaf::builder();
+    if let Some(value) = dict_value(values, "source")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3707: String = value.extract()?;
+        builder = builder.set_source(Some(fixture_3707));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn pattern_token_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::PatternToken> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "dynamic_token_position",
+            "is_dynamic",
+            "token_string",
+            "enumerations",
+            "inferred_token_name",
+        ],
+        &["dynamic_token_position"],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::PatternToken::builder();
+    if let Some(value) = values.get_item("dynamic_token_position")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_3708: i32 = value.extract()?;
+        builder = builder.set_dynamic_token_position(Some(fixture_3708));
+    }
+    if let Some(value) = dict_value(values, "is_dynamic")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_3709: bool = value.extract()?;
+        builder = builder.set_is_dynamic(Some(fixture_3709));
+    }
+    if let Some(value) = dict_value(values, "token_string")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3710: String = value.extract()?;
+        builder = builder.set_token_string(Some(fixture_3710));
+    }
+    if let Some(value) = dict_value(values, "enumerations")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_3712 = value.cast::<PyDict>()?;
+        let mut fixture_3711 = HashMap::with_capacity(mapping_3712.len());
+        for (key_3713, value_3714) in mapping_3712.iter() {
+            rboto_core::fixture_scalar(&key_3713, "string")?;
+            let converted_key_3715: String = key_3713.extract()?;
+            rboto_core::fixture_scalar(&value_3714, "i64")?;
+            let converted_value_3716: i64 = value_3714.extract()?;
+            fixture_3711.insert(converted_key_3715, converted_value_3716);
+        }
+        builder = builder.set_enumerations(Some(fixture_3711));
+    }
+    if let Some(value) = dict_value(values, "inferred_token_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3717: String = value.extract()?;
+        builder = builder.set_inferred_token_name(Some(fixture_3717));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn policy_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::Policy> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["delivery_destination_policy"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::Policy::builder();
+    if let Some(value) = dict_value(values, "delivery_destination_policy")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3718: String = value.extract()?;
+        builder = builder.set_delivery_destination_policy(Some(fixture_3718));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn processor_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::Processor> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "add_keys",
+            "copy_value",
+            "csv",
+            "date_time_converter",
+            "delete_keys",
+            "grok",
+            "list_to_map",
+            "lower_case_string",
+            "move_keys",
+            "parse_cloudfront",
+            "parse_json",
+            "parse_key_value",
+            "parse_route53",
+            "parse_to_ocsf",
+            "parse_postgres",
+            "parse_vpc",
+            "parse_waf",
+            "rename_keys",
+            "split_string",
+            "substitute_string",
+            "trim_string",
+            "type_converter",
+            "upper_case_string",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::Processor::builder();
+    if let Some(value) = dict_value(values, "add_keys")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3719 = add_keys_fixture_from_py(&value)?;
+        builder = builder.set_add_keys(Some(fixture_3719));
+    }
+    if let Some(value) = dict_value(values, "copy_value")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3720 = copy_value_fixture_from_py(&value)?;
+        builder = builder.set_copy_value(Some(fixture_3720));
+    }
+    if let Some(value) = dict_value(values, "csv")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3721 = csv_fixture_from_py(&value)?;
+        builder = builder.set_csv(Some(fixture_3721));
+    }
+    if let Some(value) = dict_value(values, "date_time_converter")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3722 = date_time_converter_fixture_from_py(&value)?;
+        builder = builder.set_date_time_converter(Some(fixture_3722));
+    }
+    if let Some(value) = dict_value(values, "delete_keys")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3723 = delete_keys_fixture_from_py(&value)?;
+        builder = builder.set_delete_keys(Some(fixture_3723));
+    }
+    if let Some(value) = dict_value(values, "grok")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3724 = grok_fixture_from_py(&value)?;
+        builder = builder.set_grok(Some(fixture_3724));
+    }
+    if let Some(value) = dict_value(values, "list_to_map")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3725 = list_to_map_fixture_from_py(&value)?;
+        builder = builder.set_list_to_map(Some(fixture_3725));
+    }
+    if let Some(value) = dict_value(values, "lower_case_string")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3726 = lower_case_string_fixture_from_py(&value)?;
+        builder = builder.set_lower_case_string(Some(fixture_3726));
+    }
+    if let Some(value) = dict_value(values, "move_keys")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3727 = move_keys_fixture_from_py(&value)?;
+        builder = builder.set_move_keys(Some(fixture_3727));
+    }
+    if let Some(value) = dict_value(values, "parse_cloudfront")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3728 = parse_cloudfront_fixture_from_py(&value)?;
+        builder = builder.set_parse_cloudfront(Some(fixture_3728));
+    }
+    if let Some(value) = dict_value(values, "parse_json")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3729 = parse_json_fixture_from_py(&value)?;
+        builder = builder.set_parse_json(Some(fixture_3729));
+    }
+    if let Some(value) = dict_value(values, "parse_key_value")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3730 = parse_key_value_fixture_from_py(&value)?;
+        builder = builder.set_parse_key_value(Some(fixture_3730));
+    }
+    if let Some(value) = dict_value(values, "parse_route53")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3731 = parse_route53_fixture_from_py(&value)?;
+        builder = builder.set_parse_route53(Some(fixture_3731));
+    }
+    if let Some(value) = dict_value(values, "parse_to_ocsf")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3732 = parse_to_ocsf_fixture_from_py(&value)?;
+        builder = builder.set_parse_to_ocsf(Some(fixture_3732));
+    }
+    if let Some(value) = dict_value(values, "parse_postgres")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3733 = parse_postgres_fixture_from_py(&value)?;
+        builder = builder.set_parse_postgres(Some(fixture_3733));
+    }
+    if let Some(value) = dict_value(values, "parse_vpc")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3734 = parse_vpc_fixture_from_py(&value)?;
+        builder = builder.set_parse_vpc(Some(fixture_3734));
+    }
+    if let Some(value) = dict_value(values, "parse_waf")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3735 = parse_waf_fixture_from_py(&value)?;
+        builder = builder.set_parse_waf(Some(fixture_3735));
+    }
+    if let Some(value) = dict_value(values, "rename_keys")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3736 = rename_keys_fixture_from_py(&value)?;
+        builder = builder.set_rename_keys(Some(fixture_3736));
+    }
+    if let Some(value) = dict_value(values, "split_string")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3737 = split_string_fixture_from_py(&value)?;
+        builder = builder.set_split_string(Some(fixture_3737));
+    }
+    if let Some(value) = dict_value(values, "substitute_string")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3738 = substitute_string_fixture_from_py(&value)?;
+        builder = builder.set_substitute_string(Some(fixture_3738));
+    }
+    if let Some(value) = dict_value(values, "trim_string")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3739 = trim_string_fixture_from_py(&value)?;
+        builder = builder.set_trim_string(Some(fixture_3739));
+    }
+    if let Some(value) = dict_value(values, "type_converter")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3740 = type_converter_fixture_from_py(&value)?;
+        builder = builder.set_type_converter(Some(fixture_3740));
+    }
+    if let Some(value) = dict_value(values, "upper_case_string")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3741 = upper_case_string_fixture_from_py(&value)?;
+        builder = builder.set_upper_case_string(Some(fixture_3741));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn query_definition_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::QueryDefinition> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "query_language",
+            "query_definition_id",
+            "name",
+            "query_string",
+            "last_modified",
+            "log_group_names",
+            "parameters",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::QueryDefinition::builder();
+    if let Some(value) = dict_value(values, "query_language")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3743: String = value.extract()?;
+        let fixture_3742 =
+            aws_sdk_cloudwatchlogs::types::QueryLanguage::from(enum_value_3743.as_str());
+        builder = builder.set_query_language(Some(fixture_3742));
+    }
+    if let Some(value) = dict_value(values, "query_definition_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3744: String = value.extract()?;
+        builder = builder.set_query_definition_id(Some(fixture_3744));
+    }
+    if let Some(value) = dict_value(values, "name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3745: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_3745));
+    }
+    if let Some(value) = dict_value(values, "query_string")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3746: String = value.extract()?;
+        builder = builder.set_query_string(Some(fixture_3746));
+    }
+    if let Some(value) = dict_value(values, "last_modified")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3747: i64 = value.extract()?;
+        builder = builder.set_last_modified(Some(fixture_3747));
+    }
+    if let Some(value) = dict_value(values, "log_group_names")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3748 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3749 in value.try_iter()? {
+            let item_3750 = item_result_3749?;
+            rboto_core::fixture_scalar(&item_3750, "string")?;
+            let converted_item_3751: String = item_3750.extract()?;
+            fixture_3748.push(converted_item_3751);
+        }
+        builder = builder.set_log_group_names(Some(fixture_3748));
+    }
+    if let Some(value) = dict_value(values, "parameters")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3752 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3753 in value.try_iter()? {
+            let item_3754 = item_result_3753?;
+            rboto_core::fixture_scalar(&item_3754, "struct")?;
+            let converted_item_3755 = query_parameter_fixture_from_py(&item_3754)?;
+            fixture_3752.push(converted_item_3755);
+        }
+        builder = builder.set_parameters(Some(fixture_3752));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn query_info_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::QueryInfo> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "query_language",
+            "query_id",
+            "query_string",
+            "status",
+            "create_time",
+            "log_group_name",
+            "query_duration",
+            "bytes_scanned",
+            "user_identity",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::QueryInfo::builder();
+    if let Some(value) = dict_value(values, "query_language")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3757: String = value.extract()?;
+        let fixture_3756 =
+            aws_sdk_cloudwatchlogs::types::QueryLanguage::from(enum_value_3757.as_str());
+        builder = builder.set_query_language(Some(fixture_3756));
+    }
+    if let Some(value) = dict_value(values, "query_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3758: String = value.extract()?;
+        builder = builder.set_query_id(Some(fixture_3758));
+    }
+    if let Some(value) = dict_value(values, "query_string")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3759: String = value.extract()?;
+        builder = builder.set_query_string(Some(fixture_3759));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3761: String = value.extract()?;
+        let fixture_3760 =
+            aws_sdk_cloudwatchlogs::types::QueryStatus::from(enum_value_3761.as_str());
+        builder = builder.set_status(Some(fixture_3760));
+    }
+    if let Some(value) = dict_value(values, "create_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3762: i64 = value.extract()?;
+        builder = builder.set_create_time(Some(fixture_3762));
+    }
+    if let Some(value) = dict_value(values, "log_group_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3763: String = value.extract()?;
+        builder = builder.set_log_group_name(Some(fixture_3763));
+    }
+    if let Some(value) = dict_value(values, "query_duration")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3764: i64 = value.extract()?;
+        builder = builder.set_query_duration(Some(fixture_3764));
+    }
+    if let Some(value) = dict_value(values, "bytes_scanned")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_3765: f64 = value.extract()?;
+        builder = builder.set_bytes_scanned(Some(fixture_3765));
+    }
+    if let Some(value) = dict_value(values, "user_identity")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3766: String = value.extract()?;
+        builder = builder.set_user_identity(Some(fixture_3766));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn query_parameter_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::QueryParameter> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["name", "default_value", "description"], &["name"])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::QueryParameter::builder();
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3767: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_3767));
+    }
+    if let Some(value) = dict_value(values, "default_value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3768: String = value.extract()?;
+        builder = builder.set_default_value(Some(fixture_3768));
+    }
+    if let Some(value) = dict_value(values, "description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3769: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_3769));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn query_statistics_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::QueryStatistics> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "records_matched",
+            "records_scanned",
+            "estimated_records_skipped",
+            "bytes_scanned",
+            "estimated_bytes_skipped",
+            "log_groups_scanned",
+            "result_count",
+        ],
+        &[
+            "records_matched",
+            "records_scanned",
+            "estimated_records_skipped",
+            "bytes_scanned",
+            "estimated_bytes_skipped",
+            "log_groups_scanned",
+            "result_count",
+        ],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::QueryStatistics::builder();
+    if let Some(value) = values.get_item("records_matched")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_3770: f64 = value.extract()?;
+        builder = builder.set_records_matched(Some(fixture_3770));
+    }
+    if let Some(value) = values.get_item("records_scanned")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_3771: f64 = value.extract()?;
+        builder = builder.set_records_scanned(Some(fixture_3771));
+    }
+    if let Some(value) = values.get_item("estimated_records_skipped")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_3772: f64 = value.extract()?;
+        builder = builder.set_estimated_records_skipped(Some(fixture_3772));
+    }
+    if let Some(value) = values.get_item("bytes_scanned")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_3773: f64 = value.extract()?;
+        builder = builder.set_bytes_scanned(Some(fixture_3773));
+    }
+    if let Some(value) = values.get_item("estimated_bytes_skipped")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_3774: f64 = value.extract()?;
+        builder = builder.set_estimated_bytes_skipped(Some(fixture_3774));
+    }
+    if let Some(value) = values.get_item("log_groups_scanned")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_3775: f64 = value.extract()?;
+        builder = builder.set_log_groups_scanned(Some(fixture_3775));
+    }
+    if let Some(value) = values.get_item("result_count")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_3776: f64 = value.extract()?;
+        builder = builder.set_result_count(Some(fixture_3776));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn record_field_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::RecordField> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["name", "mandatory"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::RecordField::builder();
+    if let Some(value) = dict_value(values, "name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3777: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_3777));
+    }
+    if let Some(value) = dict_value(values, "mandatory")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_3778: bool = value.extract()?;
+        builder = builder.set_mandatory(Some(fixture_3778));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn rejected_entity_info_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::RejectedEntityInfo> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["error_type"], &["error_type"])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::RejectedEntityInfo::builder();
+    if let Some(value) = values.get_item("error_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3780: String = value.extract()?;
+        let fixture_3779 =
+            aws_sdk_cloudwatchlogs::types::EntityRejectionErrorType::from(enum_value_3780.as_str());
+        builder = builder.set_error_type(Some(fixture_3779));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn rejected_log_events_info_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::RejectedLogEventsInfo> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "too_new_log_event_start_index",
+            "too_old_log_event_end_index",
+            "expired_log_event_end_index",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::RejectedLogEventsInfo::builder();
+    if let Some(value) = dict_value(values, "too_new_log_event_start_index")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_3781: i32 = value.extract()?;
+        builder = builder.set_too_new_log_event_start_index(Some(fixture_3781));
+    }
+    if let Some(value) = dict_value(values, "too_old_log_event_end_index")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_3782: i32 = value.extract()?;
+        builder = builder.set_too_old_log_event_end_index(Some(fixture_3782));
+    }
+    if let Some(value) = dict_value(values, "expired_log_event_end_index")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_3783: i32 = value.extract()?;
+        builder = builder.set_expired_log_event_end_index(Some(fixture_3783));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn rename_key_entry_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::RenameKeyEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["key", "rename_to", "overwrite_if_exists"],
+        &["key", "rename_to", "overwrite_if_exists"],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::RenameKeyEntry::builder();
+    if let Some(value) = values.get_item("key")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3784: String = value.extract()?;
+        builder = builder.set_key(Some(fixture_3784));
+    }
+    if let Some(value) = values.get_item("rename_to")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3785: String = value.extract()?;
+        builder = builder.set_rename_to(Some(fixture_3785));
+    }
+    if let Some(value) = values.get_item("overwrite_if_exists")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_3786: bool = value.extract()?;
+        builder = builder.set_overwrite_if_exists(Some(fixture_3786));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn rename_keys_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::RenameKeys> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["entries"], &["entries"])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::RenameKeys::builder();
+    if let Some(value) = values.get_item("entries")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3787 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3788 in value.try_iter()? {
+            let item_3789 = item_result_3788?;
+            rboto_core::fixture_scalar(&item_3789, "struct")?;
+            let converted_item_3790 = rename_key_entry_fixture_from_py(&item_3789)?;
+            fixture_3787.push(converted_item_3790);
+        }
+        builder = builder.set_entries(Some(fixture_3787));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn resource_policy_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::ResourcePolicy> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "policy_name",
+            "policy_document",
+            "last_updated_time",
+            "policy_scope",
+            "resource_arn",
+            "revision_id",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::ResourcePolicy::builder();
+    if let Some(value) = dict_value(values, "policy_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3791: String = value.extract()?;
+        builder = builder.set_policy_name(Some(fixture_3791));
+    }
+    if let Some(value) = dict_value(values, "policy_document")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3792: String = value.extract()?;
+        builder = builder.set_policy_document(Some(fixture_3792));
+    }
+    if let Some(value) = dict_value(values, "last_updated_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3793: i64 = value.extract()?;
+        builder = builder.set_last_updated_time(Some(fixture_3793));
+    }
+    if let Some(value) = dict_value(values, "policy_scope")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3795: String = value.extract()?;
+        let fixture_3794 =
+            aws_sdk_cloudwatchlogs::types::PolicyScope::from(enum_value_3795.as_str());
+        builder = builder.set_policy_scope(Some(fixture_3794));
+    }
+    if let Some(value) = dict_value(values, "resource_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3796: String = value.extract()?;
+        builder = builder.set_resource_arn(Some(fixture_3796));
+    }
+    if let Some(value) = dict_value(values, "revision_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3797: String = value.extract()?;
+        builder = builder.set_revision_id(Some(fixture_3797));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn result_field_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::ResultField> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["field", "value"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::ResultField::builder();
+    if let Some(value) = dict_value(values, "field")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3798: String = value.extract()?;
+        builder = builder.set_field(Some(fixture_3798));
+    }
+    if let Some(value) = dict_value(values, "value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3799: String = value.extract()?;
+        builder = builder.set_value(Some(fixture_3799));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn s3_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::S3Configuration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "destination_identifier",
+            "role_arn",
+            "owner_account_id",
+            "kms_key_id",
+        ],
+        &["destination_identifier", "role_arn"],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::S3Configuration::builder();
+    if let Some(value) = values.get_item("destination_identifier")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3800: String = value.extract()?;
+        builder = builder.set_destination_identifier(Some(fixture_3800));
+    }
+    if let Some(value) = values.get_item("role_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3801: String = value.extract()?;
+        builder = builder.set_role_arn(Some(fixture_3801));
+    }
+    if let Some(value) = dict_value(values, "owner_account_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3802: String = value.extract()?;
+        builder = builder.set_owner_account_id(Some(fixture_3802));
+    }
+    if let Some(value) = dict_value(values, "kms_key_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3803: String = value.extract()?;
+        builder = builder.set_kms_key_id(Some(fixture_3803));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn s3_delivery_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::S3DeliveryConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["suffix_path", "enable_hive_compatible_path"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::S3DeliveryConfiguration::builder();
+    if let Some(value) = dict_value(values, "suffix_path")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3804: String = value.extract()?;
+        builder = builder.set_suffix_path(Some(fixture_3804));
+    }
+    if let Some(value) = dict_value(values, "enable_hive_compatible_path")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_3805: bool = value.extract()?;
+        builder = builder.set_enable_hive_compatible_path(Some(fixture_3805));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn s3_table_integration_source_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::S3TableIntegrationSource> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "identifier",
+            "data_source",
+            "status",
+            "status_reason",
+            "created_time_stamp",
+            "parent_source_identifier",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::S3TableIntegrationSource::builder();
+    if let Some(value) = dict_value(values, "identifier")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3806: String = value.extract()?;
+        builder = builder.set_identifier(Some(fixture_3806));
+    }
+    if let Some(value) = dict_value(values, "data_source")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3807 = data_source_fixture_from_py(&value)?;
+        builder = builder.set_data_source(Some(fixture_3807));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3809: String = value.extract()?;
+        let fixture_3808 = aws_sdk_cloudwatchlogs::types::S3TableIntegrationSourceStatus::from(
+            enum_value_3809.as_str(),
+        );
+        builder = builder.set_status(Some(fixture_3808));
+    }
+    if let Some(value) = dict_value(values, "status_reason")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3810: String = value.extract()?;
+        builder = builder.set_status_reason(Some(fixture_3810));
+    }
+    if let Some(value) = dict_value(values, "created_time_stamp")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3811: i64 = value.extract()?;
+        builder = builder.set_created_time_stamp(Some(fixture_3811));
+    }
+    if let Some(value) = dict_value(values, "parent_source_identifier")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3812: String = value.extract()?;
+        builder = builder.set_parent_source_identifier(Some(fixture_3812));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn s3_tables_integration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::S3TablesIntegration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["datasource_name", "datasource_type"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::S3TablesIntegration::builder();
+    if let Some(value) = dict_value(values, "datasource_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3813: String = value.extract()?;
+        builder = builder.set_datasource_name(Some(fixture_3813));
+    }
+    if let Some(value) = dict_value(values, "datasource_type")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3814: String = value.extract()?;
+        builder = builder.set_datasource_type(Some(fixture_3814));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn scheduled_query_destination_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::ScheduledQueryDestination> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "destination_type",
+            "destination_identifier",
+            "status",
+            "processed_identifier",
+            "error_message",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::ScheduledQueryDestination::builder();
+    if let Some(value) = dict_value(values, "destination_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3816: String = value.extract()?;
+        let fixture_3815 = aws_sdk_cloudwatchlogs::types::ScheduledQueryDestinationType::from(
+            enum_value_3816.as_str(),
+        );
+        builder = builder.set_destination_type(Some(fixture_3815));
+    }
+    if let Some(value) = dict_value(values, "destination_identifier")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3817: String = value.extract()?;
+        builder = builder.set_destination_identifier(Some(fixture_3817));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3819: String = value.extract()?;
+        let fixture_3818 =
+            aws_sdk_cloudwatchlogs::types::ActionStatus::from(enum_value_3819.as_str());
+        builder = builder.set_status(Some(fixture_3818));
+    }
+    if let Some(value) = dict_value(values, "processed_identifier")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3820: String = value.extract()?;
+        builder = builder.set_processed_identifier(Some(fixture_3820));
+    }
+    if let Some(value) = dict_value(values, "error_message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3821: String = value.extract()?;
+        builder = builder.set_error_message(Some(fixture_3821));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn scheduled_query_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::ScheduledQuerySummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "scheduled_query_arn",
+            "name",
+            "state",
+            "schedule_type",
+            "last_triggered_time",
+            "last_execution_status",
+            "schedule_expression",
+            "timezone",
+            "destination_configuration",
+            "creation_time",
+            "last_updated_time",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::ScheduledQuerySummary::builder();
+    if let Some(value) = dict_value(values, "scheduled_query_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3822: String = value.extract()?;
+        builder = builder.set_scheduled_query_arn(Some(fixture_3822));
+    }
+    if let Some(value) = dict_value(values, "name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3823: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_3823));
+    }
+    if let Some(value) = dict_value(values, "state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3825: String = value.extract()?;
+        let fixture_3824 =
+            aws_sdk_cloudwatchlogs::types::ScheduledQueryState::from(enum_value_3825.as_str());
+        builder = builder.set_state(Some(fixture_3824));
+    }
+    if let Some(value) = dict_value(values, "schedule_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3827: String = value.extract()?;
+        let fixture_3826 =
+            aws_sdk_cloudwatchlogs::types::ScheduleType::from(enum_value_3827.as_str());
+        builder = builder.set_schedule_type(Some(fixture_3826));
+    }
+    if let Some(value) = dict_value(values, "last_triggered_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3828: i64 = value.extract()?;
+        builder = builder.set_last_triggered_time(Some(fixture_3828));
+    }
+    if let Some(value) = dict_value(values, "last_execution_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3830: String = value.extract()?;
+        let fixture_3829 =
+            aws_sdk_cloudwatchlogs::types::ExecutionStatus::from(enum_value_3830.as_str());
+        builder = builder.set_last_execution_status(Some(fixture_3829));
+    }
+    if let Some(value) = dict_value(values, "schedule_expression")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3831: String = value.extract()?;
+        builder = builder.set_schedule_expression(Some(fixture_3831));
+    }
+    if let Some(value) = dict_value(values, "timezone")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3832: String = value.extract()?;
+        builder = builder.set_timezone(Some(fixture_3832));
+    }
+    if let Some(value) = dict_value(values, "destination_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_3833 = destination_configuration_fixture_from_py(&value)?;
+        builder = builder.set_destination_configuration(Some(fixture_3833));
+    }
+    if let Some(value) = dict_value(values, "creation_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3834: i64 = value.extract()?;
+        builder = builder.set_creation_time(Some(fixture_3834));
+    }
+    if let Some(value) = dict_value(values, "last_updated_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3835: i64 = value.extract()?;
+        builder = builder.set_last_updated_time(Some(fixture_3835));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn searched_log_stream_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::SearchedLogStream> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["log_stream_name", "searched_completely"], &[])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::SearchedLogStream::builder();
+    if let Some(value) = dict_value(values, "log_stream_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3836: String = value.extract()?;
+        builder = builder.set_log_stream_name(Some(fixture_3836));
+    }
+    if let Some(value) = dict_value(values, "searched_completely")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_3837: bool = value.extract()?;
+        builder = builder.set_searched_completely(Some(fixture_3837));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn split_string_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::SplitString> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["entries"], &["entries"])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::SplitString::builder();
+    if let Some(value) = values.get_item("entries")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3838 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3839 in value.try_iter()? {
+            let item_3840 = item_result_3839?;
+            rboto_core::fixture_scalar(&item_3840, "struct")?;
+            let converted_item_3841 = split_string_entry_fixture_from_py(&item_3840)?;
+            fixture_3838.push(converted_item_3841);
+        }
+        builder = builder.set_entries(Some(fixture_3838));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn split_string_entry_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::SplitStringEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["source", "delimiter"], &["source", "delimiter"])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::SplitStringEntry::builder();
+    if let Some(value) = values.get_item("source")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3842: String = value.extract()?;
+        builder = builder.set_source(Some(fixture_3842));
+    }
+    if let Some(value) = values.get_item("delimiter")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3843: String = value.extract()?;
+        builder = builder.set_delimiter(Some(fixture_3843));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn subscription_filter_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::SubscriptionFilter> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "filter_name",
+            "log_group_name",
+            "filter_pattern",
+            "destination_arn",
+            "role_arn",
+            "distribution",
+            "apply_on_transformed_logs",
+            "creation_time",
+            "field_selection_criteria",
+            "emit_system_fields",
+        ],
+        &["apply_on_transformed_logs"],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::SubscriptionFilter::builder();
+    if let Some(value) = dict_value(values, "filter_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3844: String = value.extract()?;
+        builder = builder.set_filter_name(Some(fixture_3844));
+    }
+    if let Some(value) = dict_value(values, "log_group_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3845: String = value.extract()?;
+        builder = builder.set_log_group_name(Some(fixture_3845));
+    }
+    if let Some(value) = dict_value(values, "filter_pattern")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3846: String = value.extract()?;
+        builder = builder.set_filter_pattern(Some(fixture_3846));
+    }
+    if let Some(value) = dict_value(values, "destination_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3847: String = value.extract()?;
+        builder = builder.set_destination_arn(Some(fixture_3847));
+    }
+    if let Some(value) = dict_value(values, "role_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3848: String = value.extract()?;
+        builder = builder.set_role_arn(Some(fixture_3848));
+    }
+    if let Some(value) = dict_value(values, "distribution")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3850: String = value.extract()?;
+        let fixture_3849 =
+            aws_sdk_cloudwatchlogs::types::Distribution::from(enum_value_3850.as_str());
+        builder = builder.set_distribution(Some(fixture_3849));
+    }
+    if let Some(value) = values.get_item("apply_on_transformed_logs")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_3851: bool = value.extract()?;
+        builder = builder.set_apply_on_transformed_logs(Some(fixture_3851));
+    }
+    if let Some(value) = dict_value(values, "creation_time")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3852: i64 = value.extract()?;
+        builder = builder.set_creation_time(Some(fixture_3852));
+    }
+    if let Some(value) = dict_value(values, "field_selection_criteria")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3853: String = value.extract()?;
+        builder = builder.set_field_selection_criteria(Some(fixture_3853));
+    }
+    if let Some(value) = dict_value(values, "emit_system_fields")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3854 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3855 in value.try_iter()? {
+            let item_3856 = item_result_3855?;
+            rboto_core::fixture_scalar(&item_3856, "string")?;
+            let converted_item_3857: String = item_3856.extract()?;
+            fixture_3854.push(converted_item_3857);
+        }
+        builder = builder.set_emit_system_fields(Some(fixture_3854));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn substitute_string_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::SubstituteString> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["entries"], &["entries"])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::SubstituteString::builder();
+    if let Some(value) = values.get_item("entries")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3858 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3859 in value.try_iter()? {
+            let item_3860 = item_result_3859?;
+            rboto_core::fixture_scalar(&item_3860, "struct")?;
+            let converted_item_3861 = substitute_string_entry_fixture_from_py(&item_3860)?;
+            fixture_3858.push(converted_item_3861);
+        }
+        builder = builder.set_entries(Some(fixture_3858));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn substitute_string_entry_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::SubstituteStringEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["source", "from", "to"], &["source", "from", "to"])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::SubstituteStringEntry::builder();
+    if let Some(value) = values.get_item("source")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3862: String = value.extract()?;
+        builder = builder.set_source(Some(fixture_3862));
+    }
+    if let Some(value) = values.get_item("from")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3863: String = value.extract()?;
+        builder = builder.set_from(Some(fixture_3863));
+    }
+    if let Some(value) = values.get_item("to")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3864: String = value.extract()?;
+        builder = builder.set_to(Some(fixture_3864));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn syslog_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::SyslogConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "log_group_arn",
+            "source_type",
+            "vpc_endpoint_id",
+            "created_at",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::SyslogConfiguration::builder();
+    if let Some(value) = dict_value(values, "log_group_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3865: String = value.extract()?;
+        builder = builder.set_log_group_arn(Some(fixture_3865));
+    }
+    if let Some(value) = dict_value(values, "source_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3867: String = value.extract()?;
+        let fixture_3866 =
+            aws_sdk_cloudwatchlogs::types::SyslogSourceType::from(enum_value_3867.as_str());
+        builder = builder.set_source_type(Some(fixture_3866));
+    }
+    if let Some(value) = dict_value(values, "vpc_endpoint_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3868: String = value.extract()?;
+        builder = builder.set_vpc_endpoint_id(Some(fixture_3868));
+    }
+    if let Some(value) = dict_value(values, "created_at")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3869: i64 = value.extract()?;
+        builder = builder.set_created_at(Some(fixture_3869));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn transformed_log_record_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::TransformedLogRecord> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["event_number", "event_message", "transformed_event_message"],
+        &["event_number"],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::TransformedLogRecord::builder();
+    if let Some(value) = values.get_item("event_number")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3870: i64 = value.extract()?;
+        builder = builder.set_event_number(Some(fixture_3870));
+    }
+    if let Some(value) = dict_value(values, "event_message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3871: String = value.extract()?;
+        builder = builder.set_event_message(Some(fixture_3871));
+    }
+    if let Some(value) = dict_value(values, "transformed_event_message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3872: String = value.extract()?;
+        builder = builder.set_transformed_event_message(Some(fixture_3872));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn trigger_history_record_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::TriggerHistoryRecord> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "query_id",
+            "execution_status",
+            "triggered_timestamp",
+            "error_message",
+            "destinations",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::TriggerHistoryRecord::builder();
+    if let Some(value) = dict_value(values, "query_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3873: String = value.extract()?;
+        builder = builder.set_query_id(Some(fixture_3873));
+    }
+    if let Some(value) = dict_value(values, "execution_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3875: String = value.extract()?;
+        let fixture_3874 =
+            aws_sdk_cloudwatchlogs::types::ExecutionStatus::from(enum_value_3875.as_str());
+        builder = builder.set_execution_status(Some(fixture_3874));
+    }
+    if let Some(value) = dict_value(values, "triggered_timestamp")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_3876: i64 = value.extract()?;
+        builder = builder.set_triggered_timestamp(Some(fixture_3876));
+    }
+    if let Some(value) = dict_value(values, "error_message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3877: String = value.extract()?;
+        builder = builder.set_error_message(Some(fixture_3877));
+    }
+    if let Some(value) = dict_value(values, "destinations")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3878 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3879 in value.try_iter()? {
+            let item_3880 = item_result_3879?;
+            rboto_core::fixture_scalar(&item_3880, "struct")?;
+            let converted_item_3881 = scheduled_query_destination_fixture_from_py(&item_3880)?;
+            fixture_3878.push(converted_item_3881);
+        }
+        builder = builder.set_destinations(Some(fixture_3878));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn trim_string_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::TrimString> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["with_keys"], &["with_keys"])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::TrimString::builder();
+    if let Some(value) = values.get_item("with_keys")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3882 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3883 in value.try_iter()? {
+            let item_3884 = item_result_3883?;
+            rboto_core::fixture_scalar(&item_3884, "string")?;
+            let converted_item_3885: String = item_3884.extract()?;
+            fixture_3882.push(converted_item_3885);
+        }
+        builder = builder.set_with_keys(Some(fixture_3882));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn type_converter_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::TypeConverter> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["entries"], &["entries"])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::TypeConverter::builder();
+    if let Some(value) = values.get_item("entries")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3886 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3887 in value.try_iter()? {
+            let item_3888 = item_result_3887?;
+            rboto_core::fixture_scalar(&item_3888, "struct")?;
+            let converted_item_3889 = type_converter_entry_fixture_from_py(&item_3888)?;
+            fixture_3886.push(converted_item_3889);
+        }
+        builder = builder.set_entries(Some(fixture_3886));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn type_converter_entry_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::TypeConverterEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["key", "type"], &["key", "type"])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::TypeConverterEntry::builder();
+    if let Some(value) = values.get_item("key")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_3890: String = value.extract()?;
+        builder = builder.set_key(Some(fixture_3890));
+    }
+    if let Some(value) = values.get_item("type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_3892: String = value.extract()?;
+        let fixture_3891 = aws_sdk_cloudwatchlogs::types::Type::from(enum_value_3892.as_str());
+        builder = builder.set_type(Some(fixture_3891));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn upper_case_string_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatchlogs::types::UpperCaseString> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["with_keys"], &["with_keys"])?;
+    let mut builder = aws_sdk_cloudwatchlogs::types::UpperCaseString::builder();
+    if let Some(value) = values.get_item("with_keys")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_3893 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_3894 in value.try_iter()? {
+            let item_3895 = item_result_3894?;
+            rboto_core::fixture_scalar(&item_3895, "string")?;
+            let converted_item_3896: String = item_3895.extract()?;
+            fixture_3893.push(converted_item_3896);
+        }
+        builder = builder.set_with_keys(Some(fixture_3893));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
 #[pyclass(
     name = "AccountPolicy",
     module = "rboto_cloudwatch_logs._native",
@@ -14432,6 +18711,20 @@ impl PyOperationAssociateSourceToS3TableIntegrationOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["identifier"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::associate_source_to_s3_table_integration::AssociateSourceToS3TableIntegrationOutput::builder();
+        if let Some(value) = dict_value(values, "identifier")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2650: String = value.extract()?;
+            builder = builder.set_identifier(Some(fixture_2650));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -14561,6 +18854,56 @@ impl PyOperationCancelImportTaskOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "import_id",
+                "import_statistics",
+                "import_status",
+                "creation_time",
+                "last_updated_time",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::cancel_import_task::CancelImportTaskOutput::builder(
+            );
+        if let Some(value) = dict_value(values, "import_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2660: String = value.extract()?;
+            builder = builder.set_import_id(Some(fixture_2660));
+        }
+        if let Some(value) = dict_value(values, "import_statistics")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2661 = import_statistics_fixture_from_py(&value)?;
+            builder = builder.set_import_statistics(Some(fixture_2661));
+        }
+        if let Some(value) = dict_value(values, "import_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_2663: String = value.extract()?;
+            let fixture_2662 =
+                aws_sdk_cloudwatchlogs::types::ImportStatus::from(enum_value_2663.as_str());
+            builder = builder.set_import_status(Some(fixture_2662));
+        }
+        if let Some(value) = dict_value(values, "creation_time")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_2664: i64 = value.extract()?;
+            builder = builder.set_creation_time(Some(fixture_2664));
+        }
+        if let Some(value) = dict_value(values, "last_updated_time")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_2665: i64 = value.extract()?;
+            builder = builder.set_last_updated_time(Some(fixture_2665));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -14620,6 +18963,23 @@ impl PyOperationCreateDeliveryOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["delivery"], &[])?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::create_delivery::CreateDeliveryOutput::builder();
+        if let Some(value) = dict_value(values, "delivery")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2662 = delivery_fixture_from_py(&value)?;
+            builder = builder.set_delivery(Some(fixture_2662));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -14652,6 +19012,22 @@ impl PyOperationCreateExportTaskOutput {
             result.set_item("task_id", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["task_id"], &[])?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::create_export_task::CreateExportTaskOutput::builder(
+            );
+        if let Some(value) = dict_value(values, "task_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2664: String = value.extract()?;
+            builder = builder.set_task_id(Some(fixture_2664));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -14718,6 +19094,36 @@ impl PyOperationCreateImportTaskOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["import_id", "import_destination_arn", "creation_time"],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::create_import_task::CreateImportTaskOutput::builder(
+            );
+        if let Some(value) = dict_value(values, "import_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2670: String = value.extract()?;
+            builder = builder.set_import_id(Some(fixture_2670));
+        }
+        if let Some(value) = dict_value(values, "import_destination_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2671: String = value.extract()?;
+            builder = builder.set_import_destination_arn(Some(fixture_2671));
+        }
+        if let Some(value) = dict_value(values, "creation_time")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_2672: i64 = value.extract()?;
+            builder = builder.set_creation_time(Some(fixture_2672));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -14750,6 +19156,20 @@ impl PyOperationCreateLogAnomalyDetectorOutput {
             result.set_item("anomaly_detector_arn", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["anomaly_detector_arn"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::create_log_anomaly_detector::CreateLogAnomalyDetectorOutput::builder();
+        if let Some(value) = dict_value(values, "anomaly_detector_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2672: String = value.extract()?;
+            builder = builder.set_anomaly_detector_arn(Some(fixture_2672));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -14800,6 +19220,25 @@ impl PyOperationCreateLookupTableOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["lookup_table_arn", "created_at"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::create_lookup_table::CreateLookupTableOutput::builder();
+        if let Some(value) = dict_value(values, "lookup_table_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2676: String = value.extract()?;
+            builder = builder.set_lookup_table_arn(Some(fixture_2676));
+        }
+        if let Some(value) = dict_value(values, "created_at")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_2677: i64 = value.extract()?;
+            builder = builder.set_created_at(Some(fixture_2677));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -14849,6 +19288,27 @@ impl PyOperationCreateScheduledQueryOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["scheduled_query_arn", "state"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::create_scheduled_query::CreateScheduledQueryOutput::builder();
+        if let Some(value) = dict_value(values, "scheduled_query_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2680: String = value.extract()?;
+            builder = builder.set_scheduled_query_arn(Some(fixture_2680));
+        }
+        if let Some(value) = dict_value(values, "state")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_2682: String = value.extract()?;
+            let fixture_2681 =
+                aws_sdk_cloudwatchlogs::types::ScheduledQueryState::from(enum_value_2682.as_str());
+            builder = builder.set_state(Some(fixture_2681));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -14866,6 +19326,15 @@ impl PyOperationDeleteIndexPolicyOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::delete_index_policy::DeleteIndexPolicyOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -14882,6 +19351,17 @@ impl PyOperationDeleteIntegrationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::delete_integration::DeleteIntegrationOutput::builder(
+            );
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -14908,6 +19388,20 @@ impl PyOperationDeleteQueryDefinitionOutput {
         result.set_item("success", converted_2681)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["success"], &["success"])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::delete_query_definition::DeleteQueryDefinitionOutput::builder();
+        if let Some(value) = values.get_item("success")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_2682: bool = value.extract()?;
+            builder = builder.set_success(Some(fixture_2682));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -14924,6 +19418,15 @@ impl PyOperationDeleteScheduledQueryOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::delete_scheduled_query::DeleteScheduledQueryOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -15017,6 +19520,34 @@ impl PyOperationDescribeAccountPoliciesOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["account_policies", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::describe_account_policies::DescribeAccountPoliciesOutput::builder();
+        if let Some(value) = dict_value(values, "account_policies")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2691 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2692 in value.try_iter()? {
+                let item_2693 = item_result_2692?;
+                rboto_core::fixture_scalar(&item_2693, "struct")?;
+                let converted_item_2694 = account_policy_fixture_from_py(&item_2693)?;
+                fixture_2691.push(converted_item_2694);
+            }
+            builder = builder.set_account_policies(Some(fixture_2691));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2695: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2695));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -15097,6 +19628,34 @@ impl PyOperationDescribeConfigurationTemplatesOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["configuration_templates", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::describe_configuration_templates::DescribeConfigurationTemplatesOutput::builder();
+        if let Some(value) = dict_value(values, "configuration_templates")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2700 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2701 in value.try_iter()? {
+                let item_2702 = item_result_2701?;
+                rboto_core::fixture_scalar(&item_2702, "struct")?;
+                let converted_item_2703 = configuration_template_fixture_from_py(&item_2702)?;
+                fixture_2700.push(converted_item_2703);
+            }
+            builder = builder.set_configuration_templates(Some(fixture_2700));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2704: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2704));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -15188,6 +19747,34 @@ impl PyOperationDescribeDeliveriesOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["deliveries", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::describe_deliveries::DescribeDeliveriesOutput::builder();
+        if let Some(value) = dict_value(values, "deliveries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2709 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2710 in value.try_iter()? {
+                let item_2711 = item_result_2710?;
+                rboto_core::fixture_scalar(&item_2711, "struct")?;
+                let converted_item_2712 = delivery_fixture_from_py(&item_2711)?;
+                fixture_2709.push(converted_item_2712);
+            }
+            builder = builder.set_deliveries(Some(fixture_2709));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2713: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2713));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -15268,6 +19855,34 @@ impl PyOperationDescribeDeliveryDestinationsOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["delivery_destinations", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::describe_delivery_destinations::DescribeDeliveryDestinationsOutput::builder();
+        if let Some(value) = dict_value(values, "delivery_destinations")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2718 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2719 in value.try_iter()? {
+                let item_2720 = item_result_2719?;
+                rboto_core::fixture_scalar(&item_2720, "struct")?;
+                let converted_item_2721 = delivery_destination_fixture_from_py(&item_2720)?;
+                fixture_2718.push(converted_item_2721);
+            }
+            builder = builder.set_delivery_destinations(Some(fixture_2718));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2722: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2722));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -15361,6 +19976,34 @@ impl PyOperationDescribeDeliverySourcesOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["delivery_sources", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::describe_delivery_sources::DescribeDeliverySourcesOutput::builder();
+        if let Some(value) = dict_value(values, "delivery_sources")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2727 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2728 in value.try_iter()? {
+                let item_2729 = item_result_2728?;
+                rboto_core::fixture_scalar(&item_2729, "struct")?;
+                let converted_item_2730 = delivery_source_fixture_from_py(&item_2729)?;
+                fixture_2727.push(converted_item_2730);
+            }
+            builder = builder.set_delivery_sources(Some(fixture_2727));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2731: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2731));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -15450,6 +20093,34 @@ impl PyOperationDescribeDestinationsOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["destinations", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::describe_destinations::DescribeDestinationsOutput::builder();
+        if let Some(value) = dict_value(values, "destinations")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2736 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2737 in value.try_iter()? {
+                let item_2738 = item_result_2737?;
+                rboto_core::fixture_scalar(&item_2738, "struct")?;
+                let converted_item_2739 = destination_fixture_from_py(&item_2738)?;
+                fixture_2736.push(converted_item_2739);
+            }
+            builder = builder.set_destinations(Some(fixture_2736));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2740: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2740));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -15541,6 +20212,34 @@ impl PyOperationDescribeExportTasksOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["export_tasks", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::describe_export_tasks::DescribeExportTasksOutput::builder();
+        if let Some(value) = dict_value(values, "export_tasks")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2745 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2746 in value.try_iter()? {
+                let item_2747 = item_result_2746?;
+                rboto_core::fixture_scalar(&item_2747, "struct")?;
+                let converted_item_2748 = export_task_fixture_from_py(&item_2747)?;
+                fixture_2745.push(converted_item_2748);
+            }
+            builder = builder.set_export_tasks(Some(fixture_2745));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2749: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2749));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -15630,6 +20329,34 @@ impl PyOperationDescribeFieldIndexesOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["field_indexes", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::describe_field_indexes::DescribeFieldIndexesOutput::builder();
+        if let Some(value) = dict_value(values, "field_indexes")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2754 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2755 in value.try_iter()? {
+                let item_2756 = item_result_2755?;
+                rboto_core::fixture_scalar(&item_2756, "struct")?;
+                let converted_item_2757 = field_index_fixture_from_py(&item_2756)?;
+                fixture_2754.push(converted_item_2757);
+            }
+            builder = builder.set_field_indexes(Some(fixture_2754));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2758: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2758));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -15748,6 +20475,53 @@ impl PyOperationDescribeImportTaskBatchesOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "import_source_arn",
+                "import_id",
+                "import_batches",
+                "next_token",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::describe_import_task_batches::DescribeImportTaskBatchesOutput::builder();
+        if let Some(value) = dict_value(values, "import_source_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2767: String = value.extract()?;
+            builder = builder.set_import_source_arn(Some(fixture_2767));
+        }
+        if let Some(value) = dict_value(values, "import_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2768: String = value.extract()?;
+            builder = builder.set_import_id(Some(fixture_2768));
+        }
+        if let Some(value) = dict_value(values, "import_batches")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2769 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2770 in value.try_iter()? {
+                let item_2771 = item_result_2770?;
+                rboto_core::fixture_scalar(&item_2771, "struct")?;
+                let converted_item_2772 = import_batch_fixture_from_py(&item_2771)?;
+                fixture_2769.push(converted_item_2772);
+            }
+            builder = builder.set_import_batches(Some(fixture_2769));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2773: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2773));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -15837,6 +20611,34 @@ impl PyOperationDescribeImportTasksOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["imports", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::describe_import_tasks::DescribeImportTasksOutput::builder();
+        if let Some(value) = dict_value(values, "imports")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2776 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2777 in value.try_iter()? {
+                let item_2778 = item_result_2777?;
+                rboto_core::fixture_scalar(&item_2778, "struct")?;
+                let converted_item_2779 = import_fixture_from_py(&item_2778)?;
+                fixture_2776.push(converted_item_2779);
+            }
+            builder = builder.set_imports(Some(fixture_2776));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2780: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2780));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -15928,6 +20730,34 @@ impl PyOperationDescribeIndexPoliciesOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["index_policies", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::describe_index_policies::DescribeIndexPoliciesOutput::builder();
+        if let Some(value) = dict_value(values, "index_policies")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2785 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2786 in value.try_iter()? {
+                let item_2787 = item_result_2786?;
+                rboto_core::fixture_scalar(&item_2787, "struct")?;
+                let converted_item_2788 = index_policy_fixture_from_py(&item_2787)?;
+                fixture_2785.push(converted_item_2788);
+            }
+            builder = builder.set_index_policies(Some(fixture_2785));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2789: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2789));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -16017,6 +20847,34 @@ impl PyOperationDescribeLogGroupsOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["log_groups", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::describe_log_groups::DescribeLogGroupsOutput::builder();
+        if let Some(value) = dict_value(values, "log_groups")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2794 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2795 in value.try_iter()? {
+                let item_2796 = item_result_2795?;
+                rboto_core::fixture_scalar(&item_2796, "struct")?;
+                let converted_item_2797 = log_group_fixture_from_py(&item_2796)?;
+                fixture_2794.push(converted_item_2797);
+            }
+            builder = builder.set_log_groups(Some(fixture_2794));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2798: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2798));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -16108,6 +20966,34 @@ impl PyOperationDescribeLogStreamsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["log_streams", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::describe_log_streams::DescribeLogStreamsOutput::builder();
+        if let Some(value) = dict_value(values, "log_streams")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2803 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2804 in value.try_iter()? {
+                let item_2805 = item_result_2804?;
+                rboto_core::fixture_scalar(&item_2805, "struct")?;
+                let converted_item_2806 = log_stream_fixture_from_py(&item_2805)?;
+                fixture_2803.push(converted_item_2806);
+            }
+            builder = builder.set_log_streams(Some(fixture_2803));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2807: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2807));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -16197,6 +21083,34 @@ impl PyOperationDescribeLookupTablesOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["lookup_tables", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::describe_lookup_tables::DescribeLookupTablesOutput::builder();
+        if let Some(value) = dict_value(values, "lookup_tables")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2812 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2813 in value.try_iter()? {
+                let item_2814 = item_result_2813?;
+                rboto_core::fixture_scalar(&item_2814, "struct")?;
+                let converted_item_2815 = lookup_table_fixture_from_py(&item_2814)?;
+                fixture_2812.push(converted_item_2815);
+            }
+            builder = builder.set_lookup_tables(Some(fixture_2812));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2816: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2816));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -16288,6 +21202,34 @@ impl PyOperationDescribeMetricFiltersOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["metric_filters", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::describe_metric_filters::DescribeMetricFiltersOutput::builder();
+        if let Some(value) = dict_value(values, "metric_filters")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2821 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2822 in value.try_iter()? {
+                let item_2823 = item_result_2822?;
+                rboto_core::fixture_scalar(&item_2823, "struct")?;
+                let converted_item_2824 = metric_filter_fixture_from_py(&item_2823)?;
+                fixture_2821.push(converted_item_2824);
+            }
+            builder = builder.set_metric_filters(Some(fixture_2821));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2825: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2825));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -16378,6 +21320,35 @@ impl PyOperationDescribeQueriesOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["queries", "next_token"], &[])?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::describe_queries::DescribeQueriesOutput::builder();
+        if let Some(value) = dict_value(values, "queries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2830 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2831 in value.try_iter()? {
+                let item_2832 = item_result_2831?;
+                rboto_core::fixture_scalar(&item_2832, "struct")?;
+                let converted_item_2833 = query_info_fixture_from_py(&item_2832)?;
+                fixture_2830.push(converted_item_2833);
+            }
+            builder = builder.set_queries(Some(fixture_2830));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2834: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2834));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -16459,6 +21430,34 @@ impl PyOperationDescribeQueryDefinitionsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["query_definitions", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::describe_query_definitions::DescribeQueryDefinitionsOutput::builder();
+        if let Some(value) = dict_value(values, "query_definitions")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2839 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2840 in value.try_iter()? {
+                let item_2841 = item_result_2840?;
+                rboto_core::fixture_scalar(&item_2841, "struct")?;
+                let converted_item_2842 = query_definition_fixture_from_py(&item_2841)?;
+                fixture_2839.push(converted_item_2842);
+            }
+            builder = builder.set_query_definitions(Some(fixture_2839));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2843: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2843));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -16539,6 +21538,34 @@ impl PyOperationDescribeResourcePoliciesOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["resource_policies", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::describe_resource_policies::DescribeResourcePoliciesOutput::builder();
+        if let Some(value) = dict_value(values, "resource_policies")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2848 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2849 in value.try_iter()? {
+                let item_2850 = item_result_2849?;
+                rboto_core::fixture_scalar(&item_2850, "struct")?;
+                let converted_item_2851 = resource_policy_fixture_from_py(&item_2850)?;
+                fixture_2848.push(converted_item_2851);
+            }
+            builder = builder.set_resource_policies(Some(fixture_2848));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2852: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2852));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -16622,6 +21649,34 @@ impl PyOperationDescribeSubscriptionFiltersOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["subscription_filters", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::describe_subscription_filters::DescribeSubscriptionFiltersOutput::builder();
+        if let Some(value) = dict_value(values, "subscription_filters")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2857 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2858 in value.try_iter()? {
+                let item_2859 = item_result_2858?;
+                rboto_core::fixture_scalar(&item_2859, "struct")?;
+                let converted_item_2860 = subscription_filter_fixture_from_py(&item_2859)?;
+                fixture_2857.push(converted_item_2860);
+            }
+            builder = builder.set_subscription_filters(Some(fixture_2857));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2861: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2861));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -16654,6 +21709,20 @@ impl PyOperationDisassociateSourceFromS3TableIntegrationOutput {
             result.set_item("identifier", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["identifier"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::disassociate_source_from_s3_table_integration::DisassociateSourceFromS3TableIntegrationOutput::builder();
+        if let Some(value) = dict_value(values, "identifier")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2859: String = value.extract()?;
+            builder = builder.set_identifier(Some(fixture_2859));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -16785,6 +21854,51 @@ impl PyOperationFilterLogEventsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["events", "searched_log_streams", "next_token"],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::filter_log_events::FilterLogEventsOutput::builder();
+        if let Some(value) = dict_value(values, "events")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2875 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2876 in value.try_iter()? {
+                let item_2877 = item_result_2876?;
+                rboto_core::fixture_scalar(&item_2877, "struct")?;
+                let converted_item_2878 = filtered_log_event_fixture_from_py(&item_2877)?;
+                fixture_2875.push(converted_item_2878);
+            }
+            builder = builder.set_events(Some(fixture_2875));
+        }
+        if let Some(value) = dict_value(values, "searched_log_streams")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2879 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2880 in value.try_iter()? {
+                let item_2881 = item_result_2880?;
+                rboto_core::fixture_scalar(&item_2881, "struct")?;
+                let converted_item_2882 = searched_log_stream_fixture_from_py(&item_2881)?;
+                fixture_2879.push(converted_item_2882);
+            }
+            builder = builder.set_searched_log_streams(Some(fixture_2879));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2883: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_2883));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -16850,6 +21964,38 @@ impl PyOperationGetDataProtectionPolicyOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "log_group_identifier",
+                "policy_document",
+                "last_updated_time",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::get_data_protection_policy::GetDataProtectionPolicyOutput::builder();
+        if let Some(value) = dict_value(values, "log_group_identifier")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2881: String = value.extract()?;
+            builder = builder.set_log_group_identifier(Some(fixture_2881));
+        }
+        if let Some(value) = dict_value(values, "policy_document")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2882: String = value.extract()?;
+            builder = builder.set_policy_document(Some(fixture_2882));
+        }
+        if let Some(value) = dict_value(values, "last_updated_time")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_2883: i64 = value.extract()?;
+            builder = builder.set_last_updated_time(Some(fixture_2883));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -16906,6 +22052,23 @@ impl PyOperationGetDeliveryOutput {
             result.set_item("delivery", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["delivery"], &[])?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::get_delivery::GetDeliveryOutput::builder();
+        if let Some(value) = dict_value(values, "delivery")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2883 = delivery_fixture_from_py(&value)?;
+            builder = builder.set_delivery(Some(fixture_2883));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -16966,6 +22129,22 @@ impl PyOperationGetDeliveryDestinationOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["delivery_destination"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::get_delivery_destination::GetDeliveryDestinationOutput::builder();
+        if let Some(value) = dict_value(values, "delivery_destination")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2885 = delivery_destination_fixture_from_py(&value)?;
+            builder = builder.set_delivery_destination(Some(fixture_2885));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -17018,6 +22197,22 @@ impl PyOperationGetDeliveryDestinationPolicyOutput {
             result.set_item("policy", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["policy"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::get_delivery_destination_policy::GetDeliveryDestinationPolicyOutput::builder();
+        if let Some(value) = dict_value(values, "policy")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2887 = policy_fixture_from_py(&value)?;
+            builder = builder.set_policy(Some(fixture_2887));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -17075,6 +22270,22 @@ impl PyOperationGetDeliverySourceOutput {
             result.set_item("delivery_source", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["delivery_source"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::get_delivery_source::GetDeliverySourceOutput::builder();
+        if let Some(value) = dict_value(values, "delivery_source")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2889 = delivery_source_fixture_from_py(&value)?;
+            builder = builder.set_delivery_source(Some(fixture_2889));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -17156,6 +22367,49 @@ impl PyOperationGetIntegrationOutput {
             result.set_item("integration_details", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "integration_name",
+                "integration_type",
+                "integration_status",
+                "integration_details",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::get_integration::GetIntegrationOutput::builder();
+        if let Some(value) = dict_value(values, "integration_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2897: String = value.extract()?;
+            builder = builder.set_integration_name(Some(fixture_2897));
+        }
+        if let Some(value) = dict_value(values, "integration_type")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_2899: String = value.extract()?;
+            let fixture_2898 =
+                aws_sdk_cloudwatchlogs::types::IntegrationType::from(enum_value_2899.as_str());
+            builder = builder.set_integration_type(Some(fixture_2898));
+        }
+        if let Some(value) = dict_value(values, "integration_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_2901: String = value.extract()?;
+            let fixture_2900 =
+                aws_sdk_cloudwatchlogs::types::IntegrationStatus::from(enum_value_2901.as_str());
+            builder = builder.set_integration_status(Some(fixture_2900));
+        }
+        if let Some(value) = dict_value(values, "integration_details")? {
+            rboto_core::fixture_scalar(&value, "union")?;
+            let fixture_2902 = integration_details_fixture_from_py(&value)?;
+            builder = builder.set_integration_details(Some(fixture_2902));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -17320,6 +22574,86 @@ impl PyOperationGetLogAnomalyDetectorOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "detector_name",
+                "log_group_arn_list",
+                "evaluation_frequency",
+                "filter_pattern",
+                "anomaly_detector_status",
+                "kms_key_id",
+                "creation_time_stamp",
+                "last_modified_time_stamp",
+                "anomaly_visibility_time",
+            ],
+            &["creation_time_stamp", "last_modified_time_stamp"],
+        )?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::get_log_anomaly_detector::GetLogAnomalyDetectorOutput::builder();
+        if let Some(value) = dict_value(values, "detector_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2919: String = value.extract()?;
+            builder = builder.set_detector_name(Some(fixture_2919));
+        }
+        if let Some(value) = dict_value(values, "log_group_arn_list")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2920 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2921 in value.try_iter()? {
+                let item_2922 = item_result_2921?;
+                rboto_core::fixture_scalar(&item_2922, "string")?;
+                let converted_item_2923: String = item_2922.extract()?;
+                fixture_2920.push(converted_item_2923);
+            }
+            builder = builder.set_log_group_arn_list(Some(fixture_2920));
+        }
+        if let Some(value) = dict_value(values, "evaluation_frequency")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_2925: String = value.extract()?;
+            let fixture_2924 =
+                aws_sdk_cloudwatchlogs::types::EvaluationFrequency::from(enum_value_2925.as_str());
+            builder = builder.set_evaluation_frequency(Some(fixture_2924));
+        }
+        if let Some(value) = dict_value(values, "filter_pattern")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2926: String = value.extract()?;
+            builder = builder.set_filter_pattern(Some(fixture_2926));
+        }
+        if let Some(value) = dict_value(values, "anomaly_detector_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_2928: String = value.extract()?;
+            let fixture_2927 = aws_sdk_cloudwatchlogs::types::AnomalyDetectorStatus::from(
+                enum_value_2928.as_str(),
+            );
+            builder = builder.set_anomaly_detector_status(Some(fixture_2927));
+        }
+        if let Some(value) = dict_value(values, "kms_key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2929: String = value.extract()?;
+            builder = builder.set_kms_key_id(Some(fixture_2929));
+        }
+        if let Some(value) = values.get_item("creation_time_stamp")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_2930: i64 = value.extract()?;
+            builder = builder.set_creation_time_stamp(Some(fixture_2930));
+        }
+        if let Some(value) = values.get_item("last_modified_time_stamp")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_2931: i64 = value.extract()?;
+            builder = builder.set_last_modified_time_stamp(Some(fixture_2931));
+        }
+        if let Some(value) = dict_value(values, "anomaly_visibility_time")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_2932: i64 = value.extract()?;
+            builder = builder.set_anomaly_visibility_time(Some(fixture_2932));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -17426,6 +22760,44 @@ impl PyOperationGetLogEventsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["events", "next_forward_token", "next_backward_token"],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::get_log_events::GetLogEventsOutput::builder();
+        if let Some(value) = dict_value(values, "events")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2930 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2931 in value.try_iter()? {
+                let item_2932 = item_result_2931?;
+                rboto_core::fixture_scalar(&item_2932, "struct")?;
+                let converted_item_2933 = output_log_event_fixture_from_py(&item_2932)?;
+                fixture_2930.push(converted_item_2933);
+            }
+            builder = builder.set_events(Some(fixture_2930));
+        }
+        if let Some(value) = dict_value(values, "next_forward_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2934: String = value.extract()?;
+            builder = builder.set_next_forward_token(Some(fixture_2934));
+        }
+        if let Some(value) = dict_value(values, "next_backward_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2935: String = value.extract()?;
+            builder = builder.set_next_backward_token(Some(fixture_2935));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -17495,6 +22867,30 @@ impl PyOperationGetLogFieldsOutput {
             result.set_item("log_fields", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["log_fields"], &[])?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::get_log_fields::GetLogFieldsOutput::builder();
+        if let Some(value) = dict_value(values, "log_fields")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2937 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2938 in value.try_iter()? {
+                let item_2939 = item_result_2938?;
+                rboto_core::fixture_scalar(&item_2939, "struct")?;
+                let converted_item_2940 = log_fields_list_item_fixture_from_py(&item_2939)?;
+                fixture_2937.push(converted_item_2940);
+            }
+            builder = builder.set_log_fields(Some(fixture_2937));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -17568,6 +22964,29 @@ impl PyOperationGetLogGroupFieldsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["log_group_fields"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::get_log_group_fields::GetLogGroupFieldsOutput::builder();
+        if let Some(value) = dict_value(values, "log_group_fields")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2944 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2945 in value.try_iter()? {
+                let item_2946 = item_result_2945?;
+                rboto_core::fixture_scalar(&item_2946, "struct")?;
+                let converted_item_2947 = log_group_field_fixture_from_py(&item_2946)?;
+                fixture_2944.push(converted_item_2947);
+            }
+            builder = builder.set_log_group_fields(Some(fixture_2944));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -17612,6 +23031,29 @@ impl PyOperationGetLogRecordOutput {
             result.set_item("log_record", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["log_record"], &[])?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::get_log_record::GetLogRecordOutput::builder();
+        if let Some(value) = dict_value(values, "log_record")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_2955 = value.cast::<PyDict>()?;
+            let mut fixture_2954 = HashMap::with_capacity(mapping_2955.len());
+            for (key_2956, value_2957) in mapping_2955.iter() {
+                rboto_core::fixture_scalar(&key_2956, "string")?;
+                let converted_key_2958: String = key_2956.extract()?;
+                rboto_core::fixture_scalar(&value_2957, "string")?;
+                let converted_value_2959: String = value_2957.extract()?;
+                fixture_2954.insert(converted_key_2958, converted_value_2959);
+            }
+            builder = builder.set_log_record(Some(fixture_2954));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -17741,6 +23183,63 @@ impl PyOperationGetLookupTableOutput {
             result.set_item("kms_key_id", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "lookup_table_arn",
+                "lookup_table_name",
+                "description",
+                "table_body",
+                "size_bytes",
+                "last_updated_time",
+                "kms_key_id",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::get_lookup_table::GetLookupTableOutput::builder();
+        if let Some(value) = dict_value(values, "lookup_table_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2968: String = value.extract()?;
+            builder = builder.set_lookup_table_arn(Some(fixture_2968));
+        }
+        if let Some(value) = dict_value(values, "lookup_table_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2969: String = value.extract()?;
+            builder = builder.set_lookup_table_name(Some(fixture_2969));
+        }
+        if let Some(value) = dict_value(values, "description")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2970: String = value.extract()?;
+            builder = builder.set_description(Some(fixture_2970));
+        }
+        if let Some(value) = dict_value(values, "table_body")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2971: String = value.extract()?;
+            builder = builder.set_table_body(Some(fixture_2971));
+        }
+        if let Some(value) = dict_value(values, "size_bytes")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_2972: i64 = value.extract()?;
+            builder = builder.set_size_bytes(Some(fixture_2972));
+        }
+        if let Some(value) = dict_value(values, "last_updated_time")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_2973: i64 = value.extract()?;
+            builder = builder.set_last_updated_time(Some(fixture_2973));
+        }
+        if let Some(value) = dict_value(values, "kms_key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_2974: String = value.extract()?;
+            builder = builder.set_kms_key_id(Some(fixture_2974));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -17925,6 +23424,77 @@ impl PyOperationGetQueryResultsOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "query_language",
+                "results",
+                "statistics",
+                "status",
+                "encryption_key",
+                "next_token",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::get_query_results::GetQueryResultsOutput::builder();
+        if let Some(value) = dict_value(values, "query_language")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_2991: String = value.extract()?;
+            let fixture_2990 =
+                aws_sdk_cloudwatchlogs::types::QueryLanguage::from(enum_value_2991.as_str());
+            builder = builder.set_query_language(Some(fixture_2990));
+        }
+        if let Some(value) = dict_value(values, "results")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_2992 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_2993 in value.try_iter()? {
+                let item_2994 = item_result_2993?;
+                rboto_core::fixture_scalar(&item_2994, "vec")?;
+                let mut converted_item_2995 =
+                    Vec::with_capacity(item_2994.cast::<PyList>().map_or(0, |items| items.len()));
+                for item_result_2996 in item_2994.try_iter()? {
+                    let item_2997 = item_result_2996?;
+                    rboto_core::fixture_scalar(&item_2997, "struct")?;
+                    let converted_item_2998 = result_field_fixture_from_py(&item_2997)?;
+                    converted_item_2995.push(converted_item_2998);
+                }
+                fixture_2992.push(converted_item_2995);
+            }
+            builder = builder.set_results(Some(fixture_2992));
+        }
+        if let Some(value) = dict_value(values, "statistics")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_2999 = query_statistics_fixture_from_py(&value)?;
+            builder = builder.set_statistics(Some(fixture_2999));
+        }
+        if let Some(value) = dict_value(values, "status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3001: String = value.extract()?;
+            let fixture_3000 =
+                aws_sdk_cloudwatchlogs::types::QueryStatus::from(enum_value_3001.as_str());
+            builder = builder.set_status(Some(fixture_3000));
+        }
+        if let Some(value) = dict_value(values, "encryption_key")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3002: String = value.extract()?;
+            builder = builder.set_encryption_key(Some(fixture_3002));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3003: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_3003));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -18337,6 +23907,157 @@ impl PyOperationGetScheduledQueryOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "scheduled_query_arn",
+                "name",
+                "description",
+                "query_language",
+                "query_string",
+                "log_group_identifiers",
+                "schedule_expression",
+                "timezone",
+                "start_time_offset",
+                "end_time_offset",
+                "destination_configuration",
+                "state",
+                "schedule_type",
+                "last_triggered_time",
+                "last_execution_status",
+                "schedule_start_time",
+                "schedule_end_time",
+                "execution_role_arn",
+                "creation_time",
+                "last_updated_time",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::get_scheduled_query::GetScheduledQueryOutput::builder();
+        if let Some(value) = dict_value(values, "scheduled_query_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3034: String = value.extract()?;
+            builder = builder.set_scheduled_query_arn(Some(fixture_3034));
+        }
+        if let Some(value) = dict_value(values, "name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3035: String = value.extract()?;
+            builder = builder.set_name(Some(fixture_3035));
+        }
+        if let Some(value) = dict_value(values, "description")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3036: String = value.extract()?;
+            builder = builder.set_description(Some(fixture_3036));
+        }
+        if let Some(value) = dict_value(values, "query_language")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3038: String = value.extract()?;
+            let fixture_3037 =
+                aws_sdk_cloudwatchlogs::types::QueryLanguage::from(enum_value_3038.as_str());
+            builder = builder.set_query_language(Some(fixture_3037));
+        }
+        if let Some(value) = dict_value(values, "query_string")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3039: String = value.extract()?;
+            builder = builder.set_query_string(Some(fixture_3039));
+        }
+        if let Some(value) = dict_value(values, "log_group_identifiers")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3040 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3041 in value.try_iter()? {
+                let item_3042 = item_result_3041?;
+                rboto_core::fixture_scalar(&item_3042, "string")?;
+                let converted_item_3043: String = item_3042.extract()?;
+                fixture_3040.push(converted_item_3043);
+            }
+            builder = builder.set_log_group_identifiers(Some(fixture_3040));
+        }
+        if let Some(value) = dict_value(values, "schedule_expression")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3044: String = value.extract()?;
+            builder = builder.set_schedule_expression(Some(fixture_3044));
+        }
+        if let Some(value) = dict_value(values, "timezone")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3045: String = value.extract()?;
+            builder = builder.set_timezone(Some(fixture_3045));
+        }
+        if let Some(value) = dict_value(values, "start_time_offset")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_3046: i64 = value.extract()?;
+            builder = builder.set_start_time_offset(Some(fixture_3046));
+        }
+        if let Some(value) = dict_value(values, "end_time_offset")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_3047: i64 = value.extract()?;
+            builder = builder.set_end_time_offset(Some(fixture_3047));
+        }
+        if let Some(value) = dict_value(values, "destination_configuration")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3048 = destination_configuration_fixture_from_py(&value)?;
+            builder = builder.set_destination_configuration(Some(fixture_3048));
+        }
+        if let Some(value) = dict_value(values, "state")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3050: String = value.extract()?;
+            let fixture_3049 =
+                aws_sdk_cloudwatchlogs::types::ScheduledQueryState::from(enum_value_3050.as_str());
+            builder = builder.set_state(Some(fixture_3049));
+        }
+        if let Some(value) = dict_value(values, "schedule_type")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3052: String = value.extract()?;
+            let fixture_3051 =
+                aws_sdk_cloudwatchlogs::types::ScheduleType::from(enum_value_3052.as_str());
+            builder = builder.set_schedule_type(Some(fixture_3051));
+        }
+        if let Some(value) = dict_value(values, "last_triggered_time")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_3053: i64 = value.extract()?;
+            builder = builder.set_last_triggered_time(Some(fixture_3053));
+        }
+        if let Some(value) = dict_value(values, "last_execution_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3055: String = value.extract()?;
+            let fixture_3054 =
+                aws_sdk_cloudwatchlogs::types::ExecutionStatus::from(enum_value_3055.as_str());
+            builder = builder.set_last_execution_status(Some(fixture_3054));
+        }
+        if let Some(value) = dict_value(values, "schedule_start_time")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_3056: i64 = value.extract()?;
+            builder = builder.set_schedule_start_time(Some(fixture_3056));
+        }
+        if let Some(value) = dict_value(values, "schedule_end_time")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_3057: i64 = value.extract()?;
+            builder = builder.set_schedule_end_time(Some(fixture_3057));
+        }
+        if let Some(value) = dict_value(values, "execution_role_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3058: String = value.extract()?;
+            builder = builder.set_execution_role_arn(Some(fixture_3058));
+        }
+        if let Some(value) = dict_value(values, "creation_time")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_3059: i64 = value.extract()?;
+            builder = builder.set_creation_time(Some(fixture_3059));
+        }
+        if let Some(value) = dict_value(values, "last_updated_time")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_3060: i64 = value.extract()?;
+            builder = builder.set_last_updated_time(Some(fixture_3060));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -18454,6 +24175,53 @@ impl PyOperationGetScheduledQueryHistoryOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "name",
+                "scheduled_query_arn",
+                "trigger_history",
+                "next_token",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::get_scheduled_query_history::GetScheduledQueryHistoryOutput::builder();
+        if let Some(value) = dict_value(values, "name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3047: String = value.extract()?;
+            builder = builder.set_name(Some(fixture_3047));
+        }
+        if let Some(value) = dict_value(values, "scheduled_query_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3048: String = value.extract()?;
+            builder = builder.set_scheduled_query_arn(Some(fixture_3048));
+        }
+        if let Some(value) = dict_value(values, "trigger_history")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3049 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3050 in value.try_iter()? {
+                let item_3051 = item_result_3050?;
+                rboto_core::fixture_scalar(&item_3051, "struct")?;
+                let converted_item_3052 = trigger_history_record_fixture_from_py(&item_3051)?;
+                fixture_3049.push(converted_item_3052);
+            }
+            builder = builder.set_trigger_history(Some(fixture_3049));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3053: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_3053));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -18502,6 +24270,27 @@ impl PyOperationGetStorageTierPolicyOutput {
             result.set_item("last_updated_time", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["storage_tier", "last_updated_time"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::get_storage_tier_policy::GetStorageTierPolicyOutput::builder();
+        if let Some(value) = dict_value(values, "storage_tier")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3052: String = value.extract()?;
+            let fixture_3051 =
+                aws_sdk_cloudwatchlogs::types::StorageTier::from(enum_value_3052.as_str());
+            builder = builder.set_storage_tier(Some(fixture_3051));
+        }
+        if let Some(value) = dict_value(values, "last_updated_time")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_3053: i64 = value.extract()?;
+            builder = builder.set_last_updated_time(Some(fixture_3053));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -18629,6 +24418,54 @@ impl PyOperationGetTransformerOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "log_group_identifier",
+                "creation_time",
+                "last_modified_time",
+                "transformer_config",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::get_transformer::GetTransformerOutput::builder();
+        if let Some(value) = dict_value(values, "log_group_identifier")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3064: String = value.extract()?;
+            builder = builder.set_log_group_identifier(Some(fixture_3064));
+        }
+        if let Some(value) = dict_value(values, "creation_time")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_3065: i64 = value.extract()?;
+            builder = builder.set_creation_time(Some(fixture_3065));
+        }
+        if let Some(value) = dict_value(values, "last_modified_time")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_3066: i64 = value.extract()?;
+            builder = builder.set_last_modified_time(Some(fixture_3066));
+        }
+        if let Some(value) = dict_value(values, "transformer_config")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3067 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3068 in value.try_iter()? {
+                let item_3069 = item_result_3068?;
+                rboto_core::fixture_scalar(&item_3069, "struct")?;
+                let converted_item_3070 = processor_fixture_from_py(&item_3069)?;
+                fixture_3067.push(converted_item_3070);
+            }
+            builder = builder.set_transformer_config(Some(fixture_3067));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -18709,6 +24546,38 @@ impl PyOperationListAggregateLogGroupSummariesOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["aggregate_log_group_summaries", "next_token"],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::list_aggregate_log_group_summaries::ListAggregateLogGroupSummariesOutput::builder();
+        if let Some(value) = dict_value(values, "aggregate_log_group_summaries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3073 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3074 in value.try_iter()? {
+                let item_3075 = item_result_3074?;
+                rboto_core::fixture_scalar(&item_3075, "struct")?;
+                let converted_item_3076 = aggregate_log_group_summary_fixture_from_py(&item_3075)?;
+                fixture_3073.push(converted_item_3076);
+            }
+            builder = builder.set_aggregate_log_group_summaries(Some(fixture_3073));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3077: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_3077));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -18798,6 +24667,35 @@ impl PyOperationListAnomaliesOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["anomalies", "next_token"], &[])?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::list_anomalies::ListAnomaliesOutput::builder();
+        if let Some(value) = dict_value(values, "anomalies")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3082 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3083 in value.try_iter()? {
+                let item_3084 = item_result_3083?;
+                rboto_core::fixture_scalar(&item_3084, "struct")?;
+                let converted_item_3085 = anomaly_fixture_from_py(&item_3084)?;
+                fixture_3082.push(converted_item_3085);
+            }
+            builder = builder.set_anomalies(Some(fixture_3082));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3086: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_3086));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -18870,6 +24768,30 @@ impl PyOperationListIntegrationsOutput {
             result.set_item("integration_summaries", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["integration_summaries"], &[])?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::list_integrations::ListIntegrationsOutput::builder();
+        if let Some(value) = dict_value(values, "integration_summaries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3089 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3090 in value.try_iter()? {
+                let item_3091 = item_result_3090?;
+                rboto_core::fixture_scalar(&item_3091, "struct")?;
+                let converted_item_3092 = integration_summary_fixture_from_py(&item_3091)?;
+                fixture_3089.push(converted_item_3092);
+            }
+            builder = builder.set_integration_summaries(Some(fixture_3089));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -18951,6 +24873,34 @@ impl PyOperationListLogAnomalyDetectorsOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["anomaly_detectors", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::list_log_anomaly_detectors::ListLogAnomalyDetectorsOutput::builder();
+        if let Some(value) = dict_value(values, "anomaly_detectors")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3098 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3099 in value.try_iter()? {
+                let item_3100 = item_result_3099?;
+                rboto_core::fixture_scalar(&item_3100, "struct")?;
+                let converted_item_3101 = anomaly_detector_fixture_from_py(&item_3100)?;
+                fixture_3098.push(converted_item_3101);
+            }
+            builder = builder.set_anomaly_detectors(Some(fixture_3098));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3102: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_3102));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -19042,6 +24992,35 @@ impl PyOperationListLogGroupsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["log_groups", "next_token"], &[])?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::list_log_groups::ListLogGroupsOutput::builder();
+        if let Some(value) = dict_value(values, "log_groups")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3107 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3108 in value.try_iter()? {
+                let item_3109 = item_result_3108?;
+                rboto_core::fixture_scalar(&item_3109, "struct")?;
+                let converted_item_3110 = log_group_summary_fixture_from_py(&item_3109)?;
+                fixture_3107.push(converted_item_3110);
+            }
+            builder = builder.set_log_groups(Some(fixture_3107));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3111: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_3111));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -19101,6 +25080,32 @@ impl PyOperationListLogGroupsForQueryOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["log_group_identifiers", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::list_log_groups_for_query::ListLogGroupsForQueryOutput::builder();
+        if let Some(value) = dict_value(values, "log_group_identifiers")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3115 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3116 in value.try_iter()? {
+                let item_3117 = item_result_3116?;
+                rboto_core::fixture_scalar(&item_3117, "string")?;
+                let converted_item_3118: String = item_3117.extract()?;
+                fixture_3115.push(converted_item_3118);
+            }
+            builder = builder.set_log_group_identifiers(Some(fixture_3115));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3119: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_3119));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -19192,6 +25197,34 @@ impl PyOperationListScheduledQueriesOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["next_token", "scheduled_queries"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::list_scheduled_queries::ListScheduledQueriesOutput::builder();
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3124: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_3124));
+        }
+        if let Some(value) = dict_value(values, "scheduled_queries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3125 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3126 in value.try_iter()? {
+                let item_3127 = item_result_3126?;
+                rboto_core::fixture_scalar(&item_3127, "struct")?;
+                let converted_item_3128 = scheduled_query_summary_fixture_from_py(&item_3127)?;
+                fixture_3125.push(converted_item_3128);
+            }
+            builder = builder.set_scheduled_queries(Some(fixture_3125));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -19272,6 +25305,34 @@ impl PyOperationListSourcesForS3TableIntegrationOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["sources", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::list_sources_for_s3_table_integration::ListSourcesForS3TableIntegrationOutput::builder();
+        if let Some(value) = dict_value(values, "sources")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3133 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3134 in value.try_iter()? {
+                let item_3135 = item_result_3134?;
+                rboto_core::fixture_scalar(&item_3135, "struct")?;
+                let converted_item_3136 = s3_table_integration_source_fixture_from_py(&item_3135)?;
+                fixture_3133.push(converted_item_3136);
+            }
+            builder = builder.set_sources(Some(fixture_3133));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3137: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_3137));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -19355,6 +25416,34 @@ impl PyOperationListSyslogConfigurationsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["syslog_configurations", "next_token"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::list_syslog_configurations::ListSyslogConfigurationsOutput::builder();
+        if let Some(value) = dict_value(values, "syslog_configurations")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3142 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3143 in value.try_iter()? {
+                let item_3144 = item_result_3143?;
+                rboto_core::fixture_scalar(&item_3144, "struct")?;
+                let converted_item_3145 = syslog_configuration_fixture_from_py(&item_3144)?;
+                fixture_3142.push(converted_item_3145);
+            }
+            builder = builder.set_syslog_configurations(Some(fixture_3142));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3146: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_3146));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -19400,6 +25489,28 @@ impl PyOperationListTagsForResourceOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["tags"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::list_tags_for_resource::ListTagsForResourceOutput::builder();
+        if let Some(value) = dict_value(values, "tags")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_3153 = value.cast::<PyDict>()?;
+            let mut fixture_3152 = HashMap::with_capacity(mapping_3153.len());
+            for (key_3154, value_3155) in mapping_3153.iter() {
+                rboto_core::fixture_scalar(&key_3154, "string")?;
+                let converted_key_3156: String = key_3154.extract()?;
+                rboto_core::fixture_scalar(&value_3155, "string")?;
+                let converted_value_3157: String = value_3155.extract()?;
+                fixture_3152.insert(converted_key_3156, converted_value_3157);
+            }
+            builder = builder.set_tags(Some(fixture_3152));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -19444,6 +25555,30 @@ impl PyOperationListTagsLogGroupOutput {
             result.set_item("tags", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["tags"], &[])?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::list_tags_log_group::ListTagsLogGroupOutput::builder(
+            );
+        if let Some(value) = dict_value(values, "tags")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_3163 = value.cast::<PyDict>()?;
+            let mut fixture_3162 = HashMap::with_capacity(mapping_3163.len());
+            for (key_3164, value_3165) in mapping_3163.iter() {
+                rboto_core::fixture_scalar(&key_3164, "string")?;
+                let converted_key_3166: String = key_3164.extract()?;
+                rboto_core::fixture_scalar(&value_3165, "string")?;
+                let converted_value_3167: String = value_3165.extract()?;
+                fixture_3162.insert(converted_key_3166, converted_value_3167);
+            }
+            builder = builder.set_tags(Some(fixture_3162));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -19501,6 +25636,24 @@ impl PyOperationPutAccountPolicyOutput {
             result.set_item("account_policy", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["account_policy"], &[])?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::put_account_policy::PutAccountPolicyOutput::builder(
+            );
+        if let Some(value) = dict_value(values, "account_policy")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3164 = account_policy_fixture_from_py(&value)?;
+            builder = builder.set_account_policy(Some(fixture_3164));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -19567,6 +25720,38 @@ impl PyOperationPutDataProtectionPolicyOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "log_group_identifier",
+                "policy_document",
+                "last_updated_time",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::put_data_protection_policy::PutDataProtectionPolicyOutput::builder();
+        if let Some(value) = dict_value(values, "log_group_identifier")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3170: String = value.extract()?;
+            builder = builder.set_log_group_identifier(Some(fixture_3170));
+        }
+        if let Some(value) = dict_value(values, "policy_document")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3171: String = value.extract()?;
+            builder = builder.set_policy_document(Some(fixture_3171));
+        }
+        if let Some(value) = dict_value(values, "last_updated_time")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_3172: i64 = value.extract()?;
+            builder = builder.set_last_updated_time(Some(fixture_3172));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -19626,6 +25811,22 @@ impl PyOperationPutDeliveryDestinationOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["delivery_destination"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::put_delivery_destination::PutDeliveryDestinationOutput::builder();
+        if let Some(value) = dict_value(values, "delivery_destination")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3172 = delivery_destination_fixture_from_py(&value)?;
+            builder = builder.set_delivery_destination(Some(fixture_3172));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -19678,6 +25879,22 @@ impl PyOperationPutDeliveryDestinationPolicyOutput {
             result.set_item("policy", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["policy"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::put_delivery_destination_policy::PutDeliveryDestinationPolicyOutput::builder();
+        if let Some(value) = dict_value(values, "policy")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3174 = policy_fixture_from_py(&value)?;
+            builder = builder.set_policy(Some(fixture_3174));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -19736,6 +25953,22 @@ impl PyOperationPutDeliverySourceOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["delivery_source"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::put_delivery_source::PutDeliverySourceOutput::builder();
+        if let Some(value) = dict_value(values, "delivery_source")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3176 = delivery_source_fixture_from_py(&value)?;
+            builder = builder.set_delivery_source(Some(fixture_3176));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -19792,6 +26025,23 @@ impl PyOperationPutDestinationOutput {
             result.set_item("destination", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["destination"], &[])?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::put_destination::PutDestinationOutput::builder();
+        if let Some(value) = dict_value(values, "destination")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3178 = destination_fixture_from_py(&value)?;
+            builder = builder.set_destination(Some(fixture_3178));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -19850,6 +26100,23 @@ impl PyOperationPutIndexPolicyOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["index_policy"], &[])?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::put_index_policy::PutIndexPolicyOutput::builder();
+        if let Some(value) = dict_value(values, "index_policy")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3180 = index_policy_fixture_from_py(&value)?;
+            builder = builder.set_index_policy(Some(fixture_3180));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -19898,6 +26165,28 @@ impl PyOperationPutIntegrationOutput {
             result.set_item("integration_status", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["integration_name", "integration_status"], &[])?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::put_integration::PutIntegrationOutput::builder();
+        if let Some(value) = dict_value(values, "integration_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3184: String = value.extract()?;
+            builder = builder.set_integration_name(Some(fixture_3184));
+        }
+        if let Some(value) = dict_value(values, "integration_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3186: String = value.extract()?;
+            let fixture_3185 =
+                aws_sdk_cloudwatchlogs::types::IntegrationStatus::from(enum_value_3186.as_str());
+            builder = builder.set_integration_status(Some(fixture_3185));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -19996,6 +26285,41 @@ impl PyOperationPutLogEventsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "next_sequence_token",
+                "rejected_log_events_info",
+                "rejected_entity_info",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::put_log_events::PutLogEventsOutput::builder();
+        if let Some(value) = dict_value(values, "next_sequence_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3190: String = value.extract()?;
+            builder = builder.set_next_sequence_token(Some(fixture_3190));
+        }
+        if let Some(value) = dict_value(values, "rejected_log_events_info")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3191 = rejected_log_events_info_fixture_from_py(&value)?;
+            builder = builder.set_rejected_log_events_info(Some(fixture_3191));
+        }
+        if let Some(value) = dict_value(values, "rejected_entity_info")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3192 = rejected_entity_info_fixture_from_py(&value)?;
+            builder = builder.set_rejected_entity_info(Some(fixture_3192));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -20028,6 +26352,20 @@ impl PyOperationPutQueryDefinitionOutput {
             result.set_item("query_definition_id", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["query_definition_id"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::put_query_definition::PutQueryDefinitionOutput::builder();
+        if let Some(value) = dict_value(values, "query_definition_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3192: String = value.extract()?;
+            builder = builder.set_query_definition_id(Some(fixture_3192));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -20104,6 +26442,27 @@ impl PyOperationPutResourcePolicyOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["resource_policy", "revision_id"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::put_resource_policy::PutResourcePolicyOutput::builder();
+        if let Some(value) = dict_value(values, "resource_policy")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3196 = resource_policy_fixture_from_py(&value)?;
+            builder = builder.set_resource_policy(Some(fixture_3196));
+        }
+        if let Some(value) = dict_value(values, "revision_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3197: String = value.extract()?;
+            builder = builder.set_revision_id(Some(fixture_3197));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -20153,6 +26512,27 @@ impl PyOperationPutStorageTierPolicyOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["storage_tier", "last_updated_time"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::put_storage_tier_policy::PutStorageTierPolicyOutput::builder();
+        if let Some(value) = dict_value(values, "storage_tier")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3201: String = value.extract()?;
+            let fixture_3200 =
+                aws_sdk_cloudwatchlogs::types::StorageTier::from(enum_value_3201.as_str());
+            builder = builder.set_storage_tier(Some(fixture_3200));
+        }
+        if let Some(value) = dict_value(values, "last_updated_time")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_3202: i64 = value.extract()?;
+            builder = builder.set_last_updated_time(Some(fixture_3202));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -20186,6 +26566,21 @@ impl PyOperationStartQueryOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["query_id"], &[])?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::start_query::StartQueryOutput::builder();
+        if let Some(value) = dict_value(values, "query_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3202: String = value.extract()?;
+            builder = builder.set_query_id(Some(fixture_3202));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -20210,6 +26605,20 @@ impl PyOperationStopQueryOutput {
         let converted_3203 = (&self.inner.success).to_owned().into_py_any(py)?;
         result.set_item("success", converted_3203)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["success"], &["success"])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::stop_query::StopQueryOutput::builder();
+        if let Some(value) = values.get_item("success")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_3204: bool = value.extract()?;
+            builder = builder.set_success(Some(fixture_3204));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -20282,6 +26691,31 @@ impl PyOperationTestMetricFilterOutput {
             result.set_item("matches", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["matches"], &[])?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::test_metric_filter::TestMetricFilterOutput::builder(
+            );
+        if let Some(value) = dict_value(values, "matches")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3211 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3212 in value.try_iter()? {
+                let item_3213 = item_result_3212?;
+                rboto_core::fixture_scalar(&item_3213, "struct")?;
+                let converted_item_3214 = metric_filter_match_record_fixture_from_py(&item_3213)?;
+                fixture_3211.push(converted_item_3214);
+            }
+            builder = builder.set_matches(Some(fixture_3211));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -20356,6 +26790,30 @@ impl PyOperationTestTransformerOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["transformed_logs"], &[])?;
+        let mut builder =
+            aws_sdk_cloudwatchlogs::operation::test_transformer::TestTransformerOutput::builder();
+        if let Some(value) = dict_value(values, "transformed_logs")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3218 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3219 in value.try_iter()? {
+                let item_3220 = item_result_3219?;
+                rboto_core::fixture_scalar(&item_3220, "struct")?;
+                let converted_item_3221 = transformed_log_record_fixture_from_py(&item_3220)?;
+                fixture_3218.push(converted_item_3221);
+            }
+            builder = builder.set_transformed_logs(Some(fixture_3218));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -20372,6 +26830,15 @@ impl PyOperationUpdateDeliveryConfigurationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::update_delivery_configuration::UpdateDeliveryConfigurationOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -20421,6 +26888,25 @@ impl PyOperationUpdateLookupTableOutput {
             result.set_item("last_updated_time", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["lookup_table_arn", "last_updated_time"], &[])?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::update_lookup_table::UpdateLookupTableOutput::builder();
+        if let Some(value) = dict_value(values, "lookup_table_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3222: String = value.extract()?;
+            builder = builder.set_lookup_table_arn(Some(fixture_3222));
+        }
+        if let Some(value) = dict_value(values, "last_updated_time")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_3223: i64 = value.extract()?;
+            builder = builder.set_last_updated_time(Some(fixture_3223));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -20832,6 +27318,157 @@ impl PyOperationUpdateScheduledQueryOutput {
             result.set_item("last_updated_time", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "scheduled_query_arn",
+                "name",
+                "description",
+                "query_language",
+                "query_string",
+                "log_group_identifiers",
+                "schedule_expression",
+                "timezone",
+                "start_time_offset",
+                "end_time_offset",
+                "destination_configuration",
+                "state",
+                "schedule_type",
+                "last_triggered_time",
+                "last_execution_status",
+                "schedule_start_time",
+                "schedule_end_time",
+                "execution_role_arn",
+                "creation_time",
+                "last_updated_time",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cloudwatchlogs::operation::update_scheduled_query::UpdateScheduledQueryOutput::builder();
+        if let Some(value) = dict_value(values, "scheduled_query_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3266: String = value.extract()?;
+            builder = builder.set_scheduled_query_arn(Some(fixture_3266));
+        }
+        if let Some(value) = dict_value(values, "name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3267: String = value.extract()?;
+            builder = builder.set_name(Some(fixture_3267));
+        }
+        if let Some(value) = dict_value(values, "description")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3268: String = value.extract()?;
+            builder = builder.set_description(Some(fixture_3268));
+        }
+        if let Some(value) = dict_value(values, "query_language")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3270: String = value.extract()?;
+            let fixture_3269 =
+                aws_sdk_cloudwatchlogs::types::QueryLanguage::from(enum_value_3270.as_str());
+            builder = builder.set_query_language(Some(fixture_3269));
+        }
+        if let Some(value) = dict_value(values, "query_string")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3271: String = value.extract()?;
+            builder = builder.set_query_string(Some(fixture_3271));
+        }
+        if let Some(value) = dict_value(values, "log_group_identifiers")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3272 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3273 in value.try_iter()? {
+                let item_3274 = item_result_3273?;
+                rboto_core::fixture_scalar(&item_3274, "string")?;
+                let converted_item_3275: String = item_3274.extract()?;
+                fixture_3272.push(converted_item_3275);
+            }
+            builder = builder.set_log_group_identifiers(Some(fixture_3272));
+        }
+        if let Some(value) = dict_value(values, "schedule_expression")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3276: String = value.extract()?;
+            builder = builder.set_schedule_expression(Some(fixture_3276));
+        }
+        if let Some(value) = dict_value(values, "timezone")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3277: String = value.extract()?;
+            builder = builder.set_timezone(Some(fixture_3277));
+        }
+        if let Some(value) = dict_value(values, "start_time_offset")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_3278: i64 = value.extract()?;
+            builder = builder.set_start_time_offset(Some(fixture_3278));
+        }
+        if let Some(value) = dict_value(values, "end_time_offset")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_3279: i64 = value.extract()?;
+            builder = builder.set_end_time_offset(Some(fixture_3279));
+        }
+        if let Some(value) = dict_value(values, "destination_configuration")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3280 = destination_configuration_fixture_from_py(&value)?;
+            builder = builder.set_destination_configuration(Some(fixture_3280));
+        }
+        if let Some(value) = dict_value(values, "state")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3282: String = value.extract()?;
+            let fixture_3281 =
+                aws_sdk_cloudwatchlogs::types::ScheduledQueryState::from(enum_value_3282.as_str());
+            builder = builder.set_state(Some(fixture_3281));
+        }
+        if let Some(value) = dict_value(values, "schedule_type")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3284: String = value.extract()?;
+            let fixture_3283 =
+                aws_sdk_cloudwatchlogs::types::ScheduleType::from(enum_value_3284.as_str());
+            builder = builder.set_schedule_type(Some(fixture_3283));
+        }
+        if let Some(value) = dict_value(values, "last_triggered_time")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_3285: i64 = value.extract()?;
+            builder = builder.set_last_triggered_time(Some(fixture_3285));
+        }
+        if let Some(value) = dict_value(values, "last_execution_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3287: String = value.extract()?;
+            let fixture_3286 =
+                aws_sdk_cloudwatchlogs::types::ExecutionStatus::from(enum_value_3287.as_str());
+            builder = builder.set_last_execution_status(Some(fixture_3286));
+        }
+        if let Some(value) = dict_value(values, "schedule_start_time")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_3288: i64 = value.extract()?;
+            builder = builder.set_schedule_start_time(Some(fixture_3288));
+        }
+        if let Some(value) = dict_value(values, "schedule_end_time")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_3289: i64 = value.extract()?;
+            builder = builder.set_schedule_end_time(Some(fixture_3289));
+        }
+        if let Some(value) = dict_value(values, "execution_role_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3290: String = value.extract()?;
+            builder = builder.set_execution_role_arn(Some(fixture_3290));
+        }
+        if let Some(value) = dict_value(values, "creation_time")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_3291: i64 = value.extract()?;
+            builder = builder.set_creation_time(Some(fixture_3291));
+        }
+        if let Some(value) = dict_value(values, "last_updated_time")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_3292: i64 = value.extract()?;
+            builder = builder.set_last_updated_time(Some(fixture_3292));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 

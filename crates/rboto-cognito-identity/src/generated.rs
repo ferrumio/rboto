@@ -395,6 +395,269 @@ fn unprocessed_identity_id_to_py(
     Ok(result.into_any().unbind())
 }
 
+fn cognito_identity_provider_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cognitoidentity::types::CognitoIdentityProvider> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["provider_name", "client_id", "server_side_token_check"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cognitoidentity::types::CognitoIdentityProvider::builder();
+    if let Some(value) = dict_value(values, "provider_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_545: String = value.extract()?;
+        builder = builder.set_provider_name(Some(fixture_545));
+    }
+    if let Some(value) = dict_value(values, "client_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_546: String = value.extract()?;
+        builder = builder.set_client_id(Some(fixture_546));
+    }
+    if let Some(value) = dict_value(values, "server_side_token_check")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_547: bool = value.extract()?;
+        builder = builder.set_server_side_token_check(Some(fixture_547));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn credentials_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cognitoidentity::types::Credentials> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["access_key_id", "secret_key", "session_token", "expiration"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cognitoidentity::types::Credentials::builder();
+    if let Some(value) = dict_value(values, "access_key_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_548: String = value.extract()?;
+        builder = builder.set_access_key_id(Some(fixture_548));
+    }
+    if let Some(value) = dict_value(values, "secret_key")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_549: String = value.extract()?;
+        builder = builder.set_secret_key(Some(fixture_549));
+    }
+    if let Some(value) = dict_value(values, "session_token")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_550: String = value.extract()?;
+        builder = builder.set_session_token(Some(fixture_550));
+    }
+    if let Some(value) = dict_value(values, "expiration")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_552: String = value.extract()?;
+        let fixture_551 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_552,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_expiration(Some(fixture_551));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn identity_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cognitoidentity::types::IdentityDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "identity_id",
+            "logins",
+            "creation_date",
+            "last_modified_date",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_cognitoidentity::types::IdentityDescription::builder();
+    if let Some(value) = dict_value(values, "identity_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_553: String = value.extract()?;
+        builder = builder.set_identity_id(Some(fixture_553));
+    }
+    if let Some(value) = dict_value(values, "logins")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_554 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_555 in value.try_iter()? {
+            let item_556 = item_result_555?;
+            rboto_core::fixture_scalar(&item_556, "string")?;
+            let converted_item_557: String = item_556.extract()?;
+            fixture_554.push(converted_item_557);
+        }
+        builder = builder.set_logins(Some(fixture_554));
+    }
+    if let Some(value) = dict_value(values, "creation_date")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_559: String = value.extract()?;
+        let fixture_558 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_559,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_date(Some(fixture_558));
+    }
+    if let Some(value) = dict_value(values, "last_modified_date")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_561: String = value.extract()?;
+        let fixture_560 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_561,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_modified_date(Some(fixture_560));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn identity_pool_short_description_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cognitoidentity::types::IdentityPoolShortDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["identity_pool_id", "identity_pool_name"], &[])?;
+    let mut builder = aws_sdk_cognitoidentity::types::IdentityPoolShortDescription::builder();
+    if let Some(value) = dict_value(values, "identity_pool_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_562: String = value.extract()?;
+        builder = builder.set_identity_pool_id(Some(fixture_562));
+    }
+    if let Some(value) = dict_value(values, "identity_pool_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_563: String = value.extract()?;
+        builder = builder.set_identity_pool_name(Some(fixture_563));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn mapping_rule_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cognitoidentity::types::MappingRule> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["claim", "match_type", "value", "role_arn"],
+        &["claim", "match_type", "value", "role_arn"],
+    )?;
+    let mut builder = aws_sdk_cognitoidentity::types::MappingRule::builder();
+    if let Some(value) = values.get_item("claim")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_564: String = value.extract()?;
+        builder = builder.set_claim(Some(fixture_564));
+    }
+    if let Some(value) = values.get_item("match_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_566: String = value.extract()?;
+        let fixture_565 =
+            aws_sdk_cognitoidentity::types::MappingRuleMatchType::from(enum_value_566.as_str());
+        builder = builder.set_match_type(Some(fixture_565));
+    }
+    if let Some(value) = values.get_item("value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_567: String = value.extract()?;
+        builder = builder.set_value(Some(fixture_567));
+    }
+    if let Some(value) = values.get_item("role_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_568: String = value.extract()?;
+        builder = builder.set_role_arn(Some(fixture_568));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn role_mapping_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cognitoidentity::types::RoleMapping> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["type", "ambiguous_role_resolution", "rules_configuration"],
+        &["type"],
+    )?;
+    let mut builder = aws_sdk_cognitoidentity::types::RoleMapping::builder();
+    if let Some(value) = values.get_item("type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_570: String = value.extract()?;
+        let fixture_569 =
+            aws_sdk_cognitoidentity::types::RoleMappingType::from(enum_value_570.as_str());
+        builder = builder.set_type(Some(fixture_569));
+    }
+    if let Some(value) = dict_value(values, "ambiguous_role_resolution")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_572: String = value.extract()?;
+        let fixture_571 = aws_sdk_cognitoidentity::types::AmbiguousRoleResolutionType::from(
+            enum_value_572.as_str(),
+        );
+        builder = builder.set_ambiguous_role_resolution(Some(fixture_571));
+    }
+    if let Some(value) = dict_value(values, "rules_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_573 = rules_configuration_type_fixture_from_py(&value)?;
+        builder = builder.set_rules_configuration(Some(fixture_573));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn rules_configuration_type_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cognitoidentity::types::RulesConfigurationType> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["rules"], &["rules"])?;
+    let mut builder = aws_sdk_cognitoidentity::types::RulesConfigurationType::builder();
+    if let Some(value) = values.get_item("rules")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_574 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_575 in value.try_iter()? {
+            let item_576 = item_result_575?;
+            rboto_core::fixture_scalar(&item_576, "struct")?;
+            let converted_item_577 = mapping_rule_fixture_from_py(&item_576)?;
+            fixture_574.push(converted_item_577);
+        }
+        builder = builder.set_rules(Some(fixture_574));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn unprocessed_identity_id_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cognitoidentity::types::UnprocessedIdentityId> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["identity_id", "error_code"], &[])?;
+    let mut builder = aws_sdk_cognitoidentity::types::UnprocessedIdentityId::builder();
+    if let Some(value) = dict_value(values, "identity_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_578: String = value.extract()?;
+        builder = builder.set_identity_id(Some(fixture_578));
+    }
+    if let Some(value) = dict_value(values, "error_code")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_580: String = value.extract()?;
+        let fixture_579 = aws_sdk_cognitoidentity::types::ErrorCode::from(enum_value_580.as_str());
+        builder = builder.set_error_code(Some(fixture_579));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
 #[pyclass(
     name = "CognitoIdentityProvider",
     module = "rboto_cognito_identity._native",
@@ -1081,6 +1344,125 @@ impl PyOperationCreateIdentityPoolOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "identity_pool_id",
+                "identity_pool_name",
+                "allow_unauthenticated_identities",
+                "allow_classic_flow",
+                "supported_login_providers",
+                "developer_provider_name",
+                "open_id_connect_provider_arns",
+                "cognito_identity_providers",
+                "saml_provider_arns",
+                "identity_pool_tags",
+            ],
+            &[
+                "identity_pool_id",
+                "identity_pool_name",
+                "allow_unauthenticated_identities",
+            ],
+        )?;
+        let mut builder = aws_sdk_cognitoidentity::operation::create_identity_pool::CreateIdentityPoolOutput::builder();
+        if let Some(value) = values.get_item("identity_pool_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_317: String = value.extract()?;
+            builder = builder.set_identity_pool_id(Some(fixture_317));
+        }
+        if let Some(value) = values.get_item("identity_pool_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_318: String = value.extract()?;
+            builder = builder.set_identity_pool_name(Some(fixture_318));
+        }
+        if let Some(value) = values.get_item("allow_unauthenticated_identities")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_319: bool = value.extract()?;
+            builder = builder.set_allow_unauthenticated_identities(Some(fixture_319));
+        }
+        if let Some(value) = dict_value(values, "allow_classic_flow")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_320: bool = value.extract()?;
+            builder = builder.set_allow_classic_flow(Some(fixture_320));
+        }
+        if let Some(value) = dict_value(values, "supported_login_providers")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_322 = value.cast::<PyDict>()?;
+            let mut fixture_321 = HashMap::with_capacity(mapping_322.len());
+            for (key_323, value_324) in mapping_322.iter() {
+                rboto_core::fixture_scalar(&key_323, "string")?;
+                let converted_key_325: String = key_323.extract()?;
+                rboto_core::fixture_scalar(&value_324, "string")?;
+                let converted_value_326: String = value_324.extract()?;
+                fixture_321.insert(converted_key_325, converted_value_326);
+            }
+            builder = builder.set_supported_login_providers(Some(fixture_321));
+        }
+        if let Some(value) = dict_value(values, "developer_provider_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_327: String = value.extract()?;
+            builder = builder.set_developer_provider_name(Some(fixture_327));
+        }
+        if let Some(value) = dict_value(values, "open_id_connect_provider_arns")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_328 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_329 in value.try_iter()? {
+                let item_330 = item_result_329?;
+                rboto_core::fixture_scalar(&item_330, "string")?;
+                let converted_item_331: String = item_330.extract()?;
+                fixture_328.push(converted_item_331);
+            }
+            builder = builder.set_open_id_connect_provider_arns(Some(fixture_328));
+        }
+        if let Some(value) = dict_value(values, "cognito_identity_providers")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_332 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_333 in value.try_iter()? {
+                let item_334 = item_result_333?;
+                rboto_core::fixture_scalar(&item_334, "struct")?;
+                let converted_item_335 = cognito_identity_provider_fixture_from_py(&item_334)?;
+                fixture_332.push(converted_item_335);
+            }
+            builder = builder.set_cognito_identity_providers(Some(fixture_332));
+        }
+        if let Some(value) = dict_value(values, "saml_provider_arns")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_336 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_337 in value.try_iter()? {
+                let item_338 = item_result_337?;
+                rboto_core::fixture_scalar(&item_338, "string")?;
+                let converted_item_339: String = item_338.extract()?;
+                fixture_336.push(converted_item_339);
+            }
+            builder = builder.set_saml_provider_arns(Some(fixture_336));
+        }
+        if let Some(value) = dict_value(values, "identity_pool_tags")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_341 = value.cast::<PyDict>()?;
+            let mut fixture_340 = HashMap::with_capacity(mapping_341.len());
+            for (key_342, value_343) in mapping_341.iter() {
+                rboto_core::fixture_scalar(&key_342, "string")?;
+                let converted_key_344: String = key_342.extract()?;
+                rboto_core::fixture_scalar(&value_343, "string")?;
+                let converted_value_345: String = value_343.extract()?;
+                fixture_340.insert(converted_key_344, converted_value_345);
+            }
+            builder = builder.set_identity_pool_tags(Some(fixture_340));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -1153,6 +1535,31 @@ impl PyOperationDeleteIdentitiesOutput {
             result.set_item("unprocessed_identity_ids", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["unprocessed_identity_ids"], &[])?;
+        let mut builder =
+            aws_sdk_cognitoidentity::operation::delete_identities::DeleteIdentitiesOutput::builder(
+            );
+        if let Some(value) = dict_value(values, "unprocessed_identity_ids")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_324 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_325 in value.try_iter()? {
+                let item_326 = item_result_325?;
+                rboto_core::fixture_scalar(&item_326, "struct")?;
+                let converted_item_327 = unprocessed_identity_id_fixture_from_py(&item_326)?;
+                fixture_324.push(converted_item_327);
+            }
+            builder = builder.set_unprocessed_identity_ids(Some(fixture_324));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -1244,6 +1651,63 @@ impl PyOperationDescribeIdentityOutput {
             result.set_item("last_modified_date", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "identity_id",
+                "logins",
+                "creation_date",
+                "last_modified_date",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cognitoidentity::operation::describe_identity::DescribeIdentityOutput::builder(
+            );
+        if let Some(value) = dict_value(values, "identity_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_336: String = value.extract()?;
+            builder = builder.set_identity_id(Some(fixture_336));
+        }
+        if let Some(value) = dict_value(values, "logins")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_337 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_338 in value.try_iter()? {
+                let item_339 = item_result_338?;
+                rboto_core::fixture_scalar(&item_339, "string")?;
+                let converted_item_340: String = item_339.extract()?;
+                fixture_337.push(converted_item_340);
+            }
+            builder = builder.set_logins(Some(fixture_337));
+        }
+        if let Some(value) = dict_value(values, "creation_date")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_342: String = value.extract()?;
+            let fixture_341 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_342,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_creation_date(Some(fixture_341));
+        }
+        if let Some(value) = dict_value(values, "last_modified_date")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_344: String = value.extract()?;
+            let fixture_343 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_344,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_last_modified_date(Some(fixture_343));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -1506,6 +1970,125 @@ impl PyOperationDescribeIdentityPoolOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "identity_pool_id",
+                "identity_pool_name",
+                "allow_unauthenticated_identities",
+                "allow_classic_flow",
+                "supported_login_providers",
+                "developer_provider_name",
+                "open_id_connect_provider_arns",
+                "cognito_identity_providers",
+                "saml_provider_arns",
+                "identity_pool_tags",
+            ],
+            &[
+                "identity_pool_id",
+                "identity_pool_name",
+                "allow_unauthenticated_identities",
+            ],
+        )?;
+        let mut builder = aws_sdk_cognitoidentity::operation::describe_identity_pool::DescribeIdentityPoolOutput::builder();
+        if let Some(value) = values.get_item("identity_pool_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_385: String = value.extract()?;
+            builder = builder.set_identity_pool_id(Some(fixture_385));
+        }
+        if let Some(value) = values.get_item("identity_pool_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_386: String = value.extract()?;
+            builder = builder.set_identity_pool_name(Some(fixture_386));
+        }
+        if let Some(value) = values.get_item("allow_unauthenticated_identities")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_387: bool = value.extract()?;
+            builder = builder.set_allow_unauthenticated_identities(Some(fixture_387));
+        }
+        if let Some(value) = dict_value(values, "allow_classic_flow")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_388: bool = value.extract()?;
+            builder = builder.set_allow_classic_flow(Some(fixture_388));
+        }
+        if let Some(value) = dict_value(values, "supported_login_providers")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_390 = value.cast::<PyDict>()?;
+            let mut fixture_389 = HashMap::with_capacity(mapping_390.len());
+            for (key_391, value_392) in mapping_390.iter() {
+                rboto_core::fixture_scalar(&key_391, "string")?;
+                let converted_key_393: String = key_391.extract()?;
+                rboto_core::fixture_scalar(&value_392, "string")?;
+                let converted_value_394: String = value_392.extract()?;
+                fixture_389.insert(converted_key_393, converted_value_394);
+            }
+            builder = builder.set_supported_login_providers(Some(fixture_389));
+        }
+        if let Some(value) = dict_value(values, "developer_provider_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_395: String = value.extract()?;
+            builder = builder.set_developer_provider_name(Some(fixture_395));
+        }
+        if let Some(value) = dict_value(values, "open_id_connect_provider_arns")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_396 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_397 in value.try_iter()? {
+                let item_398 = item_result_397?;
+                rboto_core::fixture_scalar(&item_398, "string")?;
+                let converted_item_399: String = item_398.extract()?;
+                fixture_396.push(converted_item_399);
+            }
+            builder = builder.set_open_id_connect_provider_arns(Some(fixture_396));
+        }
+        if let Some(value) = dict_value(values, "cognito_identity_providers")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_400 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_401 in value.try_iter()? {
+                let item_402 = item_result_401?;
+                rboto_core::fixture_scalar(&item_402, "struct")?;
+                let converted_item_403 = cognito_identity_provider_fixture_from_py(&item_402)?;
+                fixture_400.push(converted_item_403);
+            }
+            builder = builder.set_cognito_identity_providers(Some(fixture_400));
+        }
+        if let Some(value) = dict_value(values, "saml_provider_arns")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_404 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_405 in value.try_iter()? {
+                let item_406 = item_result_405?;
+                rboto_core::fixture_scalar(&item_406, "string")?;
+                let converted_item_407: String = item_406.extract()?;
+                fixture_404.push(converted_item_407);
+            }
+            builder = builder.set_saml_provider_arns(Some(fixture_404));
+        }
+        if let Some(value) = dict_value(values, "identity_pool_tags")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_409 = value.cast::<PyDict>()?;
+            let mut fixture_408 = HashMap::with_capacity(mapping_409.len());
+            for (key_410, value_411) in mapping_409.iter() {
+                rboto_core::fixture_scalar(&key_410, "string")?;
+                let converted_key_412: String = key_410.extract()?;
+                rboto_core::fixture_scalar(&value_411, "string")?;
+                let converted_value_413: String = value_411.extract()?;
+                fixture_408.insert(converted_key_412, converted_value_413);
+            }
+            builder = builder.set_identity_pool_tags(Some(fixture_408));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -1577,6 +2160,27 @@ impl PyOperationGetCredentialsForIdentityOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["identity_id", "credentials"], &[])?;
+        let mut builder = aws_sdk_cognitoidentity::operation::get_credentials_for_identity::GetCredentialsForIdentityOutput::builder();
+        if let Some(value) = dict_value(values, "identity_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_389: String = value.extract()?;
+            builder = builder.set_identity_id(Some(fixture_389));
+        }
+        if let Some(value) = dict_value(values, "credentials")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_390 = credentials_fixture_from_py(&value)?;
+            builder = builder.set_credentials(Some(fixture_390));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -1609,6 +2213,20 @@ impl PyOperationGetIdOutput {
             result.set_item("identity_id", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["identity_id"], &[])?;
+        let mut builder = aws_sdk_cognitoidentity::operation::get_id::GetIdOutput::builder();
+        if let Some(value) = dict_value(values, "identity_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_391: String = value.extract()?;
+            builder = builder.set_identity_id(Some(fixture_391));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -1733,6 +2351,48 @@ impl PyOperationGetIdentityPoolRolesOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["identity_pool_id", "roles", "role_mappings"], &[])?;
+        let mut builder = aws_sdk_cognitoidentity::operation::get_identity_pool_roles::GetIdentityPoolRolesOutput::builder();
+        if let Some(value) = dict_value(values, "identity_pool_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_414: String = value.extract()?;
+            builder = builder.set_identity_pool_id(Some(fixture_414));
+        }
+        if let Some(value) = dict_value(values, "roles")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_416 = value.cast::<PyDict>()?;
+            let mut fixture_415 = HashMap::with_capacity(mapping_416.len());
+            for (key_417, value_418) in mapping_416.iter() {
+                rboto_core::fixture_scalar(&key_417, "string")?;
+                let converted_key_419: String = key_417.extract()?;
+                rboto_core::fixture_scalar(&value_418, "string")?;
+                let converted_value_420: String = value_418.extract()?;
+                fixture_415.insert(converted_key_419, converted_value_420);
+            }
+            builder = builder.set_roles(Some(fixture_415));
+        }
+        if let Some(value) = dict_value(values, "role_mappings")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_422 = value.cast::<PyDict>()?;
+            let mut fixture_421 = HashMap::with_capacity(mapping_422.len());
+            for (key_423, value_424) in mapping_422.iter() {
+                rboto_core::fixture_scalar(&key_423, "string")?;
+                let converted_key_425: String = key_423.extract()?;
+                rboto_core::fixture_scalar(&value_424, "struct")?;
+                let converted_value_426 = role_mapping_fixture_from_py(&value_424)?;
+                fixture_421.insert(converted_key_425, converted_value_426);
+            }
+            builder = builder.set_role_mappings(Some(fixture_421));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -1782,6 +2442,26 @@ impl PyOperationGetOpenIdTokenOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["identity_id", "token"], &[])?;
+        let mut builder =
+            aws_sdk_cognitoidentity::operation::get_open_id_token::GetOpenIdTokenOutput::builder();
+        if let Some(value) = dict_value(values, "identity_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_418: String = value.extract()?;
+            builder = builder.set_identity_id(Some(fixture_418));
+        }
+        if let Some(value) = dict_value(values, "token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_419: String = value.extract()?;
+            builder = builder.set_token(Some(fixture_419));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -1830,6 +2510,25 @@ impl PyOperationGetOpenIdTokenForDeveloperIdentityOutput {
             result.set_item("token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["identity_id", "token"], &[])?;
+        let mut builder = aws_sdk_cognitoidentity::operation::get_open_id_token_for_developer_identity::GetOpenIdTokenForDeveloperIdentityOutput::builder();
+        if let Some(value) = dict_value(values, "identity_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_422: String = value.extract()?;
+            builder = builder.set_identity_id(Some(fixture_422));
+        }
+        if let Some(value) = dict_value(values, "token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_423: String = value.extract()?;
+            builder = builder.set_token(Some(fixture_423));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -1923,6 +2622,52 @@ impl PyOperationGetPrincipalTagAttributeMapOutput {
             result.set_item("principal_tags", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "identity_pool_id",
+                "identity_provider_name",
+                "use_defaults",
+                "principal_tags",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cognitoidentity::operation::get_principal_tag_attribute_map::GetPrincipalTagAttributeMapOutput::builder();
+        if let Some(value) = dict_value(values, "identity_pool_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_438: String = value.extract()?;
+            builder = builder.set_identity_pool_id(Some(fixture_438));
+        }
+        if let Some(value) = dict_value(values, "identity_provider_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_439: String = value.extract()?;
+            builder = builder.set_identity_provider_name(Some(fixture_439));
+        }
+        if let Some(value) = dict_value(values, "use_defaults")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_440: bool = value.extract()?;
+            builder = builder.set_use_defaults(Some(fixture_440));
+        }
+        if let Some(value) = dict_value(values, "principal_tags")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_442 = value.cast::<PyDict>()?;
+            let mut fixture_441 = HashMap::with_capacity(mapping_442.len());
+            for (key_443, value_444) in mapping_442.iter() {
+                rboto_core::fixture_scalar(&key_443, "string")?;
+                let converted_key_445: String = key_443.extract()?;
+                rboto_core::fixture_scalar(&value_444, "string")?;
+                let converted_value_446: String = value_444.extract()?;
+                fixture_441.insert(converted_key_445, converted_value_446);
+            }
+            builder = builder.set_principal_tags(Some(fixture_441));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -2032,6 +2777,44 @@ impl PyOperationListIdentitiesOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["identity_pool_id", "identities", "next_token"],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_cognitoidentity::operation::list_identities::ListIdentitiesOutput::builder();
+        if let Some(value) = dict_value(values, "identity_pool_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_449: String = value.extract()?;
+            builder = builder.set_identity_pool_id(Some(fixture_449));
+        }
+        if let Some(value) = dict_value(values, "identities")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_450 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_451 in value.try_iter()? {
+                let item_452 = item_result_451?;
+                rboto_core::fixture_scalar(&item_452, "struct")?;
+                let converted_item_453 = identity_description_fixture_from_py(&item_452)?;
+                fixture_450.push(converted_item_453);
+            }
+            builder = builder.set_identities(Some(fixture_450));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_454: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_454));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -2123,6 +2906,35 @@ impl PyOperationListIdentityPoolsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["identity_pools", "next_token"], &[])?;
+        let mut builder = aws_sdk_cognitoidentity::operation::list_identity_pools::ListIdentityPoolsOutput::builder();
+        if let Some(value) = dict_value(values, "identity_pools")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_458 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_459 in value.try_iter()? {
+                let item_460 = item_result_459?;
+                rboto_core::fixture_scalar(&item_460, "struct")?;
+                let converted_item_461 =
+                    identity_pool_short_description_fixture_from_py(&item_460)?;
+                fixture_458.push(converted_item_461);
+            }
+            builder = builder.set_identity_pools(Some(fixture_458));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_462: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_462));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -2167,6 +2979,28 @@ impl PyOperationListTagsForResourceOutput {
             result.set_item("tags", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["tags"], &[])?;
+        let mut builder = aws_sdk_cognitoidentity::operation::list_tags_for_resource::ListTagsForResourceOutput::builder();
+        if let Some(value) = dict_value(values, "tags")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_469 = value.cast::<PyDict>()?;
+            let mut fixture_468 = HashMap::with_capacity(mapping_469.len());
+            for (key_470, value_471) in mapping_469.iter() {
+                rboto_core::fixture_scalar(&key_470, "string")?;
+                let converted_key_472: String = key_470.extract()?;
+                rboto_core::fixture_scalar(&value_471, "string")?;
+                let converted_value_473: String = value_471.extract()?;
+                fixture_468.insert(converted_key_472, converted_value_473);
+            }
+            builder = builder.set_tags(Some(fixture_468));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -2243,6 +3077,45 @@ impl PyOperationLookupDeveloperIdentityOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "identity_id",
+                "developer_user_identifier_list",
+                "next_token",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cognitoidentity::operation::lookup_developer_identity::LookupDeveloperIdentityOutput::builder();
+        if let Some(value) = dict_value(values, "identity_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_478: String = value.extract()?;
+            builder = builder.set_identity_id(Some(fixture_478));
+        }
+        if let Some(value) = dict_value(values, "developer_user_identifier_list")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_479 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_480 in value.try_iter()? {
+                let item_481 = item_result_480?;
+                rboto_core::fixture_scalar(&item_481, "string")?;
+                let converted_item_482: String = item_481.extract()?;
+                fixture_479.push(converted_item_482);
+            }
+            builder = builder.set_developer_user_identifier_list(Some(fixture_479));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_483: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_483));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -2275,6 +3148,20 @@ impl PyOperationMergeDeveloperIdentitiesOutput {
             result.set_item("identity_id", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["identity_id"], &[])?;
+        let mut builder = aws_sdk_cognitoidentity::operation::merge_developer_identities::MergeDeveloperIdentitiesOutput::builder();
+        if let Some(value) = dict_value(values, "identity_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_480: String = value.extract()?;
+            builder = builder.set_identity_id(Some(fixture_480));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -2369,6 +3256,52 @@ impl PyOperationSetPrincipalTagAttributeMapOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "identity_pool_id",
+                "identity_provider_name",
+                "use_defaults",
+                "principal_tags",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_cognitoidentity::operation::set_principal_tag_attribute_map::SetPrincipalTagAttributeMapOutput::builder();
+        if let Some(value) = dict_value(values, "identity_pool_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_496: String = value.extract()?;
+            builder = builder.set_identity_pool_id(Some(fixture_496));
+        }
+        if let Some(value) = dict_value(values, "identity_provider_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_497: String = value.extract()?;
+            builder = builder.set_identity_provider_name(Some(fixture_497));
+        }
+        if let Some(value) = dict_value(values, "use_defaults")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_498: bool = value.extract()?;
+            builder = builder.set_use_defaults(Some(fixture_498));
+        }
+        if let Some(value) = dict_value(values, "principal_tags")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_500 = value.cast::<PyDict>()?;
+            let mut fixture_499 = HashMap::with_capacity(mapping_500.len());
+            for (key_501, value_502) in mapping_500.iter() {
+                rboto_core::fixture_scalar(&key_501, "string")?;
+                let converted_key_503: String = key_501.extract()?;
+                rboto_core::fixture_scalar(&value_502, "string")?;
+                let converted_value_504: String = value_502.extract()?;
+                fixture_499.insert(converted_key_503, converted_value_504);
+            }
+            builder = builder.set_principal_tags(Some(fixture_499));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -2386,6 +3319,16 @@ impl PyOperationTagResourceOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_cognitoidentity::operation::tag_resource::TagResourceOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -2402,6 +3345,16 @@ impl PyOperationUntagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_cognitoidentity::operation::untag_resource::UntagResourceOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -2663,6 +3616,125 @@ impl PyOperationUpdateIdentityPoolOutput {
             result.set_item("identity_pool_tags", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "identity_pool_id",
+                "identity_pool_name",
+                "allow_unauthenticated_identities",
+                "allow_classic_flow",
+                "supported_login_providers",
+                "developer_provider_name",
+                "open_id_connect_provider_arns",
+                "cognito_identity_providers",
+                "saml_provider_arns",
+                "identity_pool_tags",
+            ],
+            &[
+                "identity_pool_id",
+                "identity_pool_name",
+                "allow_unauthenticated_identities",
+            ],
+        )?;
+        let mut builder = aws_sdk_cognitoidentity::operation::update_identity_pool::UpdateIdentityPoolOutput::builder();
+        if let Some(value) = values.get_item("identity_pool_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_545: String = value.extract()?;
+            builder = builder.set_identity_pool_id(Some(fixture_545));
+        }
+        if let Some(value) = values.get_item("identity_pool_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_546: String = value.extract()?;
+            builder = builder.set_identity_pool_name(Some(fixture_546));
+        }
+        if let Some(value) = values.get_item("allow_unauthenticated_identities")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_547: bool = value.extract()?;
+            builder = builder.set_allow_unauthenticated_identities(Some(fixture_547));
+        }
+        if let Some(value) = dict_value(values, "allow_classic_flow")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_548: bool = value.extract()?;
+            builder = builder.set_allow_classic_flow(Some(fixture_548));
+        }
+        if let Some(value) = dict_value(values, "supported_login_providers")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_550 = value.cast::<PyDict>()?;
+            let mut fixture_549 = HashMap::with_capacity(mapping_550.len());
+            for (key_551, value_552) in mapping_550.iter() {
+                rboto_core::fixture_scalar(&key_551, "string")?;
+                let converted_key_553: String = key_551.extract()?;
+                rboto_core::fixture_scalar(&value_552, "string")?;
+                let converted_value_554: String = value_552.extract()?;
+                fixture_549.insert(converted_key_553, converted_value_554);
+            }
+            builder = builder.set_supported_login_providers(Some(fixture_549));
+        }
+        if let Some(value) = dict_value(values, "developer_provider_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_555: String = value.extract()?;
+            builder = builder.set_developer_provider_name(Some(fixture_555));
+        }
+        if let Some(value) = dict_value(values, "open_id_connect_provider_arns")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_556 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_557 in value.try_iter()? {
+                let item_558 = item_result_557?;
+                rboto_core::fixture_scalar(&item_558, "string")?;
+                let converted_item_559: String = item_558.extract()?;
+                fixture_556.push(converted_item_559);
+            }
+            builder = builder.set_open_id_connect_provider_arns(Some(fixture_556));
+        }
+        if let Some(value) = dict_value(values, "cognito_identity_providers")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_560 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_561 in value.try_iter()? {
+                let item_562 = item_result_561?;
+                rboto_core::fixture_scalar(&item_562, "struct")?;
+                let converted_item_563 = cognito_identity_provider_fixture_from_py(&item_562)?;
+                fixture_560.push(converted_item_563);
+            }
+            builder = builder.set_cognito_identity_providers(Some(fixture_560));
+        }
+        if let Some(value) = dict_value(values, "saml_provider_arns")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_564 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_565 in value.try_iter()? {
+                let item_566 = item_result_565?;
+                rboto_core::fixture_scalar(&item_566, "string")?;
+                let converted_item_567: String = item_566.extract()?;
+                fixture_564.push(converted_item_567);
+            }
+            builder = builder.set_saml_provider_arns(Some(fixture_564));
+        }
+        if let Some(value) = dict_value(values, "identity_pool_tags")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_569 = value.cast::<PyDict>()?;
+            let mut fixture_568 = HashMap::with_capacity(mapping_569.len());
+            for (key_570, value_571) in mapping_569.iter() {
+                rboto_core::fixture_scalar(&key_570, "string")?;
+                let converted_key_572: String = key_570.extract()?;
+                rboto_core::fixture_scalar(&value_571, "string")?;
+                let converted_value_573: String = value_571.extract()?;
+                fixture_568.insert(converted_key_572, converted_value_573);
+            }
+            builder = builder.set_identity_pool_tags(Some(fixture_568));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 

@@ -107,6 +107,8 @@ class UnprocessedIdentityId:
 @final
 class CreateIdentityPoolOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/CreateIdentityPoolOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateIdentityPoolOutput: ...
     @property
     def identity_pool_id(self) -> str: ...
     @property
@@ -132,6 +134,8 @@ class CreateIdentityPoolOutput:
 @final
 class DeleteIdentitiesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/DeleteIdentitiesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteIdentitiesOutput: ...
     @property
     def unprocessed_identity_ids(self) -> list[UnprocessedIdentityId] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -139,6 +143,8 @@ class DeleteIdentitiesOutput:
 @final
 class DescribeIdentityOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/DescribeIdentityOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeIdentityOutput: ...
     @property
     def identity_id(self) -> str | None: ...
     @property
@@ -152,6 +158,8 @@ class DescribeIdentityOutput:
 @final
 class DescribeIdentityPoolOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/DescribeIdentityPoolOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeIdentityPoolOutput: ...
     @property
     def identity_pool_id(self) -> str: ...
     @property
@@ -177,6 +185,8 @@ class DescribeIdentityPoolOutput:
 @final
 class GetCredentialsForIdentityOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/GetCredentialsForIdentityOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetCredentialsForIdentityOutput: ...
     @property
     def identity_id(self) -> str | None: ...
     @property
@@ -186,6 +196,8 @@ class GetCredentialsForIdentityOutput:
 @final
 class GetIdOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/GetIdOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetIdOutput: ...
     @property
     def identity_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -193,6 +205,8 @@ class GetIdOutput:
 @final
 class GetIdentityPoolRolesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/GetIdentityPoolRolesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetIdentityPoolRolesOutput: ...
     @property
     def identity_pool_id(self) -> str | None: ...
     @property
@@ -204,6 +218,8 @@ class GetIdentityPoolRolesOutput:
 @final
 class GetOpenIdTokenOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/GetOpenIdTokenOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetOpenIdTokenOutput: ...
     @property
     def identity_id(self) -> str | None: ...
     @property
@@ -213,6 +229,8 @@ class GetOpenIdTokenOutput:
 @final
 class GetOpenIdTokenForDeveloperIdentityOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/GetOpenIdTokenForDeveloperIdentityOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetOpenIdTokenForDeveloperIdentityOutput: ...
     @property
     def identity_id(self) -> str | None: ...
     @property
@@ -222,6 +240,8 @@ class GetOpenIdTokenForDeveloperIdentityOutput:
 @final
 class GetPrincipalTagAttributeMapOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/GetPrincipalTagAttributeMapOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetPrincipalTagAttributeMapOutput: ...
     @property
     def identity_pool_id(self) -> str | None: ...
     @property
@@ -235,6 +255,8 @@ class GetPrincipalTagAttributeMapOutput:
 @final
 class ListIdentitiesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/ListIdentitiesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListIdentitiesOutput: ...
     @property
     def identity_pool_id(self) -> str | None: ...
     @property
@@ -246,6 +268,8 @@ class ListIdentitiesOutput:
 @final
 class ListIdentityPoolsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/ListIdentityPoolsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListIdentityPoolsOutput: ...
     @property
     def identity_pools(self) -> list[IdentityPoolShortDescription] | None: ...
     @property
@@ -255,6 +279,8 @@ class ListIdentityPoolsOutput:
 @final
 class ListTagsForResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/ListTagsForResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTagsForResourceOutput: ...
     @property
     def tags(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -262,6 +288,8 @@ class ListTagsForResourceOutput:
 @final
 class LookupDeveloperIdentityOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/LookupDeveloperIdentityOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> LookupDeveloperIdentityOutput: ...
     @property
     def identity_id(self) -> str | None: ...
     @property
@@ -273,6 +301,8 @@ class LookupDeveloperIdentityOutput:
 @final
 class MergeDeveloperIdentitiesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/MergeDeveloperIdentitiesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> MergeDeveloperIdentitiesOutput: ...
     @property
     def identity_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -280,6 +310,8 @@ class MergeDeveloperIdentitiesOutput:
 @final
 class SetPrincipalTagAttributeMapOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/SetPrincipalTagAttributeMapOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> SetPrincipalTagAttributeMapOutput: ...
     @property
     def identity_pool_id(self) -> str | None: ...
     @property
@@ -293,16 +325,22 @@ class SetPrincipalTagAttributeMapOutput:
 @final
 class TagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/TagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> TagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UntagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/UntagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UntagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateIdentityPoolOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/UpdateIdentityPoolOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateIdentityPoolOutput: ...
     @property
     def identity_pool_id(self) -> str: ...
     @property

@@ -28,6 +28,34 @@ class SecretsManagerClient:
 
     logger_name = "rboto.secrets-manager"
 
+    @staticmethod
+    def _stub_operations() -> dict[str, str]:
+        return {
+            "batch_get_secret_value": "BatchGetSecretValue",
+            "cancel_rotate_secret": "CancelRotateSecret",
+            "create_secret": "CreateSecret",
+            "delete_resource_policy": "DeleteResourcePolicy",
+            "delete_secret": "DeleteSecret",
+            "describe_secret": "DescribeSecret",
+            "get_random_password": "GetRandomPassword",
+            "get_resource_policy": "GetResourcePolicy",
+            "get_secret_value": "GetSecretValue",
+            "list_secret_version_ids": "ListSecretVersionIds",
+            "list_secrets": "ListSecrets",
+            "put_resource_policy": "PutResourcePolicy",
+            "put_secret_value": "PutSecretValue",
+            "remove_regions_from_replication": "RemoveRegionsFromReplication",
+            "replicate_secret_to_regions": "ReplicateSecretToRegions",
+            "restore_secret": "RestoreSecret",
+            "rotate_secret": "RotateSecret",
+            "stop_replication_to_replica": "StopReplicationToReplica",
+            "tag_resource": "TagResource",
+            "untag_resource": "UntagResource",
+            "update_secret": "UpdateSecret",
+            "update_secret_version_stage": "UpdateSecretVersionStage",
+            "validate_resource_policy": "ValidateResourcePolicy",
+        }
+
     def __init__(
         self,
         *,

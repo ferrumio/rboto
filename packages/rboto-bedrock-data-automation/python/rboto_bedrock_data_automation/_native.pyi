@@ -620,11 +620,15 @@ class VideoStandardOutputConfiguration:
 @final
 class CopyBlueprintStageOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/CopyBlueprintStageOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CopyBlueprintStageOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateBlueprintOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/CreateBlueprintOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateBlueprintOutput: ...
     @property
     def blueprint(self) -> Blueprint | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -632,6 +636,8 @@ class CreateBlueprintOutput:
 @final
 class CreateBlueprintVersionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/CreateBlueprintVersionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateBlueprintVersionOutput: ...
     @property
     def blueprint(self) -> Blueprint | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -639,6 +645,8 @@ class CreateBlueprintVersionOutput:
 @final
 class CreateDataAutomationLibraryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/CreateDataAutomationLibraryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateDataAutomationLibraryOutput: ...
     @property
     def library_arn(self) -> str | None: ...
     @property
@@ -648,6 +656,8 @@ class CreateDataAutomationLibraryOutput:
 @final
 class CreateDataAutomationProjectOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/CreateDataAutomationProjectOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateDataAutomationProjectOutput: ...
     @property
     def project_arn(self) -> str: ...
     @property
@@ -659,11 +669,15 @@ class CreateDataAutomationProjectOutput:
 @final
 class DeleteBlueprintOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DeleteBlueprintOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteBlueprintOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteDataAutomationLibraryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DeleteDataAutomationLibraryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteDataAutomationLibraryOutput: ...
     @property
     def library_arn(self) -> str | None: ...
     @property
@@ -673,6 +687,8 @@ class DeleteDataAutomationLibraryOutput:
 @final
 class DeleteDataAutomationProjectOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DeleteDataAutomationProjectOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteDataAutomationProjectOutput: ...
     @property
     def project_arn(self) -> str: ...
     @property
@@ -682,6 +698,8 @@ class DeleteDataAutomationProjectOutput:
 @final
 class GetBlueprintOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/GetBlueprintOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetBlueprintOutput: ...
     @property
     def blueprint(self) -> Blueprint | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -689,6 +707,8 @@ class GetBlueprintOutput:
 @final
 class GetBlueprintOptimizationStatusOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/GetBlueprintOptimizationStatusOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetBlueprintOptimizationStatusOutput: ...
     @property
     def status(self) -> _types.BlueprintOptimizationJobStatusOutput | None: ...
     @property
@@ -702,6 +722,8 @@ class GetBlueprintOptimizationStatusOutput:
 @final
 class GetDataAutomationLibraryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/GetDataAutomationLibraryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDataAutomationLibraryOutput: ...
     @property
     def library(self) -> DataAutomationLibrary | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -709,6 +731,8 @@ class GetDataAutomationLibraryOutput:
 @final
 class GetDataAutomationLibraryEntityOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/GetDataAutomationLibraryEntityOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDataAutomationLibraryEntityOutput: ...
     @property
     def entity(self) -> _types.EntityDetails | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -716,6 +740,8 @@ class GetDataAutomationLibraryEntityOutput:
 @final
 class GetDataAutomationLibraryIngestionJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/GetDataAutomationLibraryIngestionJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDataAutomationLibraryIngestionJobOutput: ...
     @property
     def job(self) -> DataAutomationLibraryIngestionJob | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -723,6 +749,8 @@ class GetDataAutomationLibraryIngestionJobOutput:
 @final
 class GetDataAutomationProjectOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/GetDataAutomationProjectOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDataAutomationProjectOutput: ...
     @property
     def project(self) -> DataAutomationProject | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -730,6 +758,8 @@ class GetDataAutomationProjectOutput:
 @final
 class InvokeBlueprintOptimizationAsyncOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/InvokeBlueprintOptimizationAsyncOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> InvokeBlueprintOptimizationAsyncOutput: ...
     @property
     def invocation_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -737,6 +767,8 @@ class InvokeBlueprintOptimizationAsyncOutput:
 @final
 class InvokeDataAutomationLibraryIngestionJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/InvokeDataAutomationLibraryIngestionJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> InvokeDataAutomationLibraryIngestionJobOutput: ...
     @property
     def job_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -744,6 +776,8 @@ class InvokeDataAutomationLibraryIngestionJobOutput:
 @final
 class ListBlueprintsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ListBlueprintsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListBlueprintsOutput: ...
     @property
     def blueprints(self) -> list[BlueprintSummary]: ...
     @property
@@ -753,6 +787,8 @@ class ListBlueprintsOutput:
 @final
 class ListDataAutomationLibrariesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ListDataAutomationLibrariesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListDataAutomationLibrariesOutput: ...
     @property
     def libraries(self) -> list[DataAutomationLibrarySummary] | None: ...
     @property
@@ -762,6 +798,8 @@ class ListDataAutomationLibrariesOutput:
 @final
 class ListDataAutomationLibraryEntitiesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ListDataAutomationLibraryEntitiesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListDataAutomationLibraryEntitiesOutput: ...
     @property
     def entities(self) -> list[_types.DataAutomationLibraryEntitySummary] | None: ...
     @property
@@ -771,6 +809,8 @@ class ListDataAutomationLibraryEntitiesOutput:
 @final
 class ListDataAutomationLibraryIngestionJobsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ListDataAutomationLibraryIngestionJobsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListDataAutomationLibraryIngestionJobsOutput: ...
     @property
     def jobs(self) -> list[DataAutomationLibraryIngestionJobSummary] | None: ...
     @property
@@ -780,6 +820,8 @@ class ListDataAutomationLibraryIngestionJobsOutput:
 @final
 class ListDataAutomationProjectsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ListDataAutomationProjectsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListDataAutomationProjectsOutput: ...
     @property
     def projects(self) -> list[DataAutomationProjectSummary]: ...
     @property
@@ -789,6 +831,8 @@ class ListDataAutomationProjectsOutput:
 @final
 class ListTagsForResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ListTagsForResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTagsForResourceOutput: ...
     @property
     def tags(self) -> list[Tag] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -796,16 +840,22 @@ class ListTagsForResourceOutput:
 @final
 class TagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/TagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> TagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UntagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/UntagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UntagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateBlueprintOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/UpdateBlueprintOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateBlueprintOutput: ...
     @property
     def blueprint(self) -> Blueprint | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -813,6 +863,8 @@ class UpdateBlueprintOutput:
 @final
 class UpdateDataAutomationLibraryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/UpdateDataAutomationLibraryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateDataAutomationLibraryOutput: ...
     @property
     def library_arn(self) -> str | None: ...
     @property
@@ -822,6 +874,8 @@ class UpdateDataAutomationLibraryOutput:
 @final
 class UpdateDataAutomationProjectOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/UpdateDataAutomationProjectOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateDataAutomationProjectOutput: ...
     @property
     def project_arn(self) -> str: ...
     @property

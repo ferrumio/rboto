@@ -1001,6 +1001,683 @@ fn target_summary_to_py(
     Ok(result.into_any().unbind())
 }
 
+fn aws_vpc_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_scheduler::types::AwsVpcConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["subnets", "security_groups", "assign_public_ip"],
+        &["subnets"],
+    )?;
+    let mut builder = aws_sdk_scheduler::types::AwsVpcConfiguration::builder();
+    if let Some(value) = values.get_item("subnets")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_451 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_452 in value.try_iter()? {
+            let item_453 = item_result_452?;
+            rboto_core::fixture_scalar(&item_453, "string")?;
+            let converted_item_454: String = item_453.extract()?;
+            fixture_451.push(converted_item_454);
+        }
+        builder = builder.set_subnets(Some(fixture_451));
+    }
+    if let Some(value) = dict_value(values, "security_groups")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_455 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_456 in value.try_iter()? {
+            let item_457 = item_result_456?;
+            rboto_core::fixture_scalar(&item_457, "string")?;
+            let converted_item_458: String = item_457.extract()?;
+            fixture_455.push(converted_item_458);
+        }
+        builder = builder.set_security_groups(Some(fixture_455));
+    }
+    if let Some(value) = dict_value(values, "assign_public_ip")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_460: String = value.extract()?;
+        let fixture_459 = aws_sdk_scheduler::types::AssignPublicIp::from(enum_value_460.as_str());
+        builder = builder.set_assign_public_ip(Some(fixture_459));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn capacity_provider_strategy_item_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_scheduler::types::CapacityProviderStrategyItem> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["capacity_provider", "weight", "base"],
+        &["capacity_provider", "weight", "base"],
+    )?;
+    let mut builder = aws_sdk_scheduler::types::CapacityProviderStrategyItem::builder();
+    if let Some(value) = values.get_item("capacity_provider")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_461: String = value.extract()?;
+        builder = builder.set_capacity_provider(Some(fixture_461));
+    }
+    if let Some(value) = values.get_item("weight")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_462: i32 = value.extract()?;
+        builder = builder.set_weight(Some(fixture_462));
+    }
+    if let Some(value) = values.get_item("base")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_463: i32 = value.extract()?;
+        builder = builder.set_base(Some(fixture_463));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn dead_letter_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_scheduler::types::DeadLetterConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["arn"], &[])?;
+    let mut builder = aws_sdk_scheduler::types::DeadLetterConfig::builder();
+    if let Some(value) = dict_value(values, "arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_464: String = value.extract()?;
+        builder = builder.set_arn(Some(fixture_464));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn ecs_parameters_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_scheduler::types::EcsParameters> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "task_definition_arn",
+            "task_count",
+            "launch_type",
+            "network_configuration",
+            "platform_version",
+            "group",
+            "capacity_provider_strategy",
+            "enable_ecs_managed_tags",
+            "enable_execute_command",
+            "placement_constraints",
+            "placement_strategy",
+            "propagate_tags",
+            "reference_id",
+            "tags",
+        ],
+        &["task_definition_arn"],
+    )?;
+    let mut builder = aws_sdk_scheduler::types::EcsParameters::builder();
+    if let Some(value) = values.get_item("task_definition_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_465: String = value.extract()?;
+        builder = builder.set_task_definition_arn(Some(fixture_465));
+    }
+    if let Some(value) = dict_value(values, "task_count")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_466: i32 = value.extract()?;
+        builder = builder.set_task_count(Some(fixture_466));
+    }
+    if let Some(value) = dict_value(values, "launch_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_468: String = value.extract()?;
+        let fixture_467 = aws_sdk_scheduler::types::LaunchType::from(enum_value_468.as_str());
+        builder = builder.set_launch_type(Some(fixture_467));
+    }
+    if let Some(value) = dict_value(values, "network_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_469 = network_configuration_fixture_from_py(&value)?;
+        builder = builder.set_network_configuration(Some(fixture_469));
+    }
+    if let Some(value) = dict_value(values, "platform_version")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_470: String = value.extract()?;
+        builder = builder.set_platform_version(Some(fixture_470));
+    }
+    if let Some(value) = dict_value(values, "group")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_471: String = value.extract()?;
+        builder = builder.set_group(Some(fixture_471));
+    }
+    if let Some(value) = dict_value(values, "capacity_provider_strategy")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_472 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_473 in value.try_iter()? {
+            let item_474 = item_result_473?;
+            rboto_core::fixture_scalar(&item_474, "struct")?;
+            let converted_item_475 = capacity_provider_strategy_item_fixture_from_py(&item_474)?;
+            fixture_472.push(converted_item_475);
+        }
+        builder = builder.set_capacity_provider_strategy(Some(fixture_472));
+    }
+    if let Some(value) = dict_value(values, "enable_ecs_managed_tags")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_476: bool = value.extract()?;
+        builder = builder.set_enable_ecs_managed_tags(Some(fixture_476));
+    }
+    if let Some(value) = dict_value(values, "enable_execute_command")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_477: bool = value.extract()?;
+        builder = builder.set_enable_execute_command(Some(fixture_477));
+    }
+    if let Some(value) = dict_value(values, "placement_constraints")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_478 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_479 in value.try_iter()? {
+            let item_480 = item_result_479?;
+            rboto_core::fixture_scalar(&item_480, "struct")?;
+            let converted_item_481 = placement_constraint_fixture_from_py(&item_480)?;
+            fixture_478.push(converted_item_481);
+        }
+        builder = builder.set_placement_constraints(Some(fixture_478));
+    }
+    if let Some(value) = dict_value(values, "placement_strategy")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_482 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_483 in value.try_iter()? {
+            let item_484 = item_result_483?;
+            rboto_core::fixture_scalar(&item_484, "struct")?;
+            let converted_item_485 = placement_strategy_fixture_from_py(&item_484)?;
+            fixture_482.push(converted_item_485);
+        }
+        builder = builder.set_placement_strategy(Some(fixture_482));
+    }
+    if let Some(value) = dict_value(values, "propagate_tags")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_487: String = value.extract()?;
+        let fixture_486 = aws_sdk_scheduler::types::PropagateTags::from(enum_value_487.as_str());
+        builder = builder.set_propagate_tags(Some(fixture_486));
+    }
+    if let Some(value) = dict_value(values, "reference_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_488: String = value.extract()?;
+        builder = builder.set_reference_id(Some(fixture_488));
+    }
+    if let Some(value) = dict_value(values, "tags")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_489 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_490 in value.try_iter()? {
+            let item_491 = item_result_490?;
+            rboto_core::fixture_scalar(&item_491, "map")?;
+            let mapping_493 = item_491.cast::<PyDict>()?;
+            let mut converted_item_492 = HashMap::with_capacity(mapping_493.len());
+            for (key_494, value_495) in mapping_493.iter() {
+                rboto_core::fixture_scalar(&key_494, "string")?;
+                let converted_key_496: String = key_494.extract()?;
+                rboto_core::fixture_scalar(&value_495, "string")?;
+                let converted_value_497: String = value_495.extract()?;
+                converted_item_492.insert(converted_key_496, converted_value_497);
+            }
+            fixture_489.push(converted_item_492);
+        }
+        builder = builder.set_tags(Some(fixture_489));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn event_bridge_parameters_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_scheduler::types::EventBridgeParameters> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["detail_type", "source"],
+        &["detail_type", "source"],
+    )?;
+    let mut builder = aws_sdk_scheduler::types::EventBridgeParameters::builder();
+    if let Some(value) = values.get_item("detail_type")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_498: String = value.extract()?;
+        builder = builder.set_detail_type(Some(fixture_498));
+    }
+    if let Some(value) = values.get_item("source")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_499: String = value.extract()?;
+        builder = builder.set_source(Some(fixture_499));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn flexible_time_window_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_scheduler::types::FlexibleTimeWindow> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["mode", "maximum_window_in_minutes"], &["mode"])?;
+    let mut builder = aws_sdk_scheduler::types::FlexibleTimeWindow::builder();
+    if let Some(value) = values.get_item("mode")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_501: String = value.extract()?;
+        let fixture_500 =
+            aws_sdk_scheduler::types::FlexibleTimeWindowMode::from(enum_value_501.as_str());
+        builder = builder.set_mode(Some(fixture_500));
+    }
+    if let Some(value) = dict_value(values, "maximum_window_in_minutes")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_502: i32 = value.extract()?;
+        builder = builder.set_maximum_window_in_minutes(Some(fixture_502));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn kinesis_parameters_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_scheduler::types::KinesisParameters> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["partition_key"], &["partition_key"])?;
+    let mut builder = aws_sdk_scheduler::types::KinesisParameters::builder();
+    if let Some(value) = values.get_item("partition_key")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_503: String = value.extract()?;
+        builder = builder.set_partition_key(Some(fixture_503));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn network_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_scheduler::types::NetworkConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["awsvpc_configuration"], &[])?;
+    let mut builder = aws_sdk_scheduler::types::NetworkConfiguration::builder();
+    if let Some(value) = dict_value(values, "awsvpc_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_504 = aws_vpc_configuration_fixture_from_py(&value)?;
+        builder = builder.set_awsvpc_configuration(Some(fixture_504));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn placement_constraint_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_scheduler::types::PlacementConstraint> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["type", "expression"], &[])?;
+    let mut builder = aws_sdk_scheduler::types::PlacementConstraint::builder();
+    if let Some(value) = dict_value(values, "type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_506: String = value.extract()?;
+        let fixture_505 =
+            aws_sdk_scheduler::types::PlacementConstraintType::from(enum_value_506.as_str());
+        builder = builder.set_type(Some(fixture_505));
+    }
+    if let Some(value) = dict_value(values, "expression")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_507: String = value.extract()?;
+        builder = builder.set_expression(Some(fixture_507));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn placement_strategy_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_scheduler::types::PlacementStrategy> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["type", "field"], &[])?;
+    let mut builder = aws_sdk_scheduler::types::PlacementStrategy::builder();
+    if let Some(value) = dict_value(values, "type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_509: String = value.extract()?;
+        let fixture_508 =
+            aws_sdk_scheduler::types::PlacementStrategyType::from(enum_value_509.as_str());
+        builder = builder.set_type(Some(fixture_508));
+    }
+    if let Some(value) = dict_value(values, "field")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_510: String = value.extract()?;
+        builder = builder.set_field(Some(fixture_510));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn retry_policy_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_scheduler::types::RetryPolicy> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["maximum_event_age_in_seconds", "maximum_retry_attempts"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_scheduler::types::RetryPolicy::builder();
+    if let Some(value) = dict_value(values, "maximum_event_age_in_seconds")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_511: i32 = value.extract()?;
+        builder = builder.set_maximum_event_age_in_seconds(Some(fixture_511));
+    }
+    if let Some(value) = dict_value(values, "maximum_retry_attempts")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_512: i32 = value.extract()?;
+        builder = builder.set_maximum_retry_attempts(Some(fixture_512));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn sage_maker_pipeline_parameter_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_scheduler::types::SageMakerPipelineParameter> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["name", "value"], &["name", "value"])?;
+    let mut builder = aws_sdk_scheduler::types::SageMakerPipelineParameter::builder();
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_513: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_513));
+    }
+    if let Some(value) = values.get_item("value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_514: String = value.extract()?;
+        builder = builder.set_value(Some(fixture_514));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn sage_maker_pipeline_parameters_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_scheduler::types::SageMakerPipelineParameters> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["pipeline_parameter_list"], &[])?;
+    let mut builder = aws_sdk_scheduler::types::SageMakerPipelineParameters::builder();
+    if let Some(value) = dict_value(values, "pipeline_parameter_list")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_515 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_516 in value.try_iter()? {
+            let item_517 = item_result_516?;
+            rboto_core::fixture_scalar(&item_517, "struct")?;
+            let converted_item_518 = sage_maker_pipeline_parameter_fixture_from_py(&item_517)?;
+            fixture_515.push(converted_item_518);
+        }
+        builder = builder.set_pipeline_parameter_list(Some(fixture_515));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn schedule_group_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_scheduler::types::ScheduleGroupSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "arn",
+            "name",
+            "state",
+            "creation_date",
+            "last_modification_date",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_scheduler::types::ScheduleGroupSummary::builder();
+    if let Some(value) = dict_value(values, "arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_519: String = value.extract()?;
+        builder = builder.set_arn(Some(fixture_519));
+    }
+    if let Some(value) = dict_value(values, "name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_520: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_520));
+    }
+    if let Some(value) = dict_value(values, "state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_522: String = value.extract()?;
+        let fixture_521 =
+            aws_sdk_scheduler::types::ScheduleGroupState::from(enum_value_522.as_str());
+        builder = builder.set_state(Some(fixture_521));
+    }
+    if let Some(value) = dict_value(values, "creation_date")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_524: String = value.extract()?;
+        let fixture_523 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_524,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_date(Some(fixture_523));
+    }
+    if let Some(value) = dict_value(values, "last_modification_date")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_526: String = value.extract()?;
+        let fixture_525 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_526,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_modification_date(Some(fixture_525));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn schedule_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_scheduler::types::ScheduleSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "arn",
+            "name",
+            "group_name",
+            "state",
+            "creation_date",
+            "last_modification_date",
+            "target",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_scheduler::types::ScheduleSummary::builder();
+    if let Some(value) = dict_value(values, "arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_527: String = value.extract()?;
+        builder = builder.set_arn(Some(fixture_527));
+    }
+    if let Some(value) = dict_value(values, "name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_528: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_528));
+    }
+    if let Some(value) = dict_value(values, "group_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_529: String = value.extract()?;
+        builder = builder.set_group_name(Some(fixture_529));
+    }
+    if let Some(value) = dict_value(values, "state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_531: String = value.extract()?;
+        let fixture_530 = aws_sdk_scheduler::types::ScheduleState::from(enum_value_531.as_str());
+        builder = builder.set_state(Some(fixture_530));
+    }
+    if let Some(value) = dict_value(values, "creation_date")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_533: String = value.extract()?;
+        let fixture_532 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_533,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_date(Some(fixture_532));
+    }
+    if let Some(value) = dict_value(values, "last_modification_date")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_535: String = value.extract()?;
+        let fixture_534 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_535,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_modification_date(Some(fixture_534));
+    }
+    if let Some(value) = dict_value(values, "target")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_536 = target_summary_fixture_from_py(&value)?;
+        builder = builder.set_target(Some(fixture_536));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn sqs_parameters_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_scheduler::types::SqsParameters> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["message_group_id"], &[])?;
+    let mut builder = aws_sdk_scheduler::types::SqsParameters::builder();
+    if let Some(value) = dict_value(values, "message_group_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_537: String = value.extract()?;
+        builder = builder.set_message_group_id(Some(fixture_537));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn tag_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_scheduler::types::Tag> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["key", "value"], &["key", "value"])?;
+    let mut builder = aws_sdk_scheduler::types::Tag::builder();
+    if let Some(value) = values.get_item("key")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_538: String = value.extract()?;
+        builder = builder.set_key(Some(fixture_538));
+    }
+    if let Some(value) = values.get_item("value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_539: String = value.extract()?;
+        builder = builder.set_value(Some(fixture_539));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn target_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_scheduler::types::Target> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "arn",
+            "role_arn",
+            "dead_letter_config",
+            "retry_policy",
+            "input",
+            "ecs_parameters",
+            "event_bridge_parameters",
+            "kinesis_parameters",
+            "sage_maker_pipeline_parameters",
+            "sqs_parameters",
+        ],
+        &["arn", "role_arn"],
+    )?;
+    let mut builder = aws_sdk_scheduler::types::Target::builder();
+    if let Some(value) = values.get_item("arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_540: String = value.extract()?;
+        builder = builder.set_arn(Some(fixture_540));
+    }
+    if let Some(value) = values.get_item("role_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_541: String = value.extract()?;
+        builder = builder.set_role_arn(Some(fixture_541));
+    }
+    if let Some(value) = dict_value(values, "dead_letter_config")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_542 = dead_letter_config_fixture_from_py(&value)?;
+        builder = builder.set_dead_letter_config(Some(fixture_542));
+    }
+    if let Some(value) = dict_value(values, "retry_policy")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_543 = retry_policy_fixture_from_py(&value)?;
+        builder = builder.set_retry_policy(Some(fixture_543));
+    }
+    if let Some(value) = dict_value(values, "input")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_544: String = value.extract()?;
+        builder = builder.set_input(Some(fixture_544));
+    }
+    if let Some(value) = dict_value(values, "ecs_parameters")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_545 = ecs_parameters_fixture_from_py(&value)?;
+        builder = builder.set_ecs_parameters(Some(fixture_545));
+    }
+    if let Some(value) = dict_value(values, "event_bridge_parameters")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_546 = event_bridge_parameters_fixture_from_py(&value)?;
+        builder = builder.set_event_bridge_parameters(Some(fixture_546));
+    }
+    if let Some(value) = dict_value(values, "kinesis_parameters")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_547 = kinesis_parameters_fixture_from_py(&value)?;
+        builder = builder.set_kinesis_parameters(Some(fixture_547));
+    }
+    if let Some(value) = dict_value(values, "sage_maker_pipeline_parameters")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_548 = sage_maker_pipeline_parameters_fixture_from_py(&value)?;
+        builder = builder.set_sage_maker_pipeline_parameters(Some(fixture_548));
+    }
+    if let Some(value) = dict_value(values, "sqs_parameters")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_549 = sqs_parameters_fixture_from_py(&value)?;
+        builder = builder.set_sqs_parameters(Some(fixture_549));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn target_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_scheduler::types::TargetSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["arn"], &["arn"])?;
+    let mut builder = aws_sdk_scheduler::types::TargetSummary::builder();
+    if let Some(value) = values.get_item("arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_550: String = value.extract()?;
+        builder = builder.set_arn(Some(fixture_550));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
 #[pyclass(
     name = "AwsVpcConfiguration",
     module = "rboto_scheduler._native",
@@ -2379,6 +3056,23 @@ impl PyOperationCreateScheduleOutput {
         result.set_item("schedule_arn", converted_381)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["schedule_arn"], &["schedule_arn"])?;
+        let mut builder =
+            aws_sdk_scheduler::operation::create_schedule::CreateScheduleOutput::builder();
+        if let Some(value) = values.get_item("schedule_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_382: String = value.extract()?;
+            builder = builder.set_schedule_arn(Some(fixture_382));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -2404,6 +3098,24 @@ impl PyOperationCreateScheduleGroupOutput {
         result.set_item("schedule_group_arn", converted_383)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["schedule_group_arn"], &["schedule_group_arn"])?;
+        let mut builder =
+            aws_sdk_scheduler::operation::create_schedule_group::CreateScheduleGroupOutput::builder(
+            );
+        if let Some(value) = values.get_item("schedule_group_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_384: String = value.extract()?;
+            builder = builder.set_schedule_group_arn(Some(fixture_384));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -2421,6 +3133,16 @@ impl PyOperationDeleteScheduleOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_scheduler::operation::delete_schedule::DeleteScheduleOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -2437,6 +3159,17 @@ impl PyOperationDeleteScheduleGroupOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_scheduler::operation::delete_schedule_group::DeleteScheduleGroupOutput::builder(
+            );
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -2747,6 +3480,136 @@ impl PyOperationGetScheduleOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "arn",
+                "group_name",
+                "name",
+                "schedule_expression",
+                "start_date",
+                "end_date",
+                "description",
+                "schedule_expression_timezone",
+                "state",
+                "creation_date",
+                "last_modification_date",
+                "kms_key_arn",
+                "target",
+                "flexible_time_window",
+                "action_after_completion",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_scheduler::operation::get_schedule::GetScheduleOutput::builder();
+        if let Some(value) = dict_value(values, "arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_414: String = value.extract()?;
+            builder = builder.set_arn(Some(fixture_414));
+        }
+        if let Some(value) = dict_value(values, "group_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_415: String = value.extract()?;
+            builder = builder.set_group_name(Some(fixture_415));
+        }
+        if let Some(value) = dict_value(values, "name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_416: String = value.extract()?;
+            builder = builder.set_name(Some(fixture_416));
+        }
+        if let Some(value) = dict_value(values, "schedule_expression")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_417: String = value.extract()?;
+            builder = builder.set_schedule_expression(Some(fixture_417));
+        }
+        if let Some(value) = dict_value(values, "start_date")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_419: String = value.extract()?;
+            let fixture_418 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_419,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_start_date(Some(fixture_418));
+        }
+        if let Some(value) = dict_value(values, "end_date")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_421: String = value.extract()?;
+            let fixture_420 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_421,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_end_date(Some(fixture_420));
+        }
+        if let Some(value) = dict_value(values, "description")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_422: String = value.extract()?;
+            builder = builder.set_description(Some(fixture_422));
+        }
+        if let Some(value) = dict_value(values, "schedule_expression_timezone")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_423: String = value.extract()?;
+            builder = builder.set_schedule_expression_timezone(Some(fixture_423));
+        }
+        if let Some(value) = dict_value(values, "state")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_425: String = value.extract()?;
+            let fixture_424 =
+                aws_sdk_scheduler::types::ScheduleState::from(enum_value_425.as_str());
+            builder = builder.set_state(Some(fixture_424));
+        }
+        if let Some(value) = dict_value(values, "creation_date")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_427: String = value.extract()?;
+            let fixture_426 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_427,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_creation_date(Some(fixture_426));
+        }
+        if let Some(value) = dict_value(values, "last_modification_date")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_429: String = value.extract()?;
+            let fixture_428 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_429,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_last_modification_date(Some(fixture_428));
+        }
+        if let Some(value) = dict_value(values, "kms_key_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_430: String = value.extract()?;
+            builder = builder.set_kms_key_arn(Some(fixture_430));
+        }
+        if let Some(value) = dict_value(values, "target")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_431 = target_fixture_from_py(&value)?;
+            builder = builder.set_target(Some(fixture_431));
+        }
+        if let Some(value) = dict_value(values, "flexible_time_window")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_432 = flexible_time_window_fixture_from_py(&value)?;
+            builder = builder.set_flexible_time_window(Some(fixture_432));
+        }
+        if let Some(value) = dict_value(values, "action_after_completion")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_434: String = value.extract()?;
+            let fixture_433 =
+                aws_sdk_scheduler::types::ActionAfterCompletion::from(enum_value_434.as_str());
+            builder = builder.set_action_after_completion(Some(fixture_433));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -2844,6 +3707,63 @@ impl PyOperationGetScheduleGroupOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "arn",
+                "name",
+                "state",
+                "creation_date",
+                "last_modification_date",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_scheduler::operation::get_schedule_group::GetScheduleGroupOutput::builder();
+        if let Some(value) = dict_value(values, "arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_424: String = value.extract()?;
+            builder = builder.set_arn(Some(fixture_424));
+        }
+        if let Some(value) = dict_value(values, "name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_425: String = value.extract()?;
+            builder = builder.set_name(Some(fixture_425));
+        }
+        if let Some(value) = dict_value(values, "state")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_427: String = value.extract()?;
+            let fixture_426 =
+                aws_sdk_scheduler::types::ScheduleGroupState::from(enum_value_427.as_str());
+            builder = builder.set_state(Some(fixture_426));
+        }
+        if let Some(value) = dict_value(values, "creation_date")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_429: String = value.extract()?;
+            let fixture_428 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_429,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_creation_date(Some(fixture_428));
+        }
+        if let Some(value) = dict_value(values, "last_modification_date")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_431: String = value.extract()?;
+            let fixture_430 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_431,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_last_modification_date(Some(fixture_430));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -2924,6 +3844,41 @@ impl PyOperationListScheduleGroupsOutput {
         result.set_item("schedule_groups", converted_430)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["next_token", "schedule_groups"],
+            &["schedule_groups"],
+        )?;
+        let mut builder =
+            aws_sdk_scheduler::operation::list_schedule_groups::ListScheduleGroupsOutput::builder();
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_433: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_433));
+        }
+        if let Some(value) = values.get_item("schedule_groups")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_434 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_435 in value.try_iter()? {
+                let item_436 = item_result_435?;
+                rboto_core::fixture_scalar(&item_436, "struct")?;
+                let converted_item_437 = schedule_group_summary_fixture_from_py(&item_436)?;
+                fixture_434.push(converted_item_437);
+            }
+            builder = builder.set_schedule_groups(Some(fixture_434));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -3002,6 +3957,37 @@ impl PyOperationListSchedulesOutput {
         result.set_item("schedules", converted_439)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["next_token", "schedules"], &["schedules"])?;
+        let mut builder =
+            aws_sdk_scheduler::operation::list_schedules::ListSchedulesOutput::builder();
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_442: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_442));
+        }
+        if let Some(value) = values.get_item("schedules")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_443 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_444 in value.try_iter()? {
+                let item_445 = item_result_444?;
+                rboto_core::fixture_scalar(&item_445, "struct")?;
+                let converted_item_446 = schedule_summary_fixture_from_py(&item_445)?;
+                fixture_443.push(converted_item_446);
+            }
+            builder = builder.set_schedules(Some(fixture_443));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -3074,6 +4060,29 @@ impl PyOperationListTagsForResourceOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["tags"], &[])?;
+        let mut builder = aws_sdk_scheduler::operation::list_tags_for_resource::ListTagsForResourceOutput::builder();
+        if let Some(value) = dict_value(values, "tags")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_449 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_450 in value.try_iter()? {
+                let item_451 = item_result_450?;
+                rboto_core::fixture_scalar(&item_451, "struct")?;
+                let converted_item_452 = tag_fixture_from_py(&item_451)?;
+                fixture_449.push(converted_item_452);
+            }
+            builder = builder.set_tags(Some(fixture_449));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(name = "TagResourceOutput", module = "rboto_scheduler._native", frozen)]
@@ -3086,6 +4095,15 @@ impl PyOperationTagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_scheduler::operation::tag_resource::TagResourceOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -3103,6 +4121,16 @@ impl PyOperationUntagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_scheduler::operation::untag_resource::UntagResourceOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -3128,6 +4156,23 @@ impl PyOperationUpdateScheduleOutput {
         let converted_450 = (&self.inner.schedule_arn).as_str().into_py_any(py)?;
         result.set_item("schedule_arn", converted_450)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["schedule_arn"], &["schedule_arn"])?;
+        let mut builder =
+            aws_sdk_scheduler::operation::update_schedule::UpdateScheduleOutput::builder();
+        if let Some(value) = values.get_item("schedule_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_451: String = value.extract()?;
+            builder = builder.set_schedule_arn(Some(fixture_451));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 

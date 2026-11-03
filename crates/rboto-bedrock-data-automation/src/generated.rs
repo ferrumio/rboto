@@ -3524,6 +3524,2137 @@ fn vocabulary_entity_summary_to_py(
     Ok(result.into_any().unbind())
 }
 
+fn audio_extraction_category_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::AudioExtractionCategory> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["state", "types", "type_configuration"],
+        &["state"],
+    )?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::AudioExtractionCategory::builder();
+    if let Some(value) = values.get_item("state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1178: String = value.extract()?;
+        let fixture_1177 =
+            aws_sdk_bedrockdataautomation::types::State::from(enum_value_1178.as_str());
+        builder = builder.set_state(Some(fixture_1177));
+    }
+    if let Some(value) = dict_value(values, "types")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1179 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1180 in value.try_iter()? {
+            let item_1181 = item_result_1180?;
+            rboto_core::fixture_scalar(&item_1181, "enum")?;
+            let enum_value_1183: String = item_1181.extract()?;
+            let converted_item_1182 =
+                aws_sdk_bedrockdataautomation::types::AudioExtractionCategoryType::from(
+                    enum_value_1183.as_str(),
+                );
+            fixture_1179.push(converted_item_1182);
+        }
+        builder = builder.set_types(Some(fixture_1179));
+    }
+    if let Some(value) = dict_value(values, "type_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1184 = audio_extraction_category_type_configuration_fixture_from_py(&value)?;
+        builder = builder.set_type_configuration(Some(fixture_1184));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn audio_extraction_category_type_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::AudioExtractionCategoryTypeConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["transcript"], &[])?;
+    let mut builder =
+        aws_sdk_bedrockdataautomation::types::AudioExtractionCategoryTypeConfiguration::builder();
+    if let Some(value) = dict_value(values, "transcript")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1185 = transcript_configuration_fixture_from_py(&value)?;
+        builder = builder.set_transcript(Some(fixture_1185));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn audio_language_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::AudioLanguageConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "input_languages",
+            "generative_output_language",
+            "identify_multiple_languages",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::AudioLanguageConfiguration::builder();
+    if let Some(value) = dict_value(values, "input_languages")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1186 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1187 in value.try_iter()? {
+            let item_1188 = item_result_1187?;
+            rboto_core::fixture_scalar(&item_1188, "enum")?;
+            let enum_value_1190: String = item_1188.extract()?;
+            let converted_item_1189 =
+                aws_sdk_bedrockdataautomation::types::Language::from(enum_value_1190.as_str());
+            fixture_1186.push(converted_item_1189);
+        }
+        builder = builder.set_input_languages(Some(fixture_1186));
+    }
+    if let Some(value) = dict_value(values, "generative_output_language")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1192: String = value.extract()?;
+        let fixture_1191 =
+            aws_sdk_bedrockdataautomation::types::AudioGenerativeOutputLanguage::from(
+                enum_value_1192.as_str(),
+            );
+        builder = builder.set_generative_output_language(Some(fixture_1191));
+    }
+    if let Some(value) = dict_value(values, "identify_multiple_languages")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_1193: bool = value.extract()?;
+        builder = builder.set_identify_multiple_languages(Some(fixture_1193));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn audio_override_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::AudioOverrideConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "modality_processing",
+            "language_configuration",
+            "sensitive_data_configuration",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::AudioOverrideConfiguration::builder();
+    if let Some(value) = dict_value(values, "modality_processing")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1194 = modality_processing_configuration_fixture_from_py(&value)?;
+        builder = builder.set_modality_processing(Some(fixture_1194));
+    }
+    if let Some(value) = dict_value(values, "language_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1195 = audio_language_configuration_fixture_from_py(&value)?;
+        builder = builder.set_language_configuration(Some(fixture_1195));
+    }
+    if let Some(value) = dict_value(values, "sensitive_data_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1196 = sensitive_data_configuration_fixture_from_py(&value)?;
+        builder = builder.set_sensitive_data_configuration(Some(fixture_1196));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn audio_standard_extraction_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::AudioStandardExtraction> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["category"], &[])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::AudioStandardExtraction::builder();
+    if let Some(value) = dict_value(values, "category")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1197 = audio_extraction_category_fixture_from_py(&value)?;
+        builder = builder.set_category(Some(fixture_1197));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn audio_standard_generative_field_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::AudioStandardGenerativeField> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["state", "types"], &["state"])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::AudioStandardGenerativeField::builder();
+    if let Some(value) = values.get_item("state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1199: String = value.extract()?;
+        let fixture_1198 =
+            aws_sdk_bedrockdataautomation::types::State::from(enum_value_1199.as_str());
+        builder = builder.set_state(Some(fixture_1198));
+    }
+    if let Some(value) = dict_value(values, "types")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1200 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1201 in value.try_iter()? {
+            let item_1202 = item_result_1201?;
+            rboto_core::fixture_scalar(&item_1202, "enum")?;
+            let enum_value_1204: String = item_1202.extract()?;
+            let converted_item_1203 =
+                aws_sdk_bedrockdataautomation::types::AudioStandardGenerativeFieldType::from(
+                    enum_value_1204.as_str(),
+                );
+            fixture_1200.push(converted_item_1203);
+        }
+        builder = builder.set_types(Some(fixture_1200));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn audio_standard_output_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::AudioStandardOutputConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["extraction", "generative_field"], &[])?;
+    let mut builder =
+        aws_sdk_bedrockdataautomation::types::AudioStandardOutputConfiguration::builder();
+    if let Some(value) = dict_value(values, "extraction")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1205 = audio_standard_extraction_fixture_from_py(&value)?;
+        builder = builder.set_extraction(Some(fixture_1205));
+    }
+    if let Some(value) = dict_value(values, "generative_field")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1206 = audio_standard_generative_field_fixture_from_py(&value)?;
+        builder = builder.set_generative_field(Some(fixture_1206));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn blueprint_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::Blueprint> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "blueprint_arn",
+            "schema",
+            "type",
+            "creation_time",
+            "last_modified_time",
+            "blueprint_name",
+            "blueprint_version",
+            "blueprint_stage",
+            "kms_key_id",
+            "kms_encryption_context",
+            "optimization_samples",
+            "optimization_time",
+        ],
+        &[
+            "blueprint_arn",
+            "schema",
+            "type",
+            "creation_time",
+            "last_modified_time",
+            "blueprint_name",
+        ],
+    )?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::Blueprint::builder();
+    if let Some(value) = values.get_item("blueprint_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1207: String = value.extract()?;
+        builder = builder.set_blueprint_arn(Some(fixture_1207));
+    }
+    if let Some(value) = values.get_item("schema")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1208: String = value.extract()?;
+        builder = builder.set_schema(Some(fixture_1208));
+    }
+    if let Some(value) = values.get_item("type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1210: String = value.extract()?;
+        let fixture_1209 =
+            aws_sdk_bedrockdataautomation::types::Type::from(enum_value_1210.as_str());
+        builder = builder.set_type(Some(fixture_1209));
+    }
+    if let Some(value) = values.get_item("creation_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1212: String = value.extract()?;
+        let fixture_1211 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1212,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_time(Some(fixture_1211));
+    }
+    if let Some(value) = values.get_item("last_modified_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1214: String = value.extract()?;
+        let fixture_1213 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1214,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_modified_time(Some(fixture_1213));
+    }
+    if let Some(value) = values.get_item("blueprint_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1215: String = value.extract()?;
+        builder = builder.set_blueprint_name(Some(fixture_1215));
+    }
+    if let Some(value) = dict_value(values, "blueprint_version")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1216: String = value.extract()?;
+        builder = builder.set_blueprint_version(Some(fixture_1216));
+    }
+    if let Some(value) = dict_value(values, "blueprint_stage")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1218: String = value.extract()?;
+        let fixture_1217 =
+            aws_sdk_bedrockdataautomation::types::BlueprintStage::from(enum_value_1218.as_str());
+        builder = builder.set_blueprint_stage(Some(fixture_1217));
+    }
+    if let Some(value) = dict_value(values, "kms_key_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1219: String = value.extract()?;
+        builder = builder.set_kms_key_id(Some(fixture_1219));
+    }
+    if let Some(value) = dict_value(values, "kms_encryption_context")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_1221 = value.cast::<PyDict>()?;
+        let mut fixture_1220 = HashMap::with_capacity(mapping_1221.len());
+        for (key_1222, value_1223) in mapping_1221.iter() {
+            rboto_core::fixture_scalar(&key_1222, "string")?;
+            let converted_key_1224: String = key_1222.extract()?;
+            rboto_core::fixture_scalar(&value_1223, "string")?;
+            let converted_value_1225: String = value_1223.extract()?;
+            fixture_1220.insert(converted_key_1224, converted_value_1225);
+        }
+        builder = builder.set_kms_encryption_context(Some(fixture_1220));
+    }
+    if let Some(value) = dict_value(values, "optimization_samples")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1226 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1227 in value.try_iter()? {
+            let item_1228 = item_result_1227?;
+            rboto_core::fixture_scalar(&item_1228, "struct")?;
+            let converted_item_1229 = blueprint_optimization_sample_fixture_from_py(&item_1228)?;
+            fixture_1226.push(converted_item_1229);
+        }
+        builder = builder.set_optimization_samples(Some(fixture_1226));
+    }
+    if let Some(value) = dict_value(values, "optimization_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1231: String = value.extract()?;
+        let fixture_1230 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1231,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_optimization_time(Some(fixture_1230));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn blueprint_item_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::BlueprintItem> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["blueprint_arn", "blueprint_version", "blueprint_stage"],
+        &["blueprint_arn"],
+    )?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::BlueprintItem::builder();
+    if let Some(value) = values.get_item("blueprint_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1232: String = value.extract()?;
+        builder = builder.set_blueprint_arn(Some(fixture_1232));
+    }
+    if let Some(value) = dict_value(values, "blueprint_version")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1233: String = value.extract()?;
+        builder = builder.set_blueprint_version(Some(fixture_1233));
+    }
+    if let Some(value) = dict_value(values, "blueprint_stage")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1235: String = value.extract()?;
+        let fixture_1234 =
+            aws_sdk_bedrockdataautomation::types::BlueprintStage::from(enum_value_1235.as_str());
+        builder = builder.set_blueprint_stage(Some(fixture_1234));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn blueprint_optimization_output_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::BlueprintOptimizationOutputConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["s3_object"], &[])?;
+    let mut builder =
+        aws_sdk_bedrockdataautomation::types::BlueprintOptimizationOutputConfiguration::builder();
+    if let Some(value) = dict_value(values, "s3_object")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1236 = s3_object_fixture_from_py(&value)?;
+        builder = builder.set_s3_object(Some(fixture_1236));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn blueprint_optimization_sample_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::BlueprintOptimizationSample> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["asset_s3_object", "ground_truth_s3_object"], &[])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::BlueprintOptimizationSample::builder();
+    if let Some(value) = dict_value(values, "asset_s3_object")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1237 = s3_object_fixture_from_py(&value)?;
+        builder = builder.set_asset_s3_object(Some(fixture_1237));
+    }
+    if let Some(value) = dict_value(values, "ground_truth_s3_object")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1238 = s3_object_fixture_from_py(&value)?;
+        builder = builder.set_ground_truth_s3_object(Some(fixture_1238));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn blueprint_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::BlueprintSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "blueprint_arn",
+            "blueprint_version",
+            "blueprint_stage",
+            "blueprint_name",
+            "creation_time",
+            "last_modified_time",
+        ],
+        &["blueprint_arn", "creation_time"],
+    )?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::BlueprintSummary::builder();
+    if let Some(value) = values.get_item("blueprint_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1239: String = value.extract()?;
+        builder = builder.set_blueprint_arn(Some(fixture_1239));
+    }
+    if let Some(value) = dict_value(values, "blueprint_version")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1240: String = value.extract()?;
+        builder = builder.set_blueprint_version(Some(fixture_1240));
+    }
+    if let Some(value) = dict_value(values, "blueprint_stage")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1242: String = value.extract()?;
+        let fixture_1241 =
+            aws_sdk_bedrockdataautomation::types::BlueprintStage::from(enum_value_1242.as_str());
+        builder = builder.set_blueprint_stage(Some(fixture_1241));
+    }
+    if let Some(value) = dict_value(values, "blueprint_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1243: String = value.extract()?;
+        builder = builder.set_blueprint_name(Some(fixture_1243));
+    }
+    if let Some(value) = values.get_item("creation_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1245: String = value.extract()?;
+        let fixture_1244 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1245,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_time(Some(fixture_1244));
+    }
+    if let Some(value) = dict_value(values, "last_modified_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1247: String = value.extract()?;
+        let fixture_1246 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1247,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_modified_time(Some(fixture_1246));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn channel_labeling_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::ChannelLabelingConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["state"], &["state"])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::ChannelLabelingConfiguration::builder();
+    if let Some(value) = values.get_item("state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1249: String = value.extract()?;
+        let fixture_1248 =
+            aws_sdk_bedrockdataautomation::types::State::from(enum_value_1249.as_str());
+        builder = builder.set_state(Some(fixture_1248));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn custom_output_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::CustomOutputConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["blueprints", "document"], &[])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::CustomOutputConfiguration::builder();
+    if let Some(value) = dict_value(values, "blueprints")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1250 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1251 in value.try_iter()? {
+            let item_1252 = item_result_1251?;
+            rboto_core::fixture_scalar(&item_1252, "struct")?;
+            let converted_item_1253 = blueprint_item_fixture_from_py(&item_1252)?;
+            fixture_1250.push(converted_item_1253);
+        }
+        builder = builder.set_blueprints(Some(fixture_1250));
+    }
+    if let Some(value) = dict_value(values, "document")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1254 = document_custom_output_configuration_fixture_from_py(&value)?;
+        builder = builder.set_document(Some(fixture_1254));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn data_automation_library_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::DataAutomationLibrary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "library_arn",
+            "creation_time",
+            "library_name",
+            "library_description",
+            "status",
+            "entity_types",
+            "kms_key_id",
+            "kms_encryption_context",
+        ],
+        &["library_arn", "creation_time", "library_name", "status"],
+    )?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::DataAutomationLibrary::builder();
+    if let Some(value) = values.get_item("library_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1255: String = value.extract()?;
+        builder = builder.set_library_arn(Some(fixture_1255));
+    }
+    if let Some(value) = values.get_item("creation_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1257: String = value.extract()?;
+        let fixture_1256 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1257,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_time(Some(fixture_1256));
+    }
+    if let Some(value) = values.get_item("library_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1258: String = value.extract()?;
+        builder = builder.set_library_name(Some(fixture_1258));
+    }
+    if let Some(value) = dict_value(values, "library_description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1259: String = value.extract()?;
+        builder = builder.set_library_description(Some(fixture_1259));
+    }
+    if let Some(value) = values.get_item("status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1261: String = value.extract()?;
+        let fixture_1260 = aws_sdk_bedrockdataautomation::types::DataAutomationLibraryStatus::from(
+            enum_value_1261.as_str(),
+        );
+        builder = builder.set_status(Some(fixture_1260));
+    }
+    if let Some(value) = dict_value(values, "entity_types")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1262 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1263 in value.try_iter()? {
+            let item_1264 = item_result_1263?;
+            rboto_core::fixture_scalar(&item_1264, "struct")?;
+            let converted_item_1265 = entity_type_info_fixture_from_py(&item_1264)?;
+            fixture_1262.push(converted_item_1265);
+        }
+        builder = builder.set_entity_types(Some(fixture_1262));
+    }
+    if let Some(value) = dict_value(values, "kms_key_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1266: String = value.extract()?;
+        builder = builder.set_kms_key_id(Some(fixture_1266));
+    }
+    if let Some(value) = dict_value(values, "kms_encryption_context")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_1268 = value.cast::<PyDict>()?;
+        let mut fixture_1267 = HashMap::with_capacity(mapping_1268.len());
+        for (key_1269, value_1270) in mapping_1268.iter() {
+            rboto_core::fixture_scalar(&key_1269, "string")?;
+            let converted_key_1271: String = key_1269.extract()?;
+            rboto_core::fixture_scalar(&value_1270, "string")?;
+            let converted_value_1272: String = value_1270.extract()?;
+            fixture_1267.insert(converted_key_1271, converted_value_1272);
+        }
+        builder = builder.set_kms_encryption_context(Some(fixture_1267));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn data_automation_library_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::DataAutomationLibraryConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["libraries"], &[])?;
+    let mut builder =
+        aws_sdk_bedrockdataautomation::types::DataAutomationLibraryConfiguration::builder();
+    if let Some(value) = dict_value(values, "libraries")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1273 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1274 in value.try_iter()? {
+            let item_1275 = item_result_1274?;
+            rboto_core::fixture_scalar(&item_1275, "struct")?;
+            let converted_item_1276 = data_automation_library_item_fixture_from_py(&item_1275)?;
+            fixture_1273.push(converted_item_1276);
+        }
+        builder = builder.set_libraries(Some(fixture_1273));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn data_automation_library_entity_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::DataAutomationLibraryEntitySummary> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("vocabulary")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_1277 = vocabulary_entity_summary_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrockdataautomation::types::DataAutomationLibraryEntitySummary::Vocabulary(
+                converted_1277,
+            ),
+        );
+    }
+    Err(PyValueError::new_err(
+        "DataAutomationLibraryEntitySummary requires exactly one known variant",
+    ))
+}
+
+fn data_automation_library_ingestion_job_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::DataAutomationLibraryIngestionJob> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "job_arn",
+            "creation_time",
+            "entity_type",
+            "operation_type",
+            "job_status",
+            "output_configuration",
+            "completion_time",
+            "error_message",
+            "error_type",
+        ],
+        &[
+            "job_arn",
+            "creation_time",
+            "entity_type",
+            "operation_type",
+            "job_status",
+        ],
+    )?;
+    let mut builder =
+        aws_sdk_bedrockdataautomation::types::DataAutomationLibraryIngestionJob::builder();
+    if let Some(value) = values.get_item("job_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1278: String = value.extract()?;
+        builder = builder.set_job_arn(Some(fixture_1278));
+    }
+    if let Some(value) = values.get_item("creation_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1280: String = value.extract()?;
+        let fixture_1279 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1280,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_time(Some(fixture_1279));
+    }
+    if let Some(value) = values.get_item("entity_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1282: String = value.extract()?;
+        let fixture_1281 =
+            aws_sdk_bedrockdataautomation::types::EntityType::from(enum_value_1282.as_str());
+        builder = builder.set_entity_type(Some(fixture_1281));
+    }
+    if let Some(value) = values.get_item("operation_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1284: String = value.extract()?;
+        let fixture_1283 =
+            aws_sdk_bedrockdataautomation::types::LibraryIngestionJobOperationType::from(
+                enum_value_1284.as_str(),
+            );
+        builder = builder.set_operation_type(Some(fixture_1283));
+    }
+    if let Some(value) = values.get_item("job_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1286: String = value.extract()?;
+        let fixture_1285 = aws_sdk_bedrockdataautomation::types::LibraryIngestionJobStatus::from(
+            enum_value_1286.as_str(),
+        );
+        builder = builder.set_job_status(Some(fixture_1285));
+    }
+    if let Some(value) = dict_value(values, "output_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1287 = output_configuration_fixture_from_py(&value)?;
+        builder = builder.set_output_configuration(Some(fixture_1287));
+    }
+    if let Some(value) = dict_value(values, "completion_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1289: String = value.extract()?;
+        let fixture_1288 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1289,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_completion_time(Some(fixture_1288));
+    }
+    if let Some(value) = dict_value(values, "error_message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1290: String = value.extract()?;
+        builder = builder.set_error_message(Some(fixture_1290));
+    }
+    if let Some(value) = dict_value(values, "error_type")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1291: String = value.extract()?;
+        builder = builder.set_error_type(Some(fixture_1291));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn data_automation_library_ingestion_job_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::DataAutomationLibraryIngestionJobSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "job_arn",
+            "job_status",
+            "entity_type",
+            "operation_type",
+            "creation_time",
+            "completion_time",
+        ],
+        &[
+            "job_arn",
+            "job_status",
+            "entity_type",
+            "operation_type",
+            "creation_time",
+        ],
+    )?;
+    let mut builder =
+        aws_sdk_bedrockdataautomation::types::DataAutomationLibraryIngestionJobSummary::builder();
+    if let Some(value) = values.get_item("job_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1292: String = value.extract()?;
+        builder = builder.set_job_arn(Some(fixture_1292));
+    }
+    if let Some(value) = values.get_item("job_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1294: String = value.extract()?;
+        let fixture_1293 = aws_sdk_bedrockdataautomation::types::LibraryIngestionJobStatus::from(
+            enum_value_1294.as_str(),
+        );
+        builder = builder.set_job_status(Some(fixture_1293));
+    }
+    if let Some(value) = values.get_item("entity_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1296: String = value.extract()?;
+        let fixture_1295 =
+            aws_sdk_bedrockdataautomation::types::EntityType::from(enum_value_1296.as_str());
+        builder = builder.set_entity_type(Some(fixture_1295));
+    }
+    if let Some(value) = values.get_item("operation_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1298: String = value.extract()?;
+        let fixture_1297 =
+            aws_sdk_bedrockdataautomation::types::LibraryIngestionJobOperationType::from(
+                enum_value_1298.as_str(),
+            );
+        builder = builder.set_operation_type(Some(fixture_1297));
+    }
+    if let Some(value) = values.get_item("creation_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1300: String = value.extract()?;
+        let fixture_1299 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1300,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_time(Some(fixture_1299));
+    }
+    if let Some(value) = dict_value(values, "completion_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1302: String = value.extract()?;
+        let fixture_1301 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1302,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_completion_time(Some(fixture_1301));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn data_automation_library_item_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::DataAutomationLibraryItem> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["library_arn"], &["library_arn"])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::DataAutomationLibraryItem::builder();
+    if let Some(value) = values.get_item("library_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1303: String = value.extract()?;
+        builder = builder.set_library_arn(Some(fixture_1303));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn data_automation_library_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::DataAutomationLibrarySummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["library_arn", "library_name", "creation_time"],
+        &["library_arn", "creation_time"],
+    )?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::DataAutomationLibrarySummary::builder();
+    if let Some(value) = values.get_item("library_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1304: String = value.extract()?;
+        builder = builder.set_library_arn(Some(fixture_1304));
+    }
+    if let Some(value) = dict_value(values, "library_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1305: String = value.extract()?;
+        builder = builder.set_library_name(Some(fixture_1305));
+    }
+    if let Some(value) = values.get_item("creation_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1307: String = value.extract()?;
+        let fixture_1306 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1307,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_time(Some(fixture_1306));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn data_automation_project_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::DataAutomationProject> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "project_arn",
+            "creation_time",
+            "last_modified_time",
+            "project_name",
+            "project_stage",
+            "project_type",
+            "project_description",
+            "standard_output_configuration",
+            "custom_output_configuration",
+            "override_configuration",
+            "data_automation_library_configuration",
+            "status",
+            "kms_key_id",
+            "kms_encryption_context",
+        ],
+        &[
+            "project_arn",
+            "creation_time",
+            "last_modified_time",
+            "project_name",
+            "status",
+        ],
+    )?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::DataAutomationProject::builder();
+    if let Some(value) = values.get_item("project_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1308: String = value.extract()?;
+        builder = builder.set_project_arn(Some(fixture_1308));
+    }
+    if let Some(value) = values.get_item("creation_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1310: String = value.extract()?;
+        let fixture_1309 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1310,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_time(Some(fixture_1309));
+    }
+    if let Some(value) = values.get_item("last_modified_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1312: String = value.extract()?;
+        let fixture_1311 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1312,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_modified_time(Some(fixture_1311));
+    }
+    if let Some(value) = values.get_item("project_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1313: String = value.extract()?;
+        builder = builder.set_project_name(Some(fixture_1313));
+    }
+    if let Some(value) = dict_value(values, "project_stage")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1315: String = value.extract()?;
+        let fixture_1314 = aws_sdk_bedrockdataautomation::types::DataAutomationProjectStage::from(
+            enum_value_1315.as_str(),
+        );
+        builder = builder.set_project_stage(Some(fixture_1314));
+    }
+    if let Some(value) = dict_value(values, "project_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1317: String = value.extract()?;
+        let fixture_1316 = aws_sdk_bedrockdataautomation::types::DataAutomationProjectType::from(
+            enum_value_1317.as_str(),
+        );
+        builder = builder.set_project_type(Some(fixture_1316));
+    }
+    if let Some(value) = dict_value(values, "project_description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1318: String = value.extract()?;
+        builder = builder.set_project_description(Some(fixture_1318));
+    }
+    if let Some(value) = dict_value(values, "standard_output_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1319 = standard_output_configuration_fixture_from_py(&value)?;
+        builder = builder.set_standard_output_configuration(Some(fixture_1319));
+    }
+    if let Some(value) = dict_value(values, "custom_output_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1320 = custom_output_configuration_fixture_from_py(&value)?;
+        builder = builder.set_custom_output_configuration(Some(fixture_1320));
+    }
+    if let Some(value) = dict_value(values, "override_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1321 = override_configuration_fixture_from_py(&value)?;
+        builder = builder.set_override_configuration(Some(fixture_1321));
+    }
+    if let Some(value) = dict_value(values, "data_automation_library_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1322 = data_automation_library_configuration_fixture_from_py(&value)?;
+        builder = builder.set_data_automation_library_configuration(Some(fixture_1322));
+    }
+    if let Some(value) = values.get_item("status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1324: String = value.extract()?;
+        let fixture_1323 = aws_sdk_bedrockdataautomation::types::DataAutomationProjectStatus::from(
+            enum_value_1324.as_str(),
+        );
+        builder = builder.set_status(Some(fixture_1323));
+    }
+    if let Some(value) = dict_value(values, "kms_key_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1325: String = value.extract()?;
+        builder = builder.set_kms_key_id(Some(fixture_1325));
+    }
+    if let Some(value) = dict_value(values, "kms_encryption_context")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_1327 = value.cast::<PyDict>()?;
+        let mut fixture_1326 = HashMap::with_capacity(mapping_1327.len());
+        for (key_1328, value_1329) in mapping_1327.iter() {
+            rboto_core::fixture_scalar(&key_1328, "string")?;
+            let converted_key_1330: String = key_1328.extract()?;
+            rboto_core::fixture_scalar(&value_1329, "string")?;
+            let converted_value_1331: String = value_1329.extract()?;
+            fixture_1326.insert(converted_key_1330, converted_value_1331);
+        }
+        builder = builder.set_kms_encryption_context(Some(fixture_1326));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn data_automation_project_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::DataAutomationProjectSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "project_arn",
+            "project_stage",
+            "project_type",
+            "project_name",
+            "creation_time",
+        ],
+        &["project_arn", "creation_time"],
+    )?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::DataAutomationProjectSummary::builder();
+    if let Some(value) = values.get_item("project_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1332: String = value.extract()?;
+        builder = builder.set_project_arn(Some(fixture_1332));
+    }
+    if let Some(value) = dict_value(values, "project_stage")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1334: String = value.extract()?;
+        let fixture_1333 = aws_sdk_bedrockdataautomation::types::DataAutomationProjectStage::from(
+            enum_value_1334.as_str(),
+        );
+        builder = builder.set_project_stage(Some(fixture_1333));
+    }
+    if let Some(value) = dict_value(values, "project_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1336: String = value.extract()?;
+        let fixture_1335 = aws_sdk_bedrockdataautomation::types::DataAutomationProjectType::from(
+            enum_value_1336.as_str(),
+        );
+        builder = builder.set_project_type(Some(fixture_1335));
+    }
+    if let Some(value) = dict_value(values, "project_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1337: String = value.extract()?;
+        builder = builder.set_project_name(Some(fixture_1337));
+    }
+    if let Some(value) = values.get_item("creation_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1339: String = value.extract()?;
+        let fixture_1338 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1339,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_time(Some(fixture_1338));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn document_bounding_box_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::DocumentBoundingBox> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["state"], &["state"])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::DocumentBoundingBox::builder();
+    if let Some(value) = values.get_item("state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1341: String = value.extract()?;
+        let fixture_1340 =
+            aws_sdk_bedrockdataautomation::types::State::from(enum_value_1341.as_str());
+        builder = builder.set_state(Some(fixture_1340));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn document_custom_output_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::DocumentCustomOutputConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["fallback_blueprints"], &[])?;
+    let mut builder =
+        aws_sdk_bedrockdataautomation::types::DocumentCustomOutputConfiguration::builder();
+    if let Some(value) = dict_value(values, "fallback_blueprints")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1342 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1343 in value.try_iter()? {
+            let item_1344 = item_result_1343?;
+            rboto_core::fixture_scalar(&item_1344, "struct")?;
+            let converted_item_1345 = blueprint_item_fixture_from_py(&item_1344)?;
+            fixture_1342.push(converted_item_1345);
+        }
+        builder = builder.set_fallback_blueprints(Some(fixture_1342));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn document_extraction_granularity_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::DocumentExtractionGranularity> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["types"], &[])?;
+    let mut builder =
+        aws_sdk_bedrockdataautomation::types::DocumentExtractionGranularity::builder();
+    if let Some(value) = dict_value(values, "types")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1346 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1347 in value.try_iter()? {
+            let item_1348 = item_result_1347?;
+            rboto_core::fixture_scalar(&item_1348, "enum")?;
+            let enum_value_1350: String = item_1348.extract()?;
+            let converted_item_1349 =
+                aws_sdk_bedrockdataautomation::types::DocumentExtractionGranularityType::from(
+                    enum_value_1350.as_str(),
+                );
+            fixture_1346.push(converted_item_1349);
+        }
+        builder = builder.set_types(Some(fixture_1346));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn document_output_additional_file_format_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::DocumentOutputAdditionalFileFormat> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["state"], &["state"])?;
+    let mut builder =
+        aws_sdk_bedrockdataautomation::types::DocumentOutputAdditionalFileFormat::builder();
+    if let Some(value) = values.get_item("state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1352: String = value.extract()?;
+        let fixture_1351 =
+            aws_sdk_bedrockdataautomation::types::State::from(enum_value_1352.as_str());
+        builder = builder.set_state(Some(fixture_1351));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn document_output_format_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::DocumentOutputFormat> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["text_format", "additional_file_format"], &[])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::DocumentOutputFormat::builder();
+    if let Some(value) = dict_value(values, "text_format")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1353 = document_output_text_format_fixture_from_py(&value)?;
+        builder = builder.set_text_format(Some(fixture_1353));
+    }
+    if let Some(value) = dict_value(values, "additional_file_format")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1354 = document_output_additional_file_format_fixture_from_py(&value)?;
+        builder = builder.set_additional_file_format(Some(fixture_1354));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn document_output_text_format_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::DocumentOutputTextFormat> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["types"], &[])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::DocumentOutputTextFormat::builder();
+    if let Some(value) = dict_value(values, "types")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1355 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1356 in value.try_iter()? {
+            let item_1357 = item_result_1356?;
+            rboto_core::fixture_scalar(&item_1357, "enum")?;
+            let enum_value_1359: String = item_1357.extract()?;
+            let converted_item_1358 =
+                aws_sdk_bedrockdataautomation::types::DocumentOutputTextFormatType::from(
+                    enum_value_1359.as_str(),
+                );
+            fixture_1355.push(converted_item_1358);
+        }
+        builder = builder.set_types(Some(fixture_1355));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn document_override_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::DocumentOverrideConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "splitter",
+            "modality_processing",
+            "sensitive_data_configuration",
+        ],
+        &[],
+    )?;
+    let mut builder =
+        aws_sdk_bedrockdataautomation::types::DocumentOverrideConfiguration::builder();
+    if let Some(value) = dict_value(values, "splitter")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1360 = splitter_configuration_fixture_from_py(&value)?;
+        builder = builder.set_splitter(Some(fixture_1360));
+    }
+    if let Some(value) = dict_value(values, "modality_processing")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1361 = modality_processing_configuration_fixture_from_py(&value)?;
+        builder = builder.set_modality_processing(Some(fixture_1361));
+    }
+    if let Some(value) = dict_value(values, "sensitive_data_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1362 = sensitive_data_configuration_fixture_from_py(&value)?;
+        builder = builder.set_sensitive_data_configuration(Some(fixture_1362));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn document_standard_extraction_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::DocumentStandardExtraction> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["granularity", "bounding_box"], &[])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::DocumentStandardExtraction::builder();
+    if let Some(value) = dict_value(values, "granularity")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1363 = document_extraction_granularity_fixture_from_py(&value)?;
+        builder = builder.set_granularity(Some(fixture_1363));
+    }
+    if let Some(value) = dict_value(values, "bounding_box")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1364 = document_bounding_box_fixture_from_py(&value)?;
+        builder = builder.set_bounding_box(Some(fixture_1364));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn document_standard_generative_field_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::DocumentStandardGenerativeField> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["state"], &["state"])?;
+    let mut builder =
+        aws_sdk_bedrockdataautomation::types::DocumentStandardGenerativeField::builder();
+    if let Some(value) = values.get_item("state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1366: String = value.extract()?;
+        let fixture_1365 =
+            aws_sdk_bedrockdataautomation::types::State::from(enum_value_1366.as_str());
+        builder = builder.set_state(Some(fixture_1365));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn document_standard_output_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::DocumentStandardOutputConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["extraction", "generative_field", "output_format"],
+        &[],
+    )?;
+    let mut builder =
+        aws_sdk_bedrockdataautomation::types::DocumentStandardOutputConfiguration::builder();
+    if let Some(value) = dict_value(values, "extraction")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1367 = document_standard_extraction_fixture_from_py(&value)?;
+        builder = builder.set_extraction(Some(fixture_1367));
+    }
+    if let Some(value) = dict_value(values, "generative_field")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1368 = document_standard_generative_field_fixture_from_py(&value)?;
+        builder = builder.set_generative_field(Some(fixture_1368));
+    }
+    if let Some(value) = dict_value(values, "output_format")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1369 = document_output_format_fixture_from_py(&value)?;
+        builder = builder.set_output_format(Some(fixture_1369));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn entity_details_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::EntityDetails> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("vocabulary")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_1370 = vocabulary_entity_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrockdataautomation::types::EntityDetails::Vocabulary(converted_1370));
+    }
+    Err(PyValueError::new_err(
+        "EntityDetails requires exactly one known variant",
+    ))
+}
+
+fn entity_type_info_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::EntityTypeInfo> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["entity_type", "entity_metadata"],
+        &["entity_type"],
+    )?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::EntityTypeInfo::builder();
+    if let Some(value) = values.get_item("entity_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1372: String = value.extract()?;
+        let fixture_1371 =
+            aws_sdk_bedrockdataautomation::types::EntityType::from(enum_value_1372.as_str());
+        builder = builder.set_entity_type(Some(fixture_1371));
+    }
+    if let Some(value) = dict_value(values, "entity_metadata")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1373: String = value.extract()?;
+        builder = builder.set_entity_metadata(Some(fixture_1373));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn image_bounding_box_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::ImageBoundingBox> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["state"], &["state"])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::ImageBoundingBox::builder();
+    if let Some(value) = values.get_item("state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1375: String = value.extract()?;
+        let fixture_1374 =
+            aws_sdk_bedrockdataautomation::types::State::from(enum_value_1375.as_str());
+        builder = builder.set_state(Some(fixture_1374));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn image_extraction_category_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::ImageExtractionCategory> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["state", "types"], &["state"])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::ImageExtractionCategory::builder();
+    if let Some(value) = values.get_item("state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1377: String = value.extract()?;
+        let fixture_1376 =
+            aws_sdk_bedrockdataautomation::types::State::from(enum_value_1377.as_str());
+        builder = builder.set_state(Some(fixture_1376));
+    }
+    if let Some(value) = dict_value(values, "types")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1378 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1379 in value.try_iter()? {
+            let item_1380 = item_result_1379?;
+            rboto_core::fixture_scalar(&item_1380, "enum")?;
+            let enum_value_1382: String = item_1380.extract()?;
+            let converted_item_1381 =
+                aws_sdk_bedrockdataautomation::types::ImageExtractionCategoryType::from(
+                    enum_value_1382.as_str(),
+                );
+            fixture_1378.push(converted_item_1381);
+        }
+        builder = builder.set_types(Some(fixture_1378));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn image_override_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::ImageOverrideConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["modality_processing", "sensitive_data_configuration"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::ImageOverrideConfiguration::builder();
+    if let Some(value) = dict_value(values, "modality_processing")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1383 = modality_processing_configuration_fixture_from_py(&value)?;
+        builder = builder.set_modality_processing(Some(fixture_1383));
+    }
+    if let Some(value) = dict_value(values, "sensitive_data_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1384 = sensitive_data_configuration_fixture_from_py(&value)?;
+        builder = builder.set_sensitive_data_configuration(Some(fixture_1384));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn image_standard_extraction_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::ImageStandardExtraction> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["category", "bounding_box"], &[])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::ImageStandardExtraction::builder();
+    if let Some(value) = dict_value(values, "category")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1385 = image_extraction_category_fixture_from_py(&value)?;
+        builder = builder.set_category(Some(fixture_1385));
+    }
+    if let Some(value) = dict_value(values, "bounding_box")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1386 = image_bounding_box_fixture_from_py(&value)?;
+        builder = builder.set_bounding_box(Some(fixture_1386));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn image_standard_generative_field_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::ImageStandardGenerativeField> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["state", "types"], &["state"])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::ImageStandardGenerativeField::builder();
+    if let Some(value) = values.get_item("state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1388: String = value.extract()?;
+        let fixture_1387 =
+            aws_sdk_bedrockdataautomation::types::State::from(enum_value_1388.as_str());
+        builder = builder.set_state(Some(fixture_1387));
+    }
+    if let Some(value) = dict_value(values, "types")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1389 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1390 in value.try_iter()? {
+            let item_1391 = item_result_1390?;
+            rboto_core::fixture_scalar(&item_1391, "enum")?;
+            let enum_value_1393: String = item_1391.extract()?;
+            let converted_item_1392 =
+                aws_sdk_bedrockdataautomation::types::ImageStandardGenerativeFieldType::from(
+                    enum_value_1393.as_str(),
+                );
+            fixture_1389.push(converted_item_1392);
+        }
+        builder = builder.set_types(Some(fixture_1389));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn image_standard_output_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::ImageStandardOutputConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["extraction", "generative_field"], &[])?;
+    let mut builder =
+        aws_sdk_bedrockdataautomation::types::ImageStandardOutputConfiguration::builder();
+    if let Some(value) = dict_value(values, "extraction")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1394 = image_standard_extraction_fixture_from_py(&value)?;
+        builder = builder.set_extraction(Some(fixture_1394));
+    }
+    if let Some(value) = dict_value(values, "generative_field")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1395 = image_standard_generative_field_fixture_from_py(&value)?;
+        builder = builder.set_generative_field(Some(fixture_1395));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn modality_processing_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::ModalityProcessingConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["state"], &[])?;
+    let mut builder =
+        aws_sdk_bedrockdataautomation::types::ModalityProcessingConfiguration::builder();
+    if let Some(value) = dict_value(values, "state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1397: String = value.extract()?;
+        let fixture_1396 =
+            aws_sdk_bedrockdataautomation::types::State::from(enum_value_1397.as_str());
+        builder = builder.set_state(Some(fixture_1396));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn modality_routing_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::ModalityRoutingConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["jpeg", "png", "mp4", "mov"], &[])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::ModalityRoutingConfiguration::builder();
+    if let Some(value) = dict_value(values, "jpeg")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1399: String = value.extract()?;
+        let fixture_1398 =
+            aws_sdk_bedrockdataautomation::types::DesiredModality::from(enum_value_1399.as_str());
+        builder = builder.set_jpeg(Some(fixture_1398));
+    }
+    if let Some(value) = dict_value(values, "png")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1401: String = value.extract()?;
+        let fixture_1400 =
+            aws_sdk_bedrockdataautomation::types::DesiredModality::from(enum_value_1401.as_str());
+        builder = builder.set_png(Some(fixture_1400));
+    }
+    if let Some(value) = dict_value(values, "mp4")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1403: String = value.extract()?;
+        let fixture_1402 =
+            aws_sdk_bedrockdataautomation::types::DesiredModality::from(enum_value_1403.as_str());
+        builder = builder.set_mp4(Some(fixture_1402));
+    }
+    if let Some(value) = dict_value(values, "mov")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1405: String = value.extract()?;
+        let fixture_1404 =
+            aws_sdk_bedrockdataautomation::types::DesiredModality::from(enum_value_1405.as_str());
+        builder = builder.set_mov(Some(fixture_1404));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn output_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::OutputConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["s3_uri"], &["s3_uri"])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::OutputConfiguration::builder();
+    if let Some(value) = values.get_item("s3_uri")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1406: String = value.extract()?;
+        builder = builder.set_s3_uri(Some(fixture_1406));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn override_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::OverrideConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["document", "image", "video", "audio", "modality_routing"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::OverrideConfiguration::builder();
+    if let Some(value) = dict_value(values, "document")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1407 = document_override_configuration_fixture_from_py(&value)?;
+        builder = builder.set_document(Some(fixture_1407));
+    }
+    if let Some(value) = dict_value(values, "image")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1408 = image_override_configuration_fixture_from_py(&value)?;
+        builder = builder.set_image(Some(fixture_1408));
+    }
+    if let Some(value) = dict_value(values, "video")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1409 = video_override_configuration_fixture_from_py(&value)?;
+        builder = builder.set_video(Some(fixture_1409));
+    }
+    if let Some(value) = dict_value(values, "audio")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1410 = audio_override_configuration_fixture_from_py(&value)?;
+        builder = builder.set_audio(Some(fixture_1410));
+    }
+    if let Some(value) = dict_value(values, "modality_routing")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1411 = modality_routing_configuration_fixture_from_py(&value)?;
+        builder = builder.set_modality_routing(Some(fixture_1411));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn phrase_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::Phrase> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["text", "display_as_text"], &["text"])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::Phrase::builder();
+    if let Some(value) = values.get_item("text")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1412: String = value.extract()?;
+        builder = builder.set_text(Some(fixture_1412));
+    }
+    if let Some(value) = dict_value(values, "display_as_text")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1413: String = value.extract()?;
+        builder = builder.set_display_as_text(Some(fixture_1413));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn pii_entities_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::PiiEntitiesConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["pii_entity_types", "redaction_mask_mode"], &[])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::PiiEntitiesConfiguration::builder();
+    if let Some(value) = dict_value(values, "pii_entity_types")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1414 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1415 in value.try_iter()? {
+            let item_1416 = item_result_1415?;
+            rboto_core::fixture_scalar(&item_1416, "enum")?;
+            let enum_value_1418: String = item_1416.extract()?;
+            let converted_item_1417 =
+                aws_sdk_bedrockdataautomation::types::PiiEntityType::from(enum_value_1418.as_str());
+            fixture_1414.push(converted_item_1417);
+        }
+        builder = builder.set_pii_entity_types(Some(fixture_1414));
+    }
+    if let Some(value) = dict_value(values, "redaction_mask_mode")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1420: String = value.extract()?;
+        let fixture_1419 = aws_sdk_bedrockdataautomation::types::PiiRedactionMaskMode::from(
+            enum_value_1420.as_str(),
+        );
+        builder = builder.set_redaction_mask_mode(Some(fixture_1419));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn s3_object_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::S3Object> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["s3_uri", "version"], &["s3_uri"])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::S3Object::builder();
+    if let Some(value) = values.get_item("s3_uri")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1421: String = value.extract()?;
+        builder = builder.set_s3_uri(Some(fixture_1421));
+    }
+    if let Some(value) = dict_value(values, "version")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1422: String = value.extract()?;
+        builder = builder.set_version(Some(fixture_1422));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn sensitive_data_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::SensitiveDataConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "detection_mode",
+            "detection_scope",
+            "pii_entities_configuration",
+        ],
+        &["detection_mode"],
+    )?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::SensitiveDataConfiguration::builder();
+    if let Some(value) = values.get_item("detection_mode")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1424: String = value.extract()?;
+        let fixture_1423 = aws_sdk_bedrockdataautomation::types::SensitiveDataDetectionMode::from(
+            enum_value_1424.as_str(),
+        );
+        builder = builder.set_detection_mode(Some(fixture_1423));
+    }
+    if let Some(value) = dict_value(values, "detection_scope")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1425 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1426 in value.try_iter()? {
+            let item_1427 = item_result_1426?;
+            rboto_core::fixture_scalar(&item_1427, "enum")?;
+            let enum_value_1429: String = item_1427.extract()?;
+            let converted_item_1428 =
+                aws_sdk_bedrockdataautomation::types::SensitiveDataDetectionScopeType::from(
+                    enum_value_1429.as_str(),
+                );
+            fixture_1425.push(converted_item_1428);
+        }
+        builder = builder.set_detection_scope(Some(fixture_1425));
+    }
+    if let Some(value) = dict_value(values, "pii_entities_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1430 = pii_entities_configuration_fixture_from_py(&value)?;
+        builder = builder.set_pii_entities_configuration(Some(fixture_1430));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn speaker_labeling_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::SpeakerLabelingConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["state"], &["state"])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::SpeakerLabelingConfiguration::builder();
+    if let Some(value) = values.get_item("state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1432: String = value.extract()?;
+        let fixture_1431 =
+            aws_sdk_bedrockdataautomation::types::State::from(enum_value_1432.as_str());
+        builder = builder.set_state(Some(fixture_1431));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn splitter_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::SplitterConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["state"], &[])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::SplitterConfiguration::builder();
+    if let Some(value) = dict_value(values, "state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1434: String = value.extract()?;
+        let fixture_1433 =
+            aws_sdk_bedrockdataautomation::types::State::from(enum_value_1434.as_str());
+        builder = builder.set_state(Some(fixture_1433));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn standard_output_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::StandardOutputConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["document", "image", "video", "audio"], &[])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::StandardOutputConfiguration::builder();
+    if let Some(value) = dict_value(values, "document")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1435 = document_standard_output_configuration_fixture_from_py(&value)?;
+        builder = builder.set_document(Some(fixture_1435));
+    }
+    if let Some(value) = dict_value(values, "image")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1436 = image_standard_output_configuration_fixture_from_py(&value)?;
+        builder = builder.set_image(Some(fixture_1436));
+    }
+    if let Some(value) = dict_value(values, "video")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1437 = video_standard_output_configuration_fixture_from_py(&value)?;
+        builder = builder.set_video(Some(fixture_1437));
+    }
+    if let Some(value) = dict_value(values, "audio")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1438 = audio_standard_output_configuration_fixture_from_py(&value)?;
+        builder = builder.set_audio(Some(fixture_1438));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn tag_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::Tag> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["key", "value"], &["key", "value"])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::Tag::builder();
+    if let Some(value) = values.get_item("key")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1439: String = value.extract()?;
+        builder = builder.set_key(Some(fixture_1439));
+    }
+    if let Some(value) = values.get_item("value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1440: String = value.extract()?;
+        builder = builder.set_value(Some(fixture_1440));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn transcript_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::TranscriptConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["speaker_labeling", "channel_labeling"], &[])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::TranscriptConfiguration::builder();
+    if let Some(value) = dict_value(values, "speaker_labeling")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1441 = speaker_labeling_configuration_fixture_from_py(&value)?;
+        builder = builder.set_speaker_labeling(Some(fixture_1441));
+    }
+    if let Some(value) = dict_value(values, "channel_labeling")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1442 = channel_labeling_configuration_fixture_from_py(&value)?;
+        builder = builder.set_channel_labeling(Some(fixture_1442));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn video_bounding_box_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::VideoBoundingBox> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["state"], &["state"])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::VideoBoundingBox::builder();
+    if let Some(value) = values.get_item("state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1444: String = value.extract()?;
+        let fixture_1443 =
+            aws_sdk_bedrockdataautomation::types::State::from(enum_value_1444.as_str());
+        builder = builder.set_state(Some(fixture_1443));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn video_extraction_category_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::VideoExtractionCategory> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["state", "types"], &["state"])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::VideoExtractionCategory::builder();
+    if let Some(value) = values.get_item("state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1446: String = value.extract()?;
+        let fixture_1445 =
+            aws_sdk_bedrockdataautomation::types::State::from(enum_value_1446.as_str());
+        builder = builder.set_state(Some(fixture_1445));
+    }
+    if let Some(value) = dict_value(values, "types")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1447 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1448 in value.try_iter()? {
+            let item_1449 = item_result_1448?;
+            rboto_core::fixture_scalar(&item_1449, "enum")?;
+            let enum_value_1451: String = item_1449.extract()?;
+            let converted_item_1450 =
+                aws_sdk_bedrockdataautomation::types::VideoExtractionCategoryType::from(
+                    enum_value_1451.as_str(),
+                );
+            fixture_1447.push(converted_item_1450);
+        }
+        builder = builder.set_types(Some(fixture_1447));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn video_override_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::VideoOverrideConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["modality_processing", "sensitive_data_configuration"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::VideoOverrideConfiguration::builder();
+    if let Some(value) = dict_value(values, "modality_processing")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1452 = modality_processing_configuration_fixture_from_py(&value)?;
+        builder = builder.set_modality_processing(Some(fixture_1452));
+    }
+    if let Some(value) = dict_value(values, "sensitive_data_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1453 = sensitive_data_configuration_fixture_from_py(&value)?;
+        builder = builder.set_sensitive_data_configuration(Some(fixture_1453));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn video_standard_extraction_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::VideoStandardExtraction> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["category", "bounding_box"], &[])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::VideoStandardExtraction::builder();
+    if let Some(value) = dict_value(values, "category")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1454 = video_extraction_category_fixture_from_py(&value)?;
+        builder = builder.set_category(Some(fixture_1454));
+    }
+    if let Some(value) = dict_value(values, "bounding_box")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1455 = video_bounding_box_fixture_from_py(&value)?;
+        builder = builder.set_bounding_box(Some(fixture_1455));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn video_standard_generative_field_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::VideoStandardGenerativeField> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["state", "types"], &["state"])?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::VideoStandardGenerativeField::builder();
+    if let Some(value) = values.get_item("state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1457: String = value.extract()?;
+        let fixture_1456 =
+            aws_sdk_bedrockdataautomation::types::State::from(enum_value_1457.as_str());
+        builder = builder.set_state(Some(fixture_1456));
+    }
+    if let Some(value) = dict_value(values, "types")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1458 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1459 in value.try_iter()? {
+            let item_1460 = item_result_1459?;
+            rboto_core::fixture_scalar(&item_1460, "enum")?;
+            let enum_value_1462: String = item_1460.extract()?;
+            let converted_item_1461 =
+                aws_sdk_bedrockdataautomation::types::VideoStandardGenerativeFieldType::from(
+                    enum_value_1462.as_str(),
+                );
+            fixture_1458.push(converted_item_1461);
+        }
+        builder = builder.set_types(Some(fixture_1458));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn video_standard_output_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::VideoStandardOutputConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["extraction", "generative_field"], &[])?;
+    let mut builder =
+        aws_sdk_bedrockdataautomation::types::VideoStandardOutputConfiguration::builder();
+    if let Some(value) = dict_value(values, "extraction")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1463 = video_standard_extraction_fixture_from_py(&value)?;
+        builder = builder.set_extraction(Some(fixture_1463));
+    }
+    if let Some(value) = dict_value(values, "generative_field")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1464 = video_standard_generative_field_fixture_from_py(&value)?;
+        builder = builder.set_generative_field(Some(fixture_1464));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn vocabulary_entity_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::VocabularyEntity> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "entity_id",
+            "description",
+            "language",
+            "phrases",
+            "last_modified_time",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::VocabularyEntity::builder();
+    if let Some(value) = dict_value(values, "entity_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1465: String = value.extract()?;
+        builder = builder.set_entity_id(Some(fixture_1465));
+    }
+    if let Some(value) = dict_value(values, "description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1466: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_1466));
+    }
+    if let Some(value) = dict_value(values, "language")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1468: String = value.extract()?;
+        let fixture_1467 =
+            aws_sdk_bedrockdataautomation::types::Language::from(enum_value_1468.as_str());
+        builder = builder.set_language(Some(fixture_1467));
+    }
+    if let Some(value) = dict_value(values, "phrases")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1469 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1470 in value.try_iter()? {
+            let item_1471 = item_result_1470?;
+            rboto_core::fixture_scalar(&item_1471, "struct")?;
+            let converted_item_1472 = phrase_fixture_from_py(&item_1471)?;
+            fixture_1469.push(converted_item_1472);
+        }
+        builder = builder.set_phrases(Some(fixture_1469));
+    }
+    if let Some(value) = dict_value(values, "last_modified_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1474: String = value.extract()?;
+        let fixture_1473 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1474,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_modified_time(Some(fixture_1473));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn vocabulary_entity_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockdataautomation::types::VocabularyEntitySummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "entity_id",
+            "description",
+            "language",
+            "num_of_phrases",
+            "last_modified_time",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrockdataautomation::types::VocabularyEntitySummary::builder();
+    if let Some(value) = dict_value(values, "entity_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1475: String = value.extract()?;
+        builder = builder.set_entity_id(Some(fixture_1475));
+    }
+    if let Some(value) = dict_value(values, "description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1476: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_1476));
+    }
+    if let Some(value) = dict_value(values, "language")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1478: String = value.extract()?;
+        let fixture_1477 =
+            aws_sdk_bedrockdataautomation::types::Language::from(enum_value_1478.as_str());
+        builder = builder.set_language(Some(fixture_1477));
+    }
+    if let Some(value) = dict_value(values, "num_of_phrases")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_1479: i32 = value.extract()?;
+        builder = builder.set_num_of_phrases(Some(fixture_1479));
+    }
+    if let Some(value) = dict_value(values, "last_modified_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1481: String = value.extract()?;
+        let fixture_1480 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1481,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_modified_time(Some(fixture_1480));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
 #[allow(clippy::type_complexity)]
 struct SharedAudioExtractionCategory {
     state: aws_sdk_bedrockdataautomation::types::State,
@@ -7702,6 +9833,15 @@ impl PyOperationCopyBlueprintStageOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_bedrockdataautomation::operation::copy_blueprint_stage::CopyBlueprintStageOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -7761,6 +9901,22 @@ impl PyOperationCreateBlueprintOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["blueprint"], &[])?;
+        let mut builder = aws_sdk_bedrockdataautomation::operation::create_blueprint::CreateBlueprintOutput::builder();
+        if let Some(value) = dict_value(values, "blueprint")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_1072 = blueprint_fixture_from_py(&value)?;
+            builder = builder.set_blueprint(Some(fixture_1072));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -7814,6 +9970,22 @@ impl PyOperationCreateBlueprintVersionOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["blueprint"], &[])?;
+        let mut builder = aws_sdk_bedrockdataautomation::operation::create_blueprint_version::CreateBlueprintVersionOutput::builder();
+        if let Some(value) = dict_value(values, "blueprint")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_1074 = blueprint_fixture_from_py(&value)?;
+            builder = builder.set_blueprint(Some(fixture_1074));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -7862,6 +10034,29 @@ impl PyOperationCreateDataAutomationLibraryOutput {
             result.set_item("status", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["library_arn", "status"], &[])?;
+        let mut builder = aws_sdk_bedrockdataautomation::operation::create_data_automation_library::CreateDataAutomationLibraryOutput::builder();
+        if let Some(value) = dict_value(values, "library_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1078: String = value.extract()?;
+            builder = builder.set_library_arn(Some(fixture_1078));
+        }
+        if let Some(value) = dict_value(values, "status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1080: String = value.extract()?;
+            let fixture_1079 =
+                aws_sdk_bedrockdataautomation::types::DataAutomationLibraryStatus::from(
+                    enum_value_1080.as_str(),
+                );
+            builder = builder.set_status(Some(fixture_1079));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -7920,6 +10115,44 @@ impl PyOperationCreateDataAutomationProjectOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["project_arn", "project_stage", "status"],
+            &["project_arn"],
+        )?;
+        let mut builder = aws_sdk_bedrockdataautomation::operation::create_data_automation_project::CreateDataAutomationProjectOutput::builder();
+        if let Some(value) = values.get_item("project_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1084: String = value.extract()?;
+            builder = builder.set_project_arn(Some(fixture_1084));
+        }
+        if let Some(value) = dict_value(values, "project_stage")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1086: String = value.extract()?;
+            let fixture_1085 =
+                aws_sdk_bedrockdataautomation::types::DataAutomationProjectStage::from(
+                    enum_value_1086.as_str(),
+                );
+            builder = builder.set_project_stage(Some(fixture_1085));
+        }
+        if let Some(value) = dict_value(values, "status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1088: String = value.extract()?;
+            let fixture_1087 =
+                aws_sdk_bedrockdataautomation::types::DataAutomationProjectStatus::from(
+                    enum_value_1088.as_str(),
+                );
+            builder = builder.set_status(Some(fixture_1087));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -7936,6 +10169,15 @@ impl PyOperationDeleteBlueprintOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_bedrockdataautomation::operation::delete_blueprint::DeleteBlueprintOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -7986,6 +10228,29 @@ impl PyOperationDeleteDataAutomationLibraryOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["library_arn", "status"], &[])?;
+        let mut builder = aws_sdk_bedrockdataautomation::operation::delete_data_automation_library::DeleteDataAutomationLibraryOutput::builder();
+        if let Some(value) = dict_value(values, "library_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1088: String = value.extract()?;
+            builder = builder.set_library_arn(Some(fixture_1088));
+        }
+        if let Some(value) = dict_value(values, "status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1090: String = value.extract()?;
+            let fixture_1089 =
+                aws_sdk_bedrockdataautomation::types::DataAutomationLibraryStatus::from(
+                    enum_value_1090.as_str(),
+                );
+            builder = builder.set_status(Some(fixture_1089));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -8026,6 +10291,31 @@ impl PyOperationDeleteDataAutomationProjectOutput {
             result.set_item("status", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["project_arn", "status"], &["project_arn"])?;
+        let mut builder = aws_sdk_bedrockdataautomation::operation::delete_data_automation_project::DeleteDataAutomationProjectOutput::builder();
+        if let Some(value) = values.get_item("project_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1092: String = value.extract()?;
+            builder = builder.set_project_arn(Some(fixture_1092));
+        }
+        if let Some(value) = dict_value(values, "status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1094: String = value.extract()?;
+            let fixture_1093 =
+                aws_sdk_bedrockdataautomation::types::DataAutomationProjectStatus::from(
+                    enum_value_1094.as_str(),
+                );
+            builder = builder.set_status(Some(fixture_1093));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 
@@ -8085,6 +10375,23 @@ impl PyOperationGetBlueprintOutput {
             result.set_item("blueprint", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["blueprint"], &[])?;
+        let mut builder =
+            aws_sdk_bedrockdataautomation::operation::get_blueprint::GetBlueprintOutput::builder();
+        if let Some(value) = dict_value(values, "blueprint")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_1094 = blueprint_fixture_from_py(&value)?;
+            builder = builder.set_blueprint(Some(fixture_1094));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -8194,6 +10501,50 @@ impl PyOperationGetBlueprintOptimizationStatusOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "status",
+                "error_type",
+                "error_message",
+                "output_configuration",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_bedrockdataautomation::operation::get_blueprint_optimization_status::GetBlueprintOptimizationStatusOutput::builder();
+        if let Some(value) = dict_value(values, "status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1103: String = value.extract()?;
+            let fixture_1102 =
+                aws_sdk_bedrockdataautomation::types::BlueprintOptimizationJobStatus::from(
+                    enum_value_1103.as_str(),
+                );
+            builder = builder.set_status(Some(fixture_1102));
+        }
+        if let Some(value) = dict_value(values, "error_type")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1104: String = value.extract()?;
+            builder = builder.set_error_type(Some(fixture_1104));
+        }
+        if let Some(value) = dict_value(values, "error_message")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1105: String = value.extract()?;
+            builder = builder.set_error_message(Some(fixture_1105));
+        }
+        if let Some(value) = dict_value(values, "output_configuration")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_1106 = blueprint_optimization_output_configuration_fixture_from_py(&value)?;
+            builder = builder.set_output_configuration(Some(fixture_1106));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -8247,6 +10598,22 @@ impl PyOperationGetDataAutomationLibraryOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["library"], &[])?;
+        let mut builder = aws_sdk_bedrockdataautomation::operation::get_data_automation_library::GetDataAutomationLibraryOutput::builder();
+        if let Some(value) = dict_value(values, "library")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_1104 = data_automation_library_fixture_from_py(&value)?;
+            builder = builder.set_library(Some(fixture_1104));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -8279,6 +10646,20 @@ impl PyOperationGetDataAutomationLibraryEntityOutput {
             result.set_item("entity", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["entity"], &[])?;
+        let mut builder = aws_sdk_bedrockdataautomation::operation::get_data_automation_library_entity::GetDataAutomationLibraryEntityOutput::builder();
+        if let Some(value) = dict_value(values, "entity")? {
+            rboto_core::fixture_scalar(&value, "union")?;
+            let fixture_1106 = entity_details_fixture_from_py(&value)?;
+            builder = builder.set_entity(Some(fixture_1106));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -8333,6 +10714,22 @@ impl PyOperationGetDataAutomationLibraryIngestionJobOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["job"], &[])?;
+        let mut builder = aws_sdk_bedrockdataautomation::operation::get_data_automation_library_ingestion_job::GetDataAutomationLibraryIngestionJobOutput::builder();
+        if let Some(value) = dict_value(values, "job")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_1108 = data_automation_library_ingestion_job_fixture_from_py(&value)?;
+            builder = builder.set_job(Some(fixture_1108));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -8386,6 +10783,22 @@ impl PyOperationGetDataAutomationProjectOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["project"], &[])?;
+        let mut builder = aws_sdk_bedrockdataautomation::operation::get_data_automation_project::GetDataAutomationProjectOutput::builder();
+        if let Some(value) = dict_value(values, "project")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_1110 = data_automation_project_fixture_from_py(&value)?;
+            builder = builder.set_project(Some(fixture_1110));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -8410,6 +10823,22 @@ impl PyOperationInvokeBlueprintOptimizationAsyncOutput {
         let converted_1111 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
         result.set_item("invocation_arn", converted_1111)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["invocation_arn"], &["invocation_arn"])?;
+        let mut builder = aws_sdk_bedrockdataautomation::operation::invoke_blueprint_optimization_async::InvokeBlueprintOptimizationAsyncOutput::builder();
+        if let Some(value) = values.get_item("invocation_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1112: String = value.extract()?;
+            builder = builder.set_invocation_arn(Some(fixture_1112));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 
@@ -8443,6 +10872,20 @@ impl PyOperationInvokeDataAutomationLibraryIngestionJobOutput {
             result.set_item("job_arn", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["job_arn"], &[])?;
+        let mut builder = aws_sdk_bedrockdataautomation::operation::invoke_data_automation_library_ingestion_job::InvokeDataAutomationLibraryIngestionJobOutput::builder();
+        if let Some(value) = dict_value(values, "job_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1114: String = value.extract()?;
+            builder = builder.set_job_arn(Some(fixture_1114));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -8523,6 +10966,36 @@ impl PyOperationListBlueprintsOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["blueprints", "next_token"], &["blueprints"])?;
+        let mut builder = aws_sdk_bedrockdataautomation::operation::list_blueprints::ListBlueprintsOutput::builder();
+        if let Some(value) = values.get_item("blueprints")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1123 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1124 in value.try_iter()? {
+                let item_1125 = item_result_1124?;
+                rboto_core::fixture_scalar(&item_1125, "struct")?;
+                let converted_item_1126 = blueprint_summary_fixture_from_py(&item_1125)?;
+                fixture_1123.push(converted_item_1126);
+            }
+            builder = builder.set_blueprints(Some(fixture_1123));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1127: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_1127));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -8607,6 +11080,35 @@ impl PyOperationListDataAutomationLibrariesOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["libraries", "next_token"], &[])?;
+        let mut builder = aws_sdk_bedrockdataautomation::operation::list_data_automation_libraries::ListDataAutomationLibrariesOutput::builder();
+        if let Some(value) = dict_value(values, "libraries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1132 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1133 in value.try_iter()? {
+                let item_1134 = item_result_1133?;
+                rboto_core::fixture_scalar(&item_1134, "struct")?;
+                let converted_item_1135 =
+                    data_automation_library_summary_fixture_from_py(&item_1134)?;
+                fixture_1132.push(converted_item_1135);
+            }
+            builder = builder.set_libraries(Some(fixture_1132));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1136: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_1136));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -8667,6 +11169,33 @@ impl PyOperationListDataAutomationLibraryEntitiesOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["entities", "next_token"], &[])?;
+        let mut builder = aws_sdk_bedrockdataautomation::operation::list_data_automation_library_entities::ListDataAutomationLibraryEntitiesOutput::builder();
+        if let Some(value) = dict_value(values, "entities")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1140 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1141 in value.try_iter()? {
+                let item_1142 = item_result_1141?;
+                rboto_core::fixture_scalar(&item_1142, "union")?;
+                let converted_item_1143 =
+                    data_automation_library_entity_summary_fixture_from_py(&item_1142)?;
+                fixture_1140.push(converted_item_1143);
+            }
+            builder = builder.set_entities(Some(fixture_1140));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1144: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_1144));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -8754,6 +11283,35 @@ impl PyOperationListDataAutomationLibraryIngestionJobsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["jobs", "next_token"], &[])?;
+        let mut builder = aws_sdk_bedrockdataautomation::operation::list_data_automation_library_ingestion_jobs::ListDataAutomationLibraryIngestionJobsOutput::builder();
+        if let Some(value) = dict_value(values, "jobs")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1149 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1150 in value.try_iter()? {
+                let item_1151 = item_result_1150?;
+                rboto_core::fixture_scalar(&item_1151, "struct")?;
+                let converted_item_1152 =
+                    data_automation_library_ingestion_job_summary_fixture_from_py(&item_1151)?;
+                fixture_1149.push(converted_item_1152);
+            }
+            builder = builder.set_jobs(Some(fixture_1149));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1153: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_1153));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -8827,6 +11385,37 @@ impl PyOperationListDataAutomationProjectsOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["projects", "next_token"], &["projects"])?;
+        let mut builder = aws_sdk_bedrockdataautomation::operation::list_data_automation_projects::ListDataAutomationProjectsOutput::builder();
+        if let Some(value) = values.get_item("projects")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1158 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1159 in value.try_iter()? {
+                let item_1160 = item_result_1159?;
+                rboto_core::fixture_scalar(&item_1160, "struct")?;
+                let converted_item_1161 =
+                    data_automation_project_summary_fixture_from_py(&item_1160)?;
+                fixture_1158.push(converted_item_1161);
+            }
+            builder = builder.set_projects(Some(fixture_1158));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1162: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_1162));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -8902,6 +11491,29 @@ impl PyOperationListTagsForResourceOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["tags"], &[])?;
+        let mut builder = aws_sdk_bedrockdataautomation::operation::list_tags_for_resource::ListTagsForResourceOutput::builder();
+        if let Some(value) = dict_value(values, "tags")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1165 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1166 in value.try_iter()? {
+                let item_1167 = item_result_1166?;
+                rboto_core::fixture_scalar(&item_1167, "struct")?;
+                let converted_item_1168 = tag_fixture_from_py(&item_1167)?;
+                fixture_1165.push(converted_item_1168);
+            }
+            builder = builder.set_tags(Some(fixture_1165));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -8919,6 +11531,16 @@ impl PyOperationTagResourceOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_bedrockdataautomation::operation::tag_resource::TagResourceOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -8935,6 +11557,17 @@ impl PyOperationUntagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_bedrockdataautomation::operation::untag_resource::UntagResourceOutput::builder(
+            );
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -8995,6 +11628,22 @@ impl PyOperationUpdateBlueprintOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["blueprint"], &[])?;
+        let mut builder = aws_sdk_bedrockdataautomation::operation::update_blueprint::UpdateBlueprintOutput::builder();
+        if let Some(value) = dict_value(values, "blueprint")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_1167 = blueprint_fixture_from_py(&value)?;
+            builder = builder.set_blueprint(Some(fixture_1167));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -9043,6 +11692,29 @@ impl PyOperationUpdateDataAutomationLibraryOutput {
             result.set_item("status", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["library_arn", "status"], &[])?;
+        let mut builder = aws_sdk_bedrockdataautomation::operation::update_data_automation_library::UpdateDataAutomationLibraryOutput::builder();
+        if let Some(value) = dict_value(values, "library_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1171: String = value.extract()?;
+            builder = builder.set_library_arn(Some(fixture_1171));
+        }
+        if let Some(value) = dict_value(values, "status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1173: String = value.extract()?;
+            let fixture_1172 =
+                aws_sdk_bedrockdataautomation::types::DataAutomationLibraryStatus::from(
+                    enum_value_1173.as_str(),
+                );
+            builder = builder.set_status(Some(fixture_1172));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -9100,6 +11772,44 @@ impl PyOperationUpdateDataAutomationProjectOutput {
             result.set_item("status", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["project_arn", "project_stage", "status"],
+            &["project_arn"],
+        )?;
+        let mut builder = aws_sdk_bedrockdataautomation::operation::update_data_automation_project::UpdateDataAutomationProjectOutput::builder();
+        if let Some(value) = values.get_item("project_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1177: String = value.extract()?;
+            builder = builder.set_project_arn(Some(fixture_1177));
+        }
+        if let Some(value) = dict_value(values, "project_stage")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1179: String = value.extract()?;
+            let fixture_1178 =
+                aws_sdk_bedrockdataautomation::types::DataAutomationProjectStage::from(
+                    enum_value_1179.as_str(),
+                );
+            builder = builder.set_project_stage(Some(fixture_1178));
+        }
+        if let Some(value) = dict_value(values, "status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1181: String = value.extract()?;
+            let fixture_1180 =
+                aws_sdk_bedrockdataautomation::types::DataAutomationProjectStatus::from(
+                    enum_value_1181.as_str(),
+                );
+            builder = builder.set_status(Some(fixture_1180));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 

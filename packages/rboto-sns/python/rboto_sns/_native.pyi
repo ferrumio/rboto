@@ -120,6 +120,8 @@ class Topic:
 @final
 class CheckIfPhoneNumberIsOptedOutOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/CheckIfPhoneNumberIsOptedOutOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CheckIfPhoneNumberIsOptedOutOutput: ...
     @property
     def is_opted_out(self) -> bool: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -127,6 +129,8 @@ class CheckIfPhoneNumberIsOptedOutOutput:
 @final
 class ConfirmSubscriptionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ConfirmSubscriptionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ConfirmSubscriptionOutput: ...
     @property
     def subscription_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -134,6 +138,8 @@ class ConfirmSubscriptionOutput:
 @final
 class CreatePlatformApplicationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/CreatePlatformApplicationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreatePlatformApplicationOutput: ...
     @property
     def platform_application_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -141,6 +147,8 @@ class CreatePlatformApplicationOutput:
 @final
 class CreatePlatformEndpointOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/CreatePlatformEndpointOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreatePlatformEndpointOutput: ...
     @property
     def endpoint_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -148,11 +156,15 @@ class CreatePlatformEndpointOutput:
 @final
 class CreateSMSSandboxPhoneNumberOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/CreateSMSSandboxPhoneNumberOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateSMSSandboxPhoneNumberOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateTopicOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/CreateTopicOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateTopicOutput: ...
     @property
     def topic_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -160,11 +172,15 @@ class CreateTopicOutput:
 @final
 class DeleteSMSSandboxPhoneNumberOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/DeleteSMSSandboxPhoneNumberOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteSMSSandboxPhoneNumberOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetDataProtectionPolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetDataProtectionPolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDataProtectionPolicyOutput: ...
     @property
     def data_protection_policy(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -172,6 +188,8 @@ class GetDataProtectionPolicyOutput:
 @final
 class GetEndpointAttributesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetEndpointAttributesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetEndpointAttributesOutput: ...
     @property
     def attributes(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -179,6 +197,8 @@ class GetEndpointAttributesOutput:
 @final
 class GetPlatformApplicationAttributesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetPlatformApplicationAttributesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetPlatformApplicationAttributesOutput: ...
     @property
     def attributes(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -186,6 +206,8 @@ class GetPlatformApplicationAttributesOutput:
 @final
 class GetSMSAttributesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetSMSAttributesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetSMSAttributesOutput: ...
     @property
     def attributes(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -193,6 +215,8 @@ class GetSMSAttributesOutput:
 @final
 class GetSMSSandboxAccountStatusOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetSMSSandboxAccountStatusOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetSMSSandboxAccountStatusOutput: ...
     @property
     def is_in_sandbox(self) -> bool: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -200,6 +224,8 @@ class GetSMSSandboxAccountStatusOutput:
 @final
 class GetSubscriptionAttributesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetSubscriptionAttributesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetSubscriptionAttributesOutput: ...
     @property
     def attributes(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -207,6 +233,8 @@ class GetSubscriptionAttributesOutput:
 @final
 class GetTopicAttributesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetTopicAttributesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetTopicAttributesOutput: ...
     @property
     def attributes(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -214,6 +242,8 @@ class GetTopicAttributesOutput:
 @final
 class ListEndpointsByPlatformApplicationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListEndpointsByPlatformApplicationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListEndpointsByPlatformApplicationOutput: ...
     @property
     def endpoints(self) -> list[Endpoint] | None: ...
     @property
@@ -223,6 +253,8 @@ class ListEndpointsByPlatformApplicationOutput:
 @final
 class ListOriginationNumbersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListOriginationNumbersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListOriginationNumbersOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -232,6 +264,8 @@ class ListOriginationNumbersOutput:
 @final
 class ListPhoneNumbersOptedOutOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListPhoneNumbersOptedOutOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListPhoneNumbersOptedOutOutput: ...
     @property
     def phone_numbers(self) -> list[str] | None: ...
     @property
@@ -241,6 +275,8 @@ class ListPhoneNumbersOptedOutOutput:
 @final
 class ListPlatformApplicationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListPlatformApplicationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListPlatformApplicationsOutput: ...
     @property
     def platform_applications(self) -> list[PlatformApplication] | None: ...
     @property
@@ -250,6 +286,8 @@ class ListPlatformApplicationsOutput:
 @final
 class ListSMSSandboxPhoneNumbersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListSMSSandboxPhoneNumbersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListSMSSandboxPhoneNumbersOutput: ...
     @property
     def phone_numbers(self) -> list[SmsSandboxPhoneNumber]: ...
     @property
@@ -259,6 +297,8 @@ class ListSMSSandboxPhoneNumbersOutput:
 @final
 class ListSubscriptionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListSubscriptionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListSubscriptionsOutput: ...
     @property
     def subscriptions(self) -> list[Subscription] | None: ...
     @property
@@ -268,6 +308,8 @@ class ListSubscriptionsOutput:
 @final
 class ListSubscriptionsByTopicOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListSubscriptionsByTopicOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListSubscriptionsByTopicOutput: ...
     @property
     def subscriptions(self) -> list[Subscription] | None: ...
     @property
@@ -277,6 +319,8 @@ class ListSubscriptionsByTopicOutput:
 @final
 class ListTagsForResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListTagsForResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTagsForResourceOutput: ...
     @property
     def tags(self) -> list[Tag] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -284,6 +328,8 @@ class ListTagsForResourceOutput:
 @final
 class ListTopicsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListTopicsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTopicsOutput: ...
     @property
     def topics(self) -> list[Topic] | None: ...
     @property
@@ -293,11 +339,15 @@ class ListTopicsOutput:
 @final
 class OptInPhoneNumberOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/OptInPhoneNumberOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> OptInPhoneNumberOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PublishOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/PublishOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PublishOutput: ...
     @property
     def message_id(self) -> str | None: ...
     @property
@@ -307,6 +357,8 @@ class PublishOutput:
 @final
 class PublishBatchOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/PublishBatchOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PublishBatchOutput: ...
     @property
     def successful(self) -> list[PublishBatchResultEntry] | None: ...
     @property
@@ -316,11 +368,15 @@ class PublishBatchOutput:
 @final
 class SetSMSAttributesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/SetSMSAttributesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> SetSMSAttributesOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SubscribeOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/SubscribeOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> SubscribeOutput: ...
     @property
     def subscription_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -328,16 +384,22 @@ class SubscribeOutput:
 @final
 class TagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/TagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> TagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UntagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/UntagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UntagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class VerifySMSSandboxPhoneNumberOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/VerifySMSSandboxPhoneNumberOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> VerifySMSSandboxPhoneNumberOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 

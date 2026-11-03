@@ -1541,6 +1541,8 @@ class WorkloadIdentityType:
 @final
 class AddDatasetExamplesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/AddDatasetExamplesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> AddDatasetExamplesOutput: ...
     @property
     def dataset_arn(self) -> str: ...
     @property
@@ -1558,6 +1560,8 @@ class AddDatasetExamplesOutput:
 @final
 class BatchPutGatewayRateLimitsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/BatchPutGatewayRateLimitsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> BatchPutGatewayRateLimitsOutput: ...
     @property
     def rate_limits(self) -> list[GatewayRateLimitDetail]: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1565,6 +1569,8 @@ class BatchPutGatewayRateLimitsOutput:
 @final
 class CreateAgentRuntimeOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateAgentRuntimeOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateAgentRuntimeOutput: ...
     @property
     def agent_runtime_arn(self) -> str: ...
     @property
@@ -1582,6 +1588,8 @@ class CreateAgentRuntimeOutput:
 @final
 class CreateAgentRuntimeEndpointOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateAgentRuntimeEndpointOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateAgentRuntimeEndpointOutput: ...
     @property
     def target_version(self) -> str: ...
     @property
@@ -1601,6 +1609,8 @@ class CreateAgentRuntimeEndpointOutput:
 @final
 class CreateApiKeyCredentialProviderOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateApiKeyCredentialProviderOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateApiKeyCredentialProviderOutput: ...
     @property
     def api_key_secret_arn(self) -> Secret | None: ...
     @property
@@ -1616,6 +1626,8 @@ class CreateApiKeyCredentialProviderOutput:
 @final
 class CreateBrowserOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateBrowserOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateBrowserOutput: ...
     @property
     def browser_id(self) -> str: ...
     @property
@@ -1629,6 +1641,8 @@ class CreateBrowserOutput:
 @final
 class CreateBrowserProfileOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateBrowserProfileOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateBrowserProfileOutput: ...
     @property
     def profile_id(self) -> str: ...
     @property
@@ -1642,6 +1656,8 @@ class CreateBrowserProfileOutput:
 @final
 class CreateCapacityProviderOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateCapacityProviderOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateCapacityProviderOutput: ...
     @property
     def capacity_provider_id(self) -> str: ...
     @property
@@ -1655,6 +1671,8 @@ class CreateCapacityProviderOutput:
 @final
 class CreateCodeInterpreterOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateCodeInterpreterOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateCodeInterpreterOutput: ...
     @property
     def code_interpreter_id(self) -> str: ...
     @property
@@ -1668,6 +1686,8 @@ class CreateCodeInterpreterOutput:
 @final
 class CreateConfigurationBundleOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateConfigurationBundleOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateConfigurationBundleOutput: ...
     @property
     def bundle_arn(self) -> str: ...
     @property
@@ -1681,6 +1701,8 @@ class CreateConfigurationBundleOutput:
 @final
 class CreateConsentPortalOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateConsentPortalOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateConsentPortalOutput: ...
     @property
     def sources(self) -> list[ConsentPortalSource]: ...
     @property
@@ -1710,6 +1732,8 @@ class CreateConsentPortalOutput:
 @final
 class CreateDatasetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateDatasetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateDatasetOutput: ...
     @property
     def dataset_arn(self) -> str: ...
     @property
@@ -1723,6 +1747,8 @@ class CreateDatasetOutput:
 @final
 class CreateDatasetVersionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateDatasetVersionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateDatasetVersionOutput: ...
     @property
     def dataset_arn(self) -> str: ...
     @property
@@ -1738,6 +1764,8 @@ class CreateDatasetVersionOutput:
 @final
 class CreateEvaluatorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateEvaluatorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateEvaluatorOutput: ...
     @property
     def evaluator_arn(self) -> str: ...
     @property
@@ -1751,6 +1779,8 @@ class CreateEvaluatorOutput:
 @final
 class CreateGatewayOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateGatewayOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateGatewayOutput: ...
     @property
     def gateway_arn(self) -> str: ...
     @property
@@ -1800,6 +1830,8 @@ class CreateGatewayOutput:
 @final
 class CreateGatewayRateLimitOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateGatewayRateLimitOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateGatewayRateLimitOutput: ...
     @property
     def rate_limit_id(self) -> str: ...
     @property
@@ -1821,6 +1853,8 @@ class CreateGatewayRateLimitOutput:
 @final
 class CreateGatewayRuleOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateGatewayRuleOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateGatewayRuleOutput: ...
     @property
     def rule_id(self) -> str: ...
     @property
@@ -1844,6 +1878,8 @@ class CreateGatewayRuleOutput:
 @final
 class CreateGatewayTargetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateGatewayTargetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateGatewayTargetOutput: ...
     @property
     def gateway_arn(self) -> str: ...
     @property
@@ -1883,6 +1919,8 @@ class CreateGatewayTargetOutput:
 @final
 class CreateHarnessOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateHarnessOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateHarnessOutput: ...
     @property
     def harness(self) -> Harness | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1890,6 +1928,8 @@ class CreateHarnessOutput:
 @final
 class CreateHarnessEndpointOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateHarnessEndpointOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateHarnessEndpointOutput: ...
     @property
     def endpoint(self) -> HarnessEndpoint | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1897,6 +1937,8 @@ class CreateHarnessEndpointOutput:
 @final
 class CreateMemoryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateMemoryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateMemoryOutput: ...
     @property
     def memory(self) -> Memory | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1904,6 +1946,8 @@ class CreateMemoryOutput:
 @final
 class CreateOauth2CredentialProviderOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateOauth2CredentialProviderOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateOauth2CredentialProviderOutput: ...
     @property
     def client_secret_arn(self) -> Secret | None: ...
     @property
@@ -1925,6 +1969,8 @@ class CreateOauth2CredentialProviderOutput:
 @final
 class CreateOnlineEvaluationConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateOnlineEvaluationConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateOnlineEvaluationConfigOutput: ...
     @property
     def online_evaluation_config_arn(self) -> str: ...
     @property
@@ -1944,6 +1990,8 @@ class CreateOnlineEvaluationConfigOutput:
 @final
 class CreatePaymentConnectorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreatePaymentConnectorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreatePaymentConnectorOutput: ...
     @property
     def payment_connector_id(self) -> str: ...
     @property
@@ -1965,6 +2013,8 @@ class CreatePaymentConnectorOutput:
 @final
 class CreatePaymentCredentialProviderOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreatePaymentCredentialProviderOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreatePaymentCredentialProviderOutput: ...
     @property
     def name(self) -> str: ...
     @property
@@ -1978,6 +2028,8 @@ class CreatePaymentCredentialProviderOutput:
 @final
 class CreatePaymentManagerOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreatePaymentManagerOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreatePaymentManagerOutput: ...
     @property
     def payment_manager_arn(self) -> str: ...
     @property
@@ -2005,6 +2057,8 @@ class CreatePaymentManagerOutput:
 @final
 class CreatePolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreatePolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreatePolicyOutput: ...
     @property
     def policy_id(self) -> str: ...
     @property
@@ -2032,6 +2086,8 @@ class CreatePolicyOutput:
 @final
 class CreatePolicyEngineOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreatePolicyEngineOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreatePolicyEngineOutput: ...
     @property
     def policy_engine_id(self) -> str: ...
     @property
@@ -2055,6 +2111,8 @@ class CreatePolicyEngineOutput:
 @final
 class CreateRegistryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateRegistryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateRegistryOutput: ...
     @property
     def registry_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2062,6 +2120,8 @@ class CreateRegistryOutput:
 @final
 class CreateRegistryRecordOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateRegistryRecordOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateRegistryRecordOutput: ...
     @property
     def record_arn(self) -> str: ...
     @property
@@ -2071,6 +2131,8 @@ class CreateRegistryRecordOutput:
 @final
 class CreateWorkloadIdentityOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateWorkloadIdentityOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateWorkloadIdentityOutput: ...
     @property
     def name(self) -> str: ...
     @property
@@ -2082,6 +2144,8 @@ class CreateWorkloadIdentityOutput:
 @final
 class DeleteAgentRuntimeOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteAgentRuntimeOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteAgentRuntimeOutput: ...
     @property
     def status(self) -> _types.AgentRuntimeStatusOutput: ...
     @property
@@ -2093,6 +2157,8 @@ class DeleteAgentRuntimeOutput:
 @final
 class DeleteAgentRuntimeEndpointOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteAgentRuntimeEndpointOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteAgentRuntimeEndpointOutput: ...
     @property
     def status(self) -> _types.AgentRuntimeEndpointStatusOutput: ...
     @property
@@ -2104,11 +2170,15 @@ class DeleteAgentRuntimeEndpointOutput:
 @final
 class DeleteApiKeyCredentialProviderOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteApiKeyCredentialProviderOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteApiKeyCredentialProviderOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteBrowserOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteBrowserOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteBrowserOutput: ...
     @property
     def browser_id(self) -> str: ...
     @property
@@ -2120,6 +2190,8 @@ class DeleteBrowserOutput:
 @final
 class DeleteBrowserProfileOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteBrowserProfileOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteBrowserProfileOutput: ...
     @property
     def profile_id(self) -> str: ...
     @property
@@ -2135,6 +2207,8 @@ class DeleteBrowserProfileOutput:
 @final
 class DeleteCapacityProviderOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteCapacityProviderOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteCapacityProviderOutput: ...
     @property
     def capacity_provider_id(self) -> str: ...
     @property
@@ -2144,6 +2218,8 @@ class DeleteCapacityProviderOutput:
 @final
 class DeleteCodeInterpreterOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteCodeInterpreterOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteCodeInterpreterOutput: ...
     @property
     def code_interpreter_id(self) -> str: ...
     @property
@@ -2155,6 +2231,8 @@ class DeleteCodeInterpreterOutput:
 @final
 class DeleteConfigurationBundleOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteConfigurationBundleOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteConfigurationBundleOutput: ...
     @property
     def bundle_arn(self) -> str | None: ...
     @property
@@ -2166,11 +2244,15 @@ class DeleteConfigurationBundleOutput:
 @final
 class DeleteConsentPortalOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteConsentPortalOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteConsentPortalOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteDatasetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteDatasetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteDatasetOutput: ...
     @property
     def dataset_arn(self) -> str: ...
     @property
@@ -2186,6 +2268,8 @@ class DeleteDatasetOutput:
 @final
 class DeleteDatasetExamplesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteDatasetExamplesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteDatasetExamplesOutput: ...
     @property
     def dataset_arn(self) -> str: ...
     @property
@@ -2201,6 +2285,8 @@ class DeleteDatasetExamplesOutput:
 @final
 class DeleteEvaluatorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteEvaluatorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteEvaluatorOutput: ...
     @property
     def evaluator_arn(self) -> str: ...
     @property
@@ -2212,6 +2298,8 @@ class DeleteEvaluatorOutput:
 @final
 class DeleteGatewayOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteGatewayOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteGatewayOutput: ...
     @property
     def gateway_id(self) -> str: ...
     @property
@@ -2223,6 +2311,8 @@ class DeleteGatewayOutput:
 @final
 class DeleteGatewayRateLimitOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteGatewayRateLimitOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteGatewayRateLimitOutput: ...
     @property
     def rate_limit_id(self) -> str: ...
     @property
@@ -2232,6 +2322,8 @@ class DeleteGatewayRateLimitOutput:
 @final
 class DeleteGatewayRuleOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteGatewayRuleOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteGatewayRuleOutput: ...
     @property
     def rule_id(self) -> str: ...
     @property
@@ -2241,6 +2333,8 @@ class DeleteGatewayRuleOutput:
 @final
 class DeleteGatewayTargetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteGatewayTargetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteGatewayTargetOutput: ...
     @property
     def gateway_arn(self) -> str: ...
     @property
@@ -2254,6 +2348,8 @@ class DeleteGatewayTargetOutput:
 @final
 class DeleteHarnessOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteHarnessOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteHarnessOutput: ...
     @property
     def harness(self) -> Harness | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2261,6 +2357,8 @@ class DeleteHarnessOutput:
 @final
 class DeleteHarnessEndpointOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteHarnessEndpointOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteHarnessEndpointOutput: ...
     @property
     def endpoint(self) -> HarnessEndpoint | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2268,6 +2366,8 @@ class DeleteHarnessEndpointOutput:
 @final
 class DeleteMemoryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteMemoryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteMemoryOutput: ...
     @property
     def memory_id(self) -> str: ...
     @property
@@ -2277,11 +2377,15 @@ class DeleteMemoryOutput:
 @final
 class DeleteOauth2CredentialProviderOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteOauth2CredentialProviderOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteOauth2CredentialProviderOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteOnlineEvaluationConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteOnlineEvaluationConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteOnlineEvaluationConfigOutput: ...
     @property
     def online_evaluation_config_arn(self) -> str: ...
     @property
@@ -2293,6 +2397,8 @@ class DeleteOnlineEvaluationConfigOutput:
 @final
 class DeletePaymentConnectorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeletePaymentConnectorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeletePaymentConnectorOutput: ...
     @property
     def status(self) -> _types.PaymentConnectorStatusOutput: ...
     @property
@@ -2302,11 +2408,15 @@ class DeletePaymentConnectorOutput:
 @final
 class DeletePaymentCredentialProviderOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeletePaymentCredentialProviderOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeletePaymentCredentialProviderOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeletePaymentManagerOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeletePaymentManagerOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeletePaymentManagerOutput: ...
     @property
     def status(self) -> _types.PaymentManagerStatusOutput: ...
     @property
@@ -2316,6 +2426,8 @@ class DeletePaymentManagerOutput:
 @final
 class DeletePolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeletePolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeletePolicyOutput: ...
     @property
     def policy_id(self) -> str: ...
     @property
@@ -2343,6 +2455,8 @@ class DeletePolicyOutput:
 @final
 class DeletePolicyEngineOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeletePolicyEngineOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeletePolicyEngineOutput: ...
     @property
     def policy_engine_id(self) -> str: ...
     @property
@@ -2366,6 +2480,8 @@ class DeletePolicyEngineOutput:
 @final
 class DeleteRegistryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteRegistryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteRegistryOutput: ...
     @property
     def status(self) -> _types.RegistryStatusOutput: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2373,21 +2489,29 @@ class DeleteRegistryOutput:
 @final
 class DeleteRegistryRecordOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteRegistryRecordOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteRegistryRecordOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteResourcePolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteResourcePolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteResourcePolicyOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteWorkloadIdentityOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteWorkloadIdentityOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteWorkloadIdentityOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetAgentRuntimeOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetAgentRuntimeOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAgentRuntimeOutput: ...
     @property
     def agent_runtime_arn(self) -> str: ...
     @property
@@ -2437,6 +2561,8 @@ class GetAgentRuntimeOutput:
 @final
 class GetAgentRuntimeEndpointOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetAgentRuntimeEndpointOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAgentRuntimeEndpointOutput: ...
     @property
     def live_version(self) -> str | None: ...
     @property
@@ -2464,6 +2590,8 @@ class GetAgentRuntimeEndpointOutput:
 @final
 class GetApiKeyCredentialProviderOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetApiKeyCredentialProviderOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetApiKeyCredentialProviderOutput: ...
     @property
     def api_key_secret_arn(self) -> Secret | None: ...
     @property
@@ -2483,6 +2611,8 @@ class GetApiKeyCredentialProviderOutput:
 @final
 class GetBrowserOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetBrowserOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetBrowserOutput: ...
     @property
     def browser_id(self) -> str: ...
     @property
@@ -2518,6 +2648,8 @@ class GetBrowserOutput:
 @final
 class GetBrowserProfileOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetBrowserProfileOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetBrowserProfileOutput: ...
     @property
     def profile_id(self) -> str: ...
     @property
@@ -2543,6 +2675,8 @@ class GetBrowserProfileOutput:
 @final
 class GetCapacityProviderOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetCapacityProviderOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetCapacityProviderOutput: ...
     @property
     def capacity_provider_id(self) -> str: ...
     @property
@@ -2570,6 +2704,8 @@ class GetCapacityProviderOutput:
 @final
 class GetCodeInterpreterOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetCodeInterpreterOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetCodeInterpreterOutput: ...
     @property
     def code_interpreter_id(self) -> str: ...
     @property
@@ -2599,6 +2735,8 @@ class GetCodeInterpreterOutput:
 @final
 class GetConfigurationBundleOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetConfigurationBundleOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetConfigurationBundleOutput: ...
     @property
     def bundle_arn(self) -> str: ...
     @property
@@ -2624,6 +2762,8 @@ class GetConfigurationBundleOutput:
 @final
 class GetConfigurationBundleVersionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetConfigurationBundleVersionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetConfigurationBundleVersionOutput: ...
     @property
     def bundle_arn(self) -> str: ...
     @property
@@ -2649,6 +2789,8 @@ class GetConfigurationBundleVersionOutput:
 @final
 class GetConsentPortalOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetConsentPortalOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetConsentPortalOutput: ...
     @property
     def sources(self) -> list[ConsentPortalSource]: ...
     @property
@@ -2678,6 +2820,8 @@ class GetConsentPortalOutput:
 @final
 class GetDatasetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetDatasetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDatasetOutput: ...
     @property
     def dataset_arn(self) -> str: ...
     @property
@@ -2715,6 +2859,8 @@ class GetDatasetOutput:
 @final
 class GetEvaluatorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetEvaluatorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetEvaluatorOutput: ...
     @property
     def evaluator_arn(self) -> str: ...
     @property
@@ -2746,6 +2892,8 @@ class GetEvaluatorOutput:
 @final
 class GetGatewayOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetGatewayOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetGatewayOutput: ...
     @property
     def gateway_arn(self) -> str: ...
     @property
@@ -2795,6 +2943,8 @@ class GetGatewayOutput:
 @final
 class GetGatewayRateLimitOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetGatewayRateLimitOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetGatewayRateLimitOutput: ...
     @property
     def rate_limit_id(self) -> str: ...
     @property
@@ -2816,6 +2966,8 @@ class GetGatewayRateLimitOutput:
 @final
 class GetGatewayRuleOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetGatewayRuleOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetGatewayRuleOutput: ...
     @property
     def rule_id(self) -> str: ...
     @property
@@ -2841,6 +2993,8 @@ class GetGatewayRuleOutput:
 @final
 class GetGatewayTargetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetGatewayTargetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetGatewayTargetOutput: ...
     @property
     def gateway_arn(self) -> str: ...
     @property
@@ -2880,6 +3034,8 @@ class GetGatewayTargetOutput:
 @final
 class GetHarnessOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetHarnessOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetHarnessOutput: ...
     @property
     def harness(self) -> Harness | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2887,6 +3043,8 @@ class GetHarnessOutput:
 @final
 class GetHarnessEndpointOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetHarnessEndpointOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetHarnessEndpointOutput: ...
     @property
     def endpoint(self) -> HarnessEndpoint | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2894,6 +3052,8 @@ class GetHarnessEndpointOutput:
 @final
 class GetMemoryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetMemoryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetMemoryOutput: ...
     @property
     def memory(self) -> Memory | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2901,6 +3061,8 @@ class GetMemoryOutput:
 @final
 class GetOauth2CredentialProviderOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetOauth2CredentialProviderOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetOauth2CredentialProviderOutput: ...
     @property
     def client_secret_arn(self) -> Secret | None: ...
     @property
@@ -2930,6 +3092,8 @@ class GetOauth2CredentialProviderOutput:
 @final
 class GetOnlineEvaluationConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetOnlineEvaluationConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetOnlineEvaluationConfigOutput: ...
     @property
     def online_evaluation_config_arn(self) -> str: ...
     @property
@@ -2967,6 +3131,8 @@ class GetOnlineEvaluationConfigOutput:
 @final
 class GetPaymentConnectorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetPaymentConnectorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetPaymentConnectorOutput: ...
     @property
     def payment_connector_id(self) -> str: ...
     @property
@@ -2994,6 +3160,8 @@ class GetPaymentConnectorOutput:
 @final
 class GetPaymentCredentialProviderOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetPaymentCredentialProviderOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetPaymentCredentialProviderOutput: ...
     @property
     def name(self) -> str: ...
     @property
@@ -3013,6 +3181,8 @@ class GetPaymentCredentialProviderOutput:
 @final
 class GetPaymentManagerOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetPaymentManagerOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetPaymentManagerOutput: ...
     @property
     def payment_manager_arn(self) -> str: ...
     @property
@@ -3044,6 +3214,8 @@ class GetPaymentManagerOutput:
 @final
 class GetPolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetPolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetPolicyOutput: ...
     @property
     def policy_id(self) -> str: ...
     @property
@@ -3071,6 +3243,8 @@ class GetPolicyOutput:
 @final
 class GetPolicyEngineOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetPolicyEngineOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetPolicyEngineOutput: ...
     @property
     def policy_engine_id(self) -> str: ...
     @property
@@ -3094,6 +3268,8 @@ class GetPolicyEngineOutput:
 @final
 class GetPolicyEngineSummaryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetPolicyEngineSummaryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetPolicyEngineSummaryOutput: ...
     @property
     def policy_engine_id(self) -> str: ...
     @property
@@ -3113,6 +3289,8 @@ class GetPolicyEngineSummaryOutput:
 @final
 class GetPolicyGenerationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetPolicyGenerationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetPolicyGenerationOutput: ...
     @property
     def policy_engine_id(self) -> str: ...
     @property
@@ -3138,6 +3316,8 @@ class GetPolicyGenerationOutput:
 @final
 class GetPolicyGenerationSummaryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetPolicyGenerationSummaryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetPolicyGenerationSummaryOutput: ...
     @property
     def policy_engine_id(self) -> str: ...
     @property
@@ -3161,6 +3341,8 @@ class GetPolicyGenerationSummaryOutput:
 @final
 class GetPolicySummaryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetPolicySummaryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetPolicySummaryOutput: ...
     @property
     def policy_id(self) -> str: ...
     @property
@@ -3182,6 +3364,8 @@ class GetPolicySummaryOutput:
 @final
 class GetRegistryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetRegistryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetRegistryOutput: ...
     @property
     def name(self) -> str: ...
     @property
@@ -3209,6 +3393,8 @@ class GetRegistryOutput:
 @final
 class GetRegistryRecordOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetRegistryRecordOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetRegistryRecordOutput: ...
     @property
     def registry_arn(self) -> str: ...
     @property
@@ -3242,6 +3428,8 @@ class GetRegistryRecordOutput:
 @final
 class GetResourcePolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetResourcePolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetResourcePolicyOutput: ...
     @property
     def policy(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3249,6 +3437,8 @@ class GetResourcePolicyOutput:
 @final
 class GetTokenVaultOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetTokenVaultOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetTokenVaultOutput: ...
     @property
     def token_vault_id(self) -> str: ...
     @property
@@ -3260,6 +3450,8 @@ class GetTokenVaultOutput:
 @final
 class GetWorkloadIdentityOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetWorkloadIdentityOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetWorkloadIdentityOutput: ...
     @property
     def name(self) -> str: ...
     @property
@@ -3275,6 +3467,8 @@ class GetWorkloadIdentityOutput:
 @final
 class ListAgentRuntimeEndpointsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListAgentRuntimeEndpointsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListAgentRuntimeEndpointsOutput: ...
     @property
     def runtime_endpoints(self) -> list[AgentRuntimeEndpoint]: ...
     @property
@@ -3284,6 +3478,8 @@ class ListAgentRuntimeEndpointsOutput:
 @final
 class ListAgentRuntimeVersionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListAgentRuntimeVersionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListAgentRuntimeVersionsOutput: ...
     @property
     def agent_runtimes(self) -> list[AgentRuntime]: ...
     @property
@@ -3293,6 +3489,8 @@ class ListAgentRuntimeVersionsOutput:
 @final
 class ListAgentRuntimeVersionsByCapacityProviderOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListAgentRuntimeVersionsByCapacityProviderOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListAgentRuntimeVersionsByCapacityProviderOutput: ...
     @property
     def agent_runtimes(self) -> list[AgentRuntimeVersionSummary]: ...
     @property
@@ -3302,6 +3500,8 @@ class ListAgentRuntimeVersionsByCapacityProviderOutput:
 @final
 class ListAgentRuntimesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListAgentRuntimesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListAgentRuntimesOutput: ...
     @property
     def agent_runtimes(self) -> list[AgentRuntime]: ...
     @property
@@ -3311,6 +3511,8 @@ class ListAgentRuntimesOutput:
 @final
 class ListApiKeyCredentialProvidersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListApiKeyCredentialProvidersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListApiKeyCredentialProvidersOutput: ...
     @property
     def credential_providers(self) -> list[ApiKeyCredentialProviderItem]: ...
     @property
@@ -3320,6 +3522,8 @@ class ListApiKeyCredentialProvidersOutput:
 @final
 class ListBrowserProfilesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListBrowserProfilesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListBrowserProfilesOutput: ...
     @property
     def profile_summaries(self) -> list[BrowserProfileSummary]: ...
     @property
@@ -3329,6 +3533,8 @@ class ListBrowserProfilesOutput:
 @final
 class ListBrowsersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListBrowsersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListBrowsersOutput: ...
     @property
     def browser_summaries(self) -> list[BrowserSummary]: ...
     @property
@@ -3338,6 +3544,8 @@ class ListBrowsersOutput:
 @final
 class ListCapacityProvidersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListCapacityProvidersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListCapacityProvidersOutput: ...
     @property
     def capacity_providers(self) -> list[CapacityProviderSummary]: ...
     @property
@@ -3347,6 +3555,8 @@ class ListCapacityProvidersOutput:
 @final
 class ListCodeInterpretersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListCodeInterpretersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListCodeInterpretersOutput: ...
     @property
     def code_interpreter_summaries(self) -> list[CodeInterpreterSummary]: ...
     @property
@@ -3356,6 +3566,8 @@ class ListCodeInterpretersOutput:
 @final
 class ListConfigurationBundleVersionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListConfigurationBundleVersionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListConfigurationBundleVersionsOutput: ...
     @property
     def versions(self) -> list[ConfigurationBundleVersionSummary]: ...
     @property
@@ -3365,6 +3577,8 @@ class ListConfigurationBundleVersionsOutput:
 @final
 class ListConfigurationBundlesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListConfigurationBundlesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListConfigurationBundlesOutput: ...
     @property
     def bundles(self) -> list[ConfigurationBundleSummary]: ...
     @property
@@ -3374,6 +3588,8 @@ class ListConfigurationBundlesOutput:
 @final
 class ListConsentPortalsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListConsentPortalsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListConsentPortalsOutput: ...
     @property
     def consent_portals(self) -> list[ConsentPortalSummary]: ...
     @property
@@ -3383,6 +3599,8 @@ class ListConsentPortalsOutput:
 @final
 class ListDatasetExamplesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListDatasetExamplesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListDatasetExamplesOutput: ...
     @property
     def dataset_arn(self) -> str: ...
     @property
@@ -3398,6 +3616,8 @@ class ListDatasetExamplesOutput:
 @final
 class ListDatasetVersionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListDatasetVersionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListDatasetVersionsOutput: ...
     @property
     def versions(self) -> list[DatasetVersionSummary]: ...
     @property
@@ -3407,6 +3627,8 @@ class ListDatasetVersionsOutput:
 @final
 class ListDatasetsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListDatasetsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListDatasetsOutput: ...
     @property
     def datasets(self) -> list[DatasetSummary]: ...
     @property
@@ -3416,6 +3638,8 @@ class ListDatasetsOutput:
 @final
 class ListEvaluatorsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListEvaluatorsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListEvaluatorsOutput: ...
     @property
     def evaluators(self) -> list[EvaluatorSummary]: ...
     @property
@@ -3425,6 +3649,8 @@ class ListEvaluatorsOutput:
 @final
 class ListGatewayRateLimitsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListGatewayRateLimitsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListGatewayRateLimitsOutput: ...
     @property
     def rate_limits(self) -> list[GatewayRateLimitDetail]: ...
     @property
@@ -3434,6 +3660,8 @@ class ListGatewayRateLimitsOutput:
 @final
 class ListGatewayRulesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListGatewayRulesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListGatewayRulesOutput: ...
     @property
     def gateway_rules(self) -> list[GatewayRuleDetail]: ...
     @property
@@ -3443,6 +3671,8 @@ class ListGatewayRulesOutput:
 @final
 class ListGatewayTargetsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListGatewayTargetsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListGatewayTargetsOutput: ...
     @property
     def items(self) -> list[TargetSummary]: ...
     @property
@@ -3452,6 +3682,8 @@ class ListGatewayTargetsOutput:
 @final
 class ListGatewaysOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListGatewaysOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListGatewaysOutput: ...
     @property
     def items(self) -> list[GatewaySummary]: ...
     @property
@@ -3461,6 +3693,8 @@ class ListGatewaysOutput:
 @final
 class ListHarnessEndpointsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListHarnessEndpointsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListHarnessEndpointsOutput: ...
     @property
     def endpoints(self) -> list[HarnessEndpoint]: ...
     @property
@@ -3470,6 +3704,8 @@ class ListHarnessEndpointsOutput:
 @final
 class ListHarnessVersionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListHarnessVersionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListHarnessVersionsOutput: ...
     @property
     def harness_versions(self) -> list[HarnessVersionSummary]: ...
     @property
@@ -3479,6 +3715,8 @@ class ListHarnessVersionsOutput:
 @final
 class ListHarnessesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListHarnessesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListHarnessesOutput: ...
     @property
     def harnesses(self) -> list[HarnessSummary]: ...
     @property
@@ -3488,6 +3726,8 @@ class ListHarnessesOutput:
 @final
 class ListMemoriesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListMemoriesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListMemoriesOutput: ...
     @property
     def memories(self) -> list[MemorySummary]: ...
     @property
@@ -3497,6 +3737,8 @@ class ListMemoriesOutput:
 @final
 class ListOauth2CredentialProvidersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListOauth2CredentialProvidersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListOauth2CredentialProvidersOutput: ...
     @property
     def credential_providers(self) -> list[Oauth2CredentialProviderItem]: ...
     @property
@@ -3506,6 +3748,8 @@ class ListOauth2CredentialProvidersOutput:
 @final
 class ListOnlineEvaluationConfigsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListOnlineEvaluationConfigsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListOnlineEvaluationConfigsOutput: ...
     @property
     def online_evaluation_configs(self) -> list[OnlineEvaluationConfigSummary]: ...
     @property
@@ -3515,6 +3759,8 @@ class ListOnlineEvaluationConfigsOutput:
 @final
 class ListPaymentConnectorsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListPaymentConnectorsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListPaymentConnectorsOutput: ...
     @property
     def payment_connectors(self) -> list[PaymentConnectorSummary]: ...
     @property
@@ -3524,6 +3770,8 @@ class ListPaymentConnectorsOutput:
 @final
 class ListPaymentCredentialProvidersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListPaymentCredentialProvidersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListPaymentCredentialProvidersOutput: ...
     @property
     def credential_providers(self) -> list[PaymentCredentialProviderItem]: ...
     @property
@@ -3533,6 +3781,8 @@ class ListPaymentCredentialProvidersOutput:
 @final
 class ListPaymentManagersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListPaymentManagersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListPaymentManagersOutput: ...
     @property
     def payment_managers(self) -> list[PaymentManagerSummary]: ...
     @property
@@ -3542,6 +3792,8 @@ class ListPaymentManagersOutput:
 @final
 class ListPoliciesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListPoliciesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListPoliciesOutput: ...
     @property
     def policies(self) -> list[Policy]: ...
     @property
@@ -3551,6 +3803,8 @@ class ListPoliciesOutput:
 @final
 class ListPolicyEngineSummariesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListPolicyEngineSummariesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListPolicyEngineSummariesOutput: ...
     @property
     def policy_engines(self) -> list[PolicyEngineSummary]: ...
     @property
@@ -3560,6 +3814,8 @@ class ListPolicyEngineSummariesOutput:
 @final
 class ListPolicyEnginesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListPolicyEnginesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListPolicyEnginesOutput: ...
     @property
     def policy_engines(self) -> list[PolicyEngine]: ...
     @property
@@ -3569,6 +3825,8 @@ class ListPolicyEnginesOutput:
 @final
 class ListPolicyGenerationAssetsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListPolicyGenerationAssetsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListPolicyGenerationAssetsOutput: ...
     @property
     def policy_generation_assets(self) -> list[PolicyGenerationAsset] | None: ...
     @property
@@ -3578,6 +3836,8 @@ class ListPolicyGenerationAssetsOutput:
 @final
 class ListPolicyGenerationSummariesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListPolicyGenerationSummariesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListPolicyGenerationSummariesOutput: ...
     @property
     def policy_generations(self) -> list[PolicyGenerationSummary]: ...
     @property
@@ -3587,6 +3847,8 @@ class ListPolicyGenerationSummariesOutput:
 @final
 class ListPolicyGenerationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListPolicyGenerationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListPolicyGenerationsOutput: ...
     @property
     def policy_generations(self) -> list[PolicyGeneration]: ...
     @property
@@ -3596,6 +3858,8 @@ class ListPolicyGenerationsOutput:
 @final
 class ListPolicySummariesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListPolicySummariesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListPolicySummariesOutput: ...
     @property
     def policies(self) -> list[PolicySummary]: ...
     @property
@@ -3605,6 +3869,8 @@ class ListPolicySummariesOutput:
 @final
 class ListRegistriesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListRegistriesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListRegistriesOutput: ...
     @property
     def registries(self) -> list[RegistrySummary]: ...
     @property
@@ -3614,6 +3880,8 @@ class ListRegistriesOutput:
 @final
 class ListRegistryRecordsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListRegistryRecordsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListRegistryRecordsOutput: ...
     @property
     def registry_records(self) -> list[RegistryRecordSummary]: ...
     @property
@@ -3623,6 +3891,8 @@ class ListRegistryRecordsOutput:
 @final
 class ListTagsForResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListTagsForResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTagsForResourceOutput: ...
     @property
     def tags(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3630,6 +3900,8 @@ class ListTagsForResourceOutput:
 @final
 class ListWorkloadIdentitiesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListWorkloadIdentitiesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListWorkloadIdentitiesOutput: ...
     @property
     def workload_identities(self) -> list[WorkloadIdentityType]: ...
     @property
@@ -3639,6 +3911,8 @@ class ListWorkloadIdentitiesOutput:
 @final
 class PutResourcePolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/PutResourcePolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutResourcePolicyOutput: ...
     @property
     def policy(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3646,6 +3920,8 @@ class PutResourcePolicyOutput:
 @final
 class RotatePaymentConnectorCredentialsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/RotatePaymentConnectorCredentialsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> RotatePaymentConnectorCredentialsOutput: ...
     @property
     def payment_connector_id(self) -> str: ...
     @property
@@ -3659,6 +3935,8 @@ class RotatePaymentConnectorCredentialsOutput:
 @final
 class SetTokenVaultCMKOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/SetTokenVaultCMKOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> SetTokenVaultCMKOutput: ...
     @property
     def token_vault_id(self) -> str: ...
     @property
@@ -3670,6 +3948,8 @@ class SetTokenVaultCMKOutput:
 @final
 class StartPolicyGenerationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/StartPolicyGenerationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StartPolicyGenerationOutput: ...
     @property
     def policy_engine_id(self) -> str: ...
     @property
@@ -3695,6 +3975,8 @@ class StartPolicyGenerationOutput:
 @final
 class SubmitRegistryRecordForApprovalOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/SubmitRegistryRecordForApprovalOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> SubmitRegistryRecordForApprovalOutput: ...
     @property
     def registry_arn(self) -> str: ...
     @property
@@ -3710,6 +3992,8 @@ class SubmitRegistryRecordForApprovalOutput:
 @final
 class SynchronizeGatewayTargetsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/SynchronizeGatewayTargetsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> SynchronizeGatewayTargetsOutput: ...
     @property
     def targets(self) -> list[GatewayTarget] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3717,16 +4001,22 @@ class SynchronizeGatewayTargetsOutput:
 @final
 class TagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/TagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> TagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UntagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UntagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UntagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateAgentRuntimeOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateAgentRuntimeOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateAgentRuntimeOutput: ...
     @property
     def agent_runtime_arn(self) -> str: ...
     @property
@@ -3746,6 +4036,8 @@ class UpdateAgentRuntimeOutput:
 @final
 class UpdateAgentRuntimeEndpointOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateAgentRuntimeEndpointOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateAgentRuntimeEndpointOutput: ...
     @property
     def live_version(self) -> str | None: ...
     @property
@@ -3765,6 +4057,8 @@ class UpdateAgentRuntimeEndpointOutput:
 @final
 class UpdateApiKeyCredentialProviderOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateApiKeyCredentialProviderOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateApiKeyCredentialProviderOutput: ...
     @property
     def api_key_secret_arn(self) -> Secret | None: ...
     @property
@@ -3784,6 +4078,8 @@ class UpdateApiKeyCredentialProviderOutput:
 @final
 class UpdateCapacityProviderOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateCapacityProviderOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateCapacityProviderOutput: ...
     @property
     def capacity_provider_id(self) -> str: ...
     @property
@@ -3801,6 +4097,8 @@ class UpdateCapacityProviderOutput:
 @final
 class UpdateConfigurationBundleOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateConfigurationBundleOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateConfigurationBundleOutput: ...
     @property
     def bundle_arn(self) -> str: ...
     @property
@@ -3814,6 +4112,8 @@ class UpdateConfigurationBundleOutput:
 @final
 class UpdateConsentPortalOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateConsentPortalOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateConsentPortalOutput: ...
     @property
     def sources(self) -> list[ConsentPortalSource]: ...
     @property
@@ -3843,6 +4143,8 @@ class UpdateConsentPortalOutput:
 @final
 class UpdateDatasetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateDatasetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateDatasetOutput: ...
     @property
     def dataset_arn(self) -> str: ...
     @property
@@ -3854,6 +4156,8 @@ class UpdateDatasetOutput:
 @final
 class UpdateDatasetExamplesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateDatasetExamplesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateDatasetExamplesOutput: ...
     @property
     def dataset_arn(self) -> str: ...
     @property
@@ -3869,6 +4173,8 @@ class UpdateDatasetExamplesOutput:
 @final
 class UpdateEvaluatorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateEvaluatorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateEvaluatorOutput: ...
     @property
     def evaluator_arn(self) -> str: ...
     @property
@@ -3882,6 +4188,8 @@ class UpdateEvaluatorOutput:
 @final
 class UpdateGatewayOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateGatewayOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateGatewayOutput: ...
     @property
     def gateway_arn(self) -> str: ...
     @property
@@ -3931,6 +4239,8 @@ class UpdateGatewayOutput:
 @final
 class UpdateGatewayRateLimitOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateGatewayRateLimitOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateGatewayRateLimitOutput: ...
     @property
     def rate_limit_id(self) -> str: ...
     @property
@@ -3952,6 +4262,8 @@ class UpdateGatewayRateLimitOutput:
 @final
 class UpdateGatewayRuleOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateGatewayRuleOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateGatewayRuleOutput: ...
     @property
     def rule_id(self) -> str: ...
     @property
@@ -3977,6 +4289,8 @@ class UpdateGatewayRuleOutput:
 @final
 class UpdateGatewayTargetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateGatewayTargetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateGatewayTargetOutput: ...
     @property
     def gateway_arn(self) -> str: ...
     @property
@@ -4016,6 +4330,8 @@ class UpdateGatewayTargetOutput:
 @final
 class UpdateHarnessOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateHarnessOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateHarnessOutput: ...
     @property
     def harness(self) -> Harness | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -4023,6 +4339,8 @@ class UpdateHarnessOutput:
 @final
 class UpdateHarnessEndpointOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateHarnessEndpointOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateHarnessEndpointOutput: ...
     @property
     def endpoint(self) -> HarnessEndpoint | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -4030,6 +4348,8 @@ class UpdateHarnessEndpointOutput:
 @final
 class UpdateMemoryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateMemoryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateMemoryOutput: ...
     @property
     def memory(self) -> Memory | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -4037,6 +4357,8 @@ class UpdateMemoryOutput:
 @final
 class UpdateOauth2CredentialProviderOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateOauth2CredentialProviderOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateOauth2CredentialProviderOutput: ...
     @property
     def client_secret_arn(self) -> Secret | None: ...
     @property
@@ -4064,6 +4386,8 @@ class UpdateOauth2CredentialProviderOutput:
 @final
 class UpdateOnlineEvaluationConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateOnlineEvaluationConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateOnlineEvaluationConfigOutput: ...
     @property
     def online_evaluation_config_arn(self) -> str: ...
     @property
@@ -4081,6 +4405,8 @@ class UpdateOnlineEvaluationConfigOutput:
 @final
 class UpdatePaymentConnectorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdatePaymentConnectorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdatePaymentConnectorOutput: ...
     @property
     def payment_connector_id(self) -> str: ...
     @property
@@ -4102,6 +4428,8 @@ class UpdatePaymentConnectorOutput:
 @final
 class UpdatePaymentCredentialProviderOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdatePaymentCredentialProviderOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdatePaymentCredentialProviderOutput: ...
     @property
     def name(self) -> str: ...
     @property
@@ -4119,6 +4447,8 @@ class UpdatePaymentCredentialProviderOutput:
 @final
 class UpdatePaymentManagerOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdatePaymentManagerOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdatePaymentManagerOutput: ...
     @property
     def payment_manager_arn(self) -> str: ...
     @property
@@ -4142,6 +4472,8 @@ class UpdatePaymentManagerOutput:
 @final
 class UpdatePolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdatePolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdatePolicyOutput: ...
     @property
     def policy_id(self) -> str: ...
     @property
@@ -4169,6 +4501,8 @@ class UpdatePolicyOutput:
 @final
 class UpdatePolicyEngineOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdatePolicyEngineOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdatePolicyEngineOutput: ...
     @property
     def policy_engine_id(self) -> str: ...
     @property
@@ -4192,6 +4526,8 @@ class UpdatePolicyEngineOutput:
 @final
 class UpdateRegistryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateRegistryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateRegistryOutput: ...
     @property
     def name(self) -> str: ...
     @property
@@ -4219,6 +4555,8 @@ class UpdateRegistryOutput:
 @final
 class UpdateRegistryRecordOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateRegistryRecordOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateRegistryRecordOutput: ...
     @property
     def registry_arn(self) -> str: ...
     @property
@@ -4252,6 +4590,8 @@ class UpdateRegistryRecordOutput:
 @final
 class UpdateRegistryRecordStatusOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateRegistryRecordStatusOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateRegistryRecordStatusOutput: ...
     @property
     def registry_arn(self) -> str: ...
     @property
@@ -4269,6 +4609,8 @@ class UpdateRegistryRecordStatusOutput:
 @final
 class UpdateWorkloadIdentityOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateWorkloadIdentityOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateWorkloadIdentityOutput: ...
     @property
     def name(self) -> str: ...
     @property

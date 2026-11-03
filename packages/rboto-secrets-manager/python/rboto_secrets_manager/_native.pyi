@@ -164,6 +164,8 @@ class ValidationErrorsEntry:
 @final
 class BatchGetSecretValueOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/BatchGetSecretValueOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> BatchGetSecretValueOutput: ...
     @property
     def secret_values(self) -> list[SecretValueEntry] | None: ...
     @property
@@ -175,6 +177,8 @@ class BatchGetSecretValueOutput:
 @final
 class CancelRotateSecretOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/CancelRotateSecretOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CancelRotateSecretOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -186,6 +190,8 @@ class CancelRotateSecretOutput:
 @final
 class CreateSecretOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/CreateSecretOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateSecretOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -199,6 +205,8 @@ class CreateSecretOutput:
 @final
 class DeleteResourcePolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/DeleteResourcePolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteResourcePolicyOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -208,6 +216,8 @@ class DeleteResourcePolicyOutput:
 @final
 class DeleteSecretOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/DeleteSecretOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteSecretOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -219,6 +229,8 @@ class DeleteSecretOutput:
 @final
 class DescribeSecretOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/DescribeSecretOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeSecretOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -266,6 +278,8 @@ class DescribeSecretOutput:
 @final
 class GetRandomPasswordOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/GetRandomPasswordOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetRandomPasswordOutput: ...
     @property
     def random_password(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -273,6 +287,8 @@ class GetRandomPasswordOutput:
 @final
 class GetResourcePolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/GetResourcePolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetResourcePolicyOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -284,6 +300,8 @@ class GetResourcePolicyOutput:
 @final
 class GetSecretValueOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/GetSecretValueOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetSecretValueOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -303,6 +321,8 @@ class GetSecretValueOutput:
 @final
 class ListSecretVersionIdsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ListSecretVersionIdsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListSecretVersionIdsOutput: ...
     @property
     def versions(self) -> list[SecretVersionsListEntry] | None: ...
     @property
@@ -316,6 +336,8 @@ class ListSecretVersionIdsOutput:
 @final
 class ListSecretsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ListSecretsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListSecretsOutput: ...
     @property
     def secret_list(self) -> list[SecretListEntry] | None: ...
     @property
@@ -325,6 +347,8 @@ class ListSecretsOutput:
 @final
 class PutResourcePolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/PutResourcePolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutResourcePolicyOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -334,6 +358,8 @@ class PutResourcePolicyOutput:
 @final
 class PutSecretValueOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/PutSecretValueOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutSecretValueOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -347,6 +373,8 @@ class PutSecretValueOutput:
 @final
 class RemoveRegionsFromReplicationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/RemoveRegionsFromReplicationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> RemoveRegionsFromReplicationOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -356,6 +384,8 @@ class RemoveRegionsFromReplicationOutput:
 @final
 class ReplicateSecretToRegionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ReplicateSecretToRegionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ReplicateSecretToRegionsOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -365,6 +395,8 @@ class ReplicateSecretToRegionsOutput:
 @final
 class RestoreSecretOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/RestoreSecretOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> RestoreSecretOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -374,6 +406,8 @@ class RestoreSecretOutput:
 @final
 class RotateSecretOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/RotateSecretOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> RotateSecretOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -385,6 +419,8 @@ class RotateSecretOutput:
 @final
 class StopReplicationToReplicaOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/StopReplicationToReplicaOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StopReplicationToReplicaOutput: ...
     @property
     def arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -392,6 +428,8 @@ class StopReplicationToReplicaOutput:
 @final
 class UpdateSecretOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/UpdateSecretOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateSecretOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -403,6 +441,8 @@ class UpdateSecretOutput:
 @final
 class UpdateSecretVersionStageOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/UpdateSecretVersionStageOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateSecretVersionStageOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -412,6 +452,8 @@ class UpdateSecretVersionStageOutput:
 @final
 class ValidateResourcePolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ValidateResourcePolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ValidateResourcePolicyOutput: ...
     @property
     def policy_validation_passed(self) -> bool: ...
     @property

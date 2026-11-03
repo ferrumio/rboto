@@ -80,6 +80,8 @@ class SigninResourceBasedPolicy:
 @final
 class CreateOAuth2TokenOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/CreateOAuth2TokenOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateOAuth2TokenOutput: ...
     @property
     def token_output(self) -> CreateOAuth2TokenResponseBody | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -87,6 +89,8 @@ class CreateOAuth2TokenOutput:
 @final
 class CreateOAuth2TokenWithIAMOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/CreateOAuth2TokenWithIAMOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateOAuth2TokenWithIAMOutput: ...
     @property
     def access_token(self) -> str: ...
     @property
@@ -98,6 +102,8 @@ class CreateOAuth2TokenWithIAMOutput:
 @final
 class DeleteConsoleAuthorizationConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/DeleteConsoleAuthorizationConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteConsoleAuthorizationConfigurationOutput: ...
     @property
     def target_id(self) -> str: ...
     @property
@@ -109,11 +115,15 @@ class DeleteConsoleAuthorizationConfigurationOutput:
 @final
 class DeleteResourcePermissionStatementOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/DeleteResourcePermissionStatementOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteResourcePermissionStatementOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetConsoleAuthorizationConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/GetConsoleAuthorizationConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetConsoleAuthorizationConfigurationOutput: ...
     @property
     def target_id(self) -> str: ...
     @property
@@ -125,6 +135,8 @@ class GetConsoleAuthorizationConfigurationOutput:
 @final
 class GetResourcePolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/GetResourcePolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetResourcePolicyOutput: ...
     @property
     def signin_resource_based_policy(self) -> SigninResourceBasedPolicy | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -132,6 +144,8 @@ class GetResourcePolicyOutput:
 @final
 class IntrospectOAuth2TokenWithIAMOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/IntrospectOAuth2TokenWithIAMOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> IntrospectOAuth2TokenWithIAMOutput: ...
     @property
     def active(self) -> bool: ...
     @property
@@ -165,6 +179,8 @@ class IntrospectOAuth2TokenWithIAMOutput:
 @final
 class ListResourcePermissionStatementsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/ListResourcePermissionStatementsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListResourcePermissionStatementsOutput: ...
     @property
     def permission_statements(self) -> list[PermissionStatementSummary]: ...
     @property
@@ -174,6 +190,8 @@ class ListResourcePermissionStatementsOutput:
 @final
 class PutConsoleAuthorizationConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/PutConsoleAuthorizationConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutConsoleAuthorizationConfigurationOutput: ...
     @property
     def target_id(self) -> str: ...
     @property
@@ -185,6 +203,8 @@ class PutConsoleAuthorizationConfigurationOutput:
 @final
 class PutResourcePermissionStatementOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/PutResourcePermissionStatementOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutResourcePermissionStatementOutput: ...
     @property
     def statement_id(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -192,6 +212,8 @@ class PutResourcePermissionStatementOutput:
 @final
 class RevokeOAuth2TokenWithIAMOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/RevokeOAuth2TokenWithIAMOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> RevokeOAuth2TokenWithIAMOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 

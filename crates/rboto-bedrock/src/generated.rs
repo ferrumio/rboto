@@ -13605,6 +13605,9024 @@ fn vpc_config_to_py(
     Ok(result.into_any().unbind())
 }
 
+fn account_enforced_guardrail_output_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AccountEnforcedGuardrailOutputConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "config_id",
+            "guardrail_arn",
+            "guardrail_id",
+            "input_tags",
+            "selective_content_guarding",
+            "guardrail_version",
+            "created_at",
+            "created_by",
+            "updated_at",
+            "updated_by",
+            "owner",
+            "model_enforcement",
+        ],
+        &[],
+    )?;
+    let mut builder =
+        aws_sdk_bedrock::types::AccountEnforcedGuardrailOutputConfiguration::builder();
+    if let Some(value) = dict_value(values, "config_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4557: String = value.extract()?;
+        builder = builder.set_config_id(Some(fixture_4557));
+    }
+    if let Some(value) = dict_value(values, "guardrail_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4558: String = value.extract()?;
+        builder = builder.set_guardrail_arn(Some(fixture_4558));
+    }
+    if let Some(value) = dict_value(values, "guardrail_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4559: String = value.extract()?;
+        builder = builder.set_guardrail_id(Some(fixture_4559));
+    }
+    if let Some(value) = dict_value(values, "input_tags")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4561: String = value.extract()?;
+        let fixture_4560 = aws_sdk_bedrock::types::InputTags::from(enum_value_4561.as_str());
+        builder = builder.set_input_tags(Some(fixture_4560));
+    }
+    if let Some(value) = dict_value(values, "selective_content_guarding")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4562 = selective_content_guarding_fixture_from_py(&value)?;
+        builder = builder.set_selective_content_guarding(Some(fixture_4562));
+    }
+    if let Some(value) = dict_value(values, "guardrail_version")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4563: String = value.extract()?;
+        builder = builder.set_guardrail_version(Some(fixture_4563));
+    }
+    if let Some(value) = dict_value(values, "created_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_4565: String = value.extract()?;
+        let fixture_4564 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_4565,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_created_at(Some(fixture_4564));
+    }
+    if let Some(value) = dict_value(values, "created_by")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4566: String = value.extract()?;
+        builder = builder.set_created_by(Some(fixture_4566));
+    }
+    if let Some(value) = dict_value(values, "updated_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_4568: String = value.extract()?;
+        let fixture_4567 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_4568,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_updated_at(Some(fixture_4567));
+    }
+    if let Some(value) = dict_value(values, "updated_by")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4569: String = value.extract()?;
+        builder = builder.set_updated_by(Some(fixture_4569));
+    }
+    if let Some(value) = dict_value(values, "owner")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4571: String = value.extract()?;
+        let fixture_4570 =
+            aws_sdk_bedrock::types::ConfigurationOwner::from(enum_value_4571.as_str());
+        builder = builder.set_owner(Some(fixture_4570));
+    }
+    if let Some(value) = dict_value(values, "model_enforcement")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4572 = model_enforcement_fixture_from_py(&value)?;
+        builder = builder.set_model_enforcement(Some(fixture_4572));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn advanced_prompt_optimization_input_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AdvancedPromptOptimizationInputConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["s3_uri"], &["s3_uri"])?;
+    let mut builder = aws_sdk_bedrock::types::AdvancedPromptOptimizationInputConfig::builder();
+    if let Some(value) = values.get_item("s3_uri")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4573: String = value.extract()?;
+        builder = builder.set_s3_uri(Some(fixture_4573));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn advanced_prompt_optimization_job_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AdvancedPromptOptimizationJobSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "job_arn",
+            "job_name",
+            "job_status",
+            "creation_time",
+            "last_modified_time",
+        ],
+        &["job_arn", "job_name", "job_status", "creation_time"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AdvancedPromptOptimizationJobSummary::builder();
+    if let Some(value) = values.get_item("job_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4574: String = value.extract()?;
+        builder = builder.set_job_arn(Some(fixture_4574));
+    }
+    if let Some(value) = values.get_item("job_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4575: String = value.extract()?;
+        builder = builder.set_job_name(Some(fixture_4575));
+    }
+    if let Some(value) = values.get_item("job_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4577: String = value.extract()?;
+        let fixture_4576 = aws_sdk_bedrock::types::AdvancedPromptOptimizationJobStatus::from(
+            enum_value_4577.as_str(),
+        );
+        builder = builder.set_job_status(Some(fixture_4576));
+    }
+    if let Some(value) = values.get_item("creation_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_4579: String = value.extract()?;
+        let fixture_4578 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_4579,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_time(Some(fixture_4578));
+    }
+    if let Some(value) = dict_value(values, "last_modified_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_4581: String = value.extract()?;
+        let fixture_4580 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_4581,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_modified_time(Some(fixture_4580));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn advanced_prompt_optimization_output_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AdvancedPromptOptimizationOutputConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["s3_uri"], &["s3_uri"])?;
+    let mut builder = aws_sdk_bedrock::types::AdvancedPromptOptimizationOutputConfig::builder();
+    if let Some(value) = values.get_item("s3_uri")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4582: String = value.extract()?;
+        builder = builder.set_s3_uri(Some(fixture_4582));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn agreement_availability_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AgreementAvailability> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["status", "error_message"], &["status"])?;
+    let mut builder = aws_sdk_bedrock::types::AgreementAvailability::builder();
+    if let Some(value) = values.get_item("status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4584: String = value.extract()?;
+        let fixture_4583 = aws_sdk_bedrock::types::AgreementStatus::from(enum_value_4584.as_str());
+        builder = builder.set_status(Some(fixture_4583));
+    }
+    if let Some(value) = dict_value(values, "error_message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4585: String = value.extract()?;
+        builder = builder.set_error_message(Some(fixture_4585));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_evaluation_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedEvaluationConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "dataset_metric_configs",
+            "evaluator_model_config",
+            "custom_metric_config",
+        ],
+        &["dataset_metric_configs"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedEvaluationConfig::builder();
+    if let Some(value) = values.get_item("dataset_metric_configs")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4586 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4587 in value.try_iter()? {
+            let item_4588 = item_result_4587?;
+            rboto_core::fixture_scalar(&item_4588, "struct")?;
+            let converted_item_4589 = evaluation_dataset_metric_config_fixture_from_py(&item_4588)?;
+            fixture_4586.push(converted_item_4589);
+        }
+        builder = builder.set_dataset_metric_configs(Some(fixture_4586));
+    }
+    if let Some(value) = dict_value(values, "evaluator_model_config")? {
+        rboto_core::fixture_scalar(&value, "union")?;
+        let fixture_4590 = evaluator_model_config_fixture_from_py(&value)?;
+        builder = builder.set_evaluator_model_config(Some(fixture_4590));
+    }
+    if let Some(value) = dict_value(values, "custom_metric_config")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4591 = automated_evaluation_custom_metric_config_fixture_from_py(&value)?;
+        builder = builder.set_custom_metric_config(Some(fixture_4591));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_evaluation_custom_metric_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedEvaluationCustomMetricConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["custom_metrics", "evaluator_model_config"],
+        &["custom_metrics"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedEvaluationCustomMetricConfig::builder();
+    if let Some(value) = values.get_item("custom_metrics")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4592 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4593 in value.try_iter()? {
+            let item_4594 = item_result_4593?;
+            rboto_core::fixture_scalar(&item_4594, "union")?;
+            let converted_item_4595 =
+                automated_evaluation_custom_metric_source_fixture_from_py(&item_4594)?;
+            fixture_4592.push(converted_item_4595);
+        }
+        builder = builder.set_custom_metrics(Some(fixture_4592));
+    }
+    if let Some(value) = dict_value(values, "evaluator_model_config")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4596 = custom_metric_evaluator_model_config_fixture_from_py(&value)?;
+        builder = builder.set_evaluator_model_config(Some(fixture_4596));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_evaluation_custom_metric_source_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedEvaluationCustomMetricSource> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("custom_metric_definition")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4597 = custom_metric_definition_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedEvaluationCustomMetricSource::CustomMetricDefinition(
+                converted_4597,
+            ),
+        );
+    }
+    Err(PyValueError::new_err(
+        "AutomatedEvaluationCustomMetricSource requires exactly one known variant",
+    ))
+}
+
+fn automated_reasoning_check_finding_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckFinding> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("valid")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4598 = automated_reasoning_check_valid_finding_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::AutomatedReasoningCheckFinding::Valid(converted_4598));
+    }
+    if let Some(value) = values.get_item("invalid")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4599 = automated_reasoning_check_invalid_finding_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::AutomatedReasoningCheckFinding::Invalid(converted_4599));
+    }
+    if let Some(value) = values.get_item("satisfiable")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4600 = automated_reasoning_check_satisfiable_finding_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningCheckFinding::Satisfiable(converted_4600),
+        );
+    }
+    if let Some(value) = values.get_item("impossible")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4601 = automated_reasoning_check_impossible_finding_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningCheckFinding::Impossible(converted_4601),
+        );
+    }
+    if let Some(value) = values.get_item("translation_ambiguous")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4602 =
+            automated_reasoning_check_translation_ambiguous_finding_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningCheckFinding::TranslationAmbiguous(
+                converted_4602,
+            ),
+        );
+    }
+    if let Some(value) = values.get_item("too_complex")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4603 = automated_reasoning_check_too_complex_finding_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningCheckFinding::TooComplex(converted_4603),
+        );
+    }
+    if let Some(value) = values.get_item("no_translations")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4604 =
+            automated_reasoning_check_no_translations_finding_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningCheckFinding::NoTranslations(converted_4604),
+        );
+    }
+    Err(PyValueError::new_err(
+        "AutomatedReasoningCheckFinding requires exactly one known variant",
+    ))
+}
+
+fn automated_reasoning_check_impossible_finding_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckImpossibleFinding> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["translation", "contradicting_rules", "logic_warning"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningCheckImpossibleFinding::builder();
+    if let Some(value) = dict_value(values, "translation")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4605 = automated_reasoning_check_translation_fixture_from_py(&value)?;
+        builder = builder.set_translation(Some(fixture_4605));
+    }
+    if let Some(value) = dict_value(values, "contradicting_rules")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4606 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4607 in value.try_iter()? {
+            let item_4608 = item_result_4607?;
+            rboto_core::fixture_scalar(&item_4608, "struct")?;
+            let converted_item_4609 = automated_reasoning_check_rule_fixture_from_py(&item_4608)?;
+            fixture_4606.push(converted_item_4609);
+        }
+        builder = builder.set_contradicting_rules(Some(fixture_4606));
+    }
+    if let Some(value) = dict_value(values, "logic_warning")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4610 = automated_reasoning_check_logic_warning_fixture_from_py(&value)?;
+        builder = builder.set_logic_warning(Some(fixture_4610));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn automated_reasoning_check_input_text_reference_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckInputTextReference> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["text"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningCheckInputTextReference::builder();
+    if let Some(value) = dict_value(values, "text")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4611: String = value.extract()?;
+        builder = builder.set_text(Some(fixture_4611));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn automated_reasoning_check_invalid_finding_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckInvalidFinding> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["translation", "contradicting_rules", "logic_warning"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningCheckInvalidFinding::builder();
+    if let Some(value) = dict_value(values, "translation")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4612 = automated_reasoning_check_translation_fixture_from_py(&value)?;
+        builder = builder.set_translation(Some(fixture_4612));
+    }
+    if let Some(value) = dict_value(values, "contradicting_rules")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4613 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4614 in value.try_iter()? {
+            let item_4615 = item_result_4614?;
+            rboto_core::fixture_scalar(&item_4615, "struct")?;
+            let converted_item_4616 = automated_reasoning_check_rule_fixture_from_py(&item_4615)?;
+            fixture_4613.push(converted_item_4616);
+        }
+        builder = builder.set_contradicting_rules(Some(fixture_4613));
+    }
+    if let Some(value) = dict_value(values, "logic_warning")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4617 = automated_reasoning_check_logic_warning_fixture_from_py(&value)?;
+        builder = builder.set_logic_warning(Some(fixture_4617));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn automated_reasoning_check_logic_warning_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckLogicWarning> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["type", "premises", "claims"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningCheckLogicWarning::builder();
+    if let Some(value) = dict_value(values, "type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4619: String = value.extract()?;
+        let fixture_4618 = aws_sdk_bedrock::types::AutomatedReasoningCheckLogicWarningType::from(
+            enum_value_4619.as_str(),
+        );
+        builder = builder.set_type(Some(fixture_4618));
+    }
+    if let Some(value) = dict_value(values, "premises")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4620 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4621 in value.try_iter()? {
+            let item_4622 = item_result_4621?;
+            rboto_core::fixture_scalar(&item_4622, "struct")?;
+            let converted_item_4623 =
+                automated_reasoning_logic_statement_fixture_from_py(&item_4622)?;
+            fixture_4620.push(converted_item_4623);
+        }
+        builder = builder.set_premises(Some(fixture_4620));
+    }
+    if let Some(value) = dict_value(values, "claims")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4624 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4625 in value.try_iter()? {
+            let item_4626 = item_result_4625?;
+            rboto_core::fixture_scalar(&item_4626, "struct")?;
+            let converted_item_4627 =
+                automated_reasoning_logic_statement_fixture_from_py(&item_4626)?;
+            fixture_4624.push(converted_item_4627);
+        }
+        builder = builder.set_claims(Some(fixture_4624));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn automated_reasoning_check_no_translations_finding_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckNoTranslationsFinding> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &[], &[])?;
+    let mut builder =
+        aws_sdk_bedrock::types::AutomatedReasoningCheckNoTranslationsFinding::builder();
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn automated_reasoning_check_rule_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckRule> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["id", "policy_version_arn"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningCheckRule::builder();
+    if let Some(value) = dict_value(values, "id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4628: String = value.extract()?;
+        builder = builder.set_id(Some(fixture_4628));
+    }
+    if let Some(value) = dict_value(values, "policy_version_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4629: String = value.extract()?;
+        builder = builder.set_policy_version_arn(Some(fixture_4629));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn automated_reasoning_check_satisfiable_finding_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckSatisfiableFinding> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "translation",
+            "claims_true_scenario",
+            "claims_false_scenario",
+            "logic_warning",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningCheckSatisfiableFinding::builder();
+    if let Some(value) = dict_value(values, "translation")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4630 = automated_reasoning_check_translation_fixture_from_py(&value)?;
+        builder = builder.set_translation(Some(fixture_4630));
+    }
+    if let Some(value) = dict_value(values, "claims_true_scenario")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4631 = automated_reasoning_check_scenario_fixture_from_py(&value)?;
+        builder = builder.set_claims_true_scenario(Some(fixture_4631));
+    }
+    if let Some(value) = dict_value(values, "claims_false_scenario")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4632 = automated_reasoning_check_scenario_fixture_from_py(&value)?;
+        builder = builder.set_claims_false_scenario(Some(fixture_4632));
+    }
+    if let Some(value) = dict_value(values, "logic_warning")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4633 = automated_reasoning_check_logic_warning_fixture_from_py(&value)?;
+        builder = builder.set_logic_warning(Some(fixture_4633));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn automated_reasoning_check_scenario_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckScenario> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["statements"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningCheckScenario::builder();
+    if let Some(value) = dict_value(values, "statements")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4634 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4635 in value.try_iter()? {
+            let item_4636 = item_result_4635?;
+            rboto_core::fixture_scalar(&item_4636, "struct")?;
+            let converted_item_4637 =
+                automated_reasoning_logic_statement_fixture_from_py(&item_4636)?;
+            fixture_4634.push(converted_item_4637);
+        }
+        builder = builder.set_statements(Some(fixture_4634));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn automated_reasoning_check_too_complex_finding_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckTooComplexFinding> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &[], &[])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningCheckTooComplexFinding::builder();
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn automated_reasoning_check_translation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckTranslation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "premises",
+            "claims",
+            "untranslated_premises",
+            "untranslated_claims",
+            "confidence",
+        ],
+        &["claims", "confidence"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningCheckTranslation::builder();
+    if let Some(value) = dict_value(values, "premises")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4638 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4639 in value.try_iter()? {
+            let item_4640 = item_result_4639?;
+            rboto_core::fixture_scalar(&item_4640, "struct")?;
+            let converted_item_4641 =
+                automated_reasoning_logic_statement_fixture_from_py(&item_4640)?;
+            fixture_4638.push(converted_item_4641);
+        }
+        builder = builder.set_premises(Some(fixture_4638));
+    }
+    if let Some(value) = values.get_item("claims")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4642 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4643 in value.try_iter()? {
+            let item_4644 = item_result_4643?;
+            rboto_core::fixture_scalar(&item_4644, "struct")?;
+            let converted_item_4645 =
+                automated_reasoning_logic_statement_fixture_from_py(&item_4644)?;
+            fixture_4642.push(converted_item_4645);
+        }
+        builder = builder.set_claims(Some(fixture_4642));
+    }
+    if let Some(value) = dict_value(values, "untranslated_premises")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4646 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4647 in value.try_iter()? {
+            let item_4648 = item_result_4647?;
+            rboto_core::fixture_scalar(&item_4648, "struct")?;
+            let converted_item_4649 =
+                automated_reasoning_check_input_text_reference_fixture_from_py(&item_4648)?;
+            fixture_4646.push(converted_item_4649);
+        }
+        builder = builder.set_untranslated_premises(Some(fixture_4646));
+    }
+    if let Some(value) = dict_value(values, "untranslated_claims")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4650 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4651 in value.try_iter()? {
+            let item_4652 = item_result_4651?;
+            rboto_core::fixture_scalar(&item_4652, "struct")?;
+            let converted_item_4653 =
+                automated_reasoning_check_input_text_reference_fixture_from_py(&item_4652)?;
+            fixture_4650.push(converted_item_4653);
+        }
+        builder = builder.set_untranslated_claims(Some(fixture_4650));
+    }
+    if let Some(value) = values.get_item("confidence")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_4654: f64 = value.extract()?;
+        builder = builder.set_confidence(Some(fixture_4654));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_check_translation_ambiguous_finding_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckTranslationAmbiguousFinding> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["options", "difference_scenarios"], &[])?;
+    let mut builder =
+        aws_sdk_bedrock::types::AutomatedReasoningCheckTranslationAmbiguousFinding::builder();
+    if let Some(value) = dict_value(values, "options")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4655 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4656 in value.try_iter()? {
+            let item_4657 = item_result_4656?;
+            rboto_core::fixture_scalar(&item_4657, "struct")?;
+            let converted_item_4658 =
+                automated_reasoning_check_translation_option_fixture_from_py(&item_4657)?;
+            fixture_4655.push(converted_item_4658);
+        }
+        builder = builder.set_options(Some(fixture_4655));
+    }
+    if let Some(value) = dict_value(values, "difference_scenarios")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4659 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4660 in value.try_iter()? {
+            let item_4661 = item_result_4660?;
+            rboto_core::fixture_scalar(&item_4661, "struct")?;
+            let converted_item_4662 =
+                automated_reasoning_check_scenario_fixture_from_py(&item_4661)?;
+            fixture_4659.push(converted_item_4662);
+        }
+        builder = builder.set_difference_scenarios(Some(fixture_4659));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn automated_reasoning_check_translation_option_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckTranslationOption> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["translations"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningCheckTranslationOption::builder();
+    if let Some(value) = dict_value(values, "translations")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4663 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4664 in value.try_iter()? {
+            let item_4665 = item_result_4664?;
+            rboto_core::fixture_scalar(&item_4665, "struct")?;
+            let converted_item_4666 =
+                automated_reasoning_check_translation_fixture_from_py(&item_4665)?;
+            fixture_4663.push(converted_item_4666);
+        }
+        builder = builder.set_translations(Some(fixture_4663));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn automated_reasoning_check_valid_finding_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckValidFinding> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "translation",
+            "claims_true_scenario",
+            "supporting_rules",
+            "logic_warning",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningCheckValidFinding::builder();
+    if let Some(value) = dict_value(values, "translation")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4667 = automated_reasoning_check_translation_fixture_from_py(&value)?;
+        builder = builder.set_translation(Some(fixture_4667));
+    }
+    if let Some(value) = dict_value(values, "claims_true_scenario")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4668 = automated_reasoning_check_scenario_fixture_from_py(&value)?;
+        builder = builder.set_claims_true_scenario(Some(fixture_4668));
+    }
+    if let Some(value) = dict_value(values, "supporting_rules")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4669 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4670 in value.try_iter()? {
+            let item_4671 = item_result_4670?;
+            rboto_core::fixture_scalar(&item_4671, "struct")?;
+            let converted_item_4672 = automated_reasoning_check_rule_fixture_from_py(&item_4671)?;
+            fixture_4669.push(converted_item_4672);
+        }
+        builder = builder.set_supporting_rules(Some(fixture_4669));
+    }
+    if let Some(value) = dict_value(values, "logic_warning")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4673 = automated_reasoning_check_logic_warning_fixture_from_py(&value)?;
+        builder = builder.set_logic_warning(Some(fixture_4673));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn automated_reasoning_logic_statement_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningLogicStatement> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["logic", "natural_language"], &["logic"])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningLogicStatement::builder();
+    if let Some(value) = values.get_item("logic")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4674: String = value.extract()?;
+        builder = builder.set_logic(Some(fixture_4674));
+    }
+    if let Some(value) = dict_value(values, "natural_language")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4675: String = value.extract()?;
+        builder = builder.set_natural_language(Some(fixture_4675));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_add_rule_annotation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyAddRuleAnnotation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["expression"], &["expression"])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyAddRuleAnnotation::builder();
+    if let Some(value) = values.get_item("expression")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4676: String = value.extract()?;
+        builder = builder.set_expression(Some(fixture_4676));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_add_rule_from_natural_language_annotation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyAddRuleFromNaturalLanguageAnnotation>
+{
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["natural_language"], &["natural_language"])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyAddRuleFromNaturalLanguageAnnotation::builder();
+    if let Some(value) = values.get_item("natural_language")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4677: String = value.extract()?;
+        builder = builder.set_natural_language(Some(fixture_4677));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_add_rule_mutation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyAddRuleMutation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["rule"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyAddRuleMutation::builder();
+    if let Some(value) = dict_value(values, "rule")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4678 = automated_reasoning_policy_definition_rule_fixture_from_py(&value)?;
+        builder = builder.set_rule(Some(fixture_4678));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn automated_reasoning_policy_add_type_annotation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyAddTypeAnnotation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["name", "description", "values"],
+        &["name", "description", "values"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyAddTypeAnnotation::builder();
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4679: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_4679));
+    }
+    if let Some(value) = values.get_item("description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4680: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_4680));
+    }
+    if let Some(value) = values.get_item("values")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4681 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4682 in value.try_iter()? {
+            let item_4683 = item_result_4682?;
+            rboto_core::fixture_scalar(&item_4683, "struct")?;
+            let converted_item_4684 =
+                automated_reasoning_policy_definition_type_value_fixture_from_py(&item_4683)?;
+            fixture_4681.push(converted_item_4684);
+        }
+        builder = builder.set_values(Some(fixture_4681));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_add_type_mutation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyAddTypeMutation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["type"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyAddTypeMutation::builder();
+    if let Some(value) = dict_value(values, "type")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4685 = automated_reasoning_policy_definition_type_fixture_from_py(&value)?;
+        builder = builder.set_type(Some(fixture_4685));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn automated_reasoning_policy_add_type_value_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyAddTypeValue> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["value", "description"], &["value"])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyAddTypeValue::builder();
+    if let Some(value) = values.get_item("value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4686: String = value.extract()?;
+        builder = builder.set_value(Some(fixture_4686));
+    }
+    if let Some(value) = dict_value(values, "description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4687: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_4687));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_add_variable_annotation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyAddVariableAnnotation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["name", "type", "description"],
+        &["name", "type", "description"],
+    )?;
+    let mut builder =
+        aws_sdk_bedrock::types::AutomatedReasoningPolicyAddVariableAnnotation::builder();
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4688: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_4688));
+    }
+    if let Some(value) = values.get_item("type")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4689: String = value.extract()?;
+        builder = builder.set_type(Some(fixture_4689));
+    }
+    if let Some(value) = values.get_item("description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4690: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_4690));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_add_variable_mutation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyAddVariableMutation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["variable"], &[])?;
+    let mut builder =
+        aws_sdk_bedrock::types::AutomatedReasoningPolicyAddVariableMutation::builder();
+    if let Some(value) = dict_value(values, "variable")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4691 = automated_reasoning_policy_definition_variable_fixture_from_py(&value)?;
+        builder = builder.set_variable(Some(fixture_4691));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn automated_reasoning_policy_annotated_chunk_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotatedChunk> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["page_number", "content"], &["content"])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotatedChunk::builder();
+    if let Some(value) = dict_value(values, "page_number")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_4692: i32 = value.extract()?;
+        builder = builder.set_page_number(Some(fixture_4692));
+    }
+    if let Some(value) = values.get_item("content")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4693 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4694 in value.try_iter()? {
+            let item_4695 = item_result_4694?;
+            rboto_core::fixture_scalar(&item_4695, "union")?;
+            let converted_item_4696 =
+                automated_reasoning_policy_annotated_content_fixture_from_py(&item_4695)?;
+            fixture_4693.push(converted_item_4696);
+        }
+        builder = builder.set_content(Some(fixture_4693));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_annotated_content_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotatedContent> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("line")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4697 = automated_reasoning_policy_annotated_line_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotatedContent::Line(converted_4697),
+        );
+    }
+    Err(PyValueError::new_err(
+        "AutomatedReasoningPolicyAnnotatedContent requires exactly one known variant",
+    ))
+}
+
+fn automated_reasoning_policy_annotated_line_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotatedLine> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["line_number", "line_text"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotatedLine::builder();
+    if let Some(value) = dict_value(values, "line_number")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_4698: i32 = value.extract()?;
+        builder = builder.set_line_number(Some(fixture_4698));
+    }
+    if let Some(value) = dict_value(values, "line_text")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4699: String = value.extract()?;
+        builder = builder.set_line_text(Some(fixture_4699));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn automated_reasoning_policy_annotation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotation> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("add_type")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4700 =
+            automated_reasoning_policy_add_type_annotation_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotation::AddType(converted_4700),
+        );
+    }
+    if let Some(value) = values.get_item("update_type")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4701 =
+            automated_reasoning_policy_update_type_annotation_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotation::UpdateType(converted_4701),
+        );
+    }
+    if let Some(value) = values.get_item("delete_type")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4702 =
+            automated_reasoning_policy_delete_type_annotation_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotation::DeleteType(converted_4702),
+        );
+    }
+    if let Some(value) = values.get_item("add_variable")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4703 =
+            automated_reasoning_policy_add_variable_annotation_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotation::AddVariable(converted_4703),
+        );
+    }
+    if let Some(value) = values.get_item("update_variable")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4704 =
+            automated_reasoning_policy_update_variable_annotation_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotation::UpdateVariable(
+                converted_4704,
+            ),
+        );
+    }
+    if let Some(value) = values.get_item("delete_variable")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4705 =
+            automated_reasoning_policy_delete_variable_annotation_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotation::DeleteVariable(
+                converted_4705,
+            ),
+        );
+    }
+    if let Some(value) = values.get_item("add_rule")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4706 =
+            automated_reasoning_policy_add_rule_annotation_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotation::AddRule(converted_4706),
+        );
+    }
+    if let Some(value) = values.get_item("update_rule")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4707 =
+            automated_reasoning_policy_update_rule_annotation_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotation::UpdateRule(converted_4707),
+        );
+    }
+    if let Some(value) = values.get_item("delete_rule")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4708 =
+            automated_reasoning_policy_delete_rule_annotation_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotation::DeleteRule(converted_4708),
+        );
+    }
+    if let Some(value) = values.get_item("add_rule_from_natural_language")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4709 =
+            automated_reasoning_policy_add_rule_from_natural_language_annotation_fixture_from_py(
+                &value,
+            )?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotation::AddRuleFromNaturalLanguage(
+                converted_4709,
+            ),
+        );
+    }
+    if let Some(value) = values.get_item("update_from_rules_feedback")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4710 =
+            automated_reasoning_policy_update_from_rule_feedback_annotation_fixture_from_py(
+                &value,
+            )?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotation::UpdateFromRulesFeedback(
+                converted_4710,
+            ),
+        );
+    }
+    if let Some(value) = values.get_item("update_from_scenario_feedback")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4711 =
+            automated_reasoning_policy_update_from_scenario_feedback_annotation_fixture_from_py(
+                &value,
+            )?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotation::UpdateFromScenarioFeedback(
+                converted_4711,
+            ),
+        );
+    }
+    if let Some(value) = values.get_item("ingest_content")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4712 =
+            automated_reasoning_policy_ingest_content_annotation_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotation::IngestContent(
+                converted_4712,
+            ),
+        );
+    }
+    Err(PyValueError::new_err(
+        "AutomatedReasoningPolicyAnnotation requires exactly one known variant",
+    ))
+}
+
+fn automated_reasoning_policy_atomic_statement_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyAtomicStatement> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["id", "text", "location"], &["id", "text"])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyAtomicStatement::builder();
+    if let Some(value) = values.get_item("id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4713: String = value.extract()?;
+        builder = builder.set_id(Some(fixture_4713));
+    }
+    if let Some(value) = values.get_item("text")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4714: String = value.extract()?;
+        builder = builder.set_text(Some(fixture_4714));
+    }
+    if let Some(value) = dict_value(values, "location")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4715 = automated_reasoning_policy_statement_location_fixture_from_py(&value)?;
+        builder = builder.set_location(Some(fixture_4715));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_build_log_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildLog> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["entries"], &["entries"])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildLog::builder();
+    if let Some(value) = values.get_item("entries")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4716 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4717 in value.try_iter()? {
+            let item_4718 = item_result_4717?;
+            rboto_core::fixture_scalar(&item_4718, "struct")?;
+            let converted_item_4719 =
+                automated_reasoning_policy_build_log_entry_fixture_from_py(&item_4718)?;
+            fixture_4716.push(converted_item_4719);
+        }
+        builder = builder.set_entries(Some(fixture_4716));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_build_log_entry_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildLogEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["annotation", "status", "build_steps"],
+        &["status", "build_steps"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildLogEntry::builder();
+    if let Some(value) = dict_value(values, "annotation")? {
+        rboto_core::fixture_scalar(&value, "union")?;
+        let fixture_4720 = automated_reasoning_policy_annotation_fixture_from_py(&value)?;
+        builder = builder.set_annotation(Some(fixture_4720));
+    }
+    if let Some(value) = values.get_item("status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4722: String = value.extract()?;
+        let fixture_4721 = aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotationStatus::from(
+            enum_value_4722.as_str(),
+        );
+        builder = builder.set_status(Some(fixture_4721));
+    }
+    if let Some(value) = values.get_item("build_steps")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4723 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4724 in value.try_iter()? {
+            let item_4725 = item_result_4724?;
+            rboto_core::fixture_scalar(&item_4725, "struct")?;
+            let converted_item_4726 =
+                automated_reasoning_policy_build_step_fixture_from_py(&item_4725)?;
+            fixture_4723.push(converted_item_4726);
+        }
+        builder = builder.set_build_steps(Some(fixture_4723));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_build_result_asset_manifest_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildResultAssetManifest> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["entries"], &["entries"])?;
+    let mut builder =
+        aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildResultAssetManifest::builder();
+    if let Some(value) = values.get_item("entries")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4727 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4728 in value.try_iter()? {
+            let item_4729 = item_result_4728?;
+            rboto_core::fixture_scalar(&item_4729, "struct")?;
+            let converted_item_4730 =
+                automated_reasoning_policy_build_result_asset_manifest_entry_fixture_from_py(
+                    &item_4729,
+                )?;
+            fixture_4727.push(converted_item_4730);
+        }
+        builder = builder.set_entries(Some(fixture_4727));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_build_result_asset_manifest_entry_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildResultAssetManifestEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["asset_type", "asset_name", "asset_id"],
+        &["asset_type"],
+    )?;
+    let mut builder =
+        aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildResultAssetManifestEntry::builder();
+    if let Some(value) = values.get_item("asset_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4732: String = value.extract()?;
+        let fixture_4731 =
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildResultAssetType::from(
+                enum_value_4732.as_str(),
+            );
+        builder = builder.set_asset_type(Some(fixture_4731));
+    }
+    if let Some(value) = dict_value(values, "asset_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4733: String = value.extract()?;
+        builder = builder.set_asset_name(Some(fixture_4733));
+    }
+    if let Some(value) = dict_value(values, "asset_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4734: String = value.extract()?;
+        builder = builder.set_asset_id(Some(fixture_4734));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_build_result_assets_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildResultAssets> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("policy_definition")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4735 = automated_reasoning_policy_definition_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildResultAssets::PolicyDefinition(
+                converted_4735,
+            ),
+        );
+    }
+    if let Some(value) = values.get_item("quality_report")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4736 =
+            automated_reasoning_policy_definition_quality_report_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildResultAssets::QualityReport(
+                converted_4736,
+            ),
+        );
+    }
+    if let Some(value) = values.get_item("build_log")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4737 = automated_reasoning_policy_build_log_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildResultAssets::BuildLog(
+                converted_4737,
+            ),
+        );
+    }
+    if let Some(value) = values.get_item("generated_test_cases")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4738 =
+            automated_reasoning_policy_generated_test_cases_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildResultAssets::GeneratedTestCases(
+                converted_4738,
+            ),
+        );
+    }
+    if let Some(value) = values.get_item("policy_scenarios")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4739 = automated_reasoning_policy_scenarios_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildResultAssets::PolicyScenarios(
+                converted_4739,
+            ),
+        );
+    }
+    if let Some(value) = values.get_item("asset_manifest")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4740 =
+            automated_reasoning_policy_build_result_asset_manifest_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildResultAssets::AssetManifest(
+                converted_4740,
+            ),
+        );
+    }
+    if let Some(value) = values.get_item("document")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4741 = automated_reasoning_policy_source_document_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildResultAssets::Document(
+                converted_4741,
+            ),
+        );
+    }
+    if let Some(value) = values.get_item("fidelity_report")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4742 = automated_reasoning_policy_fidelity_report_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildResultAssets::FidelityReport(
+                converted_4742,
+            ),
+        );
+    }
+    Err(PyValueError::new_err(
+        "AutomatedReasoningPolicyBuildResultAssets requires exactly one known variant",
+    ))
+}
+
+fn automated_reasoning_policy_build_step_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildStep> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["context", "prior_element", "messages"],
+        &["messages"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildStep::builder();
+    if let Some(value) = dict_value(values, "context")? {
+        rboto_core::fixture_scalar(&value, "union")?;
+        let fixture_4743 = automated_reasoning_policy_build_step_context_fixture_from_py(&value)?;
+        builder = builder.set_context(Some(fixture_4743));
+    }
+    if let Some(value) = dict_value(values, "prior_element")? {
+        rboto_core::fixture_scalar(&value, "union")?;
+        let fixture_4744 = automated_reasoning_policy_definition_element_fixture_from_py(&value)?;
+        builder = builder.set_prior_element(Some(fixture_4744));
+    }
+    if let Some(value) = values.get_item("messages")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4745 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4746 in value.try_iter()? {
+            let item_4747 = item_result_4746?;
+            rboto_core::fixture_scalar(&item_4747, "struct")?;
+            let converted_item_4748 =
+                automated_reasoning_policy_build_step_message_fixture_from_py(&item_4747)?;
+            fixture_4745.push(converted_item_4748);
+        }
+        builder = builder.set_messages(Some(fixture_4745));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_build_step_context_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildStepContext> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("planning")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4749 = automated_reasoning_policy_planning_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildStepContext::Planning(
+                converted_4749,
+            ),
+        );
+    }
+    if let Some(value) = values.get_item("mutation")? {
+        rboto_core::fixture_scalar(&value, "union")?;
+        let converted_4750 = automated_reasoning_policy_mutation_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildStepContext::Mutation(
+                converted_4750,
+            ),
+        );
+    }
+    Err(PyValueError::new_err(
+        "AutomatedReasoningPolicyBuildStepContext requires exactly one known variant",
+    ))
+}
+
+fn automated_reasoning_policy_build_step_message_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildStepMessage> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["message", "message_type"],
+        &["message", "message_type"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildStepMessage::builder();
+    if let Some(value) = values.get_item("message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4751: String = value.extract()?;
+        builder = builder.set_message(Some(fixture_4751));
+    }
+    if let Some(value) = values.get_item("message_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4753: String = value.extract()?;
+        let fixture_4752 = aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildMessageType::from(
+            enum_value_4753.as_str(),
+        );
+        builder = builder.set_message_type(Some(fixture_4752));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_build_workflow_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildWorkflowSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "policy_arn",
+            "build_workflow_id",
+            "status",
+            "build_workflow_type",
+            "created_at",
+            "updated_at",
+        ],
+        &[
+            "policy_arn",
+            "build_workflow_id",
+            "status",
+            "build_workflow_type",
+            "created_at",
+            "updated_at",
+        ],
+    )?;
+    let mut builder =
+        aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildWorkflowSummary::builder();
+    if let Some(value) = values.get_item("policy_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4754: String = value.extract()?;
+        builder = builder.set_policy_arn(Some(fixture_4754));
+    }
+    if let Some(value) = values.get_item("build_workflow_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4755: String = value.extract()?;
+        builder = builder.set_build_workflow_id(Some(fixture_4755));
+    }
+    if let Some(value) = values.get_item("status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4757: String = value.extract()?;
+        let fixture_4756 =
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildWorkflowStatus::from(
+                enum_value_4757.as_str(),
+            );
+        builder = builder.set_status(Some(fixture_4756));
+    }
+    if let Some(value) = values.get_item("build_workflow_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4759: String = value.extract()?;
+        let fixture_4758 = aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildWorkflowType::from(
+            enum_value_4759.as_str(),
+        );
+        builder = builder.set_build_workflow_type(Some(fixture_4758));
+    }
+    if let Some(value) = values.get_item("created_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_4761: String = value.extract()?;
+        let fixture_4760 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_4761,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_created_at(Some(fixture_4760));
+    }
+    if let Some(value) = values.get_item("updated_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_4763: String = value.extract()?;
+        let fixture_4762 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_4763,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_updated_at(Some(fixture_4762));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_definition_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinition> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["version", "types", "rules", "variables"],
+        &["version"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinition::builder();
+    if let Some(value) = values.get_item("version")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4764: String = value.extract()?;
+        builder = builder.set_version(Some(fixture_4764));
+    }
+    if let Some(value) = dict_value(values, "types")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4765 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4766 in value.try_iter()? {
+            let item_4767 = item_result_4766?;
+            rboto_core::fixture_scalar(&item_4767, "struct")?;
+            let converted_item_4768 =
+                automated_reasoning_policy_definition_type_fixture_from_py(&item_4767)?;
+            fixture_4765.push(converted_item_4768);
+        }
+        builder = builder.set_types(Some(fixture_4765));
+    }
+    if let Some(value) = dict_value(values, "rules")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4769 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4770 in value.try_iter()? {
+            let item_4771 = item_result_4770?;
+            rboto_core::fixture_scalar(&item_4771, "struct")?;
+            let converted_item_4772 =
+                automated_reasoning_policy_definition_rule_fixture_from_py(&item_4771)?;
+            fixture_4769.push(converted_item_4772);
+        }
+        builder = builder.set_rules(Some(fixture_4769));
+    }
+    if let Some(value) = dict_value(values, "variables")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4773 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4774 in value.try_iter()? {
+            let item_4775 = item_result_4774?;
+            rboto_core::fixture_scalar(&item_4775, "struct")?;
+            let converted_item_4776 =
+                automated_reasoning_policy_definition_variable_fixture_from_py(&item_4775)?;
+            fixture_4773.push(converted_item_4776);
+        }
+        builder = builder.set_variables(Some(fixture_4773));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn automated_reasoning_policy_definition_element_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionElement> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("policy_definition_variable")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4777 =
+            automated_reasoning_policy_definition_variable_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionElement::PolicyDefinitionVariable(converted_4777));
+    }
+    if let Some(value) = values.get_item("policy_definition_type")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4778 = automated_reasoning_policy_definition_type_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionElement::PolicyDefinitionType(
+                converted_4778,
+            ),
+        );
+    }
+    if let Some(value) = values.get_item("policy_definition_rule")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4779 = automated_reasoning_policy_definition_rule_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionElement::PolicyDefinitionRule(
+                converted_4779,
+            ),
+        );
+    }
+    Err(PyValueError::new_err(
+        "AutomatedReasoningPolicyDefinitionElement requires exactly one known variant",
+    ))
+}
+
+fn automated_reasoning_policy_definition_quality_report_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionQualityReport> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "type_count",
+            "variable_count",
+            "rule_count",
+            "unused_types",
+            "unused_type_values",
+            "unused_variables",
+            "conflicting_rules",
+            "disjoint_rule_sets",
+        ],
+        &[
+            "type_count",
+            "variable_count",
+            "rule_count",
+            "unused_types",
+            "unused_type_values",
+            "unused_variables",
+            "conflicting_rules",
+            "disjoint_rule_sets",
+        ],
+    )?;
+    let mut builder =
+        aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionQualityReport::builder();
+    if let Some(value) = values.get_item("type_count")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_4780: i32 = value.extract()?;
+        builder = builder.set_type_count(Some(fixture_4780));
+    }
+    if let Some(value) = values.get_item("variable_count")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_4781: i32 = value.extract()?;
+        builder = builder.set_variable_count(Some(fixture_4781));
+    }
+    if let Some(value) = values.get_item("rule_count")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_4782: i32 = value.extract()?;
+        builder = builder.set_rule_count(Some(fixture_4782));
+    }
+    if let Some(value) = values.get_item("unused_types")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4783 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4784 in value.try_iter()? {
+            let item_4785 = item_result_4784?;
+            rboto_core::fixture_scalar(&item_4785, "string")?;
+            let converted_item_4786: String = item_4785.extract()?;
+            fixture_4783.push(converted_item_4786);
+        }
+        builder = builder.set_unused_types(Some(fixture_4783));
+    }
+    if let Some(value) = values.get_item("unused_type_values")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4787 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4788 in value.try_iter()? {
+            let item_4789 = item_result_4788?;
+            rboto_core::fixture_scalar(&item_4789, "struct")?;
+            let converted_item_4790 =
+                automated_reasoning_policy_definition_type_value_pair_fixture_from_py(&item_4789)?;
+            fixture_4787.push(converted_item_4790);
+        }
+        builder = builder.set_unused_type_values(Some(fixture_4787));
+    }
+    if let Some(value) = values.get_item("unused_variables")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4791 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4792 in value.try_iter()? {
+            let item_4793 = item_result_4792?;
+            rboto_core::fixture_scalar(&item_4793, "string")?;
+            let converted_item_4794: String = item_4793.extract()?;
+            fixture_4791.push(converted_item_4794);
+        }
+        builder = builder.set_unused_variables(Some(fixture_4791));
+    }
+    if let Some(value) = values.get_item("conflicting_rules")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4795 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4796 in value.try_iter()? {
+            let item_4797 = item_result_4796?;
+            rboto_core::fixture_scalar(&item_4797, "string")?;
+            let converted_item_4798: String = item_4797.extract()?;
+            fixture_4795.push(converted_item_4798);
+        }
+        builder = builder.set_conflicting_rules(Some(fixture_4795));
+    }
+    if let Some(value) = values.get_item("disjoint_rule_sets")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4799 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4800 in value.try_iter()? {
+            let item_4801 = item_result_4800?;
+            rboto_core::fixture_scalar(&item_4801, "struct")?;
+            let converted_item_4802 =
+                automated_reasoning_policy_disjoint_rule_set_fixture_from_py(&item_4801)?;
+            fixture_4799.push(converted_item_4802);
+        }
+        builder = builder.set_disjoint_rule_sets(Some(fixture_4799));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_definition_rule_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionRule> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["id", "expression", "alternate_expression"],
+        &["id", "expression"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionRule::builder();
+    if let Some(value) = values.get_item("id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4803: String = value.extract()?;
+        builder = builder.set_id(Some(fixture_4803));
+    }
+    if let Some(value) = values.get_item("expression")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4804: String = value.extract()?;
+        builder = builder.set_expression(Some(fixture_4804));
+    }
+    if let Some(value) = dict_value(values, "alternate_expression")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4805: String = value.extract()?;
+        builder = builder.set_alternate_expression(Some(fixture_4805));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_definition_type_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionType> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["name", "description", "values"],
+        &["name", "values"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionType::builder();
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4806: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_4806));
+    }
+    if let Some(value) = dict_value(values, "description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4807: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_4807));
+    }
+    if let Some(value) = values.get_item("values")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4808 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4809 in value.try_iter()? {
+            let item_4810 = item_result_4809?;
+            rboto_core::fixture_scalar(&item_4810, "struct")?;
+            let converted_item_4811 =
+                automated_reasoning_policy_definition_type_value_fixture_from_py(&item_4810)?;
+            fixture_4808.push(converted_item_4811);
+        }
+        builder = builder.set_values(Some(fixture_4808));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_definition_type_value_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionTypeValue> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["value", "description"], &["value"])?;
+    let mut builder =
+        aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionTypeValue::builder();
+    if let Some(value) = values.get_item("value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4812: String = value.extract()?;
+        builder = builder.set_value(Some(fixture_4812));
+    }
+    if let Some(value) = dict_value(values, "description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4813: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_4813));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_definition_type_value_pair_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionTypeValuePair> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["type_name", "value_name"],
+        &["type_name", "value_name"],
+    )?;
+    let mut builder =
+        aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionTypeValuePair::builder();
+    if let Some(value) = values.get_item("type_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4814: String = value.extract()?;
+        builder = builder.set_type_name(Some(fixture_4814));
+    }
+    if let Some(value) = values.get_item("value_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4815: String = value.extract()?;
+        builder = builder.set_value_name(Some(fixture_4815));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_definition_variable_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionVariable> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["name", "type", "description"],
+        &["name", "type", "description"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionVariable::builder();
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4816: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_4816));
+    }
+    if let Some(value) = values.get_item("type")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4817: String = value.extract()?;
+        builder = builder.set_type(Some(fixture_4817));
+    }
+    if let Some(value) = values.get_item("description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4818: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_4818));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_delete_rule_annotation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteRuleAnnotation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["rule_id"], &["rule_id"])?;
+    let mut builder =
+        aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteRuleAnnotation::builder();
+    if let Some(value) = values.get_item("rule_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4819: String = value.extract()?;
+        builder = builder.set_rule_id(Some(fixture_4819));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_delete_rule_mutation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteRuleMutation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["id"], &["id"])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteRuleMutation::builder();
+    if let Some(value) = values.get_item("id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4820: String = value.extract()?;
+        builder = builder.set_id(Some(fixture_4820));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_delete_type_annotation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteTypeAnnotation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["name"], &["name"])?;
+    let mut builder =
+        aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteTypeAnnotation::builder();
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4821: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_4821));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_delete_type_mutation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteTypeMutation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["name"], &["name"])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteTypeMutation::builder();
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4822: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_4822));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_delete_type_value_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteTypeValue> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["value"], &["value"])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteTypeValue::builder();
+    if let Some(value) = values.get_item("value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4823: String = value.extract()?;
+        builder = builder.set_value(Some(fixture_4823));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_delete_variable_annotation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteVariableAnnotation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["name"], &["name"])?;
+    let mut builder =
+        aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteVariableAnnotation::builder();
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4824: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_4824));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_delete_variable_mutation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteVariableMutation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["name"], &["name"])?;
+    let mut builder =
+        aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteVariableMutation::builder();
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4825: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_4825));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_disjoint_rule_set_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDisjointRuleSet> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["variables", "rules"], &["variables", "rules"])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyDisjointRuleSet::builder();
+    if let Some(value) = values.get_item("variables")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4826 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4827 in value.try_iter()? {
+            let item_4828 = item_result_4827?;
+            rboto_core::fixture_scalar(&item_4828, "string")?;
+            let converted_item_4829: String = item_4828.extract()?;
+            fixture_4826.push(converted_item_4829);
+        }
+        builder = builder.set_variables(Some(fixture_4826));
+    }
+    if let Some(value) = values.get_item("rules")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4830 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4831 in value.try_iter()? {
+            let item_4832 = item_result_4831?;
+            rboto_core::fixture_scalar(&item_4832, "string")?;
+            let converted_item_4833: String = item_4832.extract()?;
+            fixture_4830.push(converted_item_4833);
+        }
+        builder = builder.set_rules(Some(fixture_4830));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_fidelity_report_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyFidelityReport> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "coverage_score",
+            "accuracy_score",
+            "rule_reports",
+            "variable_reports",
+            "document_sources",
+        ],
+        &[
+            "coverage_score",
+            "accuracy_score",
+            "rule_reports",
+            "variable_reports",
+            "document_sources",
+        ],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyFidelityReport::builder();
+    if let Some(value) = values.get_item("coverage_score")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_4834: f64 = value.extract()?;
+        builder = builder.set_coverage_score(Some(fixture_4834));
+    }
+    if let Some(value) = values.get_item("accuracy_score")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_4835: f64 = value.extract()?;
+        builder = builder.set_accuracy_score(Some(fixture_4835));
+    }
+    if let Some(value) = values.get_item("rule_reports")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_4837 = value.cast::<PyDict>()?;
+        let mut fixture_4836 = HashMap::with_capacity(mapping_4837.len());
+        for (key_4838, value_4839) in mapping_4837.iter() {
+            rboto_core::fixture_scalar(&key_4838, "string")?;
+            let converted_key_4840: String = key_4838.extract()?;
+            rboto_core::fixture_scalar(&value_4839, "struct")?;
+            let converted_value_4841 =
+                automated_reasoning_policy_rule_report_fixture_from_py(&value_4839)?;
+            fixture_4836.insert(converted_key_4840, converted_value_4841);
+        }
+        builder = builder.set_rule_reports(Some(fixture_4836));
+    }
+    if let Some(value) = values.get_item("variable_reports")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_4843 = value.cast::<PyDict>()?;
+        let mut fixture_4842 = HashMap::with_capacity(mapping_4843.len());
+        for (key_4844, value_4845) in mapping_4843.iter() {
+            rboto_core::fixture_scalar(&key_4844, "string")?;
+            let converted_key_4846: String = key_4844.extract()?;
+            rboto_core::fixture_scalar(&value_4845, "struct")?;
+            let converted_value_4847 =
+                automated_reasoning_policy_variable_report_fixture_from_py(&value_4845)?;
+            fixture_4842.insert(converted_key_4846, converted_value_4847);
+        }
+        builder = builder.set_variable_reports(Some(fixture_4842));
+    }
+    if let Some(value) = values.get_item("document_sources")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4848 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4849 in value.try_iter()? {
+            let item_4850 = item_result_4849?;
+            rboto_core::fixture_scalar(&item_4850, "struct")?;
+            let converted_item_4851 =
+                automated_reasoning_policy_report_source_document_fixture_from_py(&item_4850)?;
+            fixture_4848.push(converted_item_4851);
+        }
+        builder = builder.set_document_sources(Some(fixture_4848));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_generated_test_case_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyGeneratedTestCase> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "query_content",
+            "guard_content",
+            "expected_aggregated_findings_result",
+        ],
+        &[
+            "query_content",
+            "guard_content",
+            "expected_aggregated_findings_result",
+        ],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyGeneratedTestCase::builder();
+    if let Some(value) = values.get_item("query_content")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4852: String = value.extract()?;
+        builder = builder.set_query_content(Some(fixture_4852));
+    }
+    if let Some(value) = values.get_item("guard_content")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4853: String = value.extract()?;
+        builder = builder.set_guard_content(Some(fixture_4853));
+    }
+    if let Some(value) = values.get_item("expected_aggregated_findings_result")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4855: String = value.extract()?;
+        let fixture_4854 =
+            aws_sdk_bedrock::types::AutomatedReasoningCheckResult::from(enum_value_4855.as_str());
+        builder = builder.set_expected_aggregated_findings_result(Some(fixture_4854));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_generated_test_cases_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyGeneratedTestCases> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["generated_test_cases"], &["generated_test_cases"])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyGeneratedTestCases::builder();
+    if let Some(value) = values.get_item("generated_test_cases")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4856 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4857 in value.try_iter()? {
+            let item_4858 = item_result_4857?;
+            rboto_core::fixture_scalar(&item_4858, "struct")?;
+            let converted_item_4859 =
+                automated_reasoning_policy_generated_test_case_fixture_from_py(&item_4858)?;
+            fixture_4856.push(converted_item_4859);
+        }
+        builder = builder.set_generated_test_cases(Some(fixture_4856));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_ingest_content_annotation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyIngestContentAnnotation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["content"], &["content"])?;
+    let mut builder =
+        aws_sdk_bedrock::types::AutomatedReasoningPolicyIngestContentAnnotation::builder();
+    if let Some(value) = values.get_item("content")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4860: String = value.extract()?;
+        builder = builder.set_content(Some(fixture_4860));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_mutation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyMutation> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("add_type")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4861 = automated_reasoning_policy_add_type_mutation_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyMutation::AddType(converted_4861),
+        );
+    }
+    if let Some(value) = values.get_item("update_type")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4862 =
+            automated_reasoning_policy_update_type_mutation_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyMutation::UpdateType(converted_4862),
+        );
+    }
+    if let Some(value) = values.get_item("delete_type")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4863 =
+            automated_reasoning_policy_delete_type_mutation_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyMutation::DeleteType(converted_4863),
+        );
+    }
+    if let Some(value) = values.get_item("add_variable")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4864 =
+            automated_reasoning_policy_add_variable_mutation_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyMutation::AddVariable(converted_4864),
+        );
+    }
+    if let Some(value) = values.get_item("update_variable")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4865 =
+            automated_reasoning_policy_update_variable_mutation_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyMutation::UpdateVariable(
+                converted_4865,
+            ),
+        );
+    }
+    if let Some(value) = values.get_item("delete_variable")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4866 =
+            automated_reasoning_policy_delete_variable_mutation_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyMutation::DeleteVariable(
+                converted_4866,
+            ),
+        );
+    }
+    if let Some(value) = values.get_item("add_rule")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4867 = automated_reasoning_policy_add_rule_mutation_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyMutation::AddRule(converted_4867),
+        );
+    }
+    if let Some(value) = values.get_item("update_rule")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4868 =
+            automated_reasoning_policy_update_rule_mutation_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyMutation::UpdateRule(converted_4868),
+        );
+    }
+    if let Some(value) = values.get_item("delete_rule")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4869 =
+            automated_reasoning_policy_delete_rule_mutation_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyMutation::DeleteRule(converted_4869),
+        );
+    }
+    Err(PyValueError::new_err(
+        "AutomatedReasoningPolicyMutation requires exactly one known variant",
+    ))
+}
+
+fn automated_reasoning_policy_planning_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyPlanning> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &[], &[])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyPlanning::builder();
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn automated_reasoning_policy_report_source_document_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyReportSourceDocument> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "document_name",
+            "document_hash",
+            "document_id",
+            "atomic_statements",
+            "document_content",
+        ],
+        &[
+            "document_name",
+            "document_hash",
+            "document_id",
+            "atomic_statements",
+            "document_content",
+        ],
+    )?;
+    let mut builder =
+        aws_sdk_bedrock::types::AutomatedReasoningPolicyReportSourceDocument::builder();
+    if let Some(value) = values.get_item("document_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4870: String = value.extract()?;
+        builder = builder.set_document_name(Some(fixture_4870));
+    }
+    if let Some(value) = values.get_item("document_hash")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4871: String = value.extract()?;
+        builder = builder.set_document_hash(Some(fixture_4871));
+    }
+    if let Some(value) = values.get_item("document_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4872: String = value.extract()?;
+        builder = builder.set_document_id(Some(fixture_4872));
+    }
+    if let Some(value) = values.get_item("atomic_statements")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4873 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4874 in value.try_iter()? {
+            let item_4875 = item_result_4874?;
+            rboto_core::fixture_scalar(&item_4875, "struct")?;
+            let converted_item_4876 =
+                automated_reasoning_policy_atomic_statement_fixture_from_py(&item_4875)?;
+            fixture_4873.push(converted_item_4876);
+        }
+        builder = builder.set_atomic_statements(Some(fixture_4873));
+    }
+    if let Some(value) = values.get_item("document_content")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4877 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4878 in value.try_iter()? {
+            let item_4879 = item_result_4878?;
+            rboto_core::fixture_scalar(&item_4879, "struct")?;
+            let converted_item_4880 =
+                automated_reasoning_policy_annotated_chunk_fixture_from_py(&item_4879)?;
+            fixture_4877.push(converted_item_4880);
+        }
+        builder = builder.set_document_content(Some(fixture_4877));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_rule_report_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyRuleReport> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "rule",
+            "grounding_statements",
+            "grounding_justifications",
+            "accuracy_score",
+            "accuracy_justification",
+        ],
+        &["rule"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyRuleReport::builder();
+    if let Some(value) = values.get_item("rule")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4881: String = value.extract()?;
+        builder = builder.set_rule(Some(fixture_4881));
+    }
+    if let Some(value) = dict_value(values, "grounding_statements")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4882 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4883 in value.try_iter()? {
+            let item_4884 = item_result_4883?;
+            rboto_core::fixture_scalar(&item_4884, "struct")?;
+            let converted_item_4885 =
+                automated_reasoning_policy_statement_reference_fixture_from_py(&item_4884)?;
+            fixture_4882.push(converted_item_4885);
+        }
+        builder = builder.set_grounding_statements(Some(fixture_4882));
+    }
+    if let Some(value) = dict_value(values, "grounding_justifications")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4886 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4887 in value.try_iter()? {
+            let item_4888 = item_result_4887?;
+            rboto_core::fixture_scalar(&item_4888, "string")?;
+            let converted_item_4889: String = item_4888.extract()?;
+            fixture_4886.push(converted_item_4889);
+        }
+        builder = builder.set_grounding_justifications(Some(fixture_4886));
+    }
+    if let Some(value) = dict_value(values, "accuracy_score")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_4890: f64 = value.extract()?;
+        builder = builder.set_accuracy_score(Some(fixture_4890));
+    }
+    if let Some(value) = dict_value(values, "accuracy_justification")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4891: String = value.extract()?;
+        builder = builder.set_accuracy_justification(Some(fixture_4891));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_scenario_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyScenario> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "expression",
+            "alternate_expression",
+            "expected_result",
+            "rule_ids",
+        ],
+        &[
+            "expression",
+            "alternate_expression",
+            "expected_result",
+            "rule_ids",
+        ],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyScenario::builder();
+    if let Some(value) = values.get_item("expression")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4892: String = value.extract()?;
+        builder = builder.set_expression(Some(fixture_4892));
+    }
+    if let Some(value) = values.get_item("alternate_expression")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4893: String = value.extract()?;
+        builder = builder.set_alternate_expression(Some(fixture_4893));
+    }
+    if let Some(value) = values.get_item("expected_result")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4895: String = value.extract()?;
+        let fixture_4894 =
+            aws_sdk_bedrock::types::AutomatedReasoningCheckResult::from(enum_value_4895.as_str());
+        builder = builder.set_expected_result(Some(fixture_4894));
+    }
+    if let Some(value) = values.get_item("rule_ids")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4896 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4897 in value.try_iter()? {
+            let item_4898 = item_result_4897?;
+            rboto_core::fixture_scalar(&item_4898, "string")?;
+            let converted_item_4899: String = item_4898.extract()?;
+            fixture_4896.push(converted_item_4899);
+        }
+        builder = builder.set_rule_ids(Some(fixture_4896));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_scenarios_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyScenarios> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["policy_scenarios"], &["policy_scenarios"])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyScenarios::builder();
+    if let Some(value) = values.get_item("policy_scenarios")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4900 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4901 in value.try_iter()? {
+            let item_4902 = item_result_4901?;
+            rboto_core::fixture_scalar(&item_4902, "struct")?;
+            let converted_item_4903 =
+                automated_reasoning_policy_scenario_fixture_from_py(&item_4902)?;
+            fixture_4900.push(converted_item_4903);
+        }
+        builder = builder.set_policy_scenarios(Some(fixture_4900));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_source_document_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicySourceDocument> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "document",
+            "document_content_type",
+            "document_name",
+            "document_description",
+            "document_hash",
+        ],
+        &[
+            "document",
+            "document_content_type",
+            "document_name",
+            "document_hash",
+        ],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicySourceDocument::builder();
+    if let Some(value) = values.get_item("document")? {
+        rboto_core::fixture_scalar(&value, "blob")?;
+        let bytes_4905: Vec<u8> = value.extract()?;
+        let fixture_4904 = ::aws_smithy_types::Blob::new(bytes_4905);
+        builder = builder.set_document(Some(fixture_4904));
+    }
+    if let Some(value) = values.get_item("document_content_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4907: String = value.extract()?;
+        let fixture_4906 =
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildDocumentContentType::from(
+                enum_value_4907.as_str(),
+            );
+        builder = builder.set_document_content_type(Some(fixture_4906));
+    }
+    if let Some(value) = values.get_item("document_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4908: String = value.extract()?;
+        builder = builder.set_document_name(Some(fixture_4908));
+    }
+    if let Some(value) = dict_value(values, "document_description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4909: String = value.extract()?;
+        builder = builder.set_document_description(Some(fixture_4909));
+    }
+    if let Some(value) = values.get_item("document_hash")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4910: String = value.extract()?;
+        builder = builder.set_document_hash(Some(fixture_4910));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_statement_location_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyStatementLocation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["lines"], &["lines"])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyStatementLocation::builder();
+    if let Some(value) = values.get_item("lines")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4911 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4912 in value.try_iter()? {
+            let item_4913 = item_result_4912?;
+            rboto_core::fixture_scalar(&item_4913, "i32")?;
+            let converted_item_4914: i32 = item_4913.extract()?;
+            fixture_4911.push(converted_item_4914);
+        }
+        builder = builder.set_lines(Some(fixture_4911));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_statement_reference_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyStatementReference> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["document_id", "statement_id"],
+        &["document_id", "statement_id"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyStatementReference::builder();
+    if let Some(value) = values.get_item("document_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4915: String = value.extract()?;
+        builder = builder.set_document_id(Some(fixture_4915));
+    }
+    if let Some(value) = values.get_item("statement_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4916: String = value.extract()?;
+        builder = builder.set_statement_id(Some(fixture_4916));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicySummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "policy_arn",
+            "name",
+            "description",
+            "version",
+            "policy_id",
+            "created_at",
+            "updated_at",
+        ],
+        &[
+            "policy_arn",
+            "name",
+            "version",
+            "policy_id",
+            "created_at",
+            "updated_at",
+        ],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicySummary::builder();
+    if let Some(value) = values.get_item("policy_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4917: String = value.extract()?;
+        builder = builder.set_policy_arn(Some(fixture_4917));
+    }
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4918: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_4918));
+    }
+    if let Some(value) = dict_value(values, "description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4919: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_4919));
+    }
+    if let Some(value) = values.get_item("version")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4920: String = value.extract()?;
+        builder = builder.set_version(Some(fixture_4920));
+    }
+    if let Some(value) = values.get_item("policy_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4921: String = value.extract()?;
+        builder = builder.set_policy_id(Some(fixture_4921));
+    }
+    if let Some(value) = values.get_item("created_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_4923: String = value.extract()?;
+        let fixture_4922 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_4923,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_created_at(Some(fixture_4922));
+    }
+    if let Some(value) = values.get_item("updated_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_4925: String = value.extract()?;
+        let fixture_4924 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_4925,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_updated_at(Some(fixture_4924));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_test_case_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyTestCase> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "test_case_id",
+            "guard_content",
+            "query_content",
+            "expected_aggregated_findings_result",
+            "created_at",
+            "updated_at",
+            "confidence_threshold",
+        ],
+        &["test_case_id", "guard_content", "created_at", "updated_at"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyTestCase::builder();
+    if let Some(value) = values.get_item("test_case_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4926: String = value.extract()?;
+        builder = builder.set_test_case_id(Some(fixture_4926));
+    }
+    if let Some(value) = values.get_item("guard_content")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4927: String = value.extract()?;
+        builder = builder.set_guard_content(Some(fixture_4927));
+    }
+    if let Some(value) = dict_value(values, "query_content")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4928: String = value.extract()?;
+        builder = builder.set_query_content(Some(fixture_4928));
+    }
+    if let Some(value) = dict_value(values, "expected_aggregated_findings_result")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4930: String = value.extract()?;
+        let fixture_4929 =
+            aws_sdk_bedrock::types::AutomatedReasoningCheckResult::from(enum_value_4930.as_str());
+        builder = builder.set_expected_aggregated_findings_result(Some(fixture_4929));
+    }
+    if let Some(value) = values.get_item("created_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_4932: String = value.extract()?;
+        let fixture_4931 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_4932,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_created_at(Some(fixture_4931));
+    }
+    if let Some(value) = values.get_item("updated_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_4934: String = value.extract()?;
+        let fixture_4933 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_4934,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_updated_at(Some(fixture_4933));
+    }
+    if let Some(value) = dict_value(values, "confidence_threshold")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_4935: f64 = value.extract()?;
+        builder = builder.set_confidence_threshold(Some(fixture_4935));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_test_result_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyTestResult> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "test_case",
+            "policy_arn",
+            "test_run_status",
+            "test_findings",
+            "test_run_result",
+            "aggregated_test_findings_result",
+            "updated_at",
+        ],
+        &["policy_arn", "test_run_status", "updated_at"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyTestResult::builder();
+    if let Some(value) = dict_value(values, "test_case")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4936 = automated_reasoning_policy_test_case_fixture_from_py(&value)?;
+        builder = builder.set_test_case(Some(fixture_4936));
+    }
+    if let Some(value) = values.get_item("policy_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4937: String = value.extract()?;
+        builder = builder.set_policy_arn(Some(fixture_4937));
+    }
+    if let Some(value) = values.get_item("test_run_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4939: String = value.extract()?;
+        let fixture_4938 = aws_sdk_bedrock::types::AutomatedReasoningPolicyTestRunStatus::from(
+            enum_value_4939.as_str(),
+        );
+        builder = builder.set_test_run_status(Some(fixture_4938));
+    }
+    if let Some(value) = dict_value(values, "test_findings")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4940 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4941 in value.try_iter()? {
+            let item_4942 = item_result_4941?;
+            rboto_core::fixture_scalar(&item_4942, "union")?;
+            let converted_item_4943 =
+                automated_reasoning_check_finding_fixture_from_py(&item_4942)?;
+            fixture_4940.push(converted_item_4943);
+        }
+        builder = builder.set_test_findings(Some(fixture_4940));
+    }
+    if let Some(value) = dict_value(values, "test_run_result")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4945: String = value.extract()?;
+        let fixture_4944 = aws_sdk_bedrock::types::AutomatedReasoningPolicyTestRunResult::from(
+            enum_value_4945.as_str(),
+        );
+        builder = builder.set_test_run_result(Some(fixture_4944));
+    }
+    if let Some(value) = dict_value(values, "aggregated_test_findings_result")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4947: String = value.extract()?;
+        let fixture_4946 =
+            aws_sdk_bedrock::types::AutomatedReasoningCheckResult::from(enum_value_4947.as_str());
+        builder = builder.set_aggregated_test_findings_result(Some(fixture_4946));
+    }
+    if let Some(value) = values.get_item("updated_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_4949: String = value.extract()?;
+        let fixture_4948 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_4949,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_updated_at(Some(fixture_4948));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_type_value_annotation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyTypeValueAnnotation> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("add_type_value")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4950 = automated_reasoning_policy_add_type_value_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyTypeValueAnnotation::AddTypeValue(
+                converted_4950,
+            ),
+        );
+    }
+    if let Some(value) = values.get_item("update_type_value")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4951 = automated_reasoning_policy_update_type_value_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyTypeValueAnnotation::UpdateTypeValue(
+                converted_4951,
+            ),
+        );
+    }
+    if let Some(value) = values.get_item("delete_type_value")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_4952 = automated_reasoning_policy_delete_type_value_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::AutomatedReasoningPolicyTypeValueAnnotation::DeleteTypeValue(
+                converted_4952,
+            ),
+        );
+    }
+    Err(PyValueError::new_err(
+        "AutomatedReasoningPolicyTypeValueAnnotation requires exactly one known variant",
+    ))
+}
+
+fn automated_reasoning_policy_update_from_rule_feedback_annotation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateFromRuleFeedbackAnnotation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["rule_ids", "feedback"], &["feedback"])?;
+    let mut builder =
+        aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateFromRuleFeedbackAnnotation::builder();
+    if let Some(value) = dict_value(values, "rule_ids")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4953 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4954 in value.try_iter()? {
+            let item_4955 = item_result_4954?;
+            rboto_core::fixture_scalar(&item_4955, "string")?;
+            let converted_item_4956: String = item_4955.extract()?;
+            fixture_4953.push(converted_item_4956);
+        }
+        builder = builder.set_rule_ids(Some(fixture_4953));
+    }
+    if let Some(value) = values.get_item("feedback")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4957: String = value.extract()?;
+        builder = builder.set_feedback(Some(fixture_4957));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_update_from_scenario_feedback_annotation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateFromScenarioFeedbackAnnotation>
+{
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["rule_ids", "scenario_expression", "feedback"],
+        &["scenario_expression"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateFromScenarioFeedbackAnnotation::builder();
+    if let Some(value) = dict_value(values, "rule_ids")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4958 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4959 in value.try_iter()? {
+            let item_4960 = item_result_4959?;
+            rboto_core::fixture_scalar(&item_4960, "string")?;
+            let converted_item_4961: String = item_4960.extract()?;
+            fixture_4958.push(converted_item_4961);
+        }
+        builder = builder.set_rule_ids(Some(fixture_4958));
+    }
+    if let Some(value) = values.get_item("scenario_expression")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4962: String = value.extract()?;
+        builder = builder.set_scenario_expression(Some(fixture_4962));
+    }
+    if let Some(value) = dict_value(values, "feedback")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4963: String = value.extract()?;
+        builder = builder.set_feedback(Some(fixture_4963));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_update_rule_annotation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateRuleAnnotation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["rule_id", "expression"],
+        &["rule_id", "expression"],
+    )?;
+    let mut builder =
+        aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateRuleAnnotation::builder();
+    if let Some(value) = values.get_item("rule_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4964: String = value.extract()?;
+        builder = builder.set_rule_id(Some(fixture_4964));
+    }
+    if let Some(value) = values.get_item("expression")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4965: String = value.extract()?;
+        builder = builder.set_expression(Some(fixture_4965));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_update_rule_mutation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateRuleMutation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["rule"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateRuleMutation::builder();
+    if let Some(value) = dict_value(values, "rule")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4966 = automated_reasoning_policy_definition_rule_fixture_from_py(&value)?;
+        builder = builder.set_rule(Some(fixture_4966));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn automated_reasoning_policy_update_type_annotation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateTypeAnnotation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["name", "new_name", "description", "values"],
+        &["name", "values"],
+    )?;
+    let mut builder =
+        aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateTypeAnnotation::builder();
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4967: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_4967));
+    }
+    if let Some(value) = dict_value(values, "new_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4968: String = value.extract()?;
+        builder = builder.set_new_name(Some(fixture_4968));
+    }
+    if let Some(value) = dict_value(values, "description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4969: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_4969));
+    }
+    if let Some(value) = values.get_item("values")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4970 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4971 in value.try_iter()? {
+            let item_4972 = item_result_4971?;
+            rboto_core::fixture_scalar(&item_4972, "union")?;
+            let converted_item_4973 =
+                automated_reasoning_policy_type_value_annotation_fixture_from_py(&item_4972)?;
+            fixture_4970.push(converted_item_4973);
+        }
+        builder = builder.set_values(Some(fixture_4970));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_update_type_mutation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateTypeMutation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["type"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateTypeMutation::builder();
+    if let Some(value) = dict_value(values, "type")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4974 = automated_reasoning_policy_definition_type_fixture_from_py(&value)?;
+        builder = builder.set_type(Some(fixture_4974));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn automated_reasoning_policy_update_type_value_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateTypeValue> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["value", "new_value", "description"], &["value"])?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateTypeValue::builder();
+    if let Some(value) = values.get_item("value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4975: String = value.extract()?;
+        builder = builder.set_value(Some(fixture_4975));
+    }
+    if let Some(value) = dict_value(values, "new_value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4976: String = value.extract()?;
+        builder = builder.set_new_value(Some(fixture_4976));
+    }
+    if let Some(value) = dict_value(values, "description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4977: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_4977));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_update_variable_annotation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateVariableAnnotation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["name", "new_name", "description"], &["name"])?;
+    let mut builder =
+        aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateVariableAnnotation::builder();
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4978: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_4978));
+    }
+    if let Some(value) = dict_value(values, "new_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4979: String = value.extract()?;
+        builder = builder.set_new_name(Some(fixture_4979));
+    }
+    if let Some(value) = dict_value(values, "description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4980: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_4980));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn automated_reasoning_policy_update_variable_mutation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateVariableMutation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["variable"], &[])?;
+    let mut builder =
+        aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateVariableMutation::builder();
+    if let Some(value) = dict_value(values, "variable")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_4981 = automated_reasoning_policy_definition_variable_fixture_from_py(&value)?;
+        builder = builder.set_variable(Some(fixture_4981));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn automated_reasoning_policy_variable_report_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyVariableReport> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "policy_variable",
+            "grounding_statements",
+            "grounding_justifications",
+            "accuracy_score",
+            "accuracy_justification",
+        ],
+        &["policy_variable"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyVariableReport::builder();
+    if let Some(value) = values.get_item("policy_variable")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4982: String = value.extract()?;
+        builder = builder.set_policy_variable(Some(fixture_4982));
+    }
+    if let Some(value) = dict_value(values, "grounding_statements")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4983 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4984 in value.try_iter()? {
+            let item_4985 = item_result_4984?;
+            rboto_core::fixture_scalar(&item_4985, "struct")?;
+            let converted_item_4986 =
+                automated_reasoning_policy_statement_reference_fixture_from_py(&item_4985)?;
+            fixture_4983.push(converted_item_4986);
+        }
+        builder = builder.set_grounding_statements(Some(fixture_4983));
+    }
+    if let Some(value) = dict_value(values, "grounding_justifications")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_4987 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_4988 in value.try_iter()? {
+            let item_4989 = item_result_4988?;
+            rboto_core::fixture_scalar(&item_4989, "string")?;
+            let converted_item_4990: String = item_4989.extract()?;
+            fixture_4987.push(converted_item_4990);
+        }
+        builder = builder.set_grounding_justifications(Some(fixture_4987));
+    }
+    if let Some(value) = dict_value(values, "accuracy_score")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_4991: f64 = value.extract()?;
+        builder = builder.set_accuracy_score(Some(fixture_4991));
+    }
+    if let Some(value) = dict_value(values, "accuracy_justification")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4992: String = value.extract()?;
+        builder = builder.set_accuracy_justification(Some(fixture_4992));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn batch_delete_advanced_prompt_optimization_job_error_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::BatchDeleteAdvancedPromptOptimizationJobError> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["job_identifier", "code", "message"],
+        &["job_identifier", "code"],
+    )?;
+    let mut builder =
+        aws_sdk_bedrock::types::BatchDeleteAdvancedPromptOptimizationJobError::builder();
+    if let Some(value) = values.get_item("job_identifier")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4993: String = value.extract()?;
+        builder = builder.set_job_identifier(Some(fixture_4993));
+    }
+    if let Some(value) = values.get_item("code")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4994: String = value.extract()?;
+        builder = builder.set_code(Some(fixture_4994));
+    }
+    if let Some(value) = dict_value(values, "message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4995: String = value.extract()?;
+        builder = builder.set_message(Some(fixture_4995));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn batch_delete_advanced_prompt_optimization_job_item_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::BatchDeleteAdvancedPromptOptimizationJobItem> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["job_identifier", "job_status"],
+        &["job_identifier", "job_status"],
+    )?;
+    let mut builder =
+        aws_sdk_bedrock::types::BatchDeleteAdvancedPromptOptimizationJobItem::builder();
+    if let Some(value) = values.get_item("job_identifier")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4996: String = value.extract()?;
+        builder = builder.set_job_identifier(Some(fixture_4996));
+    }
+    if let Some(value) = values.get_item("job_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_4998: String = value.extract()?;
+        let fixture_4997 = aws_sdk_bedrock::types::AdvancedPromptOptimizationJobStatus::from(
+            enum_value_4998.as_str(),
+        );
+        builder = builder.set_job_status(Some(fixture_4997));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn batch_delete_evaluation_job_error_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::BatchDeleteEvaluationJobError> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["job_identifier", "code", "message"],
+        &["job_identifier", "code"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::BatchDeleteEvaluationJobError::builder();
+    if let Some(value) = values.get_item("job_identifier")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_4999: String = value.extract()?;
+        builder = builder.set_job_identifier(Some(fixture_4999));
+    }
+    if let Some(value) = values.get_item("code")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5000: String = value.extract()?;
+        builder = builder.set_code(Some(fixture_5000));
+    }
+    if let Some(value) = dict_value(values, "message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5001: String = value.extract()?;
+        builder = builder.set_message(Some(fixture_5001));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn batch_delete_evaluation_job_item_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::BatchDeleteEvaluationJobItem> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["job_identifier", "job_status"],
+        &["job_identifier", "job_status"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::BatchDeleteEvaluationJobItem::builder();
+    if let Some(value) = values.get_item("job_identifier")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5002: String = value.extract()?;
+        builder = builder.set_job_identifier(Some(fixture_5002));
+    }
+    if let Some(value) = values.get_item("job_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5004: String = value.extract()?;
+        let fixture_5003 =
+            aws_sdk_bedrock::types::EvaluationJobStatus::from(enum_value_5004.as_str());
+        builder = builder.set_job_status(Some(fixture_5003));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn bedrock_evaluator_model_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::BedrockEvaluatorModel> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["model_identifier"], &["model_identifier"])?;
+    let mut builder = aws_sdk_bedrock::types::BedrockEvaluatorModel::builder();
+    if let Some(value) = values.get_item("model_identifier")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5005: String = value.extract()?;
+        builder = builder.set_model_identifier(Some(fixture_5005));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn byte_content_doc_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::ByteContentDoc> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["identifier", "content_type", "data"],
+        &["identifier", "content_type", "data"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::ByteContentDoc::builder();
+    if let Some(value) = values.get_item("identifier")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5006: String = value.extract()?;
+        builder = builder.set_identifier(Some(fixture_5006));
+    }
+    if let Some(value) = values.get_item("content_type")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5007: String = value.extract()?;
+        builder = builder.set_content_type(Some(fixture_5007));
+    }
+    if let Some(value) = values.get_item("data")? {
+        rboto_core::fixture_scalar(&value, "blob")?;
+        let bytes_5009: Vec<u8> = value.extract()?;
+        let fixture_5008 = ::aws_smithy_types::Blob::new(bytes_5009);
+        builder = builder.set_data(Some(fixture_5008));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn cloud_watch_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::CloudWatchConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "log_group_name",
+            "role_arn",
+            "large_data_delivery_s3_config",
+        ],
+        &["log_group_name", "role_arn"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::CloudWatchConfig::builder();
+    if let Some(value) = values.get_item("log_group_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5010: String = value.extract()?;
+        builder = builder.set_log_group_name(Some(fixture_5010));
+    }
+    if let Some(value) = values.get_item("role_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5011: String = value.extract()?;
+        builder = builder.set_role_arn(Some(fixture_5011));
+    }
+    if let Some(value) = dict_value(values, "large_data_delivery_s3_config")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5012 = s3_config_fixture_from_py(&value)?;
+        builder = builder.set_large_data_delivery_s3_config(Some(fixture_5012));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn custom_metric_bedrock_evaluator_model_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::CustomMetricBedrockEvaluatorModel> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["model_identifier"], &["model_identifier"])?;
+    let mut builder = aws_sdk_bedrock::types::CustomMetricBedrockEvaluatorModel::builder();
+    if let Some(value) = values.get_item("model_identifier")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5013: String = value.extract()?;
+        builder = builder.set_model_identifier(Some(fixture_5013));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn custom_metric_definition_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::CustomMetricDefinition> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["name", "instructions", "rating_scale"],
+        &["name", "instructions"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::CustomMetricDefinition::builder();
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5014: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_5014));
+    }
+    if let Some(value) = values.get_item("instructions")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5015: String = value.extract()?;
+        builder = builder.set_instructions(Some(fixture_5015));
+    }
+    if let Some(value) = dict_value(values, "rating_scale")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5016 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5017 in value.try_iter()? {
+            let item_5018 = item_result_5017?;
+            rboto_core::fixture_scalar(&item_5018, "struct")?;
+            let converted_item_5019 = rating_scale_item_fixture_from_py(&item_5018)?;
+            fixture_5016.push(converted_item_5019);
+        }
+        builder = builder.set_rating_scale(Some(fixture_5016));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn custom_metric_evaluator_model_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::CustomMetricEvaluatorModelConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["bedrock_evaluator_models"],
+        &["bedrock_evaluator_models"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::CustomMetricEvaluatorModelConfig::builder();
+    if let Some(value) = values.get_item("bedrock_evaluator_models")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5020 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5021 in value.try_iter()? {
+            let item_5022 = item_result_5021?;
+            rboto_core::fixture_scalar(&item_5022, "struct")?;
+            let converted_item_5023 =
+                custom_metric_bedrock_evaluator_model_fixture_from_py(&item_5022)?;
+            fixture_5020.push(converted_item_5023);
+        }
+        builder = builder.set_bedrock_evaluator_models(Some(fixture_5020));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn custom_model_deployment_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::CustomModelDeploymentSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "custom_model_deployment_arn",
+            "custom_model_deployment_name",
+            "model_arn",
+            "created_at",
+            "status",
+            "last_updated_at",
+            "failure_message",
+        ],
+        &[
+            "custom_model_deployment_arn",
+            "custom_model_deployment_name",
+            "model_arn",
+            "created_at",
+            "status",
+        ],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::CustomModelDeploymentSummary::builder();
+    if let Some(value) = values.get_item("custom_model_deployment_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5024: String = value.extract()?;
+        builder = builder.set_custom_model_deployment_arn(Some(fixture_5024));
+    }
+    if let Some(value) = values.get_item("custom_model_deployment_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5025: String = value.extract()?;
+        builder = builder.set_custom_model_deployment_name(Some(fixture_5025));
+    }
+    if let Some(value) = values.get_item("model_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5026: String = value.extract()?;
+        builder = builder.set_model_arn(Some(fixture_5026));
+    }
+    if let Some(value) = values.get_item("created_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5028: String = value.extract()?;
+        let fixture_5027 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5028,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_created_at(Some(fixture_5027));
+    }
+    if let Some(value) = values.get_item("status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5030: String = value.extract()?;
+        let fixture_5029 =
+            aws_sdk_bedrock::types::CustomModelDeploymentStatus::from(enum_value_5030.as_str());
+        builder = builder.set_status(Some(fixture_5029));
+    }
+    if let Some(value) = dict_value(values, "last_updated_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5032: String = value.extract()?;
+        let fixture_5031 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5032,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_updated_at(Some(fixture_5031));
+    }
+    if let Some(value) = dict_value(values, "failure_message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5033: String = value.extract()?;
+        builder = builder.set_failure_message(Some(fixture_5033));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn custom_model_deployment_update_details_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::CustomModelDeploymentUpdateDetails> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["model_arn", "update_status"],
+        &["model_arn", "update_status"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::CustomModelDeploymentUpdateDetails::builder();
+    if let Some(value) = values.get_item("model_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5034: String = value.extract()?;
+        builder = builder.set_model_arn(Some(fixture_5034));
+    }
+    if let Some(value) = values.get_item("update_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5036: String = value.extract()?;
+        let fixture_5035 = aws_sdk_bedrock::types::CustomModelDeploymentUpdateStatus::from(
+            enum_value_5036.as_str(),
+        );
+        builder = builder.set_update_status(Some(fixture_5035));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn custom_model_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::CustomModelSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "model_arn",
+            "model_name",
+            "creation_time",
+            "base_model_arn",
+            "base_model_name",
+            "customization_type",
+            "owner_account_id",
+            "model_status",
+        ],
+        &[
+            "model_arn",
+            "model_name",
+            "creation_time",
+            "base_model_arn",
+            "base_model_name",
+        ],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::CustomModelSummary::builder();
+    if let Some(value) = values.get_item("model_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5037: String = value.extract()?;
+        builder = builder.set_model_arn(Some(fixture_5037));
+    }
+    if let Some(value) = values.get_item("model_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5038: String = value.extract()?;
+        builder = builder.set_model_name(Some(fixture_5038));
+    }
+    if let Some(value) = values.get_item("creation_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5040: String = value.extract()?;
+        let fixture_5039 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5040,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_time(Some(fixture_5039));
+    }
+    if let Some(value) = values.get_item("base_model_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5041: String = value.extract()?;
+        builder = builder.set_base_model_arn(Some(fixture_5041));
+    }
+    if let Some(value) = values.get_item("base_model_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5042: String = value.extract()?;
+        builder = builder.set_base_model_name(Some(fixture_5042));
+    }
+    if let Some(value) = dict_value(values, "customization_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5044: String = value.extract()?;
+        let fixture_5043 =
+            aws_sdk_bedrock::types::CustomizationType::from(enum_value_5044.as_str());
+        builder = builder.set_customization_type(Some(fixture_5043));
+    }
+    if let Some(value) = dict_value(values, "owner_account_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5045: String = value.extract()?;
+        builder = builder.set_owner_account_id(Some(fixture_5045));
+    }
+    if let Some(value) = dict_value(values, "model_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5047: String = value.extract()?;
+        let fixture_5046 = aws_sdk_bedrock::types::ModelStatus::from(enum_value_5047.as_str());
+        builder = builder.set_model_status(Some(fixture_5046));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn custom_model_units_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::CustomModelUnits> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "custom_model_units_per_model_copy",
+            "custom_model_units_version",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::CustomModelUnits::builder();
+    if let Some(value) = dict_value(values, "custom_model_units_per_model_copy")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_5048: i32 = value.extract()?;
+        builder = builder.set_custom_model_units_per_model_copy(Some(fixture_5048));
+    }
+    if let Some(value) = dict_value(values, "custom_model_units_version")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5049: String = value.extract()?;
+        builder = builder.set_custom_model_units_version(Some(fixture_5049));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn customization_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::CustomizationConfig> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("distillation_config")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5050 = distillation_config_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::CustomizationConfig::DistillationConfig(converted_5050));
+    }
+    if let Some(value) = values.get_item("rft_config")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5051 = rft_config_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::CustomizationConfig::RftConfig(
+            converted_5051,
+        ));
+    }
+    Err(PyValueError::new_err(
+        "CustomizationConfig requires exactly one known variant",
+    ))
+}
+
+fn data_processing_details_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::DataProcessingDetails> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["status", "creation_time", "last_modified_time"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::DataProcessingDetails::builder();
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5053: String = value.extract()?;
+        let fixture_5052 = aws_sdk_bedrock::types::JobStatusDetails::from(enum_value_5053.as_str());
+        builder = builder.set_status(Some(fixture_5052));
+    }
+    if let Some(value) = dict_value(values, "creation_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5055: String = value.extract()?;
+        let fixture_5054 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5055,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_time(Some(fixture_5054));
+    }
+    if let Some(value) = dict_value(values, "last_modified_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5057: String = value.extract()?;
+        let fixture_5056 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5057,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_modified_time(Some(fixture_5056));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn dimensional_price_rate_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::DimensionalPriceRate> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["dimension", "price", "description", "unit"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::DimensionalPriceRate::builder();
+    if let Some(value) = dict_value(values, "dimension")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5058: String = value.extract()?;
+        builder = builder.set_dimension(Some(fixture_5058));
+    }
+    if let Some(value) = dict_value(values, "price")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5059: String = value.extract()?;
+        builder = builder.set_price(Some(fixture_5059));
+    }
+    if let Some(value) = dict_value(values, "description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5060: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_5060));
+    }
+    if let Some(value) = dict_value(values, "unit")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5061: String = value.extract()?;
+        builder = builder.set_unit(Some(fixture_5061));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn distillation_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::DistillationConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["teacher_model_config"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::DistillationConfig::builder();
+    if let Some(value) = dict_value(values, "teacher_model_config")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5062 = teacher_model_config_fixture_from_py(&value)?;
+        builder = builder.set_teacher_model_config(Some(fixture_5062));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn endpoint_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::EndpointConfig> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("sage_maker")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5063 = sage_maker_endpoint_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::EndpointConfig::SageMaker(
+            converted_5063,
+        ));
+    }
+    Err(PyValueError::new_err(
+        "EndpointConfig requires exactly one known variant",
+    ))
+}
+
+fn evaluation_bedrock_model_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::EvaluationBedrockModel> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["model_identifier", "inference_params", "performance_config"],
+        &["model_identifier", "inference_params"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::EvaluationBedrockModel::builder();
+    if let Some(value) = values.get_item("model_identifier")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5064: String = value.extract()?;
+        builder = builder.set_model_identifier(Some(fixture_5064));
+    }
+    if let Some(value) = values.get_item("inference_params")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5065: String = value.extract()?;
+        builder = builder.set_inference_params(Some(fixture_5065));
+    }
+    if let Some(value) = dict_value(values, "performance_config")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5066 = performance_configuration_fixture_from_py(&value)?;
+        builder = builder.set_performance_config(Some(fixture_5066));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn evaluation_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::EvaluationConfig> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("automated")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5067 = automated_evaluation_config_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::EvaluationConfig::Automated(
+            converted_5067,
+        ));
+    }
+    if let Some(value) = values.get_item("human")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5068 = human_evaluation_config_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::EvaluationConfig::Human(
+            converted_5068,
+        ));
+    }
+    Err(PyValueError::new_err(
+        "EvaluationConfig requires exactly one known variant",
+    ))
+}
+
+fn evaluation_dataset_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::EvaluationDataset> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["name", "dataset_location"], &["name"])?;
+    let mut builder = aws_sdk_bedrock::types::EvaluationDataset::builder();
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5069: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_5069));
+    }
+    if let Some(value) = dict_value(values, "dataset_location")? {
+        rboto_core::fixture_scalar(&value, "union")?;
+        let fixture_5070 = evaluation_dataset_location_fixture_from_py(&value)?;
+        builder = builder.set_dataset_location(Some(fixture_5070));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn evaluation_dataset_location_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::EvaluationDatasetLocation> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("s3_uri")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let converted_5071: String = value.extract()?;
+        return Ok(aws_sdk_bedrock::types::EvaluationDatasetLocation::S3Uri(
+            converted_5071,
+        ));
+    }
+    Err(PyValueError::new_err(
+        "EvaluationDatasetLocation requires exactly one known variant",
+    ))
+}
+
+fn evaluation_dataset_metric_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::EvaluationDatasetMetricConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["task_type", "dataset", "metric_names"],
+        &["task_type", "metric_names"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::EvaluationDatasetMetricConfig::builder();
+    if let Some(value) = values.get_item("task_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5073: String = value.extract()?;
+        let fixture_5072 =
+            aws_sdk_bedrock::types::EvaluationTaskType::from(enum_value_5073.as_str());
+        builder = builder.set_task_type(Some(fixture_5072));
+    }
+    if let Some(value) = dict_value(values, "dataset")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5074 = evaluation_dataset_fixture_from_py(&value)?;
+        builder = builder.set_dataset(Some(fixture_5074));
+    }
+    if let Some(value) = values.get_item("metric_names")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5075 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5076 in value.try_iter()? {
+            let item_5077 = item_result_5076?;
+            rboto_core::fixture_scalar(&item_5077, "string")?;
+            let converted_item_5078: String = item_5077.extract()?;
+            fixture_5075.push(converted_item_5078);
+        }
+        builder = builder.set_metric_names(Some(fixture_5075));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn evaluation_inference_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::EvaluationInferenceConfig> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("models")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut converted_5079 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5080 in value.try_iter()? {
+            let item_5081 = item_result_5080?;
+            rboto_core::fixture_scalar(&item_5081, "union")?;
+            let converted_item_5082 = evaluation_model_config_fixture_from_py(&item_5081)?;
+            converted_5079.push(converted_item_5082);
+        }
+        return Ok(aws_sdk_bedrock::types::EvaluationInferenceConfig::Models(
+            converted_5079,
+        ));
+    }
+    if let Some(value) = values.get_item("rag_configs")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut converted_5083 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5084 in value.try_iter()? {
+            let item_5085 = item_result_5084?;
+            rboto_core::fixture_scalar(&item_5085, "union")?;
+            let converted_item_5086 = rag_config_fixture_from_py(&item_5085)?;
+            converted_5083.push(converted_item_5086);
+        }
+        return Ok(aws_sdk_bedrock::types::EvaluationInferenceConfig::RagConfigs(converted_5083));
+    }
+    Err(PyValueError::new_err(
+        "EvaluationInferenceConfig requires exactly one known variant",
+    ))
+}
+
+fn evaluation_inference_config_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::EvaluationInferenceConfigSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["model_config_summary", "rag_config_summary"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::EvaluationInferenceConfigSummary::builder();
+    if let Some(value) = dict_value(values, "model_config_summary")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5087 = evaluation_model_config_summary_fixture_from_py(&value)?;
+        builder = builder.set_model_config_summary(Some(fixture_5087));
+    }
+    if let Some(value) = dict_value(values, "rag_config_summary")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5088 = evaluation_rag_config_summary_fixture_from_py(&value)?;
+        builder = builder.set_rag_config_summary(Some(fixture_5088));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn evaluation_model_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::EvaluationModelConfig> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("bedrock_model")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5089 = evaluation_bedrock_model_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::EvaluationModelConfig::BedrockModel(
+            converted_5089,
+        ));
+    }
+    if let Some(value) = values.get_item("precomputed_inference_source")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5090 = evaluation_precomputed_inference_source_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::EvaluationModelConfig::PrecomputedInferenceSource(
+                converted_5090,
+            ),
+        );
+    }
+    Err(PyValueError::new_err(
+        "EvaluationModelConfig requires exactly one known variant",
+    ))
+}
+
+fn evaluation_model_config_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::EvaluationModelConfigSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "bedrock_model_identifiers",
+            "precomputed_inference_source_identifiers",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::EvaluationModelConfigSummary::builder();
+    if let Some(value) = dict_value(values, "bedrock_model_identifiers")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5091 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5092 in value.try_iter()? {
+            let item_5093 = item_result_5092?;
+            rboto_core::fixture_scalar(&item_5093, "string")?;
+            let converted_item_5094: String = item_5093.extract()?;
+            fixture_5091.push(converted_item_5094);
+        }
+        builder = builder.set_bedrock_model_identifiers(Some(fixture_5091));
+    }
+    if let Some(value) = dict_value(values, "precomputed_inference_source_identifiers")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5095 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5096 in value.try_iter()? {
+            let item_5097 = item_result_5096?;
+            rboto_core::fixture_scalar(&item_5097, "string")?;
+            let converted_item_5098: String = item_5097.extract()?;
+            fixture_5095.push(converted_item_5098);
+        }
+        builder = builder.set_precomputed_inference_source_identifiers(Some(fixture_5095));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn evaluation_output_data_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::EvaluationOutputDataConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["s3_uri"], &["s3_uri"])?;
+    let mut builder = aws_sdk_bedrock::types::EvaluationOutputDataConfig::builder();
+    if let Some(value) = values.get_item("s3_uri")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5099: String = value.extract()?;
+        builder = builder.set_s3_uri(Some(fixture_5099));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn evaluation_precomputed_inference_source_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::EvaluationPrecomputedInferenceSource> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["inference_source_identifier"],
+        &["inference_source_identifier"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::EvaluationPrecomputedInferenceSource::builder();
+    if let Some(value) = values.get_item("inference_source_identifier")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5100: String = value.extract()?;
+        builder = builder.set_inference_source_identifier(Some(fixture_5100));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn evaluation_precomputed_rag_source_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::EvaluationPrecomputedRagSourceConfig> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("retrieve_source_config")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5101 = evaluation_precomputed_retrieve_source_config_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::EvaluationPrecomputedRagSourceConfig::RetrieveSourceConfig(
+                converted_5101,
+            ),
+        );
+    }
+    if let Some(value) = values.get_item("retrieve_and_generate_source_config")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5102 =
+            evaluation_precomputed_retrieve_and_generate_source_config_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::EvaluationPrecomputedRagSourceConfig::RetrieveAndGenerateSourceConfig(converted_5102));
+    }
+    Err(PyValueError::new_err(
+        "EvaluationPrecomputedRagSourceConfig requires exactly one known variant",
+    ))
+}
+
+fn evaluation_precomputed_retrieve_and_generate_source_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::EvaluationPrecomputedRetrieveAndGenerateSourceConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["rag_source_identifier"],
+        &["rag_source_identifier"],
+    )?;
+    let mut builder =
+        aws_sdk_bedrock::types::EvaluationPrecomputedRetrieveAndGenerateSourceConfig::builder();
+    if let Some(value) = values.get_item("rag_source_identifier")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5103: String = value.extract()?;
+        builder = builder.set_rag_source_identifier(Some(fixture_5103));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn evaluation_precomputed_retrieve_source_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::EvaluationPrecomputedRetrieveSourceConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["rag_source_identifier"],
+        &["rag_source_identifier"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::EvaluationPrecomputedRetrieveSourceConfig::builder();
+    if let Some(value) = values.get_item("rag_source_identifier")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5104: String = value.extract()?;
+        builder = builder.set_rag_source_identifier(Some(fixture_5104));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn evaluation_rag_config_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::EvaluationRagConfigSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "bedrock_knowledge_base_identifiers",
+            "precomputed_rag_source_identifiers",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::EvaluationRagConfigSummary::builder();
+    if let Some(value) = dict_value(values, "bedrock_knowledge_base_identifiers")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5105 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5106 in value.try_iter()? {
+            let item_5107 = item_result_5106?;
+            rboto_core::fixture_scalar(&item_5107, "string")?;
+            let converted_item_5108: String = item_5107.extract()?;
+            fixture_5105.push(converted_item_5108);
+        }
+        builder = builder.set_bedrock_knowledge_base_identifiers(Some(fixture_5105));
+    }
+    if let Some(value) = dict_value(values, "precomputed_rag_source_identifiers")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5109 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5110 in value.try_iter()? {
+            let item_5111 = item_result_5110?;
+            rboto_core::fixture_scalar(&item_5111, "string")?;
+            let converted_item_5112: String = item_5111.extract()?;
+            fixture_5109.push(converted_item_5112);
+        }
+        builder = builder.set_precomputed_rag_source_identifiers(Some(fixture_5109));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn evaluation_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::EvaluationSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "job_arn",
+            "job_name",
+            "status",
+            "creation_time",
+            "job_type",
+            "evaluation_task_types",
+            "model_identifiers",
+            "rag_identifiers",
+            "evaluator_model_identifiers",
+            "custom_metrics_evaluator_model_identifiers",
+            "inference_config_summary",
+            "application_type",
+        ],
+        &[
+            "job_arn",
+            "job_name",
+            "status",
+            "creation_time",
+            "job_type",
+            "evaluation_task_types",
+            "model_identifiers",
+        ],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::EvaluationSummary::builder();
+    if let Some(value) = values.get_item("job_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5113: String = value.extract()?;
+        builder = builder.set_job_arn(Some(fixture_5113));
+    }
+    if let Some(value) = values.get_item("job_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5114: String = value.extract()?;
+        builder = builder.set_job_name(Some(fixture_5114));
+    }
+    if let Some(value) = values.get_item("status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5116: String = value.extract()?;
+        let fixture_5115 =
+            aws_sdk_bedrock::types::EvaluationJobStatus::from(enum_value_5116.as_str());
+        builder = builder.set_status(Some(fixture_5115));
+    }
+    if let Some(value) = values.get_item("creation_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5118: String = value.extract()?;
+        let fixture_5117 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5118,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_time(Some(fixture_5117));
+    }
+    if let Some(value) = values.get_item("job_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5120: String = value.extract()?;
+        let fixture_5119 =
+            aws_sdk_bedrock::types::EvaluationJobType::from(enum_value_5120.as_str());
+        builder = builder.set_job_type(Some(fixture_5119));
+    }
+    if let Some(value) = values.get_item("evaluation_task_types")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5121 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5122 in value.try_iter()? {
+            let item_5123 = item_result_5122?;
+            rboto_core::fixture_scalar(&item_5123, "enum")?;
+            let enum_value_5125: String = item_5123.extract()?;
+            let converted_item_5124 =
+                aws_sdk_bedrock::types::EvaluationTaskType::from(enum_value_5125.as_str());
+            fixture_5121.push(converted_item_5124);
+        }
+        builder = builder.set_evaluation_task_types(Some(fixture_5121));
+    }
+    if let Some(value) = values.get_item("model_identifiers")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5126 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5127 in value.try_iter()? {
+            let item_5128 = item_result_5127?;
+            rboto_core::fixture_scalar(&item_5128, "string")?;
+            let converted_item_5129: String = item_5128.extract()?;
+            fixture_5126.push(converted_item_5129);
+        }
+        builder = builder.set_model_identifiers(Some(fixture_5126));
+    }
+    if let Some(value) = dict_value(values, "rag_identifiers")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5130 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5131 in value.try_iter()? {
+            let item_5132 = item_result_5131?;
+            rboto_core::fixture_scalar(&item_5132, "string")?;
+            let converted_item_5133: String = item_5132.extract()?;
+            fixture_5130.push(converted_item_5133);
+        }
+        builder = builder.set_rag_identifiers(Some(fixture_5130));
+    }
+    if let Some(value) = dict_value(values, "evaluator_model_identifiers")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5134 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5135 in value.try_iter()? {
+            let item_5136 = item_result_5135?;
+            rboto_core::fixture_scalar(&item_5136, "string")?;
+            let converted_item_5137: String = item_5136.extract()?;
+            fixture_5134.push(converted_item_5137);
+        }
+        builder = builder.set_evaluator_model_identifiers(Some(fixture_5134));
+    }
+    if let Some(value) = dict_value(values, "custom_metrics_evaluator_model_identifiers")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5138 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5139 in value.try_iter()? {
+            let item_5140 = item_result_5139?;
+            rboto_core::fixture_scalar(&item_5140, "string")?;
+            let converted_item_5141: String = item_5140.extract()?;
+            fixture_5138.push(converted_item_5141);
+        }
+        builder = builder.set_custom_metrics_evaluator_model_identifiers(Some(fixture_5138));
+    }
+    if let Some(value) = dict_value(values, "inference_config_summary")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5142 = evaluation_inference_config_summary_fixture_from_py(&value)?;
+        builder = builder.set_inference_config_summary(Some(fixture_5142));
+    }
+    if let Some(value) = dict_value(values, "application_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5144: String = value.extract()?;
+        let fixture_5143 = aws_sdk_bedrock::types::ApplicationType::from(enum_value_5144.as_str());
+        builder = builder.set_application_type(Some(fixture_5143));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn evaluator_model_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::EvaluatorModelConfig> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("bedrock_evaluator_models")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut converted_5145 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5146 in value.try_iter()? {
+            let item_5147 = item_result_5146?;
+            rboto_core::fixture_scalar(&item_5147, "struct")?;
+            let converted_item_5148 = bedrock_evaluator_model_fixture_from_py(&item_5147)?;
+            converted_5145.push(converted_item_5148);
+        }
+        return Ok(
+            aws_sdk_bedrock::types::EvaluatorModelConfig::BedrockEvaluatorModels(converted_5145),
+        );
+    }
+    Err(PyValueError::new_err(
+        "EvaluatorModelConfig requires exactly one known variant",
+    ))
+}
+
+fn external_source_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::ExternalSource> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["source_type", "s3_location", "byte_content"],
+        &["source_type"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::ExternalSource::builder();
+    if let Some(value) = values.get_item("source_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5150: String = value.extract()?;
+        let fixture_5149 =
+            aws_sdk_bedrock::types::ExternalSourceType::from(enum_value_5150.as_str());
+        builder = builder.set_source_type(Some(fixture_5149));
+    }
+    if let Some(value) = dict_value(values, "s3_location")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5151 = s3_object_doc_fixture_from_py(&value)?;
+        builder = builder.set_s3_location(Some(fixture_5151));
+    }
+    if let Some(value) = dict_value(values, "byte_content")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5152 = byte_content_doc_fixture_from_py(&value)?;
+        builder = builder.set_byte_content(Some(fixture_5152));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn external_sources_generation_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::ExternalSourcesGenerationConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "prompt_template",
+            "guardrail_configuration",
+            "kb_inference_config",
+            "additional_model_request_fields",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::ExternalSourcesGenerationConfiguration::builder();
+    if let Some(value) = dict_value(values, "prompt_template")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5153 = prompt_template_fixture_from_py(&value)?;
+        builder = builder.set_prompt_template(Some(fixture_5153));
+    }
+    if let Some(value) = dict_value(values, "guardrail_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5154 = guardrail_configuration_fixture_from_py(&value)?;
+        builder = builder.set_guardrail_configuration(Some(fixture_5154));
+    }
+    if let Some(value) = dict_value(values, "kb_inference_config")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5155 = kb_inference_config_fixture_from_py(&value)?;
+        builder = builder.set_kb_inference_config(Some(fixture_5155));
+    }
+    if let Some(value) = dict_value(values, "additional_model_request_fields")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_5157 = value.cast::<PyDict>()?;
+        let mut fixture_5156 = HashMap::with_capacity(mapping_5157.len());
+        for (key_5158, value_5159) in mapping_5157.iter() {
+            rboto_core::fixture_scalar(&key_5158, "string")?;
+            let converted_key_5160: String = key_5158.extract()?;
+            rboto_core::fixture_scalar(&value_5159, "document")?;
+            let converted_value_5161 = rboto_core::document_from_py(&value_5159)?;
+            fixture_5156.insert(converted_key_5160, converted_value_5161);
+        }
+        builder = builder.set_additional_model_request_fields(Some(fixture_5156));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn external_sources_retrieve_and_generate_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::ExternalSourcesRetrieveAndGenerateConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["model_arn", "sources", "generation_configuration"],
+        &["model_arn", "sources"],
+    )?;
+    let mut builder =
+        aws_sdk_bedrock::types::ExternalSourcesRetrieveAndGenerateConfiguration::builder();
+    if let Some(value) = values.get_item("model_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5162: String = value.extract()?;
+        builder = builder.set_model_arn(Some(fixture_5162));
+    }
+    if let Some(value) = values.get_item("sources")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5163 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5164 in value.try_iter()? {
+            let item_5165 = item_result_5164?;
+            rboto_core::fixture_scalar(&item_5165, "struct")?;
+            let converted_item_5166 = external_source_fixture_from_py(&item_5165)?;
+            fixture_5163.push(converted_item_5166);
+        }
+        builder = builder.set_sources(Some(fixture_5163));
+    }
+    if let Some(value) = dict_value(values, "generation_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5167 = external_sources_generation_configuration_fixture_from_py(&value)?;
+        builder = builder.set_generation_configuration(Some(fixture_5167));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn field_for_reranking_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::FieldForReranking> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["field_name"], &["field_name"])?;
+    let mut builder = aws_sdk_bedrock::types::FieldForReranking::builder();
+    if let Some(value) = values.get_item("field_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5168: String = value.extract()?;
+        builder = builder.set_field_name(Some(fixture_5168));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn filter_attribute_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::FilterAttribute> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["key", "value"], &["key", "value"])?;
+    let mut builder = aws_sdk_bedrock::types::FilterAttribute::builder();
+    if let Some(value) = values.get_item("key")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5169: String = value.extract()?;
+        builder = builder.set_key(Some(fixture_5169));
+    }
+    if let Some(value) = values.get_item("value")? {
+        rboto_core::fixture_scalar(&value, "document")?;
+        let fixture_5170 = rboto_core::document_from_py(&value)?;
+        builder = builder.set_value(Some(fixture_5170));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn foundation_model_details_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::FoundationModelDetails> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "model_arn",
+            "model_id",
+            "model_name",
+            "provider_name",
+            "input_modalities",
+            "output_modalities",
+            "response_streaming_supported",
+            "customizations_supported",
+            "inference_types_supported",
+            "model_lifecycle",
+        ],
+        &["model_arn", "model_id"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::FoundationModelDetails::builder();
+    if let Some(value) = values.get_item("model_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5171: String = value.extract()?;
+        builder = builder.set_model_arn(Some(fixture_5171));
+    }
+    if let Some(value) = values.get_item("model_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5172: String = value.extract()?;
+        builder = builder.set_model_id(Some(fixture_5172));
+    }
+    if let Some(value) = dict_value(values, "model_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5173: String = value.extract()?;
+        builder = builder.set_model_name(Some(fixture_5173));
+    }
+    if let Some(value) = dict_value(values, "provider_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5174: String = value.extract()?;
+        builder = builder.set_provider_name(Some(fixture_5174));
+    }
+    if let Some(value) = dict_value(values, "input_modalities")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5175 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5176 in value.try_iter()? {
+            let item_5177 = item_result_5176?;
+            rboto_core::fixture_scalar(&item_5177, "enum")?;
+            let enum_value_5179: String = item_5177.extract()?;
+            let converted_item_5178 =
+                aws_sdk_bedrock::types::ModelModality::from(enum_value_5179.as_str());
+            fixture_5175.push(converted_item_5178);
+        }
+        builder = builder.set_input_modalities(Some(fixture_5175));
+    }
+    if let Some(value) = dict_value(values, "output_modalities")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5180 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5181 in value.try_iter()? {
+            let item_5182 = item_result_5181?;
+            rboto_core::fixture_scalar(&item_5182, "enum")?;
+            let enum_value_5184: String = item_5182.extract()?;
+            let converted_item_5183 =
+                aws_sdk_bedrock::types::ModelModality::from(enum_value_5184.as_str());
+            fixture_5180.push(converted_item_5183);
+        }
+        builder = builder.set_output_modalities(Some(fixture_5180));
+    }
+    if let Some(value) = dict_value(values, "response_streaming_supported")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_5185: bool = value.extract()?;
+        builder = builder.set_response_streaming_supported(Some(fixture_5185));
+    }
+    if let Some(value) = dict_value(values, "customizations_supported")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5186 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5187 in value.try_iter()? {
+            let item_5188 = item_result_5187?;
+            rboto_core::fixture_scalar(&item_5188, "enum")?;
+            let enum_value_5190: String = item_5188.extract()?;
+            let converted_item_5189 =
+                aws_sdk_bedrock::types::ModelCustomization::from(enum_value_5190.as_str());
+            fixture_5186.push(converted_item_5189);
+        }
+        builder = builder.set_customizations_supported(Some(fixture_5186));
+    }
+    if let Some(value) = dict_value(values, "inference_types_supported")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5191 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5192 in value.try_iter()? {
+            let item_5193 = item_result_5192?;
+            rboto_core::fixture_scalar(&item_5193, "enum")?;
+            let enum_value_5195: String = item_5193.extract()?;
+            let converted_item_5194 =
+                aws_sdk_bedrock::types::InferenceType::from(enum_value_5195.as_str());
+            fixture_5191.push(converted_item_5194);
+        }
+        builder = builder.set_inference_types_supported(Some(fixture_5191));
+    }
+    if let Some(value) = dict_value(values, "model_lifecycle")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5196 = foundation_model_lifecycle_fixture_from_py(&value)?;
+        builder = builder.set_model_lifecycle(Some(fixture_5196));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn foundation_model_lifecycle_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::FoundationModelLifecycle> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "status",
+            "start_of_life_time",
+            "end_of_life_time",
+            "legacy_time",
+            "public_extended_access_time",
+        ],
+        &["status"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::FoundationModelLifecycle::builder();
+    if let Some(value) = values.get_item("status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5198: String = value.extract()?;
+        let fixture_5197 =
+            aws_sdk_bedrock::types::FoundationModelLifecycleStatus::from(enum_value_5198.as_str());
+        builder = builder.set_status(Some(fixture_5197));
+    }
+    if let Some(value) = dict_value(values, "start_of_life_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5200: String = value.extract()?;
+        let fixture_5199 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5200,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_start_of_life_time(Some(fixture_5199));
+    }
+    if let Some(value) = dict_value(values, "end_of_life_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5202: String = value.extract()?;
+        let fixture_5201 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5202,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_end_of_life_time(Some(fixture_5201));
+    }
+    if let Some(value) = dict_value(values, "legacy_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5204: String = value.extract()?;
+        let fixture_5203 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5204,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_legacy_time(Some(fixture_5203));
+    }
+    if let Some(value) = dict_value(values, "public_extended_access_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5206: String = value.extract()?;
+        let fixture_5205 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5206,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_public_extended_access_time(Some(fixture_5205));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn foundation_model_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::FoundationModelSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "model_arn",
+            "model_id",
+            "model_name",
+            "provider_name",
+            "input_modalities",
+            "output_modalities",
+            "response_streaming_supported",
+            "customizations_supported",
+            "inference_types_supported",
+            "model_lifecycle",
+        ],
+        &["model_arn", "model_id"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::FoundationModelSummary::builder();
+    if let Some(value) = values.get_item("model_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5207: String = value.extract()?;
+        builder = builder.set_model_arn(Some(fixture_5207));
+    }
+    if let Some(value) = values.get_item("model_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5208: String = value.extract()?;
+        builder = builder.set_model_id(Some(fixture_5208));
+    }
+    if let Some(value) = dict_value(values, "model_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5209: String = value.extract()?;
+        builder = builder.set_model_name(Some(fixture_5209));
+    }
+    if let Some(value) = dict_value(values, "provider_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5210: String = value.extract()?;
+        builder = builder.set_provider_name(Some(fixture_5210));
+    }
+    if let Some(value) = dict_value(values, "input_modalities")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5211 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5212 in value.try_iter()? {
+            let item_5213 = item_result_5212?;
+            rboto_core::fixture_scalar(&item_5213, "enum")?;
+            let enum_value_5215: String = item_5213.extract()?;
+            let converted_item_5214 =
+                aws_sdk_bedrock::types::ModelModality::from(enum_value_5215.as_str());
+            fixture_5211.push(converted_item_5214);
+        }
+        builder = builder.set_input_modalities(Some(fixture_5211));
+    }
+    if let Some(value) = dict_value(values, "output_modalities")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5216 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5217 in value.try_iter()? {
+            let item_5218 = item_result_5217?;
+            rboto_core::fixture_scalar(&item_5218, "enum")?;
+            let enum_value_5220: String = item_5218.extract()?;
+            let converted_item_5219 =
+                aws_sdk_bedrock::types::ModelModality::from(enum_value_5220.as_str());
+            fixture_5216.push(converted_item_5219);
+        }
+        builder = builder.set_output_modalities(Some(fixture_5216));
+    }
+    if let Some(value) = dict_value(values, "response_streaming_supported")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_5221: bool = value.extract()?;
+        builder = builder.set_response_streaming_supported(Some(fixture_5221));
+    }
+    if let Some(value) = dict_value(values, "customizations_supported")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5222 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5223 in value.try_iter()? {
+            let item_5224 = item_result_5223?;
+            rboto_core::fixture_scalar(&item_5224, "enum")?;
+            let enum_value_5226: String = item_5224.extract()?;
+            let converted_item_5225 =
+                aws_sdk_bedrock::types::ModelCustomization::from(enum_value_5226.as_str());
+            fixture_5222.push(converted_item_5225);
+        }
+        builder = builder.set_customizations_supported(Some(fixture_5222));
+    }
+    if let Some(value) = dict_value(values, "inference_types_supported")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5227 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5228 in value.try_iter()? {
+            let item_5229 = item_result_5228?;
+            rboto_core::fixture_scalar(&item_5229, "enum")?;
+            let enum_value_5231: String = item_5229.extract()?;
+            let converted_item_5230 =
+                aws_sdk_bedrock::types::InferenceType::from(enum_value_5231.as_str());
+            fixture_5227.push(converted_item_5230);
+        }
+        builder = builder.set_inference_types_supported(Some(fixture_5227));
+    }
+    if let Some(value) = dict_value(values, "model_lifecycle")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5232 = foundation_model_lifecycle_fixture_from_py(&value)?;
+        builder = builder.set_model_lifecycle(Some(fixture_5232));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn generation_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::GenerationConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "prompt_template",
+            "guardrail_configuration",
+            "kb_inference_config",
+            "additional_model_request_fields",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::GenerationConfiguration::builder();
+    if let Some(value) = dict_value(values, "prompt_template")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5233 = prompt_template_fixture_from_py(&value)?;
+        builder = builder.set_prompt_template(Some(fixture_5233));
+    }
+    if let Some(value) = dict_value(values, "guardrail_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5234 = guardrail_configuration_fixture_from_py(&value)?;
+        builder = builder.set_guardrail_configuration(Some(fixture_5234));
+    }
+    if let Some(value) = dict_value(values, "kb_inference_config")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5235 = kb_inference_config_fixture_from_py(&value)?;
+        builder = builder.set_kb_inference_config(Some(fixture_5235));
+    }
+    if let Some(value) = dict_value(values, "additional_model_request_fields")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_5237 = value.cast::<PyDict>()?;
+        let mut fixture_5236 = HashMap::with_capacity(mapping_5237.len());
+        for (key_5238, value_5239) in mapping_5237.iter() {
+            rboto_core::fixture_scalar(&key_5238, "string")?;
+            let converted_key_5240: String = key_5238.extract()?;
+            rboto_core::fixture_scalar(&value_5239, "document")?;
+            let converted_value_5241 = rboto_core::document_from_py(&value_5239)?;
+            fixture_5236.insert(converted_key_5240, converted_value_5241);
+        }
+        builder = builder.set_additional_model_request_fields(Some(fixture_5236));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn grader_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::GraderConfig> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("lambda_grader")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5242 = lambda_grader_config_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::GraderConfig::LambdaGrader(
+            converted_5242,
+        ));
+    }
+    Err(PyValueError::new_err(
+        "GraderConfig requires exactly one known variant",
+    ))
+}
+
+fn guardrail_automated_reasoning_policy_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::GuardrailAutomatedReasoningPolicy> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["policies", "confidence_threshold"], &["policies"])?;
+    let mut builder = aws_sdk_bedrock::types::GuardrailAutomatedReasoningPolicy::builder();
+    if let Some(value) = values.get_item("policies")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5243 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5244 in value.try_iter()? {
+            let item_5245 = item_result_5244?;
+            rboto_core::fixture_scalar(&item_5245, "string")?;
+            let converted_item_5246: String = item_5245.extract()?;
+            fixture_5243.push(converted_item_5246);
+        }
+        builder = builder.set_policies(Some(fixture_5243));
+    }
+    if let Some(value) = dict_value(values, "confidence_threshold")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_5247: f64 = value.extract()?;
+        builder = builder.set_confidence_threshold(Some(fixture_5247));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn guardrail_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::GuardrailConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["guardrail_id", "guardrail_version"],
+        &["guardrail_id", "guardrail_version"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::GuardrailConfiguration::builder();
+    if let Some(value) = values.get_item("guardrail_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5248: String = value.extract()?;
+        builder = builder.set_guardrail_id(Some(fixture_5248));
+    }
+    if let Some(value) = values.get_item("guardrail_version")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5249: String = value.extract()?;
+        builder = builder.set_guardrail_version(Some(fixture_5249));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn guardrail_content_filter_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::GuardrailContentFilter> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "type",
+            "input_strength",
+            "output_strength",
+            "input_modalities",
+            "output_modalities",
+            "input_action",
+            "output_action",
+            "input_enabled",
+            "output_enabled",
+        ],
+        &["type", "input_strength", "output_strength"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::GuardrailContentFilter::builder();
+    if let Some(value) = values.get_item("type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5251: String = value.extract()?;
+        let fixture_5250 =
+            aws_sdk_bedrock::types::GuardrailContentFilterType::from(enum_value_5251.as_str());
+        builder = builder.set_type(Some(fixture_5250));
+    }
+    if let Some(value) = values.get_item("input_strength")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5253: String = value.extract()?;
+        let fixture_5252 =
+            aws_sdk_bedrock::types::GuardrailFilterStrength::from(enum_value_5253.as_str());
+        builder = builder.set_input_strength(Some(fixture_5252));
+    }
+    if let Some(value) = values.get_item("output_strength")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5255: String = value.extract()?;
+        let fixture_5254 =
+            aws_sdk_bedrock::types::GuardrailFilterStrength::from(enum_value_5255.as_str());
+        builder = builder.set_output_strength(Some(fixture_5254));
+    }
+    if let Some(value) = dict_value(values, "input_modalities")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5256 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5257 in value.try_iter()? {
+            let item_5258 = item_result_5257?;
+            rboto_core::fixture_scalar(&item_5258, "enum")?;
+            let enum_value_5260: String = item_5258.extract()?;
+            let converted_item_5259 =
+                aws_sdk_bedrock::types::GuardrailModality::from(enum_value_5260.as_str());
+            fixture_5256.push(converted_item_5259);
+        }
+        builder = builder.set_input_modalities(Some(fixture_5256));
+    }
+    if let Some(value) = dict_value(values, "output_modalities")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5261 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5262 in value.try_iter()? {
+            let item_5263 = item_result_5262?;
+            rboto_core::fixture_scalar(&item_5263, "enum")?;
+            let enum_value_5265: String = item_5263.extract()?;
+            let converted_item_5264 =
+                aws_sdk_bedrock::types::GuardrailModality::from(enum_value_5265.as_str());
+            fixture_5261.push(converted_item_5264);
+        }
+        builder = builder.set_output_modalities(Some(fixture_5261));
+    }
+    if let Some(value) = dict_value(values, "input_action")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5267: String = value.extract()?;
+        let fixture_5266 =
+            aws_sdk_bedrock::types::GuardrailContentFilterAction::from(enum_value_5267.as_str());
+        builder = builder.set_input_action(Some(fixture_5266));
+    }
+    if let Some(value) = dict_value(values, "output_action")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5269: String = value.extract()?;
+        let fixture_5268 =
+            aws_sdk_bedrock::types::GuardrailContentFilterAction::from(enum_value_5269.as_str());
+        builder = builder.set_output_action(Some(fixture_5268));
+    }
+    if let Some(value) = dict_value(values, "input_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_5270: bool = value.extract()?;
+        builder = builder.set_input_enabled(Some(fixture_5270));
+    }
+    if let Some(value) = dict_value(values, "output_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_5271: bool = value.extract()?;
+        builder = builder.set_output_enabled(Some(fixture_5271));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn guardrail_content_filters_tier_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::GuardrailContentFiltersTier> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["tier_name"], &["tier_name"])?;
+    let mut builder = aws_sdk_bedrock::types::GuardrailContentFiltersTier::builder();
+    if let Some(value) = values.get_item("tier_name")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5273: String = value.extract()?;
+        let fixture_5272 =
+            aws_sdk_bedrock::types::GuardrailContentFiltersTierName::from(enum_value_5273.as_str());
+        builder = builder.set_tier_name(Some(fixture_5272));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn guardrail_content_policy_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::GuardrailContentPolicy> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["filters", "tier"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::GuardrailContentPolicy::builder();
+    if let Some(value) = dict_value(values, "filters")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5274 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5275 in value.try_iter()? {
+            let item_5276 = item_result_5275?;
+            rboto_core::fixture_scalar(&item_5276, "struct")?;
+            let converted_item_5277 = guardrail_content_filter_fixture_from_py(&item_5276)?;
+            fixture_5274.push(converted_item_5277);
+        }
+        builder = builder.set_filters(Some(fixture_5274));
+    }
+    if let Some(value) = dict_value(values, "tier")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5278 = guardrail_content_filters_tier_fixture_from_py(&value)?;
+        builder = builder.set_tier(Some(fixture_5278));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn guardrail_contextual_grounding_filter_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::GuardrailContextualGroundingFilter> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["type", "threshold", "action", "enabled"],
+        &["type", "threshold"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::GuardrailContextualGroundingFilter::builder();
+    if let Some(value) = values.get_item("type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5280: String = value.extract()?;
+        let fixture_5279 = aws_sdk_bedrock::types::GuardrailContextualGroundingFilterType::from(
+            enum_value_5280.as_str(),
+        );
+        builder = builder.set_type(Some(fixture_5279));
+    }
+    if let Some(value) = values.get_item("threshold")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_5281: f64 = value.extract()?;
+        builder = builder.set_threshold(Some(fixture_5281));
+    }
+    if let Some(value) = dict_value(values, "action")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5283: String = value.extract()?;
+        let fixture_5282 = aws_sdk_bedrock::types::GuardrailContextualGroundingAction::from(
+            enum_value_5283.as_str(),
+        );
+        builder = builder.set_action(Some(fixture_5282));
+    }
+    if let Some(value) = dict_value(values, "enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_5284: bool = value.extract()?;
+        builder = builder.set_enabled(Some(fixture_5284));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn guardrail_contextual_grounding_policy_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::GuardrailContextualGroundingPolicy> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["filters", "tier"], &["filters"])?;
+    let mut builder = aws_sdk_bedrock::types::GuardrailContextualGroundingPolicy::builder();
+    if let Some(value) = values.get_item("filters")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5285 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5286 in value.try_iter()? {
+            let item_5287 = item_result_5286?;
+            rboto_core::fixture_scalar(&item_5287, "struct")?;
+            let converted_item_5288 =
+                guardrail_contextual_grounding_filter_fixture_from_py(&item_5287)?;
+            fixture_5285.push(converted_item_5288);
+        }
+        builder = builder.set_filters(Some(fixture_5285));
+    }
+    if let Some(value) = dict_value(values, "tier")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5289 = guardrail_contextual_grounding_tier_fixture_from_py(&value)?;
+        builder = builder.set_tier(Some(fixture_5289));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn guardrail_contextual_grounding_tier_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::GuardrailContextualGroundingTier> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["tier_name"], &["tier_name"])?;
+    let mut builder = aws_sdk_bedrock::types::GuardrailContextualGroundingTier::builder();
+    if let Some(value) = values.get_item("tier_name")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5291: String = value.extract()?;
+        let fixture_5290 = aws_sdk_bedrock::types::GuardrailContextualGroundingTierName::from(
+            enum_value_5291.as_str(),
+        );
+        builder = builder.set_tier_name(Some(fixture_5290));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn guardrail_cross_region_details_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::GuardrailCrossRegionDetails> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["guardrail_profile_id", "guardrail_profile_arn"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::GuardrailCrossRegionDetails::builder();
+    if let Some(value) = dict_value(values, "guardrail_profile_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5292: String = value.extract()?;
+        builder = builder.set_guardrail_profile_id(Some(fixture_5292));
+    }
+    if let Some(value) = dict_value(values, "guardrail_profile_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5293: String = value.extract()?;
+        builder = builder.set_guardrail_profile_arn(Some(fixture_5293));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn guardrail_managed_words_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::GuardrailManagedWords> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "type",
+            "input_action",
+            "output_action",
+            "input_enabled",
+            "output_enabled",
+        ],
+        &["type"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::GuardrailManagedWords::builder();
+    if let Some(value) = values.get_item("type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5295: String = value.extract()?;
+        let fixture_5294 =
+            aws_sdk_bedrock::types::GuardrailManagedWordsType::from(enum_value_5295.as_str());
+        builder = builder.set_type(Some(fixture_5294));
+    }
+    if let Some(value) = dict_value(values, "input_action")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5297: String = value.extract()?;
+        let fixture_5296 =
+            aws_sdk_bedrock::types::GuardrailWordAction::from(enum_value_5297.as_str());
+        builder = builder.set_input_action(Some(fixture_5296));
+    }
+    if let Some(value) = dict_value(values, "output_action")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5299: String = value.extract()?;
+        let fixture_5298 =
+            aws_sdk_bedrock::types::GuardrailWordAction::from(enum_value_5299.as_str());
+        builder = builder.set_output_action(Some(fixture_5298));
+    }
+    if let Some(value) = dict_value(values, "input_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_5300: bool = value.extract()?;
+        builder = builder.set_input_enabled(Some(fixture_5300));
+    }
+    if let Some(value) = dict_value(values, "output_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_5301: bool = value.extract()?;
+        builder = builder.set_output_enabled(Some(fixture_5301));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn guardrail_pii_entity_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::GuardrailPiiEntity> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "type",
+            "action",
+            "input_action",
+            "output_action",
+            "input_enabled",
+            "output_enabled",
+        ],
+        &["type", "action"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::GuardrailPiiEntity::builder();
+    if let Some(value) = values.get_item("type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5303: String = value.extract()?;
+        let fixture_5302 =
+            aws_sdk_bedrock::types::GuardrailPiiEntityType::from(enum_value_5303.as_str());
+        builder = builder.set_type(Some(fixture_5302));
+    }
+    if let Some(value) = values.get_item("action")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5305: String = value.extract()?;
+        let fixture_5304 = aws_sdk_bedrock::types::GuardrailSensitiveInformationAction::from(
+            enum_value_5305.as_str(),
+        );
+        builder = builder.set_action(Some(fixture_5304));
+    }
+    if let Some(value) = dict_value(values, "input_action")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5307: String = value.extract()?;
+        let fixture_5306 = aws_sdk_bedrock::types::GuardrailSensitiveInformationAction::from(
+            enum_value_5307.as_str(),
+        );
+        builder = builder.set_input_action(Some(fixture_5306));
+    }
+    if let Some(value) = dict_value(values, "output_action")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5309: String = value.extract()?;
+        let fixture_5308 = aws_sdk_bedrock::types::GuardrailSensitiveInformationAction::from(
+            enum_value_5309.as_str(),
+        );
+        builder = builder.set_output_action(Some(fixture_5308));
+    }
+    if let Some(value) = dict_value(values, "input_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_5310: bool = value.extract()?;
+        builder = builder.set_input_enabled(Some(fixture_5310));
+    }
+    if let Some(value) = dict_value(values, "output_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_5311: bool = value.extract()?;
+        builder = builder.set_output_enabled(Some(fixture_5311));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn guardrail_regex_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::GuardrailRegex> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "name",
+            "description",
+            "pattern",
+            "action",
+            "input_action",
+            "output_action",
+            "input_enabled",
+            "output_enabled",
+        ],
+        &["name", "pattern", "action"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::GuardrailRegex::builder();
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5312: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_5312));
+    }
+    if let Some(value) = dict_value(values, "description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5313: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_5313));
+    }
+    if let Some(value) = values.get_item("pattern")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5314: String = value.extract()?;
+        builder = builder.set_pattern(Some(fixture_5314));
+    }
+    if let Some(value) = values.get_item("action")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5316: String = value.extract()?;
+        let fixture_5315 = aws_sdk_bedrock::types::GuardrailSensitiveInformationAction::from(
+            enum_value_5316.as_str(),
+        );
+        builder = builder.set_action(Some(fixture_5315));
+    }
+    if let Some(value) = dict_value(values, "input_action")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5318: String = value.extract()?;
+        let fixture_5317 = aws_sdk_bedrock::types::GuardrailSensitiveInformationAction::from(
+            enum_value_5318.as_str(),
+        );
+        builder = builder.set_input_action(Some(fixture_5317));
+    }
+    if let Some(value) = dict_value(values, "output_action")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5320: String = value.extract()?;
+        let fixture_5319 = aws_sdk_bedrock::types::GuardrailSensitiveInformationAction::from(
+            enum_value_5320.as_str(),
+        );
+        builder = builder.set_output_action(Some(fixture_5319));
+    }
+    if let Some(value) = dict_value(values, "input_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_5321: bool = value.extract()?;
+        builder = builder.set_input_enabled(Some(fixture_5321));
+    }
+    if let Some(value) = dict_value(values, "output_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_5322: bool = value.extract()?;
+        builder = builder.set_output_enabled(Some(fixture_5322));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn guardrail_sensitive_information_policy_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::GuardrailSensitiveInformationPolicy> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["pii_entities", "regexes"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::GuardrailSensitiveInformationPolicy::builder();
+    if let Some(value) = dict_value(values, "pii_entities")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5323 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5324 in value.try_iter()? {
+            let item_5325 = item_result_5324?;
+            rboto_core::fixture_scalar(&item_5325, "struct")?;
+            let converted_item_5326 = guardrail_pii_entity_fixture_from_py(&item_5325)?;
+            fixture_5323.push(converted_item_5326);
+        }
+        builder = builder.set_pii_entities(Some(fixture_5323));
+    }
+    if let Some(value) = dict_value(values, "regexes")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5327 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5328 in value.try_iter()? {
+            let item_5329 = item_result_5328?;
+            rboto_core::fixture_scalar(&item_5329, "struct")?;
+            let converted_item_5330 = guardrail_regex_fixture_from_py(&item_5329)?;
+            fixture_5327.push(converted_item_5330);
+        }
+        builder = builder.set_regexes(Some(fixture_5327));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn guardrail_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::GuardrailSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "id",
+            "arn",
+            "status",
+            "name",
+            "description",
+            "version",
+            "created_at",
+            "updated_at",
+            "cross_region_details",
+        ],
+        &[
+            "id",
+            "arn",
+            "status",
+            "name",
+            "version",
+            "created_at",
+            "updated_at",
+        ],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::GuardrailSummary::builder();
+    if let Some(value) = values.get_item("id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5331: String = value.extract()?;
+        builder = builder.set_id(Some(fixture_5331));
+    }
+    if let Some(value) = values.get_item("arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5332: String = value.extract()?;
+        builder = builder.set_arn(Some(fixture_5332));
+    }
+    if let Some(value) = values.get_item("status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5334: String = value.extract()?;
+        let fixture_5333 = aws_sdk_bedrock::types::GuardrailStatus::from(enum_value_5334.as_str());
+        builder = builder.set_status(Some(fixture_5333));
+    }
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5335: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_5335));
+    }
+    if let Some(value) = dict_value(values, "description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5336: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_5336));
+    }
+    if let Some(value) = values.get_item("version")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5337: String = value.extract()?;
+        builder = builder.set_version(Some(fixture_5337));
+    }
+    if let Some(value) = values.get_item("created_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5339: String = value.extract()?;
+        let fixture_5338 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5339,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_created_at(Some(fixture_5338));
+    }
+    if let Some(value) = values.get_item("updated_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5341: String = value.extract()?;
+        let fixture_5340 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5341,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_updated_at(Some(fixture_5340));
+    }
+    if let Some(value) = dict_value(values, "cross_region_details")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5342 = guardrail_cross_region_details_fixture_from_py(&value)?;
+        builder = builder.set_cross_region_details(Some(fixture_5342));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn guardrail_topic_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::GuardrailTopic> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "name",
+            "definition",
+            "examples",
+            "type",
+            "input_action",
+            "output_action",
+            "input_enabled",
+            "output_enabled",
+        ],
+        &["name", "definition"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::GuardrailTopic::builder();
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5343: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_5343));
+    }
+    if let Some(value) = values.get_item("definition")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5344: String = value.extract()?;
+        builder = builder.set_definition(Some(fixture_5344));
+    }
+    if let Some(value) = dict_value(values, "examples")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5345 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5346 in value.try_iter()? {
+            let item_5347 = item_result_5346?;
+            rboto_core::fixture_scalar(&item_5347, "string")?;
+            let converted_item_5348: String = item_5347.extract()?;
+            fixture_5345.push(converted_item_5348);
+        }
+        builder = builder.set_examples(Some(fixture_5345));
+    }
+    if let Some(value) = dict_value(values, "type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5350: String = value.extract()?;
+        let fixture_5349 =
+            aws_sdk_bedrock::types::GuardrailTopicType::from(enum_value_5350.as_str());
+        builder = builder.set_type(Some(fixture_5349));
+    }
+    if let Some(value) = dict_value(values, "input_action")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5352: String = value.extract()?;
+        let fixture_5351 =
+            aws_sdk_bedrock::types::GuardrailTopicAction::from(enum_value_5352.as_str());
+        builder = builder.set_input_action(Some(fixture_5351));
+    }
+    if let Some(value) = dict_value(values, "output_action")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5354: String = value.extract()?;
+        let fixture_5353 =
+            aws_sdk_bedrock::types::GuardrailTopicAction::from(enum_value_5354.as_str());
+        builder = builder.set_output_action(Some(fixture_5353));
+    }
+    if let Some(value) = dict_value(values, "input_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_5355: bool = value.extract()?;
+        builder = builder.set_input_enabled(Some(fixture_5355));
+    }
+    if let Some(value) = dict_value(values, "output_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_5356: bool = value.extract()?;
+        builder = builder.set_output_enabled(Some(fixture_5356));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn guardrail_topic_policy_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::GuardrailTopicPolicy> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["topics", "tier"], &["topics"])?;
+    let mut builder = aws_sdk_bedrock::types::GuardrailTopicPolicy::builder();
+    if let Some(value) = values.get_item("topics")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5357 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5358 in value.try_iter()? {
+            let item_5359 = item_result_5358?;
+            rboto_core::fixture_scalar(&item_5359, "struct")?;
+            let converted_item_5360 = guardrail_topic_fixture_from_py(&item_5359)?;
+            fixture_5357.push(converted_item_5360);
+        }
+        builder = builder.set_topics(Some(fixture_5357));
+    }
+    if let Some(value) = dict_value(values, "tier")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5361 = guardrail_topics_tier_fixture_from_py(&value)?;
+        builder = builder.set_tier(Some(fixture_5361));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn guardrail_topics_tier_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::GuardrailTopicsTier> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["tier_name"], &["tier_name"])?;
+    let mut builder = aws_sdk_bedrock::types::GuardrailTopicsTier::builder();
+    if let Some(value) = values.get_item("tier_name")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5363: String = value.extract()?;
+        let fixture_5362 =
+            aws_sdk_bedrock::types::GuardrailTopicsTierName::from(enum_value_5363.as_str());
+        builder = builder.set_tier_name(Some(fixture_5362));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn guardrail_word_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::GuardrailWord> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "text",
+            "input_action",
+            "output_action",
+            "input_enabled",
+            "output_enabled",
+        ],
+        &["text"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::GuardrailWord::builder();
+    if let Some(value) = values.get_item("text")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5364: String = value.extract()?;
+        builder = builder.set_text(Some(fixture_5364));
+    }
+    if let Some(value) = dict_value(values, "input_action")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5366: String = value.extract()?;
+        let fixture_5365 =
+            aws_sdk_bedrock::types::GuardrailWordAction::from(enum_value_5366.as_str());
+        builder = builder.set_input_action(Some(fixture_5365));
+    }
+    if let Some(value) = dict_value(values, "output_action")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5368: String = value.extract()?;
+        let fixture_5367 =
+            aws_sdk_bedrock::types::GuardrailWordAction::from(enum_value_5368.as_str());
+        builder = builder.set_output_action(Some(fixture_5367));
+    }
+    if let Some(value) = dict_value(values, "input_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_5369: bool = value.extract()?;
+        builder = builder.set_input_enabled(Some(fixture_5369));
+    }
+    if let Some(value) = dict_value(values, "output_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_5370: bool = value.extract()?;
+        builder = builder.set_output_enabled(Some(fixture_5370));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn guardrail_word_policy_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::GuardrailWordPolicy> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["words", "managed_word_lists"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::GuardrailWordPolicy::builder();
+    if let Some(value) = dict_value(values, "words")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5371 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5372 in value.try_iter()? {
+            let item_5373 = item_result_5372?;
+            rboto_core::fixture_scalar(&item_5373, "struct")?;
+            let converted_item_5374 = guardrail_word_fixture_from_py(&item_5373)?;
+            fixture_5371.push(converted_item_5374);
+        }
+        builder = builder.set_words(Some(fixture_5371));
+    }
+    if let Some(value) = dict_value(values, "managed_word_lists")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5375 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5376 in value.try_iter()? {
+            let item_5377 = item_result_5376?;
+            rboto_core::fixture_scalar(&item_5377, "struct")?;
+            let converted_item_5378 = guardrail_managed_words_fixture_from_py(&item_5377)?;
+            fixture_5375.push(converted_item_5378);
+        }
+        builder = builder.set_managed_word_lists(Some(fixture_5375));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn human_evaluation_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::HumanEvaluationConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "human_workflow_config",
+            "custom_metrics",
+            "dataset_metric_configs",
+        ],
+        &["dataset_metric_configs"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::HumanEvaluationConfig::builder();
+    if let Some(value) = dict_value(values, "human_workflow_config")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5379 = human_workflow_config_fixture_from_py(&value)?;
+        builder = builder.set_human_workflow_config(Some(fixture_5379));
+    }
+    if let Some(value) = dict_value(values, "custom_metrics")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5380 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5381 in value.try_iter()? {
+            let item_5382 = item_result_5381?;
+            rboto_core::fixture_scalar(&item_5382, "struct")?;
+            let converted_item_5383 = human_evaluation_custom_metric_fixture_from_py(&item_5382)?;
+            fixture_5380.push(converted_item_5383);
+        }
+        builder = builder.set_custom_metrics(Some(fixture_5380));
+    }
+    if let Some(value) = values.get_item("dataset_metric_configs")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5384 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5385 in value.try_iter()? {
+            let item_5386 = item_result_5385?;
+            rboto_core::fixture_scalar(&item_5386, "struct")?;
+            let converted_item_5387 = evaluation_dataset_metric_config_fixture_from_py(&item_5386)?;
+            fixture_5384.push(converted_item_5387);
+        }
+        builder = builder.set_dataset_metric_configs(Some(fixture_5384));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn human_evaluation_custom_metric_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::HumanEvaluationCustomMetric> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["name", "description", "rating_method"],
+        &["name", "rating_method"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::HumanEvaluationCustomMetric::builder();
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5388: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_5388));
+    }
+    if let Some(value) = dict_value(values, "description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5389: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_5389));
+    }
+    if let Some(value) = values.get_item("rating_method")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5390: String = value.extract()?;
+        builder = builder.set_rating_method(Some(fixture_5390));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn human_workflow_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::HumanWorkflowConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["flow_definition_arn", "instructions"],
+        &["flow_definition_arn"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::HumanWorkflowConfig::builder();
+    if let Some(value) = values.get_item("flow_definition_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5391: String = value.extract()?;
+        builder = builder.set_flow_definition_arn(Some(fixture_5391));
+    }
+    if let Some(value) = dict_value(values, "instructions")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5392: String = value.extract()?;
+        builder = builder.set_instructions(Some(fixture_5392));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn implicit_filter_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::ImplicitFilterConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["metadata_attributes", "model_arn"],
+        &["metadata_attributes", "model_arn"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::ImplicitFilterConfiguration::builder();
+    if let Some(value) = values.get_item("metadata_attributes")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5393 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5394 in value.try_iter()? {
+            let item_5395 = item_result_5394?;
+            rboto_core::fixture_scalar(&item_5395, "struct")?;
+            let converted_item_5396 = metadata_attribute_schema_fixture_from_py(&item_5395)?;
+            fixture_5393.push(converted_item_5396);
+        }
+        builder = builder.set_metadata_attributes(Some(fixture_5393));
+    }
+    if let Some(value) = values.get_item("model_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5397: String = value.extract()?;
+        builder = builder.set_model_arn(Some(fixture_5397));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn imported_model_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::ImportedModelSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "model_arn",
+            "model_name",
+            "creation_time",
+            "instruct_supported",
+            "model_architecture",
+        ],
+        &["model_arn", "model_name", "creation_time"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::ImportedModelSummary::builder();
+    if let Some(value) = values.get_item("model_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5398: String = value.extract()?;
+        builder = builder.set_model_arn(Some(fixture_5398));
+    }
+    if let Some(value) = values.get_item("model_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5399: String = value.extract()?;
+        builder = builder.set_model_name(Some(fixture_5399));
+    }
+    if let Some(value) = values.get_item("creation_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5401: String = value.extract()?;
+        let fixture_5400 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5401,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_time(Some(fixture_5400));
+    }
+    if let Some(value) = dict_value(values, "instruct_supported")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_5402: bool = value.extract()?;
+        builder = builder.set_instruct_supported(Some(fixture_5402));
+    }
+    if let Some(value) = dict_value(values, "model_architecture")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5403: String = value.extract()?;
+        builder = builder.set_model_architecture(Some(fixture_5403));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn inference_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::InferenceConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["max_tokens", "temperature", "top_p", "stop_sequences"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::InferenceConfiguration::builder();
+    if let Some(value) = dict_value(values, "max_tokens")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_5404: i32 = value.extract()?;
+        builder = builder.set_max_tokens(Some(fixture_5404));
+    }
+    if let Some(value) = dict_value(values, "temperature")? {
+        rboto_core::fixture_scalar(&value, "f32")?;
+        let fixture_5405: f32 = value.extract()?;
+        builder = builder.set_temperature(Some(fixture_5405));
+    }
+    if let Some(value) = dict_value(values, "top_p")? {
+        rboto_core::fixture_scalar(&value, "f32")?;
+        let fixture_5406: f32 = value.extract()?;
+        builder = builder.set_top_p(Some(fixture_5406));
+    }
+    if let Some(value) = dict_value(values, "stop_sequences")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5407 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5408 in value.try_iter()? {
+            let item_5409 = item_result_5408?;
+            rboto_core::fixture_scalar(&item_5409, "string")?;
+            let converted_item_5410: String = item_5409.extract()?;
+            fixture_5407.push(converted_item_5410);
+        }
+        builder = builder.set_stop_sequences(Some(fixture_5407));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn inference_profile_model_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::InferenceProfileModel> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["model_arn"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::InferenceProfileModel::builder();
+    if let Some(value) = dict_value(values, "model_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5411: String = value.extract()?;
+        builder = builder.set_model_arn(Some(fixture_5411));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn inference_profile_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::InferenceProfileSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "inference_profile_name",
+            "description",
+            "created_at",
+            "updated_at",
+            "inference_profile_arn",
+            "models",
+            "inference_profile_id",
+            "status",
+            "type",
+        ],
+        &[
+            "inference_profile_name",
+            "inference_profile_arn",
+            "models",
+            "inference_profile_id",
+            "status",
+            "type",
+        ],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::InferenceProfileSummary::builder();
+    if let Some(value) = values.get_item("inference_profile_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5412: String = value.extract()?;
+        builder = builder.set_inference_profile_name(Some(fixture_5412));
+    }
+    if let Some(value) = dict_value(values, "description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5413: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_5413));
+    }
+    if let Some(value) = dict_value(values, "created_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5415: String = value.extract()?;
+        let fixture_5414 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5415,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_created_at(Some(fixture_5414));
+    }
+    if let Some(value) = dict_value(values, "updated_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5417: String = value.extract()?;
+        let fixture_5416 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5417,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_updated_at(Some(fixture_5416));
+    }
+    if let Some(value) = values.get_item("inference_profile_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5418: String = value.extract()?;
+        builder = builder.set_inference_profile_arn(Some(fixture_5418));
+    }
+    if let Some(value) = values.get_item("models")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5419 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5420 in value.try_iter()? {
+            let item_5421 = item_result_5420?;
+            rboto_core::fixture_scalar(&item_5421, "struct")?;
+            let converted_item_5422 = inference_profile_model_fixture_from_py(&item_5421)?;
+            fixture_5419.push(converted_item_5422);
+        }
+        builder = builder.set_models(Some(fixture_5419));
+    }
+    if let Some(value) = values.get_item("inference_profile_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5423: String = value.extract()?;
+        builder = builder.set_inference_profile_id(Some(fixture_5423));
+    }
+    if let Some(value) = values.get_item("status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5425: String = value.extract()?;
+        let fixture_5424 =
+            aws_sdk_bedrock::types::InferenceProfileStatus::from(enum_value_5425.as_str());
+        builder = builder.set_status(Some(fixture_5424));
+    }
+    if let Some(value) = values.get_item("type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5427: String = value.extract()?;
+        let fixture_5426 =
+            aws_sdk_bedrock::types::InferenceProfileType::from(enum_value_5427.as_str());
+        builder = builder.set_type(Some(fixture_5426));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn invocation_log_source_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::InvocationLogSource> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("s3_uri")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let converted_5428: String = value.extract()?;
+        return Ok(aws_sdk_bedrock::types::InvocationLogSource::S3Uri(
+            converted_5428,
+        ));
+    }
+    Err(PyValueError::new_err(
+        "InvocationLogSource requires exactly one known variant",
+    ))
+}
+
+fn invocation_logs_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::InvocationLogsConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "use_prompt_response",
+            "invocation_log_source",
+            "request_metadata_filters",
+        ],
+        &["use_prompt_response"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::InvocationLogsConfig::builder();
+    if let Some(value) = values.get_item("use_prompt_response")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_5429: bool = value.extract()?;
+        builder = builder.set_use_prompt_response(Some(fixture_5429));
+    }
+    if let Some(value) = dict_value(values, "invocation_log_source")? {
+        rboto_core::fixture_scalar(&value, "union")?;
+        let fixture_5430 = invocation_log_source_fixture_from_py(&value)?;
+        builder = builder.set_invocation_log_source(Some(fixture_5430));
+    }
+    if let Some(value) = dict_value(values, "request_metadata_filters")? {
+        rboto_core::fixture_scalar(&value, "union")?;
+        let fixture_5431 = request_metadata_filters_fixture_from_py(&value)?;
+        builder = builder.set_request_metadata_filters(Some(fixture_5431));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn kb_inference_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::KbInferenceConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["text_inference_config"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::KbInferenceConfig::builder();
+    if let Some(value) = dict_value(values, "text_inference_config")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5432 = text_inference_config_fixture_from_py(&value)?;
+        builder = builder.set_text_inference_config(Some(fixture_5432));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn knowledge_base_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::KnowledgeBaseConfig> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("retrieve_config")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5433 = retrieve_config_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::KnowledgeBaseConfig::RetrieveConfig(
+            converted_5433,
+        ));
+    }
+    if let Some(value) = values.get_item("retrieve_and_generate_config")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5434 = retrieve_and_generate_configuration_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::KnowledgeBaseConfig::RetrieveAndGenerateConfig(converted_5434),
+        );
+    }
+    Err(PyValueError::new_err(
+        "KnowledgeBaseConfig requires exactly one known variant",
+    ))
+}
+
+fn knowledge_base_retrieval_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::KnowledgeBaseRetrievalConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["vector_search_configuration"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::KnowledgeBaseRetrievalConfiguration::builder();
+    if let Some(value) = dict_value(values, "vector_search_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5435 = knowledge_base_vector_search_configuration_fixture_from_py(&value)?;
+        builder = builder.set_vector_search_configuration(Some(fixture_5435));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn knowledge_base_retrieve_and_generate_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::KnowledgeBaseRetrieveAndGenerateConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "knowledge_base_id",
+            "model_arn",
+            "retrieval_configuration",
+            "generation_configuration",
+            "orchestration_configuration",
+        ],
+        &["knowledge_base_id", "model_arn"],
+    )?;
+    let mut builder =
+        aws_sdk_bedrock::types::KnowledgeBaseRetrieveAndGenerateConfiguration::builder();
+    if let Some(value) = values.get_item("knowledge_base_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5436: String = value.extract()?;
+        builder = builder.set_knowledge_base_id(Some(fixture_5436));
+    }
+    if let Some(value) = values.get_item("model_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5437: String = value.extract()?;
+        builder = builder.set_model_arn(Some(fixture_5437));
+    }
+    if let Some(value) = dict_value(values, "retrieval_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5438 = knowledge_base_retrieval_configuration_fixture_from_py(&value)?;
+        builder = builder.set_retrieval_configuration(Some(fixture_5438));
+    }
+    if let Some(value) = dict_value(values, "generation_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5439 = generation_configuration_fixture_from_py(&value)?;
+        builder = builder.set_generation_configuration(Some(fixture_5439));
+    }
+    if let Some(value) = dict_value(values, "orchestration_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5440 = orchestration_configuration_fixture_from_py(&value)?;
+        builder = builder.set_orchestration_configuration(Some(fixture_5440));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn knowledge_base_vector_search_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::KnowledgeBaseVectorSearchConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "number_of_results",
+            "override_search_type",
+            "filter",
+            "implicit_filter_configuration",
+            "reranking_configuration",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::KnowledgeBaseVectorSearchConfiguration::builder();
+    if let Some(value) = dict_value(values, "number_of_results")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_5441: i32 = value.extract()?;
+        builder = builder.set_number_of_results(Some(fixture_5441));
+    }
+    if let Some(value) = dict_value(values, "override_search_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5443: String = value.extract()?;
+        let fixture_5442 = aws_sdk_bedrock::types::SearchType::from(enum_value_5443.as_str());
+        builder = builder.set_override_search_type(Some(fixture_5442));
+    }
+    if let Some(value) = dict_value(values, "filter")? {
+        rboto_core::fixture_scalar(&value, "union")?;
+        let fixture_5444 = retrieval_filter_fixture_from_py(&value)?;
+        builder = builder.set_filter(Some(fixture_5444));
+    }
+    if let Some(value) = dict_value(values, "implicit_filter_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5445 = implicit_filter_configuration_fixture_from_py(&value)?;
+        builder = builder.set_implicit_filter_configuration(Some(fixture_5445));
+    }
+    if let Some(value) = dict_value(values, "reranking_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5446 = vector_search_reranking_configuration_fixture_from_py(&value)?;
+        builder = builder.set_reranking_configuration(Some(fixture_5446));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn lambda_grader_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::LambdaGraderConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["lambda_arn"], &["lambda_arn"])?;
+    let mut builder = aws_sdk_bedrock::types::LambdaGraderConfig::builder();
+    if let Some(value) = values.get_item("lambda_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5447: String = value.extract()?;
+        builder = builder.set_lambda_arn(Some(fixture_5447));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn legal_term_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::LegalTerm> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["url"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::LegalTerm::builder();
+    if let Some(value) = dict_value(values, "url")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5448: String = value.extract()?;
+        builder = builder.set_url(Some(fixture_5448));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn logging_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::LoggingConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "cloud_watch_config",
+            "s3_config",
+            "text_data_delivery_enabled",
+            "image_data_delivery_enabled",
+            "embedding_data_delivery_enabled",
+            "video_data_delivery_enabled",
+            "audio_data_delivery_enabled",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::LoggingConfig::builder();
+    if let Some(value) = dict_value(values, "cloud_watch_config")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5449 = cloud_watch_config_fixture_from_py(&value)?;
+        builder = builder.set_cloud_watch_config(Some(fixture_5449));
+    }
+    if let Some(value) = dict_value(values, "s3_config")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5450 = s3_config_fixture_from_py(&value)?;
+        builder = builder.set_s3_config(Some(fixture_5450));
+    }
+    if let Some(value) = dict_value(values, "text_data_delivery_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_5451: bool = value.extract()?;
+        builder = builder.set_text_data_delivery_enabled(Some(fixture_5451));
+    }
+    if let Some(value) = dict_value(values, "image_data_delivery_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_5452: bool = value.extract()?;
+        builder = builder.set_image_data_delivery_enabled(Some(fixture_5452));
+    }
+    if let Some(value) = dict_value(values, "embedding_data_delivery_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_5453: bool = value.extract()?;
+        builder = builder.set_embedding_data_delivery_enabled(Some(fixture_5453));
+    }
+    if let Some(value) = dict_value(values, "video_data_delivery_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_5454: bool = value.extract()?;
+        builder = builder.set_video_data_delivery_enabled(Some(fixture_5454));
+    }
+    if let Some(value) = dict_value(values, "audio_data_delivery_enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_5455: bool = value.extract()?;
+        builder = builder.set_audio_data_delivery_enabled(Some(fixture_5455));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn marketplace_model_endpoint_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::MarketplaceModelEndpoint> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "endpoint_arn",
+            "model_source_identifier",
+            "status",
+            "status_message",
+            "created_at",
+            "updated_at",
+            "endpoint_config",
+            "endpoint_status",
+            "endpoint_status_message",
+        ],
+        &[
+            "endpoint_arn",
+            "model_source_identifier",
+            "created_at",
+            "updated_at",
+            "endpoint_status",
+        ],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::MarketplaceModelEndpoint::builder();
+    if let Some(value) = values.get_item("endpoint_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5456: String = value.extract()?;
+        builder = builder.set_endpoint_arn(Some(fixture_5456));
+    }
+    if let Some(value) = values.get_item("model_source_identifier")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5457: String = value.extract()?;
+        builder = builder.set_model_source_identifier(Some(fixture_5457));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5459: String = value.extract()?;
+        let fixture_5458 = aws_sdk_bedrock::types::Status::from(enum_value_5459.as_str());
+        builder = builder.set_status(Some(fixture_5458));
+    }
+    if let Some(value) = dict_value(values, "status_message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5460: String = value.extract()?;
+        builder = builder.set_status_message(Some(fixture_5460));
+    }
+    if let Some(value) = values.get_item("created_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5462: String = value.extract()?;
+        let fixture_5461 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5462,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_created_at(Some(fixture_5461));
+    }
+    if let Some(value) = values.get_item("updated_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5464: String = value.extract()?;
+        let fixture_5463 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5464,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_updated_at(Some(fixture_5463));
+    }
+    if let Some(value) = dict_value(values, "endpoint_config")? {
+        rboto_core::fixture_scalar(&value, "union")?;
+        let fixture_5465 = endpoint_config_fixture_from_py(&value)?;
+        builder = builder.set_endpoint_config(Some(fixture_5465));
+    }
+    if let Some(value) = values.get_item("endpoint_status")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5466: String = value.extract()?;
+        builder = builder.set_endpoint_status(Some(fixture_5466));
+    }
+    if let Some(value) = dict_value(values, "endpoint_status_message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5467: String = value.extract()?;
+        builder = builder.set_endpoint_status_message(Some(fixture_5467));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn marketplace_model_endpoint_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::MarketplaceModelEndpointSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "endpoint_arn",
+            "model_source_identifier",
+            "status",
+            "status_message",
+            "created_at",
+            "updated_at",
+        ],
+        &[
+            "endpoint_arn",
+            "model_source_identifier",
+            "created_at",
+            "updated_at",
+        ],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::MarketplaceModelEndpointSummary::builder();
+    if let Some(value) = values.get_item("endpoint_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5468: String = value.extract()?;
+        builder = builder.set_endpoint_arn(Some(fixture_5468));
+    }
+    if let Some(value) = values.get_item("model_source_identifier")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5469: String = value.extract()?;
+        builder = builder.set_model_source_identifier(Some(fixture_5469));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5471: String = value.extract()?;
+        let fixture_5470 = aws_sdk_bedrock::types::Status::from(enum_value_5471.as_str());
+        builder = builder.set_status(Some(fixture_5470));
+    }
+    if let Some(value) = dict_value(values, "status_message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5472: String = value.extract()?;
+        builder = builder.set_status_message(Some(fixture_5472));
+    }
+    if let Some(value) = values.get_item("created_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5474: String = value.extract()?;
+        let fixture_5473 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5474,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_created_at(Some(fixture_5473));
+    }
+    if let Some(value) = values.get_item("updated_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5476: String = value.extract()?;
+        let fixture_5475 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5476,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_updated_at(Some(fixture_5475));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn metadata_attribute_schema_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::MetadataAttributeSchema> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["key", "type", "description"],
+        &["key", "type", "description"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::MetadataAttributeSchema::builder();
+    if let Some(value) = values.get_item("key")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5477: String = value.extract()?;
+        builder = builder.set_key(Some(fixture_5477));
+    }
+    if let Some(value) = values.get_item("type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5479: String = value.extract()?;
+        let fixture_5478 = aws_sdk_bedrock::types::AttributeType::from(enum_value_5479.as_str());
+        builder = builder.set_type(Some(fixture_5478));
+    }
+    if let Some(value) = values.get_item("description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5480: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_5480));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn metadata_configuration_for_reranking_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::MetadataConfigurationForReranking> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["selection_mode", "selective_mode_configuration"],
+        &["selection_mode"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::MetadataConfigurationForReranking::builder();
+    if let Some(value) = values.get_item("selection_mode")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5482: String = value.extract()?;
+        let fixture_5481 =
+            aws_sdk_bedrock::types::RerankingMetadataSelectionMode::from(enum_value_5482.as_str());
+        builder = builder.set_selection_mode(Some(fixture_5481));
+    }
+    if let Some(value) = dict_value(values, "selective_mode_configuration")? {
+        rboto_core::fixture_scalar(&value, "union")?;
+        let fixture_5483 = reranking_metadata_selective_mode_configuration_fixture_from_py(&value)?;
+        builder = builder.set_selective_mode_configuration(Some(fixture_5483));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn model_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::ModelConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "model_id",
+            "inference_config",
+            "additional_model_request_fields",
+        ],
+        &["model_id"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::ModelConfiguration::builder();
+    if let Some(value) = values.get_item("model_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5484: String = value.extract()?;
+        builder = builder.set_model_id(Some(fixture_5484));
+    }
+    if let Some(value) = dict_value(values, "inference_config")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5485 = inference_configuration_fixture_from_py(&value)?;
+        builder = builder.set_inference_config(Some(fixture_5485));
+    }
+    if let Some(value) = dict_value(values, "additional_model_request_fields")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_5487 = value.cast::<PyDict>()?;
+        let mut fixture_5486 = HashMap::with_capacity(mapping_5487.len());
+        for (key_5488, value_5489) in mapping_5487.iter() {
+            rboto_core::fixture_scalar(&key_5488, "string")?;
+            let converted_key_5490: String = key_5488.extract()?;
+            rboto_core::fixture_scalar(&value_5489, "document")?;
+            let converted_value_5491 = rboto_core::document_from_py(&value_5489)?;
+            fixture_5486.insert(converted_key_5490, converted_value_5491);
+        }
+        builder = builder.set_additional_model_request_fields(Some(fixture_5486));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn model_copy_job_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::ModelCopyJobSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "job_arn",
+            "status",
+            "creation_time",
+            "target_model_arn",
+            "target_model_name",
+            "source_account_id",
+            "source_model_arn",
+            "target_model_kms_key_arn",
+            "target_model_tags",
+            "failure_message",
+            "source_model_name",
+        ],
+        &[
+            "job_arn",
+            "status",
+            "creation_time",
+            "target_model_arn",
+            "source_account_id",
+            "source_model_arn",
+        ],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::ModelCopyJobSummary::builder();
+    if let Some(value) = values.get_item("job_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5492: String = value.extract()?;
+        builder = builder.set_job_arn(Some(fixture_5492));
+    }
+    if let Some(value) = values.get_item("status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5494: String = value.extract()?;
+        let fixture_5493 =
+            aws_sdk_bedrock::types::ModelCopyJobStatus::from(enum_value_5494.as_str());
+        builder = builder.set_status(Some(fixture_5493));
+    }
+    if let Some(value) = values.get_item("creation_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5496: String = value.extract()?;
+        let fixture_5495 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5496,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_time(Some(fixture_5495));
+    }
+    if let Some(value) = values.get_item("target_model_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5497: String = value.extract()?;
+        builder = builder.set_target_model_arn(Some(fixture_5497));
+    }
+    if let Some(value) = dict_value(values, "target_model_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5498: String = value.extract()?;
+        builder = builder.set_target_model_name(Some(fixture_5498));
+    }
+    if let Some(value) = values.get_item("source_account_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5499: String = value.extract()?;
+        builder = builder.set_source_account_id(Some(fixture_5499));
+    }
+    if let Some(value) = values.get_item("source_model_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5500: String = value.extract()?;
+        builder = builder.set_source_model_arn(Some(fixture_5500));
+    }
+    if let Some(value) = dict_value(values, "target_model_kms_key_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5501: String = value.extract()?;
+        builder = builder.set_target_model_kms_key_arn(Some(fixture_5501));
+    }
+    if let Some(value) = dict_value(values, "target_model_tags")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5502 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5503 in value.try_iter()? {
+            let item_5504 = item_result_5503?;
+            rboto_core::fixture_scalar(&item_5504, "struct")?;
+            let converted_item_5505 = tag_fixture_from_py(&item_5504)?;
+            fixture_5502.push(converted_item_5505);
+        }
+        builder = builder.set_target_model_tags(Some(fixture_5502));
+    }
+    if let Some(value) = dict_value(values, "failure_message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5506: String = value.extract()?;
+        builder = builder.set_failure_message(Some(fixture_5506));
+    }
+    if let Some(value) = dict_value(values, "source_model_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5507: String = value.extract()?;
+        builder = builder.set_source_model_name(Some(fixture_5507));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn model_customization_job_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::ModelCustomizationJobSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "job_arn",
+            "base_model_arn",
+            "job_name",
+            "status",
+            "status_details",
+            "last_modified_time",
+            "creation_time",
+            "end_time",
+            "custom_model_arn",
+            "custom_model_name",
+            "customization_type",
+        ],
+        &[
+            "job_arn",
+            "base_model_arn",
+            "job_name",
+            "status",
+            "creation_time",
+        ],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::ModelCustomizationJobSummary::builder();
+    if let Some(value) = values.get_item("job_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5508: String = value.extract()?;
+        builder = builder.set_job_arn(Some(fixture_5508));
+    }
+    if let Some(value) = values.get_item("base_model_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5509: String = value.extract()?;
+        builder = builder.set_base_model_arn(Some(fixture_5509));
+    }
+    if let Some(value) = values.get_item("job_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5510: String = value.extract()?;
+        builder = builder.set_job_name(Some(fixture_5510));
+    }
+    if let Some(value) = values.get_item("status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5512: String = value.extract()?;
+        let fixture_5511 =
+            aws_sdk_bedrock::types::ModelCustomizationJobStatus::from(enum_value_5512.as_str());
+        builder = builder.set_status(Some(fixture_5511));
+    }
+    if let Some(value) = dict_value(values, "status_details")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5513 = status_details_fixture_from_py(&value)?;
+        builder = builder.set_status_details(Some(fixture_5513));
+    }
+    if let Some(value) = dict_value(values, "last_modified_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5515: String = value.extract()?;
+        let fixture_5514 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5515,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_modified_time(Some(fixture_5514));
+    }
+    if let Some(value) = values.get_item("creation_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5517: String = value.extract()?;
+        let fixture_5516 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5517,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_time(Some(fixture_5516));
+    }
+    if let Some(value) = dict_value(values, "end_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5519: String = value.extract()?;
+        let fixture_5518 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5519,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_end_time(Some(fixture_5518));
+    }
+    if let Some(value) = dict_value(values, "custom_model_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5520: String = value.extract()?;
+        builder = builder.set_custom_model_arn(Some(fixture_5520));
+    }
+    if let Some(value) = dict_value(values, "custom_model_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5521: String = value.extract()?;
+        builder = builder.set_custom_model_name(Some(fixture_5521));
+    }
+    if let Some(value) = dict_value(values, "customization_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5523: String = value.extract()?;
+        let fixture_5522 =
+            aws_sdk_bedrock::types::CustomizationType::from(enum_value_5523.as_str());
+        builder = builder.set_customization_type(Some(fixture_5522));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn model_data_source_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::ModelDataSource> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("s3_data_source")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5524 = s3_data_source_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::ModelDataSource::S3DataSource(
+            converted_5524,
+        ));
+    }
+    Err(PyValueError::new_err(
+        "ModelDataSource requires exactly one known variant",
+    ))
+}
+
+fn model_enforcement_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::ModelEnforcement> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["included_models", "excluded_models"],
+        &["included_models", "excluded_models"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::ModelEnforcement::builder();
+    if let Some(value) = values.get_item("included_models")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5525 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5526 in value.try_iter()? {
+            let item_5527 = item_result_5526?;
+            rboto_core::fixture_scalar(&item_5527, "string")?;
+            let converted_item_5528: String = item_5527.extract()?;
+            fixture_5525.push(converted_item_5528);
+        }
+        builder = builder.set_included_models(Some(fixture_5525));
+    }
+    if let Some(value) = values.get_item("excluded_models")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5529 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5530 in value.try_iter()? {
+            let item_5531 = item_result_5530?;
+            rboto_core::fixture_scalar(&item_5531, "string")?;
+            let converted_item_5532: String = item_5531.extract()?;
+            fixture_5529.push(converted_item_5532);
+        }
+        builder = builder.set_excluded_models(Some(fixture_5529));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn model_import_job_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::ModelImportJobSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "job_arn",
+            "job_name",
+            "status",
+            "last_modified_time",
+            "creation_time",
+            "end_time",
+            "imported_model_arn",
+            "imported_model_name",
+        ],
+        &["job_arn", "job_name", "status", "creation_time"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::ModelImportJobSummary::builder();
+    if let Some(value) = values.get_item("job_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5533: String = value.extract()?;
+        builder = builder.set_job_arn(Some(fixture_5533));
+    }
+    if let Some(value) = values.get_item("job_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5534: String = value.extract()?;
+        builder = builder.set_job_name(Some(fixture_5534));
+    }
+    if let Some(value) = values.get_item("status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5536: String = value.extract()?;
+        let fixture_5535 =
+            aws_sdk_bedrock::types::ModelImportJobStatus::from(enum_value_5536.as_str());
+        builder = builder.set_status(Some(fixture_5535));
+    }
+    if let Some(value) = dict_value(values, "last_modified_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5538: String = value.extract()?;
+        let fixture_5537 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5538,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_modified_time(Some(fixture_5537));
+    }
+    if let Some(value) = values.get_item("creation_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5540: String = value.extract()?;
+        let fixture_5539 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5540,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_time(Some(fixture_5539));
+    }
+    if let Some(value) = dict_value(values, "end_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5542: String = value.extract()?;
+        let fixture_5541 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5542,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_end_time(Some(fixture_5541));
+    }
+    if let Some(value) = dict_value(values, "imported_model_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5543: String = value.extract()?;
+        builder = builder.set_imported_model_arn(Some(fixture_5543));
+    }
+    if let Some(value) = dict_value(values, "imported_model_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5544: String = value.extract()?;
+        builder = builder.set_imported_model_name(Some(fixture_5544));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn model_invocation_job_input_data_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::ModelInvocationJobInputDataConfig> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("s3_input_data_config")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5545 = model_invocation_job_s3_input_data_config_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::ModelInvocationJobInputDataConfig::S3InputDataConfig(
+                converted_5545,
+            ),
+        );
+    }
+    Err(PyValueError::new_err(
+        "ModelInvocationJobInputDataConfig requires exactly one known variant",
+    ))
+}
+
+fn model_invocation_job_output_data_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::ModelInvocationJobOutputDataConfig> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("s3_output_data_config")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5546 = model_invocation_job_s3_output_data_config_fixture_from_py(&value)?;
+        return Ok(
+            aws_sdk_bedrock::types::ModelInvocationJobOutputDataConfig::S3OutputDataConfig(
+                converted_5546,
+            ),
+        );
+    }
+    Err(PyValueError::new_err(
+        "ModelInvocationJobOutputDataConfig requires exactly one known variant",
+    ))
+}
+
+fn model_invocation_job_s3_input_data_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::ModelInvocationJobS3InputDataConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["s3_input_format", "s3_uri", "s3_bucket_owner"],
+        &["s3_uri"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::ModelInvocationJobS3InputDataConfig::builder();
+    if let Some(value) = dict_value(values, "s3_input_format")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5548: String = value.extract()?;
+        let fixture_5547 = aws_sdk_bedrock::types::S3InputFormat::from(enum_value_5548.as_str());
+        builder = builder.set_s3_input_format(Some(fixture_5547));
+    }
+    if let Some(value) = values.get_item("s3_uri")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5549: String = value.extract()?;
+        builder = builder.set_s3_uri(Some(fixture_5549));
+    }
+    if let Some(value) = dict_value(values, "s3_bucket_owner")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5550: String = value.extract()?;
+        builder = builder.set_s3_bucket_owner(Some(fixture_5550));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn model_invocation_job_s3_output_data_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::ModelInvocationJobS3OutputDataConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["s3_uri", "s3_encryption_key_id", "s3_bucket_owner"],
+        &["s3_uri"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::ModelInvocationJobS3OutputDataConfig::builder();
+    if let Some(value) = values.get_item("s3_uri")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5551: String = value.extract()?;
+        builder = builder.set_s3_uri(Some(fixture_5551));
+    }
+    if let Some(value) = dict_value(values, "s3_encryption_key_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5552: String = value.extract()?;
+        builder = builder.set_s3_encryption_key_id(Some(fixture_5552));
+    }
+    if let Some(value) = dict_value(values, "s3_bucket_owner")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5553: String = value.extract()?;
+        builder = builder.set_s3_bucket_owner(Some(fixture_5553));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn model_invocation_job_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::ModelInvocationJobSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "job_arn",
+            "job_name",
+            "model_id",
+            "client_request_token",
+            "role_arn",
+            "status",
+            "message",
+            "submit_time",
+            "last_modified_time",
+            "end_time",
+            "input_data_config",
+            "output_data_config",
+            "vpc_config",
+            "timeout_duration_in_hours",
+            "job_expiration_time",
+            "model_invocation_type",
+            "total_record_count",
+            "processed_record_count",
+            "success_record_count",
+            "error_record_count",
+        ],
+        &["job_arn", "job_name", "model_id", "role_arn", "submit_time"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::ModelInvocationJobSummary::builder();
+    if let Some(value) = values.get_item("job_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5554: String = value.extract()?;
+        builder = builder.set_job_arn(Some(fixture_5554));
+    }
+    if let Some(value) = values.get_item("job_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5555: String = value.extract()?;
+        builder = builder.set_job_name(Some(fixture_5555));
+    }
+    if let Some(value) = values.get_item("model_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5556: String = value.extract()?;
+        builder = builder.set_model_id(Some(fixture_5556));
+    }
+    if let Some(value) = dict_value(values, "client_request_token")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5557: String = value.extract()?;
+        builder = builder.set_client_request_token(Some(fixture_5557));
+    }
+    if let Some(value) = values.get_item("role_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5558: String = value.extract()?;
+        builder = builder.set_role_arn(Some(fixture_5558));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5560: String = value.extract()?;
+        let fixture_5559 =
+            aws_sdk_bedrock::types::ModelInvocationJobStatus::from(enum_value_5560.as_str());
+        builder = builder.set_status(Some(fixture_5559));
+    }
+    if let Some(value) = dict_value(values, "message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5561: String = value.extract()?;
+        builder = builder.set_message(Some(fixture_5561));
+    }
+    if let Some(value) = values.get_item("submit_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5563: String = value.extract()?;
+        let fixture_5562 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5563,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_submit_time(Some(fixture_5562));
+    }
+    if let Some(value) = dict_value(values, "last_modified_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5565: String = value.extract()?;
+        let fixture_5564 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5565,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_modified_time(Some(fixture_5564));
+    }
+    if let Some(value) = dict_value(values, "end_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5567: String = value.extract()?;
+        let fixture_5566 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5567,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_end_time(Some(fixture_5566));
+    }
+    if let Some(value) = dict_value(values, "input_data_config")? {
+        rboto_core::fixture_scalar(&value, "union")?;
+        let fixture_5568 = model_invocation_job_input_data_config_fixture_from_py(&value)?;
+        builder = builder.set_input_data_config(Some(fixture_5568));
+    }
+    if let Some(value) = dict_value(values, "output_data_config")? {
+        rboto_core::fixture_scalar(&value, "union")?;
+        let fixture_5569 = model_invocation_job_output_data_config_fixture_from_py(&value)?;
+        builder = builder.set_output_data_config(Some(fixture_5569));
+    }
+    if let Some(value) = dict_value(values, "vpc_config")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5570 = vpc_config_fixture_from_py(&value)?;
+        builder = builder.set_vpc_config(Some(fixture_5570));
+    }
+    if let Some(value) = dict_value(values, "timeout_duration_in_hours")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_5571: i32 = value.extract()?;
+        builder = builder.set_timeout_duration_in_hours(Some(fixture_5571));
+    }
+    if let Some(value) = dict_value(values, "job_expiration_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5573: String = value.extract()?;
+        let fixture_5572 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5573,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_job_expiration_time(Some(fixture_5572));
+    }
+    if let Some(value) = dict_value(values, "model_invocation_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5575: String = value.extract()?;
+        let fixture_5574 =
+            aws_sdk_bedrock::types::ModelInvocationType::from(enum_value_5575.as_str());
+        builder = builder.set_model_invocation_type(Some(fixture_5574));
+    }
+    if let Some(value) = dict_value(values, "total_record_count")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_5576: i64 = value.extract()?;
+        builder = builder.set_total_record_count(Some(fixture_5576));
+    }
+    if let Some(value) = dict_value(values, "processed_record_count")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_5577: i64 = value.extract()?;
+        builder = builder.set_processed_record_count(Some(fixture_5577));
+    }
+    if let Some(value) = dict_value(values, "success_record_count")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_5578: i64 = value.extract()?;
+        builder = builder.set_success_record_count(Some(fixture_5578));
+    }
+    if let Some(value) = dict_value(values, "error_record_count")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_5579: i64 = value.extract()?;
+        builder = builder.set_error_record_count(Some(fixture_5579));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn offer_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrock::types::Offer> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["offer_id", "offer_token", "term_details"],
+        &["offer_token"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::Offer::builder();
+    if let Some(value) = dict_value(values, "offer_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5580: String = value.extract()?;
+        builder = builder.set_offer_id(Some(fixture_5580));
+    }
+    if let Some(value) = values.get_item("offer_token")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5581: String = value.extract()?;
+        builder = builder.set_offer_token(Some(fixture_5581));
+    }
+    if let Some(value) = dict_value(values, "term_details")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5582 = term_details_fixture_from_py(&value)?;
+        builder = builder.set_term_details(Some(fixture_5582));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn orchestration_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::OrchestrationConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["query_transformation_configuration"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::OrchestrationConfiguration::builder();
+    if let Some(value) = dict_value(values, "query_transformation_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5583 = query_transformation_configuration_fixture_from_py(&value)?;
+        builder = builder.set_query_transformation_configuration(Some(fixture_5583));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn output_data_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::OutputDataConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["s3_uri"], &["s3_uri"])?;
+    let mut builder = aws_sdk_bedrock::types::OutputDataConfig::builder();
+    if let Some(value) = values.get_item("s3_uri")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5584: String = value.extract()?;
+        builder = builder.set_s3_uri(Some(fixture_5584));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn performance_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::PerformanceConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["latency"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::PerformanceConfiguration::builder();
+    if let Some(value) = dict_value(values, "latency")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5586: String = value.extract()?;
+        let fixture_5585 =
+            aws_sdk_bedrock::types::PerformanceConfigLatency::from(enum_value_5586.as_str());
+        builder = builder.set_latency(Some(fixture_5585));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn pricing_term_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::PricingTerm> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["rate_card"], &["rate_card"])?;
+    let mut builder = aws_sdk_bedrock::types::PricingTerm::builder();
+    if let Some(value) = values.get_item("rate_card")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5587 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5588 in value.try_iter()? {
+            let item_5589 = item_result_5588?;
+            rboto_core::fixture_scalar(&item_5589, "struct")?;
+            let converted_item_5590 = dimensional_price_rate_fixture_from_py(&item_5589)?;
+            fixture_5587.push(converted_item_5590);
+        }
+        builder = builder.set_rate_card(Some(fixture_5587));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn prompt_router_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::PromptRouterSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "prompt_router_name",
+            "routing_criteria",
+            "description",
+            "created_at",
+            "updated_at",
+            "prompt_router_arn",
+            "models",
+            "fallback_model",
+            "status",
+            "type",
+        ],
+        &[
+            "prompt_router_name",
+            "prompt_router_arn",
+            "models",
+            "status",
+            "type",
+        ],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::PromptRouterSummary::builder();
+    if let Some(value) = values.get_item("prompt_router_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5591: String = value.extract()?;
+        builder = builder.set_prompt_router_name(Some(fixture_5591));
+    }
+    if let Some(value) = dict_value(values, "routing_criteria")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5592 = routing_criteria_fixture_from_py(&value)?;
+        builder = builder.set_routing_criteria(Some(fixture_5592));
+    }
+    if let Some(value) = dict_value(values, "description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5593: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_5593));
+    }
+    if let Some(value) = dict_value(values, "created_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5595: String = value.extract()?;
+        let fixture_5594 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5595,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_created_at(Some(fixture_5594));
+    }
+    if let Some(value) = dict_value(values, "updated_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5597: String = value.extract()?;
+        let fixture_5596 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5597,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_updated_at(Some(fixture_5596));
+    }
+    if let Some(value) = values.get_item("prompt_router_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5598: String = value.extract()?;
+        builder = builder.set_prompt_router_arn(Some(fixture_5598));
+    }
+    if let Some(value) = values.get_item("models")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5599 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5600 in value.try_iter()? {
+            let item_5601 = item_result_5600?;
+            rboto_core::fixture_scalar(&item_5601, "struct")?;
+            let converted_item_5602 = prompt_router_target_model_fixture_from_py(&item_5601)?;
+            fixture_5599.push(converted_item_5602);
+        }
+        builder = builder.set_models(Some(fixture_5599));
+    }
+    if let Some(value) = dict_value(values, "fallback_model")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5603 = prompt_router_target_model_fixture_from_py(&value)?;
+        builder = builder.set_fallback_model(Some(fixture_5603));
+    }
+    if let Some(value) = values.get_item("status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5605: String = value.extract()?;
+        let fixture_5604 =
+            aws_sdk_bedrock::types::PromptRouterStatus::from(enum_value_5605.as_str());
+        builder = builder.set_status(Some(fixture_5604));
+    }
+    if let Some(value) = values.get_item("type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5607: String = value.extract()?;
+        let fixture_5606 = aws_sdk_bedrock::types::PromptRouterType::from(enum_value_5607.as_str());
+        builder = builder.set_type(Some(fixture_5606));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn prompt_router_target_model_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::PromptRouterTargetModel> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["model_arn"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::PromptRouterTargetModel::builder();
+    if let Some(value) = dict_value(values, "model_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5608: String = value.extract()?;
+        builder = builder.set_model_arn(Some(fixture_5608));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn prompt_template_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::PromptTemplate> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["text_prompt_template"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::PromptTemplate::builder();
+    if let Some(value) = dict_value(values, "text_prompt_template")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5609: String = value.extract()?;
+        builder = builder.set_text_prompt_template(Some(fixture_5609));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn provisioned_model_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::ProvisionedModelSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "provisioned_model_name",
+            "provisioned_model_arn",
+            "model_arn",
+            "desired_model_arn",
+            "foundation_model_arn",
+            "model_units",
+            "desired_model_units",
+            "status",
+            "commitment_duration",
+            "commitment_expiration_time",
+            "creation_time",
+            "last_modified_time",
+        ],
+        &[
+            "provisioned_model_name",
+            "provisioned_model_arn",
+            "model_arn",
+            "desired_model_arn",
+            "foundation_model_arn",
+            "model_units",
+            "desired_model_units",
+            "status",
+            "creation_time",
+            "last_modified_time",
+        ],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::ProvisionedModelSummary::builder();
+    if let Some(value) = values.get_item("provisioned_model_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5610: String = value.extract()?;
+        builder = builder.set_provisioned_model_name(Some(fixture_5610));
+    }
+    if let Some(value) = values.get_item("provisioned_model_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5611: String = value.extract()?;
+        builder = builder.set_provisioned_model_arn(Some(fixture_5611));
+    }
+    if let Some(value) = values.get_item("model_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5612: String = value.extract()?;
+        builder = builder.set_model_arn(Some(fixture_5612));
+    }
+    if let Some(value) = values.get_item("desired_model_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5613: String = value.extract()?;
+        builder = builder.set_desired_model_arn(Some(fixture_5613));
+    }
+    if let Some(value) = values.get_item("foundation_model_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5614: String = value.extract()?;
+        builder = builder.set_foundation_model_arn(Some(fixture_5614));
+    }
+    if let Some(value) = values.get_item("model_units")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_5615: i32 = value.extract()?;
+        builder = builder.set_model_units(Some(fixture_5615));
+    }
+    if let Some(value) = values.get_item("desired_model_units")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_5616: i32 = value.extract()?;
+        builder = builder.set_desired_model_units(Some(fixture_5616));
+    }
+    if let Some(value) = values.get_item("status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5618: String = value.extract()?;
+        let fixture_5617 =
+            aws_sdk_bedrock::types::ProvisionedModelStatus::from(enum_value_5618.as_str());
+        builder = builder.set_status(Some(fixture_5617));
+    }
+    if let Some(value) = dict_value(values, "commitment_duration")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5620: String = value.extract()?;
+        let fixture_5619 =
+            aws_sdk_bedrock::types::CommitmentDuration::from(enum_value_5620.as_str());
+        builder = builder.set_commitment_duration(Some(fixture_5619));
+    }
+    if let Some(value) = dict_value(values, "commitment_expiration_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5622: String = value.extract()?;
+        let fixture_5621 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5622,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_commitment_expiration_time(Some(fixture_5621));
+    }
+    if let Some(value) = values.get_item("creation_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5624: String = value.extract()?;
+        let fixture_5623 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5624,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_time(Some(fixture_5623));
+    }
+    if let Some(value) = values.get_item("last_modified_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5626: String = value.extract()?;
+        let fixture_5625 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5626,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_modified_time(Some(fixture_5625));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn query_transformation_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::QueryTransformationConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["type"], &["type"])?;
+    let mut builder = aws_sdk_bedrock::types::QueryTransformationConfiguration::builder();
+    if let Some(value) = values.get_item("type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5628: String = value.extract()?;
+        let fixture_5627 =
+            aws_sdk_bedrock::types::QueryTransformationType::from(enum_value_5628.as_str());
+        builder = builder.set_type(Some(fixture_5627));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn rag_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::RagConfig> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("knowledge_base_config")? {
+        rboto_core::fixture_scalar(&value, "union")?;
+        let converted_5629 = knowledge_base_config_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::RagConfig::KnowledgeBaseConfig(
+            converted_5629,
+        ));
+    }
+    if let Some(value) = values.get_item("precomputed_rag_source_config")? {
+        rboto_core::fixture_scalar(&value, "union")?;
+        let converted_5630 = evaluation_precomputed_rag_source_config_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::RagConfig::PrecomputedRagSourceConfig(converted_5630));
+    }
+    Err(PyValueError::new_err(
+        "RagConfig requires exactly one known variant",
+    ))
+}
+
+fn rating_scale_item_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::RatingScaleItem> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["definition", "value"], &["definition"])?;
+    let mut builder = aws_sdk_bedrock::types::RatingScaleItem::builder();
+    if let Some(value) = values.get_item("definition")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5631: String = value.extract()?;
+        builder = builder.set_definition(Some(fixture_5631));
+    }
+    if let Some(value) = dict_value(values, "value")? {
+        rboto_core::fixture_scalar(&value, "union")?;
+        let fixture_5632 = rating_scale_item_value_fixture_from_py(&value)?;
+        builder = builder.set_value(Some(fixture_5632));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn rating_scale_item_value_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::RatingScaleItemValue> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("string_value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let converted_5633: String = value.extract()?;
+        return Ok(aws_sdk_bedrock::types::RatingScaleItemValue::StringValue(
+            converted_5633,
+        ));
+    }
+    if let Some(value) = values.get_item("float_value")? {
+        rboto_core::fixture_scalar(&value, "f32")?;
+        let converted_5634: f32 = value.extract()?;
+        return Ok(aws_sdk_bedrock::types::RatingScaleItemValue::FloatValue(
+            converted_5634,
+        ));
+    }
+    Err(PyValueError::new_err(
+        "RatingScaleItemValue requires exactly one known variant",
+    ))
+}
+
+fn request_metadata_base_filters_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::RequestMetadataBaseFilters> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["equals", "not_equals"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::RequestMetadataBaseFilters::builder();
+    if let Some(value) = dict_value(values, "equals")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_5636 = value.cast::<PyDict>()?;
+        let mut fixture_5635 = HashMap::with_capacity(mapping_5636.len());
+        for (key_5637, value_5638) in mapping_5636.iter() {
+            rboto_core::fixture_scalar(&key_5637, "string")?;
+            let converted_key_5639: String = key_5637.extract()?;
+            rboto_core::fixture_scalar(&value_5638, "string")?;
+            let converted_value_5640: String = value_5638.extract()?;
+            fixture_5635.insert(converted_key_5639, converted_value_5640);
+        }
+        builder = builder.set_equals(Some(fixture_5635));
+    }
+    if let Some(value) = dict_value(values, "not_equals")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_5642 = value.cast::<PyDict>()?;
+        let mut fixture_5641 = HashMap::with_capacity(mapping_5642.len());
+        for (key_5643, value_5644) in mapping_5642.iter() {
+            rboto_core::fixture_scalar(&key_5643, "string")?;
+            let converted_key_5645: String = key_5643.extract()?;
+            rboto_core::fixture_scalar(&value_5644, "string")?;
+            let converted_value_5646: String = value_5644.extract()?;
+            fixture_5641.insert(converted_key_5645, converted_value_5646);
+        }
+        builder = builder.set_not_equals(Some(fixture_5641));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn request_metadata_filters_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::RequestMetadataFilters> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("equals")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_5648 = value.cast::<PyDict>()?;
+        let mut converted_5647 = HashMap::with_capacity(mapping_5648.len());
+        for (key_5649, value_5650) in mapping_5648.iter() {
+            rboto_core::fixture_scalar(&key_5649, "string")?;
+            let converted_key_5651: String = key_5649.extract()?;
+            rboto_core::fixture_scalar(&value_5650, "string")?;
+            let converted_value_5652: String = value_5650.extract()?;
+            converted_5647.insert(converted_key_5651, converted_value_5652);
+        }
+        return Ok(aws_sdk_bedrock::types::RequestMetadataFilters::Equals(
+            converted_5647,
+        ));
+    }
+    if let Some(value) = values.get_item("not_equals")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_5654 = value.cast::<PyDict>()?;
+        let mut converted_5653 = HashMap::with_capacity(mapping_5654.len());
+        for (key_5655, value_5656) in mapping_5654.iter() {
+            rboto_core::fixture_scalar(&key_5655, "string")?;
+            let converted_key_5657: String = key_5655.extract()?;
+            rboto_core::fixture_scalar(&value_5656, "string")?;
+            let converted_value_5658: String = value_5656.extract()?;
+            converted_5653.insert(converted_key_5657, converted_value_5658);
+        }
+        return Ok(aws_sdk_bedrock::types::RequestMetadataFilters::NotEquals(
+            converted_5653,
+        ));
+    }
+    if let Some(value) = values.get_item("and_all")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut converted_5659 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5660 in value.try_iter()? {
+            let item_5661 = item_result_5660?;
+            rboto_core::fixture_scalar(&item_5661, "struct")?;
+            let converted_item_5662 = request_metadata_base_filters_fixture_from_py(&item_5661)?;
+            converted_5659.push(converted_item_5662);
+        }
+        return Ok(aws_sdk_bedrock::types::RequestMetadataFilters::AndAll(
+            converted_5659,
+        ));
+    }
+    if let Some(value) = values.get_item("or_all")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut converted_5663 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5664 in value.try_iter()? {
+            let item_5665 = item_result_5664?;
+            rboto_core::fixture_scalar(&item_5665, "struct")?;
+            let converted_item_5666 = request_metadata_base_filters_fixture_from_py(&item_5665)?;
+            converted_5663.push(converted_item_5666);
+        }
+        return Ok(aws_sdk_bedrock::types::RequestMetadataFilters::OrAll(
+            converted_5663,
+        ));
+    }
+    Err(PyValueError::new_err(
+        "RequestMetadataFilters requires exactly one known variant",
+    ))
+}
+
+fn reranking_metadata_selective_mode_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::RerankingMetadataSelectiveModeConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("fields_to_include")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut converted_5667 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5668 in value.try_iter()? {
+            let item_5669 = item_result_5668?;
+            rboto_core::fixture_scalar(&item_5669, "struct")?;
+            let converted_item_5670 = field_for_reranking_fixture_from_py(&item_5669)?;
+            converted_5667.push(converted_item_5670);
+        }
+        return Ok(
+            aws_sdk_bedrock::types::RerankingMetadataSelectiveModeConfiguration::FieldsToInclude(
+                converted_5667,
+            ),
+        );
+    }
+    if let Some(value) = values.get_item("fields_to_exclude")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut converted_5671 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5672 in value.try_iter()? {
+            let item_5673 = item_result_5672?;
+            rboto_core::fixture_scalar(&item_5673, "struct")?;
+            let converted_item_5674 = field_for_reranking_fixture_from_py(&item_5673)?;
+            converted_5671.push(converted_item_5674);
+        }
+        return Ok(
+            aws_sdk_bedrock::types::RerankingMetadataSelectiveModeConfiguration::FieldsToExclude(
+                converted_5671,
+            ),
+        );
+    }
+    Err(PyValueError::new_err(
+        "RerankingMetadataSelectiveModeConfiguration requires exactly one known variant",
+    ))
+}
+
+fn retrieval_filter_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::RetrievalFilter> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(PyValueError::new_err("union requires exactly one variant"));
+    }
+    if values.contains("unknown")? {
+        return Err(PyValueError::new_err(
+            "unknown union fixtures require an existing native Output",
+        ));
+    }
+    if let Some(value) = values.get_item("equals")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5675 = filter_attribute_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::RetrievalFilter::Equals(
+            converted_5675,
+        ));
+    }
+    if let Some(value) = values.get_item("not_equals")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5676 = filter_attribute_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::RetrievalFilter::NotEquals(
+            converted_5676,
+        ));
+    }
+    if let Some(value) = values.get_item("greater_than")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5677 = filter_attribute_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::RetrievalFilter::GreaterThan(
+            converted_5677,
+        ));
+    }
+    if let Some(value) = values.get_item("greater_than_or_equals")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5678 = filter_attribute_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::RetrievalFilter::GreaterThanOrEquals(converted_5678));
+    }
+    if let Some(value) = values.get_item("less_than")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5679 = filter_attribute_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::RetrievalFilter::LessThan(
+            converted_5679,
+        ));
+    }
+    if let Some(value) = values.get_item("less_than_or_equals")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5680 = filter_attribute_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::RetrievalFilter::LessThanOrEquals(
+            converted_5680,
+        ));
+    }
+    if let Some(value) = values.get_item("in")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5681 = filter_attribute_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::RetrievalFilter::In(converted_5681));
+    }
+    if let Some(value) = values.get_item("not_in")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5682 = filter_attribute_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::RetrievalFilter::NotIn(
+            converted_5682,
+        ));
+    }
+    if let Some(value) = values.get_item("starts_with")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5683 = filter_attribute_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::RetrievalFilter::StartsWith(
+            converted_5683,
+        ));
+    }
+    if let Some(value) = values.get_item("list_contains")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5684 = filter_attribute_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::RetrievalFilter::ListContains(
+            converted_5684,
+        ));
+    }
+    if let Some(value) = values.get_item("string_contains")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let converted_5685 = filter_attribute_fixture_from_py(&value)?;
+        return Ok(aws_sdk_bedrock::types::RetrievalFilter::StringContains(
+            converted_5685,
+        ));
+    }
+    if let Some(value) = values.get_item("and_all")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut converted_5686 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5687 in value.try_iter()? {
+            let item_5688 = item_result_5687?;
+            rboto_core::fixture_scalar(&item_5688, "union")?;
+            let converted_item_5689 = retrieval_filter_fixture_from_py(&item_5688)?;
+            converted_5686.push(converted_item_5689);
+        }
+        return Ok(aws_sdk_bedrock::types::RetrievalFilter::AndAll(
+            converted_5686,
+        ));
+    }
+    if let Some(value) = values.get_item("or_all")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut converted_5690 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5691 in value.try_iter()? {
+            let item_5692 = item_result_5691?;
+            rboto_core::fixture_scalar(&item_5692, "union")?;
+            let converted_item_5693 = retrieval_filter_fixture_from_py(&item_5692)?;
+            converted_5690.push(converted_item_5693);
+        }
+        return Ok(aws_sdk_bedrock::types::RetrievalFilter::OrAll(
+            converted_5690,
+        ));
+    }
+    Err(PyValueError::new_err(
+        "RetrievalFilter requires exactly one known variant",
+    ))
+}
+
+fn retrieve_and_generate_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::RetrieveAndGenerateConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "type",
+            "knowledge_base_configuration",
+            "external_sources_configuration",
+        ],
+        &["type"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::RetrieveAndGenerateConfiguration::builder();
+    if let Some(value) = values.get_item("type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5695: String = value.extract()?;
+        let fixture_5694 =
+            aws_sdk_bedrock::types::RetrieveAndGenerateType::from(enum_value_5695.as_str());
+        builder = builder.set_type(Some(fixture_5694));
+    }
+    if let Some(value) = dict_value(values, "knowledge_base_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5696 =
+            knowledge_base_retrieve_and_generate_configuration_fixture_from_py(&value)?;
+        builder = builder.set_knowledge_base_configuration(Some(fixture_5696));
+    }
+    if let Some(value) = dict_value(values, "external_sources_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5697 =
+            external_sources_retrieve_and_generate_configuration_fixture_from_py(&value)?;
+        builder = builder.set_external_sources_configuration(Some(fixture_5697));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn retrieve_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::RetrieveConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "knowledge_base_id",
+            "knowledge_base_retrieval_configuration",
+        ],
+        &["knowledge_base_id"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::RetrieveConfig::builder();
+    if let Some(value) = values.get_item("knowledge_base_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5698: String = value.extract()?;
+        builder = builder.set_knowledge_base_id(Some(fixture_5698));
+    }
+    if let Some(value) = dict_value(values, "knowledge_base_retrieval_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5699 = knowledge_base_retrieval_configuration_fixture_from_py(&value)?;
+        builder = builder.set_knowledge_base_retrieval_configuration(Some(fixture_5699));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn rft_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::RftConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["grader_config", "hyper_parameters"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::RftConfig::builder();
+    if let Some(value) = dict_value(values, "grader_config")? {
+        rboto_core::fixture_scalar(&value, "union")?;
+        let fixture_5700 = grader_config_fixture_from_py(&value)?;
+        builder = builder.set_grader_config(Some(fixture_5700));
+    }
+    if let Some(value) = dict_value(values, "hyper_parameters")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5701 = rft_hyper_parameters_fixture_from_py(&value)?;
+        builder = builder.set_hyper_parameters(Some(fixture_5701));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn rft_hyper_parameters_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::RftHyperParameters> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "epoch_count",
+            "batch_size",
+            "learning_rate",
+            "max_prompt_length",
+            "training_sample_per_prompt",
+            "inference_max_tokens",
+            "reasoning_effort",
+            "eval_interval",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::RftHyperParameters::builder();
+    if let Some(value) = dict_value(values, "epoch_count")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_5702: i32 = value.extract()?;
+        builder = builder.set_epoch_count(Some(fixture_5702));
+    }
+    if let Some(value) = dict_value(values, "batch_size")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_5703: i32 = value.extract()?;
+        builder = builder.set_batch_size(Some(fixture_5703));
+    }
+    if let Some(value) = dict_value(values, "learning_rate")? {
+        rboto_core::fixture_scalar(&value, "f32")?;
+        let fixture_5704: f32 = value.extract()?;
+        builder = builder.set_learning_rate(Some(fixture_5704));
+    }
+    if let Some(value) = dict_value(values, "max_prompt_length")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_5705: i32 = value.extract()?;
+        builder = builder.set_max_prompt_length(Some(fixture_5705));
+    }
+    if let Some(value) = dict_value(values, "training_sample_per_prompt")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_5706: i32 = value.extract()?;
+        builder = builder.set_training_sample_per_prompt(Some(fixture_5706));
+    }
+    if let Some(value) = dict_value(values, "inference_max_tokens")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_5707: i32 = value.extract()?;
+        builder = builder.set_inference_max_tokens(Some(fixture_5707));
+    }
+    if let Some(value) = dict_value(values, "reasoning_effort")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5709: String = value.extract()?;
+        let fixture_5708 = aws_sdk_bedrock::types::ReasoningEffort::from(enum_value_5709.as_str());
+        builder = builder.set_reasoning_effort(Some(fixture_5708));
+    }
+    if let Some(value) = dict_value(values, "eval_interval")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_5710: i32 = value.extract()?;
+        builder = builder.set_eval_interval(Some(fixture_5710));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn routing_criteria_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::RoutingCriteria> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["response_quality_difference"],
+        &["response_quality_difference"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::RoutingCriteria::builder();
+    if let Some(value) = values.get_item("response_quality_difference")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_5711: f64 = value.extract()?;
+        builder = builder.set_response_quality_difference(Some(fixture_5711));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn s3_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::S3Config> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["bucket_name", "key_prefix"], &["bucket_name"])?;
+    let mut builder = aws_sdk_bedrock::types::S3Config::builder();
+    if let Some(value) = values.get_item("bucket_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5712: String = value.extract()?;
+        builder = builder.set_bucket_name(Some(fixture_5712));
+    }
+    if let Some(value) = dict_value(values, "key_prefix")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5713: String = value.extract()?;
+        builder = builder.set_key_prefix(Some(fixture_5713));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn s3_data_source_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::S3DataSource> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["s3_uri"], &["s3_uri"])?;
+    let mut builder = aws_sdk_bedrock::types::S3DataSource::builder();
+    if let Some(value) = values.get_item("s3_uri")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5714: String = value.extract()?;
+        builder = builder.set_s3_uri(Some(fixture_5714));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn s3_object_doc_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::S3ObjectDoc> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["uri"], &["uri"])?;
+    let mut builder = aws_sdk_bedrock::types::S3ObjectDoc::builder();
+    if let Some(value) = values.get_item("uri")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5715: String = value.extract()?;
+        builder = builder.set_uri(Some(fixture_5715));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn sage_maker_endpoint_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::SageMakerEndpoint> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "initial_instance_count",
+            "instance_type",
+            "execution_role",
+            "kms_encryption_key",
+            "vpc",
+        ],
+        &["initial_instance_count", "instance_type", "execution_role"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::SageMakerEndpoint::builder();
+    if let Some(value) = values.get_item("initial_instance_count")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_5716: i32 = value.extract()?;
+        builder = builder.set_initial_instance_count(Some(fixture_5716));
+    }
+    if let Some(value) = values.get_item("instance_type")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5717: String = value.extract()?;
+        builder = builder.set_instance_type(Some(fixture_5717));
+    }
+    if let Some(value) = values.get_item("execution_role")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5718: String = value.extract()?;
+        builder = builder.set_execution_role(Some(fixture_5718));
+    }
+    if let Some(value) = dict_value(values, "kms_encryption_key")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5719: String = value.extract()?;
+        builder = builder.set_kms_encryption_key(Some(fixture_5719));
+    }
+    if let Some(value) = dict_value(values, "vpc")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5720 = vpc_config_fixture_from_py(&value)?;
+        builder = builder.set_vpc(Some(fixture_5720));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn selective_content_guarding_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::SelectiveContentGuarding> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["system", "messages"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::SelectiveContentGuarding::builder();
+    if let Some(value) = dict_value(values, "system")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5722: String = value.extract()?;
+        let fixture_5721 =
+            aws_sdk_bedrock::types::SelectiveGuardingMode::from(enum_value_5722.as_str());
+        builder = builder.set_system(Some(fixture_5721));
+    }
+    if let Some(value) = dict_value(values, "messages")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5724: String = value.extract()?;
+        let fixture_5723 =
+            aws_sdk_bedrock::types::SelectiveGuardingMode::from(enum_value_5724.as_str());
+        builder = builder.set_messages(Some(fixture_5723));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn status_details_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::StatusDetails> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "validation_details",
+            "data_processing_details",
+            "training_details",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::StatusDetails::builder();
+    if let Some(value) = dict_value(values, "validation_details")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5725 = validation_details_fixture_from_py(&value)?;
+        builder = builder.set_validation_details(Some(fixture_5725));
+    }
+    if let Some(value) = dict_value(values, "data_processing_details")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5726 = data_processing_details_fixture_from_py(&value)?;
+        builder = builder.set_data_processing_details(Some(fixture_5726));
+    }
+    if let Some(value) = dict_value(values, "training_details")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5727 = training_details_fixture_from_py(&value)?;
+        builder = builder.set_training_details(Some(fixture_5727));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn support_term_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::SupportTerm> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["refund_policy_description"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::SupportTerm::builder();
+    if let Some(value) = dict_value(values, "refund_policy_description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5728: String = value.extract()?;
+        builder = builder.set_refund_policy_description(Some(fixture_5728));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn tag_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrock::types::Tag> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["key", "value"], &["key", "value"])?;
+    let mut builder = aws_sdk_bedrock::types::Tag::builder();
+    if let Some(value) = values.get_item("key")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5729: String = value.extract()?;
+        builder = builder.set_key(Some(fixture_5729));
+    }
+    if let Some(value) = values.get_item("value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5730: String = value.extract()?;
+        builder = builder.set_value(Some(fixture_5730));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn teacher_model_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::TeacherModelConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "teacher_model_identifier",
+            "max_response_length_for_inference",
+        ],
+        &["teacher_model_identifier"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::TeacherModelConfig::builder();
+    if let Some(value) = values.get_item("teacher_model_identifier")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5731: String = value.extract()?;
+        builder = builder.set_teacher_model_identifier(Some(fixture_5731));
+    }
+    if let Some(value) = dict_value(values, "max_response_length_for_inference")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_5732: i32 = value.extract()?;
+        builder = builder.set_max_response_length_for_inference(Some(fixture_5732));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn term_details_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::TermDetails> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "usage_based_pricing_term",
+            "legal_term",
+            "support_term",
+            "validity_term",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::TermDetails::builder();
+    if let Some(value) = dict_value(values, "usage_based_pricing_term")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5733 = pricing_term_fixture_from_py(&value)?;
+        builder = builder.set_usage_based_pricing_term(Some(fixture_5733));
+    }
+    if let Some(value) = dict_value(values, "legal_term")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5734 = legal_term_fixture_from_py(&value)?;
+        builder = builder.set_legal_term(Some(fixture_5734));
+    }
+    if let Some(value) = dict_value(values, "support_term")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5735 = support_term_fixture_from_py(&value)?;
+        builder = builder.set_support_term(Some(fixture_5735));
+    }
+    if let Some(value) = dict_value(values, "validity_term")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5736 = validity_term_fixture_from_py(&value)?;
+        builder = builder.set_validity_term(Some(fixture_5736));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn text_inference_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::TextInferenceConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["temperature", "top_p", "max_tokens", "stop_sequences"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::TextInferenceConfig::builder();
+    if let Some(value) = dict_value(values, "temperature")? {
+        rboto_core::fixture_scalar(&value, "f32")?;
+        let fixture_5737: f32 = value.extract()?;
+        builder = builder.set_temperature(Some(fixture_5737));
+    }
+    if let Some(value) = dict_value(values, "top_p")? {
+        rboto_core::fixture_scalar(&value, "f32")?;
+        let fixture_5738: f32 = value.extract()?;
+        builder = builder.set_top_p(Some(fixture_5738));
+    }
+    if let Some(value) = dict_value(values, "max_tokens")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_5739: i32 = value.extract()?;
+        builder = builder.set_max_tokens(Some(fixture_5739));
+    }
+    if let Some(value) = dict_value(values, "stop_sequences")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5740 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5741 in value.try_iter()? {
+            let item_5742 = item_result_5741?;
+            rboto_core::fixture_scalar(&item_5742, "string")?;
+            let converted_item_5743: String = item_5742.extract()?;
+            fixture_5740.push(converted_item_5743);
+        }
+        builder = builder.set_stop_sequences(Some(fixture_5740));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn training_data_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::TrainingDataConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["s3_uri", "invocation_logs_config"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::TrainingDataConfig::builder();
+    if let Some(value) = dict_value(values, "s3_uri")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5744: String = value.extract()?;
+        builder = builder.set_s3_uri(Some(fixture_5744));
+    }
+    if let Some(value) = dict_value(values, "invocation_logs_config")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5745 = invocation_logs_config_fixture_from_py(&value)?;
+        builder = builder.set_invocation_logs_config(Some(fixture_5745));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn training_details_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::TrainingDetails> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["status", "creation_time", "last_modified_time"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::TrainingDetails::builder();
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5747: String = value.extract()?;
+        let fixture_5746 = aws_sdk_bedrock::types::JobStatusDetails::from(enum_value_5747.as_str());
+        builder = builder.set_status(Some(fixture_5746));
+    }
+    if let Some(value) = dict_value(values, "creation_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5749: String = value.extract()?;
+        let fixture_5748 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5749,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_time(Some(fixture_5748));
+    }
+    if let Some(value) = dict_value(values, "last_modified_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5751: String = value.extract()?;
+        let fixture_5750 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5751,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_modified_time(Some(fixture_5750));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn training_metrics_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::TrainingMetrics> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["training_loss"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::TrainingMetrics::builder();
+    if let Some(value) = dict_value(values, "training_loss")? {
+        rboto_core::fixture_scalar(&value, "f32")?;
+        let fixture_5752: f32 = value.extract()?;
+        builder = builder.set_training_loss(Some(fixture_5752));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn validation_data_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::ValidationDataConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["validators"], &["validators"])?;
+    let mut builder = aws_sdk_bedrock::types::ValidationDataConfig::builder();
+    if let Some(value) = values.get_item("validators")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5753 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5754 in value.try_iter()? {
+            let item_5755 = item_result_5754?;
+            rboto_core::fixture_scalar(&item_5755, "struct")?;
+            let converted_item_5756 = validator_fixture_from_py(&item_5755)?;
+            fixture_5753.push(converted_item_5756);
+        }
+        builder = builder.set_validators(Some(fixture_5753));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn validation_details_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::ValidationDetails> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["status", "creation_time", "last_modified_time"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::ValidationDetails::builder();
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5758: String = value.extract()?;
+        let fixture_5757 = aws_sdk_bedrock::types::JobStatusDetails::from(enum_value_5758.as_str());
+        builder = builder.set_status(Some(fixture_5757));
+    }
+    if let Some(value) = dict_value(values, "creation_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5760: String = value.extract()?;
+        let fixture_5759 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5760,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_time(Some(fixture_5759));
+    }
+    if let Some(value) = dict_value(values, "last_modified_time")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_5762: String = value.extract()?;
+        let fixture_5761 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_5762,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_modified_time(Some(fixture_5761));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn validator_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::Validator> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["s3_uri"], &["s3_uri"])?;
+    let mut builder = aws_sdk_bedrock::types::Validator::builder();
+    if let Some(value) = values.get_item("s3_uri")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5763: String = value.extract()?;
+        builder = builder.set_s3_uri(Some(fixture_5763));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn validator_metric_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::ValidatorMetric> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["validation_loss"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::ValidatorMetric::builder();
+    if let Some(value) = dict_value(values, "validation_loss")? {
+        rboto_core::fixture_scalar(&value, "f32")?;
+        let fixture_5764: f32 = value.extract()?;
+        builder = builder.set_validation_loss(Some(fixture_5764));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn validity_term_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::ValidityTerm> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["agreement_duration"], &[])?;
+    let mut builder = aws_sdk_bedrock::types::ValidityTerm::builder();
+    if let Some(value) = dict_value(values, "agreement_duration")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5765: String = value.extract()?;
+        builder = builder.set_agreement_duration(Some(fixture_5765));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn vector_search_bedrock_reranking_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::VectorSearchBedrockRerankingConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "model_configuration",
+            "number_of_reranked_results",
+            "metadata_configuration",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::VectorSearchBedrockRerankingConfiguration::builder();
+    if let Some(value) = dict_value(values, "model_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5766 =
+            vector_search_bedrock_reranking_model_configuration_fixture_from_py(&value)?;
+        builder = builder.set_model_configuration(Some(fixture_5766));
+    }
+    if let Some(value) = dict_value(values, "number_of_reranked_results")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_5767: i32 = value.extract()?;
+        builder = builder.set_number_of_reranked_results(Some(fixture_5767));
+    }
+    if let Some(value) = dict_value(values, "metadata_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5768 = metadata_configuration_for_reranking_fixture_from_py(&value)?;
+        builder = builder.set_metadata_configuration(Some(fixture_5768));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn vector_search_bedrock_reranking_model_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::VectorSearchBedrockRerankingModelConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["model_arn", "additional_model_request_fields"],
+        &["model_arn"],
+    )?;
+    let mut builder =
+        aws_sdk_bedrock::types::VectorSearchBedrockRerankingModelConfiguration::builder();
+    if let Some(value) = values.get_item("model_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_5769: String = value.extract()?;
+        builder = builder.set_model_arn(Some(fixture_5769));
+    }
+    if let Some(value) = dict_value(values, "additional_model_request_fields")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_5771 = value.cast::<PyDict>()?;
+        let mut fixture_5770 = HashMap::with_capacity(mapping_5771.len());
+        for (key_5772, value_5773) in mapping_5771.iter() {
+            rboto_core::fixture_scalar(&key_5772, "string")?;
+            let converted_key_5774: String = key_5772.extract()?;
+            rboto_core::fixture_scalar(&value_5773, "document")?;
+            let converted_value_5775 = rboto_core::document_from_py(&value_5773)?;
+            fixture_5770.insert(converted_key_5774, converted_value_5775);
+        }
+        builder = builder.set_additional_model_request_fields(Some(fixture_5770));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn vector_search_reranking_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::VectorSearchRerankingConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["type", "bedrock_reranking_configuration"],
+        &["type"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::VectorSearchRerankingConfiguration::builder();
+    if let Some(value) = values.get_item("type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_5777: String = value.extract()?;
+        let fixture_5776 = aws_sdk_bedrock::types::VectorSearchRerankingConfigurationType::from(
+            enum_value_5777.as_str(),
+        );
+        builder = builder.set_type(Some(fixture_5776));
+    }
+    if let Some(value) = dict_value(values, "bedrock_reranking_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_5778 = vector_search_bedrock_reranking_configuration_fixture_from_py(&value)?;
+        builder = builder.set_bedrock_reranking_configuration(Some(fixture_5778));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn vpc_config_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrock::types::VpcConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["subnet_ids", "security_group_ids"],
+        &["subnet_ids", "security_group_ids"],
+    )?;
+    let mut builder = aws_sdk_bedrock::types::VpcConfig::builder();
+    if let Some(value) = values.get_item("subnet_ids")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5779 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5780 in value.try_iter()? {
+            let item_5781 = item_result_5780?;
+            rboto_core::fixture_scalar(&item_5781, "string")?;
+            let converted_item_5782: String = item_5781.extract()?;
+            fixture_5779.push(converted_item_5782);
+        }
+        builder = builder.set_subnet_ids(Some(fixture_5779));
+    }
+    if let Some(value) = values.get_item("security_group_ids")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_5783 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_5784 in value.try_iter()? {
+            let item_5785 = item_result_5784?;
+            rboto_core::fixture_scalar(&item_5785, "string")?;
+            let converted_item_5786: String = item_5785.extract()?;
+            fixture_5783.push(converted_item_5786);
+        }
+        builder = builder.set_security_group_ids(Some(fixture_5783));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
 #[allow(clippy::type_complexity)]
 struct SharedAccountEnforcedGuardrailOutputConfiguration {
     config_id: Option<::std::string::String>,
@@ -20526,6 +29544,51 @@ impl PyOperationBatchDeleteAdvancedPromptOptimizationJobOutput {
         result.set_item("advanced_prompt_optimization_jobs", converted_3712)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["errors", "advanced_prompt_optimization_jobs"],
+            &["errors", "advanced_prompt_optimization_jobs"],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::batch_delete_advanced_prompt_optimization_job::BatchDeleteAdvancedPromptOptimizationJobOutput::builder();
+        if let Some(value) = values.get_item("errors")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3715 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3716 in value.try_iter()? {
+                let item_3717 = item_result_3716?;
+                rboto_core::fixture_scalar(&item_3717, "struct")?;
+                let converted_item_3718 =
+                    batch_delete_advanced_prompt_optimization_job_error_fixture_from_py(
+                        &item_3717,
+                    )?;
+                fixture_3715.push(converted_item_3718);
+            }
+            builder = builder.set_errors(Some(fixture_3715));
+        }
+        if let Some(value) = values.get_item("advanced_prompt_optimization_jobs")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3719 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3720 in value.try_iter()? {
+                let item_3721 = item_result_3720?;
+                rboto_core::fixture_scalar(&item_3721, "struct")?;
+                let converted_item_3722 =
+                    batch_delete_advanced_prompt_optimization_job_item_fixture_from_py(&item_3721)?;
+                fixture_3719.push(converted_item_3722);
+            }
+            builder = builder.set_advanced_prompt_optimization_jobs(Some(fixture_3719));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -20617,6 +29680,49 @@ impl PyOperationBatchDeleteEvaluationJobOutput {
         result.set_item("evaluation_jobs", converted_3726)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["errors", "evaluation_jobs"],
+            &["errors", "evaluation_jobs"],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::batch_delete_evaluation_job::BatchDeleteEvaluationJobOutput::builder();
+        if let Some(value) = values.get_item("errors")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3729 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3730 in value.try_iter()? {
+                let item_3731 = item_result_3730?;
+                rboto_core::fixture_scalar(&item_3731, "struct")?;
+                let converted_item_3732 =
+                    batch_delete_evaluation_job_error_fixture_from_py(&item_3731)?;
+                fixture_3729.push(converted_item_3732);
+            }
+            builder = builder.set_errors(Some(fixture_3729));
+        }
+        if let Some(value) = values.get_item("evaluation_jobs")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3733 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3734 in value.try_iter()? {
+                let item_3735 = item_result_3734?;
+                rboto_core::fixture_scalar(&item_3735, "struct")?;
+                let converted_item_3736 =
+                    batch_delete_evaluation_job_item_fixture_from_py(&item_3735)?;
+                fixture_3733.push(converted_item_3736);
+            }
+            builder = builder.set_evaluation_jobs(Some(fixture_3733));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -20633,6 +29739,15 @@ impl PyOperationCancelAutomatedReasoningPolicyBuildWorkflowOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::cancel_automated_reasoning_policy_build_workflow::CancelAutomatedReasoningPolicyBuildWorkflowOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -20658,6 +29773,22 @@ impl PyOperationCreateAdvancedPromptOptimizationJobOutput {
         let converted_3730 = (&self.inner.job_arn).as_str().into_py_any(py)?;
         result.set_item("job_arn", converted_3730)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["job_arn"], &["job_arn"])?;
+        let mut builder = aws_sdk_bedrock::operation::create_advanced_prompt_optimization_job::CreateAdvancedPromptOptimizationJobOutput::builder();
+        if let Some(value) = values.get_item("job_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3731: String = value.extract()?;
+            builder = builder.set_job_arn(Some(fixture_3731));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 
@@ -20748,6 +29879,74 @@ impl PyOperationCreateAutomatedReasoningPolicyOutput {
         result.set_item("updated_at", converted_3744)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "policy_arn",
+                "version",
+                "name",
+                "description",
+                "definition_hash",
+                "created_at",
+                "updated_at",
+            ],
+            &["policy_arn", "version", "name", "created_at", "updated_at"],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::create_automated_reasoning_policy::CreateAutomatedReasoningPolicyOutput::builder();
+        if let Some(value) = values.get_item("policy_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3745: String = value.extract()?;
+            builder = builder.set_policy_arn(Some(fixture_3745));
+        }
+        if let Some(value) = values.get_item("version")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3746: String = value.extract()?;
+            builder = builder.set_version(Some(fixture_3746));
+        }
+        if let Some(value) = values.get_item("name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3747: String = value.extract()?;
+            builder = builder.set_name(Some(fixture_3747));
+        }
+        if let Some(value) = dict_value(values, "description")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3748: String = value.extract()?;
+            builder = builder.set_description(Some(fixture_3748));
+        }
+        if let Some(value) = dict_value(values, "definition_hash")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3749: String = value.extract()?;
+            builder = builder.set_definition_hash(Some(fixture_3749));
+        }
+        if let Some(value) = values.get_item("created_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_3751: String = value.extract()?;
+            let fixture_3750 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_3751,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_at(Some(fixture_3750));
+        }
+        if let Some(value) = values.get_item("updated_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_3753: String = value.extract()?;
+            let fixture_3752 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_3753,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_updated_at(Some(fixture_3752));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -20780,6 +29979,31 @@ impl PyOperationCreateAutomatedReasoningPolicyTestCaseOutput {
         let converted_3748 = (&self.inner.test_case_id).as_str().into_py_any(py)?;
         result.set_item("test_case_id", converted_3748)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["policy_arn", "test_case_id"],
+            &["policy_arn", "test_case_id"],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::create_automated_reasoning_policy_test_case::CreateAutomatedReasoningPolicyTestCaseOutput::builder();
+        if let Some(value) = values.get_item("policy_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3749: String = value.extract()?;
+            builder = builder.set_policy_arn(Some(fixture_3749));
+        }
+        if let Some(value) = values.get_item("test_case_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3750: String = value.extract()?;
+            builder = builder.set_test_case_id(Some(fixture_3750));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 
@@ -20854,6 +30078,69 @@ impl PyOperationCreateAutomatedReasoningPolicyVersionOutput {
         result.set_item("created_at", converted_3760)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "policy_arn",
+                "version",
+                "name",
+                "description",
+                "definition_hash",
+                "created_at",
+            ],
+            &[
+                "policy_arn",
+                "version",
+                "name",
+                "definition_hash",
+                "created_at",
+            ],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::create_automated_reasoning_policy_version::CreateAutomatedReasoningPolicyVersionOutput::builder();
+        if let Some(value) = values.get_item("policy_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3761: String = value.extract()?;
+            builder = builder.set_policy_arn(Some(fixture_3761));
+        }
+        if let Some(value) = values.get_item("version")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3762: String = value.extract()?;
+            builder = builder.set_version(Some(fixture_3762));
+        }
+        if let Some(value) = values.get_item("name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3763: String = value.extract()?;
+            builder = builder.set_name(Some(fixture_3763));
+        }
+        if let Some(value) = dict_value(values, "description")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3764: String = value.extract()?;
+            builder = builder.set_description(Some(fixture_3764));
+        }
+        if let Some(value) = values.get_item("definition_hash")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3765: String = value.extract()?;
+            builder = builder.set_definition_hash(Some(fixture_3765));
+        }
+        if let Some(value) = values.get_item("created_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_3767: String = value.extract()?;
+            let fixture_3766 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_3767,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_at(Some(fixture_3766));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -20878,6 +30165,23 @@ impl PyOperationCreateCustomModelOutput {
         let converted_3762 = (&self.inner.model_arn).as_str().into_py_any(py)?;
         result.set_item("model_arn", converted_3762)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["model_arn"], &["model_arn"])?;
+        let mut builder =
+            aws_sdk_bedrock::operation::create_custom_model::CreateCustomModelOutput::builder();
+        if let Some(value) = values.get_item("model_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3763: String = value.extract()?;
+            builder = builder.set_model_arn(Some(fixture_3763));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 
@@ -20908,6 +30212,26 @@ impl PyOperationCreateCustomModelDeploymentOutput {
         result.set_item("custom_model_deployment_arn", converted_3764)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["custom_model_deployment_arn"],
+            &["custom_model_deployment_arn"],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::create_custom_model_deployment::CreateCustomModelDeploymentOutput::builder();
+        if let Some(value) = values.get_item("custom_model_deployment_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3765: String = value.extract()?;
+            builder = builder.set_custom_model_deployment_arn(Some(fixture_3765));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -20933,6 +30257,23 @@ impl PyOperationCreateEvaluationJobOutput {
         result.set_item("job_arn", converted_3766)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["job_arn"], &["job_arn"])?;
+        let mut builder =
+            aws_sdk_bedrock::operation::create_evaluation_job::CreateEvaluationJobOutput::builder();
+        if let Some(value) = values.get_item("job_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3767: String = value.extract()?;
+            builder = builder.set_job_arn(Some(fixture_3767));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -20957,6 +30298,22 @@ impl PyOperationCreateFoundationModelAgreementOutput {
         let converted_3768 = (&self.inner.model_id).as_str().into_py_any(py)?;
         result.set_item("model_id", converted_3768)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["model_id"], &["model_id"])?;
+        let mut builder = aws_sdk_bedrock::operation::create_foundation_model_agreement::CreateFoundationModelAgreementOutput::builder();
+        if let Some(value) = values.get_item("model_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3769: String = value.extract()?;
+            builder = builder.set_model_id(Some(fixture_3769));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 
@@ -21007,6 +30364,47 @@ impl PyOperationCreateGuardrailOutput {
         result.set_item("created_at", converted_3776)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["guardrail_id", "guardrail_arn", "version", "created_at"],
+            &["guardrail_id", "guardrail_arn", "version", "created_at"],
+        )?;
+        let mut builder =
+            aws_sdk_bedrock::operation::create_guardrail::CreateGuardrailOutput::builder();
+        if let Some(value) = values.get_item("guardrail_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3777: String = value.extract()?;
+            builder = builder.set_guardrail_id(Some(fixture_3777));
+        }
+        if let Some(value) = values.get_item("guardrail_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3778: String = value.extract()?;
+            builder = builder.set_guardrail_arn(Some(fixture_3778));
+        }
+        if let Some(value) = values.get_item("version")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3779: String = value.extract()?;
+            builder = builder.set_version(Some(fixture_3779));
+        }
+        if let Some(value) = values.get_item("created_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_3781: String = value.extract()?;
+            let fixture_3780 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_3781,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_at(Some(fixture_3780));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -21039,6 +30437,31 @@ impl PyOperationCreateGuardrailVersionOutput {
         let converted_3780 = (&self.inner.version).as_str().into_py_any(py)?;
         result.set_item("version", converted_3780)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["guardrail_id", "version"],
+            &["guardrail_id", "version"],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::create_guardrail_version::CreateGuardrailVersionOutput::builder();
+        if let Some(value) = values.get_item("guardrail_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3781: String = value.extract()?;
+            builder = builder.set_guardrail_id(Some(fixture_3781));
+        }
+        if let Some(value) = values.get_item("version")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3782: String = value.extract()?;
+            builder = builder.set_version(Some(fixture_3782));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 
@@ -21084,6 +30507,33 @@ impl PyOperationCreateInferenceProfileOutput {
             result.set_item("status", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["inference_profile_arn", "status"],
+            &["inference_profile_arn"],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::create_inference_profile::CreateInferenceProfileOutput::builder();
+        if let Some(value) = values.get_item("inference_profile_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3785: String = value.extract()?;
+            builder = builder.set_inference_profile_arn(Some(fixture_3785));
+        }
+        if let Some(value) = dict_value(values, "status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3787: String = value.extract()?;
+            let fixture_3786 =
+                aws_sdk_bedrock::types::InferenceProfileStatus::from(enum_value_3787.as_str());
+            builder = builder.set_status(Some(fixture_3786));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 
@@ -21138,6 +30588,22 @@ impl PyOperationCreateMarketplaceModelEndpointOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["marketplace_model_endpoint"], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::create_marketplace_model_endpoint::CreateMarketplaceModelEndpointOutput::builder();
+        if let Some(value) = dict_value(values, "marketplace_model_endpoint")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3787 = marketplace_model_endpoint_fixture_from_py(&value)?;
+            builder = builder.set_marketplace_model_endpoint(Some(fixture_3787));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -21162,6 +30628,23 @@ impl PyOperationCreateModelCopyJobOutput {
         let converted_3788 = (&self.inner.job_arn).as_str().into_py_any(py)?;
         result.set_item("job_arn", converted_3788)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["job_arn"], &["job_arn"])?;
+        let mut builder =
+            aws_sdk_bedrock::operation::create_model_copy_job::CreateModelCopyJobOutput::builder();
+        if let Some(value) = values.get_item("job_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3789: String = value.extract()?;
+            builder = builder.set_job_arn(Some(fixture_3789));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 
@@ -21188,6 +30671,22 @@ impl PyOperationCreateModelCustomizationJobOutput {
         result.set_item("job_arn", converted_3790)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["job_arn"], &["job_arn"])?;
+        let mut builder = aws_sdk_bedrock::operation::create_model_customization_job::CreateModelCustomizationJobOutput::builder();
+        if let Some(value) = values.get_item("job_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3791: String = value.extract()?;
+            builder = builder.set_job_arn(Some(fixture_3791));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -21213,6 +30712,22 @@ impl PyOperationCreateModelImportJobOutput {
         result.set_item("job_arn", converted_3792)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["job_arn"], &["job_arn"])?;
+        let mut builder = aws_sdk_bedrock::operation::create_model_import_job::CreateModelImportJobOutput::builder();
+        if let Some(value) = values.get_item("job_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3793: String = value.extract()?;
+            builder = builder.set_job_arn(Some(fixture_3793));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -21237,6 +30752,22 @@ impl PyOperationCreateModelInvocationJobOutput {
         let converted_3794 = (&self.inner.job_arn).as_str().into_py_any(py)?;
         result.set_item("job_arn", converted_3794)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["job_arn"], &["job_arn"])?;
+        let mut builder = aws_sdk_bedrock::operation::create_model_invocation_job::CreateModelInvocationJobOutput::builder();
+        if let Some(value) = values.get_item("job_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3795: String = value.extract()?;
+            builder = builder.set_job_arn(Some(fixture_3795));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 
@@ -21271,6 +30802,21 @@ impl PyOperationCreatePromptRouterOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["prompt_router_arn"], &[])?;
+        let mut builder =
+            aws_sdk_bedrock::operation::create_prompt_router::CreatePromptRouterOutput::builder();
+        if let Some(value) = dict_value(values, "prompt_router_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3797: String = value.extract()?;
+            builder = builder.set_prompt_router_arn(Some(fixture_3797));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -21300,6 +30846,26 @@ impl PyOperationCreateProvisionedModelThroughputOutput {
         result.set_item("provisioned_model_arn", converted_3798)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["provisioned_model_arn"],
+            &["provisioned_model_arn"],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::create_provisioned_model_throughput::CreateProvisionedModelThroughputOutput::builder();
+        if let Some(value) = values.get_item("provisioned_model_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3799: String = value.extract()?;
+            builder = builder.set_provisioned_model_arn(Some(fixture_3799));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -21316,6 +30882,15 @@ impl PyOperationDeleteAutomatedReasoningPolicyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::delete_automated_reasoning_policy::DeleteAutomatedReasoningPolicyOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -21334,6 +30909,15 @@ impl PyOperationDeleteAutomatedReasoningPolicyBuildWorkflowOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::delete_automated_reasoning_policy_build_workflow::DeleteAutomatedReasoningPolicyBuildWorkflowOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -21350,6 +30934,15 @@ impl PyOperationDeleteAutomatedReasoningPolicyTestCaseOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::delete_automated_reasoning_policy_test_case::DeleteAutomatedReasoningPolicyTestCaseOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -21368,6 +30961,16 @@ impl PyOperationDeleteCustomModelOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_bedrock::operation::delete_custom_model::DeleteCustomModelOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -21384,6 +30987,15 @@ impl PyOperationDeleteCustomModelDeploymentOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::delete_custom_model_deployment::DeleteCustomModelDeploymentOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -21402,6 +31014,15 @@ impl PyOperationDeleteEnforcedGuardrailConfigurationOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::delete_enforced_guardrail_configuration::DeleteEnforcedGuardrailConfigurationOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -21418,6 +31039,15 @@ impl PyOperationDeleteFoundationModelAgreementOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::delete_foundation_model_agreement::DeleteFoundationModelAgreementOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -21436,6 +31066,16 @@ impl PyOperationDeleteGuardrailOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_bedrock::operation::delete_guardrail::DeleteGuardrailOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -21452,6 +31092,16 @@ impl PyOperationDeleteImportedModelOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_bedrock::operation::delete_imported_model::DeleteImportedModelOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -21470,6 +31120,15 @@ impl PyOperationDeleteInferenceProfileOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::delete_inference_profile::DeleteInferenceProfileOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -21486,6 +31145,15 @@ impl PyOperationDeleteMarketplaceModelEndpointOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::delete_marketplace_model_endpoint::DeleteMarketplaceModelEndpointOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -21504,6 +31172,15 @@ impl PyOperationDeleteModelInvocationLoggingConfigurationOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::delete_model_invocation_logging_configuration::DeleteModelInvocationLoggingConfigurationOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -21520,6 +31197,16 @@ impl PyOperationDeletePromptRouterOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_bedrock::operation::delete_prompt_router::DeletePromptRouterOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -21538,6 +31225,15 @@ impl PyOperationDeleteProvisionedModelThroughputOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::delete_provisioned_model_throughput::DeleteProvisionedModelThroughputOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -21555,6 +31251,17 @@ impl PyOperationDeleteResourcePolicyOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_bedrock::operation::delete_resource_policy::DeleteResourcePolicyOutput::builder(
+            );
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -21571,6 +31278,15 @@ impl PyOperationDeregisterMarketplaceModelEndpointOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::deregister_marketplace_model_endpoint::DeregisterMarketplaceModelEndpointOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -21625,6 +31341,22 @@ impl PyOperationExportAutomatedReasoningPolicyVersionOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["policy_definition"], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::export_automated_reasoning_policy_version::ExportAutomatedReasoningPolicyVersionOutput::builder();
+        if let Some(value) = dict_value(values, "policy_definition")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3801 = automated_reasoning_policy_definition_fixture_from_py(&value)?;
+            builder = builder.set_policy_definition(Some(fixture_3801));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -21665,6 +31397,34 @@ impl PyOperationGetAccountDataRetentionOutput {
             result.set_item("updated_at", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["mode", "updated_at"], &["mode"])?;
+        let mut builder = aws_sdk_bedrock::operation::get_account_data_retention::GetAccountDataRetentionOutput::builder();
+        if let Some(value) = values.get_item("mode")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3806: String = value.extract()?;
+            let fixture_3805 =
+                aws_sdk_bedrock::types::DataRetentionMode::from(enum_value_3806.as_str());
+            builder = builder.set_mode(Some(fixture_3805));
+        }
+        if let Some(value) = dict_value(values, "updated_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_3808: String = value.extract()?;
+            let fixture_3807 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_3808,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_updated_at(Some(fixture_3807));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 
@@ -21881,6 +31641,116 @@ impl PyOperationGetAdvancedPromptOptimizationJobOutput {
         result.set_item("model_configurations", converted_3829)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "job_arn",
+                "job_name",
+                "job_description",
+                "job_status",
+                "input_config",
+                "output_config",
+                "encryption_key_arn",
+                "creation_time",
+                "last_modified_time",
+                "failure_message",
+                "model_configurations",
+            ],
+            &[
+                "job_arn",
+                "job_name",
+                "job_status",
+                "creation_time",
+                "model_configurations",
+            ],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::get_advanced_prompt_optimization_job::GetAdvancedPromptOptimizationJobOutput::builder();
+        if let Some(value) = values.get_item("job_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3832: String = value.extract()?;
+            builder = builder.set_job_arn(Some(fixture_3832));
+        }
+        if let Some(value) = values.get_item("job_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3833: String = value.extract()?;
+            builder = builder.set_job_name(Some(fixture_3833));
+        }
+        if let Some(value) = dict_value(values, "job_description")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3834: String = value.extract()?;
+            builder = builder.set_job_description(Some(fixture_3834));
+        }
+        if let Some(value) = values.get_item("job_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3836: String = value.extract()?;
+            let fixture_3835 = aws_sdk_bedrock::types::AdvancedPromptOptimizationJobStatus::from(
+                enum_value_3836.as_str(),
+            );
+            builder = builder.set_job_status(Some(fixture_3835));
+        }
+        if let Some(value) = dict_value(values, "input_config")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3837 = advanced_prompt_optimization_input_config_fixture_from_py(&value)?;
+            builder = builder.set_input_config(Some(fixture_3837));
+        }
+        if let Some(value) = dict_value(values, "output_config")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3838 = advanced_prompt_optimization_output_config_fixture_from_py(&value)?;
+            builder = builder.set_output_config(Some(fixture_3838));
+        }
+        if let Some(value) = dict_value(values, "encryption_key_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3839: String = value.extract()?;
+            builder = builder.set_encryption_key_arn(Some(fixture_3839));
+        }
+        if let Some(value) = values.get_item("creation_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_3841: String = value.extract()?;
+            let fixture_3840 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_3841,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_creation_time(Some(fixture_3840));
+        }
+        if let Some(value) = dict_value(values, "last_modified_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_3843: String = value.extract()?;
+            let fixture_3842 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_3843,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_last_modified_time(Some(fixture_3842));
+        }
+        if let Some(value) = dict_value(values, "failure_message")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3844: String = value.extract()?;
+            builder = builder.set_failure_message(Some(fixture_3844));
+        }
+        if let Some(value) = values.get_item("model_configurations")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3845 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3846 in value.try_iter()? {
+                let item_3847 = item_result_3846?;
+                rboto_core::fixture_scalar(&item_3847, "struct")?;
+                let converted_item_3848 = model_configuration_fixture_from_py(&item_3847)?;
+                fixture_3845.push(converted_item_3848);
+            }
+            builder = builder.set_model_configurations(Some(fixture_3845));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -21994,6 +31864,93 @@ impl PyOperationGetAutomatedReasoningPolicyOutput {
         result.set_item("updated_at", converted_3849)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "policy_arn",
+                "name",
+                "version",
+                "policy_id",
+                "description",
+                "definition_hash",
+                "kms_key_arn",
+                "created_at",
+                "updated_at",
+            ],
+            &[
+                "policy_arn",
+                "name",
+                "version",
+                "policy_id",
+                "definition_hash",
+                "updated_at",
+            ],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::get_automated_reasoning_policy::GetAutomatedReasoningPolicyOutput::builder();
+        if let Some(value) = values.get_item("policy_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3850: String = value.extract()?;
+            builder = builder.set_policy_arn(Some(fixture_3850));
+        }
+        if let Some(value) = values.get_item("name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3851: String = value.extract()?;
+            builder = builder.set_name(Some(fixture_3851));
+        }
+        if let Some(value) = values.get_item("version")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3852: String = value.extract()?;
+            builder = builder.set_version(Some(fixture_3852));
+        }
+        if let Some(value) = values.get_item("policy_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3853: String = value.extract()?;
+            builder = builder.set_policy_id(Some(fixture_3853));
+        }
+        if let Some(value) = dict_value(values, "description")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3854: String = value.extract()?;
+            builder = builder.set_description(Some(fixture_3854));
+        }
+        if let Some(value) = values.get_item("definition_hash")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3855: String = value.extract()?;
+            builder = builder.set_definition_hash(Some(fixture_3855));
+        }
+        if let Some(value) = dict_value(values, "kms_key_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3856: String = value.extract()?;
+            builder = builder.set_kms_key_arn(Some(fixture_3856));
+        }
+        if let Some(value) = dict_value(values, "created_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_3858: String = value.extract()?;
+            let fixture_3857 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_3858,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_at(Some(fixture_3857));
+        }
+        if let Some(value) = values.get_item("updated_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_3860: String = value.extract()?;
+            let fixture_3859 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_3860,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_updated_at(Some(fixture_3859));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -22068,6 +32025,78 @@ impl PyOperationGetAutomatedReasoningPolicyAnnotationsOutput {
         let converted_3865 = (&self.inner.updated_at).to_string().into_py_any(py)?;
         result.set_item("updated_at", converted_3865)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "policy_arn",
+                "name",
+                "build_workflow_id",
+                "annotations",
+                "annotation_set_hash",
+                "updated_at",
+            ],
+            &[
+                "policy_arn",
+                "name",
+                "build_workflow_id",
+                "annotations",
+                "annotation_set_hash",
+                "updated_at",
+            ],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::get_automated_reasoning_policy_annotations::GetAutomatedReasoningPolicyAnnotationsOutput::builder();
+        if let Some(value) = values.get_item("policy_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3866: String = value.extract()?;
+            builder = builder.set_policy_arn(Some(fixture_3866));
+        }
+        if let Some(value) = values.get_item("name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3867: String = value.extract()?;
+            builder = builder.set_name(Some(fixture_3867));
+        }
+        if let Some(value) = values.get_item("build_workflow_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3868: String = value.extract()?;
+            builder = builder.set_build_workflow_id(Some(fixture_3868));
+        }
+        if let Some(value) = values.get_item("annotations")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3869 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3870 in value.try_iter()? {
+                let item_3871 = item_result_3870?;
+                rboto_core::fixture_scalar(&item_3871, "union")?;
+                let converted_item_3872 =
+                    automated_reasoning_policy_annotation_fixture_from_py(&item_3871)?;
+                fixture_3869.push(converted_item_3872);
+            }
+            builder = builder.set_annotations(Some(fixture_3869));
+        }
+        if let Some(value) = values.get_item("annotation_set_hash")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3873: String = value.extract()?;
+            builder = builder.set_annotation_set_hash(Some(fixture_3873));
+        }
+        if let Some(value) = values.get_item("updated_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_3875: String = value.extract()?;
+            let fixture_3874 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_3875,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_updated_at(Some(fixture_3874));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 
@@ -22182,6 +32211,105 @@ impl PyOperationGetAutomatedReasoningPolicyBuildWorkflowOutput {
         result.set_item("updated_at", converted_3883)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "policy_arn",
+                "build_workflow_id",
+                "status",
+                "build_workflow_type",
+                "document_name",
+                "document_content_type",
+                "document_description",
+                "created_at",
+                "updated_at",
+            ],
+            &[
+                "policy_arn",
+                "build_workflow_id",
+                "status",
+                "build_workflow_type",
+                "created_at",
+                "updated_at",
+            ],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::get_automated_reasoning_policy_build_workflow::GetAutomatedReasoningPolicyBuildWorkflowOutput::builder();
+        if let Some(value) = values.get_item("policy_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3884: String = value.extract()?;
+            builder = builder.set_policy_arn(Some(fixture_3884));
+        }
+        if let Some(value) = values.get_item("build_workflow_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3885: String = value.extract()?;
+            builder = builder.set_build_workflow_id(Some(fixture_3885));
+        }
+        if let Some(value) = values.get_item("status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3887: String = value.extract()?;
+            let fixture_3886 =
+                aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildWorkflowStatus::from(
+                    enum_value_3887.as_str(),
+                );
+            builder = builder.set_status(Some(fixture_3886));
+        }
+        if let Some(value) = values.get_item("build_workflow_type")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3889: String = value.extract()?;
+            let fixture_3888 =
+                aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildWorkflowType::from(
+                    enum_value_3889.as_str(),
+                );
+            builder = builder.set_build_workflow_type(Some(fixture_3888));
+        }
+        if let Some(value) = dict_value(values, "document_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3890: String = value.extract()?;
+            builder = builder.set_document_name(Some(fixture_3890));
+        }
+        if let Some(value) = dict_value(values, "document_content_type")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3892: String = value.extract()?;
+            let fixture_3891 =
+                aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildDocumentContentType::from(
+                    enum_value_3892.as_str(),
+                );
+            builder = builder.set_document_content_type(Some(fixture_3891));
+        }
+        if let Some(value) = dict_value(values, "document_description")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3893: String = value.extract()?;
+            builder = builder.set_document_description(Some(fixture_3893));
+        }
+        if let Some(value) = values.get_item("created_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_3895: String = value.extract()?;
+            let fixture_3894 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_3895,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_at(Some(fixture_3894));
+        }
+        if let Some(value) = values.get_item("updated_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_3897: String = value.extract()?;
+            let fixture_3896 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_3897,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_updated_at(Some(fixture_3896));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -22230,6 +32358,37 @@ impl PyOperationGetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput {
             result.set_item("build_workflow_assets", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["policy_arn", "build_workflow_id", "build_workflow_assets"],
+            &["policy_arn", "build_workflow_id"],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::get_automated_reasoning_policy_build_workflow_result_assets::GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput::builder();
+        if let Some(value) = values.get_item("policy_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3890: String = value.extract()?;
+            builder = builder.set_policy_arn(Some(fixture_3890));
+        }
+        if let Some(value) = values.get_item("build_workflow_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3891: String = value.extract()?;
+            builder = builder.set_build_workflow_id(Some(fixture_3891));
+        }
+        if let Some(value) = dict_value(values, "build_workflow_assets")? {
+            rboto_core::fixture_scalar(&value, "union")?;
+            let fixture_3892 =
+                automated_reasoning_policy_build_result_assets_fixture_from_py(&value)?;
+            builder = builder.set_build_workflow_assets(Some(fixture_3892));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 
@@ -22294,6 +32453,29 @@ impl PyOperationGetAutomatedReasoningPolicyNextScenarioOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["policy_arn", "scenario"], &["policy_arn"])?;
+        let mut builder = aws_sdk_bedrock::operation::get_automated_reasoning_policy_next_scenario::GetAutomatedReasoningPolicyNextScenarioOutput::builder();
+        if let Some(value) = values.get_item("policy_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3894: String = value.extract()?;
+            builder = builder.set_policy_arn(Some(fixture_3894));
+        }
+        if let Some(value) = dict_value(values, "scenario")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3895 = automated_reasoning_policy_scenario_fixture_from_py(&value)?;
+            builder = builder.set_scenario(Some(fixture_3895));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -22357,6 +32539,29 @@ impl PyOperationGetAutomatedReasoningPolicyTestCaseOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["policy_arn", "test_case"], &["policy_arn"])?;
+        let mut builder = aws_sdk_bedrock::operation::get_automated_reasoning_policy_test_case::GetAutomatedReasoningPolicyTestCaseOutput::builder();
+        if let Some(value) = values.get_item("policy_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3898: String = value.extract()?;
+            builder = builder.set_policy_arn(Some(fixture_3898));
+        }
+        if let Some(value) = dict_value(values, "test_case")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3899 = automated_reasoning_policy_test_case_fixture_from_py(&value)?;
+            builder = builder.set_test_case(Some(fixture_3899));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -22409,6 +32614,22 @@ impl PyOperationGetAutomatedReasoningPolicyTestResultOutput {
             result.set_item("test_result", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["test_result"], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::get_automated_reasoning_policy_test_result::GetAutomatedReasoningPolicyTestResultOutput::builder();
+        if let Some(value) = dict_value(values, "test_result")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3900 = automated_reasoning_policy_test_result_fixture_from_py(&value)?;
+            builder = builder.set_test_result(Some(fixture_3900));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -22785,6 +33006,150 @@ impl PyOperationGetCustomModelOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "model_arn",
+                "model_name",
+                "job_name",
+                "job_arn",
+                "base_model_arn",
+                "customization_type",
+                "model_kms_key_arn",
+                "hyper_parameters",
+                "training_data_config",
+                "validation_data_config",
+                "output_data_config",
+                "training_metrics",
+                "validation_metrics",
+                "creation_time",
+                "customization_config",
+                "model_status",
+                "failure_message",
+            ],
+            &["model_arn", "model_name", "creation_time"],
+        )?;
+        let mut builder =
+            aws_sdk_bedrock::operation::get_custom_model::GetCustomModelOutput::builder();
+        if let Some(value) = values.get_item("model_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3947: String = value.extract()?;
+            builder = builder.set_model_arn(Some(fixture_3947));
+        }
+        if let Some(value) = values.get_item("model_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3948: String = value.extract()?;
+            builder = builder.set_model_name(Some(fixture_3948));
+        }
+        if let Some(value) = dict_value(values, "job_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3949: String = value.extract()?;
+            builder = builder.set_job_name(Some(fixture_3949));
+        }
+        if let Some(value) = dict_value(values, "job_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3950: String = value.extract()?;
+            builder = builder.set_job_arn(Some(fixture_3950));
+        }
+        if let Some(value) = dict_value(values, "base_model_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3951: String = value.extract()?;
+            builder = builder.set_base_model_arn(Some(fixture_3951));
+        }
+        if let Some(value) = dict_value(values, "customization_type")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3953: String = value.extract()?;
+            let fixture_3952 =
+                aws_sdk_bedrock::types::CustomizationType::from(enum_value_3953.as_str());
+            builder = builder.set_customization_type(Some(fixture_3952));
+        }
+        if let Some(value) = dict_value(values, "model_kms_key_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3954: String = value.extract()?;
+            builder = builder.set_model_kms_key_arn(Some(fixture_3954));
+        }
+        if let Some(value) = dict_value(values, "hyper_parameters")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_3956 = value.cast::<PyDict>()?;
+            let mut fixture_3955 = HashMap::with_capacity(mapping_3956.len());
+            for (key_3957, value_3958) in mapping_3956.iter() {
+                rboto_core::fixture_scalar(&key_3957, "string")?;
+                let converted_key_3959: String = key_3957.extract()?;
+                rboto_core::fixture_scalar(&value_3958, "string")?;
+                let converted_value_3960: String = value_3958.extract()?;
+                fixture_3955.insert(converted_key_3959, converted_value_3960);
+            }
+            builder = builder.set_hyper_parameters(Some(fixture_3955));
+        }
+        if let Some(value) = dict_value(values, "training_data_config")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3961 = training_data_config_fixture_from_py(&value)?;
+            builder = builder.set_training_data_config(Some(fixture_3961));
+        }
+        if let Some(value) = dict_value(values, "validation_data_config")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3962 = validation_data_config_fixture_from_py(&value)?;
+            builder = builder.set_validation_data_config(Some(fixture_3962));
+        }
+        if let Some(value) = dict_value(values, "output_data_config")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3963 = output_data_config_fixture_from_py(&value)?;
+            builder = builder.set_output_data_config(Some(fixture_3963));
+        }
+        if let Some(value) = dict_value(values, "training_metrics")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3964 = training_metrics_fixture_from_py(&value)?;
+            builder = builder.set_training_metrics(Some(fixture_3964));
+        }
+        if let Some(value) = dict_value(values, "validation_metrics")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_3965 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_3966 in value.try_iter()? {
+                let item_3967 = item_result_3966?;
+                rboto_core::fixture_scalar(&item_3967, "struct")?;
+                let converted_item_3968 = validator_metric_fixture_from_py(&item_3967)?;
+                fixture_3965.push(converted_item_3968);
+            }
+            builder = builder.set_validation_metrics(Some(fixture_3965));
+        }
+        if let Some(value) = values.get_item("creation_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_3970: String = value.extract()?;
+            let fixture_3969 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_3970,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_creation_time(Some(fixture_3969));
+        }
+        if let Some(value) = dict_value(values, "customization_config")? {
+            rboto_core::fixture_scalar(&value, "union")?;
+            let fixture_3971 = customization_config_fixture_from_py(&value)?;
+            builder = builder.set_customization_config(Some(fixture_3971));
+        }
+        if let Some(value) = dict_value(values, "model_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3973: String = value.extract()?;
+            let fixture_3972 = aws_sdk_bedrock::types::ModelStatus::from(enum_value_3973.as_str());
+            builder = builder.set_model_status(Some(fixture_3972));
+        }
+        if let Some(value) = dict_value(values, "failure_message")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3974: String = value.extract()?;
+            builder = builder.set_failure_message(Some(fixture_3974));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -22953,6 +33318,96 @@ impl PyOperationGetCustomModelDeploymentOutput {
             result.set_item("last_updated_at", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "custom_model_deployment_arn",
+                "model_deployment_name",
+                "model_arn",
+                "created_at",
+                "status",
+                "description",
+                "update_details",
+                "failure_message",
+                "last_updated_at",
+            ],
+            &[
+                "custom_model_deployment_arn",
+                "model_deployment_name",
+                "model_arn",
+                "created_at",
+                "status",
+            ],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::get_custom_model_deployment::GetCustomModelDeploymentOutput::builder();
+        if let Some(value) = values.get_item("custom_model_deployment_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3965: String = value.extract()?;
+            builder = builder.set_custom_model_deployment_arn(Some(fixture_3965));
+        }
+        if let Some(value) = values.get_item("model_deployment_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3966: String = value.extract()?;
+            builder = builder.set_model_deployment_name(Some(fixture_3966));
+        }
+        if let Some(value) = values.get_item("model_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3967: String = value.extract()?;
+            builder = builder.set_model_arn(Some(fixture_3967));
+        }
+        if let Some(value) = values.get_item("created_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_3969: String = value.extract()?;
+            let fixture_3968 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_3969,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_at(Some(fixture_3968));
+        }
+        if let Some(value) = values.get_item("status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3971: String = value.extract()?;
+            let fixture_3970 =
+                aws_sdk_bedrock::types::CustomModelDeploymentStatus::from(enum_value_3971.as_str());
+            builder = builder.set_status(Some(fixture_3970));
+        }
+        if let Some(value) = dict_value(values, "description")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3972: String = value.extract()?;
+            builder = builder.set_description(Some(fixture_3972));
+        }
+        if let Some(value) = dict_value(values, "update_details")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3973 = custom_model_deployment_update_details_fixture_from_py(&value)?;
+            builder = builder.set_update_details(Some(fixture_3973));
+        }
+        if let Some(value) = dict_value(values, "failure_message")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3974: String = value.extract()?;
+            builder = builder.set_failure_message(Some(fixture_3974));
+        }
+        if let Some(value) = dict_value(values, "last_updated_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_3976: String = value.extract()?;
+            let fixture_3975 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_3976,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_last_updated_at(Some(fixture_3975));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -23205,6 +33660,139 @@ impl PyOperationGetEvaluationJobOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "job_name",
+                "status",
+                "job_arn",
+                "job_description",
+                "role_arn",
+                "customer_encryption_key_id",
+                "job_type",
+                "application_type",
+                "evaluation_config",
+                "inference_config",
+                "output_data_config",
+                "creation_time",
+                "last_modified_time",
+                "failure_messages",
+            ],
+            &[
+                "job_name",
+                "status",
+                "job_arn",
+                "role_arn",
+                "job_type",
+                "creation_time",
+            ],
+        )?;
+        let mut builder =
+            aws_sdk_bedrock::operation::get_evaluation_job::GetEvaluationJobOutput::builder();
+        if let Some(value) = values.get_item("job_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_3997: String = value.extract()?;
+            builder = builder.set_job_name(Some(fixture_3997));
+        }
+        if let Some(value) = values.get_item("status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_3999: String = value.extract()?;
+            let fixture_3998 =
+                aws_sdk_bedrock::types::EvaluationJobStatus::from(enum_value_3999.as_str());
+            builder = builder.set_status(Some(fixture_3998));
+        }
+        if let Some(value) = values.get_item("job_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4000: String = value.extract()?;
+            builder = builder.set_job_arn(Some(fixture_4000));
+        }
+        if let Some(value) = dict_value(values, "job_description")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4001: String = value.extract()?;
+            builder = builder.set_job_description(Some(fixture_4001));
+        }
+        if let Some(value) = values.get_item("role_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4002: String = value.extract()?;
+            builder = builder.set_role_arn(Some(fixture_4002));
+        }
+        if let Some(value) = dict_value(values, "customer_encryption_key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4003: String = value.extract()?;
+            builder = builder.set_customer_encryption_key_id(Some(fixture_4003));
+        }
+        if let Some(value) = values.get_item("job_type")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_4005: String = value.extract()?;
+            let fixture_4004 =
+                aws_sdk_bedrock::types::EvaluationJobType::from(enum_value_4005.as_str());
+            builder = builder.set_job_type(Some(fixture_4004));
+        }
+        if let Some(value) = dict_value(values, "application_type")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_4007: String = value.extract()?;
+            let fixture_4006 =
+                aws_sdk_bedrock::types::ApplicationType::from(enum_value_4007.as_str());
+            builder = builder.set_application_type(Some(fixture_4006));
+        }
+        if let Some(value) = dict_value(values, "evaluation_config")? {
+            rboto_core::fixture_scalar(&value, "union")?;
+            let fixture_4008 = evaluation_config_fixture_from_py(&value)?;
+            builder = builder.set_evaluation_config(Some(fixture_4008));
+        }
+        if let Some(value) = dict_value(values, "inference_config")? {
+            rboto_core::fixture_scalar(&value, "union")?;
+            let fixture_4009 = evaluation_inference_config_fixture_from_py(&value)?;
+            builder = builder.set_inference_config(Some(fixture_4009));
+        }
+        if let Some(value) = dict_value(values, "output_data_config")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_4010 = evaluation_output_data_config_fixture_from_py(&value)?;
+            builder = builder.set_output_data_config(Some(fixture_4010));
+        }
+        if let Some(value) = values.get_item("creation_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4012: String = value.extract()?;
+            let fixture_4011 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4012,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_creation_time(Some(fixture_4011));
+        }
+        if let Some(value) = dict_value(values, "last_modified_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4014: String = value.extract()?;
+            let fixture_4013 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4014,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_last_modified_time(Some(fixture_4013));
+        }
+        if let Some(value) = dict_value(values, "failure_messages")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4015 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4016 in value.try_iter()? {
+                let item_4017 = item_result_4016?;
+                rboto_core::fixture_scalar(&item_4017, "string")?;
+                let converted_item_4018: String = item_4017.extract()?;
+                fixture_4015.push(converted_item_4018);
+            }
+            builder = builder.set_failure_messages(Some(fixture_4015));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -23263,6 +33851,23 @@ impl PyOperationGetFoundationModelOutput {
             result.set_item("model_details", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["model_details"], &[])?;
+        let mut builder =
+            aws_sdk_bedrock::operation::get_foundation_model::GetFoundationModelOutput::builder();
+        if let Some(value) = dict_value(values, "model_details")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_3999 = foundation_model_details_fixture_from_py(&value)?;
+            builder = builder.set_model_details(Some(fixture_3999));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -23364,6 +33969,65 @@ impl PyOperationGetFoundationModelAvailabilityOutput {
         let converted_4008 = (&self.inner.region_availability).as_str().into_py_any(py)?;
         result.set_item("region_availability", converted_4008)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "model_id",
+                "agreement_availability",
+                "authorization_status",
+                "entitlement_availability",
+                "region_availability",
+            ],
+            &[
+                "model_id",
+                "authorization_status",
+                "entitlement_availability",
+                "region_availability",
+            ],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::get_foundation_model_availability::GetFoundationModelAvailabilityOutput::builder();
+        if let Some(value) = values.get_item("model_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4009: String = value.extract()?;
+            builder = builder.set_model_id(Some(fixture_4009));
+        }
+        if let Some(value) = dict_value(values, "agreement_availability")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_4010 = agreement_availability_fixture_from_py(&value)?;
+            builder = builder.set_agreement_availability(Some(fixture_4010));
+        }
+        if let Some(value) = values.get_item("authorization_status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_4012: String = value.extract()?;
+            let fixture_4011 =
+                aws_sdk_bedrock::types::AuthorizationStatus::from(enum_value_4012.as_str());
+            builder = builder.set_authorization_status(Some(fixture_4011));
+        }
+        if let Some(value) = values.get_item("entitlement_availability")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_4014: String = value.extract()?;
+            let fixture_4013 =
+                aws_sdk_bedrock::types::EntitlementAvailability::from(enum_value_4014.as_str());
+            builder = builder.set_entitlement_availability(Some(fixture_4013));
+        }
+        if let Some(value) = values.get_item("region_availability")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_4016: String = value.extract()?;
+            let fixture_4015 =
+                aws_sdk_bedrock::types::RegionAvailability::from(enum_value_4016.as_str());
+            builder = builder.set_region_availability(Some(fixture_4015));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -23761,6 +34425,180 @@ impl PyOperationGetGuardrailOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "name",
+                "description",
+                "guardrail_id",
+                "guardrail_arn",
+                "version",
+                "status",
+                "topic_policy",
+                "content_policy",
+                "word_policy",
+                "sensitive_information_policy",
+                "contextual_grounding_policy",
+                "automated_reasoning_policy",
+                "cross_region_details",
+                "created_at",
+                "updated_at",
+                "status_reasons",
+                "failure_recommendations",
+                "blocked_input_messaging",
+                "blocked_outputs_messaging",
+                "kms_key_arn",
+            ],
+            &[
+                "name",
+                "guardrail_id",
+                "guardrail_arn",
+                "version",
+                "status",
+                "created_at",
+                "updated_at",
+                "blocked_input_messaging",
+                "blocked_outputs_messaging",
+            ],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::get_guardrail::GetGuardrailOutput::builder();
+        if let Some(value) = values.get_item("name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4057: String = value.extract()?;
+            builder = builder.set_name(Some(fixture_4057));
+        }
+        if let Some(value) = dict_value(values, "description")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4058: String = value.extract()?;
+            builder = builder.set_description(Some(fixture_4058));
+        }
+        if let Some(value) = values.get_item("guardrail_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4059: String = value.extract()?;
+            builder = builder.set_guardrail_id(Some(fixture_4059));
+        }
+        if let Some(value) = values.get_item("guardrail_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4060: String = value.extract()?;
+            builder = builder.set_guardrail_arn(Some(fixture_4060));
+        }
+        if let Some(value) = values.get_item("version")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4061: String = value.extract()?;
+            builder = builder.set_version(Some(fixture_4061));
+        }
+        if let Some(value) = values.get_item("status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_4063: String = value.extract()?;
+            let fixture_4062 =
+                aws_sdk_bedrock::types::GuardrailStatus::from(enum_value_4063.as_str());
+            builder = builder.set_status(Some(fixture_4062));
+        }
+        if let Some(value) = dict_value(values, "topic_policy")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_4064 = guardrail_topic_policy_fixture_from_py(&value)?;
+            builder = builder.set_topic_policy(Some(fixture_4064));
+        }
+        if let Some(value) = dict_value(values, "content_policy")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_4065 = guardrail_content_policy_fixture_from_py(&value)?;
+            builder = builder.set_content_policy(Some(fixture_4065));
+        }
+        if let Some(value) = dict_value(values, "word_policy")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_4066 = guardrail_word_policy_fixture_from_py(&value)?;
+            builder = builder.set_word_policy(Some(fixture_4066));
+        }
+        if let Some(value) = dict_value(values, "sensitive_information_policy")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_4067 = guardrail_sensitive_information_policy_fixture_from_py(&value)?;
+            builder = builder.set_sensitive_information_policy(Some(fixture_4067));
+        }
+        if let Some(value) = dict_value(values, "contextual_grounding_policy")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_4068 = guardrail_contextual_grounding_policy_fixture_from_py(&value)?;
+            builder = builder.set_contextual_grounding_policy(Some(fixture_4068));
+        }
+        if let Some(value) = dict_value(values, "automated_reasoning_policy")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_4069 = guardrail_automated_reasoning_policy_fixture_from_py(&value)?;
+            builder = builder.set_automated_reasoning_policy(Some(fixture_4069));
+        }
+        if let Some(value) = dict_value(values, "cross_region_details")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_4070 = guardrail_cross_region_details_fixture_from_py(&value)?;
+            builder = builder.set_cross_region_details(Some(fixture_4070));
+        }
+        if let Some(value) = values.get_item("created_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4072: String = value.extract()?;
+            let fixture_4071 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4072,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_at(Some(fixture_4071));
+        }
+        if let Some(value) = values.get_item("updated_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4074: String = value.extract()?;
+            let fixture_4073 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4074,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_updated_at(Some(fixture_4073));
+        }
+        if let Some(value) = dict_value(values, "status_reasons")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4075 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4076 in value.try_iter()? {
+                let item_4077 = item_result_4076?;
+                rboto_core::fixture_scalar(&item_4077, "string")?;
+                let converted_item_4078: String = item_4077.extract()?;
+                fixture_4075.push(converted_item_4078);
+            }
+            builder = builder.set_status_reasons(Some(fixture_4075));
+        }
+        if let Some(value) = dict_value(values, "failure_recommendations")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4079 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4080 in value.try_iter()? {
+                let item_4081 = item_result_4080?;
+                rboto_core::fixture_scalar(&item_4081, "string")?;
+                let converted_item_4082: String = item_4081.extract()?;
+                fixture_4079.push(converted_item_4082);
+            }
+            builder = builder.set_failure_recommendations(Some(fixture_4079));
+        }
+        if let Some(value) = values.get_item("blocked_input_messaging")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4083: String = value.extract()?;
+            builder = builder.set_blocked_input_messaging(Some(fixture_4083));
+        }
+        if let Some(value) = values.get_item("blocked_outputs_messaging")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4084: String = value.extract()?;
+            builder = builder.set_blocked_outputs_messaging(Some(fixture_4084));
+        }
+        if let Some(value) = dict_value(values, "kms_key_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4085: String = value.extract()?;
+            builder = builder.set_kms_key_arn(Some(fixture_4085));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -23978,6 +34816,88 @@ impl PyOperationGetImportedModelOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "model_arn",
+                "model_name",
+                "job_name",
+                "job_arn",
+                "model_data_source",
+                "creation_time",
+                "model_architecture",
+                "model_kms_key_arn",
+                "instruct_supported",
+                "custom_model_units",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_bedrock::operation::get_imported_model::GetImportedModelOutput::builder();
+        if let Some(value) = dict_value(values, "model_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4077: String = value.extract()?;
+            builder = builder.set_model_arn(Some(fixture_4077));
+        }
+        if let Some(value) = dict_value(values, "model_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4078: String = value.extract()?;
+            builder = builder.set_model_name(Some(fixture_4078));
+        }
+        if let Some(value) = dict_value(values, "job_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4079: String = value.extract()?;
+            builder = builder.set_job_name(Some(fixture_4079));
+        }
+        if let Some(value) = dict_value(values, "job_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4080: String = value.extract()?;
+            builder = builder.set_job_arn(Some(fixture_4080));
+        }
+        if let Some(value) = dict_value(values, "model_data_source")? {
+            rboto_core::fixture_scalar(&value, "union")?;
+            let fixture_4081 = model_data_source_fixture_from_py(&value)?;
+            builder = builder.set_model_data_source(Some(fixture_4081));
+        }
+        if let Some(value) = dict_value(values, "creation_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4083: String = value.extract()?;
+            let fixture_4082 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4083,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_creation_time(Some(fixture_4082));
+        }
+        if let Some(value) = dict_value(values, "model_architecture")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4084: String = value.extract()?;
+            builder = builder.set_model_architecture(Some(fixture_4084));
+        }
+        if let Some(value) = dict_value(values, "model_kms_key_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4085: String = value.extract()?;
+            builder = builder.set_model_kms_key_arn(Some(fixture_4085));
+        }
+        if let Some(value) = dict_value(values, "instruct_supported")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_4086: bool = value.extract()?;
+            builder = builder.set_instruct_supported(Some(fixture_4086));
+        }
+        if let Some(value) = dict_value(values, "custom_model_units")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_4087 = custom_model_units_fixture_from_py(&value)?;
+            builder = builder.set_custom_model_units(Some(fixture_4087));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -24156,6 +35076,107 @@ impl PyOperationGetInferenceProfileOutput {
         result.set_item("type", converted_4099)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "inference_profile_name",
+                "description",
+                "created_at",
+                "updated_at",
+                "inference_profile_arn",
+                "models",
+                "inference_profile_id",
+                "status",
+                "type",
+            ],
+            &[
+                "inference_profile_name",
+                "inference_profile_arn",
+                "models",
+                "inference_profile_id",
+                "status",
+                "type",
+            ],
+        )?;
+        let mut builder =
+            aws_sdk_bedrock::operation::get_inference_profile::GetInferenceProfileOutput::builder();
+        if let Some(value) = values.get_item("inference_profile_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4100: String = value.extract()?;
+            builder = builder.set_inference_profile_name(Some(fixture_4100));
+        }
+        if let Some(value) = dict_value(values, "description")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4101: String = value.extract()?;
+            builder = builder.set_description(Some(fixture_4101));
+        }
+        if let Some(value) = dict_value(values, "created_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4103: String = value.extract()?;
+            let fixture_4102 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4103,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_at(Some(fixture_4102));
+        }
+        if let Some(value) = dict_value(values, "updated_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4105: String = value.extract()?;
+            let fixture_4104 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4105,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_updated_at(Some(fixture_4104));
+        }
+        if let Some(value) = values.get_item("inference_profile_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4106: String = value.extract()?;
+            builder = builder.set_inference_profile_arn(Some(fixture_4106));
+        }
+        if let Some(value) = values.get_item("models")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4107 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4108 in value.try_iter()? {
+                let item_4109 = item_result_4108?;
+                rboto_core::fixture_scalar(&item_4109, "struct")?;
+                let converted_item_4110 = inference_profile_model_fixture_from_py(&item_4109)?;
+                fixture_4107.push(converted_item_4110);
+            }
+            builder = builder.set_models(Some(fixture_4107));
+        }
+        if let Some(value) = values.get_item("inference_profile_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4111: String = value.extract()?;
+            builder = builder.set_inference_profile_id(Some(fixture_4111));
+        }
+        if let Some(value) = values.get_item("status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_4113: String = value.extract()?;
+            let fixture_4112 =
+                aws_sdk_bedrock::types::InferenceProfileStatus::from(enum_value_4113.as_str());
+            builder = builder.set_status(Some(fixture_4112));
+        }
+        if let Some(value) = values.get_item("type")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_4115: String = value.extract()?;
+            let fixture_4114 =
+                aws_sdk_bedrock::types::InferenceProfileType::from(enum_value_4115.as_str());
+            builder = builder.set_type(Some(fixture_4114));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -24208,6 +35229,22 @@ impl PyOperationGetMarketplaceModelEndpointOutput {
             result.set_item("marketplace_model_endpoint", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["marketplace_model_endpoint"], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::get_marketplace_model_endpoint::GetMarketplaceModelEndpointOutput::builder();
+        if let Some(value) = dict_value(values, "marketplace_model_endpoint")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_4102 = marketplace_model_endpoint_fixture_from_py(&value)?;
+            builder = builder.set_marketplace_model_endpoint(Some(fixture_4102));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -24410,6 +35447,112 @@ impl PyOperationGetModelCopyJobOutput {
             result.set_item("source_model_name", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "job_arn",
+                "status",
+                "creation_time",
+                "target_model_arn",
+                "target_model_name",
+                "source_account_id",
+                "source_model_arn",
+                "target_model_kms_key_arn",
+                "target_model_tags",
+                "failure_message",
+                "source_model_name",
+            ],
+            &[
+                "job_arn",
+                "status",
+                "creation_time",
+                "target_model_arn",
+                "source_account_id",
+                "source_model_arn",
+            ],
+        )?;
+        let mut builder =
+            aws_sdk_bedrock::operation::get_model_copy_job::GetModelCopyJobOutput::builder();
+        if let Some(value) = values.get_item("job_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4129: String = value.extract()?;
+            builder = builder.set_job_arn(Some(fixture_4129));
+        }
+        if let Some(value) = values.get_item("status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_4131: String = value.extract()?;
+            let fixture_4130 =
+                aws_sdk_bedrock::types::ModelCopyJobStatus::from(enum_value_4131.as_str());
+            builder = builder.set_status(Some(fixture_4130));
+        }
+        if let Some(value) = values.get_item("creation_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4133: String = value.extract()?;
+            let fixture_4132 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4133,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_creation_time(Some(fixture_4132));
+        }
+        if let Some(value) = values.get_item("target_model_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4134: String = value.extract()?;
+            builder = builder.set_target_model_arn(Some(fixture_4134));
+        }
+        if let Some(value) = dict_value(values, "target_model_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4135: String = value.extract()?;
+            builder = builder.set_target_model_name(Some(fixture_4135));
+        }
+        if let Some(value) = values.get_item("source_account_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4136: String = value.extract()?;
+            builder = builder.set_source_account_id(Some(fixture_4136));
+        }
+        if let Some(value) = values.get_item("source_model_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4137: String = value.extract()?;
+            builder = builder.set_source_model_arn(Some(fixture_4137));
+        }
+        if let Some(value) = dict_value(values, "target_model_kms_key_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4138: String = value.extract()?;
+            builder = builder.set_target_model_kms_key_arn(Some(fixture_4138));
+        }
+        if let Some(value) = dict_value(values, "target_model_tags")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4139 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4140 in value.try_iter()? {
+                let item_4141 = item_result_4140?;
+                rboto_core::fixture_scalar(&item_4141, "struct")?;
+                let converted_item_4142 = tag_fixture_from_py(&item_4141)?;
+                fixture_4139.push(converted_item_4142);
+            }
+            builder = builder.set_target_model_tags(Some(fixture_4139));
+        }
+        if let Some(value) = dict_value(values, "failure_message")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4143: String = value.extract()?;
+            builder = builder.set_failure_message(Some(fixture_4143));
+        }
+        if let Some(value) = dict_value(values, "source_model_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4144: String = value.extract()?;
+            builder = builder.set_source_model_name(Some(fixture_4144));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -24886,6 +36029,203 @@ impl PyOperationGetModelCustomizationJobOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "job_arn",
+                "job_name",
+                "output_model_name",
+                "output_model_arn",
+                "client_request_token",
+                "role_arn",
+                "status",
+                "status_details",
+                "failure_message",
+                "creation_time",
+                "last_modified_time",
+                "end_time",
+                "base_model_arn",
+                "hyper_parameters",
+                "training_data_config",
+                "validation_data_config",
+                "output_data_config",
+                "customization_type",
+                "output_model_kms_key_arn",
+                "training_metrics",
+                "validation_metrics",
+                "vpc_config",
+                "customization_config",
+            ],
+            &[
+                "job_arn",
+                "job_name",
+                "output_model_name",
+                "role_arn",
+                "creation_time",
+                "base_model_arn",
+            ],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::get_model_customization_job::GetModelCustomizationJobOutput::builder();
+        if let Some(value) = values.get_item("job_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4188: String = value.extract()?;
+            builder = builder.set_job_arn(Some(fixture_4188));
+        }
+        if let Some(value) = values.get_item("job_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4189: String = value.extract()?;
+            builder = builder.set_job_name(Some(fixture_4189));
+        }
+        if let Some(value) = values.get_item("output_model_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4190: String = value.extract()?;
+            builder = builder.set_output_model_name(Some(fixture_4190));
+        }
+        if let Some(value) = dict_value(values, "output_model_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4191: String = value.extract()?;
+            builder = builder.set_output_model_arn(Some(fixture_4191));
+        }
+        if let Some(value) = dict_value(values, "client_request_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4192: String = value.extract()?;
+            builder = builder.set_client_request_token(Some(fixture_4192));
+        }
+        if let Some(value) = values.get_item("role_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4193: String = value.extract()?;
+            builder = builder.set_role_arn(Some(fixture_4193));
+        }
+        if let Some(value) = dict_value(values, "status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_4195: String = value.extract()?;
+            let fixture_4194 =
+                aws_sdk_bedrock::types::ModelCustomizationJobStatus::from(enum_value_4195.as_str());
+            builder = builder.set_status(Some(fixture_4194));
+        }
+        if let Some(value) = dict_value(values, "status_details")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_4196 = status_details_fixture_from_py(&value)?;
+            builder = builder.set_status_details(Some(fixture_4196));
+        }
+        if let Some(value) = dict_value(values, "failure_message")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4197: String = value.extract()?;
+            builder = builder.set_failure_message(Some(fixture_4197));
+        }
+        if let Some(value) = values.get_item("creation_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4199: String = value.extract()?;
+            let fixture_4198 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4199,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_creation_time(Some(fixture_4198));
+        }
+        if let Some(value) = dict_value(values, "last_modified_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4201: String = value.extract()?;
+            let fixture_4200 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4201,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_last_modified_time(Some(fixture_4200));
+        }
+        if let Some(value) = dict_value(values, "end_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4203: String = value.extract()?;
+            let fixture_4202 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4203,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_end_time(Some(fixture_4202));
+        }
+        if let Some(value) = values.get_item("base_model_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4204: String = value.extract()?;
+            builder = builder.set_base_model_arn(Some(fixture_4204));
+        }
+        if let Some(value) = dict_value(values, "hyper_parameters")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_4206 = value.cast::<PyDict>()?;
+            let mut fixture_4205 = HashMap::with_capacity(mapping_4206.len());
+            for (key_4207, value_4208) in mapping_4206.iter() {
+                rboto_core::fixture_scalar(&key_4207, "string")?;
+                let converted_key_4209: String = key_4207.extract()?;
+                rboto_core::fixture_scalar(&value_4208, "string")?;
+                let converted_value_4210: String = value_4208.extract()?;
+                fixture_4205.insert(converted_key_4209, converted_value_4210);
+            }
+            builder = builder.set_hyper_parameters(Some(fixture_4205));
+        }
+        if let Some(value) = dict_value(values, "training_data_config")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_4211 = training_data_config_fixture_from_py(&value)?;
+            builder = builder.set_training_data_config(Some(fixture_4211));
+        }
+        if let Some(value) = dict_value(values, "validation_data_config")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_4212 = validation_data_config_fixture_from_py(&value)?;
+            builder = builder.set_validation_data_config(Some(fixture_4212));
+        }
+        if let Some(value) = dict_value(values, "output_data_config")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_4213 = output_data_config_fixture_from_py(&value)?;
+            builder = builder.set_output_data_config(Some(fixture_4213));
+        }
+        if let Some(value) = dict_value(values, "customization_type")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_4215: String = value.extract()?;
+            let fixture_4214 =
+                aws_sdk_bedrock::types::CustomizationType::from(enum_value_4215.as_str());
+            builder = builder.set_customization_type(Some(fixture_4214));
+        }
+        if let Some(value) = dict_value(values, "output_model_kms_key_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4216: String = value.extract()?;
+            builder = builder.set_output_model_kms_key_arn(Some(fixture_4216));
+        }
+        if let Some(value) = dict_value(values, "training_metrics")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_4217 = training_metrics_fixture_from_py(&value)?;
+            builder = builder.set_training_metrics(Some(fixture_4217));
+        }
+        if let Some(value) = dict_value(values, "validation_metrics")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4218 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4219 in value.try_iter()? {
+                let item_4220 = item_result_4219?;
+                rboto_core::fixture_scalar(&item_4220, "struct")?;
+                let converted_item_4221 = validator_metric_fixture_from_py(&item_4220)?;
+                fixture_4218.push(converted_item_4221);
+            }
+            builder = builder.set_validation_metrics(Some(fixture_4218));
+        }
+        if let Some(value) = dict_value(values, "vpc_config")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_4222 = vpc_config_fixture_from_py(&value)?;
+            builder = builder.set_vpc_config(Some(fixture_4222));
+        }
+        if let Some(value) = dict_value(values, "customization_config")? {
+            rboto_core::fixture_scalar(&value, "union")?;
+            let fixture_4223 = customization_config_fixture_from_py(&value)?;
+            builder = builder.set_customization_config(Some(fixture_4223));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -25158,6 +36498,118 @@ impl PyOperationGetModelImportJobOutput {
             result.set_item("imported_model_kms_key_arn", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "job_arn",
+                "job_name",
+                "imported_model_name",
+                "imported_model_arn",
+                "role_arn",
+                "model_data_source",
+                "status",
+                "failure_message",
+                "creation_time",
+                "last_modified_time",
+                "end_time",
+                "vpc_config",
+                "imported_model_kms_key_arn",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_bedrock::operation::get_model_import_job::GetModelImportJobOutput::builder();
+        if let Some(value) = dict_value(values, "job_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4214: String = value.extract()?;
+            builder = builder.set_job_arn(Some(fixture_4214));
+        }
+        if let Some(value) = dict_value(values, "job_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4215: String = value.extract()?;
+            builder = builder.set_job_name(Some(fixture_4215));
+        }
+        if let Some(value) = dict_value(values, "imported_model_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4216: String = value.extract()?;
+            builder = builder.set_imported_model_name(Some(fixture_4216));
+        }
+        if let Some(value) = dict_value(values, "imported_model_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4217: String = value.extract()?;
+            builder = builder.set_imported_model_arn(Some(fixture_4217));
+        }
+        if let Some(value) = dict_value(values, "role_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4218: String = value.extract()?;
+            builder = builder.set_role_arn(Some(fixture_4218));
+        }
+        if let Some(value) = dict_value(values, "model_data_source")? {
+            rboto_core::fixture_scalar(&value, "union")?;
+            let fixture_4219 = model_data_source_fixture_from_py(&value)?;
+            builder = builder.set_model_data_source(Some(fixture_4219));
+        }
+        if let Some(value) = dict_value(values, "status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_4221: String = value.extract()?;
+            let fixture_4220 =
+                aws_sdk_bedrock::types::ModelImportJobStatus::from(enum_value_4221.as_str());
+            builder = builder.set_status(Some(fixture_4220));
+        }
+        if let Some(value) = dict_value(values, "failure_message")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4222: String = value.extract()?;
+            builder = builder.set_failure_message(Some(fixture_4222));
+        }
+        if let Some(value) = dict_value(values, "creation_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4224: String = value.extract()?;
+            let fixture_4223 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4224,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_creation_time(Some(fixture_4223));
+        }
+        if let Some(value) = dict_value(values, "last_modified_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4226: String = value.extract()?;
+            let fixture_4225 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4226,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_last_modified_time(Some(fixture_4225));
+        }
+        if let Some(value) = dict_value(values, "end_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4228: String = value.extract()?;
+            let fixture_4227 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4228,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_end_time(Some(fixture_4227));
+        }
+        if let Some(value) = dict_value(values, "vpc_config")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_4229 = vpc_config_fixture_from_py(&value)?;
+            builder = builder.set_vpc_config(Some(fixture_4229));
+        }
+        if let Some(value) = dict_value(values, "imported_model_kms_key_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4230: String = value.extract()?;
+            builder = builder.set_imported_model_kms_key_arn(Some(fixture_4230));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -25526,6 +36978,168 @@ impl PyOperationGetModelInvocationJobOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "job_arn",
+                "job_name",
+                "model_id",
+                "client_request_token",
+                "role_arn",
+                "status",
+                "message",
+                "submit_time",
+                "last_modified_time",
+                "end_time",
+                "input_data_config",
+                "output_data_config",
+                "vpc_config",
+                "timeout_duration_in_hours",
+                "job_expiration_time",
+                "model_invocation_type",
+                "total_record_count",
+                "processed_record_count",
+                "success_record_count",
+                "error_record_count",
+            ],
+            &["job_arn", "model_id", "role_arn", "submit_time"],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::get_model_invocation_job::GetModelInvocationJobOutput::builder();
+        if let Some(value) = values.get_item("job_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4254: String = value.extract()?;
+            builder = builder.set_job_arn(Some(fixture_4254));
+        }
+        if let Some(value) = dict_value(values, "job_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4255: String = value.extract()?;
+            builder = builder.set_job_name(Some(fixture_4255));
+        }
+        if let Some(value) = values.get_item("model_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4256: String = value.extract()?;
+            builder = builder.set_model_id(Some(fixture_4256));
+        }
+        if let Some(value) = dict_value(values, "client_request_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4257: String = value.extract()?;
+            builder = builder.set_client_request_token(Some(fixture_4257));
+        }
+        if let Some(value) = values.get_item("role_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4258: String = value.extract()?;
+            builder = builder.set_role_arn(Some(fixture_4258));
+        }
+        if let Some(value) = dict_value(values, "status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_4260: String = value.extract()?;
+            let fixture_4259 =
+                aws_sdk_bedrock::types::ModelInvocationJobStatus::from(enum_value_4260.as_str());
+            builder = builder.set_status(Some(fixture_4259));
+        }
+        if let Some(value) = dict_value(values, "message")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4261: String = value.extract()?;
+            builder = builder.set_message(Some(fixture_4261));
+        }
+        if let Some(value) = values.get_item("submit_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4263: String = value.extract()?;
+            let fixture_4262 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4263,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_submit_time(Some(fixture_4262));
+        }
+        if let Some(value) = dict_value(values, "last_modified_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4265: String = value.extract()?;
+            let fixture_4264 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4265,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_last_modified_time(Some(fixture_4264));
+        }
+        if let Some(value) = dict_value(values, "end_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4267: String = value.extract()?;
+            let fixture_4266 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4267,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_end_time(Some(fixture_4266));
+        }
+        if let Some(value) = dict_value(values, "input_data_config")? {
+            rboto_core::fixture_scalar(&value, "union")?;
+            let fixture_4268 = model_invocation_job_input_data_config_fixture_from_py(&value)?;
+            builder = builder.set_input_data_config(Some(fixture_4268));
+        }
+        if let Some(value) = dict_value(values, "output_data_config")? {
+            rboto_core::fixture_scalar(&value, "union")?;
+            let fixture_4269 = model_invocation_job_output_data_config_fixture_from_py(&value)?;
+            builder = builder.set_output_data_config(Some(fixture_4269));
+        }
+        if let Some(value) = dict_value(values, "vpc_config")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_4270 = vpc_config_fixture_from_py(&value)?;
+            builder = builder.set_vpc_config(Some(fixture_4270));
+        }
+        if let Some(value) = dict_value(values, "timeout_duration_in_hours")? {
+            rboto_core::fixture_scalar(&value, "i32")?;
+            let fixture_4271: i32 = value.extract()?;
+            builder = builder.set_timeout_duration_in_hours(Some(fixture_4271));
+        }
+        if let Some(value) = dict_value(values, "job_expiration_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4273: String = value.extract()?;
+            let fixture_4272 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4273,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_job_expiration_time(Some(fixture_4272));
+        }
+        if let Some(value) = dict_value(values, "model_invocation_type")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_4275: String = value.extract()?;
+            let fixture_4274 =
+                aws_sdk_bedrock::types::ModelInvocationType::from(enum_value_4275.as_str());
+            builder = builder.set_model_invocation_type(Some(fixture_4274));
+        }
+        if let Some(value) = dict_value(values, "total_record_count")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_4276: i64 = value.extract()?;
+            builder = builder.set_total_record_count(Some(fixture_4276));
+        }
+        if let Some(value) = dict_value(values, "processed_record_count")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_4277: i64 = value.extract()?;
+            builder = builder.set_processed_record_count(Some(fixture_4277));
+        }
+        if let Some(value) = dict_value(values, "success_record_count")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_4278: i64 = value.extract()?;
+            builder = builder.set_success_record_count(Some(fixture_4278));
+        }
+        if let Some(value) = dict_value(values, "error_record_count")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_4279: i64 = value.extract()?;
+            builder = builder.set_error_record_count(Some(fixture_4279));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -25578,6 +37192,22 @@ impl PyOperationGetModelInvocationLoggingConfigurationOutput {
             result.set_item("logging_config", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["logging_config"], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::get_model_invocation_logging_configuration::GetModelInvocationLoggingConfigurationOutput::builder();
+        if let Some(value) = dict_value(values, "logging_config")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_4256 = logging_config_fixture_from_py(&value)?;
+            builder = builder.set_logging_config(Some(fixture_4256));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -25781,6 +37411,112 @@ impl PyOperationGetPromptRouterOutput {
         result.set_item("type", converted_4280)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "prompt_router_name",
+                "routing_criteria",
+                "description",
+                "created_at",
+                "updated_at",
+                "prompt_router_arn",
+                "models",
+                "fallback_model",
+                "status",
+                "type",
+            ],
+            &[
+                "prompt_router_name",
+                "prompt_router_arn",
+                "models",
+                "status",
+                "type",
+            ],
+        )?;
+        let mut builder =
+            aws_sdk_bedrock::operation::get_prompt_router::GetPromptRouterOutput::builder();
+        if let Some(value) = values.get_item("prompt_router_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4281: String = value.extract()?;
+            builder = builder.set_prompt_router_name(Some(fixture_4281));
+        }
+        if let Some(value) = dict_value(values, "routing_criteria")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_4282 = routing_criteria_fixture_from_py(&value)?;
+            builder = builder.set_routing_criteria(Some(fixture_4282));
+        }
+        if let Some(value) = dict_value(values, "description")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4283: String = value.extract()?;
+            builder = builder.set_description(Some(fixture_4283));
+        }
+        if let Some(value) = dict_value(values, "created_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4285: String = value.extract()?;
+            let fixture_4284 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4285,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_created_at(Some(fixture_4284));
+        }
+        if let Some(value) = dict_value(values, "updated_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4287: String = value.extract()?;
+            let fixture_4286 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4287,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_updated_at(Some(fixture_4286));
+        }
+        if let Some(value) = values.get_item("prompt_router_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4288: String = value.extract()?;
+            builder = builder.set_prompt_router_arn(Some(fixture_4288));
+        }
+        if let Some(value) = values.get_item("models")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4289 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4290 in value.try_iter()? {
+                let item_4291 = item_result_4290?;
+                rboto_core::fixture_scalar(&item_4291, "struct")?;
+                let converted_item_4292 = prompt_router_target_model_fixture_from_py(&item_4291)?;
+                fixture_4289.push(converted_item_4292);
+            }
+            builder = builder.set_models(Some(fixture_4289));
+        }
+        if let Some(value) = dict_value(values, "fallback_model")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_4293 = prompt_router_target_model_fixture_from_py(&value)?;
+            builder = builder.set_fallback_model(Some(fixture_4293));
+        }
+        if let Some(value) = values.get_item("status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_4295: String = value.extract()?;
+            let fixture_4294 =
+                aws_sdk_bedrock::types::PromptRouterStatus::from(enum_value_4295.as_str());
+            builder = builder.set_status(Some(fixture_4294));
+        }
+        if let Some(value) = values.get_item("type")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_4297: String = value.extract()?;
+            let fixture_4296 =
+                aws_sdk_bedrock::types::PromptRouterType::from(enum_value_4297.as_str());
+            builder = builder.set_type(Some(fixture_4296));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -25946,6 +37682,130 @@ impl PyOperationGetProvisionedModelThroughputOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "model_units",
+                "desired_model_units",
+                "provisioned_model_name",
+                "provisioned_model_arn",
+                "model_arn",
+                "desired_model_arn",
+                "foundation_model_arn",
+                "status",
+                "creation_time",
+                "last_modified_time",
+                "failure_message",
+                "commitment_duration",
+                "commitment_expiration_time",
+            ],
+            &[
+                "model_units",
+                "desired_model_units",
+                "provisioned_model_name",
+                "provisioned_model_arn",
+                "model_arn",
+                "desired_model_arn",
+                "foundation_model_arn",
+                "status",
+                "creation_time",
+                "last_modified_time",
+            ],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::get_provisioned_model_throughput::GetProvisionedModelThroughputOutput::builder();
+        if let Some(value) = values.get_item("model_units")? {
+            rboto_core::fixture_scalar(&value, "i32")?;
+            let fixture_4307: i32 = value.extract()?;
+            builder = builder.set_model_units(Some(fixture_4307));
+        }
+        if let Some(value) = values.get_item("desired_model_units")? {
+            rboto_core::fixture_scalar(&value, "i32")?;
+            let fixture_4308: i32 = value.extract()?;
+            builder = builder.set_desired_model_units(Some(fixture_4308));
+        }
+        if let Some(value) = values.get_item("provisioned_model_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4309: String = value.extract()?;
+            builder = builder.set_provisioned_model_name(Some(fixture_4309));
+        }
+        if let Some(value) = values.get_item("provisioned_model_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4310: String = value.extract()?;
+            builder = builder.set_provisioned_model_arn(Some(fixture_4310));
+        }
+        if let Some(value) = values.get_item("model_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4311: String = value.extract()?;
+            builder = builder.set_model_arn(Some(fixture_4311));
+        }
+        if let Some(value) = values.get_item("desired_model_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4312: String = value.extract()?;
+            builder = builder.set_desired_model_arn(Some(fixture_4312));
+        }
+        if let Some(value) = values.get_item("foundation_model_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4313: String = value.extract()?;
+            builder = builder.set_foundation_model_arn(Some(fixture_4313));
+        }
+        if let Some(value) = values.get_item("status")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_4315: String = value.extract()?;
+            let fixture_4314 =
+                aws_sdk_bedrock::types::ProvisionedModelStatus::from(enum_value_4315.as_str());
+            builder = builder.set_status(Some(fixture_4314));
+        }
+        if let Some(value) = values.get_item("creation_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4317: String = value.extract()?;
+            let fixture_4316 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4317,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_creation_time(Some(fixture_4316));
+        }
+        if let Some(value) = values.get_item("last_modified_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4319: String = value.extract()?;
+            let fixture_4318 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4319,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_last_modified_time(Some(fixture_4318));
+        }
+        if let Some(value) = dict_value(values, "failure_message")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4320: String = value.extract()?;
+            builder = builder.set_failure_message(Some(fixture_4320));
+        }
+        if let Some(value) = dict_value(values, "commitment_duration")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_4322: String = value.extract()?;
+            let fixture_4321 =
+                aws_sdk_bedrock::types::CommitmentDuration::from(enum_value_4322.as_str());
+            builder = builder.set_commitment_duration(Some(fixture_4321));
+        }
+        if let Some(value) = dict_value(values, "commitment_expiration_time")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4324: String = value.extract()?;
+            let fixture_4323 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4324,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_commitment_expiration_time(Some(fixture_4323));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -25979,6 +37839,21 @@ impl PyOperationGetResourcePolicyOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["resource_policy"], &[])?;
+        let mut builder =
+            aws_sdk_bedrock::operation::get_resource_policy::GetResourcePolicyOutput::builder();
+        if let Some(value) = dict_value(values, "resource_policy")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4309: String = value.extract()?;
+            builder = builder.set_resource_policy(Some(fixture_4309));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -26008,6 +37883,23 @@ impl PyOperationGetUseCaseForModelAccessOutput {
             .unbind();
         result.set_item("form_data", converted_4310)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["form_data"], &["form_data"])?;
+        let mut builder = aws_sdk_bedrock::operation::get_use_case_for_model_access::GetUseCaseForModelAccessOutput::builder();
+        if let Some(value) = values.get_item("form_data")? {
+            rboto_core::fixture_scalar(&value, "blob")?;
+            let bytes_4312: Vec<u8> = value.extract()?;
+            let fixture_4311 = ::aws_smithy_types::Blob::new(bytes_4312);
+            builder = builder.set_form_data(Some(fixture_4311));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 
@@ -26092,6 +37984,35 @@ impl PyOperationListAdvancedPromptOptimizationJobsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["job_summaries", "next_token"], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::list_advanced_prompt_optimization_jobs::ListAdvancedPromptOptimizationJobsOutput::builder();
+        if let Some(value) = dict_value(values, "job_summaries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4320 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4321 in value.try_iter()? {
+                let item_4322 = item_result_4321?;
+                rboto_core::fixture_scalar(&item_4322, "struct")?;
+                let converted_item_4323 =
+                    advanced_prompt_optimization_job_summary_fixture_from_py(&item_4322)?;
+                fixture_4320.push(converted_item_4323);
+            }
+            builder = builder.set_job_summaries(Some(fixture_4320));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4324: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_4324));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -26165,6 +38086,41 @@ impl PyOperationListAutomatedReasoningPoliciesOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["automated_reasoning_policy_summaries", "next_token"],
+            &["automated_reasoning_policy_summaries"],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::list_automated_reasoning_policies::ListAutomatedReasoningPoliciesOutput::builder();
+        if let Some(value) = values.get_item("automated_reasoning_policy_summaries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4329 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4330 in value.try_iter()? {
+                let item_4331 = item_result_4330?;
+                rboto_core::fixture_scalar(&item_4331, "struct")?;
+                let converted_item_4332 =
+                    automated_reasoning_policy_summary_fixture_from_py(&item_4331)?;
+                fixture_4329.push(converted_item_4332);
+            }
+            builder = builder.set_automated_reasoning_policy_summaries(Some(fixture_4329));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4333: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_4333));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -26253,6 +38209,47 @@ impl PyOperationListAutomatedReasoningPolicyBuildWorkflowsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "automated_reasoning_policy_build_workflow_summaries",
+                "next_token",
+            ],
+            &["automated_reasoning_policy_build_workflow_summaries"],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::list_automated_reasoning_policy_build_workflows::ListAutomatedReasoningPolicyBuildWorkflowsOutput::builder();
+        if let Some(value) =
+            values.get_item("automated_reasoning_policy_build_workflow_summaries")?
+        {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4338 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4339 in value.try_iter()? {
+                let item_4340 = item_result_4339?;
+                rboto_core::fixture_scalar(&item_4340, "struct")?;
+                let converted_item_4341 =
+                    automated_reasoning_policy_build_workflow_summary_fixture_from_py(&item_4340)?;
+                fixture_4338.push(converted_item_4341);
+            }
+            builder =
+                builder.set_automated_reasoning_policy_build_workflow_summaries(Some(fixture_4338));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4342: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_4342));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -26325,6 +38322,37 @@ impl PyOperationListAutomatedReasoningPolicyTestCasesOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["test_cases", "next_token"], &["test_cases"])?;
+        let mut builder = aws_sdk_bedrock::operation::list_automated_reasoning_policy_test_cases::ListAutomatedReasoningPolicyTestCasesOutput::builder();
+        if let Some(value) = values.get_item("test_cases")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4347 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4348 in value.try_iter()? {
+                let item_4349 = item_result_4348?;
+                rboto_core::fixture_scalar(&item_4349, "struct")?;
+                let converted_item_4350 =
+                    automated_reasoning_policy_test_case_fixture_from_py(&item_4349)?;
+                fixture_4347.push(converted_item_4350);
+            }
+            builder = builder.set_test_cases(Some(fixture_4347));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4351: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_4351));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -26399,6 +38427,37 @@ impl PyOperationListAutomatedReasoningPolicyTestResultsOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["test_results", "next_token"], &["test_results"])?;
+        let mut builder = aws_sdk_bedrock::operation::list_automated_reasoning_policy_test_results::ListAutomatedReasoningPolicyTestResultsOutput::builder();
+        if let Some(value) = values.get_item("test_results")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4356 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4357 in value.try_iter()? {
+                let item_4358 = item_result_4357?;
+                rboto_core::fixture_scalar(&item_4358, "struct")?;
+                let converted_item_4359 =
+                    automated_reasoning_policy_test_result_fixture_from_py(&item_4358)?;
+                fixture_4356.push(converted_item_4359);
+            }
+            builder = builder.set_test_results(Some(fixture_4356));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4360: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_4360));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -26493,6 +38552,35 @@ impl PyOperationListCustomModelDeploymentsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["next_token", "model_deployment_summaries"], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::list_custom_model_deployments::ListCustomModelDeploymentsOutput::builder();
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4365: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_4365));
+        }
+        if let Some(value) = dict_value(values, "model_deployment_summaries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4366 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4367 in value.try_iter()? {
+                let item_4368 = item_result_4367?;
+                rboto_core::fixture_scalar(&item_4368, "struct")?;
+                let converted_item_4369 =
+                    custom_model_deployment_summary_fixture_from_py(&item_4368)?;
+                fixture_4366.push(converted_item_4369);
+            }
+            builder = builder.set_model_deployment_summaries(Some(fixture_4366));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -26581,6 +38669,35 @@ impl PyOperationListCustomModelsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["next_token", "model_summaries"], &[])?;
+        let mut builder =
+            aws_sdk_bedrock::operation::list_custom_models::ListCustomModelsOutput::builder();
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4374: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_4374));
+        }
+        if let Some(value) = dict_value(values, "model_summaries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4375 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4376 in value.try_iter()? {
+                let item_4377 = item_result_4376?;
+                rboto_core::fixture_scalar(&item_4377, "struct")?;
+                let converted_item_4378 = custom_model_summary_fixture_from_py(&item_4377)?;
+                fixture_4375.push(converted_item_4378);
+            }
+            builder = builder.set_model_summaries(Some(fixture_4375));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -26654,6 +38771,41 @@ impl PyOperationListEnforcedGuardrailsConfigurationOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["guardrails_config", "next_token"],
+            &["guardrails_config"],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::list_enforced_guardrails_configuration::ListEnforcedGuardrailsConfigurationOutput::builder();
+        if let Some(value) = values.get_item("guardrails_config")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4383 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4384 in value.try_iter()? {
+                let item_4385 = item_result_4384?;
+                rboto_core::fixture_scalar(&item_4385, "struct")?;
+                let converted_item_4386 =
+                    account_enforced_guardrail_output_configuration_fixture_from_py(&item_4385)?;
+                fixture_4383.push(converted_item_4386);
+            }
+            builder = builder.set_guardrails_config(Some(fixture_4383));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4387: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_4387));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -26745,6 +38897,35 @@ impl PyOperationListEvaluationJobsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["next_token", "job_summaries"], &[])?;
+        let mut builder =
+            aws_sdk_bedrock::operation::list_evaluation_jobs::ListEvaluationJobsOutput::builder();
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4392: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_4392));
+        }
+        if let Some(value) = dict_value(values, "job_summaries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4393 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4394 in value.try_iter()? {
+                let item_4395 = item_result_4394?;
+                rboto_core::fixture_scalar(&item_4395, "struct")?;
+                let converted_item_4396 = evaluation_summary_fixture_from_py(&item_4395)?;
+                fixture_4393.push(converted_item_4396);
+            }
+            builder = builder.set_job_summaries(Some(fixture_4393));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -26809,6 +38990,36 @@ impl PyOperationListFoundationModelAgreementOffersOutput {
         let converted_4398 = converted_4398_list.into_any().unbind();
         result.set_item("offers", converted_4398)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["model_id", "offers"], &["model_id", "offers"])?;
+        let mut builder = aws_sdk_bedrock::operation::list_foundation_model_agreement_offers::ListFoundationModelAgreementOffersOutput::builder();
+        if let Some(value) = values.get_item("model_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4401: String = value.extract()?;
+            builder = builder.set_model_id(Some(fixture_4401));
+        }
+        if let Some(value) = values.get_item("offers")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4402 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4403 in value.try_iter()? {
+                let item_4404 = item_result_4403?;
+                rboto_core::fixture_scalar(&item_4404, "struct")?;
+                let converted_item_4405 = offer_fixture_from_py(&item_4404)?;
+                fixture_4402.push(converted_item_4405);
+            }
+            builder = builder.set_offers(Some(fixture_4402));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -26881,6 +39092,31 @@ impl PyOperationListFoundationModelsOutput {
             result.set_item("model_summaries", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["model_summaries"], &[])?;
+        let mut builder =
+            aws_sdk_bedrock::operation::list_foundation_models::ListFoundationModelsOutput::builder(
+            );
+        if let Some(value) = dict_value(values, "model_summaries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4408 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4409 in value.try_iter()? {
+                let item_4410 = item_result_4409?;
+                rboto_core::fixture_scalar(&item_4410, "struct")?;
+                let converted_item_4411 = foundation_model_summary_fixture_from_py(&item_4410)?;
+                fixture_4408.push(converted_item_4411);
+            }
+            builder = builder.set_model_summaries(Some(fixture_4408));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -26959,6 +39195,37 @@ impl PyOperationListGuardrailsOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["guardrails", "next_token"], &["guardrails"])?;
+        let mut builder =
+            aws_sdk_bedrock::operation::list_guardrails::ListGuardrailsOutput::builder();
+        if let Some(value) = values.get_item("guardrails")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4417 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4418 in value.try_iter()? {
+                let item_4419 = item_result_4418?;
+                rboto_core::fixture_scalar(&item_4419, "struct")?;
+                let converted_item_4420 = guardrail_summary_fixture_from_py(&item_4419)?;
+                fixture_4417.push(converted_item_4420);
+            }
+            builder = builder.set_guardrails(Some(fixture_4417));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4421: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_4421));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -27050,6 +39317,35 @@ impl PyOperationListImportedModelsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["next_token", "model_summaries"], &[])?;
+        let mut builder =
+            aws_sdk_bedrock::operation::list_imported_models::ListImportedModelsOutput::builder();
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4426: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_4426));
+        }
+        if let Some(value) = dict_value(values, "model_summaries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4427 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4428 in value.try_iter()? {
+                let item_4429 = item_result_4428?;
+                rboto_core::fixture_scalar(&item_4429, "struct")?;
+                let converted_item_4430 = imported_model_summary_fixture_from_py(&item_4429)?;
+                fixture_4427.push(converted_item_4430);
+            }
+            builder = builder.set_model_summaries(Some(fixture_4427));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -27140,6 +39436,34 @@ impl PyOperationListInferenceProfilesOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["inference_profile_summaries", "next_token"], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::list_inference_profiles::ListInferenceProfilesOutput::builder();
+        if let Some(value) = dict_value(values, "inference_profile_summaries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4435 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4436 in value.try_iter()? {
+                let item_4437 = item_result_4436?;
+                rboto_core::fixture_scalar(&item_4437, "struct")?;
+                let converted_item_4438 = inference_profile_summary_fixture_from_py(&item_4437)?;
+                fixture_4435.push(converted_item_4438);
+            }
+            builder = builder.set_inference_profile_summaries(Some(fixture_4435));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4439: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_4439));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -27221,6 +39545,35 @@ impl PyOperationListMarketplaceModelEndpointsOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["marketplace_model_endpoints", "next_token"], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::list_marketplace_model_endpoints::ListMarketplaceModelEndpointsOutput::builder();
+        if let Some(value) = dict_value(values, "marketplace_model_endpoints")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4444 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4445 in value.try_iter()? {
+                let item_4446 = item_result_4445?;
+                rboto_core::fixture_scalar(&item_4446, "struct")?;
+                let converted_item_4447 =
+                    marketplace_model_endpoint_summary_fixture_from_py(&item_4446)?;
+                fixture_4444.push(converted_item_4447);
+            }
+            builder = builder.set_marketplace_model_endpoints(Some(fixture_4444));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4448: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_4448));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -27311,6 +39664,35 @@ impl PyOperationListModelCopyJobsOutput {
             result.set_item("model_copy_job_summaries", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["next_token", "model_copy_job_summaries"], &[])?;
+        let mut builder =
+            aws_sdk_bedrock::operation::list_model_copy_jobs::ListModelCopyJobsOutput::builder();
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4453: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_4453));
+        }
+        if let Some(value) = dict_value(values, "model_copy_job_summaries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4454 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4455 in value.try_iter()? {
+                let item_4456 = item_result_4455?;
+                rboto_core::fixture_scalar(&item_4456, "struct")?;
+                let converted_item_4457 = model_copy_job_summary_fixture_from_py(&item_4456)?;
+                fixture_4454.push(converted_item_4457);
+            }
+            builder = builder.set_model_copy_job_summaries(Some(fixture_4454));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -27410,6 +39792,39 @@ impl PyOperationListModelCustomizationJobsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["next_token", "model_customization_job_summaries"],
+            &[],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::list_model_customization_jobs::ListModelCustomizationJobsOutput::builder();
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4462: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_4462));
+        }
+        if let Some(value) = dict_value(values, "model_customization_job_summaries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4463 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4464 in value.try_iter()? {
+                let item_4465 = item_result_4464?;
+                rboto_core::fixture_scalar(&item_4465, "struct")?;
+                let converted_item_4466 =
+                    model_customization_job_summary_fixture_from_py(&item_4465)?;
+                fixture_4463.push(converted_item_4466);
+            }
+            builder = builder.set_model_customization_job_summaries(Some(fixture_4463));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -27501,6 +39916,36 @@ impl PyOperationListModelImportJobsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["next_token", "model_import_job_summaries"], &[])?;
+        let mut builder =
+            aws_sdk_bedrock::operation::list_model_import_jobs::ListModelImportJobsOutput::builder(
+            );
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4471: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_4471));
+        }
+        if let Some(value) = dict_value(values, "model_import_job_summaries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4472 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4473 in value.try_iter()? {
+                let item_4474 = item_result_4473?;
+                rboto_core::fixture_scalar(&item_4474, "struct")?;
+                let converted_item_4475 = model_import_job_summary_fixture_from_py(&item_4474)?;
+                fixture_4472.push(converted_item_4475);
+            }
+            builder = builder.set_model_import_job_summaries(Some(fixture_4472));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -27590,6 +40035,34 @@ impl PyOperationListModelInvocationJobsOutput {
             result.set_item("invocation_job_summaries", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["next_token", "invocation_job_summaries"], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::list_model_invocation_jobs::ListModelInvocationJobsOutput::builder();
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4480: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_4480));
+        }
+        if let Some(value) = dict_value(values, "invocation_job_summaries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4481 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4482 in value.try_iter()? {
+                let item_4483 = item_result_4482?;
+                rboto_core::fixture_scalar(&item_4483, "struct")?;
+                let converted_item_4484 = model_invocation_job_summary_fixture_from_py(&item_4483)?;
+                fixture_4481.push(converted_item_4484);
+            }
+            builder = builder.set_invocation_job_summaries(Some(fixture_4481));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -27681,6 +40154,35 @@ impl PyOperationListPromptRoutersOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["prompt_router_summaries", "next_token"], &[])?;
+        let mut builder =
+            aws_sdk_bedrock::operation::list_prompt_routers::ListPromptRoutersOutput::builder();
+        if let Some(value) = dict_value(values, "prompt_router_summaries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4489 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4490 in value.try_iter()? {
+                let item_4491 = item_result_4490?;
+                rboto_core::fixture_scalar(&item_4491, "struct")?;
+                let converted_item_4492 = prompt_router_summary_fixture_from_py(&item_4491)?;
+                fixture_4489.push(converted_item_4492);
+            }
+            builder = builder.set_prompt_router_summaries(Some(fixture_4489));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4493: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_4493));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -27763,6 +40265,34 @@ impl PyOperationListProvisionedModelThroughputsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["next_token", "provisioned_model_summaries"], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::list_provisioned_model_throughputs::ListProvisionedModelThroughputsOutput::builder();
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4498: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_4498));
+        }
+        if let Some(value) = dict_value(values, "provisioned_model_summaries")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4499 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4500 in value.try_iter()? {
+                let item_4501 = item_result_4500?;
+                rboto_core::fixture_scalar(&item_4501, "struct")?;
+                let converted_item_4502 = provisioned_model_summary_fixture_from_py(&item_4501)?;
+                fixture_4499.push(converted_item_4502);
+            }
+            builder = builder.set_provisioned_model_summaries(Some(fixture_4499));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -27835,6 +40365,31 @@ impl PyOperationListTagsForResourceOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["tags"], &[])?;
+        let mut builder =
+            aws_sdk_bedrock::operation::list_tags_for_resource::ListTagsForResourceOutput::builder(
+            );
+        if let Some(value) = dict_value(values, "tags")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_4505 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_4506 in value.try_iter()? {
+                let item_4507 = item_result_4506?;
+                rboto_core::fixture_scalar(&item_4507, "struct")?;
+                let converted_item_4508 = tag_fixture_from_py(&item_4507)?;
+                fixture_4505.push(converted_item_4508);
+            }
+            builder = builder.set_tags(Some(fixture_4505));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -27875,6 +40430,34 @@ impl PyOperationPutAccountDataRetentionOutput {
             result.set_item("updated_at", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["mode", "updated_at"], &["mode"])?;
+        let mut builder = aws_sdk_bedrock::operation::put_account_data_retention::PutAccountDataRetentionOutput::builder();
+        if let Some(value) = values.get_item("mode")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_4510: String = value.extract()?;
+            let fixture_4509 =
+                aws_sdk_bedrock::types::DataRetentionMode::from(enum_value_4510.as_str());
+            builder = builder.set_mode(Some(fixture_4509));
+        }
+        if let Some(value) = dict_value(values, "updated_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4512: String = value.extract()?;
+            let fixture_4511 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4512,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_updated_at(Some(fixture_4511));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 
@@ -27941,6 +40524,35 @@ impl PyOperationPutEnforcedGuardrailConfigurationOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["config_id", "updated_at", "updated_by"], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::put_enforced_guardrail_configuration::PutEnforcedGuardrailConfigurationOutput::builder();
+        if let Some(value) = dict_value(values, "config_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4515: String = value.extract()?;
+            builder = builder.set_config_id(Some(fixture_4515));
+        }
+        if let Some(value) = dict_value(values, "updated_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4517: String = value.extract()?;
+            let fixture_4516 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4517,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_updated_at(Some(fixture_4516));
+        }
+        if let Some(value) = dict_value(values, "updated_by")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4518: String = value.extract()?;
+            builder = builder.set_updated_by(Some(fixture_4518));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -27957,6 +40569,15 @@ impl PyOperationPutModelInvocationLoggingConfigurationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::put_model_invocation_logging_configuration::PutModelInvocationLoggingConfigurationOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -27991,6 +40612,21 @@ impl PyOperationPutResourcePolicyOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["resource_arn"], &[])?;
+        let mut builder =
+            aws_sdk_bedrock::operation::put_resource_policy::PutResourcePolicyOutput::builder();
+        if let Some(value) = dict_value(values, "resource_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4517: String = value.extract()?;
+            builder = builder.set_resource_arn(Some(fixture_4517));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -28008,6 +40644,15 @@ impl PyOperationPutUseCaseForModelAccessOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::put_use_case_for_model_access::PutUseCaseForModelAccessOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -28062,6 +40707,22 @@ impl PyOperationRegisterMarketplaceModelEndpointOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["marketplace_model_endpoint"], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::register_marketplace_model_endpoint::RegisterMarketplaceModelEndpointOutput::builder();
+        if let Some(value) = dict_value(values, "marketplace_model_endpoint")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_4519 = marketplace_model_endpoint_fixture_from_py(&value)?;
+            builder = builder.set_marketplace_model_endpoint(Some(fixture_4519));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -28095,6 +40756,31 @@ impl PyOperationStartAutomatedReasoningPolicyBuildWorkflowOutput {
         result.set_item("build_workflow_id", converted_4522)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["policy_arn", "build_workflow_id"],
+            &["policy_arn", "build_workflow_id"],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::start_automated_reasoning_policy_build_workflow::StartAutomatedReasoningPolicyBuildWorkflowOutput::builder();
+        if let Some(value) = values.get_item("policy_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4523: String = value.extract()?;
+            builder = builder.set_policy_arn(Some(fixture_4523));
+        }
+        if let Some(value) = values.get_item("build_workflow_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4524: String = value.extract()?;
+            builder = builder.set_build_workflow_id(Some(fixture_4524));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -28120,6 +40806,22 @@ impl PyOperationStartAutomatedReasoningPolicyTestWorkflowOutput {
         result.set_item("policy_arn", converted_4524)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["policy_arn"], &["policy_arn"])?;
+        let mut builder = aws_sdk_bedrock::operation::start_automated_reasoning_policy_test_workflow::StartAutomatedReasoningPolicyTestWorkflowOutput::builder();
+        if let Some(value) = values.get_item("policy_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4525: String = value.extract()?;
+            builder = builder.set_policy_arn(Some(fixture_4525));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -28137,6 +40839,15 @@ impl PyOperationStopAdvancedPromptOptimizationJobOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::stop_advanced_prompt_optimization_job::StopAdvancedPromptOptimizationJobOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -28153,6 +40864,16 @@ impl PyOperationStopEvaluationJobOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_bedrock::operation::stop_evaluation_job::StopEvaluationJobOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -28172,6 +40893,15 @@ impl PyOperationStopModelCustomizationJobOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::stop_model_customization_job::StopModelCustomizationJobOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -28189,6 +40919,15 @@ impl PyOperationStopModelInvocationJobOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::stop_model_invocation_job::StopModelInvocationJobOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(name = "TagResourceOutput", module = "rboto_bedrock._native", frozen)]
@@ -28202,6 +40941,15 @@ impl PyOperationTagResourceOutput {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::tag_resource::TagResourceOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(name = "UntagResourceOutput", module = "rboto_bedrock._native", frozen)]
@@ -28214,6 +40962,16 @@ impl PyOperationUntagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_bedrock::operation::untag_resource::UntagResourceOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -28264,6 +41022,46 @@ impl PyOperationUpdateAutomatedReasoningPolicyOutput {
         result.set_item("updated_at", converted_4532)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["policy_arn", "name", "definition_hash", "updated_at"],
+            &["policy_arn", "name", "definition_hash", "updated_at"],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::update_automated_reasoning_policy::UpdateAutomatedReasoningPolicyOutput::builder();
+        if let Some(value) = values.get_item("policy_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4533: String = value.extract()?;
+            builder = builder.set_policy_arn(Some(fixture_4533));
+        }
+        if let Some(value) = values.get_item("name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4534: String = value.extract()?;
+            builder = builder.set_name(Some(fixture_4534));
+        }
+        if let Some(value) = values.get_item("definition_hash")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4535: String = value.extract()?;
+            builder = builder.set_definition_hash(Some(fixture_4535));
+        }
+        if let Some(value) = values.get_item("updated_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4537: String = value.extract()?;
+            let fixture_4536 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4537,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_updated_at(Some(fixture_4536));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -28313,6 +41111,56 @@ impl PyOperationUpdateAutomatedReasoningPolicyAnnotationsOutput {
         result.set_item("updated_at", converted_4540)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "policy_arn",
+                "build_workflow_id",
+                "annotation_set_hash",
+                "updated_at",
+            ],
+            &[
+                "policy_arn",
+                "build_workflow_id",
+                "annotation_set_hash",
+                "updated_at",
+            ],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::update_automated_reasoning_policy_annotations::UpdateAutomatedReasoningPolicyAnnotationsOutput::builder();
+        if let Some(value) = values.get_item("policy_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4541: String = value.extract()?;
+            builder = builder.set_policy_arn(Some(fixture_4541));
+        }
+        if let Some(value) = values.get_item("build_workflow_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4542: String = value.extract()?;
+            builder = builder.set_build_workflow_id(Some(fixture_4542));
+        }
+        if let Some(value) = values.get_item("annotation_set_hash")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4543: String = value.extract()?;
+            builder = builder.set_annotation_set_hash(Some(fixture_4543));
+        }
+        if let Some(value) = values.get_item("updated_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4545: String = value.extract()?;
+            let fixture_4544 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4545,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_updated_at(Some(fixture_4544));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -28346,6 +41194,31 @@ impl PyOperationUpdateAutomatedReasoningPolicyTestCaseOutput {
         result.set_item("test_case_id", converted_4544)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["policy_arn", "test_case_id"],
+            &["policy_arn", "test_case_id"],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::update_automated_reasoning_policy_test_case::UpdateAutomatedReasoningPolicyTestCaseOutput::builder();
+        if let Some(value) = values.get_item("policy_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4545: String = value.extract()?;
+            builder = builder.set_policy_arn(Some(fixture_4545));
+        }
+        if let Some(value) = values.get_item("test_case_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4546: String = value.extract()?;
+            builder = builder.set_test_case_id(Some(fixture_4546));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -28374,6 +41247,26 @@ impl PyOperationUpdateCustomModelDeploymentOutput {
             .into_py_any(py)?;
         result.set_item("custom_model_deployment_arn", converted_4546)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["custom_model_deployment_arn"],
+            &["custom_model_deployment_arn"],
+        )?;
+        let mut builder = aws_sdk_bedrock::operation::update_custom_model_deployment::UpdateCustomModelDeploymentOutput::builder();
+        if let Some(value) = values.get_item("custom_model_deployment_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4547: String = value.extract()?;
+            builder = builder.set_custom_model_deployment_arn(Some(fixture_4547));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 
@@ -28423,6 +41316,47 @@ impl PyOperationUpdateGuardrailOutput {
         let converted_4554 = (&self.inner.updated_at).to_string().into_py_any(py)?;
         result.set_item("updated_at", converted_4554)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["guardrail_id", "guardrail_arn", "version", "updated_at"],
+            &["guardrail_id", "guardrail_arn", "version", "updated_at"],
+        )?;
+        let mut builder =
+            aws_sdk_bedrock::operation::update_guardrail::UpdateGuardrailOutput::builder();
+        if let Some(value) = values.get_item("guardrail_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4555: String = value.extract()?;
+            builder = builder.set_guardrail_id(Some(fixture_4555));
+        }
+        if let Some(value) = values.get_item("guardrail_arn")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4556: String = value.extract()?;
+            builder = builder.set_guardrail_arn(Some(fixture_4556));
+        }
+        if let Some(value) = values.get_item("version")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_4557: String = value.extract()?;
+            builder = builder.set_version(Some(fixture_4557));
+        }
+        if let Some(value) = values.get_item("updated_at")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_4559: String = value.extract()?;
+            let fixture_4558 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_4559,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_updated_at(Some(fixture_4558));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 
@@ -28477,6 +41411,22 @@ impl PyOperationUpdateMarketplaceModelEndpointOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["marketplace_model_endpoint"], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::update_marketplace_model_endpoint::UpdateMarketplaceModelEndpointOutput::builder();
+        if let Some(value) = dict_value(values, "marketplace_model_endpoint")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_4557 = marketplace_model_endpoint_fixture_from_py(&value)?;
+            builder = builder.set_marketplace_model_endpoint(Some(fixture_4557));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -28493,6 +41443,15 @@ impl PyOperationUpdateProvisionedModelThroughputOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_bedrock::operation::update_provisioned_model_throughput::UpdateProvisionedModelThroughputOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 

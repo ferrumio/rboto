@@ -244,6 +244,8 @@ class WebAppConfiguration:
 @final
 class ActivateSubscriptionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ActivateSubscriptionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ActivateSubscriptionOutput: ...
     @property
     def subscription(self) -> SubscriptionDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -251,6 +253,8 @@ class ActivateSubscriptionOutput:
 @final
 class CreateDomainOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/CreateDomainOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateDomainOutput: ...
     @property
     def domain_id(self) -> str: ...
     @property
@@ -274,6 +278,8 @@ class CreateDomainOutput:
 @final
 class CreateSubscriptionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/CreateSubscriptionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateSubscriptionOutput: ...
     @property
     def domain_id(self) -> str: ...
     @property
@@ -295,6 +301,8 @@ class CreateSubscriptionOutput:
 @final
 class DeactivateSubscriptionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DeactivateSubscriptionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeactivateSubscriptionOutput: ...
     @property
     def subscription(self) -> SubscriptionDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -302,6 +310,8 @@ class DeactivateSubscriptionOutput:
 @final
 class DeleteDomainOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DeleteDomainOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteDomainOutput: ...
     @property
     def domain_id(self) -> str: ...
     @property
@@ -313,6 +323,8 @@ class DeleteDomainOutput:
 @final
 class GetDomainOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/GetDomainOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDomainOutput: ...
     @property
     def domain_id(self) -> str: ...
     @property
@@ -338,6 +350,8 @@ class GetDomainOutput:
 @final
 class GetMedicalScribeListeningSessionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/GetMedicalScribeListeningSessionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetMedicalScribeListeningSessionOutput: ...
     @property
     def medical_scribe_listening_session_details(self) -> MedicalScribeListeningSessionDetails | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -345,6 +359,8 @@ class GetMedicalScribeListeningSessionOutput:
 @final
 class GetPatientInsightsJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/GetPatientInsightsJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetPatientInsightsJobOutput: ...
     @property
     def job_id(self) -> str: ...
     @property
@@ -376,6 +392,8 @@ class GetPatientInsightsJobOutput:
 @final
 class GetSubscriptionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/GetSubscriptionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetSubscriptionOutput: ...
     @property
     def subscription(self) -> SubscriptionDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -383,6 +401,8 @@ class GetSubscriptionOutput:
 @final
 class ListDomainsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ListDomainsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListDomainsOutput: ...
     @property
     def domains(self) -> list[DomainSummary]: ...
     @property
@@ -392,6 +412,8 @@ class ListDomainsOutput:
 @final
 class ListSubscriptionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ListSubscriptionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListSubscriptionsOutput: ...
     @property
     def subscriptions(self) -> list[SubscriptionDescription]: ...
     @property
@@ -401,6 +423,8 @@ class ListSubscriptionsOutput:
 @final
 class ListTagsForResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ListTagsForResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTagsForResourceOutput: ...
     @property
     def tags(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -408,6 +432,8 @@ class ListTagsForResourceOutput:
 @final
 class StartPatientInsightsJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/StartPatientInsightsJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StartPatientInsightsJobOutput: ...
     @property
     def job_arn(self) -> str: ...
     @property

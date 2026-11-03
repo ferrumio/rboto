@@ -642,6 +642,8 @@ class VpcLink:
 @final
 class CreateApiKeyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateApiKeyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateApiKeyOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -667,6 +669,8 @@ class CreateApiKeyOutput:
 @final
 class CreateAuthorizerOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateAuthorizerOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateAuthorizerOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -692,6 +696,8 @@ class CreateAuthorizerOutput:
 @final
 class CreateBasePathMappingOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateBasePathMappingOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateBasePathMappingOutput: ...
     @property
     def base_path(self) -> str | None: ...
     @property
@@ -703,6 +709,8 @@ class CreateBasePathMappingOutput:
 @final
 class CreateDeploymentOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateDeploymentOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateDeploymentOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -716,6 +724,8 @@ class CreateDeploymentOutput:
 @final
 class CreateDocumentationPartOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateDocumentationPartOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateDocumentationPartOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -727,6 +737,8 @@ class CreateDocumentationPartOutput:
 @final
 class CreateDocumentationVersionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateDocumentationVersionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateDocumentationVersionOutput: ...
     @property
     def version(self) -> str | None: ...
     @property
@@ -738,6 +750,8 @@ class CreateDocumentationVersionOutput:
 @final
 class CreateDomainNameOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateDomainNameOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateDomainNameOutput: ...
     @property
     def domain_name(self) -> str | None: ...
     @property
@@ -789,6 +803,8 @@ class CreateDomainNameOutput:
 @final
 class CreateDomainNameAccessAssociationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateDomainNameAccessAssociationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateDomainNameAccessAssociationOutput: ...
     @property
     def domain_name_access_association_arn(self) -> str | None: ...
     @property
@@ -804,6 +820,8 @@ class CreateDomainNameAccessAssociationOutput:
 @final
 class CreateModelOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateModelOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateModelOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -819,6 +837,8 @@ class CreateModelOutput:
 @final
 class CreateRequestValidatorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateRequestValidatorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateRequestValidatorOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -832,6 +852,8 @@ class CreateRequestValidatorOutput:
 @final
 class CreateResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateResourceOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -847,6 +869,8 @@ class CreateResourceOutput:
 @final
 class CreateRestApiOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateRestApiOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateRestApiOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -888,6 +912,8 @@ class CreateRestApiOutput:
 @final
 class CreateStageOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateStageOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateStageOutput: ...
     @property
     def deployment_id(self) -> str | None: ...
     @property
@@ -927,6 +953,8 @@ class CreateStageOutput:
 @final
 class CreateUsagePlanOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateUsagePlanOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateUsagePlanOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -948,6 +976,8 @@ class CreateUsagePlanOutput:
 @final
 class CreateUsagePlanKeyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateUsagePlanKeyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateUsagePlanKeyOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -961,6 +991,8 @@ class CreateUsagePlanKeyOutput:
 @final
 class CreateVpcLinkOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateVpcLinkOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateVpcLinkOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -980,6 +1012,8 @@ class CreateVpcLinkOutput:
 @final
 class GenerateClientCertificateOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GenerateClientCertificateOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GenerateClientCertificateOutput: ...
     @property
     def client_certificate_id(self) -> str | None: ...
     @property
@@ -997,6 +1031,8 @@ class GenerateClientCertificateOutput:
 @final
 class GetAccountOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetAccountOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAccountOutput: ...
     @property
     def cloudwatch_role_arn(self) -> str | None: ...
     @property
@@ -1010,6 +1046,8 @@ class GetAccountOutput:
 @final
 class GetApiKeyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetApiKeyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetApiKeyOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -1035,6 +1073,8 @@ class GetApiKeyOutput:
 @final
 class GetApiKeysOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetApiKeysOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetApiKeysOutput: ...
     @property
     def warnings(self) -> list[str] | None: ...
     @property
@@ -1046,6 +1086,8 @@ class GetApiKeysOutput:
 @final
 class GetAuthorizerOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetAuthorizerOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAuthorizerOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -1071,6 +1113,8 @@ class GetAuthorizerOutput:
 @final
 class GetAuthorizersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetAuthorizersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAuthorizersOutput: ...
     @property
     def items(self) -> list[Authorizer] | None: ...
     @property
@@ -1080,6 +1124,8 @@ class GetAuthorizersOutput:
 @final
 class GetBasePathMappingOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetBasePathMappingOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetBasePathMappingOutput: ...
     @property
     def base_path(self) -> str | None: ...
     @property
@@ -1091,6 +1137,8 @@ class GetBasePathMappingOutput:
 @final
 class GetBasePathMappingsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetBasePathMappingsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetBasePathMappingsOutput: ...
     @property
     def items(self) -> list[BasePathMapping] | None: ...
     @property
@@ -1100,6 +1148,8 @@ class GetBasePathMappingsOutput:
 @final
 class GetClientCertificateOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetClientCertificateOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetClientCertificateOutput: ...
     @property
     def client_certificate_id(self) -> str | None: ...
     @property
@@ -1117,6 +1167,8 @@ class GetClientCertificateOutput:
 @final
 class GetClientCertificatesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetClientCertificatesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetClientCertificatesOutput: ...
     @property
     def items(self) -> list[ClientCertificate] | None: ...
     @property
@@ -1126,6 +1178,8 @@ class GetClientCertificatesOutput:
 @final
 class GetDeploymentOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDeploymentOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDeploymentOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -1139,6 +1193,8 @@ class GetDeploymentOutput:
 @final
 class GetDeploymentsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDeploymentsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDeploymentsOutput: ...
     @property
     def items(self) -> list[Deployment] | None: ...
     @property
@@ -1148,6 +1204,8 @@ class GetDeploymentsOutput:
 @final
 class GetDocumentationPartOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDocumentationPartOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDocumentationPartOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -1159,6 +1217,8 @@ class GetDocumentationPartOutput:
 @final
 class GetDocumentationPartsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDocumentationPartsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDocumentationPartsOutput: ...
     @property
     def items(self) -> list[DocumentationPart] | None: ...
     @property
@@ -1168,6 +1228,8 @@ class GetDocumentationPartsOutput:
 @final
 class GetDocumentationVersionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDocumentationVersionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDocumentationVersionOutput: ...
     @property
     def version(self) -> str | None: ...
     @property
@@ -1179,6 +1241,8 @@ class GetDocumentationVersionOutput:
 @final
 class GetDocumentationVersionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDocumentationVersionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDocumentationVersionsOutput: ...
     @property
     def items(self) -> list[DocumentationVersion] | None: ...
     @property
@@ -1188,6 +1252,8 @@ class GetDocumentationVersionsOutput:
 @final
 class GetDomainNameOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDomainNameOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDomainNameOutput: ...
     @property
     def domain_name(self) -> str | None: ...
     @property
@@ -1239,6 +1305,8 @@ class GetDomainNameOutput:
 @final
 class GetDomainNameAccessAssociationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDomainNameAccessAssociationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDomainNameAccessAssociationsOutput: ...
     @property
     def items(self) -> list[DomainNameAccessAssociation] | None: ...
     @property
@@ -1248,6 +1316,8 @@ class GetDomainNameAccessAssociationsOutput:
 @final
 class GetDomainNamesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDomainNamesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDomainNamesOutput: ...
     @property
     def items(self) -> list[DomainName] | None: ...
     @property
@@ -1257,6 +1327,8 @@ class GetDomainNamesOutput:
 @final
 class GetExportOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetExportOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetExportOutput: ...
     @property
     def content_type(self) -> str | None: ...
     @property
@@ -1268,6 +1340,8 @@ class GetExportOutput:
 @final
 class GetGatewayResponseOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetGatewayResponseOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetGatewayResponseOutput: ...
     @property
     def response_type(self) -> _types.GatewayResponseTypeOutput | None: ...
     @property
@@ -1283,6 +1357,8 @@ class GetGatewayResponseOutput:
 @final
 class GetGatewayResponsesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetGatewayResponsesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetGatewayResponsesOutput: ...
     @property
     def items(self) -> list[GatewayResponse] | None: ...
     @property
@@ -1292,6 +1368,8 @@ class GetGatewayResponsesOutput:
 @final
 class GetIntegrationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetIntegrationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetIntegrationOutput: ...
     @property
     def type(self) -> _types.IntegrationTypeOutput | None: ...
     @property
@@ -1331,6 +1409,8 @@ class GetIntegrationOutput:
 @final
 class GetIntegrationResponseOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetIntegrationResponseOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetIntegrationResponseOutput: ...
     @property
     def status_code(self) -> str | None: ...
     @property
@@ -1346,6 +1426,8 @@ class GetIntegrationResponseOutput:
 @final
 class GetMethodOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetMethodOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetMethodOutput: ...
     @property
     def http_method(self) -> str | None: ...
     @property
@@ -1373,6 +1455,8 @@ class GetMethodOutput:
 @final
 class GetMethodResponseOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetMethodResponseOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetMethodResponseOutput: ...
     @property
     def status_code(self) -> str | None: ...
     @property
@@ -1384,6 +1468,8 @@ class GetMethodResponseOutput:
 @final
 class GetModelOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetModelOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetModelOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -1399,6 +1485,8 @@ class GetModelOutput:
 @final
 class GetModelTemplateOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetModelTemplateOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetModelTemplateOutput: ...
     @property
     def value(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1406,6 +1494,8 @@ class GetModelTemplateOutput:
 @final
 class GetModelsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetModelsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetModelsOutput: ...
     @property
     def items(self) -> list[Model] | None: ...
     @property
@@ -1415,6 +1505,8 @@ class GetModelsOutput:
 @final
 class GetRequestValidatorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetRequestValidatorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetRequestValidatorOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -1428,6 +1520,8 @@ class GetRequestValidatorOutput:
 @final
 class GetRequestValidatorsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetRequestValidatorsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetRequestValidatorsOutput: ...
     @property
     def items(self) -> list[RequestValidator] | None: ...
     @property
@@ -1437,6 +1531,8 @@ class GetRequestValidatorsOutput:
 @final
 class GetResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetResourceOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -1452,6 +1548,8 @@ class GetResourceOutput:
 @final
 class GetResourcesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetResourcesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetResourcesOutput: ...
     @property
     def items(self) -> list[Resource] | None: ...
     @property
@@ -1461,6 +1559,8 @@ class GetResourcesOutput:
 @final
 class GetRestApiOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetRestApiOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetRestApiOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -1502,6 +1602,8 @@ class GetRestApiOutput:
 @final
 class GetRestApisOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetRestApisOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetRestApisOutput: ...
     @property
     def items(self) -> list[RestApi] | None: ...
     @property
@@ -1511,6 +1613,8 @@ class GetRestApisOutput:
 @final
 class GetSdkOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetSdkOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetSdkOutput: ...
     @property
     def content_type(self) -> str | None: ...
     @property
@@ -1522,6 +1626,8 @@ class GetSdkOutput:
 @final
 class GetSdkTypeOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetSdkTypeOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetSdkTypeOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -1535,6 +1641,8 @@ class GetSdkTypeOutput:
 @final
 class GetSdkTypesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetSdkTypesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetSdkTypesOutput: ...
     @property
     def items(self) -> list[SdkType] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1542,6 +1650,8 @@ class GetSdkTypesOutput:
 @final
 class GetStageOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetStageOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetStageOutput: ...
     @property
     def deployment_id(self) -> str | None: ...
     @property
@@ -1581,6 +1691,8 @@ class GetStageOutput:
 @final
 class GetStagesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetStagesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetStagesOutput: ...
     @property
     def item(self) -> list[Stage] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1588,6 +1700,8 @@ class GetStagesOutput:
 @final
 class GetTagsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetTagsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetTagsOutput: ...
     @property
     def tags(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1595,6 +1709,8 @@ class GetTagsOutput:
 @final
 class GetUsageOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetUsageOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetUsageOutput: ...
     @property
     def usage_plan_id(self) -> str | None: ...
     @property
@@ -1610,6 +1726,8 @@ class GetUsageOutput:
 @final
 class GetUsagePlanOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetUsagePlanOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetUsagePlanOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -1631,6 +1749,8 @@ class GetUsagePlanOutput:
 @final
 class GetUsagePlanKeyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetUsagePlanKeyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetUsagePlanKeyOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -1644,6 +1764,8 @@ class GetUsagePlanKeyOutput:
 @final
 class GetUsagePlanKeysOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetUsagePlanKeysOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetUsagePlanKeysOutput: ...
     @property
     def items(self) -> list[UsagePlanKey] | None: ...
     @property
@@ -1653,6 +1775,8 @@ class GetUsagePlanKeysOutput:
 @final
 class GetUsagePlansOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetUsagePlansOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetUsagePlansOutput: ...
     @property
     def items(self) -> list[UsagePlan] | None: ...
     @property
@@ -1662,6 +1786,8 @@ class GetUsagePlansOutput:
 @final
 class GetVpcLinkOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetVpcLinkOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetVpcLinkOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -1681,6 +1807,8 @@ class GetVpcLinkOutput:
 @final
 class GetVpcLinksOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetVpcLinksOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetVpcLinksOutput: ...
     @property
     def items(self) -> list[VpcLink] | None: ...
     @property
@@ -1690,6 +1818,8 @@ class GetVpcLinksOutput:
 @final
 class ImportApiKeysOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ImportApiKeysOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ImportApiKeysOutput: ...
     @property
     def ids(self) -> list[str] | None: ...
     @property
@@ -1699,6 +1829,8 @@ class ImportApiKeysOutput:
 @final
 class ImportDocumentationPartsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ImportDocumentationPartsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ImportDocumentationPartsOutput: ...
     @property
     def ids(self) -> list[str] | None: ...
     @property
@@ -1708,6 +1840,8 @@ class ImportDocumentationPartsOutput:
 @final
 class ImportRestApiOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ImportRestApiOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ImportRestApiOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -1749,6 +1883,8 @@ class ImportRestApiOutput:
 @final
 class PutGatewayResponseOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutGatewayResponseOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutGatewayResponseOutput: ...
     @property
     def response_type(self) -> _types.GatewayResponseTypeOutput | None: ...
     @property
@@ -1764,6 +1900,8 @@ class PutGatewayResponseOutput:
 @final
 class PutIntegrationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutIntegrationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutIntegrationOutput: ...
     @property
     def type(self) -> _types.IntegrationTypeOutput | None: ...
     @property
@@ -1803,6 +1941,8 @@ class PutIntegrationOutput:
 @final
 class PutIntegrationResponseOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutIntegrationResponseOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutIntegrationResponseOutput: ...
     @property
     def status_code(self) -> str | None: ...
     @property
@@ -1818,6 +1958,8 @@ class PutIntegrationResponseOutput:
 @final
 class PutMethodOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutMethodOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutMethodOutput: ...
     @property
     def http_method(self) -> str | None: ...
     @property
@@ -1845,6 +1987,8 @@ class PutMethodOutput:
 @final
 class PutMethodResponseOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutMethodResponseOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutMethodResponseOutput: ...
     @property
     def status_code(self) -> str | None: ...
     @property
@@ -1856,6 +2000,8 @@ class PutMethodResponseOutput:
 @final
 class PutRestApiOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutRestApiOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutRestApiOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -1897,6 +2043,8 @@ class PutRestApiOutput:
 @final
 class TestInvokeAuthorizerOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/TestInvokeAuthorizerOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> TestInvokeAuthorizerOutput: ...
     @property
     def client_status(self) -> int: ...
     @property
@@ -1916,6 +2064,8 @@ class TestInvokeAuthorizerOutput:
 @final
 class TestInvokeMethodOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/TestInvokeMethodOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> TestInvokeMethodOutput: ...
     @property
     def status(self) -> int: ...
     @property
@@ -1933,6 +2083,8 @@ class TestInvokeMethodOutput:
 @final
 class UpdateAccountOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateAccountOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateAccountOutput: ...
     @property
     def cloudwatch_role_arn(self) -> str | None: ...
     @property
@@ -1946,6 +2098,8 @@ class UpdateAccountOutput:
 @final
 class UpdateApiKeyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateApiKeyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateApiKeyOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -1971,6 +2125,8 @@ class UpdateApiKeyOutput:
 @final
 class UpdateAuthorizerOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateAuthorizerOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateAuthorizerOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -1996,6 +2152,8 @@ class UpdateAuthorizerOutput:
 @final
 class UpdateBasePathMappingOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateBasePathMappingOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateBasePathMappingOutput: ...
     @property
     def base_path(self) -> str | None: ...
     @property
@@ -2007,6 +2165,8 @@ class UpdateBasePathMappingOutput:
 @final
 class UpdateClientCertificateOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateClientCertificateOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateClientCertificateOutput: ...
     @property
     def client_certificate_id(self) -> str | None: ...
     @property
@@ -2024,6 +2184,8 @@ class UpdateClientCertificateOutput:
 @final
 class UpdateDeploymentOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateDeploymentOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateDeploymentOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -2037,6 +2199,8 @@ class UpdateDeploymentOutput:
 @final
 class UpdateDocumentationPartOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateDocumentationPartOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateDocumentationPartOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -2048,6 +2212,8 @@ class UpdateDocumentationPartOutput:
 @final
 class UpdateDocumentationVersionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateDocumentationVersionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateDocumentationVersionOutput: ...
     @property
     def version(self) -> str | None: ...
     @property
@@ -2059,6 +2225,8 @@ class UpdateDocumentationVersionOutput:
 @final
 class UpdateDomainNameOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateDomainNameOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateDomainNameOutput: ...
     @property
     def domain_name(self) -> str | None: ...
     @property
@@ -2110,6 +2278,8 @@ class UpdateDomainNameOutput:
 @final
 class UpdateGatewayResponseOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateGatewayResponseOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateGatewayResponseOutput: ...
     @property
     def response_type(self) -> _types.GatewayResponseTypeOutput | None: ...
     @property
@@ -2125,6 +2295,8 @@ class UpdateGatewayResponseOutput:
 @final
 class UpdateIntegrationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateIntegrationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateIntegrationOutput: ...
     @property
     def type(self) -> _types.IntegrationTypeOutput | None: ...
     @property
@@ -2164,6 +2336,8 @@ class UpdateIntegrationOutput:
 @final
 class UpdateIntegrationResponseOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateIntegrationResponseOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateIntegrationResponseOutput: ...
     @property
     def status_code(self) -> str | None: ...
     @property
@@ -2179,6 +2353,8 @@ class UpdateIntegrationResponseOutput:
 @final
 class UpdateMethodOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateMethodOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateMethodOutput: ...
     @property
     def http_method(self) -> str | None: ...
     @property
@@ -2206,6 +2382,8 @@ class UpdateMethodOutput:
 @final
 class UpdateMethodResponseOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateMethodResponseOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateMethodResponseOutput: ...
     @property
     def status_code(self) -> str | None: ...
     @property
@@ -2217,6 +2395,8 @@ class UpdateMethodResponseOutput:
 @final
 class UpdateModelOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateModelOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateModelOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -2232,6 +2412,8 @@ class UpdateModelOutput:
 @final
 class UpdateRequestValidatorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateRequestValidatorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateRequestValidatorOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -2245,6 +2427,8 @@ class UpdateRequestValidatorOutput:
 @final
 class UpdateResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateResourceOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -2260,6 +2444,8 @@ class UpdateResourceOutput:
 @final
 class UpdateRestApiOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateRestApiOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateRestApiOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -2301,6 +2487,8 @@ class UpdateRestApiOutput:
 @final
 class UpdateStageOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateStageOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateStageOutput: ...
     @property
     def deployment_id(self) -> str | None: ...
     @property
@@ -2340,6 +2528,8 @@ class UpdateStageOutput:
 @final
 class UpdateUsageOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateUsageOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateUsageOutput: ...
     @property
     def usage_plan_id(self) -> str | None: ...
     @property
@@ -2355,6 +2545,8 @@ class UpdateUsageOutput:
 @final
 class UpdateUsagePlanOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateUsagePlanOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateUsagePlanOutput: ...
     @property
     def id(self) -> str | None: ...
     @property
@@ -2376,6 +2568,8 @@ class UpdateUsagePlanOutput:
 @final
 class UpdateVpcLinkOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateVpcLinkOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateVpcLinkOutput: ...
     @property
     def id(self) -> str | None: ...
     @property

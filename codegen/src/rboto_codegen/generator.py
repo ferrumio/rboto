@@ -486,7 +486,21 @@ class ServiceGenerator:
             return "enum"
         raise GenerationError(f"unsupported Rust type: {rust_type}")
 
-    def _from_py(self, rust_type: str, source: str, target: str, indent: str) -> list[str]:
+    def _from_py(
+        self, rust_type: str, source: str, target: str, indent: str,
+        *, fixture: bool = False,
+    ) -> list[str]:
+        lines = self._from_py_value(rust_type, source, target, indent, fixture=fixture)
+        if fixture:
+            lines.insert(
+                0, f'{indent}rboto_core::fixture_scalar(&{source}, "{self._kind(rust_type)}")?;',
+            )
+        return lines
+
+    def _from_py_value(
+        self, rust_type: str, source: str, target: str, indent: str,
+        *, fixture: bool,
+    ) -> list[str]:
         kind = self._kind(rust_type)
         lines: list[str] = []
         if kind == "string":
@@ -502,12 +516,12 @@ class ServiceGenerator:
             inner = self._next("inner")
             if kind == "box":
                 return [
-                    *self._from_py(arguments[0], source, inner, indent),
+                    *self._from_py(arguments[0], source, inner, indent, fixture=fixture),
                     f"{indent}let {target} = Box::new({inner});",
                 ]
             return [
                 f"{indent}let {target} = if {source}.is_none() {{ None }} else {{",
-                *self._from_py(arguments[0], source, inner, indent + "    "),
+                *self._from_py(arguments[0], source, inner, indent + "    ", fixture=fixture),
                 f"{indent}    Some({inner})",
                 f"{indent}}};",
             ]
@@ -552,7 +566,10 @@ class ServiceGenerator:
             ]
         if kind in {"struct", "union"}:
             name = _crate_type_name(rust_type)
-            return [f"{indent}let {target} = {to_snake_case(name or '')}_from_py(&{source})?;"]
+            suffix = "_fixture" if fixture else ""
+            return [
+                f"{indent}let {target} = {to_snake_case(name or '')}{suffix}_from_py(&{source})?;"
+            ]
         if kind == "vec":
             arguments = _generic(rust_type, "::std::vec::Vec")
             if arguments is None or len(arguments) != 1:
@@ -569,7 +586,9 @@ class ServiceGenerator:
             )
             lines.append(f"{indent}for {iterator} in {source}.try_iter()? {{")
             lines.append(f"{indent}    let {item} = {iterator}?;")
-            lines.extend(self._from_py(item_type, item, converted, indent + "    "))
+            lines.extend(self._from_py(
+                item_type, item, converted, indent + "    ", fixture=fixture,
+            ))
             lines.append(f"{indent}    {target}.push({converted});")
             lines.append(f"{indent}}}")
             return lines
@@ -588,8 +607,12 @@ class ServiceGenerator:
                 f"{indent}let mut {target} = HashMap::with_capacity({dictionary}.len());"
             )
             lines.append(f"{indent}for ({key}, {value}) in {dictionary}.iter() {{")
-            lines.extend(self._from_py(key_type, key, converted_key, indent + "    "))
-            lines.extend(self._from_py(value_type, value, converted_value, indent + "    "))
+            lines.extend(self._from_py(
+                key_type, key, converted_key, indent + "    ", fixture=fixture,
+            ))
+            lines.extend(self._from_py(
+                value_type, value, converted_value, indent + "    ", fixture=fixture,
+            ))
             lines.append(f"{indent}    {target}.insert({converted_key}, {converted_value});")
             lines.append(f"{indent}}}")
             return lines
@@ -1054,16 +1077,110 @@ class ServiceGenerator:
         lines.extend(
             self._operation_dict_lines(operation, "self.inner", "        ", stream_owner="self")
         )
-        lines.extend(["    }", "}"])
+        lines.extend(["    }", "", self._fixture_factory(metadata), "}"])
         return "\n".join(lines)
 
-    def _struct_from_py(self, rust: RustType) -> str:
-        name = to_snake_case(rust.name)
+    def _fixture_builder(
+        self, fields: tuple[RustField, ...], rust_type: str, fallible: bool,
+        indent: str,
+    ) -> list[str]:
+        allowed = ", ".join(f'"{field.name}"' for field in fields)
+        required = ", ".join(f'"{field.name}"' for field in fields if not field.optional)
+        lines = [
+            f"{indent}rboto_core::fixture_fields(values, &[{allowed}], &[{required}])?;",
+            f"{indent}let mut builder = {rust_type}::builder();",
+        ]
+        for field in fields:
+            converted = self._next("fixture")
+            lookup = (
+                f'dict_value(values, "{field.name}")'
+                if field.optional else f'values.get_item("{field.name}")'
+            )
+            lines.append(f"{indent}if let Some(value) = {lookup}? {{")
+            lines.extend(self._from_py(
+                field.rust_type, "value", converted, indent + "    ", fixture=True,
+            ))
+            lines.append(f"{indent}    builder = builder.set_{field.name}(Some({converted}));")
+            lines.append(f"{indent}}}")
+        build = "builder.build()"
+        if fallible:
+            build += ".map_err(|error| PyValueError::new_err(error.to_string()))?"
+        lines.append(f"{indent}let mut output = {build};")
+        return lines
+
+    def _fixture_factory(self, metadata: dict[str, str]) -> str:
+        # Keep fixture-only temporaries from renumbering ordinary generated paths.
+        counter = self._counter
+        operation = self.crate.operations[metadata["operation"]]
+        lines = [
+            "    #[staticmethod]",
+            "    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {",
+            "        let values = value.cast::<PyDict>()?;",
+            *self._fixture_builder(
+                operation.output_fields, metadata["rust_type"],
+                operation.output_build_fallible, "        ",
+            ),
+        ]
+        fields: list[str] = []
+        for field in operation.output_fields:
+            if self._kind(field.rust_type) == "byte_stream":
+                lines.append(
+                    f"        let stream = std::mem::take(&mut output.{field.rust_name});"
+                )
+                constructor = (
+                    "stream.map(|stream| Py::new(py, PyByteStream::new(stream))).transpose()?"
+                    if field.optional else "Py::new(py, PyByteStream::new(stream))?"
+                )
+                lines.append(f"        let {field.name} = {constructor};")
+                fields.append(field.name)
+        inner = "output.into()" if self._shared_fields(operation.output_fields) else "output"
+        lines.extend([f"        Ok(Self {{ inner: {inner}, {', '.join(fields)} }})", "    }"])
+        self._counter = counter
+        return "\n".join(lines)
+
+    def _fixture_types(self) -> tuple[RustType, ...]:
+        """Only types reachable from constructible operation Outputs need builders."""
+        names: set[str] = set()
+
+        def visit(rust_type: str) -> None:
+            rust = self._rust_type(rust_type)
+            if rust is not None:
+                if rust.name in names or self._kind(rust_type) not in {"struct", "union"}:
+                    return
+                names.add(rust.name)
+                for field in rust.fields:
+                    visit(field.rust_type)
+                for _, variant_type in rust.variant_types:
+                    visit(variant_type)
+            else:
+                for prefix in (
+                    "::std::boxed::Box", "::std::option::Option",
+                    "::std::vec::Vec", "::std::collections::HashMap",
+                ):
+                    arguments = _generic(rust_type, prefix)
+                    if arguments:
+                        for argument in arguments:
+                            visit(argument)
+
+        for metadata in self._native_output_operations():
+            for field in self.crate.operations[metadata["operation"]].output_fields:
+                visit(field.rust_type)
+        return tuple(self.crate.types[name] for name in sorted(names))
+
+    def _struct_from_py(self, rust: RustType, *, fixture: bool = False) -> str:
+        name = to_snake_case(rust.name) + ("_fixture" if fixture else "")
         lines = [
             f"fn {name}_from_py(value: &Bound<'_, PyAny>) -> PyResult<{self.rust_module}::types::{rust.name}> {{",
             "    let values = value.cast::<PyDict>()?;",
-            f"    let mut builder = {self.rust_module}::types::{rust.name}::builder();",
         ]
+        if fixture:
+            lines.extend(self._fixture_builder(
+                rust.fields, f"{self.rust_module}::types::{rust.name}",
+                rust.build_fallible, "    ",
+            ))
+            lines.extend(["    Ok(output)", "}"])
+            return "\n".join(lines)
+        lines.append(f"    let mut builder = {self.rust_module}::types::{rust.name}::builder();")
         for field in rust.fields:
             converted = self._next("converted")
             lines.append(f'    if let Some(value) = dict_value(values, "{field.name}")? {{')
@@ -1153,13 +1270,21 @@ class ServiceGenerator:
             return "f64"
         raise GenerationError(f"cannot map Smithy target to Rust: {target} ({shape.kind})")
 
-    def _union_from_py(self, rust: RustType, shape: SmithyShape) -> str:
-        fn_name = to_snake_case(rust.name)
+    def _union_from_py(
+        self, rust: RustType, shape: SmithyShape, *, fixture: bool = False,
+    ) -> str:
+        fn_name = to_snake_case(rust.name) + ("_fixture" if fixture else "")
         lines = [
             f"fn {fn_name}_from_py(value: &Bound<'_, PyAny>) -> PyResult<{self.rust_module}::types::{rust.name}> {{",
             "    let values = value.cast::<PyDict>()?;",
             '    if values.len() != 1 { return Err(PyValueError::new_err("union requires exactly one variant")); }',
         ]
+        if fixture:
+            lines.extend([
+                '    if values.contains("unknown")? {',
+                '        return Err(PyValueError::new_err("unknown union fixtures require an existing native Output"));',
+                "    }",
+            ])
         for member in shape.members:
             if (
                 self.service.shapes.get(member.target) is not None
@@ -1189,8 +1314,14 @@ class ServiceGenerator:
                 continue
             if rust_type is None:
                 raise GenerationError(f"missing Rust union variant: {rust.name}.{variant}")
-            lines.append(f'    if let Some(value) = dict_value(values, "{member.rust_name}")? {{')
-            lines.extend(self._from_py(rust_type, "value", converted, "        "))
+            lookup = (
+                f'values.get_item("{member.rust_name}")'
+                if fixture else f'dict_value(values, "{member.rust_name}")'
+            )
+            lines.append(f'    if let Some(value) = {lookup}? {{')
+            lines.extend(self._from_py(
+                rust_type, "value", converted, "        ", fixture=fixture,
+            ))
             lines.append(
                 f"        return Ok({self.rust_module}::types::{rust.name}::{variant}({converted}));"
             )
@@ -1432,6 +1563,14 @@ class ServiceGenerator:
         )
         native_classes = [f"Py{rust.name}" for rust in native_structs]
         native_classes.extend(metadata["rust_class"] for metadata in native_outputs)
+        counter = self._counter
+        for rust in self._fixture_types():
+            shape = self._shape_for_rust(rust.name)
+            if rust.is_struct:
+                converters.extend([self._struct_from_py(rust, fixture=True), ""])
+            elif shape is not None and shape.kind == "union":
+                converters.extend([self._union_from_py(rust, shape, fixture=True), ""])
+        self._counter = counter
         return self.templates.get_template("generated.rs.j2").render(
             converters="\n".join(converters),
             native_class_code="\n\n".join(native_class_code),
@@ -1606,6 +1745,7 @@ class ServiceGenerator:
             classes.append(
                 {
                     "name": metadata["class_name"],
+                    "fixture": True,
                     "fields": [
                         {
                             "name": _safe_parameter(field.rust_name.removeprefix("r#")),

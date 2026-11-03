@@ -410,6 +410,233 @@ fn signin_resource_based_policy_to_py(
     Ok(result.into_any().unbind())
 }
 
+fn access_token_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_signin::types::AccessToken> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["access_key_id", "secret_access_key", "session_token"],
+        &["access_key_id", "secret_access_key", "session_token"],
+    )?;
+    let mut builder = aws_sdk_signin::types::AccessToken::builder();
+    if let Some(value) = values.get_item("access_key_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_255: String = value.extract()?;
+        builder = builder.set_access_key_id(Some(fixture_255));
+    }
+    if let Some(value) = values.get_item("secret_access_key")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_256: String = value.extract()?;
+        builder = builder.set_secret_access_key(Some(fixture_256));
+    }
+    if let Some(value) = values.get_item("session_token")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_257: String = value.extract()?;
+        builder = builder.set_session_token(Some(fixture_257));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn create_o_auth2_token_response_body_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_signin::types::CreateOAuth2TokenResponseBody> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "access_token",
+            "token_type",
+            "expires_in",
+            "refresh_token",
+            "id_token",
+        ],
+        &["token_type", "expires_in", "refresh_token"],
+    )?;
+    let mut builder = aws_sdk_signin::types::CreateOAuth2TokenResponseBody::builder();
+    if let Some(value) = dict_value(values, "access_token")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_258 = access_token_fixture_from_py(&value)?;
+        builder = builder.set_access_token(Some(fixture_258));
+    }
+    if let Some(value) = values.get_item("token_type")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_259: String = value.extract()?;
+        builder = builder.set_token_type(Some(fixture_259));
+    }
+    if let Some(value) = values.get_item("expires_in")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_260: i32 = value.extract()?;
+        builder = builder.set_expires_in(Some(fixture_260));
+    }
+    if let Some(value) = values.get_item("refresh_token")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_261: String = value.extract()?;
+        builder = builder.set_refresh_token(Some(fixture_261));
+    }
+    if let Some(value) = dict_value(values, "id_token")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_262: String = value.extract()?;
+        builder = builder.set_id_token(Some(fixture_262));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn permission_statement_summary_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_signin::types::PermissionStatementSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["sid", "condition"], &["sid"])?;
+    let mut builder = aws_sdk_signin::types::PermissionStatementSummary::builder();
+    if let Some(value) = values.get_item("sid")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_263: String = value.extract()?;
+        builder = builder.set_sid(Some(fixture_263));
+    }
+    if let Some(value) = dict_value(values, "condition")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_265 = value.cast::<PyDict>()?;
+        let mut fixture_264 = HashMap::with_capacity(mapping_265.len());
+        for (key_266, value_267) in mapping_265.iter() {
+            rboto_core::fixture_scalar(&key_266, "string")?;
+            let converted_key_268: String = key_266.extract()?;
+            rboto_core::fixture_scalar(&value_267, "map")?;
+            let mapping_270 = value_267.cast::<PyDict>()?;
+            let mut converted_value_269 = HashMap::with_capacity(mapping_270.len());
+            for (key_271, value_272) in mapping_270.iter() {
+                rboto_core::fixture_scalar(&key_271, "string")?;
+                let converted_key_273: String = key_271.extract()?;
+                rboto_core::fixture_scalar(&value_272, "vec")?;
+                let mut converted_value_274 =
+                    Vec::with_capacity(value_272.cast::<PyList>().map_or(0, |items| items.len()));
+                for item_result_275 in value_272.try_iter()? {
+                    let item_276 = item_result_275?;
+                    rboto_core::fixture_scalar(&item_276, "string")?;
+                    let converted_item_277: String = item_276.extract()?;
+                    converted_value_274.push(converted_item_277);
+                }
+                converted_value_269.insert(converted_key_273, converted_value_274);
+            }
+            fixture_264.insert(converted_key_268, converted_value_269);
+        }
+        builder = builder.set_condition(Some(fixture_264));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn policy_statement_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_signin::types::PolicyStatement> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["effect", "principal", "action", "resource", "condition"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_signin::types::PolicyStatement::builder();
+    if let Some(value) = dict_value(values, "effect")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_278: String = value.extract()?;
+        builder = builder.set_effect(Some(fixture_278));
+    }
+    if let Some(value) = dict_value(values, "principal")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_280 = value.cast::<PyDict>()?;
+        let mut fixture_279 = HashMap::with_capacity(mapping_280.len());
+        for (key_281, value_282) in mapping_280.iter() {
+            rboto_core::fixture_scalar(&key_281, "string")?;
+            let converted_key_283: String = key_281.extract()?;
+            rboto_core::fixture_scalar(&value_282, "string")?;
+            let converted_value_284: String = value_282.extract()?;
+            fixture_279.insert(converted_key_283, converted_value_284);
+        }
+        builder = builder.set_principal(Some(fixture_279));
+    }
+    if let Some(value) = dict_value(values, "action")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_285 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_286 in value.try_iter()? {
+            let item_287 = item_result_286?;
+            rboto_core::fixture_scalar(&item_287, "string")?;
+            let converted_item_288: String = item_287.extract()?;
+            fixture_285.push(converted_item_288);
+        }
+        builder = builder.set_action(Some(fixture_285));
+    }
+    if let Some(value) = dict_value(values, "resource")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_289: String = value.extract()?;
+        builder = builder.set_resource(Some(fixture_289));
+    }
+    if let Some(value) = dict_value(values, "condition")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_291 = value.cast::<PyDict>()?;
+        let mut fixture_290 = HashMap::with_capacity(mapping_291.len());
+        for (key_292, value_293) in mapping_291.iter() {
+            rboto_core::fixture_scalar(&key_292, "string")?;
+            let converted_key_294: String = key_292.extract()?;
+            rboto_core::fixture_scalar(&value_293, "map")?;
+            let mapping_296 = value_293.cast::<PyDict>()?;
+            let mut converted_value_295 = HashMap::with_capacity(mapping_296.len());
+            for (key_297, value_298) in mapping_296.iter() {
+                rboto_core::fixture_scalar(&key_297, "string")?;
+                let converted_key_299: String = key_297.extract()?;
+                rboto_core::fixture_scalar(&value_298, "vec")?;
+                let mut converted_value_300 =
+                    Vec::with_capacity(value_298.cast::<PyList>().map_or(0, |items| items.len()));
+                for item_result_301 in value_298.try_iter()? {
+                    let item_302 = item_result_301?;
+                    rboto_core::fixture_scalar(&item_302, "string")?;
+                    let converted_item_303: String = item_302.extract()?;
+                    converted_value_300.push(converted_item_303);
+                }
+                converted_value_295.insert(converted_key_299, converted_value_300);
+            }
+            fixture_290.insert(converted_key_294, converted_value_295);
+        }
+        builder = builder.set_condition(Some(fixture_290));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn signin_resource_based_policy_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_signin::types::SigninResourceBasedPolicy> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["version", "statement"], &[])?;
+    let mut builder = aws_sdk_signin::types::SigninResourceBasedPolicy::builder();
+    if let Some(value) = dict_value(values, "version")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_304: String = value.extract()?;
+        builder = builder.set_version(Some(fixture_304));
+    }
+    if let Some(value) = dict_value(values, "statement")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_305 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_306 in value.try_iter()? {
+            let item_307 = item_result_306?;
+            rboto_core::fixture_scalar(&item_307, "struct")?;
+            let converted_item_308 = policy_statement_fixture_from_py(&item_307)?;
+            fixture_305.push(converted_item_308);
+        }
+        builder = builder.set_statement(Some(fixture_305));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
 #[pyclass(name = "AccessToken", module = "rboto_signin._native", frozen)]
 struct PyAccessToken {
     inner: Arc<aws_sdk_signin::types::AccessToken>,
@@ -839,6 +1066,23 @@ impl PyOperationCreateOAuth2TokenOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["token_output"], &[])?;
+        let mut builder =
+            aws_sdk_signin::operation::create_o_auth2_token::CreateOAuth2TokenOutput::builder();
+        if let Some(value) = dict_value(values, "token_output")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_190 = create_o_auth2_token_response_body_fixture_from_py(&value)?;
+            builder = builder.set_token_output(Some(fixture_190));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -879,6 +1123,36 @@ impl PyOperationCreateOAuth2TokenWithIAMOutput {
         let converted_195 = (&self.inner.expires_in).to_owned().into_py_any(py)?;
         result.set_item("expires_in", converted_195)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["access_token", "token_type", "expires_in"],
+            &["access_token", "token_type", "expires_in"],
+        )?;
+        let mut builder = aws_sdk_signin::operation::create_o_auth2_token_with_iam::CreateOAuth2TokenWithIamOutput::builder();
+        if let Some(value) = values.get_item("access_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_196: String = value.extract()?;
+            builder = builder.set_access_token(Some(fixture_196));
+        }
+        if let Some(value) = values.get_item("token_type")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_197: String = value.extract()?;
+            builder = builder.set_token_type(Some(fixture_197));
+        }
+        if let Some(value) = values.get_item("expires_in")? {
+            rboto_core::fixture_scalar(&value, "i32")?;
+            let fixture_198: i32 = value.extract()?;
+            builder = builder.set_expires_in(Some(fixture_198));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 
@@ -925,6 +1199,36 @@ impl PyOperationDeleteConsoleAuthorizationConfigurationOutput {
         result.set_item("console_authorization_enabled", converted_201)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["target_id", "scope", "console_authorization_enabled"],
+            &["target_id", "scope", "console_authorization_enabled"],
+        )?;
+        let mut builder = aws_sdk_signin::operation::delete_console_authorization_configuration::DeleteConsoleAuthorizationConfigurationOutput::builder();
+        if let Some(value) = values.get_item("target_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_202: String = value.extract()?;
+            builder = builder.set_target_id(Some(fixture_202));
+        }
+        if let Some(value) = values.get_item("scope")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_203: String = value.extract()?;
+            builder = builder.set_scope(Some(fixture_203));
+        }
+        if let Some(value) = values.get_item("console_authorization_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_204: bool = value.extract()?;
+            builder = builder.set_console_authorization_enabled(Some(fixture_204));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -941,6 +1245,15 @@ impl PyOperationDeleteResourcePermissionStatementOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_signin::operation::delete_resource_permission_statement::DeleteResourcePermissionStatementOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -986,6 +1299,36 @@ impl PyOperationGetConsoleAuthorizationConfigurationOutput {
             .into_py_any(py)?;
         result.set_item("console_authorization_enabled", converted_207)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["target_id", "scope", "console_authorization_enabled"],
+            &["target_id", "scope", "console_authorization_enabled"],
+        )?;
+        let mut builder = aws_sdk_signin::operation::get_console_authorization_configuration::GetConsoleAuthorizationConfigurationOutput::builder();
+        if let Some(value) = values.get_item("target_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_208: String = value.extract()?;
+            builder = builder.set_target_id(Some(fixture_208));
+        }
+        if let Some(value) = values.get_item("scope")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_209: String = value.extract()?;
+            builder = builder.set_scope(Some(fixture_209));
+        }
+        if let Some(value) = values.get_item("console_authorization_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_210: bool = value.extract()?;
+            builder = builder.set_console_authorization_enabled(Some(fixture_210));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 
@@ -1045,6 +1388,23 @@ impl PyOperationGetResourcePolicyOutput {
             result.set_item("signin_resource_based_policy", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["signin_resource_based_policy"], &[])?;
+        let mut builder =
+            aws_sdk_signin::operation::get_resource_policy::GetResourcePolicyOutput::builder();
+        if let Some(value) = dict_value(values, "signin_resource_based_policy")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_210 = signin_resource_based_policy_fixture_from_py(&value)?;
+            builder = builder.set_signin_resource_based_policy(Some(fixture_210));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -1279,6 +1639,106 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "active",
+                "client_id",
+                "user_id",
+                "token_type",
+                "exp",
+                "iat",
+                "nbf",
+                "sub",
+                "aud",
+                "iss",
+                "jti",
+                "account_id",
+                "signin_session",
+                "resource",
+            ],
+            &["active"],
+        )?;
+        let mut builder = aws_sdk_signin::operation::introspect_o_auth2_token_with_iam::IntrospectOAuth2TokenWithIamOutput::builder();
+        if let Some(value) = values.get_item("active")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_238: bool = value.extract()?;
+            builder = builder.set_active(Some(fixture_238));
+        }
+        if let Some(value) = dict_value(values, "client_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_239: String = value.extract()?;
+            builder = builder.set_client_id(Some(fixture_239));
+        }
+        if let Some(value) = dict_value(values, "user_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_240: String = value.extract()?;
+            builder = builder.set_user_id(Some(fixture_240));
+        }
+        if let Some(value) = dict_value(values, "token_type")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_241: String = value.extract()?;
+            builder = builder.set_token_type(Some(fixture_241));
+        }
+        if let Some(value) = dict_value(values, "exp")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_242: i64 = value.extract()?;
+            builder = builder.set_exp(Some(fixture_242));
+        }
+        if let Some(value) = dict_value(values, "iat")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_243: i64 = value.extract()?;
+            builder = builder.set_iat(Some(fixture_243));
+        }
+        if let Some(value) = dict_value(values, "nbf")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_244: i64 = value.extract()?;
+            builder = builder.set_nbf(Some(fixture_244));
+        }
+        if let Some(value) = dict_value(values, "sub")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_245: String = value.extract()?;
+            builder = builder.set_sub(Some(fixture_245));
+        }
+        if let Some(value) = dict_value(values, "aud")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_246: String = value.extract()?;
+            builder = builder.set_aud(Some(fixture_246));
+        }
+        if let Some(value) = dict_value(values, "iss")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_247: String = value.extract()?;
+            builder = builder.set_iss(Some(fixture_247));
+        }
+        if let Some(value) = dict_value(values, "jti")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_248: String = value.extract()?;
+            builder = builder.set_jti(Some(fixture_248));
+        }
+        if let Some(value) = dict_value(values, "account_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_249: String = value.extract()?;
+            builder = builder.set_account_id(Some(fixture_249));
+        }
+        if let Some(value) = dict_value(values, "signin_session")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_250: String = value.extract()?;
+            builder = builder.set_signin_session(Some(fixture_250));
+        }
+        if let Some(value) = dict_value(values, "resource")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_251: String = value.extract()?;
+            builder = builder.set_resource(Some(fixture_251));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -1352,6 +1812,40 @@ impl PyOperationListResourcePermissionStatementsOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["permission_statements", "next_token"],
+            &["permission_statements"],
+        )?;
+        let mut builder = aws_sdk_signin::operation::list_resource_permission_statements::ListResourcePermissionStatementsOutput::builder();
+        if let Some(value) = values.get_item("permission_statements")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_247 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_248 in value.try_iter()? {
+                let item_249 = item_result_248?;
+                rboto_core::fixture_scalar(&item_249, "struct")?;
+                let converted_item_250 = permission_statement_summary_fixture_from_py(&item_249)?;
+                fixture_247.push(converted_item_250);
+            }
+            builder = builder.set_permission_statements(Some(fixture_247));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_251: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_251));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -1397,6 +1891,36 @@ impl PyOperationPutConsoleAuthorizationConfigurationOutput {
         result.set_item("console_authorization_enabled", converted_252)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["target_id", "scope", "console_authorization_enabled"],
+            &["target_id", "scope", "console_authorization_enabled"],
+        )?;
+        let mut builder = aws_sdk_signin::operation::put_console_authorization_configuration::PutConsoleAuthorizationConfigurationOutput::builder();
+        if let Some(value) = values.get_item("target_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_253: String = value.extract()?;
+            builder = builder.set_target_id(Some(fixture_253));
+        }
+        if let Some(value) = values.get_item("scope")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_254: String = value.extract()?;
+            builder = builder.set_scope(Some(fixture_254));
+        }
+        if let Some(value) = values.get_item("console_authorization_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_255: bool = value.extract()?;
+            builder = builder.set_console_authorization_enabled(Some(fixture_255));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -1422,6 +1946,22 @@ impl PyOperationPutResourcePermissionStatementOutput {
         result.set_item("statement_id", converted_254)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["statement_id"], &["statement_id"])?;
+        let mut builder = aws_sdk_signin::operation::put_resource_permission_statement::PutResourcePermissionStatementOutput::builder();
+        if let Some(value) = values.get_item("statement_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_255: String = value.extract()?;
+            builder = builder.set_statement_id(Some(fixture_255));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -1438,6 +1978,15 @@ impl PyOperationRevokeOAuth2TokenWithIAMOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_signin::operation::revoke_o_auth2_token_with_iam::RevokeOAuth2TokenWithIamOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 

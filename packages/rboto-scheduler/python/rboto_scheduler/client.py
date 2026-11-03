@@ -26,6 +26,23 @@ class EventBridgeSchedulerClient:
 
     logger_name = "rboto.scheduler"
 
+    @staticmethod
+    def _stub_operations() -> dict[str, str]:
+        return {
+            "create_schedule": "CreateSchedule",
+            "create_schedule_group": "CreateScheduleGroup",
+            "delete_schedule": "DeleteSchedule",
+            "delete_schedule_group": "DeleteScheduleGroup",
+            "get_schedule": "GetSchedule",
+            "get_schedule_group": "GetScheduleGroup",
+            "list_schedule_groups": "ListScheduleGroups",
+            "list_schedules": "ListSchedules",
+            "list_tags_for_resource": "ListTagsForResource",
+            "tag_resource": "TagResource",
+            "untag_resource": "UntagResource",
+            "update_schedule": "UpdateSchedule",
+        }
+
     def __init__(
         self,
         *,

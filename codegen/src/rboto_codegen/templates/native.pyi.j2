@@ -25,7 +25,9 @@ class {{ stream.receiver_class }}:
 
 {% for class in native_classes %}@final
 class {{ class.name }}:
-{% for field in class.fields %}    @property
+{% if class.fixture | default(false) %}    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> {{ class.name }}: ...
+{% endif %}{% for field in class.fields %}    @property
     def {{ field.name }}(self) -> {{ field.annotation }}: ...
 {% endfor %}    def to_dict(self) -> dict[str, object]: ...
 

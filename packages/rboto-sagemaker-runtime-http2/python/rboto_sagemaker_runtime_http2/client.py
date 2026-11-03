@@ -21,6 +21,12 @@ class SageMakerRuntimeHTTP2Client:
 
     logger_name = "rboto.sagemaker-runtime-http2"
 
+    @staticmethod
+    def _stub_operations() -> dict[str, str]:
+        return {
+            "invoke_endpoint_with_bidirectional_stream": "InvokeEndpointWithBidirectionalStream",
+        }
+
     def __init__(
         self,
         *,

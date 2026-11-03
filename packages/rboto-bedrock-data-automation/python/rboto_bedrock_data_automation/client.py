@@ -45,6 +45,38 @@ class BedrockDataAutomationClient:
 
     logger_name = "rboto.bedrock-data-automation"
 
+    @staticmethod
+    def _stub_operations() -> dict[str, str]:
+        return {
+            "copy_blueprint_stage": "CopyBlueprintStage",
+            "create_blueprint": "CreateBlueprint",
+            "create_blueprint_version": "CreateBlueprintVersion",
+            "create_data_automation_library": "CreateDataAutomationLibrary",
+            "create_data_automation_project": "CreateDataAutomationProject",
+            "delete_blueprint": "DeleteBlueprint",
+            "delete_data_automation_library": "DeleteDataAutomationLibrary",
+            "delete_data_automation_project": "DeleteDataAutomationProject",
+            "get_blueprint": "GetBlueprint",
+            "get_blueprint_optimization_status": "GetBlueprintOptimizationStatus",
+            "get_data_automation_library": "GetDataAutomationLibrary",
+            "get_data_automation_library_entity": "GetDataAutomationLibraryEntity",
+            "get_data_automation_library_ingestion_job": "GetDataAutomationLibraryIngestionJob",
+            "get_data_automation_project": "GetDataAutomationProject",
+            "invoke_blueprint_optimization_async": "InvokeBlueprintOptimizationAsync",
+            "invoke_data_automation_library_ingestion_job": "InvokeDataAutomationLibraryIngestionJob",
+            "list_blueprints": "ListBlueprints",
+            "list_data_automation_libraries": "ListDataAutomationLibraries",
+            "list_data_automation_library_entities": "ListDataAutomationLibraryEntities",
+            "list_data_automation_library_ingestion_jobs": "ListDataAutomationLibraryIngestionJobs",
+            "list_data_automation_projects": "ListDataAutomationProjects",
+            "list_tags_for_resource": "ListTagsForResource",
+            "tag_resource": "TagResource",
+            "untag_resource": "UntagResource",
+            "update_blueprint": "UpdateBlueprint",
+            "update_data_automation_library": "UpdateDataAutomationLibrary",
+            "update_data_automation_project": "UpdateDataAutomationProject",
+        }
+
     def __init__(
         self,
         *,

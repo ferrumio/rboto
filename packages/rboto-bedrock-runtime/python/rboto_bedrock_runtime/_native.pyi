@@ -483,6 +483,8 @@ class TokenUsage:
 @final
 class ApplyGuardrailOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ApplyGuardrailOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ApplyGuardrailOutput: ...
     @property
     def usage(self) -> GuardrailUsage | None: ...
     @property
@@ -500,6 +502,8 @@ class ApplyGuardrailOutput:
 @final
 class ConverseOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ConverseOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ConverseOutput: ...
     @property
     def output(self) -> _types.ConverseValueOutput | None: ...
     @property
@@ -521,6 +525,8 @@ class ConverseOutput:
 @final
 class CountTokensOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CountTokensOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CountTokensOutput: ...
     @property
     def input_tokens(self) -> int: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -528,6 +534,8 @@ class CountTokensOutput:
 @final
 class GetAsyncInvokeOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GetAsyncInvokeOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAsyncInvokeOutput: ...
     @property
     def invocation_arn(self) -> str: ...
     @property
@@ -551,6 +559,8 @@ class GetAsyncInvokeOutput:
 @final
 class InvokeGuardrailChecksOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/InvokeGuardrailChecksOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> InvokeGuardrailChecksOutput: ...
     @property
     def results(self) -> GuardrailChecksResults | None: ...
     @property
@@ -560,6 +570,8 @@ class InvokeGuardrailChecksOutput:
 @final
 class InvokeModelOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/InvokeModelOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> InvokeModelOutput: ...
     @property
     def body(self) -> bytes: ...
     @property
@@ -573,6 +585,8 @@ class InvokeModelOutput:
 @final
 class ListAsyncInvokesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ListAsyncInvokesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListAsyncInvokesOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -582,6 +596,8 @@ class ListAsyncInvokesOutput:
 @final
 class StartAsyncInvokeOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/StartAsyncInvokeOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StartAsyncInvokeOutput: ...
     @property
     def invocation_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...

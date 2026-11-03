@@ -25,6 +25,12 @@ class {{ client_class }}:
 
     logger_name = "rboto.{{ service_id }}"
 
+    @staticmethod
+    def _stub_operations() -> dict[str, str]:
+        return {
+{% for method in methods %}            "{{ method.name }}": "{{ method.operation_name }}",
+{% endfor %}        }
+
     def __init__(
         self,
         *,

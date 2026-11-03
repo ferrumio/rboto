@@ -52,6 +52,8 @@ class FederatedUser:
 @final
 class AssumeRoleOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/AssumeRoleOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> AssumeRoleOutput: ...
     @property
     def credentials(self) -> Credentials | None: ...
     @property
@@ -69,6 +71,8 @@ class AssumeRoleOutput:
 @final
 class AssumeRoleWithSAMLOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/AssumeRoleWithSAMLOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> AssumeRoleWithSAMLOutput: ...
     @property
     def credentials(self) -> Credentials | None: ...
     @property
@@ -96,6 +100,8 @@ class AssumeRoleWithSAMLOutput:
 @final
 class AssumeRoleWithWebIdentityOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/AssumeRoleWithWebIdentityOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> AssumeRoleWithWebIdentityOutput: ...
     @property
     def credentials(self) -> Credentials | None: ...
     @property
@@ -119,6 +125,8 @@ class AssumeRoleWithWebIdentityOutput:
 @final
 class AssumeRootOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/AssumeRootOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> AssumeRootOutput: ...
     @property
     def credentials(self) -> Credentials | None: ...
     @property
@@ -132,6 +140,8 @@ class AssumeRootOutput:
 @final
 class DecodeAuthorizationMessageOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/DecodeAuthorizationMessageOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DecodeAuthorizationMessageOutput: ...
     @property
     def decoded_message(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -139,6 +149,8 @@ class DecodeAuthorizationMessageOutput:
 @final
 class GetAccessKeyInfoOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetAccessKeyInfoOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAccessKeyInfoOutput: ...
     @property
     def account(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -146,6 +158,8 @@ class GetAccessKeyInfoOutput:
 @final
 class GetCallerIdentityOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetCallerIdentityOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetCallerIdentityOutput: ...
     @property
     def user_id(self) -> str | None: ...
     @property
@@ -157,6 +171,8 @@ class GetCallerIdentityOutput:
 @final
 class GetDelegatedAccessTokenOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetDelegatedAccessTokenOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDelegatedAccessTokenOutput: ...
     @property
     def credentials(self) -> Credentials | None: ...
     @property
@@ -168,6 +184,8 @@ class GetDelegatedAccessTokenOutput:
 @final
 class GetFederationTokenOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetFederationTokenOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetFederationTokenOutput: ...
     @property
     def credentials(self) -> Credentials | None: ...
     @property
@@ -183,6 +201,8 @@ class GetFederationTokenOutput:
 @final
 class GetSessionTokenOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetSessionTokenOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetSessionTokenOutput: ...
     @property
     def credentials(self) -> Credentials | None: ...
     @property
@@ -194,6 +214,8 @@ class GetSessionTokenOutput:
 @final
 class GetWebIdentityTokenOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetWebIdentityTokenOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetWebIdentityTokenOutput: ...
     @property
     def web_identity_token(self) -> str | None: ...
     @property

@@ -1846,6 +1846,8 @@ class WebSourceConfiguration:
 @final
 class AssociateAgentCollaboratorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/AssociateAgentCollaboratorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> AssociateAgentCollaboratorOutput: ...
     @property
     def agent_collaborator(self) -> AgentCollaborator | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1853,6 +1855,8 @@ class AssociateAgentCollaboratorOutput:
 @final
 class AssociateAgentKnowledgeBaseOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/AssociateAgentKnowledgeBaseOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> AssociateAgentKnowledgeBaseOutput: ...
     @property
     def agent_knowledge_base(self) -> AgentKnowledgeBase | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1860,6 +1864,8 @@ class AssociateAgentKnowledgeBaseOutput:
 @final
 class CreateAgentOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/CreateAgentOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateAgentOutput: ...
     @property
     def agent(self) -> Agent | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1867,6 +1873,8 @@ class CreateAgentOutput:
 @final
 class CreateAgentActionGroupOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/CreateAgentActionGroupOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateAgentActionGroupOutput: ...
     @property
     def agent_action_group(self) -> AgentActionGroup | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1874,6 +1882,8 @@ class CreateAgentActionGroupOutput:
 @final
 class CreateAgentAliasOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/CreateAgentAliasOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateAgentAliasOutput: ...
     @property
     def agent_alias(self) -> AgentAlias | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1881,6 +1891,8 @@ class CreateAgentAliasOutput:
 @final
 class CreateDataSourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/CreateDataSourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateDataSourceOutput: ...
     @property
     def data_source(self) -> DataSource | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1888,6 +1900,8 @@ class CreateDataSourceOutput:
 @final
 class CreateFlowOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/CreateFlowOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateFlowOutput: ...
     @property
     def name(self) -> str: ...
     @property
@@ -1915,6 +1929,8 @@ class CreateFlowOutput:
 @final
 class CreateFlowAliasOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/CreateFlowAliasOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateFlowAliasOutput: ...
     @property
     def name(self) -> str: ...
     @property
@@ -1938,6 +1954,8 @@ class CreateFlowAliasOutput:
 @final
 class CreateFlowVersionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/CreateFlowVersionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateFlowVersionOutput: ...
     @property
     def name(self) -> str: ...
     @property
@@ -1963,6 +1981,8 @@ class CreateFlowVersionOutput:
 @final
 class CreateKnowledgeBaseOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/CreateKnowledgeBaseOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateKnowledgeBaseOutput: ...
     @property
     def knowledge_base(self) -> KnowledgeBase | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1970,6 +1990,8 @@ class CreateKnowledgeBaseOutput:
 @final
 class CreatePromptOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/CreatePromptOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreatePromptOutput: ...
     @property
     def name(self) -> str: ...
     @property
@@ -1995,6 +2017,8 @@ class CreatePromptOutput:
 @final
 class CreatePromptVersionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/CreatePromptVersionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreatePromptVersionOutput: ...
     @property
     def name(self) -> str: ...
     @property
@@ -2020,6 +2044,8 @@ class CreatePromptVersionOutput:
 @final
 class CreateRetrievalInstructionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/CreateRetrievalInstructionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateRetrievalInstructionOutput: ...
     @property
     def retrieval_instruction_id(self) -> str: ...
     @property
@@ -2039,6 +2065,8 @@ class CreateRetrievalInstructionOutput:
 @final
 class CreateRetrievalInstructionVersionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/CreateRetrievalInstructionVersionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateRetrievalInstructionVersionOutput: ...
     @property
     def retrieval_instruction_id(self) -> str: ...
     @property
@@ -2054,6 +2082,8 @@ class CreateRetrievalInstructionVersionOutput:
 @final
 class CreateVpcConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/CreateVpcConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateVpcConfigurationOutput: ...
     @property
     def vpc_configuration_id(self) -> str: ...
     @property
@@ -2063,6 +2093,8 @@ class CreateVpcConfigurationOutput:
 @final
 class DeleteAgentOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/DeleteAgentOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteAgentOutput: ...
     @property
     def agent_id(self) -> str: ...
     @property
@@ -2072,11 +2104,15 @@ class DeleteAgentOutput:
 @final
 class DeleteAgentActionGroupOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/DeleteAgentActionGroupOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteAgentActionGroupOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteAgentAliasOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/DeleteAgentAliasOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteAgentAliasOutput: ...
     @property
     def agent_id(self) -> str: ...
     @property
@@ -2088,6 +2124,8 @@ class DeleteAgentAliasOutput:
 @final
 class DeleteAgentVersionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/DeleteAgentVersionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteAgentVersionOutput: ...
     @property
     def agent_id(self) -> str: ...
     @property
@@ -2099,6 +2137,8 @@ class DeleteAgentVersionOutput:
 @final
 class DeleteDataSourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/DeleteDataSourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteDataSourceOutput: ...
     @property
     def knowledge_base_id(self) -> str: ...
     @property
@@ -2110,6 +2150,8 @@ class DeleteDataSourceOutput:
 @final
 class DeleteFlowOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/DeleteFlowOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteFlowOutput: ...
     @property
     def id(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2117,6 +2159,8 @@ class DeleteFlowOutput:
 @final
 class DeleteFlowAliasOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/DeleteFlowAliasOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteFlowAliasOutput: ...
     @property
     def flow_id(self) -> str: ...
     @property
@@ -2126,6 +2170,8 @@ class DeleteFlowAliasOutput:
 @final
 class DeleteFlowVersionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/DeleteFlowVersionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteFlowVersionOutput: ...
     @property
     def id(self) -> str: ...
     @property
@@ -2135,6 +2181,8 @@ class DeleteFlowVersionOutput:
 @final
 class DeleteKnowledgeBaseOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/DeleteKnowledgeBaseOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteKnowledgeBaseOutput: ...
     @property
     def knowledge_base_id(self) -> str: ...
     @property
@@ -2144,6 +2192,8 @@ class DeleteKnowledgeBaseOutput:
 @final
 class DeleteKnowledgeBaseDocumentsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/DeleteKnowledgeBaseDocumentsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteKnowledgeBaseDocumentsOutput: ...
     @property
     def document_details(self) -> list[KnowledgeBaseDocumentDetail] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2151,6 +2201,8 @@ class DeleteKnowledgeBaseDocumentsOutput:
 @final
 class DeletePromptOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/DeletePromptOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeletePromptOutput: ...
     @property
     def id(self) -> str: ...
     @property
@@ -2160,6 +2212,8 @@ class DeletePromptOutput:
 @final
 class DeleteResourcePolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/DeleteResourcePolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteResourcePolicyOutput: ...
     @property
     def resource_arn(self) -> str: ...
     @property
@@ -2169,6 +2223,8 @@ class DeleteResourcePolicyOutput:
 @final
 class DeleteRetrievalInstructionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/DeleteRetrievalInstructionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteRetrievalInstructionOutput: ...
     @property
     def retrieval_instruction_id(self) -> str: ...
     @property
@@ -2180,6 +2236,8 @@ class DeleteRetrievalInstructionOutput:
 @final
 class DeleteVpcConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/DeleteVpcConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteVpcConfigurationOutput: ...
     @property
     def vpc_configuration_id(self) -> str: ...
     @property
@@ -2189,16 +2247,22 @@ class DeleteVpcConfigurationOutput:
 @final
 class DisassociateAgentCollaboratorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/DisassociateAgentCollaboratorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DisassociateAgentCollaboratorOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DisassociateAgentKnowledgeBaseOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/DisassociateAgentKnowledgeBaseOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DisassociateAgentKnowledgeBaseOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetAgentOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/GetAgentOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAgentOutput: ...
     @property
     def agent(self) -> Agent | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2206,6 +2270,8 @@ class GetAgentOutput:
 @final
 class GetAgentActionGroupOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/GetAgentActionGroupOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAgentActionGroupOutput: ...
     @property
     def agent_action_group(self) -> AgentActionGroup | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2213,6 +2279,8 @@ class GetAgentActionGroupOutput:
 @final
 class GetAgentAliasOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/GetAgentAliasOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAgentAliasOutput: ...
     @property
     def agent_alias(self) -> AgentAlias | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2220,6 +2288,8 @@ class GetAgentAliasOutput:
 @final
 class GetAgentCollaboratorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/GetAgentCollaboratorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAgentCollaboratorOutput: ...
     @property
     def agent_collaborator(self) -> AgentCollaborator | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2227,6 +2297,8 @@ class GetAgentCollaboratorOutput:
 @final
 class GetAgentKnowledgeBaseOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/GetAgentKnowledgeBaseOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAgentKnowledgeBaseOutput: ...
     @property
     def agent_knowledge_base(self) -> AgentKnowledgeBase | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2234,6 +2306,8 @@ class GetAgentKnowledgeBaseOutput:
 @final
 class GetAgentVersionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/GetAgentVersionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAgentVersionOutput: ...
     @property
     def agent_version(self) -> AgentVersion | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2241,6 +2315,8 @@ class GetAgentVersionOutput:
 @final
 class GetDataSourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/GetDataSourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDataSourceOutput: ...
     @property
     def data_source(self) -> DataSource | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2248,6 +2324,8 @@ class GetDataSourceOutput:
 @final
 class GetFlowOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/GetFlowOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetFlowOutput: ...
     @property
     def name(self) -> str: ...
     @property
@@ -2277,6 +2355,8 @@ class GetFlowOutput:
 @final
 class GetFlowAliasOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/GetFlowAliasOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetFlowAliasOutput: ...
     @property
     def name(self) -> str: ...
     @property
@@ -2300,6 +2380,8 @@ class GetFlowAliasOutput:
 @final
 class GetFlowVersionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/GetFlowVersionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetFlowVersionOutput: ...
     @property
     def name(self) -> str: ...
     @property
@@ -2325,6 +2407,8 @@ class GetFlowVersionOutput:
 @final
 class GetIngestionJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/GetIngestionJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetIngestionJobOutput: ...
     @property
     def ingestion_job(self) -> IngestionJob | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2332,6 +2416,8 @@ class GetIngestionJobOutput:
 @final
 class GetKnowledgeBaseOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/GetKnowledgeBaseOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetKnowledgeBaseOutput: ...
     @property
     def knowledge_base(self) -> KnowledgeBase | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2339,6 +2425,8 @@ class GetKnowledgeBaseOutput:
 @final
 class GetKnowledgeBaseDocumentsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/GetKnowledgeBaseDocumentsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetKnowledgeBaseDocumentsOutput: ...
     @property
     def document_details(self) -> list[KnowledgeBaseDocumentDetail] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2346,6 +2434,8 @@ class GetKnowledgeBaseDocumentsOutput:
 @final
 class GetPromptOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/GetPromptOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetPromptOutput: ...
     @property
     def name(self) -> str: ...
     @property
@@ -2371,6 +2461,8 @@ class GetPromptOutput:
 @final
 class GetResourcePolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/GetResourcePolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetResourcePolicyOutput: ...
     @property
     def resource_arn(self) -> str: ...
     @property
@@ -2382,6 +2474,8 @@ class GetResourcePolicyOutput:
 @final
 class GetRetrievalInstructionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/GetRetrievalInstructionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetRetrievalInstructionOutput: ...
     @property
     def retrieval_instruction_id(self) -> str: ...
     @property
@@ -2413,6 +2507,8 @@ class GetRetrievalInstructionOutput:
 @final
 class GetVpcConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/GetVpcConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetVpcConfigurationOutput: ...
     @property
     def vpc_configuration(self) -> VpcConfiguration | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2420,6 +2516,8 @@ class GetVpcConfigurationOutput:
 @final
 class IngestKnowledgeBaseDocumentsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/IngestKnowledgeBaseDocumentsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> IngestKnowledgeBaseDocumentsOutput: ...
     @property
     def document_details(self) -> list[KnowledgeBaseDocumentDetail] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2427,6 +2525,8 @@ class IngestKnowledgeBaseDocumentsOutput:
 @final
 class ListAgentActionGroupsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/ListAgentActionGroupsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListAgentActionGroupsOutput: ...
     @property
     def action_group_summaries(self) -> list[ActionGroupSummary]: ...
     @property
@@ -2436,6 +2536,8 @@ class ListAgentActionGroupsOutput:
 @final
 class ListAgentAliasesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/ListAgentAliasesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListAgentAliasesOutput: ...
     @property
     def agent_alias_summaries(self) -> list[AgentAliasSummary]: ...
     @property
@@ -2445,6 +2547,8 @@ class ListAgentAliasesOutput:
 @final
 class ListAgentCollaboratorsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/ListAgentCollaboratorsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListAgentCollaboratorsOutput: ...
     @property
     def agent_collaborator_summaries(self) -> list[AgentCollaboratorSummary]: ...
     @property
@@ -2454,6 +2558,8 @@ class ListAgentCollaboratorsOutput:
 @final
 class ListAgentKnowledgeBasesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/ListAgentKnowledgeBasesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListAgentKnowledgeBasesOutput: ...
     @property
     def agent_knowledge_base_summaries(self) -> list[AgentKnowledgeBaseSummary]: ...
     @property
@@ -2463,6 +2569,8 @@ class ListAgentKnowledgeBasesOutput:
 @final
 class ListAgentVersionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/ListAgentVersionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListAgentVersionsOutput: ...
     @property
     def agent_version_summaries(self) -> list[AgentVersionSummary]: ...
     @property
@@ -2472,6 +2580,8 @@ class ListAgentVersionsOutput:
 @final
 class ListAgentsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/ListAgentsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListAgentsOutput: ...
     @property
     def agent_summaries(self) -> list[AgentSummary]: ...
     @property
@@ -2481,6 +2591,8 @@ class ListAgentsOutput:
 @final
 class ListDataSourcesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/ListDataSourcesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListDataSourcesOutput: ...
     @property
     def data_source_summaries(self) -> list[DataSourceSummary]: ...
     @property
@@ -2490,6 +2602,8 @@ class ListDataSourcesOutput:
 @final
 class ListFlowAliasesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/ListFlowAliasesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListFlowAliasesOutput: ...
     @property
     def flow_alias_summaries(self) -> list[FlowAliasSummary]: ...
     @property
@@ -2499,6 +2613,8 @@ class ListFlowAliasesOutput:
 @final
 class ListFlowVersionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/ListFlowVersionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListFlowVersionsOutput: ...
     @property
     def flow_version_summaries(self) -> list[FlowVersionSummary]: ...
     @property
@@ -2508,6 +2624,8 @@ class ListFlowVersionsOutput:
 @final
 class ListFlowsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/ListFlowsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListFlowsOutput: ...
     @property
     def flow_summaries(self) -> list[FlowSummary]: ...
     @property
@@ -2517,6 +2635,8 @@ class ListFlowsOutput:
 @final
 class ListIngestionJobsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/ListIngestionJobsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListIngestionJobsOutput: ...
     @property
     def ingestion_job_summaries(self) -> list[IngestionJobSummary]: ...
     @property
@@ -2526,6 +2646,8 @@ class ListIngestionJobsOutput:
 @final
 class ListKnowledgeBaseDocumentsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/ListKnowledgeBaseDocumentsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListKnowledgeBaseDocumentsOutput: ...
     @property
     def document_details(self) -> list[KnowledgeBaseDocumentDetail]: ...
     @property
@@ -2535,6 +2657,8 @@ class ListKnowledgeBaseDocumentsOutput:
 @final
 class ListKnowledgeBasesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/ListKnowledgeBasesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListKnowledgeBasesOutput: ...
     @property
     def knowledge_base_summaries(self) -> list[KnowledgeBaseSummary]: ...
     @property
@@ -2544,6 +2668,8 @@ class ListKnowledgeBasesOutput:
 @final
 class ListPromptsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/ListPromptsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListPromptsOutput: ...
     @property
     def prompt_summaries(self) -> list[PromptSummary]: ...
     @property
@@ -2553,6 +2679,8 @@ class ListPromptsOutput:
 @final
 class ListRetrievalInstructionVersionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/ListRetrievalInstructionVersionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListRetrievalInstructionVersionsOutput: ...
     @property
     def retrieval_instruction_version_summaries(self) -> list[RetrievalInstructionVersionSummary]: ...
     @property
@@ -2562,6 +2690,8 @@ class ListRetrievalInstructionVersionsOutput:
 @final
 class ListRetrievalInstructionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/ListRetrievalInstructionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListRetrievalInstructionsOutput: ...
     @property
     def retrieval_instruction_summaries(self) -> list[RetrievalInstructionSummary]: ...
     @property
@@ -2571,6 +2701,8 @@ class ListRetrievalInstructionsOutput:
 @final
 class ListTagsForResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/ListTagsForResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTagsForResourceOutput: ...
     @property
     def tags(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2578,6 +2710,8 @@ class ListTagsForResourceOutput:
 @final
 class ListVpcConfigurationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/ListVpcConfigurationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListVpcConfigurationsOutput: ...
     @property
     def items(self) -> list[VpcConfigurationSummary]: ...
     @property
@@ -2587,6 +2721,8 @@ class ListVpcConfigurationsOutput:
 @final
 class PrepareAgentOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/PrepareAgentOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PrepareAgentOutput: ...
     @property
     def agent_id(self) -> str: ...
     @property
@@ -2600,6 +2736,8 @@ class PrepareAgentOutput:
 @final
 class PrepareFlowOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/PrepareFlowOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PrepareFlowOutput: ...
     @property
     def id(self) -> str: ...
     @property
@@ -2609,6 +2747,8 @@ class PrepareFlowOutput:
 @final
 class PutResourcePolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/PutResourcePolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutResourcePolicyOutput: ...
     @property
     def resource_arn(self) -> str: ...
     @property
@@ -2618,6 +2758,8 @@ class PutResourcePolicyOutput:
 @final
 class StartIngestionJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/StartIngestionJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StartIngestionJobOutput: ...
     @property
     def ingestion_job(self) -> IngestionJob | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2625,6 +2767,8 @@ class StartIngestionJobOutput:
 @final
 class StopIngestionJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/StopIngestionJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StopIngestionJobOutput: ...
     @property
     def ingestion_job(self) -> IngestionJob | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2632,16 +2776,22 @@ class StopIngestionJobOutput:
 @final
 class TagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/TagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> TagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UntagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/UntagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UntagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateAgentOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/UpdateAgentOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateAgentOutput: ...
     @property
     def agent(self) -> Agent | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2649,6 +2799,8 @@ class UpdateAgentOutput:
 @final
 class UpdateAgentActionGroupOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/UpdateAgentActionGroupOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateAgentActionGroupOutput: ...
     @property
     def agent_action_group(self) -> AgentActionGroup | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2656,6 +2808,8 @@ class UpdateAgentActionGroupOutput:
 @final
 class UpdateAgentAliasOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/UpdateAgentAliasOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateAgentAliasOutput: ...
     @property
     def agent_alias(self) -> AgentAlias | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2663,6 +2817,8 @@ class UpdateAgentAliasOutput:
 @final
 class UpdateAgentCollaboratorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/UpdateAgentCollaboratorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateAgentCollaboratorOutput: ...
     @property
     def agent_collaborator(self) -> AgentCollaborator | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2670,6 +2826,8 @@ class UpdateAgentCollaboratorOutput:
 @final
 class UpdateAgentKnowledgeBaseOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/UpdateAgentKnowledgeBaseOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateAgentKnowledgeBaseOutput: ...
     @property
     def agent_knowledge_base(self) -> AgentKnowledgeBase | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2677,6 +2835,8 @@ class UpdateAgentKnowledgeBaseOutput:
 @final
 class UpdateDataSourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/UpdateDataSourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateDataSourceOutput: ...
     @property
     def data_source(self) -> DataSource | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2684,6 +2844,8 @@ class UpdateDataSourceOutput:
 @final
 class UpdateFlowOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/UpdateFlowOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateFlowOutput: ...
     @property
     def name(self) -> str: ...
     @property
@@ -2711,6 +2873,8 @@ class UpdateFlowOutput:
 @final
 class UpdateFlowAliasOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/UpdateFlowAliasOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateFlowAliasOutput: ...
     @property
     def name(self) -> str: ...
     @property
@@ -2734,6 +2898,8 @@ class UpdateFlowAliasOutput:
 @final
 class UpdateKnowledgeBaseOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/UpdateKnowledgeBaseOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateKnowledgeBaseOutput: ...
     @property
     def knowledge_base(self) -> KnowledgeBase | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2741,6 +2907,8 @@ class UpdateKnowledgeBaseOutput:
 @final
 class UpdatePromptOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/UpdatePromptOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdatePromptOutput: ...
     @property
     def name(self) -> str: ...
     @property
@@ -2766,6 +2934,8 @@ class UpdatePromptOutput:
 @final
 class UpdateRetrievalInstructionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/UpdateRetrievalInstructionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateRetrievalInstructionOutput: ...
     @property
     def retrieval_instruction_id(self) -> str: ...
     @property
@@ -2785,6 +2955,8 @@ class UpdateRetrievalInstructionOutput:
 @final
 class ValidateFlowDefinitionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/ValidateFlowDefinitionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ValidateFlowDefinitionOutput: ...
     @property
     def validations(self) -> list[FlowValidation]: ...
     def to_dict(self) -> dict[str, object]: ...

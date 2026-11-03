@@ -3148,21 +3148,29 @@ class VpcConfig:
 @final
 class AcceptAdministratorInvitationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AcceptAdministratorInvitationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> AcceptAdministratorInvitationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AcceptInvitationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AcceptInvitationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> AcceptInvitationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ArchiveFindingsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ArchiveFindingsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ArchiveFindingsOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateCustomDetectionRuleAssociationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateCustomDetectionRuleAssociationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateCustomDetectionRuleAssociationOutput: ...
     @property
     def rule_association(self) -> AssociationDetail | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3170,11 +3178,15 @@ class CreateCustomDetectionRuleAssociationOutput:
 @final
 class CreateCustomDetectionRuleOrgConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateCustomDetectionRuleOrgConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateCustomDetectionRuleOrgConfigurationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateDetectorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateDetectorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateDetectorOutput: ...
     @property
     def detector_id(self) -> str | None: ...
     @property
@@ -3184,6 +3196,8 @@ class CreateDetectorOutput:
 @final
 class CreateFilterOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateFilterOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateFilterOutput: ...
     @property
     def name(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3191,6 +3205,8 @@ class CreateFilterOutput:
 @final
 class CreateIPSetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateIPSetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateIPSetOutput: ...
     @property
     def ip_set_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3198,6 +3214,8 @@ class CreateIPSetOutput:
 @final
 class CreateInvestigationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateInvestigationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateInvestigationOutput: ...
     @property
     def investigation_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3205,6 +3223,8 @@ class CreateInvestigationOutput:
 @final
 class CreateMalwareProtectionPlanOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateMalwareProtectionPlanOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateMalwareProtectionPlanOutput: ...
     @property
     def malware_protection_plan_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3212,6 +3232,8 @@ class CreateMalwareProtectionPlanOutput:
 @final
 class CreateMembersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateMembersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateMembersOutput: ...
     @property
     def unprocessed_accounts(self) -> list[UnprocessedAccount] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3219,6 +3241,8 @@ class CreateMembersOutput:
 @final
 class CreatePublishingDestinationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreatePublishingDestinationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreatePublishingDestinationOutput: ...
     @property
     def destination_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3226,11 +3250,15 @@ class CreatePublishingDestinationOutput:
 @final
 class CreateSampleFindingsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateSampleFindingsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateSampleFindingsOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateThreatEntitySetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateThreatEntitySetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateThreatEntitySetOutput: ...
     @property
     def threat_entity_set_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3238,6 +3266,8 @@ class CreateThreatEntitySetOutput:
 @final
 class CreateThreatIntelSetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateThreatIntelSetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateThreatIntelSetOutput: ...
     @property
     def threat_intel_set_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3245,6 +3275,8 @@ class CreateThreatIntelSetOutput:
 @final
 class CreateTrustedEntitySetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateTrustedEntitySetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateTrustedEntitySetOutput: ...
     @property
     def trusted_entity_set_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3252,6 +3284,8 @@ class CreateTrustedEntitySetOutput:
 @final
 class DeclineInvitationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeclineInvitationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeclineInvitationsOutput: ...
     @property
     def unprocessed_accounts(self) -> list[UnprocessedAccount] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3259,31 +3293,43 @@ class DeclineInvitationsOutput:
 @final
 class DeleteCustomDetectionRuleAssociationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteCustomDetectionRuleAssociationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteCustomDetectionRuleAssociationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteCustomDetectionRuleOrgConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteCustomDetectionRuleOrgConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteCustomDetectionRuleOrgConfigurationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteDetectorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteDetectorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteDetectorOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteFilterOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteFilterOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteFilterOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteIPSetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteIPSetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteIPSetOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteInvitationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteInvitationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteInvitationsOutput: ...
     @property
     def unprocessed_accounts(self) -> list[UnprocessedAccount] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3291,6 +3337,8 @@ class DeleteInvitationsOutput:
 @final
 class DeleteMembersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteMembersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteMembersOutput: ...
     @property
     def unprocessed_accounts(self) -> list[UnprocessedAccount] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3298,26 +3346,36 @@ class DeleteMembersOutput:
 @final
 class DeletePublishingDestinationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeletePublishingDestinationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeletePublishingDestinationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteThreatEntitySetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteThreatEntitySetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteThreatEntitySetOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteThreatIntelSetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteThreatIntelSetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteThreatIntelSetOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteTrustedEntitySetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteTrustedEntitySetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteTrustedEntitySetOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DescribeMalwareScansOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DescribeMalwareScansOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeMalwareScansOutput: ...
     @property
     def scans(self) -> list[Scan] | None: ...
     @property
@@ -3327,6 +3385,8 @@ class DescribeMalwareScansOutput:
 @final
 class DescribeOrganizationConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DescribeOrganizationConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeOrganizationConfigurationOutput: ...
     @property
     def auto_enable(self) -> bool | None: ...
     @property
@@ -3344,6 +3404,8 @@ class DescribeOrganizationConfigurationOutput:
 @final
 class DescribePublishingDestinationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DescribePublishingDestinationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribePublishingDestinationOutput: ...
     @property
     def destination_id(self) -> str | None: ...
     @property
@@ -3361,21 +3423,29 @@ class DescribePublishingDestinationOutput:
 @final
 class DisableOrganizationAdminAccountOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DisableOrganizationAdminAccountOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DisableOrganizationAdminAccountOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DisassociateFromAdministratorAccountOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DisassociateFromAdministratorAccountOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DisassociateFromAdministratorAccountOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DisassociateFromMasterAccountOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DisassociateFromMasterAccountOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DisassociateFromMasterAccountOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DisassociateMembersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DisassociateMembersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DisassociateMembersOutput: ...
     @property
     def unprocessed_accounts(self) -> list[UnprocessedAccount] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3383,11 +3453,15 @@ class DisassociateMembersOutput:
 @final
 class EnableOrganizationAdminAccountOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EnableOrganizationAdminAccountOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> EnableOrganizationAdminAccountOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetAdministratorAccountOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetAdministratorAccountOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAdministratorAccountOutput: ...
     @property
     def administrator(self) -> Administrator | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3395,6 +3469,8 @@ class GetAdministratorAccountOutput:
 @final
 class GetCoverageStatisticsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetCoverageStatisticsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetCoverageStatisticsOutput: ...
     @property
     def coverage_statistics(self) -> CoverageStatistics | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3402,6 +3478,8 @@ class GetCoverageStatisticsOutput:
 @final
 class GetCustomDetectionRuleOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetCustomDetectionRuleOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetCustomDetectionRuleOutput: ...
     @property
     def rule(self) -> RuleDetail | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3409,6 +3487,8 @@ class GetCustomDetectionRuleOutput:
 @final
 class GetCustomDetectionRuleAssociationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetCustomDetectionRuleAssociationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetCustomDetectionRuleAssociationOutput: ...
     @property
     def rule_association(self) -> AssociationDetail | None: ...
     @property
@@ -3418,6 +3498,8 @@ class GetCustomDetectionRuleAssociationOutput:
 @final
 class GetCustomDetectionRuleOrgConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetCustomDetectionRuleOrgConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetCustomDetectionRuleOrgConfigurationOutput: ...
     @property
     def configuration(self) -> DetectionRuleOrgConfiguration | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3425,6 +3507,8 @@ class GetCustomDetectionRuleOrgConfigurationOutput:
 @final
 class GetDetectorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetDetectorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDetectorOutput: ...
     @property
     def created_at(self) -> str | None: ...
     @property
@@ -3446,6 +3530,8 @@ class GetDetectorOutput:
 @final
 class GetFilterOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetFilterOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetFilterOutput: ...
     @property
     def name(self) -> str | None: ...
     @property
@@ -3469,6 +3555,8 @@ class GetFilterOutput:
 @final
 class GetFindingsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetFindingsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetFindingsOutput: ...
     @property
     def findings(self) -> list[Finding] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3476,6 +3564,8 @@ class GetFindingsOutput:
 @final
 class GetFindingsStatisticsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetFindingsStatisticsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetFindingsStatisticsOutput: ...
     @property
     def finding_statistics(self) -> FindingStatistics | None: ...
     @property
@@ -3485,6 +3575,8 @@ class GetFindingsStatisticsOutput:
 @final
 class GetIPSetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetIPSetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetIPSetOutput: ...
     @property
     def name(self) -> str | None: ...
     @property
@@ -3502,6 +3594,8 @@ class GetIPSetOutput:
 @final
 class GetInvestigationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetInvestigationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetInvestigationOutput: ...
     @property
     def investigation(self) -> Investigation | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3509,6 +3603,8 @@ class GetInvestigationOutput:
 @final
 class GetInvitationsCountOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetInvitationsCountOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetInvitationsCountOutput: ...
     @property
     def invitations_count(self) -> int | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3516,6 +3612,8 @@ class GetInvitationsCountOutput:
 @final
 class GetMalwareProtectionPlanOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMalwareProtectionPlanOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetMalwareProtectionPlanOutput: ...
     @property
     def arn(self) -> str | None: ...
     @property
@@ -3537,6 +3635,8 @@ class GetMalwareProtectionPlanOutput:
 @final
 class GetMalwareScanOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMalwareScanOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetMalwareScanOutput: ...
     @property
     def scan_id(self) -> str | None: ...
     @property
@@ -3576,6 +3676,8 @@ class GetMalwareScanOutput:
 @final
 class GetMalwareScanSettingsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMalwareScanSettingsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetMalwareScanSettingsOutput: ...
     @property
     def scan_resource_criteria(self) -> ScanResourceCriteria | None: ...
     @property
@@ -3585,6 +3687,8 @@ class GetMalwareScanSettingsOutput:
 @final
 class GetMasterAccountOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMasterAccountOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetMasterAccountOutput: ...
     @property
     def master(self) -> Master | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3592,6 +3696,8 @@ class GetMasterAccountOutput:
 @final
 class GetMemberDetectorsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMemberDetectorsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetMemberDetectorsOutput: ...
     @property
     def member_data_source_configurations(self) -> list[MemberDataSourceConfiguration] | None: ...
     @property
@@ -3601,6 +3707,8 @@ class GetMemberDetectorsOutput:
 @final
 class GetMembersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMembersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetMembersOutput: ...
     @property
     def members(self) -> list[Member] | None: ...
     @property
@@ -3610,6 +3718,8 @@ class GetMembersOutput:
 @final
 class GetOrganizationStatisticsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetOrganizationStatisticsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetOrganizationStatisticsOutput: ...
     @property
     def organization_details(self) -> OrganizationDetails | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3617,6 +3727,8 @@ class GetOrganizationStatisticsOutput:
 @final
 class GetRemainingFreeTrialDaysOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetRemainingFreeTrialDaysOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetRemainingFreeTrialDaysOutput: ...
     @property
     def accounts(self) -> list[AccountFreeTrialInfo] | None: ...
     @property
@@ -3626,6 +3738,8 @@ class GetRemainingFreeTrialDaysOutput:
 @final
 class GetThreatEntitySetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetThreatEntitySetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetThreatEntitySetOutput: ...
     @property
     def name(self) -> str | None: ...
     @property
@@ -3649,6 +3763,8 @@ class GetThreatEntitySetOutput:
 @final
 class GetThreatIntelSetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetThreatIntelSetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetThreatIntelSetOutput: ...
     @property
     def name(self) -> str | None: ...
     @property
@@ -3666,6 +3782,8 @@ class GetThreatIntelSetOutput:
 @final
 class GetTrustedEntitySetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetTrustedEntitySetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetTrustedEntitySetOutput: ...
     @property
     def name(self) -> str | None: ...
     @property
@@ -3689,6 +3807,8 @@ class GetTrustedEntitySetOutput:
 @final
 class GetUsageStatisticsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetUsageStatisticsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetUsageStatisticsOutput: ...
     @property
     def usage_statistics(self) -> UsageStatistics | None: ...
     @property
@@ -3698,6 +3818,8 @@ class GetUsageStatisticsOutput:
 @final
 class InviteMembersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InviteMembersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> InviteMembersOutput: ...
     @property
     def unprocessed_accounts(self) -> list[UnprocessedAccount] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3705,6 +3827,8 @@ class InviteMembersOutput:
 @final
 class ListCoverageOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListCoverageOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListCoverageOutput: ...
     @property
     def resources(self) -> list[CoverageResource] | None: ...
     @property
@@ -3714,6 +3838,8 @@ class ListCoverageOutput:
 @final
 class ListCustomDetectionRuleAssociationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListCustomDetectionRuleAssociationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListCustomDetectionRuleAssociationsOutput: ...
     @property
     def rule_associations(self) -> list[AssociationSummary] | None: ...
     @property
@@ -3723,6 +3849,8 @@ class ListCustomDetectionRuleAssociationsOutput:
 @final
 class ListCustomDetectionRuleOrgConfigurationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListCustomDetectionRuleOrgConfigurationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListCustomDetectionRuleOrgConfigurationsOutput: ...
     @property
     def configurations(self) -> list[DetectionRuleOrgConfigurationSummary] | None: ...
     @property
@@ -3732,6 +3860,8 @@ class ListCustomDetectionRuleOrgConfigurationsOutput:
 @final
 class ListCustomDetectionRulesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListCustomDetectionRulesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListCustomDetectionRulesOutput: ...
     @property
     def rules(self) -> list[RuleSummary] | None: ...
     @property
@@ -3741,6 +3871,8 @@ class ListCustomDetectionRulesOutput:
 @final
 class ListDetectorsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListDetectorsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListDetectorsOutput: ...
     @property
     def detector_ids(self) -> list[str] | None: ...
     @property
@@ -3750,6 +3882,8 @@ class ListDetectorsOutput:
 @final
 class ListFiltersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListFiltersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListFiltersOutput: ...
     @property
     def filter_names(self) -> list[str] | None: ...
     @property
@@ -3759,6 +3893,8 @@ class ListFiltersOutput:
 @final
 class ListFindingsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListFindingsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListFindingsOutput: ...
     @property
     def finding_ids(self) -> list[str] | None: ...
     @property
@@ -3768,6 +3904,8 @@ class ListFindingsOutput:
 @final
 class ListIPSetsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListIPSetsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListIPSetsOutput: ...
     @property
     def ip_set_ids(self) -> list[str] | None: ...
     @property
@@ -3777,6 +3915,8 @@ class ListIPSetsOutput:
 @final
 class ListInvestigationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListInvestigationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListInvestigationsOutput: ...
     @property
     def investigations(self) -> list[InvestigationSummary] | None: ...
     @property
@@ -3786,6 +3926,8 @@ class ListInvestigationsOutput:
 @final
 class ListInvitationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListInvitationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListInvitationsOutput: ...
     @property
     def invitations(self) -> list[Invitation] | None: ...
     @property
@@ -3795,6 +3937,8 @@ class ListInvitationsOutput:
 @final
 class ListMalwareProtectionPlansOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListMalwareProtectionPlansOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListMalwareProtectionPlansOutput: ...
     @property
     def malware_protection_plans(self) -> list[MalwareProtectionPlanSummary] | None: ...
     @property
@@ -3804,6 +3948,8 @@ class ListMalwareProtectionPlansOutput:
 @final
 class ListMalwareScansOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListMalwareScansOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListMalwareScansOutput: ...
     @property
     def scans(self) -> list[MalwareScan] | None: ...
     @property
@@ -3813,6 +3959,8 @@ class ListMalwareScansOutput:
 @final
 class ListMembersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListMembersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListMembersOutput: ...
     @property
     def members(self) -> list[Member] | None: ...
     @property
@@ -3822,6 +3970,8 @@ class ListMembersOutput:
 @final
 class ListOrganizationAdminAccountsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListOrganizationAdminAccountsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListOrganizationAdminAccountsOutput: ...
     @property
     def admin_accounts(self) -> list[AdminAccount] | None: ...
     @property
@@ -3831,6 +3981,8 @@ class ListOrganizationAdminAccountsOutput:
 @final
 class ListPublishingDestinationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListPublishingDestinationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListPublishingDestinationsOutput: ...
     @property
     def destinations(self) -> list[Destination] | None: ...
     @property
@@ -3840,6 +3992,8 @@ class ListPublishingDestinationsOutput:
 @final
 class ListTagsForResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListTagsForResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTagsForResourceOutput: ...
     @property
     def tags(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3847,6 +4001,8 @@ class ListTagsForResourceOutput:
 @final
 class ListThreatEntitySetsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListThreatEntitySetsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListThreatEntitySetsOutput: ...
     @property
     def threat_entity_set_ids(self) -> list[str] | None: ...
     @property
@@ -3856,6 +4012,8 @@ class ListThreatEntitySetsOutput:
 @final
 class ListThreatIntelSetsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListThreatIntelSetsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListThreatIntelSetsOutput: ...
     @property
     def threat_intel_set_ids(self) -> list[str] | None: ...
     @property
@@ -3865,6 +4023,8 @@ class ListThreatIntelSetsOutput:
 @final
 class ListTrustedEntitySetsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListTrustedEntitySetsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTrustedEntitySetsOutput: ...
     @property
     def trusted_entity_set_ids(self) -> list[str] | None: ...
     @property
@@ -3874,11 +4034,15 @@ class ListTrustedEntitySetsOutput:
 @final
 class SendObjectMalwareScanOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SendObjectMalwareScanOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> SendObjectMalwareScanOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StartMalwareScanOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/StartMalwareScanOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StartMalwareScanOutput: ...
     @property
     def scan_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3886,6 +4050,8 @@ class StartMalwareScanOutput:
 @final
 class StartMonitoringMembersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/StartMonitoringMembersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StartMonitoringMembersOutput: ...
     @property
     def unprocessed_accounts(self) -> list[UnprocessedAccount] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3893,6 +4059,8 @@ class StartMonitoringMembersOutput:
 @final
 class StopMonitoringMembersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/StopMonitoringMembersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StopMonitoringMembersOutput: ...
     @property
     def unprocessed_accounts(self) -> list[UnprocessedAccount] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3900,36 +4068,50 @@ class StopMonitoringMembersOutput:
 @final
 class TagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> TagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UnarchiveFindingsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UnarchiveFindingsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UnarchiveFindingsOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UntagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UntagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UntagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateCustomDetectionRuleAssociationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateCustomDetectionRuleAssociationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateCustomDetectionRuleAssociationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateCustomDetectionRuleOrgConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateCustomDetectionRuleOrgConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateCustomDetectionRuleOrgConfigurationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateDetectorOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateDetectorOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateDetectorOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateFilterOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateFilterOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateFilterOutput: ...
     @property
     def name(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3937,21 +4119,29 @@ class UpdateFilterOutput:
 @final
 class UpdateFindingsFeedbackOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateFindingsFeedbackOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateFindingsFeedbackOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateIPSetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateIPSetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateIPSetOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateMalwareScanSettingsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateMalwareScanSettingsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateMalwareScanSettingsOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateMemberDetectorsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateMemberDetectorsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateMemberDetectorsOutput: ...
     @property
     def unprocessed_accounts(self) -> list[UnprocessedAccount] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -3959,26 +4149,36 @@ class UpdateMemberDetectorsOutput:
 @final
 class UpdateOrganizationConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateOrganizationConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateOrganizationConfigurationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdatePublishingDestinationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdatePublishingDestinationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdatePublishingDestinationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateThreatEntitySetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateThreatEntitySetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateThreatEntitySetOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateThreatIntelSetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateThreatIntelSetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateThreatIntelSetOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateTrustedEntitySetOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateTrustedEntitySetOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateTrustedEntitySetOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 

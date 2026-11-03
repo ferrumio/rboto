@@ -25,6 +25,11 @@
   `waiters.py.j2`. Use the Smithy matcher schema; supplements also need `operation`.
   The runtime is `rboto/_waiters.py`. Reject unsupported expressions, stream outputs,
   unmodeled errors, and parameter/name collisions. See ADR-0026.
+- Test fixtures: operation factories and reachable response converters are generated
+  from Rust output fields/builders. Keep fixture validation outside normal conversion
+  and getter paths. `rboto/testing.py` validates input hints and manages client-scoped
+  expectations through middleware. Never replace native Outputs with dicts or relax
+  replacement-type checks. See ADR-0028.
 
 Do not add service-name branches to generic generation until a declarative customization
 has been shown to be insufficient.

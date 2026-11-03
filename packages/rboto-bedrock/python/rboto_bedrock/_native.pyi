@@ -1224,6 +1224,8 @@ class VpcConfig:
 @final
 class BatchDeleteAdvancedPromptOptimizationJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/BatchDeleteAdvancedPromptOptimizationJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> BatchDeleteAdvancedPromptOptimizationJobOutput: ...
     @property
     def errors(self) -> list[BatchDeleteAdvancedPromptOptimizationJobError]: ...
     @property
@@ -1233,6 +1235,8 @@ class BatchDeleteAdvancedPromptOptimizationJobOutput:
 @final
 class BatchDeleteEvaluationJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/BatchDeleteEvaluationJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> BatchDeleteEvaluationJobOutput: ...
     @property
     def errors(self) -> list[BatchDeleteEvaluationJobError]: ...
     @property
@@ -1242,11 +1246,15 @@ class BatchDeleteEvaluationJobOutput:
 @final
 class CancelAutomatedReasoningPolicyBuildWorkflowOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CancelAutomatedReasoningPolicyBuildWorkflowOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CancelAutomatedReasoningPolicyBuildWorkflowOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateAdvancedPromptOptimizationJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateAdvancedPromptOptimizationJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateAdvancedPromptOptimizationJobOutput: ...
     @property
     def job_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1254,6 +1262,8 @@ class CreateAdvancedPromptOptimizationJobOutput:
 @final
 class CreateAutomatedReasoningPolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateAutomatedReasoningPolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateAutomatedReasoningPolicyOutput: ...
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -1273,6 +1283,8 @@ class CreateAutomatedReasoningPolicyOutput:
 @final
 class CreateAutomatedReasoningPolicyTestCaseOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateAutomatedReasoningPolicyTestCaseOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateAutomatedReasoningPolicyTestCaseOutput: ...
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -1282,6 +1294,8 @@ class CreateAutomatedReasoningPolicyTestCaseOutput:
 @final
 class CreateAutomatedReasoningPolicyVersionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateAutomatedReasoningPolicyVersionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateAutomatedReasoningPolicyVersionOutput: ...
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -1299,6 +1313,8 @@ class CreateAutomatedReasoningPolicyVersionOutput:
 @final
 class CreateCustomModelOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateCustomModelOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateCustomModelOutput: ...
     @property
     def model_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1306,6 +1322,8 @@ class CreateCustomModelOutput:
 @final
 class CreateCustomModelDeploymentOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateCustomModelDeploymentOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateCustomModelDeploymentOutput: ...
     @property
     def custom_model_deployment_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1313,6 +1331,8 @@ class CreateCustomModelDeploymentOutput:
 @final
 class CreateEvaluationJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateEvaluationJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateEvaluationJobOutput: ...
     @property
     def job_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1320,6 +1340,8 @@ class CreateEvaluationJobOutput:
 @final
 class CreateFoundationModelAgreementOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateFoundationModelAgreementOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateFoundationModelAgreementOutput: ...
     @property
     def model_id(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1327,6 +1349,8 @@ class CreateFoundationModelAgreementOutput:
 @final
 class CreateGuardrailOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateGuardrailOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateGuardrailOutput: ...
     @property
     def guardrail_id(self) -> str: ...
     @property
@@ -1340,6 +1364,8 @@ class CreateGuardrailOutput:
 @final
 class CreateGuardrailVersionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateGuardrailVersionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateGuardrailVersionOutput: ...
     @property
     def guardrail_id(self) -> str: ...
     @property
@@ -1349,6 +1375,8 @@ class CreateGuardrailVersionOutput:
 @final
 class CreateInferenceProfileOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateInferenceProfileOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateInferenceProfileOutput: ...
     @property
     def inference_profile_arn(self) -> str: ...
     @property
@@ -1358,6 +1386,8 @@ class CreateInferenceProfileOutput:
 @final
 class CreateMarketplaceModelEndpointOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateMarketplaceModelEndpointOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateMarketplaceModelEndpointOutput: ...
     @property
     def marketplace_model_endpoint(self) -> MarketplaceModelEndpoint | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1365,6 +1395,8 @@ class CreateMarketplaceModelEndpointOutput:
 @final
 class CreateModelCopyJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateModelCopyJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateModelCopyJobOutput: ...
     @property
     def job_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1372,6 +1404,8 @@ class CreateModelCopyJobOutput:
 @final
 class CreateModelCustomizationJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateModelCustomizationJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateModelCustomizationJobOutput: ...
     @property
     def job_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1379,6 +1413,8 @@ class CreateModelCustomizationJobOutput:
 @final
 class CreateModelImportJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateModelImportJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateModelImportJobOutput: ...
     @property
     def job_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1386,6 +1422,8 @@ class CreateModelImportJobOutput:
 @final
 class CreateModelInvocationJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateModelInvocationJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateModelInvocationJobOutput: ...
     @property
     def job_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1393,6 +1431,8 @@ class CreateModelInvocationJobOutput:
 @final
 class CreatePromptRouterOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreatePromptRouterOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreatePromptRouterOutput: ...
     @property
     def prompt_router_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1400,6 +1440,8 @@ class CreatePromptRouterOutput:
 @final
 class CreateProvisionedModelThroughputOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateProvisionedModelThroughputOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateProvisionedModelThroughputOutput: ...
     @property
     def provisioned_model_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1407,86 +1449,120 @@ class CreateProvisionedModelThroughputOutput:
 @final
 class DeleteAutomatedReasoningPolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteAutomatedReasoningPolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteAutomatedReasoningPolicyOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteAutomatedReasoningPolicyBuildWorkflowOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteAutomatedReasoningPolicyBuildWorkflowOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteAutomatedReasoningPolicyBuildWorkflowOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteAutomatedReasoningPolicyTestCaseOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteAutomatedReasoningPolicyTestCaseOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteAutomatedReasoningPolicyTestCaseOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteCustomModelOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteCustomModelOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteCustomModelOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteCustomModelDeploymentOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteCustomModelDeploymentOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteCustomModelDeploymentOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteEnforcedGuardrailConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteEnforcedGuardrailConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteEnforcedGuardrailConfigurationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteFoundationModelAgreementOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteFoundationModelAgreementOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteFoundationModelAgreementOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteGuardrailOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteGuardrailOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteGuardrailOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteImportedModelOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteImportedModelOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteImportedModelOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteInferenceProfileOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteInferenceProfileOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteInferenceProfileOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteMarketplaceModelEndpointOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteMarketplaceModelEndpointOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteMarketplaceModelEndpointOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteModelInvocationLoggingConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteModelInvocationLoggingConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteModelInvocationLoggingConfigurationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeletePromptRouterOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeletePromptRouterOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeletePromptRouterOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteProvisionedModelThroughputOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteProvisionedModelThroughputOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteProvisionedModelThroughputOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteResourcePolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteResourcePolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteResourcePolicyOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeregisterMarketplaceModelEndpointOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeregisterMarketplaceModelEndpointOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeregisterMarketplaceModelEndpointOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ExportAutomatedReasoningPolicyVersionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ExportAutomatedReasoningPolicyVersionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ExportAutomatedReasoningPolicyVersionOutput: ...
     @property
     def policy_definition(self) -> AutomatedReasoningPolicyDefinition | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1494,6 +1570,8 @@ class ExportAutomatedReasoningPolicyVersionOutput:
 @final
 class GetAccountDataRetentionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAccountDataRetentionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAccountDataRetentionOutput: ...
     @property
     def mode(self) -> _types.DataRetentionModeOutput: ...
     @property
@@ -1503,6 +1581,8 @@ class GetAccountDataRetentionOutput:
 @final
 class GetAdvancedPromptOptimizationJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAdvancedPromptOptimizationJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAdvancedPromptOptimizationJobOutput: ...
     @property
     def job_arn(self) -> str: ...
     @property
@@ -1530,6 +1610,8 @@ class GetAdvancedPromptOptimizationJobOutput:
 @final
 class GetAutomatedReasoningPolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAutomatedReasoningPolicyOutput: ...
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -1553,6 +1635,8 @@ class GetAutomatedReasoningPolicyOutput:
 @final
 class GetAutomatedReasoningPolicyAnnotationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyAnnotationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAutomatedReasoningPolicyAnnotationsOutput: ...
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -1570,6 +1654,8 @@ class GetAutomatedReasoningPolicyAnnotationsOutput:
 @final
 class GetAutomatedReasoningPolicyBuildWorkflowOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyBuildWorkflowOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAutomatedReasoningPolicyBuildWorkflowOutput: ...
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -1593,6 +1679,8 @@ class GetAutomatedReasoningPolicyBuildWorkflowOutput:
 @final
 class GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput: ...
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -1604,6 +1692,8 @@ class GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput:
 @final
 class GetAutomatedReasoningPolicyNextScenarioOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyNextScenarioOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAutomatedReasoningPolicyNextScenarioOutput: ...
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -1613,6 +1703,8 @@ class GetAutomatedReasoningPolicyNextScenarioOutput:
 @final
 class GetAutomatedReasoningPolicyTestCaseOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyTestCaseOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAutomatedReasoningPolicyTestCaseOutput: ...
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -1622,6 +1714,8 @@ class GetAutomatedReasoningPolicyTestCaseOutput:
 @final
 class GetAutomatedReasoningPolicyTestResultOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyTestResultOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAutomatedReasoningPolicyTestResultOutput: ...
     @property
     def test_result(self) -> AutomatedReasoningPolicyTestResult | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1629,6 +1723,8 @@ class GetAutomatedReasoningPolicyTestResultOutput:
 @final
 class GetCustomModelOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetCustomModelOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetCustomModelOutput: ...
     @property
     def model_arn(self) -> str: ...
     @property
@@ -1668,6 +1764,8 @@ class GetCustomModelOutput:
 @final
 class GetCustomModelDeploymentOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetCustomModelDeploymentOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetCustomModelDeploymentOutput: ...
     @property
     def custom_model_deployment_arn(self) -> str: ...
     @property
@@ -1691,6 +1789,8 @@ class GetCustomModelDeploymentOutput:
 @final
 class GetEvaluationJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetEvaluationJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetEvaluationJobOutput: ...
     @property
     def job_name(self) -> str: ...
     @property
@@ -1724,6 +1824,8 @@ class GetEvaluationJobOutput:
 @final
 class GetFoundationModelOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetFoundationModelOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetFoundationModelOutput: ...
     @property
     def model_details(self) -> FoundationModelDetails | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1731,6 +1833,8 @@ class GetFoundationModelOutput:
 @final
 class GetFoundationModelAvailabilityOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetFoundationModelAvailabilityOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetFoundationModelAvailabilityOutput: ...
     @property
     def model_id(self) -> str: ...
     @property
@@ -1746,6 +1850,8 @@ class GetFoundationModelAvailabilityOutput:
 @final
 class GetGuardrailOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetGuardrailOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetGuardrailOutput: ...
     @property
     def name(self) -> str: ...
     @property
@@ -1791,6 +1897,8 @@ class GetGuardrailOutput:
 @final
 class GetImportedModelOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetImportedModelOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetImportedModelOutput: ...
     @property
     def model_arn(self) -> str | None: ...
     @property
@@ -1816,6 +1924,8 @@ class GetImportedModelOutput:
 @final
 class GetInferenceProfileOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetInferenceProfileOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetInferenceProfileOutput: ...
     @property
     def inference_profile_name(self) -> str: ...
     @property
@@ -1839,6 +1949,8 @@ class GetInferenceProfileOutput:
 @final
 class GetMarketplaceModelEndpointOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetMarketplaceModelEndpointOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetMarketplaceModelEndpointOutput: ...
     @property
     def marketplace_model_endpoint(self) -> MarketplaceModelEndpoint | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1846,6 +1958,8 @@ class GetMarketplaceModelEndpointOutput:
 @final
 class GetModelCopyJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetModelCopyJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetModelCopyJobOutput: ...
     @property
     def job_arn(self) -> str: ...
     @property
@@ -1873,6 +1987,8 @@ class GetModelCopyJobOutput:
 @final
 class GetModelCustomizationJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetModelCustomizationJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetModelCustomizationJobOutput: ...
     @property
     def job_arn(self) -> str: ...
     @property
@@ -1924,6 +2040,8 @@ class GetModelCustomizationJobOutput:
 @final
 class GetModelImportJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetModelImportJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetModelImportJobOutput: ...
     @property
     def job_arn(self) -> str | None: ...
     @property
@@ -1955,6 +2073,8 @@ class GetModelImportJobOutput:
 @final
 class GetModelInvocationJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetModelInvocationJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetModelInvocationJobOutput: ...
     @property
     def job_arn(self) -> str: ...
     @property
@@ -2000,6 +2120,8 @@ class GetModelInvocationJobOutput:
 @final
 class GetModelInvocationLoggingConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetModelInvocationLoggingConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetModelInvocationLoggingConfigurationOutput: ...
     @property
     def logging_config(self) -> LoggingConfig | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2007,6 +2129,8 @@ class GetModelInvocationLoggingConfigurationOutput:
 @final
 class GetPromptRouterOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetPromptRouterOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetPromptRouterOutput: ...
     @property
     def prompt_router_name(self) -> str: ...
     @property
@@ -2032,6 +2156,8 @@ class GetPromptRouterOutput:
 @final
 class GetProvisionedModelThroughputOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetProvisionedModelThroughputOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetProvisionedModelThroughputOutput: ...
     @property
     def model_units(self) -> int: ...
     @property
@@ -2063,6 +2189,8 @@ class GetProvisionedModelThroughputOutput:
 @final
 class GetResourcePolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetResourcePolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetResourcePolicyOutput: ...
     @property
     def resource_policy(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2070,6 +2198,8 @@ class GetResourcePolicyOutput:
 @final
 class GetUseCaseForModelAccessOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetUseCaseForModelAccessOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetUseCaseForModelAccessOutput: ...
     @property
     def form_data(self) -> bytes: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2077,6 +2207,8 @@ class GetUseCaseForModelAccessOutput:
 @final
 class ListAdvancedPromptOptimizationJobsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListAdvancedPromptOptimizationJobsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListAdvancedPromptOptimizationJobsOutput: ...
     @property
     def job_summaries(self) -> list[AdvancedPromptOptimizationJobSummary] | None: ...
     @property
@@ -2086,6 +2218,8 @@ class ListAdvancedPromptOptimizationJobsOutput:
 @final
 class ListAutomatedReasoningPoliciesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListAutomatedReasoningPoliciesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListAutomatedReasoningPoliciesOutput: ...
     @property
     def automated_reasoning_policy_summaries(self) -> list[AutomatedReasoningPolicySummary]: ...
     @property
@@ -2095,6 +2229,8 @@ class ListAutomatedReasoningPoliciesOutput:
 @final
 class ListAutomatedReasoningPolicyBuildWorkflowsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListAutomatedReasoningPolicyBuildWorkflowsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListAutomatedReasoningPolicyBuildWorkflowsOutput: ...
     @property
     def automated_reasoning_policy_build_workflow_summaries(self) -> list[AutomatedReasoningPolicyBuildWorkflowSummary]: ...
     @property
@@ -2104,6 +2240,8 @@ class ListAutomatedReasoningPolicyBuildWorkflowsOutput:
 @final
 class ListAutomatedReasoningPolicyTestCasesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListAutomatedReasoningPolicyTestCasesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListAutomatedReasoningPolicyTestCasesOutput: ...
     @property
     def test_cases(self) -> list[AutomatedReasoningPolicyTestCase]: ...
     @property
@@ -2113,6 +2251,8 @@ class ListAutomatedReasoningPolicyTestCasesOutput:
 @final
 class ListAutomatedReasoningPolicyTestResultsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListAutomatedReasoningPolicyTestResultsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListAutomatedReasoningPolicyTestResultsOutput: ...
     @property
     def test_results(self) -> list[AutomatedReasoningPolicyTestResult]: ...
     @property
@@ -2122,6 +2262,8 @@ class ListAutomatedReasoningPolicyTestResultsOutput:
 @final
 class ListCustomModelDeploymentsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListCustomModelDeploymentsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListCustomModelDeploymentsOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -2131,6 +2273,8 @@ class ListCustomModelDeploymentsOutput:
 @final
 class ListCustomModelsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListCustomModelsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListCustomModelsOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -2140,6 +2284,8 @@ class ListCustomModelsOutput:
 @final
 class ListEnforcedGuardrailsConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListEnforcedGuardrailsConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListEnforcedGuardrailsConfigurationOutput: ...
     @property
     def guardrails_config(self) -> list[AccountEnforcedGuardrailOutputConfiguration]: ...
     @property
@@ -2149,6 +2295,8 @@ class ListEnforcedGuardrailsConfigurationOutput:
 @final
 class ListEvaluationJobsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListEvaluationJobsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListEvaluationJobsOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -2158,6 +2306,8 @@ class ListEvaluationJobsOutput:
 @final
 class ListFoundationModelAgreementOffersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListFoundationModelAgreementOffersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListFoundationModelAgreementOffersOutput: ...
     @property
     def model_id(self) -> str: ...
     @property
@@ -2167,6 +2317,8 @@ class ListFoundationModelAgreementOffersOutput:
 @final
 class ListFoundationModelsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListFoundationModelsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListFoundationModelsOutput: ...
     @property
     def model_summaries(self) -> list[FoundationModelSummary] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2174,6 +2326,8 @@ class ListFoundationModelsOutput:
 @final
 class ListGuardrailsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListGuardrailsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListGuardrailsOutput: ...
     @property
     def guardrails(self) -> list[GuardrailSummary]: ...
     @property
@@ -2183,6 +2337,8 @@ class ListGuardrailsOutput:
 @final
 class ListImportedModelsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListImportedModelsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListImportedModelsOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -2192,6 +2348,8 @@ class ListImportedModelsOutput:
 @final
 class ListInferenceProfilesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListInferenceProfilesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListInferenceProfilesOutput: ...
     @property
     def inference_profile_summaries(self) -> list[InferenceProfileSummary] | None: ...
     @property
@@ -2201,6 +2359,8 @@ class ListInferenceProfilesOutput:
 @final
 class ListMarketplaceModelEndpointsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListMarketplaceModelEndpointsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListMarketplaceModelEndpointsOutput: ...
     @property
     def marketplace_model_endpoints(self) -> list[MarketplaceModelEndpointSummary] | None: ...
     @property
@@ -2210,6 +2370,8 @@ class ListMarketplaceModelEndpointsOutput:
 @final
 class ListModelCopyJobsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListModelCopyJobsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListModelCopyJobsOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -2219,6 +2381,8 @@ class ListModelCopyJobsOutput:
 @final
 class ListModelCustomizationJobsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListModelCustomizationJobsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListModelCustomizationJobsOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -2228,6 +2392,8 @@ class ListModelCustomizationJobsOutput:
 @final
 class ListModelImportJobsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListModelImportJobsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListModelImportJobsOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -2237,6 +2403,8 @@ class ListModelImportJobsOutput:
 @final
 class ListModelInvocationJobsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListModelInvocationJobsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListModelInvocationJobsOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -2246,6 +2414,8 @@ class ListModelInvocationJobsOutput:
 @final
 class ListPromptRoutersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListPromptRoutersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListPromptRoutersOutput: ...
     @property
     def prompt_router_summaries(self) -> list[PromptRouterSummary] | None: ...
     @property
@@ -2255,6 +2425,8 @@ class ListPromptRoutersOutput:
 @final
 class ListProvisionedModelThroughputsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListProvisionedModelThroughputsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListProvisionedModelThroughputsOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -2264,6 +2436,8 @@ class ListProvisionedModelThroughputsOutput:
 @final
 class ListTagsForResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListTagsForResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTagsForResourceOutput: ...
     @property
     def tags(self) -> list[Tag] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2271,6 +2445,8 @@ class ListTagsForResourceOutput:
 @final
 class PutAccountDataRetentionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutAccountDataRetentionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutAccountDataRetentionOutput: ...
     @property
     def mode(self) -> _types.DataRetentionModeOutput: ...
     @property
@@ -2280,6 +2456,8 @@ class PutAccountDataRetentionOutput:
 @final
 class PutEnforcedGuardrailConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutEnforcedGuardrailConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutEnforcedGuardrailConfigurationOutput: ...
     @property
     def config_id(self) -> str | None: ...
     @property
@@ -2291,11 +2469,15 @@ class PutEnforcedGuardrailConfigurationOutput:
 @final
 class PutModelInvocationLoggingConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutModelInvocationLoggingConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutModelInvocationLoggingConfigurationOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutResourcePolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutResourcePolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutResourcePolicyOutput: ...
     @property
     def resource_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2303,11 +2485,15 @@ class PutResourcePolicyOutput:
 @final
 class PutUseCaseForModelAccessOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutUseCaseForModelAccessOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutUseCaseForModelAccessOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RegisterMarketplaceModelEndpointOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RegisterMarketplaceModelEndpointOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> RegisterMarketplaceModelEndpointOutput: ...
     @property
     def marketplace_model_endpoint(self) -> MarketplaceModelEndpoint | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2315,6 +2501,8 @@ class RegisterMarketplaceModelEndpointOutput:
 @final
 class StartAutomatedReasoningPolicyBuildWorkflowOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StartAutomatedReasoningPolicyBuildWorkflowOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StartAutomatedReasoningPolicyBuildWorkflowOutput: ...
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -2324,6 +2512,8 @@ class StartAutomatedReasoningPolicyBuildWorkflowOutput:
 @final
 class StartAutomatedReasoningPolicyTestWorkflowOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StartAutomatedReasoningPolicyTestWorkflowOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StartAutomatedReasoningPolicyTestWorkflowOutput: ...
     @property
     def policy_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2331,36 +2521,50 @@ class StartAutomatedReasoningPolicyTestWorkflowOutput:
 @final
 class StopAdvancedPromptOptimizationJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StopAdvancedPromptOptimizationJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StopAdvancedPromptOptimizationJobOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StopEvaluationJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StopEvaluationJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StopEvaluationJobOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StopModelCustomizationJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StopModelCustomizationJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StopModelCustomizationJobOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StopModelInvocationJobOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StopModelInvocationJobOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StopModelInvocationJobOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> TagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UntagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UntagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UntagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateAutomatedReasoningPolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateAutomatedReasoningPolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateAutomatedReasoningPolicyOutput: ...
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -2374,6 +2578,8 @@ class UpdateAutomatedReasoningPolicyOutput:
 @final
 class UpdateAutomatedReasoningPolicyAnnotationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateAutomatedReasoningPolicyAnnotationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateAutomatedReasoningPolicyAnnotationsOutput: ...
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -2387,6 +2593,8 @@ class UpdateAutomatedReasoningPolicyAnnotationsOutput:
 @final
 class UpdateAutomatedReasoningPolicyTestCaseOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateAutomatedReasoningPolicyTestCaseOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateAutomatedReasoningPolicyTestCaseOutput: ...
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -2396,6 +2604,8 @@ class UpdateAutomatedReasoningPolicyTestCaseOutput:
 @final
 class UpdateCustomModelDeploymentOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateCustomModelDeploymentOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateCustomModelDeploymentOutput: ...
     @property
     def custom_model_deployment_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2403,6 +2613,8 @@ class UpdateCustomModelDeploymentOutput:
 @final
 class UpdateGuardrailOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateGuardrailOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateGuardrailOutput: ...
     @property
     def guardrail_id(self) -> str: ...
     @property
@@ -2416,6 +2628,8 @@ class UpdateGuardrailOutput:
 @final
 class UpdateMarketplaceModelEndpointOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateMarketplaceModelEndpointOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateMarketplaceModelEndpointOutput: ...
     @property
     def marketplace_model_endpoint(self) -> MarketplaceModelEndpoint | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2423,6 +2637,8 @@ class UpdateMarketplaceModelEndpointOutput:
 @final
 class UpdateProvisionedModelThroughputOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateProvisionedModelThroughputOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateProvisionedModelThroughputOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 

@@ -432,6 +432,8 @@ class VideoSegment:
 @final
 class CheckIngestedDocumentAclOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/CheckIngestedDocumentAclOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CheckIngestedDocumentAclOutput: ...
     @property
     def has_access(self) -> bool: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -439,6 +441,8 @@ class CheckIngestedDocumentAclOutput:
 @final
 class CreateInvocationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/CreateInvocationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateInvocationOutput: ...
     @property
     def session_id(self) -> str: ...
     @property
@@ -450,6 +454,8 @@ class CreateInvocationOutput:
 @final
 class CreateSessionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/CreateSessionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateSessionOutput: ...
     @property
     def session_id(self) -> str: ...
     @property
@@ -463,16 +469,22 @@ class CreateSessionOutput:
 @final
 class DeleteAgentMemoryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/DeleteAgentMemoryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteAgentMemoryOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteSessionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/DeleteSessionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteSessionOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class EndSessionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/EndSessionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> EndSessionOutput: ...
     @property
     def session_id(self) -> str: ...
     @property
@@ -484,6 +496,8 @@ class EndSessionOutput:
 @final
 class GenerateQueryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/GenerateQueryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GenerateQueryOutput: ...
     @property
     def queries(self) -> list[GeneratedQuery] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -491,6 +505,8 @@ class GenerateQueryOutput:
 @final
 class GetAgentMemoryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/GetAgentMemoryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAgentMemoryOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -500,6 +516,8 @@ class GetAgentMemoryOutput:
 @final
 class GetDocumentContentOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/GetDocumentContentOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDocumentContentOutput: ...
     @property
     def mime_type(self) -> str: ...
     @property
@@ -511,6 +529,8 @@ class GetDocumentContentOutput:
 @final
 class GetExecutionFlowSnapshotOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/GetExecutionFlowSnapshotOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetExecutionFlowSnapshotOutput: ...
     @property
     def flow_identifier(self) -> str: ...
     @property
@@ -528,6 +548,8 @@ class GetExecutionFlowSnapshotOutput:
 @final
 class GetFlowExecutionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/GetFlowExecutionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetFlowExecutionOutput: ...
     @property
     def execution_arn(self) -> str: ...
     @property
@@ -549,6 +571,8 @@ class GetFlowExecutionOutput:
 @final
 class GetIngestedDocumentAclOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/GetIngestedDocumentAclOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetIngestedDocumentAclOutput: ...
     @property
     def document_acl(self) -> DocumentAcl | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -556,6 +580,8 @@ class GetIngestedDocumentAclOutput:
 @final
 class GetInvocationStepOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/GetInvocationStepOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetInvocationStepOutput: ...
     @property
     def invocation_step(self) -> InvocationStep | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -563,6 +589,8 @@ class GetInvocationStepOutput:
 @final
 class GetSessionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/GetSessionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetSessionOutput: ...
     @property
     def session_id(self) -> str: ...
     @property
@@ -582,6 +610,8 @@ class GetSessionOutput:
 @final
 class ListFlowExecutionEventsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ListFlowExecutionEventsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListFlowExecutionEventsOutput: ...
     @property
     def flow_execution_events(self) -> list[_types.FlowExecutionEvent]: ...
     @property
@@ -591,6 +621,8 @@ class ListFlowExecutionEventsOutput:
 @final
 class ListFlowExecutionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ListFlowExecutionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListFlowExecutionsOutput: ...
     @property
     def flow_execution_summaries(self) -> list[FlowExecutionSummary]: ...
     @property
@@ -600,6 +632,8 @@ class ListFlowExecutionsOutput:
 @final
 class ListInvocationStepsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ListInvocationStepsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListInvocationStepsOutput: ...
     @property
     def invocation_step_summaries(self) -> list[InvocationStepSummary]: ...
     @property
@@ -609,6 +643,8 @@ class ListInvocationStepsOutput:
 @final
 class ListInvocationsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ListInvocationsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListInvocationsOutput: ...
     @property
     def invocation_summaries(self) -> list[InvocationSummary]: ...
     @property
@@ -618,6 +654,8 @@ class ListInvocationsOutput:
 @final
 class ListSessionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ListSessionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListSessionsOutput: ...
     @property
     def session_summaries(self) -> list[SessionSummary]: ...
     @property
@@ -627,6 +665,8 @@ class ListSessionsOutput:
 @final
 class ListTagsForResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ListTagsForResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTagsForResourceOutput: ...
     @property
     def tags(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -634,6 +674,8 @@ class ListTagsForResourceOutput:
 @final
 class PutInvocationStepOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/PutInvocationStepOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutInvocationStepOutput: ...
     @property
     def invocation_step_id(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -641,6 +683,8 @@ class PutInvocationStepOutput:
 @final
 class RerankOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RerankOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> RerankOutput: ...
     @property
     def results(self) -> list[RerankResult]: ...
     @property
@@ -650,6 +694,8 @@ class RerankOutput:
 @final
 class RetrieveOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrieveOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> RetrieveOutput: ...
     @property
     def retrieval_results(self) -> list[KnowledgeBaseRetrievalResult]: ...
     @property
@@ -661,6 +707,8 @@ class RetrieveOutput:
 @final
 class RetrieveAndGenerateOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrieveAndGenerateOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> RetrieveAndGenerateOutput: ...
     @property
     def session_id(self) -> str: ...
     @property
@@ -674,6 +722,8 @@ class RetrieveAndGenerateOutput:
 @final
 class StartFlowExecutionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/StartFlowExecutionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StartFlowExecutionOutput: ...
     @property
     def execution_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -681,6 +731,8 @@ class StartFlowExecutionOutput:
 @final
 class StopFlowExecutionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/StopFlowExecutionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StopFlowExecutionOutput: ...
     @property
     def execution_arn(self) -> str | None: ...
     @property
@@ -690,16 +742,22 @@ class StopFlowExecutionOutput:
 @final
 class TagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/TagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> TagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UntagResourceOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/UntagResourceOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UntagResourceOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateSessionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/UpdateSessionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateSessionOutput: ...
     @property
     def session_id(self) -> str: ...
     @property

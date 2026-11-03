@@ -122,6 +122,8 @@ class SendMessageBatchResultEntry:
 @final
 class CancelMessageMoveTaskOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/CancelMessageMoveTaskOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CancelMessageMoveTaskOutput: ...
     @property
     def approximate_number_of_messages_moved(self) -> int: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -129,6 +131,8 @@ class CancelMessageMoveTaskOutput:
 @final
 class ChangeMessageVisibilityBatchOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ChangeMessageVisibilityBatchOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ChangeMessageVisibilityBatchOutput: ...
     @property
     def successful(self) -> list[ChangeMessageVisibilityBatchResultEntry]: ...
     @property
@@ -138,6 +142,8 @@ class ChangeMessageVisibilityBatchOutput:
 @final
 class CreateQueueOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/CreateQueueOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateQueueOutput: ...
     @property
     def queue_url(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -145,6 +151,8 @@ class CreateQueueOutput:
 @final
 class DeleteMessageBatchOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/DeleteMessageBatchOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteMessageBatchOutput: ...
     @property
     def successful(self) -> list[DeleteMessageBatchResultEntry]: ...
     @property
@@ -154,6 +162,8 @@ class DeleteMessageBatchOutput:
 @final
 class GetQueueAttributesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/GetQueueAttributesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetQueueAttributesOutput: ...
     @property
     def attributes(self) -> dict[_types.QueueAttributeNameOutput, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -161,6 +171,8 @@ class GetQueueAttributesOutput:
 @final
 class GetQueueUrlOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/GetQueueUrlOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetQueueUrlOutput: ...
     @property
     def queue_url(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -168,6 +180,8 @@ class GetQueueUrlOutput:
 @final
 class ListDeadLetterSourceQueuesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ListDeadLetterSourceQueuesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListDeadLetterSourceQueuesOutput: ...
     @property
     def queue_urls(self) -> list[str]: ...
     @property
@@ -177,6 +191,8 @@ class ListDeadLetterSourceQueuesOutput:
 @final
 class ListMessageMoveTasksOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ListMessageMoveTasksOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListMessageMoveTasksOutput: ...
     @property
     def results(self) -> list[ListMessageMoveTasksResultEntry] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -184,6 +200,8 @@ class ListMessageMoveTasksOutput:
 @final
 class ListQueueTagsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ListQueueTagsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListQueueTagsOutput: ...
     @property
     def tags(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -191,6 +209,8 @@ class ListQueueTagsOutput:
 @final
 class ListQueuesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ListQueuesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListQueuesOutput: ...
     @property
     def queue_urls(self) -> list[str] | None: ...
     @property
@@ -200,6 +220,8 @@ class ListQueuesOutput:
 @final
 class ReceiveMessageOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ReceiveMessageOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ReceiveMessageOutput: ...
     @property
     def messages(self) -> list[Message] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -207,6 +229,8 @@ class ReceiveMessageOutput:
 @final
 class SendMessageOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/SendMessageOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> SendMessageOutput: ...
     @property
     def md5_of_message_body(self) -> str | None: ...
     @property
@@ -222,6 +246,8 @@ class SendMessageOutput:
 @final
 class SendMessageBatchOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/SendMessageBatchOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> SendMessageBatchOutput: ...
     @property
     def successful(self) -> list[SendMessageBatchResultEntry]: ...
     @property
@@ -231,6 +257,8 @@ class SendMessageBatchOutput:
 @final
 class StartMessageMoveTaskOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/StartMessageMoveTaskOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StartMessageMoveTaskOutput: ...
     @property
     def task_handle(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...

@@ -1265,6 +1265,809 @@ fn xks_proxy_configuration_type_to_py(
     Ok(result.into_any().unbind())
 }
 
+fn alias_list_entry_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kms::types::AliasListEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "alias_name",
+            "alias_arn",
+            "target_key_id",
+            "creation_date",
+            "last_updated_date",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_kms::types::AliasListEntry::builder();
+    if let Some(value) = dict_value(values, "alias_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1080: String = value.extract()?;
+        builder = builder.set_alias_name(Some(fixture_1080));
+    }
+    if let Some(value) = dict_value(values, "alias_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1081: String = value.extract()?;
+        builder = builder.set_alias_arn(Some(fixture_1081));
+    }
+    if let Some(value) = dict_value(values, "target_key_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1082: String = value.extract()?;
+        builder = builder.set_target_key_id(Some(fixture_1082));
+    }
+    if let Some(value) = dict_value(values, "creation_date")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1084: String = value.extract()?;
+        let fixture_1083 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1084,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_date(Some(fixture_1083));
+    }
+    if let Some(value) = dict_value(values, "last_updated_date")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1086: String = value.extract()?;
+        let fixture_1085 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1086,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_last_updated_date(Some(fixture_1085));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn custom_key_stores_list_entry_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kms::types::CustomKeyStoresListEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "custom_key_store_id",
+            "custom_key_store_name",
+            "cloud_hsm_cluster_id",
+            "trust_anchor_certificate",
+            "connection_state",
+            "connection_error_code",
+            "creation_date",
+            "custom_key_store_type",
+            "xks_proxy_configuration",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_kms::types::CustomKeyStoresListEntry::builder();
+    if let Some(value) = dict_value(values, "custom_key_store_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1087: String = value.extract()?;
+        builder = builder.set_custom_key_store_id(Some(fixture_1087));
+    }
+    if let Some(value) = dict_value(values, "custom_key_store_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1088: String = value.extract()?;
+        builder = builder.set_custom_key_store_name(Some(fixture_1088));
+    }
+    if let Some(value) = dict_value(values, "cloud_hsm_cluster_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1089: String = value.extract()?;
+        builder = builder.set_cloud_hsm_cluster_id(Some(fixture_1089));
+    }
+    if let Some(value) = dict_value(values, "trust_anchor_certificate")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1090: String = value.extract()?;
+        builder = builder.set_trust_anchor_certificate(Some(fixture_1090));
+    }
+    if let Some(value) = dict_value(values, "connection_state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1092: String = value.extract()?;
+        let fixture_1091 = aws_sdk_kms::types::ConnectionStateType::from(enum_value_1092.as_str());
+        builder = builder.set_connection_state(Some(fixture_1091));
+    }
+    if let Some(value) = dict_value(values, "connection_error_code")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1094: String = value.extract()?;
+        let fixture_1093 =
+            aws_sdk_kms::types::ConnectionErrorCodeType::from(enum_value_1094.as_str());
+        builder = builder.set_connection_error_code(Some(fixture_1093));
+    }
+    if let Some(value) = dict_value(values, "creation_date")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1096: String = value.extract()?;
+        let fixture_1095 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1096,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_date(Some(fixture_1095));
+    }
+    if let Some(value) = dict_value(values, "custom_key_store_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1098: String = value.extract()?;
+        let fixture_1097 = aws_sdk_kms::types::CustomKeyStoreType::from(enum_value_1098.as_str());
+        builder = builder.set_custom_key_store_type(Some(fixture_1097));
+    }
+    if let Some(value) = dict_value(values, "xks_proxy_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1099 = xks_proxy_configuration_type_fixture_from_py(&value)?;
+        builder = builder.set_xks_proxy_configuration(Some(fixture_1099));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn grant_constraints_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kms::types::GrantConstraints> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "encryption_context_subset",
+            "encryption_context_equals",
+            "source_arn",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_kms::types::GrantConstraints::builder();
+    if let Some(value) = dict_value(values, "encryption_context_subset")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_1101 = value.cast::<PyDict>()?;
+        let mut fixture_1100 = HashMap::with_capacity(mapping_1101.len());
+        for (key_1102, value_1103) in mapping_1101.iter() {
+            rboto_core::fixture_scalar(&key_1102, "string")?;
+            let converted_key_1104: String = key_1102.extract()?;
+            rboto_core::fixture_scalar(&value_1103, "string")?;
+            let converted_value_1105: String = value_1103.extract()?;
+            fixture_1100.insert(converted_key_1104, converted_value_1105);
+        }
+        builder = builder.set_encryption_context_subset(Some(fixture_1100));
+    }
+    if let Some(value) = dict_value(values, "encryption_context_equals")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_1107 = value.cast::<PyDict>()?;
+        let mut fixture_1106 = HashMap::with_capacity(mapping_1107.len());
+        for (key_1108, value_1109) in mapping_1107.iter() {
+            rboto_core::fixture_scalar(&key_1108, "string")?;
+            let converted_key_1110: String = key_1108.extract()?;
+            rboto_core::fixture_scalar(&value_1109, "string")?;
+            let converted_value_1111: String = value_1109.extract()?;
+            fixture_1106.insert(converted_key_1110, converted_value_1111);
+        }
+        builder = builder.set_encryption_context_equals(Some(fixture_1106));
+    }
+    if let Some(value) = dict_value(values, "source_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1112: String = value.extract()?;
+        builder = builder.set_source_arn(Some(fixture_1112));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn grant_list_entry_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kms::types::GrantListEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "key_id",
+            "grant_id",
+            "name",
+            "creation_date",
+            "grantee_principal",
+            "retiring_principal",
+            "issuing_account",
+            "operations",
+            "constraints",
+            "grantee_service_principal",
+            "retiring_service_principal",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_kms::types::GrantListEntry::builder();
+    if let Some(value) = dict_value(values, "key_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1113: String = value.extract()?;
+        builder = builder.set_key_id(Some(fixture_1113));
+    }
+    if let Some(value) = dict_value(values, "grant_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1114: String = value.extract()?;
+        builder = builder.set_grant_id(Some(fixture_1114));
+    }
+    if let Some(value) = dict_value(values, "name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1115: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_1115));
+    }
+    if let Some(value) = dict_value(values, "creation_date")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1117: String = value.extract()?;
+        let fixture_1116 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1117,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_date(Some(fixture_1116));
+    }
+    if let Some(value) = dict_value(values, "grantee_principal")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1118: String = value.extract()?;
+        builder = builder.set_grantee_principal(Some(fixture_1118));
+    }
+    if let Some(value) = dict_value(values, "retiring_principal")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1119: String = value.extract()?;
+        builder = builder.set_retiring_principal(Some(fixture_1119));
+    }
+    if let Some(value) = dict_value(values, "issuing_account")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1120: String = value.extract()?;
+        builder = builder.set_issuing_account(Some(fixture_1120));
+    }
+    if let Some(value) = dict_value(values, "operations")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1121 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1122 in value.try_iter()? {
+            let item_1123 = item_result_1122?;
+            rboto_core::fixture_scalar(&item_1123, "enum")?;
+            let enum_value_1125: String = item_1123.extract()?;
+            let converted_item_1124 =
+                aws_sdk_kms::types::GrantOperation::from(enum_value_1125.as_str());
+            fixture_1121.push(converted_item_1124);
+        }
+        builder = builder.set_operations(Some(fixture_1121));
+    }
+    if let Some(value) = dict_value(values, "constraints")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1126 = grant_constraints_fixture_from_py(&value)?;
+        builder = builder.set_constraints(Some(fixture_1126));
+    }
+    if let Some(value) = dict_value(values, "grantee_service_principal")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1127: String = value.extract()?;
+        builder = builder.set_grantee_service_principal(Some(fixture_1127));
+    }
+    if let Some(value) = dict_value(values, "retiring_service_principal")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1128: String = value.extract()?;
+        builder = builder.set_retiring_service_principal(Some(fixture_1128));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn key_last_usage_data_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kms::types::KeyLastUsageData> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "operation",
+            "timestamp",
+            "cloud_trail_event_id",
+            "kms_request_id",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_kms::types::KeyLastUsageData::builder();
+    if let Some(value) = dict_value(values, "operation")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1130: String = value.extract()?;
+        let fixture_1129 =
+            aws_sdk_kms::types::KeyLastUsageTrackingOperation::from(enum_value_1130.as_str());
+        builder = builder.set_operation(Some(fixture_1129));
+    }
+    if let Some(value) = dict_value(values, "timestamp")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1132: String = value.extract()?;
+        let fixture_1131 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1132,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_timestamp(Some(fixture_1131));
+    }
+    if let Some(value) = dict_value(values, "cloud_trail_event_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1133: String = value.extract()?;
+        builder = builder.set_cloud_trail_event_id(Some(fixture_1133));
+    }
+    if let Some(value) = dict_value(values, "kms_request_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1134: String = value.extract()?;
+        builder = builder.set_kms_request_id(Some(fixture_1134));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn key_list_entry_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kms::types::KeyListEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["key_id", "key_arn"], &[])?;
+    let mut builder = aws_sdk_kms::types::KeyListEntry::builder();
+    if let Some(value) = dict_value(values, "key_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1135: String = value.extract()?;
+        builder = builder.set_key_id(Some(fixture_1135));
+    }
+    if let Some(value) = dict_value(values, "key_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1136: String = value.extract()?;
+        builder = builder.set_key_arn(Some(fixture_1136));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn key_metadata_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kms::types::KeyMetadata> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "aws_account_id",
+            "key_id",
+            "arn",
+            "creation_date",
+            "enabled",
+            "description",
+            "key_usage",
+            "key_state",
+            "deletion_date",
+            "valid_to",
+            "origin",
+            "custom_key_store_id",
+            "cloud_hsm_cluster_id",
+            "expiration_model",
+            "key_manager",
+            "customer_master_key_spec",
+            "key_spec",
+            "encryption_algorithms",
+            "signing_algorithms",
+            "key_agreement_algorithms",
+            "multi_region",
+            "multi_region_configuration",
+            "pending_deletion_window_in_days",
+            "mac_algorithms",
+            "xks_key_configuration",
+            "current_key_material_id",
+        ],
+        &["key_id", "enabled"],
+    )?;
+    let mut builder = aws_sdk_kms::types::KeyMetadata::builder();
+    if let Some(value) = dict_value(values, "aws_account_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1137: String = value.extract()?;
+        builder = builder.set_aws_account_id(Some(fixture_1137));
+    }
+    if let Some(value) = values.get_item("key_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1138: String = value.extract()?;
+        builder = builder.set_key_id(Some(fixture_1138));
+    }
+    if let Some(value) = dict_value(values, "arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1139: String = value.extract()?;
+        builder = builder.set_arn(Some(fixture_1139));
+    }
+    if let Some(value) = dict_value(values, "creation_date")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1141: String = value.extract()?;
+        let fixture_1140 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1141,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_creation_date(Some(fixture_1140));
+    }
+    if let Some(value) = values.get_item("enabled")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_1142: bool = value.extract()?;
+        builder = builder.set_enabled(Some(fixture_1142));
+    }
+    if let Some(value) = dict_value(values, "description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1143: String = value.extract()?;
+        builder = builder.set_description(Some(fixture_1143));
+    }
+    if let Some(value) = dict_value(values, "key_usage")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1145: String = value.extract()?;
+        let fixture_1144 = aws_sdk_kms::types::KeyUsageType::from(enum_value_1145.as_str());
+        builder = builder.set_key_usage(Some(fixture_1144));
+    }
+    if let Some(value) = dict_value(values, "key_state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1147: String = value.extract()?;
+        let fixture_1146 = aws_sdk_kms::types::KeyState::from(enum_value_1147.as_str());
+        builder = builder.set_key_state(Some(fixture_1146));
+    }
+    if let Some(value) = dict_value(values, "deletion_date")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1149: String = value.extract()?;
+        let fixture_1148 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1149,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_deletion_date(Some(fixture_1148));
+    }
+    if let Some(value) = dict_value(values, "valid_to")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1151: String = value.extract()?;
+        let fixture_1150 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1151,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_valid_to(Some(fixture_1150));
+    }
+    if let Some(value) = dict_value(values, "origin")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1153: String = value.extract()?;
+        let fixture_1152 = aws_sdk_kms::types::OriginType::from(enum_value_1153.as_str());
+        builder = builder.set_origin(Some(fixture_1152));
+    }
+    if let Some(value) = dict_value(values, "custom_key_store_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1154: String = value.extract()?;
+        builder = builder.set_custom_key_store_id(Some(fixture_1154));
+    }
+    if let Some(value) = dict_value(values, "cloud_hsm_cluster_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1155: String = value.extract()?;
+        builder = builder.set_cloud_hsm_cluster_id(Some(fixture_1155));
+    }
+    if let Some(value) = dict_value(values, "expiration_model")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1157: String = value.extract()?;
+        let fixture_1156 = aws_sdk_kms::types::ExpirationModelType::from(enum_value_1157.as_str());
+        builder = builder.set_expiration_model(Some(fixture_1156));
+    }
+    if let Some(value) = dict_value(values, "key_manager")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1159: String = value.extract()?;
+        let fixture_1158 = aws_sdk_kms::types::KeyManagerType::from(enum_value_1159.as_str());
+        builder = builder.set_key_manager(Some(fixture_1158));
+    }
+    if let Some(value) = dict_value(values, "customer_master_key_spec")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1161: String = value.extract()?;
+        let fixture_1160 =
+            aws_sdk_kms::types::CustomerMasterKeySpec::from(enum_value_1161.as_str());
+        builder = builder.set_customer_master_key_spec(Some(fixture_1160));
+    }
+    if let Some(value) = dict_value(values, "key_spec")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1163: String = value.extract()?;
+        let fixture_1162 = aws_sdk_kms::types::KeySpec::from(enum_value_1163.as_str());
+        builder = builder.set_key_spec(Some(fixture_1162));
+    }
+    if let Some(value) = dict_value(values, "encryption_algorithms")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1164 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1165 in value.try_iter()? {
+            let item_1166 = item_result_1165?;
+            rboto_core::fixture_scalar(&item_1166, "enum")?;
+            let enum_value_1168: String = item_1166.extract()?;
+            let converted_item_1167 =
+                aws_sdk_kms::types::EncryptionAlgorithmSpec::from(enum_value_1168.as_str());
+            fixture_1164.push(converted_item_1167);
+        }
+        builder = builder.set_encryption_algorithms(Some(fixture_1164));
+    }
+    if let Some(value) = dict_value(values, "signing_algorithms")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1169 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1170 in value.try_iter()? {
+            let item_1171 = item_result_1170?;
+            rboto_core::fixture_scalar(&item_1171, "enum")?;
+            let enum_value_1173: String = item_1171.extract()?;
+            let converted_item_1172 =
+                aws_sdk_kms::types::SigningAlgorithmSpec::from(enum_value_1173.as_str());
+            fixture_1169.push(converted_item_1172);
+        }
+        builder = builder.set_signing_algorithms(Some(fixture_1169));
+    }
+    if let Some(value) = dict_value(values, "key_agreement_algorithms")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1174 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1175 in value.try_iter()? {
+            let item_1176 = item_result_1175?;
+            rboto_core::fixture_scalar(&item_1176, "enum")?;
+            let enum_value_1178: String = item_1176.extract()?;
+            let converted_item_1177 =
+                aws_sdk_kms::types::KeyAgreementAlgorithmSpec::from(enum_value_1178.as_str());
+            fixture_1174.push(converted_item_1177);
+        }
+        builder = builder.set_key_agreement_algorithms(Some(fixture_1174));
+    }
+    if let Some(value) = dict_value(values, "multi_region")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_1179: bool = value.extract()?;
+        builder = builder.set_multi_region(Some(fixture_1179));
+    }
+    if let Some(value) = dict_value(values, "multi_region_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1180 = multi_region_configuration_fixture_from_py(&value)?;
+        builder = builder.set_multi_region_configuration(Some(fixture_1180));
+    }
+    if let Some(value) = dict_value(values, "pending_deletion_window_in_days")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_1181: i32 = value.extract()?;
+        builder = builder.set_pending_deletion_window_in_days(Some(fixture_1181));
+    }
+    if let Some(value) = dict_value(values, "mac_algorithms")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1182 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1183 in value.try_iter()? {
+            let item_1184 = item_result_1183?;
+            rboto_core::fixture_scalar(&item_1184, "enum")?;
+            let enum_value_1186: String = item_1184.extract()?;
+            let converted_item_1185 =
+                aws_sdk_kms::types::MacAlgorithmSpec::from(enum_value_1186.as_str());
+            fixture_1182.push(converted_item_1185);
+        }
+        builder = builder.set_mac_algorithms(Some(fixture_1182));
+    }
+    if let Some(value) = dict_value(values, "xks_key_configuration")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1187 = xks_key_configuration_type_fixture_from_py(&value)?;
+        builder = builder.set_xks_key_configuration(Some(fixture_1187));
+    }
+    if let Some(value) = dict_value(values, "current_key_material_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1188: String = value.extract()?;
+        builder = builder.set_current_key_material_id(Some(fixture_1188));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn multi_region_configuration_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kms::types::MultiRegionConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["multi_region_key_type", "primary_key", "replica_keys"],
+        &[],
+    )?;
+    let mut builder = aws_sdk_kms::types::MultiRegionConfiguration::builder();
+    if let Some(value) = dict_value(values, "multi_region_key_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1190: String = value.extract()?;
+        let fixture_1189 = aws_sdk_kms::types::MultiRegionKeyType::from(enum_value_1190.as_str());
+        builder = builder.set_multi_region_key_type(Some(fixture_1189));
+    }
+    if let Some(value) = dict_value(values, "primary_key")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_1191 = multi_region_key_fixture_from_py(&value)?;
+        builder = builder.set_primary_key(Some(fixture_1191));
+    }
+    if let Some(value) = dict_value(values, "replica_keys")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_1192 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_1193 in value.try_iter()? {
+            let item_1194 = item_result_1193?;
+            rboto_core::fixture_scalar(&item_1194, "struct")?;
+            let converted_item_1195 = multi_region_key_fixture_from_py(&item_1194)?;
+            fixture_1192.push(converted_item_1195);
+        }
+        builder = builder.set_replica_keys(Some(fixture_1192));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn multi_region_key_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kms::types::MultiRegionKey> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["arn", "region"], &[])?;
+    let mut builder = aws_sdk_kms::types::MultiRegionKey::builder();
+    if let Some(value) = dict_value(values, "arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1196: String = value.extract()?;
+        builder = builder.set_arn(Some(fixture_1196));
+    }
+    if let Some(value) = dict_value(values, "region")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1197: String = value.extract()?;
+        builder = builder.set_region(Some(fixture_1197));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn rotations_list_entry_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kms::types::RotationsListEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "key_id",
+            "key_material_id",
+            "key_material_description",
+            "import_state",
+            "key_material_state",
+            "expiration_model",
+            "valid_to",
+            "rotation_date",
+            "rotation_type",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_kms::types::RotationsListEntry::builder();
+    if let Some(value) = dict_value(values, "key_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1198: String = value.extract()?;
+        builder = builder.set_key_id(Some(fixture_1198));
+    }
+    if let Some(value) = dict_value(values, "key_material_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1199: String = value.extract()?;
+        builder = builder.set_key_material_id(Some(fixture_1199));
+    }
+    if let Some(value) = dict_value(values, "key_material_description")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1200: String = value.extract()?;
+        builder = builder.set_key_material_description(Some(fixture_1200));
+    }
+    if let Some(value) = dict_value(values, "import_state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1202: String = value.extract()?;
+        let fixture_1201 = aws_sdk_kms::types::ImportState::from(enum_value_1202.as_str());
+        builder = builder.set_import_state(Some(fixture_1201));
+    }
+    if let Some(value) = dict_value(values, "key_material_state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1204: String = value.extract()?;
+        let fixture_1203 = aws_sdk_kms::types::KeyMaterialState::from(enum_value_1204.as_str());
+        builder = builder.set_key_material_state(Some(fixture_1203));
+    }
+    if let Some(value) = dict_value(values, "expiration_model")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1206: String = value.extract()?;
+        let fixture_1205 = aws_sdk_kms::types::ExpirationModelType::from(enum_value_1206.as_str());
+        builder = builder.set_expiration_model(Some(fixture_1205));
+    }
+    if let Some(value) = dict_value(values, "valid_to")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1208: String = value.extract()?;
+        let fixture_1207 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1208,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_valid_to(Some(fixture_1207));
+    }
+    if let Some(value) = dict_value(values, "rotation_date")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_1210: String = value.extract()?;
+        let fixture_1209 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_1210,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_rotation_date(Some(fixture_1209));
+    }
+    if let Some(value) = dict_value(values, "rotation_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1212: String = value.extract()?;
+        let fixture_1211 = aws_sdk_kms::types::RotationType::from(enum_value_1212.as_str());
+        builder = builder.set_rotation_type(Some(fixture_1211));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn tag_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kms::types::Tag> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["tag_key", "tag_value"], &["tag_key", "tag_value"])?;
+    let mut builder = aws_sdk_kms::types::Tag::builder();
+    if let Some(value) = values.get_item("tag_key")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1213: String = value.extract()?;
+        builder = builder.set_tag_key(Some(fixture_1213));
+    }
+    if let Some(value) = values.get_item("tag_value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1214: String = value.extract()?;
+        builder = builder.set_tag_value(Some(fixture_1214));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn xks_key_configuration_type_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kms::types::XksKeyConfigurationType> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["id"], &[])?;
+    let mut builder = aws_sdk_kms::types::XksKeyConfigurationType::builder();
+    if let Some(value) = dict_value(values, "id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1215: String = value.extract()?;
+        builder = builder.set_id(Some(fixture_1215));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn xks_proxy_configuration_type_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kms::types::XksProxyConfigurationType> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "connectivity",
+            "access_key_id",
+            "uri_endpoint",
+            "uri_path",
+            "vpc_endpoint_service_name",
+            "vpc_endpoint_service_owner",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_kms::types::XksProxyConfigurationType::builder();
+    if let Some(value) = dict_value(values, "connectivity")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_1217: String = value.extract()?;
+        let fixture_1216 =
+            aws_sdk_kms::types::XksProxyConnectivityType::from(enum_value_1217.as_str());
+        builder = builder.set_connectivity(Some(fixture_1216));
+    }
+    if let Some(value) = dict_value(values, "access_key_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1218: String = value.extract()?;
+        builder = builder.set_access_key_id(Some(fixture_1218));
+    }
+    if let Some(value) = dict_value(values, "uri_endpoint")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1219: String = value.extract()?;
+        builder = builder.set_uri_endpoint(Some(fixture_1219));
+    }
+    if let Some(value) = dict_value(values, "uri_path")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1220: String = value.extract()?;
+        builder = builder.set_uri_path(Some(fixture_1220));
+    }
+    if let Some(value) = dict_value(values, "vpc_endpoint_service_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1221: String = value.extract()?;
+        builder = builder.set_vpc_endpoint_service_name(Some(fixture_1221));
+    }
+    if let Some(value) = dict_value(values, "vpc_endpoint_service_owner")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_1222: String = value.extract()?;
+        builder = builder.set_vpc_endpoint_service_owner(Some(fixture_1222));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
 #[pyclass(name = "AliasListEntry", module = "rboto_kms._native", frozen)]
 struct PyAliasListEntry {
     inner: Arc<aws_sdk_kms::types::AliasListEntry>,
@@ -2851,6 +3654,21 @@ impl PyOperationCancelKeyDeletionOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["key_id"], &[])?;
+        let mut builder =
+            aws_sdk_kms::operation::cancel_key_deletion::CancelKeyDeletionOutput::builder();
+        if let Some(value) = dict_value(values, "key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_788: String = value.extract()?;
+            builder = builder.set_key_id(Some(fixture_788));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -2867,6 +3685,17 @@ impl PyOperationConnectCustomKeyStoreOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_kms::operation::connect_custom_key_store::ConnectCustomKeyStoreOutput::builder(
+            );
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -2900,6 +3729,21 @@ impl PyOperationCreateCustomKeyStoreOutput {
             result.set_item("custom_key_store_id", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["custom_key_store_id"], &[])?;
+        let mut builder =
+            aws_sdk_kms::operation::create_custom_key_store::CreateCustomKeyStoreOutput::builder();
+        if let Some(value) = dict_value(values, "custom_key_store_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_790: String = value.extract()?;
+            builder = builder.set_custom_key_store_id(Some(fixture_790));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -2945,6 +3789,25 @@ impl PyOperationCreateGrantOutput {
             result.set_item("grant_id", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["grant_token", "grant_id"], &[])?;
+        let mut builder = aws_sdk_kms::operation::create_grant::CreateGrantOutput::builder();
+        if let Some(value) = dict_value(values, "grant_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_794: String = value.extract()?;
+            builder = builder.set_grant_token(Some(fixture_794));
+        }
+        if let Some(value) = dict_value(values, "grant_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_795: String = value.extract()?;
+            builder = builder.set_grant_id(Some(fixture_795));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -2998,6 +3861,22 @@ impl PyOperationCreateKeyOutput {
             result.set_item("key_metadata", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["key_metadata"], &[])?;
+        let mut builder = aws_sdk_kms::operation::create_key::CreateKeyOutput::builder();
+        if let Some(value) = dict_value(values, "key_metadata")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_796 = key_metadata_fixture_from_py(&value)?;
+            builder = builder.set_key_metadata(Some(fixture_796));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -3092,6 +3971,54 @@ impl PyOperationDecryptOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "key_id",
+                "plaintext",
+                "encryption_algorithm",
+                "ciphertext_for_recipient",
+                "key_material_id",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_kms::operation::decrypt::DecryptOutput::builder();
+        if let Some(value) = dict_value(values, "key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_806: String = value.extract()?;
+            builder = builder.set_key_id(Some(fixture_806));
+        }
+        if let Some(value) = dict_value(values, "plaintext")? {
+            rboto_core::fixture_scalar(&value, "blob")?;
+            let bytes_808: Vec<u8> = value.extract()?;
+            let fixture_807 = ::aws_smithy_types::Blob::new(bytes_808);
+            builder = builder.set_plaintext(Some(fixture_807));
+        }
+        if let Some(value) = dict_value(values, "encryption_algorithm")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_810: String = value.extract()?;
+            let fixture_809 =
+                aws_sdk_kms::types::EncryptionAlgorithmSpec::from(enum_value_810.as_str());
+            builder = builder.set_encryption_algorithm(Some(fixture_809));
+        }
+        if let Some(value) = dict_value(values, "ciphertext_for_recipient")? {
+            rboto_core::fixture_scalar(&value, "blob")?;
+            let bytes_812: Vec<u8> = value.extract()?;
+            let fixture_811 = ::aws_smithy_types::Blob::new(bytes_812);
+            builder = builder.set_ciphertext_for_recipient(Some(fixture_811));
+        }
+        if let Some(value) = dict_value(values, "key_material_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_813: String = value.extract()?;
+            builder = builder.set_key_material_id(Some(fixture_813));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -3108,6 +4035,16 @@ impl PyOperationDeleteCustomKeyStoreOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_kms::operation::delete_custom_key_store::DeleteCustomKeyStoreOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -3157,6 +4094,25 @@ impl PyOperationDeleteImportedKeyMaterialOutput {
             result.set_item("key_material_id", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["key_id", "key_material_id"], &[])?;
+        let mut builder = aws_sdk_kms::operation::delete_imported_key_material::DeleteImportedKeyMaterialOutput::builder();
+        if let Some(value) = dict_value(values, "key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_810: String = value.extract()?;
+            builder = builder.set_key_id(Some(fixture_810));
+        }
+        if let Some(value) = dict_value(values, "key_material_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_811: String = value.extract()?;
+            builder = builder.set_key_material_id(Some(fixture_811));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -3254,6 +4210,56 @@ impl PyOperationDeriveSharedSecretOutput {
             result.set_item("key_origin", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "key_id",
+                "shared_secret",
+                "ciphertext_for_recipient",
+                "key_agreement_algorithm",
+                "key_origin",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_kms::operation::derive_shared_secret::DeriveSharedSecretOutput::builder();
+        if let Some(value) = dict_value(values, "key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_820: String = value.extract()?;
+            builder = builder.set_key_id(Some(fixture_820));
+        }
+        if let Some(value) = dict_value(values, "shared_secret")? {
+            rboto_core::fixture_scalar(&value, "blob")?;
+            let bytes_822: Vec<u8> = value.extract()?;
+            let fixture_821 = ::aws_smithy_types::Blob::new(bytes_822);
+            builder = builder.set_shared_secret(Some(fixture_821));
+        }
+        if let Some(value) = dict_value(values, "ciphertext_for_recipient")? {
+            rboto_core::fixture_scalar(&value, "blob")?;
+            let bytes_824: Vec<u8> = value.extract()?;
+            let fixture_823 = ::aws_smithy_types::Blob::new(bytes_824);
+            builder = builder.set_ciphertext_for_recipient(Some(fixture_823));
+        }
+        if let Some(value) = dict_value(values, "key_agreement_algorithm")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_826: String = value.extract()?;
+            let fixture_825 =
+                aws_sdk_kms::types::KeyAgreementAlgorithmSpec::from(enum_value_826.as_str());
+            builder = builder.set_key_agreement_algorithm(Some(fixture_825));
+        }
+        if let Some(value) = dict_value(values, "key_origin")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_828: String = value.extract()?;
+            let fixture_827 = aws_sdk_kms::types::OriginType::from(enum_value_828.as_str());
+            builder = builder.set_key_origin(Some(fixture_827));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -3355,6 +4361,43 @@ impl PyOperationDescribeCustomKeyStoresOutput {
         result.set_item("truncated", converted_830)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["custom_key_stores", "next_marker", "truncated"],
+            &["truncated"],
+        )?;
+        let mut builder = aws_sdk_kms::operation::describe_custom_key_stores::DescribeCustomKeyStoresOutput::builder();
+        if let Some(value) = dict_value(values, "custom_key_stores")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_831 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_832 in value.try_iter()? {
+                let item_833 = item_result_832?;
+                rboto_core::fixture_scalar(&item_833, "struct")?;
+                let converted_item_834 = custom_key_stores_list_entry_fixture_from_py(&item_833)?;
+                fixture_831.push(converted_item_834);
+            }
+            builder = builder.set_custom_key_stores(Some(fixture_831));
+        }
+        if let Some(value) = dict_value(values, "next_marker")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_835: String = value.extract()?;
+            builder = builder.set_next_marker(Some(fixture_835));
+        }
+        if let Some(value) = values.get_item("truncated")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_836: bool = value.extract()?;
+            builder = builder.set_truncated(Some(fixture_836));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -3408,6 +4451,22 @@ impl PyOperationDescribeKeyOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["key_metadata"], &[])?;
+        let mut builder = aws_sdk_kms::operation::describe_key::DescribeKeyOutput::builder();
+        if let Some(value) = dict_value(values, "key_metadata")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_833 = key_metadata_fixture_from_py(&value)?;
+            builder = builder.set_key_metadata(Some(fixture_833));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -3424,6 +4483,15 @@ impl PyOperationDisconnectCustomKeyStoreOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder = aws_sdk_kms::operation::disconnect_custom_key_store::DisconnectCustomKeyStoreOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -3485,6 +4553,37 @@ impl PyOperationEncryptOutput {
             result.set_item("encryption_algorithm", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["ciphertext_blob", "key_id", "encryption_algorithm"],
+            &[],
+        )?;
+        let mut builder = aws_sdk_kms::operation::encrypt::EncryptOutput::builder();
+        if let Some(value) = dict_value(values, "ciphertext_blob")? {
+            rboto_core::fixture_scalar(&value, "blob")?;
+            let bytes_840: Vec<u8> = value.extract()?;
+            let fixture_839 = ::aws_smithy_types::Blob::new(bytes_840);
+            builder = builder.set_ciphertext_blob(Some(fixture_839));
+        }
+        if let Some(value) = dict_value(values, "key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_841: String = value.extract()?;
+            builder = builder.set_key_id(Some(fixture_841));
+        }
+        if let Some(value) = dict_value(values, "encryption_algorithm")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_843: String = value.extract()?;
+            let fixture_842 =
+                aws_sdk_kms::types::EncryptionAlgorithmSpec::from(enum_value_843.as_str());
+            builder = builder.set_encryption_algorithm(Some(fixture_842));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -3578,6 +4677,54 @@ impl PyOperationGenerateDataKeyOutput {
             result.set_item("key_material_id", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "ciphertext_blob",
+                "plaintext",
+                "key_id",
+                "ciphertext_for_recipient",
+                "key_material_id",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_kms::operation::generate_data_key::GenerateDataKeyOutput::builder();
+        if let Some(value) = dict_value(values, "ciphertext_blob")? {
+            rboto_core::fixture_scalar(&value, "blob")?;
+            let bytes_850: Vec<u8> = value.extract()?;
+            let fixture_849 = ::aws_smithy_types::Blob::new(bytes_850);
+            builder = builder.set_ciphertext_blob(Some(fixture_849));
+        }
+        if let Some(value) = dict_value(values, "plaintext")? {
+            rboto_core::fixture_scalar(&value, "blob")?;
+            let bytes_852: Vec<u8> = value.extract()?;
+            let fixture_851 = ::aws_smithy_types::Blob::new(bytes_852);
+            builder = builder.set_plaintext(Some(fixture_851));
+        }
+        if let Some(value) = dict_value(values, "key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_853: String = value.extract()?;
+            builder = builder.set_key_id(Some(fixture_853));
+        }
+        if let Some(value) = dict_value(values, "ciphertext_for_recipient")? {
+            rboto_core::fixture_scalar(&value, "blob")?;
+            let bytes_855: Vec<u8> = value.extract()?;
+            let fixture_854 = ::aws_smithy_types::Blob::new(bytes_855);
+            builder = builder.set_ciphertext_for_recipient(Some(fixture_854));
+        }
+        if let Some(value) = dict_value(values, "key_material_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_856: String = value.extract()?;
+            builder = builder.set_key_material_id(Some(fixture_856));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -3708,6 +4855,68 @@ impl PyOperationGenerateDataKeyPairOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "private_key_ciphertext_blob",
+                "private_key_plaintext",
+                "public_key",
+                "key_id",
+                "key_pair_spec",
+                "ciphertext_for_recipient",
+                "key_material_id",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_kms::operation::generate_data_key_pair::GenerateDataKeyPairOutput::builder();
+        if let Some(value) = dict_value(values, "private_key_ciphertext_blob")? {
+            rboto_core::fixture_scalar(&value, "blob")?;
+            let bytes_864: Vec<u8> = value.extract()?;
+            let fixture_863 = ::aws_smithy_types::Blob::new(bytes_864);
+            builder = builder.set_private_key_ciphertext_blob(Some(fixture_863));
+        }
+        if let Some(value) = dict_value(values, "private_key_plaintext")? {
+            rboto_core::fixture_scalar(&value, "blob")?;
+            let bytes_866: Vec<u8> = value.extract()?;
+            let fixture_865 = ::aws_smithy_types::Blob::new(bytes_866);
+            builder = builder.set_private_key_plaintext(Some(fixture_865));
+        }
+        if let Some(value) = dict_value(values, "public_key")? {
+            rboto_core::fixture_scalar(&value, "blob")?;
+            let bytes_868: Vec<u8> = value.extract()?;
+            let fixture_867 = ::aws_smithy_types::Blob::new(bytes_868);
+            builder = builder.set_public_key(Some(fixture_867));
+        }
+        if let Some(value) = dict_value(values, "key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_869: String = value.extract()?;
+            builder = builder.set_key_id(Some(fixture_869));
+        }
+        if let Some(value) = dict_value(values, "key_pair_spec")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_871: String = value.extract()?;
+            let fixture_870 = aws_sdk_kms::types::DataKeyPairSpec::from(enum_value_871.as_str());
+            builder = builder.set_key_pair_spec(Some(fixture_870));
+        }
+        if let Some(value) = dict_value(values, "ciphertext_for_recipient")? {
+            rboto_core::fixture_scalar(&value, "blob")?;
+            let bytes_873: Vec<u8> = value.extract()?;
+            let fixture_872 = ::aws_smithy_types::Blob::new(bytes_873);
+            builder = builder.set_ciphertext_for_recipient(Some(fixture_872));
+        }
+        if let Some(value) = dict_value(values, "key_material_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_874: String = value.extract()?;
+            builder = builder.set_key_material_id(Some(fixture_874));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -3805,6 +5014,53 @@ impl PyOperationGenerateDataKeyPairWithoutPlaintextOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "private_key_ciphertext_blob",
+                "public_key",
+                "key_id",
+                "key_pair_spec",
+                "key_material_id",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_kms::operation::generate_data_key_pair_without_plaintext::GenerateDataKeyPairWithoutPlaintextOutput::builder();
+        if let Some(value) = dict_value(values, "private_key_ciphertext_blob")? {
+            rboto_core::fixture_scalar(&value, "blob")?;
+            let bytes_874: Vec<u8> = value.extract()?;
+            let fixture_873 = ::aws_smithy_types::Blob::new(bytes_874);
+            builder = builder.set_private_key_ciphertext_blob(Some(fixture_873));
+        }
+        if let Some(value) = dict_value(values, "public_key")? {
+            rboto_core::fixture_scalar(&value, "blob")?;
+            let bytes_876: Vec<u8> = value.extract()?;
+            let fixture_875 = ::aws_smithy_types::Blob::new(bytes_876);
+            builder = builder.set_public_key(Some(fixture_875));
+        }
+        if let Some(value) = dict_value(values, "key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_877: String = value.extract()?;
+            builder = builder.set_key_id(Some(fixture_877));
+        }
+        if let Some(value) = dict_value(values, "key_pair_spec")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_879: String = value.extract()?;
+            let fixture_878 = aws_sdk_kms::types::DataKeyPairSpec::from(enum_value_879.as_str());
+            builder = builder.set_key_pair_spec(Some(fixture_878));
+        }
+        if let Some(value) = dict_value(values, "key_material_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_880: String = value.extract()?;
+            builder = builder.set_key_material_id(Some(fixture_880));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -3870,6 +5126,35 @@ impl PyOperationGenerateDataKeyWithoutPlaintextOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["ciphertext_blob", "key_id", "key_material_id"],
+            &[],
+        )?;
+        let mut builder = aws_sdk_kms::operation::generate_data_key_without_plaintext::GenerateDataKeyWithoutPlaintextOutput::builder();
+        if let Some(value) = dict_value(values, "ciphertext_blob")? {
+            rboto_core::fixture_scalar(&value, "blob")?;
+            let bytes_880: Vec<u8> = value.extract()?;
+            let fixture_879 = ::aws_smithy_types::Blob::new(bytes_880);
+            builder = builder.set_ciphertext_blob(Some(fixture_879));
+        }
+        if let Some(value) = dict_value(values, "key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_881: String = value.extract()?;
+            builder = builder.set_key_id(Some(fixture_881));
+        }
+        if let Some(value) = dict_value(values, "key_material_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_882: String = value.extract()?;
+            builder = builder.set_key_material_id(Some(fixture_882));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(name = "GenerateMacOutput", module = "rboto_kms._native", frozen)]
@@ -3931,6 +5216,32 @@ impl PyOperationGenerateMacOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["mac", "mac_algorithm", "key_id"], &[])?;
+        let mut builder = aws_sdk_kms::operation::generate_mac::GenerateMacOutput::builder();
+        if let Some(value) = dict_value(values, "mac")? {
+            rboto_core::fixture_scalar(&value, "blob")?;
+            let bytes_886: Vec<u8> = value.extract()?;
+            let fixture_885 = ::aws_smithy_types::Blob::new(bytes_886);
+            builder = builder.set_mac(Some(fixture_885));
+        }
+        if let Some(value) = dict_value(values, "mac_algorithm")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_888: String = value.extract()?;
+            let fixture_887 = aws_sdk_kms::types::MacAlgorithmSpec::from(enum_value_888.as_str());
+            builder = builder.set_mac_algorithm(Some(fixture_887));
+        }
+        if let Some(value) = dict_value(values, "key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_889: String = value.extract()?;
+            builder = builder.set_key_id(Some(fixture_889));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(name = "GenerateRandomOutput", module = "rboto_kms._native", frozen)]
@@ -3975,6 +5286,27 @@ impl PyOperationGenerateRandomOutput {
             result.set_item("ciphertext_for_recipient", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["plaintext", "ciphertext_for_recipient"], &[])?;
+        let mut builder = aws_sdk_kms::operation::generate_random::GenerateRandomOutput::builder();
+        if let Some(value) = dict_value(values, "plaintext")? {
+            rboto_core::fixture_scalar(&value, "blob")?;
+            let bytes_890: Vec<u8> = value.extract()?;
+            let fixture_889 = ::aws_smithy_types::Blob::new(bytes_890);
+            builder = builder.set_plaintext(Some(fixture_889));
+        }
+        if let Some(value) = dict_value(values, "ciphertext_for_recipient")? {
+            rboto_core::fixture_scalar(&value, "blob")?;
+            let bytes_892: Vec<u8> = value.extract()?;
+            let fixture_891 = ::aws_smithy_types::Blob::new(bytes_892);
+            builder = builder.set_ciphertext_for_recipient(Some(fixture_891));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -4081,6 +5413,57 @@ impl PyOperationGetKeyLastUsageOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "key_id",
+                "key_last_usage",
+                "tracking_start_date",
+                "key_creation_date",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_kms::operation::get_key_last_usage::GetKeyLastUsageOutput::builder();
+        if let Some(value) = dict_value(values, "key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_897: String = value.extract()?;
+            builder = builder.set_key_id(Some(fixture_897));
+        }
+        if let Some(value) = dict_value(values, "key_last_usage")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_898 = key_last_usage_data_fixture_from_py(&value)?;
+            builder = builder.set_key_last_usage(Some(fixture_898));
+        }
+        if let Some(value) = dict_value(values, "tracking_start_date")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_900: String = value.extract()?;
+            let fixture_899 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_900,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_tracking_start_date(Some(fixture_899));
+        }
+        if let Some(value) = dict_value(values, "key_creation_date")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_902: String = value.extract()?;
+            let fixture_901 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_902,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_key_creation_date(Some(fixture_901));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(name = "GetKeyPolicyOutput", module = "rboto_kms._native", frozen)]
@@ -4125,6 +5508,25 @@ impl PyOperationGetKeyPolicyOutput {
             result.set_item("policy_name", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["policy", "policy_name"], &[])?;
+        let mut builder = aws_sdk_kms::operation::get_key_policy::GetKeyPolicyOutput::builder();
+        if let Some(value) = dict_value(values, "policy")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_901: String = value.extract()?;
+            builder = builder.set_policy(Some(fixture_901));
+        }
+        if let Some(value) = dict_value(values, "policy_name")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_902: String = value.extract()?;
+            builder = builder.set_policy_name(Some(fixture_902));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -4219,6 +5621,61 @@ impl PyOperationGetKeyRotationStatusOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "key_rotation_enabled",
+                "key_id",
+                "rotation_period_in_days",
+                "next_rotation_date",
+                "on_demand_rotation_start_date",
+            ],
+            &["key_rotation_enabled"],
+        )?;
+        let mut builder =
+            aws_sdk_kms::operation::get_key_rotation_status::GetKeyRotationStatusOutput::builder();
+        if let Some(value) = values.get_item("key_rotation_enabled")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_911: bool = value.extract()?;
+            builder = builder.set_key_rotation_enabled(Some(fixture_911));
+        }
+        if let Some(value) = dict_value(values, "key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_912: String = value.extract()?;
+            builder = builder.set_key_id(Some(fixture_912));
+        }
+        if let Some(value) = dict_value(values, "rotation_period_in_days")? {
+            rboto_core::fixture_scalar(&value, "i32")?;
+            let fixture_913: i32 = value.extract()?;
+            builder = builder.set_rotation_period_in_days(Some(fixture_913));
+        }
+        if let Some(value) = dict_value(values, "next_rotation_date")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_915: String = value.extract()?;
+            let fixture_914 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_915,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_next_rotation_date(Some(fixture_914));
+        }
+        if let Some(value) = dict_value(values, "on_demand_rotation_start_date")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_917: String = value.extract()?;
+            let fixture_916 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_917,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_on_demand_rotation_start_date(Some(fixture_916));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -4299,6 +5756,51 @@ impl PyOperationGetParametersForImportOutput {
             result.set_item("parameters_valid_to", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "key_id",
+                "import_token",
+                "public_key",
+                "parameters_valid_to",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_kms::operation::get_parameters_for_import::GetParametersForImportOutput::builder();
+        if let Some(value) = dict_value(values, "key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_919: String = value.extract()?;
+            builder = builder.set_key_id(Some(fixture_919));
+        }
+        if let Some(value) = dict_value(values, "import_token")? {
+            rboto_core::fixture_scalar(&value, "blob")?;
+            let bytes_921: Vec<u8> = value.extract()?;
+            let fixture_920 = ::aws_smithy_types::Blob::new(bytes_921);
+            builder = builder.set_import_token(Some(fixture_920));
+        }
+        if let Some(value) = dict_value(values, "public_key")? {
+            rboto_core::fixture_scalar(&value, "blob")?;
+            let bytes_923: Vec<u8> = value.extract()?;
+            let fixture_922 = ::aws_smithy_types::Blob::new(bytes_923);
+            builder = builder.set_public_key(Some(fixture_922));
+        }
+        if let Some(value) = dict_value(values, "parameters_valid_to")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_925: String = value.extract()?;
+            let fixture_924 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_925,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_parameters_valid_to(Some(fixture_924));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -4471,6 +5973,100 @@ impl PyOperationGetPublicKeyOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "key_id",
+                "public_key",
+                "customer_master_key_spec",
+                "key_spec",
+                "key_usage",
+                "encryption_algorithms",
+                "signing_algorithms",
+                "key_agreement_algorithms",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_kms::operation::get_public_key::GetPublicKeyOutput::builder();
+        if let Some(value) = dict_value(values, "key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_947: String = value.extract()?;
+            builder = builder.set_key_id(Some(fixture_947));
+        }
+        if let Some(value) = dict_value(values, "public_key")? {
+            rboto_core::fixture_scalar(&value, "blob")?;
+            let bytes_949: Vec<u8> = value.extract()?;
+            let fixture_948 = ::aws_smithy_types::Blob::new(bytes_949);
+            builder = builder.set_public_key(Some(fixture_948));
+        }
+        if let Some(value) = dict_value(values, "customer_master_key_spec")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_951: String = value.extract()?;
+            let fixture_950 =
+                aws_sdk_kms::types::CustomerMasterKeySpec::from(enum_value_951.as_str());
+            builder = builder.set_customer_master_key_spec(Some(fixture_950));
+        }
+        if let Some(value) = dict_value(values, "key_spec")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_953: String = value.extract()?;
+            let fixture_952 = aws_sdk_kms::types::KeySpec::from(enum_value_953.as_str());
+            builder = builder.set_key_spec(Some(fixture_952));
+        }
+        if let Some(value) = dict_value(values, "key_usage")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_955: String = value.extract()?;
+            let fixture_954 = aws_sdk_kms::types::KeyUsageType::from(enum_value_955.as_str());
+            builder = builder.set_key_usage(Some(fixture_954));
+        }
+        if let Some(value) = dict_value(values, "encryption_algorithms")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_956 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_957 in value.try_iter()? {
+                let item_958 = item_result_957?;
+                rboto_core::fixture_scalar(&item_958, "enum")?;
+                let enum_value_960: String = item_958.extract()?;
+                let converted_item_959 =
+                    aws_sdk_kms::types::EncryptionAlgorithmSpec::from(enum_value_960.as_str());
+                fixture_956.push(converted_item_959);
+            }
+            builder = builder.set_encryption_algorithms(Some(fixture_956));
+        }
+        if let Some(value) = dict_value(values, "signing_algorithms")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_961 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_962 in value.try_iter()? {
+                let item_963 = item_result_962?;
+                rboto_core::fixture_scalar(&item_963, "enum")?;
+                let enum_value_965: String = item_963.extract()?;
+                let converted_item_964 =
+                    aws_sdk_kms::types::SigningAlgorithmSpec::from(enum_value_965.as_str());
+                fixture_961.push(converted_item_964);
+            }
+            builder = builder.set_signing_algorithms(Some(fixture_961));
+        }
+        if let Some(value) = dict_value(values, "key_agreement_algorithms")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_966 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_967 in value.try_iter()? {
+                let item_968 = item_result_967?;
+                rboto_core::fixture_scalar(&item_968, "enum")?;
+                let enum_value_970: String = item_968.extract()?;
+                let converted_item_969 =
+                    aws_sdk_kms::types::KeyAgreementAlgorithmSpec::from(enum_value_970.as_str());
+                fixture_966.push(converted_item_969);
+            }
+            builder = builder.set_key_agreement_algorithms(Some(fixture_966));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(name = "ImportKeyMaterialOutput", module = "rboto_kms._native", frozen)]
@@ -4515,6 +6111,26 @@ impl PyOperationImportKeyMaterialOutput {
             result.set_item("key_material_id", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["key_id", "key_material_id"], &[])?;
+        let mut builder =
+            aws_sdk_kms::operation::import_key_material::ImportKeyMaterialOutput::builder();
+        if let Some(value) = dict_value(values, "key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_951: String = value.extract()?;
+            builder = builder.set_key_id(Some(fixture_951));
+        }
+        if let Some(value) = dict_value(values, "key_material_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_952: String = value.extract()?;
+            builder = builder.set_key_material_id(Some(fixture_952));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -4610,6 +6226,43 @@ impl PyOperationListAliasesOutput {
         result.set_item("truncated", converted_961)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["aliases", "next_marker", "truncated"],
+            &["truncated"],
+        )?;
+        let mut builder = aws_sdk_kms::operation::list_aliases::ListAliasesOutput::builder();
+        if let Some(value) = dict_value(values, "aliases")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_962 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_963 in value.try_iter()? {
+                let item_964 = item_result_963?;
+                rboto_core::fixture_scalar(&item_964, "struct")?;
+                let converted_item_965 = alias_list_entry_fixture_from_py(&item_964)?;
+                fixture_962.push(converted_item_965);
+            }
+            builder = builder.set_aliases(Some(fixture_962));
+        }
+        if let Some(value) = dict_value(values, "next_marker")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_966: String = value.extract()?;
+            builder = builder.set_next_marker(Some(fixture_966));
+        }
+        if let Some(value) = values.get_item("truncated")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_967: bool = value.extract()?;
+            builder = builder.set_truncated(Some(fixture_967));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -4704,6 +6357,43 @@ impl PyOperationListGrantsOutput {
         result.set_item("truncated", converted_972)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["grants", "next_marker", "truncated"],
+            &["truncated"],
+        )?;
+        let mut builder = aws_sdk_kms::operation::list_grants::ListGrantsOutput::builder();
+        if let Some(value) = dict_value(values, "grants")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_973 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_974 in value.try_iter()? {
+                let item_975 = item_result_974?;
+                rboto_core::fixture_scalar(&item_975, "struct")?;
+                let converted_item_976 = grant_list_entry_fixture_from_py(&item_975)?;
+                fixture_973.push(converted_item_976);
+            }
+            builder = builder.set_grants(Some(fixture_973));
+        }
+        if let Some(value) = dict_value(values, "next_marker")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_977: String = value.extract()?;
+            builder = builder.set_next_marker(Some(fixture_977));
+        }
+        if let Some(value) = values.get_item("truncated")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_978: bool = value.extract()?;
+            builder = builder.set_truncated(Some(fixture_978));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(name = "ListKeyPoliciesOutput", module = "rboto_kms._native", frozen)]
@@ -4766,6 +6456,42 @@ impl PyOperationListKeyPoliciesOutput {
         let converted_982 = (&self.inner.truncated).to_owned().into_py_any(py)?;
         result.set_item("truncated", converted_982)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["policy_names", "next_marker", "truncated"],
+            &["truncated"],
+        )?;
+        let mut builder =
+            aws_sdk_kms::operation::list_key_policies::ListKeyPoliciesOutput::builder();
+        if let Some(value) = dict_value(values, "policy_names")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_983 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_984 in value.try_iter()? {
+                let item_985 = item_result_984?;
+                rboto_core::fixture_scalar(&item_985, "string")?;
+                let converted_item_986: String = item_985.extract()?;
+                fixture_983.push(converted_item_986);
+            }
+            builder = builder.set_policy_names(Some(fixture_983));
+        }
+        if let Some(value) = dict_value(values, "next_marker")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_987: String = value.extract()?;
+            builder = builder.set_next_marker(Some(fixture_987));
+        }
+        if let Some(value) = values.get_item("truncated")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_988: bool = value.extract()?;
+            builder = builder.set_truncated(Some(fixture_988));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -4861,6 +6587,44 @@ impl PyOperationListKeyRotationsOutput {
         result.set_item("truncated", converted_993)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["rotations", "next_marker", "truncated"],
+            &["truncated"],
+        )?;
+        let mut builder =
+            aws_sdk_kms::operation::list_key_rotations::ListKeyRotationsOutput::builder();
+        if let Some(value) = dict_value(values, "rotations")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_994 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_995 in value.try_iter()? {
+                let item_996 = item_result_995?;
+                rboto_core::fixture_scalar(&item_996, "struct")?;
+                let converted_item_997 = rotations_list_entry_fixture_from_py(&item_996)?;
+                fixture_994.push(converted_item_997);
+            }
+            builder = builder.set_rotations(Some(fixture_994));
+        }
+        if let Some(value) = dict_value(values, "next_marker")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_998: String = value.extract()?;
+            builder = builder.set_next_marker(Some(fixture_998));
+        }
+        if let Some(value) = values.get_item("truncated")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_999: bool = value.extract()?;
+            builder = builder.set_truncated(Some(fixture_999));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -4952,6 +6716,43 @@ impl PyOperationListKeysOutput {
         let converted_1004 = (&self.inner.truncated).to_owned().into_py_any(py)?;
         result.set_item("truncated", converted_1004)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["keys", "next_marker", "truncated"],
+            &["truncated"],
+        )?;
+        let mut builder = aws_sdk_kms::operation::list_keys::ListKeysOutput::builder();
+        if let Some(value) = dict_value(values, "keys")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1005 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1006 in value.try_iter()? {
+                let item_1007 = item_result_1006?;
+                rboto_core::fixture_scalar(&item_1007, "struct")?;
+                let converted_item_1008 = key_list_entry_fixture_from_py(&item_1007)?;
+                fixture_1005.push(converted_item_1008);
+            }
+            builder = builder.set_keys(Some(fixture_1005));
+        }
+        if let Some(value) = dict_value(values, "next_marker")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1009: String = value.extract()?;
+            builder = builder.set_next_marker(Some(fixture_1009));
+        }
+        if let Some(value) = values.get_item("truncated")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1010: bool = value.extract()?;
+            builder = builder.set_truncated(Some(fixture_1010));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -5046,6 +6847,44 @@ impl PyOperationListResourceTagsOutput {
         let converted_1015 = (&self.inner.truncated).to_owned().into_py_any(py)?;
         result.set_item("truncated", converted_1015)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["tags", "next_marker", "truncated"],
+            &["truncated"],
+        )?;
+        let mut builder =
+            aws_sdk_kms::operation::list_resource_tags::ListResourceTagsOutput::builder();
+        if let Some(value) = dict_value(values, "tags")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1016 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1017 in value.try_iter()? {
+                let item_1018 = item_result_1017?;
+                rboto_core::fixture_scalar(&item_1018, "struct")?;
+                let converted_item_1019 = tag_fixture_from_py(&item_1018)?;
+                fixture_1016.push(converted_item_1019);
+            }
+            builder = builder.set_tags(Some(fixture_1016));
+        }
+        if let Some(value) = dict_value(values, "next_marker")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1020: String = value.extract()?;
+            builder = builder.set_next_marker(Some(fixture_1020));
+        }
+        if let Some(value) = values.get_item("truncated")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1021: bool = value.extract()?;
+            builder = builder.set_truncated(Some(fixture_1021));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -5146,6 +6985,44 @@ impl PyOperationListRetirableGrantsOutput {
         let converted_1026 = (&self.inner.truncated).to_owned().into_py_any(py)?;
         result.set_item("truncated", converted_1026)?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["grants", "next_marker", "truncated"],
+            &["truncated"],
+        )?;
+        let mut builder =
+            aws_sdk_kms::operation::list_retirable_grants::ListRetirableGrantsOutput::builder();
+        if let Some(value) = dict_value(values, "grants")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1027 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1028 in value.try_iter()? {
+                let item_1029 = item_result_1028?;
+                rboto_core::fixture_scalar(&item_1029, "struct")?;
+                let converted_item_1030 = grant_list_entry_fixture_from_py(&item_1029)?;
+                fixture_1027.push(converted_item_1030);
+            }
+            builder = builder.set_grants(Some(fixture_1027));
+        }
+        if let Some(value) = dict_value(values, "next_marker")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1031: String = value.extract()?;
+            builder = builder.set_next_marker(Some(fixture_1031));
+        }
+        if let Some(value) = values.get_item("truncated")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1032: bool = value.extract()?;
+            builder = builder.set_truncated(Some(fixture_1032));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -5272,6 +7149,67 @@ impl PyOperationReEncryptOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "ciphertext_blob",
+                "source_key_id",
+                "key_id",
+                "source_encryption_algorithm",
+                "destination_encryption_algorithm",
+                "source_key_material_id",
+                "destination_key_material_id",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_kms::operation::re_encrypt::ReEncryptOutput::builder();
+        if let Some(value) = dict_value(values, "ciphertext_blob")? {
+            rboto_core::fixture_scalar(&value, "blob")?;
+            let bytes_1042: Vec<u8> = value.extract()?;
+            let fixture_1041 = ::aws_smithy_types::Blob::new(bytes_1042);
+            builder = builder.set_ciphertext_blob(Some(fixture_1041));
+        }
+        if let Some(value) = dict_value(values, "source_key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1043: String = value.extract()?;
+            builder = builder.set_source_key_id(Some(fixture_1043));
+        }
+        if let Some(value) = dict_value(values, "key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1044: String = value.extract()?;
+            builder = builder.set_key_id(Some(fixture_1044));
+        }
+        if let Some(value) = dict_value(values, "source_encryption_algorithm")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1046: String = value.extract()?;
+            let fixture_1045 =
+                aws_sdk_kms::types::EncryptionAlgorithmSpec::from(enum_value_1046.as_str());
+            builder = builder.set_source_encryption_algorithm(Some(fixture_1045));
+        }
+        if let Some(value) = dict_value(values, "destination_encryption_algorithm")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1048: String = value.extract()?;
+            let fixture_1047 =
+                aws_sdk_kms::types::EncryptionAlgorithmSpec::from(enum_value_1048.as_str());
+            builder = builder.set_destination_encryption_algorithm(Some(fixture_1047));
+        }
+        if let Some(value) = dict_value(values, "source_key_material_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1049: String = value.extract()?;
+            builder = builder.set_source_key_material_id(Some(fixture_1049));
+        }
+        if let Some(value) = dict_value(values, "destination_key_material_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1050: String = value.extract()?;
+            builder = builder.set_destination_key_material_id(Some(fixture_1050));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -5382,6 +7320,43 @@ impl PyOperationReplicateKeyOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["replica_key_metadata", "replica_policy", "replica_tags"],
+            &[],
+        )?;
+        let mut builder = aws_sdk_kms::operation::replicate_key::ReplicateKeyOutput::builder();
+        if let Some(value) = dict_value(values, "replica_key_metadata")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_1052 = key_metadata_fixture_from_py(&value)?;
+            builder = builder.set_replica_key_metadata(Some(fixture_1052));
+        }
+        if let Some(value) = dict_value(values, "replica_policy")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1053: String = value.extract()?;
+            builder = builder.set_replica_policy(Some(fixture_1053));
+        }
+        if let Some(value) = dict_value(values, "replica_tags")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_1054 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_1055 in value.try_iter()? {
+                let item_1056 = item_result_1055?;
+                rboto_core::fixture_scalar(&item_1056, "struct")?;
+                let converted_item_1057 = tag_fixture_from_py(&item_1056)?;
+                fixture_1054.push(converted_item_1057);
+            }
+            builder = builder.set_replica_tags(Some(fixture_1054));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(name = "RotateKeyOnDemandOutput", module = "rboto_kms._native", frozen)]
@@ -5410,6 +7385,21 @@ impl PyOperationRotateKeyOnDemandOutput {
             result.set_item("key_id", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["key_id"], &[])?;
+        let mut builder =
+            aws_sdk_kms::operation::rotate_key_on_demand::RotateKeyOnDemandOutput::builder();
+        if let Some(value) = dict_value(values, "key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1054: String = value.extract()?;
+            builder = builder.set_key_id(Some(fixture_1054));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -5492,6 +7482,51 @@ impl PyOperationScheduleKeyDeletionOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "key_id",
+                "deletion_date",
+                "key_state",
+                "pending_window_in_days",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_kms::operation::schedule_key_deletion::ScheduleKeyDeletionOutput::builder();
+        if let Some(value) = dict_value(values, "key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1062: String = value.extract()?;
+            builder = builder.set_key_id(Some(fixture_1062));
+        }
+        if let Some(value) = dict_value(values, "deletion_date")? {
+            rboto_core::fixture_scalar(&value, "datetime")?;
+            let timestamp_1064: String = value.extract()?;
+            let fixture_1063 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1064,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+            builder = builder.set_deletion_date(Some(fixture_1063));
+        }
+        if let Some(value) = dict_value(values, "key_state")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1066: String = value.extract()?;
+            let fixture_1065 = aws_sdk_kms::types::KeyState::from(enum_value_1066.as_str());
+            builder = builder.set_key_state(Some(fixture_1065));
+        }
+        if let Some(value) = dict_value(values, "pending_window_in_days")? {
+            rboto_core::fixture_scalar(&value, "i32")?;
+            let fixture_1067: i32 = value.extract()?;
+            builder = builder.set_pending_window_in_days(Some(fixture_1067));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(name = "SignOutput", module = "rboto_kms._native", frozen)]
@@ -5553,6 +7588,33 @@ impl PyOperationSignOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["key_id", "signature", "signing_algorithm"], &[])?;
+        let mut builder = aws_sdk_kms::operation::sign::SignOutput::builder();
+        if let Some(value) = dict_value(values, "key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1068: String = value.extract()?;
+            builder = builder.set_key_id(Some(fixture_1068));
+        }
+        if let Some(value) = dict_value(values, "signature")? {
+            rboto_core::fixture_scalar(&value, "blob")?;
+            let bytes_1070: Vec<u8> = value.extract()?;
+            let fixture_1069 = ::aws_smithy_types::Blob::new(bytes_1070);
+            builder = builder.set_signature(Some(fixture_1069));
+        }
+        if let Some(value) = dict_value(values, "signing_algorithm")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1072: String = value.extract()?;
+            let fixture_1071 =
+                aws_sdk_kms::types::SigningAlgorithmSpec::from(enum_value_1072.as_str());
+            builder = builder.set_signing_algorithm(Some(fixture_1071));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(
@@ -5569,6 +7631,16 @@ impl PyOperationUpdateCustomKeyStoreOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &[], &[])?;
+        let mut builder =
+            aws_sdk_kms::operation::update_custom_key_store::UpdateCustomKeyStoreOutput::builder();
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -5623,6 +7695,36 @@ impl PyOperationVerifyOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["key_id", "signature_valid", "signing_algorithm"],
+            &["signature_valid"],
+        )?;
+        let mut builder = aws_sdk_kms::operation::verify::VerifyOutput::builder();
+        if let Some(value) = dict_value(values, "key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1074: String = value.extract()?;
+            builder = builder.set_key_id(Some(fixture_1074));
+        }
+        if let Some(value) = values.get_item("signature_valid")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1075: bool = value.extract()?;
+            builder = builder.set_signature_valid(Some(fixture_1075));
+        }
+        if let Some(value) = dict_value(values, "signing_algorithm")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1077: String = value.extract()?;
+            let fixture_1076 =
+                aws_sdk_kms::types::SigningAlgorithmSpec::from(enum_value_1077.as_str());
+            builder = builder.set_signing_algorithm(Some(fixture_1076));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(name = "VerifyMacOutput", module = "rboto_kms._native", frozen)]
@@ -5675,6 +7777,35 @@ impl PyOperationVerifyMacOutput {
             result.set_item("mac_algorithm", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["key_id", "mac_valid", "mac_algorithm"],
+            &["mac_valid"],
+        )?;
+        let mut builder = aws_sdk_kms::operation::verify_mac::VerifyMacOutput::builder();
+        if let Some(value) = dict_value(values, "key_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_1080: String = value.extract()?;
+            builder = builder.set_key_id(Some(fixture_1080));
+        }
+        if let Some(value) = values.get_item("mac_valid")? {
+            rboto_core::fixture_scalar(&value, "bool")?;
+            let fixture_1081: bool = value.extract()?;
+            builder = builder.set_mac_valid(Some(fixture_1081));
+        }
+        if let Some(value) = dict_value(values, "mac_algorithm")? {
+            rboto_core::fixture_scalar(&value, "enum")?;
+            let enum_value_1083: String = value.extract()?;
+            let fixture_1082 = aws_sdk_kms::types::MacAlgorithmSpec::from(enum_value_1083.as_str());
+            builder = builder.set_mac_algorithm(Some(fixture_1082));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 

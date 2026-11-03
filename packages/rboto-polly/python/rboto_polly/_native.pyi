@@ -117,11 +117,15 @@ class Voice:
 @final
 class DeleteLexiconOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/DeleteLexiconOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteLexiconOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DescribeVoicesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/DescribeVoicesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DescribeVoicesOutput: ...
     @property
     def voices(self) -> list[Voice] | None: ...
     @property
@@ -131,6 +135,8 @@ class DescribeVoicesOutput:
 @final
 class GetLexiconOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/GetLexiconOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetLexiconOutput: ...
     @property
     def lexicon(self) -> Lexicon | None: ...
     @property
@@ -140,6 +146,8 @@ class GetLexiconOutput:
 @final
 class GetSpeechSynthesisTaskOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/GetSpeechSynthesisTaskOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetSpeechSynthesisTaskOutput: ...
     @property
     def synthesis_task(self) -> SynthesisTask | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -147,6 +155,8 @@ class GetSpeechSynthesisTaskOutput:
 @final
 class ListLexiconsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ListLexiconsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListLexiconsOutput: ...
     @property
     def lexicons(self) -> list[LexiconDescription] | None: ...
     @property
@@ -156,6 +166,8 @@ class ListLexiconsOutput:
 @final
 class ListSpeechSynthesisTasksOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ListSpeechSynthesisTasksOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListSpeechSynthesisTasksOutput: ...
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -165,11 +177,15 @@ class ListSpeechSynthesisTasksOutput:
 @final
 class PutLexiconOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/PutLexiconOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutLexiconOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StartSpeechSynthesisTaskOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/StartSpeechSynthesisTaskOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StartSpeechSynthesisTaskOutput: ...
     @property
     def synthesis_task(self) -> SynthesisTask | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -177,6 +193,8 @@ class StartSpeechSynthesisTaskOutput:
 @final
 class SynthesizeSpeechOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/SynthesizeSpeechOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> SynthesizeSpeechOutput: ...
     @property
     def audio_stream(self) -> ByteStream: ...
     @property

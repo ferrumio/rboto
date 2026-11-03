@@ -23,6 +23,34 @@ class CognitoIdentityClient:
 
     logger_name = "rboto.cognito-identity"
 
+    @staticmethod
+    def _stub_operations() -> dict[str, str]:
+        return {
+            "create_identity_pool": "CreateIdentityPool",
+            "delete_identities": "DeleteIdentities",
+            "delete_identity_pool": "DeleteIdentityPool",
+            "describe_identity": "DescribeIdentity",
+            "describe_identity_pool": "DescribeIdentityPool",
+            "get_credentials_for_identity": "GetCredentialsForIdentity",
+            "get_id": "GetId",
+            "get_identity_pool_roles": "GetIdentityPoolRoles",
+            "get_open_id_token": "GetOpenIdToken",
+            "get_open_id_token_for_developer_identity": "GetOpenIdTokenForDeveloperIdentity",
+            "get_principal_tag_attribute_map": "GetPrincipalTagAttributeMap",
+            "list_identities": "ListIdentities",
+            "list_identity_pools": "ListIdentityPools",
+            "list_tags_for_resource": "ListTagsForResource",
+            "lookup_developer_identity": "LookupDeveloperIdentity",
+            "merge_developer_identities": "MergeDeveloperIdentities",
+            "set_identity_pool_roles": "SetIdentityPoolRoles",
+            "set_principal_tag_attribute_map": "SetPrincipalTagAttributeMap",
+            "tag_resource": "TagResource",
+            "unlink_developer_identity": "UnlinkDeveloperIdentity",
+            "unlink_identity": "UnlinkIdentity",
+            "untag_resource": "UntagResource",
+            "update_identity_pool": "UpdateIdentityPool",
+        }
+
     def __init__(
         self,
         *,

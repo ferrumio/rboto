@@ -28,6 +28,21 @@ class EventBridgePipesClient:
 
     logger_name = "rboto.pipes"
 
+    @staticmethod
+    def _stub_operations() -> dict[str, str]:
+        return {
+            "create_pipe": "CreatePipe",
+            "delete_pipe": "DeletePipe",
+            "describe_pipe": "DescribePipe",
+            "list_pipes": "ListPipes",
+            "list_tags_for_resource": "ListTagsForResource",
+            "start_pipe": "StartPipe",
+            "stop_pipe": "StopPipe",
+            "tag_resource": "TagResource",
+            "untag_resource": "UntagResource",
+            "update_pipe": "UpdatePipe",
+        }
+
     def __init__(
         self,
         *,

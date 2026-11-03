@@ -22,6 +22,7 @@ class RustOperation:
     input_fields: tuple[RustField, ...]
     output_fields: tuple[RustField, ...]
     output_type: str | None
+    output_build_fallible: bool = False
 
 
 @dataclass(frozen=True, slots=True)
@@ -132,6 +133,10 @@ def parse_crate(descriptor: ServiceDescriptor) -> RustCrate:
                 input_fields,
                 output_fields,
                 parse_struct_name(output_path),
+                bool(re.search(
+                    r"pub fn build\s*\(\s*self,?\s*\)\s*->\s*(?:::std::result::)?Result<",
+                    output_path.read_text(),
+                )),
             )
 
     types: dict[str, RustType] = {}

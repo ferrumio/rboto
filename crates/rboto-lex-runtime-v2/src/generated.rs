@@ -1741,6 +1741,646 @@ fn value_to_py(py: Python<'_>, value: &aws_sdk_lexruntimev2::types::Value) -> Py
     Ok(result.into_any().unbind())
 }
 
+fn active_context_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_lexruntimev2::types::ActiveContext> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["name", "time_to_live", "context_attributes"],
+        &["name", "context_attributes"],
+    )?;
+    let mut builder = aws_sdk_lexruntimev2::types::ActiveContext::builder();
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_658: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_658));
+    }
+    if let Some(value) = dict_value(values, "time_to_live")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_659 = active_context_time_to_live_fixture_from_py(&value)?;
+        builder = builder.set_time_to_live(Some(fixture_659));
+    }
+    if let Some(value) = values.get_item("context_attributes")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_661 = value.cast::<PyDict>()?;
+        let mut fixture_660 = HashMap::with_capacity(mapping_661.len());
+        for (key_662, value_663) in mapping_661.iter() {
+            rboto_core::fixture_scalar(&key_662, "string")?;
+            let converted_key_664: String = key_662.extract()?;
+            rboto_core::fixture_scalar(&value_663, "string")?;
+            let converted_value_665: String = value_663.extract()?;
+            fixture_660.insert(converted_key_664, converted_value_665);
+        }
+        builder = builder.set_context_attributes(Some(fixture_660));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn active_context_time_to_live_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_lexruntimev2::types::ActiveContextTimeToLive> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["time_to_live_in_seconds", "turns_to_live"],
+        &["time_to_live_in_seconds", "turns_to_live"],
+    )?;
+    let mut builder = aws_sdk_lexruntimev2::types::ActiveContextTimeToLive::builder();
+    if let Some(value) = values.get_item("time_to_live_in_seconds")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_666: i32 = value.extract()?;
+        builder = builder.set_time_to_live_in_seconds(Some(fixture_666));
+    }
+    if let Some(value) = values.get_item("turns_to_live")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_667: i32 = value.extract()?;
+        builder = builder.set_turns_to_live(Some(fixture_667));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn button_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_lexruntimev2::types::Button> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["text", "value"], &["text", "value"])?;
+    let mut builder = aws_sdk_lexruntimev2::types::Button::builder();
+    if let Some(value) = values.get_item("text")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_668: String = value.extract()?;
+        builder = builder.set_text(Some(fixture_668));
+    }
+    if let Some(value) = values.get_item("value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_669: String = value.extract()?;
+        builder = builder.set_value(Some(fixture_669));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn confidence_score_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_lexruntimev2::types::ConfidenceScore> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["score"], &["score"])?;
+    let mut builder = aws_sdk_lexruntimev2::types::ConfidenceScore::builder();
+    if let Some(value) = values.get_item("score")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_670: f64 = value.extract()?;
+        builder = builder.set_score(Some(fixture_670));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn dialog_action_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_lexruntimev2::types::DialogAction> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "type",
+            "slot_to_elicit",
+            "slot_elicitation_style",
+            "sub_slot_to_elicit",
+        ],
+        &["type"],
+    )?;
+    let mut builder = aws_sdk_lexruntimev2::types::DialogAction::builder();
+    if let Some(value) = values.get_item("type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_672: String = value.extract()?;
+        let fixture_671 =
+            aws_sdk_lexruntimev2::types::DialogActionType::from(enum_value_672.as_str());
+        builder = builder.set_type(Some(fixture_671));
+    }
+    if let Some(value) = dict_value(values, "slot_to_elicit")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_673: String = value.extract()?;
+        builder = builder.set_slot_to_elicit(Some(fixture_673));
+    }
+    if let Some(value) = dict_value(values, "slot_elicitation_style")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_675: String = value.extract()?;
+        let fixture_674 = aws_sdk_lexruntimev2::types::StyleType::from(enum_value_675.as_str());
+        builder = builder.set_slot_elicitation_style(Some(fixture_674));
+    }
+    if let Some(value) = dict_value(values, "sub_slot_to_elicit")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_676 = elicit_sub_slot_fixture_from_py(&value)?;
+        builder = builder.set_sub_slot_to_elicit(Some(fixture_676));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn elicit_sub_slot_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_lexruntimev2::types::ElicitSubSlot> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["name", "sub_slot_to_elicit"], &["name"])?;
+    let mut builder = aws_sdk_lexruntimev2::types::ElicitSubSlot::builder();
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_677: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_677));
+    }
+    if let Some(value) = dict_value(values, "sub_slot_to_elicit")? {
+        rboto_core::fixture_scalar(&value, "box")?;
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let inner_679 = elicit_sub_slot_fixture_from_py(&value)?;
+        let fixture_678 = Box::new(inner_679);
+        builder = builder.set_sub_slot_to_elicit(Some(fixture_678));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn image_response_card_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_lexruntimev2::types::ImageResponseCard> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["title", "subtitle", "image_url", "buttons"],
+        &["title"],
+    )?;
+    let mut builder = aws_sdk_lexruntimev2::types::ImageResponseCard::builder();
+    if let Some(value) = values.get_item("title")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_680: String = value.extract()?;
+        builder = builder.set_title(Some(fixture_680));
+    }
+    if let Some(value) = dict_value(values, "subtitle")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_681: String = value.extract()?;
+        builder = builder.set_subtitle(Some(fixture_681));
+    }
+    if let Some(value) = dict_value(values, "image_url")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_682: String = value.extract()?;
+        builder = builder.set_image_url(Some(fixture_682));
+    }
+    if let Some(value) = dict_value(values, "buttons")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_683 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_684 in value.try_iter()? {
+            let item_685 = item_result_684?;
+            rboto_core::fixture_scalar(&item_685, "struct")?;
+            let converted_item_686 = button_fixture_from_py(&item_685)?;
+            fixture_683.push(converted_item_686);
+        }
+        builder = builder.set_buttons(Some(fixture_683));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn intent_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_lexruntimev2::types::Intent> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["name", "slots", "state", "confirmation_state"],
+        &["name"],
+    )?;
+    let mut builder = aws_sdk_lexruntimev2::types::Intent::builder();
+    if let Some(value) = values.get_item("name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_687: String = value.extract()?;
+        builder = builder.set_name(Some(fixture_687));
+    }
+    if let Some(value) = dict_value(values, "slots")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_689 = value.cast::<PyDict>()?;
+        let mut fixture_688 = HashMap::with_capacity(mapping_689.len());
+        for (key_690, value_691) in mapping_689.iter() {
+            rboto_core::fixture_scalar(&key_690, "string")?;
+            let converted_key_692: String = key_690.extract()?;
+            rboto_core::fixture_scalar(&value_691, "struct")?;
+            let converted_value_693 = slot_fixture_from_py(&value_691)?;
+            fixture_688.insert(converted_key_692, converted_value_693);
+        }
+        builder = builder.set_slots(Some(fixture_688));
+    }
+    if let Some(value) = dict_value(values, "state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_695: String = value.extract()?;
+        let fixture_694 = aws_sdk_lexruntimev2::types::IntentState::from(enum_value_695.as_str());
+        builder = builder.set_state(Some(fixture_694));
+    }
+    if let Some(value) = dict_value(values, "confirmation_state")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_697: String = value.extract()?;
+        let fixture_696 =
+            aws_sdk_lexruntimev2::types::ConfirmationState::from(enum_value_697.as_str());
+        builder = builder.set_confirmation_state(Some(fixture_696));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn interpretation_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_lexruntimev2::types::Interpretation> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "nlu_confidence",
+            "sentiment_response",
+            "intent",
+            "interpretation_source",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_lexruntimev2::types::Interpretation::builder();
+    if let Some(value) = dict_value(values, "nlu_confidence")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_698 = confidence_score_fixture_from_py(&value)?;
+        builder = builder.set_nlu_confidence(Some(fixture_698));
+    }
+    if let Some(value) = dict_value(values, "sentiment_response")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_699 = sentiment_response_fixture_from_py(&value)?;
+        builder = builder.set_sentiment_response(Some(fixture_699));
+    }
+    if let Some(value) = dict_value(values, "intent")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_700 = intent_fixture_from_py(&value)?;
+        builder = builder.set_intent(Some(fixture_700));
+    }
+    if let Some(value) = dict_value(values, "interpretation_source")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_702: String = value.extract()?;
+        let fixture_701 =
+            aws_sdk_lexruntimev2::types::InterpretationSource::from(enum_value_702.as_str());
+        builder = builder.set_interpretation_source(Some(fixture_701));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn message_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_lexruntimev2::types::Message> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["content", "content_type", "image_response_card"],
+        &["content_type"],
+    )?;
+    let mut builder = aws_sdk_lexruntimev2::types::Message::builder();
+    if let Some(value) = dict_value(values, "content")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_703: String = value.extract()?;
+        builder = builder.set_content(Some(fixture_703));
+    }
+    if let Some(value) = values.get_item("content_type")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_705: String = value.extract()?;
+        let fixture_704 =
+            aws_sdk_lexruntimev2::types::MessageContentType::from(enum_value_705.as_str());
+        builder = builder.set_content_type(Some(fixture_704));
+    }
+    if let Some(value) = dict_value(values, "image_response_card")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_706 = image_response_card_fixture_from_py(&value)?;
+        builder = builder.set_image_response_card(Some(fixture_706));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn recognized_bot_member_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_lexruntimev2::types::RecognizedBotMember> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["bot_id", "bot_name"], &["bot_id"])?;
+    let mut builder = aws_sdk_lexruntimev2::types::RecognizedBotMember::builder();
+    if let Some(value) = values.get_item("bot_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_707: String = value.extract()?;
+        builder = builder.set_bot_id(Some(fixture_707));
+    }
+    if let Some(value) = dict_value(values, "bot_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_708: String = value.extract()?;
+        builder = builder.set_bot_name(Some(fixture_708));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn runtime_hint_details_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_lexruntimev2::types::RuntimeHintDetails> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["runtime_hint_values", "sub_slot_hints"], &[])?;
+    let mut builder = aws_sdk_lexruntimev2::types::RuntimeHintDetails::builder();
+    if let Some(value) = dict_value(values, "runtime_hint_values")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_709 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_710 in value.try_iter()? {
+            let item_711 = item_result_710?;
+            rboto_core::fixture_scalar(&item_711, "struct")?;
+            let converted_item_712 = runtime_hint_value_fixture_from_py(&item_711)?;
+            fixture_709.push(converted_item_712);
+        }
+        builder = builder.set_runtime_hint_values(Some(fixture_709));
+    }
+    if let Some(value) = dict_value(values, "sub_slot_hints")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_714 = value.cast::<PyDict>()?;
+        let mut fixture_713 = HashMap::with_capacity(mapping_714.len());
+        for (key_715, value_716) in mapping_714.iter() {
+            rboto_core::fixture_scalar(&key_715, "string")?;
+            let converted_key_717: String = key_715.extract()?;
+            rboto_core::fixture_scalar(&value_716, "struct")?;
+            let converted_value_718 = runtime_hint_details_fixture_from_py(&value_716)?;
+            fixture_713.insert(converted_key_717, converted_value_718);
+        }
+        builder = builder.set_sub_slot_hints(Some(fixture_713));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn runtime_hint_value_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_lexruntimev2::types::RuntimeHintValue> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["phrase"], &["phrase"])?;
+    let mut builder = aws_sdk_lexruntimev2::types::RuntimeHintValue::builder();
+    if let Some(value) = values.get_item("phrase")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_719: String = value.extract()?;
+        builder = builder.set_phrase(Some(fixture_719));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn runtime_hints_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_lexruntimev2::types::RuntimeHints> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["slot_hints"], &[])?;
+    let mut builder = aws_sdk_lexruntimev2::types::RuntimeHints::builder();
+    if let Some(value) = dict_value(values, "slot_hints")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_721 = value.cast::<PyDict>()?;
+        let mut fixture_720 = HashMap::with_capacity(mapping_721.len());
+        for (key_722, value_723) in mapping_721.iter() {
+            rboto_core::fixture_scalar(&key_722, "string")?;
+            let converted_key_724: String = key_722.extract()?;
+            rboto_core::fixture_scalar(&value_723, "map")?;
+            let mapping_726 = value_723.cast::<PyDict>()?;
+            let mut converted_value_725 = HashMap::with_capacity(mapping_726.len());
+            for (key_727, value_728) in mapping_726.iter() {
+                rboto_core::fixture_scalar(&key_727, "string")?;
+                let converted_key_729: String = key_727.extract()?;
+                rboto_core::fixture_scalar(&value_728, "struct")?;
+                let converted_value_730 = runtime_hint_details_fixture_from_py(&value_728)?;
+                converted_value_725.insert(converted_key_729, converted_value_730);
+            }
+            fixture_720.insert(converted_key_724, converted_value_725);
+        }
+        builder = builder.set_slot_hints(Some(fixture_720));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn sentiment_response_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_lexruntimev2::types::SentimentResponse> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["sentiment", "sentiment_score"], &[])?;
+    let mut builder = aws_sdk_lexruntimev2::types::SentimentResponse::builder();
+    if let Some(value) = dict_value(values, "sentiment")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_732: String = value.extract()?;
+        let fixture_731 = aws_sdk_lexruntimev2::types::SentimentType::from(enum_value_732.as_str());
+        builder = builder.set_sentiment(Some(fixture_731));
+    }
+    if let Some(value) = dict_value(values, "sentiment_score")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_733 = sentiment_score_fixture_from_py(&value)?;
+        builder = builder.set_sentiment_score(Some(fixture_733));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn sentiment_score_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_lexruntimev2::types::SentimentScore> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["positive", "negative", "neutral", "mixed"],
+        &["positive", "negative", "neutral", "mixed"],
+    )?;
+    let mut builder = aws_sdk_lexruntimev2::types::SentimentScore::builder();
+    if let Some(value) = values.get_item("positive")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_734: f64 = value.extract()?;
+        builder = builder.set_positive(Some(fixture_734));
+    }
+    if let Some(value) = values.get_item("negative")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_735: f64 = value.extract()?;
+        builder = builder.set_negative(Some(fixture_735));
+    }
+    if let Some(value) = values.get_item("neutral")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_736: f64 = value.extract()?;
+        builder = builder.set_neutral(Some(fixture_736));
+    }
+    if let Some(value) = values.get_item("mixed")? {
+        rboto_core::fixture_scalar(&value, "f64")?;
+        let fixture_737: f64 = value.extract()?;
+        builder = builder.set_mixed(Some(fixture_737));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn session_state_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_lexruntimev2::types::SessionState> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "dialog_action",
+            "intent",
+            "active_contexts",
+            "session_attributes",
+            "originating_request_id",
+            "runtime_hints",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_lexruntimev2::types::SessionState::builder();
+    if let Some(value) = dict_value(values, "dialog_action")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_738 = dialog_action_fixture_from_py(&value)?;
+        builder = builder.set_dialog_action(Some(fixture_738));
+    }
+    if let Some(value) = dict_value(values, "intent")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_739 = intent_fixture_from_py(&value)?;
+        builder = builder.set_intent(Some(fixture_739));
+    }
+    if let Some(value) = dict_value(values, "active_contexts")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_740 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_741 in value.try_iter()? {
+            let item_742 = item_result_741?;
+            rboto_core::fixture_scalar(&item_742, "struct")?;
+            let converted_item_743 = active_context_fixture_from_py(&item_742)?;
+            fixture_740.push(converted_item_743);
+        }
+        builder = builder.set_active_contexts(Some(fixture_740));
+    }
+    if let Some(value) = dict_value(values, "session_attributes")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_745 = value.cast::<PyDict>()?;
+        let mut fixture_744 = HashMap::with_capacity(mapping_745.len());
+        for (key_746, value_747) in mapping_745.iter() {
+            rboto_core::fixture_scalar(&key_746, "string")?;
+            let converted_key_748: String = key_746.extract()?;
+            rboto_core::fixture_scalar(&value_747, "string")?;
+            let converted_value_749: String = value_747.extract()?;
+            fixture_744.insert(converted_key_748, converted_value_749);
+        }
+        builder = builder.set_session_attributes(Some(fixture_744));
+    }
+    if let Some(value) = dict_value(values, "originating_request_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_750: String = value.extract()?;
+        builder = builder.set_originating_request_id(Some(fixture_750));
+    }
+    if let Some(value) = dict_value(values, "runtime_hints")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_751 = runtime_hints_fixture_from_py(&value)?;
+        builder = builder.set_runtime_hints(Some(fixture_751));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn slot_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lexruntimev2::types::Slot> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["value", "shape", "values", "sub_slots"], &[])?;
+    let mut builder = aws_sdk_lexruntimev2::types::Slot::builder();
+    if let Some(value) = dict_value(values, "value")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_752 = value_fixture_from_py(&value)?;
+        builder = builder.set_value(Some(fixture_752));
+    }
+    if let Some(value) = dict_value(values, "shape")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_754: String = value.extract()?;
+        let fixture_753 = aws_sdk_lexruntimev2::types::Shape::from(enum_value_754.as_str());
+        builder = builder.set_shape(Some(fixture_753));
+    }
+    if let Some(value) = dict_value(values, "values")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_755 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_756 in value.try_iter()? {
+            let item_757 = item_result_756?;
+            rboto_core::fixture_scalar(&item_757, "struct")?;
+            let converted_item_758 = slot_fixture_from_py(&item_757)?;
+            fixture_755.push(converted_item_758);
+        }
+        builder = builder.set_values(Some(fixture_755));
+    }
+    if let Some(value) = dict_value(values, "sub_slots")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_760 = value.cast::<PyDict>()?;
+        let mut fixture_759 = HashMap::with_capacity(mapping_760.len());
+        for (key_761, value_762) in mapping_760.iter() {
+            rboto_core::fixture_scalar(&key_761, "string")?;
+            let converted_key_763: String = key_761.extract()?;
+            rboto_core::fixture_scalar(&value_762, "struct")?;
+            let converted_value_764 = slot_fixture_from_py(&value_762)?;
+            fixture_759.insert(converted_key_763, converted_value_764);
+        }
+        builder = builder.set_sub_slots(Some(fixture_759));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn value_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lexruntimev2::types::Value> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["original_value", "interpreted_value", "resolved_values"],
+        &["interpreted_value"],
+    )?;
+    let mut builder = aws_sdk_lexruntimev2::types::Value::builder();
+    if let Some(value) = dict_value(values, "original_value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_765: String = value.extract()?;
+        builder = builder.set_original_value(Some(fixture_765));
+    }
+    if let Some(value) = values.get_item("interpreted_value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_766: String = value.extract()?;
+        builder = builder.set_interpreted_value(Some(fixture_766));
+    }
+    if let Some(value) = dict_value(values, "resolved_values")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_767 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_768 in value.try_iter()? {
+            let item_769 = item_result_768?;
+            rboto_core::fixture_scalar(&item_769, "string")?;
+            let converted_item_770: String = item_769.extract()?;
+            fixture_767.push(converted_item_770);
+        }
+        builder = builder.set_resolved_values(Some(fixture_767));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
 #[allow(clippy::type_complexity)]
 struct SharedActiveContext {
     name: ::std::string::String,
@@ -3382,6 +4022,40 @@ impl PyOperationDeleteSessionOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["bot_id", "bot_alias_id", "locale_id", "session_id"],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_lexruntimev2::operation::delete_session::DeleteSessionOutput::builder();
+        if let Some(value) = dict_value(values, "bot_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_582: String = value.extract()?;
+            builder = builder.set_bot_id(Some(fixture_582));
+        }
+        if let Some(value) = dict_value(values, "bot_alias_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_583: String = value.extract()?;
+            builder = builder.set_bot_alias_id(Some(fixture_583));
+        }
+        if let Some(value) = dict_value(values, "locale_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_584: String = value.extract()?;
+            builder = builder.set_locale_id(Some(fixture_584));
+        }
+        if let Some(value) = dict_value(values, "session_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_585: String = value.extract()?;
+            builder = builder.set_session_id(Some(fixture_585));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -3535,6 +4209,55 @@ impl PyOperationGetSessionOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["session_id", "messages", "interpretations", "session_state"],
+            &[],
+        )?;
+        let mut builder = aws_sdk_lexruntimev2::operation::get_session::GetSessionOutput::builder();
+        if let Some(value) = dict_value(values, "session_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_600: String = value.extract()?;
+            builder = builder.set_session_id(Some(fixture_600));
+        }
+        if let Some(value) = dict_value(values, "messages")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_601 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_602 in value.try_iter()? {
+                let item_603 = item_result_602?;
+                rboto_core::fixture_scalar(&item_603, "struct")?;
+                let converted_item_604 = message_fixture_from_py(&item_603)?;
+                fixture_601.push(converted_item_604);
+            }
+            builder = builder.set_messages(Some(fixture_601));
+        }
+        if let Some(value) = dict_value(values, "interpretations")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_605 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_606 in value.try_iter()? {
+                let item_607 = item_result_606?;
+                rboto_core::fixture_scalar(&item_607, "struct")?;
+                let converted_item_608 = interpretation_fixture_from_py(&item_607)?;
+                fixture_605.push(converted_item_608);
+            }
+            builder = builder.set_interpretations(Some(fixture_605));
+        }
+        if let Some(value) = dict_value(values, "session_state")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_609 = session_state_fixture_from_py(&value)?;
+            builder = builder.set_session_state(Some(fixture_609));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -3638,6 +4361,62 @@ impl PyOperationPutSessionOutput {
         }
         result.set_item("audio_stream", self.audio_stream.clone_ref(py))?;
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "content_type",
+                "messages",
+                "session_state",
+                "request_attributes",
+                "session_id",
+                "audio_stream",
+            ],
+            &["audio_stream"],
+        )?;
+        let mut builder = aws_sdk_lexruntimev2::operation::put_session::PutSessionOutput::builder();
+        if let Some(value) = dict_value(values, "content_type")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_610: String = value.extract()?;
+            builder = builder.set_content_type(Some(fixture_610));
+        }
+        if let Some(value) = dict_value(values, "messages")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_611: String = value.extract()?;
+            builder = builder.set_messages(Some(fixture_611));
+        }
+        if let Some(value) = dict_value(values, "session_state")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_612: String = value.extract()?;
+            builder = builder.set_session_state(Some(fixture_612));
+        }
+        if let Some(value) = dict_value(values, "request_attributes")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_613: String = value.extract()?;
+            builder = builder.set_request_attributes(Some(fixture_613));
+        }
+        if let Some(value) = dict_value(values, "session_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_614: String = value.extract()?;
+            builder = builder.set_session_id(Some(fixture_614));
+        }
+        if let Some(value) = values.get_item("audio_stream")? {
+            rboto_core::fixture_scalar(&value, "byte_stream")?;
+            let bytes_616: Vec<u8> = value.extract()?;
+            let fixture_615 = AwsByteStream::from(bytes_616);
+            builder = builder.set_audio_stream(Some(fixture_615));
+        }
+        let mut output = builder.build();
+        let stream = std::mem::take(&mut output.audio_stream);
+        let audio_stream = Py::new(py, PyByteStream::new(stream))?;
+        Ok(Self {
+            inner: output,
+            audio_stream,
+        })
     }
 }
 
@@ -3847,6 +4626,81 @@ impl PyOperationRecognizeTextOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "messages",
+                "session_state",
+                "interpretations",
+                "request_attributes",
+                "session_id",
+                "recognized_bot_member",
+            ],
+            &[],
+        )?;
+        let mut builder =
+            aws_sdk_lexruntimev2::operation::recognize_text::RecognizeTextOutput::builder();
+        if let Some(value) = dict_value(values, "messages")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_640 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_641 in value.try_iter()? {
+                let item_642 = item_result_641?;
+                rboto_core::fixture_scalar(&item_642, "struct")?;
+                let converted_item_643 = message_fixture_from_py(&item_642)?;
+                fixture_640.push(converted_item_643);
+            }
+            builder = builder.set_messages(Some(fixture_640));
+        }
+        if let Some(value) = dict_value(values, "session_state")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_644 = session_state_fixture_from_py(&value)?;
+            builder = builder.set_session_state(Some(fixture_644));
+        }
+        if let Some(value) = dict_value(values, "interpretations")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_645 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_646 in value.try_iter()? {
+                let item_647 = item_result_646?;
+                rboto_core::fixture_scalar(&item_647, "struct")?;
+                let converted_item_648 = interpretation_fixture_from_py(&item_647)?;
+                fixture_645.push(converted_item_648);
+            }
+            builder = builder.set_interpretations(Some(fixture_645));
+        }
+        if let Some(value) = dict_value(values, "request_attributes")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_650 = value.cast::<PyDict>()?;
+            let mut fixture_649 = HashMap::with_capacity(mapping_650.len());
+            for (key_651, value_652) in mapping_650.iter() {
+                rboto_core::fixture_scalar(&key_651, "string")?;
+                let converted_key_653: String = key_651.extract()?;
+                rboto_core::fixture_scalar(&value_652, "string")?;
+                let converted_value_654: String = value_652.extract()?;
+                fixture_649.insert(converted_key_653, converted_value_654);
+            }
+            builder = builder.set_request_attributes(Some(fixture_649));
+        }
+        if let Some(value) = dict_value(values, "session_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_655: String = value.extract()?;
+            builder = builder.set_session_id(Some(fixture_655));
+        }
+        if let Some(value) = dict_value(values, "recognized_bot_member")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_656 = recognized_bot_member_fixture_from_py(&value)?;
+            builder = builder.set_recognized_bot_member(Some(fixture_656));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -4014,6 +4868,88 @@ impl PyOperationRecognizeUtteranceOutput {
             result.set_item("recognized_bot_member", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "input_mode",
+                "content_type",
+                "messages",
+                "interpretations",
+                "session_state",
+                "request_attributes",
+                "session_id",
+                "input_transcript",
+                "audio_stream",
+                "recognized_bot_member",
+            ],
+            &["audio_stream"],
+        )?;
+        let mut builder =
+            aws_sdk_lexruntimev2::operation::recognize_utterance::RecognizeUtteranceOutput::builder(
+            );
+        if let Some(value) = dict_value(values, "input_mode")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_658: String = value.extract()?;
+            builder = builder.set_input_mode(Some(fixture_658));
+        }
+        if let Some(value) = dict_value(values, "content_type")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_659: String = value.extract()?;
+            builder = builder.set_content_type(Some(fixture_659));
+        }
+        if let Some(value) = dict_value(values, "messages")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_660: String = value.extract()?;
+            builder = builder.set_messages(Some(fixture_660));
+        }
+        if let Some(value) = dict_value(values, "interpretations")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_661: String = value.extract()?;
+            builder = builder.set_interpretations(Some(fixture_661));
+        }
+        if let Some(value) = dict_value(values, "session_state")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_662: String = value.extract()?;
+            builder = builder.set_session_state(Some(fixture_662));
+        }
+        if let Some(value) = dict_value(values, "request_attributes")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_663: String = value.extract()?;
+            builder = builder.set_request_attributes(Some(fixture_663));
+        }
+        if let Some(value) = dict_value(values, "session_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_664: String = value.extract()?;
+            builder = builder.set_session_id(Some(fixture_664));
+        }
+        if let Some(value) = dict_value(values, "input_transcript")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_665: String = value.extract()?;
+            builder = builder.set_input_transcript(Some(fixture_665));
+        }
+        if let Some(value) = values.get_item("audio_stream")? {
+            rboto_core::fixture_scalar(&value, "byte_stream")?;
+            let bytes_667: Vec<u8> = value.extract()?;
+            let fixture_666 = AwsByteStream::from(bytes_667);
+            builder = builder.set_audio_stream(Some(fixture_666));
+        }
+        if let Some(value) = dict_value(values, "recognized_bot_member")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_668: String = value.extract()?;
+            builder = builder.set_recognized_bot_member(Some(fixture_668));
+        }
+        let mut output = builder.build();
+        let stream = std::mem::take(&mut output.audio_stream);
+        let audio_stream = Py::new(py, PyByteStream::new(stream))?;
+        Ok(Self {
+            inner: output,
+            audio_stream,
+        })
     }
 }
 

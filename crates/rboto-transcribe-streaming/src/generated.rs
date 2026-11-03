@@ -2619,6 +2619,314 @@ fn utterance_event_to_py(
     Ok(result.into_any().unbind())
 }
 
+fn clinical_note_generation_result_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_transcribestreaming::types::ClinicalNoteGenerationResult> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "clinical_note_output_location",
+            "transcript_output_location",
+            "status",
+            "failure_reason",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_transcribestreaming::types::ClinicalNoteGenerationResult::builder();
+    if let Some(value) = dict_value(values, "clinical_note_output_location")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_660: String = value.extract()?;
+        builder = builder.set_clinical_note_output_location(Some(fixture_660));
+    }
+    if let Some(value) = dict_value(values, "transcript_output_location")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_661: String = value.extract()?;
+        builder = builder.set_transcript_output_location(Some(fixture_661));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_663: String = value.extract()?;
+        let fixture_662 = aws_sdk_transcribestreaming::types::ClinicalNoteGenerationStatus::from(
+            enum_value_663.as_str(),
+        );
+        builder = builder.set_status(Some(fixture_662));
+    }
+    if let Some(value) = dict_value(values, "failure_reason")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_664: String = value.extract()?;
+        builder = builder.set_failure_reason(Some(fixture_664));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn clinical_note_generation_settings_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_transcribestreaming::types::ClinicalNoteGenerationSettings> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["output_bucket_name", "note_template"],
+        &["output_bucket_name"],
+    )?;
+    let mut builder = aws_sdk_transcribestreaming::types::ClinicalNoteGenerationSettings::builder();
+    if let Some(value) = values.get_item("output_bucket_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_665: String = value.extract()?;
+        builder = builder.set_output_bucket_name(Some(fixture_665));
+    }
+    if let Some(value) = dict_value(values, "note_template")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_667: String = value.extract()?;
+        let fixture_666 = aws_sdk_transcribestreaming::types::MedicalScribeNoteTemplate::from(
+            enum_value_667.as_str(),
+        );
+        builder = builder.set_note_template(Some(fixture_666));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn medical_scribe_channel_definition_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_transcribestreaming::types::MedicalScribeChannelDefinition> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["channel_id", "participant_role"],
+        &["channel_id", "participant_role"],
+    )?;
+    let mut builder = aws_sdk_transcribestreaming::types::MedicalScribeChannelDefinition::builder();
+    if let Some(value) = values.get_item("channel_id")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_668: i32 = value.extract()?;
+        builder = builder.set_channel_id(Some(fixture_668));
+    }
+    if let Some(value) = values.get_item("participant_role")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_670: String = value.extract()?;
+        let fixture_669 = aws_sdk_transcribestreaming::types::MedicalScribeParticipantRole::from(
+            enum_value_670.as_str(),
+        );
+        builder = builder.set_participant_role(Some(fixture_669));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn medical_scribe_encryption_settings_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_transcribestreaming::types::MedicalScribeEncryptionSettings> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["kms_encryption_context", "kms_key_id"],
+        &["kms_key_id"],
+    )?;
+    let mut builder =
+        aws_sdk_transcribestreaming::types::MedicalScribeEncryptionSettings::builder();
+    if let Some(value) = dict_value(values, "kms_encryption_context")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_672 = value.cast::<PyDict>()?;
+        let mut fixture_671 = HashMap::with_capacity(mapping_672.len());
+        for (key_673, value_674) in mapping_672.iter() {
+            rboto_core::fixture_scalar(&key_673, "string")?;
+            let converted_key_675: String = key_673.extract()?;
+            rboto_core::fixture_scalar(&value_674, "string")?;
+            let converted_value_676: String = value_674.extract()?;
+            fixture_671.insert(converted_key_675, converted_value_676);
+        }
+        builder = builder.set_kms_encryption_context(Some(fixture_671));
+    }
+    if let Some(value) = values.get_item("kms_key_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_677: String = value.extract()?;
+        builder = builder.set_kms_key_id(Some(fixture_677));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn medical_scribe_post_stream_analytics_result_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_transcribestreaming::types::MedicalScribePostStreamAnalyticsResult> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["clinical_note_generation_result"], &[])?;
+    let mut builder =
+        aws_sdk_transcribestreaming::types::MedicalScribePostStreamAnalyticsResult::builder();
+    if let Some(value) = dict_value(values, "clinical_note_generation_result")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_678 = clinical_note_generation_result_fixture_from_py(&value)?;
+        builder = builder.set_clinical_note_generation_result(Some(fixture_678));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn medical_scribe_post_stream_analytics_settings_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_transcribestreaming::types::MedicalScribePostStreamAnalyticsSettings> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["clinical_note_generation_settings"], &[])?;
+    let mut builder =
+        aws_sdk_transcribestreaming::types::MedicalScribePostStreamAnalyticsSettings::builder();
+    if let Some(value) = dict_value(values, "clinical_note_generation_settings")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_679 = clinical_note_generation_settings_fixture_from_py(&value)?;
+        builder = builder.set_clinical_note_generation_settings(Some(fixture_679));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn medical_scribe_stream_details_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_transcribestreaming::types::MedicalScribeStreamDetails> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "session_id",
+            "stream_created_at",
+            "stream_ended_at",
+            "language_code",
+            "media_sample_rate_hertz",
+            "media_encoding",
+            "vocabulary_name",
+            "vocabulary_filter_name",
+            "vocabulary_filter_method",
+            "resource_access_role_arn",
+            "channel_definitions",
+            "encryption_settings",
+            "stream_status",
+            "post_stream_analytics_settings",
+            "post_stream_analytics_result",
+            "medical_scribe_context_provided",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_transcribestreaming::types::MedicalScribeStreamDetails::builder();
+    if let Some(value) = dict_value(values, "session_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_680: String = value.extract()?;
+        builder = builder.set_session_id(Some(fixture_680));
+    }
+    if let Some(value) = dict_value(values, "stream_created_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_682: String = value.extract()?;
+        let fixture_681 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_682,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_stream_created_at(Some(fixture_681));
+    }
+    if let Some(value) = dict_value(values, "stream_ended_at")? {
+        rboto_core::fixture_scalar(&value, "datetime")?;
+        let timestamp_684: String = value.extract()?;
+        let fixture_683 = ::aws_smithy_types::DateTime::from_str(
+            &timestamp_684,
+            ::aws_smithy_types::date_time::Format::DateTime,
+        )
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        builder = builder.set_stream_ended_at(Some(fixture_683));
+    }
+    if let Some(value) = dict_value(values, "language_code")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_686: String = value.extract()?;
+        let fixture_685 = aws_sdk_transcribestreaming::types::MedicalScribeLanguageCode::from(
+            enum_value_686.as_str(),
+        );
+        builder = builder.set_language_code(Some(fixture_685));
+    }
+    if let Some(value) = dict_value(values, "media_sample_rate_hertz")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_687: i32 = value.extract()?;
+        builder = builder.set_media_sample_rate_hertz(Some(fixture_687));
+    }
+    if let Some(value) = dict_value(values, "media_encoding")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_689: String = value.extract()?;
+        let fixture_688 = aws_sdk_transcribestreaming::types::MedicalScribeMediaEncoding::from(
+            enum_value_689.as_str(),
+        );
+        builder = builder.set_media_encoding(Some(fixture_688));
+    }
+    if let Some(value) = dict_value(values, "vocabulary_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_690: String = value.extract()?;
+        builder = builder.set_vocabulary_name(Some(fixture_690));
+    }
+    if let Some(value) = dict_value(values, "vocabulary_filter_name")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_691: String = value.extract()?;
+        builder = builder.set_vocabulary_filter_name(Some(fixture_691));
+    }
+    if let Some(value) = dict_value(values, "vocabulary_filter_method")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_693: String = value.extract()?;
+        let fixture_692 =
+            aws_sdk_transcribestreaming::types::MedicalScribeVocabularyFilterMethod::from(
+                enum_value_693.as_str(),
+            );
+        builder = builder.set_vocabulary_filter_method(Some(fixture_692));
+    }
+    if let Some(value) = dict_value(values, "resource_access_role_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_694: String = value.extract()?;
+        builder = builder.set_resource_access_role_arn(Some(fixture_694));
+    }
+    if let Some(value) = dict_value(values, "channel_definitions")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_695 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_696 in value.try_iter()? {
+            let item_697 = item_result_696?;
+            rboto_core::fixture_scalar(&item_697, "struct")?;
+            let converted_item_698 = medical_scribe_channel_definition_fixture_from_py(&item_697)?;
+            fixture_695.push(converted_item_698);
+        }
+        builder = builder.set_channel_definitions(Some(fixture_695));
+    }
+    if let Some(value) = dict_value(values, "encryption_settings")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_699 = medical_scribe_encryption_settings_fixture_from_py(&value)?;
+        builder = builder.set_encryption_settings(Some(fixture_699));
+    }
+    if let Some(value) = dict_value(values, "stream_status")? {
+        rboto_core::fixture_scalar(&value, "enum")?;
+        let enum_value_701: String = value.extract()?;
+        let fixture_700 = aws_sdk_transcribestreaming::types::MedicalScribeStreamStatus::from(
+            enum_value_701.as_str(),
+        );
+        builder = builder.set_stream_status(Some(fixture_700));
+    }
+    if let Some(value) = dict_value(values, "post_stream_analytics_settings")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_702 = medical_scribe_post_stream_analytics_settings_fixture_from_py(&value)?;
+        builder = builder.set_post_stream_analytics_settings(Some(fixture_702));
+    }
+    if let Some(value) = dict_value(values, "post_stream_analytics_result")? {
+        rboto_core::fixture_scalar(&value, "struct")?;
+        let fixture_703 = medical_scribe_post_stream_analytics_result_fixture_from_py(&value)?;
+        builder = builder.set_post_stream_analytics_result(Some(fixture_703));
+    }
+    if let Some(value) = dict_value(values, "medical_scribe_context_provided")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_704: bool = value.extract()?;
+        builder = builder.set_medical_scribe_context_provided(Some(fixture_704));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
 #[pyclass(
     name = "ClinicalNoteGenerationResult",
     module = "rboto_transcribe_streaming._native",
@@ -3330,6 +3638,22 @@ impl PyOperationGetMedicalScribeStreamOutput {
             result.set_item("medical_scribe_stream_details", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["medical_scribe_stream_details"], &[])?;
+        let mut builder = aws_sdk_transcribestreaming::operation::get_medical_scribe_stream::GetMedicalScribeStreamOutput::builder();
+        if let Some(value) = dict_value(values, "medical_scribe_stream_details")? {
+            rboto_core::fixture_scalar(&value, "struct")?;
+            let fixture_660 = medical_scribe_stream_details_fixture_from_py(&value)?;
+            builder = builder.set_medical_scribe_stream_details(Some(fixture_660));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 

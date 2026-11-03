@@ -33,6 +33,27 @@ class ConnectHealthClient:
 
     logger_name = "rboto.connecthealth"
 
+    @staticmethod
+    def _stub_operations() -> dict[str, str]:
+        return {
+            "activate_subscription": "ActivateSubscription",
+            "create_domain": "CreateDomain",
+            "create_subscription": "CreateSubscription",
+            "deactivate_subscription": "DeactivateSubscription",
+            "delete_domain": "DeleteDomain",
+            "get_domain": "GetDomain",
+            "get_medical_scribe_listening_session": "GetMedicalScribeListeningSession",
+            "get_patient_insights_job": "GetPatientInsightsJob",
+            "get_subscription": "GetSubscription",
+            "list_domains": "ListDomains",
+            "list_subscriptions": "ListSubscriptions",
+            "list_tags_for_resource": "ListTagsForResource",
+            "start_medical_scribe_listening_session": "StartMedicalScribeListeningSession",
+            "start_patient_insights_job": "StartPatientInsightsJob",
+            "tag_resource": "TagResource",
+            "untag_resource": "UntagResource",
+        }
+
     def __init__(
         self,
         *,

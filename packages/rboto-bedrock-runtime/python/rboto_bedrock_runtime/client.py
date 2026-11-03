@@ -50,6 +50,22 @@ class BedrockRuntimeClient:
 
     logger_name = "rboto.bedrock-runtime"
 
+    @staticmethod
+    def _stub_operations() -> dict[str, str]:
+        return {
+            "apply_guardrail": "ApplyGuardrail",
+            "converse": "Converse",
+            "converse_stream": "ConverseStream",
+            "count_tokens": "CountTokens",
+            "get_async_invoke": "GetAsyncInvoke",
+            "invoke_guardrail_checks": "InvokeGuardrailChecks",
+            "invoke_model": "InvokeModel",
+            "invoke_model_with_bidirectional_stream": "InvokeModelWithBidirectionalStream",
+            "invoke_model_with_response_stream": "InvokeModelWithResponseStream",
+            "list_async_invokes": "ListAsyncInvokes",
+            "start_async_invoke": "StartAsyncInvoke",
+        }
+
     def __init__(
         self,
         *,

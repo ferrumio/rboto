@@ -24,6 +24,17 @@ class LexRuntimeV2Client:
 
     logger_name = "rboto.lex-runtime-v2"
 
+    @staticmethod
+    def _stub_operations() -> dict[str, str]:
+        return {
+            "delete_session": "DeleteSession",
+            "get_session": "GetSession",
+            "put_session": "PutSession",
+            "recognize_text": "RecognizeText",
+            "recognize_utterance": "RecognizeUtterance",
+            "start_conversation": "StartConversation",
+        }
+
     def __init__(
         self,
         *,

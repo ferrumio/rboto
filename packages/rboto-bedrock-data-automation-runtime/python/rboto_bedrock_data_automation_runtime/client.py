@@ -27,6 +27,17 @@ class BedrockDataAutomationRuntimeClient:
 
     logger_name = "rboto.bedrock-data-automation-runtime"
 
+    @staticmethod
+    def _stub_operations() -> dict[str, str]:
+        return {
+            "get_data_automation_status": "GetDataAutomationStatus",
+            "invoke_data_automation": "InvokeDataAutomation",
+            "invoke_data_automation_async": "InvokeDataAutomationAsync",
+            "list_tags_for_resource": "ListTagsForResource",
+            "tag_resource": "TagResource",
+            "untag_resource": "UntagResource",
+        }
+
     def __init__(
         self,
         *,

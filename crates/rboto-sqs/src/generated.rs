@@ -730,6 +730,334 @@ fn send_message_batch_result_entry_to_py(
     Ok(result.into_any().unbind())
 }
 
+fn batch_result_error_entry_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sqs::types::BatchResultErrorEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &["id", "sender_fault", "code", "message"],
+        &["id", "sender_fault", "code"],
+    )?;
+    let mut builder = aws_sdk_sqs::types::BatchResultErrorEntry::builder();
+    if let Some(value) = values.get_item("id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_460: String = value.extract()?;
+        builder = builder.set_id(Some(fixture_460));
+    }
+    if let Some(value) = values.get_item("sender_fault")? {
+        rboto_core::fixture_scalar(&value, "bool")?;
+        let fixture_461: bool = value.extract()?;
+        builder = builder.set_sender_fault(Some(fixture_461));
+    }
+    if let Some(value) = values.get_item("code")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_462: String = value.extract()?;
+        builder = builder.set_code(Some(fixture_462));
+    }
+    if let Some(value) = dict_value(values, "message")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_463: String = value.extract()?;
+        builder = builder.set_message(Some(fixture_463));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn change_message_visibility_batch_result_entry_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sqs::types::ChangeMessageVisibilityBatchResultEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["id"], &["id"])?;
+    let mut builder = aws_sdk_sqs::types::ChangeMessageVisibilityBatchResultEntry::builder();
+    if let Some(value) = values.get_item("id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_464: String = value.extract()?;
+        builder = builder.set_id(Some(fixture_464));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn delete_message_batch_result_entry_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sqs::types::DeleteMessageBatchResultEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(values, &["id"], &["id"])?;
+    let mut builder = aws_sdk_sqs::types::DeleteMessageBatchResultEntry::builder();
+    if let Some(value) = values.get_item("id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_465: String = value.extract()?;
+        builder = builder.set_id(Some(fixture_465));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn list_message_move_tasks_result_entry_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sqs::types::ListMessageMoveTasksResultEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "task_handle",
+            "status",
+            "source_arn",
+            "destination_arn",
+            "max_number_of_messages_per_second",
+            "approximate_number_of_messages_moved",
+            "approximate_number_of_messages_to_move",
+            "failure_reason",
+            "started_timestamp",
+        ],
+        &["approximate_number_of_messages_moved", "started_timestamp"],
+    )?;
+    let mut builder = aws_sdk_sqs::types::ListMessageMoveTasksResultEntry::builder();
+    if let Some(value) = dict_value(values, "task_handle")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_466: String = value.extract()?;
+        builder = builder.set_task_handle(Some(fixture_466));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_467: String = value.extract()?;
+        builder = builder.set_status(Some(fixture_467));
+    }
+    if let Some(value) = dict_value(values, "source_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_468: String = value.extract()?;
+        builder = builder.set_source_arn(Some(fixture_468));
+    }
+    if let Some(value) = dict_value(values, "destination_arn")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_469: String = value.extract()?;
+        builder = builder.set_destination_arn(Some(fixture_469));
+    }
+    if let Some(value) = dict_value(values, "max_number_of_messages_per_second")? {
+        rboto_core::fixture_scalar(&value, "i32")?;
+        let fixture_470: i32 = value.extract()?;
+        builder = builder.set_max_number_of_messages_per_second(Some(fixture_470));
+    }
+    if let Some(value) = values.get_item("approximate_number_of_messages_moved")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_471: i64 = value.extract()?;
+        builder = builder.set_approximate_number_of_messages_moved(Some(fixture_471));
+    }
+    if let Some(value) = dict_value(values, "approximate_number_of_messages_to_move")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_472: i64 = value.extract()?;
+        builder = builder.set_approximate_number_of_messages_to_move(Some(fixture_472));
+    }
+    if let Some(value) = dict_value(values, "failure_reason")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_473: String = value.extract()?;
+        builder = builder.set_failure_reason(Some(fixture_473));
+    }
+    if let Some(value) = values.get_item("started_timestamp")? {
+        rboto_core::fixture_scalar(&value, "i64")?;
+        let fixture_474: i64 = value.extract()?;
+        builder = builder.set_started_timestamp(Some(fixture_474));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn message_fixture_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sqs::types::Message> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "message_id",
+            "receipt_handle",
+            "md5_of_body",
+            "body",
+            "attributes",
+            "md5_of_message_attributes",
+            "message_attributes",
+        ],
+        &[],
+    )?;
+    let mut builder = aws_sdk_sqs::types::Message::builder();
+    if let Some(value) = dict_value(values, "message_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_475: String = value.extract()?;
+        builder = builder.set_message_id(Some(fixture_475));
+    }
+    if let Some(value) = dict_value(values, "receipt_handle")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_476: String = value.extract()?;
+        builder = builder.set_receipt_handle(Some(fixture_476));
+    }
+    if let Some(value) = dict_value(values, "md5_of_body")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_477: String = value.extract()?;
+        builder = builder.set_md5_of_body(Some(fixture_477));
+    }
+    if let Some(value) = dict_value(values, "body")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_478: String = value.extract()?;
+        builder = builder.set_body(Some(fixture_478));
+    }
+    if let Some(value) = dict_value(values, "attributes")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_480 = value.cast::<PyDict>()?;
+        let mut fixture_479 = HashMap::with_capacity(mapping_480.len());
+        for (key_481, value_482) in mapping_480.iter() {
+            rboto_core::fixture_scalar(&key_481, "enum")?;
+            let enum_value_485: String = key_481.extract()?;
+            let converted_key_483 =
+                aws_sdk_sqs::types::MessageSystemAttributeName::from(enum_value_485.as_str());
+            rboto_core::fixture_scalar(&value_482, "string")?;
+            let converted_value_484: String = value_482.extract()?;
+            fixture_479.insert(converted_key_483, converted_value_484);
+        }
+        builder = builder.set_attributes(Some(fixture_479));
+    }
+    if let Some(value) = dict_value(values, "md5_of_message_attributes")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_486: String = value.extract()?;
+        builder = builder.set_md5_of_message_attributes(Some(fixture_486));
+    }
+    if let Some(value) = dict_value(values, "message_attributes")? {
+        rboto_core::fixture_scalar(&value, "map")?;
+        let mapping_488 = value.cast::<PyDict>()?;
+        let mut fixture_487 = HashMap::with_capacity(mapping_488.len());
+        for (key_489, value_490) in mapping_488.iter() {
+            rboto_core::fixture_scalar(&key_489, "string")?;
+            let converted_key_491: String = key_489.extract()?;
+            rboto_core::fixture_scalar(&value_490, "struct")?;
+            let converted_value_492 = message_attribute_value_fixture_from_py(&value_490)?;
+            fixture_487.insert(converted_key_491, converted_value_492);
+        }
+        builder = builder.set_message_attributes(Some(fixture_487));
+    }
+    let mut output = builder.build();
+    Ok(output)
+}
+
+fn message_attribute_value_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sqs::types::MessageAttributeValue> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "string_value",
+            "binary_value",
+            "string_list_values",
+            "binary_list_values",
+            "data_type",
+        ],
+        &["data_type"],
+    )?;
+    let mut builder = aws_sdk_sqs::types::MessageAttributeValue::builder();
+    if let Some(value) = dict_value(values, "string_value")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_493: String = value.extract()?;
+        builder = builder.set_string_value(Some(fixture_493));
+    }
+    if let Some(value) = dict_value(values, "binary_value")? {
+        rboto_core::fixture_scalar(&value, "blob")?;
+        let bytes_495: Vec<u8> = value.extract()?;
+        let fixture_494 = ::aws_smithy_types::Blob::new(bytes_495);
+        builder = builder.set_binary_value(Some(fixture_494));
+    }
+    if let Some(value) = dict_value(values, "string_list_values")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_496 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_497 in value.try_iter()? {
+            let item_498 = item_result_497?;
+            rboto_core::fixture_scalar(&item_498, "string")?;
+            let converted_item_499: String = item_498.extract()?;
+            fixture_496.push(converted_item_499);
+        }
+        builder = builder.set_string_list_values(Some(fixture_496));
+    }
+    if let Some(value) = dict_value(values, "binary_list_values")? {
+        rboto_core::fixture_scalar(&value, "vec")?;
+        let mut fixture_500 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+        for item_result_501 in value.try_iter()? {
+            let item_502 = item_result_501?;
+            rboto_core::fixture_scalar(&item_502, "blob")?;
+            let bytes_504: Vec<u8> = item_502.extract()?;
+            let converted_item_503 = ::aws_smithy_types::Blob::new(bytes_504);
+            fixture_500.push(converted_item_503);
+        }
+        builder = builder.set_binary_list_values(Some(fixture_500));
+    }
+    if let Some(value) = values.get_item("data_type")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_505: String = value.extract()?;
+        builder = builder.set_data_type(Some(fixture_505));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
+fn send_message_batch_result_entry_fixture_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_sqs::types::SendMessageBatchResultEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::fixture_fields(
+        values,
+        &[
+            "id",
+            "message_id",
+            "md5_of_message_body",
+            "md5_of_message_attributes",
+            "md5_of_message_system_attributes",
+            "sequence_number",
+        ],
+        &["id", "message_id", "md5_of_message_body"],
+    )?;
+    let mut builder = aws_sdk_sqs::types::SendMessageBatchResultEntry::builder();
+    if let Some(value) = values.get_item("id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_506: String = value.extract()?;
+        builder = builder.set_id(Some(fixture_506));
+    }
+    if let Some(value) = values.get_item("message_id")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_507: String = value.extract()?;
+        builder = builder.set_message_id(Some(fixture_507));
+    }
+    if let Some(value) = values.get_item("md5_of_message_body")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_508: String = value.extract()?;
+        builder = builder.set_md5_of_message_body(Some(fixture_508));
+    }
+    if let Some(value) = dict_value(values, "md5_of_message_attributes")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_509: String = value.extract()?;
+        builder = builder.set_md5_of_message_attributes(Some(fixture_509));
+    }
+    if let Some(value) = dict_value(values, "md5_of_message_system_attributes")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_510: String = value.extract()?;
+        builder = builder.set_md5_of_message_system_attributes(Some(fixture_510));
+    }
+    if let Some(value) = dict_value(values, "sequence_number")? {
+        rboto_core::fixture_scalar(&value, "string")?;
+        let fixture_511: String = value.extract()?;
+        builder = builder.set_sequence_number(Some(fixture_511));
+    }
+    let mut output = builder
+        .build()
+        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+    Ok(output)
+}
+
 #[pyclass(name = "BatchResultErrorEntry", module = "rboto_sqs._native", frozen)]
 struct PyBatchResultErrorEntry {
     inner: Arc<aws_sdk_sqs::types::BatchResultErrorEntry>,
@@ -1273,6 +1601,26 @@ impl PyOperationCancelMessageMoveTaskOutput {
         result.set_item("approximate_number_of_messages_moved", converted_351)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &["approximate_number_of_messages_moved"],
+            &["approximate_number_of_messages_moved"],
+        )?;
+        let mut builder =
+            aws_sdk_sqs::operation::cancel_message_move_task::CancelMessageMoveTaskOutput::builder(
+            );
+        if let Some(value) = values.get_item("approximate_number_of_messages_moved")? {
+            rboto_core::fixture_scalar(&value, "i64")?;
+            let fixture_352: i64 = value.extract()?;
+            builder = builder.set_approximate_number_of_messages_moved(Some(fixture_352));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -1367,6 +1715,44 @@ impl PyOperationChangeMessageVisibilityBatchOutput {
         result.set_item("failed", converted_363)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["successful", "failed"], &["successful", "failed"])?;
+        let mut builder = aws_sdk_sqs::operation::change_message_visibility_batch::ChangeMessageVisibilityBatchOutput::builder();
+        if let Some(value) = values.get_item("successful")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_366 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_367 in value.try_iter()? {
+                let item_368 = item_result_367?;
+                rboto_core::fixture_scalar(&item_368, "struct")?;
+                let converted_item_369 =
+                    change_message_visibility_batch_result_entry_fixture_from_py(&item_368)?;
+                fixture_366.push(converted_item_369);
+            }
+            builder = builder.set_successful(Some(fixture_366));
+        }
+        if let Some(value) = values.get_item("failed")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_370 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_371 in value.try_iter()? {
+                let item_372 = item_result_371?;
+                rboto_core::fixture_scalar(&item_372, "struct")?;
+                let converted_item_373 = batch_result_error_entry_fixture_from_py(&item_372)?;
+                fixture_370.push(converted_item_373);
+            }
+            builder = builder.set_failed(Some(fixture_370));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(name = "CreateQueueOutput", module = "rboto_sqs._native", frozen)]
@@ -1395,6 +1781,20 @@ impl PyOperationCreateQueueOutput {
             result.set_item("queue_url", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["queue_url"], &[])?;
+        let mut builder = aws_sdk_sqs::operation::create_queue::CreateQueueOutput::builder();
+        if let Some(value) = dict_value(values, "queue_url")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_368: String = value.extract()?;
+            builder = builder.set_queue_url(Some(fixture_368));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -1485,6 +1885,45 @@ impl PyOperationDeleteMessageBatchOutput {
         result.set_item("failed", converted_379)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["successful", "failed"], &["successful", "failed"])?;
+        let mut builder =
+            aws_sdk_sqs::operation::delete_message_batch::DeleteMessageBatchOutput::builder();
+        if let Some(value) = values.get_item("successful")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_382 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_383 in value.try_iter()? {
+                let item_384 = item_result_383?;
+                rboto_core::fixture_scalar(&item_384, "struct")?;
+                let converted_item_385 =
+                    delete_message_batch_result_entry_fixture_from_py(&item_384)?;
+                fixture_382.push(converted_item_385);
+            }
+            builder = builder.set_successful(Some(fixture_382));
+        }
+        if let Some(value) = values.get_item("failed")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_386 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_387 in value.try_iter()? {
+                let item_388 = item_result_387?;
+                rboto_core::fixture_scalar(&item_388, "struct")?;
+                let converted_item_389 = batch_result_error_entry_fixture_from_py(&item_388)?;
+                fixture_386.push(converted_item_389);
+            }
+            builder = builder.set_failed(Some(fixture_386));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -1530,6 +1969,31 @@ impl PyOperationGetQueueAttributesOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["attributes"], &[])?;
+        let mut builder =
+            aws_sdk_sqs::operation::get_queue_attributes::GetQueueAttributesOutput::builder();
+        if let Some(value) = dict_value(values, "attributes")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_393 = value.cast::<PyDict>()?;
+            let mut fixture_392 = HashMap::with_capacity(mapping_393.len());
+            for (key_394, value_395) in mapping_393.iter() {
+                rboto_core::fixture_scalar(&key_394, "enum")?;
+                let enum_value_398: String = key_394.extract()?;
+                let converted_key_396 =
+                    aws_sdk_sqs::types::QueueAttributeName::from(enum_value_398.as_str());
+                rboto_core::fixture_scalar(&value_395, "string")?;
+                let converted_value_397: String = value_395.extract()?;
+                fixture_392.insert(converted_key_396, converted_value_397);
+            }
+            builder = builder.set_attributes(Some(fixture_392));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[pyclass(name = "GetQueueUrlOutput", module = "rboto_sqs._native", frozen)]
@@ -1558,6 +2022,20 @@ impl PyOperationGetQueueUrlOutput {
             result.set_item("queue_url", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["queue_url"], &[])?;
+        let mut builder = aws_sdk_sqs::operation::get_queue_url::GetQueueUrlOutput::builder();
+        if let Some(value) = dict_value(values, "queue_url")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_394: String = value.extract()?;
+            builder = builder.set_queue_url(Some(fixture_394));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -1609,6 +2087,34 @@ impl PyOperationListDeadLetterSourceQueuesOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["queue_urls", "next_token"], &["queue_urls"])?;
+        let mut builder = aws_sdk_sqs::operation::list_dead_letter_source_queues::ListDeadLetterSourceQueuesOutput::builder();
+        if let Some(value) = values.get_item("queue_urls")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_402 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_403 in value.try_iter()? {
+                let item_404 = item_result_403?;
+                rboto_core::fixture_scalar(&item_404, "string")?;
+                let converted_item_405: String = item_404.extract()?;
+                fixture_402.push(converted_item_405);
+            }
+            builder = builder.set_queue_urls(Some(fixture_402));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_406: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_406));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self { inner: output })
     }
 }
 
@@ -1682,6 +2188,31 @@ impl PyOperationListMessageMoveTasksOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["results"], &[])?;
+        let mut builder =
+            aws_sdk_sqs::operation::list_message_move_tasks::ListMessageMoveTasksOutput::builder();
+        if let Some(value) = dict_value(values, "results")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_409 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_410 in value.try_iter()? {
+                let item_411 = item_result_410?;
+                rboto_core::fixture_scalar(&item_411, "struct")?;
+                let converted_item_412 =
+                    list_message_move_tasks_result_entry_fixture_from_py(&item_411)?;
+                fixture_409.push(converted_item_412);
+            }
+            builder = builder.set_results(Some(fixture_409));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(name = "ListQueueTagsOutput", module = "rboto_sqs._native", frozen)]
@@ -1722,6 +2253,28 @@ impl PyOperationListQueueTagsOutput {
             result.set_item("tags", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["tags"], &[])?;
+        let mut builder = aws_sdk_sqs::operation::list_queue_tags::ListQueueTagsOutput::builder();
+        if let Some(value) = dict_value(values, "tags")? {
+            rboto_core::fixture_scalar(&value, "map")?;
+            let mapping_420 = value.cast::<PyDict>()?;
+            let mut fixture_419 = HashMap::with_capacity(mapping_420.len());
+            for (key_421, value_422) in mapping_420.iter() {
+                rboto_core::fixture_scalar(&key_421, "string")?;
+                let converted_key_423: String = key_421.extract()?;
+                rboto_core::fixture_scalar(&value_422, "string")?;
+                let converted_value_424: String = value_422.extract()?;
+                fixture_419.insert(converted_key_423, converted_value_424);
+            }
+            builder = builder.set_tags(Some(fixture_419));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -1777,6 +2330,32 @@ impl PyOperationListQueuesOutput {
             result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["queue_urls", "next_token"], &[])?;
+        let mut builder = aws_sdk_sqs::operation::list_queues::ListQueuesOutput::builder();
+        if let Some(value) = dict_value(values, "queue_urls")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_427 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_428 in value.try_iter()? {
+                let item_429 = item_result_428?;
+                rboto_core::fixture_scalar(&item_429, "string")?;
+                let converted_item_430: String = item_429.extract()?;
+                fixture_427.push(converted_item_430);
+            }
+            builder = builder.set_queue_urls(Some(fixture_427));
+        }
+        if let Some(value) = dict_value(values, "next_token")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_431: String = value.extract()?;
+            builder = builder.set_next_token(Some(fixture_431));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 
@@ -1843,6 +2422,29 @@ impl PyOperationReceiveMessageOutput {
             result.set_item("messages", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["messages"], &[])?;
+        let mut builder = aws_sdk_sqs::operation::receive_message::ReceiveMessageOutput::builder();
+        if let Some(value) = dict_value(values, "messages")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_434 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_435 in value.try_iter()? {
+                let item_436 = item_result_435?;
+                rboto_core::fixture_scalar(&item_436, "struct")?;
+                let converted_item_437 = message_fixture_from_py(&item_436)?;
+                fixture_434.push(converted_item_437);
+            }
+            builder = builder.set_messages(Some(fixture_434));
+        }
+        let mut output = builder.build();
+        Ok(Self {
+            inner: output.into(),
+        })
     }
 }
 
@@ -1937,6 +2539,50 @@ impl PyOperationSendMessageOutput {
         }
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(
+            values,
+            &[
+                "md5_of_message_body",
+                "md5_of_message_attributes",
+                "md5_of_message_system_attributes",
+                "message_id",
+                "sequence_number",
+            ],
+            &[],
+        )?;
+        let mut builder = aws_sdk_sqs::operation::send_message::SendMessageOutput::builder();
+        if let Some(value) = dict_value(values, "md5_of_message_body")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_444: String = value.extract()?;
+            builder = builder.set_md5_of_message_body(Some(fixture_444));
+        }
+        if let Some(value) = dict_value(values, "md5_of_message_attributes")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_445: String = value.extract()?;
+            builder = builder.set_md5_of_message_attributes(Some(fixture_445));
+        }
+        if let Some(value) = dict_value(values, "md5_of_message_system_attributes")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_446: String = value.extract()?;
+            builder = builder.set_md5_of_message_system_attributes(Some(fixture_446));
+        }
+        if let Some(value) = dict_value(values, "message_id")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_447: String = value.extract()?;
+            builder = builder.set_message_id(Some(fixture_447));
+        }
+        if let Some(value) = dict_value(values, "sequence_number")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_448: String = value.extract()?;
+            builder = builder.set_sequence_number(Some(fixture_448));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -2022,6 +2668,45 @@ impl PyOperationSendMessageBatchOutput {
         result.set_item("failed", converted_455)?;
         Ok(result.into_any().unbind())
     }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["successful", "failed"], &["successful", "failed"])?;
+        let mut builder =
+            aws_sdk_sqs::operation::send_message_batch::SendMessageBatchOutput::builder();
+        if let Some(value) = values.get_item("successful")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_458 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_459 in value.try_iter()? {
+                let item_460 = item_result_459?;
+                rboto_core::fixture_scalar(&item_460, "struct")?;
+                let converted_item_461 =
+                    send_message_batch_result_entry_fixture_from_py(&item_460)?;
+                fixture_458.push(converted_item_461);
+            }
+            builder = builder.set_successful(Some(fixture_458));
+        }
+        if let Some(value) = values.get_item("failed")? {
+            rboto_core::fixture_scalar(&value, "vec")?;
+            let mut fixture_462 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for item_result_463 in value.try_iter()? {
+                let item_464 = item_result_463?;
+                rboto_core::fixture_scalar(&item_464, "struct")?;
+                let converted_item_465 = batch_result_error_entry_fixture_from_py(&item_464)?;
+                fixture_462.push(converted_item_465);
+            }
+            builder = builder.set_failed(Some(fixture_462));
+        }
+        let mut output = builder
+            .build()
+            .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        Ok(Self {
+            inner: output.into(),
+        })
+    }
 }
 
 #[pyclass(
@@ -2054,6 +2739,21 @@ impl PyOperationStartMessageMoveTaskOutput {
             result.set_item("task_handle", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+
+    #[staticmethod]
+    fn _from_fixture(py: Python<'_>, value: &Bound<'_, PyAny>) -> PyResult<Self> {
+        let values = value.cast::<PyDict>()?;
+        rboto_core::fixture_fields(values, &["task_handle"], &[])?;
+        let mut builder =
+            aws_sdk_sqs::operation::start_message_move_task::StartMessageMoveTaskOutput::builder();
+        if let Some(value) = dict_value(values, "task_handle")? {
+            rboto_core::fixture_scalar(&value, "string")?;
+            let fixture_460: String = value.extract()?;
+            builder = builder.set_task_handle(Some(fixture_460));
+        }
+        let mut output = builder.build();
+        Ok(Self { inner: output })
     }
 }
 

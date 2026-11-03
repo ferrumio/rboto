@@ -1322,6 +1322,8 @@ class WaitSucceededDetails:
 @final
 class AddLayerVersionPermissionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/AddLayerVersionPermissionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> AddLayerVersionPermissionOutput: ...
     @property
     def statement(self) -> str | None: ...
     @property
@@ -1331,6 +1333,8 @@ class AddLayerVersionPermissionOutput:
 @final
 class AddPermissionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/AddPermissionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> AddPermissionOutput: ...
     @property
     def statement(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1338,6 +1342,8 @@ class AddPermissionOutput:
 @final
 class CheckpointDurableExecutionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CheckpointDurableExecutionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CheckpointDurableExecutionOutput: ...
     @property
     def checkpoint_token(self) -> str | None: ...
     @property
@@ -1347,6 +1353,8 @@ class CheckpointDurableExecutionOutput:
 @final
 class CreateAliasOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CreateAliasOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateAliasOutput: ...
     @property
     def alias_arn(self) -> str | None: ...
     @property
@@ -1364,6 +1372,8 @@ class CreateAliasOutput:
 @final
 class CreateCapacityProviderOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CreateCapacityProviderOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateCapacityProviderOutput: ...
     @property
     def capacity_provider(self) -> CapacityProvider | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1371,6 +1381,8 @@ class CreateCapacityProviderOutput:
 @final
 class CreateCodeSigningConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CreateCodeSigningConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateCodeSigningConfigOutput: ...
     @property
     def code_signing_config(self) -> CodeSigningConfig | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1378,6 +1390,8 @@ class CreateCodeSigningConfigOutput:
 @final
 class CreateEventSourceMappingOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CreateEventSourceMappingOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateEventSourceMappingOutput: ...
     @property
     def uuid(self) -> str | None: ...
     @property
@@ -1449,6 +1463,8 @@ class CreateEventSourceMappingOutput:
 @final
 class CreateFunctionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CreateFunctionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateFunctionOutput: ...
     @property
     def function_name(self) -> str | None: ...
     @property
@@ -1534,6 +1550,8 @@ class CreateFunctionOutput:
 @final
 class CreateFunctionUrlConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CreateFunctionUrlConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> CreateFunctionUrlConfigOutput: ...
     @property
     def function_url(self) -> str: ...
     @property
@@ -1551,6 +1569,8 @@ class CreateFunctionUrlConfigOutput:
 @final
 class DeleteCapacityProviderOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/DeleteCapacityProviderOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteCapacityProviderOutput: ...
     @property
     def capacity_provider(self) -> CapacityProvider | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1558,11 +1578,15 @@ class DeleteCapacityProviderOutput:
 @final
 class DeleteCodeSigningConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/DeleteCodeSigningConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteCodeSigningConfigOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteEventSourceMappingOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/DeleteEventSourceMappingOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteEventSourceMappingOutput: ...
     @property
     def uuid(self) -> str | None: ...
     @property
@@ -1634,6 +1658,8 @@ class DeleteEventSourceMappingOutput:
 @final
 class DeleteFunctionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/DeleteFunctionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> DeleteFunctionOutput: ...
     @property
     def status_code(self) -> int: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1641,6 +1667,8 @@ class DeleteFunctionOutput:
 @final
 class GetAccountSettingsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetAccountSettingsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAccountSettingsOutput: ...
     @property
     def account_limit(self) -> AccountLimit | None: ...
     @property
@@ -1650,6 +1678,8 @@ class GetAccountSettingsOutput:
 @final
 class GetAliasOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetAliasOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetAliasOutput: ...
     @property
     def alias_arn(self) -> str | None: ...
     @property
@@ -1667,6 +1697,8 @@ class GetAliasOutput:
 @final
 class GetCapacityProviderOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetCapacityProviderOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetCapacityProviderOutput: ...
     @property
     def capacity_provider(self) -> CapacityProvider | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1674,6 +1706,8 @@ class GetCapacityProviderOutput:
 @final
 class GetCodeSigningConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetCodeSigningConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetCodeSigningConfigOutput: ...
     @property
     def code_signing_config(self) -> CodeSigningConfig | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1681,6 +1715,8 @@ class GetCodeSigningConfigOutput:
 @final
 class GetDurableExecutionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetDurableExecutionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDurableExecutionOutput: ...
     @property
     def durable_execution_arn(self) -> str: ...
     @property
@@ -1712,6 +1748,8 @@ class GetDurableExecutionOutput:
 @final
 class GetDurableExecutionHistoryOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetDurableExecutionHistoryOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDurableExecutionHistoryOutput: ...
     @property
     def events(self) -> list[Event]: ...
     @property
@@ -1721,6 +1759,8 @@ class GetDurableExecutionHistoryOutput:
 @final
 class GetDurableExecutionStateOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetDurableExecutionStateOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetDurableExecutionStateOutput: ...
     @property
     def operations(self) -> list[Operation]: ...
     @property
@@ -1730,6 +1770,8 @@ class GetDurableExecutionStateOutput:
 @final
 class GetEventSourceMappingOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetEventSourceMappingOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetEventSourceMappingOutput: ...
     @property
     def uuid(self) -> str | None: ...
     @property
@@ -1801,6 +1843,8 @@ class GetEventSourceMappingOutput:
 @final
 class GetFunctionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetFunctionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetFunctionOutput: ...
     @property
     def configuration(self) -> FunctionConfiguration | None: ...
     @property
@@ -1816,6 +1860,8 @@ class GetFunctionOutput:
 @final
 class GetFunctionCodeSigningConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetFunctionCodeSigningConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetFunctionCodeSigningConfigOutput: ...
     @property
     def code_signing_config_arn(self) -> str: ...
     @property
@@ -1825,6 +1871,8 @@ class GetFunctionCodeSigningConfigOutput:
 @final
 class GetFunctionConcurrencyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetFunctionConcurrencyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetFunctionConcurrencyOutput: ...
     @property
     def reserved_concurrent_executions(self) -> int | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1832,6 +1880,8 @@ class GetFunctionConcurrencyOutput:
 @final
 class GetFunctionConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetFunctionConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetFunctionConfigurationOutput: ...
     @property
     def function_name(self) -> str | None: ...
     @property
@@ -1917,6 +1967,8 @@ class GetFunctionConfigurationOutput:
 @final
 class GetFunctionEventInvokeConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetFunctionEventInvokeConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetFunctionEventInvokeConfigOutput: ...
     @property
     def last_modified(self) -> str | None: ...
     @property
@@ -1932,6 +1984,8 @@ class GetFunctionEventInvokeConfigOutput:
 @final
 class GetFunctionRecursionConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetFunctionRecursionConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetFunctionRecursionConfigOutput: ...
     @property
     def recursive_loop(self) -> _types.RecursiveLoopOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -1939,6 +1993,8 @@ class GetFunctionRecursionConfigOutput:
 @final
 class GetFunctionScalingConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetFunctionScalingConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetFunctionScalingConfigOutput: ...
     @property
     def function_arn(self) -> str | None: ...
     @property
@@ -1950,6 +2006,8 @@ class GetFunctionScalingConfigOutput:
 @final
 class GetFunctionUrlConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetFunctionUrlConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetFunctionUrlConfigOutput: ...
     @property
     def function_url(self) -> str: ...
     @property
@@ -1969,6 +2027,8 @@ class GetFunctionUrlConfigOutput:
 @final
 class GetLayerVersionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetLayerVersionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetLayerVersionOutput: ...
     @property
     def content(self) -> LayerVersionContentOutput | None: ...
     @property
@@ -1992,6 +2052,8 @@ class GetLayerVersionOutput:
 @final
 class GetLayerVersionByArnOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetLayerVersionByArnOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetLayerVersionByArnOutput: ...
     @property
     def content(self) -> LayerVersionContentOutput | None: ...
     @property
@@ -2015,6 +2077,8 @@ class GetLayerVersionByArnOutput:
 @final
 class GetLayerVersionPolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetLayerVersionPolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetLayerVersionPolicyOutput: ...
     @property
     def policy(self) -> str | None: ...
     @property
@@ -2024,6 +2088,8 @@ class GetLayerVersionPolicyOutput:
 @final
 class GetPolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetPolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetPolicyOutput: ...
     @property
     def policy(self) -> str | None: ...
     @property
@@ -2033,6 +2099,8 @@ class GetPolicyOutput:
 @final
 class GetProvisionedConcurrencyConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetProvisionedConcurrencyConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetProvisionedConcurrencyConfigOutput: ...
     @property
     def requested_provisioned_concurrent_executions(self) -> int | None: ...
     @property
@@ -2050,6 +2118,8 @@ class GetProvisionedConcurrencyConfigOutput:
 @final
 class GetResourcePolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetResourcePolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetResourcePolicyOutput: ...
     @property
     def policy(self) -> str | None: ...
     @property
@@ -2059,6 +2129,8 @@ class GetResourcePolicyOutput:
 @final
 class GetRuntimeManagementConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetRuntimeManagementConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> GetRuntimeManagementConfigOutput: ...
     @property
     def update_runtime_on(self) -> _types.UpdateRuntimeOnOutput | None: ...
     @property
@@ -2070,6 +2142,8 @@ class GetRuntimeManagementConfigOutput:
 @final
 class InvokeOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/InvokeOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> InvokeOutput: ...
     @property
     def status_code(self) -> int: ...
     @property
@@ -2087,6 +2161,8 @@ class InvokeOutput:
 @final
 class InvokeAsyncOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/InvokeAsyncOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> InvokeAsyncOutput: ...
     @property
     def status(self) -> int: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2094,6 +2170,8 @@ class InvokeAsyncOutput:
 @final
 class ListAliasesOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListAliasesOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListAliasesOutput: ...
     @property
     def next_marker(self) -> str | None: ...
     @property
@@ -2103,6 +2181,8 @@ class ListAliasesOutput:
 @final
 class ListCapacityProvidersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListCapacityProvidersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListCapacityProvidersOutput: ...
     @property
     def capacity_providers(self) -> list[CapacityProvider]: ...
     @property
@@ -2112,6 +2192,8 @@ class ListCapacityProvidersOutput:
 @final
 class ListCodeSigningConfigsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListCodeSigningConfigsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListCodeSigningConfigsOutput: ...
     @property
     def next_marker(self) -> str | None: ...
     @property
@@ -2121,6 +2203,8 @@ class ListCodeSigningConfigsOutput:
 @final
 class ListDurableExecutionsByFunctionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListDurableExecutionsByFunctionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListDurableExecutionsByFunctionOutput: ...
     @property
     def durable_executions(self) -> list[Execution] | None: ...
     @property
@@ -2130,6 +2214,8 @@ class ListDurableExecutionsByFunctionOutput:
 @final
 class ListEventSourceMappingsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListEventSourceMappingsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListEventSourceMappingsOutput: ...
     @property
     def next_marker(self) -> str | None: ...
     @property
@@ -2139,6 +2225,8 @@ class ListEventSourceMappingsOutput:
 @final
 class ListFunctionEventInvokeConfigsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListFunctionEventInvokeConfigsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListFunctionEventInvokeConfigsOutput: ...
     @property
     def function_event_invoke_configs(self) -> list[FunctionEventInvokeConfig] | None: ...
     @property
@@ -2148,6 +2236,8 @@ class ListFunctionEventInvokeConfigsOutput:
 @final
 class ListFunctionUrlConfigsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListFunctionUrlConfigsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListFunctionUrlConfigsOutput: ...
     @property
     def function_url_configs(self) -> list[FunctionUrlConfig]: ...
     @property
@@ -2157,6 +2247,8 @@ class ListFunctionUrlConfigsOutput:
 @final
 class ListFunctionVersionsByCapacityProviderOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListFunctionVersionsByCapacityProviderOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListFunctionVersionsByCapacityProviderOutput: ...
     @property
     def capacity_provider_arn(self) -> str: ...
     @property
@@ -2168,6 +2260,8 @@ class ListFunctionVersionsByCapacityProviderOutput:
 @final
 class ListFunctionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListFunctionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListFunctionsOutput: ...
     @property
     def next_marker(self) -> str | None: ...
     @property
@@ -2177,6 +2271,8 @@ class ListFunctionsOutput:
 @final
 class ListFunctionsByCodeSigningConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListFunctionsByCodeSigningConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListFunctionsByCodeSigningConfigOutput: ...
     @property
     def next_marker(self) -> str | None: ...
     @property
@@ -2186,6 +2282,8 @@ class ListFunctionsByCodeSigningConfigOutput:
 @final
 class ListLayerVersionsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListLayerVersionsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListLayerVersionsOutput: ...
     @property
     def next_marker(self) -> str | None: ...
     @property
@@ -2195,6 +2293,8 @@ class ListLayerVersionsOutput:
 @final
 class ListLayersOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListLayersOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListLayersOutput: ...
     @property
     def next_marker(self) -> str | None: ...
     @property
@@ -2204,6 +2304,8 @@ class ListLayersOutput:
 @final
 class ListProvisionedConcurrencyConfigsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListProvisionedConcurrencyConfigsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListProvisionedConcurrencyConfigsOutput: ...
     @property
     def provisioned_concurrency_configs(self) -> list[ProvisionedConcurrencyConfigListItem] | None: ...
     @property
@@ -2213,6 +2315,8 @@ class ListProvisionedConcurrencyConfigsOutput:
 @final
 class ListTagsOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListTagsOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListTagsOutput: ...
     @property
     def tags(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2220,6 +2324,8 @@ class ListTagsOutput:
 @final
 class ListVersionsByFunctionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListVersionsByFunctionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> ListVersionsByFunctionOutput: ...
     @property
     def next_marker(self) -> str | None: ...
     @property
@@ -2229,6 +2335,8 @@ class ListVersionsByFunctionOutput:
 @final
 class PublishLayerVersionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PublishLayerVersionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PublishLayerVersionOutput: ...
     @property
     def content(self) -> LayerVersionContentOutput | None: ...
     @property
@@ -2252,6 +2360,8 @@ class PublishLayerVersionOutput:
 @final
 class PublishVersionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PublishVersionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PublishVersionOutput: ...
     @property
     def function_name(self) -> str | None: ...
     @property
@@ -2337,6 +2447,8 @@ class PublishVersionOutput:
 @final
 class PutFunctionCodeSigningConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PutFunctionCodeSigningConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutFunctionCodeSigningConfigOutput: ...
     @property
     def code_signing_config_arn(self) -> str: ...
     @property
@@ -2346,6 +2458,8 @@ class PutFunctionCodeSigningConfigOutput:
 @final
 class PutFunctionConcurrencyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PutFunctionConcurrencyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutFunctionConcurrencyOutput: ...
     @property
     def reserved_concurrent_executions(self) -> int | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2353,6 +2467,8 @@ class PutFunctionConcurrencyOutput:
 @final
 class PutFunctionEventInvokeConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PutFunctionEventInvokeConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutFunctionEventInvokeConfigOutput: ...
     @property
     def last_modified(self) -> str | None: ...
     @property
@@ -2368,6 +2484,8 @@ class PutFunctionEventInvokeConfigOutput:
 @final
 class PutFunctionRecursionConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PutFunctionRecursionConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutFunctionRecursionConfigOutput: ...
     @property
     def recursive_loop(self) -> _types.RecursiveLoopOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2375,6 +2493,8 @@ class PutFunctionRecursionConfigOutput:
 @final
 class PutFunctionScalingConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PutFunctionScalingConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutFunctionScalingConfigOutput: ...
     @property
     def function_state(self) -> _types.StateOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2382,6 +2502,8 @@ class PutFunctionScalingConfigOutput:
 @final
 class PutProvisionedConcurrencyConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PutProvisionedConcurrencyConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutProvisionedConcurrencyConfigOutput: ...
     @property
     def requested_provisioned_concurrent_executions(self) -> int | None: ...
     @property
@@ -2399,6 +2521,8 @@ class PutProvisionedConcurrencyConfigOutput:
 @final
 class PutResourcePolicyOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PutResourcePolicyOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutResourcePolicyOutput: ...
     @property
     def policy(self) -> str | None: ...
     @property
@@ -2408,6 +2532,8 @@ class PutResourcePolicyOutput:
 @final
 class PutRuntimeManagementConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PutRuntimeManagementConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> PutRuntimeManagementConfigOutput: ...
     @property
     def update_runtime_on(self) -> _types.UpdateRuntimeOnOutput: ...
     @property
@@ -2419,21 +2545,29 @@ class PutRuntimeManagementConfigOutput:
 @final
 class SendDurableExecutionCallbackFailureOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/SendDurableExecutionCallbackFailureOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> SendDurableExecutionCallbackFailureOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SendDurableExecutionCallbackHeartbeatOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/SendDurableExecutionCallbackHeartbeatOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> SendDurableExecutionCallbackHeartbeatOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SendDurableExecutionCallbackSuccessOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/SendDurableExecutionCallbackSuccessOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> SendDurableExecutionCallbackSuccessOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StopDurableExecutionOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/StopDurableExecutionOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> StopDurableExecutionOutput: ...
     @property
     def stop_timestamp(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2441,6 +2575,8 @@ class StopDurableExecutionOutput:
 @final
 class UpdateAliasOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/UpdateAliasOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateAliasOutput: ...
     @property
     def alias_arn(self) -> str | None: ...
     @property
@@ -2458,6 +2594,8 @@ class UpdateAliasOutput:
 @final
 class UpdateCapacityProviderOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/UpdateCapacityProviderOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateCapacityProviderOutput: ...
     @property
     def capacity_provider(self) -> CapacityProvider | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2465,6 +2603,8 @@ class UpdateCapacityProviderOutput:
 @final
 class UpdateCodeSigningConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/UpdateCodeSigningConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateCodeSigningConfigOutput: ...
     @property
     def code_signing_config(self) -> CodeSigningConfig | None: ...
     def to_dict(self) -> dict[str, object]: ...
@@ -2472,6 +2612,8 @@ class UpdateCodeSigningConfigOutput:
 @final
 class UpdateEventSourceMappingOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/UpdateEventSourceMappingOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateEventSourceMappingOutput: ...
     @property
     def uuid(self) -> str | None: ...
     @property
@@ -2543,6 +2685,8 @@ class UpdateEventSourceMappingOutput:
 @final
 class UpdateFunctionCodeOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/UpdateFunctionCodeOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateFunctionCodeOutput: ...
     @property
     def function_name(self) -> str | None: ...
     @property
@@ -2628,6 +2772,8 @@ class UpdateFunctionCodeOutput:
 @final
 class UpdateFunctionConfigurationOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/UpdateFunctionConfigurationOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateFunctionConfigurationOutput: ...
     @property
     def function_name(self) -> str | None: ...
     @property
@@ -2713,6 +2859,8 @@ class UpdateFunctionConfigurationOutput:
 @final
 class UpdateFunctionEventInvokeConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/UpdateFunctionEventInvokeConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateFunctionEventInvokeConfigOutput: ...
     @property
     def last_modified(self) -> str | None: ...
     @property
@@ -2728,6 +2876,8 @@ class UpdateFunctionEventInvokeConfigOutput:
 @final
 class UpdateFunctionUrlConfigOutput:
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/UpdateFunctionUrlConfigOutput/)."""
+    @staticmethod
+    def _from_fixture(value: dict[str, object]) -> UpdateFunctionUrlConfigOutput: ...
     @property
     def function_url(self) -> str: ...
     @property
