@@ -6587,6 +6587,7 @@ impl PyAccountUsage {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAliasConfiguration {
     alias_arn: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -6787,6 +6788,7 @@ impl PyAllowedPublishers {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAmazonManagedKafkaEventSourceConfig {
     consumer_group_id: Option<::std::string::String>,
     schema_registry_config: Option<Arc<SharedKafkaSchemaRegistryConfig>>,
@@ -6868,6 +6870,7 @@ impl PyAmazonManagedKafkaEventSourceConfig {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCallbackDetails {
     callback_id: Option<::std::string::String>,
     result: Option<::std::string::String>,
@@ -6959,6 +6962,7 @@ impl PyCallbackDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCallbackFailedDetails {
     error: Option<Arc<SharedEventError>>,
 }
@@ -7062,6 +7066,7 @@ impl PyCallbackStartedDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCallbackSucceededDetails {
     result: Option<Arc<aws_sdk_lambda::types::EventResult>>,
 }
@@ -7121,6 +7126,7 @@ impl PyCallbackSucceededDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCallbackTimedOutDetails {
     error: Option<Arc<SharedEventError>>,
 }
@@ -7182,6 +7188,7 @@ impl PyCallbackTimedOutDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCapacityProvider {
     capacity_provider_arn: ::std::string::String,
     state: aws_sdk_lambda::types::CapacityProviderState,
@@ -7419,6 +7426,7 @@ impl PyCapacityProvider {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCapacityProviderConfig {
     lambda_managed_instances_capacity_provider_config:
         Option<Arc<aws_sdk_lambda::types::LambdaManagedInstancesCapacityProviderConfig>>,
@@ -7550,6 +7558,7 @@ impl PyCapacityProviderPermissionsConfig {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCapacityProviderScalingConfig {
     max_v_cpu_count: Option<i32>,
     scaling_mode: Option<aws_sdk_lambda::types::CapacityProviderScalingMode>,
@@ -7663,6 +7672,7 @@ impl PyCapacityProviderScalingConfig {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCapacityProviderTelemetryConfig {
     logging_config: Option<Arc<aws_sdk_lambda::types::CapacityProviderLoggingConfig>>,
 }
@@ -7762,6 +7772,7 @@ impl PyCapacityProviderVpcConfig {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedChainedInvokeDetails {
     result: Option<::std::string::String>,
     error: Option<Arc<aws_sdk_lambda::types::ErrorObject>>,
@@ -7835,6 +7846,7 @@ impl PyChainedInvokeDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedChainedInvokeFailedDetails {
     error: Option<Arc<SharedEventError>>,
 }
@@ -7896,6 +7908,7 @@ impl PyChainedInvokeFailedDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedChainedInvokeStartedDetails {
     function_name: ::std::string::String,
     tenant_id: Option<::std::string::String>,
@@ -8021,6 +8034,7 @@ impl PyChainedInvokeStartedDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedChainedInvokeStoppedDetails {
     error: Option<Arc<SharedEventError>>,
 }
@@ -8084,6 +8098,7 @@ impl PyChainedInvokeStoppedDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedChainedInvokeSucceededDetails {
     result: Option<Arc<aws_sdk_lambda::types::EventResult>>,
 }
@@ -8145,6 +8160,7 @@ impl PyChainedInvokeSucceededDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedChainedInvokeTimedOutDetails {
     error: Option<Arc<SharedEventError>>,
 }
@@ -8208,6 +8224,7 @@ impl PyChainedInvokeTimedOutDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCheckpointUpdatedExecutionState {
     operations: Option<::std::vec::Vec<Arc<SharedOperation>>>,
     next_marker: Option<::std::string::String>,
@@ -8302,6 +8319,7 @@ impl PyCheckpointUpdatedExecutionState {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCodeSigningConfig {
     code_signing_config_id: ::std::string::String,
     code_signing_config_arn: ::std::string::String,
@@ -8477,6 +8495,7 @@ impl PyConcurrency {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedContextDetails {
     replay_children: Option<bool>,
     result: Option<::std::string::String>,
@@ -8568,6 +8587,7 @@ impl PyContextDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedContextFailedDetails {
     error: Option<Arc<SharedEventError>>,
 }
@@ -8641,6 +8661,7 @@ impl PyContextStartedDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedContextSucceededDetails {
     result: Option<Arc<aws_sdk_lambda::types::EventResult>>,
 }
@@ -8814,6 +8835,7 @@ impl PyDeadLetterConfig {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDestinationConfig {
     on_success: Option<Arc<aws_sdk_lambda::types::OnSuccess>>,
     on_failure: Option<Arc<aws_sdk_lambda::types::OnFailure>>,
@@ -9013,6 +9035,7 @@ impl PyEnvironmentError {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEnvironmentResponse {
     variables: Option<::std::collections::HashMap<::std::string::String, ::std::string::String>>,
     error: Option<Arc<aws_sdk_lambda::types::EnvironmentError>>,
@@ -9173,6 +9196,7 @@ impl PyErrorObject {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEvent {
     event_type: Option<aws_sdk_lambda::types::EventType>,
     sub_type: Option<::std::string::String>,
@@ -9933,6 +9957,7 @@ impl PyEvent {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEventError {
     payload: Option<Arc<aws_sdk_lambda::types::ErrorObject>>,
     truncated: Option<bool>,
@@ -10067,6 +10092,7 @@ impl PyEventResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEventSourceMappingConfiguration {
     uuid: Option<::std::string::String>,
     starting_position: Option<aws_sdk_lambda::types::EventSourcePosition>,
@@ -10973,6 +10999,7 @@ impl PyExecutionDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedExecutionFailedDetails {
     error: Option<Arc<SharedEventError>>,
 }
@@ -11034,6 +11061,7 @@ impl PyExecutionFailedDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedExecutionStartedDetails {
     input: Option<Arc<aws_sdk_lambda::types::EventInput>>,
     execution_timeout: i32,
@@ -11103,6 +11131,7 @@ impl PyExecutionStartedDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedExecutionStoppedDetails {
     error: Option<Arc<SharedEventError>>,
 }
@@ -11164,6 +11193,7 @@ impl PyExecutionStoppedDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedExecutionSucceededDetails {
     result: Option<Arc<aws_sdk_lambda::types::EventResult>>,
 }
@@ -11223,6 +11253,7 @@ impl PyExecutionSucceededDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedExecutionTimedOutDetails {
     error: Option<Arc<SharedEventError>>,
 }
@@ -11284,6 +11315,7 @@ impl PyExecutionTimedOutDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedFileSystemConfig {
     arn: ::std::string::String,
     local_mount_path: ::std::string::String,
@@ -11381,6 +11413,7 @@ impl PyFilter {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedFilterCriteria {
     filters: Option<::std::vec::Vec<Arc<aws_sdk_lambda::types::Filter>>>,
 }
@@ -11483,6 +11516,7 @@ impl PyFilterCriteriaError {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedFunctionCodeLocation {
     repository_type: Option<::std::string::String>,
     location: Option<::std::string::String>,
@@ -11688,6 +11722,7 @@ impl PyFunctionCodeLocationError {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedFunctionConfiguration {
     function_name: Option<::std::string::String>,
     function_arn: Option<::std::string::String>,
@@ -12567,6 +12602,7 @@ impl PyFunctionConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedFunctionEventInvokeConfig {
     last_modified: Option<::aws_smithy_types::DateTime>,
     function_arn: Option<::std::string::String>,
@@ -12736,6 +12772,7 @@ impl PyFunctionScalingConfig {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedFunctionUrlConfig {
     function_url: ::std::string::String,
     function_arn: ::std::string::String,
@@ -12971,6 +13008,7 @@ impl PyImageConfigError {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedImageConfigResponse {
     image_config: Option<Arc<aws_sdk_lambda::types::ImageConfig>>,
     error: Option<Arc<aws_sdk_lambda::types::ImageConfigError>>,
@@ -13107,6 +13145,7 @@ impl PyInstanceRequirements {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInvocationCompletedDetails {
     start_timestamp: ::aws_smithy_types::DateTime,
     end_timestamp: ::aws_smithy_types::DateTime,
@@ -13234,6 +13273,7 @@ impl PyKafkaSchemaRegistryAccessConfig {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedKafkaSchemaRegistryConfig {
     schema_registry_uri: Option<::std::string::String>,
     event_record_format: Option<aws_sdk_lambda::types::SchemaRegistryEventRecordFormat>,
@@ -13503,6 +13543,7 @@ impl PyLayer {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedLayerVersionContentOutput {
     location: Option<::std::string::String>,
     code_sha256: Option<::std::string::String>,
@@ -13736,6 +13777,7 @@ impl PyLayerVersionsListItem {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedLayersListItem {
     layer_name: Option<::std::string::String>,
     layer_arn: Option<::std::string::String>,
@@ -13923,6 +13965,7 @@ impl PyOnSuccess {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedOperation {
     id: ::std::string::String,
     parent_id: Option<::std::string::String>,
@@ -14455,6 +14498,7 @@ impl PyRetryDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRuntimeVersionConfig {
     runtime_version_arn: Option<::std::string::String>,
     error: Option<Arc<aws_sdk_lambda::types::RuntimeVersionError>>,
@@ -14641,6 +14685,7 @@ impl PySelfManagedEventSource {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSelfManagedKafkaEventSourceConfig {
     consumer_group_id: Option<::std::string::String>,
     schema_registry_config: Option<Arc<SharedKafkaSchemaRegistryConfig>>,
@@ -14790,6 +14835,7 @@ impl PySourceAccessConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedStepDetails {
     attempt: i32,
     next_attempt_timestamp: Option<::aws_smithy_types::DateTime>,
@@ -14888,6 +14934,7 @@ impl PyStepDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedStepFailedDetails {
     error: Option<Arc<SharedEventError>>,
     retry_details: Option<Arc<aws_sdk_lambda::types::RetryDetails>>,
@@ -14981,6 +15028,7 @@ impl PyStepStartedDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedStepSucceededDetails {
     result: Option<Arc<aws_sdk_lambda::types::EventResult>>,
     retry_details: Option<Arc<aws_sdk_lambda::types::RetryDetails>>,
@@ -15244,6 +15292,7 @@ impl PyVpcConfigResponse {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedWaitCancelledDetails {
     error: Option<Arc<SharedEventError>>,
 }
@@ -15449,6 +15498,7 @@ impl PyOperationAddPermissionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCheckpointDurableExecutionOutput {
     checkpoint_token: Option<::std::string::String>,
     new_execution_state: Option<Arc<SharedCheckpointUpdatedExecutionState>>,
@@ -15525,6 +15575,7 @@ impl PyOperationCheckpointDurableExecutionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateAliasOutput {
     alias_arn: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -15665,6 +15716,7 @@ impl PyOperationCreateAliasOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateCapacityProviderOutput {
     capacity_provider: Option<Arc<SharedCapacityProvider>>,
 }
@@ -15723,6 +15775,7 @@ impl PyOperationCreateCapacityProviderOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateCodeSigningConfigOutput {
     code_signing_config: Option<Arc<SharedCodeSigningConfig>>,
 }
@@ -15781,6 +15834,7 @@ impl PyOperationCreateCodeSigningConfigOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateEventSourceMappingOutput {
     uuid: Option<::std::string::String>,
     starting_position: Option<aws_sdk_lambda::types::EventSourcePosition>,
@@ -16537,6 +16591,7 @@ impl PyOperationCreateEventSourceMappingOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateFunctionOutput {
     function_name: Option<::std::string::String>,
     function_arn: Option<::std::string::String>,
@@ -17407,6 +17462,7 @@ impl PyOperationCreateFunctionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateFunctionUrlConfigOutput {
     function_url: ::std::string::String,
     function_arn: ::std::string::String,
@@ -17521,6 +17577,7 @@ impl PyOperationCreateFunctionUrlConfigOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDeleteCapacityProviderOutput {
     capacity_provider: Option<Arc<SharedCapacityProvider>>,
 }
@@ -17596,6 +17653,7 @@ impl PyOperationDeleteCodeSigningConfigOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDeleteEventSourceMappingOutput {
     uuid: Option<::std::string::String>,
     starting_position: Option<aws_sdk_lambda::types::EventSourcePosition>,
@@ -18373,6 +18431,7 @@ impl PyOperationDeleteFunctionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetAccountSettingsOutput {
     account_limit: Option<Arc<aws_sdk_lambda::types::AccountLimit>>,
     account_usage: Option<Arc<aws_sdk_lambda::types::AccountUsage>>,
@@ -18453,6 +18512,7 @@ impl PyOperationGetAccountSettingsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetAliasOutput {
     alias_arn: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -18593,6 +18653,7 @@ impl PyOperationGetAliasOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetCapacityProviderOutput {
     capacity_provider: Option<Arc<SharedCapacityProvider>>,
 }
@@ -18651,6 +18712,7 @@ impl PyOperationGetCapacityProviderOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetCodeSigningConfigOutput {
     code_signing_config: Option<Arc<SharedCodeSigningConfig>>,
 }
@@ -18709,6 +18771,7 @@ impl PyOperationGetCodeSigningConfigOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDurableExecutionOutput {
     durable_execution_arn: ::std::string::String,
     durable_execution_name: ::std::string::String,
@@ -18961,6 +19024,7 @@ impl PyOperationGetDurableExecutionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDurableExecutionHistoryOutput {
     events: ::std::vec::Vec<Arc<SharedEvent>>,
     next_marker: Option<::std::string::String>,
@@ -19041,6 +19105,7 @@ impl PyOperationGetDurableExecutionHistoryOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDurableExecutionStateOutput {
     operations: ::std::vec::Vec<Arc<SharedOperation>>,
     next_marker: Option<::std::string::String>,
@@ -19120,6 +19185,7 @@ impl PyOperationGetDurableExecutionStateOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetEventSourceMappingOutput {
     uuid: Option<::std::string::String>,
     starting_position: Option<aws_sdk_lambda::types::EventSourcePosition>,
@@ -19876,6 +19942,7 @@ impl PyOperationGetEventSourceMappingOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetFunctionOutput {
     configuration: Option<Arc<SharedFunctionConfiguration>>,
     code: Option<Arc<SharedFunctionCodeLocation>>,
@@ -20102,6 +20169,7 @@ impl PyOperationGetFunctionConcurrencyOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetFunctionConfigurationOutput {
     function_name: Option<::std::string::String>,
     function_arn: Option<::std::string::String>,
@@ -20978,6 +21046,7 @@ impl PyOperationGetFunctionConfigurationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetFunctionEventInvokeConfigOutput {
     last_modified: Option<::aws_smithy_types::DateTime>,
     function_arn: Option<::std::string::String>,
@@ -21136,6 +21205,7 @@ impl PyOperationGetFunctionRecursionConfigOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetFunctionScalingConfigOutput {
     function_arn: Option<::std::string::String>,
     applied_function_scaling_config: Option<Arc<aws_sdk_lambda::types::FunctionScalingConfig>>,
@@ -21238,6 +21308,7 @@ impl PyOperationGetFunctionScalingConfigOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetFunctionUrlConfigOutput {
     function_url: ::std::string::String,
     function_arn: ::std::string::String,
@@ -21362,6 +21433,7 @@ impl PyOperationGetFunctionUrlConfigOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetLayerVersionOutput {
     content: Option<Arc<SharedLayerVersionContentOutput>>,
     layer_arn: Option<::std::string::String>,
@@ -21574,6 +21646,7 @@ impl PyOperationGetLayerVersionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetLayerVersionByArnOutput {
     content: Option<Arc<SharedLayerVersionContentOutput>>,
     layer_arn: Option<::std::string::String>,
@@ -22241,6 +22314,7 @@ impl PyOperationInvokeAsyncOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListAliasesOutput {
     next_marker: Option<::std::string::String>,
     aliases: Option<::std::vec::Vec<Arc<SharedAliasConfiguration>>>,
@@ -22324,6 +22398,7 @@ impl PyOperationListAliasesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListCapacityProvidersOutput {
     capacity_providers: ::std::vec::Vec<Arc<SharedCapacityProvider>>,
     next_marker: Option<::std::string::String>,
@@ -22403,6 +22478,7 @@ impl PyOperationListCapacityProvidersOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListCodeSigningConfigsOutput {
     next_marker: Option<::std::string::String>,
     code_signing_configs: Option<::std::vec::Vec<Arc<SharedCodeSigningConfig>>>,
@@ -22492,6 +22568,7 @@ impl PyOperationListCodeSigningConfigsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListDurableExecutionsByFunctionOutput {
     durable_executions: Option<::std::vec::Vec<Arc<aws_sdk_lambda::types::Execution>>>,
     next_marker: Option<::std::string::String>,
@@ -22572,6 +22649,7 @@ impl PyOperationListDurableExecutionsByFunctionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListEventSourceMappingsOutput {
     next_marker: Option<::std::string::String>,
     event_source_mappings: Option<::std::vec::Vec<Arc<SharedEventSourceMappingConfiguration>>>,
@@ -22664,6 +22742,7 @@ impl PyOperationListEventSourceMappingsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListFunctionEventInvokeConfigsOutput {
     function_event_invoke_configs: Option<::std::vec::Vec<Arc<SharedFunctionEventInvokeConfig>>>,
     next_marker: Option<::std::string::String>,
@@ -22744,6 +22823,7 @@ impl PyOperationListFunctionEventInvokeConfigsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListFunctionUrlConfigsOutput {
     function_url_configs: ::std::vec::Vec<Arc<SharedFunctionUrlConfig>>,
     next_marker: Option<::std::string::String>,
@@ -22823,6 +22903,7 @@ impl PyOperationListFunctionUrlConfigsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListFunctionVersionsByCapacityProviderOutput {
     capacity_provider_arn: ::std::string::String,
     function_versions:
@@ -22911,6 +22992,7 @@ impl PyOperationListFunctionVersionsByCapacityProviderOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListFunctionsOutput {
     next_marker: Option<::std::string::String>,
     functions: Option<::std::vec::Vec<Arc<SharedFunctionConfiguration>>>,
@@ -23053,6 +23135,7 @@ impl PyOperationListFunctionsByCodeSigningConfigOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListLayerVersionsOutput {
     next_marker: Option<::std::string::String>,
     layer_versions: Option<::std::vec::Vec<Arc<aws_sdk_lambda::types::LayerVersionsListItem>>>,
@@ -23142,6 +23225,7 @@ impl PyOperationListLayerVersionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListLayersOutput {
     next_marker: Option<::std::string::String>,
     layers: Option<::std::vec::Vec<Arc<SharedLayersListItem>>>,
@@ -23225,6 +23309,7 @@ impl PyOperationListLayersOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListProvisionedConcurrencyConfigsOutput {
     provisioned_concurrency_configs:
         Option<::std::vec::Vec<Arc<aws_sdk_lambda::types::ProvisionedConcurrencyConfigListItem>>>,
@@ -23348,6 +23433,7 @@ impl PyOperationListTagsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListVersionsByFunctionOutput {
     next_marker: Option<::std::string::String>,
     versions: Option<::std::vec::Vec<Arc<SharedFunctionConfiguration>>>,
@@ -23437,6 +23523,7 @@ impl PyOperationListVersionsByFunctionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationPublishLayerVersionOutput {
     content: Option<Arc<SharedLayerVersionContentOutput>>,
     layer_arn: Option<::std::string::String>,
@@ -23651,6 +23738,7 @@ impl PyOperationPublishLayerVersionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationPublishVersionOutput {
     function_name: Option<::std::string::String>,
     function_arn: Option<::std::string::String>,
@@ -24591,6 +24679,7 @@ impl PyOperationPutFunctionConcurrencyOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationPutFunctionEventInvokeConfigOutput {
     last_modified: Option<::aws_smithy_types::DateTime>,
     function_arn: Option<::std::string::String>,
@@ -25079,6 +25168,7 @@ impl PyOperationStopDurableExecutionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateAliasOutput {
     alias_arn: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -25219,6 +25309,7 @@ impl PyOperationUpdateAliasOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateCapacityProviderOutput {
     capacity_provider: Option<Arc<SharedCapacityProvider>>,
 }
@@ -25277,6 +25368,7 @@ impl PyOperationUpdateCapacityProviderOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateCodeSigningConfigOutput {
     code_signing_config: Option<Arc<SharedCodeSigningConfig>>,
 }
@@ -25335,6 +25427,7 @@ impl PyOperationUpdateCodeSigningConfigOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateEventSourceMappingOutput {
     uuid: Option<::std::string::String>,
     starting_position: Option<aws_sdk_lambda::types::EventSourcePosition>,
@@ -26091,6 +26184,7 @@ impl PyOperationUpdateEventSourceMappingOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateFunctionCodeOutput {
     function_name: Option<::std::string::String>,
     function_arn: Option<::std::string::String>,
@@ -26967,6 +27061,7 @@ impl PyOperationUpdateFunctionCodeOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateFunctionConfigurationOutput {
     function_name: Option<::std::string::String>,
     function_arn: Option<::std::string::String>,
@@ -27845,6 +27940,7 @@ impl PyOperationUpdateFunctionConfigurationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateFunctionEventInvokeConfigOutput {
     last_modified: Option<::aws_smithy_types::DateTime>,
     function_arn: Option<::std::string::String>,
@@ -27969,6 +28065,7 @@ impl PyOperationUpdateFunctionEventInvokeConfigOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateFunctionUrlConfigOutput {
     function_url: ::std::string::String,
     function_arn: ::std::string::String,

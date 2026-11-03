@@ -1417,6 +1417,7 @@ impl PyOperationGetTopicAttributesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListEndpointsByPlatformApplicationOutput {
     endpoints: Option<::std::vec::Vec<Arc<aws_sdk_sns::types::Endpoint>>>,
     next_token: Option<::std::string::String>,
@@ -1497,6 +1498,7 @@ impl PyOperationListEndpointsByPlatformApplicationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListOriginationNumbersOutput {
     next_token: Option<::std::string::String>,
     phone_numbers: Option<::std::vec::Vec<Arc<aws_sdk_sns::types::PhoneNumberInformation>>>,
@@ -1645,6 +1647,7 @@ impl PyOperationListPhoneNumbersOptedOutOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPlatformApplicationsOutput {
     platform_applications: Option<::std::vec::Vec<Arc<aws_sdk_sns::types::PlatformApplication>>>,
     next_token: Option<::std::string::String>,
@@ -1734,6 +1737,7 @@ impl PyOperationListPlatformApplicationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListSMSSandboxPhoneNumbersOutput {
     phone_numbers: ::std::vec::Vec<Arc<aws_sdk_sns::types::SmsSandboxPhoneNumber>>,
     next_token: Option<::std::string::String>,
@@ -1813,6 +1817,7 @@ impl PyOperationListSMSSandboxPhoneNumbersOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListSubscriptionsOutput {
     subscriptions: Option<::std::vec::Vec<Arc<aws_sdk_sns::types::Subscription>>>,
     next_token: Option<::std::string::String>,
@@ -1896,6 +1901,7 @@ impl PyOperationListSubscriptionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListSubscriptionsByTopicOutput {
     subscriptions: Option<::std::vec::Vec<Arc<aws_sdk_sns::types::Subscription>>>,
     next_token: Option<::std::string::String>,
@@ -1985,6 +1991,7 @@ impl PyOperationListSubscriptionsByTopicOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListTagsForResourceOutput {
     tags: Option<::std::vec::Vec<Arc<aws_sdk_sns::types::Tag>>>,
 }
@@ -2056,6 +2063,7 @@ impl PyOperationListTagsForResourceOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListTopicsOutput {
     topics: Option<::std::vec::Vec<Arc<aws_sdk_sns::types::Topic>>>,
     next_token: Option<::std::string::String>,
@@ -2197,6 +2205,7 @@ impl PyOperationPublishOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationPublishBatchOutput {
     successful: Option<::std::vec::Vec<Arc<aws_sdk_sns::types::PublishBatchResultEntry>>>,
     failed: Option<::std::vec::Vec<Arc<aws_sdk_sns::types::BatchResultErrorEntry>>>,

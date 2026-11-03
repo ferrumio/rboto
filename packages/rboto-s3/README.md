@@ -81,6 +81,20 @@ See [configuration](https://ferrumio.github.io/rboto/guides/configuration/),
 [errors](https://ferrumio.github.io/rboto/guides/errors/), and
 [streaming](https://ferrumio.github.io/rboto/guides/streaming/).
 
+## Waiters
+
+Use `await client.waiters.name(...)` to wait for a resource state. Each waiter accepts
+the polling operation's typed arguments plus `waiter_config: WaiterConfig | None`.
+Import `WaiterConfig` from `rboto` to set the poll delay, maximum attempts, or overall
+timeout. See the [waiter guide](https://ferrumio.github.io/rboto/guides/waiters/).
+
+| Waiter | Polling operation |
+|---|---|
+| [`bucket_exists`](https://ferrumio.github.io/rboto/reference/s3/operations/head_bucket/#waiters) | `head_bucket` |
+| [`bucket_not_exists`](https://ferrumio.github.io/rboto/reference/s3/operations/head_bucket/#waiters) | `head_bucket` |
+| [`object_exists`](https://ferrumio.github.io/rboto/reference/s3/operations/head_object/#waiters) | `head_object` |
+| [`object_not_exists`](https://ferrumio.github.io/rboto/reference/s3/operations/head_object/#waiters) | `head_object` |
+
 ## Operations
 
 The [operation reference](https://ferrumio.github.io/rboto/reference/s3/)

@@ -634,6 +634,7 @@ impl PyMappingRule {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRoleMapping {
     r#type: aws_sdk_cognitoidentity::types::RoleMappingType,
     ambiguous_role_resolution: Option<aws_sdk_cognitoidentity::types::AmbiguousRoleResolutionType>,
@@ -720,6 +721,7 @@ impl PyRoleMapping {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRulesConfigurationType {
     rules: ::std::vec::Vec<Arc<aws_sdk_cognitoidentity::types::MappingRule>>,
 }
@@ -820,6 +822,7 @@ impl PyUnprocessedIdentityId {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateIdentityPoolOutput {
     identity_pool_id: ::std::string::String,
     identity_pool_name: ::std::string::String,
@@ -1080,6 +1083,7 @@ impl PyOperationCreateIdentityPoolOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDeleteIdentitiesOutput {
     unprocessed_identity_ids:
         Option<::std::vec::Vec<Arc<aws_sdk_cognitoidentity::types::UnprocessedIdentityId>>>,
@@ -1243,6 +1247,7 @@ impl PyOperationDescribeIdentityOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeIdentityPoolOutput {
     identity_pool_id: ::std::string::String,
     identity_pool_name: ::std::string::String,
@@ -1503,6 +1508,7 @@ impl PyOperationDescribeIdentityPoolOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetCredentialsForIdentityOutput {
     identity_id: Option<::std::string::String>,
     credentials: Option<Arc<aws_sdk_cognitoidentity::types::Credentials>>,
@@ -1606,6 +1612,7 @@ impl PyOperationGetIdOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetIdentityPoolRolesOutput {
     identity_pool_id: Option<::std::string::String>,
     roles: Option<::std::collections::HashMap<::std::string::String, ::std::string::String>>,
@@ -1919,6 +1926,7 @@ impl PyOperationGetPrincipalTagAttributeMapOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListIdentitiesOutput {
     identity_pool_id: Option<::std::string::String>,
     identities: Option<::std::vec::Vec<Arc<aws_sdk_cognitoidentity::types::IdentityDescription>>>,
@@ -2026,6 +2034,7 @@ impl PyOperationListIdentitiesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListIdentityPoolsOutput {
     identity_pools:
         Option<::std::vec::Vec<Arc<aws_sdk_cognitoidentity::types::IdentityPoolShortDescription>>>,
@@ -2396,6 +2405,7 @@ impl PyOperationUntagResourceOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateIdentityPoolOutput {
     identity_pool_id: ::std::string::String,
     identity_pool_name: ::std::string::String,

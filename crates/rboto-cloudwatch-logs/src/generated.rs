@@ -7154,6 +7154,7 @@ impl PyAddKeyEntry {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAddKeys {
     entries: ::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::AddKeyEntry>>,
 }
@@ -7211,6 +7212,7 @@ impl PyAddKeys {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAggregateLogGroupSummary {
     log_group_count: Option<i32>,
     grouping_identifiers:
@@ -7306,6 +7308,7 @@ impl PyAggregateLogGroupSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAnomaly {
     anomaly_id: ::std::string::String,
     pattern_id: ::std::string::String,
@@ -7735,6 +7738,7 @@ impl PyAnomalyDetector {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedConfigurationTemplate {
     service: Option<::std::string::String>,
     log_type: Option<::std::string::String>,
@@ -8087,6 +8091,7 @@ impl PyConfigurationTemplate {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedConfigurationTemplateDeliveryConfigValues {
     record_fields: Option<::std::vec::Vec<::std::string::String>>,
     field_delimiter: Option<::std::string::String>,
@@ -8196,6 +8201,7 @@ impl PyConfigurationTemplateDeliveryConfigValues {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCopyValue {
     entries: ::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::CopyValueEntry>>,
 }
@@ -8486,6 +8492,7 @@ impl PyDeleteKeys {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDelivery {
     id: Option<::std::string::String>,
     arn: Option<::std::string::String>,
@@ -8704,6 +8711,7 @@ impl PyDelivery {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDeliveryDestination {
     name: Option<::std::string::String>,
     arn: Option<::std::string::String>,
@@ -9174,6 +9182,7 @@ impl PyDestination {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDestinationConfiguration {
     s3_configuration: Option<Arc<aws_sdk_cloudwatchlogs::types::S3Configuration>>,
     lookup_table_configuration:
@@ -9260,6 +9269,7 @@ impl PyDestinationConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedExportTask {
     task_id: Option<::std::string::String>,
     task_name: Option<::std::string::String>,
@@ -9747,6 +9757,7 @@ impl PyGroupingIdentifier {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedImport {
     import_id: Option<::std::string::String>,
     import_source_arn: Option<::std::string::String>,
@@ -10245,9 +10256,10 @@ impl PyLogEvent {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedLogFieldType {
     r#type: Option<::std::string::String>,
-    element: Option<::std::boxed::Box<Arc<SharedLogFieldType>>>,
+    element: Option<Arc<SharedLogFieldType>>,
     fields: Option<::std::vec::Vec<Arc<SharedLogFieldsListItem>>>,
 }
 
@@ -10258,7 +10270,7 @@ impl From<aws_sdk_cloudwatchlogs::types::LogFieldType> for SharedLogFieldType {
             r#type: value.r#type,
             element: value
                 .element
-                .map(|item| Box::new(Arc::new(SharedLogFieldType::from(*(item))))),
+                .map(|item| Arc::new(SharedLogFieldType::from(*(item)))),
             fields: value.fields.map(|item| {
                 (item)
                     .into_iter()
@@ -10278,7 +10290,7 @@ fn log_field_type_shared_to_py(py: Python<'_>, value: &SharedLogFieldType) -> Py
         result.set_item("type", py.None())?;
     }
     if let Some(value) = &value.element {
-        let converted_2278 = log_field_type_shared_to_py(py, (value).as_ref())?;
+        let converted_2278 = log_field_type_shared_to_py(py, value)?;
         result.set_item("element", converted_2278)?;
     } else {
         result.set_item("element", py.None())?;
@@ -10324,7 +10336,7 @@ impl PyLogFieldType {
             let converted_2272 = Py::new(
                 py,
                 PyLogFieldType {
-                    inner: Arc::clone((value).as_ref()),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -10360,6 +10372,7 @@ impl PyLogFieldType {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedLogFieldsListItem {
     log_field_name: Option<::std::string::String>,
     log_field_type: Option<Arc<SharedLogFieldType>>,
@@ -10944,6 +10957,7 @@ impl PyLowerCaseString {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMetricFilter {
     filter_name: Option<::std::string::String>,
     filter_pattern: Option<::std::string::String>,
@@ -11302,6 +11316,7 @@ impl PyMoveKeyEntry {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMoveKeys {
     entries: ::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::MoveKeyEntry>>,
 }
@@ -11779,6 +11794,7 @@ impl PyPolicy {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedProcessor {
     add_keys: Option<Arc<SharedAddKeys>>,
     copy_value: Option<Arc<SharedCopyValue>>,
@@ -12373,6 +12389,7 @@ impl PyProcessor {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedQueryDefinition {
     query_language: Option<aws_sdk_cloudwatchlogs::types::QueryLanguage>,
     query_definition_id: Option<::std::string::String>,
@@ -12909,6 +12926,7 @@ impl PyRenameKeyEntry {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRenameKeys {
     entries: ::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::RenameKeyEntry>>,
 }
@@ -13160,6 +13178,7 @@ impl PyS3DeliveryConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedS3TableIntegrationSource {
     identifier: Option<::std::string::String>,
     data_source: Option<Arc<aws_sdk_cloudwatchlogs::types::DataSource>>,
@@ -13413,6 +13432,7 @@ impl PyScheduledQueryDestination {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedScheduledQuerySummary {
     scheduled_query_arn: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -13690,6 +13710,7 @@ impl PySearchedLogStream {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSplitString {
     entries: ::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::SplitStringEntry>>,
 }
@@ -13894,6 +13915,7 @@ impl PySubscriptionFilter {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSubstituteString {
     entries: ::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::SubstituteStringEntry>>,
 }
@@ -14091,6 +14113,7 @@ impl PyTransformedLogRecord {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedTriggerHistoryRecord {
     query_id: Option<::std::string::String>,
     execution_status: Option<aws_sdk_cloudwatchlogs::types::ExecutionStatus>,
@@ -14261,6 +14284,7 @@ impl PyTrimString {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedTypeConverter {
     entries: ::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::TypeConverterEntry>>,
 }
@@ -14410,6 +14434,7 @@ impl PyOperationAssociateSourceToS3TableIntegrationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCancelImportTaskOutput {
     import_id: Option<::std::string::String>,
     import_statistics: Option<Arc<aws_sdk_cloudwatchlogs::types::ImportStatistics>>,
@@ -14538,6 +14563,7 @@ impl PyOperationCancelImportTaskOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateDeliveryOutput {
     delivery: Option<Arc<SharedDelivery>>,
 }
@@ -14901,6 +14927,7 @@ impl PyOperationDeleteScheduledQueryOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeAccountPoliciesOutput {
     account_policies: Option<::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::AccountPolicy>>>,
     next_token: Option<::std::string::String>,
@@ -14992,6 +15019,7 @@ impl PyOperationDescribeAccountPoliciesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeConfigurationTemplatesOutput {
     configuration_templates: Option<::std::vec::Vec<Arc<SharedConfigurationTemplate>>>,
     next_token: Option<::std::string::String>,
@@ -15072,6 +15100,7 @@ impl PyOperationDescribeConfigurationTemplatesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeDeliveriesOutput {
     deliveries: Option<::std::vec::Vec<Arc<SharedDelivery>>>,
     next_token: Option<::std::string::String>,
@@ -15161,6 +15190,7 @@ impl PyOperationDescribeDeliveriesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeDeliveryDestinationsOutput {
     delivery_destinations: Option<::std::vec::Vec<Arc<SharedDeliveryDestination>>>,
     next_token: Option<::std::string::String>,
@@ -15241,6 +15271,7 @@ impl PyOperationDescribeDeliveryDestinationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeDeliverySourcesOutput {
     delivery_sources: Option<::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::DeliverySource>>>,
     next_token: Option<::std::string::String>,
@@ -15332,6 +15363,7 @@ impl PyOperationDescribeDeliverySourcesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeDestinationsOutput {
     destinations: Option<::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::Destination>>>,
     next_token: Option<::std::string::String>,
@@ -15421,6 +15453,7 @@ impl PyOperationDescribeDestinationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeExportTasksOutput {
     export_tasks: Option<::std::vec::Vec<Arc<SharedExportTask>>>,
     next_token: Option<::std::string::String>,
@@ -15510,6 +15543,7 @@ impl PyOperationDescribeExportTasksOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeFieldIndexesOutput {
     field_indexes: Option<::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::FieldIndex>>>,
     next_token: Option<::std::string::String>,
@@ -15599,6 +15633,7 @@ impl PyOperationDescribeFieldIndexesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeImportTaskBatchesOutput {
     import_source_arn: Option<::std::string::String>,
     import_id: Option<::std::string::String>,
@@ -15715,6 +15750,7 @@ impl PyOperationDescribeImportTaskBatchesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeImportTasksOutput {
     imports: Option<::std::vec::Vec<Arc<SharedImport>>>,
     next_token: Option<::std::string::String>,
@@ -15804,6 +15840,7 @@ impl PyOperationDescribeImportTasksOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeIndexPoliciesOutput {
     index_policies: Option<::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::IndexPolicy>>>,
     next_token: Option<::std::string::String>,
@@ -15893,6 +15930,7 @@ impl PyOperationDescribeIndexPoliciesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeLogGroupsOutput {
     log_groups: Option<::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::LogGroup>>>,
     next_token: Option<::std::string::String>,
@@ -15982,6 +16020,7 @@ impl PyOperationDescribeLogGroupsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeLogStreamsOutput {
     log_streams: Option<::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::LogStream>>>,
     next_token: Option<::std::string::String>,
@@ -16071,6 +16110,7 @@ impl PyOperationDescribeLogStreamsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeLookupTablesOutput {
     lookup_tables: Option<::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::LookupTable>>>,
     next_token: Option<::std::string::String>,
@@ -16160,6 +16200,7 @@ impl PyOperationDescribeLookupTablesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeMetricFiltersOutput {
     metric_filters: Option<::std::vec::Vec<Arc<SharedMetricFilter>>>,
     next_token: Option<::std::string::String>,
@@ -16249,6 +16290,7 @@ impl PyOperationDescribeMetricFiltersOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeQueriesOutput {
     queries: Option<::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::QueryInfo>>>,
     next_token: Option<::std::string::String>,
@@ -16338,6 +16380,7 @@ impl PyOperationDescribeQueriesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeQueryDefinitionsOutput {
     query_definitions: Option<::std::vec::Vec<Arc<SharedQueryDefinition>>>,
     next_token: Option<::std::string::String>,
@@ -16418,6 +16461,7 @@ impl PyOperationDescribeQueryDefinitionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeResourcePoliciesOutput {
     resource_policies: Option<::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::ResourcePolicy>>>,
     next_token: Option<::std::string::String>,
@@ -16498,6 +16542,7 @@ impl PyOperationDescribeResourcePoliciesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeSubscriptionFiltersOutput {
     subscription_filters:
         Option<::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::SubscriptionFilter>>>,
@@ -16612,6 +16657,7 @@ impl PyOperationDisassociateSourceFromS3TableIntegrationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationFilterLogEventsOutput {
     events: Option<::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::FilteredLogEvent>>>,
     searched_log_streams:
@@ -16806,6 +16852,7 @@ impl PyOperationGetDataProtectionPolicyOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDeliveryOutput {
     delivery: Option<Arc<SharedDelivery>>,
 }
@@ -16862,6 +16909,7 @@ impl PyOperationGetDeliveryOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDeliveryDestinationOutput {
     delivery_destination: Option<Arc<SharedDeliveryDestination>>,
 }
@@ -16920,6 +16968,7 @@ impl PyOperationGetDeliveryDestinationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDeliveryDestinationPolicyOutput {
     policy: Option<Arc<aws_sdk_cloudwatchlogs::types::Policy>>,
 }
@@ -16972,6 +17021,7 @@ impl PyOperationGetDeliveryDestinationPolicyOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDeliverySourceOutput {
     delivery_source: Option<Arc<aws_sdk_cloudwatchlogs::types::DeliverySource>>,
 }
@@ -17272,6 +17322,7 @@ impl PyOperationGetLogAnomalyDetectorOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetLogEventsOutput {
     events: Option<::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::OutputLogEvent>>>,
     next_forward_token: Option<::std::string::String>,
@@ -17377,6 +17428,7 @@ impl PyOperationGetLogEventsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetLogFieldsOutput {
     log_fields: Option<::std::vec::Vec<Arc<SharedLogFieldsListItem>>>,
 }
@@ -17446,6 +17498,7 @@ impl PyOperationGetLogFieldsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetLogGroupFieldsOutput {
     log_group_fields: Option<::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::LogGroupField>>>,
 }
@@ -17691,6 +17744,7 @@ impl PyOperationGetLookupTableOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetQueryResultsOutput {
     query_language: Option<aws_sdk_cloudwatchlogs::types::QueryLanguage>,
     results:
@@ -17874,6 +17928,7 @@ impl PyOperationGetQueryResultsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetScheduledQueryOutput {
     scheduled_query_arn: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -18284,6 +18339,7 @@ impl PyOperationGetScheduledQueryOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetScheduledQueryHistoryOutput {
     name: Option<::std::string::String>,
     scheduled_query_arn: Option<::std::string::String>,
@@ -18449,6 +18505,7 @@ impl PyOperationGetStorageTierPolicyOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetTransformerOutput {
     log_group_identifier: Option<::std::string::String>,
     creation_time: Option<i64>,
@@ -18574,6 +18631,7 @@ impl PyOperationGetTransformerOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListAggregateLogGroupSummariesOutput {
     aggregate_log_group_summaries: Option<::std::vec::Vec<Arc<SharedAggregateLogGroupSummary>>>,
     next_token: Option<::std::string::String>,
@@ -18654,6 +18712,7 @@ impl PyOperationListAggregateLogGroupSummariesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListAnomaliesOutput {
     anomalies: Option<::std::vec::Vec<Arc<SharedAnomaly>>>,
     next_token: Option<::std::string::String>,
@@ -18741,6 +18800,7 @@ impl PyOperationListAnomaliesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListIntegrationsOutput {
     integration_summaries:
         Option<::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::IntegrationSummary>>>,
@@ -18813,6 +18873,7 @@ impl PyOperationListIntegrationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListLogAnomalyDetectorsOutput {
     anomaly_detectors: Option<::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::AnomalyDetector>>>,
     next_token: Option<::std::string::String>,
@@ -18893,6 +18954,7 @@ impl PyOperationListLogAnomalyDetectorsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListLogGroupsOutput {
     log_groups: Option<::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::LogGroupSummary>>>,
     next_token: Option<::std::string::String>,
@@ -19042,6 +19104,7 @@ impl PyOperationListLogGroupsForQueryOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListScheduledQueriesOutput {
     next_token: Option<::std::string::String>,
     scheduled_queries: Option<::std::vec::Vec<Arc<SharedScheduledQuerySummary>>>,
@@ -19131,6 +19194,7 @@ impl PyOperationListScheduledQueriesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListSourcesForS3TableIntegrationOutput {
     sources: Option<::std::vec::Vec<Arc<SharedS3TableIntegrationSource>>>,
     next_token: Option<::std::string::String>,
@@ -19211,6 +19275,7 @@ impl PyOperationListSourcesForS3TableIntegrationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListSyslogConfigurationsOutput {
     syslog_configurations:
         Option<::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::SyslogConfiguration>>>,
@@ -19382,6 +19447,7 @@ impl PyOperationListTagsLogGroupOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationPutAccountPolicyOutput {
     account_policy: Option<Arc<aws_sdk_cloudwatchlogs::types::AccountPolicy>>,
 }
@@ -19503,6 +19569,7 @@ impl PyOperationPutDataProtectionPolicyOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationPutDeliveryDestinationOutput {
     delivery_destination: Option<Arc<SharedDeliveryDestination>>,
 }
@@ -19561,6 +19628,7 @@ impl PyOperationPutDeliveryDestinationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationPutDeliveryDestinationPolicyOutput {
     policy: Option<Arc<aws_sdk_cloudwatchlogs::types::Policy>>,
 }
@@ -19613,6 +19681,7 @@ impl PyOperationPutDeliveryDestinationPolicyOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationPutDeliverySourceOutput {
     delivery_source: Option<Arc<aws_sdk_cloudwatchlogs::types::DeliverySource>>,
 }
@@ -19669,6 +19738,7 @@ impl PyOperationPutDeliverySourceOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationPutDestinationOutput {
     destination: Option<Arc<aws_sdk_cloudwatchlogs::types::Destination>>,
 }
@@ -19725,6 +19795,7 @@ impl PyOperationPutDestinationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationPutIndexPolicyOutput {
     index_policy: Option<Arc<aws_sdk_cloudwatchlogs::types::IndexPolicy>>,
 }
@@ -19830,6 +19901,7 @@ impl PyOperationPutIntegrationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationPutLogEventsOutput {
     next_sequence_token: Option<::std::string::String>,
     rejected_log_events_info: Option<Arc<aws_sdk_cloudwatchlogs::types::RejectedLogEventsInfo>>,
@@ -19959,6 +20031,7 @@ impl PyOperationPutQueryDefinitionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationPutResourcePolicyOutput {
     resource_policy: Option<Arc<aws_sdk_cloudwatchlogs::types::ResourcePolicy>>,
     revision_id: Option<::std::string::String>,
@@ -20140,6 +20213,7 @@ impl PyOperationStopQueryOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationTestMetricFilterOutput {
     matches: Option<::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::MetricFilterMatchRecord>>>,
 }
@@ -20211,6 +20285,7 @@ impl PyOperationTestMetricFilterOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationTestTransformerOutput {
     transformed_logs:
         Option<::std::vec::Vec<Arc<aws_sdk_cloudwatchlogs::types::TransformedLogRecord>>>,
@@ -20349,6 +20424,7 @@ impl PyOperationUpdateLookupTableOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateScheduledQueryOutput {
     scheduled_query_arn: Option<::std::string::String>,
     name: Option<::std::string::String>,

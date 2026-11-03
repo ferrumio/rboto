@@ -75,6 +75,17 @@ See [configuration](https://ferrumio.github.io/rboto/guides/configuration/),
 [errors](https://ferrumio.github.io/rboto/guides/errors/), and
 [streaming](https://ferrumio.github.io/rboto/guides/streaming/).
 
+## Waiters
+
+Use `await client.waiters.name(...)` to wait for a resource state. Each waiter accepts
+the polling operation's typed arguments plus `waiter_config: WaiterConfig | None`.
+Import `WaiterConfig` from `rboto` to set the poll delay, maximum attempts, or overall
+timeout. See the [waiter guide](https://ferrumio.github.io/rboto/guides/waiters/).
+
+| Waiter | Polling operation |
+|---|---|
+| [`command_executed`](https://ferrumio.github.io/rboto/reference/ssm/operations/get_command_invocation/#waiters) | `get_command_invocation` |
+
 ## Operations
 
 The [operation reference](https://ferrumio.github.io/rboto/reference/ssm/)

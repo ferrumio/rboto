@@ -15,6 +15,7 @@ nav = [
         { "Runtime workers" = "guides/runtime.md" },
         { "Types and responses" = "guides/types.md" },
         { "Pagination" = "guides/pagination.md" },
+        { "Waiters" = "guides/waiters.md" },
         { "Pydantic and dataclasses" = "guides/models.md" },
         { "AWS Lambda" = "guides/aws-lambda.md" },
         { "Streaming" = "guides/streaming.md" },

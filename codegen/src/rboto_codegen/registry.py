@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import cast
 
 from .model import Pagination, ServiceDescriptor
+from .waiter_metadata import parse_waiters
 
 
 def service_config_dir() -> Path:
@@ -89,6 +90,7 @@ def load_service(path: Path) -> ServiceDescriptor:
         display_name=_optional_string(data, "display_name"),
         documentation_path=_optional_string(data, "documentation_path") or "clients/",
         pagination=_pagination(data),
+        waiters=parse_waiters(data.get("waiters", {})),
     )
     if path.stem != descriptor.service_id:
         raise ValueError(

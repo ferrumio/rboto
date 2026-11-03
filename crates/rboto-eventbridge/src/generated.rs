@@ -4105,6 +4105,7 @@ impl PyBatchArrayProperties {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedBatchParameters {
     job_definition: ::std::string::String,
     job_name: ::std::string::String,
@@ -4378,6 +4379,7 @@ impl PyConnectionApiKeyAuthResponseParameters {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedConnectionAuthResponseParameters {
     basic_auth_parameters:
         Option<Arc<aws_sdk_eventbridge::types::ConnectionBasicAuthResponseParameters>>,
@@ -4653,6 +4655,7 @@ impl PyConnectionHeaderParameter {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedConnectionHttpParameters {
     header_parameters:
         Option<::std::vec::Vec<Arc<aws_sdk_eventbridge::types::ConnectionHeaderParameter>>>,
@@ -4834,6 +4837,7 @@ impl PyConnectionOAuthClientResponseParameters {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedConnectionOAuthResponseParameters {
     client_parameters:
         Option<Arc<aws_sdk_eventbridge::types::ConnectionOAuthClientResponseParameters>>,
@@ -5026,6 +5030,7 @@ impl PyDeadLetterConfig {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDescribeConnectionConnectivityParameters {
     resource_parameters:
         Option<Arc<aws_sdk_eventbridge::types::DescribeConnectionResourceParameters>>,
@@ -5120,6 +5125,7 @@ impl PyDescribeConnectionResourceParameters {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEcsParameters {
     task_definition_arn: ::std::string::String,
     task_count: Option<i32>,
@@ -5476,6 +5482,7 @@ impl PyEcsParameters {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEndpoint {
     name: Option<::std::string::String>,
     description: Option<::std::string::String>,
@@ -5949,6 +5956,7 @@ impl PyEventSource {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedFailoverConfig {
     primary: Option<Arc<aws_sdk_eventbridge::types::Primary>>,
     secondary: Option<Arc<aws_sdk_eventbridge::types::Secondary>>,
@@ -6179,6 +6187,7 @@ impl PyLogConfig {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedNetworkConfiguration {
     awsvpc_configuration: Option<Arc<aws_sdk_eventbridge::types::AwsVpcConfiguration>>,
 }
@@ -6884,6 +6893,7 @@ impl PyRetryPolicy {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRoutingConfig {
     failover_config: Option<Arc<SharedFailoverConfig>>,
 }
@@ -7040,6 +7050,7 @@ impl PyRule {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRunCommandParameters {
     run_command_targets: ::std::vec::Vec<Arc<aws_sdk_eventbridge::types::RunCommandTarget>>,
 }
@@ -7165,6 +7176,7 @@ impl PySageMakerPipelineParameter {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSageMakerPipelineParameters {
     pipeline_parameter_list:
         Option<::std::vec::Vec<Arc<aws_sdk_eventbridge::types::SageMakerPipelineParameter>>>,
@@ -7306,6 +7318,7 @@ impl PyTag {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedTarget {
     id: ::std::string::String,
     arn: ::std::string::String,
@@ -8012,6 +8025,7 @@ impl PyOperationCreateConnectionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateEndpointOutput {
     name: Option<::std::string::String>,
     arn: Option<::std::string::String>,
@@ -8203,6 +8217,7 @@ impl PyOperationCreateEndpointOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateEventBusOutput {
     event_bus_arn: Option<::std::string::String>,
     description: Option<::std::string::String>,
@@ -8984,6 +8999,7 @@ impl PyOperationDescribeArchiveOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeConnectionOutput {
     connection_arn: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -9267,6 +9283,7 @@ impl PyOperationDescribeConnectionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeEndpointOutput {
     name: Option<::std::string::String>,
     description: Option<::std::string::String>,
@@ -9568,6 +9585,7 @@ impl PyOperationDescribeEndpointOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeEventBusOutput {
     name: Option<::std::string::String>,
     arn: Option<::std::string::String>,
@@ -9954,6 +9972,7 @@ impl PyOperationDescribePartnerEventSourceOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeReplayOutput {
     replay_name: Option<::std::string::String>,
     replay_arn: Option<::std::string::String>,
@@ -10383,6 +10402,7 @@ impl PyOperationDescribeRuleOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListApiDestinationsOutput {
     api_destinations: Option<::std::vec::Vec<Arc<aws_sdk_eventbridge::types::ApiDestination>>>,
     next_token: Option<::std::string::String>,
@@ -10472,6 +10492,7 @@ impl PyOperationListApiDestinationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListArchivesOutput {
     archives: Option<::std::vec::Vec<Arc<aws_sdk_eventbridge::types::Archive>>>,
     next_token: Option<::std::string::String>,
@@ -10559,6 +10580,7 @@ impl PyOperationListArchivesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListConnectionsOutput {
     connections: Option<::std::vec::Vec<Arc<aws_sdk_eventbridge::types::Connection>>>,
     next_token: Option<::std::string::String>,
@@ -10648,6 +10670,7 @@ impl PyOperationListConnectionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListEndpointsOutput {
     endpoints: Option<::std::vec::Vec<Arc<SharedEndpoint>>>,
     next_token: Option<::std::string::String>,
@@ -10735,6 +10758,7 @@ impl PyOperationListEndpointsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListEventBusesOutput {
     event_buses: Option<::std::vec::Vec<Arc<aws_sdk_eventbridge::types::EventBus>>>,
     next_token: Option<::std::string::String>,
@@ -10822,6 +10846,7 @@ impl PyOperationListEventBusesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListEventSourcesOutput {
     event_sources: Option<::std::vec::Vec<Arc<aws_sdk_eventbridge::types::EventSource>>>,
     next_token: Option<::std::string::String>,
@@ -10911,6 +10936,7 @@ impl PyOperationListEventSourcesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPartnerEventSourceAccountsOutput {
     partner_event_source_accounts:
         Option<::std::vec::Vec<Arc<aws_sdk_eventbridge::types::PartnerEventSourceAccount>>>,
@@ -10992,6 +11018,7 @@ impl PyOperationListPartnerEventSourceAccountsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPartnerEventSourcesOutput {
     partner_event_sources:
         Option<::std::vec::Vec<Arc<aws_sdk_eventbridge::types::PartnerEventSource>>>,
@@ -11082,6 +11109,7 @@ impl PyOperationListPartnerEventSourcesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListReplaysOutput {
     replays: Option<::std::vec::Vec<Arc<aws_sdk_eventbridge::types::Replay>>>,
     next_token: Option<::std::string::String>,
@@ -11228,6 +11256,7 @@ impl PyOperationListRuleNamesByTargetOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListRulesOutput {
     rules: Option<::std::vec::Vec<Arc<aws_sdk_eventbridge::types::Rule>>>,
     next_token: Option<::std::string::String>,
@@ -11311,6 +11340,7 @@ impl PyOperationListRulesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListTagsForResourceOutput {
     tags: Option<::std::vec::Vec<Arc<aws_sdk_eventbridge::types::Tag>>>,
 }
@@ -11382,6 +11412,7 @@ impl PyOperationListTagsForResourceOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListTargetsByRuleOutput {
     targets: Option<::std::vec::Vec<Arc<SharedTarget>>>,
     next_token: Option<::std::string::String>,
@@ -11471,6 +11502,7 @@ impl PyOperationListTargetsByRuleOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationPutEventsOutput {
     failed_entry_count: i32,
     entries: Option<::std::vec::Vec<Arc<aws_sdk_eventbridge::types::PutEventsResultEntry>>>,
@@ -11550,6 +11582,7 @@ impl PyOperationPutEventsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationPutPartnerEventsOutput {
     failed_entry_count: i32,
     entries: Option<::std::vec::Vec<Arc<aws_sdk_eventbridge::types::PutPartnerEventsResultEntry>>>,
@@ -11664,6 +11697,7 @@ impl PyOperationPutRuleOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationPutTargetsOutput {
     failed_entry_count: i32,
     failed_entries: Option<::std::vec::Vec<Arc<aws_sdk_eventbridge::types::PutTargetsResultEntry>>>,
@@ -11747,6 +11781,7 @@ impl PyOperationPutTargetsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationRemoveTargetsOutput {
     failed_entry_count: i32,
     failed_entries:
@@ -12230,6 +12265,7 @@ impl PyOperationUpdateConnectionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateEndpointOutput {
     name: Option<::std::string::String>,
     arn: Option<::std::string::String>,
@@ -12457,6 +12493,7 @@ impl PyOperationUpdateEndpointOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateEventBusOutput {
     arn: Option<::std::string::String>,
     name: Option<::std::string::String>,

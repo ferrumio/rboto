@@ -16872,6 +16872,7 @@ impl PyAccount {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAccountFreeTrialInfo {
     account_id: Option<::std::string::String>,
     data_sources: Option<Arc<SharedDataSourcesFreeTrial>>,
@@ -16991,6 +16992,7 @@ impl PyAccountFreeTrialInfo {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAccountLevelPermissions {
     block_public_access: Option<Arc<aws_sdk_guardduty::types::BlockPublicAccess>>,
 }
@@ -17092,6 +17094,7 @@ impl PyAccountStatistics {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAction {
     action_type: Option<::std::string::String>,
     aws_api_call_action: Option<Arc<SharedAwsApiCallAction>>,
@@ -17370,6 +17373,7 @@ impl PyAction {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedActivity {
     r#type: Option<aws_sdk_guardduty::types::ActivityType>,
     api: Option<Arc<aws_sdk_guardduty::types::ApiCall>>,
@@ -17440,6 +17444,7 @@ impl PyActivity {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedActor {
     id: Option<::std::string::String>,
     user: Option<Arc<SharedUser>>,
@@ -17770,6 +17775,7 @@ impl PyAgentDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAnomaly {
     profiles: Option<
         ::std::collections::HashMap<
@@ -17913,6 +17919,7 @@ impl PyAnomaly {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAnomalyObject {
     profile_type: Option<aws_sdk_guardduty::types::ProfileType>,
     profile_subtype: Option<aws_sdk_guardduty::types::ProfileSubtype>,
@@ -18001,6 +18008,7 @@ impl PyAnomalyObject {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAnomalyUnusual {
     behavior: Option<
         ::std::collections::HashMap<
@@ -18393,6 +18401,7 @@ impl PyAutoscalingAutoScalingGroup {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAwsApiCallAction {
     api: Option<::std::string::String>,
     caller_type: Option<::std::string::String>,
@@ -18651,6 +18660,7 @@ impl PyBedrockGuardrail {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedBedrockGuardrailDetails {
     guardrail_arn: Option<::std::string::String>,
     guardrail_version: Option<::std::string::String>,
@@ -18935,6 +18945,7 @@ impl PyBlockPublicAccess {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedBucketLevelPermissions {
     access_control_list: Option<Arc<aws_sdk_guardduty::types::AccessControlList>>,
     bucket_policy: Option<Arc<aws_sdk_guardduty::types::BucketPolicy>>,
@@ -19377,6 +19388,7 @@ impl PyCondition {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedContainer {
     container_runtime: Option<::std::string::String>,
     id: Option<::std::string::String>,
@@ -19708,6 +19720,7 @@ impl PyCountry {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCoverageEc2InstanceDetails {
     instance_id: Option<::std::string::String>,
     instance_type: Option<::std::string::String>,
@@ -19841,6 +19854,7 @@ impl PyCoverageEc2InstanceDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCoverageEcsClusterDetails {
     cluster_name: Option<::std::string::String>,
     fargate_details: Option<Arc<aws_sdk_guardduty::types::FargateDetails>>,
@@ -19942,6 +19956,7 @@ impl PyCoverageEcsClusterDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCoverageEksClusterDetails {
     cluster_name: Option<::std::string::String>,
     covered_nodes: Option<i64>,
@@ -20073,6 +20088,7 @@ impl PyCoverageEksClusterDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCoverageResource {
     resource_id: Option<::std::string::String>,
     detector_id: Option<::std::string::String>,
@@ -20238,6 +20254,7 @@ impl PyCoverageResource {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCoverageResourceDetails {
     eks_cluster_details: Option<Arc<SharedCoverageEksClusterDetails>>,
     ecs_cluster_details: Option<Arc<SharedCoverageEcsClusterDetails>>,
@@ -20417,6 +20434,7 @@ impl PyCoverageStatistics {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCreateProtectedResource {
     s3_bucket: Option<Arc<aws_sdk_guardduty::types::CreateS3BucketResource>>,
 }
@@ -20517,6 +20535,7 @@ impl PyCreateS3BucketResource {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDataSourceConfigurationsResult {
     cloud_trail: Option<Arc<aws_sdk_guardduty::types::CloudTrailConfigurationResult>>,
     dns_logs: Option<Arc<aws_sdk_guardduty::types::DnsLogsConfigurationResult>>,
@@ -20728,6 +20747,7 @@ impl PyDataSourceFreeTrial {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDataSourcesFreeTrial {
     cloud_trail: Option<Arc<aws_sdk_guardduty::types::DataSourceFreeTrial>>,
     dns_logs: Option<Arc<aws_sdk_guardduty::types::DataSourceFreeTrial>>,
@@ -21087,6 +21107,7 @@ impl PyDestinationProperties {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDetection {
     anomaly: Option<Arc<SharedAnomaly>>,
     sequence: Option<Arc<SharedSequence>>,
@@ -21447,6 +21468,7 @@ impl PyDetectionRuleOrgConfigurationSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDetectionRuleRuntimeMonitoringDetails {
     platforms: Option<Arc<SharedDetectionRuleRuntimePlatforms>>,
 }
@@ -21510,6 +21532,7 @@ impl PyDetectionRuleRuntimeMonitoringDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDetectionRuleRuntimePlatforms {
     eks: Option<Arc<aws_sdk_guardduty::types::DetectionRuleEksRequirements>>,
     ec2: Option<Arc<aws_sdk_guardduty::types::DetectionRuleEc2Requirements>>,
@@ -21675,6 +21698,7 @@ impl PyDetectorAdditionalConfigurationResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDetectorFeatureConfigurationResult {
     name: Option<aws_sdk_guardduty::types::DetectorFeatureResult>,
     status: Option<aws_sdk_guardduty::types::FeatureStatus>,
@@ -21984,6 +22008,7 @@ impl PyEbsSnapshotDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEbsVolumeDetails {
     scanned_volume_details: Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::VolumeDetail>>>,
     skipped_volume_details: Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::VolumeDetail>>>,
@@ -22093,6 +22118,7 @@ impl PyEbsVolumeDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEbsVolumeScanDetails {
     scan_id: Option<::std::string::String>,
     scan_started_at: Option<::aws_smithy_types::DateTime>,
@@ -22353,6 +22379,7 @@ impl PyEc2ImageDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEc2Instance {
     availability_zone: Option<::std::string::String>,
     image_description: Option<::std::string::String>,
@@ -22617,6 +22644,7 @@ impl PyEc2LaunchTemplate {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEc2NetworkInterface {
     ipv6_addresses: Option<::std::vec::Vec<::std::string::String>>,
     private_ip_addresses:
@@ -22877,6 +22905,7 @@ impl PyEcsCluster {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEcsClusterDetails {
     name: Option<::std::string::String>,
     arn: Option<::std::string::String>,
@@ -23138,6 +23167,7 @@ impl PyEcsTask {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEcsTaskDetails {
     arn: Option<::std::string::String>,
     definition_arn: Option<::std::string::String>,
@@ -23497,6 +23527,7 @@ impl PyEksCluster {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEksClusterDetails {
     name: Option<::std::string::String>,
     arn: Option<::std::string::String>,
@@ -23657,6 +23688,7 @@ impl PyEksClusterDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEvidence {
     threat_intelligence_details:
         Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::ThreatIntelligenceDetail>>>,
@@ -23762,6 +23794,7 @@ impl PyFargateDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedFinding {
     account_id: Option<::std::string::String>,
     arn: Option<::std::string::String>,
@@ -24112,6 +24145,7 @@ impl PyFinding {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedFindingCriteria {
     criterion: Option<
         ::std::collections::HashMap<
@@ -24189,6 +24223,7 @@ impl PyFindingCriteria {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedFindingStatistics {
     count_by_severity: Option<::std::collections::HashMap<::std::string::String, i32>>,
     grouped_by_account: Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::AccountStatistics>>>,
@@ -24586,6 +24621,7 @@ impl PyGeoLocation {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGetMalwareScanResultDetails {
     scan_result_status: Option<aws_sdk_guardduty::types::ScanResultStatus>,
     skipped_file_count: Option<i64>,
@@ -25033,6 +25069,7 @@ impl PyIndicator {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInstanceDetails {
     availability_zone: Option<::std::string::String>,
     iam_instance_profile: Option<Arc<aws_sdk_guardduty::types::IamInstanceProfile>>,
@@ -25367,6 +25404,7 @@ impl PyInstanceDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInvestigation {
     investigation_id: Option<::std::string::String>,
     status: Option<aws_sdk_guardduty::types::InvestigationStatus>,
@@ -25643,6 +25681,7 @@ impl PyInvestigation {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInvestigationMetadata {
     version: Option<::std::string::String>,
     product: Option<Arc<aws_sdk_guardduty::types::Product>>,
@@ -25878,6 +25917,7 @@ impl PyInvitation {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedItemDetails {
     resource_arn: Option<::std::string::String>,
     item_path: Option<::std::string::String>,
@@ -26016,6 +26056,7 @@ impl PyItemPath {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedKubernetesApiCallAction {
     request_uri: Option<::std::string::String>,
     verb: Option<::std::string::String>,
@@ -26293,6 +26334,7 @@ impl PyKubernetesAuditLogsConfigurationResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedKubernetesConfigurationResult {
     audit_logs: Option<Arc<aws_sdk_guardduty::types::KubernetesAuditLogsConfigurationResult>>,
 }
@@ -26354,6 +26396,7 @@ impl PyKubernetesConfigurationResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedKubernetesDataSourceFreeTrial {
     audit_logs: Option<Arc<aws_sdk_guardduty::types::DataSourceFreeTrial>>,
 }
@@ -26415,6 +26458,7 @@ impl PyKubernetesDataSourceFreeTrial {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedKubernetesDetails {
     kubernetes_user_details: Option<Arc<SharedKubernetesUserDetails>>,
     kubernetes_workload_details: Option<Arc<SharedKubernetesWorkloadDetails>>,
@@ -26666,6 +26710,7 @@ impl PyKubernetesRoleDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedKubernetesUserDetails {
     username: Option<::std::string::String>,
     uid: Option<::std::string::String>,
@@ -26868,6 +26913,7 @@ impl PyKubernetesWorkload {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedKubernetesWorkloadDetails {
     name: Option<::std::string::String>,
     r#type: Option<::std::string::String>,
@@ -27125,6 +27171,7 @@ impl PyKubernetesWorkloadDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedLambdaDetails {
     function_arn: Option<::std::string::String>,
     function_name: Option<::std::string::String>,
@@ -27562,6 +27609,7 @@ impl PyLoginAttribute {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMalwareProtectionConfigurationResult {
     scan_ec2_instance_with_findings: Option<Arc<SharedScanEc2InstanceWithFindingsResult>>,
     service_role: Option<::std::string::String>,
@@ -27643,6 +27691,7 @@ impl PyMalwareProtectionConfigurationResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMalwareProtectionDataSourceFreeTrial {
     scan_ec2_instance_with_findings: Option<Arc<aws_sdk_guardduty::types::DataSourceFreeTrial>>,
 }
@@ -27706,6 +27755,7 @@ impl PyMalwareProtectionDataSourceFreeTrial {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMalwareProtectionFindingsScanConfiguration {
     trigger_type: Option<aws_sdk_guardduty::types::TriggerType>,
     incremental_scan_details: Option<Arc<aws_sdk_guardduty::types::IncrementalScanDetails>>,
@@ -27785,6 +27835,7 @@ impl PyMalwareProtectionFindingsScanConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMalwareProtectionPlanActions {
     tagging: Option<Arc<aws_sdk_guardduty::types::MalwareProtectionPlanTaggingAction>>,
 }
@@ -28026,6 +28077,7 @@ impl PyMalwareScan {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMalwareScanDetails {
     threats: Option<::std::vec::Vec<Arc<SharedThreat>>>,
     scan_id: Option<::std::string::String>,
@@ -28399,6 +28451,7 @@ impl PyMemberAdditionalConfigurationResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMemberDataSourceConfiguration {
     account_id: Option<::std::string::String>,
     data_sources: Option<Arc<SharedDataSourceConfigurationsResult>>,
@@ -28522,6 +28575,7 @@ impl PyMemberDataSourceConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMemberFeaturesConfigurationResult {
     name: Option<aws_sdk_guardduty::types::OrgFeature>,
     status: Option<aws_sdk_guardduty::types::FeatureStatus>,
@@ -28715,6 +28769,7 @@ impl PyNetworkConnection {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedNetworkConnectionAction {
     blocked: Option<bool>,
     connection_direction: Option<::std::string::String>,
@@ -28920,6 +28975,7 @@ impl PyNetworkConnectionAction {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedNetworkEndpoint {
     id: Option<::std::string::String>,
     ip: Option<::std::string::String>,
@@ -29151,6 +29207,7 @@ impl PyNetworkGeoLocation {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedNetworkInterface {
     ipv6_addresses: Option<::std::vec::Vec<::std::string::String>>,
     network_interface_id: Option<::std::string::String>,
@@ -29545,6 +29602,7 @@ impl PyOrganizationAdditionalConfigurationResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedOrganizationDataSourceConfigurationsResult {
     s3_logs: Option<Arc<aws_sdk_guardduty::types::OrganizationS3LogsConfigurationResult>>,
     kubernetes: Option<Arc<SharedOrganizationKubernetesConfigurationResult>>,
@@ -29659,6 +29717,7 @@ impl PyOrganizationDataSourceConfigurationsResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedOrganizationDetails {
     updated_at: Option<::aws_smithy_types::DateTime>,
     organization_statistics: Option<Arc<SharedOrganizationStatistics>>,
@@ -29764,6 +29823,7 @@ impl PyOrganizationEbsVolumesResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedOrganizationFeatureConfigurationResult {
     name: Option<aws_sdk_guardduty::types::OrgFeature>,
     auto_enable: Option<aws_sdk_guardduty::types::OrgFeatureStatus>,
@@ -29879,6 +29939,7 @@ impl PyOrganizationFeatureConfigurationResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedOrganizationFeatureStatistics {
     name: Option<aws_sdk_guardduty::types::OrgFeature>,
     enabled_accounts_count: Option<i32>,
@@ -30058,6 +30119,7 @@ impl PyOrganizationKubernetesAuditLogsConfigurationResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedOrganizationKubernetesConfigurationResult {
     audit_logs:
         Option<Arc<aws_sdk_guardduty::types::OrganizationKubernetesAuditLogsConfigurationResult>>,
@@ -30121,6 +30183,7 @@ impl PyOrganizationKubernetesConfigurationResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedOrganizationMalwareProtectionConfigurationResult {
     scan_ec2_instance_with_findings:
         Option<Arc<SharedOrganizationScanEc2InstanceWithFindingsResult>>,
@@ -30216,6 +30279,7 @@ impl PyOrganizationS3LogsConfigurationResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedOrganizationScanEc2InstanceWithFindingsResult {
     ebs_volumes: Option<Arc<aws_sdk_guardduty::types::OrganizationEbsVolumesResult>>,
 }
@@ -30279,6 +30343,7 @@ impl PyOrganizationScanEc2InstanceWithFindingsResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedOrganizationStatistics {
     total_accounts_count: Option<i32>,
     member_accounts_count: Option<i32>,
@@ -30449,6 +30514,7 @@ impl PyOwner {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPermissionConfiguration {
     bucket_level_permissions: Option<Arc<SharedBucketLevelPermissions>>,
     account_level_permissions: Option<Arc<SharedAccountLevelPermissions>>,
@@ -30536,6 +30602,7 @@ impl PyPermissionConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPortProbeAction {
     blocked: Option<bool>,
     port_probe_details: Option<::std::vec::Vec<Arc<SharedPortProbeDetail>>>,
@@ -30624,6 +30691,7 @@ impl PyPortProbeAction {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPortProbeDetail {
     local_port_details: Option<Arc<aws_sdk_guardduty::types::LocalPortDetails>>,
     local_ip_details: Option<Arc<aws_sdk_guardduty::types::LocalIpDetails>>,
@@ -30765,6 +30833,7 @@ impl PyPrivateIpAddressDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedProcessDetails {
     name: Option<::std::string::String>,
     executable_path: Option<::std::string::String>,
@@ -31115,6 +31184,7 @@ impl PyProductCode {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPublicAccess {
     permission_configuration: Option<Arc<SharedPermissionConfiguration>>,
     effective_permission: Option<::std::string::String>,
@@ -31243,6 +31313,7 @@ impl PyPublicAccessConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRdsDbInstanceDetails {
     db_instance_identifier: Option<::std::string::String>,
     engine: Option<::std::string::String>,
@@ -31487,6 +31558,7 @@ impl PyRdsDbUserDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRdsLimitlessDbDetails {
     db_shard_group_identifier: Option<::std::string::String>,
     db_shard_group_resource_id: Option<::std::string::String>,
@@ -31669,6 +31741,7 @@ impl PyRdsLimitlessDbDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRdsLoginAttemptAction {
     remote_ip_details: Option<Arc<SharedRemoteIpDetails>>,
     login_attributes: Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::LoginAttribute>>>,
@@ -31769,6 +31842,7 @@ impl PyRdsLoginAttemptAction {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRecoveryPointDetails {
     recovery_point_arn: Option<::std::string::String>,
     backup_vault_name: Option<::std::string::String>,
@@ -31911,6 +31985,7 @@ impl PyRemoteAccountDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRemoteIpDetails {
     city: Option<Arc<aws_sdk_guardduty::types::City>>,
     country: Option<Arc<aws_sdk_guardduty::types::Country>>,
@@ -32106,6 +32181,7 @@ impl PyRemotePortDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedResource {
     access_key_details: Option<Arc<aws_sdk_guardduty::types::AccessKeyDetails>>,
     s3_bucket_details: Option<::std::vec::Vec<Arc<SharedS3BucketDetail>>>,
@@ -32612,6 +32688,7 @@ impl PyResource {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedResourceData {
     s3_bucket: Option<Arc<SharedS3Bucket>>,
     ec2_instance: Option<Arc<SharedEc2Instance>>,
@@ -33145,6 +33222,7 @@ impl PyResourceStatistics {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedResourceV2 {
     uid: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -33386,6 +33464,7 @@ impl PyRuleDefinition {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRuleDetail {
     rule_id: Option<::std::string::String>,
     arn: Option<::std::string::String>,
@@ -33840,6 +33919,7 @@ impl PyRuleSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRuntimeContext {
     modifying_process: Option<Arc<SharedProcessDetails>>,
     modified_at: Option<::aws_smithy_types::DateTime>,
@@ -34421,6 +34501,7 @@ impl PyRuntimeContext {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRuntimeDetails {
     process: Option<Arc<SharedProcessDetails>>,
     context: Option<Arc<SharedRuntimeContext>>,
@@ -34504,6 +34585,7 @@ impl PyRuntimeDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedS3Bucket {
     owner_id: Option<::std::string::String>,
     created_at: Option<::aws_smithy_types::DateTime>,
@@ -34734,6 +34816,7 @@ impl PyS3Bucket {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedS3BucketDetail {
     arn: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -35122,6 +35205,7 @@ impl PyS3ObjectDetail {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedScan {
     detector_id: Option<::std::string::String>,
     admin_detector_id: Option<::std::string::String>,
@@ -35459,6 +35543,7 @@ impl PyScan {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedScanCondition {
     map_equals: Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::ScanConditionPair>>>,
 }
@@ -35558,6 +35643,7 @@ impl PyScanConditionPair {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedScanConfiguration {
     role: Option<::std::string::String>,
     trigger_details: Option<Arc<aws_sdk_guardduty::types::TriggerDetails>>,
@@ -35713,6 +35799,7 @@ impl PyScanConfigurationContinuousScanDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedScanConfigurationRecoveryPoint {
     backup_vault_name: Option<::std::string::String>,
     continuous_scan_details:
@@ -35793,6 +35880,7 @@ impl PyScanConfigurationRecoveryPoint {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedScanDetections {
     scanned_item_count: Option<Arc<aws_sdk_guardduty::types::ScannedItemCount>>,
     threats_detected_item_count: Option<Arc<aws_sdk_guardduty::types::ThreatsDetectedItemCount>>,
@@ -35927,6 +36015,7 @@ impl PyScanDetections {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedScanEc2InstanceWithFindingsResult {
     ebs_volumes: Option<Arc<aws_sdk_guardduty::types::EbsVolumesResult>>,
 }
@@ -36040,6 +36129,7 @@ impl PyScanFilePath {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedScanResourceCriteria {
     include: Option<
         ::std::collections::HashMap<
@@ -36189,6 +36279,7 @@ impl PyScanResultDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedScanResultThreat {
     name: Option<::std::string::String>,
     source: Option<aws_sdk_guardduty::types::DetectionSource>,
@@ -36331,6 +36422,7 @@ impl PyScanResultThreat {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedScanThreatName {
     name: Option<::std::string::String>,
     severity: Option<::std::string::String>,
@@ -36497,6 +36589,7 @@ impl PyScannedItemCount {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedScannedResource {
     scanned_resource_arn: Option<::std::string::String>,
     scanned_resource_type: Option<aws_sdk_guardduty::types::MalwareProtectionResourceType>,
@@ -36626,6 +36719,7 @@ impl PyScannedResource {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedScannedResourceDetails {
     ebs_volume: Option<Arc<aws_sdk_guardduty::types::VolumeDetail>>,
     ebs_snapshot: Option<Arc<aws_sdk_guardduty::types::EbsSnapshot>>,
@@ -36773,6 +36867,7 @@ impl PySecurityGroup {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSequence {
     uid: Option<::std::string::String>,
     description: Option<::std::string::String>,
@@ -37060,6 +37155,7 @@ impl PySequence {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedService {
     action: Option<Arc<SharedAction>>,
     evidence: Option<Arc<SharedEvidence>>,
@@ -37562,6 +37658,7 @@ impl PySeverityStatistics {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSignal {
     uid: Option<::std::string::String>,
     r#type: Option<aws_sdk_guardduty::types::SignalType>,
@@ -37964,6 +38061,7 @@ impl PyTag {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedThreat {
     name: Option<::std::string::String>,
     source: Option<::std::string::String>,
@@ -38142,6 +38240,7 @@ impl PyThreat {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedThreatDetectedByName {
     item_count: Option<i32>,
     unique_threat_name_count: Option<i32>,
@@ -38457,6 +38556,7 @@ impl PyUnprocessedAccount {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedUnprocessedDataSourcesResult {
     malware_protection: Option<Arc<SharedMalwareProtectionConfigurationResult>>,
 }
@@ -38520,6 +38620,7 @@ impl PyUnprocessedDataSourcesResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedUsageAccountResult {
     account_id: Option<::std::string::String>,
     total: Option<Arc<aws_sdk_guardduty::types::Total>>,
@@ -38597,6 +38698,7 @@ impl PyUsageAccountResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedUsageDataSourceResult {
     data_source: Option<aws_sdk_guardduty::types::DataSource>,
     total: Option<Arc<aws_sdk_guardduty::types::Total>>,
@@ -38674,6 +38776,7 @@ impl PyUsageDataSourceResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedUsageFeatureResult {
     feature: Option<aws_sdk_guardduty::types::UsageFeature>,
     total: Option<Arc<aws_sdk_guardduty::types::Total>>,
@@ -38751,6 +38854,7 @@ impl PyUsageFeatureResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedUsageResourceResult {
     resource: Option<::std::string::String>,
     total: Option<Arc<aws_sdk_guardduty::types::Total>>,
@@ -38828,6 +38932,7 @@ impl PyUsageResourceResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedUsageStatistics {
     sum_by_account: Option<::std::vec::Vec<Arc<SharedUsageAccountResult>>>,
     top_accounts_by_feature: Option<::std::vec::Vec<Arc<SharedUsageTopAccountsResult>>>,
@@ -39093,6 +39198,7 @@ impl PyUsageStatistics {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedUsageTopAccountResult {
     account_id: Option<::std::string::String>,
     total: Option<Arc<aws_sdk_guardduty::types::Total>>,
@@ -39170,6 +39276,7 @@ impl PyUsageTopAccountResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedUsageTopAccountsResult {
     feature: Option<aws_sdk_guardduty::types::UsageFeature>,
     accounts: Option<::std::vec::Vec<Arc<SharedUsageTopAccountResult>>>,
@@ -39262,6 +39369,7 @@ impl PyUsageTopAccountsResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedUser {
     name: Option<::std::string::String>,
     uid: Option<::std::string::String>,
@@ -39386,6 +39494,7 @@ impl PyUser {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedVolume {
     name: Option<::std::string::String>,
     host_path: Option<Arc<aws_sdk_guardduty::types::HostPath>>,
@@ -39570,6 +39679,7 @@ impl PyVolumeMount {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedVpcConfig {
     subnet_ids: Option<::std::vec::Vec<::std::string::String>>,
     vpc_id: Option<::std::string::String>,
@@ -39734,6 +39844,7 @@ impl PyOperationArchiveFindingsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateCustomDetectionRuleAssociationOutput {
     rule_association: Option<Arc<aws_sdk_guardduty::types::AssociationDetail>>,
 }
@@ -39803,6 +39914,7 @@ impl PyOperationCreateCustomDetectionRuleOrgConfigurationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateDetectorOutput {
     detector_id: Option<::std::string::String>,
     unprocessed_data_sources: Option<Arc<SharedUnprocessedDataSourcesResult>>,
@@ -40005,6 +40117,7 @@ impl PyOperationCreateMalwareProtectionPlanOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateMembersOutput {
     unprocessed_accounts:
         Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::UnprocessedAccount>>>,
@@ -40224,6 +40337,7 @@ impl PyOperationCreateTrustedEntitySetOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDeclineInvitationsOutput {
     unprocessed_accounts:
         Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::UnprocessedAccount>>>,
@@ -40377,6 +40491,7 @@ impl PyOperationDeleteIPSetOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDeleteInvitationsOutput {
     unprocessed_accounts:
         Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::UnprocessedAccount>>>,
@@ -40449,6 +40564,7 @@ impl PyOperationDeleteInvitationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDeleteMembersOutput {
     unprocessed_accounts:
         Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::UnprocessedAccount>>>,
@@ -40587,6 +40703,7 @@ impl PyOperationDeleteTrustedEntitySetOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeMalwareScansOutput {
     scans: Option<::std::vec::Vec<Arc<SharedScan>>>,
     next_token: Option<::std::string::String>,
@@ -40676,6 +40793,7 @@ impl PyOperationDescribeMalwareScansOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeOrganizationConfigurationOutput {
     auto_enable: Option<bool>,
     member_account_limit_reached: Option<bool>,
@@ -40836,6 +40954,7 @@ impl PyOperationDescribeOrganizationConfigurationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribePublishingDestinationOutput {
     destination_id: Option<::std::string::String>,
     destination_type: Option<aws_sdk_guardduty::types::DestinationType>,
@@ -41041,6 +41160,7 @@ impl PyOperationDisassociateFromMasterAccountOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDisassociateMembersOutput {
     unprocessed_accounts:
         Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::UnprocessedAccount>>>,
@@ -41130,6 +41250,7 @@ impl PyOperationEnableOrganizationAdminAccountOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetAdministratorAccountOutput {
     administrator: Option<Arc<aws_sdk_guardduty::types::Administrator>>,
 }
@@ -41186,6 +41307,7 @@ impl PyOperationGetAdministratorAccountOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetCoverageStatisticsOutput {
     coverage_statistics: Option<Arc<aws_sdk_guardduty::types::CoverageStatistics>>,
 }
@@ -41242,6 +41364,7 @@ impl PyOperationGetCoverageStatisticsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetCustomDetectionRuleOutput {
     rule: Option<Arc<SharedRuleDetail>>,
 }
@@ -41300,6 +41423,7 @@ impl PyOperationGetCustomDetectionRuleOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetCustomDetectionRuleAssociationOutput {
     rule_association: Option<Arc<aws_sdk_guardduty::types::AssociationDetail>>,
     tags: Option<::std::collections::HashMap<::std::string::String, ::std::string::String>>,
@@ -41382,6 +41506,7 @@ impl PyOperationGetCustomDetectionRuleAssociationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetCustomDetectionRuleOrgConfigurationOutput {
     configuration: Option<Arc<aws_sdk_guardduty::types::DetectionRuleOrgConfiguration>>,
 }
@@ -41434,6 +41559,7 @@ impl PyOperationGetCustomDetectionRuleOrgConfigurationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDetectorOutput {
     created_at: Option<::std::string::String>,
     finding_publishing_frequency: Option<aws_sdk_guardduty::types::FindingPublishingFrequency>,
@@ -41648,6 +41774,7 @@ impl PyOperationGetDetectorOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetFilterOutput {
     name: Option<::std::string::String>,
     description: Option<::std::string::String>,
@@ -41856,6 +41983,7 @@ impl PyOperationGetFilterOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetFindingsOutput {
     findings: Option<::std::vec::Vec<Arc<SharedFinding>>>,
 }
@@ -41921,6 +42049,7 @@ impl PyOperationGetFindingsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetFindingsStatisticsOutput {
     finding_statistics: Option<Arc<SharedFindingStatistics>>,
     next_token: Option<::std::string::String>,
@@ -42118,6 +42247,7 @@ impl PyOperationGetIPSetOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetInvestigationOutput {
     investigation: Option<Arc<SharedInvestigation>>,
 }
@@ -42209,6 +42339,7 @@ impl PyOperationGetInvitationsCountOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetMalwareProtectionPlanOutput {
     arn: Option<::std::string::String>,
     role: Option<::std::string::String>,
@@ -42436,6 +42567,7 @@ impl PyOperationGetMalwareProtectionPlanOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetMalwareScanOutput {
     scan_id: Option<::std::string::String>,
     detector_id: Option<::std::string::String>,
@@ -42809,6 +42941,7 @@ impl PyOperationGetMalwareScanOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetMalwareScanSettingsOutput {
     scan_resource_criteria: Option<Arc<SharedScanResourceCriteria>>,
     ebs_snapshot_preservation: Option<aws_sdk_guardduty::types::EbsSnapshotPreservation>,
@@ -42885,6 +43018,7 @@ impl PyOperationGetMalwareScanSettingsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetMasterAccountOutput {
     master: Option<Arc<aws_sdk_guardduty::types::Master>>,
 }
@@ -42941,6 +43075,7 @@ impl PyOperationGetMasterAccountOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetMemberDetectorsOutput {
     member_data_source_configurations:
         Option<::std::vec::Vec<Arc<SharedMemberDataSourceConfiguration>>>,
@@ -43058,6 +43193,7 @@ impl PyOperationGetMemberDetectorsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetMembersOutput {
     members: Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::Member>>>,
     unprocessed_accounts:
@@ -43163,6 +43299,7 @@ impl PyOperationGetMembersOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetOrganizationStatisticsOutput {
     organization_details: Option<Arc<SharedOrganizationDetails>>,
 }
@@ -43222,6 +43359,7 @@ impl PyOperationGetOrganizationStatisticsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetRemainingFreeTrialDaysOutput {
     accounts: Option<::std::vec::Vec<Arc<SharedAccountFreeTrialInfo>>>,
     unprocessed_accounts:
@@ -43790,6 +43928,7 @@ impl PyOperationGetTrustedEntitySetOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetUsageStatisticsOutput {
     usage_statistics: Option<Arc<SharedUsageStatistics>>,
     next_token: Option<::std::string::String>,
@@ -43866,6 +44005,7 @@ impl PyOperationGetUsageStatisticsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationInviteMembersOutput {
     unprocessed_accounts:
         Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::UnprocessedAccount>>>,
@@ -43936,6 +44076,7 @@ impl PyOperationInviteMembersOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListCoverageOutput {
     resources: Option<::std::vec::Vec<Arc<SharedCoverageResource>>>,
     next_token: Option<::std::string::String>,
@@ -44023,6 +44164,7 @@ impl PyOperationListCoverageOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListCustomDetectionRuleAssociationsOutput {
     rule_associations: Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::AssociationSummary>>>,
     next_token: Option<::std::string::String>,
@@ -44103,6 +44245,7 @@ impl PyOperationListCustomDetectionRuleAssociationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListCustomDetectionRuleOrgConfigurationsOutput {
     configurations: Option<
         ::std::vec::Vec<Arc<aws_sdk_guardduty::types::DetectionRuleOrgConfigurationSummary>>,
@@ -44186,6 +44329,7 @@ impl PyOperationListCustomDetectionRuleOrgConfigurationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListCustomDetectionRulesOutput {
     rules: Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::RuleSummary>>>,
     next_token: Option<::std::string::String>,
@@ -44503,6 +44647,7 @@ impl PyOperationListIPSetsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListInvestigationsOutput {
     investigations: Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::InvestigationSummary>>>,
     next_token: Option<::std::string::String>,
@@ -44592,6 +44737,7 @@ impl PyOperationListInvestigationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListInvitationsOutput {
     invitations: Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::Invitation>>>,
     next_token: Option<::std::string::String>,
@@ -44679,6 +44825,7 @@ impl PyOperationListInvitationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListMalwareProtectionPlansOutput {
     malware_protection_plans:
         Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::MalwareProtectionPlanSummary>>>,
@@ -44760,6 +44907,7 @@ impl PyOperationListMalwareProtectionPlansOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListMalwareScansOutput {
     scans: Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::MalwareScan>>>,
     next_token: Option<::std::string::String>,
@@ -44849,6 +44997,7 @@ impl PyOperationListMalwareScansOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListMembersOutput {
     members: Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::Member>>>,
     next_token: Option<::std::string::String>,
@@ -44932,6 +45081,7 @@ impl PyOperationListMembersOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListOrganizationAdminAccountsOutput {
     admin_accounts: Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::AdminAccount>>>,
     next_token: Option<::std::string::String>,
@@ -45012,6 +45162,7 @@ impl PyOperationListOrganizationAdminAccountsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPublishingDestinationsOutput {
     destinations: Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::Destination>>>,
     next_token: Option<::std::string::String>,
@@ -45364,6 +45515,7 @@ impl PyOperationStartMalwareScanOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationStartMonitoringMembersOutput {
     unprocessed_accounts:
         Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::UnprocessedAccount>>>,
@@ -45436,6 +45588,7 @@ impl PyOperationStartMonitoringMembersOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationStopMonitoringMembersOutput {
     unprocessed_accounts:
         Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::UnprocessedAccount>>>,
@@ -45687,6 +45840,7 @@ impl PyOperationUpdateMalwareScanSettingsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateMemberDetectorsOutput {
     unprocessed_accounts:
         Option<::std::vec::Vec<Arc<aws_sdk_guardduty::types::UnprocessedAccount>>>,

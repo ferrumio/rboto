@@ -15,6 +15,8 @@ from .types import (
 {% for name in type_names %}    {{ name }},
 {% endfor %}){% if pagination %}
 from .paginators import {{ client_class }}Paginators as _Paginators
+{% endif %}{% if waiters %}
+from .waiters import {{ client_class }}Waiters as _Waiters
 {% endif %}
 
 
@@ -46,7 +48,8 @@ class {{ client_class }}:
             endpoint_url=endpoint_url,
             config=config,
         )
-{% if pagination %}        self._paginators: _Paginators | None = None
+{% if waiters %}        self._waiters: _Waiters | None = None
+{% endif %}{% if pagination %}        self._paginators: _Paginators | None = None
 
     @property
     def paginators(self) -> _Paginators:
@@ -54,6 +57,14 @@ class {{ client_class }}:
         if self._paginators is None:
             self._paginators = _Paginators(self)
         return self._paginators
+{% endif %}{% if waiters %}
+
+    @property
+    def waiters(self) -> _Waiters:
+        """Typed async waiters. See [guide](https://ferrumio.github.io/rboto/guides/waiters/)."""
+        if self._waiters is None:
+            self._waiters = _Waiters(self)
+        return self._waiters
 {% endif %}{% for method in methods %}
 
     async def {{ method.name }}(

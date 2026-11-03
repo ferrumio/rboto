@@ -2,6 +2,25 @@ from dataclasses import dataclass
 
 
 @dataclass(frozen=True, slots=True)
+class WaiterAcceptor:
+    state: str
+    matcher: str
+    expected: str | bool
+    path: str | None = None
+    comparator: str | None = None
+
+
+@dataclass(frozen=True, slots=True)
+class Waiter:
+    name: str
+    operation: str
+    acceptors: tuple[WaiterAcceptor, ...]
+    min_delay: int = 2
+    max_delay: int = 120
+    documentation: str = ""
+
+
+@dataclass(frozen=True, slots=True)
 class Pagination:
     input_tokens: tuple[str, ...]
     output_tokens: tuple[str, ...]
@@ -31,6 +50,7 @@ class ServiceDescriptor:
     display_name: str | None = None
     documentation_path: str = "clients/"
     pagination: tuple[tuple[str, Pagination], ...] = ()
+    waiters: tuple[Waiter, ...] = ()
 
     @property
     def public_name(self) -> str:

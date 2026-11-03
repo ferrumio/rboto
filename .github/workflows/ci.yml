@@ -31,7 +31,7 @@ jobs:
       - name: Install tools
         run: |
           python -m venv .venv
-          .venv/bin/pip install -e codegen -e packages/rboto pytest pytest-asyncio mypy pyright ruff "pydantic>=2,<3" build hatchling twine
+          .venv/bin/pip install -e codegen -e packages/rboto pytest pytest-asyncio mypy pyright ruff "pydantic>=2,<3" "types-jmespath>=1,<2" build hatchling twine
 
       - name: Service catalog
         id: catalog
@@ -133,6 +133,7 @@ jobs:
           tests/integration/test_byte_stream.py
           tests/integration/test_runtime_workers.py
           tests/integration/test_output_ownership.py
+          tests/integration/test_waiters.py
           tests/integration/test_client_transport.py -q
 
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2

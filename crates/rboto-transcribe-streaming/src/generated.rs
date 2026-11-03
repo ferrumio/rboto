@@ -2773,6 +2773,7 @@ impl PyMedicalScribeEncryptionSettings {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMedicalScribePostStreamAnalyticsResult {
     clinical_note_generation_result:
         Option<Arc<aws_sdk_transcribestreaming::types::ClinicalNoteGenerationResult>>,
@@ -2839,6 +2840,7 @@ impl PyMedicalScribePostStreamAnalyticsResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMedicalScribePostStreamAnalyticsSettings {
     clinical_note_generation_settings:
         Option<Arc<aws_sdk_transcribestreaming::types::ClinicalNoteGenerationSettings>>,
@@ -2905,6 +2907,7 @@ impl PyMedicalScribePostStreamAnalyticsSettings {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMedicalScribeStreamDetails {
     session_id: Option<::std::string::String>,
     stream_created_at: Option<::aws_smithy_types::DateTime>,
@@ -3277,6 +3280,7 @@ impl PyMedicalScribeStreamDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetMedicalScribeStreamOutput {
     medical_scribe_stream_details: Option<Arc<SharedMedicalScribeStreamDetails>>,
 }

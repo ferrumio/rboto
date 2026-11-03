@@ -12508,6 +12508,7 @@ impl PyActionGroupSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAgent {
     agent_id: ::std::string::String,
     agent_name: ::std::string::String,
@@ -13066,6 +13067,7 @@ impl PyAgentActionGroup {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAgentAlias {
     agent_id: ::std::string::String,
     agent_alias_id: ::std::string::String,
@@ -13315,6 +13317,7 @@ impl PyAgentAlias {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAgentAliasHistoryEvent {
     routing_configuration: Option<
         ::std::vec::Vec<Arc<aws_sdk_bedrockagent::types::AgentAliasRoutingConfigurationListItem>>,
@@ -13464,6 +13467,7 @@ impl PyAgentAliasRoutingConfigurationListItem {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAgentAliasSummary {
     agent_alias_id: ::std::string::String,
     agent_alias_name: ::std::string::String,
@@ -13627,6 +13631,7 @@ impl PyAgentAliasSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAgentCollaborator {
     agent_id: ::std::string::String,
     agent_version: ::std::string::String,
@@ -13796,6 +13801,7 @@ impl PyAgentCollaborator {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAgentCollaboratorSummary {
     agent_id: ::std::string::String,
     agent_version: ::std::string::String,
@@ -14077,6 +14083,7 @@ impl PyAgentKnowledgeBaseSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAgentSummary {
     agent_id: ::std::string::String,
     agent_name: ::std::string::String,
@@ -14205,6 +14212,7 @@ impl PyAgentSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAgentVersion {
     agent_id: ::std::string::String,
     agent_name: ::std::string::String,
@@ -14551,6 +14559,7 @@ impl PyAgentVersion {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAgentVersionSummary {
     agent_name: ::std::string::String,
     agent_status: aws_sdk_bedrockagent::types::AgentStatus,
@@ -14678,6 +14687,7 @@ impl PyAgentVersionSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAudioConfiguration {
     segmentation_configuration:
         Option<Arc<aws_sdk_bedrockagent::types::AudioSegmentationConfiguration>>,
@@ -14812,6 +14822,7 @@ impl PyBedrockDataAutomationConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedBedrockEmbeddingModelConfiguration {
     dimensions: Option<i32>,
     embedding_data_type: Option<aws_sdk_bedrockagent::types::EmbeddingDataType>,
@@ -14981,6 +14992,7 @@ impl PyBedrockEmbeddingModelConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedBedrockFoundationModelConfiguration {
     model_arn: ::std::string::String,
     parsing_prompt: Option<Arc<aws_sdk_bedrockagent::types::ParsingPrompt>>,
@@ -15070,6 +15082,7 @@ impl PyBedrockFoundationModelConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedBedrockFoundationModelContextEnrichmentConfiguration {
     enrichment_strategy_configuration:
         Option<Arc<aws_sdk_bedrockagent::types::EnrichmentStrategyConfiguration>>,
@@ -15146,6 +15159,7 @@ impl PyBedrockFoundationModelContextEnrichmentConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedChunkingConfiguration {
     chunking_strategy: aws_sdk_bedrockagent::types::ChunkingStrategy,
     fixed_size_chunking_configuration:
@@ -15271,6 +15285,7 @@ impl PyChunkingConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedConfluenceCrawlerConfiguration {
     filter_configuration: Option<Arc<SharedCrawlFilterConfiguration>>,
 }
@@ -15334,6 +15349,7 @@ impl PyConfluenceCrawlerConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedConfluenceDataSourceConfiguration {
     source_configuration: Option<Arc<aws_sdk_bedrockagent::types::ConfluenceSourceConfiguration>>,
     crawler_configuration: Option<Arc<SharedConfluenceCrawlerConfiguration>>,
@@ -15463,6 +15479,7 @@ impl PyConfluenceSourceConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedContextEnrichmentConfiguration {
     r#type: aws_sdk_bedrockagent::types::ContextEnrichmentType,
     bedrock_foundation_model_configuration:
@@ -15540,6 +15557,7 @@ impl PyContextEnrichmentConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCrawlFilterConfiguration {
     r#type: aws_sdk_bedrockagent::types::CrawlFilterConfigurationType,
     pattern_object_filter: Option<Arc<SharedPatternObjectFilterConfiguration>>,
@@ -15685,6 +15703,7 @@ impl PyCustomOrchestration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCustomTransformationConfiguration {
     intermediate_storage: Option<Arc<SharedIntermediateStorage>>,
     transformations: ::std::vec::Vec<Arc<SharedTransformation>>,
@@ -15777,6 +15796,7 @@ impl PyCustomTransformationConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDataSource {
     knowledge_base_id: ::std::string::String,
     data_source_id: ::std::string::String,
@@ -16008,6 +16028,7 @@ impl PyDataSource {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDataSourceConfiguration {
     r#type: aws_sdk_bedrockagent::types::DataSourceType,
     managed_knowledge_base_connector_configuration:
@@ -16303,6 +16324,7 @@ impl PyDeletionProtectionConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDocumentIdentifier {
     data_source_type: aws_sdk_bedrockagent::types::ContentDataSourceType,
     s3: Option<Arc<aws_sdk_bedrockagent::types::S3Location>>,
@@ -16396,6 +16418,7 @@ impl PyDocumentIdentifier {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEmbeddingModelConfiguration {
     bedrock_embedding_model_configuration: Option<Arc<SharedBedrockEmbeddingModelConfiguration>>,
 }
@@ -16569,6 +16592,7 @@ impl PyFlowAliasRoutingConfigurationListItem {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedFlowAliasSummary {
     name: ::std::string::String,
     description: Option<::std::string::String>,
@@ -16787,6 +16811,7 @@ impl PyFlowConnection {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedFlowDefinition {
     nodes: Option<::std::vec::Vec<Arc<SharedFlowNode>>>,
     connections: Option<::std::vec::Vec<Arc<aws_sdk_bedrockagent::types::FlowConnection>>>,
@@ -16900,6 +16925,7 @@ impl PyFlowDefinition {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedFlowNode {
     name: ::std::string::String,
     r#type: aws_sdk_bedrockagent::types::FlowNodeType,
@@ -17306,6 +17332,7 @@ impl PyGuardrailConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedHierarchicalChunkingConfiguration {
     level_configurations:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagent::types::HierarchicalChunkingLevelConfiguration>>,
@@ -17500,6 +17527,7 @@ impl PyInferenceConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedIngestionJob {
     knowledge_base_id: ::std::string::String,
     data_source_id: ::std::string::String,
@@ -17756,6 +17784,7 @@ impl PyIngestionJobStatistics {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedIngestionJobSummary {
     knowledge_base_id: ::std::string::String,
     data_source_id: ::std::string::String,
@@ -17911,6 +17940,7 @@ impl PyIngestionJobSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedIntermediateStorage {
     s3_location: Option<Arc<aws_sdk_bedrockagent::types::S3Location>>,
 }
@@ -17992,6 +18022,7 @@ impl PyKendraKnowledgeBaseConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedKnowledgeBase {
     knowledge_base_id: ::std::string::String,
     name: ::std::string::String,
@@ -18188,6 +18219,7 @@ impl PyKnowledgeBase {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedKnowledgeBaseConfiguration {
     r#type: aws_sdk_bedrockagent::types::KnowledgeBaseType,
     vector_knowledge_base_configuration: Option<Arc<SharedVectorKnowledgeBaseConfiguration>>,
@@ -18340,6 +18372,7 @@ impl PyKnowledgeBaseConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedKnowledgeBaseDocumentDetail {
     knowledge_base_id: ::std::string::String,
     data_source_id: ::std::string::String,
@@ -18519,6 +18552,7 @@ impl PyKnowledgeBaseSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedManagedKnowledgeBaseConfiguration {
     embedding_model_type: Option<aws_sdk_bedrockagent::types::EmbeddingModelType>,
     embedding_model_arn: Option<::std::string::String>,
@@ -18672,6 +18706,7 @@ impl PyManagedKnowledgeBaseConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedManagedKnowledgeBaseConnectorConfiguration {
     deletion_protection_configuration:
         Option<Arc<aws_sdk_bedrockagent::types::DeletionProtectionConfiguration>>,
@@ -18800,6 +18835,7 @@ impl PyManagedKnowledgeBaseConnectorConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMediaExtractionConfiguration {
     image_extraction_configuration:
         Option<Arc<aws_sdk_bedrockagent::types::ImageExtractionConfiguration>>,
@@ -18918,6 +18954,7 @@ impl PyMediaExtractionConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMemoryConfiguration {
     enabled_memory_types: ::std::vec::Vec<aws_sdk_bedrockagent::types::MemoryType>,
     storage_days: i32,
@@ -19010,6 +19047,7 @@ impl PyMemoryConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMongoDbAtlasConfiguration {
     endpoint: ::std::string::String,
     database_name: ::std::string::String,
@@ -19193,6 +19231,7 @@ impl PyMongoDbAtlasFieldMapping {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedNeptuneAnalyticsConfiguration {
     graph_arn: ::std::string::String,
     field_mapping: Option<Arc<aws_sdk_bedrockagent::types::NeptuneAnalyticsFieldMapping>>,
@@ -19292,6 +19331,7 @@ impl PyNeptuneAnalyticsFieldMapping {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedOpenSearchManagedClusterConfiguration {
     domain_endpoint: ::std::string::String,
     domain_arn: ::std::string::String,
@@ -19417,6 +19457,7 @@ impl PyOpenSearchManagedClusterFieldMapping {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedOpenSearchServerlessConfiguration {
     collection_arn: ::std::string::String,
     vector_index_name: ::std::string::String,
@@ -19532,6 +19573,7 @@ impl PyOpenSearchServerlessFieldMapping {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedParsingConfiguration {
     parsing_strategy: aws_sdk_bedrockagent::types::ParsingStrategy,
     bedrock_foundation_model_configuration: Option<Arc<SharedBedrockFoundationModelConfiguration>>,
@@ -19700,6 +19742,7 @@ impl PyPatternObjectFilter {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPatternObjectFilterConfiguration {
     filters: ::std::vec::Vec<Arc<aws_sdk_bedrockagent::types::PatternObjectFilter>>,
 }
@@ -19766,6 +19809,7 @@ impl PyPatternObjectFilterConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPineconeConfiguration {
     connection_string: ::std::string::String,
     credentials_secret_arn: ::std::string::String,
@@ -19893,6 +19937,7 @@ impl PyPineconeFieldMapping {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPromptConfiguration {
     prompt_type: Option<aws_sdk_bedrockagent::types::PromptType>,
     prompt_creation_mode: Option<aws_sdk_bedrockagent::types::CreationMode>,
@@ -20106,6 +20151,7 @@ impl PyPromptMetadataEntry {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPromptOverrideConfiguration {
     prompt_configurations: ::std::vec::Vec<Arc<SharedPromptConfiguration>>,
     override_lambda: Option<::std::string::String>,
@@ -20248,6 +20294,7 @@ impl PyPromptSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPromptVariant {
     name: ::std::string::String,
     template_type: aws_sdk_bedrockagent::types::PromptTemplateType,
@@ -20471,6 +20518,7 @@ impl PyQueryGenerationColumn {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedQueryGenerationConfiguration {
     execution_timeout_seconds: Option<i32>,
     generation_context: Option<Arc<SharedQueryGenerationContext>>,
@@ -20552,6 +20600,7 @@ impl PyQueryGenerationConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedQueryGenerationContext {
     tables: Option<::std::vec::Vec<Arc<SharedQueryGenerationTable>>>,
     curated_queries: Option<::std::vec::Vec<Arc<aws_sdk_bedrockagent::types::CuratedQuery>>>,
@@ -20665,6 +20714,7 @@ impl PyQueryGenerationContext {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedQueryGenerationTable {
     name: ::std::string::String,
     description: Option<::std::string::String>,
@@ -20785,6 +20835,7 @@ impl PyQueryGenerationTable {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRdsConfiguration {
     resource_arn: ::std::string::String,
     credentials_secret_arn: ::std::string::String,
@@ -20936,6 +20987,7 @@ impl PyRdsFieldMapping {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRedisEnterpriseCloudConfiguration {
     endpoint: ::std::string::String,
     vector_index_name: ::std::string::String,
@@ -21063,6 +21115,7 @@ impl PyRedisEnterpriseCloudFieldMapping {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRedshiftConfiguration {
     storage_configurations: ::std::vec::Vec<Arc<SharedRedshiftQueryEngineStorageConfiguration>>,
     query_engine_configuration: Option<Arc<SharedRedshiftQueryEngineConfiguration>>,
@@ -21226,6 +21279,7 @@ impl PyRedshiftProvisionedAuthConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRedshiftProvisionedConfiguration {
     cluster_identifier: ::std::string::String,
     auth_configuration:
@@ -21325,6 +21379,7 @@ impl PyRedshiftQueryEngineAwsDataCatalogStorageConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRedshiftQueryEngineConfiguration {
     r#type: aws_sdk_bedrockagent::types::RedshiftQueryEngineType,
     serverless_configuration: Option<Arc<SharedRedshiftServerlessConfiguration>>,
@@ -21446,6 +21501,7 @@ impl PyRedshiftQueryEngineRedshiftStorageConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRedshiftQueryEngineStorageConfiguration {
     r#type: aws_sdk_bedrockagent::types::RedshiftQueryEngineStorageType,
     aws_data_catalog_configuration: Option<
@@ -21579,6 +21635,7 @@ impl PyRedshiftServerlessAuthConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRedshiftServerlessConfiguration {
     workgroup_arn: ::std::string::String,
     auth_configuration:
@@ -21958,6 +22015,7 @@ impl PyS3VectorsConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSalesforceCrawlerConfiguration {
     filter_configuration: Option<Arc<SharedCrawlFilterConfiguration>>,
 }
@@ -22021,6 +22079,7 @@ impl PySalesforceCrawlerConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSalesforceDataSourceConfiguration {
     source_configuration: Option<Arc<aws_sdk_bedrockagent::types::SalesforceSourceConfiguration>>,
     crawler_configuration: Option<Arc<SharedSalesforceCrawlerConfiguration>>,
@@ -22254,6 +22313,7 @@ impl PySessionSummaryConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSharePointCrawlerConfiguration {
     filter_configuration: Option<Arc<SharedCrawlFilterConfiguration>>,
 }
@@ -22317,6 +22377,7 @@ impl PySharePointCrawlerConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSharePointDataSourceConfiguration {
     source_configuration: Option<Arc<aws_sdk_bedrockagent::types::SharePointSourceConfiguration>>,
     crawler_configuration: Option<Arc<SharedSharePointCrawlerConfiguration>>,
@@ -22467,6 +22528,7 @@ impl PySharePointSourceConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSqlKnowledgeBaseConfiguration {
     r#type: aws_sdk_bedrockagent::types::QueryEngineType,
     redshift_configuration: Option<Arc<SharedRedshiftConfiguration>>,
@@ -22540,6 +22602,7 @@ impl PySqlKnowledgeBaseConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedStorageConfiguration {
     r#type: aws_sdk_bedrockagent::types::KnowledgeBaseStorageType,
     opensearch_serverless_configuration: Option<Arc<SharedOpenSearchServerlessConfiguration>>,
@@ -22792,6 +22855,7 @@ impl PyStorageConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSupplementalDataStorageConfiguration {
     storage_locations: ::std::vec::Vec<Arc<SharedSupplementalDataStorageLocation>>,
 }
@@ -22858,6 +22922,7 @@ impl PySupplementalDataStorageConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSupplementalDataStorageLocation {
     r#type: aws_sdk_bedrockagent::types::SupplementalDataStorageLocationType,
     s3_location: Option<Arc<aws_sdk_bedrockagent::types::S3Location>>,
@@ -22929,6 +22994,7 @@ impl PySupplementalDataStorageLocation {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedTransformation {
     transformation_function: Option<Arc<SharedTransformationFunction>>,
     step_to_apply: aws_sdk_bedrockagent::types::StepType,
@@ -23000,6 +23066,7 @@ impl PyTransformation {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedTransformationFunction {
     transformation_lambda_configuration:
         Option<Arc<aws_sdk_bedrockagent::types::TransformationLambdaConfiguration>>,
@@ -23084,6 +23151,7 @@ impl PyTransformationLambdaConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedUrlConfiguration {
     seed_urls: Option<::std::vec::Vec<Arc<aws_sdk_bedrockagent::types::SeedUrl>>>,
 }
@@ -23158,6 +23226,7 @@ impl PyUrlConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedVectorIngestionConfiguration {
     chunking_configuration: Option<Arc<SharedChunkingConfiguration>>,
     custom_transformation_configuration: Option<Arc<SharedCustomTransformationConfiguration>>,
@@ -23299,6 +23368,7 @@ impl PyVectorIngestionConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedVectorKnowledgeBaseConfiguration {
     embedding_model_arn: ::std::string::String,
     embedding_model_configuration: Option<Arc<SharedEmbeddingModelConfiguration>>,
@@ -23399,6 +23469,7 @@ impl PyVectorKnowledgeBaseConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedVideoConfiguration {
     segmentation_configuration:
         Option<Arc<aws_sdk_bedrockagent::types::VideoSegmentationConfiguration>>,
@@ -23756,6 +23827,7 @@ impl PyVpcConfigurationSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedWebCrawlerConfiguration {
     crawler_limits: Option<Arc<aws_sdk_bedrockagent::types::WebCrawlerLimits>>,
     inclusion_filters: Option<::std::vec::Vec<::std::string::String>>,
@@ -23961,6 +24033,7 @@ impl PyWebCrawlerLimits {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedWebDataSourceConfiguration {
     source_configuration: Option<Arc<SharedWebSourceConfiguration>>,
     crawler_configuration: Option<Arc<SharedWebCrawlerConfiguration>>,
@@ -24050,6 +24123,7 @@ impl PyWebDataSourceConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedWebSourceConfiguration {
     url_configuration: Option<Arc<SharedUrlConfiguration>>,
 }
@@ -24111,6 +24185,7 @@ impl PyWebSourceConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationAssociateAgentCollaboratorOutput {
     agent_collaborator: Option<Arc<SharedAgentCollaborator>>,
 }
@@ -24163,6 +24238,7 @@ impl PyOperationAssociateAgentCollaboratorOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationAssociateAgentKnowledgeBaseOutput {
     agent_knowledge_base: Option<Arc<aws_sdk_bedrockagent::types::AgentKnowledgeBase>>,
 }
@@ -24215,6 +24291,7 @@ impl PyOperationAssociateAgentKnowledgeBaseOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateAgentOutput {
     agent: Option<Arc<SharedAgent>>,
 }
@@ -24269,6 +24346,7 @@ impl PyOperationCreateAgentOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateAgentActionGroupOutput {
     agent_action_group: Option<Arc<aws_sdk_bedrockagent::types::AgentActionGroup>>,
 }
@@ -24325,6 +24403,7 @@ impl PyOperationCreateAgentActionGroupOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateAgentAliasOutput {
     agent_alias: Option<Arc<SharedAgentAlias>>,
 }
@@ -24383,6 +24462,7 @@ impl PyOperationCreateAgentAliasOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateDataSourceOutput {
     data_source: Option<Arc<SharedDataSource>>,
 }
@@ -24441,6 +24521,7 @@ impl PyOperationCreateDataSourceOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateFlowOutput {
     name: ::std::string::String,
     description: Option<::std::string::String>,
@@ -24613,6 +24694,7 @@ impl PyOperationCreateFlowOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateFlowAliasOutput {
     name: ::std::string::String,
     description: Option<::std::string::String>,
@@ -24779,6 +24861,7 @@ impl PyOperationCreateFlowAliasOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateFlowVersionOutput {
     name: ::std::string::String,
     description: Option<::std::string::String>,
@@ -24943,6 +25026,7 @@ impl PyOperationCreateFlowVersionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateKnowledgeBaseOutput {
     knowledge_base: Option<Arc<SharedKnowledgeBase>>,
 }
@@ -25001,6 +25085,7 @@ impl PyOperationCreateKnowledgeBaseOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreatePromptOutput {
     name: ::std::string::String,
     description: Option<::std::string::String>,
@@ -25184,6 +25269,7 @@ impl PyOperationCreatePromptOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreatePromptVersionOutput {
     name: ::std::string::String,
     description: Option<::std::string::String>,
@@ -25861,6 +25947,7 @@ impl PyOperationDeleteKnowledgeBaseOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDeleteKnowledgeBaseDocumentsOutput {
     document_details: Option<::std::vec::Vec<Arc<SharedKnowledgeBaseDocumentDetail>>>,
 }
@@ -26134,6 +26221,7 @@ impl PyOperationDisassociateAgentKnowledgeBaseOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetAgentOutput {
     agent: Option<Arc<SharedAgent>>,
 }
@@ -26188,6 +26276,7 @@ impl PyOperationGetAgentOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetAgentActionGroupOutput {
     agent_action_group: Option<Arc<aws_sdk_bedrockagent::types::AgentActionGroup>>,
 }
@@ -26244,6 +26333,7 @@ impl PyOperationGetAgentActionGroupOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetAgentAliasOutput {
     agent_alias: Option<Arc<SharedAgentAlias>>,
 }
@@ -26300,6 +26390,7 @@ impl PyOperationGetAgentAliasOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetAgentCollaboratorOutput {
     agent_collaborator: Option<Arc<SharedAgentCollaborator>>,
 }
@@ -26358,6 +26449,7 @@ impl PyOperationGetAgentCollaboratorOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetAgentKnowledgeBaseOutput {
     agent_knowledge_base: Option<Arc<aws_sdk_bedrockagent::types::AgentKnowledgeBase>>,
 }
@@ -26414,6 +26506,7 @@ impl PyOperationGetAgentKnowledgeBaseOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetAgentVersionOutput {
     agent_version: Option<Arc<SharedAgentVersion>>,
 }
@@ -26472,6 +26565,7 @@ impl PyOperationGetAgentVersionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDataSourceOutput {
     data_source: Option<Arc<SharedDataSource>>,
 }
@@ -26528,6 +26622,7 @@ impl PyOperationGetDataSourceOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetFlowOutput {
     name: ::std::string::String,
     description: Option<::std::string::String>,
@@ -26735,6 +26830,7 @@ impl PyOperationGetFlowOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetFlowAliasOutput {
     name: ::std::string::String,
     description: Option<::std::string::String>,
@@ -26899,6 +26995,7 @@ impl PyOperationGetFlowAliasOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetFlowVersionOutput {
     name: ::std::string::String,
     description: Option<::std::string::String>,
@@ -27063,6 +27160,7 @@ impl PyOperationGetFlowVersionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetIngestionJobOutput {
     ingestion_job: Option<Arc<SharedIngestionJob>>,
 }
@@ -27121,6 +27219,7 @@ impl PyOperationGetIngestionJobOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetKnowledgeBaseOutput {
     knowledge_base: Option<Arc<SharedKnowledgeBase>>,
 }
@@ -27179,6 +27278,7 @@ impl PyOperationGetKnowledgeBaseOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetKnowledgeBaseDocumentsOutput {
     document_details: Option<::std::vec::Vec<Arc<SharedKnowledgeBaseDocumentDetail>>>,
 }
@@ -27242,6 +27342,7 @@ impl PyOperationGetKnowledgeBaseDocumentsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetPromptOutput {
     name: ::std::string::String,
     description: Option<::std::string::String>,
@@ -27466,6 +27567,7 @@ impl PyOperationGetResourcePolicyOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetRetrievalInstructionOutput {
     retrieval_instruction_id: ::std::string::String,
     retrieval_instruction_arn: ::std::string::String,
@@ -27718,6 +27820,7 @@ impl PyOperationGetRetrievalInstructionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetVpcConfigurationOutput {
     vpc_configuration: Option<Arc<aws_sdk_bedrockagent::types::VpcConfiguration>>,
 }
@@ -27774,6 +27877,7 @@ impl PyOperationGetVpcConfigurationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationIngestKnowledgeBaseDocumentsOutput {
     document_details: Option<::std::vec::Vec<Arc<SharedKnowledgeBaseDocumentDetail>>>,
 }
@@ -27837,6 +27941,7 @@ impl PyOperationIngestKnowledgeBaseDocumentsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListAgentActionGroupsOutput {
     action_group_summaries: ::std::vec::Vec<Arc<aws_sdk_bedrockagent::types::ActionGroupSummary>>,
     next_token: Option<::std::string::String>,
@@ -27916,6 +28021,7 @@ impl PyOperationListAgentActionGroupsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListAgentAliasesOutput {
     agent_alias_summaries: ::std::vec::Vec<Arc<SharedAgentAliasSummary>>,
     next_token: Option<::std::string::String>,
@@ -27995,6 +28101,7 @@ impl PyOperationListAgentAliasesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListAgentCollaboratorsOutput {
     agent_collaborator_summaries: ::std::vec::Vec<Arc<SharedAgentCollaboratorSummary>>,
     next_token: Option<::std::string::String>,
@@ -28074,6 +28181,7 @@ impl PyOperationListAgentCollaboratorsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListAgentKnowledgeBasesOutput {
     agent_knowledge_base_summaries:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagent::types::AgentKnowledgeBaseSummary>>,
@@ -28155,6 +28263,7 @@ impl PyOperationListAgentKnowledgeBasesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListAgentVersionsOutput {
     agent_version_summaries: ::std::vec::Vec<Arc<SharedAgentVersionSummary>>,
     next_token: Option<::std::string::String>,
@@ -28234,6 +28343,7 @@ impl PyOperationListAgentVersionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListAgentsOutput {
     agent_summaries: ::std::vec::Vec<Arc<SharedAgentSummary>>,
     next_token: Option<::std::string::String>,
@@ -28311,6 +28421,7 @@ impl PyOperationListAgentsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListDataSourcesOutput {
     data_source_summaries: ::std::vec::Vec<Arc<aws_sdk_bedrockagent::types::DataSourceSummary>>,
     next_token: Option<::std::string::String>,
@@ -28390,6 +28501,7 @@ impl PyOperationListDataSourcesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListFlowAliasesOutput {
     flow_alias_summaries: ::std::vec::Vec<Arc<SharedFlowAliasSummary>>,
     next_token: Option<::std::string::String>,
@@ -28469,6 +28581,7 @@ impl PyOperationListFlowAliasesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListFlowVersionsOutput {
     flow_version_summaries: ::std::vec::Vec<Arc<aws_sdk_bedrockagent::types::FlowVersionSummary>>,
     next_token: Option<::std::string::String>,
@@ -28548,6 +28661,7 @@ impl PyOperationListFlowVersionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListFlowsOutput {
     flow_summaries: ::std::vec::Vec<Arc<aws_sdk_bedrockagent::types::FlowSummary>>,
     next_token: Option<::std::string::String>,
@@ -28625,6 +28739,7 @@ impl PyOperationListFlowsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListIngestionJobsOutput {
     ingestion_job_summaries: ::std::vec::Vec<Arc<SharedIngestionJobSummary>>,
     next_token: Option<::std::string::String>,
@@ -28704,6 +28819,7 @@ impl PyOperationListIngestionJobsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListKnowledgeBaseDocumentsOutput {
     document_details: ::std::vec::Vec<Arc<SharedKnowledgeBaseDocumentDetail>>,
     next_token: Option<::std::string::String>,
@@ -28776,6 +28892,7 @@ impl PyOperationListKnowledgeBaseDocumentsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListKnowledgeBasesOutput {
     knowledge_base_summaries:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagent::types::KnowledgeBaseSummary>>,
@@ -28856,6 +28973,7 @@ impl PyOperationListKnowledgeBasesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPromptsOutput {
     prompt_summaries: ::std::vec::Vec<Arc<aws_sdk_bedrockagent::types::PromptSummary>>,
     next_token: Option<::std::string::String>,
@@ -28933,6 +29051,7 @@ impl PyOperationListPromptsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListRetrievalInstructionVersionsOutput {
     retrieval_instruction_version_summaries:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagent::types::RetrievalInstructionVersionSummary>>,
@@ -29006,6 +29125,7 @@ impl PyOperationListRetrievalInstructionVersionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListRetrievalInstructionsOutput {
     retrieval_instruction_summaries:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagent::types::RetrievalInstructionSummary>>,
@@ -29124,6 +29244,7 @@ impl PyOperationListTagsForResourceOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListVpcConfigurationsOutput {
     items: ::std::vec::Vec<Arc<aws_sdk_bedrockagent::types::VpcConfigurationSummary>>,
     next_token: Option<::std::string::String>,
@@ -29318,6 +29439,7 @@ impl PyOperationPutResourcePolicyOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationStartIngestionJobOutput {
     ingestion_job: Option<Arc<SharedIngestionJob>>,
 }
@@ -29376,6 +29498,7 @@ impl PyOperationStartIngestionJobOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationStopIngestionJobOutput {
     ingestion_job: Option<Arc<SharedIngestionJob>>,
 }
@@ -29468,6 +29591,7 @@ impl PyOperationUntagResourceOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateAgentOutput {
     agent: Option<Arc<SharedAgent>>,
 }
@@ -29522,6 +29646,7 @@ impl PyOperationUpdateAgentOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateAgentActionGroupOutput {
     agent_action_group: Option<Arc<aws_sdk_bedrockagent::types::AgentActionGroup>>,
 }
@@ -29578,6 +29703,7 @@ impl PyOperationUpdateAgentActionGroupOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateAgentAliasOutput {
     agent_alias: Option<Arc<SharedAgentAlias>>,
 }
@@ -29636,6 +29762,7 @@ impl PyOperationUpdateAgentAliasOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateAgentCollaboratorOutput {
     agent_collaborator: Option<Arc<SharedAgentCollaborator>>,
 }
@@ -29694,6 +29821,7 @@ impl PyOperationUpdateAgentCollaboratorOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateAgentKnowledgeBaseOutput {
     agent_knowledge_base: Option<Arc<aws_sdk_bedrockagent::types::AgentKnowledgeBase>>,
 }
@@ -29746,6 +29874,7 @@ impl PyOperationUpdateAgentKnowledgeBaseOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateDataSourceOutput {
     data_source: Option<Arc<SharedDataSource>>,
 }
@@ -29804,6 +29933,7 @@ impl PyOperationUpdateDataSourceOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateFlowOutput {
     name: ::std::string::String,
     description: Option<::std::string::String>,
@@ -29976,6 +30106,7 @@ impl PyOperationUpdateFlowOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateFlowAliasOutput {
     name: ::std::string::String,
     description: Option<::std::string::String>,
@@ -30142,6 +30273,7 @@ impl PyOperationUpdateFlowAliasOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateKnowledgeBaseOutput {
     knowledge_base: Option<Arc<SharedKnowledgeBase>>,
 }
@@ -30200,6 +30332,7 @@ impl PyOperationUpdateKnowledgeBaseOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdatePromptOutput {
     name: ::std::string::String,
     description: Option<::std::string::String>,
@@ -30468,6 +30601,7 @@ impl PyOperationUpdateRetrievalInstructionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationValidateFlowDefinitionOutput {
     validations: ::std::vec::Vec<Arc<aws_sdk_bedrockagent::types::FlowValidation>>,
 }

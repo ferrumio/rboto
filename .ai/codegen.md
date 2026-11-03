@@ -20,6 +20,11 @@
   rendered in `paginators.py.j2`. Missing metadata belongs in the service TOML
   `[pagination.OperationName]` tables; use modeled member names and validate
   against the pinned model. Runtime iteration lives in `rboto/_pagination.py`.
+- Waiter traits: parsed by `waiter_metadata.py` from Smithy or service TOML
+  `[waiters.Name]` tables, validated/compiled in `waiters.py`, rendered through
+  `waiters.py.j2`. Use the Smithy matcher schema; supplements also need `operation`.
+  The runtime is `rboto/_waiters.py`. Reject unsupported expressions, stream outputs,
+  unmodeled errors, and parameter/name collisions. See ADR-0026.
 
 Do not add service-name branches to generic generation until a declarative customization
 has been shown to be insufficient.

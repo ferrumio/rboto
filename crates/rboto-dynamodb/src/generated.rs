@@ -8274,6 +8274,7 @@ impl PyAttributeDefinition {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAutoScalingPolicyDescription {
     policy_name: Option<::std::string::String>,
     target_tracking_scaling_policy_configuration: Option<
@@ -8363,6 +8364,7 @@ impl PyAutoScalingPolicyDescription {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAutoScalingSettingsDescription {
     minimum_units: Option<i64>,
     maximum_units: Option<i64>,
@@ -8567,6 +8569,7 @@ impl PyAutoScalingTargetTrackingScalingPolicyConfigurationDescription {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedBackupDescription {
     backup_details: Option<Arc<aws_sdk_dynamodb::types::BackupDetails>>,
     source_table_details: Option<Arc<SharedSourceTableDetails>>,
@@ -8902,6 +8905,7 @@ impl PyBatchStatementError {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedBatchStatementResponse {
     error: Option<Arc<aws_sdk_dynamodb::types::BatchStatementError>>,
     table_name: Option<::std::string::String>,
@@ -9085,6 +9089,7 @@ impl PyCapacity {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedConsumedCapacity {
     table_name: Option<::std::string::String>,
     capacity_units: Option<f64>,
@@ -9344,6 +9349,7 @@ impl PyConsumedCapacity {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedContinuousBackupsDescription {
     continuous_backups_status: aws_sdk_dynamodb::types::ContinuousBackupsStatus,
     point_in_time_recovery_description:
@@ -9591,6 +9597,7 @@ impl PyEndpoint {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedExportDescription {
     export_arn: Option<::std::string::String>,
     export_status: Option<aws_sdk_dynamodb::types::ExportStatus>,
@@ -10185,6 +10192,7 @@ impl PyFilterSpecification {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGlobalSecondaryIndex {
     index_name: ::std::string::String,
     key_schema: ::std::vec::Vec<Arc<aws_sdk_dynamodb::types::KeySchemaElement>>,
@@ -10355,6 +10363,7 @@ impl PyGlobalSecondaryIndex {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGlobalSecondaryIndexDescription {
     index_name: Option<::std::string::String>,
     key_schema: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::KeySchemaElement>>>,
@@ -10636,6 +10645,7 @@ impl PyGlobalSecondaryIndexDescription {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGlobalSecondaryIndexInfo {
     index_name: Option<::std::string::String>,
     key_schema: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::KeySchemaElement>>>,
@@ -10846,6 +10856,7 @@ impl PyGlobalSecondaryIndexWarmThroughputDescription {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGlobalTable {
     global_table_name: Option<::std::string::String>,
     replication_group: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::Replica>>>,
@@ -10931,6 +10942,7 @@ impl PyGlobalTable {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGlobalTableDescription {
     replication_group: Option<::std::vec::Vec<Arc<SharedReplicaDescription>>>,
     global_table_arn: Option<::std::string::String>,
@@ -11113,6 +11125,7 @@ impl PyGlobalTableWitnessDescription {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedImportSummary {
     import_arn: Option<::std::string::String>,
     import_status: Option<aws_sdk_dynamodb::types::ImportStatus>,
@@ -11291,6 +11304,7 @@ impl PyImportSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedImportTableDescription {
     import_arn: Option<::std::string::String>,
     import_status: Option<aws_sdk_dynamodb::types::ImportStatus>,
@@ -11716,6 +11730,7 @@ impl PyIncrementalExportSpecification {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInputFormatOptions {
     csv: Option<Arc<aws_sdk_dynamodb::types::CsvOptions>>,
 }
@@ -12006,6 +12021,7 @@ impl PyKinesisDataStreamDestination {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedLocalSecondaryIndexDescription {
     index_name: Option<::std::string::String>,
     key_schema: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::KeySchemaElement>>>,
@@ -12178,6 +12194,7 @@ impl PyLocalSecondaryIndexDescription {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedLocalSecondaryIndexInfo {
     index_name: Option<::std::string::String>,
     key_schema: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::KeySchemaElement>>>,
@@ -12615,6 +12632,7 @@ impl PyReplica {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedReplicaAutoScalingDescription {
     region_name: Option<::std::string::String>,
     global_secondary_indexes:
@@ -12815,6 +12833,7 @@ impl PyReplicaAutoScalingDescription {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedReplicaDescription {
     region_name: Option<::std::string::String>,
     replica_status: Option<aws_sdk_dynamodb::types::ReplicaStatus>,
@@ -13139,6 +13158,7 @@ impl PyReplicaDescription {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedReplicaGlobalSecondaryIndexAutoScalingDescription {
     index_name: Option<::std::string::String>,
     index_status: Option<aws_sdk_dynamodb::types::IndexStatus>,
@@ -13283,6 +13303,7 @@ impl PyReplicaGlobalSecondaryIndexAutoScalingDescription {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedReplicaGlobalSecondaryIndexDescription {
     index_name: Option<::std::string::String>,
     provisioned_throughput_override:
@@ -13416,6 +13437,7 @@ impl PyReplicaGlobalSecondaryIndexDescription {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedReplicaGlobalSecondaryIndexSettingsDescription {
     index_name: ::std::string::String,
     index_status: Option<aws_sdk_dynamodb::types::IndexStatus>,
@@ -13588,6 +13610,7 @@ impl PyReplicaGlobalSecondaryIndexSettingsDescription {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedReplicaSettingsDescription {
     region_name: ::std::string::String,
     replica_status: Option<aws_sdk_dynamodb::types::ReplicaStatus>,
@@ -14017,6 +14040,7 @@ impl PySearchSchemaElement {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSourceTableDetails {
     table_name: ::std::string::String,
     table_id: ::std::string::String,
@@ -14231,6 +14255,7 @@ impl PySourceTableDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSourceTableFeatureDetails {
     local_secondary_indexes: Option<::std::vec::Vec<Arc<SharedLocalSecondaryIndexInfo>>>,
     global_secondary_indexes: Option<::std::vec::Vec<Arc<SharedGlobalSecondaryIndexInfo>>>,
@@ -14581,6 +14606,7 @@ impl PyStreamSpecification {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedTableAutoScalingDescription {
     table_name: Option<::std::string::String>,
     table_status: Option<aws_sdk_dynamodb::types::TableStatus>,
@@ -14727,6 +14753,7 @@ impl PyTableClassSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedTableCreationParameters {
     table_name: ::std::string::String,
     attribute_definitions: ::std::vec::Vec<Arc<aws_sdk_dynamodb::types::AttributeDefinition>>,
@@ -14998,6 +15025,7 @@ impl PyTableCreationParameters {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedTableDescription {
     attribute_definitions:
         Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::AttributeDefinition>>>,
@@ -15993,6 +16021,7 @@ impl PyVectorCapacity {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedVectorIndex {
     index_name: ::std::string::String,
     vector_attribute: Option<Arc<aws_sdk_dynamodb::types::VectorAttributeDefinition>>,
@@ -16138,6 +16167,7 @@ impl PyVectorIndex {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedVectorIndexDescription {
     index_name: Option<::std::string::String>,
     search_schema: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::SearchSchemaElement>>>,
@@ -16404,6 +16434,7 @@ impl PyVectorIndexDescription {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedVectorIndexInfo {
     index_name: Option<::std::string::String>,
     vector_attribute: Option<Arc<aws_sdk_dynamodb::types::VectorAttributeDefinition>>,
@@ -16608,6 +16639,7 @@ impl PyWarmThroughput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedWriteRequest {
     put_request: Option<Arc<aws_sdk_dynamodb::types::PutRequest>>,
     delete_request: Option<Arc<aws_sdk_dynamodb::types::DeleteRequest>>,
@@ -16684,6 +16716,7 @@ impl PyWriteRequest {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationBatchExecuteStatementOutput {
     responses: Option<::std::vec::Vec<Arc<SharedBatchStatementResponse>>>,
     consumed_capacity: Option<::std::vec::Vec<Arc<SharedConsumedCapacity>>>,
@@ -16794,6 +16827,7 @@ impl PyOperationBatchExecuteStatementOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationBatchGetItemOutput {
     responses: Option<
         ::std::collections::HashMap<
@@ -16969,6 +17003,7 @@ impl PyOperationBatchGetItemOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationBatchWriteItemOutput {
     unprocessed_items: Option<
         ::std::collections::HashMap<
@@ -17166,6 +17201,7 @@ impl PyOperationBatchWriteItemOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateBackupOutput {
     backup_details: Option<Arc<aws_sdk_dynamodb::types::BackupDetails>>,
 }
@@ -17216,6 +17252,7 @@ impl PyOperationCreateBackupOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateGlobalTableOutput {
     global_table_description: Option<Arc<SharedGlobalTableDescription>>,
 }
@@ -17274,6 +17311,7 @@ impl PyOperationCreateGlobalTableOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateTableOutput {
     table_description: Option<Arc<SharedTableDescription>>,
 }
@@ -17326,6 +17364,7 @@ impl PyOperationCreateTableOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDeleteBackupOutput {
     backup_description: Option<Arc<SharedBackupDescription>>,
 }
@@ -17378,6 +17417,7 @@ impl PyOperationDeleteBackupOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDeleteItemOutput {
     attributes: Option<
         ::std::collections::HashMap<::std::string::String, aws_sdk_dynamodb::types::AttributeValue>,
@@ -17519,6 +17559,7 @@ impl PyOperationDeleteResourcePolicyOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDeleteTableOutput {
     table_description: Option<Arc<SharedTableDescription>>,
 }
@@ -17571,6 +17612,7 @@ impl PyOperationDeleteTableOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeBackupOutput {
     backup_description: Option<Arc<SharedBackupDescription>>,
 }
@@ -17627,6 +17669,7 @@ impl PyOperationDescribeBackupOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeContinuousBackupsOutput {
     continuous_backups_description: Option<Arc<SharedContinuousBackupsDescription>>,
 }
@@ -17685,6 +17728,7 @@ impl PyOperationDescribeContinuousBackupsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeContributorInsightsOutput {
     table_name: Option<::std::string::String>,
     index_name: Option<::std::string::String>,
@@ -17855,6 +17899,7 @@ impl PyOperationDescribeContributorInsightsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeEndpointsOutput {
     endpoints: ::std::vec::Vec<Arc<aws_sdk_dynamodb::types::Endpoint>>,
 }
@@ -17916,6 +17961,7 @@ impl PyOperationDescribeEndpointsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeExportOutput {
     export_description: Option<Arc<SharedExportDescription>>,
 }
@@ -17972,6 +18018,7 @@ impl PyOperationDescribeExportOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeGlobalTableOutput {
     global_table_description: Option<Arc<SharedGlobalTableDescription>>,
 }
@@ -18030,6 +18077,7 @@ impl PyOperationDescribeGlobalTableOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeGlobalTableSettingsOutput {
     global_table_name: Option<::std::string::String>,
     replica_settings: Option<::std::vec::Vec<Arc<SharedReplicaSettingsDescription>>>,
@@ -18110,6 +18158,7 @@ impl PyOperationDescribeGlobalTableSettingsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeImportOutput {
     import_table_description: Option<Arc<SharedImportTableDescription>>,
 }
@@ -18166,6 +18215,7 @@ impl PyOperationDescribeImportOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeKinesisStreamingDestinationOutput {
     table_name: Option<::std::string::String>,
     kinesis_data_stream_destinations:
@@ -18328,6 +18378,7 @@ impl PyOperationDescribeLimitsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeTableOutput {
     table: Option<Arc<SharedTableDescription>>,
 }
@@ -18384,6 +18435,7 @@ impl PyOperationDescribeTableOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeTableReplicaAutoScalingOutput {
     table_auto_scaling_description: Option<Arc<SharedTableAutoScalingDescription>>,
 }
@@ -18436,6 +18488,7 @@ impl PyOperationDescribeTableReplicaAutoScalingOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeTimeToLiveOutput {
     time_to_live_description: Option<Arc<aws_sdk_dynamodb::types::TimeToLiveDescription>>,
 }
@@ -18492,6 +18545,7 @@ impl PyOperationDescribeTimeToLiveOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDisableKinesisStreamingDestinationOutput {
     table_name: Option<::std::string::String>,
     stream_arn: Option<::std::string::String>,
@@ -18599,6 +18653,7 @@ impl PyOperationDisableKinesisStreamingDestinationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationEnableKinesisStreamingDestinationOutput {
     table_name: Option<::std::string::String>,
     stream_arn: Option<::std::string::String>,
@@ -18706,6 +18761,7 @@ impl PyOperationEnableKinesisStreamingDestinationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationExecuteStatementOutput {
     items: Option<
         ::std::vec::Vec<
@@ -18859,6 +18915,7 @@ impl PyOperationExecuteStatementOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationExecuteTransactionOutput {
     responses: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::ItemResponse>>>,
     consumed_capacity: Option<::std::vec::Vec<Arc<SharedConsumedCapacity>>>,
@@ -18969,6 +19026,7 @@ impl PyOperationExecuteTransactionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationExportTableToPointInTimeOutput {
     export_description: Option<Arc<SharedExportDescription>>,
 }
@@ -19028,6 +19086,7 @@ impl PyOperationExportTableToPointInTimeOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetItemOutput {
     item: Option<
         ::std::collections::HashMap<::std::string::String, aws_sdk_dynamodb::types::AttributeValue>,
@@ -19159,6 +19218,7 @@ impl PyOperationGetResourcePolicyOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationImportTableOutput {
     import_table_description: Option<Arc<SharedImportTableDescription>>,
 }
@@ -19211,6 +19271,7 @@ impl PyOperationImportTableOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListBackupsOutput {
     backup_summaries: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::BackupSummary>>>,
     last_evaluated_backup_arn: Option<::std::string::String>,
@@ -19294,6 +19355,7 @@ impl PyOperationListBackupsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListContributorInsightsOutput {
     contributor_insights_summaries:
         Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::ContributorInsightsSummary>>>,
@@ -19384,6 +19446,7 @@ impl PyOperationListContributorInsightsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListExportsOutput {
     export_summaries: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::ExportSummary>>>,
     next_token: Option<::std::string::String>,
@@ -19467,6 +19530,7 @@ impl PyOperationListExportsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListGlobalTablesOutput {
     global_tables: Option<::std::vec::Vec<Arc<SharedGlobalTable>>>,
     last_evaluated_global_table_name: Option<::std::string::String>,
@@ -19556,6 +19620,7 @@ impl PyOperationListGlobalTablesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListImportsOutput {
     import_summary_list: Option<::std::vec::Vec<Arc<SharedImportSummary>>>,
     next_token: Option<::std::string::String>,
@@ -19694,6 +19759,7 @@ impl PyOperationListTablesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListTagsOfResourceOutput {
     tags: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::Tag>>>,
     next_token: Option<::std::string::String>,
@@ -19783,6 +19849,7 @@ impl PyOperationListTagsOfResourceOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationPutItemOutput {
     attributes: Option<
         ::std::collections::HashMap<::std::string::String, aws_sdk_dynamodb::types::AttributeValue>,
@@ -19922,6 +19989,7 @@ impl PyOperationPutResourcePolicyOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationQueryOutput {
     items: Option<
         ::std::vec::Vec<
@@ -20071,6 +20139,7 @@ impl PyOperationQueryOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationRestoreTableFromBackupOutput {
     table_description: Option<Arc<SharedTableDescription>>,
 }
@@ -20129,6 +20198,7 @@ impl PyOperationRestoreTableFromBackupOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationRestoreTableToPointInTimeOutput {
     table_description: Option<Arc<SharedTableDescription>>,
 }
@@ -20181,6 +20251,7 @@ impl PyOperationRestoreTableToPointInTimeOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationScanOutput {
     items: Option<
         ::std::vec::Vec<
@@ -20330,6 +20401,7 @@ impl PyOperationScanOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationSearchVectorsOutput {
     consumed_capacity: Option<Arc<aws_sdk_dynamodb::types::VectorCapacity>>,
     search_results: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::SearchResultItem>>>,
@@ -20423,6 +20495,7 @@ impl PyOperationSearchVectorsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationTransactGetItemsOutput {
     consumed_capacity: Option<::std::vec::Vec<Arc<SharedConsumedCapacity>>>,
     responses: Option<::std::vec::Vec<Arc<aws_sdk_dynamodb::types::ItemResponse>>>,
@@ -20533,6 +20606,7 @@ impl PyOperationTransactGetItemsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationTransactWriteItemsOutput {
     consumed_capacity: Option<::std::vec::Vec<Arc<SharedConsumedCapacity>>>,
     item_collection_metrics: Option<
@@ -20668,6 +20742,7 @@ impl PyOperationTransactWriteItemsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateContinuousBackupsOutput {
     continuous_backups_description: Option<Arc<SharedContinuousBackupsDescription>>,
 }
@@ -20808,6 +20883,7 @@ impl PyOperationUpdateContributorInsightsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateGlobalTableOutput {
     global_table_description: Option<Arc<SharedGlobalTableDescription>>,
 }
@@ -20866,6 +20942,7 @@ impl PyOperationUpdateGlobalTableOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateGlobalTableSettingsOutput {
     global_table_name: Option<::std::string::String>,
     replica_settings: Option<::std::vec::Vec<Arc<SharedReplicaSettingsDescription>>>,
@@ -20956,6 +21033,7 @@ impl PyOperationUpdateGlobalTableSettingsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateItemOutput {
     attributes: Option<
         ::std::collections::HashMap<::std::string::String, aws_sdk_dynamodb::types::AttributeValue>,
@@ -21064,6 +21142,7 @@ impl PyOperationUpdateItemOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateKinesisStreamingDestinationOutput {
     table_name: Option<::std::string::String>,
     stream_arn: Option<::std::string::String>,
@@ -21171,6 +21250,7 @@ impl PyOperationUpdateKinesisStreamingDestinationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateTableOutput {
     table_description: Option<Arc<SharedTableDescription>>,
 }
@@ -21223,6 +21303,7 @@ impl PyOperationUpdateTableOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateTableReplicaAutoScalingOutput {
     table_auto_scaling_description: Option<Arc<SharedTableAutoScalingDescription>>,
 }
@@ -21275,6 +21356,7 @@ impl PyOperationUpdateTableReplicaAutoScalingOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateTimeToLiveOutput {
     time_to_live_specification: Option<Arc<aws_sdk_dynamodb::types::TimeToLiveSpecification>>,
 }

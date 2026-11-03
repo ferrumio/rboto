@@ -841,6 +841,7 @@ impl PyLexiconAttributes {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedLexiconDescription {
     name: Option<::std::string::String>,
     attributes: Option<Arc<aws_sdk_polly::types::LexiconAttributes>>,
@@ -1189,6 +1190,7 @@ impl PyOperationDeleteLexiconOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeVoicesOutput {
     voices: Option<::std::vec::Vec<Arc<aws_sdk_polly::types::Voice>>>,
     next_token: Option<::std::string::String>,
@@ -1272,6 +1274,7 @@ impl PyOperationDescribeVoicesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetLexiconOutput {
     lexicon: Option<Arc<aws_sdk_polly::types::Lexicon>>,
     lexicon_attributes: Option<Arc<aws_sdk_polly::types::LexiconAttributes>>,
@@ -1346,6 +1349,7 @@ impl PyOperationGetLexiconOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetSpeechSynthesisTaskOutput {
     synthesis_task: Option<Arc<aws_sdk_polly::types::SynthesisTask>>,
 }
@@ -1402,6 +1406,7 @@ impl PyOperationGetSpeechSynthesisTaskOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListLexiconsOutput {
     lexicons: Option<::std::vec::Vec<Arc<SharedLexiconDescription>>>,
     next_token: Option<::std::string::String>,
@@ -1485,6 +1490,7 @@ impl PyOperationListLexiconsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListSpeechSynthesisTasksOutput {
     next_token: Option<::std::string::String>,
     synthesis_tasks: Option<::std::vec::Vec<Arc<aws_sdk_polly::types::SynthesisTask>>>,
@@ -1587,6 +1593,7 @@ impl PyOperationPutLexiconOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationStartSpeechSynthesisTaskOutput {
     synthesis_task: Option<Arc<aws_sdk_polly::types::SynthesisTask>>,
 }

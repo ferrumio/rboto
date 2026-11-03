@@ -3416,6 +3416,7 @@ impl PyActivityScheduleFailedEventDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedActivityScheduledEventDetails {
     resource: ::std::string::String,
     input: Option<::std::string::String>,
@@ -3567,6 +3568,7 @@ impl PyActivityStartedEventDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedActivitySucceededEventDetails {
     output: Option<::std::string::String>,
     output_details: Option<Arc<aws_sdk_sfn::types::HistoryEventExecutionDataDetails>>,
@@ -4076,6 +4078,7 @@ impl PyExecutionRedrivenEventDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedExecutionStartedEventDetails {
     input: Option<::std::string::String>,
     input_details: Option<Arc<aws_sdk_sfn::types::HistoryEventExecutionDataDetails>>,
@@ -4207,6 +4210,7 @@ impl PyExecutionStartedEventDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedExecutionSucceededEventDetails {
     output: Option<::std::string::String>,
     output_details: Option<Arc<aws_sdk_sfn::types::HistoryEventExecutionDataDetails>>,
@@ -4322,6 +4326,7 @@ impl PyExecutionTimedOutEventDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedHistoryEvent {
     timestamp: ::aws_smithy_types::DateTime,
     r#type: aws_sdk_sfn::types::HistoryEventType,
@@ -5381,6 +5386,7 @@ impl PyHistoryEventExecutionDataDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInspectionData {
     input: Option<::std::string::String>,
     after_arguments: Option<::std::string::String>,
@@ -5992,6 +5998,7 @@ impl PyLambdaFunctionScheduleFailedEventDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedLambdaFunctionScheduledEventDetails {
     resource: ::std::string::String,
     input: Option<::std::string::String>,
@@ -6159,6 +6166,7 @@ impl PyLambdaFunctionStartFailedEventDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedLambdaFunctionSucceededEventDetails {
     output: Option<::std::string::String>,
     output_details: Option<Arc<aws_sdk_sfn::types::HistoryEventExecutionDataDetails>>,
@@ -6274,6 +6282,7 @@ impl PyLambdaFunctionTimedOutEventDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedLogDestination {
     cloud_watch_logs_log_group: Option<Arc<aws_sdk_sfn::types::CloudWatchLogsLogGroup>>,
 }
@@ -6329,6 +6338,7 @@ impl PyLogDestination {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedLoggingConfiguration {
     level: Option<aws_sdk_sfn::types::LogLevel>,
     include_execution_data: bool,
@@ -6817,6 +6827,7 @@ impl PyRoutingConfigurationListItem {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedStateEnteredEventDetails {
     name: ::std::string::String,
     input: Option<::std::string::String>,
@@ -6904,6 +6915,7 @@ impl PyStateEnteredEventDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedStateExitedEventDetails {
     name: ::std::string::String,
     output: Option<::std::string::String>,
@@ -7236,6 +7248,7 @@ impl PyTaskFailedEventDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedTaskScheduledEventDetails {
     resource_type: ::std::string::String,
     resource: ::std::string::String,
@@ -7491,6 +7504,7 @@ impl PyTaskSubmitFailedEventDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedTaskSubmittedEventDetails {
     resource_type: ::std::string::String,
     resource: ::std::string::String,
@@ -7588,6 +7602,7 @@ impl PyTaskSubmittedEventDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedTaskSucceededEventDetails {
     resource_type: ::std::string::String,
     resource: ::std::string::String,
@@ -7974,6 +7989,7 @@ impl PyOperationDeleteStateMachineVersionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeActivityOutput {
     activity_arn: ::std::string::String,
     name: ::std::string::String,
@@ -8054,6 +8070,7 @@ impl PyOperationDescribeActivityOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeExecutionOutput {
     execution_arn: ::std::string::String,
     state_machine_arn: ::std::string::String,
@@ -8420,6 +8437,7 @@ impl PyOperationDescribeExecutionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeMapRunOutput {
     map_run_arn: ::std::string::String,
     execution_arn: ::std::string::String,
@@ -8626,6 +8644,7 @@ impl PyOperationDescribeMapRunOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeStateMachineOutput {
     state_machine_arn: ::std::string::String,
     name: ::std::string::String,
@@ -8906,6 +8925,7 @@ impl PyOperationDescribeStateMachineOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeStateMachineAliasOutput {
     state_machine_alias_arn: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -9068,6 +9088,7 @@ impl PyOperationDescribeStateMachineAliasOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeStateMachineForExecutionOutput {
     state_machine_arn: ::std::string::String,
     name: ::std::string::String,
@@ -9359,6 +9380,7 @@ impl PyOperationGetActivityTaskOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetExecutionHistoryOutput {
     events: ::std::vec::Vec<Arc<SharedHistoryEvent>>,
     next_token: Option<::std::string::String>,
@@ -9438,6 +9460,7 @@ impl PyOperationGetExecutionHistoryOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListActivitiesOutput {
     activities: ::std::vec::Vec<Arc<aws_sdk_sfn::types::ActivityListItem>>,
     next_token: Option<::std::string::String>,
@@ -9511,6 +9534,7 @@ impl PyOperationListActivitiesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListExecutionsOutput {
     executions: ::std::vec::Vec<Arc<aws_sdk_sfn::types::ExecutionListItem>>,
     next_token: Option<::std::string::String>,
@@ -9584,6 +9608,7 @@ impl PyOperationListExecutionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListMapRunsOutput {
     map_runs: ::std::vec::Vec<Arc<aws_sdk_sfn::types::MapRunListItem>>,
     next_token: Option<::std::string::String>,
@@ -9657,6 +9682,7 @@ impl PyOperationListMapRunsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListStateMachineAliasesOutput {
     state_machine_aliases: ::std::vec::Vec<Arc<aws_sdk_sfn::types::StateMachineAliasListItem>>,
     next_token: Option<::std::string::String>,
@@ -9736,6 +9762,7 @@ impl PyOperationListStateMachineAliasesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListStateMachineVersionsOutput {
     state_machine_versions: ::std::vec::Vec<Arc<aws_sdk_sfn::types::StateMachineVersionListItem>>,
     next_token: Option<::std::string::String>,
@@ -9815,6 +9842,7 @@ impl PyOperationListStateMachineVersionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListStateMachinesOutput {
     state_machines: ::std::vec::Vec<Arc<aws_sdk_sfn::types::StateMachineListItem>>,
     next_token: Option<::std::string::String>,
@@ -9888,6 +9916,7 @@ impl PyOperationListStateMachinesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListTagsForResourceOutput {
     tags: Option<::std::vec::Vec<Arc<aws_sdk_sfn::types::Tag>>>,
 }
@@ -10085,6 +10114,7 @@ impl PyOperationStartExecutionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationStartSyncExecutionOutput {
     execution_arn: ::std::string::String,
     state_machine_arn: Option<::std::string::String>,
@@ -10387,6 +10417,7 @@ impl PyOperationTagResourceOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationTestStateOutput {
     output: Option<::std::string::String>,
     error: Option<::std::string::String>,
@@ -10637,6 +10668,7 @@ impl PyOperationUpdateStateMachineAliasOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationValidateStateMachineDefinitionOutput {
     result: aws_sdk_sfn::types::ValidateStateMachineDefinitionResultCode,
     diagnostics: ::std::vec::Vec<Arc<aws_sdk_sfn::types::ValidateStateMachineDefinitionDiagnostic>>,

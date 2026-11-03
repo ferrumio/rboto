@@ -102,3 +102,8 @@ ADR-0019 defines `client.paginators`, generated from validated Smithy traits and
 descriptor supplements. The private Python iterator calls public operations
 page by page, preserving middleware and native responses. There is no public
 `inputs` adapter namespace.
+
+ADR-0026 defines `client.waiters`, generated from validated Smithy waiter traits
+and descriptor supplements. The shared Python poller calls public operations,
+uses independent polling budgets, and reads native attributes without `to_dict()`.
+JMESPath parsing belongs to codegen only; unsupported matcher semantics fail generation.

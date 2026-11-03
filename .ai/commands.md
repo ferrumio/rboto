@@ -12,6 +12,7 @@ Run commands from the repository root unless a working directory is shown.
 
 Install `pydantic>=2,<3` in the development environment to check the optional
 integration examples and run the compiled model interoperability tests.
+Install `types-jmespath>=1,<2` for strict checking of the codegen-only expression parser.
 
 ```bash
 .venv/bin/ruff check codegen/src codegen/tests packages/rboto/src packages/rboto/tests tests examples benchmarks .github/scripts

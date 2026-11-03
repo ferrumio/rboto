@@ -2141,6 +2141,7 @@ fn widget_to_py(py: Python<'_>, value: &aws_sdk_cloudtrail::types::Widget) -> Py
     Ok(result.into_any().unbind())
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAdvancedEventSelector {
     name: Option<::std::string::String>,
     field_selectors: ::std::vec::Vec<Arc<aws_sdk_cloudtrail::types::AdvancedFieldSelector>>,
@@ -2526,6 +2527,7 @@ impl PyDestination {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEvent {
     event_id: Option<::std::string::String>,
     event_name: Option<::std::string::String>,
@@ -2737,6 +2739,7 @@ impl PyEvent {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEventDataStore {
     event_data_store_arn: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -2969,6 +2972,7 @@ impl PyEventDataStore {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEventSelector {
     read_write_type: Option<aws_sdk_cloudtrail::types::ReadWriteType>,
     include_management_events: Option<bool>,
@@ -3166,6 +3170,7 @@ impl PyImportFailureListItem {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedImportSource {
     s3: Option<Arc<aws_sdk_cloudtrail::types::S3ImportSource>>,
 }
@@ -3672,6 +3677,7 @@ impl PyQueryStatisticsForDescribeQuery {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRefreshSchedule {
     frequency: Option<Arc<aws_sdk_cloudtrail::types::RefreshScheduleFrequency>>,
     status: Option<aws_sdk_cloudtrail::types::RefreshScheduleStatus>,
@@ -3831,6 +3837,7 @@ impl PyResource {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedResourceTag {
     resource_id: Option<::std::string::String>,
     tags_list: Option<::std::vec::Vec<Arc<aws_sdk_cloudtrail::types::Tag>>>,
@@ -4000,6 +4007,7 @@ impl PySearchSampleQueriesSearchResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSourceConfig {
     apply_to_all_regions: Option<bool>,
     advanced_event_selectors: Option<::std::vec::Vec<Arc<SharedAdvancedEventSelector>>>,
@@ -4462,6 +4470,7 @@ impl PyOperationCancelQueryOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateChannelOutput {
     channel_arn: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -4624,6 +4633,7 @@ impl PyOperationCreateChannelOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateDashboardOutput {
     dashboard_arn: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -4830,6 +4840,7 @@ impl PyOperationCreateDashboardOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateEventDataStoreOutput {
     event_data_store_arn: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -5481,6 +5492,7 @@ impl PyOperationDeregisterOrganizationDelegatedAdminOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeQueryOutput {
     query_id: Option<::std::string::String>,
     query_string: Option<::std::string::String>,
@@ -5679,6 +5691,7 @@ impl PyOperationDescribeQueryOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeTrailsOutput {
     trail_list: Option<::std::vec::Vec<Arc<aws_sdk_cloudtrail::types::Trail>>>,
 }
@@ -5927,6 +5940,7 @@ impl PyOperationGenerateQueryOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetChannelOutput {
     channel_arn: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -6096,6 +6110,7 @@ impl PyOperationGetChannelOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDashboardOutput {
     dashboard_arn: Option<::std::string::String>,
     r#type: Option<aws_sdk_cloudtrail::types::DashboardType>,
@@ -6335,6 +6350,7 @@ impl PyOperationGetDashboardOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetEventConfigurationOutput {
     trail_arn: Option<::std::string::String>,
     event_data_store_arn: Option<::std::string::String>,
@@ -6501,6 +6517,7 @@ impl PyOperationGetEventConfigurationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetEventDataStoreOutput {
     event_data_store_arn: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -6845,6 +6862,7 @@ impl PyOperationGetEventDataStoreOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetEventSelectorsOutput {
     trail_arn: Option<::std::string::String>,
     event_selectors: Option<::std::vec::Vec<Arc<SharedEventSelector>>>,
@@ -6973,6 +6991,7 @@ impl PyOperationGetEventSelectorsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetImportOutput {
     import_id: Option<::std::string::String>,
     destinations: Option<::std::vec::Vec<::std::string::String>>,
@@ -7185,6 +7204,7 @@ impl PyOperationGetImportOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetInsightSelectorsOutput {
     trail_arn: Option<::std::string::String>,
     insight_selectors: Option<::std::vec::Vec<Arc<aws_sdk_cloudtrail::types::InsightSelector>>>,
@@ -7310,6 +7330,7 @@ impl PyOperationGetInsightSelectorsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetQueryResultsOutput {
     query_status: Option<aws_sdk_cloudtrail::types::QueryStatus>,
     query_statistics: Option<Arc<aws_sdk_cloudtrail::types::QueryStatistics>>,
@@ -7543,6 +7564,7 @@ impl PyOperationGetResourcePolicyOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetTrailOutput {
     trail: Option<Arc<aws_sdk_cloudtrail::types::Trail>>,
 }
@@ -7882,6 +7904,7 @@ impl PyOperationGetTrailStatusOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListChannelsOutput {
     channels: Option<::std::vec::Vec<Arc<aws_sdk_cloudtrail::types::Channel>>>,
     next_token: Option<::std::string::String>,
@@ -7969,6 +7992,7 @@ impl PyOperationListChannelsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListDashboardsOutput {
     dashboards: Option<::std::vec::Vec<Arc<aws_sdk_cloudtrail::types::DashboardDetail>>>,
     next_token: Option<::std::string::String>,
@@ -8056,6 +8080,7 @@ impl PyOperationListDashboardsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListEventDataStoresOutput {
     event_data_stores: Option<::std::vec::Vec<Arc<SharedEventDataStore>>>,
     next_token: Option<::std::string::String>,
@@ -8145,6 +8170,7 @@ impl PyOperationListEventDataStoresOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListImportFailuresOutput {
     failures: Option<::std::vec::Vec<Arc<aws_sdk_cloudtrail::types::ImportFailureListItem>>>,
     next_token: Option<::std::string::String>,
@@ -8234,6 +8260,7 @@ impl PyOperationListImportFailuresOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListImportsOutput {
     imports: Option<::std::vec::Vec<Arc<aws_sdk_cloudtrail::types::ImportsListItem>>>,
     next_token: Option<::std::string::String>,
@@ -8321,6 +8348,7 @@ impl PyOperationListImportsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListInsightsDataOutput {
     events: Option<::std::vec::Vec<Arc<SharedEvent>>>,
     next_token: Option<::std::string::String>,
@@ -8575,6 +8603,7 @@ impl PyOperationListInsightsMetricDataOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPublicKeysOutput {
     public_key_list: Option<::std::vec::Vec<Arc<aws_sdk_cloudtrail::types::PublicKey>>>,
     next_token: Option<::std::string::String>,
@@ -8662,6 +8691,7 @@ impl PyOperationListPublicKeysOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListQueriesOutput {
     queries: Option<::std::vec::Vec<Arc<aws_sdk_cloudtrail::types::Query>>>,
     next_token: Option<::std::string::String>,
@@ -8749,6 +8779,7 @@ impl PyOperationListQueriesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListTagsOutput {
     resource_tag_list: Option<::std::vec::Vec<Arc<SharedResourceTag>>>,
     next_token: Option<::std::string::String>,
@@ -8832,6 +8863,7 @@ impl PyOperationListTagsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListTrailsOutput {
     trails: Option<::std::vec::Vec<Arc<aws_sdk_cloudtrail::types::TrailInfo>>>,
     next_token: Option<::std::string::String>,
@@ -8915,6 +8947,7 @@ impl PyOperationListTrailsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationLookupEventsOutput {
     events: Option<::std::vec::Vec<Arc<SharedEvent>>>,
     next_token: Option<::std::string::String>,
@@ -9002,6 +9035,7 @@ impl PyOperationLookupEventsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationPutEventConfigurationOutput {
     trail_arn: Option<::std::string::String>,
     event_data_store_arn: Option<::std::string::String>,
@@ -9168,6 +9202,7 @@ impl PyOperationPutEventConfigurationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationPutEventSelectorsOutput {
     trail_arn: Option<::std::string::String>,
     event_selectors: Option<::std::vec::Vec<Arc<SharedEventSelector>>>,
@@ -9296,6 +9331,7 @@ impl PyOperationPutEventSelectorsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationPutInsightSelectorsOutput {
     trail_arn: Option<::std::string::String>,
     insight_selectors: Option<::std::vec::Vec<Arc<aws_sdk_cloudtrail::types::InsightSelector>>>,
@@ -9516,6 +9552,7 @@ impl PyOperationRemoveTagsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationRestoreEventDataStoreOutput {
     event_data_store_arn: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -9785,6 +9822,7 @@ impl PyOperationRestoreEventDataStoreOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationSearchSampleQueriesOutput {
     search_results:
         Option<::std::vec::Vec<Arc<aws_sdk_cloudtrail::types::SearchSampleQueriesSearchResult>>>,
@@ -9925,6 +9963,7 @@ impl PyOperationStartEventDataStoreIngestionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationStartImportOutput {
     import_id: Option<::std::string::String>,
     destinations: Option<::std::vec::Vec<::std::string::String>>,
@@ -10196,6 +10235,7 @@ impl PyOperationStopEventDataStoreIngestionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationStopImportOutput {
     import_id: Option<::std::string::String>,
     import_source: Option<Arc<SharedImportSource>>,
@@ -10425,6 +10465,7 @@ impl PyOperationStopLoggingOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateChannelOutput {
     channel_arn: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -10548,6 +10589,7 @@ impl PyOperationUpdateChannelOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateDashboardOutput {
     dashboard_arn: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -10751,6 +10793,7 @@ impl PyOperationUpdateDashboardOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateEventDataStoreOutput {
     event_data_store_arn: Option<::std::string::String>,
     name: Option<::std::string::String>,

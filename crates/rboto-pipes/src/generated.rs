@@ -4236,6 +4236,7 @@ impl PyBatchArrayProperties {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedBatchContainerOverrides {
     command: Option<::std::vec::Vec<::std::string::String>>,
     environment: Option<::std::vec::Vec<Arc<aws_sdk_pipes::types::BatchEnvironmentVariable>>>,
@@ -4628,6 +4629,7 @@ impl PyDimensionMapping {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEcsContainerOverride {
     command: Option<::std::vec::Vec<::std::string::String>>,
     cpu: Option<i32>,
@@ -5019,6 +5021,7 @@ impl PyEcsResourceRequirement {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEcsTaskOverride {
     container_overrides: Option<::std::vec::Vec<Arc<SharedEcsContainerOverride>>>,
     cpu: Option<::std::string::String>,
@@ -5247,6 +5250,7 @@ impl PyFilter {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedFilterCriteria {
     filters: Option<::std::vec::Vec<Arc<aws_sdk_pipes::types::Filter>>>,
 }
@@ -5379,6 +5383,7 @@ impl PyMultiMeasureAttributeMapping {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMultiMeasureMapping {
     multi_measure_name: ::std::string::String,
     multi_measure_attribute_mappings:
@@ -5450,6 +5455,7 @@ impl PyMultiMeasureMapping {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedNetworkConfiguration {
     awsvpc_configuration: Option<Arc<aws_sdk_pipes::types::AwsVpcConfiguration>>,
 }
@@ -5680,6 +5686,7 @@ impl PyPipeEnrichmentHttpParameters {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPipeEnrichmentParameters {
     input_template: Option<::std::string::String>,
     http_parameters: Option<Arc<aws_sdk_pipes::types::PipeEnrichmentHttpParameters>>,
@@ -5757,6 +5764,7 @@ impl PyPipeEnrichmentParameters {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPipeLogConfiguration {
     s3_log_destination: Option<Arc<aws_sdk_pipes::types::S3LogDestination>>,
     firehose_log_destination: Option<Arc<aws_sdk_pipes::types::FirehoseLogDestination>>,
@@ -5962,6 +5970,7 @@ impl PyPipeSourceActiveMqBrokerParameters {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPipeSourceDynamoDbStreamParameters {
     batch_size: Option<i32>,
     dead_letter_config: Option<Arc<aws_sdk_pipes::types::DeadLetterConfig>>,
@@ -6141,6 +6150,7 @@ impl PyPipeSourceDynamoDbStreamParameters {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPipeSourceKinesisStreamParameters {
     batch_size: Option<i32>,
     dead_letter_config: Option<Arc<aws_sdk_pipes::types::DeadLetterConfig>>,
@@ -6410,6 +6420,7 @@ impl PyPipeSourceManagedStreamingKafkaParameters {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPipeSourceParameters {
     filter_criteria: Option<Arc<SharedFilterCriteria>>,
     kinesis_stream_parameters: Option<Arc<SharedPipeSourceKinesisStreamParameters>>,
@@ -6712,6 +6723,7 @@ impl PyPipeSourceRabbitMqBrokerParameters {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPipeSourceSelfManagedKafkaParameters {
     topic_name: ::std::string::String,
     starting_position: Option<aws_sdk_pipes::types::SelfManagedKafkaStartPosition>,
@@ -6956,6 +6968,7 @@ impl PyPipeSourceSqsQueueParameters {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPipeTargetBatchJobParameters {
     job_definition: ::std::string::String,
     job_name: ::std::string::String,
@@ -7192,6 +7205,7 @@ impl PyPipeTargetCloudWatchLogsParameters {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPipeTargetEcsTaskParameters {
     task_definition_arn: ::std::string::String,
     task_count: Option<i32>,
@@ -7762,6 +7776,7 @@ impl PyPipeTargetLambdaFunctionParameters {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPipeTargetParameters {
     input_template: Option<::std::string::String>,
     lambda_function_parameters:
@@ -8186,6 +8201,7 @@ impl PyPipeTargetRedshiftDataParameters {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPipeTargetSageMakerPipelineParameters {
     pipeline_parameter_list:
         Option<::std::vec::Vec<Arc<aws_sdk_pipes::types::SageMakerPipelineParameter>>>,
@@ -8325,6 +8341,7 @@ impl PyPipeTargetStateMachineParameters {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPipeTargetTimestreamParameters {
     time_value: ::std::string::String,
     epoch_time_unit: Option<aws_sdk_pipes::types::EpochTimeUnit>,
@@ -9006,6 +9023,7 @@ impl PyOperationDeletePipeOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribePipeOutput {
     arn: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -9400,6 +9418,7 @@ impl PyOperationDescribePipeOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPipesOutput {
     pipes: Option<::std::vec::Vec<Arc<aws_sdk_pipes::types::Pipe>>>,
     next_token: Option<::std::string::String>,

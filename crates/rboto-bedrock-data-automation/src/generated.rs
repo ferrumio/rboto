@@ -3524,6 +3524,7 @@ fn vocabulary_entity_summary_to_py(
     Ok(result.into_any().unbind())
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAudioExtractionCategory {
     state: aws_sdk_bedrockdataautomation::types::State,
     types:
@@ -3626,6 +3627,7 @@ impl PyAudioExtractionCategory {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAudioExtractionCategoryTypeConfiguration {
     transcript: Option<Arc<SharedTranscriptConfiguration>>,
 }
@@ -3742,6 +3744,7 @@ impl PyAudioLanguageConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAudioOverrideConfiguration {
     modality_processing:
         Option<Arc<aws_sdk_bedrockdataautomation::types::ModalityProcessingConfiguration>>,
@@ -3855,6 +3858,7 @@ impl PyAudioOverrideConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAudioStandardExtraction {
     category: Option<Arc<SharedAudioExtractionCategory>>,
 }
@@ -3955,6 +3959,7 @@ impl PyAudioStandardGenerativeField {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAudioStandardOutputConfiguration {
     extraction: Option<Arc<SharedAudioStandardExtraction>>,
     generative_field:
@@ -4043,6 +4048,7 @@ impl PyAudioStandardOutputConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedBlueprint {
     blueprint_arn: ::std::string::String,
     schema: ::std::string::String,
@@ -4321,6 +4327,7 @@ impl PyBlueprintItem {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedBlueprintOptimizationOutputConfiguration {
     s3_object: Option<Arc<aws_sdk_bedrockdataautomation::types::S3Object>>,
 }
@@ -4384,6 +4391,7 @@ impl PyBlueprintOptimizationOutputConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedBlueprintOptimizationSample {
     asset_s3_object: Option<Arc<aws_sdk_bedrockdataautomation::types::S3Object>>,
     ground_truth_s3_object: Option<Arc<aws_sdk_bedrockdataautomation::types::S3Object>>,
@@ -4559,6 +4567,7 @@ impl PyChannelLabelingConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCustomOutputConfiguration {
     blueprints: Option<::std::vec::Vec<Arc<aws_sdk_bedrockdataautomation::types::BlueprintItem>>>,
     document: Option<Arc<SharedDocumentCustomOutputConfiguration>>,
@@ -4661,6 +4670,7 @@ impl PyCustomOutputConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDataAutomationLibrary {
     library_arn: ::std::string::String,
     creation_time: ::aws_smithy_types::DateTime,
@@ -4845,6 +4855,7 @@ impl PyDataAutomationLibrary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDataAutomationLibraryConfiguration {
     libraries: Option<
         ::std::vec::Vec<Arc<aws_sdk_bedrockdataautomation::types::DataAutomationLibraryItem>>,
@@ -4925,6 +4936,7 @@ impl PyDataAutomationLibraryConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDataAutomationLibraryIngestionJob {
     job_arn: ::std::string::String,
     creation_time: ::aws_smithy_types::DateTime,
@@ -5208,6 +5220,7 @@ impl PyDataAutomationLibrarySummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDataAutomationProject {
     project_arn: ::std::string::String,
     creation_time: ::aws_smithy_types::DateTime,
@@ -5584,6 +5597,7 @@ impl PyDocumentBoundingBox {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDocumentCustomOutputConfiguration {
     fallback_blueprints:
         Option<::std::vec::Vec<Arc<aws_sdk_bedrockdataautomation::types::BlueprintItem>>>,
@@ -5716,6 +5730,7 @@ impl PyDocumentOutputAdditionalFileFormat {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDocumentOutputFormat {
     text_format: Option<Arc<aws_sdk_bedrockdataautomation::types::DocumentOutputTextFormat>>,
     additional_file_format:
@@ -5833,6 +5848,7 @@ impl PyDocumentOutputTextFormat {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDocumentOverrideConfiguration {
     splitter: Option<Arc<aws_sdk_bedrockdataautomation::types::SplitterConfiguration>>,
     modality_processing:
@@ -5945,6 +5961,7 @@ impl PyDocumentOverrideConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDocumentStandardExtraction {
     granularity: Option<Arc<aws_sdk_bedrockdataautomation::types::DocumentExtractionGranularity>>,
     bounding_box: Option<Arc<aws_sdk_bedrockdataautomation::types::DocumentBoundingBox>>,
@@ -6052,6 +6069,7 @@ impl PyDocumentStandardGenerativeField {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDocumentStandardOutputConfiguration {
     extraction: Option<Arc<SharedDocumentStandardExtraction>>,
     generative_field:
@@ -6259,6 +6277,7 @@ impl PyImageExtractionCategory {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedImageOverrideConfiguration {
     modality_processing:
         Option<Arc<aws_sdk_bedrockdataautomation::types::ModalityProcessingConfiguration>>,
@@ -6347,6 +6366,7 @@ impl PyImageOverrideConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedImageStandardExtraction {
     category: Option<Arc<aws_sdk_bedrockdataautomation::types::ImageExtractionCategory>>,
     bounding_box: Option<Arc<aws_sdk_bedrockdataautomation::types::ImageBoundingBox>>,
@@ -6469,6 +6489,7 @@ impl PyImageStandardGenerativeField {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedImageStandardOutputConfiguration {
     extraction: Option<Arc<SharedImageStandardExtraction>>,
     generative_field:
@@ -6661,6 +6682,7 @@ impl PyOutputConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedOverrideConfiguration {
     document: Option<Arc<SharedDocumentOverrideConfiguration>>,
     image: Option<Arc<SharedImageOverrideConfiguration>>,
@@ -6900,6 +6922,7 @@ impl PyS3Object {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSensitiveDataConfiguration {
     detection_mode: aws_sdk_bedrockdataautomation::types::SensitiveDataDetectionMode,
     detection_scope: Option<
@@ -7050,6 +7073,7 @@ impl PySplitterConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedStandardOutputConfiguration {
     document: Option<Arc<SharedDocumentStandardOutputConfiguration>>,
     image: Option<Arc<SharedImageStandardOutputConfiguration>>,
@@ -7215,6 +7239,7 @@ impl PyTag {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedTranscriptConfiguration {
     speaker_labeling:
         Option<Arc<aws_sdk_bedrockdataautomation::types::SpeakerLabelingConfiguration>>,
@@ -7361,6 +7386,7 @@ impl PyVideoExtractionCategory {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedVideoOverrideConfiguration {
     modality_processing:
         Option<Arc<aws_sdk_bedrockdataautomation::types::ModalityProcessingConfiguration>>,
@@ -7449,6 +7475,7 @@ impl PyVideoOverrideConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedVideoStandardExtraction {
     category: Option<Arc<aws_sdk_bedrockdataautomation::types::VideoExtractionCategory>>,
     bounding_box: Option<Arc<aws_sdk_bedrockdataautomation::types::VideoBoundingBox>>,
@@ -7571,6 +7598,7 @@ impl PyVideoStandardGenerativeField {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedVideoStandardOutputConfiguration {
     extraction: Option<Arc<SharedVideoStandardExtraction>>,
     generative_field:
@@ -7676,6 +7704,7 @@ impl PyOperationCopyBlueprintStageOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateBlueprintOutput {
     blueprint: Option<Arc<SharedBlueprint>>,
 }
@@ -7734,6 +7763,7 @@ impl PyOperationCreateBlueprintOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateBlueprintVersionOutput {
     blueprint: Option<Arc<SharedBlueprint>>,
 }
@@ -7999,6 +8029,7 @@ impl PyOperationDeleteDataAutomationProjectOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBlueprintOutput {
     blueprint: Option<Arc<SharedBlueprint>>,
 }
@@ -8057,6 +8088,7 @@ impl PyOperationGetBlueprintOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBlueprintOptimizationStatusOutput {
     status: Option<aws_sdk_bedrockdataautomation::types::BlueprintOptimizationJobStatus>,
     error_type: Option<::std::string::String>,
@@ -8164,6 +8196,7 @@ impl PyOperationGetBlueprintOptimizationStatusOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDataAutomationLibraryOutput {
     library: Option<Arc<SharedDataAutomationLibrary>>,
 }
@@ -8249,6 +8282,7 @@ impl PyOperationGetDataAutomationLibraryEntityOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDataAutomationLibraryIngestionJobOutput {
     job: Option<Arc<SharedDataAutomationLibraryIngestionJob>>,
 }
@@ -8301,6 +8335,7 @@ impl PyOperationGetDataAutomationLibraryIngestionJobOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDataAutomationProjectOutput {
     project: Option<Arc<SharedDataAutomationProject>>,
 }
@@ -8411,6 +8446,7 @@ impl PyOperationInvokeDataAutomationLibraryIngestionJobOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListBlueprintsOutput {
     blueprints: ::std::vec::Vec<Arc<aws_sdk_bedrockdataautomation::types::BlueprintSummary>>,
     next_token: Option<::std::string::String>,
@@ -8490,6 +8526,7 @@ impl PyOperationListBlueprintsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListDataAutomationLibrariesOutput {
     libraries: Option<
         ::std::vec::Vec<Arc<aws_sdk_bedrockdataautomation::types::DataAutomationLibrarySummary>>,
@@ -8633,6 +8670,7 @@ impl PyOperationListDataAutomationLibraryEntitiesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListDataAutomationLibraryIngestionJobsOutput {
     jobs: Option<
         ::std::vec::Vec<
@@ -8718,6 +8756,7 @@ impl PyOperationListDataAutomationLibraryIngestionJobsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListDataAutomationProjectsOutput {
     projects:
         ::std::vec::Vec<Arc<aws_sdk_bedrockdataautomation::types::DataAutomationProjectSummary>>,
@@ -8791,6 +8830,7 @@ impl PyOperationListDataAutomationProjectsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListTagsForResourceOutput {
     tags: Option<::std::vec::Vec<Arc<aws_sdk_bedrockdataautomation::types::Tag>>>,
 }
@@ -8898,6 +8938,7 @@ impl PyOperationUntagResourceOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateBlueprintOutput {
     blueprint: Option<Arc<SharedBlueprint>>,
 }

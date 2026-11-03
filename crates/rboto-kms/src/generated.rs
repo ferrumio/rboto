@@ -1327,6 +1327,7 @@ impl PyAliasListEntry {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCustomKeyStoresListEntry {
     custom_key_store_id: Option<::std::string::String>,
     custom_key_store_name: Option<::std::string::String>,
@@ -1584,6 +1585,7 @@ impl PyGrantConstraints {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGrantListEntry {
     key_id: Option<::std::string::String>,
     grant_id: Option<::std::string::String>,
@@ -1913,6 +1915,7 @@ impl PyKeyListEntry {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedKeyMetadata {
     aws_account_id: Option<::std::string::String>,
     key_id: ::std::string::String,
@@ -2448,6 +2451,7 @@ impl PyKeyMetadata {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMultiRegionConfiguration {
     multi_region_key_type: Option<aws_sdk_kms::types::MultiRegionKeyType>,
     primary_key: Option<Arc<aws_sdk_kms::types::MultiRegionKey>>,
@@ -2944,6 +2948,7 @@ impl PyOperationCreateGrantOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateKeyOutput {
     key_metadata: Option<Arc<SharedKeyMetadata>>,
 }
@@ -3252,6 +3257,7 @@ impl PyOperationDeriveSharedSecretOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeCustomKeyStoresOutput {
     custom_key_stores: Option<::std::vec::Vec<Arc<SharedCustomKeyStoresListEntry>>>,
     next_marker: Option<::std::string::String>,
@@ -3351,6 +3357,7 @@ impl PyOperationDescribeCustomKeyStoresOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeKeyOutput {
     key_metadata: Option<Arc<SharedKeyMetadata>>,
 }
@@ -3971,6 +3978,7 @@ impl PyOperationGenerateRandomOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetKeyLastUsageOutput {
     key_id: Option<::std::string::String>,
     key_last_usage: Option<Arc<aws_sdk_kms::types::KeyLastUsageData>>,
@@ -4510,6 +4518,7 @@ impl PyOperationImportKeyMaterialOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListAliasesOutput {
     aliases: Option<::std::vec::Vec<Arc<aws_sdk_kms::types::AliasListEntry>>>,
     next_marker: Option<::std::string::String>,
@@ -4603,6 +4612,7 @@ impl PyOperationListAliasesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListGrantsOutput {
     grants: Option<::std::vec::Vec<Arc<SharedGrantListEntry>>>,
     next_marker: Option<::std::string::String>,
@@ -4759,6 +4769,7 @@ impl PyOperationListKeyPoliciesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListKeyRotationsOutput {
     rotations: Option<::std::vec::Vec<Arc<aws_sdk_kms::types::RotationsListEntry>>>,
     next_marker: Option<::std::string::String>,
@@ -4852,6 +4863,7 @@ impl PyOperationListKeyRotationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListKeysOutput {
     keys: Option<::std::vec::Vec<Arc<aws_sdk_kms::types::KeyListEntry>>>,
     next_marker: Option<::std::string::String>,
@@ -4943,6 +4955,7 @@ impl PyOperationListKeysOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListResourceTagsOutput {
     tags: Option<::std::vec::Vec<Arc<aws_sdk_kms::types::Tag>>>,
     next_marker: Option<::std::string::String>,
@@ -5036,6 +5049,7 @@ impl PyOperationListResourceTagsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListRetirableGrantsOutput {
     grants: Option<::std::vec::Vec<Arc<SharedGrantListEntry>>>,
     next_marker: Option<::std::string::String>,
@@ -5260,6 +5274,7 @@ impl PyOperationReEncryptOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationReplicateKeyOutput {
     replica_key_metadata: Option<Arc<SharedKeyMetadata>>,
     replica_policy: Option<::std::string::String>,

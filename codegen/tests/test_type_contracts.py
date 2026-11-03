@@ -105,6 +105,39 @@ def invalid(ddb: DynamoDBClient, lamb: LambdaClient, s3: S3Client) -> None:
     assert len(errors) == 6, result.stdout
 
 
+def test_waiters_infer_outputs_and_validate_inputs_without_native_imports(tmp_path: Path) -> None:
+    result = check_consumer(tmp_path / "waiters_valid.py", """
+from typing import assert_type
+from rboto import DynamoDBClient, LambdaClient, WaiterConfig
+from rboto_dynamodb.types import DescribeTableOutput
+from rboto_lambda.types import GetFunctionConfigurationOutput
+
+async def ready(ddb: DynamoDBClient, lamb: LambdaClient) -> None:
+    result = await ddb.waiters.table_exists(
+        table_name="example", waiter_config=WaiterConfig(delay=1, timeout=30),
+    )
+    assert_type(result, DescribeTableOutput)
+    assert_type(ddb.waiters.names, tuple[str, ...])
+    assert_type(await ddb.waiters.table_not_exists(table_name="example"), None)
+    function = await lamb.waiters.function_active(function_name="example", qualifier="1")
+    assert_type(function, GetFunctionConfigurationOutput)
+""")
+    assert result.returncode == 0, result.stdout + result.stderr
+    result = check_consumer(tmp_path / "waiters_invalid.py", """
+from rboto import DynamoDBClient, LambdaClient, SQSClient
+
+async def invalid(ddb: DynamoDBClient, lamb: LambdaClient, sqs: SQSClient) -> None:
+    await ddb.waiters.table_exists()
+    await ddb.waiters.table_exists(table_name=12)
+    await ddb.waiters.table_exists(table_name="example", max_attempts=3)
+    await lamb.waiters.function_active(function_name="example", typo=True)
+    await lamb.waiters.unknown()
+    await sqs.waiters.queue_exists()
+""")
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert len([line for line in result.stdout.splitlines() if ": error:" in line]) == 6
+
+
 def test_recursive_json_alias_preserves_strict_input_validation(tmp_path: Path) -> None:
     result = check_consumer(tmp_path / "json_types.py", """
 from rboto import BedrockRuntimeClient

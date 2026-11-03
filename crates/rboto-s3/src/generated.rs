@@ -7924,6 +7924,7 @@ impl PyAccessControlTranslation {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAnalyticsConfiguration {
     id: ::std::string::String,
     filter: Option<aws_sdk_s3::types::AnalyticsFilter>,
@@ -8009,6 +8010,7 @@ impl PyAnalyticsConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAnalyticsExportDestination {
     s3_bucket_destination: Option<Arc<aws_sdk_s3::types::AnalyticsS3BucketDestination>>,
 }
@@ -8181,6 +8183,7 @@ impl PyAnnotationEntry {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAnnotationTableConfigurationResult {
     configuration_state: aws_sdk_s3::types::AnnotationConfigurationState,
     table_status: Option<::std::string::String>,
@@ -8937,6 +8940,7 @@ impl PyCorsRule {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDefaultRetention {
     mode: Option<aws_sdk_s3::types::ObjectLockRetentionMode>,
     days: Option<i32>,
@@ -9046,6 +9050,7 @@ impl PyDefaultRetention {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDeleteMarkerEntry {
     owner: Option<Arc<aws_sdk_s3::types::Owner>>,
     key: Option<::std::string::String>,
@@ -9247,6 +9252,7 @@ impl PyDeletedObject {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDestination {
     bucket: ::std::string::String,
     account: Option<::std::string::String>,
@@ -9685,6 +9691,7 @@ impl PyFilterRule {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGetBucketMetadataConfigurationResult {
     metadata_configuration_result: Option<Arc<SharedMetadataConfigurationResult>>,
 }
@@ -9748,6 +9755,7 @@ impl PyGetBucketMetadataConfigurationResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGetBucketMetadataTableConfigurationResult {
     metadata_table_configuration_result: Option<Arc<SharedMetadataTableConfigurationResult>>,
     status: ::std::string::String,
@@ -9845,6 +9853,7 @@ impl PyGetBucketMetadataTableConfigurationResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGetObjectAttributesParts {
     total_parts_count: Option<i32>,
     part_number_marker: Option<::std::string::String>,
@@ -10005,6 +10014,7 @@ impl PyGetObjectAttributesParts {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGrant {
     grantee: Option<Arc<aws_sdk_s3::types::Grantee>>,
     permission: Option<aws_sdk_s3::types::Permission>,
@@ -10183,6 +10193,7 @@ impl PyInitiator {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedIntelligentTieringAndOperator {
     prefix: Option<::std::string::String>,
     tags: Option<::std::vec::Vec<Arc<aws_sdk_s3::types::Tag>>>,
@@ -10277,6 +10288,7 @@ impl PyIntelligentTieringAndOperator {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedIntelligentTieringConfiguration {
     id: ::std::string::String,
     filter: Option<Arc<SharedIntelligentTieringFilter>>,
@@ -10389,6 +10401,7 @@ impl PyIntelligentTieringConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedIntelligentTieringFilter {
     prefix: Option<::std::string::String>,
     tag: Option<Arc<aws_sdk_s3::types::Tag>>,
@@ -10488,6 +10501,7 @@ impl PyIntelligentTieringFilter {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInventoryConfiguration {
     destination: Option<Arc<SharedInventoryDestination>>,
     is_enabled: bool,
@@ -10653,6 +10667,7 @@ impl PyInventoryConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInventoryDestination {
     s3_bucket_destination: Option<Arc<SharedInventoryS3BucketDestination>>,
 }
@@ -10710,6 +10725,7 @@ impl PyInventoryDestination {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInventoryEncryption {
     sses3: Option<Arc<aws_sdk_s3::types::Sses3>>,
     ssekms: Option<Arc<aws_sdk_s3::types::Ssekms>>,
@@ -10807,6 +10823,7 @@ impl PyInventoryFilter {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInventoryS3BucketDestination {
     account_id: Option<::std::string::String>,
     bucket: ::std::string::String,
@@ -10942,6 +10959,7 @@ impl PyInventorySchedule {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInventoryTableConfigurationResult {
     configuration_state: aws_sdk_s3::types::InventoryConfigurationState,
     table_status: Option<::std::string::String>,
@@ -11067,6 +11085,7 @@ impl PyInventoryTableConfigurationResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedJournalTableConfigurationResult {
     table_status: ::std::string::String,
     error: Option<Arc<aws_sdk_s3::types::ErrorDetails>>,
@@ -11190,6 +11209,7 @@ impl PyJournalTableConfigurationResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedLambdaFunctionConfiguration {
     id: Option<::std::string::String>,
     lambda_function_arn: ::std::string::String,
@@ -11341,6 +11361,7 @@ impl PyLifecycleExpiration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedLifecycleRule {
     expiration: Option<Arc<aws_sdk_s3::types::LifecycleExpiration>>,
     id: Option<::std::string::String>,
@@ -11597,6 +11618,7 @@ impl PyLifecycleRule {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedLifecycleRuleAndOperator {
     prefix: Option<::std::string::String>,
     tags: Option<::std::vec::Vec<Arc<aws_sdk_s3::types::Tag>>>,
@@ -11721,6 +11743,7 @@ impl PyLifecycleRuleAndOperator {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedLifecycleRuleFilter {
     prefix: Option<::std::string::String>,
     tag: Option<Arc<aws_sdk_s3::types::Tag>>,
@@ -11856,6 +11879,7 @@ impl PyLifecycleRuleFilter {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedLoggingEnabled {
     target_bucket: ::std::string::String,
     target_grants: Option<::std::vec::Vec<Arc<SharedTargetGrant>>>,
@@ -11972,6 +11996,7 @@ impl PyLoggingEnabled {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMetadataConfigurationResult {
     destination_result: Option<Arc<aws_sdk_s3::types::DestinationResult>>,
     journal_table_configuration_result: Option<Arc<SharedJournalTableConfigurationResult>>,
@@ -12109,6 +12134,7 @@ impl PyMetadataConfigurationResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMetadataTableConfigurationResult {
     s3_tables_destination_result: Option<Arc<aws_sdk_s3::types::S3TablesDestinationResult>>,
 }
@@ -12172,6 +12198,7 @@ impl PyMetadataTableConfigurationResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMetrics {
     status: aws_sdk_s3::types::MetricsStatus,
     event_threshold: Option<Arc<aws_sdk_s3::types::ReplicationTimeValue>>,
@@ -12262,6 +12289,7 @@ impl PyMetricsConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMultipartUpload {
     upload_id: Option<::std::string::String>,
     key: Option<::std::string::String>,
@@ -12531,6 +12559,7 @@ impl PyNoncurrentVersionTransition {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedNotificationConfigurationFilter {
     key: Option<Arc<SharedS3KeyFilter>>,
 }
@@ -12594,6 +12623,7 @@ impl PyNotificationConfigurationFilter {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedObject {
     key: Option<::std::string::String>,
     last_modified: Option<::aws_smithy_types::DateTime>,
@@ -12806,6 +12836,7 @@ impl PyObject {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedObjectLockConfiguration {
     object_lock_enabled: Option<aws_sdk_s3::types::ObjectLockEnabled>,
     rule: Option<Arc<SharedObjectLockRule>>,
@@ -12903,6 +12934,7 @@ impl PyObjectLockLegalHold {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedObjectLockRetention {
     mode: Option<aws_sdk_s3::types::ObjectLockRetentionMode>,
     retain_until_date: Option<::aws_smithy_types::DateTime>,
@@ -13012,6 +13044,7 @@ impl PyObjectLockRetention {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedObjectLockRule {
     default_retention: Option<Arc<SharedDefaultRetention>>,
 }
@@ -13201,6 +13234,7 @@ impl PyObjectPart {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedObjectVersion {
     e_tag: Option<::std::string::String>,
     checksum_algorithm: Option<::std::vec::Vec<aws_sdk_s3::types::ChecksumAlgorithm>>,
@@ -13481,6 +13515,7 @@ impl PyOwner {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedOwnershipControls {
     rules: ::std::vec::Vec<Arc<aws_sdk_s3::types::OwnershipControlsRule>>,
 }
@@ -13811,6 +13846,7 @@ impl PyPublicAccessBlockConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedQueueConfiguration {
     id: Option<::std::string::String>,
     queue_arn: ::std::string::String,
@@ -14052,6 +14088,7 @@ impl PyReplicaModifications {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedReplicationConfiguration {
     role: ::std::string::String,
     rules: ::std::vec::Vec<Arc<SharedReplicationRule>>,
@@ -14122,6 +14159,7 @@ impl PyReplicationConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedReplicationRule {
     id: Option<::std::string::String>,
     priority: Option<i32>,
@@ -14345,6 +14383,7 @@ impl PyReplicationRule {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedReplicationRuleAndOperator {
     prefix: Option<::std::string::String>,
     tags: Option<::std::vec::Vec<Arc<aws_sdk_s3::types::Tag>>>,
@@ -14437,6 +14476,7 @@ impl PyReplicationRuleAndOperator {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedReplicationRuleFilter {
     prefix: Option<::std::string::String>,
     tag: Option<Arc<aws_sdk_s3::types::Tag>>,
@@ -14536,6 +14576,7 @@ impl PyReplicationRuleFilter {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedReplicationTime {
     status: aws_sdk_s3::types::ReplicationTimeStatus,
     time: Option<Arc<aws_sdk_s3::types::ReplicationTimeValue>>,
@@ -14655,6 +14696,7 @@ impl PyRestoreStatus {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRoutingRule {
     condition: Option<Arc<aws_sdk_s3::types::Condition>>,
     redirect: Option<Arc<aws_sdk_s3::types::Redirect>>,
@@ -14731,6 +14773,7 @@ impl PyRoutingRule {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedS3KeyFilter {
     filter_rules: Option<::std::vec::Vec<Arc<aws_sdk_s3::types::FilterRule>>>,
 }
@@ -14870,6 +14913,7 @@ impl PyServerSideEncryptionByDefault {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedServerSideEncryptionConfiguration {
     rules: ::std::vec::Vec<Arc<SharedServerSideEncryptionRule>>,
 }
@@ -14936,6 +14980,7 @@ impl PyServerSideEncryptionConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedServerSideEncryptionRule {
     apply_server_side_encryption_by_default:
         Option<Arc<aws_sdk_s3::types::ServerSideEncryptionByDefault>>,
@@ -15084,6 +15129,7 @@ impl PySimplePrefix {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSourceSelectionCriteria {
     sse_kms_encrypted_objects: Option<Arc<aws_sdk_s3::types::SseKmsEncryptedObjects>>,
     replica_modifications: Option<Arc<aws_sdk_s3::types::ReplicaModifications>>,
@@ -15211,6 +15257,7 @@ impl PySses3 {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedStorageClassAnalysis {
     data_export: Option<Arc<SharedStorageClassAnalysisDataExport>>,
 }
@@ -15268,6 +15315,7 @@ impl PyStorageClassAnalysis {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedStorageClassAnalysisDataExport {
     output_schema_version: aws_sdk_s3::types::StorageClassAnalysisSchemaVersion,
     destination: Option<Arc<SharedAnalyticsExportDestination>>,
@@ -15367,6 +15415,7 @@ impl PyTag {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedTargetGrant {
     grantee: Option<Arc<aws_sdk_s3::types::Grantee>>,
     permission: Option<aws_sdk_s3::types::BucketLogsPermission>,
@@ -15437,6 +15486,7 @@ impl PyTargetGrant {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedTargetObjectKeyFormat {
     simple_prefix: Option<Arc<aws_sdk_s3::types::SimplePrefix>>,
     partitioned_prefix: Option<Arc<aws_sdk_s3::types::PartitionedPrefix>>,
@@ -15540,6 +15590,7 @@ impl PyTiering {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedTopicConfiguration {
     id: Option<::std::string::String>,
     topic_arn: ::std::string::String,
@@ -16073,6 +16124,7 @@ impl PyOperationCompleteMultipartUploadOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCopyObjectOutput {
     copy_object_result: Option<Arc<aws_sdk_s3::types::CopyObjectResult>>,
     expiration: Option<::std::string::String>,
@@ -16589,6 +16641,7 @@ impl PyOperationCreateMultipartUploadOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateSessionOutput {
     server_side_encryption: Option<aws_sdk_s3::types::ServerSideEncryption>,
     ssekms_key_id: Option<::std::string::String>,
@@ -16854,6 +16907,7 @@ impl PyOperationDeleteObjectTaggingOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDeleteObjectsOutput {
     deleted: Option<::std::vec::Vec<Arc<aws_sdk_s3::types::DeletedObject>>>,
     request_charged: Option<aws_sdk_s3::types::RequestCharged>,
@@ -16976,6 +17030,7 @@ impl PyOperationDeleteObjectsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBucketAbacOutput {
     abac_status: Option<Arc<aws_sdk_s3::types::AbacStatus>>,
 }
@@ -17075,6 +17130,7 @@ impl PyOperationGetBucketAccelerateConfigurationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBucketAclOutput {
     owner: Option<Arc<aws_sdk_s3::types::Owner>>,
     grants: Option<::std::vec::Vec<Arc<SharedGrant>>>,
@@ -17164,6 +17220,7 @@ impl PyOperationGetBucketAclOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBucketAnalyticsConfigurationOutput {
     analytics_configuration: Option<Arc<SharedAnalyticsConfiguration>>,
 }
@@ -17216,6 +17273,7 @@ impl PyOperationGetBucketAnalyticsConfigurationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBucketCorsOutput {
     cors_rules: Option<::std::vec::Vec<Arc<aws_sdk_s3::types::CorsRule>>>,
 }
@@ -17281,6 +17339,7 @@ impl PyOperationGetBucketCorsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBucketEncryptionOutput {
     server_side_encryption_configuration: Option<Arc<SharedServerSideEncryptionConfiguration>>,
 }
@@ -17339,6 +17398,7 @@ impl PyOperationGetBucketEncryptionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBucketIntelligentTieringConfigurationOutput {
     intelligent_tiering_configuration: Option<Arc<SharedIntelligentTieringConfiguration>>,
 }
@@ -17391,6 +17451,7 @@ impl PyOperationGetBucketIntelligentTieringConfigurationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBucketInventoryConfigurationOutput {
     inventory_configuration: Option<Arc<SharedInventoryConfiguration>>,
 }
@@ -17443,6 +17504,7 @@ impl PyOperationGetBucketInventoryConfigurationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBucketLifecycleConfigurationOutput {
     rules: Option<::std::vec::Vec<Arc<SharedLifecycleRule>>>,
     transition_default_minimum_object_size:
@@ -17553,6 +17615,7 @@ impl PyOperationGetBucketLocationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBucketLoggingOutput {
     logging_enabled: Option<Arc<SharedLoggingEnabled>>,
 }
@@ -17605,6 +17668,7 @@ impl PyOperationGetBucketLoggingOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBucketMetadataConfigurationOutput {
     get_bucket_metadata_configuration_result:
         Option<Arc<SharedGetBucketMetadataConfigurationResult>>,
@@ -17658,6 +17722,7 @@ impl PyOperationGetBucketMetadataConfigurationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBucketMetadataTableConfigurationOutput {
     get_bucket_metadata_table_configuration_result:
         Option<Arc<SharedGetBucketMetadataTableConfigurationResult>>,
@@ -17718,6 +17783,7 @@ impl PyOperationGetBucketMetadataTableConfigurationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBucketMetricsConfigurationOutput {
     metrics_configuration: Option<Arc<aws_sdk_s3::types::MetricsConfiguration>>,
 }
@@ -17770,6 +17836,7 @@ impl PyOperationGetBucketMetricsConfigurationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBucketNotificationConfigurationOutput {
     topic_configurations: Option<::std::vec::Vec<Arc<SharedTopicConfiguration>>>,
     queue_configurations: Option<::std::vec::Vec<Arc<SharedQueueConfiguration>>>,
@@ -17925,6 +17992,7 @@ impl PyOperationGetBucketNotificationConfigurationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBucketOwnershipControlsOutput {
     ownership_controls: Option<Arc<SharedOwnershipControls>>,
 }
@@ -18012,6 +18080,7 @@ impl PyOperationGetBucketPolicyOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBucketPolicyStatusOutput {
     policy_status: Option<Arc<aws_sdk_s3::types::PolicyStatus>>,
 }
@@ -18068,6 +18137,7 @@ impl PyOperationGetBucketPolicyStatusOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBucketReplicationOutput {
     replication_configuration: Option<Arc<SharedReplicationConfiguration>>,
 }
@@ -18159,6 +18229,7 @@ impl PyOperationGetBucketRequestPaymentOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBucketTaggingOutput {
     tag_set: ::std::vec::Vec<Arc<aws_sdk_s3::types::Tag>>,
 }
@@ -18263,6 +18334,7 @@ impl PyOperationGetBucketVersioningOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBucketWebsiteOutput {
     redirect_all_requests_to: Option<Arc<aws_sdk_s3::types::RedirectAllRequestsTo>>,
     index_document: Option<Arc<aws_sdk_s3::types::IndexDocument>>,
@@ -19168,6 +19240,7 @@ impl PyOperationGetObjectOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetObjectAclOutput {
     owner: Option<Arc<aws_sdk_s3::types::Owner>>,
     grants: Option<::std::vec::Vec<Arc<SharedGrant>>>,
@@ -19587,6 +19660,7 @@ impl PyOperationGetObjectAnnotationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetObjectAttributesOutput {
     delete_marker: Option<bool>,
     last_modified: Option<::aws_smithy_types::DateTime>,
@@ -19795,6 +19869,7 @@ impl PyOperationGetObjectAttributesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetObjectLegalHoldOutput {
     legal_hold: Option<Arc<aws_sdk_s3::types::ObjectLockLegalHold>>,
 }
@@ -19845,6 +19920,7 @@ impl PyOperationGetObjectLegalHoldOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetObjectLockConfigurationOutput {
     object_lock_configuration: Option<Arc<SharedObjectLockConfiguration>>,
 }
@@ -19903,6 +19979,7 @@ impl PyOperationGetObjectLockConfigurationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetObjectRetentionOutput {
     retention: Option<Arc<SharedObjectLockRetention>>,
 }
@@ -19955,6 +20032,7 @@ impl PyOperationGetObjectRetentionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetObjectTaggingOutput {
     version_id: Option<::std::string::String>,
     tag_set: ::std::vec::Vec<Arc<aws_sdk_s3::types::Tag>>,
@@ -20064,6 +20142,7 @@ impl PyOperationGetObjectTorrentOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetPublicAccessBlockOutput {
     public_access_block_configuration:
         Option<Arc<aws_sdk_s3::types::PublicAccessBlockConfiguration>>,
@@ -20993,6 +21072,7 @@ impl PyOperationHeadObjectOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListBucketAnalyticsConfigurationsOutput {
     is_truncated: Option<bool>,
     continuation_token: Option<::std::string::String>,
@@ -21109,6 +21189,7 @@ impl PyOperationListBucketAnalyticsConfigurationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListBucketIntelligentTieringConfigurationsOutput {
     is_truncated: Option<bool>,
     continuation_token: Option<::std::string::String>,
@@ -21227,6 +21308,7 @@ impl PyOperationListBucketIntelligentTieringConfigurationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListBucketInventoryConfigurationsOutput {
     continuation_token: Option<::std::string::String>,
     inventory_configuration_list: Option<::std::vec::Vec<Arc<SharedInventoryConfiguration>>>,
@@ -21343,6 +21425,7 @@ impl PyOperationListBucketInventoryConfigurationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListBucketMetricsConfigurationsOutput {
     is_truncated: Option<bool>,
     continuation_token: Option<::std::string::String>,
@@ -21460,6 +21543,7 @@ impl PyOperationListBucketMetricsConfigurationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListBucketsOutput {
     buckets: Option<::std::vec::Vec<Arc<aws_sdk_s3::types::Bucket>>>,
     owner: Option<Arc<aws_sdk_s3::types::Owner>>,
@@ -21585,6 +21669,7 @@ impl PyOperationListBucketsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListDirectoryBucketsOutput {
     buckets: Option<::std::vec::Vec<Arc<aws_sdk_s3::types::Bucket>>>,
     continuation_token: Option<::std::string::String>,
@@ -21674,6 +21759,7 @@ impl PyOperationListDirectoryBucketsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListMultipartUploadsOutput {
     bucket: Option<::std::string::String>,
     key_marker: Option<::std::string::String>,
@@ -21982,6 +22068,7 @@ impl PyOperationListMultipartUploadsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListObjectAnnotationsOutput {
     annotations: Option<::std::vec::Vec<Arc<aws_sdk_s3::types::AnnotationEntry>>>,
     bucket: Option<::std::string::String>,
@@ -22215,6 +22302,7 @@ impl PyOperationListObjectAnnotationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListObjectVersionsOutput {
     is_truncated: Option<bool>,
     key_marker: Option<::std::string::String>,
@@ -22556,6 +22644,7 @@ impl PyOperationListObjectVersionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListObjectsOutput {
     is_truncated: Option<bool>,
     marker: Option<::std::string::String>,
@@ -22822,6 +22911,7 @@ impl PyOperationListObjectsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListObjectsV2Output {
     is_truncated: Option<bool>,
     contents: Option<::std::vec::Vec<Arc<SharedObject>>>,
@@ -23124,6 +23214,7 @@ impl PyOperationListObjectsV2Output {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPartsOutput {
     abort_date: Option<::aws_smithy_types::DateTime>,
     abort_rule_id: Option<::std::string::String>,
@@ -24681,6 +24772,7 @@ impl PyOperationUploadPartOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUploadPartCopyOutput {
     copy_source_version_id: Option<::std::string::String>,
     copy_part_result: Option<Arc<aws_sdk_s3::types::CopyPartResult>>,

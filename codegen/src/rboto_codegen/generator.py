@@ -15,6 +15,7 @@ from .reference import document_types, package_version, reference_url, render_re
 from .registry import list_services
 from .rust_crate import RustField, RustOperation, RustType, parse_crate
 from .smithy import SmithyMember, SmithyShape, load_model, to_snake_case
+from .waiters import resolve_waiters
 
 STRING = "::std::string::String"
 DATETIME = "::aws_smithy_types::DateTime"
@@ -46,6 +47,7 @@ class GeneratedPaths:
     native_stub: Path
     exceptions: Path
     paginators: Path
+    waiters: Path
 
 
 def _split_generic(value: str) -> tuple[str, ...]:
@@ -135,6 +137,14 @@ class ServiceGenerator:
         self.templates = template_environment()
         self._configure_python_types()
         self.pagination = resolve_pagination(
+            descriptor,
+            self.service,
+            {item["operation"] for item in self._native_output_operations()},
+            lambda shape, member: (
+                field.name if (field := self._member_field(shape, member)) else member.rust_name
+            ),
+        )
+        self.waiters = resolve_waiters(
             descriptor,
             self.service,
             {item["operation"] for item in self._native_output_operations()},
@@ -299,6 +309,8 @@ class ServiceGenerator:
             f"{self.descriptor.python_package}/exceptions.py",
             paginators=self.repository_root / f"packages/{self.descriptor.distribution_name}/python/"
             f"{self.descriptor.python_package}/paginators.py",
+            waiters=self.repository_root / f"packages/{self.descriptor.distribution_name}/python/"
+            f"{self.descriptor.python_package}/waiters.py",
         )
         for path in (
             paths.rust,
@@ -342,11 +354,16 @@ class ServiceGenerator:
             _write_generated(paths.paginators, self._render_python_client(paginators=True))
         elif paths.paginators.exists():
             paths.paginators.unlink()
+        if self.waiters:
+            _write_generated(paths.waiters, self._render_python_client(waiters=True))
+        elif paths.waiters.exists():
+            paths.waiters.unlink()
         _write_generated(
             paths.readme,
             render_service_readme(
                 self.descriptor, client_source, self.repository_root,
                 tuple(item.operation for item in self.pagination),
+                tuple((item.name, item.operation) for item in self.waiters),
             ),
         )
         exceptions_source = self._render_exceptions()
@@ -362,6 +379,8 @@ class ServiceGenerator:
             self._render_native_stub(), self._render_exceptions(), self.pagination,
             (self.repository_root / "examples/clients"
              / f"{self.descriptor.python_name}.py").read_text(),
+            self.waiters,
+            self._render_python_client(waiters=True) if self.waiters else "",
         )
 
     def _next(self, prefix: str) -> str:
@@ -590,7 +609,10 @@ class ServiceGenerator:
         if kind == "box":
             arguments = _generic(rust_type, "::std::boxed::Box")
             assert arguments is not None
-            return self._to_py(arguments[0], f"({source}).as_ref()", target, indent, shared=shared)
+            inner_source = (
+                source if shared and self._shared_is_arc(rust_type) else f"({source}).as_ref()"
+            )
+            return self._to_py(arguments[0], inner_source, target, indent, shared=shared)
         if kind == "option":
             arguments = _generic(rust_type, "::std::option::Option")
             assert arguments is not None
@@ -656,7 +678,8 @@ class ServiceGenerator:
         if kind == "box":
             arguments = _generic(rust_type, "::std::boxed::Box")
             assert arguments is not None
-            return self._to_typed_py(arguments[0], f"({source}).as_ref()", target, indent)
+            inner_source = source if self._shared_is_arc(rust_type) else f"({source}).as_ref()"
+            return self._to_typed_py(arguments[0], inner_source, target, indent)
         if kind == "option":
             arguments = _generic(rust_type, "::std::option::Option")
             assert arguments is not None
@@ -727,6 +750,13 @@ class ServiceGenerator:
             return f"Shared{name}"
         return f"{self.rust_module}::types::{name}"
 
+    def _shared_is_arc(self, rust_type: str) -> bool:
+        # SDK boxes break recursive type cycles; the shared node's Arc already
+        # provides that indirection. Other boxed values keep their representation.
+        while (arguments := _generic(rust_type, "::std::boxed::Box")) is not None:
+            rust_type = arguments[0]
+        return self._kind(rust_type) == "struct"
+
     def _shared_type(self, rust_type: str) -> str:
         """Rust-only output storage. Unions keep their dictionary representation."""
         kind = self._kind(rust_type)
@@ -740,6 +770,8 @@ class ServiceGenerator:
             prefix = prefixes[kind]
             arguments = _generic(rust_type, prefix)
             assert arguments is not None
+            if kind == "box" and self._shared_is_arc(rust_type):
+                return self._shared_type(arguments[0])
             return f"{prefix}<{', '.join(self._shared_type(arg) for arg in arguments)}>"
         return rust_type.replace("crate::", f"{self.rust_module}::")
 
@@ -760,7 +792,8 @@ class ServiceGenerator:
         arguments = _generic(rust_type, prefixes[kind])
         assert arguments is not None
         if kind == "box":
-            return f"Box::new({self._into_shared(arguments[0], f'*({source})')})"
+            converted = self._into_shared(arguments[0], f"*({source})")
+            return converted if self._shared_is_arc(rust_type) else f"Box::new({converted})"
         item = self._next("owned")
         converted = self._into_shared(arguments[-1], item)
         if kind == "option":
@@ -772,7 +805,9 @@ class ServiceGenerator:
     def _shared_storage(self, name: str, rust_type: str, fields: tuple[RustField, ...]) -> str:
         # Streams are extracted into Python owners before constructing this value.
         fields = tuple(field for field in fields if self._kind(field.rust_type) != "byte_stream")
-        lines = [f"struct {name} {{"]
+        # Nested collection types mirror the model. Restrict this style allowance
+        # to generated storage declarations; conversions and getters remain linted.
+        lines = ["#[allow(clippy::type_complexity)]", f"struct {name} {{"]
         for field in fields:
             field_type = self._shared_type(field.rust_type)
             if field.optional:
@@ -1779,12 +1814,20 @@ class ServiceGenerator:
             ),
         }
 
-    def _render_python_client(self, *, paginators: bool = False) -> str:
+    def _render_python_client(self, *, paginators: bool = False, waiters: bool = False) -> str:
         names = (
-            [item.operation for item in self.pagination] if paginators
+            [item.operation for item in self.waiters] if waiters
+            else [item.operation for item in self.pagination] if paginators
             else [op.rust_name for op in self.service.operations]
         )
         methods = [self._method_signature(name) for name in names]
+        if waiters:
+            for method, waiter in zip(methods, self.waiters, strict=True):
+                method["waiter_name"] = waiter.name
+                method["waiter_output"] = (
+                    str(method["output"]) + (" | None" if waiter.returns_none else "")
+                    if waiter.returns_output else "None"
+                )
         type_names: set[str] = set()
         ignored = {
             "str", "int", "bool", "float", "bytes", "list", "dict", "None",
@@ -1793,7 +1836,7 @@ class ServiceGenerator:
         native_output_names = {
             metadata["class_name"] for metadata in self._native_output_operations()
         }
-        if paginators:
+        if paginators or waiters:
             native_output_names.intersection_update(str(method["output"]) for method in methods)
         for method in methods:
             output = str(method["output"])
@@ -1817,7 +1860,9 @@ class ServiceGenerator:
                     if token not in ignored
                 )
         return (
-            self.templates.get_template("paginators.py.j2" if paginators else "client.py.j2")
+            self.templates.get_template(
+                "waiters.py.j2" if waiters else "paginators.py.j2" if paginators else "client.py.j2"
+            )
             .render(
                 methods=methods,
                 type_names=sorted(type_names),
@@ -1835,6 +1880,18 @@ class ServiceGenerator:
                         "more_results": repr(item.more_results),
                     }
                     for item in self.pagination
+                },
+                waiters={
+                    item.name: {
+                        "delay": item.delay,
+                        "acceptors": [
+                            {
+                                "state": repr(a.state), "matcher": repr(a.matcher),
+                                "expected": repr(a.expected), "expression": repr(a.expression),
+                                "comparator": repr(a.comparator),
+                            } for a in item.acceptors
+                        ],
+                    } for item in self.waiters
                 },
             )
             .rstrip()

@@ -75,6 +75,22 @@ See [configuration](https://ferrumio.github.io/rboto/guides/configuration/),
 [errors](https://ferrumio.github.io/rboto/guides/errors/), and
 [streaming](https://ferrumio.github.io/rboto/guides/streaming/).
 
+## Waiters
+
+Use `await client.waiters.name(...)` to wait for a resource state. Each waiter accepts
+the polling operation's typed arguments plus `waiter_config: WaiterConfig | None`.
+Import `WaiterConfig` from `rboto` to set the poll delay, maximum attempts, or overall
+timeout. See the [waiter guide](https://ferrumio.github.io/rboto/guides/waiters/).
+
+| Waiter | Polling operation |
+|---|---|
+| [`memory_created`](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_memory/#waiters) | `get_memory` |
+| [`policy_active`](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_policy/#waiters) | `get_policy` |
+| [`policy_deleted`](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_policy/#waiters) | `get_policy` |
+| [`policy_engine_active`](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_policy_engine/#waiters) | `get_policy_engine` |
+| [`policy_engine_deleted`](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_policy_engine/#waiters) | `get_policy_engine` |
+| [`policy_generation_completed`](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_policy_generation/#waiters) | `get_policy_generation` |
+
 ## Operations
 
 The [operation reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/)

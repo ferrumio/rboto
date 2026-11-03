@@ -1741,6 +1741,7 @@ fn value_to_py(py: Python<'_>, value: &aws_sdk_lexruntimev2::types::Value) -> Py
     Ok(result.into_any().unbind())
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedActiveContext {
     name: ::std::string::String,
     time_to_live: Option<Arc<aws_sdk_lexruntimev2::types::ActiveContextTimeToLive>>,
@@ -1905,6 +1906,7 @@ impl PyConfidenceScore {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDialogAction {
     r#type: aws_sdk_lexruntimev2::types::DialogActionType,
     slot_to_elicit: Option<::std::string::String>,
@@ -2005,9 +2007,10 @@ impl PyDialogAction {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedElicitSubSlot {
     name: ::std::string::String,
-    sub_slot_to_elicit: Option<::std::boxed::Box<Arc<SharedElicitSubSlot>>>,
+    sub_slot_to_elicit: Option<Arc<SharedElicitSubSlot>>,
 }
 
 #[allow(clippy::redundant_closure)]
@@ -2017,7 +2020,7 @@ impl From<aws_sdk_lexruntimev2::types::ElicitSubSlot> for SharedElicitSubSlot {
             name: value.name,
             sub_slot_to_elicit: value
                 .sub_slot_to_elicit
-                .map(|item| Box::new(Arc::new(SharedElicitSubSlot::from(*(item))))),
+                .map(|item| Arc::new(SharedElicitSubSlot::from(*(item)))),
         }
     }
 }
@@ -2030,7 +2033,7 @@ fn elicit_sub_slot_shared_to_py(
     let converted_427 = (&value.name).as_str().into_py_any(py)?;
     result.set_item("name", converted_427)?;
     if let Some(value) = &value.sub_slot_to_elicit {
-        let converted_428 = elicit_sub_slot_shared_to_py(py, (value).as_ref())?;
+        let converted_428 = elicit_sub_slot_shared_to_py(py, value)?;
         result.set_item("sub_slot_to_elicit", converted_428)?;
     } else {
         result.set_item("sub_slot_to_elicit", py.None())?;
@@ -2061,7 +2064,7 @@ impl PyElicitSubSlot {
             let converted_426 = Py::new(
                 py,
                 PyElicitSubSlot {
-                    inner: Arc::clone((value).as_ref()),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
@@ -2076,6 +2079,7 @@ impl PyElicitSubSlot {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedImageResponseCard {
     title: ::std::string::String,
     subtitle: Option<::std::string::String>,
@@ -2196,6 +2200,7 @@ impl PyImageResponseCard {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedIntent {
     name: ::std::string::String,
     slots: Option<::std::collections::HashMap<::std::string::String, Arc<SharedSlot>>>,
@@ -2311,6 +2316,7 @@ impl PyIntent {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInterpretation {
     nlu_confidence: Option<Arc<aws_sdk_lexruntimev2::types::ConfidenceScore>>,
     sentiment_response: Option<Arc<SharedSentimentResponse>>,
@@ -2438,6 +2444,7 @@ impl PyInterpretation {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMessage {
     content: Option<::std::string::String>,
     content_type: aws_sdk_lexruntimev2::types::MessageContentType,
@@ -2552,6 +2559,7 @@ impl PyRecognizedBotMember {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRuntimeHintDetails {
     runtime_hint_values:
         Option<::std::vec::Vec<Arc<aws_sdk_lexruntimev2::types::RuntimeHintValue>>>,
@@ -2693,6 +2701,7 @@ impl PyRuntimeHintValue {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRuntimeHints {
     slot_hints: Option<
         ::std::collections::HashMap<
@@ -2789,6 +2798,7 @@ impl PyRuntimeHints {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSentimentResponse {
     sentiment: Option<aws_sdk_lexruntimev2::types::SentimentType>,
     sentiment_score: Option<Arc<aws_sdk_lexruntimev2::types::SentimentScore>>,
@@ -2906,6 +2916,7 @@ impl PySentimentScore {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSessionState {
     dialog_action: Option<Arc<SharedDialogAction>>,
     intent: Option<Arc<SharedIntent>>,
@@ -3098,6 +3109,7 @@ impl PySessionState {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSlot {
     value: Option<Arc<aws_sdk_lexruntimev2::types::Value>>,
     shape: Option<aws_sdk_lexruntimev2::types::Shape>,
@@ -3372,6 +3384,7 @@ impl PyOperationDeleteSessionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetSessionOutput {
     session_id: Option<::std::string::String>,
     messages: Option<::std::vec::Vec<Arc<SharedMessage>>>,
@@ -3628,6 +3641,7 @@ impl PyOperationPutSessionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationRecognizeTextOutput {
     messages: Option<::std::vec::Vec<Arc<SharedMessage>>>,
     session_state: Option<Arc<SharedSessionState>>,
