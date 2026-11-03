@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import SNSClient as NativeClient, CheckIfPhoneNumberIsOptedOutOutput, ConfirmSubscriptionOutput, CreatePlatformApplicationOutput, CreatePlatformEndpointOutput, CreateSMSSandboxPhoneNumberOutput, CreateTopicOutput, DeleteSMSSandboxPhoneNumberOutput, GetDataProtectionPolicyOutput, GetEndpointAttributesOutput, GetPlatformApplicationAttributesOutput, GetSMSAttributesOutput, GetSMSSandboxAccountStatusOutput, GetSubscriptionAttributesOutput, GetTopicAttributesOutput, ListEndpointsByPlatformApplicationOutput, ListOriginationNumbersOutput, ListPhoneNumbersOptedOutOutput, ListPlatformApplicationsOutput, ListSMSSandboxPhoneNumbersOutput, ListSubscriptionsByTopicOutput, ListSubscriptionsOutput, ListTagsForResourceOutput, ListTopicsOutput, OptInPhoneNumberOutput, PublishBatchOutput, PublishOutput, SetSMSAttributesOutput, SubscribeOutput, TagResourceOutput, UntagResourceOutput, VerifySMSSandboxPhoneNumberOutput
 from .types import (
@@ -81,6 +81,7 @@ class SNSClient:
                 type(None),
                 ("topic_arn", "label", "aws_account_id", "action_name", ),
                 ("topic_arn", "label", "aws_account_id", "action_name", ),
+                service_name='SNS',
             )
             return None
         await self._native.add_permission(params)
@@ -104,6 +105,7 @@ class SNSClient:
                 CheckIfPhoneNumberIsOptedOutOutput,
                 ("phone_number", ),
                 ("phone_number", ),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.check_if_phone_number_is_opted_out(params)
@@ -132,6 +134,7 @@ class SNSClient:
                 ConfirmSubscriptionOutput,
                 ("topic_arn", "token", "authenticate_on_unsubscribe", ),
                 ("topic_arn", "token", ),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.confirm_subscription(params)
@@ -159,6 +162,7 @@ class SNSClient:
                 CreatePlatformApplicationOutput,
                 ("name", "platform", "attributes", ),
                 ("name", "platform", "attributes", ),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.create_platform_application(params)
@@ -190,6 +194,7 @@ class SNSClient:
                 CreatePlatformEndpointOutput,
                 ("platform_application_arn", "token", "custom_user_data", "attributes", ),
                 ("platform_application_arn", "token", ),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.create_platform_endpoint(params)
@@ -216,6 +221,7 @@ class SNSClient:
                 CreateSMSSandboxPhoneNumberOutput,
                 ("phone_number", "language_code", ),
                 ("phone_number", ),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.create_sms_sandbox_phone_number(params)
@@ -248,6 +254,7 @@ class SNSClient:
                 CreateTopicOutput,
                 ("name", "attributes", "tags", "data_protection_policy", ),
                 ("name", ),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.create_topic(params)
@@ -271,6 +278,7 @@ class SNSClient:
                 type(None),
                 ("endpoint_arn", ),
                 ("endpoint_arn", ),
+                service_name='SNS',
             )
             return None
         await self._native.delete_endpoint(params)
@@ -294,6 +302,7 @@ class SNSClient:
                 type(None),
                 ("platform_application_arn", ),
                 ("platform_application_arn", ),
+                service_name='SNS',
             )
             return None
         await self._native.delete_platform_application(params)
@@ -317,6 +326,7 @@ class SNSClient:
                 DeleteSMSSandboxPhoneNumberOutput,
                 ("phone_number", ),
                 ("phone_number", ),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.delete_sms_sandbox_phone_number(params)
@@ -340,6 +350,7 @@ class SNSClient:
                 type(None),
                 ("topic_arn", ),
                 ("topic_arn", ),
+                service_name='SNS',
             )
             return None
         await self._native.delete_topic(params)
@@ -363,6 +374,7 @@ class SNSClient:
                 GetDataProtectionPolicyOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.get_data_protection_policy(params)
@@ -386,6 +398,7 @@ class SNSClient:
                 GetEndpointAttributesOutput,
                 ("endpoint_arn", ),
                 ("endpoint_arn", ),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.get_endpoint_attributes(params)
@@ -409,6 +422,7 @@ class SNSClient:
                 GetPlatformApplicationAttributesOutput,
                 ("platform_application_arn", ),
                 ("platform_application_arn", ),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.get_platform_application_attributes(params)
@@ -433,6 +447,7 @@ class SNSClient:
                 GetSMSAttributesOutput,
                 ("attributes", ),
                 (),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.get_sms_attributes(params)
@@ -453,6 +468,7 @@ class SNSClient:
                 GetSMSSandboxAccountStatusOutput,
                 (),
                 (),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.get_sms_sandbox_account_status(params)
@@ -476,6 +492,7 @@ class SNSClient:
                 GetSubscriptionAttributesOutput,
                 ("subscription_arn", ),
                 ("subscription_arn", ),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.get_subscription_attributes(params)
@@ -499,6 +516,7 @@ class SNSClient:
                 GetTopicAttributesOutput,
                 ("topic_arn", ),
                 ("topic_arn", ),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.get_topic_attributes(params)
@@ -525,6 +543,7 @@ class SNSClient:
                 ListEndpointsByPlatformApplicationOutput,
                 ("platform_application_arn", "next_token", ),
                 ("platform_application_arn", ),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.list_endpoints_by_platform_application(params)
@@ -552,6 +571,7 @@ class SNSClient:
                 ListOriginationNumbersOutput,
                 ("next_token", "max_results", ),
                 (),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.list_origination_numbers(params)
@@ -576,6 +596,7 @@ class SNSClient:
                 ListPhoneNumbersOptedOutOutput,
                 ("next_token", ),
                 (),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.list_phone_numbers_opted_out(params)
@@ -600,6 +621,7 @@ class SNSClient:
                 ListPlatformApplicationsOutput,
                 ("next_token", ),
                 (),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.list_platform_applications(params)
@@ -627,6 +649,7 @@ class SNSClient:
                 ListSMSSandboxPhoneNumbersOutput,
                 ("next_token", "max_results", ),
                 (),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.list_sms_sandbox_phone_numbers(params)
@@ -651,6 +674,7 @@ class SNSClient:
                 ListSubscriptionsOutput,
                 ("next_token", ),
                 (),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.list_subscriptions(params)
@@ -677,6 +701,7 @@ class SNSClient:
                 ListSubscriptionsByTopicOutput,
                 ("topic_arn", "next_token", ),
                 ("topic_arn", ),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.list_subscriptions_by_topic(params)
@@ -700,6 +725,7 @@ class SNSClient:
                 ListTagsForResourceOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -724,6 +750,7 @@ class SNSClient:
                 ListTopicsOutput,
                 ("next_token", ),
                 (),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.list_topics(params)
@@ -747,6 +774,7 @@ class SNSClient:
                 OptInPhoneNumberOutput,
                 ("phone_number", ),
                 ("phone_number", ),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.opt_in_phone_number(params)
@@ -794,6 +822,7 @@ class SNSClient:
                 PublishOutput,
                 ("message", "topic_arn", "target_arn", "phone_number", "subject", "message_structure", "message_attributes", "message_deduplication_id", "message_group_id", ),
                 ("message", ),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.publish(params)
@@ -819,6 +848,7 @@ class SNSClient:
                 PublishBatchOutput,
                 ("topic_arn", "publish_batch_request_entries", ),
                 ("topic_arn", "publish_batch_request_entries", ),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.publish_batch(params)
@@ -844,6 +874,7 @@ class SNSClient:
                 type(None),
                 ("resource_arn", "data_protection_policy", ),
                 ("resource_arn", "data_protection_policy", ),
+                service_name='SNS',
             )
             return None
         await self._native.put_data_protection_policy(params)
@@ -869,6 +900,7 @@ class SNSClient:
                 type(None),
                 ("topic_arn", "label", ),
                 ("topic_arn", "label", ),
+                service_name='SNS',
             )
             return None
         await self._native.remove_permission(params)
@@ -894,6 +926,7 @@ class SNSClient:
                 type(None),
                 ("endpoint_arn", "attributes", ),
                 ("endpoint_arn", "attributes", ),
+                service_name='SNS',
             )
             return None
         await self._native.set_endpoint_attributes(params)
@@ -919,6 +952,7 @@ class SNSClient:
                 type(None),
                 ("platform_application_arn", "attributes", ),
                 ("platform_application_arn", "attributes", ),
+                service_name='SNS',
             )
             return None
         await self._native.set_platform_application_attributes(params)
@@ -942,6 +976,7 @@ class SNSClient:
                 SetSMSAttributesOutput,
                 ("attributes", ),
                 ("attributes", ),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.set_sms_attributes(params)
@@ -970,6 +1005,7 @@ class SNSClient:
                 type(None),
                 ("subscription_arn", "attribute_name", "attribute_value", ),
                 ("subscription_arn", "attribute_name", ),
+                service_name='SNS',
             )
             return None
         await self._native.set_subscription_attributes(params)
@@ -998,6 +1034,7 @@ class SNSClient:
                 type(None),
                 ("topic_arn", "attribute_name", "attribute_value", ),
                 ("topic_arn", "attribute_name", ),
+                service_name='SNS',
             )
             return None
         await self._native.set_topic_attributes(params)
@@ -1032,6 +1069,7 @@ class SNSClient:
                 SubscribeOutput,
                 ("topic_arn", "protocol", "endpoint", "attributes", "return_subscription_arn", ),
                 ("topic_arn", "protocol", ),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.subscribe(params)
@@ -1057,6 +1095,7 @@ class SNSClient:
                 TagResourceOutput,
                 ("resource_arn", "tags", ),
                 ("resource_arn", "tags", ),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.tag_resource(params)
@@ -1080,6 +1119,7 @@ class SNSClient:
                 type(None),
                 ("subscription_arn", ),
                 ("subscription_arn", ),
+                service_name='SNS',
             )
             return None
         await self._native.unsubscribe(params)
@@ -1105,6 +1145,7 @@ class SNSClient:
                 UntagResourceOutput,
                 ("resource_arn", "tag_keys", ),
                 ("resource_arn", "tag_keys", ),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.untag_resource(params)
@@ -1130,6 +1171,7 @@ class SNSClient:
                 VerifySMSSandboxPhoneNumberOutput,
                 ("phone_number", "one_time_password", ),
                 ("phone_number", "one_time_password", ),
+                service_name='SNS',
             )
             return _response
         _response = await self._native.verify_sms_sandbox_phone_number(params)

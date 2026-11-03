@@ -12,7 +12,7 @@ import statistics
 import time
 import tracemalloc
 from collections import deque
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from typing import TYPE_CHECKING
 
 from rboto import DynamoDBClient
@@ -64,7 +64,10 @@ class MemorySink(io.StringIO):
         return len(value)
 
 
-async def run(mode: str, count: int, concurrency: int, allocations: bool) -> dict[str, object]:
+async def run(
+    mode: str, count: int, concurrency: int, allocations: bool,
+    after_warmup: Callable[[], None] | None = None,
+) -> dict[str, object]:
     for name in tuple(os.environ):
         if name.startswith("AWS_"):
             del os.environ[name]
@@ -119,6 +122,8 @@ async def run(mode: str, count: int, concurrency: int, allocations: bool) -> dic
     async with server:
         try:
             await asyncio.gather(*(worker(20, False) for _ in range(concurrency)))
+            if after_warmup is not None:
+                after_warmup()
             if sink is not None:
                 sink.records.clear()
                 sink.count = 0

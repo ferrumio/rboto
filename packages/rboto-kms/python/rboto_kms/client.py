@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import KMSClient as NativeClient, CancelKeyDeletionOutput, ConnectCustomKeyStoreOutput, CreateCustomKeyStoreOutput, CreateGrantOutput, CreateKeyOutput, DecryptOutput, DeleteCustomKeyStoreOutput, DeleteImportedKeyMaterialOutput, DeriveSharedSecretOutput, DescribeCustomKeyStoresOutput, DescribeKeyOutput, DisconnectCustomKeyStoreOutput, EncryptOutput, GenerateDataKeyOutput, GenerateDataKeyPairOutput, GenerateDataKeyPairWithoutPlaintextOutput, GenerateDataKeyWithoutPlaintextOutput, GenerateMacOutput, GenerateRandomOutput, GetKeyLastUsageOutput, GetKeyPolicyOutput, GetKeyRotationStatusOutput, GetParametersForImportOutput, GetPublicKeyOutput, ImportKeyMaterialOutput, ListAliasesOutput, ListGrantsOutput, ListKeyPoliciesOutput, ListKeyRotationsOutput, ListKeysOutput, ListResourceTagsOutput, ListRetirableGrantsOutput, ReEncryptOutput, ReplicateKeyOutput, RotateKeyOnDemandOutput, ScheduleKeyDeletionOutput, SignOutput, UpdateCustomKeyStoreOutput, VerifyMacOutput, VerifyOutput
 from .types import (
@@ -95,6 +95,7 @@ class KMSClient:
                 CancelKeyDeletionOutput,
                 ("key_id", ),
                 ("key_id", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.cancel_key_deletion(params)
@@ -118,6 +119,7 @@ class KMSClient:
                 ConnectCustomKeyStoreOutput,
                 ("custom_key_store_id", ),
                 ("custom_key_store_id", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.connect_custom_key_store(params)
@@ -143,6 +145,7 @@ class KMSClient:
                 type(None),
                 ("alias_name", "target_key_id", ),
                 ("alias_name", "target_key_id", ),
+                service_name='KMS',
             )
             return None
         await self._native.create_alias(params)
@@ -196,6 +199,7 @@ class KMSClient:
                 CreateCustomKeyStoreOutput,
                 ("custom_key_store_name", "cloud_hsm_cluster_id", "trust_anchor_certificate", "key_store_password", "custom_key_store_type", "xks_proxy_uri_endpoint", "xks_proxy_uri_path", "xks_proxy_vpc_endpoint_service_name", "xks_proxy_vpc_endpoint_service_owner", "xks_proxy_authentication_credential", "xks_proxy_connectivity", ),
                 ("custom_key_store_name", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.create_custom_key_store(params)
@@ -245,6 +249,7 @@ class KMSClient:
                 CreateGrantOutput,
                 ("key_id", "operations", "grantee_principal", "retiring_principal", "constraints", "grant_tokens", "name", "dry_run", "grantee_service_principal", "retiring_service_principal", ),
                 ("key_id", "operations", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.create_grant(params)
@@ -299,6 +304,7 @@ class KMSClient:
                 CreateKeyOutput,
                 ("policy", "description", "key_usage", "customer_master_key_spec", "key_spec", "origin", "custom_key_store_id", "bypass_policy_lockout_safety_check", "tags", "multi_region", "xks_key_id", ),
                 (),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.create_key(params)
@@ -344,6 +350,7 @@ class KMSClient:
                 DecryptOutput,
                 ("ciphertext_blob", "encryption_context", "grant_tokens", "key_id", "encryption_algorithm", "recipient", "dry_run", "dry_run_modifiers", ),
                 (),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.decrypt(params)
@@ -367,6 +374,7 @@ class KMSClient:
                 type(None),
                 ("alias_name", ),
                 ("alias_name", ),
+                service_name='KMS',
             )
             return None
         await self._native.delete_alias(params)
@@ -390,6 +398,7 @@ class KMSClient:
                 DeleteCustomKeyStoreOutput,
                 ("custom_key_store_id", ),
                 ("custom_key_store_id", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.delete_custom_key_store(params)
@@ -416,6 +425,7 @@ class KMSClient:
                 DeleteImportedKeyMaterialOutput,
                 ("key_id", "key_material_id", ),
                 ("key_id", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.delete_imported_key_material(params)
@@ -452,6 +462,7 @@ class KMSClient:
                 DeriveSharedSecretOutput,
                 ("key_id", "key_agreement_algorithm", "public_key", "grant_tokens", "dry_run", "recipient", ),
                 ("key_id", "key_agreement_algorithm", "public_key", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.derive_shared_secret(params)
@@ -485,6 +496,7 @@ class KMSClient:
                 DescribeCustomKeyStoresOutput,
                 ("custom_key_store_id", "custom_key_store_name", "limit", "marker", ),
                 (),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.describe_custom_key_stores(params)
@@ -511,6 +523,7 @@ class KMSClient:
                 DescribeKeyOutput,
                 ("key_id", "grant_tokens", ),
                 ("key_id", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.describe_key(params)
@@ -534,6 +547,7 @@ class KMSClient:
                 type(None),
                 ("key_id", ),
                 ("key_id", ),
+                service_name='KMS',
             )
             return None
         await self._native.disable_key(params)
@@ -557,6 +571,7 @@ class KMSClient:
                 type(None),
                 ("key_id", ),
                 ("key_id", ),
+                service_name='KMS',
             )
             return None
         await self._native.disable_key_rotation(params)
@@ -580,6 +595,7 @@ class KMSClient:
                 DisconnectCustomKeyStoreOutput,
                 ("custom_key_store_id", ),
                 ("custom_key_store_id", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.disconnect_custom_key_store(params)
@@ -603,6 +619,7 @@ class KMSClient:
                 type(None),
                 ("key_id", ),
                 ("key_id", ),
+                service_name='KMS',
             )
             return None
         await self._native.enable_key(params)
@@ -629,6 +646,7 @@ class KMSClient:
                 type(None),
                 ("key_id", "rotation_period_in_days", ),
                 ("key_id", ),
+                service_name='KMS',
             )
             return None
         await self._native.enable_key_rotation(params)
@@ -666,6 +684,7 @@ class KMSClient:
                 EncryptOutput,
                 ("key_id", "plaintext", "encryption_context", "grant_tokens", "encryption_algorithm", "dry_run", ),
                 ("key_id", "plaintext", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.encrypt(params)
@@ -707,6 +726,7 @@ class KMSClient:
                 GenerateDataKeyOutput,
                 ("key_id", "encryption_context", "number_of_bytes", "key_spec", "grant_tokens", "recipient", "dry_run", ),
                 ("key_id", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.generate_data_key(params)
@@ -744,6 +764,7 @@ class KMSClient:
                 GenerateDataKeyPairOutput,
                 ("key_id", "key_pair_spec", "encryption_context", "grant_tokens", "recipient", "dry_run", ),
                 ("key_id", "key_pair_spec", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.generate_data_key_pair(params)
@@ -778,6 +799,7 @@ class KMSClient:
                 GenerateDataKeyPairWithoutPlaintextOutput,
                 ("key_id", "key_pair_spec", "encryption_context", "grant_tokens", "dry_run", ),
                 ("key_id", "key_pair_spec", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.generate_data_key_pair_without_plaintext(params)
@@ -816,6 +838,7 @@ class KMSClient:
                 GenerateDataKeyWithoutPlaintextOutput,
                 ("key_id", "encryption_context", "key_spec", "number_of_bytes", "grant_tokens", "dry_run", ),
                 ("key_id", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.generate_data_key_without_plaintext(params)
@@ -849,6 +872,7 @@ class KMSClient:
                 GenerateMacOutput,
                 ("message", "key_id", "mac_algorithm", "grant_tokens", "dry_run", ),
                 ("message", "key_id", "mac_algorithm", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.generate_mac(params)
@@ -879,6 +903,7 @@ class KMSClient:
                 GenerateRandomOutput,
                 ("number_of_bytes", "custom_key_store_id", "recipient", ),
                 (),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.generate_random(params)
@@ -902,6 +927,7 @@ class KMSClient:
                 GetKeyLastUsageOutput,
                 ("key_id", ),
                 ("key_id", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.get_key_last_usage(params)
@@ -928,6 +954,7 @@ class KMSClient:
                 GetKeyPolicyOutput,
                 ("key_id", "policy_name", ),
                 ("key_id", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.get_key_policy(params)
@@ -951,6 +978,7 @@ class KMSClient:
                 GetKeyRotationStatusOutput,
                 ("key_id", ),
                 ("key_id", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.get_key_rotation_status(params)
@@ -978,6 +1006,7 @@ class KMSClient:
                 GetParametersForImportOutput,
                 ("key_id", "wrapping_algorithm", "wrapping_key_spec", ),
                 ("key_id", "wrapping_algorithm", "wrapping_key_spec", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.get_parameters_for_import(params)
@@ -1004,6 +1033,7 @@ class KMSClient:
                 GetPublicKeyOutput,
                 ("key_id", "grant_tokens", ),
                 ("key_id", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.get_public_key(params)
@@ -1046,6 +1076,7 @@ class KMSClient:
                 ImportKeyMaterialOutput,
                 ("key_id", "import_token", "encrypted_key_material", "valid_to", "expiration_model", "import_type", "key_material_description", "key_material_id", ),
                 ("key_id", "import_token", "encrypted_key_material", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.import_key_material(params)
@@ -1076,6 +1107,7 @@ class KMSClient:
                 ListAliasesOutput,
                 ("key_id", "limit", "marker", ),
                 (),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.list_aliases(params)
@@ -1114,6 +1146,7 @@ class KMSClient:
                 ListGrantsOutput,
                 ("key_id", "limit", "marker", "grant_id", "grantee_principal", "grantee_service_principal", ),
                 ("key_id", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.list_grants(params)
@@ -1143,6 +1176,7 @@ class KMSClient:
                 ListKeyPoliciesOutput,
                 ("key_id", "limit", "marker", ),
                 ("key_id", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.list_key_policies(params)
@@ -1175,6 +1209,7 @@ class KMSClient:
                 ListKeyRotationsOutput,
                 ("key_id", "include_key_material", "limit", "marker", ),
                 ("key_id", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.list_key_rotations(params)
@@ -1202,6 +1237,7 @@ class KMSClient:
                 ListKeysOutput,
                 ("limit", "marker", ),
                 (),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.list_keys(params)
@@ -1231,6 +1267,7 @@ class KMSClient:
                 ListResourceTagsOutput,
                 ("key_id", "limit", "marker", ),
                 ("key_id", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.list_resource_tags(params)
@@ -1264,6 +1301,7 @@ class KMSClient:
                 ListRetirableGrantsOutput,
                 ("limit", "marker", "retiring_principal", "retiring_service_principal", ),
                 (),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.list_retirable_grants(params)
@@ -1295,6 +1333,7 @@ class KMSClient:
                 type(None),
                 ("key_id", "policy", "policy_name", "bypass_policy_lockout_safety_check", ),
                 ("key_id", "policy", ),
+                service_name='KMS',
             )
             return None
         await self._native.put_key_policy(params)
@@ -1345,6 +1384,7 @@ class KMSClient:
                 ReEncryptOutput,
                 ("destination_key_id", "ciphertext_blob", "source_encryption_context", "source_key_id", "destination_encryption_context", "source_encryption_algorithm", "destination_encryption_algorithm", "grant_tokens", "dry_run", "dry_run_modifiers", ),
                 ("destination_key_id", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.re_encrypt(params)
@@ -1382,6 +1422,7 @@ class KMSClient:
                 ReplicateKeyOutput,
                 ("key_id", "replica_region", "policy", "bypass_policy_lockout_safety_check", "description", "tags", ),
                 ("key_id", "replica_region", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.replicate_key(params)
@@ -1415,6 +1456,7 @@ class KMSClient:
                 type(None),
                 ("grant_token", "key_id", "grant_id", "dry_run", ),
                 (),
+                service_name='KMS',
             )
             return None
         await self._native.retire_grant(params)
@@ -1443,6 +1485,7 @@ class KMSClient:
                 type(None),
                 ("key_id", "grant_id", "dry_run", ),
                 ("key_id", "grant_id", ),
+                service_name='KMS',
             )
             return None
         await self._native.revoke_grant(params)
@@ -1466,6 +1509,7 @@ class KMSClient:
                 RotateKeyOnDemandOutput,
                 ("key_id", ),
                 ("key_id", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.rotate_key_on_demand(params)
@@ -1492,6 +1536,7 @@ class KMSClient:
                 ScheduleKeyDeletionOutput,
                 ("key_id", "pending_window_in_days", ),
                 ("key_id", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.schedule_key_deletion(params)
@@ -1528,6 +1573,7 @@ class KMSClient:
                 SignOutput,
                 ("key_id", "message", "signing_algorithm", "message_type", "grant_tokens", "dry_run", ),
                 ("key_id", "message", "signing_algorithm", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.sign(params)
@@ -1553,6 +1599,7 @@ class KMSClient:
                 type(None),
                 ("key_id", "tags", ),
                 ("key_id", "tags", ),
+                service_name='KMS',
             )
             return None
         await self._native.tag_resource(params)
@@ -1578,6 +1625,7 @@ class KMSClient:
                 type(None),
                 ("key_id", "tag_keys", ),
                 ("key_id", "tag_keys", ),
+                service_name='KMS',
             )
             return None
         await self._native.untag_resource(params)
@@ -1603,6 +1651,7 @@ class KMSClient:
                 type(None),
                 ("alias_name", "target_key_id", ),
                 ("alias_name", "target_key_id", ),
+                service_name='KMS',
             )
             return None
         await self._native.update_alias(params)
@@ -1653,6 +1702,7 @@ class KMSClient:
                 UpdateCustomKeyStoreOutput,
                 ("custom_key_store_id", "new_custom_key_store_name", "key_store_password", "cloud_hsm_cluster_id", "xks_proxy_uri_endpoint", "xks_proxy_uri_path", "xks_proxy_vpc_endpoint_service_name", "xks_proxy_vpc_endpoint_service_owner", "xks_proxy_authentication_credential", "xks_proxy_connectivity", ),
                 ("custom_key_store_id", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.update_custom_key_store(params)
@@ -1678,6 +1728,7 @@ class KMSClient:
                 type(None),
                 ("key_id", "description", ),
                 ("key_id", "description", ),
+                service_name='KMS',
             )
             return None
         await self._native.update_key_description(params)
@@ -1703,6 +1754,7 @@ class KMSClient:
                 type(None),
                 ("key_id", "primary_region", ),
                 ("key_id", "primary_region", ),
+                service_name='KMS',
             )
             return None
         await self._native.update_primary_region(params)
@@ -1741,6 +1793,7 @@ class KMSClient:
                 VerifyOutput,
                 ("key_id", "message", "signature", "signing_algorithm", "message_type", "grant_tokens", "dry_run", ),
                 ("key_id", "message", "signature", "signing_algorithm", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.verify(params)
@@ -1776,6 +1829,7 @@ class KMSClient:
                 VerifyMacOutput,
                 ("message", "key_id", "mac_algorithm", "mac", "grant_tokens", "dry_run", ),
                 ("message", "key_id", "mac_algorithm", "mac", ),
+                service_name='KMS',
             )
             return _response
         _response = await self._native.verify_mac(params)

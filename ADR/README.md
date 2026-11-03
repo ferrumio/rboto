@@ -41,6 +41,7 @@ separate from the public documentation under `docs/`.
 - [ADR-0024: Bound and configure per-service runtime workers](0024-runtime-worker-policy.md)
 - [ADR-0025: Share native output nodes](0025-shared-native-output-nodes.md)
 - [ADR-0026: Generate typed async waiters](0026-typed-async-waiters.md)
+- [ADR-0027: Optional operation tracing and metrics](0027-optional-opentelemetry.md)
 
 ## Creating an ADR
 

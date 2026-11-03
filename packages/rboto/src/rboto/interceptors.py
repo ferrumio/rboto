@@ -11,6 +11,7 @@ from time import perf_counter
 from typing import Protocol, TypeVar, cast
 from uuid import uuid4
 
+from ._telemetry import TelemetryInterceptor
 from .exceptions import ClientError
 
 
@@ -22,6 +23,7 @@ class OperationContext:
     service: str
     operation: str
     correlation_id: str | None
+    service_name: str | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -118,6 +120,11 @@ def resolve_interceptors(
     resolved = tuple(inherited if interceptors is None else interceptors)
     if not all(callable(interceptor) for interceptor in resolved):
         raise TypeError("interceptors must contain callable objects")
+    observers = tuple(item for item in resolved if isinstance(item, TelemetryInterceptor))
+    if len(observers) > 1:
+        raise ValueError("configure at most one OpenTelemetry interceptor per client or Session")
+    if observers:
+        return (*observers, *(item for item in resolved if item is not observers[0]))
     return resolved
 
 
@@ -154,9 +161,11 @@ async def invoke(
     output_type: type[object],
     allowed_parameters: tuple[str, ...],
     required_parameters: tuple[str, ...],
+    *,
+    service_name: str | None = None,
 ) -> _Output:
     """Internal entry point; generated methods bypass it when middleware is absent."""
-    context = OperationContext(uuid4().hex, service, operation, _correlation_id.get())
+    context = OperationContext(uuid4().hex, service, operation, _correlation_id.get(), service_name)
     state = _RequestState(OperationMetadata(region=region))
     request = OperationRequest(context, params, state)
     native_output: object = _UNSET

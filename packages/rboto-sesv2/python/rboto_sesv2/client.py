@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import SESv2Client as NativeClient, AssociateEmailIdentityCertificateOutput, BatchGetMetricDataOutput, CancelExportJobOutput, CreateConfigurationSetEventDestinationOutput, CreateConfigurationSetOutput, CreateContactListOutput, CreateContactOutput, CreateCustomVerificationEmailTemplateOutput, CreateDedicatedIpPoolOutput, CreateDeliverabilityTestReportOutput, CreateEmailIdentityOutput, CreateEmailIdentityPolicyOutput, CreateEmailTemplateOutput, CreateExportJobOutput, CreateImportJobOutput, CreateMultiRegionEndpointOutput, CreateTenantOutput, CreateTenantResourceAssociationOutput, DeleteConfigurationSetEventDestinationOutput, DeleteConfigurationSetOutput, DeleteContactListOutput, DeleteContactOutput, DeleteCustomVerificationEmailTemplateOutput, DeleteDedicatedIpPoolOutput, DeleteEmailIdentityOutput, DeleteEmailIdentityPolicyOutput, DeleteEmailTemplateOutput, DeleteMultiRegionEndpointOutput, DeleteSuppressedDestinationOutput, DeleteTenantOutput, DeleteTenantResourceAssociationOutput, DisassociateEmailIdentityCertificateOutput, GetAccountOutput, GetBlacklistReportsOutput, GetConfigurationSetEventDestinationsOutput, GetConfigurationSetOutput, GetContactListOutput, GetContactOutput, GetCustomVerificationEmailTemplateOutput, GetDedicatedIpOutput, GetDedicatedIpPoolOutput, GetDedicatedIpsOutput, GetDeliverabilityDashboardOptionsOutput, GetDeliverabilityTestReportOutput, GetDomainDeliverabilityCampaignOutput, GetDomainStatisticsReportOutput, GetEmailAddressInsightsOutput, GetEmailIdentityOutput, GetEmailIdentityPoliciesOutput, GetEmailTemplateOutput, GetExportJobOutput, GetImportJobOutput, GetMessageInsightsOutput, GetMultiRegionEndpointOutput, GetReputationEntityOutput, GetSuppressedDestinationOutput, GetTenantOutput, ListConfigurationSetsOutput, ListContactListsOutput, ListContactsOutput, ListCustomVerificationEmailTemplatesOutput, ListDedicatedIpPoolsOutput, ListDeliverabilityTestReportsOutput, ListDomainDeliverabilityCampaignsOutput, ListEmailIdentitiesOutput, ListEmailIdentityCertificatesOutput, ListEmailTemplatesOutput, ListExportJobsOutput, ListImportJobsOutput, ListMultiRegionEndpointsOutput, ListRecommendationsOutput, ListReputationEntitiesOutput, ListResourceTenantsOutput, ListSuppressedDestinationsOutput, ListTagsForResourceOutput, ListTenantResourcesOutput, ListTenantsOutput, PutAccountDedicatedIpWarmupAttributesOutput, PutAccountDetailsOutput, PutAccountPricingAttributesOutput, PutAccountSendingAttributesOutput, PutAccountSuppressionAttributesOutput, PutAccountVdmAttributesOutput, PutConfigurationSetArchivingOptionsOutput, PutConfigurationSetDeliveryOptionsOutput, PutConfigurationSetReputationOptionsOutput, PutConfigurationSetSendingOptionsOutput, PutConfigurationSetSuppressionOptionsOutput, PutConfigurationSetTrackingOptionsOutput, PutConfigurationSetVdmOptionsOutput, PutDedicatedIpInPoolOutput, PutDedicatedIpPoolScalingAttributesOutput, PutDedicatedIpWarmupAttributesOutput, PutDeliverabilityDashboardOptionOutput, PutEmailIdentityConfigurationSetAttributesOutput, PutEmailIdentityDkimAttributesOutput, PutEmailIdentityDkimSigningAttributesOutput, PutEmailIdentityFeedbackAttributesOutput, PutEmailIdentityMailFromAttributesOutput, PutSuppressedDestinationOutput, PutTenantSuppressionAttributesOutput, SendBulkEmailOutput, SendCustomVerificationEmailOutput, SendEmailOutput, TagResourceOutput, TestRenderEmailTemplateOutput, UntagResourceOutput, UpdateConfigurationSetEventDestinationOutput, UpdateConfigurationSetOutput, UpdateContactListOutput, UpdateContactOutput, UpdateCustomVerificationEmailTemplateOutput, UpdateEmailIdentityPolicyOutput, UpdateEmailTemplateOutput, UpdateReputationEntityCustomerManagedStatusOutput, UpdateReputationEntityPolicyOutput
 from .types import (
@@ -130,6 +130,7 @@ class SESV2Client:
                 AssociateEmailIdentityCertificateOutput,
                 ("email_identity", "certificate_arn", "from_address", ),
                 ("email_identity", "certificate_arn", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.associate_email_identity_certificate(params)
@@ -153,6 +154,7 @@ class SESV2Client:
                 BatchGetMetricDataOutput,
                 ("queries", ),
                 ("queries", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.batch_get_metric_data(params)
@@ -176,6 +178,7 @@ class SESV2Client:
                 CancelExportJobOutput,
                 ("job_id", ),
                 ("job_id", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.cancel_export_job(params)
@@ -226,6 +229,7 @@ class SESV2Client:
                 CreateConfigurationSetOutput,
                 ("configuration_set_name", "tracking_options", "delivery_options", "reputation_options", "sending_options", "tags", "suppression_options", "vdm_options", "archiving_options", "message_security_options", ),
                 ("configuration_set_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.create_configuration_set(params)
@@ -253,6 +257,7 @@ class SESV2Client:
                 CreateConfigurationSetEventDestinationOutput,
                 ("configuration_set_name", "event_destination_name", "event_destination", ),
                 ("configuration_set_name", "event_destination_name", "event_destination", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.create_configuration_set_event_destination(params)
@@ -287,6 +292,7 @@ class SESV2Client:
                 CreateContactOutput,
                 ("contact_list_name", "email_address", "topic_preferences", "unsubscribe_all", "attributes_data", ),
                 ("contact_list_name", "email_address", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.create_contact(params)
@@ -319,6 +325,7 @@ class SESV2Client:
                 CreateContactListOutput,
                 ("contact_list_name", "topics", "description", "tags", ),
                 ("contact_list_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.create_contact_list(params)
@@ -355,6 +362,7 @@ class SESV2Client:
                 CreateCustomVerificationEmailTemplateOutput,
                 ("template_name", "from_email_address", "template_subject", "template_content", "success_redirection_url", "failure_redirection_url", "tags", ),
                 ("template_name", "from_email_address", "template_subject", "template_content", "success_redirection_url", "failure_redirection_url", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.create_custom_verification_email_template(params)
@@ -384,6 +392,7 @@ class SESV2Client:
                 CreateDedicatedIpPoolOutput,
                 ("pool_name", "tags", "scaling_mode", ),
                 ("pool_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.create_dedicated_ip_pool(params)
@@ -415,6 +424,7 @@ class SESV2Client:
                 CreateDeliverabilityTestReportOutput,
                 ("from_email_address", "content", "report_name", "tags", ),
                 ("from_email_address", "content", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.create_deliverability_test_report(params)
@@ -447,6 +457,7 @@ class SESV2Client:
                 CreateEmailIdentityOutput,
                 ("email_identity", "tags", "dkim_signing_attributes", "configuration_set_name", ),
                 ("email_identity", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.create_email_identity(params)
@@ -474,6 +485,7 @@ class SESV2Client:
                 CreateEmailIdentityPolicyOutput,
                 ("email_identity", "policy_name", "policy", ),
                 ("email_identity", "policy_name", "policy", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.create_email_identity_policy(params)
@@ -502,6 +514,7 @@ class SESV2Client:
                 CreateEmailTemplateOutput,
                 ("template_name", "template_content", "tags", ),
                 ("template_name", "template_content", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.create_email_template(params)
@@ -527,6 +540,7 @@ class SESV2Client:
                 CreateExportJobOutput,
                 ("export_data_source", "export_destination", ),
                 ("export_data_source", "export_destination", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.create_export_job(params)
@@ -552,6 +566,7 @@ class SESV2Client:
                 CreateImportJobOutput,
                 ("import_destination", "import_data_source", ),
                 ("import_destination", "import_data_source", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.create_import_job(params)
@@ -580,6 +595,7 @@ class SESV2Client:
                 CreateMultiRegionEndpointOutput,
                 ("endpoint_name", "details", "tags", ),
                 ("endpoint_name", "details", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.create_multi_region_endpoint(params)
@@ -609,6 +625,7 @@ class SESV2Client:
                 CreateTenantOutput,
                 ("tenant_name", "tags", "suppression_attributes", ),
                 ("tenant_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.create_tenant(params)
@@ -634,6 +651,7 @@ class SESV2Client:
                 CreateTenantResourceAssociationOutput,
                 ("tenant_name", "resource_arn", ),
                 ("tenant_name", "resource_arn", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.create_tenant_resource_association(params)
@@ -657,6 +675,7 @@ class SESV2Client:
                 DeleteConfigurationSetOutput,
                 ("configuration_set_name", ),
                 ("configuration_set_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.delete_configuration_set(params)
@@ -682,6 +701,7 @@ class SESV2Client:
                 DeleteConfigurationSetEventDestinationOutput,
                 ("configuration_set_name", "event_destination_name", ),
                 ("configuration_set_name", "event_destination_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.delete_configuration_set_event_destination(params)
@@ -707,6 +727,7 @@ class SESV2Client:
                 DeleteContactOutput,
                 ("contact_list_name", "email_address", ),
                 ("contact_list_name", "email_address", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.delete_contact(params)
@@ -730,6 +751,7 @@ class SESV2Client:
                 DeleteContactListOutput,
                 ("contact_list_name", ),
                 ("contact_list_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.delete_contact_list(params)
@@ -753,6 +775,7 @@ class SESV2Client:
                 DeleteCustomVerificationEmailTemplateOutput,
                 ("template_name", ),
                 ("template_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.delete_custom_verification_email_template(params)
@@ -776,6 +799,7 @@ class SESV2Client:
                 DeleteDedicatedIpPoolOutput,
                 ("pool_name", ),
                 ("pool_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.delete_dedicated_ip_pool(params)
@@ -799,6 +823,7 @@ class SESV2Client:
                 DeleteEmailIdentityOutput,
                 ("email_identity", ),
                 ("email_identity", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.delete_email_identity(params)
@@ -824,6 +849,7 @@ class SESV2Client:
                 DeleteEmailIdentityPolicyOutput,
                 ("email_identity", "policy_name", ),
                 ("email_identity", "policy_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.delete_email_identity_policy(params)
@@ -847,6 +873,7 @@ class SESV2Client:
                 DeleteEmailTemplateOutput,
                 ("template_name", ),
                 ("template_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.delete_email_template(params)
@@ -870,6 +897,7 @@ class SESV2Client:
                 DeleteMultiRegionEndpointOutput,
                 ("endpoint_name", ),
                 ("endpoint_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.delete_multi_region_endpoint(params)
@@ -896,6 +924,7 @@ class SESV2Client:
                 DeleteSuppressedDestinationOutput,
                 ("email_address", "tenant_name", ),
                 ("email_address", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.delete_suppressed_destination(params)
@@ -919,6 +948,7 @@ class SESV2Client:
                 DeleteTenantOutput,
                 ("tenant_name", ),
                 ("tenant_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.delete_tenant(params)
@@ -944,6 +974,7 @@ class SESV2Client:
                 DeleteTenantResourceAssociationOutput,
                 ("tenant_name", "resource_arn", ),
                 ("tenant_name", "resource_arn", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.delete_tenant_resource_association(params)
@@ -970,6 +1001,7 @@ class SESV2Client:
                 DisassociateEmailIdentityCertificateOutput,
                 ("email_identity", "from_address", ),
                 ("email_identity", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.disassociate_email_identity_certificate(params)
@@ -990,6 +1022,7 @@ class SESV2Client:
                 GetAccountOutput,
                 (),
                 (),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_account(params)
@@ -1013,6 +1046,7 @@ class SESV2Client:
                 GetBlacklistReportsOutput,
                 ("blacklist_item_names", ),
                 ("blacklist_item_names", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_blacklist_reports(params)
@@ -1036,6 +1070,7 @@ class SESV2Client:
                 GetConfigurationSetOutput,
                 ("configuration_set_name", ),
                 ("configuration_set_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_configuration_set(params)
@@ -1059,6 +1094,7 @@ class SESV2Client:
                 GetConfigurationSetEventDestinationsOutput,
                 ("configuration_set_name", ),
                 ("configuration_set_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_configuration_set_event_destinations(params)
@@ -1084,6 +1120,7 @@ class SESV2Client:
                 GetContactOutput,
                 ("contact_list_name", "email_address", ),
                 ("contact_list_name", "email_address", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_contact(params)
@@ -1107,6 +1144,7 @@ class SESV2Client:
                 GetContactListOutput,
                 ("contact_list_name", ),
                 ("contact_list_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_contact_list(params)
@@ -1130,6 +1168,7 @@ class SESV2Client:
                 GetCustomVerificationEmailTemplateOutput,
                 ("template_name", ),
                 ("template_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_custom_verification_email_template(params)
@@ -1153,6 +1192,7 @@ class SESV2Client:
                 GetDedicatedIpOutput,
                 ("ip", ),
                 ("ip", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_dedicated_ip(params)
@@ -1176,6 +1216,7 @@ class SESV2Client:
                 GetDedicatedIpPoolOutput,
                 ("pool_name", ),
                 ("pool_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_dedicated_ip_pool(params)
@@ -1206,6 +1247,7 @@ class SESV2Client:
                 GetDedicatedIpsOutput,
                 ("pool_name", "next_token", "page_size", ),
                 (),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_dedicated_ips(params)
@@ -1226,6 +1268,7 @@ class SESV2Client:
                 GetDeliverabilityDashboardOptionsOutput,
                 (),
                 (),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_deliverability_dashboard_options(params)
@@ -1249,6 +1292,7 @@ class SESV2Client:
                 GetDeliverabilityTestReportOutput,
                 ("report_id", ),
                 ("report_id", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_deliverability_test_report(params)
@@ -1272,6 +1316,7 @@ class SESV2Client:
                 GetDomainDeliverabilityCampaignOutput,
                 ("campaign_id", ),
                 ("campaign_id", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_domain_deliverability_campaign(params)
@@ -1299,6 +1344,7 @@ class SESV2Client:
                 GetDomainStatisticsReportOutput,
                 ("domain", "start_date", "end_date", ),
                 ("domain", "start_date", "end_date", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_domain_statistics_report(params)
@@ -1322,6 +1368,7 @@ class SESV2Client:
                 GetEmailAddressInsightsOutput,
                 ("email_address", ),
                 ("email_address", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_email_address_insights(params)
@@ -1345,6 +1392,7 @@ class SESV2Client:
                 GetEmailIdentityOutput,
                 ("email_identity", ),
                 ("email_identity", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_email_identity(params)
@@ -1368,6 +1416,7 @@ class SESV2Client:
                 GetEmailIdentityPoliciesOutput,
                 ("email_identity", ),
                 ("email_identity", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_email_identity_policies(params)
@@ -1391,6 +1440,7 @@ class SESV2Client:
                 GetEmailTemplateOutput,
                 ("template_name", ),
                 ("template_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_email_template(params)
@@ -1414,6 +1464,7 @@ class SESV2Client:
                 GetExportJobOutput,
                 ("job_id", ),
                 ("job_id", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_export_job(params)
@@ -1437,6 +1488,7 @@ class SESV2Client:
                 GetImportJobOutput,
                 ("job_id", ),
                 ("job_id", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_import_job(params)
@@ -1460,6 +1512,7 @@ class SESV2Client:
                 GetMessageInsightsOutput,
                 ("message_id", ),
                 ("message_id", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_message_insights(params)
@@ -1483,6 +1536,7 @@ class SESV2Client:
                 GetMultiRegionEndpointOutput,
                 ("endpoint_name", ),
                 ("endpoint_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_multi_region_endpoint(params)
@@ -1508,6 +1562,7 @@ class SESV2Client:
                 GetReputationEntityOutput,
                 ("reputation_entity_reference", "reputation_entity_type", ),
                 ("reputation_entity_reference", "reputation_entity_type", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_reputation_entity(params)
@@ -1534,6 +1589,7 @@ class SESV2Client:
                 GetSuppressedDestinationOutput,
                 ("email_address", "tenant_name", ),
                 ("email_address", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_suppressed_destination(params)
@@ -1557,6 +1613,7 @@ class SESV2Client:
                 GetTenantOutput,
                 ("tenant_name", ),
                 ("tenant_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.get_tenant(params)
@@ -1587,6 +1644,7 @@ class SESV2Client:
                 ListConfigurationSetsOutput,
                 ("filter", "next_token", "page_size", ),
                 (),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.list_configuration_sets(params)
@@ -1614,6 +1672,7 @@ class SESV2Client:
                 ListContactListsOutput,
                 ("page_size", "next_token", ),
                 (),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.list_contact_lists(params)
@@ -1646,6 +1705,7 @@ class SESV2Client:
                 ListContactsOutput,
                 ("contact_list_name", "filter", "page_size", "next_token", ),
                 ("contact_list_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.list_contacts(params)
@@ -1673,6 +1733,7 @@ class SESV2Client:
                 ListCustomVerificationEmailTemplatesOutput,
                 ("next_token", "page_size", ),
                 (),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.list_custom_verification_email_templates(params)
@@ -1700,6 +1761,7 @@ class SESV2Client:
                 ListDedicatedIpPoolsOutput,
                 ("next_token", "page_size", ),
                 (),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.list_dedicated_ip_pools(params)
@@ -1727,6 +1789,7 @@ class SESV2Client:
                 ListDeliverabilityTestReportsOutput,
                 ("next_token", "page_size", ),
                 (),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.list_deliverability_test_reports(params)
@@ -1760,6 +1823,7 @@ class SESV2Client:
                 ListDomainDeliverabilityCampaignsOutput,
                 ("start_date", "end_date", "subscribed_domain", "next_token", "page_size", ),
                 ("start_date", "end_date", "subscribed_domain", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.list_domain_deliverability_campaigns(params)
@@ -1790,6 +1854,7 @@ class SESV2Client:
                 ListEmailIdentitiesOutput,
                 ("filter", "next_token", "page_size", ),
                 (),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.list_email_identities(params)
@@ -1819,6 +1884,7 @@ class SESV2Client:
                 ListEmailIdentityCertificatesOutput,
                 ("email_identity", "next_token", "page_size", ),
                 ("email_identity", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.list_email_identity_certificates(params)
@@ -1846,6 +1912,7 @@ class SESV2Client:
                 ListEmailTemplatesOutput,
                 ("next_token", "page_size", ),
                 (),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.list_email_templates(params)
@@ -1879,6 +1946,7 @@ class SESV2Client:
                 ListExportJobsOutput,
                 ("next_token", "page_size", "export_source_type", "job_status", ),
                 (),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.list_export_jobs(params)
@@ -1909,6 +1977,7 @@ class SESV2Client:
                 ListImportJobsOutput,
                 ("import_destination_type", "next_token", "page_size", ),
                 (),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.list_import_jobs(params)
@@ -1936,6 +2005,7 @@ class SESV2Client:
                 ListMultiRegionEndpointsOutput,
                 ("next_token", "page_size", ),
                 (),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.list_multi_region_endpoints(params)
@@ -1966,6 +2036,7 @@ class SESV2Client:
                 ListRecommendationsOutput,
                 ("filter", "next_token", "page_size", ),
                 (),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.list_recommendations(params)
@@ -1996,6 +2067,7 @@ class SESV2Client:
                 ListReputationEntitiesOutput,
                 ("filter", "next_token", "page_size", ),
                 (),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.list_reputation_entities(params)
@@ -2025,6 +2097,7 @@ class SESV2Client:
                 ListResourceTenantsOutput,
                 ("resource_arn", "page_size", "next_token", ),
                 ("resource_arn", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.list_resource_tenants(params)
@@ -2064,6 +2137,7 @@ class SESV2Client:
                 ListSuppressedDestinationsOutput,
                 ("tenant_name", "reasons", "start_date", "end_date", "next_token", "page_size", ),
                 (),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.list_suppressed_destinations(params)
@@ -2087,6 +2161,7 @@ class SESV2Client:
                 ListTagsForResourceOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -2119,6 +2194,7 @@ class SESV2Client:
                 ListTenantResourcesOutput,
                 ("tenant_name", "filter", "page_size", "next_token", ),
                 ("tenant_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.list_tenant_resources(params)
@@ -2149,6 +2225,7 @@ class SESV2Client:
                 ListTenantsOutput,
                 ("filter", "next_token", "page_size", ),
                 (),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.list_tenants(params)
@@ -2173,6 +2250,7 @@ class SESV2Client:
                 PutAccountDedicatedIpWarmupAttributesOutput,
                 ("auto_warmup_enabled", ),
                 (),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.put_account_dedicated_ip_warmup_attributes(params)
@@ -2210,6 +2288,7 @@ class SESV2Client:
                 PutAccountDetailsOutput,
                 ("mail_type", "website_url", "contact_language", "use_case_description", "additional_contact_email_addresses", "production_access_enabled", ),
                 ("mail_type", "website_url", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.put_account_details(params)
@@ -2233,6 +2312,7 @@ class SESV2Client:
                 PutAccountPricingAttributesOutput,
                 ("plan", ),
                 ("plan", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.put_account_pricing_attributes(params)
@@ -2257,6 +2337,7 @@ class SESV2Client:
                 PutAccountSendingAttributesOutput,
                 ("sending_enabled", ),
                 (),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.put_account_sending_attributes(params)
@@ -2284,6 +2365,7 @@ class SESV2Client:
                 PutAccountSuppressionAttributesOutput,
                 ("suppressed_reasons", "validation_attributes", ),
                 (),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.put_account_suppression_attributes(params)
@@ -2307,6 +2389,7 @@ class SESV2Client:
                 PutAccountVdmAttributesOutput,
                 ("vdm_attributes", ),
                 ("vdm_attributes", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.put_account_vdm_attributes(params)
@@ -2333,6 +2416,7 @@ class SESV2Client:
                 PutConfigurationSetArchivingOptionsOutput,
                 ("configuration_set_name", "archive_arn", ),
                 ("configuration_set_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.put_configuration_set_archiving_options(params)
@@ -2365,6 +2449,7 @@ class SESV2Client:
                 PutConfigurationSetDeliveryOptionsOutput,
                 ("configuration_set_name", "tls_policy", "sending_pool_name", "max_delivery_seconds", ),
                 ("configuration_set_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.put_configuration_set_delivery_options(params)
@@ -2391,6 +2476,7 @@ class SESV2Client:
                 PutConfigurationSetReputationOptionsOutput,
                 ("configuration_set_name", "reputation_metrics_enabled", ),
                 ("configuration_set_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.put_configuration_set_reputation_options(params)
@@ -2417,6 +2503,7 @@ class SESV2Client:
                 PutConfigurationSetSendingOptionsOutput,
                 ("configuration_set_name", "sending_enabled", ),
                 ("configuration_set_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.put_configuration_set_sending_options(params)
@@ -2449,6 +2536,7 @@ class SESV2Client:
                 PutConfigurationSetSuppressionOptionsOutput,
                 ("configuration_set_name", "suppression_scope", "suppressed_reasons", "validation_options", ),
                 ("configuration_set_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.put_configuration_set_suppression_options(params)
@@ -2478,6 +2566,7 @@ class SESV2Client:
                 PutConfigurationSetTrackingOptionsOutput,
                 ("configuration_set_name", "custom_redirect_domain", "https_policy", ),
                 ("configuration_set_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.put_configuration_set_tracking_options(params)
@@ -2504,6 +2593,7 @@ class SESV2Client:
                 PutConfigurationSetVdmOptionsOutput,
                 ("configuration_set_name", "vdm_options", ),
                 ("configuration_set_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.put_configuration_set_vdm_options(params)
@@ -2529,6 +2619,7 @@ class SESV2Client:
                 PutDedicatedIpInPoolOutput,
                 ("ip", "destination_pool_name", ),
                 ("ip", "destination_pool_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.put_dedicated_ip_in_pool(params)
@@ -2554,6 +2645,7 @@ class SESV2Client:
                 PutDedicatedIpPoolScalingAttributesOutput,
                 ("pool_name", "scaling_mode", ),
                 ("pool_name", "scaling_mode", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.put_dedicated_ip_pool_scaling_attributes(params)
@@ -2579,6 +2671,7 @@ class SESV2Client:
                 PutDedicatedIpWarmupAttributesOutput,
                 ("ip", "warmup_percentage", ),
                 ("ip", "warmup_percentage", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.put_dedicated_ip_warmup_attributes(params)
@@ -2605,6 +2698,7 @@ class SESV2Client:
                 PutDeliverabilityDashboardOptionOutput,
                 ("dashboard_enabled", "subscribed_domains", ),
                 ("dashboard_enabled", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.put_deliverability_dashboard_option(params)
@@ -2631,6 +2725,7 @@ class SESV2Client:
                 PutEmailIdentityConfigurationSetAttributesOutput,
                 ("email_identity", "configuration_set_name", ),
                 ("email_identity", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.put_email_identity_configuration_set_attributes(params)
@@ -2657,6 +2752,7 @@ class SESV2Client:
                 PutEmailIdentityDkimAttributesOutput,
                 ("email_identity", "signing_enabled", ),
                 ("email_identity", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.put_email_identity_dkim_attributes(params)
@@ -2685,6 +2781,7 @@ class SESV2Client:
                 PutEmailIdentityDkimSigningAttributesOutput,
                 ("email_identity", "signing_attributes_origin", "signing_attributes", ),
                 ("email_identity", "signing_attributes_origin", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.put_email_identity_dkim_signing_attributes(params)
@@ -2711,6 +2808,7 @@ class SESV2Client:
                 PutEmailIdentityFeedbackAttributesOutput,
                 ("email_identity", "email_forwarding_enabled", ),
                 ("email_identity", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.put_email_identity_feedback_attributes(params)
@@ -2740,6 +2838,7 @@ class SESV2Client:
                 PutEmailIdentityMailFromAttributesOutput,
                 ("email_identity", "mail_from_domain", "behavior_on_mx_failure", ),
                 ("email_identity", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.put_email_identity_mail_from_attributes(params)
@@ -2768,6 +2867,7 @@ class SESV2Client:
                 PutSuppressedDestinationOutput,
                 ("email_address", "reason", "tenant_name", ),
                 ("email_address", "reason", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.put_suppressed_destination(params)
@@ -2797,6 +2897,7 @@ class SESV2Client:
                 PutTenantSuppressionAttributesOutput,
                 ("tenant_name", "suppressed_reasons", "suppression_scope", ),
                 ("tenant_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.put_tenant_suppression_attributes(params)
@@ -2852,6 +2953,7 @@ class SESV2Client:
                 SendBulkEmailOutput,
                 ("default_content", "bulk_email_entries", "from_email_address", "from_email_address_identity_arn", "reply_to_addresses", "feedback_forwarding_email_address", "feedback_forwarding_email_address_identity_arn", "default_email_tags", "configuration_set_name", "endpoint_id", "tenant_name", "configuration_overrides", ),
                 ("default_content", "bulk_email_entries", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.send_bulk_email(params)
@@ -2880,6 +2982,7 @@ class SESV2Client:
                 SendCustomVerificationEmailOutput,
                 ("email_address", "template_name", "configuration_set_name", ),
                 ("email_address", "template_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.send_custom_verification_email(params)
@@ -2939,6 +3042,7 @@ class SESV2Client:
                 SendEmailOutput,
                 ("content", "from_email_address", "from_email_address_identity_arn", "destination", "reply_to_addresses", "feedback_forwarding_email_address", "feedback_forwarding_email_address_identity_arn", "email_tags", "configuration_set_name", "endpoint_id", "tenant_name", "list_management_options", "configuration_overrides", ),
                 ("content", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.send_email(params)
@@ -2964,6 +3068,7 @@ class SESV2Client:
                 TagResourceOutput,
                 ("resource_arn", "tags", ),
                 ("resource_arn", "tags", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.tag_resource(params)
@@ -2989,6 +3094,7 @@ class SESV2Client:
                 TestRenderEmailTemplateOutput,
                 ("template_name", "template_data", ),
                 ("template_name", "template_data", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.test_render_email_template(params)
@@ -3014,6 +3120,7 @@ class SESV2Client:
                 UntagResourceOutput,
                 ("resource_arn", "tag_keys", ),
                 ("resource_arn", "tag_keys", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.untag_resource(params)
@@ -3040,6 +3147,7 @@ class SESV2Client:
                 UpdateConfigurationSetOutput,
                 ("configuration_set_name", "message_security_options", ),
                 ("configuration_set_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.update_configuration_set(params)
@@ -3067,6 +3175,7 @@ class SESV2Client:
                 UpdateConfigurationSetEventDestinationOutput,
                 ("configuration_set_name", "event_destination_name", "event_destination", ),
                 ("configuration_set_name", "event_destination_name", "event_destination", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.update_configuration_set_event_destination(params)
@@ -3101,6 +3210,7 @@ class SESV2Client:
                 UpdateContactOutput,
                 ("contact_list_name", "email_address", "topic_preferences", "unsubscribe_all", "attributes_data", ),
                 ("contact_list_name", "email_address", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.update_contact(params)
@@ -3130,6 +3240,7 @@ class SESV2Client:
                 UpdateContactListOutput,
                 ("contact_list_name", "topics", "description", ),
                 ("contact_list_name", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.update_contact_list(params)
@@ -3163,6 +3274,7 @@ class SESV2Client:
                 UpdateCustomVerificationEmailTemplateOutput,
                 ("template_name", "from_email_address", "template_subject", "template_content", "success_redirection_url", "failure_redirection_url", ),
                 ("template_name", "from_email_address", "template_subject", "template_content", "success_redirection_url", "failure_redirection_url", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.update_custom_verification_email_template(params)
@@ -3190,6 +3302,7 @@ class SESV2Client:
                 UpdateEmailIdentityPolicyOutput,
                 ("email_identity", "policy_name", "policy", ),
                 ("email_identity", "policy_name", "policy", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.update_email_identity_policy(params)
@@ -3215,6 +3328,7 @@ class SESV2Client:
                 UpdateEmailTemplateOutput,
                 ("template_name", "template_content", ),
                 ("template_name", "template_content", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.update_email_template(params)
@@ -3242,6 +3356,7 @@ class SESV2Client:
                 UpdateReputationEntityCustomerManagedStatusOutput,
                 ("reputation_entity_type", "reputation_entity_reference", "sending_status", ),
                 ("reputation_entity_type", "reputation_entity_reference", "sending_status", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.update_reputation_entity_customer_managed_status(params)
@@ -3269,6 +3384,7 @@ class SESV2Client:
                 UpdateReputationEntityPolicyOutput,
                 ("reputation_entity_type", "reputation_entity_reference", "reputation_entity_policy", ),
                 ("reputation_entity_type", "reputation_entity_reference", "reputation_entity_policy", ),
+                service_name='SESv2',
             )
             return _response
         _response = await self._native.update_reputation_entity_policy(params)

@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import BedrockDataAutomationClient as NativeClient, CopyBlueprintStageOutput, CreateBlueprintOutput, CreateBlueprintVersionOutput, CreateDataAutomationLibraryOutput, CreateDataAutomationProjectOutput, DeleteBlueprintOutput, DeleteDataAutomationLibraryOutput, DeleteDataAutomationProjectOutput, GetBlueprintOptimizationStatusOutput, GetBlueprintOutput, GetDataAutomationLibraryEntityOutput, GetDataAutomationLibraryIngestionJobOutput, GetDataAutomationLibraryOutput, GetDataAutomationProjectOutput, InvokeBlueprintOptimizationAsyncOutput, InvokeDataAutomationLibraryIngestionJobOutput, ListBlueprintsOutput, ListDataAutomationLibrariesOutput, ListDataAutomationLibraryEntitiesOutput, ListDataAutomationLibraryIngestionJobsOutput, ListDataAutomationProjectsOutput, ListTagsForResourceOutput, TagResourceOutput, UntagResourceOutput, UpdateBlueprintOutput, UpdateDataAutomationLibraryOutput, UpdateDataAutomationProjectOutput
 from .types import (
@@ -102,6 +102,7 @@ class BedrockDataAutomationClient:
                 CopyBlueprintStageOutput,
                 ("blueprint_arn", "source_stage", "target_stage", "client_token", ),
                 ("blueprint_arn", "source_stage", "target_stage", ),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.copy_blueprint_stage(params)
@@ -141,6 +142,7 @@ class BedrockDataAutomationClient:
                 CreateBlueprintOutput,
                 ("blueprint_name", "type", "schema", "blueprint_stage", "client_token", "encryption_configuration", "tags", ),
                 ("blueprint_name", "type", "schema", ),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.create_blueprint(params)
@@ -167,6 +169,7 @@ class BedrockDataAutomationClient:
                 CreateBlueprintVersionOutput,
                 ("blueprint_arn", "client_token", ),
                 ("blueprint_arn", ),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.create_blueprint_version(params)
@@ -202,6 +205,7 @@ class BedrockDataAutomationClient:
                 CreateDataAutomationLibraryOutput,
                 ("library_name", "library_description", "client_token", "encryption_configuration", "tags", ),
                 ("library_name", ),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.create_data_automation_library(params)
@@ -254,6 +258,7 @@ class BedrockDataAutomationClient:
                 CreateDataAutomationProjectOutput,
                 ("project_name", "standard_output_configuration", "project_description", "project_stage", "project_type", "custom_output_configuration", "override_configuration", "data_automation_library_configuration", "client_token", "encryption_configuration", "tags", ),
                 ("project_name", "standard_output_configuration", ),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.create_data_automation_project(params)
@@ -280,6 +285,7 @@ class BedrockDataAutomationClient:
                 DeleteBlueprintOutput,
                 ("blueprint_arn", "blueprint_version", ),
                 ("blueprint_arn", ),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.delete_blueprint(params)
@@ -303,6 +309,7 @@ class BedrockDataAutomationClient:
                 DeleteDataAutomationLibraryOutput,
                 ("library_arn", ),
                 ("library_arn", ),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.delete_data_automation_library(params)
@@ -326,6 +333,7 @@ class BedrockDataAutomationClient:
                 DeleteDataAutomationProjectOutput,
                 ("project_arn", ),
                 ("project_arn", ),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.delete_data_automation_project(params)
@@ -355,6 +363,7 @@ class BedrockDataAutomationClient:
                 GetBlueprintOutput,
                 ("blueprint_arn", "blueprint_version", "blueprint_stage", ),
                 ("blueprint_arn", ),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.get_blueprint(params)
@@ -378,6 +387,7 @@ class BedrockDataAutomationClient:
                 GetBlueprintOptimizationStatusOutput,
                 ("invocation_arn", ),
                 ("invocation_arn", ),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.get_blueprint_optimization_status(params)
@@ -401,6 +411,7 @@ class BedrockDataAutomationClient:
                 GetDataAutomationLibraryOutput,
                 ("library_arn", ),
                 ("library_arn", ),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.get_data_automation_library(params)
@@ -428,6 +439,7 @@ class BedrockDataAutomationClient:
                 GetDataAutomationLibraryEntityOutput,
                 ("library_arn", "entity_type", "entity_id", ),
                 ("library_arn", "entity_type", "entity_id", ),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.get_data_automation_library_entity(params)
@@ -453,6 +465,7 @@ class BedrockDataAutomationClient:
                 GetDataAutomationLibraryIngestionJobOutput,
                 ("library_arn", "job_arn", ),
                 ("library_arn", "job_arn", ),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.get_data_automation_library_ingestion_job(params)
@@ -479,6 +492,7 @@ class BedrockDataAutomationClient:
                 GetDataAutomationProjectOutput,
                 ("project_arn", "project_stage", ),
                 ("project_arn", ),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.get_data_automation_project(params)
@@ -514,6 +528,7 @@ class BedrockDataAutomationClient:
                 InvokeBlueprintOptimizationAsyncOutput,
                 ("blueprint", "samples", "output_configuration", "data_automation_profile_arn", "encryption_configuration", "tags", ),
                 ("blueprint", "samples", "output_configuration", "data_automation_profile_arn", ),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.invoke_blueprint_optimization_async(params)
@@ -554,6 +569,7 @@ class BedrockDataAutomationClient:
                 InvokeDataAutomationLibraryIngestionJobOutput,
                 ("library_arn", "input_configuration", "entity_type", "operation_type", "output_configuration", "client_token", "notification_configuration", "tags", ),
                 ("library_arn", "input_configuration", "entity_type", "operation_type", "output_configuration", ),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.invoke_data_automation_library_ingestion_job(params)
@@ -593,6 +609,7 @@ class BedrockDataAutomationClient:
                 ListBlueprintsOutput,
                 ("blueprint_arn", "resource_owner", "blueprint_stage_filter", "max_results", "next_token", "project_filter", ),
                 (),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.list_blueprints(params)
@@ -623,6 +640,7 @@ class BedrockDataAutomationClient:
                 ListDataAutomationLibrariesOutput,
                 ("max_results", "next_token", "project_filter", ),
                 (),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.list_data_automation_libraries(params)
@@ -654,6 +672,7 @@ class BedrockDataAutomationClient:
                 ListDataAutomationLibraryEntitiesOutput,
                 ("library_arn", "entity_type", "max_results", "next_token", ),
                 ("library_arn", "entity_type", ),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.list_data_automation_library_entities(params)
@@ -683,6 +702,7 @@ class BedrockDataAutomationClient:
                 ListDataAutomationLibraryIngestionJobsOutput,
                 ("library_arn", "max_results", "next_token", ),
                 ("library_arn", ),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.list_data_automation_library_ingestion_jobs(params)
@@ -722,6 +742,7 @@ class BedrockDataAutomationClient:
                 ListDataAutomationProjectsOutput,
                 ("max_results", "next_token", "project_stage_filter", "blueprint_filter", "resource_owner", "library_filter", ),
                 (),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.list_data_automation_projects(params)
@@ -745,6 +766,7 @@ class BedrockDataAutomationClient:
                 ListTagsForResourceOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -770,6 +792,7 @@ class BedrockDataAutomationClient:
                 TagResourceOutput,
                 ("resource_arn", "tags", ),
                 ("resource_arn", "tags", ),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.tag_resource(params)
@@ -795,6 +818,7 @@ class BedrockDataAutomationClient:
                 UntagResourceOutput,
                 ("resource_arn", "tag_keys", ),
                 ("resource_arn", "tag_keys", ),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.untag_resource(params)
@@ -826,6 +850,7 @@ class BedrockDataAutomationClient:
                 UpdateBlueprintOutput,
                 ("blueprint_arn", "schema", "blueprint_stage", "encryption_configuration", ),
                 ("blueprint_arn", "schema", ),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.update_blueprint(params)
@@ -855,6 +880,7 @@ class BedrockDataAutomationClient:
                 UpdateDataAutomationLibraryOutput,
                 ("library_arn", "library_description", "client_token", ),
                 ("library_arn", ),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.update_data_automation_library(params)
@@ -898,6 +924,7 @@ class BedrockDataAutomationClient:
                 UpdateDataAutomationProjectOutput,
                 ("project_arn", "standard_output_configuration", "project_stage", "project_description", "custom_output_configuration", "override_configuration", "data_automation_library_configuration", "encryption_configuration", ),
                 ("project_arn", "standard_output_configuration", ),
+                service_name='Bedrock Data Automation',
             )
             return _response
         _response = await self._native.update_data_automation_project(params)

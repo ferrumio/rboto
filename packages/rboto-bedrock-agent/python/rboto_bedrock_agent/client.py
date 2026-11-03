@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import BedrockAgentClient as NativeClient, AssociateAgentCollaboratorOutput, AssociateAgentKnowledgeBaseOutput, CreateAgentActionGroupOutput, CreateAgentAliasOutput, CreateAgentOutput, CreateDataSourceOutput, CreateFlowAliasOutput, CreateFlowOutput, CreateFlowVersionOutput, CreateKnowledgeBaseOutput, CreatePromptOutput, CreatePromptVersionOutput, CreateRetrievalInstructionOutput, CreateRetrievalInstructionVersionOutput, CreateVpcConfigurationOutput, DeleteAgentActionGroupOutput, DeleteAgentAliasOutput, DeleteAgentOutput, DeleteAgentVersionOutput, DeleteDataSourceOutput, DeleteFlowAliasOutput, DeleteFlowOutput, DeleteFlowVersionOutput, DeleteKnowledgeBaseDocumentsOutput, DeleteKnowledgeBaseOutput, DeletePromptOutput, DeleteResourcePolicyOutput, DeleteRetrievalInstructionOutput, DeleteVpcConfigurationOutput, DisassociateAgentCollaboratorOutput, DisassociateAgentKnowledgeBaseOutput, GetAgentActionGroupOutput, GetAgentAliasOutput, GetAgentCollaboratorOutput, GetAgentKnowledgeBaseOutput, GetAgentOutput, GetAgentVersionOutput, GetDataSourceOutput, GetFlowAliasOutput, GetFlowOutput, GetFlowVersionOutput, GetIngestionJobOutput, GetKnowledgeBaseDocumentsOutput, GetKnowledgeBaseOutput, GetPromptOutput, GetResourcePolicyOutput, GetRetrievalInstructionOutput, GetVpcConfigurationOutput, IngestKnowledgeBaseDocumentsOutput, ListAgentActionGroupsOutput, ListAgentAliasesOutput, ListAgentCollaboratorsOutput, ListAgentKnowledgeBasesOutput, ListAgentVersionsOutput, ListAgentsOutput, ListDataSourcesOutput, ListFlowAliasesOutput, ListFlowVersionsOutput, ListFlowsOutput, ListIngestionJobsOutput, ListKnowledgeBaseDocumentsOutput, ListKnowledgeBasesOutput, ListPromptsOutput, ListRetrievalInstructionVersionsOutput, ListRetrievalInstructionsOutput, ListTagsForResourceOutput, ListVpcConfigurationsOutput, PrepareAgentOutput, PrepareFlowOutput, PutResourcePolicyOutput, StartIngestionJobOutput, StopIngestionJobOutput, TagResourceOutput, UntagResourceOutput, UpdateAgentActionGroupOutput, UpdateAgentAliasOutput, UpdateAgentCollaboratorOutput, UpdateAgentKnowledgeBaseOutput, UpdateAgentOutput, UpdateDataSourceOutput, UpdateFlowAliasOutput, UpdateFlowOutput, UpdateKnowledgeBaseOutput, UpdatePromptOutput, UpdateRetrievalInstructionOutput, ValidateFlowDefinitionOutput
 from .types import (
@@ -121,6 +121,7 @@ class BedrockAgentClient:
                 AssociateAgentCollaboratorOutput,
                 ("agent_id", "agent_version", "agent_descriptor", "collaborator_name", "collaboration_instruction", "relay_conversation_history", "client_token", ),
                 ("agent_id", "agent_version", "agent_descriptor", "collaborator_name", "collaboration_instruction", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.associate_agent_collaborator(params)
@@ -153,6 +154,7 @@ class BedrockAgentClient:
                 AssociateAgentKnowledgeBaseOutput,
                 ("agent_id", "agent_version", "knowledge_base_id", "description", "knowledge_base_state", ),
                 ("agent_id", "agent_version", "knowledge_base_id", "description", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.associate_agent_knowledge_base(params)
@@ -218,6 +220,7 @@ class BedrockAgentClient:
                 CreateAgentOutput,
                 ("agent_name", "client_token", "instruction", "foundation_model", "description", "orchestration_type", "custom_orchestration", "idle_session_ttl_in_seconds", "agent_resource_role_arn", "customer_encryption_key_arn", "tags", "prompt_override_configuration", "guardrail_configuration", "memory_configuration", "agent_collaboration", ),
                 ("agent_name", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.create_agent(params)
@@ -269,6 +272,7 @@ class BedrockAgentClient:
                 CreateAgentActionGroupOutput,
                 ("agent_id", "agent_version", "action_group_name", "client_token", "description", "parent_action_group_signature", "parent_action_group_signature_params", "action_group_executor", "api_schema", "action_group_state", "function_schema", ),
                 ("agent_id", "agent_version", "action_group_name", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.create_agent_action_group(params)
@@ -306,6 +310,7 @@ class BedrockAgentClient:
                 CreateAgentAliasOutput,
                 ("agent_id", "agent_alias_name", "client_token", "description", "routing_configuration", "tags", ),
                 ("agent_id", "agent_alias_name", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.create_agent_alias(params)
@@ -348,6 +353,7 @@ class BedrockAgentClient:
                 CreateDataSourceOutput,
                 ("knowledge_base_id", "name", "data_source_configuration", "client_token", "description", "data_deletion_policy", "server_side_encryption_configuration", "vector_ingestion_configuration", ),
                 ("knowledge_base_id", "name", "data_source_configuration", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.create_data_source(params)
@@ -388,6 +394,7 @@ class BedrockAgentClient:
                 CreateFlowOutput,
                 ("name", "execution_role_arn", "description", "customer_encryption_key_arn", "definition", "client_token", "tags", ),
                 ("name", "execution_role_arn", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.create_flow(params)
@@ -427,6 +434,7 @@ class BedrockAgentClient:
                 CreateFlowAliasOutput,
                 ("name", "routing_configuration", "flow_identifier", "description", "concurrency_configuration", "client_token", "tags", ),
                 ("name", "routing_configuration", "flow_identifier", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.create_flow_alias(params)
@@ -456,6 +464,7 @@ class BedrockAgentClient:
                 CreateFlowVersionOutput,
                 ("flow_identifier", "description", "client_token", ),
                 ("flow_identifier", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.create_flow_version(params)
@@ -495,6 +504,7 @@ class BedrockAgentClient:
                 CreateKnowledgeBaseOutput,
                 ("name", "role_arn", "knowledge_base_configuration", "client_token", "description", "storage_configuration", "tags", ),
                 ("name", "role_arn", "knowledge_base_configuration", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.create_knowledge_base(params)
@@ -536,6 +546,7 @@ class BedrockAgentClient:
                 CreatePromptOutput,
                 ("name", "description", "customer_encryption_key_arn", "default_variant", "variants", "client_token", "tags", ),
                 ("name", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.create_prompt(params)
@@ -568,6 +579,7 @@ class BedrockAgentClient:
                 CreatePromptVersionOutput,
                 ("prompt_identifier", "description", "client_token", "tags", ),
                 ("prompt_identifier", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.create_prompt_version(params)
@@ -605,6 +617,7 @@ class BedrockAgentClient:
                 CreateRetrievalInstructionOutput,
                 ("name", "instruction", "client_token", "description", "customer_encryption_key_arn", "tags", ),
                 ("name", "instruction", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.create_retrieval_instruction(params)
@@ -634,6 +647,7 @@ class BedrockAgentClient:
                 CreateRetrievalInstructionVersionOutput,
                 ("retrieval_instruction_id", "description", "client_token", ),
                 ("retrieval_instruction_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.create_retrieval_instruction_version(params)
@@ -684,6 +698,7 @@ class BedrockAgentClient:
                 CreateVpcConfigurationOutput,
                 ("knowledge_base_id", "vpc_id", "subnet_ids", "resource_target", "port", "protocol", "resolution_mode", "client_token", "host_header", "tls_server_name", "name", "description", ),
                 ("knowledge_base_id", "vpc_id", "subnet_ids", "resource_target", "port", "protocol", "resolution_mode", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.create_vpc_configuration(params)
@@ -710,6 +725,7 @@ class BedrockAgentClient:
                 DeleteAgentOutput,
                 ("agent_id", "skip_resource_in_use_check", ),
                 ("agent_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.delete_agent(params)
@@ -740,6 +756,7 @@ class BedrockAgentClient:
                 DeleteAgentActionGroupOutput,
                 ("agent_id", "agent_version", "action_group_id", "skip_resource_in_use_check", ),
                 ("agent_id", "agent_version", "action_group_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.delete_agent_action_group(params)
@@ -765,6 +782,7 @@ class BedrockAgentClient:
                 DeleteAgentAliasOutput,
                 ("agent_id", "agent_alias_id", ),
                 ("agent_id", "agent_alias_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.delete_agent_alias(params)
@@ -793,6 +811,7 @@ class BedrockAgentClient:
                 DeleteAgentVersionOutput,
                 ("agent_id", "agent_version", "skip_resource_in_use_check", ),
                 ("agent_id", "agent_version", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.delete_agent_version(params)
@@ -818,6 +837,7 @@ class BedrockAgentClient:
                 DeleteDataSourceOutput,
                 ("knowledge_base_id", "data_source_id", ),
                 ("knowledge_base_id", "data_source_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.delete_data_source(params)
@@ -844,6 +864,7 @@ class BedrockAgentClient:
                 DeleteFlowOutput,
                 ("flow_identifier", "skip_resource_in_use_check", ),
                 ("flow_identifier", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.delete_flow(params)
@@ -869,6 +890,7 @@ class BedrockAgentClient:
                 DeleteFlowAliasOutput,
                 ("flow_identifier", "alias_identifier", ),
                 ("flow_identifier", "alias_identifier", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.delete_flow_alias(params)
@@ -897,6 +919,7 @@ class BedrockAgentClient:
                 DeleteFlowVersionOutput,
                 ("flow_identifier", "flow_version", "skip_resource_in_use_check", ),
                 ("flow_identifier", "flow_version", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.delete_flow_version(params)
@@ -920,6 +943,7 @@ class BedrockAgentClient:
                 DeleteKnowledgeBaseOutput,
                 ("knowledge_base_id", ),
                 ("knowledge_base_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.delete_knowledge_base(params)
@@ -950,6 +974,7 @@ class BedrockAgentClient:
                 DeleteKnowledgeBaseDocumentsOutput,
                 ("knowledge_base_id", "data_source_id", "document_identifiers", "client_token", ),
                 ("knowledge_base_id", "data_source_id", "document_identifiers", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.delete_knowledge_base_documents(params)
@@ -976,6 +1001,7 @@ class BedrockAgentClient:
                 DeletePromptOutput,
                 ("prompt_identifier", "prompt_version", ),
                 ("prompt_identifier", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.delete_prompt(params)
@@ -1002,6 +1028,7 @@ class BedrockAgentClient:
                 DeleteResourcePolicyOutput,
                 ("resource_arn", "expected_revision_id", ),
                 ("resource_arn", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.delete_resource_policy(params)
@@ -1028,6 +1055,7 @@ class BedrockAgentClient:
                 DeleteRetrievalInstructionOutput,
                 ("retrieval_instruction_id", "retrieval_instruction_version", ),
                 ("retrieval_instruction_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.delete_retrieval_instruction(params)
@@ -1053,6 +1081,7 @@ class BedrockAgentClient:
                 DeleteVpcConfigurationOutput,
                 ("knowledge_base_id", "vpc_configuration_id", ),
                 ("knowledge_base_id", "vpc_configuration_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.delete_vpc_configuration(params)
@@ -1080,6 +1109,7 @@ class BedrockAgentClient:
                 DisassociateAgentCollaboratorOutput,
                 ("agent_id", "agent_version", "collaborator_id", ),
                 ("agent_id", "agent_version", "collaborator_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.disassociate_agent_collaborator(params)
@@ -1107,6 +1137,7 @@ class BedrockAgentClient:
                 DisassociateAgentKnowledgeBaseOutput,
                 ("agent_id", "agent_version", "knowledge_base_id", ),
                 ("agent_id", "agent_version", "knowledge_base_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.disassociate_agent_knowledge_base(params)
@@ -1130,6 +1161,7 @@ class BedrockAgentClient:
                 GetAgentOutput,
                 ("agent_id", ),
                 ("agent_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.get_agent(params)
@@ -1157,6 +1189,7 @@ class BedrockAgentClient:
                 GetAgentActionGroupOutput,
                 ("agent_id", "agent_version", "action_group_id", ),
                 ("agent_id", "agent_version", "action_group_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.get_agent_action_group(params)
@@ -1182,6 +1215,7 @@ class BedrockAgentClient:
                 GetAgentAliasOutput,
                 ("agent_id", "agent_alias_id", ),
                 ("agent_id", "agent_alias_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.get_agent_alias(params)
@@ -1209,6 +1243,7 @@ class BedrockAgentClient:
                 GetAgentCollaboratorOutput,
                 ("agent_id", "agent_version", "collaborator_id", ),
                 ("agent_id", "agent_version", "collaborator_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.get_agent_collaborator(params)
@@ -1236,6 +1271,7 @@ class BedrockAgentClient:
                 GetAgentKnowledgeBaseOutput,
                 ("agent_id", "agent_version", "knowledge_base_id", ),
                 ("agent_id", "agent_version", "knowledge_base_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.get_agent_knowledge_base(params)
@@ -1261,6 +1297,7 @@ class BedrockAgentClient:
                 GetAgentVersionOutput,
                 ("agent_id", "agent_version", ),
                 ("agent_id", "agent_version", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.get_agent_version(params)
@@ -1286,6 +1323,7 @@ class BedrockAgentClient:
                 GetDataSourceOutput,
                 ("knowledge_base_id", "data_source_id", ),
                 ("knowledge_base_id", "data_source_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.get_data_source(params)
@@ -1312,6 +1350,7 @@ class BedrockAgentClient:
                 GetFlowOutput,
                 ("flow_identifier", "included_data", ),
                 ("flow_identifier", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.get_flow(params)
@@ -1337,6 +1376,7 @@ class BedrockAgentClient:
                 GetFlowAliasOutput,
                 ("flow_identifier", "alias_identifier", ),
                 ("flow_identifier", "alias_identifier", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.get_flow_alias(params)
@@ -1365,6 +1405,7 @@ class BedrockAgentClient:
                 GetFlowVersionOutput,
                 ("flow_identifier", "flow_version", "included_data", ),
                 ("flow_identifier", "flow_version", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.get_flow_version(params)
@@ -1392,6 +1433,7 @@ class BedrockAgentClient:
                 GetIngestionJobOutput,
                 ("knowledge_base_id", "data_source_id", "ingestion_job_id", ),
                 ("knowledge_base_id", "data_source_id", "ingestion_job_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.get_ingestion_job(params)
@@ -1415,6 +1457,7 @@ class BedrockAgentClient:
                 GetKnowledgeBaseOutput,
                 ("knowledge_base_id", ),
                 ("knowledge_base_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.get_knowledge_base(params)
@@ -1442,6 +1485,7 @@ class BedrockAgentClient:
                 GetKnowledgeBaseDocumentsOutput,
                 ("knowledge_base_id", "data_source_id", "document_identifiers", ),
                 ("knowledge_base_id", "data_source_id", "document_identifiers", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.get_knowledge_base_documents(params)
@@ -1471,6 +1515,7 @@ class BedrockAgentClient:
                 GetPromptOutput,
                 ("prompt_identifier", "prompt_version", "included_data", ),
                 ("prompt_identifier", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.get_prompt(params)
@@ -1494,6 +1539,7 @@ class BedrockAgentClient:
                 GetResourcePolicyOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.get_resource_policy(params)
@@ -1520,6 +1566,7 @@ class BedrockAgentClient:
                 GetRetrievalInstructionOutput,
                 ("retrieval_instruction_id", "retrieval_instruction_version", ),
                 ("retrieval_instruction_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.get_retrieval_instruction(params)
@@ -1545,6 +1592,7 @@ class BedrockAgentClient:
                 GetVpcConfigurationOutput,
                 ("knowledge_base_id", "vpc_configuration_id", ),
                 ("knowledge_base_id", "vpc_configuration_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.get_vpc_configuration(params)
@@ -1575,6 +1623,7 @@ class BedrockAgentClient:
                 IngestKnowledgeBaseDocumentsOutput,
                 ("knowledge_base_id", "data_source_id", "documents", "client_token", ),
                 ("knowledge_base_id", "data_source_id", "documents", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.ingest_knowledge_base_documents(params)
@@ -1606,6 +1655,7 @@ class BedrockAgentClient:
                 ListAgentActionGroupsOutput,
                 ("agent_id", "agent_version", "max_results", "next_token", ),
                 ("agent_id", "agent_version", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.list_agent_action_groups(params)
@@ -1635,6 +1685,7 @@ class BedrockAgentClient:
                 ListAgentAliasesOutput,
                 ("agent_id", "max_results", "next_token", ),
                 ("agent_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.list_agent_aliases(params)
@@ -1666,6 +1717,7 @@ class BedrockAgentClient:
                 ListAgentCollaboratorsOutput,
                 ("agent_id", "agent_version", "max_results", "next_token", ),
                 ("agent_id", "agent_version", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.list_agent_collaborators(params)
@@ -1697,6 +1749,7 @@ class BedrockAgentClient:
                 ListAgentKnowledgeBasesOutput,
                 ("agent_id", "agent_version", "max_results", "next_token", ),
                 ("agent_id", "agent_version", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.list_agent_knowledge_bases(params)
@@ -1726,6 +1779,7 @@ class BedrockAgentClient:
                 ListAgentVersionsOutput,
                 ("agent_id", "max_results", "next_token", ),
                 ("agent_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.list_agent_versions(params)
@@ -1753,6 +1807,7 @@ class BedrockAgentClient:
                 ListAgentsOutput,
                 ("max_results", "next_token", ),
                 (),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.list_agents(params)
@@ -1782,6 +1837,7 @@ class BedrockAgentClient:
                 ListDataSourcesOutput,
                 ("knowledge_base_id", "max_results", "next_token", ),
                 ("knowledge_base_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.list_data_sources(params)
@@ -1811,6 +1867,7 @@ class BedrockAgentClient:
                 ListFlowAliasesOutput,
                 ("flow_identifier", "max_results", "next_token", ),
                 ("flow_identifier", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.list_flow_aliases(params)
@@ -1840,6 +1897,7 @@ class BedrockAgentClient:
                 ListFlowVersionsOutput,
                 ("flow_identifier", "max_results", "next_token", ),
                 ("flow_identifier", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.list_flow_versions(params)
@@ -1867,6 +1925,7 @@ class BedrockAgentClient:
                 ListFlowsOutput,
                 ("max_results", "next_token", ),
                 (),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.list_flows(params)
@@ -1904,6 +1963,7 @@ class BedrockAgentClient:
                 ListIngestionJobsOutput,
                 ("knowledge_base_id", "data_source_id", "filters", "sort_by", "max_results", "next_token", ),
                 ("knowledge_base_id", "data_source_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.list_ingestion_jobs(params)
@@ -1935,6 +1995,7 @@ class BedrockAgentClient:
                 ListKnowledgeBaseDocumentsOutput,
                 ("knowledge_base_id", "data_source_id", "max_results", "next_token", ),
                 ("knowledge_base_id", "data_source_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.list_knowledge_base_documents(params)
@@ -1962,6 +2023,7 @@ class BedrockAgentClient:
                 ListKnowledgeBasesOutput,
                 ("max_results", "next_token", ),
                 (),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.list_knowledge_bases(params)
@@ -1992,6 +2054,7 @@ class BedrockAgentClient:
                 ListPromptsOutput,
                 ("prompt_identifier", "max_results", "next_token", ),
                 (),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.list_prompts(params)
@@ -2021,6 +2084,7 @@ class BedrockAgentClient:
                 ListRetrievalInstructionVersionsOutput,
                 ("retrieval_instruction_id", "max_results", "next_token", ),
                 ("retrieval_instruction_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.list_retrieval_instruction_versions(params)
@@ -2051,6 +2115,7 @@ class BedrockAgentClient:
                 ListRetrievalInstructionsOutput,
                 ("status", "max_results", "next_token", ),
                 (),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.list_retrieval_instructions(params)
@@ -2074,6 +2139,7 @@ class BedrockAgentClient:
                 ListTagsForResourceOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -2106,6 +2172,7 @@ class BedrockAgentClient:
                 ListVpcConfigurationsOutput,
                 ("knowledge_base_id", "status_filter", "max_results", "next_token", ),
                 ("knowledge_base_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.list_vpc_configurations(params)
@@ -2129,6 +2196,7 @@ class BedrockAgentClient:
                 PrepareAgentOutput,
                 ("agent_id", ),
                 ("agent_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.prepare_agent(params)
@@ -2152,6 +2220,7 @@ class BedrockAgentClient:
                 PrepareFlowOutput,
                 ("flow_identifier", ),
                 ("flow_identifier", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.prepare_flow(params)
@@ -2180,6 +2249,7 @@ class BedrockAgentClient:
                 PutResourcePolicyOutput,
                 ("resource_arn", "policy", "expected_revision_id", ),
                 ("resource_arn", "policy", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.put_resource_policy(params)
@@ -2211,6 +2281,7 @@ class BedrockAgentClient:
                 StartIngestionJobOutput,
                 ("knowledge_base_id", "data_source_id", "client_token", "description", ),
                 ("knowledge_base_id", "data_source_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.start_ingestion_job(params)
@@ -2238,6 +2309,7 @@ class BedrockAgentClient:
                 StopIngestionJobOutput,
                 ("knowledge_base_id", "data_source_id", "ingestion_job_id", ),
                 ("knowledge_base_id", "data_source_id", "ingestion_job_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.stop_ingestion_job(params)
@@ -2263,6 +2335,7 @@ class BedrockAgentClient:
                 TagResourceOutput,
                 ("resource_arn", "tags", ),
                 ("resource_arn", "tags", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.tag_resource(params)
@@ -2288,6 +2361,7 @@ class BedrockAgentClient:
                 UntagResourceOutput,
                 ("resource_arn", "tag_keys", ),
                 ("resource_arn", "tag_keys", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.untag_resource(params)
@@ -2347,6 +2421,7 @@ class BedrockAgentClient:
                 UpdateAgentOutput,
                 ("agent_id", "agent_name", "foundation_model", "agent_resource_role_arn", "instruction", "description", "orchestration_type", "custom_orchestration", "idle_session_ttl_in_seconds", "customer_encryption_key_arn", "prompt_override_configuration", "guardrail_configuration", "memory_configuration", "agent_collaboration", ),
                 ("agent_id", "agent_name", "foundation_model", "agent_resource_role_arn", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.update_agent(params)
@@ -2397,6 +2472,7 @@ class BedrockAgentClient:
                 UpdateAgentActionGroupOutput,
                 ("agent_id", "agent_version", "action_group_id", "action_group_name", "description", "parent_action_group_signature", "parent_action_group_signature_params", "action_group_executor", "action_group_state", "api_schema", "function_schema", ),
                 ("agent_id", "agent_version", "action_group_id", "action_group_name", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.update_agent_action_group(params)
@@ -2433,6 +2509,7 @@ class BedrockAgentClient:
                 UpdateAgentAliasOutput,
                 ("agent_id", "agent_alias_id", "agent_alias_name", "description", "routing_configuration", "alias_invocation_state", ),
                 ("agent_id", "agent_alias_id", "agent_alias_name", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.update_agent_alias(params)
@@ -2469,6 +2546,7 @@ class BedrockAgentClient:
                 UpdateAgentCollaboratorOutput,
                 ("agent_id", "agent_version", "collaborator_id", "agent_descriptor", "collaborator_name", "collaboration_instruction", "relay_conversation_history", ),
                 ("agent_id", "agent_version", "collaborator_id", "agent_descriptor", "collaborator_name", "collaboration_instruction", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.update_agent_collaborator(params)
@@ -2502,6 +2580,7 @@ class BedrockAgentClient:
                 UpdateAgentKnowledgeBaseOutput,
                 ("agent_id", "agent_version", "knowledge_base_id", "description", "knowledge_base_state", ),
                 ("agent_id", "agent_version", "knowledge_base_id", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.update_agent_knowledge_base(params)
@@ -2543,6 +2622,7 @@ class BedrockAgentClient:
                 UpdateDataSourceOutput,
                 ("knowledge_base_id", "data_source_id", "name", "data_source_configuration", "description", "data_deletion_policy", "server_side_encryption_configuration", "vector_ingestion_configuration", ),
                 ("knowledge_base_id", "data_source_id", "name", "data_source_configuration", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.update_data_source(params)
@@ -2579,6 +2659,7 @@ class BedrockAgentClient:
                 UpdateFlowOutput,
                 ("name", "execution_role_arn", "flow_identifier", "description", "customer_encryption_key_arn", "definition", ),
                 ("name", "execution_role_arn", "flow_identifier", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.update_flow(params)
@@ -2614,6 +2695,7 @@ class BedrockAgentClient:
                 UpdateFlowAliasOutput,
                 ("name", "routing_configuration", "flow_identifier", "alias_identifier", "description", "concurrency_configuration", ),
                 ("name", "routing_configuration", "flow_identifier", "alias_identifier", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.update_flow_alias(params)
@@ -2649,6 +2731,7 @@ class BedrockAgentClient:
                 UpdateKnowledgeBaseOutput,
                 ("knowledge_base_id", "name", "role_arn", "knowledge_base_configuration", "description", "storage_configuration", ),
                 ("knowledge_base_id", "name", "role_arn", "knowledge_base_configuration", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.update_knowledge_base(params)
@@ -2686,6 +2769,7 @@ class BedrockAgentClient:
                 UpdatePromptOutput,
                 ("name", "prompt_identifier", "description", "customer_encryption_key_arn", "default_variant", "variants", ),
                 ("name", "prompt_identifier", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.update_prompt(params)
@@ -2714,6 +2798,7 @@ class BedrockAgentClient:
                 UpdateRetrievalInstructionOutput,
                 ("retrieval_instruction_id", "instruction", "description", ),
                 ("retrieval_instruction_id", "instruction", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.update_retrieval_instruction(params)
@@ -2737,6 +2822,7 @@ class BedrockAgentClient:
                 ValidateFlowDefinitionOutput,
                 ("definition", ),
                 ("definition", ),
+                service_name='Bedrock Agent',
             )
             return _response
         _response = await self._native.validate_flow_definition(params)

@@ -13,6 +13,8 @@ Run commands from the repository root unless a working directory is shown.
 Install `pydantic>=2,<3` in the development environment to check the optional
 integration examples and run the compiled model interoperability tests.
 Install `types-jmespath>=1,<2` for strict checking of the codegen-only expression parser.
+Install `packages/rboto[opentelemetry]` and `opentelemetry-sdk>=1.39,<2` for
+the optional integration tests and typed examples.
 
 ```bash
 .venv/bin/ruff check codegen/src codegen/tests packages/rboto/src packages/rboto/tests tests examples benchmarks .github/scripts

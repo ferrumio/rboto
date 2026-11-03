@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import STSClient as NativeClient, AssumeRoleOutput, AssumeRoleWithSAMLOutput, AssumeRoleWithWebIdentityOutput, AssumeRootOutput, DecodeAuthorizationMessageOutput, GetAccessKeyInfoOutput, GetCallerIdentityOutput, GetDelegatedAccessTokenOutput, GetFederationTokenOutput, GetSessionTokenOutput, GetWebIdentityTokenOutput
 from .types import (
@@ -99,6 +99,7 @@ class STSClient:
                 AssumeRoleOutput,
                 ("role_arn", "role_session_name", "policy_arns", "policy", "duration_seconds", "tags", "transitive_tag_keys", "external_id", "serial_number", "token_code", "source_identity", "provided_contexts", "minimum_session_token_size", ),
                 ("role_arn", "role_session_name", ),
+                service_name='STS',
             )
             return _response
         _response = await self._native.assume_role(params)
@@ -138,6 +139,7 @@ class STSClient:
                 AssumeRoleWithSAMLOutput,
                 ("role_arn", "principal_arn", "saml_assertion", "policy_arns", "policy", "duration_seconds", "minimum_session_token_size", ),
                 ("role_arn", "principal_arn", "saml_assertion", ),
+                service_name='STS',
             )
             return _response
         _response = await self._native.assume_role_with_saml(params)
@@ -180,6 +182,7 @@ class STSClient:
                 AssumeRoleWithWebIdentityOutput,
                 ("role_arn", "role_session_name", "web_identity_token", "provider_id", "policy_arns", "policy", "duration_seconds", "minimum_session_token_size", ),
                 ("role_arn", "role_session_name", "web_identity_token", ),
+                service_name='STS',
             )
             return _response
         _response = await self._native.assume_role_with_web_identity(params)
@@ -211,6 +214,7 @@ class STSClient:
                 AssumeRootOutput,
                 ("target_principal", "task_policy_arn", "duration_seconds", "minimum_session_token_size", ),
                 ("target_principal", "task_policy_arn", ),
+                service_name='STS',
             )
             return _response
         _response = await self._native.assume_root(params)
@@ -234,6 +238,7 @@ class STSClient:
                 DecodeAuthorizationMessageOutput,
                 ("encoded_message", ),
                 ("encoded_message", ),
+                service_name='STS',
             )
             return _response
         _response = await self._native.decode_authorization_message(params)
@@ -257,6 +262,7 @@ class STSClient:
                 GetAccessKeyInfoOutput,
                 ("access_key_id", ),
                 ("access_key_id", ),
+                service_name='STS',
             )
             return _response
         _response = await self._native.get_access_key_info(params)
@@ -277,6 +283,7 @@ class STSClient:
                 GetCallerIdentityOutput,
                 (),
                 (),
+                service_name='STS',
             )
             return _response
         _response = await self._native.get_caller_identity(params)
@@ -300,6 +307,7 @@ class STSClient:
                 GetDelegatedAccessTokenOutput,
                 ("trade_in_token", ),
                 ("trade_in_token", ),
+                service_name='STS',
             )
             return _response
         _response = await self._native.get_delegated_access_token(params)
@@ -338,6 +346,7 @@ class STSClient:
                 GetFederationTokenOutput,
                 ("name", "policy", "policy_arns", "duration_seconds", "tags", "minimum_session_token_size", ),
                 ("name", ),
+                service_name='STS',
             )
             return _response
         _response = await self._native.get_federation_token(params)
@@ -371,6 +380,7 @@ class STSClient:
                 GetSessionTokenOutput,
                 ("duration_seconds", "serial_number", "token_code", "minimum_session_token_size", ),
                 (),
+                service_name='STS',
             )
             return _response
         _response = await self._native.get_session_token(params)
@@ -402,6 +412,7 @@ class STSClient:
                 GetWebIdentityTokenOutput,
                 ("audience", "signing_algorithm", "duration_seconds", "tags", ),
                 ("audience", "signing_algorithm", ),
+                service_name='STS',
             )
             return _response
         _response = await self._native.get_web_identity_token(params)

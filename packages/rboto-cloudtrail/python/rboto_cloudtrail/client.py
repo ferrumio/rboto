@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import CloudTrailClient as NativeClient, AddTagsOutput, CancelQueryOutput, CreateChannelOutput, CreateDashboardOutput, CreateEventDataStoreOutput, CreateTrailOutput, DeleteChannelOutput, DeleteDashboardOutput, DeleteEventDataStoreOutput, DeleteResourcePolicyOutput, DeleteTrailOutput, DeregisterOrganizationDelegatedAdminOutput, DescribeQueryOutput, DescribeTrailsOutput, DisableFederationOutput, EnableFederationOutput, GenerateQueryOutput, GetChannelOutput, GetDashboardOutput, GetEventConfigurationOutput, GetEventDataStoreOutput, GetEventSelectorsOutput, GetImportOutput, GetInsightSelectorsOutput, GetQueryResultsOutput, GetResourcePolicyOutput, GetTrailOutput, GetTrailStatusOutput, ListChannelsOutput, ListDashboardsOutput, ListEventDataStoresOutput, ListImportFailuresOutput, ListImportsOutput, ListInsightsDataOutput, ListInsightsMetricDataOutput, ListPublicKeysOutput, ListQueriesOutput, ListTagsOutput, ListTrailsOutput, LookupEventsOutput, PutEventConfigurationOutput, PutEventSelectorsOutput, PutInsightSelectorsOutput, PutResourcePolicyOutput, RegisterOrganizationDelegatedAdminOutput, RemoveTagsOutput, RestoreEventDataStoreOutput, SearchSampleQueriesOutput, StartDashboardRefreshOutput, StartEventDataStoreIngestionOutput, StartImportOutput, StartLoggingOutput, StartQueryOutput, StopEventDataStoreIngestionOutput, StopImportOutput, StopLoggingOutput, UpdateChannelOutput, UpdateDashboardOutput, UpdateEventDataStoreOutput, UpdateTrailOutput
 from .types import (
@@ -94,6 +94,7 @@ class CloudTrailClient:
                 AddTagsOutput,
                 ("resource_id", "tags_list", ),
                 ("resource_id", "tags_list", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.add_tags(params)
@@ -123,6 +124,7 @@ class CloudTrailClient:
                 CancelQueryOutput,
                 ("query_id", "event_data_store", "event_data_store_owner_account_id", ),
                 ("query_id", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.cancel_query(params)
@@ -153,6 +155,7 @@ class CloudTrailClient:
                 CreateChannelOutput,
                 ("name", "source", "destinations", "tags", ),
                 ("name", "source", "destinations", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.create_channel(params)
@@ -188,6 +191,7 @@ class CloudTrailClient:
                 CreateDashboardOutput,
                 ("name", "refresh_schedule", "tags_list", "termination_protection_enabled", "widgets", ),
                 ("name", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.create_dashboard(params)
@@ -238,6 +242,7 @@ class CloudTrailClient:
                 CreateEventDataStoreOutput,
                 ("name", "advanced_event_selectors", "multi_region_enabled", "organization_enabled", "retention_period", "termination_protection_enabled", "tags_list", "kms_key_id", "start_ingestion", "billing_mode", ),
                 ("name", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.create_event_data_store(params)
@@ -296,6 +301,7 @@ class CloudTrailClient:
                 CreateTrailOutput,
                 ("name", "s3_bucket_name", "s3_key_prefix", "sns_topic_name", "include_global_service_events", "is_multi_region_trail", "enable_log_file_validation", "cloud_watch_logs_log_group_arn", "cloud_watch_logs_role_arn", "kms_key_id", "is_organization_trail", "tags_list", "recursive_logging", ),
                 ("name", "s3_bucket_name", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.create_trail(params)
@@ -319,6 +325,7 @@ class CloudTrailClient:
                 DeleteChannelOutput,
                 ("channel", ),
                 ("channel", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.delete_channel(params)
@@ -342,6 +349,7 @@ class CloudTrailClient:
                 DeleteDashboardOutput,
                 ("dashboard_id", ),
                 ("dashboard_id", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.delete_dashboard(params)
@@ -365,6 +373,7 @@ class CloudTrailClient:
                 DeleteEventDataStoreOutput,
                 ("event_data_store", ),
                 ("event_data_store", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.delete_event_data_store(params)
@@ -388,6 +397,7 @@ class CloudTrailClient:
                 DeleteResourcePolicyOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.delete_resource_policy(params)
@@ -411,6 +421,7 @@ class CloudTrailClient:
                 DeleteTrailOutput,
                 ("name", ),
                 ("name", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.delete_trail(params)
@@ -434,6 +445,7 @@ class CloudTrailClient:
                 DeregisterOrganizationDelegatedAdminOutput,
                 ("delegated_admin_account_id", ),
                 ("delegated_admin_account_id", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.deregister_organization_delegated_admin(params)
@@ -470,6 +482,7 @@ class CloudTrailClient:
                 DescribeQueryOutput,
                 ("event_data_store", "query_id", "query_alias", "refresh_id", "event_data_store_owner_account_id", ),
                 (),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.describe_query(params)
@@ -497,6 +510,7 @@ class CloudTrailClient:
                 DescribeTrailsOutput,
                 ("trail_name_list", "include_shadow_trails", ),
                 (),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.describe_trails(params)
@@ -520,6 +534,7 @@ class CloudTrailClient:
                 DisableFederationOutput,
                 ("event_data_store", ),
                 ("event_data_store", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.disable_federation(params)
@@ -545,6 +560,7 @@ class CloudTrailClient:
                 EnableFederationOutput,
                 ("event_data_store", "federation_role_arn", ),
                 ("event_data_store", "federation_role_arn", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.enable_federation(params)
@@ -570,6 +586,7 @@ class CloudTrailClient:
                 GenerateQueryOutput,
                 ("event_data_stores", "prompt", ),
                 ("event_data_stores", "prompt", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.generate_query(params)
@@ -593,6 +610,7 @@ class CloudTrailClient:
                 GetChannelOutput,
                 ("channel", ),
                 ("channel", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.get_channel(params)
@@ -616,6 +634,7 @@ class CloudTrailClient:
                 GetDashboardOutput,
                 ("dashboard_id", ),
                 ("dashboard_id", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.get_dashboard(params)
@@ -643,6 +662,7 @@ class CloudTrailClient:
                 GetEventConfigurationOutput,
                 ("trail_name", "event_data_store", ),
                 (),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.get_event_configuration(params)
@@ -666,6 +686,7 @@ class CloudTrailClient:
                 GetEventDataStoreOutput,
                 ("event_data_store", ),
                 ("event_data_store", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.get_event_data_store(params)
@@ -689,6 +710,7 @@ class CloudTrailClient:
                 GetEventSelectorsOutput,
                 ("trail_name", ),
                 ("trail_name", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.get_event_selectors(params)
@@ -712,6 +734,7 @@ class CloudTrailClient:
                 GetImportOutput,
                 ("import_id", ),
                 ("import_id", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.get_import(params)
@@ -739,6 +762,7 @@ class CloudTrailClient:
                 GetInsightSelectorsOutput,
                 ("trail_name", "event_data_store", ),
                 (),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.get_insight_selectors(params)
@@ -774,6 +798,7 @@ class CloudTrailClient:
                 GetQueryResultsOutput,
                 ("query_id", "event_data_store", "next_token", "max_query_results", "event_data_store_owner_account_id", ),
                 ("query_id", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.get_query_results(params)
@@ -797,6 +822,7 @@ class CloudTrailClient:
                 GetResourcePolicyOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.get_resource_policy(params)
@@ -820,6 +846,7 @@ class CloudTrailClient:
                 GetTrailOutput,
                 ("name", ),
                 ("name", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.get_trail(params)
@@ -843,6 +870,7 @@ class CloudTrailClient:
                 GetTrailStatusOutput,
                 ("name", ),
                 ("name", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.get_trail_status(params)
@@ -870,6 +898,7 @@ class CloudTrailClient:
                 ListChannelsOutput,
                 ("max_results", "next_token", ),
                 (),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.list_channels(params)
@@ -903,6 +932,7 @@ class CloudTrailClient:
                 ListDashboardsOutput,
                 ("name_prefix", "type", "next_token", "max_results", ),
                 (),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.list_dashboards(params)
@@ -930,6 +960,7 @@ class CloudTrailClient:
                 ListEventDataStoresOutput,
                 ("next_token", "max_results", ),
                 (),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.list_event_data_stores(params)
@@ -959,6 +990,7 @@ class CloudTrailClient:
                 ListImportFailuresOutput,
                 ("import_id", "max_results", "next_token", ),
                 ("import_id", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.list_import_failures(params)
@@ -992,6 +1024,7 @@ class CloudTrailClient:
                 ListImportsOutput,
                 ("max_results", "destination", "import_status", "next_token", ),
                 (),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.list_imports(params)
@@ -1032,6 +1065,7 @@ class CloudTrailClient:
                 ListInsightsDataOutput,
                 ("insight_source", "data_type", "dimensions", "start_time", "end_time", "max_results", "next_token", ),
                 ("insight_source", "data_type", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.list_insights_data(params)
@@ -1083,6 +1117,7 @@ class CloudTrailClient:
                 ListInsightsMetricDataOutput,
                 ("event_source", "event_name", "insight_type", "trail_name", "error_code", "start_time", "end_time", "period", "data_type", "max_results", "next_token", ),
                 ("event_source", "event_name", "insight_type", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.list_insights_metric_data(params)
@@ -1113,6 +1148,7 @@ class CloudTrailClient:
                 ListPublicKeysOutput,
                 ("start_time", "end_time", "next_token", ),
                 (),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.list_public_keys(params)
@@ -1151,6 +1187,7 @@ class CloudTrailClient:
                 ListQueriesOutput,
                 ("event_data_store", "next_token", "max_results", "start_time", "end_time", "query_status", ),
                 ("event_data_store", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.list_queries(params)
@@ -1177,6 +1214,7 @@ class CloudTrailClient:
                 ListTagsOutput,
                 ("resource_id_list", "next_token", ),
                 ("resource_id_list", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.list_tags(params)
@@ -1201,6 +1239,7 @@ class CloudTrailClient:
                 ListTrailsOutput,
                 ("next_token", ),
                 (),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.list_trails(params)
@@ -1240,6 +1279,7 @@ class CloudTrailClient:
                 LookupEventsOutput,
                 ("lookup_attributes", "start_time", "end_time", "event_category", "max_results", "next_token", ),
                 (),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.lookup_events(params)
@@ -1276,6 +1316,7 @@ class CloudTrailClient:
                 PutEventConfigurationOutput,
                 ("trail_name", "event_data_store", "max_event_size", "context_key_selectors", "aggregation_configurations", ),
                 (),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.put_event_configuration(params)
@@ -1305,6 +1346,7 @@ class CloudTrailClient:
                 PutEventSelectorsOutput,
                 ("trail_name", "event_selectors", "advanced_event_selectors", ),
                 ("trail_name", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.put_event_selectors(params)
@@ -1337,6 +1379,7 @@ class CloudTrailClient:
                 PutInsightSelectorsOutput,
                 ("insight_selectors", "trail_name", "event_data_store", "insights_destination", ),
                 ("insight_selectors", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.put_insight_selectors(params)
@@ -1362,6 +1405,7 @@ class CloudTrailClient:
                 PutResourcePolicyOutput,
                 ("resource_arn", "resource_policy", ),
                 ("resource_arn", "resource_policy", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.put_resource_policy(params)
@@ -1385,6 +1429,7 @@ class CloudTrailClient:
                 RegisterOrganizationDelegatedAdminOutput,
                 ("member_account_id", ),
                 ("member_account_id", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.register_organization_delegated_admin(params)
@@ -1410,6 +1455,7 @@ class CloudTrailClient:
                 RemoveTagsOutput,
                 ("resource_id", "tags_list", ),
                 ("resource_id", "tags_list", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.remove_tags(params)
@@ -1433,6 +1479,7 @@ class CloudTrailClient:
                 RestoreEventDataStoreOutput,
                 ("event_data_store", ),
                 ("event_data_store", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.restore_event_data_store(params)
@@ -1462,6 +1509,7 @@ class CloudTrailClient:
                 SearchSampleQueriesOutput,
                 ("search_phrase", "max_results", "next_token", ),
                 ("search_phrase", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.search_sample_queries(params)
@@ -1488,6 +1536,7 @@ class CloudTrailClient:
                 StartDashboardRefreshOutput,
                 ("dashboard_id", "query_parameter_values", ),
                 ("dashboard_id", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.start_dashboard_refresh(params)
@@ -1511,6 +1560,7 @@ class CloudTrailClient:
                 StartEventDataStoreIngestionOutput,
                 ("event_data_store", ),
                 ("event_data_store", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.start_event_data_store_ingestion(params)
@@ -1547,6 +1597,7 @@ class CloudTrailClient:
                 StartImportOutput,
                 ("destinations", "import_source", "start_event_time", "end_event_time", "import_id", ),
                 (),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.start_import(params)
@@ -1570,6 +1621,7 @@ class CloudTrailClient:
                 StartLoggingOutput,
                 ("name", ),
                 ("name", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.start_logging(params)
@@ -1606,6 +1658,7 @@ class CloudTrailClient:
                 StartQueryOutput,
                 ("query_statement", "delivery_s3_uri", "query_alias", "query_parameters", "event_data_store_owner_account_id", ),
                 (),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.start_query(params)
@@ -1629,6 +1682,7 @@ class CloudTrailClient:
                 StopEventDataStoreIngestionOutput,
                 ("event_data_store", ),
                 ("event_data_store", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.stop_event_data_store_ingestion(params)
@@ -1652,6 +1706,7 @@ class CloudTrailClient:
                 StopImportOutput,
                 ("import_id", ),
                 ("import_id", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.stop_import(params)
@@ -1675,6 +1730,7 @@ class CloudTrailClient:
                 StopLoggingOutput,
                 ("name", ),
                 ("name", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.stop_logging(params)
@@ -1704,6 +1760,7 @@ class CloudTrailClient:
                 UpdateChannelOutput,
                 ("channel", "destinations", "name", ),
                 ("channel", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.update_channel(params)
@@ -1736,6 +1793,7 @@ class CloudTrailClient:
                 UpdateDashboardOutput,
                 ("dashboard_id", "widgets", "refresh_schedule", "termination_protection_enabled", ),
                 ("dashboard_id", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.update_dashboard(params)
@@ -1783,6 +1841,7 @@ class CloudTrailClient:
                 UpdateEventDataStoreOutput,
                 ("event_data_store", "name", "advanced_event_selectors", "multi_region_enabled", "organization_enabled", "retention_period", "termination_protection_enabled", "kms_key_id", "billing_mode", ),
                 ("event_data_store", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.update_event_data_store(params)
@@ -1839,6 +1898,7 @@ class CloudTrailClient:
                 UpdateTrailOutput,
                 ("name", "s3_bucket_name", "s3_key_prefix", "sns_topic_name", "include_global_service_events", "is_multi_region_trail", "enable_log_file_validation", "cloud_watch_logs_log_group_arn", "cloud_watch_logs_role_arn", "kms_key_id", "is_organization_trail", "recursive_logging", ),
                 ("name", ),
+                service_name='CloudTrail',
             )
             return _response
         _response = await self._native.update_trail(params)

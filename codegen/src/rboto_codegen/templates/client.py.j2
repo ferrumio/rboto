@@ -8,7 +8,7 @@ from collections.abc import AsyncIterator, Sequence{% if sequence_type != "Seque
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import {{ native_client_class }} as NativeClient{% for name in native_output_names %}, {{ name }}{% endfor %}
 from .types import (
@@ -87,6 +87,7 @@ class {{ client_class }}:
                 {% if method.native_output %}{{ method.output }}{% elif method.output == "None" %}type(None){% else %}dict{% endif %},
                 ({% for parameter in method.parameters %}"{{ parameter.key }}", {% endfor %}),
                 ({% for parameter in method.parameters %}{% if parameter.required %}"{{ parameter.key }}", {% endif %}{% endfor %}),
+                service_name={{ sdk_service_name }},
             )
 {% if method.output == "None" %}            return None
 {% elif native_outputs %}            return _response

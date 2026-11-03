@@ -75,6 +75,12 @@ public signatures and native return contracts. A private metadata sink receives
 bounded retry details from `rboto-core`. Empty configuration keeps direct dispatch.
 See ADR-0014 for continuation lifetime, exceptions, and streaming behavior.
 
+`rboto._observability` resolves optional telemetry outside logging and application
+middleware. The OpenTelemetry API is imported only by the explicit optional
+integration. Session/client overrides select one observer; in-flight calls retain
+their snapshot. Model `sdkId` names come through generated operation context.
+See ADR-0027 for signal scope, context, ownership, and privacy boundaries.
+
 `configure_logging()` in `rboto.logging` enables ready-made JSON logs globally.
 Generated methods resolve the internal logging middleware at invocation time, so
 service levels and disabling affect existing clients. `get_logger()` exposes each

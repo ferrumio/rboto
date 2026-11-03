@@ -56,6 +56,7 @@ class SmithyService:
     name: str
     operations: tuple[SmithyOperation, ...]
     shapes: dict[str, SmithyShape]
+    sdk_id: str | None = None
 
 
 def to_snake_case(name: str) -> str:
@@ -280,4 +281,9 @@ def load_model(path: Path, descriptor: ServiceDescriptor) -> SmithyService:
         name=service_shape.name,
         operations=tuple(operations),
         shapes=shapes,
+        sdk_id=_string(
+            _dict(_traits(raw_service.get("traits")).get("aws.api#service", {}), "aws service")
+            .get("sdkId", service_shape.name),
+            "aws service sdkId",
+        ),
     )

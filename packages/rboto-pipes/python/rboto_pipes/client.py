@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import PipesClient as NativeClient, CreatePipeOutput, DeletePipeOutput, DescribePipeOutput, ListPipesOutput, ListTagsForResourceOutput, StartPipeOutput, StopPipeOutput, TagResourceOutput, UntagResourceOutput, UpdatePipeOutput
 from .types import (
@@ -111,6 +111,7 @@ class EventBridgePipesClient:
                 CreatePipeOutput,
                 ("name", "source", "target", "role_arn", "description", "desired_state", "source_parameters", "enrichment", "enrichment_parameters", "target_parameters", "tags", "log_configuration", "kms_key_identifier", ),
                 ("name", "source", "target", "role_arn", ),
+                service_name='Pipes',
             )
             return _response
         _response = await self._native.create_pipe(params)
@@ -134,6 +135,7 @@ class EventBridgePipesClient:
                 DeletePipeOutput,
                 ("name", ),
                 ("name", ),
+                service_name='Pipes',
             )
             return _response
         _response = await self._native.delete_pipe(params)
@@ -157,6 +159,7 @@ class EventBridgePipesClient:
                 DescribePipeOutput,
                 ("name", ),
                 ("name", ),
+                service_name='Pipes',
             )
             return _response
         _response = await self._native.describe_pipe(params)
@@ -199,6 +202,7 @@ class EventBridgePipesClient:
                 ListPipesOutput,
                 ("name_prefix", "desired_state", "current_state", "source_prefix", "target_prefix", "next_token", "limit", ),
                 (),
+                service_name='Pipes',
             )
             return _response
         _response = await self._native.list_pipes(params)
@@ -222,6 +226,7 @@ class EventBridgePipesClient:
                 ListTagsForResourceOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
+                service_name='Pipes',
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -245,6 +250,7 @@ class EventBridgePipesClient:
                 StartPipeOutput,
                 ("name", ),
                 ("name", ),
+                service_name='Pipes',
             )
             return _response
         _response = await self._native.start_pipe(params)
@@ -268,6 +274,7 @@ class EventBridgePipesClient:
                 StopPipeOutput,
                 ("name", ),
                 ("name", ),
+                service_name='Pipes',
             )
             return _response
         _response = await self._native.stop_pipe(params)
@@ -293,6 +300,7 @@ class EventBridgePipesClient:
                 TagResourceOutput,
                 ("resource_arn", "tags", ),
                 ("resource_arn", "tags", ),
+                service_name='Pipes',
             )
             return _response
         _response = await self._native.tag_resource(params)
@@ -318,6 +326,7 @@ class EventBridgePipesClient:
                 UntagResourceOutput,
                 ("resource_arn", "tag_keys", ),
                 ("resource_arn", "tag_keys", ),
+                service_name='Pipes',
             )
             return _response
         _response = await self._native.untag_resource(params)
@@ -370,6 +379,7 @@ class EventBridgePipesClient:
                 UpdatePipeOutput,
                 ("name", "role_arn", "description", "desired_state", "source_parameters", "enrichment", "enrichment_parameters", "target", "target_parameters", "log_configuration", "kms_key_identifier", ),
                 ("name", "role_arn", ),
+                service_name='Pipes',
             )
             return _response
         _response = await self._native.update_pipe(params)

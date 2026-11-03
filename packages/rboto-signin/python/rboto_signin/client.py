@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import SignInClient as NativeClient, CreateOAuth2TokenOutput, CreateOAuth2TokenWithIAMOutput, DeleteConsoleAuthorizationConfigurationOutput, DeleteResourcePermissionStatementOutput, GetConsoleAuthorizationConfigurationOutput, GetResourcePolicyOutput, IntrospectOAuth2TokenWithIAMOutput, ListResourcePermissionStatementsOutput, PutConsoleAuthorizationConfigurationOutput, PutResourcePermissionStatementOutput, RevokeOAuth2TokenWithIAMOutput
 from .types import (
@@ -72,6 +72,7 @@ class SignInClient:
                 CreateOAuth2TokenOutput,
                 ("token_input", ),
                 ("token_input", ),
+                service_name='Signin',
             )
             return _response
         _response = await self._native.create_o_auth2_token(params)
@@ -97,6 +98,7 @@ class SignInClient:
                 CreateOAuth2TokenWithIAMOutput,
                 ("grant_type", "resource", ),
                 ("grant_type", "resource", ),
+                service_name='Signin',
             )
             return _response
         _response = await self._native.create_o_auth2_token_with_iam(params)
@@ -121,6 +123,7 @@ class SignInClient:
                 DeleteConsoleAuthorizationConfigurationOutput,
                 ("target_id", ),
                 (),
+                service_name='Signin',
             )
             return _response
         _response = await self._native.delete_console_authorization_configuration(params)
@@ -147,6 +150,7 @@ class SignInClient:
                 DeleteResourcePermissionStatementOutput,
                 ("statement_id", "client_token", ),
                 ("statement_id", ),
+                service_name='Signin',
             )
             return _response
         _response = await self._native.delete_resource_permission_statement(params)
@@ -171,6 +175,7 @@ class SignInClient:
                 GetConsoleAuthorizationConfigurationOutput,
                 ("target_id", ),
                 (),
+                service_name='Signin',
             )
             return _response
         _response = await self._native.get_console_authorization_configuration(params)
@@ -191,6 +196,7 @@ class SignInClient:
                 GetResourcePolicyOutput,
                 (),
                 (),
+                service_name='Signin',
             )
             return _response
         _response = await self._native.get_resource_policy(params)
@@ -217,6 +223,7 @@ class SignInClient:
                 IntrospectOAuth2TokenWithIAMOutput,
                 ("token", "token_type_hint", ),
                 ("token", ),
+                service_name='Signin',
             )
             return _response
         _response = await self._native.introspect_o_auth2_token_with_iam(params)
@@ -244,6 +251,7 @@ class SignInClient:
                 ListResourcePermissionStatementsOutput,
                 ("max_results", "next_token", ),
                 (),
+                service_name='Signin',
             )
             return _response
         _response = await self._native.list_resource_permission_statements(params)
@@ -268,6 +276,7 @@ class SignInClient:
                 PutConsoleAuthorizationConfigurationOutput,
                 ("target_id", ),
                 (),
+                service_name='Signin',
             )
             return _response
         _response = await self._native.put_console_authorization_configuration(params)
@@ -313,6 +322,7 @@ class SignInClient:
                 PutResourcePermissionStatementOutput,
                 ("source_vpc", "signin_source_vpce", "console_source_vpce", "vpc_source_ip", "source_ip", "requested_region", "excluded_principal", "client_token", ),
                 (),
+                service_name='Signin',
             )
             return _response
         _response = await self._native.put_resource_permission_statement(params)
@@ -336,6 +346,7 @@ class SignInClient:
                 RevokeOAuth2TokenWithIAMOutput,
                 ("token", ),
                 ("token", ),
+                service_name='Signin',
             )
             return _response
         _response = await self._native.revoke_o_auth2_token_with_iam(params)

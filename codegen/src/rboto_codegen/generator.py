@@ -1872,6 +1872,7 @@ class ServiceGenerator:
                 native_client_class=self.descriptor.native_class,
                 service_id=self.descriptor.service_id,
                 documentation_url=reference_url(self.descriptor.service_id),
+                sdk_service_name=repr(self.service.sdk_id or self.service.name),
                 sequence_type=self._sequence_type,
                 pagination={
                     item.operation: {

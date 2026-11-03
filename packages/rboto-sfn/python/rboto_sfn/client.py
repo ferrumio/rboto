@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import SFNClient as NativeClient, CreateActivityOutput, CreateStateMachineAliasOutput, CreateStateMachineOutput, DeleteActivityOutput, DeleteStateMachineAliasOutput, DeleteStateMachineOutput, DeleteStateMachineVersionOutput, DescribeActivityOutput, DescribeExecutionOutput, DescribeMapRunOutput, DescribeStateMachineAliasOutput, DescribeStateMachineForExecutionOutput, DescribeStateMachineOutput, GetActivityTaskOutput, GetExecutionHistoryOutput, ListActivitiesOutput, ListExecutionsOutput, ListMapRunsOutput, ListStateMachineAliasesOutput, ListStateMachineVersionsOutput, ListStateMachinesOutput, ListTagsForResourceOutput, PublishStateMachineVersionOutput, RedriveExecutionOutput, SendTaskFailureOutput, SendTaskHeartbeatOutput, SendTaskSuccessOutput, StartExecutionOutput, StartSyncExecutionOutput, StopExecutionOutput, TagResourceOutput, TestStateOutput, UntagResourceOutput, UpdateMapRunOutput, UpdateStateMachineAliasOutput, UpdateStateMachineOutput, ValidateStateMachineDefinitionOutput
 from .types import (
@@ -90,6 +90,7 @@ class StepFunctionsClient:
                 CreateActivityOutput,
                 ("name", "tags", "encryption_configuration", ),
                 ("name", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.create_activity(params)
@@ -138,6 +139,7 @@ class StepFunctionsClient:
                 CreateStateMachineOutput,
                 ("name", "definition", "role_arn", "type", "logging_configuration", "tags", "tracing_configuration", "publish", "version_description", "encryption_configuration", ),
                 ("name", "definition", "role_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.create_state_machine(params)
@@ -166,6 +168,7 @@ class StepFunctionsClient:
                 CreateStateMachineAliasOutput,
                 ("name", "routing_configuration", "description", ),
                 ("name", "routing_configuration", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.create_state_machine_alias(params)
@@ -189,6 +192,7 @@ class StepFunctionsClient:
                 DeleteActivityOutput,
                 ("activity_arn", ),
                 ("activity_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.delete_activity(params)
@@ -212,6 +216,7 @@ class StepFunctionsClient:
                 DeleteStateMachineOutput,
                 ("state_machine_arn", ),
                 ("state_machine_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.delete_state_machine(params)
@@ -235,6 +240,7 @@ class StepFunctionsClient:
                 DeleteStateMachineAliasOutput,
                 ("state_machine_alias_arn", ),
                 ("state_machine_alias_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.delete_state_machine_alias(params)
@@ -258,6 +264,7 @@ class StepFunctionsClient:
                 DeleteStateMachineVersionOutput,
                 ("state_machine_version_arn", ),
                 ("state_machine_version_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.delete_state_machine_version(params)
@@ -281,6 +288,7 @@ class StepFunctionsClient:
                 DescribeActivityOutput,
                 ("activity_arn", ),
                 ("activity_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.describe_activity(params)
@@ -307,6 +315,7 @@ class StepFunctionsClient:
                 DescribeExecutionOutput,
                 ("execution_arn", "included_data", ),
                 ("execution_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.describe_execution(params)
@@ -330,6 +339,7 @@ class StepFunctionsClient:
                 DescribeMapRunOutput,
                 ("map_run_arn", ),
                 ("map_run_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.describe_map_run(params)
@@ -356,6 +366,7 @@ class StepFunctionsClient:
                 DescribeStateMachineOutput,
                 ("state_machine_arn", "included_data", ),
                 ("state_machine_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.describe_state_machine(params)
@@ -379,6 +390,7 @@ class StepFunctionsClient:
                 DescribeStateMachineAliasOutput,
                 ("state_machine_alias_arn", ),
                 ("state_machine_alias_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.describe_state_machine_alias(params)
@@ -405,6 +417,7 @@ class StepFunctionsClient:
                 DescribeStateMachineForExecutionOutput,
                 ("execution_arn", "included_data", ),
                 ("execution_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.describe_state_machine_for_execution(params)
@@ -431,6 +444,7 @@ class StepFunctionsClient:
                 GetActivityTaskOutput,
                 ("activity_arn", "worker_name", ),
                 ("activity_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.get_activity_task(params)
@@ -466,6 +480,7 @@ class StepFunctionsClient:
                 GetExecutionHistoryOutput,
                 ("execution_arn", "max_results", "reverse_order", "next_token", "include_execution_data", ),
                 ("execution_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.get_execution_history(params)
@@ -493,6 +508,7 @@ class StepFunctionsClient:
                 ListActivitiesOutput,
                 ("max_results", "next_token", ),
                 (),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.list_activities(params)
@@ -532,6 +548,7 @@ class StepFunctionsClient:
                 ListExecutionsOutput,
                 ("state_machine_arn", "status_filter", "max_results", "next_token", "map_run_arn", "redrive_filter", ),
                 (),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.list_executions(params)
@@ -561,6 +578,7 @@ class StepFunctionsClient:
                 ListMapRunsOutput,
                 ("execution_arn", "max_results", "next_token", ),
                 ("execution_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.list_map_runs(params)
@@ -590,6 +608,7 @@ class StepFunctionsClient:
                 ListStateMachineAliasesOutput,
                 ("state_machine_arn", "next_token", "max_results", ),
                 ("state_machine_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.list_state_machine_aliases(params)
@@ -619,6 +638,7 @@ class StepFunctionsClient:
                 ListStateMachineVersionsOutput,
                 ("state_machine_arn", "next_token", "max_results", ),
                 ("state_machine_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.list_state_machine_versions(params)
@@ -646,6 +666,7 @@ class StepFunctionsClient:
                 ListStateMachinesOutput,
                 ("max_results", "next_token", ),
                 (),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.list_state_machines(params)
@@ -669,6 +690,7 @@ class StepFunctionsClient:
                 ListTagsForResourceOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -698,6 +720,7 @@ class StepFunctionsClient:
                 PublishStateMachineVersionOutput,
                 ("state_machine_arn", "revision_id", "description", ),
                 ("state_machine_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.publish_state_machine_version(params)
@@ -724,6 +747,7 @@ class StepFunctionsClient:
                 RedriveExecutionOutput,
                 ("execution_arn", "client_token", ),
                 ("execution_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.redrive_execution(params)
@@ -753,6 +777,7 @@ class StepFunctionsClient:
                 SendTaskFailureOutput,
                 ("task_token", "error", "cause", ),
                 ("task_token", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.send_task_failure(params)
@@ -776,6 +801,7 @@ class StepFunctionsClient:
                 SendTaskHeartbeatOutput,
                 ("task_token", ),
                 ("task_token", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.send_task_heartbeat(params)
@@ -801,6 +827,7 @@ class StepFunctionsClient:
                 SendTaskSuccessOutput,
                 ("task_token", "output", ),
                 ("task_token", "output", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.send_task_success(params)
@@ -833,6 +860,7 @@ class StepFunctionsClient:
                 StartExecutionOutput,
                 ("state_machine_arn", "name", "input", "trace_header", ),
                 ("state_machine_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.start_execution(params)
@@ -868,6 +896,7 @@ class StepFunctionsClient:
                 StartSyncExecutionOutput,
                 ("state_machine_arn", "name", "input", "trace_header", "included_data", ),
                 ("state_machine_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.start_sync_execution(params)
@@ -897,6 +926,7 @@ class StepFunctionsClient:
                 StopExecutionOutput,
                 ("execution_arn", "error", "cause", ),
                 ("execution_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.stop_execution(params)
@@ -922,6 +952,7 @@ class StepFunctionsClient:
                 TagResourceOutput,
                 ("resource_arn", "tags", ),
                 ("resource_arn", "tags", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.tag_resource(params)
@@ -972,6 +1003,7 @@ class StepFunctionsClient:
                 TestStateOutput,
                 ("definition", "role_arn", "input", "inspection_level", "reveal_secrets", "variables", "state_name", "mock", "context", "state_configuration", ),
                 ("definition", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.test_state(params)
@@ -997,6 +1029,7 @@ class StepFunctionsClient:
                 UntagResourceOutput,
                 ("resource_arn", "tag_keys", ),
                 ("resource_arn", "tag_keys", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.untag_resource(params)
@@ -1029,6 +1062,7 @@ class StepFunctionsClient:
                 UpdateMapRunOutput,
                 ("map_run_arn", "max_concurrency", "tolerated_failure_percentage", "tolerated_failure_count", ),
                 ("map_run_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.update_map_run(params)
@@ -1073,6 +1107,7 @@ class StepFunctionsClient:
                 UpdateStateMachineOutput,
                 ("state_machine_arn", "definition", "role_arn", "logging_configuration", "tracing_configuration", "publish", "version_description", "encryption_configuration", ),
                 ("state_machine_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.update_state_machine(params)
@@ -1102,6 +1137,7 @@ class StepFunctionsClient:
                 UpdateStateMachineAliasOutput,
                 ("state_machine_alias_arn", "description", "routing_configuration", ),
                 ("state_machine_alias_arn", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.update_state_machine_alias(params)
@@ -1134,6 +1170,7 @@ class StepFunctionsClient:
                 ValidateStateMachineDefinitionOutput,
                 ("definition", "type", "severity", "max_results", ),
                 ("definition", ),
+                service_name='SFN',
             )
             return _response
         _response = await self._native.validate_state_machine_definition(params)

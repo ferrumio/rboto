@@ -16,7 +16,10 @@ def generate_catalog(repository_root: Path) -> None:
     manifest = repository_root / "packages/rboto/pyproject.toml"
     text = manifest.read_text()
     version = str(tomllib.loads(text)["project"]["version"])
-    extras = ["[project.optional-dependencies]"]
+    extras = [
+        "[project.optional-dependencies]",
+        'opentelemetry = ["opentelemetry-api>=1.39,<2"]',
+    ]
     for service in services:
         extras.append(f'{service.service_id} = ["{service.distribution_name}=={version}"]')
     extras.extend(

@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import BedrockAgentRuntimeClient as NativeClient, CheckIngestedDocumentAclOutput, CreateInvocationOutput, CreateSessionOutput, DeleteAgentMemoryOutput, DeleteSessionOutput, EndSessionOutput, GenerateQueryOutput, GetAgentMemoryOutput, GetDocumentContentOutput, GetExecutionFlowSnapshotOutput, GetFlowExecutionOutput, GetIngestedDocumentAclOutput, GetInvocationStepOutput, GetSessionOutput, ListFlowExecutionEventsOutput, ListFlowExecutionsOutput, ListInvocationStepsOutput, ListInvocationsOutput, ListSessionsOutput, ListTagsForResourceOutput, PutInvocationStepOutput, RerankOutput, RetrieveAndGenerateOutput, RetrieveOutput, StartFlowExecutionOutput, StopFlowExecutionOutput, TagResourceOutput, UntagResourceOutput, UpdateSessionOutput
 from .types import (
@@ -139,6 +139,7 @@ class BedrockAgentRuntimeClient:
                 dict,
                 ("messages", "retrievers", "agentic_retrieve_configuration", "policy_configuration", "next_token", "user_context", "memory_configuration", "retrieval_instruction_configuration", "generate_response", ),
                 ("messages", "retrievers", "agentic_retrieve_configuration", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.agentic_retrieve_stream(params)
@@ -168,6 +169,7 @@ class BedrockAgentRuntimeClient:
                 CheckIngestedDocumentAclOutput,
                 ("knowledge_base_id", "data_source_id", "document_id", "user_context", ),
                 ("knowledge_base_id", "data_source_id", "document_id", "user_context", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.check_ingested_document_acl(params)
@@ -197,6 +199,7 @@ class BedrockAgentRuntimeClient:
                 CreateInvocationOutput,
                 ("session_identifier", "invocation_id", "description", ),
                 ("session_identifier", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.create_invocation(params)
@@ -227,6 +230,7 @@ class BedrockAgentRuntimeClient:
                 CreateSessionOutput,
                 ("session_metadata", "encryption_key_arn", "tags", ),
                 (),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.create_session(params)
@@ -258,6 +262,7 @@ class BedrockAgentRuntimeClient:
                 DeleteAgentMemoryOutput,
                 ("agent_id", "agent_alias_id", "memory_id", "session_id", ),
                 ("agent_id", "agent_alias_id", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.delete_agent_memory(params)
@@ -281,6 +286,7 @@ class BedrockAgentRuntimeClient:
                 DeleteSessionOutput,
                 ("session_identifier", ),
                 ("session_identifier", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.delete_session(params)
@@ -304,6 +310,7 @@ class BedrockAgentRuntimeClient:
                 EndSessionOutput,
                 ("session_identifier", ),
                 ("session_identifier", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.end_session(params)
@@ -329,6 +336,7 @@ class BedrockAgentRuntimeClient:
                 GenerateQueryOutput,
                 ("query_generation_input", "transformation_configuration", ),
                 ("query_generation_input", "transformation_configuration", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.generate_query(params)
@@ -364,6 +372,7 @@ class BedrockAgentRuntimeClient:
                 GetAgentMemoryOutput,
                 ("agent_id", "agent_alias_id", "memory_type", "memory_id", "next_token", "max_items", ),
                 ("agent_id", "agent_alias_id", "memory_type", "memory_id", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.get_agent_memory(params)
@@ -397,6 +406,7 @@ class BedrockAgentRuntimeClient:
                 GetDocumentContentOutput,
                 ("knowledge_base_id", "data_source_id", "document_id", "output_format", "user_context", ),
                 ("knowledge_base_id", "data_source_id", "document_id", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.get_document_content(params)
@@ -424,6 +434,7 @@ class BedrockAgentRuntimeClient:
                 GetExecutionFlowSnapshotOutput,
                 ("flow_identifier", "flow_alias_identifier", "execution_identifier", ),
                 ("flow_identifier", "flow_alias_identifier", "execution_identifier", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.get_execution_flow_snapshot(params)
@@ -451,6 +462,7 @@ class BedrockAgentRuntimeClient:
                 GetFlowExecutionOutput,
                 ("flow_identifier", "flow_alias_identifier", "execution_identifier", ),
                 ("flow_identifier", "flow_alias_identifier", "execution_identifier", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.get_flow_execution(params)
@@ -478,6 +490,7 @@ class BedrockAgentRuntimeClient:
                 GetIngestedDocumentAclOutput,
                 ("knowledge_base_id", "data_source_id", "document_id", ),
                 ("knowledge_base_id", "data_source_id", "document_id", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.get_ingested_document_acl(params)
@@ -505,6 +518,7 @@ class BedrockAgentRuntimeClient:
                 GetInvocationStepOutput,
                 ("invocation_identifier", "invocation_step_id", "session_identifier", ),
                 ("invocation_identifier", "invocation_step_id", "session_identifier", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.get_invocation_step(params)
@@ -528,6 +542,7 @@ class BedrockAgentRuntimeClient:
                 GetSessionOutput,
                 ("session_identifier", ),
                 ("session_identifier", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.get_session(params)
@@ -582,6 +597,7 @@ class BedrockAgentRuntimeClient:
                 dict,
                 ("agent_id", "agent_alias_id", "session_id", "session_state", "end_session", "enable_trace", "input_text", "memory_id", "bedrock_model_configurations", "streaming_configurations", "prompt_creation_configurations", "source_arn", ),
                 ("agent_id", "agent_alias_id", "session_id", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.invoke_agent(params)
@@ -618,6 +634,7 @@ class BedrockAgentRuntimeClient:
                 dict,
                 ("flow_identifier", "flow_alias_identifier", "inputs", "enable_trace", "model_performance_configuration", "execution_id", ),
                 ("flow_identifier", "flow_alias_identifier", "inputs", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.invoke_flow(params)
@@ -702,6 +719,7 @@ class BedrockAgentRuntimeClient:
                 dict,
                 ("foundation_model", "instruction", "session_id", "customer_encryption_key_arn", "idle_session_ttl_in_seconds", "action_groups", "knowledge_bases", "guardrail_configuration", "prompt_override_configuration", "agent_collaboration", "collaborator_configurations", "agent_name", "end_session", "enable_trace", "input_text", "streaming_configurations", "prompt_creation_configurations", "inline_session_state", "collaborators", "bedrock_model_configurations", "orchestration_type", "custom_orchestration", ),
                 ("foundation_model", "instruction", "session_id", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.invoke_inline_agent(params)
@@ -737,6 +755,7 @@ class BedrockAgentRuntimeClient:
                 ListFlowExecutionEventsOutput,
                 ("flow_identifier", "flow_alias_identifier", "execution_identifier", "event_type", "max_results", "next_token", ),
                 ("flow_identifier", "flow_alias_identifier", "execution_identifier", "event_type", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.list_flow_execution_events(params)
@@ -769,6 +788,7 @@ class BedrockAgentRuntimeClient:
                 ListFlowExecutionsOutput,
                 ("flow_identifier", "flow_alias_identifier", "max_results", "next_token", ),
                 ("flow_identifier", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.list_flow_executions(params)
@@ -801,6 +821,7 @@ class BedrockAgentRuntimeClient:
                 ListInvocationStepsOutput,
                 ("session_identifier", "invocation_identifier", "next_token", "max_results", ),
                 ("session_identifier", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.list_invocation_steps(params)
@@ -830,6 +851,7 @@ class BedrockAgentRuntimeClient:
                 ListInvocationsOutput,
                 ("session_identifier", "next_token", "max_results", ),
                 ("session_identifier", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.list_invocations(params)
@@ -857,6 +879,7 @@ class BedrockAgentRuntimeClient:
                 ListSessionsOutput,
                 ("max_results", "next_token", ),
                 (),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.list_sessions(params)
@@ -880,6 +903,7 @@ class BedrockAgentRuntimeClient:
                 ListTagsForResourceOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -905,6 +929,7 @@ class BedrockAgentRuntimeClient:
                 dict,
                 ("input", "target_model_id", ),
                 ("input", "target_model_id", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.optimize_prompt(params)
@@ -937,6 +962,7 @@ class BedrockAgentRuntimeClient:
                 PutInvocationStepOutput,
                 ("session_identifier", "invocation_identifier", "invocation_step_time", "payload", "invocation_step_id", ),
                 ("session_identifier", "invocation_identifier", "invocation_step_time", "payload", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.put_invocation_step(params)
@@ -967,6 +993,7 @@ class BedrockAgentRuntimeClient:
                 RerankOutput,
                 ("queries", "sources", "reranking_configuration", "next_token", ),
                 ("queries", "sources", "reranking_configuration", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.rerank(params)
@@ -1004,6 +1031,7 @@ class BedrockAgentRuntimeClient:
                 RetrieveOutput,
                 ("knowledge_base_id", "retrieval_query", "retrieval_configuration", "guardrail_configuration", "next_token", "user_context", ),
                 ("knowledge_base_id", "retrieval_query", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.retrieve(params)
@@ -1039,6 +1067,7 @@ class BedrockAgentRuntimeClient:
                 RetrieveAndGenerateOutput,
                 ("input", "session_id", "retrieve_and_generate_configuration", "session_configuration", "user_context", ),
                 ("input", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.retrieve_and_generate(params)
@@ -1074,6 +1103,7 @@ class BedrockAgentRuntimeClient:
                 dict,
                 ("input", "session_id", "retrieve_and_generate_configuration", "session_configuration", "user_context", ),
                 ("input", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.retrieve_and_generate_stream(params)
@@ -1107,6 +1137,7 @@ class BedrockAgentRuntimeClient:
                 StartFlowExecutionOutput,
                 ("flow_identifier", "flow_alias_identifier", "inputs", "flow_execution_name", "model_performance_configuration", ),
                 ("flow_identifier", "flow_alias_identifier", "inputs", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.start_flow_execution(params)
@@ -1134,6 +1165,7 @@ class BedrockAgentRuntimeClient:
                 StopFlowExecutionOutput,
                 ("flow_identifier", "flow_alias_identifier", "execution_identifier", ),
                 ("flow_identifier", "flow_alias_identifier", "execution_identifier", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.stop_flow_execution(params)
@@ -1159,6 +1191,7 @@ class BedrockAgentRuntimeClient:
                 TagResourceOutput,
                 ("resource_arn", "tags", ),
                 ("resource_arn", "tags", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.tag_resource(params)
@@ -1184,6 +1217,7 @@ class BedrockAgentRuntimeClient:
                 UntagResourceOutput,
                 ("resource_arn", "tag_keys", ),
                 ("resource_arn", "tag_keys", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.untag_resource(params)
@@ -1210,6 +1244,7 @@ class BedrockAgentRuntimeClient:
                 UpdateSessionOutput,
                 ("session_identifier", "session_metadata", ),
                 ("session_identifier", ),
+                service_name='Bedrock Agent Runtime',
             )
             return _response
         _response = await self._native.update_session(params)

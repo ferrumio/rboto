@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import S3Client as NativeClient, AbortMultipartUploadOutput, CompleteMultipartUploadOutput, CopyObjectOutput, CreateBucketOutput, CreateMultipartUploadOutput, CreateSessionOutput, DeleteObjectAnnotationOutput, DeleteObjectOutput, DeleteObjectTaggingOutput, DeleteObjectsOutput, GetBucketAbacOutput, GetBucketAccelerateConfigurationOutput, GetBucketAclOutput, GetBucketAnalyticsConfigurationOutput, GetBucketCorsOutput, GetBucketEncryptionOutput, GetBucketIntelligentTieringConfigurationOutput, GetBucketInventoryConfigurationOutput, GetBucketLifecycleConfigurationOutput, GetBucketLocationOutput, GetBucketLoggingOutput, GetBucketMetadataConfigurationOutput, GetBucketMetadataTableConfigurationOutput, GetBucketMetricsConfigurationOutput, GetBucketNotificationConfigurationOutput, GetBucketOwnershipControlsOutput, GetBucketPolicyOutput, GetBucketPolicyStatusOutput, GetBucketReplicationOutput, GetBucketRequestPaymentOutput, GetBucketTaggingOutput, GetBucketVersioningOutput, GetBucketWebsiteOutput, GetObjectAclOutput, GetObjectAnnotationOutput, GetObjectAttributesOutput, GetObjectLegalHoldOutput, GetObjectLockConfigurationOutput, GetObjectOutput, GetObjectRetentionOutput, GetObjectTaggingOutput, GetObjectTorrentOutput, GetPublicAccessBlockOutput, HeadBucketOutput, HeadObjectOutput, ListBucketAnalyticsConfigurationsOutput, ListBucketIntelligentTieringConfigurationsOutput, ListBucketInventoryConfigurationsOutput, ListBucketMetricsConfigurationsOutput, ListBucketsOutput, ListDirectoryBucketsOutput, ListMultipartUploadsOutput, ListObjectAnnotationsOutput, ListObjectVersionsOutput, ListObjectsOutput, ListObjectsV2Output, ListPartsOutput, PutBucketLifecycleConfigurationOutput, PutObjectAclOutput, PutObjectAnnotationOutput, PutObjectLegalHoldOutput, PutObjectLockConfigurationOutput, PutObjectOutput, PutObjectRetentionOutput, PutObjectTaggingOutput, RenameObjectOutput, RestoreObjectOutput, UpdateObjectEncryptionOutput, UploadPartCopyOutput, UploadPartOutput
 from .types import (
@@ -156,6 +156,7 @@ class S3Client:
                 AbortMultipartUploadOutput,
                 ("bucket", "key", "upload_id", "request_payer", "expected_bucket_owner", "if_match_initiated_time", ),
                 ("bucket", "key", "upload_id", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.abort_multipart_upload(params)
@@ -243,6 +244,7 @@ class S3Client:
                 CompleteMultipartUploadOutput,
                 ("bucket", "key", "upload_id", "multipart_upload", "checksum_crc32", "checksum_crc32_c", "checksum_crc64_nvme", "checksum_sha1", "checksum_sha256", "checksum_sha512", "checksum_md5", "checksum_xxhash64", "checksum_xxhash3", "checksum_xxhash128", "checksum_type", "mpu_object_size", "request_payer", "expected_bucket_owner", "if_match", "if_none_match", "sse_customer_algorithm", "sse_customer_key", "sse_customer_key_md5", ),
                 ("bucket", "key", "upload_id", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.complete_multipart_upload(params)
@@ -402,6 +404,7 @@ class S3Client:
                 CopyObjectOutput,
                 ("bucket", "copy_source", "key", "acl", "cache_control", "checksum_algorithm", "content_disposition", "content_encoding", "content_language", "content_type", "copy_source_if_match", "copy_source_if_modified_since", "copy_source_if_none_match", "copy_source_if_unmodified_since", "expires", "grant_full_control", "grant_read", "grant_read_acp", "grant_write_acp", "if_match", "if_none_match", "metadata", "metadata_directive", "tagging_directive", "annotation_directive", "server_side_encryption", "storage_class", "website_redirect_location", "sse_customer_algorithm", "sse_customer_key", "sse_customer_key_md5", "ssekms_key_id", "ssekms_encryption_context", "bucket_key_enabled", "copy_source_sse_customer_algorithm", "copy_source_sse_customer_key", "copy_source_sse_customer_key_md5", "request_payer", "tagging", "object_lock_mode", "object_lock_retain_until_date", "object_lock_legal_hold_status", "object_lock_event_hold", "object_lock_event_hold_duration_days", "object_lock_event_hold_duration_years", "expected_bucket_owner", "expected_source_bucket_owner", ),
                 ("bucket", "copy_source", "key", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.copy_object(params)
@@ -455,6 +458,7 @@ class S3Client:
                 CreateBucketOutput,
                 ("bucket", "acl", "create_bucket_configuration", "grant_full_control", "grant_read", "grant_read_acp", "grant_write", "grant_write_acp", "object_lock_enabled_for_bucket", "object_ownership", "bucket_namespace", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.create_bucket(params)
@@ -489,6 +493,7 @@ class S3Client:
                 type(None),
                 ("bucket", "metadata_configuration", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
                 ("bucket", "metadata_configuration", ),
+                service_name='S3',
             )
             return None
         await self._native.create_bucket_metadata_configuration(params)
@@ -523,6 +528,7 @@ class S3Client:
                 type(None),
                 ("bucket", "metadata_table_configuration", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
                 ("bucket", "metadata_table_configuration", ),
+                service_name='S3',
             )
             return None
         await self._native.create_bucket_metadata_table_configuration(params)
@@ -644,6 +650,7 @@ class S3Client:
                 CreateMultipartUploadOutput,
                 ("bucket", "key", "acl", "cache_control", "content_disposition", "content_encoding", "content_language", "content_type", "expires", "grant_full_control", "grant_read", "grant_read_acp", "grant_write_acp", "metadata", "server_side_encryption", "storage_class", "website_redirect_location", "sse_customer_algorithm", "sse_customer_key", "sse_customer_key_md5", "ssekms_key_id", "ssekms_encryption_context", "bucket_key_enabled", "request_payer", "tagging", "object_lock_mode", "object_lock_retain_until_date", "object_lock_legal_hold_status", "object_lock_event_hold", "object_lock_event_hold_duration_days", "object_lock_event_hold_duration_years", "expected_bucket_owner", "checksum_algorithm", "checksum_type", ),
                 ("bucket", "key", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.create_multipart_upload(params)
@@ -682,6 +689,7 @@ class S3Client:
                 CreateSessionOutput,
                 ("bucket", "session_mode", "server_side_encryption", "ssekms_key_id", "ssekms_encryption_context", "bucket_key_enabled", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.create_session(params)
@@ -708,6 +716,7 @@ class S3Client:
                 type(None),
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return None
         await self._native.delete_bucket(params)
@@ -736,6 +745,7 @@ class S3Client:
                 type(None),
                 ("bucket", "id", "expected_bucket_owner", ),
                 ("bucket", "id", ),
+                service_name='S3',
             )
             return None
         await self._native.delete_bucket_analytics_configuration(params)
@@ -762,6 +772,7 @@ class S3Client:
                 type(None),
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return None
         await self._native.delete_bucket_cors(params)
@@ -788,6 +799,7 @@ class S3Client:
                 type(None),
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return None
         await self._native.delete_bucket_encryption(params)
@@ -816,6 +828,7 @@ class S3Client:
                 type(None),
                 ("bucket", "id", "expected_bucket_owner", ),
                 ("bucket", "id", ),
+                service_name='S3',
             )
             return None
         await self._native.delete_bucket_intelligent_tiering_configuration(params)
@@ -844,6 +857,7 @@ class S3Client:
                 type(None),
                 ("bucket", "id", "expected_bucket_owner", ),
                 ("bucket", "id", ),
+                service_name='S3',
             )
             return None
         await self._native.delete_bucket_inventory_configuration(params)
@@ -870,6 +884,7 @@ class S3Client:
                 type(None),
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return None
         await self._native.delete_bucket_lifecycle(params)
@@ -896,6 +911,7 @@ class S3Client:
                 type(None),
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return None
         await self._native.delete_bucket_metadata_configuration(params)
@@ -922,6 +938,7 @@ class S3Client:
                 type(None),
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return None
         await self._native.delete_bucket_metadata_table_configuration(params)
@@ -950,6 +967,7 @@ class S3Client:
                 type(None),
                 ("bucket", "id", "expected_bucket_owner", ),
                 ("bucket", "id", ),
+                service_name='S3',
             )
             return None
         await self._native.delete_bucket_metrics_configuration(params)
@@ -976,6 +994,7 @@ class S3Client:
                 type(None),
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return None
         await self._native.delete_bucket_ownership_controls(params)
@@ -1002,6 +1021,7 @@ class S3Client:
                 type(None),
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return None
         await self._native.delete_bucket_policy(params)
@@ -1028,6 +1048,7 @@ class S3Client:
                 type(None),
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return None
         await self._native.delete_bucket_replication(params)
@@ -1054,6 +1075,7 @@ class S3Client:
                 type(None),
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return None
         await self._native.delete_bucket_tagging(params)
@@ -1080,6 +1102,7 @@ class S3Client:
                 type(None),
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return None
         await self._native.delete_bucket_website(params)
@@ -1129,6 +1152,7 @@ class S3Client:
                 DeleteObjectOutput,
                 ("bucket", "key", "mfa", "version_id", "request_payer", "bypass_governance_retention", "expected_bucket_owner", "if_match", "if_match_last_modified_time", "if_match_size", ),
                 ("bucket", "key", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.delete_object(params)
@@ -1168,6 +1192,7 @@ class S3Client:
                 DeleteObjectAnnotationOutput,
                 ("bucket", "key", "annotation_name", "version_id", "request_payer", "expected_bucket_owner", "object_if_match", ),
                 ("bucket", "key", "annotation_name", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.delete_object_annotation(params)
@@ -1199,6 +1224,7 @@ class S3Client:
                 DeleteObjectTaggingOutput,
                 ("bucket", "key", "version_id", "expected_bucket_owner", ),
                 ("bucket", "key", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.delete_object_tagging(params)
@@ -1239,6 +1265,7 @@ class S3Client:
                 DeleteObjectsOutput,
                 ("bucket", "delete", "mfa", "request_payer", "bypass_governance_retention", "expected_bucket_owner", "checksum_algorithm", ),
                 ("bucket", "delete", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.delete_objects(params)
@@ -1265,6 +1292,7 @@ class S3Client:
                 type(None),
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return None
         await self._native.delete_public_access_block(params)
@@ -1291,6 +1319,7 @@ class S3Client:
                 GetBucketAbacOutput,
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_bucket_abac(params)
@@ -1320,6 +1349,7 @@ class S3Client:
                 GetBucketAccelerateConfigurationOutput,
                 ("bucket", "expected_bucket_owner", "request_payer", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_bucket_accelerate_configuration(params)
@@ -1346,6 +1376,7 @@ class S3Client:
                 GetBucketAclOutput,
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_bucket_acl(params)
@@ -1374,6 +1405,7 @@ class S3Client:
                 GetBucketAnalyticsConfigurationOutput,
                 ("bucket", "id", "expected_bucket_owner", ),
                 ("bucket", "id", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_bucket_analytics_configuration(params)
@@ -1400,6 +1432,7 @@ class S3Client:
                 GetBucketCorsOutput,
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_bucket_cors(params)
@@ -1426,6 +1459,7 @@ class S3Client:
                 GetBucketEncryptionOutput,
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_bucket_encryption(params)
@@ -1454,6 +1488,7 @@ class S3Client:
                 GetBucketIntelligentTieringConfigurationOutput,
                 ("bucket", "id", "expected_bucket_owner", ),
                 ("bucket", "id", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_bucket_intelligent_tiering_configuration(params)
@@ -1482,6 +1517,7 @@ class S3Client:
                 GetBucketInventoryConfigurationOutput,
                 ("bucket", "id", "expected_bucket_owner", ),
                 ("bucket", "id", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_bucket_inventory_configuration(params)
@@ -1508,6 +1544,7 @@ class S3Client:
                 GetBucketLifecycleConfigurationOutput,
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_bucket_lifecycle_configuration(params)
@@ -1534,6 +1571,7 @@ class S3Client:
                 GetBucketLocationOutput,
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_bucket_location(params)
@@ -1560,6 +1598,7 @@ class S3Client:
                 GetBucketLoggingOutput,
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_bucket_logging(params)
@@ -1586,6 +1625,7 @@ class S3Client:
                 GetBucketMetadataConfigurationOutput,
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_bucket_metadata_configuration(params)
@@ -1612,6 +1652,7 @@ class S3Client:
                 GetBucketMetadataTableConfigurationOutput,
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_bucket_metadata_table_configuration(params)
@@ -1640,6 +1681,7 @@ class S3Client:
                 GetBucketMetricsConfigurationOutput,
                 ("bucket", "id", "expected_bucket_owner", ),
                 ("bucket", "id", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_bucket_metrics_configuration(params)
@@ -1666,6 +1708,7 @@ class S3Client:
                 GetBucketNotificationConfigurationOutput,
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_bucket_notification_configuration(params)
@@ -1692,6 +1735,7 @@ class S3Client:
                 GetBucketOwnershipControlsOutput,
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_bucket_ownership_controls(params)
@@ -1718,6 +1762,7 @@ class S3Client:
                 GetBucketPolicyOutput,
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_bucket_policy(params)
@@ -1744,6 +1789,7 @@ class S3Client:
                 GetBucketPolicyStatusOutput,
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_bucket_policy_status(params)
@@ -1770,6 +1816,7 @@ class S3Client:
                 GetBucketReplicationOutput,
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_bucket_replication(params)
@@ -1796,6 +1843,7 @@ class S3Client:
                 GetBucketRequestPaymentOutput,
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_bucket_request_payment(params)
@@ -1822,6 +1870,7 @@ class S3Client:
                 GetBucketTaggingOutput,
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_bucket_tagging(params)
@@ -1848,6 +1897,7 @@ class S3Client:
                 GetBucketVersioningOutput,
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_bucket_versioning(params)
@@ -1874,6 +1924,7 @@ class S3Client:
                 GetBucketWebsiteOutput,
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_bucket_website(params)
@@ -1956,6 +2007,7 @@ class S3Client:
                 GetObjectOutput,
                 ("bucket", "key", "if_match", "if_modified_since", "if_none_match", "if_unmodified_since", "range", "response_cache_control", "response_content_disposition", "response_content_encoding", "response_content_language", "response_content_type", "response_expires", "version_id", "sse_customer_algorithm", "sse_customer_key", "sse_customer_key_md5", "request_payer", "part_number", "expected_bucket_owner", "checksum_mode", ),
                 ("bucket", "key", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_object(params)
@@ -1990,6 +2042,7 @@ class S3Client:
                 GetObjectAclOutput,
                 ("bucket", "key", "version_id", "request_payer", "expected_bucket_owner", ),
                 ("bucket", "key", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_object_acl(params)
@@ -2029,6 +2082,7 @@ class S3Client:
                 GetObjectAnnotationOutput,
                 ("bucket", "key", "annotation_name", "version_id", "request_payer", "expected_bucket_owner", "checksum_mode", ),
                 ("bucket", "key", "annotation_name", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_object_annotation(params)
@@ -2080,6 +2134,7 @@ class S3Client:
                 GetObjectAttributesOutput,
                 ("bucket", "key", "object_attributes", "version_id", "max_parts", "part_number_marker", "sse_customer_algorithm", "sse_customer_key", "sse_customer_key_md5", "request_payer", "expected_bucket_owner", ),
                 ("bucket", "key", "object_attributes", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_object_attributes(params)
@@ -2114,6 +2169,7 @@ class S3Client:
                 GetObjectLegalHoldOutput,
                 ("bucket", "key", "version_id", "request_payer", "expected_bucket_owner", ),
                 ("bucket", "key", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_object_legal_hold(params)
@@ -2140,6 +2196,7 @@ class S3Client:
                 GetObjectLockConfigurationOutput,
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_object_lock_configuration(params)
@@ -2174,6 +2231,7 @@ class S3Client:
                 GetObjectRetentionOutput,
                 ("bucket", "key", "version_id", "request_payer", "expected_bucket_owner", ),
                 ("bucket", "key", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_object_retention(params)
@@ -2208,6 +2266,7 @@ class S3Client:
                 GetObjectTaggingOutput,
                 ("bucket", "key", "version_id", "expected_bucket_owner", "request_payer", ),
                 ("bucket", "key", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_object_tagging(params)
@@ -2239,6 +2298,7 @@ class S3Client:
                 GetObjectTorrentOutput,
                 ("bucket", "key", "request_payer", "expected_bucket_owner", ),
                 ("bucket", "key", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_object_torrent(params)
@@ -2265,6 +2325,7 @@ class S3Client:
                 GetPublicAccessBlockOutput,
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.get_public_access_block(params)
@@ -2291,6 +2352,7 @@ class S3Client:
                 HeadBucketOutput,
                 ("bucket", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.head_bucket(params)
@@ -2373,6 +2435,7 @@ class S3Client:
                 HeadObjectOutput,
                 ("bucket", "key", "if_match", "if_modified_since", "if_none_match", "if_unmodified_since", "range", "response_cache_control", "response_content_disposition", "response_content_encoding", "response_content_language", "response_content_type", "response_expires", "version_id", "sse_customer_algorithm", "sse_customer_key", "sse_customer_key_md5", "request_payer", "part_number", "expected_bucket_owner", "checksum_mode", ),
                 ("bucket", "key", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.head_object(params)
@@ -2402,6 +2465,7 @@ class S3Client:
                 ListBucketAnalyticsConfigurationsOutput,
                 ("bucket", "continuation_token", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.list_bucket_analytics_configurations(params)
@@ -2431,6 +2495,7 @@ class S3Client:
                 ListBucketIntelligentTieringConfigurationsOutput,
                 ("bucket", "continuation_token", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.list_bucket_intelligent_tiering_configurations(params)
@@ -2460,6 +2525,7 @@ class S3Client:
                 ListBucketInventoryConfigurationsOutput,
                 ("bucket", "continuation_token", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.list_bucket_inventory_configurations(params)
@@ -2489,6 +2555,7 @@ class S3Client:
                 ListBucketMetricsConfigurationsOutput,
                 ("bucket", "continuation_token", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.list_bucket_metrics_configurations(params)
@@ -2522,6 +2589,7 @@ class S3Client:
                 ListBucketsOutput,
                 ("max_buckets", "continuation_token", "prefix", "bucket_region", ),
                 (),
+                service_name='S3',
             )
             return _response
         _response = await self._native.list_buckets(params)
@@ -2549,6 +2617,7 @@ class S3Client:
                 ListDirectoryBucketsOutput,
                 ("continuation_token", "max_directory_buckets", ),
                 (),
+                service_name='S3',
             )
             return _response
         _response = await self._native.list_directory_buckets(params)
@@ -2596,6 +2665,7 @@ class S3Client:
                 ListMultipartUploadsOutput,
                 ("bucket", "delimiter", "encoding_type", "key_marker", "max_uploads", "prefix", "upload_id_marker", "expected_bucket_owner", "request_payer", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.list_multipart_uploads(params)
@@ -2639,6 +2709,7 @@ class S3Client:
                 ListObjectAnnotationsOutput,
                 ("bucket", "key", "version_id", "max_annotation_results", "annotation_prefix", "continuation_token", "request_payer", "expected_bucket_owner", ),
                 ("bucket", "key", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.list_object_annotations(params)
@@ -2689,6 +2760,7 @@ class S3Client:
                 ListObjectVersionsOutput,
                 ("bucket", "delimiter", "encoding_type", "key_marker", "max_keys", "prefix", "version_id_marker", "expected_bucket_owner", "request_payer", "optional_object_attributes", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.list_object_versions(params)
@@ -2736,6 +2808,7 @@ class S3Client:
                 ListObjectsOutput,
                 ("bucket", "delimiter", "encoding_type", "marker", "max_keys", "prefix", "request_payer", "expected_bucket_owner", "optional_object_attributes", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.list_objects(params)
@@ -2789,6 +2862,7 @@ class S3Client:
                 ListObjectsV2Output,
                 ("bucket", "delimiter", "encoding_type", "max_keys", "prefix", "continuation_token", "fetch_owner", "start_after", "request_payer", "expected_bucket_owner", "optional_object_attributes", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.list_objects_v2(params)
@@ -2837,6 +2911,7 @@ class S3Client:
                 ListPartsOutput,
                 ("bucket", "key", "upload_id", "max_parts", "part_number_marker", "request_payer", "expected_bucket_owner", "sse_customer_algorithm", "sse_customer_key", "sse_customer_key_md5", ),
                 ("bucket", "key", "upload_id", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.list_parts(params)
@@ -2871,6 +2946,7 @@ class S3Client:
                 type(None),
                 ("bucket", "abac_status", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
                 ("bucket", "abac_status", ),
+                service_name='S3',
             )
             return None
         await self._native.put_bucket_abac(params)
@@ -2902,6 +2978,7 @@ class S3Client:
                 type(None),
                 ("bucket", "accelerate_configuration", "expected_bucket_owner", "checksum_algorithm", ),
                 ("bucket", "accelerate_configuration", ),
+                service_name='S3',
             )
             return None
         await self._native.put_bucket_accelerate_configuration(params)
@@ -2955,6 +3032,7 @@ class S3Client:
                 type(None),
                 ("bucket", "acl", "access_control_policy", "content_md5", "checksum_algorithm", "grant_full_control", "grant_read", "grant_read_acp", "grant_write", "grant_write_acp", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return None
         await self._native.put_bucket_acl(params)
@@ -2985,6 +3063,7 @@ class S3Client:
                 type(None),
                 ("bucket", "id", "analytics_configuration", "expected_bucket_owner", ),
                 ("bucket", "id", "analytics_configuration", ),
+                service_name='S3',
             )
             return None
         await self._native.put_bucket_analytics_configuration(params)
@@ -3019,6 +3098,7 @@ class S3Client:
                 type(None),
                 ("bucket", "cors_configuration", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
                 ("bucket", "cors_configuration", ),
+                service_name='S3',
             )
             return None
         await self._native.put_bucket_cors(params)
@@ -3053,6 +3133,7 @@ class S3Client:
                 type(None),
                 ("bucket", "server_side_encryption_configuration", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
                 ("bucket", "server_side_encryption_configuration", ),
+                service_name='S3',
             )
             return None
         await self._native.put_bucket_encryption(params)
@@ -3083,6 +3164,7 @@ class S3Client:
                 type(None),
                 ("bucket", "id", "intelligent_tiering_configuration", "expected_bucket_owner", ),
                 ("bucket", "id", "intelligent_tiering_configuration", ),
+                service_name='S3',
             )
             return None
         await self._native.put_bucket_intelligent_tiering_configuration(params)
@@ -3113,6 +3195,7 @@ class S3Client:
                 type(None),
                 ("bucket", "id", "inventory_configuration", "expected_bucket_owner", ),
                 ("bucket", "id", "inventory_configuration", ),
+                service_name='S3',
             )
             return None
         await self._native.put_bucket_inventory_configuration(params)
@@ -3148,6 +3231,7 @@ class S3Client:
                 PutBucketLifecycleConfigurationOutput,
                 ("bucket", "checksum_algorithm", "lifecycle_configuration", "expected_bucket_owner", "transition_default_minimum_object_size", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.put_bucket_lifecycle_configuration(params)
@@ -3182,6 +3266,7 @@ class S3Client:
                 type(None),
                 ("bucket", "bucket_logging_status", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
                 ("bucket", "bucket_logging_status", ),
+                service_name='S3',
             )
             return None
         await self._native.put_bucket_logging(params)
@@ -3212,6 +3297,7 @@ class S3Client:
                 type(None),
                 ("bucket", "id", "metrics_configuration", "expected_bucket_owner", ),
                 ("bucket", "id", "metrics_configuration", ),
+                service_name='S3',
             )
             return None
         await self._native.put_bucket_metrics_configuration(params)
@@ -3243,6 +3329,7 @@ class S3Client:
                 type(None),
                 ("bucket", "notification_configuration", "expected_bucket_owner", "skip_destination_validation", ),
                 ("bucket", "notification_configuration", ),
+                service_name='S3',
             )
             return None
         await self._native.put_bucket_notification_configuration(params)
@@ -3277,6 +3364,7 @@ class S3Client:
                 type(None),
                 ("bucket", "ownership_controls", "content_md5", "expected_bucket_owner", "checksum_algorithm", ),
                 ("bucket", "ownership_controls", ),
+                service_name='S3',
             )
             return None
         await self._native.put_bucket_ownership_controls(params)
@@ -3314,6 +3402,7 @@ class S3Client:
                 type(None),
                 ("bucket", "policy", "content_md5", "checksum_algorithm", "confirm_remove_self_bucket_access", "expected_bucket_owner", ),
                 ("bucket", "policy", ),
+                service_name='S3',
             )
             return None
         await self._native.put_bucket_policy(params)
@@ -3351,6 +3440,7 @@ class S3Client:
                 type(None),
                 ("bucket", "replication_configuration", "content_md5", "checksum_algorithm", "token", "expected_bucket_owner", ),
                 ("bucket", "replication_configuration", ),
+                service_name='S3',
             )
             return None
         await self._native.put_bucket_replication(params)
@@ -3385,6 +3475,7 @@ class S3Client:
                 type(None),
                 ("bucket", "request_payment_configuration", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
                 ("bucket", "request_payment_configuration", ),
+                service_name='S3',
             )
             return None
         await self._native.put_bucket_request_payment(params)
@@ -3419,6 +3510,7 @@ class S3Client:
                 type(None),
                 ("bucket", "tagging", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
                 ("bucket", "tagging", ),
+                service_name='S3',
             )
             return None
         await self._native.put_bucket_tagging(params)
@@ -3456,6 +3548,7 @@ class S3Client:
                 type(None),
                 ("bucket", "versioning_configuration", "content_md5", "checksum_algorithm", "mfa", "expected_bucket_owner", ),
                 ("bucket", "versioning_configuration", ),
+                service_name='S3',
             )
             return None
         await self._native.put_bucket_versioning(params)
@@ -3490,6 +3583,7 @@ class S3Client:
                 type(None),
                 ("bucket", "website_configuration", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
                 ("bucket", "website_configuration", ),
+                service_name='S3',
             )
             return None
         await self._native.put_bucket_website(params)
@@ -3656,6 +3750,7 @@ class S3Client:
                 PutObjectOutput,
                 ("bucket", "key", "acl", "body", "cache_control", "content_disposition", "content_encoding", "content_language", "content_length", "content_md5", "content_type", "checksum_algorithm", "checksum_crc32", "checksum_crc32_c", "checksum_crc64_nvme", "checksum_sha1", "checksum_sha256", "checksum_sha512", "checksum_md5", "checksum_xxhash64", "checksum_xxhash3", "checksum_xxhash128", "expires", "if_match", "if_none_match", "grant_full_control", "grant_read", "grant_read_acp", "grant_write_acp", "write_offset_bytes", "metadata", "server_side_encryption", "storage_class", "website_redirect_location", "sse_customer_algorithm", "sse_customer_key", "sse_customer_key_md5", "ssekms_key_id", "ssekms_encryption_context", "bucket_key_enabled", "request_payer", "tagging", "object_lock_mode", "object_lock_retain_until_date", "object_lock_legal_hold_status", "object_lock_event_hold", "object_lock_event_hold_duration_days", "object_lock_event_hold_duration_years", "expected_bucket_owner", ),
                 ("bucket", "key", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.put_object(params)
@@ -3717,6 +3812,7 @@ class S3Client:
                 PutObjectAclOutput,
                 ("bucket", "key", "acl", "access_control_policy", "content_md5", "checksum_algorithm", "grant_full_control", "grant_read", "grant_read_acp", "grant_write", "grant_write_acp", "request_payer", "version_id", "expected_bucket_owner", ),
                 ("bucket", "key", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.put_object_acl(params)
@@ -3794,6 +3890,7 @@ class S3Client:
                 PutObjectAnnotationOutput,
                 ("bucket", "key", "annotation_name", "annotation_payload", "version_id", "object_if_match", "checksum_algorithm", "checksum_crc32", "checksum_crc32_c", "checksum_crc64_nvme", "checksum_sha1", "checksum_sha256", "checksum_sha512", "checksum_md5", "checksum_xxhash64", "checksum_xxhash3", "checksum_xxhash128", "content_md5", "request_payer", "expected_bucket_owner", ),
                 ("bucket", "key", "annotation_name", "annotation_payload", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.put_object_annotation(params)
@@ -3837,6 +3934,7 @@ class S3Client:
                 PutObjectLegalHoldOutput,
                 ("bucket", "key", "legal_hold", "request_payer", "version_id", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
                 ("bucket", "key", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.put_object_legal_hold(params)
@@ -3878,6 +3976,7 @@ class S3Client:
                 PutObjectLockConfigurationOutput,
                 ("bucket", "object_lock_configuration", "request_payer", "token", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
                 ("bucket", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.put_object_lock_configuration(params)
@@ -3924,6 +4023,7 @@ class S3Client:
                 PutObjectRetentionOutput,
                 ("bucket", "key", "retention", "request_payer", "version_id", "bypass_governance_retention", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
                 ("bucket", "key", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.put_object_retention(params)
@@ -3966,6 +4066,7 @@ class S3Client:
                 PutObjectTaggingOutput,
                 ("bucket", "key", "tagging", "version_id", "content_md5", "checksum_algorithm", "expected_bucket_owner", "request_payer", ),
                 ("bucket", "key", "tagging", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.put_object_tagging(params)
@@ -4000,6 +4101,7 @@ class S3Client:
                 type(None),
                 ("bucket", "public_access_block_configuration", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
                 ("bucket", "public_access_block_configuration", ),
+                service_name='S3',
             )
             return None
         await self._native.put_public_access_block(params)
@@ -4054,6 +4156,7 @@ class S3Client:
                 RenameObjectOutput,
                 ("bucket", "key", "rename_source", "destination_if_match", "destination_if_none_match", "destination_if_modified_since", "destination_if_unmodified_since", "source_if_match", "source_if_none_match", "source_if_modified_since", "source_if_unmodified_since", "client_token", ),
                 ("bucket", "key", "rename_source", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.rename_object(params)
@@ -4094,6 +4197,7 @@ class S3Client:
                 RestoreObjectOutput,
                 ("bucket", "key", "version_id", "restore_request", "request_payer", "checksum_algorithm", "expected_bucket_owner", ),
                 ("bucket", "key", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.restore_object(params)
@@ -4145,6 +4249,7 @@ class S3Client:
                 dict,
                 ("bucket", "key", "expression", "expression_type", "input_serialization", "output_serialization", "sse_customer_algorithm", "sse_customer_key", "sse_customer_key_md5", "request_progress", "scan_range", "expected_bucket_owner", ),
                 ("bucket", "key", "expression", "expression_type", "input_serialization", "output_serialization", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.select_object_content(params)
@@ -4179,6 +4284,7 @@ class S3Client:
                 type(None),
                 ("bucket", "annotation_table_configuration", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
                 ("bucket", "annotation_table_configuration", ),
+                service_name='S3',
             )
             return None
         await self._native.update_bucket_metadata_annotation_table_configuration(params)
@@ -4213,6 +4319,7 @@ class S3Client:
                 type(None),
                 ("bucket", "inventory_table_configuration", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
                 ("bucket", "inventory_table_configuration", ),
+                service_name='S3',
             )
             return None
         await self._native.update_bucket_metadata_inventory_table_configuration(params)
@@ -4247,6 +4354,7 @@ class S3Client:
                 type(None),
                 ("bucket", "journal_table_configuration", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
                 ("bucket", "journal_table_configuration", ),
+                service_name='S3',
             )
             return None
         await self._native.update_bucket_metadata_journal_table_configuration(params)
@@ -4289,6 +4397,7 @@ class S3Client:
                 UpdateObjectEncryptionOutput,
                 ("bucket", "key", "object_encryption", "version_id", "request_payer", "expected_bucket_owner", "content_md5", "checksum_algorithm", ),
                 ("bucket", "key", "object_encryption", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.update_object_encryption(params)
@@ -4375,6 +4484,7 @@ class S3Client:
                 UploadPartOutput,
                 ("bucket", "key", "part_number", "upload_id", "body", "content_length", "content_md5", "checksum_algorithm", "checksum_crc32", "checksum_crc32_c", "checksum_crc64_nvme", "checksum_sha1", "checksum_sha256", "checksum_sha512", "checksum_md5", "checksum_xxhash64", "checksum_xxhash3", "checksum_xxhash128", "sse_customer_algorithm", "sse_customer_key", "sse_customer_key_md5", "request_payer", "expected_bucket_owner", ),
                 ("bucket", "key", "part_number", "upload_id", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.upload_part(params)
@@ -4448,6 +4558,7 @@ class S3Client:
                 UploadPartCopyOutput,
                 ("bucket", "copy_source", "key", "part_number", "upload_id", "copy_source_if_match", "copy_source_if_modified_since", "copy_source_if_none_match", "copy_source_if_unmodified_since", "copy_source_range", "sse_customer_algorithm", "sse_customer_key", "sse_customer_key_md5", "copy_source_sse_customer_algorithm", "copy_source_sse_customer_key", "copy_source_sse_customer_key_md5", "request_payer", "expected_bucket_owner", "expected_source_bucket_owner", ),
                 ("bucket", "copy_source", "key", "part_number", "upload_id", ),
+                service_name='S3',
             )
             return _response
         _response = await self._native.upload_part_copy(params)
@@ -4605,6 +4716,7 @@ class S3Client:
                 type(None),
                 ("request_route", "request_token", "body", "status_code", "error_code", "error_message", "accept_ranges", "cache_control", "content_disposition", "content_encoding", "content_language", "content_length", "content_range", "content_type", "checksum_crc32", "checksum_crc32_c", "checksum_crc64_nvme", "checksum_sha1", "checksum_sha256", "checksum_sha512", "checksum_md5", "checksum_xxhash64", "checksum_xxhash3", "checksum_xxhash128", "delete_marker", "e_tag", "expires", "expiration", "last_modified", "missing_meta", "metadata", "object_lock_mode", "object_lock_legal_hold_status", "object_lock_retain_until_date", "parts_count", "replication_status", "request_charged", "restore", "server_side_encryption", "sse_customer_algorithm", "ssekms_key_id", "sse_customer_key_md5", "storage_class", "tag_count", "version_id", "bucket_key_enabled", ),
                 ("request_route", "request_token", ),
+                service_name='S3',
             )
             return None
         await self._native.write_get_object_response(params)

@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import LambdaClient as NativeClient, AddLayerVersionPermissionOutput, AddPermissionOutput, CheckpointDurableExecutionOutput, CreateAliasOutput, CreateCapacityProviderOutput, CreateCodeSigningConfigOutput, CreateEventSourceMappingOutput, CreateFunctionOutput, CreateFunctionUrlConfigOutput, DeleteCapacityProviderOutput, DeleteCodeSigningConfigOutput, DeleteEventSourceMappingOutput, DeleteFunctionOutput, GetAccountSettingsOutput, GetAliasOutput, GetCapacityProviderOutput, GetCodeSigningConfigOutput, GetDurableExecutionHistoryOutput, GetDurableExecutionOutput, GetDurableExecutionStateOutput, GetEventSourceMappingOutput, GetFunctionCodeSigningConfigOutput, GetFunctionConcurrencyOutput, GetFunctionConfigurationOutput, GetFunctionEventInvokeConfigOutput, GetFunctionOutput, GetFunctionRecursionConfigOutput, GetFunctionScalingConfigOutput, GetFunctionUrlConfigOutput, GetLayerVersionByArnOutput, GetLayerVersionOutput, GetLayerVersionPolicyOutput, GetPolicyOutput, GetProvisionedConcurrencyConfigOutput, GetResourcePolicyOutput, GetRuntimeManagementConfigOutput, InvokeAsyncOutput, InvokeOutput, ListAliasesOutput, ListCapacityProvidersOutput, ListCodeSigningConfigsOutput, ListDurableExecutionsByFunctionOutput, ListEventSourceMappingsOutput, ListFunctionEventInvokeConfigsOutput, ListFunctionUrlConfigsOutput, ListFunctionVersionsByCapacityProviderOutput, ListFunctionsByCodeSigningConfigOutput, ListFunctionsOutput, ListLayerVersionsOutput, ListLayersOutput, ListProvisionedConcurrencyConfigsOutput, ListTagsOutput, ListVersionsByFunctionOutput, PublishLayerVersionOutput, PublishVersionOutput, PutFunctionCodeSigningConfigOutput, PutFunctionConcurrencyOutput, PutFunctionEventInvokeConfigOutput, PutFunctionRecursionConfigOutput, PutFunctionScalingConfigOutput, PutProvisionedConcurrencyConfigOutput, PutResourcePolicyOutput, PutRuntimeManagementConfigOutput, SendDurableExecutionCallbackFailureOutput, SendDurableExecutionCallbackHeartbeatOutput, SendDurableExecutionCallbackSuccessOutput, StopDurableExecutionOutput, UpdateAliasOutput, UpdateCapacityProviderOutput, UpdateCodeSigningConfigOutput, UpdateEventSourceMappingOutput, UpdateFunctionCodeOutput, UpdateFunctionConfigurationOutput, UpdateFunctionEventInvokeConfigOutput, UpdateFunctionUrlConfigOutput
 from .types import (
@@ -152,6 +152,7 @@ class LambdaClient:
                 AddLayerVersionPermissionOutput,
                 ("layer_name", "version_number", "statement_id", "action", "principal", "organization_id", "revision_id", ),
                 ("layer_name", "version_number", "statement_id", "action", "principal", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.add_layer_version_permission(params)
@@ -205,6 +206,7 @@ class LambdaClient:
                 AddPermissionOutput,
                 ("function_name", "statement_id", "action", "principal", "source_arn", "function_url_auth_type", "invoked_via_function_url", "source_account", "event_source_token", "qualifier", "revision_id", "principal_org_id", ),
                 ("function_name", "statement_id", "action", "principal", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.add_permission(params)
@@ -236,6 +238,7 @@ class LambdaClient:
                 CheckpointDurableExecutionOutput,
                 ("durable_execution_arn", "checkpoint_token", "updates", "client_token", ),
                 ("durable_execution_arn", "checkpoint_token", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.checkpoint_durable_execution(params)
@@ -269,6 +272,7 @@ class LambdaClient:
                 CreateAliasOutput,
                 ("function_name", "name", "function_version", "description", "routing_config", ),
                 ("function_name", "name", "function_version", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.create_alias(params)
@@ -314,6 +318,7 @@ class LambdaClient:
                 CreateCapacityProviderOutput,
                 ("capacity_provider_name", "vpc_config", "permissions_config", "instance_requirements", "capacity_provider_scaling_config", "kms_key_arn", "tags", "propagate_tags", "telemetry_config", ),
                 ("capacity_provider_name", "vpc_config", "permissions_config", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.create_capacity_provider(params)
@@ -346,6 +351,7 @@ class LambdaClient:
                 CreateCodeSigningConfigOutput,
                 ("allowed_publishers", "description", "code_signing_policies", "tags", ),
                 ("allowed_publishers", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.create_code_signing_config(params)
@@ -450,6 +456,7 @@ class LambdaClient:
                 CreateEventSourceMappingOutput,
                 ("function_name", "event_source_arn", "enabled", "batch_size", "filter_criteria", "kms_key_arn", "metrics_config", "logging_config", "scaling_config", "maximum_batching_window_in_seconds", "parallelization_factor", "starting_position", "starting_position_timestamp", "destination_config", "maximum_record_age_in_seconds", "bisect_batch_on_function_error", "maximum_retry_attempts", "tags", "tumbling_window_in_seconds", "topics", "queues", "source_access_configurations", "self_managed_event_source", "function_response_types", "amazon_managed_kafka_event_source_config", "self_managed_kafka_event_source_config", "document_db_event_source_config", "provisioned_poller_config", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.create_event_source_mapping(params)
@@ -552,6 +559,7 @@ class LambdaClient:
                 CreateFunctionOutput,
                 ("function_name", "role", "code", "runtime", "handler", "description", "timeout", "memory_size", "publish", "publish_to", "vpc_config", "package_type", "dead_letter_config", "environment", "kms_key_arn", "tracing_config", "tags", "layers", "file_system_configs", "code_signing_config_arn", "image_config", "architectures", "ephemeral_storage", "snap_start", "logging_config", "tenancy_config", "capacity_provider_config", "durable_config", ),
                 ("function_name", "role", "code", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.create_function(params)
@@ -586,6 +594,7 @@ class LambdaClient:
                 CreateFunctionUrlConfigOutput,
                 ("function_name", "auth_type", "qualifier", "cors", "invoke_mode", ),
                 ("function_name", "auth_type", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.create_function_url_config(params)
@@ -611,6 +620,7 @@ class LambdaClient:
                 type(None),
                 ("function_name", "name", ),
                 ("function_name", "name", ),
+                service_name='Lambda',
             )
             return None
         await self._native.delete_alias(params)
@@ -634,6 +644,7 @@ class LambdaClient:
                 DeleteCapacityProviderOutput,
                 ("capacity_provider_name", ),
                 ("capacity_provider_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.delete_capacity_provider(params)
@@ -657,6 +668,7 @@ class LambdaClient:
                 DeleteCodeSigningConfigOutput,
                 ("code_signing_config_arn", ),
                 ("code_signing_config_arn", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.delete_code_signing_config(params)
@@ -680,6 +692,7 @@ class LambdaClient:
                 DeleteEventSourceMappingOutput,
                 ("uuid", ),
                 ("uuid", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.delete_event_source_mapping(params)
@@ -706,6 +719,7 @@ class LambdaClient:
                 DeleteFunctionOutput,
                 ("function_name", "qualifier", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.delete_function(params)
@@ -729,6 +743,7 @@ class LambdaClient:
                 type(None),
                 ("function_name", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return None
         await self._native.delete_function_code_signing_config(params)
@@ -752,6 +767,7 @@ class LambdaClient:
                 type(None),
                 ("function_name", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return None
         await self._native.delete_function_concurrency(params)
@@ -778,6 +794,7 @@ class LambdaClient:
                 type(None),
                 ("function_name", "qualifier", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return None
         await self._native.delete_function_event_invoke_config(params)
@@ -804,6 +821,7 @@ class LambdaClient:
                 type(None),
                 ("function_name", "qualifier", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return None
         await self._native.delete_function_url_config(params)
@@ -829,6 +847,7 @@ class LambdaClient:
                 type(None),
                 ("layer_name", "version_number", ),
                 ("layer_name", "version_number", ),
+                service_name='Lambda',
             )
             return None
         await self._native.delete_layer_version(params)
@@ -854,6 +873,7 @@ class LambdaClient:
                 type(None),
                 ("function_name", "qualifier", ),
                 ("function_name", "qualifier", ),
+                service_name='Lambda',
             )
             return None
         await self._native.delete_provisioned_concurrency_config(params)
@@ -880,6 +900,7 @@ class LambdaClient:
                 type(None),
                 ("resource_arn", "revision_id", ),
                 ("resource_arn", ),
+                service_name='Lambda',
             )
             return None
         await self._native.delete_resource_policy(params)
@@ -900,6 +921,7 @@ class LambdaClient:
                 GetAccountSettingsOutput,
                 (),
                 (),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.get_account_settings(params)
@@ -925,6 +947,7 @@ class LambdaClient:
                 GetAliasOutput,
                 ("function_name", "name", ),
                 ("function_name", "name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.get_alias(params)
@@ -948,6 +971,7 @@ class LambdaClient:
                 GetCapacityProviderOutput,
                 ("capacity_provider_name", ),
                 ("capacity_provider_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.get_capacity_provider(params)
@@ -971,6 +995,7 @@ class LambdaClient:
                 GetCodeSigningConfigOutput,
                 ("code_signing_config_arn", ),
                 ("code_signing_config_arn", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.get_code_signing_config(params)
@@ -997,6 +1022,7 @@ class LambdaClient:
                 GetDurableExecutionOutput,
                 ("durable_execution_arn", "include_execution_data", ),
                 ("durable_execution_arn", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.get_durable_execution(params)
@@ -1032,6 +1058,7 @@ class LambdaClient:
                 GetDurableExecutionHistoryOutput,
                 ("durable_execution_arn", "include_execution_data", "max_items", "marker", "reverse_order", ),
                 ("durable_execution_arn", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.get_durable_execution_history(params)
@@ -1063,6 +1090,7 @@ class LambdaClient:
                 GetDurableExecutionStateOutput,
                 ("durable_execution_arn", "checkpoint_token", "marker", "max_items", ),
                 ("durable_execution_arn", "checkpoint_token", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.get_durable_execution_state(params)
@@ -1086,6 +1114,7 @@ class LambdaClient:
                 GetEventSourceMappingOutput,
                 ("uuid", ),
                 ("uuid", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.get_event_source_mapping(params)
@@ -1112,6 +1141,7 @@ class LambdaClient:
                 GetFunctionOutput,
                 ("function_name", "qualifier", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.get_function(params)
@@ -1135,6 +1165,7 @@ class LambdaClient:
                 GetFunctionCodeSigningConfigOutput,
                 ("function_name", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.get_function_code_signing_config(params)
@@ -1158,6 +1189,7 @@ class LambdaClient:
                 GetFunctionConcurrencyOutput,
                 ("function_name", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.get_function_concurrency(params)
@@ -1184,6 +1216,7 @@ class LambdaClient:
                 GetFunctionConfigurationOutput,
                 ("function_name", "qualifier", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.get_function_configuration(params)
@@ -1210,6 +1243,7 @@ class LambdaClient:
                 GetFunctionEventInvokeConfigOutput,
                 ("function_name", "qualifier", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.get_function_event_invoke_config(params)
@@ -1233,6 +1267,7 @@ class LambdaClient:
                 GetFunctionRecursionConfigOutput,
                 ("function_name", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.get_function_recursion_config(params)
@@ -1258,6 +1293,7 @@ class LambdaClient:
                 GetFunctionScalingConfigOutput,
                 ("function_name", "qualifier", ),
                 ("function_name", "qualifier", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.get_function_scaling_config(params)
@@ -1284,6 +1320,7 @@ class LambdaClient:
                 GetFunctionUrlConfigOutput,
                 ("function_name", "qualifier", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.get_function_url_config(params)
@@ -1309,6 +1346,7 @@ class LambdaClient:
                 GetLayerVersionOutput,
                 ("layer_name", "version_number", ),
                 ("layer_name", "version_number", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.get_layer_version(params)
@@ -1332,6 +1370,7 @@ class LambdaClient:
                 GetLayerVersionByArnOutput,
                 ("arn", ),
                 ("arn", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.get_layer_version_by_arn(params)
@@ -1357,6 +1396,7 @@ class LambdaClient:
                 GetLayerVersionPolicyOutput,
                 ("layer_name", "version_number", ),
                 ("layer_name", "version_number", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.get_layer_version_policy(params)
@@ -1383,6 +1423,7 @@ class LambdaClient:
                 GetPolicyOutput,
                 ("function_name", "qualifier", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.get_policy(params)
@@ -1408,6 +1449,7 @@ class LambdaClient:
                 GetProvisionedConcurrencyConfigOutput,
                 ("function_name", "qualifier", ),
                 ("function_name", "qualifier", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.get_provisioned_concurrency_config(params)
@@ -1431,6 +1473,7 @@ class LambdaClient:
                 GetResourcePolicyOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.get_resource_policy(params)
@@ -1457,6 +1500,7 @@ class LambdaClient:
                 GetRuntimeManagementConfigOutput,
                 ("function_name", "qualifier", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.get_runtime_management_config(params)
@@ -1501,6 +1545,7 @@ class LambdaClient:
                 InvokeOutput,
                 ("function_name", "invocation_type", "log_type", "client_context", "durable_execution_name", "payload", "qualifier", "tenant_id", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.invoke(params)
@@ -1526,6 +1571,7 @@ class LambdaClient:
                 InvokeAsyncOutput,
                 ("function_name", "invoke_args", ),
                 ("function_name", "invoke_args", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.invoke_async(params)
@@ -1567,6 +1613,7 @@ class LambdaClient:
                 dict,
                 ("function_name", "log_type", "client_context", "qualifier", "payload", "tenant_id", "invocation_type", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.invoke_with_response_stream(params)
@@ -1599,6 +1646,7 @@ class LambdaClient:
                 ListAliasesOutput,
                 ("function_name", "function_version", "marker", "max_items", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.list_aliases(params)
@@ -1629,6 +1677,7 @@ class LambdaClient:
                 ListCapacityProvidersOutput,
                 ("state", "marker", "max_items", ),
                 (),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.list_capacity_providers(params)
@@ -1656,6 +1705,7 @@ class LambdaClient:
                 ListCodeSigningConfigsOutput,
                 ("marker", "max_items", ),
                 (),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.list_code_signing_configs(params)
@@ -1703,6 +1753,7 @@ class LambdaClient:
                 ListDurableExecutionsByFunctionOutput,
                 ("function_name", "qualifier", "durable_execution_name", "statuses", "started_after", "started_before", "reverse_order", "marker", "max_items", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.list_durable_executions_by_function(params)
@@ -1736,6 +1787,7 @@ class LambdaClient:
                 ListEventSourceMappingsOutput,
                 ("event_source_arn", "function_name", "marker", "max_items", ),
                 (),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.list_event_source_mappings(params)
@@ -1765,6 +1817,7 @@ class LambdaClient:
                 ListFunctionEventInvokeConfigsOutput,
                 ("function_name", "marker", "max_items", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.list_function_event_invoke_configs(params)
@@ -1794,6 +1847,7 @@ class LambdaClient:
                 ListFunctionUrlConfigsOutput,
                 ("function_name", "marker", "max_items", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.list_function_url_configs(params)
@@ -1823,6 +1877,7 @@ class LambdaClient:
                 ListFunctionVersionsByCapacityProviderOutput,
                 ("capacity_provider_name", "marker", "max_items", ),
                 ("capacity_provider_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.list_function_versions_by_capacity_provider(params)
@@ -1856,6 +1911,7 @@ class LambdaClient:
                 ListFunctionsOutput,
                 ("master_region", "function_version", "marker", "max_items", ),
                 (),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.list_functions(params)
@@ -1885,6 +1941,7 @@ class LambdaClient:
                 ListFunctionsByCodeSigningConfigOutput,
                 ("code_signing_config_arn", "marker", "max_items", ),
                 ("code_signing_config_arn", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.list_functions_by_code_signing_config(params)
@@ -1920,6 +1977,7 @@ class LambdaClient:
                 ListLayerVersionsOutput,
                 ("layer_name", "compatible_architecture", "compatible_runtime", "marker", "max_items", ),
                 ("layer_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.list_layer_versions(params)
@@ -1953,6 +2011,7 @@ class LambdaClient:
                 ListLayersOutput,
                 ("compatible_architecture", "compatible_runtime", "marker", "max_items", ),
                 (),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.list_layers(params)
@@ -1982,6 +2041,7 @@ class LambdaClient:
                 ListProvisionedConcurrencyConfigsOutput,
                 ("function_name", "marker", "max_items", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.list_provisioned_concurrency_configs(params)
@@ -2005,6 +2065,7 @@ class LambdaClient:
                 ListTagsOutput,
                 ("resource", ),
                 ("resource", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.list_tags(params)
@@ -2034,6 +2095,7 @@ class LambdaClient:
                 ListVersionsByFunctionOutput,
                 ("function_name", "marker", "max_items", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.list_versions_by_function(params)
@@ -2071,6 +2133,7 @@ class LambdaClient:
                 PublishLayerVersionOutput,
                 ("layer_name", "content", "description", "compatible_architectures", "compatible_runtimes", "license_info", ),
                 ("layer_name", "content", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.publish_layer_version(params)
@@ -2106,6 +2169,7 @@ class LambdaClient:
                 PublishVersionOutput,
                 ("function_name", "code_sha256", "description", "revision_id", "publish_to", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.publish_version(params)
@@ -2131,6 +2195,7 @@ class LambdaClient:
                 PutFunctionCodeSigningConfigOutput,
                 ("code_signing_config_arn", "function_name", ),
                 ("code_signing_config_arn", "function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.put_function_code_signing_config(params)
@@ -2156,6 +2221,7 @@ class LambdaClient:
                 PutFunctionConcurrencyOutput,
                 ("function_name", "reserved_concurrent_executions", ),
                 ("function_name", "reserved_concurrent_executions", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.put_function_concurrency(params)
@@ -2191,6 +2257,7 @@ class LambdaClient:
                 PutFunctionEventInvokeConfigOutput,
                 ("function_name", "qualifier", "maximum_retry_attempts", "maximum_event_age_in_seconds", "destination_config", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.put_function_event_invoke_config(params)
@@ -2216,6 +2283,7 @@ class LambdaClient:
                 PutFunctionRecursionConfigOutput,
                 ("function_name", "recursive_loop", ),
                 ("function_name", "recursive_loop", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.put_function_recursion_config(params)
@@ -2244,6 +2312,7 @@ class LambdaClient:
                 PutFunctionScalingConfigOutput,
                 ("function_name", "qualifier", "function_scaling_config", ),
                 ("function_name", "qualifier", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.put_function_scaling_config(params)
@@ -2271,6 +2340,7 @@ class LambdaClient:
                 PutProvisionedConcurrencyConfigOutput,
                 ("function_name", "qualifier", "provisioned_concurrent_executions", ),
                 ("function_name", "qualifier", "provisioned_concurrent_executions", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.put_provisioned_concurrency_config(params)
@@ -2299,6 +2369,7 @@ class LambdaClient:
                 PutResourcePolicyOutput,
                 ("resource_arn", "policy", "revision_id", ),
                 ("resource_arn", "policy", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.put_resource_policy(params)
@@ -2330,6 +2401,7 @@ class LambdaClient:
                 PutRuntimeManagementConfigOutput,
                 ("function_name", "update_runtime_on", "qualifier", "runtime_version_arn", ),
                 ("function_name", "update_runtime_on", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.put_runtime_management_config(params)
@@ -2360,6 +2432,7 @@ class LambdaClient:
                 type(None),
                 ("layer_name", "version_number", "statement_id", "revision_id", ),
                 ("layer_name", "version_number", "statement_id", ),
+                service_name='Lambda',
             )
             return None
         await self._native.remove_layer_version_permission(params)
@@ -2391,6 +2464,7 @@ class LambdaClient:
                 type(None),
                 ("function_name", "statement_id", "qualifier", "revision_id", ),
                 ("function_name", "statement_id", ),
+                service_name='Lambda',
             )
             return None
         await self._native.remove_permission(params)
@@ -2417,6 +2491,7 @@ class LambdaClient:
                 SendDurableExecutionCallbackFailureOutput,
                 ("callback_id", "error", ),
                 ("callback_id", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.send_durable_execution_callback_failure(params)
@@ -2440,6 +2515,7 @@ class LambdaClient:
                 SendDurableExecutionCallbackHeartbeatOutput,
                 ("callback_id", ),
                 ("callback_id", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.send_durable_execution_callback_heartbeat(params)
@@ -2466,6 +2542,7 @@ class LambdaClient:
                 SendDurableExecutionCallbackSuccessOutput,
                 ("callback_id", "result", ),
                 ("callback_id", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.send_durable_execution_callback_success(params)
@@ -2492,6 +2569,7 @@ class LambdaClient:
                 StopDurableExecutionOutput,
                 ("durable_execution_arn", "error", ),
                 ("durable_execution_arn", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.stop_durable_execution(params)
@@ -2517,6 +2595,7 @@ class LambdaClient:
                 type(None),
                 ("resource", "tags", ),
                 ("resource", "tags", ),
+                service_name='Lambda',
             )
             return None
         await self._native.tag_resource(params)
@@ -2542,6 +2621,7 @@ class LambdaClient:
                 type(None),
                 ("resource", "tag_keys", ),
                 ("resource", "tag_keys", ),
+                service_name='Lambda',
             )
             return None
         await self._native.untag_resource(params)
@@ -2579,6 +2659,7 @@ class LambdaClient:
                 UpdateAliasOutput,
                 ("function_name", "name", "function_version", "description", "routing_config", "revision_id", ),
                 ("function_name", "name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.update_alias(params)
@@ -2611,6 +2692,7 @@ class LambdaClient:
                 UpdateCapacityProviderOutput,
                 ("capacity_provider_name", "capacity_provider_scaling_config", "propagate_tags", "telemetry_config", ),
                 ("capacity_provider_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.update_capacity_provider(params)
@@ -2643,6 +2725,7 @@ class LambdaClient:
                 UpdateCodeSigningConfigOutput,
                 ("code_signing_config_arn", "description", "allowed_publishers", "code_signing_policies", ),
                 ("code_signing_config_arn", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.update_code_signing_config(params)
@@ -2729,6 +2812,7 @@ class LambdaClient:
                 UpdateEventSourceMappingOutput,
                 ("uuid", "function_name", "enabled", "batch_size", "filter_criteria", "kms_key_arn", "metrics_config", "logging_config", "scaling_config", "maximum_batching_window_in_seconds", "parallelization_factor", "destination_config", "maximum_record_age_in_seconds", "bisect_batch_on_function_error", "maximum_retry_attempts", "tumbling_window_in_seconds", "source_access_configurations", "function_response_types", "amazon_managed_kafka_event_source_config", "self_managed_kafka_event_source_config", "document_db_event_source_config", "provisioned_poller_config", ),
                 ("uuid", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.update_event_source_mapping(params)
@@ -2788,6 +2872,7 @@ class LambdaClient:
                 UpdateFunctionCodeOutput,
                 ("function_name", "zip_file", "s3_bucket", "s3_key", "s3_object_version", "s3_object_storage_mode", "image_uri", "architectures", "publish", "publish_to", "dry_run", "revision_id", "source_kms_key_arn", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.update_function_code(params)
@@ -2871,6 +2956,7 @@ class LambdaClient:
                 UpdateFunctionConfigurationOutput,
                 ("function_name", "role", "handler", "description", "timeout", "memory_size", "vpc_config", "environment", "runtime", "dead_letter_config", "kms_key_arn", "tracing_config", "revision_id", "layers", "file_system_configs", "image_config", "ephemeral_storage", "snap_start", "logging_config", "capacity_provider_config", "durable_config", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.update_function_configuration(params)
@@ -2906,6 +2992,7 @@ class LambdaClient:
                 UpdateFunctionEventInvokeConfigOutput,
                 ("function_name", "qualifier", "maximum_retry_attempts", "maximum_event_age_in_seconds", "destination_config", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.update_function_event_invoke_config(params)
@@ -2941,6 +3028,7 @@ class LambdaClient:
                 UpdateFunctionUrlConfigOutput,
                 ("function_name", "qualifier", "auth_type", "cors", "invoke_mode", ),
                 ("function_name", ),
+                service_name='Lambda',
             )
             return _response
         _response = await self._native.update_function_url_config(params)

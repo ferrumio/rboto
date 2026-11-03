@@ -48,6 +48,8 @@ def test_all_clients_have_installable_extras_and_typecheck_paths() -> None:
         expected_all.append(dependency)
         assert f"packages/{service.distribution_name}/python" in paths
     assert sorted(extras["all"]) == sorted(expected_all)
+    assert extras["opentelemetry"] == ["opentelemetry-api>=1.39,<2"]
+    assert not project.get("dependencies")
 
 
 @pytest.mark.parametrize("service", list_services(), ids=lambda service: service.service_id)
@@ -65,6 +67,18 @@ def test_generated_signatures_cover_pinned_rust_operations(service: ServiceDescr
         assert method.args.kwarg is None
         assert method.returns is not None
         assert len(method.args.kwonlyargs) == len(operations[name].input_fields)
+    model = load_model(ROOT / "codegen/models" / f"{service.service_id}.json", service)
+    for method in methods.values():
+        invocation = next(
+            node for node in ast.walk(method)
+            if isinstance(node, ast.Call)
+            and isinstance(node.func, ast.Name) and node.func.id == "invoke"
+        )
+        service_name = next(
+            item.value for item in invocation.keywords if item.arg == "service_name"
+        )
+        assert isinstance(service_name, ast.Constant)
+        assert service_name.value == model.sdk_id
 
 
 @pytest.mark.parametrize("service", list_services(), ids=lambda service: service.service_id)

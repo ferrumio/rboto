@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import PollyClient as NativeClient, DeleteLexiconOutput, DescribeVoicesOutput, GetLexiconOutput, GetSpeechSynthesisTaskOutput, ListLexiconsOutput, ListSpeechSynthesisTasksOutput, PutLexiconOutput, StartSpeechSynthesisTaskOutput, SynthesizeSpeechOutput
 from .types import (
@@ -80,6 +80,7 @@ class PollyClient:
                 DeleteLexiconOutput,
                 ("name", ),
                 ("name", ),
+                service_name='Polly',
             )
             return _response
         _response = await self._native.delete_lexicon(params)
@@ -113,6 +114,7 @@ class PollyClient:
                 DescribeVoicesOutput,
                 ("engine", "language_code", "include_additional_language_codes", "next_token", ),
                 (),
+                service_name='Polly',
             )
             return _response
         _response = await self._native.describe_voices(params)
@@ -136,6 +138,7 @@ class PollyClient:
                 GetLexiconOutput,
                 ("name", ),
                 ("name", ),
+                service_name='Polly',
             )
             return _response
         _response = await self._native.get_lexicon(params)
@@ -159,6 +162,7 @@ class PollyClient:
                 GetSpeechSynthesisTaskOutput,
                 ("task_id", ),
                 ("task_id", ),
+                service_name='Polly',
             )
             return _response
         _response = await self._native.get_speech_synthesis_task(params)
@@ -183,6 +187,7 @@ class PollyClient:
                 ListLexiconsOutput,
                 ("next_token", ),
                 (),
+                service_name='Polly',
             )
             return _response
         _response = await self._native.list_lexicons(params)
@@ -213,6 +218,7 @@ class PollyClient:
                 ListSpeechSynthesisTasksOutput,
                 ("max_results", "next_token", "status", ),
                 (),
+                service_name='Polly',
             )
             return _response
         _response = await self._native.list_speech_synthesis_tasks(params)
@@ -238,6 +244,7 @@ class PollyClient:
                 PutLexiconOutput,
                 ("name", "content", ),
                 ("name", "content", ),
+                service_name='Polly',
             )
             return _response
         _response = await self._native.put_lexicon(params)
@@ -277,6 +284,7 @@ class PollyClient:
                 dict,
                 ("engine", "output_format", "voice_id", "language_code", "lexicon_names", "sample_rate", "action_stream", ),
                 ("engine", "output_format", "voice_id", ),
+                service_name='Polly',
             )
             return _response
         _response = await self._native.start_speech_synthesis_stream(params)
@@ -330,6 +338,7 @@ class PollyClient:
                 StartSpeechSynthesisTaskOutput,
                 ("output_format", "output_s3_bucket_name", "text", "voice_id", "engine", "language_code", "lexicon_names", "output_s3_key_prefix", "sample_rate", "sns_topic_arn", "speech_mark_types", "text_type", ),
                 ("output_format", "output_s3_bucket_name", "text", "voice_id", ),
+                service_name='Polly',
             )
             return _response
         _response = await self._native.start_speech_synthesis_task(params)
@@ -375,6 +384,7 @@ class PollyClient:
                 SynthesizeSpeechOutput,
                 ("output_format", "text", "voice_id", "engine", "language_code", "lexicon_names", "sample_rate", "speech_mark_types", "text_type", ),
                 ("output_format", "text", "voice_id", ),
+                service_name='Polly',
             )
             return _response
         _response = await self._native.synthesize_speech(params)

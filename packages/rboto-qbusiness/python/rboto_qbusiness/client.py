@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import QBusinessClient as NativeClient, AssociatePermissionOutput, BatchDeleteDocumentOutput, BatchPutDocumentOutput, CancelSubscriptionOutput, ChatSyncOutput, CheckDocumentAccessOutput, CreateAnonymousWebExperienceUrlOutput, CreateApplicationOutput, CreateChatResponseConfigurationOutput, CreateDataAccessorOutput, CreateDataSourceOutput, CreateIndexOutput, CreatePluginOutput, CreateRetrieverOutput, CreateSubscriptionOutput, CreateUserOutput, CreateWebExperienceOutput, DeleteApplicationOutput, DeleteAttachmentOutput, DeleteChatControlsConfigurationOutput, DeleteChatResponseConfigurationOutput, DeleteConversationOutput, DeleteDataAccessorOutput, DeleteDataSourceOutput, DeleteGroupOutput, DeleteIndexOutput, DeletePluginOutput, DeleteRetrieverOutput, DeleteUserOutput, DeleteWebExperienceOutput, DisassociatePermissionOutput, GetApplicationOutput, GetChatControlsConfigurationOutput, GetChatResponseConfigurationOutput, GetDataAccessorOutput, GetDataSourceOutput, GetDocumentContentOutput, GetGroupOutput, GetIndexOutput, GetMediaOutput, GetPluginOutput, GetPolicyOutput, GetRetrieverOutput, GetUserOutput, GetWebExperienceOutput, ListApplicationsOutput, ListAttachmentsOutput, ListChatResponseConfigurationsOutput, ListConversationsOutput, ListDataAccessorsOutput, ListDataSourceSyncJobsOutput, ListDataSourcesOutput, ListDocumentsOutput, ListGroupsOutput, ListIndicesOutput, ListMessagesOutput, ListPluginActionsOutput, ListPluginTypeActionsOutput, ListPluginTypeMetadataOutput, ListPluginsOutput, ListRetrieversOutput, ListSubscriptionsOutput, ListTagsForResourceOutput, ListWebExperiencesOutput, PutGroupOutput, SearchRelevantContentOutput, StartDataSourceSyncJobOutput, StopDataSourceSyncJobOutput, TagResourceOutput, UntagResourceOutput, UpdateApplicationOutput, UpdateChatControlsConfigurationOutput, UpdateChatResponseConfigurationOutput, UpdateDataAccessorOutput, UpdateDataSourceOutput, UpdateIndexOutput, UpdatePluginOutput, UpdateRetrieverOutput, UpdateSubscriptionOutput, UpdateUserOutput, UpdateWebExperienceOutput
 from .types import (
@@ -136,6 +136,7 @@ class QBusinessClient:
                 AssociatePermissionOutput,
                 ("application_id", "statement_id", "actions", "principal", "conditions", ),
                 ("application_id", "statement_id", "actions", "principal", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.associate_permission(params)
@@ -166,6 +167,7 @@ class QBusinessClient:
                 BatchDeleteDocumentOutput,
                 ("application_id", "index_id", "documents", "data_source_sync_id", ),
                 ("application_id", "index_id", "documents", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.batch_delete_document(params)
@@ -199,6 +201,7 @@ class QBusinessClient:
                 BatchPutDocumentOutput,
                 ("application_id", "index_id", "documents", "role_arn", "data_source_sync_id", ),
                 ("application_id", "index_id", "documents", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.batch_put_document(params)
@@ -224,6 +227,7 @@ class QBusinessClient:
                 CancelSubscriptionOutput,
                 ("application_id", "subscription_id", ),
                 ("application_id", "subscription_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.cancel_subscription(params)
@@ -265,6 +269,7 @@ class QBusinessClient:
                 dict,
                 ("application_id", "user_id", "user_groups", "conversation_id", "parent_message_id", "client_token", "input_stream", ),
                 ("application_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.chat(params)
@@ -324,6 +329,7 @@ class QBusinessClient:
                 ChatSyncOutput,
                 ("application_id", "user_id", "user_groups", "user_message", "attachments", "action_execution", "auth_challenge_response", "conversation_id", "parent_message_id", "attribute_filter", "chat_mode", "chat_mode_configuration", "client_token", ),
                 ("application_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.chat_sync(params)
@@ -356,6 +362,7 @@ class QBusinessClient:
                 CheckDocumentAccessOutput,
                 ("application_id", "index_id", "user_id", "document_id", "data_source_id", ),
                 ("application_id", "index_id", "user_id", "document_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.check_document_access(params)
@@ -384,6 +391,7 @@ class QBusinessClient:
                 CreateAnonymousWebExperienceUrlOutput,
                 ("application_id", "web_experience_id", "session_duration_in_minutes", ),
                 ("application_id", "web_experience_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.create_anonymous_web_experience_url(params)
@@ -446,6 +454,7 @@ class QBusinessClient:
                 CreateApplicationOutput,
                 ("display_name", "role_arn", "identity_type", "iam_identity_provider_arn", "identity_center_instance_arn", "client_ids_for_oidc", "description", "encryption_configuration", "tags", "client_token", "attachments_configuration", "q_apps_configuration", "personalization_configuration", "quick_sight_configuration", ),
                 ("display_name", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.create_application(params)
@@ -479,6 +488,7 @@ class QBusinessClient:
                 CreateChatResponseConfigurationOutput,
                 ("application_id", "display_name", "response_configurations", "client_token", "tags", ),
                 ("application_id", "display_name", "response_configurations", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.create_chat_response_configuration(params)
@@ -517,6 +527,7 @@ class QBusinessClient:
                 CreateDataAccessorOutput,
                 ("application_id", "principal", "action_configurations", "display_name", "client_token", "authentication_detail", "tags", ),
                 ("application_id", "principal", "action_configurations", "display_name", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.create_data_accessor(params)
@@ -570,6 +581,7 @@ class QBusinessClient:
                 CreateDataSourceOutput,
                 ("application_id", "index_id", "display_name", "configuration", "vpc_configuration", "description", "tags", "sync_schedule", "role_arn", "client_token", "document_enrichment_configuration", "media_extraction_configuration", ),
                 ("application_id", "index_id", "display_name", "configuration", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.create_data_source(params)
@@ -610,6 +622,7 @@ class QBusinessClient:
                 CreateIndexOutput,
                 ("application_id", "display_name", "description", "type", "tags", "capacity_configuration", "client_token", ),
                 ("application_id", "display_name", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.create_index(params)
@@ -651,6 +664,7 @@ class QBusinessClient:
                 CreatePluginOutput,
                 ("application_id", "display_name", "type", "auth_configuration", "server_url", "custom_plugin_configuration", "tags", "client_token", ),
                 ("application_id", "display_name", "type", "auth_configuration", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.create_plugin(params)
@@ -689,6 +703,7 @@ class QBusinessClient:
                 CreateRetrieverOutput,
                 ("application_id", "type", "display_name", "configuration", "role_arn", "client_token", "tags", ),
                 ("application_id", "type", "display_name", "configuration", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.create_retriever(params)
@@ -719,6 +734,7 @@ class QBusinessClient:
                 CreateSubscriptionOutput,
                 ("application_id", "principal", "type", "client_token", ),
                 ("application_id", "principal", "type", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.create_subscription(params)
@@ -750,6 +766,7 @@ class QBusinessClient:
                 CreateUserOutput,
                 ("application_id", "user_id", "user_aliases", "client_token", ),
                 ("application_id", "user_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.create_user(params)
@@ -806,6 +823,7 @@ class QBusinessClient:
                 CreateWebExperienceOutput,
                 ("application_id", "title", "subtitle", "welcome_message", "sample_prompts_control_mode", "origins", "role_arn", "tags", "client_token", "identity_provider_configuration", "browser_extension_configuration", "customization_configuration", ),
                 ("application_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.create_web_experience(params)
@@ -829,6 +847,7 @@ class QBusinessClient:
                 DeleteApplicationOutput,
                 ("application_id", ),
                 ("application_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.delete_application(params)
@@ -859,6 +878,7 @@ class QBusinessClient:
                 DeleteAttachmentOutput,
                 ("application_id", "conversation_id", "attachment_id", "user_id", ),
                 ("application_id", "conversation_id", "attachment_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.delete_attachment(params)
@@ -882,6 +902,7 @@ class QBusinessClient:
                 DeleteChatControlsConfigurationOutput,
                 ("application_id", ),
                 ("application_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.delete_chat_controls_configuration(params)
@@ -907,6 +928,7 @@ class QBusinessClient:
                 DeleteChatResponseConfigurationOutput,
                 ("application_id", "chat_response_configuration_id", ),
                 ("application_id", "chat_response_configuration_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.delete_chat_response_configuration(params)
@@ -935,6 +957,7 @@ class QBusinessClient:
                 DeleteConversationOutput,
                 ("conversation_id", "application_id", "user_id", ),
                 ("conversation_id", "application_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.delete_conversation(params)
@@ -960,6 +983,7 @@ class QBusinessClient:
                 DeleteDataAccessorOutput,
                 ("application_id", "data_accessor_id", ),
                 ("application_id", "data_accessor_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.delete_data_accessor(params)
@@ -987,6 +1011,7 @@ class QBusinessClient:
                 DeleteDataSourceOutput,
                 ("application_id", "index_id", "data_source_id", ),
                 ("application_id", "index_id", "data_source_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.delete_data_source(params)
@@ -1017,6 +1042,7 @@ class QBusinessClient:
                 DeleteGroupOutput,
                 ("application_id", "index_id", "group_name", "data_source_id", ),
                 ("application_id", "index_id", "group_name", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.delete_group(params)
@@ -1042,6 +1068,7 @@ class QBusinessClient:
                 DeleteIndexOutput,
                 ("application_id", "index_id", ),
                 ("application_id", "index_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.delete_index(params)
@@ -1067,6 +1094,7 @@ class QBusinessClient:
                 DeletePluginOutput,
                 ("application_id", "plugin_id", ),
                 ("application_id", "plugin_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.delete_plugin(params)
@@ -1092,6 +1120,7 @@ class QBusinessClient:
                 DeleteRetrieverOutput,
                 ("application_id", "retriever_id", ),
                 ("application_id", "retriever_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.delete_retriever(params)
@@ -1117,6 +1146,7 @@ class QBusinessClient:
                 DeleteUserOutput,
                 ("application_id", "user_id", ),
                 ("application_id", "user_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.delete_user(params)
@@ -1142,6 +1172,7 @@ class QBusinessClient:
                 DeleteWebExperienceOutput,
                 ("application_id", "web_experience_id", ),
                 ("application_id", "web_experience_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.delete_web_experience(params)
@@ -1167,6 +1198,7 @@ class QBusinessClient:
                 DisassociatePermissionOutput,
                 ("application_id", "statement_id", ),
                 ("application_id", "statement_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.disassociate_permission(params)
@@ -1190,6 +1222,7 @@ class QBusinessClient:
                 GetApplicationOutput,
                 ("application_id", ),
                 ("application_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.get_application(params)
@@ -1219,6 +1252,7 @@ class QBusinessClient:
                 GetChatControlsConfigurationOutput,
                 ("application_id", "max_results", "next_token", ),
                 ("application_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.get_chat_controls_configuration(params)
@@ -1244,6 +1278,7 @@ class QBusinessClient:
                 GetChatResponseConfigurationOutput,
                 ("application_id", "chat_response_configuration_id", ),
                 ("application_id", "chat_response_configuration_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.get_chat_response_configuration(params)
@@ -1269,6 +1304,7 @@ class QBusinessClient:
                 GetDataAccessorOutput,
                 ("application_id", "data_accessor_id", ),
                 ("application_id", "data_accessor_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.get_data_accessor(params)
@@ -1296,6 +1332,7 @@ class QBusinessClient:
                 GetDataSourceOutput,
                 ("application_id", "index_id", "data_source_id", ),
                 ("application_id", "index_id", "data_source_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.get_data_source(params)
@@ -1329,6 +1366,7 @@ class QBusinessClient:
                 GetDocumentContentOutput,
                 ("application_id", "index_id", "document_id", "data_source_id", "output_format", ),
                 ("application_id", "index_id", "document_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.get_document_content(params)
@@ -1359,6 +1397,7 @@ class QBusinessClient:
                 GetGroupOutput,
                 ("application_id", "index_id", "group_name", "data_source_id", ),
                 ("application_id", "index_id", "group_name", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.get_group(params)
@@ -1384,6 +1423,7 @@ class QBusinessClient:
                 GetIndexOutput,
                 ("application_id", "index_id", ),
                 ("application_id", "index_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.get_index(params)
@@ -1413,6 +1453,7 @@ class QBusinessClient:
                 GetMediaOutput,
                 ("application_id", "conversation_id", "message_id", "media_id", ),
                 ("application_id", "conversation_id", "message_id", "media_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.get_media(params)
@@ -1438,6 +1479,7 @@ class QBusinessClient:
                 GetPluginOutput,
                 ("application_id", "plugin_id", ),
                 ("application_id", "plugin_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.get_plugin(params)
@@ -1461,6 +1503,7 @@ class QBusinessClient:
                 GetPolicyOutput,
                 ("application_id", ),
                 ("application_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.get_policy(params)
@@ -1486,6 +1529,7 @@ class QBusinessClient:
                 GetRetrieverOutput,
                 ("application_id", "retriever_id", ),
                 ("application_id", "retriever_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.get_retriever(params)
@@ -1511,6 +1555,7 @@ class QBusinessClient:
                 GetUserOutput,
                 ("application_id", "user_id", ),
                 ("application_id", "user_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.get_user(params)
@@ -1536,6 +1581,7 @@ class QBusinessClient:
                 GetWebExperienceOutput,
                 ("application_id", "web_experience_id", ),
                 ("application_id", "web_experience_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.get_web_experience(params)
@@ -1563,6 +1609,7 @@ class QBusinessClient:
                 ListApplicationsOutput,
                 ("next_token", "max_results", ),
                 (),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.list_applications(params)
@@ -1598,6 +1645,7 @@ class QBusinessClient:
                 ListAttachmentsOutput,
                 ("application_id", "conversation_id", "user_id", "next_token", "max_results", ),
                 ("application_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.list_attachments(params)
@@ -1627,6 +1675,7 @@ class QBusinessClient:
                 ListChatResponseConfigurationsOutput,
                 ("application_id", "max_results", "next_token", ),
                 ("application_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.list_chat_response_configurations(params)
@@ -1659,6 +1708,7 @@ class QBusinessClient:
                 ListConversationsOutput,
                 ("application_id", "user_id", "next_token", "max_results", ),
                 ("application_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.list_conversations(params)
@@ -1688,6 +1738,7 @@ class QBusinessClient:
                 ListDataAccessorsOutput,
                 ("application_id", "next_token", "max_results", ),
                 ("application_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.list_data_accessors(params)
@@ -1730,6 +1781,7 @@ class QBusinessClient:
                 ListDataSourceSyncJobsOutput,
                 ("data_source_id", "application_id", "index_id", "next_token", "max_results", "start_time", "end_time", "status_filter", ),
                 ("data_source_id", "application_id", "index_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.list_data_source_sync_jobs(params)
@@ -1761,6 +1813,7 @@ class QBusinessClient:
                 ListDataSourcesOutput,
                 ("application_id", "index_id", "next_token", "max_results", ),
                 ("application_id", "index_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.list_data_sources(params)
@@ -1795,6 +1848,7 @@ class QBusinessClient:
                 ListDocumentsOutput,
                 ("application_id", "index_id", "data_source_ids", "next_token", "max_results", ),
                 ("application_id", "index_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.list_documents(params)
@@ -1831,6 +1885,7 @@ class QBusinessClient:
                 ListGroupsOutput,
                 ("application_id", "index_id", "updated_earlier_than", "data_source_id", "next_token", "max_results", ),
                 ("application_id", "index_id", "updated_earlier_than", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.list_groups(params)
@@ -1860,6 +1915,7 @@ class QBusinessClient:
                 ListIndicesOutput,
                 ("application_id", "next_token", "max_results", ),
                 ("application_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.list_indices(params)
@@ -1894,6 +1950,7 @@ class QBusinessClient:
                 ListMessagesOutput,
                 ("conversation_id", "application_id", "user_id", "next_token", "max_results", ),
                 ("conversation_id", "application_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.list_messages(params)
@@ -1925,6 +1982,7 @@ class QBusinessClient:
                 ListPluginActionsOutput,
                 ("application_id", "plugin_id", "next_token", "max_results", ),
                 ("application_id", "plugin_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.list_plugin_actions(params)
@@ -1954,6 +2012,7 @@ class QBusinessClient:
                 ListPluginTypeActionsOutput,
                 ("plugin_type", "next_token", "max_results", ),
                 ("plugin_type", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.list_plugin_type_actions(params)
@@ -1981,6 +2040,7 @@ class QBusinessClient:
                 ListPluginTypeMetadataOutput,
                 ("next_token", "max_results", ),
                 (),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.list_plugin_type_metadata(params)
@@ -2010,6 +2070,7 @@ class QBusinessClient:
                 ListPluginsOutput,
                 ("application_id", "next_token", "max_results", ),
                 ("application_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.list_plugins(params)
@@ -2039,6 +2100,7 @@ class QBusinessClient:
                 ListRetrieversOutput,
                 ("application_id", "next_token", "max_results", ),
                 ("application_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.list_retrievers(params)
@@ -2068,6 +2130,7 @@ class QBusinessClient:
                 ListSubscriptionsOutput,
                 ("application_id", "next_token", "max_results", ),
                 ("application_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.list_subscriptions(params)
@@ -2091,6 +2154,7 @@ class QBusinessClient:
                 ListTagsForResourceOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -2120,6 +2184,7 @@ class QBusinessClient:
                 ListWebExperiencesOutput,
                 ("application_id", "next_token", "max_results", ),
                 ("application_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.list_web_experiences(params)
@@ -2156,6 +2221,7 @@ class QBusinessClient:
                 type(None),
                 ("application_id", "conversation_id", "message_id", "user_id", "message_copied_at", "message_usefulness", ),
                 ("application_id", "conversation_id", "message_id", ),
+                service_name='QBusiness',
             )
             return None
         await self._native.put_feedback(params)
@@ -2193,6 +2259,7 @@ class QBusinessClient:
                 PutGroupOutput,
                 ("application_id", "index_id", "group_name", "type", "group_members", "data_source_id", "role_arn", ),
                 ("application_id", "index_id", "group_name", "type", "group_members", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.put_group(params)
@@ -2229,6 +2296,7 @@ class QBusinessClient:
                 SearchRelevantContentOutput,
                 ("application_id", "query_text", "content_source", "attribute_filter", "max_results", "next_token", ),
                 ("application_id", "query_text", "content_source", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.search_relevant_content(params)
@@ -2256,6 +2324,7 @@ class QBusinessClient:
                 StartDataSourceSyncJobOutput,
                 ("data_source_id", "application_id", "index_id", ),
                 ("data_source_id", "application_id", "index_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.start_data_source_sync_job(params)
@@ -2283,6 +2352,7 @@ class QBusinessClient:
                 StopDataSourceSyncJobOutput,
                 ("data_source_id", "application_id", "index_id", ),
                 ("data_source_id", "application_id", "index_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.stop_data_source_sync_job(params)
@@ -2308,6 +2378,7 @@ class QBusinessClient:
                 TagResourceOutput,
                 ("resource_arn", "tags", ),
                 ("resource_arn", "tags", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.tag_resource(params)
@@ -2333,6 +2404,7 @@ class QBusinessClient:
                 UntagResourceOutput,
                 ("resource_arn", "tag_keys", ),
                 ("resource_arn", "tag_keys", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.untag_resource(params)
@@ -2380,6 +2452,7 @@ class QBusinessClient:
                 UpdateApplicationOutput,
                 ("application_id", "identity_center_instance_arn", "display_name", "description", "role_arn", "attachments_configuration", "q_apps_configuration", "personalization_configuration", "auto_subscription_configuration", ),
                 ("application_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.update_application(params)
@@ -2427,6 +2500,7 @@ class QBusinessClient:
                 UpdateChatControlsConfigurationOutput,
                 ("application_id", "client_token", "response_scope", "orchestration_configuration", "blocked_phrases_configuration_update", "topic_configurations_to_create_or_update", "topic_configurations_to_delete", "creator_mode_configuration", "hallucination_reduction_configuration", ),
                 ("application_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.update_chat_controls_configuration(params)
@@ -2460,6 +2534,7 @@ class QBusinessClient:
                 UpdateChatResponseConfigurationOutput,
                 ("application_id", "chat_response_configuration_id", "response_configurations", "display_name", "client_token", ),
                 ("application_id", "chat_response_configuration_id", "response_configurations", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.update_chat_response_configuration(params)
@@ -2493,6 +2568,7 @@ class QBusinessClient:
                 UpdateDataAccessorOutput,
                 ("application_id", "data_accessor_id", "action_configurations", "authentication_detail", "display_name", ),
                 ("application_id", "data_accessor_id", "action_configurations", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.update_data_accessor(params)
@@ -2544,6 +2620,7 @@ class QBusinessClient:
                 UpdateDataSourceOutput,
                 ("application_id", "index_id", "data_source_id", "display_name", "configuration", "vpc_configuration", "description", "sync_schedule", "role_arn", "document_enrichment_configuration", "media_extraction_configuration", ),
                 ("application_id", "index_id", "data_source_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.update_data_source(params)
@@ -2581,6 +2658,7 @@ class QBusinessClient:
                 UpdateIndexOutput,
                 ("application_id", "index_id", "display_name", "description", "capacity_configuration", "document_attribute_configurations", ),
                 ("application_id", "index_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.update_index(params)
@@ -2621,6 +2699,7 @@ class QBusinessClient:
                 UpdatePluginOutput,
                 ("application_id", "plugin_id", "display_name", "state", "server_url", "custom_plugin_configuration", "auth_configuration", ),
                 ("application_id", "plugin_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.update_plugin(params)
@@ -2655,6 +2734,7 @@ class QBusinessClient:
                 UpdateRetrieverOutput,
                 ("application_id", "retriever_id", "configuration", "display_name", "role_arn", ),
                 ("application_id", "retriever_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.update_retriever(params)
@@ -2682,6 +2762,7 @@ class QBusinessClient:
                 UpdateSubscriptionOutput,
                 ("application_id", "subscription_id", "type", ),
                 ("application_id", "subscription_id", "type", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.update_subscription(params)
@@ -2713,6 +2794,7 @@ class QBusinessClient:
                 UpdateUserOutput,
                 ("application_id", "user_id", "user_aliases_to_update", "user_aliases_to_delete", ),
                 ("application_id", "user_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.update_user(params)
@@ -2768,6 +2850,7 @@ class QBusinessClient:
                 UpdateWebExperienceOutput,
                 ("application_id", "web_experience_id", "role_arn", "authentication_configuration", "title", "subtitle", "welcome_message", "sample_prompts_control_mode", "identity_provider_configuration", "origins", "browser_extension_configuration", "customization_configuration", ),
                 ("application_id", "web_experience_id", ),
+                service_name='QBusiness',
             )
             return _response
         _response = await self._native.update_web_experience(params)
